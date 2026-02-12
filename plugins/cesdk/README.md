@@ -5,6 +5,10 @@ A unified Claude Code plugin for building applications with IMG.LY CreativeEdito
 ## Installation
 
 ```bash
+# Add the marketplace (one-time setup)
+claude plugin marketplace add imgly/agent-skills
+
+# Install the plugin
 claude plugin install cesdk@imgly
 ```
 

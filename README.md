@@ -56,7 +56,10 @@ npx skills add imgly/agent-skills --list
 Install as a [Claude Code plugin](https://docs.anthropic.com/en/docs/claude-code/plugins):
 
 ```bash
-# Install the plugin directly
+# 1. Add the marketplace (one-time setup)
+claude plugin marketplace add imgly/agent-skills
+
+# 2. Install the plugin
 claude plugin install cesdk@imgly
 ```
 
