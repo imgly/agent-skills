@@ -1,0 +1,11 @@
+{
+  "author": {
+    "name": "IMG.LY GmbH",
+    "url": "https://img.ly"
+  },
+  "description": "IMG.LY CreativeEditor SDK builder agent and documentation for Web",
+  "homepage": "https://img.ly/docs/cesdk",
+  "license": "MIT",
+  "name": "cesdk",
+  "version": "1.68.0"
+}

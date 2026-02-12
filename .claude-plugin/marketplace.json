@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "description": "Unified CE.SDK plugin for IMG.LY CreativeEditor SDK.",
+    "version": "1.68.0"
+  },
+  "name": "imgly",
+  "owner": {
+    "email": "support@img.ly",
+    "name": "IMG.LY GmbH"
+  },
+  "plugins": [
+    {
+      "author": {
+        "email": "support@img.ly",
+        "name": "IMG.LY GmbH"
+      },
+      "category": "sdk",
+      "description": "CE.SDK builder agent and documentation for Web — photo editors, video editors, design editors, and creative automation.",
+      "homepage": "https://img.ly/docs/cesdk",
+      "keywords": [
+        "cesdk",
+        "creative-editor",
+        "photo-editor",
+        "video-editor",
+        "design-editor",
+        "img.ly",
+        "sdk",
+        "creative-automation",
+        "react",
+        "vue",
+        "svelte",
+        "angular",
+        "electron",
+        "js",
+        "node",
+        "nuxtjs",
+        "nextjs",
+        "sveltekit"
+      ],
+      "license": "MIT",
+      "name": "cesdk",
+      "repository": "https://github.com/nicedoc/tools-doc",
+      "source": "./plugins/cesdk",
+      "tags": [
+        "cesdk",
+        "creative-editor",
+        "Web"
+      ],
+      "version": "1.68.0"
+    }
+  ]
+}
