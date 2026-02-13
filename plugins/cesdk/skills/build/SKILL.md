@@ -4,12 +4,11 @@ description: |
   Implement features, write code, and set up CE.SDK Web projects.
   Covers React, Vue.js, Svelte, Angular, Electron, Vanilla JavaScript, Node.js, Nuxt.js, Next.js, SvelteKit.
 
-  Use when the user asks to implement, create, add, build, set up, integrate, or code
-  something with CE.SDK for Web. Triggered by action requests like "help me add",
-  "set up", "build a photo editor", "implement video export", or "create a design tool".
-  Covers photo editors, video editors, design editors, and creative automation.
+  Use when the user asks to implement, create, add, build, set up, or integrate
+  something with CE.SDK for Web. Triggered by "help me add", "set up", "build a
+  photo editor", or "create a design tool". Covers photo, video, and design editors.
 
-  Not for looking up existing docs (use docs-{framework}), not for concept explanations
+  Not for looking up existing docs (use docs-{framework}) or concept explanations
   (use explain).
 
   <example>
@@ -22,12 +21,6 @@ description: |
   Context: User wants to add a specific feature
   user: "Add text overlays to my image editor"
   assistant: "Let me use /cesdk:build to implement text overlays."
-  </example>
-
-  <example>
-  Context: User needs batch processing
-  user: "Generate 1000 personalized social media posts from a template"
-  assistant: "I'll use /cesdk:build to set up template-based automation."
   </example>
 argument-hint: "[feature or task]"
 ---
@@ -124,6 +117,11 @@ Brief explanation of key concepts and why this approach works.
 ### Next Steps
 
 Suggestions for extending or customizing the implementation.
+
+## Additional Triggers
+
+Also triggered by batch processing requests ("generate 1000 templates"), creative
+automation workflows, and "implement video export" or "create a design tool" queries.
 
 ## Related Skills
 

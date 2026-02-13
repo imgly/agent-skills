@@ -5,11 +5,10 @@ description: |
   Covers React, Vue.js, Svelte, Angular, Electron, Vanilla JavaScript, Node.js, Nuxt.js, Next.js, SvelteKit.
 
   Use when the user says "explain", "how does X work", "walk me through", "what is",
-  "describe", or wants to understand a CE.SDK concept at a conceptual level for
-  Web development. Generates custom markdown explanations with diagrams and code examples.
+  or "describe" and wants to understand a CE.SDK concept for Web development.
+  Generates custom markdown explanations with diagrams and code examples.
 
-  Not for looking up existing docs (use docs-{framework}), not for writing implementation code
-  (use build).
+  Not for looking up existing docs (use docs-{framework}) or writing code (use build).
 
   <example>
   Context: User wants to understand how text layers work
@@ -18,15 +17,9 @@ description: |
   </example>
 
   <example>
-  Context: User needs a concept explained in their context
+  Context: User needs a concept explained
   user: "How does the block hierarchy work for video editing?"
-  assistant: "Let me use /cesdk:explain to create a custom explanation for video block hierarchy."
-  </example>
-
-  <example>
-  Context: User needs to understand a workflow
-  user: "Walk me through the asset loading pipeline"
-  assistant: "I'll use /cesdk:explain to explain the asset pipeline."
+  assistant: "Let me use /cesdk:explain to explain video block hierarchy."
   </example>
 argument-hint: "[topic or question]"
 ---
@@ -113,6 +106,11 @@ Detailed explanation with diagrams or step-by-step breakdown as needed.
 ### Related Topics
 
 Links to related documentation for further reading.
+
+## Additional Triggers
+
+Also triggered by "walk me through", "describe how", or requests to understand CE.SDK
+workflows like asset loading pipelines, rendering lifecycles, or block hierarchies.
 
 ## Related Skills
 

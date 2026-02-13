@@ -1,18 +1,13 @@
 ---
 name: docs-node
 description: |
-  Look up CE.SDK Node.js reference guides and documentation pages.
+  Look up CE.SDK Node.js reference docs, guides, and configuration pages.
 
-  Use when the user needs CE.SDK reference docs for Node.js — configuration, headless rendering,
-  export options, batch processing, or getting-started instructions. Also use when the
-  user mentions "IMG.LY", "CreativeEditor", "CE.SDK", or "cesdk" and needs to find
-  an existing Node.js documentation page or guide.
+  Use when the user needs CE.SDK docs for Node.js — configuration, headless rendering,
+  export options, batch processing, or getting-started instructions. Also triggered by "IMG.LY", "CreativeEditor",
+  "CE.SDK", or "cesdk" when the user needs an existing Node.js doc page.
 
-  Also use for API method lookups — "BlockAPI", "SceneAPI", "EditorAPI",
-  "AssetAPI", method signatures, return types, or "engine.block" style queries.
-
-  Not for writing code or implementing features
-  (use build), not for concept explanations or tutorials (use explain).
+  Not for writing code (use build) or concept explanations (use explain).
 
   <example>
   Context: User asks about Node.js configuration
@@ -25,33 +20,27 @@ description: |
   user: "How do I use CE.SDK for server-side image generation?"
   assistant: "Let me use /cesdk:docs-node to find the relevant documentation."
   </example>
-
-  <example>
-  Context: User wants batch processing
-  user: "How do I batch-export 100 templates in Node.js with CE.SDK?"
-  assistant: "I'll use /cesdk:docs-node to look that up."
-  </example>
-
-  ## Documentation Index
-
-  <-- IMGLY-AGENTS-MD-START -->[CE.SDK Node.js Docs Index]|root: .|IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any CE.SDK tasks. Consult the local docs directory before using pre-trained knowledge.|animation:{create,edit.md,types.md}|animation/create:{base.md,text.md}|api-reference:{overview.md}|automation:{auto-resize.md,data-merge.md,design-generation.md,multi-image-generation.md,overview.md}|colors:{adjust.md,apply.md,basics.md,conversion.md,create-color-palette.md,for-print,for-screen,overview.md,replace.md}|colors/for-print:{cmyk.md,spot.md}|colors/for-screen:{p3.md,srgb.md}|compatibility.md|concepts:{architecture.md,assets.md,blocks.md,buffers.md,design-units.md,editing-workflow.md,events.md,headless-mode.md,pages.md,resources.md,scenes.md,templating.md,terminology.md,undo-and-history.md}|configuration.md|conversion:{overview.md,to-base64.md,to-pdf.md,to-png.md}|create-audio:{audio}|create-audio/audio:{add-music.md,add-sound-effects.md,loop.md}|create-composition:{add-background.md,blend-modes.md,collage.md,group-and-ungroup.md,layer-management.md,layout.md,lock-design.md,multi-page.md,overview.md,programmatic.md}|create-templates:{add-dynamic-content,add-to-template-library.md,edit-or-remove.md,from-scratch.md,import,lock.md,overview.md}|create-templates/add-dynamic-content:{placeholders.md,set-editing-constraints.md,text-variables.md}|create-templates/import:{from-scene-file.md}|create-video:{audio,control.md,limitations.md}|create-video/audio:{adjust-speed.md,adjust-volume.md}|edit-image:{add-watermark.md,overview.md,remove-bg.md,replace-colors.md,transform}|edit-image/transform:{crop.md,flip.md,move.md,resize.md,rotate.md,scale.md}|edit-video:{add-captions.md,add-watermark.md,join-and-arrange.md,redaction.md,split.md,transform,trim.md}|edit-video/transform:{crop.md,flip.md,move.md,resize.md,rotate.md,scale.md}|engine-interface.md|export-save-publish:{create-thumbnail.md,export,for-printing.md,for-social-media.md,pre-export-validation.md,save.md,store-custom-metadata.md}|export-save-publish/export:{compress.md,overview.md,partial-export.md,size-limits.md,to-jpeg.md,to-pdf.md,to-png.md,to-raw-data.md,to-webp.md,with-color-mask.md}|file-format-support.md|fills:{color.md,image.md,overview.md,video.md}|filters-and-effects:{apply.md,blur.md,chroma-key-green-screen.md,create-custom-filters.md,create-custom-lut-filter.md,distortion.md,duotone.md,gradients.md,overview.md,support.md}|get-started:{bun.md,deno.md,mcp-server.md,overview.md,vanilla.md,vanilla-aws-lambda.md,vanilla-clone-github-project.md}|guides:{export-save-publish}|guides/export-save-publish:{export}|guides/export-save-publish/export:{audio.md}|import-media:{asset-panel,concepts.md,content-json-schema.md,default-assets.md,edit-or-remove-assets.md,file-format-support.md,from-remote-source,overview.md,retrieve-mimetype.md,size-limits.md,source-sets.md}|import-media/asset-panel:{refresh-assets.md}|import-media/from-remote-source:{asset-versioning.md,remote-asset.md}|insert-media:{audio.md,images.md,position-and-align.md,shapes-or-stickers.md,videos.md}|key-capabilities.md|key-concepts.md|licensing.md|llms-txt.md|open-the-editor:{blank-canvas.md,from-image.md,from-template.md,from-video.md,import-design,load-scene.md,overview.md,uri-resolver.md}|open-the-editor/import-design:{from-archive.md,from-indesign.md,from-photoshop.md}|outlines:{overview.md,shadows-and-glows.md,strokes.md}|overview.md|performance.md|plugins:{print-ready-pdf.md}|rules:{asset-handling.md,common-pitfalls.md,content-fill-mode.md,enforce-brand-guidelines.md,lock-content.md,moderate-content.md,overview.md,silent-init-errors.md,verify-properties-before-use.md}|security.md|serve-assets.md|settings.md|shapes.md|stickers.md|stickers-and-shapes:{combine.md,create-cutout.md,create-edit,insert-qr-code.md}|stickers-and-shapes/create-edit:{create-shapes.md,create-stickers.md,edit-shapes.md}|text:{add.md,adjust-spacing.md,auto-size.md,edit.md,effects.md,emojis.md,language-support.md,overview.md,styling.md,text-designs.md}|to-v1-19.md|upgrade.md|use-templates:{apply-template.md,generate.md,overview.md,programmatic.md,replace-content.md}|what-is-cesdk.md|<-- IMGLY-AGENTS-MD-END -->
-
-  ## API Index
-
-  <-- IMGLY-TYPES-MD-START -->
-  [CE.SDK Web API Index]|root: .
-
-  CreativeEngine:{asset,block,editor,event,scene,variable,reactor,version,addPlugin,unstable_setVideoExportInactivityTimeout,unstable_setExportInactivityTimeout,addPostUpdateCallback,addPreUpdateCallback,setWheelEventTarget,dispose},... (+5)
-  BlockAPI:{export,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo,getAudioInfoFromVideo},... (+347)
-  AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
-  SceneAPI:{loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create,createVideo,createFromImage,createFromVideo,get,applyTemplateFromString,applyTemplateFromURL,getMode,setMode,setDesignUnit},... (+22)
-  EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,getCursorType,getCursorRotation,getTextCursorPositionInScreenSpaceX,getTextCursorPositionInScreenSpaceY,createHistory,destroyHistory},... (+74)
-  EventAPI:{subscribe}
-  VariableAPI:{findAll,setString,getString,remove}
-  Types:{AnimationType,AssetResult,BlendMode,Color,DesignBlockId,ExportOptions,PropertyType,Scope,TextCase,VideoExportOptions}
-  <-- IMGLY-TYPES-MD-END -->
 argument-hint: "[search-topic]"
 ---
+
+## Documentation Index
+
+<-- IMGLY-AGENTS-MD-START -->[CE.SDK Node.js Docs Index]|root: .|IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any CE.SDK tasks. Consult the local docs directory before using pre-trained knowledge.|animation:{create,edit.md,types.md}|animation/create:{base.md,text.md}|api-reference:{overview.md}|automation:{auto-resize.md,data-merge.md,design-generation.md,multi-image-generation.md,overview.md}|colors:{adjust.md,apply.md,basics.md,conversion.md,create-color-palette.md,for-print,for-screen,overview.md,replace.md}|colors/for-print:{cmyk.md,spot.md}|colors/for-screen:{p3.md,srgb.md}|compatibility.md|concepts:{architecture.md,assets.md,blocks.md,buffers.md,design-units.md,editing-workflow.md,events.md,headless-mode.md,pages.md,resources.md,scenes.md,templating.md,terminology.md,undo-and-history.md}|configuration.md|conversion:{overview.md,to-base64.md,to-pdf.md,to-png.md}|create-audio:{audio}|create-audio/audio:{add-music.md,add-sound-effects.md,loop.md}|create-composition:{add-background.md,blend-modes.md,collage.md,group-and-ungroup.md,layer-management.md,layout.md,lock-design.md,multi-page.md,overview.md,programmatic.md}|create-templates:{add-dynamic-content,add-to-template-library.md,edit-or-remove.md,from-scratch.md,import,lock.md,overview.md}|create-templates/add-dynamic-content:{placeholders.md,set-editing-constraints.md,text-variables.md}|create-templates/import:{from-scene-file.md}|create-video:{audio,control.md,limitations.md}|create-video/audio:{adjust-speed.md,adjust-volume.md}|edit-image:{add-watermark.md,overview.md,remove-bg.md,replace-colors.md,transform}|edit-image/transform:{crop.md,flip.md,move.md,resize.md,rotate.md,scale.md}|edit-video:{add-captions.md,add-watermark.md,join-and-arrange.md,redaction.md,split.md,transform,trim.md}|edit-video/transform:{crop.md,flip.md,move.md,resize.md,rotate.md,scale.md}|engine-interface.md|export-save-publish:{create-thumbnail.md,export,for-printing.md,for-social-media.md,pre-export-validation.md,save.md,store-custom-metadata.md}|export-save-publish/export:{compress.md,overview.md,partial-export.md,size-limits.md,to-jpeg.md,to-pdf.md,to-png.md,to-raw-data.md,to-webp.md,with-color-mask.md}|file-format-support.md|fills:{color.md,image.md,overview.md,video.md}|filters-and-effects:{apply.md,blur.md,chroma-key-green-screen.md,create-custom-filters.md,create-custom-lut-filter.md,distortion.md,duotone.md,gradients.md,overview.md,support.md}|get-started:{bun.md,deno.md,mcp-server.md,overview.md,vanilla.md,vanilla-aws-lambda.md,vanilla-clone-github-project.md}|guides:{export-save-publish}|guides/export-save-publish:{export}|guides/export-save-publish/export:{audio.md}|import-media:{asset-panel,concepts.md,content-json-schema.md,default-assets.md,edit-or-remove-assets.md,file-format-support.md,from-remote-source,overview.md,retrieve-mimetype.md,size-limits.md,source-sets.md}|import-media/asset-panel:{refresh-assets.md}|import-media/from-remote-source:{asset-versioning.md,remote-asset.md}|insert-media:{audio.md,images.md,position-and-align.md,shapes-or-stickers.md,videos.md}|key-capabilities.md|key-concepts.md|licensing.md|llms-txt.md|open-the-editor:{blank-canvas.md,from-image.md,from-template.md,from-video.md,import-design,load-scene.md,overview.md,uri-resolver.md}|open-the-editor/import-design:{from-archive.md,from-indesign.md,from-photoshop.md}|outlines:{overview.md,shadows-and-glows.md,strokes.md}|overview.md|performance.md|plugins:{print-ready-pdf.md}|rules:{asset-handling.md,common-pitfalls.md,content-fill-mode.md,enforce-brand-guidelines.md,lock-content.md,moderate-content.md,overview.md,silent-init-errors.md,verify-properties-before-use.md}|security.md|serve-assets.md|settings.md|shapes.md|stickers.md|stickers-and-shapes:{combine.md,create-cutout.md,create-edit,insert-qr-code.md}|stickers-and-shapes/create-edit:{create-shapes.md,create-stickers.md,edit-shapes.md}|text:{add.md,adjust-spacing.md,auto-size.md,edit.md,effects.md,emojis.md,language-support.md,overview.md,styling.md,text-designs.md}|to-v1-19.md|upgrade.md|use-templates:{apply-template.md,generate.md,overview.md,programmatic.md,replace-content.md}|what-is-cesdk.md|<-- IMGLY-AGENTS-MD-END -->
+
+## API Index
+
+<-- IMGLY-TYPES-MD-START -->
+[CE.SDK Web API Index]|root: .
+
+CreativeEngine:{asset,block,editor,event,scene,variable,reactor,version,addPlugin,unstable_setVideoExportInactivityTimeout,unstable_setExportInactivityTimeout,addPostUpdateCallback,addPreUpdateCallback,setWheelEventTarget,dispose},... (+5)
+BlockAPI:{export,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo,getAudioInfoFromVideo},... (+347)
+AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
+SceneAPI:{loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create,createVideo,createFromImage,createFromVideo,get,applyTemplateFromString,applyTemplateFromURL,getMode,setMode,setDesignUnit},... (+22)
+EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,getCursorType,getCursorRotation,getTextCursorPositionInScreenSpaceX,getTextCursorPositionInScreenSpaceY,createHistory,destroyHistory},... (+74)
+EventAPI:{subscribe}
+VariableAPI:{findAll,setString,getString,remove}
+Types:{AnimationType,AssetResult,BlendMode,Color,DesignBlockId,ExportOptions,PropertyType,Scope,TextCase,VideoExportOptions}
+<-- IMGLY-TYPES-MD-END -->
 
 # CE.SDK Node.js Documentation
 
@@ -61,7 +50,7 @@ Look up documentation for IMG.LY CreativeEditor SDK (Node.js).
 
 ## How to Use
 
-1. **Index lookup**: Match the query to a path in the index (in description above).
+1. **Index lookup**: Match the query to a path in the Documentation Index above.
    The index uses compressed format: `dir:{file1.md,file2.md}` means files are at
    `dir/file1.md` and `dir/file2.md`.
    Resolve the path using Glob: `**/skills/docs-node/<path>.md`
@@ -77,7 +66,7 @@ Look up documentation for IMG.LY CreativeEditor SDK (Node.js).
 
 For TypeScript API queries (method signatures, types, parameters):
 
-1. **Module lookup**: Match the query to a module in the API index (in description above).
+1. **Module lookup**: Match the query to a module in the API index above.
    Read the module file: `**/skills/docs-node/api/<ModuleName>.md`
    (e.g., for BlockAPI → `**/skills/docs-node/api/BlockAPI.md`)
 2. **Method search**: If looking for a specific method, use Grep:
@@ -103,6 +92,12 @@ For TypeScript API queries (method signatures, types, parameters):
 | Filters/effects | `filters-and-effects/` |
 | Known pitfalls | `rules/` |
 | API modules | `api/BlockAPI.md`, `api/SceneAPI.md`, etc. |
+
+## Additional Triggers
+
+This skill also covers queries about CE.SDK block types, asset sources, and feature capabilities.
+It handles API method lookups — BlockAPI, SceneAPI, EditorAPI, AssetAPI, method signatures,
+return types, and "engine.block" style queries.
 
 ## Related Skills
 

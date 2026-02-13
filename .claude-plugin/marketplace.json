@@ -39,7 +39,7 @@
       ],
       "license": "MIT",
       "name": "cesdk",
-      "repository": "https://github.com/nicedoc/tools-doc",
+      "repository": "https://github.com/imgly/agent-skills",
       "source": "./plugins/cesdk",
       "tags": [
         "cesdk",
