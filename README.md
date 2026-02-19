@@ -2,7 +2,7 @@
 
 Give your AI coding assistant expert-level knowledge of CreativeEditor SDK. Build photo editors, video editors, and design tools by describing what you want.
 
-<video src="https://github.com/user-attachments/assets/d01073ca-4a6a-49eb-8155-faa25ff04595" width="100%" autoplay loop muted playsinline></video>
+https://github.com/user-attachments/assets/d01073ca-4a6a-49eb-8155-faa25ff04595
 
 ## What Are Agent Skills?
 
