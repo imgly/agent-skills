@@ -1,0 +1,88 @@
+.landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+  padding: 1rem;
+}
+
+.landing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  max-width: 480px;
+  width: 100%;
+  backdrop-filter: blur(12px);
+}
+
+.landing-icon {
+  width: 64px;
+  height: 64px;
+  color: #7c6af7;
+}
+
+.landing-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.landing-card h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.landing-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+}
+
+.drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  border: 2px dashed rgba(124, 106, 247, 0.5);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(124, 106, 247, 0.04);
+}
+
+.drop-zone:hover {
+  border-color: #7c6af7;
+  background: rgba(124, 106, 247, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.drop-zone svg {
+  width: 40px;
+  height: 40px;
+  color: #7c6af7;
+}
+
+.drop-zone span {
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.drop-zone small {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.file-input {
+  display: none;
+}
