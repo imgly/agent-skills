@@ -57,7 +57,7 @@ const videoFill = engine.block.createFill('video');
 engine.block.setString(
   videoFill,
   'fill/video/fileURI',
-  'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barrelling-a-wave-12715991.mp4'
+  'https://cdn.img.ly/assets/demo/v4/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barrelling-a-wave-12715991.mp4'
 );
 engine.block.setFill(video1, videoFill);
 
@@ -67,7 +67,7 @@ const videoFill2 = engine.block.createFill('video');
 engine.block.setString(
   videoFill2,
   'fill/video/fileURI',
-  'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-kampus-production-8154913.mp4'
+  'https://cdn.img.ly/assets/demo/v4/ly.img.video/videos/pexels-kampus-production-8154913.mp4'
 );
 engine.block.setFill(video2, videoFill2);
 ```

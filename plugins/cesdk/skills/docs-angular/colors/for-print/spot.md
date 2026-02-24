@@ -28,6 +28,22 @@ import type {
   EditorPluginContext,
   SpotColor
 } from '@cesdk/cesdk-js';
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 // Type guard to check if a color is a SpotColor
@@ -63,8 +79,36 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
+    await cesdk.addPlugin(new DesignEditorConfig());
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
     // Create a design scene using CE.SDK convenience method
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
 
@@ -74,10 +118,6 @@ class Example implements EditorPlugin {
     if (!page) {
       throw new Error('No page found');
     }
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Set page background to light gray for visibility
     const pageFill = engine.block.getFill(page);
@@ -162,7 +202,11 @@ class Example implements EditorPlugin {
       externalReference: ''
     };
     const { fill: lightTintFill } = createColorBlock(560, 50, 150, 150);
-    engine.block.setColor(lightTintFill, 'fill/color/value', brandAccentLightTint);
+    engine.block.setColor(
+      lightTintFill,
+      'fill/color/value',
+      brandAccentLightTint
+    );
 
     // Apply spot colors to strokes and shadows
     const { block: strokeBlock, fill: strokeBlockFill } = createColorBlock(
@@ -231,10 +275,15 @@ class Example implements EditorPlugin {
     console.log('Brand-Primary CMYK approximation:', cmykApprox);
 
     // Read back the color from a block and check if it's a spot color
-    const retrievedColor = engine.block.getColor(primaryFill, 'fill/color/value');
+    const retrievedColor = engine.block.getColor(
+      primaryFill,
+      'fill/color/value'
+    );
     if (isSpotColor(retrievedColor)) {
       // eslint-disable-next-line no-console
-      console.log(`Retrieved SpotColor - Name: ${retrievedColor.name}, Tint: ${retrievedColor.tint}`);
+      console.log(
+        `Retrieved SpotColor - Name: ${retrievedColor.name}, Tint: ${retrievedColor.tint}`
+      );
     }
 
     // Update an existing spot color's approximation
@@ -434,7 +483,11 @@ Tints create lighter variations without defining separate spot colors for each s
       externalReference: ''
     };
     const { fill: lightTintFill } = createColorBlock(560, 50, 150, 150);
-    engine.block.setColor(lightTintFill, 'fill/color/value', brandAccentLightTint);
+    engine.block.setColor(
+      lightTintFill,
+      'fill/color/value',
+      brandAccentLightTint
+    );
 ```
 
 Use tints for:
@@ -525,10 +578,15 @@ We retrieve all defined spot colors with `engine.editor.findAllSpotColors()`.
     console.log('Brand-Primary CMYK approximation:', cmykApprox);
 
     // Read back the color from a block and check if it's a spot color
-    const retrievedColor = engine.block.getColor(primaryFill, 'fill/color/value');
+    const retrievedColor = engine.block.getColor(
+      primaryFill,
+      'fill/color/value'
+    );
     if (isSpotColor(retrievedColor)) {
       // eslint-disable-next-line no-console
-      console.log(`Retrieved SpotColor - Name: ${retrievedColor.name}, Tint: ${retrievedColor.tint}`);
+      console.log(
+        `Retrieved SpotColor - Name: ${retrievedColor.name}, Tint: ${retrievedColor.tint}`
+      );
     }
 ```
 

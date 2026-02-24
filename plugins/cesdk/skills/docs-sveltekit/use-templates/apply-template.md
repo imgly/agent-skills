@@ -24,6 +24,23 @@ Unlike loading a scene which replaces everything, applying a template merges tem
 
 ```typescript file=@cesdk_web_examples/guides-use-templates-apply-template-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -42,15 +59,34 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    // Create a design scene with specific dimensions
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', { page: { width: 1080, height: 1920, unit: 'Pixel' } });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
@@ -59,8 +95,6 @@ class Example implements EditorPlugin {
     }
 
     // Set custom page dimensions - these will be preserved when applying templates
-    engine.block.setWidth(page, 1080);
-    engine.block.setHeight(page, 1920);
 
     // Apply a template from URL - content adjusts to fit current page dimensions
     const templateUrl =
@@ -116,14 +150,34 @@ Use `loadFromString()` or `loadFromURL()` when you need the template's original 
 We first create a scene with specific dimensions. These dimensions will be preserved when we apply the template.
 
 ```typescript highlight=highlight-setup
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    // Create a design scene with specific dimensions
-    await cesdk.createDesignScene();
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', { page: { width: 1080, height: 1920, unit: 'Pixel' } });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
@@ -132,8 +186,6 @@ We first create a scene with specific dimensions. These dimensions will be prese
     }
 
     // Set custom page dimensions - these will be preserved when applying templates
-    engine.block.setWidth(page, 1080);
-    engine.block.setHeight(page, 1920);
 ```
 
 To apply a template from a URL, call `engine.scene.applyTemplateFromURL()` with the template URL. The template content adjusts automatically to fit the current page dimensions.
@@ -196,7 +248,7 @@ await engine.scene.applyTemplateFromString(templateString);
 
 ### No Scene Loaded
 
-`applyTemplateFromString()` and `applyTemplateFromURL()` require an existing scene. Create one first with `cesdk.createDesignScene()` or `engine.scene.create()`.
+`applyTemplateFromString()` and `applyTemplateFromURL()` require an existing scene. Create one first with `cesdk.actions.run('scene.create')` or `engine.scene.create()`.
 
 ### Template URL Not Accessible
 

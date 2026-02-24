@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Asset Library](./import-media/asset-library.md) > [Thumbnails](./import-media/asset-panel/thumbnails.md)
 
@@ -24,6 +24,24 @@ Thumbnails provide visual previews of assets in the asset library, improving the
 
 ```typescript file=@cesdk_web_examples/guides-import-media-asset-library-thumbnails-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -35,13 +53,57 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new VideoEditorConfig());
 
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Video',
-      withUploadAssetSources: false
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.audio.*',
+          'ly.img.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.instagram.story'
+      }
     });
-    await cesdk.createVideoScene();
 
     const engine = cesdk.engine;
 
@@ -566,7 +628,7 @@ Ensure audio assets include the `mimeType` property (e.g., `'audio/x-m4a'` or `'
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Update Caption Presets](./create-video/update-caption-presets.md)
 
@@ -26,6 +26,24 @@ Video captions have become an essential part of digital content, improving acces
 
 ```typescript file=@cesdk_web_examples/guides-create-video-update-caption-presets-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -51,14 +69,57 @@ class Example implements EditorPlugin {
     cesdk.feature.enable('ly.img.video');
     cesdk.feature.enable('ly.img.timeline');
     cesdk.feature.enable('ly.img.playback');
+    await cesdk.addPlugin(new VideoEditorConfig());
 
-    // Load assets and create a video scene
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Video',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.audio.*',
+          'ly.img.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.instagram.story'
+      }
     });
-    await cesdk.createVideoScene();
 
     const engine = cesdk.engine;
 
@@ -239,10 +300,10 @@ This guide covers how to understand the caption presets folder structure, create
 
 ### Folder Organization
 
-CE.SDK's caption presets use a specific directory structure that the engine expects when loading presets. The base path is `assets/v4/ly.img.captionPresets/` and contains:
+CE.SDK's caption presets use a specific directory structure that the engine expects when loading presets. The base path is `assets/v5/ly.img.caption.presets/` and contains:
 
 ```
-assets/v4/ly.img.captionPresets/
+assets/v5/ly.img.caption.presets/
 ├── content.json                # Master index of all presets
 ├── presets/                    # Folder containing preset files
 │   ├── my-custom-preset.preset # Serialized caption block with styling
@@ -261,14 +322,14 @@ The content.json file follows a specific format with version, asset source ID, a
 ```json
 {
   "version": "3.0.0",
-  "id": "ly.img.captionPresets",
+  "id": "ly.img.caption.presets",
   "assets": [
     {
-      "id": "//ly.img.captionPresets/my-preset",
+      "id": "ly.img.caption.presets.my-preset",
       "label": { "en": "My Preset" },
       "meta": {
-        "uri": "{{base_url}}/ly.img.captionPresets/presets/my-preset.preset",
-        "thumbUri": "{{base_url}}/ly.img.captionPresets/thumbnails/my-preset.png",
+        "uri": "{{base_url}}/ly.img.caption.presets/presets/my-preset.preset",
+        "thumbUri": "{{base_url}}/ly.img.caption.presets/thumbnails/my-preset.png",
         "mimeType": "application/ubq-blocks-string"
       },
       "payload": {
@@ -478,11 +539,11 @@ Add a new object to the `assets` array with all required fields. The complete st
 
 ```json
 {
-  "id": "//ly.img.captionPresets/neon-glow",
+  "id": "ly.img.caption.presets.neon-glow",
   "label": { "en": "Neon Glow" },
   "meta": {
-    "uri": "{{base_url}}/ly.img.captionPresets/presets/neon-glow.preset",
-    "thumbUri": "{{base_url}}/ly.img.captionPresets/thumbnails/neon-glow.png",
+    "uri": "{{base_url}}/ly.img.caption.presets/presets/neon-glow.preset",
+    "thumbUri": "{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png",
     "mimeType": "application/ubq-blocks-string"
   },
   "payload": {
@@ -530,7 +591,7 @@ The complete content.json file structure wraps preset entries in the assets arra
 
 Prepare the folder structure and upload files to your server:
 
-1. Create folder structure matching `assets/v4/ly.img.captionPresets/`
+1. Create folder structure matching `assets/v5/ly.img.caption.presets/`
 2. Upload `content.json` to the root folder
 3. Upload `.preset` files to `presets/` subfolder
 4. Upload thumbnail images to `thumbnails/` subfolder
@@ -549,7 +610,9 @@ Test that all files are accessible before configuring CE.SDK:
 
 ### Base URL Configuration
 
-Set the base URL to point to your asset hosting location. CE.SDK automatically looks for `ly.img.captionPresets/content.json` relative to the base URL:
+To load your custom caption presets into CE.SDK, you need to tell the engine where to find your updated content.json file. Since CE.SDK already includes a caption presets asset source with the ID "ly.img.caption.presets", we'll update this existing source rather than creating a new one.
+
+Set the base URL to point to your asset hosting location. CE.SDK automatically looks for `ly.img.caption.presets/content.json` relative to the base URL:
 
 ```typescript
 const config = {
@@ -610,7 +673,7 @@ Your custom presets will seamlessly integrate with any built-in presets and auto
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

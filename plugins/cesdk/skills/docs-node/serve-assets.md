@@ -60,17 +60,17 @@ The `imgly-assets.zip` contains directories organized by function:
 | `ui/`                           | UI resources                    | No              | Browser only                        |
 | `ly.img.sticker/`               | Stickers                        | No              | If using `addDefaultAssetSources()` |
 | `ly.img.sticker.misc/`          | Additional stickers             | No              | If using `addDefaultAssetSources()` |
-| `ly.img.vectorpath/`            | Shapes and arrows               | No              | If using `addDefaultAssetSources()` |
+| `ly.img.vector.shape/`          | Shapes and arrows               | No              | If using `addDefaultAssetSources()` |
 | `ly.img.typeface/`              | Font definitions                | No              | If using `addDefaultAssetSources()` |
-| `ly.img.filter.lut/`            | LUT filter effects              | No              | If using `addDefaultAssetSources()` |
-| `ly.img.filter.duotone/`        | Duotone effects                 | No              | If using `addDefaultAssetSources()` |
+| `ly.img.filter/`                | Filter effects (LUT and duotone) | No             | If using `addDefaultAssetSources()` |
 | `ly.img.effect/`                | Visual effects                  | No              | If using `addDefaultAssetSources()` |
 | `ly.img.blur/`                  | Blur presets                    | No              | If using `addDefaultAssetSources()` |
-| `ly.img.colors.defaultPalette/` | Color palettes                  | No              | If using `addDefaultAssetSources()` |
+| `ly.img.color.palette/`         | Color palettes                  | No              | If using `addDefaultAssetSources()` |
 | `ly.img.crop.presets/`          | Crop aspect ratios              | No              | If using `addDefaultAssetSources()` |
 | `ly.img.page.presets/`          | Page format presets             | No              | If using `addDefaultAssetSources()` |
 | `ly.img.page.presets.video/`    | Video page presets              | No              | If using `addDefaultAssetSources()` |
-| `ly.img.captionPresets/`        | Caption formatting presets      | No              | If using `addDefaultAssetSources()` |
+| `ly.img.caption.presets/`       | Caption formatting presets      | No              | If using `addDefaultAssetSources()` |
+| `ly.img.text.components/`       | Text components                 | No              | If using `addDefaultAssetSources()` |
 | `ly.img.animation/`             | Animation presets               | No              | If using `addDefaultAssetSources()` |
 | `ly.img.animation.text/`        | Text animation presets          | No              | If using `addDefaultAssetSources()` |
 | `ly.img.image/`                 | Sample images (demo content)    | No              | Development only                    |
@@ -78,7 +78,6 @@ The `imgly-assets.zip` contains directories organized by function:
 | `ly.img.audio/`                 | Sample audio (demo content)     | No              | Development only                    |
 | `ly.img.template/`              | Design templates (demo content) | No              | Development only                    |
 | `ly.img.video.template/`        | Video templates (demo content)  | No              | Development only                    |
-| `ly.img.textComponents/`        | Text components (demo content)  | No              | Development only                    |
 
 For most server-side integrations, you need the `ly.img.*` asset sources you use.
 
@@ -88,17 +87,17 @@ Calling `addDefaultAssetSources()` registers these asset sources:
 
 - `ly.img.sticker` - Stickers
 - `ly.img.sticker.misc` - Additional stickers
-- `ly.img.vectorpath` - Shapes and arrows
+- `ly.img.vector.shape` - Shapes and arrows
 - `ly.img.typeface` - Font definitions
-- `ly.img.colors.defaultPalette` - Color palettes
-- `ly.img.filter.lut` - LUT effects
-- `ly.img.filter.duotone` - Duotone effects
+- `ly.img.color.palette` - Color palettes
+- `ly.img.filter` - Filter effects
 - `ly.img.effect` - Visual effects
 - `ly.img.blur` - Blur presets
 - `ly.img.crop.presets` - Crop aspect ratios
 - `ly.img.page.presets` - Page format presets
 - `ly.img.page.presets.video` - Video page presets
-- `ly.img.captionPresets` - Caption formatting
+- `ly.img.caption.presets` - Caption formatting
+- `ly.img.text.components` - Text components
 - `ly.img.animation` - Animation presets
 - `ly.img.animation.text` - Text animation presets
 

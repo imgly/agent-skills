@@ -277,10 +277,6 @@ After you add the script to your app and run the dev server:
 
 ## Go Further
 
-Once you're comfortable creating scenes and exporting results with code, explore:
-
-- Framework-specific headless quick starts for [React](./get-started/new-project-without-ui.md), [Next.js](#broken-link-k4f45q), [Vue](#broken-link-n7f18t), and [Angular](#broken-link-c1234j).
-
 Need a hybrid approach? [Engine interface guides](./engine-interface.md) show how to combine headless logic with the standard editor UI.
 
 

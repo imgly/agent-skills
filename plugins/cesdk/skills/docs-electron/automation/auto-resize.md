@@ -24,6 +24,23 @@ CE.SDK provides three sizing modes for controlling block dimensions. Absolute mo
 
 ```typescript file=@cesdk_web_examples/guides-automation-auto-resize-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -45,20 +62,39 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Initialize CE.SDK with Design mode and load asset sources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Create a text block with Auto sizing mode
     // Auto mode makes the block expand to fit its content
@@ -78,7 +114,9 @@ class Example implements EditorPlugin {
     const titleHeight = engine.block.getFrameHeight(titleBlock);
 
     console.log(
-      `Title dimensions: ${titleWidth.toFixed(0)}x${titleHeight.toFixed(0)} pixels`
+      `Title dimensions: ${titleWidth.toFixed(0)}x${titleHeight.toFixed(
+        0
+      )} pixels`
     );
 
     // Calculate centered position using frame dimensions
@@ -164,20 +202,39 @@ This guide covers how to set and query sizing modes, read computed frame dimensi
 We start by initializing CE.SDK with a Design scene and setting up the page dimensions for our layout.
 
 ```typescript highlight=highlight-setup
-    // Initialize CE.SDK with Design mode and load asset sources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 ```
 
 ## Size Modes
@@ -255,7 +312,9 @@ After layout, use `getFrameWidth()` and `getFrameHeight()` to read the computed 
     const titleHeight = engine.block.getFrameHeight(titleBlock);
 
     console.log(
-      `Title dimensions: ${titleWidth.toFixed(0)}x${titleHeight.toFixed(0)} pixels`
+      `Title dimensions: ${titleWidth.toFixed(0)}x${titleHeight.toFixed(
+        0
+      )} pixels`
     );
 ```
 

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Timeline Editor](./create-video/timeline-editor.md)
 
@@ -50,7 +50,7 @@ To work with the CE.SDK Editor in video mode, specify the scene’s design as fo
 ```ts
 cesdk.addDefaultAssetSources(),
 cesdk.addDemoAssetSources({ sceneMode: 'Video' }),
-await cesdk.createVideoScene();
+await cesdk.actions.run('scene.create', { mode: 'Video' });
 ```
 
 This tells the CreativeEditor:
@@ -567,7 +567,7 @@ cesdk.feature.set('ly.img.video.controls.split', ({ engine }) => {
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

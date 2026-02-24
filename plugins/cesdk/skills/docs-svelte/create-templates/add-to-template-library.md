@@ -24,6 +24,23 @@ Templates in CE.SDK are stored and accessed through the asset system. A template
 
 ```typescript file=@cesdk_web_examples/guides-create-templates-add-to-template-library-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -46,13 +63,6 @@ class Example implements EditorPlugin {
     }
 
     const engine = cesdk.engine;
-
-    // Add default and demo asset sources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
 
     // Create a local asset source for templates
     engine.asset.addLocalSource('my-templates', undefined, async (asset) => {

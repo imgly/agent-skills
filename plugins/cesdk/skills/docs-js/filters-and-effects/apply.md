@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Filters and Effects](./filters-and-effects.md) > [Apply Filter or Effect](./filters-and-effects/apply.md)
 
@@ -25,6 +25,23 @@ While CE.SDK uses a unified effect API for both filters and effects, they serve 
 
 ```typescript file=@cesdk_web_examples/guides-filters-and-effects-apply-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 import { calculateGridLayout, hexToRgba } from './utils';
 
@@ -49,20 +66,39 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Initialize CE.SDK with Design mode and load asset sources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     const pageWidth = engine.block.getWidth(page);
     const pageHeight = engine.block.getHeight(page);
@@ -82,17 +118,14 @@ class Example implements EditorPlugin {
 
     // Query available LUT and Duotone filters from asset sources
     // These filters are provided by the demo asset sources loaded above
-    const lutResults = await engine.asset.findAssets('ly.img.filter.lut', {
+    const lutResults = await engine.asset.findAssets('ly.img.filter', {
       page: 0,
       perPage: 10
     });
-    const duotoneResults = await engine.asset.findAssets(
-      'ly.img.filter.duotone',
-      {
-        page: 0,
-        perPage: 10
-      }
-    );
+    const duotoneResults = await engine.asset.findAssets('ly.img.filter', {
+      page: 0,
+      perPage: 10
+    });
 
     const lutAssets = lutResults.assets;
     const duotoneAssets = duotoneResults.assets;
@@ -421,20 +454,39 @@ This interactive approach is perfect for creative exploration and allows users t
 For applications that need to apply effects programmatically—whether for automation, batch processing, or dynamic user experiences—we start by setting up CE.SDK with the proper configuration.
 
 ```typescript highlight-setup
-    // Initialize CE.SDK with Design mode and load asset sources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     const pageWidth = engine.block.getWidth(page);
     const pageHeight = engine.block.getHeight(page);
@@ -572,7 +624,7 @@ Using the correct setter method ensures type safety and proper value validation.
 
 LUT (Look-Up Table) filters apply professional color grading by transforming colors through a predefined mapping. These are particularly useful for creating consistent brand aesthetics or applying cinematic color treatments.
 
-The example demonstrates querying LUT filters from the asset library using `engine.asset.findAssets('ly.img.filter.lut')`, then applying them using metadata from the asset results. This approach matches how CE.SDK's built-in filter panel works.
+The example demonstrates querying LUT filters from the asset library using `engine.asset.findAssets('ly.img.filter')`, then applying them using metadata from the asset results. This approach matches how CE.SDK's built-in filter panel works.
 
 ```typescript highlight-apply-lut-filter
     // Demonstrate LUT filters by applying the first 2 from asset library
@@ -985,7 +1037,7 @@ Now that you understand how to apply and manage filters and effects, explore spe
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

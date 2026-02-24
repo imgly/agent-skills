@@ -16,7 +16,7 @@
 - [Add Text](./text/add.md) - Insert text blocks into your CE.SDK scene.
 - [Edit Text](./text/edit.md) - Edit text content directly on the canvas or through the properties panel.
 - [Text Styling](./text/styling.md) - Apply fonts, colors, alignment, and other styling options to customize text appearance.
-- [Text Designs](./user-interface/customization/reference.md) - Create and customize text component libraries using predefined text designs that appear in your asset library.
+- [Text Designs](./text/text-designs.md) - Create and customize text component libraries using predefined text designs that appear in your asset library.
 - [Auto-Size](./text/auto-size.md) - Configure text blocks to automatically adapt their dimensions or font size for dynamic content.
 - [Text Effects](./text/effects.md) - Apply visual effects to text blocks including drop shadows and stroke outlines.
 - [Emojis](./text/emojis.md) - Insert and style emojis alongside text for expressive, modern typographic designs.

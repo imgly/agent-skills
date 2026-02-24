@@ -25,6 +25,23 @@ CE.SDK provides 22 built-in effect types for visual transformations including co
 
 ```typescript file=@cesdk_web_examples/guides-filters-and-effects-support-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -45,20 +62,39 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Initialize CE.SDK with Design mode and load asset sources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Enable effects and filters in the inspector panel
     cesdk.feature.enable('ly.img.effect');
@@ -113,7 +149,12 @@ class Example implements EditorPlugin {
     engine.block.replaceText(subtitleText, 'img.ly');
     engine.block.setFont(subtitleText, fontUri, typeface);
     engine.block.setTextFontSize(subtitleText, 64);
-    engine.block.setTextColor(subtitleText, { r: 0.75, g: 0.82, b: 1.0, a: 0.85 });
+    engine.block.setTextColor(subtitleText, {
+      r: 0.75,
+      g: 0.82,
+      b: 1.0,
+      a: 0.85
+    });
     engine.block.setEnum(subtitleText, 'text/horizontalAlignment', 'Center');
     engine.block.setWidth(subtitleText, 780);
     engine.block.setWidthMode(subtitleText, 'Absolute');
@@ -161,7 +202,11 @@ class Example implements EditorPlugin {
       b: 1.0,
       a: 1.0
     }); // Light blue
-    engine.block.setFloat(duotoneEffect, 'effect/duotone_filter/intensity', 0.8);
+    engine.block.setFloat(
+      duotoneEffect,
+      'effect/duotone_filter/intensity',
+      0.8
+    );
 
     // Retrieve all effects applied to a block
     const appliedEffects = engine.block.getEffects(imageBlock);
@@ -251,7 +296,11 @@ engine.block.setColor(duotoneEffect, 'effect/duotone_filter/lightColor', {
   b: 1.0,
   a: 1.0
 }); // Light blue
-engine.block.setFloat(duotoneEffect, 'effect/duotone_filter/intensity', 0.8);
+engine.block.setFloat(
+  duotoneEffect,
+  'effect/duotone_filter/intensity',
+  0.8
+);
 ```
 
 CE.SDK provides typed setter methods for different parameter types:

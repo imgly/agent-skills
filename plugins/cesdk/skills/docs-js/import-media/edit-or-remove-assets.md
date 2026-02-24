@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Edit or Remove Assets](./import-media/edit-or-remove-assets.md)
 
@@ -24,6 +24,23 @@ Assets in local sources can be modified or removed after they have been added. C
 
 ```typescript file=@cesdk_web_examples/guides-import-media-edit-or-remove-assets-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -35,13 +52,39 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: false
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
 
@@ -192,12 +235,39 @@ export default Example;
 Initialize CE.SDK and create a local asset source with sample assets. The example creates a design scene and populates a local source with images.
 
 ```typescript highlight=highlight-setup
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: false
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
 ```
@@ -414,7 +484,7 @@ Each subscription returns an unsubscribe function. Call it when you no longer ne
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

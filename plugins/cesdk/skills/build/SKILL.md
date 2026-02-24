@@ -118,6 +118,57 @@ Brief explanation of key concepts and why this approach works.
 
 Suggestions for extending or customizing the implementation.
 
+## Starter Kits
+
+Bundled starter kit templates for scaffolding new CE.SDK projects.
+Each kit is a complete Vite + TypeScript project ready to run.
+
+### Common Project Structure
+
+All kits share this structure — only the config and entry point differ:
+
+\`\`\`
+{kit-name}/
+├── package.json              — Dependencies (@cesdk/cesdk-js), scripts (dev, build)
+├── index.html                — Mount point with #cesdk_container div
+├── vite.config.ts            — Vite build config
+├── tsconfig.json             — TypeScript config
+├── tsconfig.base.json        — Shared TS base config
+└── src/
+    ├── index.ts              — Entry point: creates CE.SDK, calls init function
+    └── imgly/
+        ├── index.ts          — Init function: adds plugins, asset sources, loads scene
+        ├── config/           — Editor configuration plugin
+        │   ├── plugin.ts     — EditorPlugin class (features, UI, settings, i18n)
+        │   ├── actions.ts    — Export/save/import actions
+        │   ├── features.ts   — Feature toggles
+        │   ├── settings.ts   — Engine settings (snapping, colors, etc.)
+        │   ├── i18n.ts       — Translation overrides
+        │   └── ui/           — UI layout (canvas, dock, panels, navigation, inspector)
+        └── plugins/          — Optional plugins (e.g., background-removal.ts)
+\`\`\`
+
+### Available Kits
+
+| Kit | Path | Use case |
+|-----|------|----------|
+| design-editor | `starter-kits/design-editor/` | Graphics, layouts, multi-page documents |
+| video-editor | `starter-kits/video-editor/` | Video editing, transitions, MP4 export |
+| photo-editor | `starter-kits/photo-editor/` | Crop, filter, adjust, background removal |
+| advanced-design-editor | `starter-kits/advanced-design-editor/` | Desktop-style design with layers panel |
+| advanced-video-editor | `starter-kits/advanced-video-editor/` | Multi-track timeline, professional export |
+| design-viewer | `starter-kits/design-viewer/` | Lightweight pan/zoom/navigate viewer |
+| video-player | `starter-kits/video-player/` | Lightweight video playback |
+
+### Scaffolding a New Project
+
+1. Copy the appropriate kit directory to the user's project
+2. Update `package.json` name and adjust dependencies as needed
+3. Run `npm install` then `npm run dev` to start the development server
+4. Customize the config files in `src/imgly/config/` for the desired editor behavior
+
+Access kit files with Glob: `**/skills/build/starter-kits/{kit-name}/**`
+
 ## Additional Triggers
 
 Also triggered by batch processing requests ("generate 1000 templates"), creative

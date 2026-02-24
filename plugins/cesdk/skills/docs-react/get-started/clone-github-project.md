@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart React](./get-started/new-project.md)
-
 ---
 
 This guide walks you through downloading and running a prebuilt CreativeEditor

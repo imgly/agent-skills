@@ -109,7 +109,7 @@ unstable_setExportInactivityTimeout(timeout: number): void
 
 ## Asset Sources
 
-### addDefaultAssetSources()
+### addDefaultAssetSources() *(deprecated)*
 
 Register a set of asset sources containing default assets.
 Available default asset sources:
@@ -136,7 +136,7 @@ addDefaultAssetSources({ baseURL, excludeAssetSourceIds }?: {
 
 **Returns:** A promise that resolves when all asset sources are loaded.
 
-### addDemoAssetSources()
+### addDemoAssetSources() *(deprecated)*
 
 Register a set of demo asset sources containing example assets.
 **Note**: These are demonstration assets not meant for production use.

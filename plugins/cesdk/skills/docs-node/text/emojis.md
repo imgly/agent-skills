@@ -145,7 +145,7 @@ This guide covers understanding the default emoji font, configuring a custom emo
 
 ## Default Emoji Font
 
-CE.SDK uses Noto Color Emoji (~9.9 MB, PNG-based) from `https://cdn.img.ly/assets/v4/emoji/NotoColorEmoji.ttf` by default. This ensures identical emoji rendering across all platforms—documents generated on different servers produce the same visual output. No configuration is needed; emoji rendering works out of the box.
+CE.SDK uses Noto Color Emoji (~9.9 MB, PNG-based) from `https://cdn.img.ly/assets/v5/emoji/NotoColorEmoji.ttf` by default. This ensures identical emoji rendering across all platforms—documents generated on different servers produce the same visual output. No configuration is needed; emoji rendering works out of the box.
 
 We retrieve the current emoji font URI using `engine.editor.getSetting()`:
 

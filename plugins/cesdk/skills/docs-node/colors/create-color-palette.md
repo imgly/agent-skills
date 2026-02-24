@@ -4,7 +4,8 @@
 
 ---
 
-Build custom color palettes programmatically using CE.SDK's asset system with support for sRGB, CMYK, and Spot colors in server-side Node.js applications.
+Build custom color palettes programmatically using CE.SDK's asset system with
+support for sRGB, CMYK, and Spot colors in server-side Node.js applications.
 
 > **Reading time:** 8 minutes
 >
@@ -396,19 +397,19 @@ If `removeAssetFromSource()` doesn't seem to work:
 
 ## API Reference
 
-| Method | Description |
-|--------|-------------|
-| `engine.asset.addLocalSource(sourceId)` | Create a local asset source for colors |
-| `engine.asset.addAssetToSource(sourceId, asset)` | Add a color asset to a source |
-| `engine.asset.removeAssetFromSource(sourceId, assetId)` | Remove a color asset from a source |
-| `engine.asset.findAssets(sourceId, query)` | Query colors from a source |
+| Method                                                  | Description                            |
+| ------------------------------------------------------- | -------------------------------------- |
+| `engine.asset.addLocalSource(sourceId)`                 | Create a local asset source for colors |
+| `engine.asset.addAssetToSource(sourceId, asset)`        | Add a color asset to a source          |
+| `engine.asset.removeAssetFromSource(sourceId, assetId)` | Remove a color asset from a source     |
+| `engine.asset.findAssets(sourceId, query)`              | Query colors from a source             |
 
-| Type | Properties | Description |
-|------|------------|-------------|
-| `AssetRGBColor` | `colorSpace`, `r`, `g`, `b` | sRGB color for screen display |
-| `AssetCMYKColor` | `colorSpace`, `c`, `m`, `y`, `k` | CMYK color for print workflows |
-| `AssetSpotColor` | `colorSpace`, `name`, `externalReference`, `representation` | Named spot color for specialized printing |
-| `AssetDefinition` | `id`, `label`, `tags`, `payload` | Color asset structure with metadata |
+| Type              | Properties                                                  | Description                               |
+| ----------------- | ----------------------------------------------------------- | ----------------------------------------- |
+| `AssetRGBColor`   | `colorSpace`, `r`, `g`, `b`                                 | sRGB color for screen display             |
+| `AssetCMYKColor`  | `colorSpace`, `c`, `m`, `y`, `k`                            | CMYK color for print workflows            |
+| `AssetSpotColor`  | `colorSpace`, `name`, `externalReference`, `representation` | Named spot color for specialized printing |
+| `AssetDefinition` | `id`, `label`, `tags`, `payload`                            | Color asset structure with metadata       |
 
 
 

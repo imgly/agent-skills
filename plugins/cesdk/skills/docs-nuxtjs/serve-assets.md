@@ -65,17 +65,17 @@ The ZIP file contains directories organized by function:
 | `i18n/`                         | Translations                                           | **Yes**         | No (bundled in SDK)     |
 | `ly.img.sticker/`               | Stickers                                               | No              | If using default assets |
 | `ly.img.sticker.misc/`          | Additional stickers                                    | No              | If using default assets |
-| `ly.img.vectorpath/`            | Shapes and arrows                                      | No              | If using default assets |
+| `ly.img.vector.shape/`          | Shapes and arrows                                      | No              | If using default assets |
 | `ly.img.typeface/`              | Font definitions                                       | No              | If using default assets |
-| `ly.img.filter.lut/`            | LUT filter effects                                     | No              | If using default assets |
-| `ly.img.filter.duotone/`        | Duotone effects                                        | No              | If using default assets |
+| `ly.img.filter/`                | Filter effects (LUT and duotone)                       | No              | If using default assets |
 | `ly.img.effect/`                | Visual effects                                         | No              | If using default assets |
 | `ly.img.blur/`                  | Blur presets                                           | No              | If using default assets |
-| `ly.img.colors.defaultPalette/` | Color palettes                                         | No              | If using default assets |
+| `ly.img.color.palette/`         | Color palettes                                         | No              | If using default assets |
 | `ly.img.crop.presets/`          | Crop aspect ratios                                     | No              | If using default assets |
 | `ly.img.page.presets/`          | Page format presets                                    | No              | If using default assets |
 | `ly.img.page.presets.video/`    | Video page presets                                     | No              | If using default assets |
-| `ly.img.captionPresets/`        | Caption formatting presets                             | No              | If using default assets |
+| `ly.img.caption.presets/`       | Caption formatting presets                             | No              | If using default assets |
+| `ly.img.text.components/`       | Text components                                        | No              | If using default assets |
 | `ly.img.animation/`             | Animation presets                                      | No              | If using default assets |
 | `ly.img.animation.text/`        | Text animation presets                                 | No              | If using default assets |
 | `ly.img.image/`                 | Sample images (demo content)                           | No              | No                      |
@@ -83,7 +83,6 @@ The ZIP file contains directories organized by function:
 | `ly.img.audio/`                 | Sample audio (demo content)                            | No              | No                      |
 | `ly.img.template/`              | Design templates (demo content)                        | No              | No                      |
 | `ly.img.video.template/`        | Video templates (demo content)                         | No              | No                      |
-| `ly.img.textComponents/`        | Text components (demo content)                         | No              | No                      |
 
 For most integrations, you need `core/`, `ui/`, `emoji/`, `fonts/`, and the `ly.img.*` asset sources you use.
 
@@ -99,17 +98,17 @@ Calling `addDefaultAssetSources()` registers these asset sources:
 
 - `ly.img.sticker` - Stickers
 - `ly.img.sticker.misc` - Additional stickers
-- `ly.img.vectorpath` - Shapes and arrows
+- `ly.img.vector.shape` - Shapes and arrows
 - `ly.img.typeface` - Font definitions
-- `ly.img.colors.defaultPalette` - Color palettes
-- `ly.img.filter.lut` - LUT effects
-- `ly.img.filter.duotone` - Duotone effects
+- `ly.img.color.palette` - Color palettes
+- `ly.img.filter` - Filter effects
 - `ly.img.effect` - Visual effects
 - `ly.img.blur` - Blur presets
 - `ly.img.crop.presets` - Crop aspect ratios
 - `ly.img.page.presets` - Page format presets
 - `ly.img.page.presets.video` - Video page presets
-- `ly.img.captionPresets` - Caption formatting
+- `ly.img.caption.presets` - Caption formatting
+- `ly.img.text.components` - Text components
 - `ly.img.animation` - Animation presets
 - `ly.img.animation.text` - Text animation presets
 
@@ -122,7 +121,6 @@ Calling `addDemoAssetSources()` registers sample content sources for development
 - `ly.img.audio` - Sample audio
 - `ly.img.template` - Design templates
 - `ly.img.video.template` - Video templates
-- `ly.img.textComponents` - Text components
 - `ly.img.image.upload`, `ly.img.video.upload`, `ly.img.audio.upload` - Upload sources
 
 These are intended for development and prototyping—replace them with your own content in production.

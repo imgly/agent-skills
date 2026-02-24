@@ -24,6 +24,24 @@ CE.SDK applies effects to blocks themselves, not as overlays affecting content b
 
 ```typescript file=@cesdk_web_examples/guides-create-video-redaction-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
 // Video URLs for demonstrating different redaction scenarios
@@ -78,14 +96,54 @@ class Example implements EditorPlugin {
     cesdk.feature.enable('ly.img.playback');
     cesdk.feature.enable('ly.img.blur');
     cesdk.feature.enable('ly.img.effect');
+    await cesdk.addPlugin(new VideoEditorConfig());
 
-    // Load assets and create a video scene
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Video',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.audio.*',
+          'ly.img.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
-    await cesdk.createVideoScene();
 
     const engine = cesdk.engine;
     const scene = engine.scene.get();
@@ -93,10 +151,8 @@ class Example implements EditorPlugin {
     const page = pages.length > 0 ? pages[0] : scene;
 
     // Set 16:9 page dimensions (1920x1080)
-    const pageWidth = 1920;
-    const pageHeight = 1080;
-    engine.block.setWidth(page, pageWidth);
-    engine.block.setHeight(page, pageHeight);
+    const pageWidth = engine.block.getWidth(page);
+    const pageHeight = engine.block.getHeight(page);
 
     // Load all videos simultaneously
     const videoUrls = [
@@ -114,8 +170,8 @@ class Example implements EditorPlugin {
     const [
       radialVideo,
       fullBlurVideo,
-      pixelVideo,
-      , // Base video for overlay segment (overlay is created separately)
+      pixelVideo, // Base video for overlay segment (overlay is created separately)
+      ,
       timedVideo
     ] = videos;
 
@@ -148,8 +204,16 @@ class Example implements EditorPlugin {
     if (engine.block.supportsEffects(pixelVideo)) {
       // Create and apply pixelize effect
       const pixelizeEffect = engine.block.createEffect('pixelize');
-      engine.block.setInt(pixelizeEffect, 'effect/pixelize/horizontalPixelSize', 24);
-      engine.block.setInt(pixelizeEffect, 'effect/pixelize/verticalPixelSize', 24);
+      engine.block.setInt(
+        pixelizeEffect,
+        'effect/pixelize/horizontalPixelSize',
+        24
+      );
+      engine.block.setInt(
+        pixelizeEffect,
+        'effect/pixelize/verticalPixelSize',
+        24
+      );
       engine.block.appendEffect(pixelVideo, pixelizeEffect);
       engine.block.setEffectEnabled(pixelizeEffect, true);
     }
@@ -165,7 +229,10 @@ class Example implements EditorPlugin {
     // Create solid black fill
     const solidFill = engine.block.createFill('//ly.img.ubq/fill/color');
     engine.block.setColor(solidFill, 'fill/color/value', {
-      r: 0.1, g: 0.1, b: 0.1, a: 1.0
+      r: 0.1,
+      g: 0.1,
+      b: 0.1,
+      a: 1.0
     });
     engine.block.setFill(overlay, solidFill);
 
@@ -247,7 +314,10 @@ class Example implements EditorPlugin {
       // Position label at top right
       engine.block.setWidth(textBlock, labelWidth);
       engine.block.setHeight(textBlock, labelHeight);
-      engine.block.setPositionX(textBlock, pageWidth - labelWidth - labelMargin);
+      engine.block.setPositionX(
+        textBlock,
+        pageWidth - labelWidth - labelMargin
+      );
       engine.block.setPositionY(textBlock, labelMargin + labelPadding / 2);
       engine.block.setTimeOffset(textBlock, index * SEGMENT_DURATION);
       engine.block.setDuration(textBlock, SEGMENT_DURATION);
@@ -332,8 +402,16 @@ Pixelization creates a mosaic effect that's clearly intentional and renders fast
 if (engine.block.supportsEffects(pixelVideo)) {
   // Create and apply pixelize effect
   const pixelizeEffect = engine.block.createEffect('pixelize');
-  engine.block.setInt(pixelizeEffect, 'effect/pixelize/horizontalPixelSize', 24);
-  engine.block.setInt(pixelizeEffect, 'effect/pixelize/verticalPixelSize', 24);
+  engine.block.setInt(
+    pixelizeEffect,
+    'effect/pixelize/horizontalPixelSize',
+    24
+  );
+  engine.block.setInt(
+    pixelizeEffect,
+    'effect/pixelize/verticalPixelSize',
+    24
+  );
   engine.block.appendEffect(pixelVideo, pixelizeEffect);
   engine.block.setEffectEnabled(pixelizeEffect, true);
 }
@@ -354,7 +432,10 @@ For complete blocking without any visual hint of the underlying content, create 
     // Create solid black fill
     const solidFill = engine.block.createFill('//ly.img.ubq/fill/color');
     engine.block.setColor(solidFill, 'fill/color/value', {
-      r: 0.1, g: 0.1, b: 0.1, a: 1.0
+      r: 0.1,
+      g: 0.1,
+      b: 0.1,
+      a: 1.0
     });
     engine.block.setFill(overlay, solidFill);
 

@@ -4,7 +4,8 @@
 
 ---
 
-Add motion to design blocks with entrance, exit, and loop animations using CE.SDK's animation system.
+Add motion to design blocks with entrance, exit, and loop animations using
+CE.SDK's animation system.
 
 ![Base animations demonstrating slide, fade, zoom, and loop effects on image blocks](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -24,6 +25,24 @@ Base animations in CE.SDK add motion to design blocks through entrance (In), exi
 
 ```typescript file=@cesdk_web_examples/guides-animation-create-base-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 import { calculateGridLayout } from './utils';
 
@@ -51,23 +70,59 @@ class Example implements EditorPlugin {
     cesdk.feature.enable('ly.img.video');
     cesdk.feature.enable('ly.img.timeline');
     cesdk.feature.enable('ly.img.playback');
+    await cesdk.addPlugin(new VideoEditorConfig());
 
-    // Load assets and create a video scene (required for animations)
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Video',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.audio.*',
+          'ly.img.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
-    await cesdk.createVideoScene();
 
     const engine = cesdk.engine;
     const scene = engine.scene.get();
     const pages = engine.block.findByType('page');
     const page = pages.length > 0 ? pages[0] : scene;
-
-    // Set page dimensions
-    engine.block.setWidth(page, 1920);
-    engine.block.setHeight(page, 1080);
 
     // Set white background color
     if (!engine.block.supportsFill(page) || !engine.block.getFill(page)) {
@@ -375,37 +430,39 @@ console.log('Available easing options:', easingOptions);
 
 Easing functions control animation acceleration:
 
-| Easing      | Description                                     |
-| ----------- | ----------------------------------------------- |
-| `Linear`    | Constant speed throughout                       |
-| `EaseIn`    | Starts slow, accelerates toward the end         |
-| `EaseOut`   | Starts fast, decelerates toward the end         |
-| `EaseInOut` | Starts slow, speeds up, then slows down again   |
+| Easing      | Description                                   |
+| ----------- | --------------------------------------------- |
+| `Linear`    | Constant speed throughout                     |
+| `EaseIn`    | Starts slow, accelerates toward the end       |
+| `EaseOut`   | Starts fast, decelerates toward the end       |
+| `EaseInOut` | Starts slow, speeds up, then slows down again |
 
 ## API Reference
 
-| Method                       | Description                                        |
-| ---------------------------- | -------------------------------------------------- |
-| `createAnimation(type)`      | Create a new animation instance                    |
-| `supportsAnimation(block)`   | Check if block supports animations                 |
-| `setInAnimation(block, anim)`| Apply entrance animation to block                  |
-| `setOutAnimation(block, anim)` | Apply exit animation to block                    |
-| `setLoopAnimation(block, anim)` | Apply loop animation to block                   |
-| `getInAnimation(block)`      | Get entrance animation (returns 0 if none)         |
-| `getOutAnimation(block)`     | Get exit animation (returns 0 if none)             |
-| `getLoopAnimation(block)`    | Get loop animation (returns 0 if none)             |
-| `setDuration(anim, seconds)` | Set animation duration                             |
-| `getDuration(anim)`          | Get animation duration                             |
-| `setEnum(anim, prop, value)` | Set enum property (easing, etc.)                   |
-| `setFloat(anim, prop, value)`| Set float property (direction, etc.)               |
-| `findAllProperties(anim)`    | Get all available properties for animation         |
-| `getEnumValues(prop)`        | Get available values for enum property             |
-| `destroy(anim)`              | Destroy animation instance                         |
+| Method                          | Description                                |
+| ------------------------------- | ------------------------------------------ |
+| `createAnimation(type)`         | Create a new animation instance            |
+| `supportsAnimation(block)`      | Check if block supports animations         |
+| `setInAnimation(block, anim)`   | Apply entrance animation to block          |
+| `setOutAnimation(block, anim)`  | Apply exit animation to block              |
+| `setLoopAnimation(block, anim)` | Apply loop animation to block              |
+| `getInAnimation(block)`         | Get entrance animation (returns 0 if none) |
+| `getOutAnimation(block)`        | Get exit animation (returns 0 if none)     |
+| `getLoopAnimation(block)`       | Get loop animation (returns 0 if none)     |
+| `setDuration(anim, seconds)`    | Set animation duration                     |
+| `getDuration(anim)`             | Get animation duration                     |
+| `setEnum(anim, prop, value)`    | Set enum property (easing, etc.)           |
+| `setFloat(anim, prop, value)`   | Set float property (direction, etc.)       |
+| `findAllProperties(anim)`       | Get all available properties for animation |
+| `getEnumValues(prop)`           | Get available values for enum property     |
+| `destroy(anim)`                 | Destroy animation instance                 |
 
 ## Next Steps
 
-- [Text Animations](./animation/create/text.md) — Animate text with writing styles and character control
-- [Animation Overview](./animation/overview.md) — Understand animation concepts and capabilities
+- [Text Animations](./animation/create/text.md) — Animate text with writing styles
+  and character control
+- [Animation Overview](./animation/overview.md) — Understand animation concepts
+  and capabilities
 
 
 

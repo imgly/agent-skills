@@ -24,6 +24,23 @@ CE.SDK includes a set of default typefaces, but you can customize the available 
 
 ```typescript file=@cesdk_web_examples/guides-fonts-typefaces-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import type CreativeEngine from '@cesdk/cesdk-js/node_modules/@cesdk/engine';
 import packageJson from './package.json';
 
@@ -35,40 +52,57 @@ class CustomFontsExample implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    // Load assets
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
 
     const engine = cesdk.engine;
-
-    // Create the typeface with resolved font URIs
     const orbitronTypeface = createOrbitronTypeface();
 
-    // Create a local asset source for custom typefaces
+    // Create a custom local typeface source and add the Orbitron typeface
     engine.asset.addLocalSource('my-custom-typefaces');
-
-    // Add a typeface with multiple font variants
     engine.asset.addAssetToSource('my-custom-typefaces', {
       id: 'orbitron',
-      label: {
-        en: 'Orbitron'
-      },
+      label: { en: 'Orbitron' },
       payload: {
         typeface: orbitronTypeface
       }
     });
 
-    // Replace the default typefaces with the custom source
+    // Update the typeface library to show custom fonts in the font dropdown
     cesdk.ui.updateAssetLibraryEntry('ly.img.typefaces', {
       sourceIds: ['my-custom-typefaces']
     });
 
-    // Create a design scene to display the editor
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     // Create a text block and apply the custom font
     const page = engine.block.findByType('page')[0];
@@ -110,7 +144,16 @@ type DesignBlockId = number;
 interface TypefaceFont {
   uri: string;
   subFamily: string;
-  weight: 'thin' | 'extraLight' | 'light' | 'normal' | 'medium' | 'semiBold' | 'bold' | 'extraBold' | 'heavy';
+  weight:
+    | 'thin'
+    | 'extraLight'
+    | 'light'
+    | 'normal'
+    | 'medium'
+    | 'semiBold'
+    | 'bold'
+    | 'extraBold'
+    | 'heavy';
   style: 'normal' | 'italic';
 }
 
@@ -187,7 +230,16 @@ Each font in the array requires:
 interface TypefaceFont {
   uri: string;
   subFamily: string;
-  weight: 'thin' | 'extraLight' | 'light' | 'normal' | 'medium' | 'semiBold' | 'bold' | 'extraBold' | 'heavy';
+  weight:
+    | 'thin'
+    | 'extraLight'
+    | 'light'
+    | 'normal'
+    | 'medium'
+    | 'semiBold'
+    | 'bold'
+    | 'extraBold'
+    | 'heavy';
   style: 'normal' | 'italic';
 }
 
@@ -204,15 +256,15 @@ To make custom fonts available in the editor, we create a local asset source and
 We first create the source with `engine.asset.addLocalSource()`, then add typeface assets with `engine.asset.addAssetToSource()`:
 
 ```typescript highlight=highlight-typeface-source
-    // Create a local asset source for custom typefaces
-    engine.asset.addLocalSource('my-custom-typefaces');
-
-    // Add a typeface with multiple font variants
-    engine.asset.addAssetToSource('my-custom-typefaces', {
-      id: 'orbitron',
-      label: {
-        en: 'Orbitron'
-      },
+// Create a custom local typeface source and add the Orbitron typeface
+engine.asset.addLocalSource('my-custom-typefaces');
+engine.asset.addAssetToSource('my-custom-typefaces', {
+  id: 'orbitron',
+  label: { en: 'Orbitron' },
+  payload: {
+    typeface: orbitronTypeface
+  }
+});
 ```
 
 The `name` property defines how the typeface appears in the font dropdown:
@@ -247,7 +299,7 @@ After creating the custom typeface source, we update the typeface library entry 
 To replace the default typefaces entirely with your custom fonts:
 
 ```typescript highlight=highlight-update-library
-// Replace the default typefaces with the custom source
+// Update the typeface library to show custom fonts in the font dropdown
 cesdk.ui.updateAssetLibraryEntry('ly.img.typefaces', {
   sourceIds: ['my-custom-typefaces']
 });

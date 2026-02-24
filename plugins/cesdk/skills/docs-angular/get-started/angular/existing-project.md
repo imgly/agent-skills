@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Angular](./get-started/angular/new-project.md)
-
 ---
 
 Follow the steps to integrate the CreativeEditor SDK (CE.SDK) into an
@@ -112,7 +110,7 @@ This sets up a full-viewport container for the editor.
           async (instance: any) => {
             instance.addDefaultAssetSources();
             instance.addDemoAssetSources({ sceneMode: 'Design' });
-            await instance.createDesignScene();
+            await instance.actions.run('scene.create');
           },
         );
       }
@@ -149,7 +147,7 @@ This sets up a full-viewport container for the editor.
           async (instance: any) => {
             instance.addDefaultAssetSources();
             instance.addDemoAssetSources({ sceneMode: 'Design' });
-            await instance.createDesignScene();
+            await instance.actions.run('scene.create');
           },
         );
       }
@@ -188,7 +186,7 @@ This sets up a full-viewport container for the editor.
           async (instance: any) => {
             instance.addDefaultAssetSources();
             instance.addDemoAssetSources({ sceneMode: 'Design' });
-            await instance.createDesignScene();
+            await instance.actions.run('scene.create');
           },
         );
       }

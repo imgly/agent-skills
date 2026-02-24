@@ -24,6 +24,23 @@ Templates are scenes with predefined structures that support dynamic content thr
 
 ```typescript file=@cesdk_web_examples/guides-use-templates-programmatic-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -43,15 +60,34 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    // Create a design scene
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', { page: { width: 800, height: 600, unit: 'Pixel' } });
 
     const engine = cesdk.engine;
     const pages = engine.block.findByType('page');
@@ -59,10 +95,6 @@ class Example implements EditorPlugin {
     if (!page) {
       throw new Error('No page found');
     }
-
-    // Set page dimensions for the template
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Set page background
     const pageFill = engine.block.getFill(page);
@@ -185,14 +217,34 @@ This guide covers creating templates from scratch, configuring text variables, p
 We start by initializing CE.SDK and creating a design scene. This provides the foundation for programmatic template operations.
 
 ```typescript highlight=highlight-setup
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    // Create a design scene
-    await cesdk.createDesignScene();
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', { page: { width: 800, height: 600, unit: 'Pixel' } });
 
     const engine = cesdk.engine;
     const pages = engine.block.findByType('page');
@@ -200,10 +252,6 @@ We start by initializing CE.SDK and creating a design scene. This provides the f
     if (!page) {
       throw new Error('No page found');
     }
-
-    // Set page dimensions for the template
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Set page background
     const pageFill = engine.block.getFill(page);

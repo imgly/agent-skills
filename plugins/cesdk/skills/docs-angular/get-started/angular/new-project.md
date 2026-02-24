@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Angular](./get-started/angular/new-project.md)
-
 ---
 
 Follow this guide to set up a **new Angular project** with **npm**, and build
@@ -123,7 +121,7 @@ export class App implements AfterViewInit {
         await instance.addDefaultAssetSources();
         await instance.addDemoAssetSources({ sceneMode: 'Design' });
         // Create a new design scene in the editor
-        await instance.createDesignScene();
+        await instance.actions.run('scene.create');
       },
     );
   }

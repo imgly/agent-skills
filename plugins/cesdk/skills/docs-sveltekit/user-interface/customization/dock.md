@@ -26,6 +26,23 @@ For adding and configuring dock buttons, see [Add Dock Buttons](./user-interface
 
 ```typescript file=@cesdk_web_examples/guides-user-interface-customization-dock-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -36,13 +53,39 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
@@ -292,28 +335,42 @@ console.log('Current dock order:', currentOrder);
 
 ### Layout
 
-| Component ID       | Description                                            |
-| ------------------ | ------------------------------------------------------ |
-| `ly.img.spacer`    | Flexible space (pushes components below to the bottom) |
-| `ly.img.separator` | Visual divider between groups of buttons               |
+| Key       | Type         | Description                                                                                                                                                                                                                                                                                                   |
+| --------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`     | `string`     | Unique identifier within the dock.                                                                                                                                                                                                  |
+| `label`   | `string`     | Button label. If a matching I18N key is found, it is localized.                                                                                                                                                      |
+| `icon`    | `CustomIcon` | A URL string pointing to an SVG, a built-in icon ID (see [Icons](./user-interface/appearance/icons.md)), or a callback returning a URL. |
+| `entries` | `string[]`   | Asset entries shown when the button is pressed. A single entry opens directly; multiple entries show a group overview.                                                                                                                      |
+| `onClick` | `() => void` | Custom click handler. If provided, overrides the default asset library toggle behavior. |
+| `isSelected` | `boolean \| (() => boolean)` | Controls the selected state of the button. |
+| `isDisabled` | `boolean \| (() => boolean)` | Controls the disabled state of the button. |
+| `size` | `'normal' \| 'large'` | Size of the button. Defaults to `'normal'`. |
+| `variant` | `'regular' \| 'plain'` | Visual variant of the button. Defaults to `'regular'`. |
+| `color` | `'accent' \| 'danger'` | Color scheme of the button. |
 
-## Troubleshooting
+## Edit Mode Context
 
-- **Dock button not appearing** - Verify you created an asset library entry (via `addAssetLibraryEntry`) that references your source, and that the dock button's `entries` array uses the entry ID.
-- **Edit mode dock not changing** - Verify the `when: { editMode: '...' }` value matches exactly (case-sensitive).
-- **Dock hidden unexpectedly** - Check if `cesdk.feature.disable('ly.img.dock')` was called elsewhere.
-- **Appearance settings not applying** - Ensure `setSetting` is called after CE.SDK initialization completes.
+The dock order can vary based on the current edit mode. Pass an `orderContext` parameter to configure different dock orders for Transform, Text, Crop, Trim, or custom edit modes:
 
-## Next Steps
+```javascript
+// Set dock order for Text edit mode
+cesdk.ui.setDockOrder(components, { editMode: 'Text' });
 
-- [Add Dock Buttons](./user-interface/customization/quick-start/add-dock-buttons.md) - Quick start for adding asset
-  library buttons
-- [Component Order API](./user-interface/customization/reference/component-order-api.md) - Full API documentation with
-  `when` context
-- [Register a New Component](./user-interface/ui-extensions/register-new-component.md) - Create fully custom
-  components
-- [Component Reference](./user-interface/customization/reference/component-reference.md) - All dock component IDs
-- [Asset Library](./user-interface/ui-extensions/asset-library.md) - Configure and register asset sources
+// Get dock order for Crop edit mode
+const cropOrder = cesdk.ui.getDockOrder({ editMode: 'Crop' });
+```
+
+## API Reference
+
+| Method                                | Purpose                                        |
+| ------------------------------------- | ---------------------------------------------- |
+| `cesdk.ui.getDockOrder()`             | Get current dock component order               |
+| `cesdk.ui.setDockOrder()`             | Set complete dock component order              |
+| `cesdk.ui.updateDockOrderComponent()` | Update existing dock components                |
+| `cesdk.ui.removeDockOrderComponent()` | Remove dock components                         |
+| `cesdk.ui.insertDockOrderComponent()` | Insert new dock components                     |
+| `cesdk.ui.registerComponent()`        | Register custom components for dock use        |
+| `cesdk.engine.editor.setSetting()`    | Configure dock appearance settings             |
 
 
 

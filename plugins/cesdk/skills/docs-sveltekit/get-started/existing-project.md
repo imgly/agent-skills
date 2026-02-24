@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart SvelteKit](./get-started/new-project.md)
-
 ---
 
 This guide shows you how to integrate CreativeEditor SDK (CE.SDK) in an
@@ -119,7 +117,7 @@ To start creating your custom CE.SDK component, follow these steps:
             ]);
 
             // Create a new design scene in the editor
-            await cesdk.createDesignScene();
+            await cesdk.actions.run('scene.create');
           });
         } catch (err) {
           console.warn(`CreativeEditor SDK failed to mount.`, { err });
@@ -205,7 +203,7 @@ To start creating your custom CE.SDK component, follow these steps:
             ]);
 
             // Create a new design scene in the editor
-            await cesdk.createDesignScene();
+            await cesdk.actions.run('scene.create');
           });
         } catch (err) {
           console.warn(`CreativeEditor SDK failed to mount.`, { err });

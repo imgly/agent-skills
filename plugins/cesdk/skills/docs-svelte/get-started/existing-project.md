@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Svelte](./get-started/new-project.md)
-
 ---
 
 Integrate CreativeEditor SDK (CE.SDK) into your Svelte project with a custom
@@ -117,7 +115,7 @@ You create a new component by adding a file in your project’s components folde
         ]);
 
         // Create a new design scene in the editor
-        await cesdk.createDesignScene();
+        await cesdk.actions.run('scene.create');
       });
     } catch (err) {
       console.warn(`CreativeEditor SDK failed to mount.`, { err });

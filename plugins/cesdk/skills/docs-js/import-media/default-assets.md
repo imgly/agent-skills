@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Using Default Assets](./import-media/default-assets.md)
 
@@ -6,6 +6,7 @@
 
 ```typescript file=@cesdk_web_examples/guides-import-media-default-assets-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -24,6 +25,8 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+
+    await cesdk.addPlugin(new DesignEditorConfig());
 
     // Versioned CDN URLs using the SDK package (recommended)
     // For production, self-host these assets - see the Serve Assets guide
@@ -174,7 +177,12 @@ class Example implements EditorPlugin {
     });
 
     // Create the design scene
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     // Get the page to add content to
     const pages = engine.block.findByType('page');
@@ -401,7 +409,7 @@ An asset is included if it matches ANY pattern in the array. Patterns support `*
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

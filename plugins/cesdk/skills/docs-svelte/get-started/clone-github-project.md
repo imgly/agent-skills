@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Svelte](./get-started/new-project.md)
-
 ---
 
 Download and run a prebuilt vanilla Svelte project from GitHub, with

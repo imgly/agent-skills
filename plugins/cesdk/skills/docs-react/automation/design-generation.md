@@ -44,7 +44,7 @@ Initialize the CE.SDK and load your prepared template:
 ```ts example=basic-scene marker=cesdk-init-after
 // Load a template from your server or a CDN
 const sceneUrl =
-  'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_2.scene';
+  'https://cdn.img.ly/assets/demo/v4/ly.img.template/templates/cesdk_postcard_2.scene';
 await engine.scene.loadFromURL(sceneUrl);
 ```
 

@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Vue](./get-started/new-project.md)
-
 ---
 
 This guide will walk you through downloading and running a pre-built CreativeEditor SDK (CE.SDK) Vue.js integration project from GitHub. It's the fastest way to get started with CE.SDK without the need to build anything from scratch.

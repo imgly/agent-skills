@@ -4,11 +4,19 @@
 
 ---
 
-Welcome to our documentation! This guide will help you get started with our SDK on your preferred platform.
+Everything you need to integrate CE.SDK into your application. Learn what the
+SDK offers, get up and running with starter kits, explore AI-powered
+workflows, and understand our licensing model.
 
-## Choose Your Platform
+## Next Steps
 
-<PlatformSelector options={getPlatformConfig(props.platform.id, props.paths)} />
+- [What is CE.SDK?](https://img.ly/docs/cesdk/props.paths['2e7acd'])
+
+- [Quickstart](https://img.ly/docs/cesdk/props.paths['r1q2w3e'])
+
+- [Vibecoding](https://img.ly/docs/cesdk/props.paths['c3014f'])
+
+- [Licensing](https://img.ly/docs/cesdk/props.paths['8aa063'])
 
 
 
@@ -17,8 +25,9 @@ Welcome to our documentation! This guide will help you get started with our SDK 
 ## Related Pages
 
 - [React Creative Editor](./what-is-cesdk.md) - CreativeEditor SDK provides a comprehensive React library designed for creating and editing rich visual designs directly within the browser.
-- [New React Project](./get-started/new-project.md) - Setting up CE.SDK in a new React project
+- [Quickstart](./get-started/react/quickstart.md) - Get started with CE.SDK by choosing a starter kit
 - [MCP Server](./get-started/mcp-server.md) - Connect AI assistants to CE.SDK documentation using the Model Context Protocol (MCP) server.
+- [Agent Skills](./get-started/agent-skills.md) - Install CE.SDK documentation and code generation skills for AI coding assistants.
 - [LLMs.txt](./llms-txt.md) - Our documentation is available in LLMs.txt format
 - [Licensing](./licensing.md) - Understand CE.SDK’s flexible licensing, trial options, and how keys work across dev, staging, and production.
 

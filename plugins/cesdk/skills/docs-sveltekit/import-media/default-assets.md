@@ -6,6 +6,7 @@
 
 ```typescript file=@cesdk_web_examples/guides-import-media-default-assets-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -24,6 +25,8 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+
+    await cesdk.addPlugin(new DesignEditorConfig());
 
     // Versioned CDN URLs using the SDK package (recommended)
     // For production, self-host these assets - see the Serve Assets guide
@@ -174,7 +177,12 @@ class Example implements EditorPlugin {
     });
 
     // Create the design scene
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     // Get the page to add content to
     const pages = engine.block.findByType('page');

@@ -24,7 +24,7 @@ The CE.SDK can be configured with a series of colors that can be directly used w
 
 CE.SDK organizes colors using an asset-based architecture. Colors are stored as assets in asset sources, and the `ly.img.colors` asset library entry controls which color sources appear in the color picker UI. This separation between color storage (asset sources) and color display (asset library entry) provides flexibility in organizing and presenting colors to users.
 
-By default, CE.SDK includes a predefined color palette accessible through the `ly.img.colors.defaultPalette` source ID. We can replace this with custom palettes, add multiple color libraries, or combine both approaches.
+By default, CE.SDK includes a predefined color palette accessible through the `ly.img.color.palette` source ID. We can replace this with custom palettes, add multiple color libraries, or combine both approaches.
 
 ## Configure Internationalization
 
@@ -37,8 +37,8 @@ cesdk.i18n.setTranslations({
     'libraries.brandPrimaryColors.label': 'Brand Primary',
     'libraries.brandSecondaryColors.label': 'Brand Secondary',
     'libraries.brandNeutralColors.label': 'Neutrals',
-    'libraries.accentColors.label': 'Accent Colors'
-  }
+    'libraries.accentColors.label': 'Accent Colors',
+  },
 });
 ```
 
@@ -66,9 +66,9 @@ cesdk.engine.asset.addAssetToSource('brandPrimaryColors', {
       colorSpace: 'sRGB',
       r: 0.2,
       g: 0.4,
-      b: 0.8
-    }
-  }
+      b: 0.8,
+    },
+  },
 });
 
 cesdk.engine.asset.addAssetToSource('brandPrimaryColors', {
@@ -80,9 +80,9 @@ cesdk.engine.asset.addAssetToSource('brandPrimaryColors', {
       colorSpace: 'sRGB',
       r: 0.1,
       g: 0.2,
-      b: 0.5
-    }
-  }
+      b: 0.5,
+    },
+  },
 });
 
 cesdk.engine.asset.addAssetToSource('brandPrimaryColors', {
@@ -94,9 +94,9 @@ cesdk.engine.asset.addAssetToSource('brandPrimaryColors', {
       colorSpace: 'sRGB',
       r: 0.6,
       g: 0.7,
-      b: 0.9
-    }
-  }
+      b: 0.9,
+    },
+  },
 });
 ```
 
@@ -124,9 +124,9 @@ cesdk.engine.asset.addAssetToSource('brandSecondaryColors', {
       colorSpace: 'sRGB',
       r: 1.0,
       g: 0.6,
-      b: 0.0
-    }
-  }
+      b: 0.0,
+    },
+  },
 });
 
 cesdk.engine.asset.addAssetToSource('brandSecondaryColors', {
@@ -138,9 +138,9 @@ cesdk.engine.asset.addAssetToSource('brandSecondaryColors', {
       colorSpace: 'sRGB',
       r: 0.8,
       g: 0.4,
-      b: 0.0
-    }
-  }
+      b: 0.0,
+    },
+  },
 });
 ```
 
@@ -161,9 +161,9 @@ cesdk.engine.asset.addAssetToSource('brandNeutralColors', {
       colorSpace: 'sRGB',
       r: 0.0,
       g: 0.0,
-      b: 0.0
-    }
-  }
+      b: 0.0,
+    },
+  },
 });
 
 cesdk.engine.asset.addAssetToSource('brandNeutralColors', {
@@ -175,9 +175,9 @@ cesdk.engine.asset.addAssetToSource('brandNeutralColors', {
       colorSpace: 'sRGB',
       r: 0.5,
       g: 0.5,
-      b: 0.5
-    }
-  }
+      b: 0.5,
+    },
+  },
 });
 
 cesdk.engine.asset.addAssetToSource('brandNeutralColors', {
@@ -189,9 +189,9 @@ cesdk.engine.asset.addAssetToSource('brandNeutralColors', {
       colorSpace: 'sRGB',
       r: 1.0,
       g: 1.0,
-      b: 1.0
-    }
-  }
+      b: 1.0,
+    },
+  },
 });
 ```
 
@@ -212,9 +212,9 @@ cesdk.engine.asset.addAssetToSource('accentColors', {
       colorSpace: 'sRGB',
       r: 0.2,
       g: 0.8,
-      b: 0.3
-    }
-  }
+      b: 0.3,
+    },
+  },
 });
 
 cesdk.engine.asset.addAssetToSource('accentColors', {
@@ -226,9 +226,9 @@ cesdk.engine.asset.addAssetToSource('accentColors', {
       colorSpace: 'sRGB',
       r: 0.85,
       g: 0.65,
-      b: 0.13
-    }
-  }
+      b: 0.13,
+    },
+  },
 });
 ```
 
@@ -244,10 +244,10 @@ cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
     'brandPrimaryColors',
     'brandSecondaryColors',
     'brandNeutralColors',
-    'accentColors'
+    'accentColors',
     // Note: 'ly.img.colors.defaultPalette' is intentionally omitted
     // to replace the default palette completely
-  ]
+  ],
 });
 ```
 
@@ -309,9 +309,9 @@ cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
   sourceIds: [
     'brandPrimaryColors',
     'brandSecondaryColors',
-    'ly.img.colors.defaultPalette',  // Include default palette
-    'brandNeutralColors'
-  ]
+    'ly.img.colors.defaultPalette', // Include default palette
+    'brandNeutralColors',
+  ],
 });
 ```
 
@@ -340,14 +340,14 @@ async function loadBrandColors(apiUrl: string) {
           colorSpace: 'sRGB',
           r: color.r,
           g: color.g,
-          b: color.b
-        }
-      }
+          b: color.b,
+        },
+      },
     });
   });
 
   cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
-    sourceIds: ['dynamicBrandColors']
+    sourceIds: ['dynamicBrandColors'],
   });
 }
 ```
@@ -361,23 +361,23 @@ function setupUserPalette(userRole: string) {
   const paletteMap: Record<string, string[]> = {
     designer: ['fullBrandPalette', 'extendedColors'],
     marketer: ['limitedBrandPalette', 'templateColors'],
-    viewer: ['basicColors']
+    viewer: ['basicColors'],
   };
 
   cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
-    sourceIds: paletteMap[userRole] || ['basicColors']
+    sourceIds: paletteMap[userRole] || ['basicColors'],
   });
 }
 ```
 
 ## API Reference
 
-| Method | Description | Parameters | Returns |
-|--------|-------------|------------|---------|
-| `updateAssetLibraryEntry(id, config)` | Controls which asset sources appear in specific UI components | `id: string, config: { sourceIds: string[] }` | `void` |
-| `addLocalSource(sourceId)` | Creates a new local asset source | `sourceId: string` | `void` |
-| `addAssetToSource(sourceId, asset)` | Adds an asset to a source | `sourceId: string, asset: object` | `void` |
-| `setSpotColorRGB(name, r, g, b)` | Defines a spot color for use in assets | `name: string, r: number, g: number, b: number` | `void` |
+| Method                                | Description                                                   | Parameters                                      | Returns |
+| ------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------- | ------- |
+| `updateAssetLibraryEntry(id, config)` | Controls which asset sources appear in specific UI components | `id: string, config: { sourceIds: string[] }`   | `void`  |
+| `addLocalSource(sourceId)`            | Creates a new local asset source                              | `sourceId: string`                              | `void`  |
+| `addAssetToSource(sourceId, asset)`   | Adds an asset to a source                                     | `sourceId: string, asset: object`               | `void`  |
+| `setSpotColorRGB(name, r, g, b)`      | Defines a spot color for use in assets                        | `name: string, r: number, g: number, b: number` | `void`  |
 
 ## Next Steps
 

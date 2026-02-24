@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Overview](./create-video/overview.md)
 
@@ -57,7 +57,7 @@ const videoFill = engine.block.createFill('video');
 engine.block.setString(
   videoFill,
   'fill/video/fileURI',
-  'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barrelling-a-wave-12715991.mp4'
+  'https://cdn.img.ly/assets/demo/v4/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barrelling-a-wave-12715991.mp4'
 );
 engine.block.setFill(video1, videoFill);
 
@@ -67,7 +67,7 @@ const videoFill2 = engine.block.createFill('video');
 engine.block.setString(
   videoFill2,
   'fill/video/fileURI',
-  'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-kampus-production-8154913.mp4'
+  'https://cdn.img.ly/assets/demo/v4/ly.img.video/videos/pexels-kampus-production-8154913.mp4'
 );
 engine.block.setFill(video2, videoFill2);
 ```
@@ -220,7 +220,7 @@ anchor.click();
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

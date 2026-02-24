@@ -25,6 +25,23 @@ Design units determine the coordinate system for all layout values in CE.SDK—p
 
 ```typescript file=@cesdk_web_examples/guides-concepts-design-units-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -46,13 +63,36 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Initialize CE.SDK with Design mode
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 210, height: 297, unit: 'Pixel' }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
 
@@ -86,10 +126,6 @@ class Example implements EditorPlugin {
 
     // Get the page and set A4 dimensions (210 x 297 mm)
     const page = engine.block.findByType('page')[0];
-
-    // Set page to A4 size in millimeters
-    engine.block.setWidth(page, 210);
-    engine.block.setHeight(page, 297);
 
     // Verify dimensions
     const pageWidth = engine.block.getWidth(page);
@@ -219,10 +255,6 @@ For print workflows, combine `setDesignUnit()` with appropriate DPI and page dim
 ```typescript highlight-set-page-dimensions
     // Get the page and set A4 dimensions (210 x 297 mm)
     const page = engine.block.findByType('page')[0];
-
-    // Set page to A4 size in millimeters
-    engine.block.setWidth(page, 210);
-    engine.block.setHeight(page, 297);
 
     // Verify dimensions
     const pageWidth = engine.block.getWidth(page);

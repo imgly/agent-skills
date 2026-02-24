@@ -23,12 +23,25 @@ Protect design elements from unwanted modifications using CE.SDK's scope-based p
 CE.SDK uses a two-layer scope system to control editing permissions. Global scopes set defaults for the entire scene, while block-level scopes override when the global setting is `Defer`. This enables flexible permission models from fully locked to selectively editable designs.
 
 ```typescript file=@cesdk_web_examples/guides-create-composition-lock-design-browser/browser.ts reference-only
-import type {
-  EditorPlugin,
-  EditorPluginContext,
-  Scope
-} from '@cesdk/cesdk-js';
+import type { EditorPlugin, EditorPluginContext, Scope } from '@cesdk/cesdk-js';
 import packageJson from './package.json';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 
 class LockDesign implements EditorPlugin {
   name = packageJson.name;
@@ -38,22 +51,39 @@ class LockDesign implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    // Load assets and create scene
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
     });
-
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0]!;
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Create sample content to demonstrate different locking techniques
     const imageUri = 'https://img.ly/static/ubq_samples/sample_1.jpg';
@@ -134,7 +164,10 @@ class LockDesign implements EditorPlugin {
 
     // Check if operations are permitted on blocks
     const canEditText = engine.block.isAllowedByScope(textBlock, 'text/edit');
-    const canMoveImage = engine.block.isAllowedByScope(imageBlock, 'layer/move');
+    const canMoveImage = engine.block.isAllowedByScope(
+      imageBlock,
+      'layer/move'
+    );
     const canReplacePlaceholder = engine.block.isAllowedByScope(
       placeholderBlock,
       'fill/change'
@@ -252,7 +285,10 @@ Verify whether operations are permitted using `engine.block.isAllowedByScope()`.
 ```typescript highlight=highlight-check-permissions
     // Check if operations are permitted on blocks
     const canEditText = engine.block.isAllowedByScope(textBlock, 'text/edit');
-    const canMoveImage = engine.block.isAllowedByScope(imageBlock, 'layer/move');
+    const canMoveImage = engine.block.isAllowedByScope(
+      imageBlock,
+      'layer/move'
+    );
     const canReplacePlaceholder = engine.block.isAllowedByScope(
       placeholderBlock,
       'fill/change'

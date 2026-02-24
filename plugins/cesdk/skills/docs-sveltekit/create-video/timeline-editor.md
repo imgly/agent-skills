@@ -50,7 +50,7 @@ To work with the CE.SDK Editor in video mode, specify the scene’s design as fo
 ```ts
 cesdk.addDefaultAssetSources(),
 cesdk.addDemoAssetSources({ sceneMode: 'Video' }),
-await cesdk.createVideoScene();
+await cesdk.actions.run('scene.create', { mode: 'Video' });
 ```
 
 This tells the CreativeEditor:

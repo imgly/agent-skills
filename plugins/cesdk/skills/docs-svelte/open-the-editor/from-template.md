@@ -24,6 +24,23 @@ Templates provide consistent layouts and styling that users can customize for th
 
 ```typescript file=@cesdk_web_examples/guides-open-the-editor-from-template-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 import businessCardSceneString from './assets/business-card.scene?raw';
 
@@ -37,14 +54,6 @@ class Example implements EditorPlugin {
     }
 
     const engine = cesdk.engine;
-
-    // Add default asset sources for template resources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
-
     const templateUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
     await engine.scene.loadFromURL(templateUrl);

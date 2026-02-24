@@ -30,6 +30,23 @@ import type {
 } from '@cesdk/cesdk-js';
 import packageJson from './package.json';
 
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
+
 // Define color assets for each color space type
 const colors: AssetDefinition[] = [
   {
@@ -109,32 +126,50 @@ class Example implements EditorPlugin {
         'libraries.my-brand-colors.label': 'Brand Colors'
       }
     });
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    // Create a local asset source for the color library
+    // Create a local asset source and add color assets to it
     engine.asset.addLocalSource('my-brand-colors');
-
-    // Add all color assets to the source
     for (const color of colors) {
       engine.asset.addAssetToSource('my-brand-colors', color);
     }
 
-    // Configure the color picker to display the custom library
+    // Configure the color picker to show custom colors alongside the defaults
     cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
-      sourceIds: ['ly.img.colors.defaultPalette', 'my-brand-colors']
+      sourceIds: ['my-brand-colors', 'ly.img.color.palette']
     });
 
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     // Set up the page with dimensions
     const page = engine.block.findByType('page')[0];
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Apply a soft cream background to the page fill
     // This complements the Brand Blue rectangle
@@ -275,13 +310,11 @@ The "Metallic Gold" color demonstrates the spot color format, using a custom ink
 We create a local asset source using `engine.asset.addLocalSource()` with a unique source ID. Then we add each color asset using `engine.asset.addAssetToSource()`.
 
 ```typescript highlight=highlight-add-library
-    // Create a local asset source for the color library
-    engine.asset.addLocalSource('my-brand-colors');
-
-    // Add all color assets to the source
-    for (const color of colors) {
-      engine.asset.addAssetToSource('my-brand-colors', color);
-    }
+// Create a local asset source and add color assets to it
+engine.asset.addLocalSource('my-brand-colors');
+for (const color of colors) {
+  engine.asset.addAssetToSource('my-brand-colors', color);
+}
 ```
 
 The source ID `'my-brand-colors'` identifies this library throughout the application. You can create multiple libraries with different source IDs to organize colors by purpose—for example, separate libraries for brand colors, print colors, and seasonal palettes.
@@ -306,13 +339,13 @@ The label "Brand Colors" appears as the section header in the color picker. You 
 We control which libraries appear in the color picker and their display order using `cesdk.ui.updateAssetLibraryEntry()`. The `sourceIds` array determines both visibility and order—libraries appear in the picker in the same order as the array.
 
 ```typescript highlight=highlight-config-order
-// Configure the color picker to display the custom library
+// Configure the color picker to show custom colors alongside the defaults
 cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
-  sourceIds: ['ly.img.colors.defaultPalette', 'my-brand-colors']
+  sourceIds: ['my-brand-colors', 'ly.img.color.palette']
 });
 ```
 
-The special source ID `'ly.img.colors.defaultPalette'` represents CE.SDK's built-in default color palette. Include it in the array to show the default colors alongside your custom library. Remove it from the array to hide the default palette entirely.
+The special source ID `'ly.img.color.palette'` represents CE.SDK's built-in default color palette. Include it in the array to show the default colors alongside your custom library. Remove it from the array to hide the default palette entirely.
 
 ## Removing Colors
 

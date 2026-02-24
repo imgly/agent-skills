@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Vue](./get-started/new-project.md)
-
 ---
 
 This guide walks you through integrating the **CreativeEditor SDK (CE.SDK)** into a new Vue.js application. By the end, you'll have a functional editor rendered within a Vue component — ready for editing, templating, or further customization.
@@ -86,7 +84,7 @@ export default {
           sceneMode: 'Design',
           withUploadAssetSources: true,
         });
-        await cesdk.createDesignScene();
+        await cesdk.actions.run('scene.create');
       },
     };
   },

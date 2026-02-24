@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Disable or Enable Features](./user-interface/customization/disable-or-enable.md)
 
@@ -24,6 +24,23 @@ The Feature API provides global control over feature visibility throughout the e
 
 ```typescript file=@cesdk_web_examples/guides-user-interface-customization-disable-or-enable-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -44,13 +61,39 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
 
@@ -111,56 +154,65 @@ class Example implements EditorPlugin {
     });
     console.log('Navigation features:', navigationFeatures);
 
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'toggle-dock',
-          label: 'Toggle Dock',
-          onClick: () => {
-            const enabled = cesdk.feature.isEnabled('ly.img.dock');
-            if (enabled) {
-              cesdk.feature.disable('ly.img.dock');
-              console.log('Dock feature disabled');
-            } else {
-              cesdk.feature.enable('ly.img.dock');
-              console.log('Dock feature enabled');
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'toggle-dock',
+            label: 'Toggle Dock',
+            onClick: () => {
+              const enabled = cesdk.feature.isEnabled('ly.img.dock');
+              if (enabled) {
+                cesdk.feature.disable('ly.img.dock');
+                console.log('Dock feature disabled');
+              } else {
+                cesdk.feature.enable('ly.img.dock');
+                console.log('Dock feature enabled');
+              }
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'toggle-crop',
+            label: 'Toggle Crop Features',
+            icon: '@imgly/Crop',
+            onClick: () => {
+              const enabled = cesdk.feature.isEnabled('ly.img.crop');
+              if (enabled) {
+                cesdk.feature.disable('ly.img.crop*');
+                console.log('All crop features disabled');
+              } else {
+                cesdk.feature.enable('ly.img.crop*');
+                console.log('All crop features enabled');
+              }
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'log-status',
+            label: 'Log Feature Status',
+            icon: '@imgly/Info',
+            onClick: () => {
+              console.log('=== Feature Status ===');
+              console.log('Dock:', cesdk.feature.isEnabled('ly.img.dock'));
+              console.log(
+                'Duplicate:',
+                cesdk.feature.isEnabled('ly.img.duplicate')
+              );
+              console.log('Crop:', cesdk.feature.isEnabled('ly.img.crop'));
+              console.log('Fill:', cesdk.feature.isEnabled('ly.img.fill'));
+              console.log(
+                'Navigation features:',
+                cesdk.feature.list({ matcher: 'ly.img.navigation*' })
+              );
             }
           }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'toggle-crop',
-          label: 'Toggle Crop Features',
-          icon: '@imgly/Crop',
-          onClick: () => {
-            const enabled = cesdk.feature.isEnabled('ly.img.crop');
-            if (enabled) {
-              cesdk.feature.disable('ly.img.crop*');
-              console.log('All crop features disabled');
-            } else {
-              cesdk.feature.enable('ly.img.crop*');
-              console.log('All crop features enabled');
-            }
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'log-status',
-          label: 'Log Feature Status',
-          icon: '@imgly/Info',
-          onClick: () => {
-            console.log('=== Feature Status ===');
-            console.log('Dock:', cesdk.feature.isEnabled('ly.img.dock'));
-            console.log('Duplicate:', cesdk.feature.isEnabled('ly.img.duplicate'));
-            console.log('Crop:', cesdk.feature.isEnabled('ly.img.crop'));
-            console.log('Fill:', cesdk.feature.isEnabled('ly.img.fill'));
-            console.log('Navigation features:', cesdk.feature.list({ matcher: 'ly.img.navigation*' }));
-          }
-        }
-      ]
-    });
+        ]
+      }
+    );
 
     const page = engine.block.findByType('page')[0];
     const pageWidth = engine.block.getWidth(page);
@@ -181,18 +233,23 @@ class Example implements EditorPlugin {
     engine.block.appendChild(page, titleBlock);
     engine.block.replaceText(titleBlock, 'Disable or Enable Features');
     engine.block.setTextFontSize(titleBlock, 24);
-    engine.block.setTextColor(titleBlock, { r: 0.25, g: 0.22, b: 0.20, a: 1 });
+    engine.block.setTextColor(titleBlock, { r: 0.25, g: 0.22, b: 0.2, a: 1 });
     engine.block.setEnum(titleBlock, 'text/horizontalAlignment', 'Center');
     engine.block.setWidth(titleBlock, pageWidth * 0.8);
     engine.block.setHeightMode(titleBlock, 'Auto');
     engine.block.setPositionX(titleBlock, pageWidth * 0.1);
-    engine.block.setPositionY(titleBlock, pageHeight * 0.40);
+    engine.block.setPositionY(titleBlock, pageHeight * 0.4);
 
     const subtitleBlock = engine.block.create('text');
     engine.block.appendChild(page, subtitleBlock);
     engine.block.replaceText(subtitleBlock, 'IMG.LY');
     engine.block.setTextFontSize(subtitleBlock, 12);
-    engine.block.setTextColor(subtitleBlock, { r: 0.65, g: 0.45, b: 0.40, a: 1 });
+    engine.block.setTextColor(subtitleBlock, {
+      r: 0.65,
+      g: 0.45,
+      b: 0.4,
+      a: 1
+    });
     engine.block.setEnum(subtitleBlock, 'text/horizontalAlignment', 'Center');
     engine.block.setWidth(subtitleBlock, pageWidth * 0.8);
     engine.block.setHeightMode(subtitleBlock, 'Auto');
@@ -420,7 +477,7 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.duplicate` | Controls ability to duplicate blocks |
 | `ly.img.replace` | Controls presence of the Replace button |
 | `ly.img.group` | Controls grouping functionality |
-| `ly.img.placeholder` | Controls Placeholder button visibility |
+| `ly.img.placeholder` | Controls Placeholder toggle visibility in Inspector |
 
 ### Video Features
 
@@ -528,7 +585,7 @@ If a glob pattern doesn't affect expected features:
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

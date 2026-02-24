@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Angular](./get-started/angular/new-project.md)
-
 ---
 
 Download and run a **pre-built** CreativeEditor SDK (CE.SDK) Angular project

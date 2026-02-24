@@ -31,6 +31,23 @@ import type {
 } from '@cesdk/cesdk-js';
 import packageJson from './package.json';
 
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
+
 /**
  * CE.SDK Plugin: User Upload Guide
  *
@@ -54,12 +71,6 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
-
-    // Enable upload functionality with demo asset sources
-    cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
 
     // Create a custom asset source with upload support
     const engine = cesdk.engine;
@@ -100,7 +111,9 @@ class Example implements EditorPlugin {
         const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
         if (!allowedTypes.includes(file.type)) {
           throw new Error(
-            `Unsupported file type: ${file.type}. Allowed: ${allowedTypes.join(', ')}`
+            `Unsupported file type: ${file.type}. Allowed: ${allowedTypes.join(
+              ', '
+            )}`
           );
         }
 
@@ -140,15 +153,44 @@ class Example implements EditorPlugin {
       }
     );
 
-    // Create a design scene
-    await cesdk.createDesignScene();
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     // Get the page and set dimensions
     const pages = engine.block.findByType('page');
     const page = pages[0];
     if (page) {
-      engine.block.setWidth(page, 800);
-      engine.block.setHeight(page, 600);
     }
 
     // Zoom to fit content
@@ -188,11 +230,20 @@ Local uploads store files in browser memory only. Files won't persist when openi
 To enable upload functionality when using demo asset sources, pass the `withUploadAssetSources` option to `addDemoAssetSources()`:
 
 ```typescript highlight-demo-asset-sources
-// Enable upload functionality with demo asset sources
-cesdk.addDemoAssetSources({
-  sceneMode: 'Design',
-  withUploadAssetSources: true
-});
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
 ```
 
 Without this option, demo asset sources won't include upload functionality.
@@ -254,7 +305,9 @@ For production use, register a custom upload handler using the Actions API after
         const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
         if (!allowedTypes.includes(file.type)) {
           throw new Error(
-            `Unsupported file type: ${file.type}. Allowed: ${allowedTypes.join(', ')}`
+            `Unsupported file type: ${file.type}. Allowed: ${allowedTypes.join(
+              ', '
+            )}`
           );
         }
 
@@ -304,7 +357,9 @@ Validate files before processing by checking MIME type, file size, or other prop
         const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
         if (!allowedTypes.includes(file.type)) {
           throw new Error(
-            `Unsupported file type: ${file.type}. Allowed: ${allowedTypes.join(', ')}`
+            `Unsupported file type: ${file.type}. Allowed: ${allowedTypes.join(
+              ', '
+            )}`
           );
         }
 

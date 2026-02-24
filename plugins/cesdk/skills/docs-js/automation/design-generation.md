@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Automate Workflows](./automation.md) > [Design Generation](./automation/design-generation.md)
 
@@ -44,7 +44,7 @@ Initialize the CE.SDK and load your prepared template:
 ```ts example=basic-scene marker=cesdk-init-after
 // Load a template from your server or a CDN
 const sceneUrl =
-  'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_2.scene';
+  'https://cdn.img.ly/assets/demo/v4/ly.img.template/templates/cesdk_postcard_2.scene';
 await engine.scene.loadFromURL(sceneUrl);
 ```
 
@@ -103,7 +103,7 @@ If you encounter issues during the generation process:
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

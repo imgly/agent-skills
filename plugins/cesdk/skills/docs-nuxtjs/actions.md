@@ -56,6 +56,10 @@ const exportActions = cesdk.actions.list({ matcher: 'export*' });
 
 CE.SDK automatically registers the following default actions:
 
+### Scene Creation
+
+- `scene.create` - Creates a new scene with configurable mode, layout and page sizes
+
 ### Action Handlers
 
 - `saveScene` - Saves the current scene (default: downloads scene file)
@@ -95,6 +99,104 @@ CE.SDK automatically registers the following default actions:
 > **Tip:** CE.SDK provides both an Actions API for handling user actions and a Utils API
 > for utility functions. See the Utils API section below for details on
 > available utilities.
+
+### Scene Creation
+
+#### `scene.create`
+
+Creates a new scene with configurable mode, layout and page sizes. Returns the scene block ID.
+
+```javascript
+// Create a default Design scene
+await cesdk.actions.run('scene.create');
+
+// Create a Video scene
+await cesdk.actions.run('scene.create', { mode: 'Video' });
+```
+
+**Options:**
+
+| Option | Type | Default | Description |
+| ------ | ---- | ------- | ----------- |
+| `mode` | `'Design' \| 'Video'` | `'Design'` | The scene mode. |
+| `layout` | `SceneLayout` | `'VerticalStack'` | The scene layout. Ignored for Video mode. |
+| `page` | `PageSpec` | — | A single page specification. Cannot be used together with `pages`. |
+| `pageCount` | `number` | `1` | Number of pages to create from the single `page` spec. Ignored when `pages` is used. |
+| `pages` | `PageSpec[]` | — | An array of page specifications, one page per entry. Cannot be used together with `page`. |
+
+#### Page Specification
+
+Pages can be specified in three ways:
+
+**1. Direct dimensions**
+
+Specify width, height, and unit directly:
+
+```javascript
+await cesdk.actions.run('scene.create', {
+  page: { width: 1080, height: 1920, unit: 'Pixel' }
+});
+
+// With fixed orientation (prevents rotation from swapping dimensions)
+await cesdk.actions.run('scene.create', {
+  page: { width: 1080, height: 1920, unit: 'Pixel', fixedOrientation: true }
+});
+```
+
+**2. Asset source reference**
+
+Reference a page preset from an asset source by its source and asset IDs:
+
+```javascript
+// Use an Instagram Story preset
+await cesdk.actions.run('scene.create', {
+  mode: 'Video',
+  page: {
+    sourceId: 'ly.img.page.presets',
+    assetId: 'ly.img.page.presets.instagram.story'
+  }
+});
+```
+
+**3. Asset object**
+
+Pass an asset object directly, for example one returned by `engine.asset.findAssets()`:
+
+```javascript
+const result = await cesdk.engine.asset.findAssets('ly.img.page.presets', {
+  query: ''
+});
+await cesdk.actions.run('scene.create', {
+  page: result.assets[0]
+});
+```
+
+#### Multiple Pages
+
+Create scenes with multiple pages:
+
+```javascript
+// Multiple pages with different sizes
+await cesdk.actions.run('scene.create', {
+  pages: [
+    { width: 1080, height: 1920, unit: 'Pixel' },
+    { width: 1920, height: 1080, unit: 'Pixel' }
+  ]
+});
+
+// Multiple identical pages using pageCount
+await cesdk.actions.run('scene.create', {
+  page: { width: 1080, height: 1080, unit: 'Pixel' },
+  pageCount: 3
+});
+```
+
+> **Tip:** When no `page` or `pages` option is provided, `scene.create` creates a single
+> page with the default format from the configured page preset asset sources.
+
+> **Note:** The `createDesignScene()` and `createVideoScene()` methods are deprecated.
+> Use `cesdk.actions.run('scene.create')` and
+> `cesdk.actions.run('scene.create', { mode: 'Video' })` instead.
 
 ### Scene Management Actions
 

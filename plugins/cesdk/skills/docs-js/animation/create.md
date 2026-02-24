@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Animation](./animation.md) > [Create Animations](./animation/create.md)
 
@@ -24,6 +24,24 @@ CE.SDK provides a unified animation system for adding motion to design elements.
 
 ```typescript file=@cesdk_web_examples/guides-animation-create-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -51,24 +69,62 @@ class Example implements EditorPlugin {
     cesdk.feature.enable('ly.img.video');
     cesdk.feature.enable('ly.img.timeline');
     cesdk.feature.enable('ly.img.playback');
+    await cesdk.addPlugin(new VideoEditorConfig());
 
-    // Load assets and create a video scene (required for animations)
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Video',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.audio.*',
+          'ly.img.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
-    await cesdk.createVideoScene();
 
     const engine = cesdk.engine;
     const pages = engine.block.findByType('page');
     const page = pages[0];
 
     // Set page dimensions and duration
-    const pageWidth = 1920;
-    const pageHeight = 1080;
-    engine.block.setWidth(page, pageWidth);
-    engine.block.setHeight(page, pageHeight);
+    const pageWidth = engine.block.getWidth(page);
+    const pageHeight = engine.block.getHeight(page);
     engine.block.setDuration(page, 5.0);
 
     // Create gradient background
@@ -80,8 +136,16 @@ class Example implements EditorPlugin {
         { color: { r: 0.2, g: 0.1, b: 0.4, a: 1.0 }, stop: 1 }
       ]);
       // Diagonal gradient from top-left to bottom-right
-      engine.block.setFloat(gradientFill, 'fill/gradient/linear/startPointX', 0);
-      engine.block.setFloat(gradientFill, 'fill/gradient/linear/startPointY', 0);
+      engine.block.setFloat(
+        gradientFill,
+        'fill/gradient/linear/startPointX',
+        0
+      );
+      engine.block.setFloat(
+        gradientFill,
+        'fill/gradient/linear/startPointY',
+        0
+      );
       engine.block.setFloat(gradientFill, 'fill/gradient/linear/endPointX', 1);
       engine.block.setFloat(gradientFill, 'fill/gradient/linear/endPointY', 1);
       engine.block.setFill(page, gradientFill);
@@ -104,7 +168,11 @@ class Example implements EditorPlugin {
       const slideIn = engine.block.createAnimation('slide');
       engine.block.setInAnimation(titleBlock, slideIn);
       engine.block.setDuration(slideIn, 1.2);
-      engine.block.setFloat(slideIn, 'animation/slide/direction', (3 * Math.PI) / 2);
+      engine.block.setFloat(
+        slideIn,
+        'animation/slide/direction',
+        (3 * Math.PI) / 2
+      );
       engine.block.setEnum(slideIn, 'animationEasing', 'EaseOut');
     }
 
@@ -144,7 +212,12 @@ class Example implements EditorPlugin {
     const subtitleBlock = engine.block.create('text');
     engine.block.replaceText(subtitleBlock, 'Entrance • Exit • Loop');
     engine.block.setTextFontSize(subtitleBlock, 48);
-    engine.block.setTextColor(subtitleBlock, { r: 0.9, g: 0.9, b: 1.0, a: 0.9 });
+    engine.block.setTextColor(subtitleBlock, {
+      r: 0.9,
+      g: 0.9,
+      b: 1.0,
+      a: 0.9
+    });
     engine.block.setEnum(subtitleBlock, 'text/horizontalAlignment', 'Center');
     engine.block.setWidthMode(subtitleBlock, 'Auto');
     engine.block.setHeightMode(subtitleBlock, 'Auto');
@@ -250,7 +323,11 @@ We first verify that a block supports animations before creating and attaching t
       const slideIn = engine.block.createAnimation('slide');
       engine.block.setInAnimation(titleBlock, slideIn);
       engine.block.setDuration(slideIn, 1.2);
-      engine.block.setFloat(slideIn, 'animation/slide/direction', (3 * Math.PI) / 2);
+      engine.block.setFloat(
+        slideIn,
+        'animation/slide/direction',
+        (3 * Math.PI) / 2
+      );
       engine.block.setEnum(slideIn, 'animationEasing', 'EaseOut');
     }
 ```
@@ -357,7 +434,12 @@ Text blocks support additional animation properties for granular control over ho
     const subtitleBlock = engine.block.create('text');
     engine.block.replaceText(subtitleBlock, 'Entrance • Exit • Loop');
     engine.block.setTextFontSize(subtitleBlock, 48);
-    engine.block.setTextColor(subtitleBlock, { r: 0.9, g: 0.9, b: 1.0, a: 0.9 });
+    engine.block.setTextColor(subtitleBlock, {
+      r: 0.9,
+      g: 0.9,
+      b: 1.0,
+      a: 0.9
+    });
     engine.block.setEnum(subtitleBlock, 'text/horizontalAlignment', 'Center');
     engine.block.setWidthMode(subtitleBlock, 'Auto');
     engine.block.setHeightMode(subtitleBlock, 'Auto');
@@ -476,7 +558,7 @@ If entrance and exit animations seem to overlap incorrectly, CE.SDK automaticall
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

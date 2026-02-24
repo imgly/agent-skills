@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Next.js](./get-started/new-project.md)
-
 ---
 
 This guide shows you how to set up a **new Next.js project**, and integrate
@@ -136,7 +134,7 @@ const init = async cesdk => {
   ]);
 
   // create a new design scene in the editor
-  await cesdk.createDesignScene();
+  await cesdk.actions.run('scene.create');
 };
 
 export default function CreativeEditorSDKComponent() {

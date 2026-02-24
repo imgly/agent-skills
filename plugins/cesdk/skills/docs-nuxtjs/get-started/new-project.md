@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Nuxt](./get-started/new-project.md)
-
 ---
 
 This guide walks you through integrating the **CreativeEditor SDK (CE.SDK)** into a Nuxt.js app. You'll create a client-only component that loads CE.SDK after hydration to avoid SSR issues.
@@ -88,7 +86,7 @@ export default {
           sceneMode: 'Design',
           withUploadAssetSources: true,
         });
-        await cesdk.createDesignScene();
+        await cesdk.actions.run('scene.create');
       },
     };
   },

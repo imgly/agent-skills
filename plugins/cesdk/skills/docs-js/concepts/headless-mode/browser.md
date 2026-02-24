@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Concepts](./concepts.md) > [Headless Mode](./concepts/headless-mode/browser.md)
 
@@ -277,10 +277,6 @@ After you add the script to your app and run the dev server:
 
 ## Go Further
 
-Once you're comfortable creating scenes and exporting results with code, explore:
-
-- Framework-specific headless quick starts for [React](#broken-link-h1f42n), [Next.js](#broken-link-k4f45q), [Vue](#broken-link-n7f18t), and [Angular](#broken-link-c1234j).
-
 Need a hybrid approach? [Engine interface guides](./engine-interface.md) show how to combine headless logic with the standard editor UI.
 
 
@@ -289,7 +285,7 @@ Need a hybrid approach? [Engine interface guides](./engine-interface.md) show ho
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

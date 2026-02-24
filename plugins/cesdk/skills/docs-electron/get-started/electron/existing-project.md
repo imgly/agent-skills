@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Electron](./get-started/electron/new-project.md)
-
 ---
 
 This guide walks you through integrating the **CreativeEditor SDK (CE.SDK)**
@@ -68,7 +66,7 @@ Open your `index.html` and add the following script at the bottom of the `<body>
       sceneMode: 'Design',
       withUploadAssetSources: true,
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create');
   });
 </script>
 ```
@@ -115,7 +113,7 @@ Add the following script to your HTML file, either in a `<script type="module">`
 
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
-    await instance.createDesignScene();
+    await instance.actions.run('scene.create');
   });
 </script>
 ```

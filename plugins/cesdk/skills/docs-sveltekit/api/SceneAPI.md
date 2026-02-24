@@ -301,7 +301,7 @@ This loads the template scene while keeping the design unit and page dimensions
 of the current scene. The content of the pages is automatically adjusted to fit
 the new dimensions.
 ```javascript
-engine.scene.applyTemplateFromURL('https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene');
+engine.scene.applyTemplateFromURL('https://cdn.img.ly/assets/demo/v4/ly.img.template/templates/cesdk_postcard_1.scene');
 ```
 
 ```typescript

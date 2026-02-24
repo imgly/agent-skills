@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md)
 
@@ -19,13 +19,14 @@ Learn how CE.SDK’s new AI intgrations bring intelligent content generation and
 - [AI Image Generation](./user-interface/ai-integration/image-generation.md) - Create visuals from text prompts or transform existing images using leading AI providers like fal.ai (RecraftV3, Recraft20b, IdeogramV3, GeminiFlash) and OpenAI (GPT Image) with support for both raster and vector outputs.
 - [Audio Generation](./user-interface/ai-integration/audio-generation.md) - Integrate AI-powered audio generation into CE.SDK with text-to-speech and sound effects using the Audio Generation plugin.
 - [AI Video Generation](./user-interface/ai-integration/video-generation.md) - Create dynamic videos from text descriptions or animate static images using leading AI providers like fal.ai with Minimax Video, Pixverse, Kling Video, and ByteDance Seedance models.
+- [Auto Captions](./js.md) - Integrate automatic caption generation into your CE.SDK application using the Auto Caption plugin with pluggable speech-to-text providers.
 
 
 ---
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

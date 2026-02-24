@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Plugins](./plugins.md) > [Print Ready PDFs](./plugins/print-ready-pdf.md)
 
@@ -219,6 +219,10 @@ const config = {
   // Uncomment the line below and add your license key:
   // license: 'your-license-key-here',
   // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`,
+  // Use local assets when developing with local packages
+  ...((import.meta as any).env?.CESDK_USE_LOCAL && {
+    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
+  })
 };
 
 async function init() {
@@ -241,7 +245,7 @@ async function init() {
   });
 
   // Load default scene
-  await cesdk.createDesignScene();
+  await cesdk.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
   await cesdk.addDefaultAssetSources();
   await cesdk.addDemoAssetSources();
 }
@@ -485,7 +489,7 @@ grep -a "PDF/X-3" output.pdf
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

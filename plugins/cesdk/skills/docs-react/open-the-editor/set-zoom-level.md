@@ -45,7 +45,7 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
 
     const page = engine.block.findByType('page')[0];
 

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Open the Editor](./open-the-editor.md) > [Load a Scene](./open-the-editor/load-scene.md)
 
@@ -24,6 +24,22 @@ Scene files contain layout, properties, and asset references but not the assets 
 
 ```typescript file=@cesdk_web_examples/guides-open-the-editor-load-scene-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -35,15 +51,23 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
+    cesdk.addPlugin(new DesignEditorConfig());
+
+    cesdk.addPlugin(new ColorPaletteAssetSource());
+    cesdk.addPlugin(new CropPresetsAssetSource());
+    cesdk.addPlugin(new DemoAssetSources());
+    cesdk.addPlugin(new EffectsAssetSource());
+    cesdk.addPlugin(new FiltersAssetSource());
+    cesdk.addPlugin(new PagePresetsAssetSource());
+    cesdk.addPlugin(new StickerAssetSource());
+    cesdk.addPlugin(new TextAssetSource());
+    cesdk.addPlugin(new TextComponentAssetSource());
+    cesdk.addPlugin(new TypefaceAssetSource());
+    cesdk.addPlugin(new VectorShapeAssetSource());
+    cesdk.addPlugin(new BlurAssetSource());
+    cesdk.addPlugin(new DemoAssetSources());
+
     const engine = cesdk.engine;
-
-    // Add default asset sources for scene resources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
-
     const sceneUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
     await engine.scene.loadFromURL(sceneUrl);
@@ -153,7 +177,7 @@ Scene files (`.scene`) are lightweight and store only references to assets. If a
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

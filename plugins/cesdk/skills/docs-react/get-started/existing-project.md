@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart React](./get-started/new-project.md)
-
 ---
 
 This guide walks you through integrating CreativeEditor SDK (CE.SDK) into a React project using NPM and a custom component. By the end, you'll have a fully functional CE.SDK component running in your React application, ready for customization.
@@ -92,7 +90,7 @@ const init = async cesdk => {
   ]);
 
   // Create a new design scene in the editor
-  await cesdk.createDesignScene();
+  await cesdk.actions.run('scene.create');
 };
 
 export default function CreativeEditorSDKComponent() {

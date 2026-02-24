@@ -24,6 +24,22 @@ Custom panels extend CE.SDK by adding sidebar interfaces that match the editor's
 
 ```typescript file=@cesdk_web_examples/guides-user-interface-ui-extensions-create-custom-panel-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 
 export default class CreateCustomPanelExample implements EditorPlugin {
   name = 'CreateCustomPanelExample';
@@ -33,7 +49,39 @@ export default class CreateCustomPanelExample implements EditorPlugin {
     const { cesdk } = context;
     if (!cesdk) return;
 
-    await cesdk.createDesignScene();
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     cesdk.i18n.setTranslations({
       en: { 'panel.my-settings': 'My Settings Panel' }
@@ -92,7 +140,10 @@ export default class CreateCustomPanelExample implements EditorPlugin {
       });
     });
 
-    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }), 'settings-btn']);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
+      'settings-btn'
+    ]);
 
     cesdk.ui.openPanel('my-settings');
   }
@@ -230,7 +281,10 @@ cesdk.ui.registerComponent('settings-btn', ({ builder }) => {
 Add the component to the dock order.
 
 ```typescript highlight-add-to-dock
-cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }), 'settings-btn']);
+cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+  ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
+  'settings-btn'
+]);
 ```
 
 ## Opening the Panel

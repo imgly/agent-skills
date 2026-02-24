@@ -1,7 +1,7 @@
 {
   "metadata": {
     "description": "Unified CE.SDK plugin for IMG.LY CreativeEditor SDK.",
-    "version": "1.68.0"
+    "version": "1.69.0"
   },
   "name": "imgly",
   "owner": {
@@ -46,7 +46,7 @@
         "creative-editor",
         "Web"
       ],
-      "version": "1.68.0"
+      "version": "1.69.0"
     }
   ]
 }

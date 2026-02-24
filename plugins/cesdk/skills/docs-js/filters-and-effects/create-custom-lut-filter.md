@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Filters and Effects](./filters-and-effects.md) > [Apply Custom LUT Filter](./filters-and-effects/create-custom-lut-filter.md)
 
@@ -24,6 +24,23 @@ LUT filters remap colors through a predefined transformation table, enabling cin
 
 ```typescript file=@cesdk_web_examples/guides-filters-and-effects-create-custom-lut-filter-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -45,21 +62,42 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Initialize CE.SDK with Design mode and load default assets
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
 
-    const pageWidth = 800;
-    const pageHeight = 600;
-    engine.block.setWidth(page, pageWidth);
-    engine.block.setHeight(page, pageHeight);
+    const pageWidth = engine.block.getWidth(page);
+    const pageHeight = engine.block.getHeight(page);
 
     // Create a gradient background for the page
     const gradientFill = engine.block.createFill('gradient/linear');
@@ -120,7 +158,8 @@ class Example implements EditorPlugin {
     engine.block.setPositionY(subText, startY + titleHeight + textGap);
 
     // Add an image block to apply the LUT filter
-    const imageY = startY + titleHeight + textGap + subTextHeight + imagePadding;
+    const imageY =
+      startY + titleHeight + textGap + subTextHeight + imagePadding;
     const imageUri = 'https://img.ly/static/ubq_samples/sample_1.jpg';
     const imageBlock = await engine.block.addImage(imageUri, {
       x: (pageWidth - imageWidth) / 2,
@@ -130,7 +169,9 @@ class Example implements EditorPlugin {
     engine.block.appendChild(page, imageBlock);
 
     // Create a LUT filter effect
-    const lutEffect = engine.block.createEffect('//ly.img.ubq/effect/lut_filter');
+    const lutEffect = engine.block.createEffect(
+      '//ly.img.ubq/effect/lut_filter'
+    );
 
     // Configure the LUT file URI - this is a tiled PNG containing the color lookup table
     const lutUrl =
@@ -161,7 +202,10 @@ class Example implements EditorPlugin {
     });
 
     // Add the toggle button to the navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, 'lut.toggle');
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      'lut.toggle'
+    );
 
     // Retrieve all effects on the block
     const effects = engine.block.getEffects(imageBlock);
@@ -246,7 +290,9 @@ Create a `lut_filter` effect instance using the effect API:
 
 ```typescript highlight-create-effect
 // Create a LUT filter effect
-const lutEffect = engine.block.createEffect('//ly.img.ubq/effect/lut_filter');
+const lutEffect = engine.block.createEffect(
+  '//ly.img.ubq/effect/lut_filter'
+);
 ```
 
 This creates an effect that can be configured and applied to image blocks.
@@ -309,7 +355,10 @@ Add a toggle button to the navigation bar for enabling and disabling the filter:
     });
 
     // Add the toggle button to the navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, 'lut.toggle');
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      'lut.toggle'
+    );
 ```
 
 The `registerComponent` function creates a custom UI component that tracks the effect's enabled state. The `insertOrderComponent` method adds it to the navigation bar. Clicking the button toggles the effect while preserving all settings.
@@ -376,7 +425,7 @@ Use `getEffects()` to access all effects on a block and `supportsEffects()` to v
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

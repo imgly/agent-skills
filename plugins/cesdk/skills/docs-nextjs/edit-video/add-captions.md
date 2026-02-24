@@ -24,6 +24,24 @@ Captions in CE.SDK follow a hierarchy: **Page → CaptionTrack → Caption block
 
 ```typescript file=@cesdk_web_examples/guides-create-video-add-captions-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -50,23 +68,58 @@ class Example implements EditorPlugin {
     cesdk.feature.enable('ly.img.video');
     cesdk.feature.enable('ly.img.timeline');
     cesdk.feature.enable('ly.img.playback');
+    await cesdk.addPlugin(new VideoEditorConfig());
 
-    // Load assets and create a video scene
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Video',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.audio.*',
+          'ly.img.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
-
-    // Create a video scene for caption overlay
-    await cesdk.createVideoScene();
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
 
-    // Set page dimensions and duration
-    engine.block.setWidth(page, 1920);
-    engine.block.setHeight(page, 1080);
     engine.block.setDuration(page, 40);
 
     // Add a video clip as the base content
@@ -85,7 +138,9 @@ class Example implements EditorPlugin {
     // Import captions from SRT file
     // createCaptionsFromURI parses SRT/VTT and creates caption blocks with timing
     const captionSrtUrl = 'https://img.ly/static/examples/captions.srt';
-    const captionBlocks = await engine.block.createCaptionsFromURI(captionSrtUrl);
+    const captionBlocks = await engine.block.createCaptionsFromURI(
+      captionSrtUrl
+    );
 
     // eslint-disable-next-line no-console
     console.log(`Imported ${captionBlocks.length} captions from SRT file`);
@@ -157,10 +212,7 @@ class Example implements EditorPlugin {
       const firstCaption = captionBlocks[0];
 
       // Get current text
-      const currentText = engine.block.getString(
-        firstCaption,
-        'caption/text'
-      );
+      const currentText = engine.block.getString(firstCaption, 'caption/text');
       // eslint-disable-next-line no-console
       console.log('First caption text:', currentText);
 
@@ -229,7 +281,9 @@ The fastest way to add captions is importing from an SRT or VTT subtitle file. C
     // Import captions from SRT file
     // createCaptionsFromURI parses SRT/VTT and creates caption blocks with timing
     const captionSrtUrl = 'https://img.ly/static/examples/captions.srt';
-    const captionBlocks = await engine.block.createCaptionsFromURI(captionSrtUrl);
+    const captionBlocks = await engine.block.createCaptionsFromURI(
+      captionSrtUrl
+    );
 
     // eslint-disable-next-line no-console
     console.log(`Imported ${captionBlocks.length} captions from SRT file`);
@@ -462,10 +516,7 @@ Retrieve caption properties to display in custom UI or for processing.
       const firstCaption = captionBlocks[0];
 
       // Get current text
-      const currentText = engine.block.getString(
-        firstCaption,
-        'caption/text'
-      );
+      const currentText = engine.block.getString(firstCaption, 'caption/text');
       // eslint-disable-next-line no-console
       console.log('First caption text:', currentText);
 

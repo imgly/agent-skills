@@ -186,7 +186,7 @@ async function generateThumbnail(sceneData) {
 
 Read more about thumbnails generation in [the Engine guide](./engine-interface.md).
 
-The CE.SDK also provides over 20 pre-designed text layouts to apply on thumbnails. Check the [relevant guide](./user-interface/customization/reference.md) to use them.
+The CE.SDK also provides over 20 pre-designed text layouts to apply on thumbnails. Check the [relevant guide](./text/text-designs.md) to use them.
 
 ### Batch Thumbnail Generation from Video Scenes
 
@@ -196,7 +196,7 @@ Extract representative frames from videos efficiently, and automate this action 
 | --- | --- | --- |
 | Load video source | `engine.scene.createFromVideo()` | [Create from Video](./create-video/control.md) |
 | Seek to timestamp | `engine.block.setPlaybackTime()` | [Control Audio and Video](./create-video/control.md) |
-| Export single frame | `engine.block.export(block, options)` | [To PNG](./export-save-publish/export/to-png.md) <br />[Text Designs](./user-interface/customization/reference.md) |
+| Export single frame | `engine.block.export(block, options)` | [To PNG](./export-save-publish/export/to-png.md) <br />[Text Designs](./text/text-designs.md) |
 | Generate sequence thumbnails | `engine.block.generateVideoThumbnailSequence()` | [Trim Video Clips](./edit-video/trim.md) |
 | Size thumbnails consistently | `targetWidth / targetHeight` export options | [To PNG](./export-save-publish/export/to-png.md) |
 

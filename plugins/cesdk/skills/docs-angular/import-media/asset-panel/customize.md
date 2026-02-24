@@ -24,6 +24,23 @@ The asset library displays assets from registered asset sources. While sources d
 
 ```typescript file=@cesdk_web_examples/guides-import-media-asset-library-customize-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -35,12 +52,31 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
 
     const engine = cesdk.engine;
 
@@ -56,8 +92,10 @@ class Example implements EditorPlugin {
         'libraries.my-custom-assets.label': 'My Assets (Entry Level)',
         'libraries.my-replace-assets.label': 'Replace Options',
         // Source-level labels within entry (overrides default source labels)
-        'libraries.my-custom-assets.ly.img.image.label': 'Images (Source Level)',
-        'libraries.my-custom-assets.ly.img.sticker.label': 'Stickers (Source Level)',
+        'libraries.my-custom-assets.ly.img.image.label':
+          'Images (Source Level)',
+        'libraries.my-custom-assets.ly.img.sticker.label':
+          'Stickers (Source Level)',
         // Group-level labels within sticker source (all 8 sticker categories)
         // Format: libraries.<entry>.<source>.<group-id>.label
         'libraries.my-custom-assets.ly.img.sticker.//ly.img.cesdk.stickers.doodle/category/doodle.label':
@@ -167,7 +205,12 @@ class Example implements EditorPlugin {
     ]);
 
     // Create a design scene to display the editor
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     // Add explanatory text to the canvas
     const page = engine.scene.getCurrentPage();
@@ -368,8 +411,10 @@ cesdk.i18n.setTranslations({
     'libraries.my-custom-assets.label': 'My Assets (Entry Level)',
     'libraries.my-replace-assets.label': 'Replace Options',
     // Source-level labels within entry (overrides default source labels)
-    'libraries.my-custom-assets.ly.img.image.label': 'Images (Source Level)',
-    'libraries.my-custom-assets.ly.img.sticker.label': 'Stickers (Source Level)',
+    'libraries.my-custom-assets.ly.img.image.label':
+      'Images (Source Level)',
+    'libraries.my-custom-assets.ly.img.sticker.label':
+      'Stickers (Source Level)',
     // Group-level labels within sticker source (all 8 sticker categories)
     // Format: libraries.<entry>.<source>.<group-id>.label
     'libraries.my-custom-assets.ly.img.sticker.//ly.img.cesdk.stickers.doodle/category/doodle.label':

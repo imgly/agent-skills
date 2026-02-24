@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Appearance](./user-interface/appearance.md) > [Change UI Font](./user-interface/appearance/change-ui-font.md)
 
@@ -24,18 +24,33 @@ CE.SDK's UI uses CSS custom properties for typography, allowing you to apply a c
 
 ```typescript file=@cesdk_web_examples/guides-user-interface-appearance-change-ui-font-browser/browser.ts reference-only
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
+import { PagePresetsAssetSource } from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 
 export async function initialize(cesdk: CreativeEditorSDK) {
+  await cesdk.addPlugin(new DesignEditorConfig());
+  await cesdk.addPlugin(new PagePresetsAssetSource());
   // Create a design scene to showcase the UI font customization
-  await cesdk.createDesignScene();
+  await cesdk.actions.run('scene.create', {
+    page: {
+      sourceId: 'ly.img.page.presets',
+      assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+    }
+  });
 
   // Add a text block to demonstrate the design canvas
   const page = cesdk.engine.block.findByType('page')[0];
   const text = cesdk.engine.block.create('text');
   cesdk.engine.block.setString(text, 'text/text', 'Monospace UI Font');
   cesdk.engine.block.setWidth(text, 400);
-  cesdk.engine.block.setPositionX(text, cesdk.engine.block.getWidth(page) / 2 - 200);
-  cesdk.engine.block.setPositionY(text, cesdk.engine.block.getHeight(page) / 2 - 50);
+  cesdk.engine.block.setPositionX(
+    text,
+    cesdk.engine.block.getWidth(page) / 2 - 200
+  );
+  cesdk.engine.block.setPositionY(
+    text,
+    cesdk.engine.block.getHeight(page) / 2 - 50
+  );
   cesdk.engine.block.appendChild(page, text);
 
   // You can verify the current theme and scale settings
@@ -295,7 +310,7 @@ Quick reference for UI font customization:
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

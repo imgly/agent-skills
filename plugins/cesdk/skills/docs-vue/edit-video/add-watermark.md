@@ -24,6 +24,24 @@ Video watermarks in CE.SDK are design blocks positioned over video content. **Te
 
 ```typescript file=@cesdk_web_examples/guides-create-video-add-watermark-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -51,14 +69,6 @@ class Example implements EditorPlugin {
     cesdk.feature.enable('ly.img.video');
     cesdk.feature.enable('ly.img.timeline');
     cesdk.feature.enable('ly.img.playback');
-
-    // Load assets and create a video scene
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Video',
-      withUploadAssetSources: true
-    });
-
     // Create a video scene from a sample video
     const videoUrl = 'https://img.ly/static/ubq_video_samples/bbb.mp4';
     await cesdk.engine.scene.createFromVideo(videoUrl);

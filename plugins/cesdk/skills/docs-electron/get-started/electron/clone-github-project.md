@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Quickstart Electron](./get-started/electron/new-project.md)
-
 ---
 
 This guide walks you through cloning and running a preconfigured

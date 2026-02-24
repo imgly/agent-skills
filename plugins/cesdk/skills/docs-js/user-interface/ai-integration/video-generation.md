@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Video Generation](./user-interface/ai-integration/video-generation.md)
 
@@ -25,6 +25,24 @@ The video generation plugin creates videos from text descriptions (text-to-video
 
 ```typescript file=@cesdk_web_examples/guides-user-interface-ai-integration-video-generation-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
 import AiApps from '@imgly/plugin-ai-apps-web';
 import FalAiVideo from '@imgly/plugin-ai-video-generation-web/fal-ai';
 import packageJson from './package.json';
@@ -38,12 +56,57 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Load asset sources with video scene mode
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({ sceneMode: 'Video' });
+    await cesdk.addPlugin(new VideoEditorConfig());
 
-    // Create a video scene to demonstrate video generation
-    await cesdk.createVideoScene();
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.audio.*',
+          'ly.img.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.instagram.story'
+      }
+    });
 
     // Configure the AI video generation plugin
     // NOTE: In production, provide a secure proxy URL that forwards
@@ -81,7 +144,10 @@ class Example implements EditorPlugin {
     );
 
     // Reorder dock to show AI Apps button prominently
-    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, ['ly.img.ai.apps.dock', ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })]);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      'ly.img.ai.apps.dock',
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })
+    ]);
 
     // Customize UI labels for AI video generation features
     // This demonstrates how to customize the i18n system
@@ -418,7 +484,7 @@ Common issues when configuring the plugin:
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Appearance](./user-interface/appearance.md) > [Icons](./user-interface/appearance/icons.md)
 
@@ -25,6 +25,23 @@ CE.SDK uses SVG sprites for icons throughout the editor interface. Each icon is 
 ```typescript file=@cesdk_web_examples/guides-user-interface-appearance-icons-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
+
 class Example implements EditorPlugin {
   name = 'guides-user-interface-appearance-icons-browser';
   version = '1.0.0';
@@ -33,19 +50,39 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    // Load assets and create scene
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
     });
-
-    // Set the editor view
-    cesdk.ui.setView('advanced');
-
-    // Create a design scene
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
 
@@ -69,12 +106,15 @@ class Example implements EditorPlugin {
 
     // Get the current dock order and replace the Images dock icon
     const dockOrder = cesdk.ui.getComponentOrder({ in: 'ly.img.dock' });
-    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, dockOrder.map((entry) => {
+    cesdk.ui.setComponentOrder(
+      { in: 'ly.img.dock' },
+      dockOrder.map((entry) => {
         if (entry.key === 'ly.img.image') {
           return { ...entry, icon: '@custom/icon/star' };
         }
         return entry;
-      }));
+      })
+    );
 
     // Register a custom component that uses a custom icon
     cesdk.ui.registerComponent(
@@ -172,12 +212,15 @@ Once you've registered a custom icon set, you can replace the icons of existing 
 ```typescript highlight=highlight-replace-dock-icon
 // Get the current dock order and replace the Images dock icon
 const dockOrder = cesdk.ui.getComponentOrder({ in: 'ly.img.dock' });
-cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, dockOrder.map((entry) => {
+cesdk.ui.setComponentOrder(
+  { in: 'ly.img.dock' },
+  dockOrder.map((entry) => {
     if (entry.key === 'ly.img.image') {
       return { ...entry, icon: '@custom/icon/star' };
     }
     return entry;
-  }));
+  })
+);
 ```
 
 This example replaces the Images dock entry icon with our custom star icon. The `key` property identifies the dock entry, and we update the `icon` property to reference our custom icon by its symbol ID.
@@ -297,7 +340,7 @@ If your icon doesn't change color with the theme:
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

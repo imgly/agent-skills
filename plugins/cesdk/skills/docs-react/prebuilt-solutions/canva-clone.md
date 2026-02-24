@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Solutions](./prebuilt-solutions.md) > [Canva Clone](./prebuilt-solutions/canva-clone.md)
-
 ---
 
 Build your own Canva-like design editor with this fully customizable, pre-built solution powered by CreativeEditor SDK (CE.SDK). The Canva Clone can be seamlessly embedded into your React app, giving users the tools to create stunning invitations, greeting cards, flyers, and more—right out of the box.

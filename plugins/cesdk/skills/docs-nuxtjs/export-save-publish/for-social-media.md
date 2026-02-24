@@ -25,6 +25,23 @@ Short-form vertical video has become the dominant format for social media. Insta
 
 ```typescript file=@cesdk_web_examples/guides-export-save-publish-export-for-social-media-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -45,13 +62,55 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
+    await cesdk.addPlugin(new VideoEditorConfig());
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.audio.*',
+          'ly.img.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
     const engine = cesdk.engine;
 
     // Create a vertical video scene (9:16) for Instagram Reels, TikTok, YouTube Shorts
-    await cesdk.createVideoScene({
-      width: 1080,
-      height: 1920,
-      unit: 'Pixel'
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 1080, height: 1920, unit: 'Pixel' }
     });
 
     const page = engine.scene.getCurrentPage();
@@ -95,7 +154,9 @@ class Example implements EditorPlugin {
 
       await cesdk.utils.downloadFile(videoBlob, 'video/mp4');
       cesdk.ui.showNotification({
-        message: `Video exported: ${(videoBlob.size / 1024 / 1024).toFixed(1)} MB (1080×1920)`,
+        message: `Video exported: ${(videoBlob.size / 1024 / 1024).toFixed(
+          1
+        )} MB (1080×1920)`,
         type: 'success'
       });
     };
@@ -128,10 +189,9 @@ Create a video scene with the correct dimensions for vertical video. Use `create
 
 ```typescript highlight-setup
     // Create a vertical video scene (9:16) for Instagram Reels, TikTok, YouTube Shorts
-    await cesdk.createVideoScene({
-      width: 1080,
-      height: 1920,
-      unit: 'Pixel'
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 1080, height: 1920, unit: 'Pixel' }
     });
 
     const page = engine.scene.getCurrentPage();
@@ -217,7 +277,7 @@ This utility handles the download process automatically, including memory cleanu
 
 | Method | Purpose |
 |--------|---------|
-| `cesdk.createVideoScene()` | Create a video scene with specified dimensions |
+| `cesdk.actions.run('scene.create', { mode: 'Video' })` | Create a video scene with specified dimensions |
 | `engine.block.exportVideo()` | Export block as video (MP4) |
 | `engine.scene.getCurrentPage()` | Get the active page for export |
 | `cesdk.utils.downloadFile()` | Trigger browser download for exported files |

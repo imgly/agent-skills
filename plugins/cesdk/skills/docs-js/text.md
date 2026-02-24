@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS documentation. For a complete overview, see the [Vanilla JS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Text](./text.md)
 
@@ -16,7 +16,7 @@
 - [Add Text](./text/add.md) - Insert text blocks into your CE.SDK scene.
 - [Edit Text](./text/edit.md) - Edit text content directly on the canvas or through the properties panel.
 - [Text Styling](./text/styling.md) - Apply fonts, colors, alignment, and other styling options to customize text appearance.
-- [Text Designs](./user-interface/customization/reference.md) - Create and customize text component libraries using predefined text designs that appear in your asset library.
+- [Text Designs](./text/text-designs.md) - Create and customize text component libraries using predefined text designs that appear in your asset library.
 - [Auto-Size](./text/auto-size.md) - Configure text blocks to automatically adapt their dimensions or font size for dynamic content.
 - [Text Effects](./text/effects.md) - Apply visual effects to text blocks including drop shadows and stroke outlines.
 - [Emojis](./text/emojis.md) - Insert and style emojis alongside text for expressive, modern typographic designs.
@@ -29,7 +29,7 @@
 
 ## More Resources
 
-- **[Vanilla JS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support
