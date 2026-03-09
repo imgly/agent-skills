@@ -1,0 +1,30 @@
+> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+
+**Navigation:** [Compatibility & Security](./compatibility.md)
+
+---
+
+CE.SDK provides robust compatibility and security features across platforms.
+Learn about supported browsers, frameworks, file formats, language support,
+and how CE.SDK ensures secure operation in your applications.
+
+
+
+---
+
+## Related Pages
+
+- [Browser Support](./browser-support.md) - Find out which browsers and versions fully support CE.SDK features, including editing and video capabilities.
+- [System Compatibility](./compatibility.md) - Learn how device performance and hardware limits affect CE.SDK editing, rendering, and export capabilities.
+- [File Format Support](./file-format-support.md) - See which image, video, audio, font, and template formats CE.SDK supports for import and export.
+- [Security](./security.md) - Learn how CE.SDK keeps your data private with client-side processing, secure licensing, and GDPR-compliant practices.
+
+
+---
+
+## More Resources
+
+- **[SvelteKit Documentation Index](https://img.ly/sveltekit.md)** - Browse all SvelteKit documentation
+- **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
+- **[Web Documentation](./sveltekit.md)** - Interactive documentation with examples
+- **[Support](mailto:support@img.ly)** - Contact IMG.LY support
