@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Asset Library](./import-media/asset-library.md) > [Basics](./import-media/asset-panel/basics.md)
 
@@ -18,7 +18,7 @@ CE.SDK treats all insertable content as assets—images, videos, audio, stickers
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-asset-library-basics-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-import-media-asset-library-basics-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-asset-library-basics-browser/)
 
 The asset library connects the engine to the user interface through three layers:
 
@@ -321,7 +321,7 @@ Query and inspect registered entries:
 
 ## More Resources
 
-- **[Nuxt.js Documentation Index](https://img.ly/nuxtjs.md)** - Browse all Nuxt.js documentation
+- **[Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md)** - Browse all Nuxt.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nuxtjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

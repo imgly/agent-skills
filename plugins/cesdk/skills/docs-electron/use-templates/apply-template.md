@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Apply a Template](./use-templates/apply-template.md)
 
@@ -16,7 +16,7 @@ Apply template content to an existing scene while preserving your canvas dimensi
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-use-templates-apply-template-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-use-templates-apply-template-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-use-templates-apply-template-browser/)
 
 ![Apply a Template](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -270,7 +270,7 @@ Template content scales to fit the current page dimensions. Verify page dimensio
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

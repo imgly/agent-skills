@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Insert Media Assets](./insert-media.md) > [Insert Images](./insert-media/images.md)
 
@@ -18,7 +18,7 @@ Insert images into your designs programmatically using CE.SDK's engine API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-insert-media-images-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-insert-media-images-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-insert-media-images-browser/)
 
 Images in CE.SDK are graphic blocks with image fills attached. The engine supports multiple image formats including PNG, JPEG, WebP, GIF, and SVG. You can insert images using either the convenience API for quick setup or manual construction for fine-grained control over the image block components.
 
@@ -375,7 +375,7 @@ After inserting an image, you can:
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

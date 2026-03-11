@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Automate Workflows](./automation.md) > [Data Merge](./automation/data-merge.md)
 
@@ -18,7 +18,7 @@ Generate personalized designs from a single template by merging external data in
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-automation-data-merge-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-automation-data-merge-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-automation-data-merge-browser/)
 
 Data merge generates multiple personalized designs from a single template by replacing variable content with external data. Use it for certificates, badges, team cards, or any design requiring consistent layout with varying content.
 
@@ -401,7 +401,7 @@ If placeholder images don't update:
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Import From Remote Source](./import-media/from-remote-source.md) > [Versioning of Assets](./import-media/from-remote-source/asset-versioning.md)
 
@@ -18,7 +18,7 @@ Manage how CE.SDK stores and resolves asset URLs in saved designs, ensuring desi
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-from-remote-source-asset-versioning-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-import-media-from-remote-source-asset-versioning-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-from-remote-source-asset-versioning-browser/)
 
 CE.SDK references assets via URIs rather than embedding files directly into designs. When you save a design with `engine.scene.saveToString()`, asset URLs are stored as strings. On load, CE.SDK fetches assets from those URLs. This approach keeps saved designs small but means URL changes can break existing designs. This guide explains how CE.SDK stores asset references and strategies for managing asset URLs over time.
 
@@ -394,7 +394,7 @@ When managing asset URLs in production:
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

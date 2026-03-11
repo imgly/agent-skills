@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Reorder Components](./user-interface/customization/quick-start/reorder-components.md)
 
@@ -18,7 +18,7 @@ Rearrange UI components using `getComponentOrder()` to inspect the current layou
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-customization-quick-start-reorder-components-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-quick-start-reorder-components-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-quick-start-reorder-components-browser/)
 
 The Component Order API lets you customize the layout of all five UI areas by getting and setting the component order array. Each area maintains an ordered list of components that determines their visual arrangement.
 
@@ -320,7 +320,7 @@ Use standard array methods like `splice`, `unshift`, and `push` to rearrange com
 
 ## More Resources
 
-- **[SvelteKit Documentation Index](https://img.ly/sveltekit.md)** - Browse all SvelteKit documentation
+- **[SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md)** - Browse all SvelteKit documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./sveltekit.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

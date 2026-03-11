@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Starter Kits](./starterkits.md) > [Photo Editor](./starterkits/photo-editor.md)
 
@@ -16,9 +16,9 @@ Professional photo editing for your Vue app—crop, filter, adjust, and remove b
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-photo-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/starterkit-photo-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-photo-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/examples/starterkit-photo-editor/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-photo-editor/)
 
 ***
 
@@ -775,7 +775,7 @@ The Photo Editor includes everything needed for professional image editing.
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

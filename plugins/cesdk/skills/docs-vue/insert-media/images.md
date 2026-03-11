@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Insert Media Assets](./insert-media.md) > [Insert Images](./insert-media/images.md)
 
@@ -18,7 +18,7 @@ Insert images into your designs programmatically using CE.SDK's engine API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-insert-media-images-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-insert-media-images-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-insert-media-images-browser/)
 
 Images in CE.SDK are graphic blocks with image fills attached. The engine supports multiple image formats including PNG, JPEG, WebP, GIF, and SVG. You can insert images using either the convenience API for quick setup or manual construction for fine-grained control over the image block components.
 
@@ -375,7 +375,7 @@ After inserting an image, you can:
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

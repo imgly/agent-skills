@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Starter Kits](./starterkits.md)
 
@@ -14,12 +14,12 @@ professional editing capabilities into your web application.
 
 ## Related Pages
 
-- [Photo Editor](./starterkits/photo-editor.md) - Add professional photo editing to your web app in minutes. Crop, filter, remove backgrounds, and export—all client-side.
-- [Design Editor](./starterkits/design-editor.md) - Add professional design editing to your web app in minutes. Create graphics, templates, and multi-page documents—all client-side.
-- [Design Editor (Advanced)](./starterkits/advanced-editor.md) - Add a comprehensive design editor to your web app in minutes. Professional tools for graphics, templates, and multi-page documents—all client-side.
-- [Design Viewer](./starterkits/viewer.md) - Add design viewing to your web app in minutes. Pan, zoom, and navigate multi-page designs—all client-side.
-- [Video Editor](./starterkits/video-editor.md) - Add professional video editing to your web app in minutes. Edit clips, add effects, and export to MP4—all client-side.
-- [Video Editor (Advanced)](./starterkits/advanced-video-editor.md) - Add a comprehensive video editor to your web app in minutes. Professional tools for timeline editing, effects, and MP4 export—all client-side.
+- [Photo Editor for Next.js](./starterkits/photo-editor.md) - Add professional photo editing to your Next.js app in minutes. Crop, filter, remove backgrounds, and export—all client-side.
+- [Design Editor for Next.js](./starterkits/design-editor.md) - Add professional design editing to your Next.js app in minutes. Create graphics, templates, and multi-page documents—all client-side.
+- [Design Editor (Advanced) for Next.js](./starterkits/advanced-editor.md) - Add a comprehensive design editor to your Next.js app in minutes. Professional tools for graphics, templates, and multi-page documents—all client-side.
+- [Design Viewer for Next.js](./starterkits/viewer.md) - Add design viewing to your Next.js app in minutes. Pan, zoom, and navigate multi-page designs—all client-side.
+- [Video Editor for Next.js](./starterkits/video-editor.md) - Add professional video editing to your Next.js app in minutes. Edit clips, add effects, and export to MP4—all client-side.
+- [Video Editor (Advanced) for Next.js](./starterkits/advanced-video-editor.md) - Add a comprehensive video editor to your Next.js app in minutes. Professional tools for timeline editing, effects, and MP4 export—all client-side.
 - [Video Player](./starterkits/player.md) - Add video playback to your web app in minutes. Play, pause, and navigate video content—all client-side.
 - [AI Image and Video Editor](./starterkits/ai-editor.md) - Add AI-powered image, video, audio, and voice generation directly into your app’s editing interface.
 - [T-Shirt Designer](./starterkits/t-shirt-designer.md) - Embed a t-shirt design editor with print areas, PDF export, and a focused UI for apparel customization.
@@ -38,7 +38,7 @@ professional editing capabilities into your web application.
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

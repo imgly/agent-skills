@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Asset Library](./import-media/asset-library.md) > [Customize](./import-media/asset-panel/customize.md)
 
@@ -18,7 +18,7 @@ Adapt the asset library to match your application's structure and user needs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-asset-library-customize-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-import-media-asset-library-customize-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-asset-library-customize-browser/)
 
 The asset library displays assets from registered asset sources. While sources define the data, asset library entries control how that data is presented in the UI. CE.SDK provides default entries for common asset types (images, videos, stickers, etc.), but you can create custom entries or modify existing ones to match your application's needs.
 
@@ -476,7 +476,7 @@ Set translations before adding entries to ensure labels are available when the U
 
 ## More Resources
 
-- **[React Documentation Index](https://img.ly/react.md)** - Browse all React documentation
+- **[React Documentation Index](https://img.ly/docs/cesdk/react.md)** - Browse all React documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./react.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

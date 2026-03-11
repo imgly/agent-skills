@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Conversion](./conversion.md) > [To Base64](./conversion/to-base64.md)
 
@@ -18,7 +18,7 @@ Convert CE.SDK exports to Base64-encoded strings for embedding in HTML, storing 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-conversion-to-base64-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-conversion-to-base64-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-conversion-to-base64-browser/)
 
 Base64 encoding transforms binary image data into ASCII text, enabling you to embed images directly in HTML, store them in text-only databases, or transmit them through JSON APIs without binary handling.
 
@@ -226,7 +226,7 @@ Base64 encoding works well for:
 
 ## More Resources
 
-- **[Nuxt.js Documentation Index](https://img.ly/nuxtjs.md)** - Browse all Nuxt.js documentation
+- **[Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md)** - Browse all Nuxt.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nuxtjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

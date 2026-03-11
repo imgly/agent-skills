@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Starter Kits](./starterkits.md) > [Design Editor (Advanced)](./starterkits/advanced-editor.md)
 
@@ -16,9 +16,9 @@ Comprehensive design editing for your Svelte app—professional tools for graphi
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-advanced-design-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/starterkit-advanced-design-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-design-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/examples/starterkit-advanced-design-editor/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-advanced-design-editor/)
 
 ***
 
@@ -735,7 +735,7 @@ Design Editor (Advanced) includes everything needed for professional design edit
 
 ## More Resources
 
-- **[Svelte Documentation Index](https://img.ly/svelte.md)** - Browse all Svelte documentation
+- **[Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md)** - Browse all Svelte documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./svelte.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

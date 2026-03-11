@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Audio](./create-audio/audio.md) > [Add Sound Effects](./create-audio/audio/add-sound-effects.md)
 
@@ -18,7 +18,7 @@ Generate sound effects programmatically using buffers with arbitrary audio data.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-audio-add-sound-effects-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-audio-add-sound-effects-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-audio-add-sound-effects-browser/)
 
 CE.SDK lets you create audio from code using buffers. This approach generates sound effects dynamically without external files—useful for notification tones, procedural audio, or any scenario where you need to synthesize audio at runtime.
 
@@ -658,7 +658,7 @@ Each effect is 2 seconds with 0.5-second gaps between them, for a total duration
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

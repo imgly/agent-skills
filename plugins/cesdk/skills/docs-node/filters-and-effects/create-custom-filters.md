@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Filters and Effects](./filters-and-effects.md) > [Create Custom Filters](./filters-and-effects/create-custom-filters.md)
 
@@ -689,7 +689,7 @@ Now that you understand how to create and register custom filter sources, explor
 
 ## More Resources
 
-- **[Node.js Documentation Index](https://img.ly/node.md)** - Browse all Node.js documentation
+- **[Node.js Documentation Index](https://img.ly/docs/cesdk/node.md)** - Browse all Node.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./node.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

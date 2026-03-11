@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Compositions](./create-composition.md) > [Add a Background](./create-composition/add-background.md)
 
@@ -18,7 +18,7 @@ Add backgrounds to designs using fills for pages and shapes, and the background 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-composition-add-background-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-composition-add-background-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-composition-add-background-browser/)
 
 CE.SDK provides two distinct approaches for adding backgrounds to design elements. Understanding when to use each approach ensures your designs render correctly and efficiently.
 
@@ -392,7 +392,7 @@ Explore related topics:
 
 ## More Resources
 
-- **[React Documentation Index](https://img.ly/react.md)** - Browse all React documentation
+- **[React Documentation Index](https://img.ly/docs/cesdk/react.md)** - Browse all React documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./react.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

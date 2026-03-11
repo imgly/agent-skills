@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Import From Remote Source](./import-media/from-remote-source.md) > [Import Remote Asset](./import-media/from-remote-source/remote-asset.md)
 
@@ -18,7 +18,7 @@ Load asset definitions from remote JSON files hosted on CDNs or servers into CE.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-from-remote-source-remote-asset-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-import-media-from-remote-source-remote-asset-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-from-remote-source-remote-asset-browser/)
 
 Remote asset loading enables you to host asset definitions on a CDN or server and load them dynamically into CE.SDK. This approach separates asset management from your application code, allowing you to update available assets without deploying new app versions. CE.SDK provides `engine.asset.addLocalAssetSourceFromJSONURI()` for loading from URLs and `engine.asset.addLocalAssetSourceFromJSONString()` for loading from JSON content you already have.
 
@@ -466,7 +466,7 @@ Common issues include:
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

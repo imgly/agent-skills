@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Retrieve Mimetype](./import-media/retrieve-mimetype.md)
 
@@ -18,7 +18,7 @@ Detect the MIME type of resources loaded in the engine and relocate them to exte
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-retrieve-mimetype-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-import-media-retrieve-mimetype-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-retrieve-mimetype-browser/)
 
 When loading scene archives in CE.SDK, embedded media resources are stored with internal `buffer://` URIs rather than their original URLs. These resources include both images and fonts used in the scene. To process these resources correctly—for instance when uploading to a CDN, displaying previews, or exporting a clean scene file—you need to determine their MIME type and relocate them to external URLs.
 
@@ -282,7 +282,7 @@ If transient resources remain after calling `relocateResource()`:
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

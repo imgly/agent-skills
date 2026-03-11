@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Canvas Bar](./user-interface/customization/canvas.md)
 
@@ -18,7 +18,7 @@ The canvas bar is the floating toolbar that appears above or below the canvas. T
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-canvas-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-canvas-browser/)
 
 For general component manipulation (reordering, inserting, removing), see the [Component Order API Reference](./user-interface/customization/reference/component-order-api.md).
 
@@ -278,7 +278,7 @@ The top position is empty by default.
 
 ## More Resources
 
-- **[Svelte Documentation Index](https://img.ly/svelte.md)** - Browse all Svelte documentation
+- **[Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md)** - Browse all Svelte documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./svelte.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

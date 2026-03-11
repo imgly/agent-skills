@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Animation](./animation.md) > [Create Animations](./animation/create.md) > [Text Animations](./animation/create/text.md)
 
@@ -18,7 +18,7 @@ Create engaging text animations that reveal content line by line, word by word, 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-animation-create-text-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-animation-create-text-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-animation-create-text-browser/)
 
 Text animations in CE.SDK allow you to animate text blocks with granular control over how the text appears. Unlike standard block animations, text animations support writing styles that determine whether animation applies to the entire text, line by line, word by word, or character by character.
 
@@ -452,7 +452,7 @@ We use `engine.block.setEnum()` to set the easing function ('EaseIn', 'EaseOut',
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

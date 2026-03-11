@@ -1,8 +1,6 @@
 # CE.SDK Agent Skills
 
-Give your AI coding assistant expert-level knowledge of CreativeEditor SDK. Build photo editors, video editors, and design tools by describing what you want.
-
-https://github.com/user-attachments/assets/d01073ca-4a6a-49eb-8155-faa25ff04595
+The CE.SDK Agent Skills plugin gives AI coding assistants bundled documentation, guided code generation, and autonomous project scaffolding for building applications with CreativeEditor SDK across 10 Web frameworks.
 
 ## What Are Agent Skills?
 

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [For Screen](./colors/for-screen.md) > [sRGB Colors](./colors/for-screen/srgb.md)
 
@@ -429,7 +429,7 @@ We always dispose the engine when finished to free resources.
 
 ## More Resources
 
-- **[Node.js Documentation Index](https://img.ly/node.md)** - Browse all Node.js documentation
+- **[Node.js Documentation Index](https://img.ly/docs/cesdk/node.md)** - Browse all Node.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./node.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

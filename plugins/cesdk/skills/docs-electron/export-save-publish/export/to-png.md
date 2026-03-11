@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Export Media Assets](./export-save-publish/export.md) > [To PNG](./export-save-publish/export/to-png.md)
 
@@ -18,7 +18,7 @@ Export your designs as PNG images with full transparency support and configurabl
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-export-save-publish-export-to-png-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-export-save-publish-export-to-png-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-export-to-png-browser/)
 
 PNG (Portable Network Graphics) provides lossless compression with full alpha channel support. It's ideal for web graphics, UI elements, and content requiring crisp edges or transparency.
 
@@ -249,7 +249,7 @@ The built-in action exports the current page as PNG and prompts the user to down
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

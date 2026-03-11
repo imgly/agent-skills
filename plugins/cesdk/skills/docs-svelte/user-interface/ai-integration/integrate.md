@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Integrate AI Into CE.SDK](./user-interface/ai-integration/integrate.md)
 
@@ -18,7 +18,7 @@ Add AI-powered generation capabilities to your CE.SDK application for generating
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-ai-integration-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-ai-integration-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ai-integration-browser/)
 
 This tutorial will guide you through integrating AI-powered generation capabilities into your CreativeEditor SDK application using the `@imgly/plugin-ai-apps-web` package. You'll learn how to set up various AI providers for generating images, videos, audio, and text.
 
@@ -961,7 +961,7 @@ Your proxy server should handle authentication, forward requests to the appropri
 
 ## More Resources
 
-- **[Svelte Documentation Index](https://img.ly/svelte.md)** - Browse all Svelte documentation
+- **[Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md)** - Browse all Svelte documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./svelte.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

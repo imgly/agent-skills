@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Images](./edit-image.md) > [Transform](./edit-image/transform.md) > [Rotate](./edit-image/transform/rotate.md)
 
@@ -18,7 +18,7 @@ Rotate images to adjust orientation, correct crooked photos, or create creative 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-edit-image-transform-rotate-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-edit-image-transform-rotate-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-image-transform-rotate-browser/)
 
 Rotation uses radians where `Math.PI / 2` equals 90°, `Math.PI` equals 180°, and negative values rotate clockwise. Values are relative to the block's center point.
 
@@ -406,7 +406,7 @@ Check if the block's `layer/rotate` scope is disabled using `engine.block.isScop
 
 ## More Resources
 
-- **[Svelte Documentation Index](https://img.ly/svelte.md)** - Browse all Svelte documentation
+- **[Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md)** - Browse all Svelte documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./svelte.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

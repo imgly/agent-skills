@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Save](./export-save-publish/save.md)
 
@@ -20,6 +20,7 @@ CE.SDK provides two formats for persisting designs. Choose the format based on y
 
 ```typescript file=@cesdk_web_examples/guides-export-save-publish-save-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';
+import { CompressionFormat, CompressionLevel } from '@cesdk/node';
 import { writeFileSync, readFileSync, mkdirSync, existsSync } from 'fs';
 import { createInterface } from 'readline';
 import { config } from 'dotenv';
@@ -98,6 +99,19 @@ try {
     console.log(
       `✅ Scene saved: output/scene.scene (${(sceneString.length / 1024).toFixed(1)} KB)`
     );
+
+    // Example: Save with compression (requires local build)
+    // To run with compression: npm run dev:local
+    const compressed = await engine.scene.saveToString(
+      undefined, // allowedResourceSchemes
+      undefined, // onDisallowedResourceScheme
+      CompressionFormat.Zstd,    // compression format
+      CompressionLevel.Default   // compression level
+    );
+    writeFileSync(`${outputDir}/scene-compressed.scene`, compressed);
+    console.log(
+      `✅ Compressed scene saved: output/scene-compressed.scene (${(compressed.length / 1024).toFixed(1)} KB, ${((1 - compressed.length / sceneString.length) * 100).toFixed(1)}% smaller)`
+    );
   }
 
   if (saveArchive) {
@@ -162,6 +176,41 @@ const archiveBlob = await engine.scene.saveToArchive();
 
 The archive includes all pages, elements, and asset data in a single portable file.
 
+## Compression Options (Preview)
+
+CE.SDK supports optional compression for saved scenes to reduce file size. Compression is particularly useful for large scenes or when storage space is limited.
+
+```typescript
+import { CompressionFormat, CompressionLevel } from '@cesdk/node';
+
+// Save with Zstd compression (recommended)
+const compressed = await engine.scene.saveToString(
+  undefined, // allowedResourceSchemes
+  undefined, // onDisallowedResourceScheme
+  CompressionFormat.Zstd,    // compression format
+  CompressionLevel.Default   // compression level
+);
+```
+
+**Compression Formats:**
+
+- `CompressionFormat.None` - No compression (default)
+- `CompressionFormat.Zstd` - Zstandard compression (recommended for best performance)
+
+**Compression Levels:**
+
+- `CompressionLevel.Fastest` - Fastest compression, larger output
+- `CompressionLevel.Default` - Balanced speed and size (recommended)
+- `CompressionLevel.Best` - Best compression, slower
+
+**Performance:** Compression adds minimal overhead (\<50ms) while reducing scene size by approximately 64%. The Default level provides the best balance of speed and compression ratio.
+
+**Availability:**
+
+- **Browser (Web)**: Available in current release via `@cesdk/cesdk-js`
+- **Node.js**: Available in development builds. Use `npm run dev:local` in examples to test with local build, or wait for the next package release
+- **iOS/Android**: Planned for future releases
+
 ## Write to File System
 
 Use Node.js `writeFileSync` to persist saved designs to the file system.
@@ -225,7 +274,7 @@ Archives are portable and work offline since all assets are bundled within the f
 
 ## More Resources
 
-- **[Node.js Documentation Index](https://img.ly/node.md)** - Browse all Node.js documentation
+- **[Node.js Documentation Index](https://img.ly/docs/cesdk/node.md)** - Browse all Node.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./node.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

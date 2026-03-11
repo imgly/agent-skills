@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Inspector Bar](./user-interface/customization/inspector-bar.md)
 
@@ -18,7 +18,7 @@ The inspector bar is the contextual toolbar that appears above the canvas when a
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-inspector-bar-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-inspector-bar-browser/)
 
 For general component manipulation (reordering, inserting, removing), see the [Component Order API Reference](./user-interface/customization/reference/component-order-api.md).
 
@@ -368,7 +368,7 @@ console.log('Current inspector bar order:', currentOrder);
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Build Your Own UI](./user-interface/build-your-own-ui.md)
 
@@ -18,7 +18,7 @@ Build completely custom UIs by integrating CE.SDK's headless engine directly int
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-build-your-own-ui-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-build-your-own-ui-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-build-your-own-ui-browser/)
 
 When you need complete control over the editing experience, the headless engine approach lets you build entirely custom interfaces. Instead of using CE.SDK's built-in editor UI, you initialize the engine directly and create your own tools, panels, and workflows that integrate seamlessly with your application's design system.
 
@@ -573,7 +573,7 @@ export default {
 
 ## More Resources
 
-- **[Svelte Documentation Index](https://img.ly/svelte.md)** - Browse all Svelte documentation
+- **[Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md)** - Browse all Svelte documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./svelte.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

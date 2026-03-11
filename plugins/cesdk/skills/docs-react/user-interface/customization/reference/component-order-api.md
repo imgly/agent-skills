@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Component Order API](./user-interface/customization/reference/component-order-api.md)
 
@@ -497,7 +497,7 @@ Globs use `*` as a wildcard character:
 
 ## More Resources
 
-- **[React Documentation Index](https://img.ly/react.md)** - Browse all React documentation
+- **[React Documentation Index](https://img.ly/docs/cesdk/react.md)** - Browse all React documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./react.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

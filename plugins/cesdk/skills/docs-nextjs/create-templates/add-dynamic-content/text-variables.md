@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Insert Dynamic Content](./create-templates/add-dynamic-content.md) > [Text Variables](./create-templates/add-dynamic-content/text-variables.md)
 
@@ -22,7 +22,7 @@ personalization workflows.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-templates-dynamic-content-text-variables-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-templates-dynamic-content-text-variables-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-dynamic-content-text-variables-browser/)
 
 ```typescript file=@cesdk_web_examples/guides-create-templates-dynamic-content-text-variables-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -644,7 +644,7 @@ This panel integrates with the dock and provides a complete variable management 
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

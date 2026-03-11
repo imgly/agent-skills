@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Starter Kits](./starterkits.md) > [Automated Video Generator](./starterkits/automated-video-generation.md)
 
@@ -57,7 +57,7 @@ This pre-built solution is ideal for content automation platforms, marketing too
 
 ## More Resources
 
-- **[React Documentation Index](https://img.ly/react.md)** - Browse all React documentation
+- **[React Documentation Index](https://img.ly/docs/cesdk/react.md)** - Browse all React documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./react.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Transform](./edit-video/transform.md) > [Resize](./edit-video/transform/resize.md)
 
@@ -18,7 +18,7 @@ The **CreativeEditor SDK (CE.SDK)** provides a video resizing feature. This guid
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-edit-video-transform-resize-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-edit-video-transform-resize-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-video-transform-resize-browser/)
 
 ```typescript file=@cesdk_web_examples/guides-edit-video-transform-resize-browser/browser.ts reference-only
 import CreativeEditorSDK, {
@@ -532,7 +532,7 @@ Now that you understand how to resize with the CE.SDK, take time to dive into ot
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

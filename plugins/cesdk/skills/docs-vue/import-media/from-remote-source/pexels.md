@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Import From Remote Source](./import-media/from-remote-source.md) > [From Pexels](./import-media/from-remote-source/pexels.md)
 
@@ -19,7 +19,7 @@ directly to your designs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-from-remote-source-pexels-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-import-media-from-remote-source-pexels-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-from-remote-source-pexels-browser/)
 
 Pexels provides a vast library of high-quality, royalty-free stock photos through their public API. We integrate Pexels directly into CE.SDK so users can search, preview, and add photos without leaving the editor.
 
@@ -689,7 +689,7 @@ Common issues when integrating Pexels:
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

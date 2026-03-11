@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Show/Hide Components](./user-interface/customization/quick-start/show-hide-components.md)
 
@@ -18,7 +18,7 @@ Hide UI components using two approaches: the Feature API for disabling entire fe
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-customization-quick-start-show-hide-components-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-quick-start-show-hide-components-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-quick-start-show-hide-components-browser/)
 
 CE.SDK provides two ways to hide UI elements. The **Feature API** hides features globally across the entire editor—use this for broad visibility control. The **Component Order API** removes specific components from specific UI areas—use this for targeted, surgical control over individual components.
 
@@ -293,7 +293,7 @@ Use `getComponentOrder()` to inspect the current state of any UI area. This help
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

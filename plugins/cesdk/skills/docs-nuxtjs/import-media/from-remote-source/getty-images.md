@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Import From Remote Source](./import-media/from-remote-source.md) > [From Getty Images](./import-media/from-remote-source/getty-images.md)
 
@@ -18,7 +18,7 @@ Integrate Getty Images' premium stock photography library directly into CE.SDK, 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-import-media-from-remote-source-getty-images-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-from-remote-source-getty-images-browser/)
 
 Getty Images provides premium, professionally curated stock photography through their API. This guide shows you how to integrate Getty Images search and browsing directly into CE.SDK using a secure proxy server. The proxy architecture is required because Getty Images uses both an API key and secret for authentication, which cannot be safely exposed in browser code.
 
@@ -627,7 +627,7 @@ You can modify the query to test different search terms and verify results.
 
 ## More Resources
 
-- **[Nuxt.js Documentation Index](https://img.ly/nuxtjs.md)** - Browse all Nuxt.js documentation
+- **[Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md)** - Browse all Nuxt.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nuxtjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

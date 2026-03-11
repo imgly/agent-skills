@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Images](./edit-image.md) > [Transform](./edit-image/transform.md) > [Crop](./edit-image/transform/crop.md)
 
@@ -20,7 +20,7 @@ system.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-edit-image-transform-crop-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-edit-image-transform-crop-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-image-transform-crop-browser/)
 
 Image cropping in CreativeEditor SDK (CE.SDK) lets you select a region inside an image and discard everything outside that frame. Unlike resizing which changes overall dimensions uniformly, cropping removes unwanted areas while preserving original pixel quality in the selected region.
 
@@ -518,7 +518,7 @@ engine.block.setWidth(imageBlock, 400);
 
 ## More Resources
 
-- **[Svelte Documentation Index](https://img.ly/svelte.md)** - Browse all Svelte documentation
+- **[Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md)** - Browse all Svelte documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./svelte.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

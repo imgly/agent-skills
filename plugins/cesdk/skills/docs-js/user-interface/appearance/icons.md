@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Appearance](./user-interface/appearance.md) > [Icons](./user-interface/appearance/icons.md)
 
@@ -18,7 +18,7 @@ Customize the editor's icons by registering custom SVG icon sets and using them 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-appearance-icons-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-appearance-icons-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-appearance-icons-browser/)
 
 CE.SDK uses SVG sprites for icons throughout the editor interface. Each icon is referenced by a symbol ID that starts with `@`. You can register custom icon sets to replace built-in icons or add new ones for your own custom UI components.
 
@@ -340,7 +340,7 @@ If your icon doesn't change color with the theme:
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

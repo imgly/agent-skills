@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Open the Editor](./open-the-editor.md) > [Import a Design](./open-the-editor/import-design.md)
 
@@ -18,7 +18,7 @@ Open existing designs from various sources in CE.SDK, including saved scenes, pr
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-import-design-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-open-the-editor-import-design-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-import-design-browser/)
 
 CE.SDK supports multiple import methods to bring designs into the editor. Load saved **scene files** or self-contained **archives**, create editable scenes from images and videos, or import from professional design tools.
 
@@ -479,7 +479,7 @@ When `createFromImage()` or `createFromVideo()` fails:
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

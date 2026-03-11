@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Images](./edit-image.md) > [Remove Background](./edit-image/remove-bg.md)
 
@@ -18,7 +18,7 @@ Remove image backgrounds to isolate subjects for compositing, product photograph
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-edit-image-remove-bg-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-edit-image-remove-bg-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-image-remove-bg-browser/)
 
 The `@imgly/plugin-background-removal-web` plugin adds AI-powered background removal directly to the CE.SDK editor. Processing runs locally in the browser using WebAssembly and WebGPU, ensuring privacy since images never leave the client.
 
@@ -419,7 +419,7 @@ Cross-Origin-Embedder-Policy: require-corp
 
 ## More Resources
 
-- **[SvelteKit Documentation Index](https://img.ly/sveltekit.md)** - Browse all SvelteKit documentation
+- **[SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md)** - Browse all SvelteKit documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./sveltekit.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

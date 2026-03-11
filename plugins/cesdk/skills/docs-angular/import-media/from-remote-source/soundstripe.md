@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Import From Remote Source](./import-media/from-remote-source.md) > [From Soundstripe](./import-media/from-remote-source/soundstripe.md)
 
@@ -20,7 +20,7 @@ designs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-import-media-from-remote-source-soundstripe-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-from-remote-source-soundstripe-browser/)
 
 Soundstripe provides a vast library of high-quality, royalty-free audio tracks through their API. This guide shows you how to integrate Soundstripe's audio search and browsing capabilities directly into CE.SDK using the official `@imgly/plugin-soundstripe-web` plugin. You'll learn how to set up Soundstripe API authentication (including proxy server requirements for production), implement search and discovery features, configure the asset library UI, and handle automatic URI refresh for expired audio links.
 
@@ -492,7 +492,7 @@ Common issues and solutions:
 
 ## More Resources
 
-- **[Angular Documentation Index](https://img.ly/angular.md)** - Browse all Angular documentation
+- **[Angular Documentation Index](https://img.ly/docs/cesdk/angular.md)** - Browse all Angular documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./angular.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

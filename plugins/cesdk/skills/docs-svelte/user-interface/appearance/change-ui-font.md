@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Appearance](./user-interface/appearance.md) > [Change UI Font](./user-interface/appearance/change-ui-font.md)
 
@@ -18,7 +18,7 @@ Customize the font family used throughout the CE.SDK editor interface to match y
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-appearance-change-ui-font-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-appearance-change-ui-font-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-appearance-change-ui-font-browser/)
 
 CE.SDK's UI uses CSS custom properties for typography, allowing you to apply a custom font to all editor elements—panels, buttons, labels, and inputs—through a single CSS variable.
 
@@ -310,7 +310,7 @@ Quick reference for UI font customization:
 
 ## More Resources
 
-- **[Svelte Documentation Index](https://img.ly/svelte.md)** - Browse all Svelte documentation
+- **[Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md)** - Browse all Svelte documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./svelte.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

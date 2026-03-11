@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Appearance](./user-interface/appearance.md) > [Custom Labels](./user-interface/appearance/custom-labels.md)
 
@@ -18,7 +18,7 @@ Customize UI text labels in CE.SDK to match your brand voice and product termino
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-appearance-custom-labels-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-appearance-custom-labels-browser/)
 
 ```typescript file=@cesdk_web_examples/guides-user-interface-appearance-custom-labels-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -506,7 +506,7 @@ cesdk.i18n.setTranslations({
 
 ## More Resources
 
-- **[React Documentation Index](https://img.ly/react.md)** - Browse all React documentation
+- **[React Documentation Index](https://img.ly/docs/cesdk/react.md)** - Browse all React documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./react.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

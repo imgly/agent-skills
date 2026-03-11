@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Images](./edit-image.md) > [Transform](./edit-image/transform.md) > [Scale](./edit-image/transform/scale.md)
 
@@ -18,7 +18,7 @@ Scale images proportionally with `engine.block.scale()` using configurable ancho
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-edit-image-transform-scale-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-edit-image-transform-scale-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-image-transform-scale-browser/)
 
 Scaling transforms a block proportionally using a factor, while resizing changes dimensions directly. Use scaling to maintain aspect ratio or apply consistent size changes across multiple elements.
 
@@ -275,7 +275,7 @@ Confirm scaling was applied before export. Use `engine.block.getWidth()` and `en
 
 ## More Resources
 
-- **[Svelte Documentation Index](https://img.ly/svelte.md)** - Browse all Svelte documentation
+- **[Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md)** - Browse all Svelte documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./svelte.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

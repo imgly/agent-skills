@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Text](./text.md) > [Text Designs](./text/text-designs.md)
 
@@ -18,7 +18,7 @@ Create and customize text designs (text components) that appear in CE.SDK's asse
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-text-text-designs-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-text-text-designs-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-text-designs-browser/)
 
 Text designs (also known as text components) are pre-designed text layouts stored as serialized blocks in the asset library. Users click on these components to insert them into their designs. CE.SDK ships with over 20 default components; this guide shows how to create custom ones programmatically.
 
@@ -837,7 +837,7 @@ Each component can have unique styling, dimensions, and behavior. Build a librar
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

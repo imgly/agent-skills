@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [UI Extensions](./user-interface/ui-extensions.md) > [Add a Custom Feature](./user-interface/ui-extensions/add-custom-feature.md)
 
@@ -18,7 +18,7 @@ Bundle custom functionality into reusable plugins for CE.SDK.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-ui-extensions-add-custom-feature-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-ui-extensions-add-custom-feature-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ui-extensions-add-custom-feature-browser/)
 
 Plugins provide a structured way to package UI components, event handlers, actions, and configuration into a single unit. While you can customize CE.SDK without plugins by calling APIs directly after initialization, plugins help organize code for sharing across projects or publishing for others to use.
 
@@ -408,7 +408,7 @@ Verify the factory function pattern is used and called with parentheses: `MyPlug
 
 ## More Resources
 
-- **[SvelteKit Documentation Index](https://img.ly/sveltekit.md)** - Browse all SvelteKit documentation
+- **[SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md)** - Browse all SvelteKit documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./sveltekit.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

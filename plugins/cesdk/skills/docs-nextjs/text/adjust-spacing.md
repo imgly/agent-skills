@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Text](./text.md) > [Adjust Spacing](./text/adjust-spacing.md)
 
@@ -18,7 +18,7 @@ Control letter spacing, line height, and paragraph spacing in text blocks using 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-text-adjust-spacing-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-text-adjust-spacing-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-adjust-spacing-browser/)
 
 CE.SDK provides three text spacing properties: `text/letterSpacing`, `text/lineHeight`, and `text/paragraphSpacing`. All are float properties controlled via `engine.block.setFloat()` and `engine.block.getFloat()`. Text spacing adjustments are programmatic-only; there is no built-in UI for these properties.
 
@@ -288,7 +288,7 @@ Paragraph spacing only affects text with actual paragraph breaks. Single paragra
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

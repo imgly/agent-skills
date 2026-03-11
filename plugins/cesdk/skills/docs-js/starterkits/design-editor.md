@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Starter Kits](./starterkits.md) > [Design Editor](./starterkits/design-editor.md)
 
@@ -16,9 +16,9 @@ Professional design editing for your web app—create graphics, templates, and m
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-design-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/starterkit-design-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-design-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/examples/starterkit-design-editor/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-design-editor/)
 
 ***
 
@@ -691,7 +691,7 @@ The Design Editor includes everything needed for professional design editing.
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

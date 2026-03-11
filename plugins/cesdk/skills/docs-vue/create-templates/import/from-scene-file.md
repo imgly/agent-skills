@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Import Templates](./create-templates/import.md) > [From Scene File](./create-templates/import/from-scene-file.md)
 
@@ -18,7 +18,7 @@ CE.SDK lets you load complete design templates from scene files to start project
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-templates-import-from-scene-file-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-templates-import-from-scene-file-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-import-from-scene-file-browser/)
 
 Scene files are portable design templates that preserve the entire design structure including blocks, assets, styles, and layout.
 
@@ -446,7 +446,7 @@ When loading templates from external URLs, ensure proper CORS headers are set on
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

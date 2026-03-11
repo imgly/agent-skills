@@ -1,10 +1,10 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Starter Kits](./starterkits.md) > [Video Editor](./starterkits/video-editor.md)
 
 ---
 
-Professional video editing for your Next.js app—edit clips, add effects, trim footage, and export to MP4. Runs entirely in the browser with no server dependencies.
+Professional video editing for your web app—edit clips, add effects, trim footage, and export to MP4. Runs entirely in the browser with no server dependencies.
 
 ![Video Editor starter kit showing a professional video editing interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -16,62 +16,155 @@ Professional video editing for your Next.js app—edit clips, add effects, trim 
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-video-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/starterkit-video-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/examples/starterkit-video-editor/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-video-editor/)
 
 ***
 
-## Prerequisites
+## Pre-requisites
 
-Before you begin, make sure you have the following:
+This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
-- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list.
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list
 
 ***
-
-## Get Started
-
-Integrate the Video Editor into your Next.js application using the official React wrapper.
 
 <Tabs syncKey="project-type">
   <TabItem label="New Project">
-    ## Step 1: Create a New Project
+    ## Get Started
 
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npx create-next-app@latest your-project-name
-        cd your-project-name
+    Start fresh with a standalone Video Editor project. This creates a complete, ready-to-run application.
+
+    ## Step 1: Clone the Repository
+
+    <TerminalTabs>
+      <TerminalTab label="git">
+        git clone https://github.com/imgly/starterkit-video-editor-ts-web.git
       </TerminalTab>
 
-      <TerminalTab label="pnpm">
-        pnpm create next-app your-project-name
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn create next-app your-project-name
-        cd your-project-name
+      <TerminalTab label="degit">
+        npx degit imgly/starterkit-video-editor-ts-web starterkit-video-editor-ts-web
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 2: Clone the Starter Kit
+    The `src/` folder contains the editor code:
+
+    ```
+    src/
+    ├── index.ts                      # Application entry point
+    └── imgly/
+        ├── index.ts                  # Editor initialization function
+        ├── config/
+        │   ├── plugin.ts             # Main configuration plugin
+        │   ├── actions.ts            # Export/import actions
+        │   ├── features.ts           # Feature toggles
+        │   ├── i18n.ts               # Translations
+        │   ├── settings.ts           # Engine settings
+        │   └── ui/                   # UI customization
+        │       ├── index.ts          # Combines UI customization exports
+        │       ├── canvas.ts         # Canvas configuration
+        │       ├── components.ts     # Custom component registration
+        │       ├── dock.ts           # Dock layout configuration
+        │       ├── inspectorBar.ts   # Inspector bar layout
+        │       ├── navigationBar.ts  # Navigation bar layout
+        │       └── panel.ts          # Panel configuration
+        └── plugins/
+            └── background-removal.ts # Background removal plugin
+    ```
+
+    ## Step 2: Install Dependencies
+
+    Install the required packages:
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        cd starterkit-video-editor-ts-web
+        npm install
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        cd starterkit-video-editor-ts-web
+        pnpm install
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        cd starterkit-video-editor-ts-web
+        yarn
+      </TerminalTab>
+    </TerminalTabs>
+
+    ## Step 3: Download Assets
+
+    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
+
+    <TerminalTabs>
+      <TerminalTab label="Download">
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
+      </TerminalTab>
+    </TerminalTabs>
+
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in `src/index.ts`.
+
+    ```typescript title="src/index.ts"
+    const config = {
+      // ...
+      baseURL: '/assets'
+      // ...
+    };
+    ```
+
+    ## Step 4: Run the Development Server
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm run dev
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm run dev
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn dev
+      </TerminalTab>
+    </TerminalTabs>
+
+    Open `http://localhost:5173` in your browser.
+  </TabItem>
+
+  <TabItem label="Existing Project">
+    ## Get Started
+
+    Integrate the Video Editor into an existing web application. This adds the editor configuration to your current project structure.
+
+    ## Step 1: Clone
+
+    <TerminalTabs>
+      <TerminalTab label="Navigate">
+        cd your-project
+      </TerminalTab>
+    </TerminalTabs>
 
     Clone the starter kit and copy the editor configuration to your project:
 
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-video-editor-ts-web.git
-        cp -r starterkit-video-editor-ts-web/app/imgly ./app/imgly
+        cp -r starterkit-video-editor-ts-web/src/imgly ./src/imgly
         rm -rf starterkit-video-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-video-editor-ts-web/app/imgly ./app/imgly
+        npx degit imgly/starterkit-video-editor-ts-web/src/imgly ./src/imgly
       </TerminalTab>
     </TerminalTabs>
+
+    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
     The `imgly/` folder contains the editor configuration:
 
@@ -96,7 +189,7 @@ Integrate the Video Editor into your Next.js application using the official Reac
         └── background-removal.ts # Background removal plugin
     ```
 
-    ## Step 3: Install Dependencies
+    ## Step 2: Install Dependencies
 
     Install the required packages for the editor:
 
@@ -105,9 +198,17 @@ Integrate the Video Editor into your Next.js application using the official Reac
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">
+        npm install @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm add @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn add @cesdk/cesdk-js
+      </TerminalTab>
     </TerminalTabs>
 
     ### Background Removal
@@ -128,7 +229,9 @@ Integrate the Video Editor into your Next.js application using the official Reac
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 4: Download Assets
+    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
+
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -140,214 +243,47 @@ Integrate the Video Editor into your Next.js application using the official Reac
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 5: Create the Editor Component
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
 
-    Create a client-side React component using the official CE.SDK React wrapper:
+    ## Step 4: Add a Container Element
 
-    ```tsx
-    'use client';
+    Add a container element to your HTML where the editor will be mounted:
 
-    import { initVideoEditor } from '../imgly';
-    import CreativeEditor from '@cesdk/cesdk-js/react';
-
-    export default function VideoEditor() {
-      return (
-        <CreativeEditor
-          config={{ baseURL: '/assets' }}
-          init={initVideoEditor}
-          width="100vw"
-          height="100vh"
-        />
-      );
-    }
+    ```html
+    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
     ```
 
-    ## Step 6: Use the Component
+    ## Step 5: Initialize the Editor
 
-    Import and use the Video Editor component in your application:
+    Import and call the initialization function from your application's entry point:
 
-    ```tsx
-    import VideoEditor from './components/VideoEditor';
+    ```typescript title="src/index.ts"
+    import CreativeEditorSDK from '@cesdk/cesdk-js';
 
-    export default function Page() {
-      return <VideoEditor />;
-    }
-    ```
+    import { initVideoEditor } from './imgly';
 
-    ### SSR Error
+    const config = {
+      userId: 'your-user-id',
+      baseURL: '/assets'
+      // license: 'YOUR_LICENSE_KEY',
+    };
 
-    If you encounter the error `ReferenceError: window is not defined`, it means the component is being rendered on the server. CE.SDK requires browser APIs and must run client-side only.
-
-    Use Next.js dynamic imports to disable SSR for the editor component:
-
-    ```tsx
-    'use client';
-
-    import dynamic from 'next/dynamic';
-
-    const VideoEditor = dynamic(
-      () => import('./components/VideoEditor'),
-      { ssr: false }
-    );
-
-    export default function VideoEditorComponent() {
-      return <VideoEditor />;
-    }
-    ```
-  </TabItem>
-
-  <TabItem label="Existing Project">
-    ## Step 1: Navigate to Your Project
-
-    <TerminalTabs>
-      <TerminalTab label="Navigate">cd your-project</TerminalTab>
-    </TerminalTabs>
-
-    ## Step 2: Clone the Configuration
-
-    Copy the Video Editor configuration to your project:
-
-    <TerminalTabs>
-      <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-video-editor-ts-web.git
-        cp -r starterkit-video-editor-ts-web/app/imgly ./app/imgly
-        rm -rf starterkit-video-editor-ts-web
-      </TerminalTab>
-
-      <TerminalTab label="degit">
-        npx degit imgly/starterkit-video-editor-ts-web/app/imgly ./app/imgly
-      </TerminalTab>
-    </TerminalTabs>
-
-    > **Adjust Path:** The default destination is `./app/imgly`. Adjust the path to match your project structure.
-
-    ## Step 3: Install Dependencies
-
-    ### Core Editor
-
-    Install the Creative Editor SDK:
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
-    </TerminalTabs>
-
-    ### Background Removal
-
-    Add AI-powered background removal:
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm install @imgly/background-removal onnxruntime-web
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm add @imgly/background-removal onnxruntime-web
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn add @imgly/background-removal onnxruntime-web
-      </TerminalTab>
-    </TerminalTabs>
-
-    ## Step 4: Download Assets
-
-    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
-
-    <TerminalTabs>
-      <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/
-        rm imgly-assets.zip
-      </TerminalTab>
-    </TerminalTabs>
-
-    ## Step 5: Create the Editor Component
-
-    Create a client-side React component using the official CE.SDK React wrapper:
-
-    ```tsx
-    'use client';
-
-    import { initVideoEditor } from '../imgly';
-    import CreativeEditor from '@cesdk/cesdk-js/react';
-
-    export default function VideoEditor() {
-      return (
-        <CreativeEditor
-          config={{ baseURL: '/assets' }}
-          init={initVideoEditor}
-          width="100vw"
-          height="100vh"
-        />
-      );
-    }
-    ```
-
-    ## Step 6: Use the Component
-
-    Import and use the Video Editor component in your application:
-
-    ```tsx
-    import VideoEditor from './components/VideoEditor';
-
-    export default function Page() {
-      return <VideoEditor />;
-    }
-    ```
-
-    ### SSR Error
-
-    If you encounter the error `ReferenceError: window is not defined`, it means the component is being rendered on the server. CE.SDK requires browser APIs and must run client-side only.
-
-    Use Next.js dynamic imports to disable SSR for the editor component:
-
-    ```tsx
-    'use client';
-
-    import dynamic from 'next/dynamic';
-
-    const VideoEditor = dynamic(
-      () => import('./components/VideoEditor'),
-      { ssr: false }
-    );
-
-    export default function VideoEditorComponent() {
-      return <VideoEditor />;
-    }
+    CreativeEditorSDK.create('#cesdk_container', config)
+      .then(async (cesdk) => {
+        await initVideoEditor(cesdk);
+      })
+      .catch((error) => {
+        console.error('Failed to initialize CE.SDK:', error);
+      });
     ```
   </TabItem>
 </Tabs>
-
-The `imgly/` folder contains the editor configuration:
-
-```
-imgly/
-├── index.ts                  # Editor initialization function
-├── config/
-│   ├── plugin.ts             # Main configuration plugin
-│   ├── actions.ts            # Export/import actions
-│   ├── features.ts           # Feature toggles
-│   ├── i18n.ts               # Translations
-│   ├── settings.ts           # Engine settings
-│   └── ui/                   # UI customization
-│       ├── index.ts          # Combines UI customization exports
-│       ├── canvas.ts         # Canvas configuration
-│       ├── components.ts     # Custom component registration
-│       ├── dock.ts           # Dock layout configuration
-│       ├── inspectorBar.ts   # Inspector bar layout
-│       ├── navigationBar.ts  # Navigation bar layout
-│       └── panel.ts          # Panel configuration
-└── plugins/
-    └── background-removal.ts # Background removal plugin
-```
 
 ## Set Up a Scene
 
 CE.SDK offers multiple ways to load content into the editor. Choose the method that matches your use case:
 
-```typescript title="app/imgly/index.ts"
+```typescript title="src/index.ts"
 // Load from a video URL - creates a new scene with the video
 await cesdk.createFromVideo('https://example.com/video.mp4');
 
@@ -369,9 +305,9 @@ The `createFromVideo()` method is ideal for video editing workflows, as it autom
 
 The Video Editor uses asset source plugins to provide built-in libraries for video clips, audio, effects, stickers, and fonts. The starter kit includes a curated selection—customize what's included based on your needs.
 
-Asset sources are added via plugins in `app/imgly/index.ts`. Enable or disable individual sources:
+Asset sources are added via plugins in `src/index.ts`. Enable or disable individual sources:
 
-```typescript title="app/imgly/index.ts"
+```typescript title="src/index.ts"
 import {
   FiltersAssetSource,
   StickerAssetSource,
@@ -413,11 +349,9 @@ Use `cesdk.actions.run()` to execute any action:
 await cesdk.actions.run('exportDesign', { mimeType: 'video/mp4' });
 ```
 
-Customize actions in `app/imgly/config/actions.ts`:
-
 #### Import from File Picker
 
-```typescript title="app/imgly/config/actions.ts"
+```typescript title="src/imgly/config/actions.ts"
 // Let users open videos from their device
 cesdk.actions.register('importVideo', async () => {
   const blobURL = await cesdk.utils.loadFile({
@@ -430,7 +364,7 @@ cesdk.actions.register('importVideo', async () => {
 
 #### Export and Save
 
-```typescript title="app/imgly/config/actions.ts"
+```typescript title="src/imgly/config/actions.ts"
 // Register export action that downloads the edited video
 cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs, options } = await cesdk.utils.export(exportOptions);
@@ -440,7 +374,7 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
 
 #### Upload to Your Backend
 
-```typescript title="app/imgly/config/actions.ts"
+```typescript title="src/imgly/config/actions.ts"
 // Override the built-in exportDesign action to send to your server
 cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs } = await cesdk.utils.export(exportOptions);
@@ -468,7 +402,7 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
 
 CE.SDK supports light and dark themes out of the box, plus automatic system preference detection. Switch between themes programmatically:
 
-```typescript title="app/imgly/config/settings.ts"
+```typescript title="src/imgly/config/settings.ts"
 // 'light' | 'dark' | 'system' | (() => 'light' | 'dark')
 cesdk.ui.setTheme('dark');
 ```
@@ -479,7 +413,7 @@ See [Theming](./user-interface/appearance/theming.md) for custom color schemes, 
 
 Customize UI labels and add support for multiple languages. The i18n system supports translation keys for all UI elements:
 
-```typescript title="app/imgly/config/i18n.ts"
+```typescript title="src/imgly/config/i18n.ts"
 // Override specific labels
 cesdk.i18n.setTranslations({
   en: {
@@ -508,7 +442,7 @@ See [Localization](./user-interface/localization.md) for supported languages, tr
 
 Customize the editor interface by modifying the dock, inspector bar, navigation bar, and canvas menu. CE.SDK provides Order APIs to control which components appear and in what sequence.
 
-```typescript title="app/imgly/config/ui/navigationBar.ts"
+```typescript title="src/imgly/config/ui/navigationBar.ts"
 // Get current navigation bar components
 const navOrder = cesdk.ui.getNavigationBarOrder();
 
@@ -546,7 +480,7 @@ See [Dock](./user-interface/customization/dock.md), [Inspector Bar](./user-inter
 
 Build custom UI components using the builder system and integrate them in the editor. Custom components receive reactive state updates and can interact with the engine API.
 
-```typescript title="app/imgly/config/ui/components.ts"
+```typescript title="src/imgly/config/ui/components.ts"
 // Register a custom component
 cesdk.ui.registerComponent('my-custom-button', ({ builder, engine }) => {
   const selectedBlocks = engine.block.findAllSelected();
@@ -578,7 +512,7 @@ Fine-tune editor behavior through settings and features.
 
 **Settings** configure core engine behavior—rendering, input handling, and history management:
 
-```typescript title="app/imgly/config/settings.ts"
+```typescript title="src/imgly/config/settings.ts"
 cesdk.engine.editor.setSettingBool('page/dimOutOfPageAreas', true);
 cesdk.engine.editor.setSettingBool('mouse/enableZoomControl', true);
 cesdk.engine.editor.setSettingBool('features/undoHistory', true);
@@ -586,7 +520,7 @@ cesdk.engine.editor.setSettingBool('features/undoHistory', true);
 
 **Features** toggle which editing tools and panels appear in the UI:
 
-```typescript title="app/imgly/config/features.ts"
+```typescript title="src/imgly/config/features.ts"
 // Toggle editor features
 cesdk.feature.enable('ly.img.trim', true);
 cesdk.feature.enable('ly.img.filter', true);
@@ -601,9 +535,9 @@ CE.SDK has a rich plugin ecosystem that extends the editor with powerful capabil
 
 #### Background Removal
 
-Add AI-powered background removal that runs entirely client-side. The background removal plugin processes images directly in the browser without sending data to external servers.
+Add AI-powered background removal: The background removal plugin processes images directly in the browser without sending data to external servers.
 
-```typescript title="app/imgly/config/plugin.ts"
+```typescript title="src/imgly/config/plugin.ts"
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal';
 
 // Add background removal capability
@@ -616,7 +550,7 @@ See [Background Removal](./edit-image/remove-bg.md) for setup instructions and c
 
 Extend the editor with generative AI capabilities for text-to-image generation, image enhancement, and intelligent editing features. CE.SDK integrates with various AI providers.
 
-```typescript title="app/imgly/config/plugin.ts"
+```typescript title="src/imgly/config/plugin.ts"
 import AIPlugin from '@imgly/plugin-ai-generation';
 
 // Configure AI generation
@@ -632,7 +566,7 @@ See [AI Integration](./user-interface/ai-integration.md) for provider setup and 
 
 Connect external asset libraries like Unsplash, Getty Images, or your own content management system. Asset sources let users browse and insert content from any source.
 
-```typescript title="app/imgly/config/plugin.ts"
+```typescript title="src/imgly/config/plugin.ts"
 import UnsplashAssetSource from '@imgly/plugin-unsplash';
 
 // Add Unsplash integration
@@ -755,7 +689,7 @@ The Video Editor includes everything needed for professional video editing.
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

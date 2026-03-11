@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Build Your Own UI](./user-interface/build-your-own-ui.md)
 
@@ -18,7 +18,7 @@ Build completely custom UIs by integrating CE.SDK's headless engine directly int
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-build-your-own-ui-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-build-your-own-ui-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-build-your-own-ui-browser/)
 
 When you need complete control over the editing experience, the headless engine approach lets you build entirely custom interfaces. Instead of using CE.SDK's built-in editor UI, you initialize the engine directly and create your own tools, panels, and workflows that integrate seamlessly with your application's design system.
 
@@ -573,7 +573,7 @@ export default {
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

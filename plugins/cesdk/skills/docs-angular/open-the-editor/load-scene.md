@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Open the Editor](./open-the-editor.md) > [Load a Scene](./open-the-editor/load-scene.md)
 
@@ -18,7 +18,7 @@ Load previously saved scenes to resume editing or modify existing designs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-load-scene-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-open-the-editor-load-scene-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-load-scene-browser/)
 
 Scene files contain layout, properties, and asset references but not the assets themselves. When loading a scene, ensure referenced asset URLs remain accessible. For self-contained packages with bundled assets, use archives instead.
 
@@ -177,7 +177,7 @@ Scene files (`.scene`) are lightweight and store only references to assets. If a
 
 ## More Resources
 
-- **[Angular Documentation Index](https://img.ly/angular.md)** - Browse all Angular documentation
+- **[Angular Documentation Index](https://img.ly/docs/cesdk/angular.md)** - Browse all Angular documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./angular.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

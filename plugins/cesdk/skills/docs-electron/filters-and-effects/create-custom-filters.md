@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Filters and Effects](./filters-and-effects.md) > [Create Custom Filters](./filters-and-effects/create-custom-filters.md)
 
@@ -18,7 +18,7 @@ Extend CE.SDK with your own LUT filters by creating and registering custom filte
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-filters-and-effects-add-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-filters-and-effects-add-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-filters-and-effects-add-browser/)
 
 CE.SDK provides built-in LUT filters, but many applications need brand-specific color grading or custom filter collections. Custom filter asset sources let you register your own LUT filters that appear alongside or replace the defaults. Once registered, custom filters integrate seamlessly with the built-in UI and can be applied programmatically.
 
@@ -613,7 +613,7 @@ Now that you understand how to create and register custom filter sources, explor
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

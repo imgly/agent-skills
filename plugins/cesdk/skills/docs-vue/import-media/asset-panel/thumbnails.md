@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Asset Library](./import-media/asset-library.md) > [Thumbnails](./import-media/asset-panel/thumbnails.md)
 
@@ -18,7 +18,7 @@ Learn how to configure thumbnail images for assets in CE.SDK's asset library.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-asset-library-thumbnails-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-import-media-asset-library-thumbnails-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-asset-library-thumbnails-browser/)
 
 Thumbnails provide visual previews of assets in the asset library, improving the user experience when browsing images, videos, audio files, and other media. We recommend using **512px width for thumbUri** to ensure quality across platforms.
 
@@ -628,7 +628,7 @@ Ensure audio assets include the `mimeType` property (e.g., `'audio/x-m4a'` or `'
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

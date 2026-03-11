@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Page Format](./user-interface/customization/page-format.md)
 
@@ -18,7 +18,7 @@ CE.SDK includes a built-in page format selector in the resize panel that lets us
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-page-format-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-page-format-browser/)
 
 ```typescript file=@cesdk_web_examples/guides-user-interface-customization-page-format-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -425,7 +425,7 @@ cesdk.ui.openPanel('//ly.img.panel/inspector/pageResize');
 
 ## More Resources
 
-- **[Angular Documentation Index](https://img.ly/angular.md)** - Browse all Angular documentation
+- **[Angular Documentation Index](https://img.ly/docs/cesdk/angular.md)** - Browse all Angular documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./angular.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

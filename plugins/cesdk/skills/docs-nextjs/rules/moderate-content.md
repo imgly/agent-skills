@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Rules](./rules.md) > [Moderate Content](./rules/moderate-content.md)
 
@@ -16,7 +16,7 @@ Use CE.SDK's engine APIs to extract images and text from designs, then integrate
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-rules-moderate-content-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-rules-moderate-content-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-rules-moderate-content-browser/)
 
 ![Content moderation example showing a design with validation results panel displaying moderation checks for images and text](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -756,7 +756,7 @@ Now that you understand content moderation, explore related validation features:
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,10 +1,10 @@
-> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Starter Kits](./starterkits.md) > [Video Editor (Advanced)](./starterkits/advanced-video-editor.md)
 
 ---
 
-Comprehensive video editing for your web app—professional tools for timeline editing, visual effects, and MP4 export. Runs entirely in the browser with no server dependencies.
+Comprehensive video editing for your Angular app—professional tools for timeline editing, visual effects, and MP4 export. Runs entirely in the browser with no server dependencies.
 
 ![Video Editor (Advanced) starter kit showing a comprehensive professional video editing interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -16,19 +16,19 @@ Comprehensive video editing for your web app—professional tools for timeline e
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-advanced-video-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/starterkit-advanced-video-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-video-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/examples/starterkit-advanced-video-editor/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-advanced-video-editor/)
 
 ***
 
-## Pre-requisites
+## Prerequisites
 
-This guide assumes basic familiarity with JavaScript or TypeScript.
+Before you begin, make sure you have the following:
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
-- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list.
 
 ***
 
@@ -36,135 +36,42 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
   <TabItem label="New Project">
     ## Get Started
 
-    Start fresh with a standalone Video Editor (Advanced) project. This creates a complete, ready-to-run application.
+    Integrate Video Editor (Advanced) into your Angular application using the official Angular wrapper.
 
-    ## Step 1: Clone the Repository
-
-    <TerminalTabs>
-      <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-advanced-video-editor-ts-web.git
-      </TerminalTab>
-
-      <TerminalTab label="degit">
-        npx degit imgly/starterkit-advanced-video-editor-ts-web starterkit-advanced-video-editor-ts-web
-      </TerminalTab>
-    </TerminalTabs>
-
-    The `src/` folder contains the editor code:
-
-    ```
-    src/
-    ├── index.ts                      # Application entry point
-    └── imgly/
-        ├── index.ts                  # Editor initialization function
-        ├── config/
-        │   ├── plugin.ts             # Main configuration plugin
-        │   ├── actions.ts            # Export/import actions
-        │   ├── features.ts           # Feature toggles
-        │   ├── i18n.ts               # Translations
-        │   ├── settings.ts           # Engine settings
-        │   └── ui/                   # UI customization
-        │       ├── index.ts          # Combines UI customization exports
-        │       ├── canvas.ts         # Canvas configuration
-        │       ├── components.ts     # Custom component registration
-        │       ├── dock.ts           # Dock layout configuration
-        │       ├── inspectorBar.ts   # Inspector bar layout
-        │       ├── navigationBar.ts  # Navigation bar layout
-        │       └── panel.ts          # Panel configuration
-        └── plugins/
-            └── background-removal.ts # Background removal plugin
-    ```
-
-    ## Step 2: Install Dependencies
-
-    Install the required packages:
+    ## Step 1: Create a New Project
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        cd starterkit-advanced-video-editor-ts-web
-        npm install
+        ng new your-project-name
+        cd your-project-name
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        cd starterkit-advanced-video-editor-ts-web
-        pnpm install
+        pnpm dlx @angular/cli new your-project-name
+        cd your-project-name
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        cd starterkit-advanced-video-editor-ts-web
-        yarn
+        yarn dlx @angular/cli new your-project-name
+        cd your-project-name
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 3: Download Assets
-
-    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
-
-    <TerminalTabs>
-      <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/
-        rm imgly-assets.zip
-      </TerminalTab>
-    </TerminalTabs>
-
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in `src/index.ts`.
-
-    ```typescript title="src/index.ts"
-    const config = {
-      // ...
-      baseURL: '/assets'
-      // ...
-    };
-    ```
-
-    ## Step 4: Run the Development Server
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm run dev
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm run dev
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn dev
-      </TerminalTab>
-    </TerminalTabs>
-
-    Open `http://localhost:5173` in your browser.
-  </TabItem>
-
-  <TabItem label="Existing Project">
-    ## Get Started
-
-    Integrate Video Editor (Advanced) into an existing web application. This adds the editor configuration to your current project structure.
-
-    ## Step 1: Clone
-
-    <TerminalTabs>
-      <TerminalTab label="Navigate">
-        cd your-project
-      </TerminalTab>
-    </TerminalTabs>
+    ## Step 2: Clone the Starter Kit
 
     Clone the starter kit and copy the editor configuration to your project:
 
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-advanced-video-editor-ts-web.git
-        cp -r starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly
+        cp -r starterkit-advanced-video-editor-ts-web/src/app/imgly ./src/app/imgly
         rm -rf starterkit-advanced-video-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly
+        npx degit imgly/starterkit-advanced-video-editor-ts-web/src/app/imgly ./src/app/imgly
       </TerminalTab>
     </TerminalTabs>
-
-    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
     The `imgly/` folder contains the editor configuration:
 
@@ -189,7 +96,170 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
         └── background-removal.ts # Background removal plugin
     ```
 
-    ## Step 2: Install Dependencies
+    ## Step 3: Install Dependencies
+
+    ### Core Editor
+
+    Install the Creative Editor SDK:
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm install @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm add @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn add @cesdk/cesdk-js
+      </TerminalTab>
+    </TerminalTabs>
+
+    ### Background Removal
+
+    Add AI-powered background removal:
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm install @imgly/background-removal onnxruntime-web
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm add @imgly/background-removal onnxruntime-web
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn add @imgly/background-removal onnxruntime-web
+      </TerminalTab>
+    </TerminalTabs>
+
+    ### Configure Bundle Budgets
+
+    CE.SDK may exceed Angular's default bundle size limits. Increase the budget in `angular.json`:
+
+    ```json
+    {
+      "budgets": [
+        {
+          "type": "initial",
+          "maximumWarning": "2mb",
+          "maximumError": "5mb"
+        }
+      ]
+    }
+    ```
+
+    ## Step 4: Download Assets
+
+    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
+
+    <TerminalTabs>
+      <TerminalTab label="Download">
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
+      </TerminalTab>
+    </TerminalTabs>
+
+    ## Step 5: Create the Editor Component
+
+    Create an Angular component using the official CE.SDK Angular wrapper (e.g., `advanced-video-editor.component.ts`):
+
+    ```typescript
+    import { Component } from '@angular/core';
+    import { CreativeEditor } from '@cesdk/cesdk-js/angular';
+    import { initAdvancedVideoEditor } from '../imgly';
+
+    @Component({
+      selector: 'app-advanced-video-editor',
+      standalone: true,
+      imports: [CreativeEditor],
+      template: `
+        <creative-editor
+          [config]="{ baseURL: '/assets' }"
+          [init]="initAdvancedVideoEditor"
+          width="100vw"
+          height="100vh"
+        />
+      `
+    })
+    export class AdvancedVideoEditorComponent {
+      initAdvancedVideoEditor = initAdvancedVideoEditor;
+    }
+    ```
+
+    ## Step 6: Use the Component
+
+    Import and use the editor component in your application:
+
+    ```typescript
+    import { Component } from '@angular/core';
+    import { AdvancedVideoEditorComponent } from './advanced-video-editor.component';
+
+    @Component({
+      selector: 'app-root',
+      standalone: true,
+      imports: [AdvancedVideoEditorComponent],
+      template: `<app-advanced-video-editor />`
+    })
+    export class AppComponent {}
+    ```
+  </TabItem>
+
+  <TabItem label="Existing Project">
+    ## Get Started
+
+    Integrate Video Editor (Advanced) into an existing Angular application. This adds the editor configuration to your current project structure.
+
+    ## Step 1: Navigate to Your Project
+
+    <TerminalTabs>
+      <TerminalTab label="Navigate">cd your-project</TerminalTab>
+    </TerminalTabs>
+
+    ## Step 2: Clone the Starter Kit
+
+    Clone the starter kit and copy the editor configuration to your project:
+
+    <TerminalTabs>
+      <TerminalTab label="git">
+        git clone https://github.com/imgly/starterkit-advanced-video-editor-ts-web.git
+        cp -r starterkit-advanced-video-editor-ts-web/src/app/imgly ./src/app/imgly
+        rm -rf starterkit-advanced-video-editor-ts-web
+      </TerminalTab>
+
+      <TerminalTab label="degit">
+        npx degit imgly/starterkit-advanced-video-editor-ts-web/src/app/imgly ./src/app/imgly
+      </TerminalTab>
+    </TerminalTabs>
+
+    > **Adjust Path:** The default destination is `./src/app/imgly`. Adjust the path to match your project structure.
+
+    The `imgly/` folder contains the editor configuration:
+
+    ```
+    src/app/imgly/
+    ├── index.ts                  # Editor initialization function
+    ├── config/
+    │   ├── plugin.ts             # Main configuration plugin
+    │   ├── actions.ts            # Export/import actions
+    │   ├── features.ts           # Feature toggles
+    │   ├── i18n.ts               # Translations
+    │   ├── settings.ts           # Engine settings
+    │   └── ui/                   # UI customization
+    │       ├── index.ts          # Combines UI customization exports
+    │       ├── canvas.ts         # Canvas configuration
+    │       ├── components.ts     # Custom component registration
+    │       ├── dock.ts           # Dock layout configuration
+    │       ├── inspectorBar.ts   # Inspector bar layout
+    │       ├── navigationBar.ts  # Navigation bar layout
+    │       └── panel.ts          # Panel configuration
+    └── plugins/
+        └── background-removal.ts # Background removal plugin
+    ```
+
+    ## Step 3: Install Dependencies
 
     Install the required packages for the editor:
 
@@ -229,9 +299,23 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
       </TerminalTab>
     </TerminalTabs>
 
-    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
+    ### Configure Bundle Budgets
 
-    ## Step 3: Download Assets
+    CE.SDK may exceed Angular's default bundle size limits. Increase the budget in `angular.json`:
+
+    ```json
+    {
+      "budgets": [
+        {
+          "type": "initial",
+          "maximumWarning": "2mb",
+          "maximumError": "5mb"
+        }
+      ]
+    }
+    ```
+
+    ## Step 4: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -243,38 +327,50 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in the editor component.
 
-    ## Step 4: Add a Container Element
+    ## Step 5: Create the Editor Component
 
-    Add a container element to your HTML where the editor will be mounted:
+    Create an Angular component using the official CE.SDK Angular wrapper (e.g., `advanced-video-editor.component.ts`):
 
-    ```html
-    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
+    ```typescript
+    import { Component } from '@angular/core';
+    import { CreativeEditor } from '@cesdk/cesdk-js/angular';
+    import { initAdvancedVideoEditor } from '../imgly';
+
+    @Component({
+      selector: 'app-advanced-video-editor',
+      standalone: true,
+      imports: [CreativeEditor],
+      template: `
+        <creative-editor
+          [config]="{ baseURL: '/assets' }"
+          [init]="initAdvancedVideoEditor"
+          width="100vw"
+          height="100vh"
+        />
+      `
+    })
+    export class AdvancedVideoEditorComponent {
+      initAdvancedVideoEditor = initAdvancedVideoEditor;
+    }
     ```
 
-    ## Step 5: Initialize the Editor
+    ## Step 6: Use the Component
 
-    Import and call the initialization function from your application's entry point:
+    Import and use the editor component in your application:
 
-    ```typescript title="src/index.ts"
-    import CreativeEditorSDK from '@cesdk/cesdk-js';
+    ```typescript
+    import { Component } from '@angular/core';
+    import { AdvancedVideoEditorComponent } from './advanced-video-editor.component';
 
-    import { initAdvancedVideoEditor } from './imgly';
-
-    const config = {
-      userId: 'your-user-id',
-      baseURL: '/assets'
-      // license: 'YOUR_LICENSE_KEY',
-    };
-
-    CreativeEditorSDK.create('#cesdk_container', config)
-      .then(async (cesdk) => {
-        await initAdvancedVideoEditor(cesdk);
-      })
-      .catch((error) => {
-        console.error('Failed to initialize CE.SDK:', error);
-      });
+    @Component({
+      selector: 'app-root',
+      standalone: true,
+      imports: [AdvancedVideoEditorComponent],
+      template: `<app-advanced-video-editor />`
+    })
+    export class AppComponent {}
     ```
   </TabItem>
 </Tabs>
@@ -349,9 +445,11 @@ Use `cesdk.actions.run()` to execute any action:
 await cesdk.actions.run('exportDesign', { mimeType: 'video/mp4' });
 ```
 
+The starter kit includes pre-configured actions in `src/app/imgly/config/actions.ts`.
+
 #### Import from File Picker
 
-```typescript title="src/imgly/config/actions.ts"
+```typescript title="src/app/imgly/config/actions.ts"
 // Let users open videos from their device
 cesdk.actions.register('importVideo', async () => {
   const blobURL = await cesdk.utils.loadFile({
@@ -364,7 +462,7 @@ cesdk.actions.register('importVideo', async () => {
 
 #### Export and Save
 
-```typescript title="src/imgly/config/actions.ts"
+```typescript title="src/app/imgly/config/actions.ts"
 // Register export action that downloads the edited video
 cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs, options } = await cesdk.utils.export(exportOptions);
@@ -374,7 +472,7 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
 
 #### Upload to Your Backend
 
-```typescript title="src/imgly/config/actions.ts"
+````typescript title="src/app/imgly/config/actions.ts"
 // Override the built-in exportDesign action to send to your server
 cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs } = await cesdk.utils.export(exportOptions);
@@ -390,11 +488,14 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { url } = await response.json();
   console.log('Uploaded to:', url);
 });
-```
 
-> **Learn More:** See [Actions](./actions.md) for the full list of built-in actions, how to run them, and how to register custom actions.
+<Aside type="tip" title="Learn More">
+  See <Link id="6ch24x">Actions</Link> for the full list of built-in actions, how to run them, and how to register custom actions.
+</Aside>
 
-***
+  
+
+---
 
 ## Customize (Optional)
 
@@ -402,10 +503,10 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
 
 CE.SDK supports light and dark themes out of the box, plus automatic system preference detection. Switch between themes programmatically:
 
-```typescript title="src/imgly/config/settings.ts"
+```typescript title="src/app/imgly/config/settings.ts"
 // 'light' | 'dark' | 'system' | (() => 'light' | 'dark')
 cesdk.ui.setTheme('dark');
-```
+````
 
 See [Theming](./user-interface/appearance/theming.md) for custom color schemes, CSS variables, and advanced styling options.
 
@@ -413,7 +514,7 @@ See [Theming](./user-interface/appearance/theming.md) for custom color schemes, 
 
 Customize UI labels and add support for multiple languages. The i18n system supports translation keys for all UI elements:
 
-```typescript title="src/imgly/config/i18n.ts"
+```typescript title="src/app/imgly/config/i18n.ts"
 // Override specific labels
 cesdk.i18n.setTranslations({
   en: {
@@ -442,7 +543,7 @@ See [Localization](./user-interface/localization.md) for supported languages, tr
 
 Customize the editor interface by modifying the dock, inspector bar, navigation bar, and canvas menu. CE.SDK provides Order APIs to control which components appear and in what sequence.
 
-```typescript title="src/imgly/config/ui/navigationBar.ts"
+```typescript title="src/app/imgly/config/ui/navigationBar.ts"
 // Get current navigation bar components
 const navOrder = cesdk.ui.getNavigationBarOrder();
 
@@ -480,7 +581,7 @@ See [Dock](./user-interface/customization/dock.md), [Inspector Bar](./user-inter
 
 Build custom UI components using the builder system and integrate them in the editor. Custom components receive reactive state updates and can interact with the engine API.
 
-```typescript title="src/imgly/config/ui/components.ts"
+```typescript title="src/app/imgly/config/ui/components.ts"
 // Register a custom component
 cesdk.ui.registerComponent('my-custom-button', ({ builder, engine }) => {
   const selectedBlocks = engine.block.findAllSelected();
@@ -512,7 +613,7 @@ Fine-tune editor behavior through settings and features.
 
 **Settings** configure core engine behavior—rendering, input handling, and history management:
 
-```typescript title="src/imgly/config/settings.ts"
+```typescript title="src/app/imgly/config/settings.ts"
 cesdk.engine.editor.setSettingBool('page/dimOutOfPageAreas', true);
 cesdk.engine.editor.setSettingBool('mouse/enableZoomControl', true);
 cesdk.engine.editor.setSettingBool('features/undoHistory', true);
@@ -520,7 +621,7 @@ cesdk.engine.editor.setSettingBool('features/undoHistory', true);
 
 **Features** toggle which editing tools and panels appear in the UI:
 
-```typescript title="src/imgly/config/features.ts"
+```typescript title="src/app/imgly/config/features.ts"
 // Toggle editor features
 cesdk.feature.enable('ly.img.trim', true);
 cesdk.feature.enable('ly.img.filter', true);
@@ -537,7 +638,7 @@ CE.SDK has a rich plugin ecosystem that extends the editor with powerful capabil
 
 Add AI-powered background removal that runs entirely client-side. The background removal plugin processes images directly in the browser without sending data to external servers.
 
-```typescript title="src/imgly/config/plugin.ts"
+```typescript title="src/app/imgly/config/plugin.ts"
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal';
 
 // Add background removal capability
@@ -550,7 +651,7 @@ See [Background Removal](./edit-image/remove-bg.md) for setup instructions and c
 
 Extend the editor with generative AI capabilities for text-to-image generation, image enhancement, and intelligent editing features. CE.SDK integrates with various AI providers.
 
-```typescript title="src/imgly/config/plugin.ts"
+```typescript title="src/app/imgly/config/plugin.ts"
 import AIPlugin from '@imgly/plugin-ai-generation';
 
 // Configure AI generation
@@ -566,7 +667,7 @@ See [AI Integration](./user-interface/ai-integration.md) for provider setup and 
 
 Connect external asset libraries like Unsplash, Getty Images, or your own content management system. Asset sources let users browse and insert content from any source.
 
-```typescript title="src/imgly/config/plugin.ts"
+```typescript title="src/app/imgly/config/plugin.ts"
 import UnsplashAssetSource from '@imgly/plugin-unsplash';
 
 // Add Unsplash integration
@@ -689,7 +790,7 @@ Video Editor (Advanced) includes everything needed for professional video editin
 
 ## More Resources
 
-- **[Angular Documentation Index](https://img.ly/angular.md)** - Browse all Angular documentation
+- **[Angular Documentation Index](https://img.ly/docs/cesdk/angular.md)** - Browse all Angular documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./angular.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

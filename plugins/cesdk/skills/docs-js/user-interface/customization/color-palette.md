@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Color Palette](./user-interface/customization/color-palette.md)
 
@@ -18,7 +18,7 @@ CE.SDK's color palette system allows you to replace the default colors with cust
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-color-palette-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-color-palette-browser/)
 
 The CE.SDK can be configured with a series of colors that can be directly used whenever a color needs to be chosen. These color libraries need to be provided as asset sources - see our guide on [Custom Color Libraries](./colors/create-color-palette.md) for more details on how this is achieved.
 
@@ -253,6 +253,27 @@ cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
 
 The `sourceIds` array determines both which libraries appear and their order in the UI. By omitting `ly.img.colors.defaultPalette`, we completely replace the default palette with our custom colors.
 
+## Restrict the Color Mode
+
+Use the `colorPicker/colorMode` setting to lock the color picker to a specific color mode. When set to `'RGB'` or `'CMYK'`, the color space dropdown is hidden and only colors matching the configured mode are editable. Elements using a different color mode show disabled controls with a button to convert. Set to `'Any'` (the default) to allow all color modes.
+
+```typescript
+// Restrict to RGB colors only
+cesdk.engine.editor.setSetting('colorPicker/colorMode', 'RGB');
+
+// Restrict to CMYK colors only
+cesdk.engine.editor.setSetting('colorPicker/colorMode', 'CMYK');
+
+// Allow any color mode (default)
+cesdk.engine.editor.setSetting('colorPicker/colorMode', 'Any');
+```
+
+| Setting                 | Values                              | Description                                       |
+| ----------------------- | ----------------------------------- | ------------------------------------------------- |
+| `colorPicker/colorMode` | `'RGB'` | `'CMYK'` | `'Any'`     | Restricts the color picker to a single color mode |
+
+Spot colors are unaffected by this setting — they always show the tint-only controls regardless of the configured color mode.
+
 ## Color Format Reference
 
 CE.SDK supports three color formats in palette assets:
@@ -391,7 +412,7 @@ function setupUserPalette(userRole: string) {
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [UI Extensions](./user-interface/ui-extensions.md) > [Customize Behaviour](./user-interface/ui-extensions/customize-behaviour.md)
 
@@ -18,7 +18,7 @@ Control CE.SDK's interface programmatically at runtime through event subscriptio
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-ui-extensions-customize-behaviour-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-ui-extensions-customize-behaviour-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ui-extensions-customize-behaviour-browser/)
 
 UI behavior customization enables responsive, context-aware editing experiences. You can listen for user interactions, manipulate UI state dynamically based on application logic, integrate CE.SDK with external workflows, and build custom behavior that responds to editing events.
 
@@ -550,7 +550,7 @@ Check if function-based configs are evaluated correctly. For theme functions, en
 
 ## More Resources
 
-- **[Svelte Documentation Index](https://img.ly/svelte.md)** - Browse all Svelte documentation
+- **[Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md)** - Browse all Svelte documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./svelte.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

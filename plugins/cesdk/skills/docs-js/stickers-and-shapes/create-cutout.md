@@ -1,10 +1,11 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Stickers](./stickers.md) > [Create Cutout](./stickers-and-shapes/create-cutout.md)
 
 ---
 
-Create cutout paths for cutting printers to produce die-cut stickers, iron-on decals, and custom-shaped prints programmatically.
+Create cutout paths for cutting printers to produce die-cut stickers, iron-on
+decals, and custom-shaped prints programmatically.
 
 ![Cutout paths demonstration showing circular and square cutouts combined](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -18,7 +19,7 @@ Create cutout paths for cutting printers to produce die-cut stickers, iron-on de
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-stickers-and-shapes-create-cutout-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-stickers-and-shapes-create-cutout-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-stickers-and-shapes-create-cutout-browser/)
 
 Cutouts define outline paths that cutting printers cut with a blade rather than print with ink. CE.SDK supports creating cutouts from SVG paths, generating them from block contours, and combining them with boolean operations.
 
@@ -172,7 +173,8 @@ Cutouts are special blocks that contain SVG paths interpreted by cutting printer
 
 The spot color RGB values affect on-screen rendering but not printer behavior. By default, solid cutouts render as magenta and dashed cutouts render as green.
 
-> **Note:** Cutouts export to PDF format with spot color information preserved. Cutting printers read the spot colors to identify cut paths.
+> **Note:** Cutouts export to PDF format with spot color information preserved. Cutting
+> printers read the spot colors to identify cut paths.
 
 ## Creating Cutouts from SVG Paths
 
@@ -248,7 +250,9 @@ Combine multiple cutouts into compound shapes using `engine.block.createCutoutFr
 
 The combined cutout inherits the type from the first cutout in the array and has an offset of 0. Destroy the original cutouts after combining to avoid duplicate cuts.
 
-> **Note:** When using `Difference`, the first cutout is the base that others subtract from. For other operations, the order affects which cutout's type is inherited.
+> **Note:** When using `Difference`, the first cutout is the base that others subtract
+> from. For other operations, the order affects which cutout's type is
+> inherited.
 
 ## Customizing Spot Colors
 
@@ -269,31 +273,21 @@ Install the plugin:
 
 <Tabs syncKey="package-manager">
   <TabItem label="npm">
-    ```bash
-    npm install @imgly/plugin-cutout-library-web
-
-    ```
+    `bash npm install @imgly/plugin-cutout-library-web `
   </TabItem>
 
   <TabItem label="yarn">
-    ```bash
-    yarn add @imgly/plugin-cutout-library-web
-
-    ```
+    `bash yarn add @imgly/plugin-cutout-library-web `
   </TabItem>
 
   <TabItem label="pnpm">
-    ```bash
-    pnpm add @imgly/plugin-cutout-library-web
-
-    ```
+    `bash pnpm add @imgly/plugin-cutout-library-web `
   </TabItem>
 </Tabs>
 
 Import and register the plugin:
 
 ```typescript highlight-plugin-import
-import CutoutLibraryPlugin from '@imgly/plugin-cutout-library-web';
 ```
 
 Add the plugin to your editor instance with canvas menu support:
@@ -337,7 +331,9 @@ Configure the dock to display the cutout library and open it by default:
 
 The `setComponentOrder` method adds a "Cutouts" entry to the dock panel with the plugin's icon. The `openPanel` call displays the cutout library immediately when the editor loads, giving users instant access to cutout creation tools.
 
-> **Note:** The plugin provides three cutout options: generate from selection (creates cutout from selected blocks), rectangle, and circle. The canvas menu button appears when blocks are selected for quick cutout generation.
+> **Note:** The plugin provides three cutout options: generate from selection (creates
+> cutout from selected blocks), rectangle, and circle. The canvas menu button
+> appears when blocks are selected for quick cutout generation.
 
 ## Troubleshooting
 
@@ -355,22 +351,22 @@ Combined cutouts inherit the type from the first cutout in the array. Reorder th
 
 ## API Reference
 
-| Method | Category | Purpose |
-| --- | --- | --- |
-| `cesdk.addPlugin(CutoutLibraryPlugin(config))` | Plugin | Register cutout library plugin |
-| `cesdk.ui.getAssetLibraryEntry(id)` | UI | Get asset library entry for dock |
-| `cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, entries)` | UI | Configure dock panel order |
-| `cesdk.ui.openPanel(id, options)` | UI | Open panel programmatically |
-| `engine.block.createCutoutFromPath(path)` | Cutout | Create cutout from SVG path string |
-| `engine.block.createCutoutFromBlocks(ids, vThresh, sThresh, useShape)` | Cutout | Create cutout from block contours |
-| `engine.block.createCutoutFromOperation(ids, op)` | Cutout | Combine cutouts with boolean operation |
-| `engine.block.setEnum(id, 'cutout/type', value)` | Property | Set cutout type (Solid/Dashed) |
-| `engine.block.setFloat(id, 'cutout/offset', value)` | Property | Set cutout offset distance |
-| `engine.block.setFloat(id, 'cutout/smoothing', value)` | Property | Set corner smoothing threshold |
-| `engine.block.appendChild(parent, child)` | Hierarchy | Add cutout to scene |
-| `engine.block.setPositionX/Y(id, value)` | Transform | Position cutout on canvas |
-| `engine.block.destroy(id)` | Lifecycle | Remove cutout from scene |
-| `engine.editor.setSpotColorRGB(name, r, g, b)` | Editor | Customize spot color rendering |
+| Method                                                                 | Category  | Purpose                                |
+| ---------------------------------------------------------------------- | --------- | -------------------------------------- |
+| `cesdk.addPlugin(CutoutLibraryPlugin(config))`                         | Plugin    | Register cutout library plugin         |
+| `cesdk.ui.getAssetLibraryEntry(id)`                                    | UI        | Get asset library entry for dock       |
+| `cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, entries)`           | UI        | Configure dock panel order             |
+| `cesdk.ui.openPanel(id, options)`                                      | UI        | Open panel programmatically            |
+| `engine.block.createCutoutFromPath(path)`                              | Cutout    | Create cutout from SVG path string     |
+| `engine.block.createCutoutFromBlocks(ids, vThresh, sThresh, useShape)` | Cutout    | Create cutout from block contours      |
+| `engine.block.createCutoutFromOperation(ids, op)`                      | Cutout    | Combine cutouts with boolean operation |
+| `engine.block.setEnum(id, 'cutout/type', value)`                       | Property  | Set cutout type (Solid/Dashed)         |
+| `engine.block.setFloat(id, 'cutout/offset', value)`                    | Property  | Set cutout offset distance             |
+| `engine.block.setFloat(id, 'cutout/smoothing', value)`                 | Property  | Set corner smoothing threshold         |
+| `engine.block.appendChild(parent, child)`                              | Hierarchy | Add cutout to scene                    |
+| `engine.block.setPositionX/Y(id, value)`                               | Transform | Position cutout on canvas              |
+| `engine.block.destroy(id)`                                             | Lifecycle | Remove cutout from scene               |
+| `engine.editor.setSpotColorRGB(name, r, g, b)`                         | Editor    | Customize spot color rendering         |
 
 ## Next Steps
 
@@ -378,13 +374,57 @@ Combined cutouts inherit the type from the first cutout in the array. Reorder th
 - **[Create Shapes](./stickers-and-shapes/create-edit/create-shapes.md)** - Create geometric shapes programmatically
 - **[Export for Printing](./export-save-publish/for-printing.md)** - Export print-ready PDFs with spot colors
 
+## Cutout Type
+
+A block that defines a cutout path for another block.
+
+This section describes the properties available for the **Cutout Type** (`//ly.img.ubq/cutout`) block type.
+
+| Property                          | Type     | Default      | Description                                                                                                                                    |
+| --------------------------------- | -------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `alwaysOnBottom`                  | `Bool`   | `false`      | If true, this element's global sorting order is automatically adjusted to be lower than all other siblings.                                    |
+| `alwaysOnTop`                     | `Bool`   | `true`       | If true, this element's global sorting order is automatically adjusted to be higher than all other siblings.                                   |
+| `clipped`                         | `Bool`   | `false`      | This component is used to identify elements whose contents and children should be clipped to their bounds.                                     |
+| `contentFill/mode`                | `Enum`   | `"Cover"`    | Defines how content should be resized to fit its container (e.g., Crop, Cover, Contain)., Possible values: `"Crop"`, `"Cover"`, `"Contain"`    |
+| `cutout/offset`                   | `Float`  | `0`          | The offset from path at which to draw the cutout line.                                                                                         |
+| `cutout/path`                     | `String` | `""`         | The path string, accepts a subset of SVG path strings.                                                                                         |
+| `cutout/smoothing`                | `Float`  | `0`          | Pixel threshold by which to round out the path's corners.                                                                                      |
+| `cutout/type`                     | `Enum`   | `"Solid"`    | The type of cutout line., Possible values: `"Solid"`, `"Dashed"`                                                                               |
+| `flip/horizontal`                 | `Bool`   | `"-"`        | Whether the block is flipped horizontally.                                                                                                     |
+| `flip/vertical`                   | `Bool`   | `"-"`        | Whether the block is flipped vertically.                                                                                                       |
+| `globalBoundingBox/height`        | `Float`  | `"-"`        | The height of the block's axis-aligned bounding box in world coordinates., *(read-only)*                                                       |
+| `globalBoundingBox/width`         | `Float`  | `"-"`        | The width of the block's axis-aligned bounding box in world coordinates., *(read-only)*                                                        |
+| `globalBoundingBox/x`             | `Float`  | `"-"`        | The x-coordinate of the block's axis-aligned bounding box in world coordinates., *(read-only)*                                                 |
+| `globalBoundingBox/y`             | `Float`  | `"-"`        | The y-coordinate of the block's axis-aligned bounding box in world coordinates., *(read-only)*                                                 |
+| `height`                          | `Float`  | `100`        | The height of the block's frame.                                                                                                               |
+| `height/mode`                     | `Enum`   | `"Absolute"` | A mode describing how the height dimension may be interpreted (Absolute, Percent, Auto)., Possible values: `"Absolute"`, `"Percent"`, `"Auto"` |
+| `highlightEnabled`                | `Bool`   | `true`       | Show highlighting when selected or hovered                                                                                                     |
+| `lastFrame/height`                | `Float`  | `"-"`        | The height of the block's frame from the previous layout pass., *(read-only)*                                                                  |
+| `lastFrame/width`                 | `Float`  | `"-"`        | The width of the block's frame from the previous layout pass., *(read-only)*                                                                   |
+| `lastFrame/x`                     | `Float`  | `"-"`        | The x-coordinate of the block's frame from the previous layout pass., *(read-only)*                                                            |
+| `lastFrame/y`                     | `Float`  | `"-"`        | The y-coordinate of the block's frame from the previous layout pass., *(read-only)*                                                            |
+| `placeholder/enabled`             | `Bool`   | `false`      | Whether the placeholder behavior is enabled or not.                                                                                            |
+| `placeholderControls/showButton`  | `Bool`   | `false`      | Show the placeholder button.                                                                                                                   |
+| `placeholderControls/showOverlay` | `Bool`   | `false`      | Show the overlay pattern.                                                                                                                      |
+| `position/x`                      | `Float`  | `0`          | The x-coordinate of the block's origin.                                                                                                        |
+| `position/x/mode`                 | `Enum`   | `"Absolute"` | A mode describing how the x-position may be interpreted., Possible values: `"Absolute"`, `"Percent"`, `"Auto"`                                 |
+| `position/y`                      | `Float`  | `0`          | The y-coordinate of the block's origin.                                                                                                        |
+| `position/y/mode`                 | `Enum`   | `"Absolute"` | A mode describing how the y-position may be interpreted., Possible values: `"Absolute"`, `"Percent"`, `"Auto"`                                 |
+| `rotation`                        | `Float`  | `0`          | The rotation of the block in radians.                                                                                                          |
+| `selected`                        | `Bool`   | `false`      | Indicates if the block is currently selected.                                                                                                  |
+| `transformLocked`                 | `Bool`   | `false`      | DesignBlocks with this tag can't be transformed (moved, rotated, scaled, cropped, or flipped).                                                 |
+| `visible`                         | `Bool`   | `true`       | If the block is visible in the editor.                                                                                                         |
+| `width`                           | `Float`  | `100`        | The width of the block's frame.                                                                                                                |
+| `width/mode`                      | `Enum`   | `"Absolute"` | A mode describing how the width dimension may be interpreted (Absolute, Percent, Auto)., Possible values: `"Absolute"`, `"Percent"`, `"Auto"`  |
+
+
 
 
 ---
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

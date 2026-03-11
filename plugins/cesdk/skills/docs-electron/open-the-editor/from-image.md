@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Open the Editor](./open-the-editor.md) > [Create From Image](./open-the-editor/from-image.md)
 
@@ -19,7 +19,7 @@ dimensions matching the source image for seamless image editing workflows.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-from-image-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-open-the-editor-from-image-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-from-image-browser/)
 
 Starting from an existing image allows you to use the editor for customizing individual assets. The `engine.scene.createFromImage()` method fetches the image, creates a scene with matching dimensions, and sets up pixel-based design units. This differs from loading a saved scene file, as you're creating new editable content from raw image data.
 
@@ -217,7 +217,7 @@ To persist changes after editing, use `engine.scene.saveToString()` or `engine.s
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

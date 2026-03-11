@@ -1,10 +1,11 @@
-> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Filters and Effects](./filters-and-effects.md) > [Apply Blur](./filters-and-effects/blur.md)
 
 ---
 
-Apply blur effects to design elements using CE.SDK's dedicated blur system for creating depth, focus, and atmospheric effects.
+Apply blur effects to design elements using CE.SDK's dedicated blur system for
+creating depth, focus, and atmospheric effects.
 
 > **Reading time:** 8 minutes
 >
@@ -206,7 +207,8 @@ CE.SDK provides four blur types:
 - **`//ly.img.ubq/blur/mirrored`** - Band of focus with blur on both sides (tilt-shift style)
 - **`//ly.img.ubq/blur/radial`** - Circular blur pattern from a center point
 
-> **Note:** Omitting the prefix is also accepted, e.g., `'radial'` instead of `'//ly.img.ubq/blur/radial'`.
+> **Note:** Omitting the prefix is also accepted, e.g., `'radial'` instead of
+> `'//ly.img.ubq/blur/radial'`.
 
 ### Configure Blur Parameters
 
@@ -400,18 +402,73 @@ For radial, linear, and mirrored blurs:
 
 ## API Reference
 
-| Method                             | Description                        |
-| ---------------------------------- | ---------------------------------- |
-| `block.createBlur(type)`           | Create new blur instance           |
-| `block.supportsBlur(block)`        | Check if block supports blur       |
-| `block.setBlur(block, blur)`       | Apply blur to block                |
-| `block.getBlur(block)`             | Get blur from block                |
-| `block.setBlurEnabled(block, enabled)` | Enable or disable blur         |
-| `block.isBlurEnabled(block)`       | Check if blur is enabled           |
-| `block.setFloat(blur, property, value)` | Set blur float property       |
-| `block.getFloat(blur, property)`   | Get blur float property            |
-| `block.getType(blur)`              | Get blur type identifier           |
-| `block.destroy(blur)`              | Destroy unused blur instance       |
+| Method                                  | Description                  |
+| --------------------------------------- | ---------------------------- |
+| `block.createBlur(type)`                | Create new blur instance     |
+| `block.supportsBlur(block)`             | Check if block supports blur |
+| `block.setBlur(block, blur)`            | Apply blur to block          |
+| `block.getBlur(block)`                  | Get blur from block          |
+| `block.setBlurEnabled(block, enabled)`  | Enable or disable blur       |
+| `block.isBlurEnabled(block)`            | Check if blur is enabled     |
+| `block.setFloat(blur, property, value)` | Set blur float property      |
+| `block.getFloat(blur, property)`        | Get blur float property      |
+| `block.getType(blur)`                   | Get blur type identifier     |
+| `block.destroy(blur)`                   | Destroy unused blur instance |
+
+## Linear Type
+
+A blur effect applied along a linear gradient.
+
+This section describes the properties available for the **Linear Type** (`//ly.img.ubq/blur/linear`) block type.
+
+| Property                 | Type    | Default | Description              |
+| ------------------------ | ------- | ------- | ------------------------ |
+| `blur/linear/blurRadius` | `Float` | `30`    | Blur intensity.          |
+| `blur/linear/x1`         | `Float` | `0`     | Control point 1 x-value. |
+| `blur/linear/x2`         | `Float` | `1`     | Control point 2 x-value. |
+| `blur/linear/y1`         | `Float` | `0.5`   | Control point 1 y-value. |
+| `blur/linear/y2`         | `Float` | `0.5`   | Control point 2 y-value. |
+
+## Mirrored Type
+
+A blur effect applied in a mirrored linear fashion.
+
+This section describes the properties available for the **Mirrored Type** (`//ly.img.ubq/blur/mirrored`) block type.
+
+| Property                     | Type    | Default | Description              |
+| ---------------------------- | ------- | ------- | ------------------------ |
+| `blur/mirrored/blurRadius`   | `Float` | `30`    | Blur intensity.          |
+| `blur/mirrored/gradientSize` | `Float` | `50`    | Hardness of gradients.   |
+| `blur/mirrored/size`         | `Float` | `75`    | Size of blurred area.    |
+| `blur/mirrored/x1`           | `Float` | `0`     | Control point 1 x-value. |
+| `blur/mirrored/x2`           | `Float` | `1`     | Control point 2 x-value. |
+| `blur/mirrored/y1`           | `Float` | `0.5`   | Control point 1 y-value. |
+| `blur/mirrored/y2`           | `Float` | `0.5`   | Control point 2 y-value. |
+
+## Radial Type
+
+A blur effect applied radially from a center point.
+
+This section describes the properties available for the **Radial Type** (`//ly.img.ubq/blur/radial`) block type.
+
+| Property                     | Type    | Default | Description               |
+| ---------------------------- | ------- | ------- | ------------------------- |
+| `blur/radial/blurRadius`     | `Float` | `30`    | Blur intensity.           |
+| `blur/radial/gradientRadius` | `Float` | `50`    | Size of blurred area.     |
+| `blur/radial/radius`         | `Float` | `75`    | Size of non-blurred area. |
+| `blur/radial/x`              | `Float` | `0.5`   | Center point x-value.     |
+| `blur/radial/y`              | `Float` | `0.5`   | Center point y-value.     |
+
+## Uniform Type
+
+A blur effect with uniform intensity.
+
+This section describes the properties available for the **Uniform Type** (`//ly.img.ubq/blur/uniform`) block type.
+
+| Property                 | Type    | Default | Description         |
+| ------------------------ | ------- | ------- | ------------------- |
+| `blur/uniform/intensity` | `Float` | `0.5`   | The blur intensity. |
+
 
 
 
@@ -419,7 +476,7 @@ For radial, linear, and mirrored blurs:
 
 ## More Resources
 
-- **[Node.js Documentation Index](https://img.ly/node.md)** - Browse all Node.js documentation
+- **[Node.js Documentation Index](https://img.ly/docs/cesdk/node.md)** - Browse all Node.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./node.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

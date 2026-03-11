@@ -38,6 +38,10 @@ Types: CutoutOperation
 
 Types: Vector, DesignBlockId, HistoryId, NumberRange, Vec2, Vec3, Size2, Range, ClampArgs, ClampCameraCommandResult, EmscriptenClassHandle, UBQError, UBQResult, MouseButtonEvent, MouseMoveEvent, MouseWheelEvent, KeyboardKeyEvent, ZoomAutoFitAxis, EngineTouchEvent, TouchRotateEvent, TouchPanEvent, TouchPinchEvent, TrackingMetadata, EditMode
 
+## fontMetrics
+
+Types: FontMetrics
+
 ## fonts
 
 Types: FontWeight, FontStyle, Font, Typeface
@@ -56,7 +60,7 @@ Types: Scope
 
 ## settingTypes
 
-Types: SettingStringPropertyName, SettingColorPropertyName, SettingBoolPropertyName, SettingFloatPropertyName, SettingEnumPropertyName, SettingIntPropertyName, TouchPinchAction, TouchRotateAction, CameraClampingOvershootMode, DoubleClickSelectionMode, SettingEnumValues, SettingEnumType
+Types: SettingStringPropertyName, SettingColorPropertyName, SettingBoolPropertyName, SettingFloatPropertyName, SettingEnumPropertyName, SettingIntPropertyName, TouchPinchAction, TouchRotateAction, CameraClampingOvershootMode, DoubleClickSelectionMode, ColorPickerColorMode, SettingEnumValues, SettingEnumType
 
 ## settings
 

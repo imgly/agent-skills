@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Create From Scratch](./create-templates/from-scratch.md)
 
@@ -18,7 +18,7 @@ Build reusable design templates entirely through code using CE.SDK's programmati
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-templates-from-scratch-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-templates-from-scratch-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-from-scratch-browser/)
 
 CE.SDK provides a complete API for building design templates through code. Instead of starting from an existing template, you can create a blank scene, define page dimensions, add text and graphic blocks, configure placeholders for swappable media, add text variables for dynamic content, apply editing constraints to protect layout integrity, and save the template for reuse. This approach enables automation workflows, batch template generation, and integration with custom template creation tools.
 
@@ -557,7 +557,7 @@ The `engine.scene.saveToString()` method creates a compact string format suitabl
 
 ## More Resources
 
-- **[React Documentation Index](https://img.ly/react.md)** - Browse all React documentation
+- **[React Documentation Index](https://img.ly/docs/cesdk/react.md)** - Browse all React documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./react.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

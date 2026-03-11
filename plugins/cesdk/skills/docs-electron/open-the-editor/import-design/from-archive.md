@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Open the Editor](./open-the-editor.md) > [Import a Design](./open-the-editor/import-design.md) > [From Archive](./open-the-editor/import-design/from-archive.md)
 
@@ -18,7 +18,7 @@ Load archived CE.SDK scenes that bundle design structure with all fonts, images,
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-import-design-from-archive-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-open-the-editor-import-design-from-archive-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-import-design-from-archive-browser/)
 
 Archives solve the portability problem inherent in scene files. While scene files reference assets by URL, archives package everything together in a single `.zip` file. If asset URLs become unavailable, scene files fail to load properly. Archives avoid this issue by bundling all fonts, images, videos, and other resources directly within the archive, making them self-contained and reliable across different environments.
 
@@ -501,7 +501,7 @@ For archives over 50-100MB:
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

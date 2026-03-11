@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Compositions](./create-composition.md) > [Position and Align](./insert-media/position-and-align.md)
 
@@ -19,7 +19,7 @@ layout APIs and snapping system.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-composition-position-and-align-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-composition-position-and-align-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-composition-position-and-align-browser/)
 
 CE.SDK positions blocks relative to their parent container with the origin at the top left. You can set positions using absolute values (design units) or as percentages of the parent's dimensions. For multi-element layouts, alignment and distribution APIs arrange blocks precisely without manual calculations. In the browser, snapping guides provide visual feedback when dragging elements.
 
@@ -642,7 +642,7 @@ Snapping provides visual guides when dragging elements in the editor, helping us
     console.log('Snapping thresholds configured: position=10px, rotation=5deg');
 ```
 
-The `positionSnappingThreshold` setting controls how close (in pixels) a block must be to a snap target before snapping activates. Higher values make snapping more "sticky". The `rotationSnappingThreshold` setting controls rotation snapping sensitivity in degrees.
+The `positionSnappingThreshold` setting controls how close (in pixels) a block must be to a snap target before snapping activates. Higher values make snapping more "sticky". The `rotationSnappingThreshold` setting controls rotation snapping sensitivity in radians.
 
 ### Customizing Snapping Guide Colors
 
@@ -736,7 +736,7 @@ Now that you understand positioning and alignment, explore related layout featur
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

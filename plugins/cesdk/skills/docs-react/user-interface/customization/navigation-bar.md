@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Navigation Bar](./user-interface/customization/navigation-bar.md)
 
@@ -18,7 +18,7 @@ The navigation bar is the horizontal toolbar at the top of the editor containing
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-navigation-bar-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-navigation-bar-browser/)
 
 Actions that affect browser navigation (e.g., going back or closing the editor), have global effects on the scene (e.g., undo/redo and zoom), or process the scene in some way (e.g., saving and exporting) belong in the navigation bar.
 
@@ -512,7 +512,7 @@ Standalone buttons appear alongside the other navigation bar components. Use the
 
 ## More Resources
 
-- **[React Documentation Index](https://img.ly/react.md)** - Browse all React documentation
+- **[React Documentation Index](https://img.ly/docs/cesdk/react.md)** - Browse all React documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./react.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

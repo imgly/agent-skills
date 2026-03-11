@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [UI Extensions](./user-interface/ui-extensions.md) > [Notifications and Dialogs](./user-interface/ui-extensions/notifications-and-dialogs.md)
 
@@ -19,7 +19,7 @@ experience using CE.SDK's UI API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-ui-extensions-notifications-and-dialogs-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-ui-extensions-notifications-and-dialogs-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ui-extensions-notifications-and-dialogs-browser/)
 
 Notifications and dialogs are essential for communicating with users during the editing experience. Notifications appear as temporary, non-blocking messages at the edge of the editor for status updates and feedback. Dialogs are modal overlays that interrupt the workflow to present information or collect user decisions. Both are created and controlled through the `cesdk.ui` API.
 
@@ -672,7 +672,7 @@ Confirm you're using `cesdk.ui.updateDialog()` with the correct dialog ID. Verif
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

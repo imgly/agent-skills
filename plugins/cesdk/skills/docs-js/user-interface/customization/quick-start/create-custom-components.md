@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Create Custom Components](./user-interface/customization/quick-start/create-custom-components.md)
 
@@ -18,7 +18,7 @@ Create and place custom UI components in CE.SDK using `registerComponent()` and 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-customization-quick-start-create-custom-components-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-quick-start-create-custom-components-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-quick-start-create-custom-components-browser/)
 
 Custom components let you extend CE.SDK's UI beyond built-in action buttons. The workflow has two steps: register the component with `registerComponent()`, then place it with `insertOrderComponent()`.
 
@@ -371,7 +371,7 @@ Follow these patterns for component IDs:
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

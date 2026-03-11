@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Transform](./edit-video/transform.md) > [Rotate](./edit-video/transform/rotate.md)
 
@@ -18,7 +18,7 @@ Rotate video elements to any angle using radians or degrees, with precise progra
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-video-transform-rotate-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-video-transform-rotate-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-transform-rotate-browser/)
 
 Rotation in CE.SDK occurs around the block's center point. All rotation values use radians, where `Math.PI` equals 180 degrees. Positive values rotate counterclockwise, negative values rotate clockwise.
 
@@ -311,7 +311,7 @@ Remember that positive values rotate counterclockwise in CE.SDK. To rotate clock
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

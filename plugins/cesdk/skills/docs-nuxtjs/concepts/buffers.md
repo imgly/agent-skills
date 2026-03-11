@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Concepts](./concepts.md) > [Buffers](./concepts/buffers.md)
 
@@ -18,7 +18,7 @@ Store and manage temporary binary data directly in memory using CE.SDK's buffer 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-concepts-buffers-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-concepts-buffers-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-concepts-buffers-browser/)
 
 Buffers are in-memory containers for binary data referenced via `buffer://` URIs. Unlike external files that require network or file I/O, buffers exist only during the current session and are not serialized when saving scenes. This makes them ideal for procedural audio, real-time image data, or streaming content that doesn't need to persist beyond the current editing session.
 
@@ -536,7 +536,7 @@ Verify the buffer was created in the same engine instance. Buffer URIs are not p
 
 ## More Resources
 
-- **[Nuxt.js Documentation Index](https://img.ly/nuxtjs.md)** - Browse all Nuxt.js documentation
+- **[Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md)** - Browse all Nuxt.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nuxtjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Compositions](./create-composition.md) > [Programmatic Creation](./create-composition/programmatic.md)
 
@@ -18,7 +18,7 @@ Build compositions entirely through code using CE.SDK's APIs for automation, bat
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-composition-programmatic-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-composition-programmatic-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-composition-programmatic-browser/)
 
 CE.SDK provides a complete API for building designs through code. Instead of relying on user interactions through the built-in UI, you can create scenes, add blocks like text, images, and shapes, and position them programmatically. This approach enables automation workflows, batch processing, server-side rendering, and integration with custom interfaces.
 
@@ -606,7 +606,7 @@ The export panel lets users choose format and settings interactively, while `ces
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

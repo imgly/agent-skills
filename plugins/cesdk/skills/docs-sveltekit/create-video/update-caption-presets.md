@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Update Caption Presets](./create-video/update-caption-presets.md)
 
@@ -20,7 +20,7 @@ to video captions with a single click.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-video-update-caption-presets-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-video-update-caption-presets-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-update-caption-presets-browser/)
 
 Video captions have become an essential part of digital content, improving accessibility and engagement. With CE.SDK's caption presets feature, you can offer your users a selection of predefined caption styles that they can apply with a single click. This guide shows you how to create styled text blocks, serialize them as preset files, and structure the content.json to make them available in the caption presets panel.
 
@@ -673,7 +673,7 @@ Your custom presets will seamlessly integrate with any built-in presets and auto
 
 ## More Resources
 
-- **[SvelteKit Documentation Index](https://img.ly/sveltekit.md)** - Browse all SvelteKit documentation
+- **[SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md)** - Browse all SvelteKit documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./sveltekit.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Insert Media Assets](./insert-media.md) > [Insert Videos](./insert-media/videos.md)
 
@@ -18,7 +18,7 @@ Insert videos into your CE.SDK scenes using either the convenience API or manual
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-insert-media-videos-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-insert-media-videos-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-insert-media-videos-browser/)
 
 Videos in CE.SDK are graphic blocks with video fills. Two approaches exist: the `addVideo()` method for Video mode scenes, and manual block creation with video fills which works in any scene mode.
 
@@ -311,7 +311,7 @@ For maximum compatibility, use MP4 with H.264 encoding.
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

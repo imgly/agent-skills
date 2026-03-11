@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Force Crop](./user-interface/customization/force-crop.md)
 
@@ -18,7 +18,7 @@ Programmatically apply crop presets to enforce specific aspect ratios or dimensi
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-force-crop-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-force-crop-browser/)
 
 The `applyForceCrop` API lets you enforce specific dimensions or aspect ratios on blocks that support cropping. This is useful when building integrations that require content to match specific formats, such as Instagram portrait posts, LinkedIn profile photos, or Facebook shared images. You can control whether the crop UI appears after applying a preset through three different modes.
 
@@ -288,7 +288,7 @@ When applying force crop to page blocks, the API automatically enables page resi
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

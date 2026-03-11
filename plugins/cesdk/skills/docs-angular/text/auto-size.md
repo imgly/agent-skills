@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Text](./text.md) > [Auto-Size](./text/auto-size.md)
 
@@ -18,7 +18,7 @@ Configure text blocks to automatically adapt their dimensions or font size for d
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-text-auto-size-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-text-auto-size-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-auto-size-browser/)
 
 CE.SDK provides two approaches for handling dynamic text content. **Auto size modes** let text blocks resize to fit their content, while **automatic font sizing** scales the font to fit within fixed boundaries. These techniques ensure text displays correctly regardless of content length, which is essential for templates and automation workflows.
 
@@ -405,7 +405,7 @@ Detecting clipped text helps identify when automatic font sizing should be enabl
 
 ## More Resources
 
-- **[Angular Documentation Index](https://img.ly/angular.md)** - Browse all Angular documentation
+- **[Angular Documentation Index](https://img.ly/docs/cesdk/angular.md)** - Browse all Angular documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./angular.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

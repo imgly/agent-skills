@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Plugins](./plugins.md) > [Print Ready PDFs](./plugins/print-ready-pdf.md)
 
@@ -20,7 +20,7 @@ compliance—all client-side without any backend infrastructure.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/plugins-print-ready-pdf-browser)
 >
-> - [Live demo](https://img.ly/examples/plugins-print-ready-pdf-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/plugins-print-ready-pdf-browser/)
 
 ## What You'll Build
 
@@ -489,7 +489,7 @@ grep -a "PDF/X-3" output.pdf
 
 ## More Resources
 
-- **[Angular Documentation Index](https://img.ly/angular.md)** - Browse all Angular documentation
+- **[Angular Documentation Index](https://img.ly/docs/cesdk/angular.md)** - Browse all Angular documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./angular.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

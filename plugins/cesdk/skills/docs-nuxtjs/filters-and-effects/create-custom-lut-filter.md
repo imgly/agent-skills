@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Filters and Effects](./filters-and-effects.md) > [Apply Custom LUT Filter](./filters-and-effects/create-custom-lut-filter.md)
 
@@ -18,7 +18,7 @@ Apply custom LUT (Look-Up Table) filters to achieve brand-consistent color gradi
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-filters-and-effects-create-custom-lut-filter-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-filters-and-effects-create-custom-lut-filter-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-filters-and-effects-create-custom-lut-filter-browser/)
 
 LUT filters remap colors through a predefined transformation table, enabling cinematic color grading and consistent brand aesthetics. This guide shows how to apply your own LUT files directly to design elements using the effect API. For organizing collections of filters through asset sources, see [Create Custom Filters](./filters-and-effects/create-custom-filters.md).
 
@@ -425,7 +425,7 @@ Use `getEffects()` to access all effects on a block and `supportsEffects()` to v
 
 ## More Resources
 
-- **[Nuxt.js Documentation Index](https://img.ly/nuxtjs.md)** - Browse all Nuxt.js documentation
+- **[Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md)** - Browse all Nuxt.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nuxtjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

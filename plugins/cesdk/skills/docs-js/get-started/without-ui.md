@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 ---
 
@@ -39,7 +39,7 @@ Initialize the engine and create content programmatically:
 ```typescript
 const config = {
   license: 'YOUR_CESDK_LICENSE_KEY',
-  userId: 'your-user-id'
+  userId: 'your-user-id',
 };
 
 const engine = await CreativeEngine.init(config);
@@ -57,8 +57,7 @@ engine.block.appendChild(scene, page);
 engine.dispose();
 ```
 
-> **Note:** Learn more about programmatic content creation in the [Engine
-> documentation](./engine/quickstart.md).
+> **Note:** Learn more about programmatic content creation in the [Engine documentation](./engine/quickstart.md).
 
 ## Key Features
 
@@ -72,15 +71,15 @@ The headless engine provides full access to CE.SDK's capabilities without render
 
 ## API Reference
 
-| Method                       | Description                                               |
-| ---------------------------- | --------------------------------------------------------- |
+| Method                       | Description                                                |
+| ---------------------------- | ---------------------------------------------------------- |
 | `CreativeEngine.init()`      | Initializes the headless engine for programmatic creation |
-| `engine.scene.create()`      | Creates a new scene programmatically                      |
-| `engine.block.create()`      | Creates a new block of the specified type                 |
-| `engine.block.setWidth()`    | Sets the width of a block                                 |
-| `engine.block.setHeight()`   | Sets the height of a block                                |
-| `engine.block.appendChild()` | Adds a block as a child of another block                  |
-| `engine.dispose()`           | Cleans up engine resources and releases memory            |
+| `engine.scene.create()`      | Creates a new scene programmatically                       |
+| `engine.block.create()`      | Creates a new block of the specified type                  |
+| `engine.block.setWidth()`    | Sets the width of a block                                  |
+| `engine.block.setHeight()`   | Sets the height of a block                                 |
+| `engine.block.appendChild()` | Adds a block as a child of another block                   |
+| `engine.dispose()`           | Cleans up engine resources and releases memory             |
 
 ## Next Steps
 
@@ -94,7 +93,7 @@ The headless engine provides full access to CE.SDK's capabilities without render
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

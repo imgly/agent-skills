@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Import From Local Source](./import-media/from-local-source.md) > [From User Upload](./import-media/from-local-source/user-upload.md)
 
@@ -18,7 +18,7 @@ Enable users to upload images and videos from their devices directly into CE.SDK
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-from-local-source-user-upload-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-import-media-from-local-source-user-upload-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-from-local-source-user-upload-browser/)
 
 CE.SDK provides a built-in upload handler that stores files locally in memory for development. For production use cases where files need to persist across sessions, you can register a custom upload handler that uploads to your CDN or cloud storage.
 
@@ -441,7 +441,7 @@ This pattern allows you to conditionally choose between local storage and remote
 
 ## More Resources
 
-- **[SvelteKit Documentation Index](https://img.ly/sveltekit.md)** - Browse all SvelteKit documentation
+- **[SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md)** - Browse all SvelteKit documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./sveltekit.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Add Dock Buttons](./user-interface/customization/quick-start/add-dock-buttons.md)
 
@@ -18,7 +18,7 @@ Add asset library buttons to the CE.SDK dock using the built-in `ly.img.assetLib
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-customization-quick-start-add-dock-buttons-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-quick-start-add-dock-buttons-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-quick-start-add-dock-buttons-browser/)
 
 CE.SDK provides the `ly.img.assetLibrary.dock` component for adding buttons to the dock that open the asset library panel. This is the fastest way to give users access to specific asset categories without registering custom components.
 
@@ -355,7 +355,7 @@ Common icon identifiers for dock buttons:
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

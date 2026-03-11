@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Insert Dynamic Content](./create-templates/add-dynamic-content.md) > [Placeholders](./create-templates/add-dynamic-content/placeholders.md)
 
@@ -18,7 +18,7 @@ Placeholders turn design blocks into drop-zones that users can swap content into
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-templates-dynamic-content-placeholders-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-templates-dynamic-content-placeholders-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-dynamic-content-placeholders-browser/)
 
 ```typescript file=@cesdk_web_examples/guides-create-templates-dynamic-content-placeholders-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -685,7 +685,7 @@ This pattern works well for collage templates, product showcases, or any layout 
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

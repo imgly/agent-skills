@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Rules](./rules.md) > [Enforce Brand Guidelines](./rules/enforce-brand-guidelines.md)
 
@@ -18,7 +18,7 @@ Learn how to restrict users to approved brand assets—specific colors, fonts, a
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-rules-enforce-brand-guidelines-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-rules-enforce-brand-guidelines-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-rules-enforce-brand-guidelines-browser/)
 
 Brand guidelines enforcement in CE.SDK combines two complementary approaches: restricting which assets users can access (colors, fonts, images) and controlling what editing operations are permitted on brand elements. Asset restrictions work through custom asset sources that replace default libraries, while editing constraints use the scopes system to lock specific elements.
 
@@ -675,7 +675,7 @@ This method considers both global and block-level scope settings to determine if
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

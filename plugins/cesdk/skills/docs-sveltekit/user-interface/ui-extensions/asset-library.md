@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [UI Extensions](./user-interface/ui-extensions.md) > [Asset Library](./user-interface/ui-extensions/asset-library.md)
 
@@ -18,7 +18,7 @@ Extend the asset library by adding custom asset sources, enabling user uploads, 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-ui-extensions-asset-library-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-ui-extensions-asset-library-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ui-extensions-asset-library-browser/)
 
 CE.SDK's asset library lets users browse and add media to designs. You can extend this system by registering custom asset sources that fetch content from your own APIs, DAM systems, or third-party services like Unsplash.
 
@@ -713,7 +713,7 @@ Verify the proxy URL is correct and accessible. Check browser console for CORS e
 
 ## More Resources
 
-- **[SvelteKit Documentation Index](https://img.ly/sveltekit.md)** - Browse all SvelteKit documentation
+- **[SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md)** - Browse all SvelteKit documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./sveltekit.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Text](./text.md) > [Text Styling](./text/styling.md)
 
@@ -18,7 +18,7 @@ Style text blocks programmatically with colors, backgrounds, typefaces, and form
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-text-styling-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-text-styling-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-styling-browser/)
 
 CE.SDK provides comprehensive text styling capabilities through the Block API. We can control text appearance through colors, backgrounds, typefaces, font weights, and case transformations, with the ability to apply different styling to specific character ranges within a single text block.
 
@@ -387,7 +387,7 @@ The typeface must include fonts matching the requested weight and style combinat
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

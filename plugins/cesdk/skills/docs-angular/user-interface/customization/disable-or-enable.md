@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [User Interface](./user-interface.md) > [Customization](./user-interface/customization.md) > [Disable or Enable Features](./user-interface/customization/disable-or-enable.md)
 
@@ -18,7 +18,7 @@ Control which editor features are available to users using the Feature API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-user-interface-customization-disable-or-enable-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-disable-or-enable-browser/)
 
 The Feature API provides global control over feature visibility throughout the editor. Use it to hide delete buttons from certain users, disable crop controls based on context, or conditionally enable features based on user roles or selection state. Unlike the Component Order API which targets specific components in specific areas, the Feature API affects features everywhere in the editor at once.
 
@@ -475,7 +475,10 @@ CE.SDK includes many built-in features organized by category:
 |------------|-------------|
 | `ly.img.delete` | Controls ability to delete blocks |
 | `ly.img.duplicate` | Controls ability to duplicate blocks |
-| `ly.img.replace` | Controls presence of the Replace button |
+| `ly.img.replace` | Controls presence of the Replace button (parent flag for all replace sub-features) |
+| `ly.img.replace.fill` | Controls replacing image/video fill content |
+| `ly.img.replace.shape` | Controls replacing block shape |
+| `ly.img.replace.audio` | Controls replacing audio block content |
 | `ly.img.group` | Controls grouping functionality |
 | `ly.img.placeholder` | Controls Placeholder toggle visibility in Inspector |
 
@@ -585,7 +588,7 @@ If a glob pattern doesn't affect expected features:
 
 ## More Resources
 
-- **[Angular Documentation Index](https://img.ly/angular.md)** - Browse all Angular documentation
+- **[Angular Documentation Index](https://img.ly/docs/cesdk/angular.md)** - Browse all Angular documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./angular.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

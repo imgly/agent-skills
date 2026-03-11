@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Add Watermark](./edit-video/add-watermark.md)
 
@@ -18,7 +18,7 @@ Add text and image watermarks to video content for copyright protection, brandin
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-video-add-watermark-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-video-add-watermark-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-add-watermark-browser/)
 
 Video watermarks in CE.SDK are design blocks positioned over video content. **Text watermarks** display copyright notices, URLs, or branding text, while **image watermarks** show logos or graphics. Both watermark types require timeline management to ensure they remain visible throughout video playback. The key difference from static image watermarking is setting the watermark's `duration` to match the video duration.
 
@@ -430,7 +430,7 @@ Calculate positions dynamically based on page dimensions to handle different vid
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/nextjs.md)** - Browse all Next.js documentation
+- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

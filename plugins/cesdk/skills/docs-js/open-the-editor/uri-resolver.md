@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Open the Editor](./open-the-editor.md) > [URI Resolver](./open-the-editor/uri-resolver.md)
 
@@ -18,7 +18,7 @@ Learn how to intercept and transform asset URIs in CE.SDK, enabling authenticati
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-uri-resolver-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-open-the-editor-uri-resolver-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-uri-resolver-browser/)
 
 When CE.SDK loads an asset, it resolves the URI to an absolute path before fetching. You can intercept this process to add authentication tokens or transform URIs based on your application's needs.
 
@@ -344,7 +344,7 @@ console.log('\n✓ Removed custom resolver - back to default behavior');
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

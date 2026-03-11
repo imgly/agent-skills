@@ -36,7 +36,7 @@ CreativeEngine:{asset,block,editor,event,scene,variable,reactor,version,addPlugi
 BlockAPI:{export,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo,getAudioInfoFromVideo},... (+347)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
 SceneAPI:{loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create,createVideo,createFromImage,createFromVideo,get,applyTemplateFromString,applyTemplateFromURL,getMode,setMode,setDesignUnit},... (+22)
-EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,getCursorType,getCursorRotation,getTextCursorPositionInScreenSpaceX,getTextCursorPositionInScreenSpaceY,createHistory,destroyHistory},... (+74)
+EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,getCursorType,getCursorRotation,getTextCursorPositionInScreenSpaceX,getTextCursorPositionInScreenSpaceY,createHistory,destroyHistory},... (+75)
 EventAPI:{subscribe}
 VariableAPI:{findAll,setString,getString,remove}
 Types:{AnimationType,AssetResult,BlendMode,Color,DesignBlockId,ExportOptions,PropertyType,Scope,TextCase,VideoExportOptions}

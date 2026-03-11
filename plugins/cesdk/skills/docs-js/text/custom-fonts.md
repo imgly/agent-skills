@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Text](./text.md) > [Customize Fonts](./text/custom-fonts.md)
 
@@ -18,7 +18,7 @@ Load and configure custom fonts in CE.SDK to match brand guidelines or provide u
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-fonts-typefaces-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-fonts-typefaces-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-fonts-typefaces-browser/)
 
 CE.SDK includes a set of default typefaces, but you can customize the available fonts by creating custom asset sources with your own typeface definitions. Fonts are managed through the asset system and displayed in the editor UI via the typeface library.
 
@@ -82,17 +82,16 @@ class CustomFontsExample implements EditorPlugin {
     const engine = cesdk.engine;
     const orbitronTypeface = createOrbitronTypeface();
 
-    // Create a custom local typeface source and add the Orbitron typeface
-    engine.asset.addLocalSource('my-custom-typefaces');
-    engine.asset.addAssetToSource('my-custom-typefaces', {
+    const sourceId = 'my-custom-typefaces';
+    engine.asset.addLocalSource(sourceId);
+
+    await engine.asset.addAssetToSource(sourceId, {
       id: 'orbitron',
-      label: { en: 'Orbitron' },
       payload: {
         typeface: orbitronTypeface
       }
     });
 
-    // Update the typeface library to show custom fonts in the font dropdown
     cesdk.ui.updateAssetLibraryEntry('ly.img.typefaces', {
       sourceIds: ['my-custom-typefaces']
     });
@@ -256,15 +255,15 @@ To make custom fonts available in the editor, we create a local asset source and
 We first create the source with `engine.asset.addLocalSource()`, then add typeface assets with `engine.asset.addAssetToSource()`:
 
 ```typescript highlight=highlight-typeface-source
-// Create a custom local typeface source and add the Orbitron typeface
-engine.asset.addLocalSource('my-custom-typefaces');
-engine.asset.addAssetToSource('my-custom-typefaces', {
-  id: 'orbitron',
-  label: { en: 'Orbitron' },
-  payload: {
-    typeface: orbitronTypeface
-  }
-});
+    const sourceId = 'my-custom-typefaces';
+    engine.asset.addLocalSource(sourceId);
+
+    await engine.asset.addAssetToSource(sourceId, {
+      id: 'orbitron',
+      payload: {
+        typeface: orbitronTypeface
+      }
+    });
 ```
 
 The `name` property defines how the typeface appears in the font dropdown:
@@ -299,7 +298,6 @@ After creating the custom typeface source, we update the typeface library entry 
 To replace the default typefaces entirely with your custom fonts:
 
 ```typescript highlight=highlight-update-library
-// Update the typeface library to show custom fonts in the font dropdown
 cesdk.ui.updateAssetLibraryEntry('ly.img.typefaces', {
   sourceIds: ['my-custom-typefaces']
 });
@@ -400,7 +398,7 @@ Here's a complete example that creates a text block and applies a custom font:
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

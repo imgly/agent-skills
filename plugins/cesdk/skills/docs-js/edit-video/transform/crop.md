@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Transform](./edit-video/transform.md) > [Crop](./edit-video/transform/crop.md)
 
@@ -18,7 +18,7 @@ Crop videos to focus on specific areas, remove unwanted edges, or prepare clips 
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-video-transform-crop-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-video-transform-crop-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-transform-crop-browser/)
 
 Video cropping in CreativeEditor SDK (CE.SDK) lets you re-frame clips, remove unwanted edges, or adapt footage for platform-specific formats. Unlike resizing or scaling which affects the entire frame uniformly, cropping selects a specific region to display.
 
@@ -373,7 +373,7 @@ Verify you're operating on the correct block ID. Check that the video resource h
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

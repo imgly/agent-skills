@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Insert Media Assets](./insert-media.md) > [Insert Audio](./insert-media/audio.md)
 
@@ -19,7 +19,7 @@ background music, sound effects, and voiceovers.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-insert-media-audio-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-insert-media-audio-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-insert-media-audio-browser/)
 
 Audio blocks are timeline elements that play sound alongside video content. Unlike video fills that attach to graphic blocks, audio blocks exist independently on the timeline with their own duration, position, and volume controls. Audio requires Video scene mode.
 
@@ -286,7 +286,7 @@ engine.block.destroy(tempAudioBlock);
 
 ## More Resources
 
-- **[SvelteKit Documentation Index](https://img.ly/sveltekit.md)** - Browse all SvelteKit documentation
+- **[SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md)** - Browse all SvelteKit documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./sveltekit.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

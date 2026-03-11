@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Insert Media Assets](./insert-media.md) > [Insert Shapes or Stickers](./insert-media/shapes-or-stickers.md)
 
@@ -20,7 +20,7 @@ like corner radius and star points.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-insert-media-shapes-or-stickers-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-insert-media-shapes-or-stickers-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-insert-media-shapes-or-stickers-browser/)
 
 Shapes are vector graphics created with `engine.block.createShape()` and attached to graphic blocks. CE.SDK supports six shape types: **rect**, **ellipse**, **star**, **polygon**, **line**, and **vector\_path**. Stickers are pre-made graphic assets from sources like `ly.img.sticker`. Both require fills or strokes to be visible on the canvas.
 
@@ -798,7 +798,7 @@ If `createShape()` throws an error:
 
 ## More Resources
 
-- **[React Documentation Index](https://img.ly/react.md)** - Browse all React documentation
+- **[React Documentation Index](https://img.ly/docs/cesdk/react.md)** - Browse all React documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./react.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

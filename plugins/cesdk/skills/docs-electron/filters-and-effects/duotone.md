@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Filters and Effects](./filters-and-effects.md) > [Duotone](./filters-and-effects/duotone.md)
 
@@ -18,7 +18,7 @@ Apply duotone effects to images, mapping tones to two colors for stylized visual
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-filters-and-effects-duotone-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-filters-and-effects-duotone-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-filters-and-effects-duotone-browser/)
 
 Duotone is a color effect that maps image brightness to two colors: a dark color for shadows and a light color for highlights. The result is a striking two-tone image where all original colors are replaced by gradations between your chosen pair. This technique creates bold, cohesive visuals that are particularly effective for brand consistency, vintage aesthetics, and artistic treatments.
 
@@ -611,7 +611,7 @@ if (effectsOnCustom.length > 0) {
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

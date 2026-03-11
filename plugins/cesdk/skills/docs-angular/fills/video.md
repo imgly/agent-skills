@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Fills](./fills.md) > [Video](./fills/video.md)
 
@@ -19,7 +19,7 @@ text with videos using CE.SDK's video fill system.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-fills-video-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-fills-video-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-fills-video-browser/)
 
 Understanding the distinction between **video fills** and **video blocks** is essential. Video fills are fill objects that can be applied to any block supporting fills—shapes, text, backgrounds—to paint them with video content. Video blocks, created with `addVideo()`, are dedicated timeline elements with full editing capabilities like trimming and duration control. Video fills focus on applying video as a visual treatment, while video blocks provide complete video editing functionality.
 
@@ -669,7 +669,7 @@ Limit the number of simultaneously playing videos, especially on mobile devices.
 
 ## More Resources
 
-- **[Angular Documentation Index](https://img.ly/angular.md)** - Browse all Angular documentation
+- **[Angular Documentation Index](https://img.ly/docs/cesdk/angular.md)** - Browse all Angular documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./angular.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

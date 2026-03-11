@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Limitations](./create-video/limitations.md)
 
@@ -21,7 +21,7 @@ restrictions to help you plan video workflows within platform capabilities.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-video-limitations-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-video-limitations-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-limitations-browser/)
 
 Client-side video processing provides significant advantages for privacy and user experience, but it operates within the constraints of the user's device. Understanding these limitations helps you build applications that work reliably across different hardware configurations and browsers.
 
@@ -399,7 +399,7 @@ Common issues developers encounter related to video limitations:
 
 ## More Resources
 
-- **[SvelteKit Documentation Index](https://img.ly/sveltekit.md)** - Browse all SvelteKit documentation
+- **[SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md)** - Browse all SvelteKit documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./sveltekit.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

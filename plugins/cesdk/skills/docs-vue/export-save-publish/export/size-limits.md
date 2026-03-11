@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Export Media Assets](./export-save-publish/export.md) > [Size Limits](./export-save-publish/export/size-limits.md)
 
@@ -18,7 +18,7 @@ Configure size limits to balance quality and performance in CE.SDK applications.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-export-save-publish-size-limits-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-size-limits-browser/)
 
 CE.SDK processes images and videos client-side, which means size limits depend on the user's GPU capabilities and available memory. Understanding and configuring these limits helps you build applications that deliver high-quality results while maintaining smooth performance across different devices.
 
@@ -401,7 +401,7 @@ Explore related guides to build complete export workflows:
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

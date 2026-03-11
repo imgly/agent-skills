@@ -67,15 +67,26 @@ loadFromArchiveURL(url: string, overrideEditorConfig?: boolean, waitForResources
 Serializes the current scene into a string. Selection is discarded.
 
 ```typescript
-saveToString(allowedResourceSchemes?: string[], onDisallowedResourceScheme?: (url: string, dataHash: string) => Promise<string>): Promise<string>
+saveToString(options?: {
+        allowedResourceSchemes?: string[];
+        onDisallowedResourceScheme?: (url: string, dataHash: string) => Promise<string>;
+        compression?: {
+            format?: CompressionFormat;
+            level?: CompressionLevel;
+        };
+    }): Promise<string>
 ```
 
 **Parameters:**
-- `allowedResourceSchemes` - The resource schemes to allow in the saved string. Defaults to ['blob', 'bundle', 'file', 'http', 'https', 'opfs'].
-- `onDisallowedResourceScheme` - An optional callback that is called for each resource URL that has a scheme absent from
-`resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the
-resource's data. The callback should return a new URL for the resource, which will be used in the serialized
-scene. The callback is expected to return the original URL if no persistence is needed.
+- `options` - Save options containing:
+  - allowedResourceSchemes: The resource schemes to allow in the saved string. Defaults to ['blob', 'bundle', 'file', 'http', 'https', 'opfs'].
+  - onDisallowedResourceScheme: An optional callback that is called for each resource URL that has a scheme absent from
+    `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the
+    resource's data. The callback should return a new URL for the resource, which will be used in the serialized
+    scene. The callback is expected to return the original URL if no persistence is needed.
+  - compression: Optional compression settings containing:
+    - format: Compression format (None or Zstd). Defaults to None.
+    - level: Compression level (Fastest, Default, or Best). Defaults to Default.
 
 **Returns:** A promise that resolves with a string on success or an error on failure.
 

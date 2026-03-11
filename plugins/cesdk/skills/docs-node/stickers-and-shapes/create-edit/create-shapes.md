@@ -1,10 +1,12 @@
-> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Shapes](./shapes.md) > [Create Shapes](./stickers-and-shapes/create-edit/create-shapes.md)
 
 ---
 
-Create and configure geometric shapes programmatically using the Engine API—rectangles, ellipses, stars, polygons, lines, and custom vector paths combined with fills.
+Create and configure geometric shapes programmatically using the Engine
+API—rectangles, ellipses, stars, polygons, lines, and custom vector paths
+combined with fills.
 
 > **Reading time:** 15 minutes
 >
@@ -695,13 +697,81 @@ console.log('Available properties:', properties);
 | `block.setString(shape, prop, value)` | Set string property            | void              |
 | `block.destroy(shape)`                | Destroy shape and free memory  | void              |
 
+## Ellipse Type
+
+A shape block representing an ellipse.
+
+This section describes the properties available for the **Ellipse Type** (`//ly.img.ubq/shape/ellipse`) block type.
+
+| Property                   | Type | Default | Description |
+| -------------------------- | ---- | ------- | ----------- |
+| *(no specific properties)* |      |         |             |
+
+## Line Type
+
+A shape block representing a line.
+
+This section describes the properties available for the **Line Type** (`//ly.img.ubq/shape/line`) block type.
+
+| Property                   | Type | Default | Description |
+| -------------------------- | ---- | ------- | ----------- |
+| *(no specific properties)* |      |         |             |
+
+## Polygon Type
+
+A shape block representing a polygon.
+
+This section describes the properties available for the **Polygon Type** (`//ly.img.ubq/shape/polygon`) block type.
+
+| Property                     | Type    | Default | Description                                          |
+| ---------------------------- | ------- | ------- | ---------------------------------------------------- |
+| `shape/polygon/cornerRadius` | `Float` | `0`     | The radius for rounding the corners of the shape.    |
+| `shape/polygon/sides`        | `Int`   | `5`     | The number of sides the polygon is supposed to have. |
+
+## Rect Type
+
+A shape block representing a rectangle.
+
+This section describes the properties available for the **Rect Type** (`//ly.img.ubq/shape/rect`) block type.
+
+| Property                    | Type    | Default | Description                                                    |
+| --------------------------- | ------- | ------- | -------------------------------------------------------------- |
+| `shape/rect/cornerRadiusBL` | `Float` | `0`     | The bottom-left radius for rounding the corners of the shape.  |
+| `shape/rect/cornerRadiusBR` | `Float` | `0`     | The bottom-right radius for rounding the corners of the shape. |
+| `shape/rect/cornerRadiusTL` | `Float` | `0`     | The top-left radius for rounding the corners of the shape.     |
+| `shape/rect/cornerRadiusTR` | `Float` | `0`     | The top-right radius for rounding the corners of the shape.    |
+
+## Star Type
+
+A shape block representing a star.
+
+This section describes the properties available for the **Star Type** (`//ly.img.ubq/shape/star`) block type.
+
+| Property                   | Type    | Default | Description                                      |
+| -------------------------- | ------- | ------- | ------------------------------------------------ |
+| `shape/star/innerDiameter` | `Float` | `0.5`   | The inner diameter of the star.                  |
+| `shape/star/points`        | `Int`   | `5`     | The number of tips the star is supposed to have. |
+
+## Vector Path Type
+
+A shape block representing a custom vector path.
+
+This section describes the properties available for the **Vector Path Type** (`//ly.img.ubq/shape/vector_path`) block type.
+
+| Property                   | Type     | Default | Description                                            |
+| -------------------------- | -------- | ------- | ------------------------------------------------------ |
+| `shape/vector_path/height` | `Float`  | `100`   | The coordinate bounds in y direction.                  |
+| `shape/vector_path/path`   | `String` | `""`    | The path string, accepts a subset of svg path strings. |
+| `shape/vector_path/width`  | `Float`  | `100`   | The coordinate bounds in x direction.                  |
+
+
 
 
 ---
 
 ## More Resources
 
-- **[Node.js Documentation Index](https://img.ly/node.md)** - Browse all Node.js documentation
+- **[Node.js Documentation Index](https://img.ly/docs/cesdk/node.md)** - Browse all Node.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./node.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

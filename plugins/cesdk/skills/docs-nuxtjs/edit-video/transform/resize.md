@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Transform](./edit-video/transform.md) > [Resize](./edit-video/transform/resize.md)
 
@@ -18,7 +18,7 @@ The **CreativeEditor SDK (CE.SDK)** provides a video resizing feature. This guid
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-edit-video-transform-resize-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-edit-video-transform-resize-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-video-transform-resize-browser/)
 
 ```typescript file=@cesdk_web_examples/guides-edit-video-transform-resize-browser/browser.ts reference-only
 import CreativeEditorSDK, {
@@ -532,7 +532,7 @@ Now that you understand how to resize with the CE.SDK, take time to dive into ot
 
 ## More Resources
 
-- **[Nuxt.js Documentation Index](https://img.ly/nuxtjs.md)** - Browse all Nuxt.js documentation
+- **[Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md)** - Browse all Nuxt.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./nuxtjs.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

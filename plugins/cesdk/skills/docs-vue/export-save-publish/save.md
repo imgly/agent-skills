@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Save](./export-save-publish/save.md)
 
@@ -18,7 +18,7 @@ Save and serialize designs in CE.SDK for later retrieval, sharing, or storage us
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/examples/guides-export-save-publish-save-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-save-browser/)
 
 CE.SDK provides two formats for persisting designs. Choose the format based on your storage and portability requirements.
 
@@ -209,6 +209,33 @@ const archiveBlob = await engine.scene.saveToArchive();
 
 The archive includes all pages, elements, and asset data in a single portable file.
 
+## Compression Options
+
+CE.SDK supports optional compression for saved scenes to reduce file size. Compression is particularly useful for large scenes or when storage space is limited.
+
+```typescript
+// Save with Zstd compression (recommended)
+const compressed = await cesdk.engine.scene.saveToString({
+  compression: {
+    format: 'Zstd',
+    level: 'Default'
+  }
+});
+```
+
+**Compression Formats:**
+
+- `'None'` - No compression (default)
+- `'Zstd'` - Zstandard compression (recommended for best performance)
+
+**Compression Levels:**
+
+- `'Fastest'` - Fastest compression, larger output
+- `'Default'` - Balanced speed and size (recommended)
+- `'Best'` - Best compression, slower
+
+**Performance:** Compression adds minimal overhead (\<50ms) while reducing scene size by approximately 64%. The Default level provides the best balance of speed and compression ratio.
+
 ## Download to User Device
 
 Use `cesdk.utils.downloadFile()` to trigger a browser download with the correct MIME type.
@@ -307,7 +334,7 @@ The registered handler runs when the built-in save button is clicked or when the
 
 ## More Resources
 
-- **[Vue Documentation Index](https://img.ly/vue.md)** - Browse all Vue documentation
+- **[Vue Documentation Index](https://img.ly/docs/cesdk/vue.md)** - Browse all Vue documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./vue.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

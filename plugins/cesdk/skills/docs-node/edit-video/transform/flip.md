@@ -1,201 +1,521 @@
-> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Videos](./create-video.md) > [Transform](./edit-video/transform.md) > [Flip](./edit-video/transform/flip.md)
 
 ---
 
-Run **CE.SDK** in **Node.js server mode** to mirror video blocks programmatically—no client editor required. Flip clips before handing scenes to a browser runtime, enforcing template rules, or running automation jobs that prepare footage for downstream pipelines.
+Use **CE.SDK** for **Node.js** to **mirror video clips** horizontally or vertically programmatically without launching a client editor.
 
-> **Note:** CE.SDK for Node.js runs **headless**. To preview or export H.264/MP4, send the prepared scene to a browser runtime such as CE.SDK Web or Playwright (WebCodecs support) and encode the video there, or render frames into your encoder of choice.
+> **Reading time:** 5 minutes
+>
+> **Resources:**
+>
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+>
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-create-video-transform-flip-server-js)
+>
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-video-transform-flip-server-js)
+
+<NodejsVideoExportNotice {...props} />
+
+Flipping mirrors video content along horizontal or vertical axes. Unlike rotation, which changes the angle of content, flipping creates a true mirror reflection. The flip operation affects only the visual track—audio embedded in the video or on separate tracks remains unchanged, preserving lip-sync and sound design.
+
+```typescript file=@cesdk_web_examples/guides-create-video-transform-flip-server-js/server-js.ts reference-only
+import CreativeEngine from '@cesdk/node';
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
+import { config } from 'dotenv';
+
+// Load environment variables
+config();
+
+/**
+ * CE.SDK Server Guide: Flip Videos
+ *
+ * Demonstrates video flipping in headless mode:
+ * - Flip videos horizontally and vertically
+ * - Query flip states
+ * - Toggle flips programmatically
+ * - Flip multiple clips as a group
+ * - Lock flip operations in templates
+ */
+
+// Initialize CE.SDK engine in headless mode
+const engine = await CreativeEngine.init({
+  // license: process.env.CESDK_LICENSE,
+});
+
+try {
+  // Create a video scene with page dimensions - required for video editing
+  engine.scene.createVideo({
+    page: { size: { width: 1280, height: 720 } }
+  });
+
+  const page = engine.block.findByType('page')[0];
+
+  // Sample video URL
+  const videoUri = 'https://img.ly/static/ubq_video_samples/bbb.mp4';
+
+  // Block dimensions
+  const blockWidth = 280;
+  const blockHeight = 160;
+
+  // Centered grid layout (3 columns × 2 rows)
+  const col1X = 180;
+  const col2X = 500;
+  const col3X = 820;
+  const row1Y = 135;
+  const row2Y = 385;
+  const label1Y = 305;
+  const label2Y = 555;
+  const fontSize = 24;
+
+  // Helper to create centered white label
+  const createLabel = (text: string, x: number, y: number) => {
+    const label = engine.block.create('text');
+    engine.block.setString(label, 'text/text', text);
+    engine.block.setFloat(label, 'text/fontSize', fontSize);
+    engine.block.setEnum(label, 'text/horizontalAlignment', 'Center');
+    engine.block.setWidth(label, blockWidth);
+    engine.block.setPositionX(label, x);
+    engine.block.setPositionY(label, y);
+    // Set white text color
+    engine.block.setTextColor(label, { r: 1, g: 1, b: 1, a: 1 });
+    engine.block.appendChild(page, label);
+    return label;
+  };
+
+  console.log('Loading video blocks...');
+
+  // Demo 1: Original video (no flip)
+  const originalVideo = await engine.block.addVideo(
+    videoUri,
+    blockWidth,
+    blockHeight
+  );
+  engine.block.appendChild(page, originalVideo);
+  engine.block.setPositionX(originalVideo, col1X);
+  engine.block.setPositionY(originalVideo, row1Y);
+
+  createLabel('Original', col1X, label1Y);
+
+  // Demo 2: Horizontal flip
+  const horizontalFlipVideo = await engine.block.addVideo(
+    videoUri,
+    blockWidth,
+    blockHeight
+  );
+  engine.block.appendChild(page, horizontalFlipVideo);
+  engine.block.setPositionX(horizontalFlipVideo, col2X);
+  engine.block.setPositionY(horizontalFlipVideo, row1Y);
+
+  // Flip the video horizontally (mirrors left to right)
+  engine.block.setFlipHorizontal(horizontalFlipVideo, true);
+
+  createLabel('Horizontal', col2X, label1Y);
+
+  // Demo 3: Vertical flip
+  const verticalFlipVideo = await engine.block.addVideo(
+    videoUri,
+    blockWidth,
+    blockHeight
+  );
+  engine.block.appendChild(page, verticalFlipVideo);
+  engine.block.setPositionX(verticalFlipVideo, col3X);
+  engine.block.setPositionY(verticalFlipVideo, row1Y);
+
+  // Flip the video vertically (mirrors top to bottom)
+  engine.block.setFlipVertical(verticalFlipVideo, true);
+
+  createLabel('Vertical', col3X, label1Y);
+
+  // Demo 4: Both flips combined
+  const bothFlipVideo = await engine.block.addVideo(
+    videoUri,
+    blockWidth,
+    blockHeight
+  );
+  engine.block.appendChild(page, bothFlipVideo);
+  engine.block.setPositionX(bothFlipVideo, col1X);
+  engine.block.setPositionY(bothFlipVideo, row2Y);
+
+  // Combine horizontal and vertical flips
+  engine.block.setFlipHorizontal(bothFlipVideo, true);
+  engine.block.setFlipVertical(bothFlipVideo, true);
+
+  createLabel('Both', col1X, label2Y);
+
+  // Query flip states
+  const isFlippedH = engine.block.getFlipHorizontal(horizontalFlipVideo);
+  const isFlippedV = engine.block.getFlipVertical(verticalFlipVideo);
+  console.log(`Horizontal flip state: ${isFlippedH}`);
+  console.log(`Vertical flip state: ${isFlippedV}`);
+
+  // Toggle flip by reading current state and setting opposite
+  const currentFlip = engine.block.getFlipHorizontal(originalVideo);
+  engine.block.setFlipHorizontal(originalVideo, !currentFlip);
+  console.log(`Toggled original video flip: ${!currentFlip}`);
+  // Toggle back to keep original state for demo
+  engine.block.setFlipHorizontal(originalVideo, currentFlip);
+
+  // Demo 5: Group flip - flip multiple videos together
+  const smallWidth = blockWidth / 2;
+  const smallHeight = blockHeight / 2;
+  const groupGap = 10;
+  // Center the pair horizontally within column 2
+  const groupPairWidth = smallWidth * 2 + groupGap;
+  const groupStartX = col2X + (blockWidth - groupPairWidth) / 2;
+  // Center vertically within row 2 (smaller blocks)
+  const groupY = row2Y + (blockHeight - smallHeight) / 2;
+
+  const groupVideo1 = await engine.block.addVideo(
+    videoUri,
+    smallWidth,
+    smallHeight
+  );
+  engine.block.appendChild(page, groupVideo1);
+  engine.block.setPositionX(groupVideo1, groupStartX);
+  engine.block.setPositionY(groupVideo1, groupY);
+
+  const groupVideo2 = await engine.block.addVideo(
+    videoUri,
+    smallWidth,
+    smallHeight
+  );
+  engine.block.appendChild(page, groupVideo2);
+  engine.block.setPositionX(groupVideo2, groupStartX + smallWidth + groupGap);
+  engine.block.setPositionY(groupVideo2, groupY);
+
+  // Group the videos and flip them together
+  const groupId = engine.block.group([groupVideo1, groupVideo2]);
+  engine.block.setFlipHorizontal(groupId, true);
+
+  createLabel('Group Flip', col2X, label2Y);
+
+  // Demo 6: Lock flip scope
+  const lockedVideo = await engine.block.addVideo(
+    videoUri,
+    blockWidth,
+    blockHeight
+  );
+  engine.block.appendChild(page, lockedVideo);
+  engine.block.setPositionX(lockedVideo, col3X);
+  engine.block.setPositionY(lockedVideo, row2Y);
+
+  // Disable flip operations for this block
+  engine.block.setScopeEnabled(lockedVideo, 'layer/flip', false);
+
+  // Verify scope is disabled
+  const canFlip = engine.block.isScopeEnabled(lockedVideo, 'layer/flip');
+  console.log(`Flip enabled for locked video: ${canFlip}`);
+
+  createLabel('Flip Locked', col3X, label2Y);
+
+  // Export the scene for later use
+  // The scene file preserves all flip configurations and can be loaded in
+  // a browser environment or sent to CE.SDK Renderer for video export.
+  console.log('Exporting scene...');
+
+  const sceneString = await engine.scene.saveToString();
+
+  // Ensure output directory exists
+  if (!existsSync('output')) {
+    mkdirSync('output');
+  }
+
+  writeFileSync('output/flip-videos.scene', sceneString);
+  console.log('Exported to output/flip-videos.scene');
+
+  console.log('Video flip guide completed successfully.');
+} finally {
+  engine.dispose();
+}
+```
+
+This guide covers how to flip videos programmatically using the Engine API in a headless Node.js environment.
 
 ## Requirements
 
 - CE.SDK server package: `npm install @cesdk/node`
 - **Node.js 18** or newer
-- CE.SDK license key and `baseURL` to the CE.SDK asset bundle
 
-## What You’ll Learn
+## What You'll Learn
 
-- Flip video blocks **horizontally or vertically** server-side.
-- Mirror multiple clips together during automation jobs.
-- **Reset** or toggle flip states while persisting scene changes.
+- Flip a video clip **horizontally or vertically**.
+- Use flipping in template or timeline **workflows**.
+- **Reset** or toggle a flip programmatically.
+- **Lock** flip operations for template enforcement.
 
 ## When to Use
 
 Server-side flipping helps when you need to:
 
-- Prepare mirrored variants of clips for A/B testing or template variations.
-- Align **eyelines** between front and rear camera footage before export.
-- Keep branded elements facing inward on split-screen layouts that ship from templates.
-
-## Load and Flip Video Blocks
-
-Every video clip sits inside a **graphic** block with a video fill. After initializing the engine and loading a scene, identify the blocks you want to flip:
-
-```js
-import CreativeEngine from '@cesdk/node';
-
-const engine = await CreativeEngine.init({
-  license: process.env.LICENSE_KEY,
-  baseURL: process.env.CESDK_BASE_URL
-});
-
-await engine.addDefaultAssetSources();
-await engine.scene.loadFromURL(
-  'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_video_landscape_1.scene'
-);
-
-const graphics = engine.block.findByType('graphic');
-const videoBlocks = graphics.filter(
-  (id) => engine.block.getEnum(id, 'fill/type') === 'video'
-);
-
-if (videoBlocks.length === 0) {
-  throw new Error('No video blocks found in the scene.');
-}
-
-// Apply flips, then persist the scene before disposing of the engine.
-```
-
-Once you have the block IDs, use the flip helpers to mirror each clip as needed. Persist the modified scene with `engine.scene.saveToString()` or `engine.scene.saveToArchive()` before disposing of the engine.
+- Create **symmetrical** video layouts or animated collages.
+- Align **eyelines** when switching between front and rear cameras.
+- Keep **branded elements** facing inward on split-screen layouts.
+- Enforce **template layouts** that should freeze flip states.
 
 ## How Flipping Works
 
-The CreativeEditor represents each video clip as a `graphic` block with:
+CE.SDK represents each video clip as a graphic block with transforms, including flip states. The flip API uses boolean setters and getters that apply to video blocks in the same way they apply to image blocks.
 
-- Size
-- Transforms
-- Grouping
-- A fill set to a *video* asset
+**Horizontal flipping** mirrors content left-to-right, creating a reflection as if viewed in a vertical mirror. **Vertical flipping** mirrors content top-to-bottom, inverting the image vertically.
 
-Use the BlockAPI boolean helpers—identical to the image flip workflow—to mirror or restore clips.
+## Programmatic Video Flipping
 
-### Flip Horizontally or Vertically
+### Initialize CE.SDK
 
-Call the flip helper with the block ID and a boolean:
+For headless video processing, we initialize CE.SDK's Node.js engine. This provides full API access to the flipping system without browser dependencies.
 
-```js
-engine.block.setFlipHorizontal(videoBlock, true); // Mirror left/right
-engine.block.setFlipVertical(videoBlock, true);   // Mirror top/bottom
+```typescript highlight-setup
+// Initialize CE.SDK engine in headless mode
+const engine = await CreativeEngine.init({
+  // license: process.env.CESDK_LICENSE,
+});
 ```
 
-The flip applies immediately in memory. Save or export the scene after you finish updates so the change appears once you open the scene in a browser runtime.
+We create a video scene with specific page dimensions. The headless engine gives you complete control over flip operations, ideal for automated workflows and batch processing.
 
-<Picture src={flipVideo} style={{ width: '85%' }} alt="Video flipped horizontally" formats={['webp']} />
+```typescript highlight-create-video-scene
+  // Create a video scene with page dimensions - required for video editing
+  engine.scene.createVideo({
+    page: { size: { width: 1280, height: 720 } }
+  });
 
-### Query the Flip Status
-
-Check the current flip flags before toggling or resetting:
-
-```js
-const flippedH = engine.block.getFlipHorizontal(videoBlock);
-const flippedV = engine.block.getFlipVertical(videoBlock);
+  const page = engine.block.findByType('page')[0];
 ```
 
-Both helpers return a boolean that reflects the block’s current orientation.
+### Flip a Video Horizontally
 
-> **Note:** Flipping only affects the **visual track**. Audio (either embedded or separate) isn’t reversed, so **lip-sync and sound design stay intact**.
+To flip a video horizontally, call `engine.block.setFlipHorizontal()` with the block ID and `true`. This mirrors the content left-to-right.
 
-### Flip Clips Together
+```typescript highlight-flip-horizontal
+  // Demo 1: Original video (no flip)
+  const originalVideo = await engine.block.addVideo(
+    videoUri,
+    blockWidth,
+    blockHeight
+  );
+  engine.block.appendChild(page, originalVideo);
+  engine.block.setPositionX(originalVideo, col1X);
+  engine.block.setPositionY(originalVideo, row1Y);
 
-Avoid repeating the same flip call for every block by grouping the clips first:
+  createLabel('Original', col1X, label1Y);
 
-```js
-const groupId = await engine.block.group([clipId1, clipId2, clipId3]);
-engine.block.setFlipVertical(groupId, true);
+  // Demo 2: Horizontal flip
+  const horizontalFlipVideo = await engine.block.addVideo(
+    videoUri,
+    blockWidth,
+    blockHeight
+  );
+  engine.block.appendChild(page, horizontalFlipVideo);
+  engine.block.setPositionX(horizontalFlipVideo, col2X);
+  engine.block.setPositionY(horizontalFlipVideo, row1Y);
+
+  // Flip the video horizontally (mirrors left to right)
+  engine.block.setFlipHorizontal(horizontalFlipVideo, true);
 ```
 
-<Picture src={flipGroup} style={{ width: '85%' }} alt="Grouped video flipped horizontally" formats={['webp']} />
+The flip is applied immediately. To restore the original orientation, call the same method with `false`.
 
-When you flip the group:
+### Flip a Video Vertically
 
-- The flip mirrors every child at once.
-- Each clip keeps the same **spacing and order** inside the group hierarchy.
-- Future flips on individual clips stack on top of the group-level flip, so track the group transform before applying more flips.
+Vertical flipping mirrors content top-to-bottom. We use `engine.block.setFlipVertical()` in the same way.
 
-## Restore or Manage Flip States
+```typescript highlight-flip-vertical
+  // Demo 3: Vertical flip
+  const verticalFlipVideo = await engine.block.addVideo(
+    videoUri,
+    blockWidth,
+    blockHeight
+  );
+  engine.block.appendChild(page, verticalFlipVideo);
+  engine.block.setPositionX(verticalFlipVideo, col3X);
+  engine.block.setPositionY(verticalFlipVideo, row1Y);
 
-The CE.SDK provides ways to reset or toggle a flip. You can either:
-
-- **Reset:** when you want to restore a clip to its original orientation.
-- **Code a toggle:** when you need a quick way to switch the current flip state on and off.
-
-### Reset a Flip
-
-To reset a clip to its default orientation:
-
-```js
-engine.block.setFlipHorizontal(videoBlock, false);
+  // Flip the video vertically (mirrors top to bottom)
+  engine.block.setFlipVertical(verticalFlipVideo, true);
 ```
 
-### Switch Flip On or Off
+### Combine Both Flips
 
-Calling the same flip twice:
+You can apply both horizontal and vertical flips to the same block. This rotates the content 180 degrees while maintaining mirror properties on both axes.
 
-- **Doesn’t** revert to the original orientation.
-- Issues two flips in the same direction.
-- Leaves the clip mirrored.
+```typescript highlight-flip-both
+  // Demo 4: Both flips combined
+  const bothFlipVideo = await engine.block.addVideo(
+    videoUri,
+    blockWidth,
+    blockHeight
+  );
+  engine.block.appendChild(page, bothFlipVideo);
+  engine.block.setPositionX(bothFlipVideo, col1X);
+  engine.block.setPositionY(bothFlipVideo, row2Y);
 
-To “toggle” the flip in your code:
-
-```js
-const isFlipped = engine.block.getFlipHorizontal(videoBlock);
-engine.block.setFlipHorizontal(videoBlock, !isFlipped);
+  // Combine horizontal and vertical flips
+  engine.block.setFlipHorizontal(bothFlipVideo, true);
+  engine.block.setFlipVertical(bothFlipVideo, true);
 ```
 
-In the preceding code, two actions are possible depending on the value stored in `isFlipped`:
+### Query Flip State
 
-- `true`: `!isFlipped` sets the horizontal flip to `false`.
-- `false`: `!isFlipped` sets the horizontal flip to `true`.
+Before applying changes, you may want to check the current flip state. Use `engine.block.getFlipHorizontal()` and `engine.block.getFlipVertical()` to query the current values.
 
-Use this pattern to:
-
-- Script command-line toggles
-- Expose a REST endpoint that flips clips on demand.
-
-## Lock or Constrain Flipping
-
-CE.SDK provides a way to prevent editors from flipping a video. This can be useful to:
-
-- Avoid accidentally mirroring text.
-- Protect UI mock-ups or frames that must stay in a fixed position.
-- Keep templates brand-locked.
-
-To deactivate flipping, use `setScopeEnabled` with:
-
-- The `"layer/flip"` key
-- The boolean set to `false`
-
-```js
-engine.block.setScopeEnabled(videoBlock, 'layer/flip', false);
+```typescript highlight-get-flip-state
+// Query flip states
+const isFlippedH = engine.block.getFlipHorizontal(horizontalFlipVideo);
+const isFlippedV = engine.block.getFlipVertical(verticalFlipVideo);
+console.log(`Horizontal flip state: ${isFlippedH}`);
+console.log(`Vertical flip state: ${isFlippedV}`);
 ```
+
+Both methods return boolean values indicating whether the block is currently flipped on that axis.
+
+### Toggle Flip On or Off
+
+Calling `setFlipHorizontal(block, true)` twice doesn't revert the flip—it leaves the block mirrored. To toggle the flip state, read the current value and set the opposite.
+
+```typescript highlight-toggle-flip
+// Toggle flip by reading current state and setting opposite
+const currentFlip = engine.block.getFlipHorizontal(originalVideo);
+engine.block.setFlipHorizontal(originalVideo, !currentFlip);
+console.log(`Toggled original video flip: ${!currentFlip}`);
+// Toggle back to keep original state for demo
+engine.block.setFlipHorizontal(originalVideo, currentFlip);
+```
+
+This pattern is useful for implementing toggle buttons in automated pipelines or batch processing workflows.
+
+## Flipping Multiple Clips Together
+
+### Group Flipping
+
+When you need to flip multiple video blocks as a unit, group them first using `engine.block.group()`. Applying a flip to the group mirrors all elements while preserving their relative positions.
+
+```typescript highlight-group-flip
+  // Demo 5: Group flip - flip multiple videos together
+  const smallWidth = blockWidth / 2;
+  const smallHeight = blockHeight / 2;
+  const groupGap = 10;
+  // Center the pair horizontally within column 2
+  const groupPairWidth = smallWidth * 2 + groupGap;
+  const groupStartX = col2X + (blockWidth - groupPairWidth) / 2;
+  // Center vertically within row 2 (smaller blocks)
+  const groupY = row2Y + (blockHeight - smallHeight) / 2;
+
+  const groupVideo1 = await engine.block.addVideo(
+    videoUri,
+    smallWidth,
+    smallHeight
+  );
+  engine.block.appendChild(page, groupVideo1);
+  engine.block.setPositionX(groupVideo1, groupStartX);
+  engine.block.setPositionY(groupVideo1, groupY);
+
+  const groupVideo2 = await engine.block.addVideo(
+    videoUri,
+    smallWidth,
+    smallHeight
+  );
+  engine.block.appendChild(page, groupVideo2);
+  engine.block.setPositionX(groupVideo2, groupStartX + smallWidth + groupGap);
+  engine.block.setPositionY(groupVideo2, groupY);
+
+  // Group the videos and flip them together
+  const groupId = engine.block.group([groupVideo1, groupVideo2]);
+  engine.block.setFlipHorizontal(groupId, true);
+```
+
+When you flip a group:
+
+- All child blocks mirror together
+- Relative spacing and positioning remain intact
+- The flip applies to the group as a whole, not individual children
+
+## Locking Flip Operations
+
+### Prevent Flipping in Templates
+
+For template-based workflows, you may want to prevent certain blocks from being flipped. Use `engine.block.setScopeEnabled()` with the `layer/flip` scope.
+
+```typescript highlight-lock-flip
+  // Demo 6: Lock flip scope
+  const lockedVideo = await engine.block.addVideo(
+    videoUri,
+    blockWidth,
+    blockHeight
+  );
+  engine.block.appendChild(page, lockedVideo);
+  engine.block.setPositionX(lockedVideo, col3X);
+  engine.block.setPositionY(lockedVideo, row2Y);
+
+  // Disable flip operations for this block
+  engine.block.setScopeEnabled(lockedVideo, 'layer/flip', false);
+
+  // Verify scope is disabled
+  const canFlip = engine.block.isScopeEnabled(lockedVideo, 'layer/flip');
+  console.log(`Flip enabled for locked video: ${canFlip}`);
+```
+
+Setting the scope to `false` disables flip controls for that block. The block can still be flipped programmatically, but UI controls (when present) will be disabled.
+
+For complete transform prevention, use `engine.block.setTransformLocked()` to lock all transforms including flip, rotation, and scaling.
+
+## Exporting Results
+
+### Export Scene File
+
+After applying flip operations, export the scene to preserve your configurations. Scene files store all block properties including flip states, positions, and groupings.
+
+```typescript highlight-export
+  // Export the scene for later use
+  // The scene file preserves all flip configurations and can be loaded in
+  // a browser environment or sent to CE.SDK Renderer for video export.
+  console.log('Exporting scene...');
+
+  const sceneString = await engine.scene.saveToString();
+
+  // Ensure output directory exists
+  if (!existsSync('output')) {
+    mkdirSync('output');
+  }
+
+  writeFileSync('output/flip-videos.scene', sceneString);
+  console.log('Exported to output/flip-videos.scene');
+```
+
+The exported `.scene` file can be loaded in a browser environment for further editing or sent to CE.SDK Renderer for final video export.
+
+Always dispose of the engine instance when processing is complete to free resources.
 
 ## Troubleshooting
 
-| Issue | Solution |
+### Flip Not Applied
+
+If setting flip values has no visible effect, verify that:
+
+- The block ID is valid and references a video block
+- The video resource has finished loading
+- No parent group has an opposing flip applied
+
+### Flip Operations Blocked
+
+If flip operations appear blocked, check whether the `layer/flip` scope is disabled for that block. Use `engine.block.isScopeEnabled(block, 'layer/flip')` to verify.
+
+### Parent Group Conflicts
+
+When a parent group is flipped, child blocks appear flipped relative to the group. If you flip both the group and a child, the flips combine. To determine the visual orientation, consider the flip state of the entire hierarchy.
+
+## API References in this Guide
+
+| Method | Description |
 | --- | --- |
-| ❌ Flip disappears when opening the scene in the browser editor | ✅ Save the scene (`engine.scene.saveToString()` or archive) after flipping and load that exported scene in the client. |
-| ❌ Flip seems ignored | ✅ Check whether the parent group is already flipped; group and block flips stack. |
-| ❌ Users can still flip in UI | ✅ Turn off the `"layer/flip"` scope or lock transforms in the template. |
-| ❌ Automation fails on certain clips | ✅ Ensure each block’s fill type is `video` before calling the flip helpers. |
-
-## Next Steps
-
-Now that you understand how to flip with the CE.SDK, take time to dive into other related features:
-
-- [Create a template](./create-templates.md) to enforce design rules.
-- [Get an overview](./overview.md) of the CE.SDK's video editing features.
-
-## API Reference Summary
-
-| BlockAPI  `engine.block.<>` | Purpose |
-| --- | --- |
-| `setFlipHorizontal(blockId, boolean)` | Mirror a block left/right or restore the default orientation. |
-| `setFlipVertical(blockId, boolean)` | Mirror a block top/bottom or restore the default orientation. |
-| `getFlipHorizontal(blockId)` | Check whether the block is currently flipped horizontally. |
-| `getFlipVertical(blockId)` | Check whether the block is currently flipped vertically. |
-| `group(blockIds[])` | Group blocks so you can flip them together. |
-| `setScopeEnabled(blockId, "layer/flip", boolean)` | Activate or deactivate flip controls to lock orientation. |
+| `engine.block.setFlipHorizontal(blockId, boolean)` | Mirror a block left/right or restore default orientation |
+| `engine.block.setFlipVertical(blockId, boolean)` | Mirror a block top/bottom or restore default orientation |
+| `engine.block.getFlipHorizontal(blockId)` | Check whether the block is currently flipped horizontally |
+| `engine.block.getFlipVertical(blockId)` | Check whether the block is currently flipped vertically |
+| `engine.block.group(blockIds[])` | Group blocks to flip them together |
+| `engine.block.setScopeEnabled(blockId, 'layer/flip', boolean)` | Enable or disable flip controls for templates |
+| `engine.block.setTransformLocked(blockId, boolean)` | Lock all transforms including flip |
 
 
 
@@ -203,7 +523,7 @@ Now that you understand how to flip with the CE.SDK, take time to dive into othe
 
 ## More Resources
 
-- **[Node.js Documentation Index](https://img.ly/node.md)** - Browse all Node.js documentation
+- **[Node.js Documentation Index](https://img.ly/docs/cesdk/node.md)** - Browse all Node.js documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./node.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

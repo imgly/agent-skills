@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Text](./text.md) > [Emojis](./text/emojis.md)
 
@@ -18,7 +18,7 @@ Configure emoji rendering in CE.SDK text blocks using a dedicated emoji font for
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-text-emojis-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-text-emojis-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-emojis-browser/)
 
 Emojis are Unicode characters representing pictographic symbols. They can be single code points (😀), multi-character sequences (flags like 🇩🇪), ZWJ-joined combinations (👨‍👩‍👧), or skin tone variants (👋🏽). CE.SDK renders text to canvas for precise layout control, which bypasses browser font fallback. This means CE.SDK must explicitly provide an emoji font—it uses Noto Color Emoji by default.
 
@@ -309,7 +309,7 @@ CE.SDK has a `forceSystemEmojis` setting (default: `true`). Despite its name, th
 
 ## More Resources
 
-- **[Electron Documentation Index](https://img.ly/electron.md)** - Browse all Electron documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

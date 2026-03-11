@@ -1,4 +1,4 @@
-> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
 **Navigation:** [Guides](./guides.md) > [Create and Edit Audio](./create-audio/audio.md) > [Adjust Speed](./create-video/audio/adjust-speed.md)
 
@@ -19,7 +19,7 @@ timeline UI and programmatic speed adjustment API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-audio-audio-adjust-speed-browser)
 >
-> - [Live demo](https://img.ly/examples/guides-create-audio-audio-adjust-speed-browser/)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-audio-audio-adjust-speed-browser/)
 
 Playback speed adjustment changes how fast or slow audio plays without changing its pitch (though pitch shifting may occur depending on the audio processing implementation). A speed multiplier of 1.0 represents normal speed, values below 1.0 slow down playback, and values above 1.0 speed it up. This technique is commonly used for podcast speed controls, time-compressed narration, slow-motion audio effects, and accessibility features.
 
@@ -301,7 +301,7 @@ This automatic adjustment keeps your timeline synchronized. If you have multiple
 
 ## More Resources
 
-- **[Vanilla JS/TS Documentation Index](https://img.ly/js.md)** - Browse all Vanilla JS/TS documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
 - **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

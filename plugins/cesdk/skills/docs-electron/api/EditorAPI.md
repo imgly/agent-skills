@@ -897,6 +897,28 @@ getMimeType(uri: string): Promise<string>
 
 **Returns:** Promise resolving to the resource's MIME type.
 
+### getFontMetrics()
+
+Gets the font metrics for a given font file URI.
+If the font is not yet loaded, it will be fetched asynchronously.
+The returned metrics are in the font's design units coordinate space.
+```javascript
+const metrics = await engine.editor.getFontMetrics('/extensions/ly.img.cesdk.fonts/fonts/Roboto/Roboto-Regular.ttf');
+console.log(metrics.ascender, metrics.descender, metrics.unitsPerEm);
+console.log(metrics.lineGap);
+console.log(metrics.capHeight, metrics.xHeight);
+console.log(metrics.underlineOffset, metrics.underlineSize, metrics.strikeoutOffset, metrics.strikeoutSize);
+```
+
+```typescript
+getFontMetrics(fontFileUri: string): Promise<FontMetrics>
+```
+
+**Parameters:**
+- `fontFileUri` - The URI of the font file to get metrics from.
+
+**Returns:** A promise resolving to the font metrics.
+
 ### findAllTransientResources()
 
 Get all transient resources that would be lost during export.
