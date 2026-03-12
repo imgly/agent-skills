@@ -49,24 +49,97 @@ Apply this before passing URIs to `setSourceSet` or `setString('fill/image/image
 
 ---
 
-## `createDesignScene()` Can Reset Feature Flags
+## Scene Creation Can Reset Feature Flags
 
-**Problem:** Calling `cesdk.createDesignScene()` may reset editor settings like `singlePageMode` or `page/dimOutOfPageAreas`. Settings applied in the config's `featureFlags` may not survive scene creation.
+**Problem:** Scene creation may reset editor settings like `singlePageMode` or `page/dimOutOfPageAreas`. Settings applied in the config's `featureFlags` may not survive scene creation.
 
-**Solution:** Either:
-- Use `engine.scene.create('Free')` instead (gives full control, no side effects)
-- Or re-apply settings **after** calling `createDesignScene()`
+**Solution:** Use the action-based scene creation, or manual `engine.scene.create()` for full control:
 
 ```typescript
-// Approach A: Manual scene creation (preferred for mockup editors)
+// Approach A: Action-based scene creation (recommended)
+await cesdk.actions.run('scene.create', {
+  page: {
+    sourceId: 'ly.img.page.presets',
+    assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+  }
+});
+
+// For video scenes, add mode: 'Video'
+await cesdk.actions.run('scene.create', {
+  mode: 'Video',
+  page: {
+    sourceId: 'ly.img.page.presets',
+    assetId: 'ly.img.page.presets.instagram.story'
+  }
+});
+
+// With custom dimensions
+await cesdk.actions.run('scene.create', {
+  page: { width: 1080, height: 1920, unit: 'Pixel' }
+});
+
+// Approach B: Manual scene creation (preferred for mockup editors)
 engine.scene.create('Free');
 engine.editor.setSettingBool('page/dimOutOfPageAreas', false);
-
-// Approach B: Re-apply after createDesignScene
-await cesdk.createDesignScene();
-engine.editor.setSettingBool('page/dimOutOfPageAreas', false);
-engine.editor.setSettingBool('page/title/show', false);
 ```
+
+---
+
+## Asset Sources Must Be Added as Plugins
+
+**Problem:** Asset sources are not available by default. Each asset source must be explicitly added as a plugin.
+
+**Solution:** Import and add individual asset source plugins from `@cesdk/cesdk-js/plugins`:
+
+```typescript
+import {
+  BlurAssetSource, ColorPaletteAssetSource, CropPresetsAssetSource,
+  DemoAssetSources, EffectsAssetSource, FiltersAssetSource,
+  PagePresetsAssetSource, StickerAssetSource, TextAssetSource,
+  TextComponentAssetSource, TypefaceAssetSource, UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+
+// Default asset source plugins
+await cesdk.addPlugin(new BlurAssetSource());
+await cesdk.addPlugin(new ColorPaletteAssetSource());
+await cesdk.addPlugin(new CropPresetsAssetSource());
+await cesdk.addPlugin(new EffectsAssetSource());
+await cesdk.addPlugin(new FiltersAssetSource());
+await cesdk.addPlugin(new PagePresetsAssetSource());
+await cesdk.addPlugin(new StickerAssetSource());
+await cesdk.addPlugin(new TextAssetSource());
+await cesdk.addPlugin(new TextComponentAssetSource());
+await cesdk.addPlugin(new TypefaceAssetSource());
+await cesdk.addPlugin(new VectorShapeAssetSource());
+
+// Demo and upload sources
+await cesdk.addPlugin(
+  new UploadAssetSources({ include: ['ly.img.image.upload'] })
+);
+await cesdk.addPlugin(
+  new DemoAssetSources({
+    include: ['ly.img.image.*', 'ly.img.templates.social.*']
+  })
+);
+```
+
+Asset source IDs:
+
+| Plugin Class | Asset Source ID |
+|-------------|----------------|
+| `BlurAssetSource` | `ly.img.blur` |
+| `CaptionPresetsAssetSource` | `ly.img.caption.presets` |
+| `ColorPaletteAssetSource` | `ly.img.color.palette` |
+| `CropPresetsAssetSource` | `ly.img.crop.presets` |
+| `EffectsAssetSource` | `ly.img.effect` |
+| `FiltersAssetSource` | `ly.img.filter` |
+| `PagePresetsAssetSource` | `ly.img.page.presets` |
+| `StickerAssetSource` | `ly.img.sticker` |
+| `TextAssetSource` | `ly.img.text` |
+| `TextComponentAssetSource` | `ly.img.text.components` |
+| `TypefaceAssetSource` | `ly.img.typeface` |
+| `VectorShapeAssetSource` | `ly.img.vector.shape` |
 
 ---
 
@@ -95,11 +168,14 @@ Type of member named "contentFillMode" on "ImageFill" is not reflected.
 **Solution:** Content fill mode is set on the **block**, not the fill:
 
 ```typescript
-// Wrong
+// Wrong — this property does not exist on the fill
 engine.block.setString(fill, 'fill/content/fillMode', 'Cover');
 
-// Correct
+// Correct — use the convenience method on the block
 engine.block.setContentFillMode(graphicBlock, 'Cover');
+
+// Also correct — use setEnum with the property path
+engine.block.setEnum(graphicBlock, 'contentFill/mode', 'Cover');
 ```
 
 ---
@@ -124,21 +200,22 @@ The `Source` type from `@cesdk/engine` defines the shape: `{ uri: string; width:
 
 ---
 
-## `zoomToBlock` Is Not for Page Switching
+## `zoomToBlock` Uses an Options Object
 
-**Problem:** Using `engine.scene.zoomToBlock(pageBlock, ...)` to switch between pages in single-page mode does not reliably change the active page. The engine may still consider the previous page as "current."
+**Problem:** `zoomToBlock` requires an options object for padding, not positional arguments.
 
-**Solution:** Use `cesdk.unstable_switchPage(pageId)` which properly updates the active page:
+**Solution:**
 
 ```typescript
-// Wrong — only changes viewport, not active page
-await engine.scene.zoomToBlock(pageBlock, 40, 40, 40, 40);
-
-// Correct — switches active page
-await cesdk.unstable_switchPage(pageBlock);
+await engine.scene.zoomToBlock(pageBlock, {
+  paddingLeft: 40,
+  paddingTop: 40,
+  paddingRight: 40,
+  paddingBottom: 40
+});
 ```
 
-After switching, zoom to the associated mockup block (not the page) for proper framing.
+**Note:** `zoomToBlock` is not for page switching. It only changes the viewport, not the active page. Use `cesdk.unstable_switchPage(pageId)` to switch pages in single-page mode.
 
 ---
 
@@ -153,3 +230,11 @@ engine.block.setScopeEnabled(page, 'editor/select', false);
 ```
 
 This prevents the page from being selected while still allowing interaction with child elements (text, images, shapes).
+
+---
+
+## Never Rewrite Starter Kit Files From Scratch
+
+**Problem:** Writing `index.html`, `vite.config.ts`, `tsconfig.json`, or `tsconfig.base.json` from scratch leads to missing styles. The starter kit's `index.html` contains critical CSS resets (zero margin/padding, overflow hidden, overscroll-behavior) required for full-bleed editors.
+
+**Solution:** Copy these files directly from the starter kit and adapt only what's necessary (e.g., changing the script `src` for React). Do not rewrite them from scratch when the kit already provides them.

@@ -30,6 +30,15 @@ The first mount's `init` function may still be executing async operations when t
 Add unique markers to confirm which execution you're observing:
 
 ```ts
+import { DesignEditorConfig } from './config/plugin';
+import {
+  BlurAssetSource, ColorPaletteAssetSource, CropPresetsAssetSource,
+  DemoAssetSources, EffectsAssetSource, FiltersAssetSource,
+  PagePresetsAssetSource, StickerAssetSource, TextAssetSource,
+  TextComponentAssetSource, TypefaceAssetSource, UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+
 let initCounter = 0;
 
 <CreativeEditor
@@ -37,10 +46,38 @@ let initCounter = 0;
     const runId = ++initCounter;
     console.log(`[INIT run=${runId}] Starting`);
 
-    await cesdk.addDefaultAssetSources();
+    // Config plugin
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Default asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    // Demo and upload sources
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({ include: ['ly.img.image.*'] })
+    );
     console.log(`[INIT run=${runId}] Assets loaded`);
 
-    await cesdk.createDesignScene();
+    // Create scene
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
     console.log(`[INIT run=${runId}] Scene created`);
 
     // ... more setup ...
