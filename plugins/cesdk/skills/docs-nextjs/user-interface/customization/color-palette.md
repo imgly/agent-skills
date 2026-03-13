@@ -245,13 +245,13 @@ cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
     'brandSecondaryColors',
     'brandNeutralColors',
     'accentColors',
-    // Note: 'ly.img.colors.defaultPalette' is intentionally omitted
+    // Note: 'ly.img.color.palette' is intentionally omitted
     // to replace the default palette completely
   ],
 });
 ```
 
-The `sourceIds` array determines both which libraries appear and their order in the UI. By omitting `ly.img.colors.defaultPalette`, we completely replace the default palette with our custom colors.
+The `sourceIds` array determines both which libraries appear and their order in the UI. By omitting `ly.img.color.palette`, we completely replace the default palette with our custom colors.
 
 ## Restrict the Color Mode
 
@@ -330,7 +330,7 @@ cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
   sourceIds: [
     'brandPrimaryColors',
     'brandSecondaryColors',
-    'ly.img.colors.defaultPalette', // Include default palette
+    'ly.img.color.palette', // Include default palette
     'brandNeutralColors',
   ],
 });

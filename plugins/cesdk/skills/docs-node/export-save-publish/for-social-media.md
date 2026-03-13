@@ -42,9 +42,6 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Add default asset sources so assets in the scene can be resolved
-  await engine.addDefaultAssetSources();
-
   // Load a template scene from a remote URL
   await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
@@ -90,7 +87,7 @@ This guide covers loading a template scene, exporting with specific dimensions a
 
 ## Loading a Scene
 
-Before exporting, load a template scene with visual content. The `addDefaultAssetSources()` call ensures any assets referenced in the template can be resolved.
+Before exporting, load a template scene with visual content.
 
 ```typescript highlight-setup
 // Initialize CE.SDK engine with baseURL for asset loading
@@ -99,9 +96,6 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Add default asset sources so assets in the scene can be resolved
-  await engine.addDefaultAssetSources();
-
   // Load a template scene from a remote URL
   await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'

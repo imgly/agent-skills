@@ -426,7 +426,7 @@ cesdk.feature.enable('ly.img.timeline');
 cesdk.feature.enable('ly.img.playback');
 ```
 
-Video mode is required for trimming operations. Design mode doesn't provide timeline-based editing capabilities, so we must use `createVideoScene()` to access trim functionality.
+Video mode is required for trimming operations. Design mode doesn't provide timeline-based editing capabilities, so we must use `cesdk.actions.run('scene.create', { mode: 'Video' })` to access trim functionality.
 
 ### Loading Video Resources
 

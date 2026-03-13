@@ -351,7 +351,7 @@ For this guide, we focus on video fills—applying video content as a fill to de
 
 ### Video Mode Requirement
 
-Video fills can only be created in Video mode scenes. Design mode doesn't support video fills. You must initialize CE.SDK with `createVideoScene()` instead of `createDesignScene()`.
+Video fills can only be created in Video mode scenes. Design mode doesn't support video fills. You must initialize CE.SDK with `cesdk.actions.run('scene.create', { mode: 'Video' })` to enable video capabilities.
 
 ```typescript
 // Create Video mode scene (required for video fills)
@@ -609,7 +609,7 @@ Check that the video format is supported on your platform. MP4 with H.264 encodi
 
 If creating a video fill throws an error, verify you're in Video mode. Design mode doesn't support video fills. Use `engine.scene.getMode()` to check the current mode. If it returns "Design", you need to create a video scene instead.
 
-Call `await cesdk.actions.run('scene.create', { mode: 'Video' })` during initialization rather than `createDesignScene()` to enable video capabilities.
+Call `await cesdk.actions.run('scene.create', { mode: 'Video' })` during initialization to enable video capabilities.
 
 ### Video Not Loading
 

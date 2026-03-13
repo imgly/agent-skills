@@ -727,7 +727,7 @@ const stickerResults = await engine.asset.findAssets('ly.img.sticker', {
 console.log('Available stickers:', stickerResults.assets.length);
 ```
 
-Use `ly.img.sticker` for raster stickers or `ly.img.vectorpath` for vector-based sticker assets.
+Use `ly.img.sticker` for raster stickers or `ly.img.vector.shape` for vector-based sticker assets.
 
 ## Troubleshooting
 

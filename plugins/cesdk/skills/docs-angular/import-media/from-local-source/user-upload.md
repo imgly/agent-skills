@@ -227,7 +227,7 @@ Local uploads store files in browser memory only. Files won't persist when openi
 
 ## Enabling Upload Demo Asset Sources
 
-To enable upload functionality when using demo asset sources, pass the `withUploadAssetSources` option to `addDemoAssetSources()`:
+To enable upload functionality when using demo asset sources, pass the `withUploadAssetSources` option to the `DemoAssetSources` plugin:
 
 ```typescript highlight-demo-asset-sources
     await cesdk.addPlugin(
@@ -421,7 +421,7 @@ This pattern allows you to conditionally choose between local storage and remote
 
 | Method | Category | Purpose |
 |--------|----------|---------|
-| `cesdk.addDemoAssetSources()` | SDK | Add demo asset sources with optional upload support |
+| `cesdk.addPlugin(new DemoAssetSources())` | SDK | Add demo asset sources with optional upload support |
 | `engine.asset.addSource()` | Asset | Register a custom asset source with upload support |
 | `cesdk.actions.register()` | Actions | Register custom action handlers including uploads |
 | `cesdk.utils.localUpload()` | Utils | Default local upload utility for development |

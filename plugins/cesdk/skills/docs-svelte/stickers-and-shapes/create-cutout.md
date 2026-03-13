@@ -96,7 +96,7 @@ class Example implements EditorPlugin {
     cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       ...cesdk.ui
         .getComponentOrder({ in: 'ly.img.dock' })
-        .filter(({ key }) => key !== 'ly.img.template'),
+        .filter(({ key }) => key !== 'ly.img.templates'),
       {
         id: 'ly.img.assetLibrary.dock',
         label: 'Cutouts',
@@ -311,7 +311,7 @@ Configure the dock to display the cutout library and open it by default:
     cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       ...cesdk.ui
         .getComponentOrder({ in: 'ly.img.dock' })
-        .filter(({ key }) => key !== 'ly.img.template'),
+        .filter(({ key }) => key !== 'ly.img.templates'),
       {
         id: 'ly.img.assetLibrary.dock',
         label: 'Cutouts',

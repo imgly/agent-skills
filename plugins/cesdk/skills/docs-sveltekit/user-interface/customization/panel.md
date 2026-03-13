@@ -453,8 +453,9 @@ Open the replace library for users to swap content of the selected block:
 ```typescript
 // Create scene and add an image
 await cesdk.actions.run('scene.create');
-await cesdk.addDefaultAssetSources();
-await cesdk.addDemoAssetSources({ sceneMode: 'Design' });
+// Note: Add asset source plugins here (imported from @cesdk/cesdk-js/plugins)
+// e.g. await cesdk.addPlugin(new StickerAssetSource());
+// await cesdk.addPlugin(new DemoAssetSources({ sceneMode: 'Design' }));
 
 const engine = cesdk.engine;
 const image = await engine.asset.defaultApplyAsset({

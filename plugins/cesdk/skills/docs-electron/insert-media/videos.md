@@ -205,7 +205,7 @@ await cesdk.actions.run('scene.create', {
 });
 ```
 
-The `createVideoScene()` method creates a scene optimized for video editing with timeline support.
+The `scene.create` action with `{ mode: 'Video' }` creates a scene optimized for video editing with timeline support.
 
 ## Add Videos with addVideo()
 
@@ -280,7 +280,7 @@ For maximum compatibility, use MP4 with H.264 encoding.
 ### addVideo() Throws Error
 
 - The `addVideo()` API only works in Video mode
-- Create a video scene with `createVideoScene()` first
+- Create a video scene with `cesdk.actions.run('scene.create', { mode: 'Video' })` first
 - Use manual block creation for Design mode scenes
 
 ## API Reference

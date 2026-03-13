@@ -315,7 +315,7 @@ This guide covers how to create a scene structure with social media dimensions, 
 
 ## Initialize CE.SDK
 
-We start by initializing CE.SDK and loading the asset sources. The `cesdk.addDefaultAssetSources()` and `cesdk.addDemoAssetSources()` methods provide access to fonts, images, and other assets.
+We start by initializing CE.SDK and loading the asset sources. The asset source plugins (imported from `@cesdk/cesdk-js/plugins`) provide access to fonts, images, and other assets.
 
 ```typescript highlight=highlight-setup
     await cesdk.addPlugin(new DesignEditorConfig());

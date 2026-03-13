@@ -64,7 +64,7 @@ Asset sources handle virtually all reusable creative content:
 | Templates  | Design templates, page presets           |
 | Custom     | User uploads, remote APIs, your own data |
 
-Built-in sources include `ly.img.image`, `ly.img.sticker`, `ly.img.template`, `ly.img.typeface`, `ly.img.filter.lut`, `ly.img.blur`, `ly.img.effect`, and more.
+Built-in sources include `ly.img.image`, `ly.img.sticker`, `ly.img.template`, `ly.img.typeface`, `ly.img.filter`, `ly.img.blur`, `ly.img.effect`, and more.
 
 ## Types of Asset Sources
 

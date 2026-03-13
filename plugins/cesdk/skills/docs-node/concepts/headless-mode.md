@@ -47,7 +47,7 @@ You are responsible for:
 ### Available Features
 
 - Create/edit scenes, pages, and blocks programmatically.
-- Load templates and default asset libraries (`engine.addDefaultAssetSources()`).
+- Load templates and process scenes programmatically.
 - Export compositions (complete edited scenes) in your desired format.
 
 ### Requirements to Run CreativeEngine on Node.js
@@ -155,8 +155,6 @@ async function buildGreeting() {
   const engine = await getCreativeEngine();
 
   try {
-    await engine.addDefaultAssetSources();
-    
     // Create a scene and append it to the page
     const scene = engine.scene.create();
     const page = engine.block.create('page');

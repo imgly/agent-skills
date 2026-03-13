@@ -382,7 +382,7 @@ cesdk.feature.enable('ly.img.timeline');
 cesdk.feature.enable('ly.img.playback');
 ```
 
-Video mode is required for split operations. Design mode doesn't provide timeline-based editing capabilities, so use `createVideoScene()` to access split functionality.
+Video mode is required for split operations. Design mode doesn't provide timeline-based editing capabilities, so use `cesdk.actions.run('scene.create', { mode: 'Video' })` to access split functionality.
 
 ### Basic Splitting at a Specific Time
 

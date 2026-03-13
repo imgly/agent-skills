@@ -169,8 +169,8 @@ class Example implements EditorPlugin {
 
     // Apply a caption preset for consistent styling
     // Caption presets provide pre-configured styles (fonts, colors, backgrounds)
-    const captionPresetsSourceId = 'ly.img.captionPresets';
-    const comicPresetId = '//ly.img.captionPresets/comic';
+    const captionPresetsSourceId = 'ly.img.caption.presets';
+    const comicPresetId = '//ly.img.caption.presets/comic';
 
     // Fetch the preset asset
     const comicPreset = await engine.asset.fetchAsset(
@@ -377,8 +377,8 @@ The fastest way to style captions is using presets. Presets provide pre-configur
 ```typescript highlight-apply-preset
     // Apply a caption preset for consistent styling
     // Caption presets provide pre-configured styles (fonts, colors, backgrounds)
-    const captionPresetsSourceId = 'ly.img.captionPresets';
-    const comicPresetId = '//ly.img.captionPresets/comic';
+    const captionPresetsSourceId = 'ly.img.caption.presets';
+    const comicPresetId = '//ly.img.caption.presets/comic';
 
     // Fetch the preset asset
     const comicPreset = await engine.asset.fetchAsset(
@@ -449,7 +449,7 @@ This prevents text from overflowing while maintaining readability.
 Query available caption presets from the asset library.
 
 ```typescript
-const presetsResult = await engine.asset.findAssets('ly.img.captionPresets', {
+const presetsResult = await engine.asset.findAssets('ly.img.caption.presets', {
   page: 0,
   perPage: 100
 });
@@ -465,7 +465,7 @@ Apply a preset to a caption using `applyToBlock`.
 
 ```typescript
 const preset = presets[0];
-await engine.asset.applyToBlock('ly.img.captionPresets', preset, captionId);
+await engine.asset.applyToBlock('ly.img.caption.presets', preset, captionId);
 ```
 
 The preset applies all styling properties at once—font, colors, background, and any animations defined in the preset.

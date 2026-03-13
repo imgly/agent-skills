@@ -14,9 +14,9 @@
 - [Move Videos](./edit-video/transform/move.md) - Position videos on the canvas using absolute or percentage-based coordinates.
 - [Crop Videos](./edit-video/transform/crop.md) - Cut out specific areas of a video to focus on key content or change aspect ratio.
 - [Rotate Videos](./edit-video/transform/rotate.md) - Rotate video elements to adjust orientation and create dynamic compositions.
-- [Resize](./edit-video/transform/resize.md) - Resize videos programmatically in headless mode using the CE.SDK
+- [Resize Videos](./edit-video/transform/resize.md) - Change the dimensions of video elements to fit specific layout requirements.
 - [Scale Videos in Node.js](./edit-video/transform/scale.md) - Scale videos programmatically using the CE.SDK headless engine in Node.js.
-- [Flip](./edit-video/transform/flip.md) - Mirror video clips in a Node.js backend using CE.SDK server mode.
+- [Flip Videos](./edit-video/transform/flip.md) - Flip videos horizontally or vertically to create mirror effects and symmetrical designs.
 
 
 ---

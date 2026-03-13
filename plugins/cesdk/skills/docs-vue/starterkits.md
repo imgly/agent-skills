@@ -15,12 +15,12 @@ professional editing capabilities into your web application.
 ## Related Pages
 
 - [Photo Editor](./starterkits/photo-editor.md) - Add professional photo editing to your web app in minutes. Crop, filter, remove backgrounds, and export—all client-side.
-- [Design Editor](./starterkits/design-editor.md) - Add professional design editing to your web app in minutes. Create graphics, templates, and multi-page documents—all client-side.
-- [Design Editor (Advanced)](./starterkits/advanced-editor.md) - Add a comprehensive design editor to your web app in minutes. Professional tools for graphics, templates, and multi-page documents—all client-side.
-- [Design Viewer](./starterkits/viewer.md) - Add design viewing to your web app in minutes. Pan, zoom, and navigate multi-page designs—all client-side.
-- [Video Editor](./starterkits/video-editor.md) - Add professional video editing to your web app in minutes. Edit clips, add effects, and export to MP4—all client-side.
-- [Video Editor (Advanced)](./starterkits/advanced-video-editor.md) - Add a comprehensive video editor to your web app in minutes. Professional tools for timeline editing, effects, and MP4 export—all client-side.
-- [Video Player](./starterkits/player.md) - Add video playback to your web app in minutes. Play, pause, and navigate video content—all client-side.
+- [Design Editor for Vue](./starterkits/design-editor.md) - Add professional design editing to your Vue app in minutes. Create graphics, templates, and multi-page documents—all client-side.
+- [Design Editor (Advanced) for Vue](./starterkits/advanced-editor.md) - Add a comprehensive design editor to your Vue app in minutes. Professional tools for graphics, templates, and multi-page documents—all client-side.
+- [Design Viewer for Vue](./starterkits/viewer.md) - Add design viewing to your Vue app in minutes. Pan, zoom, and navigate multi-page designs—all client-side.
+- [Video Editor for Vue](./starterkits/video-editor.md) - Add professional video editing to your Vue app in minutes. Edit clips, add effects, and export to MP4—all client-side.
+- [Video Editor (Advanced) for Vue](./starterkits/advanced-video-editor.md) - Add a comprehensive video editor to your Vue app in minutes. Professional tools for timeline editing, effects, and MP4 export—all client-side.
+- [Video Player for Vue](./starterkits/player.md) - Add video playback to your Vue app in minutes. Play, pause, and navigate video content—all client-side.
 - [AI Image and Video Editor](./starterkits/ai-editor.md) - Add AI-powered image, video, audio, and voice generation directly into your app’s editing interface.
 - [T-Shirt Designer](./starterkits/t-shirt-designer.md) - Embed a t-shirt design editor with print areas, PDF export, and a focused UI for apparel customization.
 - [Postcard Editor](./starterkits/postcard-editor.md) - Let users personalize postcards with templates, style presets, and print-ready exports—no design skills needed.

@@ -28,6 +28,20 @@ where you need to manipulate individual pixels programmatically.
 ```typescript file=@cesdk_web_examples/guides-export-save-publish-export-to-raw-data-browser/src/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import packageJson from '../package.json';
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TypefaceAssetSource,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 
 class Example implements EditorPlugin {
   name = packageJson.name;
@@ -39,11 +53,21 @@ class Example implements EditorPlugin {
     }
 
     // Load assets and create scene
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+    await cesdk.addPlugin(new DemoAssetSources({
       sceneMode: 'Design',
       withUploadAssetSources: true
-    });
+    }));
     await cesdk.actions.run('scene.create', { page: { width: 800, height: 600, unit: 'Pixel' } });
 
     const engine = cesdk.engine;

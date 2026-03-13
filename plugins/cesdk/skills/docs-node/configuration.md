@@ -217,7 +217,7 @@ const license = process.env.CESDK_LICENSE ?? '';
 
 The `baseURL` property specifies the location of core engine assets, including WASM files and data files. By default, these load from the IMG.LY CDN. For production deployments, host these assets yourself by copying the `assets` folder from `node_modules/@cesdk/node/assets` to your server.
 
-Content assets like stickers and filters are loaded separately via `engine.addDefaultAssetSources()`, which has its own `baseURL` parameter defaulting to `https://cdn.img.ly/assets/v4`.
+The server package does not include asset source plugins. Content assets like stickers and filters are only available in browser builds.
 
 ```typescript highlight=highlight-baseURL
 // Location of core engine assets (WASM, data files)

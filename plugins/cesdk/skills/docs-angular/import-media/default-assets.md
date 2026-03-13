@@ -39,16 +39,13 @@ class Example implements EditorPlugin {
       `${DEFAULT_ASSETS_URL}ly.img.sticker/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEFAULT_ASSETS_URL}ly.img.vectorpath/content.json`
+      `${DEFAULT_ASSETS_URL}ly.img.vector.shape/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEFAULT_ASSETS_URL}ly.img.colors.defaultPalette/content.json`
+      `${DEFAULT_ASSETS_URL}ly.img.color.palette/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEFAULT_ASSETS_URL}ly.img.filter.lut/content.json`
-    );
-    await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEFAULT_ASSETS_URL}ly.img.filter.duotone/content.json`
+      `${DEFAULT_ASSETS_URL}ly.img.filter/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
       `${DEFAULT_ASSETS_URL}ly.img.effect/content.json`
@@ -65,9 +62,6 @@ class Example implements EditorPlugin {
     await engine.asset.addLocalAssetSourceFromJSONURI(
       `${DEFAULT_ASSETS_URL}ly.img.page.presets/content.json`
     );
-    await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEFAULT_ASSETS_URL}ly.img.page.presets.video/content.json`
-    );
 
     // Load demo asset sources (sample content for testing)
     await engine.asset.addLocalAssetSourceFromJSONURI(
@@ -80,13 +74,10 @@ class Example implements EditorPlugin {
       `${DEMO_ASSETS_URL}ly.img.audio/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEMO_ASSETS_URL}ly.img.template/content.json`
+      `${DEMO_ASSETS_URL}ly.img.templates/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEMO_ASSETS_URL}ly.img.video.template/content.json`
-    );
-    await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEMO_ASSETS_URL}ly.img.textComponents/content.json`
+      `${DEMO_ASSETS_URL}ly.img.text.components/content.json`
     );
 
     // Update asset library entries to show the loaded sources in the UI
@@ -95,24 +86,19 @@ class Example implements EditorPlugin {
         ...new Set([...currentIds, 'ly.img.sticker'])
       ]
     });
-    cesdk.ui.updateAssetLibraryEntry('ly.img.vectorpath', {
+    cesdk.ui.updateAssetLibraryEntry('ly.img.vector.shape', {
       sourceIds: ({ currentIds }) => [
-        ...new Set([...currentIds, 'ly.img.vectorpath'])
+        ...new Set([...currentIds, 'ly.img.vector.shape'])
       ]
     });
-    cesdk.ui.updateAssetLibraryEntry('ly.img.colors.defaultPalette', {
+    cesdk.ui.updateAssetLibraryEntry('ly.img.color.palette', {
       sourceIds: ({ currentIds }) => [
-        ...new Set([...currentIds, 'ly.img.colors.defaultPalette'])
+        ...new Set([...currentIds, 'ly.img.color.palette'])
       ]
     });
-    cesdk.ui.updateAssetLibraryEntry('ly.img.filter.lut', {
+    cesdk.ui.updateAssetLibraryEntry('ly.img.filter', {
       sourceIds: ({ currentIds }) => [
-        ...new Set([...currentIds, 'ly.img.filter.lut'])
-      ]
-    });
-    cesdk.ui.updateAssetLibraryEntry('ly.img.filter.duotone', {
-      sourceIds: ({ currentIds }) => [
-        ...new Set([...currentIds, 'ly.img.filter.duotone'])
+        ...new Set([...currentIds, 'ly.img.filter'])
       ]
     });
     cesdk.ui.updateAssetLibraryEntry('ly.img.effect', {
@@ -140,11 +126,6 @@ class Example implements EditorPlugin {
         ...new Set([...currentIds, 'ly.img.page.presets'])
       ]
     });
-    cesdk.ui.updateAssetLibraryEntry('ly.img.page.presets.video', {
-      sourceIds: ({ currentIds }) => [
-        ...new Set([...currentIds, 'ly.img.page.presets.video'])
-      ]
-    });
     cesdk.ui.updateAssetLibraryEntry('ly.img.image', {
       sourceIds: ({ currentIds }) => [
         ...new Set([...currentIds, 'ly.img.image'])
@@ -160,19 +141,14 @@ class Example implements EditorPlugin {
         ...new Set([...currentIds, 'ly.img.audio'])
       ]
     });
-    cesdk.ui.updateAssetLibraryEntry('ly.img.template', {
+    cesdk.ui.updateAssetLibraryEntry('ly.img.templates', {
       sourceIds: ({ currentIds }) => [
-        ...new Set([...currentIds, 'ly.img.template'])
+        ...new Set([...currentIds, 'ly.img.templates'])
       ]
     });
-    cesdk.ui.updateAssetLibraryEntry('ly.img.video.template', {
+    cesdk.ui.updateAssetLibraryEntry('ly.img.text.components', {
       sourceIds: ({ currentIds }) => [
-        ...new Set([...currentIds, 'ly.img.video.template'])
-      ]
-    });
-    cesdk.ui.updateAssetLibraryEntry('ly.img.textComponents', {
-      sourceIds: ({ currentIds }) => [
-        ...new Set([...currentIds, 'ly.img.textComponents'])
+        ...new Set([...currentIds, 'ly.img.text.components'])
       ]
     });
 
@@ -195,7 +171,7 @@ class Example implements EditorPlugin {
     // Define the three assets to add: star shape, sticker, and image
     const assetsToAdd = [
       {
-        sourceId: 'ly.img.vectorpath',
+        sourceId: 'ly.img.vector.shape',
         assetId: '//ly.img.ubq/shapes/star/filled'
       },
       {
@@ -241,7 +217,7 @@ class Example implements EditorPlugin {
     // Open the Elements panel to showcase all loaded asset sources
     cesdk.ui.openPanel('//ly.img.panel/assetLibrary', {
       payload: {
-        entries: ['ly.img.image', 'ly.img.vectorpath', 'ly.img.sticker']
+        entries: ['ly.img.image', 'ly.img.vector.shape', 'ly.img.sticker']
       }
     });
   }
@@ -279,16 +255,14 @@ IMG.LY provides two categories of asset sources hosted on the IMG.LY CDN for dev
 | Source ID | Description |
 |-----------|-------------|
 | `ly.img.sticker` | Emojis, emoticons, decorations |
-| `ly.img.vectorpath` | Shapes: stars, arrows, polygons |
-| `ly.img.colors.defaultPalette` | Default color palette |
-| `ly.img.filter.lut` | LUT-based color filters |
-| `ly.img.filter.duotone` | Duotone color effects |
+| `ly.img.vector.shape` | Shapes: stars, arrows, polygons |
+| `ly.img.color.palette` | Default color palette |
+| `ly.img.filter` | Color filters (LUT and duotone) |
 | `ly.img.effect` | Visual effects |
 | `ly.img.blur` | Blur effects |
 | `ly.img.typeface` | Font families |
 | `ly.img.crop.presets` | Crop presets |
 | `ly.img.page.presets` | Page size presets |
-| `ly.img.page.presets.video` | Video page presets |
 
 **Demo Assets** are sample content for development:
 
@@ -297,9 +271,8 @@ IMG.LY provides two categories of asset sources hosted on the IMG.LY CDN for dev
 | `ly.img.image` | Sample images |
 | `ly.img.video` | Sample videos |
 | `ly.img.audio` | Sample audio tracks |
-| `ly.img.template` | Design templates |
-| `ly.img.video.template` | Video templates |
-| `ly.img.textComponents` | Text component presets |
+| `ly.img.templates` | Design and video templates |
+| `ly.img.text.components` | Text component presets |
 
 ## Loading Assets from URL
 
@@ -308,7 +281,7 @@ Use `addLocalAssetSourceFromJSONURI()` to load an asset source directly from a J
 ```typescript
 const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets/v4/`;
 await engine.asset.addLocalAssetSourceFromJSONURI(
-  `${baseURL}ly.img.vectorpath/content.json`
+  `${baseURL}ly.img.vector.shape/content.json`
 );
 ```
 
@@ -368,7 +341,7 @@ const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/ass
 
 // Load only star and arrow shapes
 await engine.asset.addLocalAssetSourceFromJSONURI(
-  `${baseURL}ly.img.vectorpath/content.json`,
+  `${baseURL}ly.img.vector.shape/content.json`,
   { matcher: ['*star*', '*arrow*'] }
 );
 

@@ -48,8 +48,39 @@ Use the visual timeline for editing actions like:
 To work with the CE.SDK Editor in video mode, specify the scene’s design as follows:
 
 ```ts
-cesdk.addDefaultAssetSources(),
-cesdk.addDemoAssetSources({ sceneMode: 'Video' }),
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource,
+} from '@cesdk/cesdk-js/plugins';
+
+// Add default asset source plugins
+await cesdk.addPlugin(new BlurAssetSource());
+await cesdk.addPlugin(new ColorPaletteAssetSource());
+await cesdk.addPlugin(new CropPresetsAssetSource());
+await cesdk.addPlugin(new EffectsAssetSource());
+await cesdk.addPlugin(new FiltersAssetSource());
+await cesdk.addPlugin(new PagePresetsAssetSource());
+await cesdk.addPlugin(new StickerAssetSource());
+await cesdk.addPlugin(new TextAssetSource());
+await cesdk.addPlugin(new TextComponentAssetSource());
+await cesdk.addPlugin(new TypefaceAssetSource());
+await cesdk.addPlugin(new VectorShapeAssetSource());
+
+// Add demo and upload sources
+await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+await cesdk.addPlugin(new DemoAssetSources({ sceneMode: 'Video' }));
+
 await cesdk.actions.run('scene.create', { mode: 'Video' });
 ```
 

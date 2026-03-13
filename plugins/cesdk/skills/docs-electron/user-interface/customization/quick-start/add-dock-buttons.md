@@ -106,7 +106,7 @@ class Example implements EditorPlugin {
       {
         id: 'ly.img.assetLibrary.dock',
         key: 'elements',
-        entries: ['ly.img.sticker', 'ly.img.vectorpath'],
+        entries: ['ly.img.sticker', 'ly.img.vector.shape'],
         label: 'Elements',
         icon: '@imgly/Shapes'
       }
@@ -155,7 +155,7 @@ class Example implements EditorPlugin {
       {
         id: 'ly.img.assetLibrary.dock',
         key: 'templates',
-        entries: ['ly.img.template'],
+        entries: ['ly.img.templates'],
         label: 'Templates',
         icon: '@imgly/Template'
       }
@@ -216,7 +216,7 @@ cesdk.ui.insertOrderComponent(
   {
     id: 'ly.img.assetLibrary.dock',
     key: 'elements',
-    entries: ['ly.img.sticker', 'ly.img.vectorpath'],
+    entries: ['ly.img.sticker', 'ly.img.vector.shape'],
     label: 'Elements',
     icon: '@imgly/Shapes'
   }
@@ -262,7 +262,7 @@ Common asset library entry identifiers to use in the `entries` array:
 | `ly.img.video` | Video assets |
 | `ly.img.audio` | Audio assets |
 | `ly.img.text` | Text presets |
-| `ly.img.vectorpath` | Shape assets |
+| `ly.img.vector.shape` | Shape assets |
 | `ly.img.sticker` | Sticker assets |
 | `ly.img.template` | Templates |
 | `ly.img.upload` | Upload functionality |
@@ -298,7 +298,7 @@ cesdk.ui.insertOrderComponent(
   {
     id: 'ly.img.assetLibrary.dock',
     key: 'templates',
-    entries: ['ly.img.template'],
+    entries: ['ly.img.templates'],
     label: 'Templates',
     icon: '@imgly/Template'
   }

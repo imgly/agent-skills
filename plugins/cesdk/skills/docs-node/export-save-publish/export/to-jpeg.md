@@ -72,7 +72,6 @@ try {
   const choice = await promptChoice();
 
   let done = showProgress('Loading scene...');
-  await engine.addDefaultAssetSources();
   await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
@@ -211,7 +210,6 @@ JPEG works well for:
 | `engine.block.export(block, options)` | Export a block to the specified format |
 | `engine.scene.loadFromURL(url)` | Load a scene from a remote URL |
 | `engine.block.findByType(type)` | Find all blocks of a specific type |
-| `engine.addDefaultAssetSources()` | Add default asset sources for resolution |
 | `writeFileSync(path, buffer)` | Write buffer to file system (Node.js) |
 
 ## Next Steps

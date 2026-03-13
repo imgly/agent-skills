@@ -110,7 +110,7 @@ class Example implements EditorPlugin {
     // Add a custom filter to the built-in LUT filter source
     // The ID must follow the format //ly.img.cesdk.filters.lut/{name}
     // for the UI to display the label correctly
-    engine.asset.addAssetToSource('ly.img.filter.lut', {
+    engine.asset.addAssetToSource('ly.img.filter', {
       id: '//ly.img.cesdk.filters.lut/mycustomfilter',
       label: { en: 'MY CUSTOM FILTER' },
       tags: { en: ['custom', 'brand'] },
@@ -362,7 +362,7 @@ We register a custom filter source using `engine.asset.addSource()` with a `find
     // Add a custom filter to the built-in LUT filter source
     // The ID must follow the format //ly.img.cesdk.filters.lut/{name}
     // for the UI to display the label correctly
-    engine.asset.addAssetToSource('ly.img.filter.lut', {
+    engine.asset.addAssetToSource('ly.img.filter', {
       id: '//ly.img.cesdk.filters.lut/mycustomfilter',
       label: { en: 'MY CUSTOM FILTER' },
       tags: { en: ['custom', 'brand'] },
@@ -481,7 +481,7 @@ We register a custom filter source using `engine.asset.addSource()` with a `find
 
 The `findAssets` callback receives query parameters including pagination (`page`, `perPage`), search terms (`query`), and category filters (`groups`). We filter and paginate the results accordingly.
 
-The `updateAssetLibraryEntry()` call connects our custom source to the `ly.img.filter.lut` panel, making our filters appear alongside the built-in LUT filters when a user selects an image.
+The `updateAssetLibraryEntry()` call connects our custom source to the `ly.img.filter` panel, making our filters appear alongside the built-in LUT filters when a user selects an image.
 
 ### Filter Asset Structure
 

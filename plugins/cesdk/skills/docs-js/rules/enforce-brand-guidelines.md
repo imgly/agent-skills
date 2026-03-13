@@ -408,7 +408,7 @@ cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
 });
 ```
 
-By omitting the default color palette source ID (`ly.img.colors.defaultPalette`), users can only select from your approved brand colors.
+By omitting the default color palette source ID (`ly.img.color.palette`), users can only select from your approved brand colors.
 
 ## Restricting Fonts to Brand Typefaces
 

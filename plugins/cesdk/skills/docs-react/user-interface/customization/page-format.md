@@ -411,7 +411,7 @@ cesdk.ui.openPanel('//ly.img.panel/inspector/pageResize');
 
 | Method | Category | Description |
 |--------|----------|-------------|
-| `cesdk.addDefaultAssetSources()` | CESDK | Load default CE.SDK asset sources including page presets |
+| `cesdk.addPlugin(new XyzAssetSource())` | CESDK | Add individual asset source plugins (imported from `@cesdk/cesdk-js/plugins`) |
 | `cesdk.engine.asset.addLocalSource(sourceId)` | Asset | Create a new local asset source for page formats |
 | `cesdk.engine.asset.addAssetToSource(sourceId, asset)` | Asset | Add a page format asset to a local source |
 | `cesdk.engine.asset.registerApplyMiddleware(middleware)` | Asset | Register middleware to intercept asset application |

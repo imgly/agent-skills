@@ -31,16 +31,46 @@ Then configure CE.SDK to use your self-hosted assets:
 
 ```javascript
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource,
+} from '@cesdk/cesdk-js/plugins';
 
 const config = {
   license: 'YOUR_CESDK_LICENSE_KEY',
   baseURL: `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`,
 };
 
-CreativeEditorSDK.create(container, config).then(cesdk => {
-  cesdk.addDefaultAssetSources({
-    baseURL: `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`,
-  });
+CreativeEditorSDK.create(container, config).then(async (cesdk) => {
+  const assetBaseURL = `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`;
+
+  // Add default asset source plugins
+  await cesdk.addPlugin(new BlurAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new ColorPaletteAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new CropPresetsAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new EffectsAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new FiltersAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new PagePresetsAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new StickerAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new TextAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new TextComponentAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new TypefaceAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new VectorShapeAssetSource({ baseURL: assetBaseURL }));
+
+  // Add demo and upload sources
+  await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+  await cesdk.addPlugin(new DemoAssetSources({ sceneMode: 'Design' }));
 });
 ```
 
@@ -90,11 +120,11 @@ For most integrations, you need `core/`, `ui/`, `emoji/`, `fonts/`, and the `ly.
 
 **Version-locked assets** (`core/`, `ui/`, `i18n/`) must match your SDK version. Mismatched versions cause load errors—the engine will fail to initialize if core files don't match.
 
-**Independent assets** (`ly.img.*` directories) can be updated separately. Configure these via `addDefaultAssetSources({ baseURL })` and `addDemoAssetSources({ baseURL })`. Check the changelog when upgrading to see if asset versions have changed.
+**Independent assets** (`ly.img.*` directories) can be updated separately. Configure these via asset source plugins (imported from `@cesdk/cesdk-js/plugins`), each of which accepts a `baseURL` option. Check the changelog when upgrading to see if asset versions have changed.
 
 ### Default Asset Sources
 
-Calling `addDefaultAssetSources()` registers these asset sources:
+Adding the default asset source plugins registers these asset sources:
 
 - `ly.img.sticker` - Stickers
 - `ly.img.sticker.misc` - Additional stickers
@@ -114,7 +144,7 @@ Calling `addDefaultAssetSources()` registers these asset sources:
 
 ### Demo Asset Sources
 
-Calling `addDemoAssetSources()` registers sample content sources for development:
+Adding the `DemoAssetSources` and `UploadAssetSources` plugins registers sample content sources for development:
 
 - `ly.img.image` - Sample images
 - `ly.img.video` - Sample videos
@@ -154,19 +184,44 @@ CreativeEditorSDK.create(container, config).then(cesdk => {
 
 ### Asset Sources Configuration
 
-Configure asset sources after initializing the editor:
+Configure asset sources after initializing the editor by adding individual asset source plugins:
 
 ```javascript
-CreativeEditorSDK.create(container, config).then(cesdk => {
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource,
+} from '@cesdk/cesdk-js/plugins';
+
+CreativeEditorSDK.create(container, config).then(async (cesdk) => {
+  const assetBaseURL = `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`;
+
   // Point default assets to your server
-  cesdk.addDefaultAssetSources({
-    baseURL: `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`,
-  });
+  await cesdk.addPlugin(new BlurAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new ColorPaletteAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new CropPresetsAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new EffectsAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new FiltersAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new PagePresetsAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new StickerAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new TextAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new TextComponentAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new TypefaceAssetSource({ baseURL: assetBaseURL }));
+  await cesdk.addPlugin(new VectorShapeAssetSource({ baseURL: assetBaseURL }));
 
   // Optional: Add demo assets for development
-  cesdk.addDemoAssetSources({
-    baseURL: `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`,
-  });
+  await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+  await cesdk.addPlugin(new DemoAssetSources({ sceneMode: 'Design', baseURL: assetBaseURL }));
 });
 ```
 
@@ -187,13 +242,21 @@ The `fonts/` and `emoji/` directories are already included in the `imgly-assets.
 
 ## Excluding Unused Asset Sources
 
-If you only need a subset of default assets, use `excludeAssetSourceIds` to skip loading sources you don't use:
+If you only need a subset of default assets, simply omit the plugins you don't need. For example, to skip stickers and video page presets, add all plugins except `StickerAssetSource` and the video page presets:
 
 ```javascript
-cesdk.addDefaultAssetSources({
-  baseURL: `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`,
-  excludeAssetSourceIds: ['ly.img.sticker', 'ly.img.page.presets.video'],
-});
+// Only add the plugins you need
+await cesdk.addPlugin(new BlurAssetSource());
+await cesdk.addPlugin(new ColorPaletteAssetSource());
+await cesdk.addPlugin(new CropPresetsAssetSource());
+await cesdk.addPlugin(new EffectsAssetSource());
+await cesdk.addPlugin(new FiltersAssetSource());
+await cesdk.addPlugin(new PagePresetsAssetSource());
+// StickerAssetSource omitted
+await cesdk.addPlugin(new TextAssetSource());
+await cesdk.addPlugin(new TextComponentAssetSource());
+await cesdk.addPlugin(new TypefaceAssetSource());
+await cesdk.addPlugin(new VectorShapeAssetSource());
 ```
 
 This reduces initial load time by not fetching unused asset definitions.
@@ -212,7 +275,7 @@ If the engine fails to initialize with missing `.wasm` or `.data` errors, verify
 
 If the console shows 404 errors for `content.json` files:
 
-1. Verify the `baseURL` in `addDefaultAssetSources()` is correct
+1. Verify the `baseURL` passed to your asset source plugins is correct
 2. Check that asset directories exist at the expected paths
 3. Configure CORS headers if serving assets from a different domain
 
@@ -227,8 +290,7 @@ The warning "You're using the IMG.LY CDN" appears when using default configurati
 | `CreativeEditorSDK.create(container, config)` | Initialize editor with configuration    |
 | `config.baseURL`                        | Base path for all engine assets (including fonts and emoji) |
 | `config.core.baseURL`                   | Path to WASM/core files (relative to baseURL) |
-| `cesdk.addDefaultAssetSources(options)` | Register default asset sources                |
-| `cesdk.addDemoAssetSources(options)`    | Register demo asset sources                   |
+| `cesdk.addPlugin(new XyzAssetSource())` | Add individual asset source plugins           |
 | `CreativeEditorSDK.version`             | Get current SDK version string                |
 
 

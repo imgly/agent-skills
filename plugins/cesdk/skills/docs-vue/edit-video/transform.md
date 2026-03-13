@@ -16,7 +16,7 @@
 - [Rotate Videos](./edit-video/transform/rotate.md) - Rotate video elements to adjust orientation and create dynamic compositions.
 - [Resize](./edit-video/transform/resize.md) - Resize videos in web apps using the CE.SDK
 - [Scale Videos in Web Apps](./edit-video/transform/scale.md) - Embed the CE.SDK scaling feature in your web app.
-- [Flip](./edit-video/transform/flip.md) - Flip videos horizontally or vertically to create mirror effects and symmetrical designs.
+- [Flip Videos](./edit-video/transform/flip.md) - Flip videos horizontally or vertically to create mirror effects and symmetrical designs.
 
 
 ---

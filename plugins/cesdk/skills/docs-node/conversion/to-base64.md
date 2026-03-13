@@ -61,7 +61,6 @@ const engine = await CreativeEngine.init({
 
 try {
   let done = showProgress('Loading scene...');
-  await engine.addDefaultAssetSources();
   await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
@@ -173,7 +172,6 @@ Base64 encoding works well for:
 | `engine.block.export(block, options)` | Export a block to a Blob with format options (`mimeType`, `jpegQuality`, `webpQuality`, `targetWidth`, `targetHeight`) |
 | `engine.block.findByType(type)` | Find all blocks of a specific type |
 | `engine.scene.loadFromURL(url)` | Load a scene from a remote URL |
-| `engine.addDefaultAssetSources()` | Add default asset sources for resolution |
 | `Buffer.from(arrayBuffer)` | Create a Buffer from ArrayBuffer (Node.js) |
 | `buffer.toString('base64')` | Encode Buffer as Base64 string (Node.js) |
 

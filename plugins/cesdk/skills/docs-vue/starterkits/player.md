@@ -4,7 +4,7 @@
 
 ---
 
-Lightweight video playback for your Vue app—play, pause, and navigate video content. Runs entirely in the browser with no server dependencies.
+Lightweight video playback for your web app—play, pause, and navigate video content. Runs entirely in the browser with no server dependencies.
 
 ![Player starter kit showing a lightweight video playback interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -22,13 +22,13 @@ Lightweight video playback for your Vue app—play, pause, and navigate video co
 
 ***
 
-## Prerequisites
+## Pre-requisites
 
-Before you begin, make sure you have the following:
+This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
-- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list.
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list
 
 ***
 
@@ -36,28 +36,109 @@ Before you begin, make sure you have the following:
   <TabItem label="New Project">
     ## Get Started
 
-    Integrate the Video Player into your Vue application using the official Vue wrapper.
+    Start fresh with a standalone Video Player project. This creates a complete, ready-to-run application.
 
-    ## Step 1: Create a New Project
+    ## Step 1: Clone the Repository
 
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm create vue@latest your-project-name
-        cd your-project-name
+    <TerminalTabs>
+      <TerminalTab label="git">
+        git clone https://github.com/imgly/starterkit-video-player-ts-web.git
       </TerminalTab>
 
-      <TerminalTab label="pnpm">
-        pnpm create vue your-project-name
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn create vue your-project-name
-        cd your-project-name
+      <TerminalTab label="degit">
+        npx degit imgly/starterkit-video-player-ts-web starterkit-video-player-ts-web
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 2: Clone the Starter Kit
+    The `src/` folder contains the player code:
+
+    ```
+    src/
+    ├── index.ts                      # Application entry point
+    └── imgly/
+        ├── index.ts                  # Player initialization function
+        └── config/
+            ├── plugin.ts             # Main configuration plugin
+            ├── features.ts           # Feature toggles
+            ├── i18n.ts               # Translations
+            ├── settings.ts           # Engine settings
+            └── ui/                   # UI customization
+                ├── index.ts          # Combines UI customization exports
+                ├── canvas.ts         # Canvas configuration
+                └── navigationBar.ts  # Navigation bar layout
+    ```
+
+    ## Step 2: Install Dependencies
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        cd starterkit-video-player-ts-web
+        npm install
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        cd starterkit-video-player-ts-web
+        pnpm install
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        cd starterkit-video-player-ts-web
+        yarn
+      </TerminalTab>
+    </TerminalTabs>
+
+    ## Step 3: Download Assets
+
+    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
+
+    <TerminalTabs>
+      <TerminalTab label="Download">
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
+      </TerminalTab>
+    </TerminalTabs>
+
+    The `baseURL` in your configuration should point to this location:
+
+    ```typescript title="src/index.ts"
+    const config = {
+      // ...
+      baseURL: '/assets'
+    };
+    ```
+
+    ## Step 4: Run the Development Server
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm run dev
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm run dev
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn dev
+      </TerminalTab>
+    </TerminalTabs>
+
+    Open `http://localhost:5173` in your browser.
+  </TabItem>
+
+  <TabItem label="Existing Project">
+    ## Get Started
+
+    Integrate the Video Player into an existing web application. This adds the player configuration to your current project structure.
+
+    ## Step 1: Copy Player Configuration
+
+    <TerminalTabs>
+      <TerminalTab label="Navigate">
+        cd your-project
+      </TerminalTab>
+    </TerminalTabs>
 
     Clone the starter kit and copy the player configuration to your project:
 
@@ -78,26 +159,42 @@ Before you begin, make sure you have the following:
     The `imgly/` folder contains the player configuration:
 
     ```
-    src/imgly/
+    imgly/
     ├── index.ts                  # Player initialization function
     └── config/
         ├── plugin.ts             # Main configuration plugin
         ├── features.ts           # Feature toggles
         ├── i18n.ts               # Translations
-        └── settings.ts           # Engine settings
+        ├── settings.ts           # Engine settings
+        └── ui/                   # UI customization
+            ├── index.ts          # Combines UI customization exports
+            ├── canvas.ts         # Canvas configuration
+            └── navigationBar.ts  # Navigation bar layout
     ```
 
-    ## Step 3: Install Dependencies
+    ## Step 2: Install Dependencies
+
+    The Video Player requires one core package:
+
+    ### Core Editor
 
     The Creative Editor SDK package provides all playback functionality.
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">
+        npm install @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm add @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn add @cesdk/cesdk-js
+      </TerminalTab>
     </TerminalTabs>
 
-    ## Step 4: Download Assets
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -109,137 +206,54 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in the player component.
+    The `baseURL` in your configuration should point to this location:
 
-    ## Step 5: Create the Player Component
+    ```typescript title="src/index.ts"
+    const config = {
+      // ...
+      baseURL: '/assets'
+    };
+    ```
 
-    Create a Vue component using the official CE.SDK Vue wrapper:
+    ## Step 4: Add a Container Element
 
-    ```vue
-    <template>
-      <CreativeEditor
-        :config="{ baseURL: '/assets' }"
-        :init="initVideoPlayer"
-        width="100vw"
-        height="100vh"
-      />
-    </template>
+    Add a container element to your HTML where the player will be mounted:
 
-    <script setup lang="ts">
+    ```html
+    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
+    ```
+
+    ## Step 5: Initialize the Player
+
+    Import and call the initialization function from your application's entry point:
+
+    ```typescript title="src/index.ts"
+    import CreativeEditorSDK from '@cesdk/cesdk-js';
+
     import { initVideoPlayer } from './imgly';
-    import CreativeEditor from '@cesdk/cesdk-js/vue';
-    </script>
-    ```
 
-    ## Step 6: Use the Component
+    const config = {
+      userId: 'your-user-id',
+      baseURL: '/assets'
+      // license: 'YOUR_LICENSE_KEY',
+    };
 
-    Import and use the Video Player component in your application:
-
-    ```vue
-    <template>
-      <VideoPlayer />
-    </template>
-
-    <script setup lang="ts">
-    import VideoPlayer from './components/VideoPlayer.vue';
-    </script>
-    ```
-  </TabItem>
-
-  <TabItem label="Existing Project">
-    ## Get Started
-
-    Integrate the Video Player into an existing Vue application. This adds the player configuration to your current project structure.
-
-    ### Step 1: Navigate to Your Project
-
-    <TerminalTabs>
-      <TerminalTab label="Navigate">cd your-project</TerminalTab>
-    </TerminalTabs>
-
-    ### Step 2: Clone the Starter Kit
-
-    Clone the starter kit and copy the player configuration to your project:
-
-    <TerminalTabs>
-      <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-video-player-ts-web.git
-        cp -r starterkit-video-player-ts-web/src/imgly ./src/imgly
-        rm -rf starterkit-video-player-ts-web
-      </TerminalTab>
-
-      <TerminalTab label="degit">
-        npx degit imgly/starterkit-video-player-ts-web/src/imgly ./src/imgly
-      </TerminalTab>
-    </TerminalTabs>
-
-    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
-
-    ### Step 3: Install Dependencies
-
-    The Creative Editor SDK package provides all playback functionality.
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
-    </TerminalTabs>
-
-    ### Step 4: Download Assets
-
-    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
-
-    <TerminalTabs>
-      <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/
-        rm imgly-assets.zip
-      </TerminalTab>
-    </TerminalTabs>
-
-    ### Step 5: Create the Player Component
-
-    Create a Vue component using the official CE.SDK Vue wrapper:
-
-    ```vue
-    <template>
-      <CreativeEditor
-        :config="{ baseURL: '/assets' }"
-        :init="initVideoPlayer"
-        width="100vw"
-        height="100vh"
-      />
-    </template>
-
-    <script setup lang="ts">
-    import { initVideoPlayer } from './imgly';
-    import CreativeEditor from '@cesdk/cesdk-js/vue';
-    </script>
-    ```
-
-    ### Step 6: Use the Component
-
-    Import and use the Video Player component in your application:
-
-    ```vue
-    <template>
-      <VideoPlayer />
-    </template>
-
-    <script setup lang="ts">
-    import VideoPlayer from './components/VideoPlayer.vue';
-    </script>
+    CreativeEditorSDK.create('#cesdk_container', config)
+      .then(async (cesdk) => {
+        await initVideoPlayer(cesdk);
+      })
+      .catch((error) => {
+        console.error('Failed to initialize CE.SDK:', error);
+      });
     ```
   </TabItem>
 </Tabs>
-
-***
 
 ## Set Up a Scene
 
 CE.SDK offers multiple ways to load content into the player. Choose the method that matches your use case:
 
-```typescript title="src/imgly/index.ts"
+```typescript title="src/index.ts"
 // Load from a template archive - loads a previously saved project
 await cesdk.loadFromArchiveURL('https://example.com/video.zip');
 
@@ -250,7 +264,7 @@ await cesdk.loadFromURL('https://example.com/scene.json');
 await cesdk.actions.run('zoom.toPage', {
   page: 'first',
   autoFit: true,
-  padding: 24,
+  padding: 24
 });
 ```
 
@@ -280,15 +294,15 @@ Customize UI labels and add support for multiple languages. The i18n system supp
 cesdk.i18n.setTranslations({
   en: {
     'common.play': 'Play Video',
-    'common.pause': 'Pause',
-  },
+    'common.pause': 'Pause'
+  }
 });
 
 // Add a new language
 cesdk.i18n.setTranslations({
   de: {
-    'common.play': 'Video abspielen',
-  },
+    'common.play': 'Video abspielen'
+  }
 });
 
 // Set the active locale
@@ -325,7 +339,8 @@ The Video Player includes everything needed for video playback.
   },
   {
     title: 'Page Navigation',
-    description: 'Navigate between pages in multi-page video projects.',
+    description:
+      'Navigate between pages in multi-page video projects.',
     imageId: 'text-editing',
   },
   {
@@ -345,8 +360,7 @@ The Video Player includes everything needed for video playback.
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get
-> a license key and remove the watermark.
+> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
 
 ***
 
@@ -377,8 +391,7 @@ The Video Player includes everything needed for video playback.
 
 ## Next Steps
 
-- [Configuration](./configuration.md) – Complete list of initialization
-  options
+- [Configuration](./configuration.md) – Complete list of initialization options
 - [Serve Assets](./serve-assets.md) – Self-host engine assets for production
 - [Theming](./user-interface/appearance/theming.md) – Customize colors and appearance
 - [Localization](./user-interface/localization.md) – Add translations and language support

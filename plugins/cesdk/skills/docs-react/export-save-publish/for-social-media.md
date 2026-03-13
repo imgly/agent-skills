@@ -185,7 +185,7 @@ This guide covers creating a vertical video scene, exporting with resolution, fr
 
 ## Creating a Video Scene
 
-Create a video scene with the correct dimensions for vertical video. Use `createVideoScene()` with explicit pixel dimensions to ensure your content matches platform requirements.
+Create a video scene with the correct dimensions for vertical video. Use `cesdk.actions.run('scene.create', { mode: 'Video' })` with explicit pixel dimensions to ensure your content matches platform requirements.
 
 ```typescript highlight-setup
     // Create a vertical video scene (9:16) for Instagram Reels, TikTok, YouTube Shorts

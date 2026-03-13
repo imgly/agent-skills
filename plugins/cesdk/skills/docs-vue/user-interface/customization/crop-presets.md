@@ -24,6 +24,20 @@ Crop presets define the aspect ratios and dimensions users can select when cropp
 
 ```javascript file=@cesdk_web_examples/guides-crop-presets-browser/index.js reference-only
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TypefaceAssetSource,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
@@ -50,11 +64,21 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Set scale using the new API
   instance.ui.setScale('normal');
   // Populate the asset library with default / demo asset sources.
-  instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({
+  instance.addPlugin(new BlurAssetSource());
+  instance.addPlugin(new CaptionPresetsAssetSource());
+  instance.addPlugin(new ColorPaletteAssetSource());
+  instance.addPlugin(new CropPresetsAssetSource());
+  instance.addPlugin(new EffectsAssetSource());
+  instance.addPlugin(new FiltersAssetSource());
+  instance.addPlugin(new PagePresetsAssetSource());
+  instance.addPlugin(new StickerAssetSource());
+  instance.addPlugin(new TextAssetSource());
+  instance.addPlugin(new TypefaceAssetSource());
+  instance.addPlugin(new VectorShapeAssetSource());
+  instance.addPlugin(new DemoAssetSources({
     sceneMode: 'Design',
     withUploadAssetSources: true
-  });
+  }));
 
   // Add a custom crop preset asset source.
   instance.engine.asset.addLocalSource('my-custom-crop-presets');
@@ -183,10 +207,12 @@ This guide covers how to use the built-in crop UI, understand default presets, c
 
 The crop interface displays preset options when users enter crop mode. Presets appear as selectable thumbnails with aspect ratio labels. Users click a preset to constrain the crop frame to that ratio, or select the free preset for unconstrained cropping.
 
-To enable the default crop presets, we load them using `addDefaultAssetSources()`:
+To enable the default crop presets, we load them using the `CropPresetsAssetSource` plugin:
 
 ```javascript
-await instance.addDefaultAssetSources();
+import { CropPresetsAssetSource } from '@cesdk/cesdk-js/plugins';
+
+await instance.addPlugin(new CropPresetsAssetSource());
 ```
 
 This loads the `ly.img.crop.presets` asset source, which contains common ratios including free, 1:1, 9:16, 16:9, 4:3, and others.
@@ -347,7 +373,7 @@ Each preset must have a `label` object. Missing labels cause presets to display 
 | `engine.asset.addAssetToSource(sourceId, asset)` | Add a crop preset asset to the source |
 | `engine.asset.findAllSources()` | List all registered asset sources |
 | `cesdk.ui.updateAssetLibraryEntry(entryId, config)` | Configure which sources appear in a library entry |
-| `addDefaultAssetSources()` | Load default asset sources including crop presets |
+| `cesdk.addPlugin(new CropPresetsAssetSource())` | Load crop preset asset source plugin |
 
 
 

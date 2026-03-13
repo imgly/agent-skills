@@ -48,7 +48,7 @@ Types: FontWeight, FontStyle, Font, Typeface
 
 ## propertyTypes
 
-Types: BoolPropertyName, EnumPropertyName, FloatPropertyName, StringPropertyName, DoublePropertyName, ColorPropertyName, IntPropertyName, SourceSetPropertyName, BlendMode, ContentFillMode, HeightMode, PositionXMode, PositionYMode, SceneDesignUnit, SceneLayout, SceneMode, WidthMode, StrokeCornerGeometry, StrokePosition, StrokeStyle, TextHorizontalAlignment, TextVerticalAlignment, CutoutType, CaptionHorizontalAlignment, CaptionVerticalAlignment, AnimationEasing, TextAnimationWritingStyle, AnimationGrowDirection, AnimationScaleLoopDirection, AnimationWipeDirection, AnimationBaselineDirection, AnimationSpinDirection, AnimationSpinLoopDirection, AnimationJumpLoopDirection, AnimationTypewriterTextWritingStyle, AnimationBlockSwipeTextDirection, AnimationMergeTextDirection, AnimationKenBurnsDirection, FillPixelStreamOrientation, EnumValues, BlockEnumType
+Types: BoolPropertyName, EnumPropertyName, FloatPropertyName, StringPropertyName, DoublePropertyName, ColorPropertyName, IntPropertyName, SourceSetPropertyName, BlendMode, ContentFillMode, HeightMode, PositionXMode, PositionYMode, SceneDesignUnit, SceneLayout, SceneMode, WidthMode, StrokeCornerGeometry, StrokePosition, StrokeStyle, TextHorizontalAlignment, TextVerticalAlignment, CutoutType, CaptionHorizontalAlignment, CaptionVerticalAlignment, AnimationEasing, TextAnimationWritingStyle, AnimationGrowDirection, AnimationWipeDirection, AnimationBaselineDirection, AnimationSpinDirection, AnimationSpinLoopDirection, AnimationJumpLoopDirection, AnimationTypewriterTextWritingStyle, AnimationBlockSwipeTextDirection, AnimationMergeTextDirection, AnimationKenBurnsDirection, FillPixelStreamOrientation, EnumValues, BlockEnumType
 
 ## role
 
@@ -60,7 +60,7 @@ Types: Scope
 
 ## settingTypes
 
-Types: SettingStringPropertyName, SettingColorPropertyName, SettingBoolPropertyName, SettingFloatPropertyName, SettingEnumPropertyName, SettingIntPropertyName, TouchPinchAction, TouchRotateAction, CameraClampingOvershootMode, DoubleClickSelectionMode, ColorPickerColorMode, TimelineTrackVisibility, SettingEnumValues, SettingEnumType
+Types: SettingStringPropertyName, SettingColorPropertyName, SettingBoolPropertyName, SettingFloatPropertyName, SettingEnumPropertyName, SettingIntPropertyName, TouchPinchAction, TouchRotateAction, CameraClampingOvershootMode, DoubleClickSelectionMode, ColorPickerColorMode, SettingEnumValues, SettingEnumType
 
 ## settings
 
