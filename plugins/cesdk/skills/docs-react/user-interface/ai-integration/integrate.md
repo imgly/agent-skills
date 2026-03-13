@@ -12,11 +12,11 @@ Add AI-powered generation capabilities to your CE.SDK application for generating
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-ai-integration-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ai-integration-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-ai-integration-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ai-integration-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ai-integration-browser/)
 
@@ -906,7 +906,7 @@ This is useful for:
 - Simplifying the UI by hiding unused features
 - Temporarily disabling features during maintenance
 
-For more details on available feature flags, see the [@imgly/plugin-ai-generation-web documentation](https://github.com/imgly/plugins/tree/main/packages/plugin-ai-generation-web#available-feature-flags).
+For more details on available feature flags, see the [@imgly/plugin-ai-generation-web documentation](https://github.com/imgly/plugins/tree/release-$UBQ_VERSION$/packages/plugin-ai-generation-web#available-feature-flags).
 
 ## 8. Proxy Server Configuration
 

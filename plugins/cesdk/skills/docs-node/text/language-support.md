@@ -10,11 +10,11 @@ Support right-to-left text, complex scripts, and multilingual typography program
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-text-language-support-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-text-language-support-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-text-language-support-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-text-language-support-server-js)
 
 CE.SDK provides comprehensive multilingual text support through the Block API. We can create text blocks in any language and the engine automatically handles complex text rendering including right-to-left scripts, ligatures, diacritical marks, and bidirectional text. This enables programmatic generation of designs for global audiences without UI complexity.
 

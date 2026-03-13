@@ -10,11 +10,11 @@ Import Adobe InDesign (IDML) files into CE.SDK using Node.js, converting them in
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-import-design-from-indesign-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-import-design-from-indesign-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-import-design-from-indesign-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-import-design-from-indesign-server-js)
 
 The `@imgly/idml-importer` package converts InDesign IDML files into CE.SDK scene format, preserving design structure for distribution or further processing. This guide focuses on batch converting IDML template files at build-time using Node.js—ideal for migrating existing template libraries or integrating with CI/CD pipelines. For enabling end-user uploads in the browser, see the [browser guide](./open-the-editor/import-design/from-indesign.md).
 

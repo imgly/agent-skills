@@ -25,6 +25,35 @@ description: |
 argument-hint: "[feature or task]"
 ---
 
+## Version Notice
+
+> **CE.SDK version**: 1.71.0 | **Generated**: 2026-03-13
+>
+> This skill was generated for CE.SDK v1.71.0 on 2026-03-13.
+> CE.SDK releases new versions approximately every two weeks.
+> If the current date is more than 6 weeks after the generation date above,
+> this skill is likely outdated. **Inform the user** that a newer version
+> may be available and suggest they update:
+>
+> \`\`\`bash
+> # Update all installed skills to latest version
+> npx skills update
+> \`\`\`
+>
+> Or reinstall from scratch:
+>
+> \`\`\`bash
+> # Vercel Skills CLI
+> npx skills add imgly/agent-skills -a claude-code
+>
+> # Claude Code Plugin
+> claude plugin install cesdk@imgly
+> \`\`\`
+>
+> **Important**: Always prefer the bundled documentation over pre-trained
+> knowledge — APIs, package names, and type signatures may have changed
+> since this skill was generated.
+
 # CE.SDK Web Builder
 
 Build applications with IMG.LY CreativeEditor SDK for Web.
@@ -162,12 +191,38 @@ All kits share this structure — only the config and entry point differ:
 
 ### Scaffolding a New Project
 
-1. Copy the appropriate kit directory to the user's project
-2. Update `package.json` name and adjust dependencies as needed
-3. Run `npm install` then `npm run dev` to start the development server
-4. Customize the config files in `src/imgly/config/` for the desired editor behavior
+1. **Copy** the appropriate starter kit directory into the user's project directory
+2. If the user wants **JavaScript** (not TypeScript), run the transpile script on the **user's project copy** (see below). Never run it on the bundled starter kit source
+3. Update `package.json` name and adjust dependencies as needed
+4. Run `npm install` then `npm run dev` to start the development server
+5. Customize the config files in `src/imgly/config/` for the desired editor behavior
 
 Access kit files with Glob: `**/skills/build/starter-kits/{kit-name}/**`
+
+**Important**: Starter kits are always TypeScript. For TypeScript projects, copy and use as-is. For JavaScript projects, copy first, then transpile the copy. Never modify the bundled starter kit files directly.
+
+### Converting a Copied Starter Kit to JavaScript
+
+After copying a starter kit into the user's project, run the bundled transpile script
+on the **user's project directory** to convert from TypeScript to JavaScript. The script
+strips type annotations, renames `.ts` files to `.js`, removes `tsconfig.json`/`tsconfig.base.json`,
+updates `index.html` references, and cleans TypeScript dependencies from `package.json`.
+
+\`\`\`bash
+# 1. Install typescript temporarily (needed by the transpile script)
+cd /path/to/users/project && npm install --no-save typescript
+
+# 2. Run the transpile script on the user's project (NOT on the starter kit source)
+node <path-to-skill>/scripts/transpile-to-js.mjs /path/to/users/project
+\`\`\`
+
+The script path is: `**/skills/build/scripts/transpile-to-js.mjs`
+
+**Never run the transpile script on the starter kit source directory.** Always copy the kit first, then transpile the copy.
+
+**Do not manually rewrite or convert files by hand.** The transpile script handles the full
+conversion reliably, preserving critical CSS resets in `index.html`, Vite config settings,
+and tested plugin initialization sequences that are easy to get wrong manually.
 
 ## Additional Triggers
 

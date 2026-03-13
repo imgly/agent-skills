@@ -10,11 +10,11 @@ Use CE.SDK's engine APIs to extract images and text from designs in Node.js, the
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-rules-moderate-content-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-rules-moderate-content-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-rules-moderate-content-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-rules-moderate-content-server-js)
 
 CE.SDK does not provide prebuilt content moderation workflows. Instead, it provides powerful engine APIs that make it straightforward to extract images and text from designs for moderation by third-party services of your choice. This approach is intentional: content moderation requirements are highly specific to each business, including which categories to check, what thresholds to apply, and which services to use. Similarly, when and where to check content (during editing, before export, on upload) varies based on your workflow and user experience goals.
 

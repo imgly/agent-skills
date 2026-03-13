@@ -10,11 +10,11 @@ Store and manage temporary binary data directly in memory using CE.SDK's buffer 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-concepts-buffers-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-buffers-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-concepts-buffers-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-buffers-server-js)
 
 Buffers are in-memory containers for binary data referenced via `buffer://` URIs. Unlike external files that require network or file I/O, buffers exist only during the current session and are not serialized when saving scenes. This makes them ideal for procedural audio, real-time image data, or streaming content that doesn't need to persist beyond the current processing session.
 

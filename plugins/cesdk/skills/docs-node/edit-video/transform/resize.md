@@ -10,11 +10,11 @@ The **CreativeEditor SDK (CE.SDK)** provides programmatic video resizing for ser
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-edit-video-transform-resize-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-video-transform-resize-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-edit-video-transform-resize-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-video-transform-resize-server-js)
 
 ```typescript file=@cesdk_web_examples/guides-edit-video-transform-resize-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';

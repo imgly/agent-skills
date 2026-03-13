@@ -146,8 +146,8 @@ Integrate the Video Editor into your React application using the official React 
     Create a React component using the official CE.SDK React wrapper:
 
     ```tsx
-    import { initVideoEditor } from './imgly';
     import CreativeEditor from '@cesdk/cesdk-js/react';
+    import { initVideoEditor } from './imgly';
 
     export default function VideoEditor() {
       return (
@@ -243,8 +243,8 @@ Integrate the Video Editor into your React application using the official React 
     Create a React component using the official CE.SDK React wrapper:
 
     ```tsx
-    import { initVideoEditor } from './imgly';
     import CreativeEditor from '@cesdk/cesdk-js/react';
+    import { initVideoEditor } from './imgly';
 
     export default function VideoEditor() {
       return (
@@ -332,7 +332,7 @@ import {
   StickerAssetSource,
   TextAssetSource,
   VectorShapeAssetSource,
-  EffectsAssetSource,
+  EffectsAssetSource
   // ...
 } from '@cesdk/cesdk-js/plugins';
 
@@ -378,7 +378,7 @@ Customize actions in `src/imgly/config/actions.ts`:
 cesdk.actions.register('importVideo', async () => {
   const blobURL = await cesdk.utils.loadFile({
     accept: 'video/*',
-    returnType: 'objectURL',
+    returnType: 'objectURL'
   });
   await cesdk.createFromVideo(blobURL);
 });
@@ -388,7 +388,7 @@ cesdk.actions.register('importVideo', async () => {
 
 ```typescript title="src/imgly/config/actions.ts"
 // Register export action that downloads the edited video
-cesdk.actions.register('exportDesign', async exportOptions => {
+cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs, options } = await cesdk.utils.export(exportOptions);
   await cesdk.utils.downloadFile(blobs[0], options.mimeType);
 });
@@ -398,7 +398,7 @@ cesdk.actions.register('exportDesign', async exportOptions => {
 
 ```typescript title="src/imgly/config/actions.ts"
 // Override the built-in exportDesign action to send to your server
-cesdk.actions.register('exportDesign', async exportOptions => {
+cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs } = await cesdk.utils.export(exportOptions);
 
   const formData = new FormData();
@@ -406,7 +406,7 @@ cesdk.actions.register('exportDesign', async exportOptions => {
 
   const response = await fetch('/api/upload', {
     method: 'POST',
-    body: formData,
+    body: formData
   });
 
   const { url } = await response.json();
@@ -442,15 +442,15 @@ cesdk.i18n.setTranslations({
   en: {
     'actions.export.video': 'Download Video',
     'common.cancel': 'Cancel',
-    'common.apply': 'Apply',
-  },
+    'common.apply': 'Apply'
+  }
 });
 
 // Add a new language
 cesdk.i18n.setTranslations({
   de: {
-    'actions.export.video': 'Video herunterladen',
-  },
+    'actions.export.video': 'Video herunterladen'
+  }
 });
 
 // Set the active locale
@@ -473,21 +473,21 @@ const navOrder = cesdk.ui.getNavigationBarOrder();
 cesdk.ui.insertNavigationBarOrderComponent(
   'ly.img.spacer',
   { id: 'my-custom-action' },
-  'after',
+  'after'
 );
 
 // Rearrange dock items
 cesdk.ui.setDockOrder([
   'ly.img.assetLibrary.dock',
   'ly.img.separator',
-  'my-custom-dock-item',
+  'my-custom-dock-item'
 ]);
 
 // Customize the inspector bar
 cesdk.ui.setInspectorBarOrder([
   'ly.img.fill.inspectorBar',
   'ly.img.separator',
-  'ly.img.filter.inspectorBar',
+  'ly.img.filter.inspectorBar'
 ]);
 ```
 
@@ -513,7 +513,7 @@ cesdk.ui.registerComponent('my-custom-button', ({ builder, engine }) => {
     isDisabled: selectedBlocks.length === 0,
     onClick: () => {
       // Apply custom logic to selected blocks
-    },
+    }
   });
 });
 
@@ -521,7 +521,7 @@ cesdk.ui.registerComponent('my-custom-button', ({ builder, engine }) => {
 cesdk.ui.insertNavigationBarOrderComponent(
   'ly.img.spacer',
   'my-custom-button',
-  'after',
+  'after'
 );
 ```
 
@@ -580,8 +580,8 @@ import AIPlugin from '@imgly/plugin-ai-generation';
 await cesdk.addPlugin(
   AIPlugin({
     provider: 'your-ai-provider',
-    apiKey: 'your-api-key',
-  }),
+    apiKey: 'your-api-key'
+  })
 );
 ```
 
@@ -597,8 +597,8 @@ import UnsplashAssetSource from '@imgly/plugin-unsplash';
 // Add Unsplash integration
 await cesdk.addPlugin(
   UnsplashAssetSource({
-    accessKey: 'your-unsplash-access-key',
-  }),
+    accessKey: 'your-unsplash-access-key'
+  })
 );
 ```
 
@@ -625,38 +625,38 @@ The Video Editor includes everything needed for professional video editing.
     title: 'Timeline Editing',
     description:
       'Multi-track timeline with drag-and-drop clips, transitions, and precise trimming controls.',
-    imageId: 'transform',
+    imageId: 'transform'
   },
   {
     title: 'Visual Effects',
     description:
       'Apply filters, color grading, and visual effects to enhance your video content.',
-    imageId: 'filters',
+    imageId: 'filters'
   },
   {
     title: 'Text & Graphics',
     description:
       'Add animated text, titles, and graphic overlays with comprehensive styling controls.',
-    imageId: 'text-editing',
+    imageId: 'text-editing'
   },
   {
     title: 'Audio Management',
     description:
       'Add background music, voiceovers, and sound effects with volume and timing controls.',
-    imageId: 'green-screen',
+    imageId: 'green-screen'
   },
   {
     title: 'Asset Libraries',
     description:
       'Access built-in collections of video clips, stickers, and graphics, plus import custom assets.',
-    imageId: 'asset-libraries',
+    imageId: 'asset-libraries'
   },
   {
     title: 'Video Export',
     description:
       'Export to MP4 format with customizable resolution, quality, and encoding settings.',
-    imageId: 'client-side',
-  },
+    imageId: 'client-side'
+  }
 ]}
 />
 
@@ -705,8 +705,7 @@ The Video Editor includes everything needed for professional video editing.
 
 ## Next Steps
 
-- [Configuration](./configuration.md) – Complete list of initialization
-  options
+- [Configuration](./configuration.md) – Complete list of initialization options
 - [Serve Assets](./serve-assets.md) – Self-host engine assets for production
 - [Theming](./user-interface/appearance/theming.md) – Customize colors and appearance
 - [Localization](./user-interface/localization.md) – Add translations and language support

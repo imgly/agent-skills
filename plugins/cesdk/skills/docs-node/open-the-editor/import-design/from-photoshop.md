@@ -10,11 +10,11 @@ Convert Adobe Photoshop (PSD) files to CE.SDK scene archives at build-time using
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-import-design-from-photoshop-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-import-design-from-photoshop-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-import-design-from-photoshop-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-import-design-from-photoshop-server-js)
 
 The `@imgly/psd-importer` package converts Photoshop files into CE.SDK scene format on the server, allowing you to distribute pre-converted templates without client-side processing. This guide covers batch conversion of PSD template files to CE.SDK scene archives that can be shipped with your product. For enabling end-users to upload PSD files directly in the browser, see the [browser guide](./open-the-editor/import-design/from-photoshop.md).
 

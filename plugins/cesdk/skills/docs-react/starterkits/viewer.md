@@ -102,8 +102,8 @@ Before you begin, make sure you have the following:
     Create a React component using the official CE.SDK React wrapper:
 
     ```tsx
-    import { initDesignViewer } from './imgly';
     import CreativeEditor from '@cesdk/cesdk-js/react';
+    import { initDesignViewer } from './imgly';
 
     export default function DesignViewer() {
       return (
@@ -189,8 +189,8 @@ Before you begin, make sure you have the following:
     Create a React component using the official CE.SDK React wrapper:
 
     ```tsx
-    import { initDesignViewer } from './imgly';
     import CreativeEditor from '@cesdk/cesdk-js/react';
+    import { initDesignViewer } from './imgly';
 
     export default function DesignViewer() {
       return (
@@ -237,7 +237,7 @@ await cesdk.loadFromURL('https://example.com/scene.json');
 await cesdk.actions.run('zoom.toPage', {
   page: 'first',
   autoFit: true,
-  padding: 24,
+  padding: 24
 });
 ```
 
@@ -268,15 +268,15 @@ Customize UI labels and add support for multiple languages. The i18n system supp
 cesdk.i18n.setTranslations({
   en: {
     'common.zoomIn': 'Zoom In',
-    'common.zoomOut': 'Zoom Out',
-  },
+    'common.zoomOut': 'Zoom Out'
+  }
 });
 
 // Add a new language
 cesdk.i18n.setTranslations({
   de: {
-    'common.zoomIn': 'Vergrößern',
-  },
+    'common.zoomIn': 'Vergrößern'
+  }
 });
 
 // Set the active locale
@@ -296,37 +296,37 @@ The Design Viewer includes everything needed for design viewing.
   {
     title: 'Pan & Zoom',
     description: 'Navigate designs with intuitive pan and zoom controls.',
-    imageId: 'transform',
+    imageId: 'transform'
   },
   {
     title: 'Page Navigation',
     description:
       'Navigate between pages in multi-page designs and presentations.',
-    imageId: 'filters',
+    imageId: 'filters'
   },
   {
     title: 'Zoom Controls',
     description: 'Zoom in and out of the canvas with fit-to-screen options.',
-    imageId: 'green-screen',
+    imageId: 'green-screen'
   },
   {
     title: 'Read-Only Mode',
     description:
       'Display design content without editing capabilities for preview and approval workflows.',
-    imageId: 'text-editing',
+    imageId: 'text-editing'
   },
   {
     title: 'Approval Workflows',
     description:
       'Review and approve designs without the risk of accidental modifications.',
-    imageId: 'asset-libraries',
+    imageId: 'asset-libraries'
   },
   {
     title: 'Lightweight Interface',
     description:
       'Minimal UI focused on viewing experience without editing distractions.',
-    imageId: 'client-side',
-  },
+    imageId: 'client-side'
+  }
 ]}
 />
 
@@ -359,8 +359,7 @@ The Design Viewer includes everything needed for design viewing.
 
 ## Next Steps
 
-- [Configuration](./configuration.md) – Complete list of initialization
-  options
+- [Configuration](./configuration.md) – Complete list of initialization options
 - [Serve Assets](./serve-assets.md) – Self-host engine assets for production
 - [Theming](./user-interface/appearance/theming.md) – Customize colors and appearance
 - [Localization](./user-interface/localization.md) – Add translations and language support

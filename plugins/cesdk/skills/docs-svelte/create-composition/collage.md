@@ -12,11 +12,11 @@ This guide shows you how to add a **Collage** feature in your web app with the h
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/blob/main/showcase-layouts/src/components/case/CaseComponent.jsx)
 >
-> - [Open in StackBlitz](https://stackblitz.com/fork/github/imgly/cesdk-web-examples/tree/main/showcase-layouts?title=IMG.LY+CE.SDK%3A+Layouts\&file=src%2Fcomponents%2Fcase%2FCaseComponent.jsx)
+> - [Open in StackBlitz](https://stackblitz.com/fork/github/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/showcase-layouts?title=IMG.LY+CE.SDK%3A+Layouts\&file=src%2Fcomponents%2Fcase%2FCaseComponent.jsx)
 >
 > - [Live demo](https://img.ly/showcases/cesdk/layouts/web)
 
@@ -72,7 +72,7 @@ The CE.SDK allows you to add [custom panels to the UI](./user-interface/customiz
 For this action, you need:
 
 1. A layout file defining the collage structure (use [this one](https://github.com/imgly/cesdk-web-examples/blob/main/showcase-layouts/src/components/case/CustomLayouts.json) to get started).
-2. Thumbnail images for preview (find a collection [here](https://github.com/imgly/cesdk-web-examples/tree/main/showcase-layouts/public/cases/layouts)).
+2. Thumbnail images for preview (find a collection [here](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/showcase-layouts/public/cases/layouts)).
 
 ### 1. Add a Layouts Option to the CE.SDK Menu
 

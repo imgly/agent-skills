@@ -14,11 +14,11 @@ compliance—all client-side without any backend infrastructure.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/plugins-print-ready-pdf-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/plugins-print-ready-pdf-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/plugins-print-ready-pdf-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/plugins-print-ready-pdf-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/plugins-print-ready-pdf-browser/)
 
@@ -329,7 +329,7 @@ init().catch((error) => {
 
 This implementation adds a complete print-ready PDF export workflow to CE.SDK with just a few lines of code.
 
-Find the complete working example in the [GitHub repository](https://github.com/imgly/cesdk-web-examples/tree/main/plugins-print-ready-pdf-browser).
+Find the complete working example in the [GitHub repository](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/plugins-print-ready-pdf-browser).
 
 ## Transparency Handling
 

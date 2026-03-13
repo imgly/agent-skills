@@ -12,11 +12,11 @@ Learn how to intercept and transform asset URIs in CE.SDK, enabling authenticati
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-uri-resolver-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-uri-resolver-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-open-the-editor-uri-resolver-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-uri-resolver-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-uri-resolver-browser/)
 
@@ -116,7 +116,7 @@ class Example implements EditorPlugin {
 
     // Test resolution without loading assets
     const relativeURI = '/images/photo.jpg';
-    const resolvedURI = engine.editor.getAbsoluteURI(relativeURI);
+    const resolvedURI = await engine.editor.getAbsoluteURI(relativeURI);
     // eslint-disable-next-line no-console
     console.log('Default resolution:');
     // eslint-disable-next-line no-console
@@ -165,7 +165,7 @@ class Example implements EditorPlugin {
 
     // Test authentication with a protected URI
     const protectedURI = 'https://your-server/image-stable-links/abc123';
-    engine.editor.getAbsoluteURI(protectedURI);
+    await engine.editor.getAbsoluteURI(protectedURI);
 
     // ========================================
     // Section 3: Removing a Custom Resolver
@@ -254,7 +254,7 @@ Use `getAbsoluteURI()` to test how URIs resolve without loading assets:
 ```typescript highlight=highlight-test-resolution
 // Test resolution without loading assets
 const relativeURI = '/images/photo.jpg';
-const resolvedURI = engine.editor.getAbsoluteURI(relativeURI);
+const resolvedURI = await engine.editor.getAbsoluteURI(relativeURI);
 // eslint-disable-next-line no-console
 console.log('Default resolution:');
 // eslint-disable-next-line no-console
@@ -308,7 +308,7 @@ A common use case is adding authentication tokens to asset URIs. Generate the to
 
     // Test authentication with a protected URI
     const protectedURI = 'https://your-server/image-stable-links/abc123';
-    engine.editor.getAbsoluteURI(protectedURI);
+    await engine.editor.getAbsoluteURI(protectedURI);
 ```
 
 Your server validates the token and redirects to the actual asset (e.g., pre-signed S3 URL). CE.SDK follows redirects automatically.
@@ -328,7 +328,7 @@ console.log('\n✓ Removed custom resolver - back to default behavior');
 
 ## Key Constraints
 
-- **Synchronous only**: No `async`/`await` or Promises
+- **Sync vs async**: `setURIResolver` must be synchronous. Use `setURIResolverAsync` for async resolution.
 - **Must return absolute URIs**: Include scheme (http://, https://, data:)
 - **One resolver at a time**: New calls overwrite previous resolvers
 - **Delegate unmatched URIs**: Pass to `defaultURIResolver()` for unchanged paths

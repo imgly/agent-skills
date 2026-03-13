@@ -10,11 +10,11 @@ Generate multiple image variants from a single data record using CE.SDK's headle
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-automation-multi-image-generation-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-automation-multi-image-generation-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-automation-multi-image-generation-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-automation-multi-image-generation-server-js)
 
 Multi-image generation produces multiple design variants from a single data source. This pattern creates format variations (square, portrait, landscape) from one input to serve multiple channels like Instagram posts, stories, and Facebook posts.
 

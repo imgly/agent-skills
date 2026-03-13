@@ -4,7 +4,7 @@
 
 ---
 
-Comprehensive video editing for your web app—professional tools for timeline editing, visual effects, and MP4 export. Runs entirely in the browser with no server dependencies.
+Comprehensive video editing for your Vue app—professional tools for timeline editing, visual effects, and MP4 export. Runs entirely in the browser with no server dependencies.
 
 ![Video Editor (Advanced) starter kit showing a comprehensive professional video editing interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -22,13 +22,13 @@ Comprehensive video editing for your web app—professional tools for timeline e
 
 ***
 
-## Pre-requisites
+## Prerequisites
 
-This guide assumes basic familiarity with JavaScript or TypeScript.
+Before you begin, make sure you have the following:
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
-- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list.
 
 ***
 
@@ -36,119 +36,28 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
   <TabItem label="New Project">
     ## Get Started
 
-    Start fresh with a standalone Video Editor (Advanced) project. This creates a complete, ready-to-run application.
+    Integrate Video Editor (Advanced) into your Vue application using the official Vue wrapper.
 
-    ## Step 1: Clone the Repository
-
-    <TerminalTabs>
-      <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-advanced-video-editor-ts-web.git
-      </TerminalTab>
-
-      <TerminalTab label="degit">
-        npx degit imgly/starterkit-advanced-video-editor-ts-web starterkit-advanced-video-editor-ts-web
-      </TerminalTab>
-    </TerminalTabs>
-
-    The `src/` folder contains the editor code:
-
-    ```
-    src/
-    ├── index.ts                      # Application entry point
-    └── imgly/
-        ├── index.ts                  # Editor initialization function
-        ├── config/
-        │   ├── plugin.ts             # Main configuration plugin
-        │   ├── actions.ts            # Export/import actions
-        │   ├── features.ts           # Feature toggles
-        │   ├── i18n.ts               # Translations
-        │   ├── settings.ts           # Engine settings
-        │   └── ui/                   # UI customization
-        │       ├── index.ts          # Combines UI customization exports
-        │       ├── canvas.ts         # Canvas configuration
-        │       ├── components.ts     # Custom component registration
-        │       ├── dock.ts           # Dock layout configuration
-        │       ├── inspectorBar.ts   # Inspector bar layout
-        │       ├── navigationBar.ts  # Navigation bar layout
-        │       └── panel.ts          # Panel configuration
-        └── plugins/
-            └── background-removal.ts # Background removal plugin
-    ```
-
-    ## Step 2: Install Dependencies
-
-    Install the required packages:
+    ## Step 1: Create a New Project
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        cd starterkit-advanced-video-editor-ts-web
-        npm install
+        npm create vue@latest your-project-name
+        cd your-project-name
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        cd starterkit-advanced-video-editor-ts-web
-        pnpm install
+        pnpm create vue@latest your-project-name
+        cd your-project-name
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        cd starterkit-advanced-video-editor-ts-web
-        yarn
+        yarn create vue@latest your-project-name
+        cd your-project-name
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 3: Download Assets
-
-    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
-
-    <TerminalTabs>
-      <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/
-        rm imgly-assets.zip
-      </TerminalTab>
-    </TerminalTabs>
-
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in `src/index.ts`.
-
-    ```typescript title="src/index.ts"
-    const config = {
-      // ...
-      baseURL: '/assets'
-      // ...
-    };
-    ```
-
-    ## Step 4: Run the Development Server
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm run dev
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm run dev
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn dev
-      </TerminalTab>
-    </TerminalTabs>
-
-    Open `http://localhost:5173` in your browser.
-  </TabItem>
-
-  <TabItem label="Existing Project">
-    ## Get Started
-
-    Integrate Video Editor (Advanced) into an existing web application. This adds the editor configuration to your current project structure.
-
-    ## Step 1: Clone
-
-    <TerminalTabs>
-      <TerminalTab label="Navigate">
-        cd your-project
-      </TerminalTab>
-    </TerminalTabs>
+    ## Step 2: Clone the Starter Kit
 
     Clone the starter kit and copy the editor configuration to your project:
 
@@ -163,8 +72,6 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
         npx degit imgly/starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly
       </TerminalTab>
     </TerminalTabs>
-
-    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
     The `imgly/` folder contains the editor configuration:
 
@@ -189,7 +96,144 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
         └── background-removal.ts # Background removal plugin
     ```
 
-    ## Step 2: Install Dependencies
+    ## Step 3: Install Dependencies
+
+    ### Core Editor
+
+    Install the Creative Editor SDK:
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm install @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm add @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn add @cesdk/cesdk-js
+      </TerminalTab>
+    </TerminalTabs>
+
+    ### Background Removal
+
+    Add AI-powered background removal:
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm install @imgly/background-removal onnxruntime-web
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm add @imgly/background-removal onnxruntime-web
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn add @imgly/background-removal onnxruntime-web
+      </TerminalTab>
+    </TerminalTabs>
+
+    ## Step 4: Download Assets
+
+    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
+
+    <TerminalTabs>
+      <TerminalTab label="Download">
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
+      </TerminalTab>
+    </TerminalTabs>
+
+    ## Step 5: Create the Editor Component
+
+    Create a Vue component using the official CE.SDK Vue wrapper (e.g., `AdvancedVideoEditor.vue`):
+
+    ```vue
+    <template>
+      <CreativeEditor
+        :config="{ baseURL: '/assets' }"
+        :init="initAdvancedVideoEditor"
+        width="100vw"
+        height="100vh"
+      />
+    </template>
+
+    <script setup lang="ts">
+    import { initAdvancedVideoEditor } from '../imgly';
+    import CreativeEditor from '@cesdk/cesdk-js/vue';
+    </script>
+    ```
+
+    ## Step 6: Use the Component
+
+    Import and use the editor component in your application:
+
+    ```vue
+    <template>
+      <AdvancedVideoEditor />
+    </template>
+
+    <script setup lang="ts">
+    import AdvancedVideoEditor from './components/AdvancedVideoEditor.vue';
+    </script>
+    ```
+  </TabItem>
+
+  <TabItem label="Existing Project">
+    ## Get Started
+
+    Integrate Video Editor (Advanced) into an existing Vue application. This adds the editor configuration to your current project structure.
+
+    ## Step 1: Navigate to Your Project
+
+    <TerminalTabs>
+      <TerminalTab label="Navigate">cd your-project</TerminalTab>
+    </TerminalTabs>
+
+    ## Step 2: Clone the Starter Kit
+
+    Clone the starter kit and copy the editor configuration to your project:
+
+    <TerminalTabs>
+      <TerminalTab label="git">
+        git clone https://github.com/imgly/starterkit-advanced-video-editor-ts-web.git
+        cp -r starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly
+        rm -rf starterkit-advanced-video-editor-ts-web
+      </TerminalTab>
+
+      <TerminalTab label="degit">
+        npx degit imgly/starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly
+      </TerminalTab>
+    </TerminalTabs>
+
+    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
+
+    The `imgly/` folder contains the editor configuration:
+
+    ```
+    src/imgly/
+    ├── index.ts                  # Editor initialization function
+    ├── config/
+    │   ├── plugin.ts             # Main configuration plugin
+    │   ├── actions.ts            # Export/import actions
+    │   ├── features.ts           # Feature toggles
+    │   ├── i18n.ts               # Translations
+    │   ├── settings.ts           # Engine settings
+    │   └── ui/                   # UI customization
+    │       ├── index.ts          # Combines UI customization exports
+    │       ├── canvas.ts         # Canvas configuration
+    │       ├── components.ts     # Custom component registration
+    │       ├── dock.ts           # Dock layout configuration
+    │       ├── inspectorBar.ts   # Inspector bar layout
+    │       ├── navigationBar.ts  # Navigation bar layout
+    │       └── panel.ts          # Panel configuration
+    └── plugins/
+        └── background-removal.ts # Background removal plugin
+    ```
+
+    ## Step 3: Install Dependencies
 
     Install the required packages for the editor:
 
@@ -229,9 +273,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
       </TerminalTab>
     </TerminalTabs>
 
-    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
-
-    ## Step 3: Download Assets
+    ## Step 4: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -243,38 +285,40 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in the editor component.
 
-    ## Step 4: Add a Container Element
+    ## Step 5: Create the Editor Component
 
-    Add a container element to your HTML where the editor will be mounted:
+    Create a Vue component using the official CE.SDK Vue wrapper (e.g., `AdvancedVideoEditor.vue`):
 
-    ```html
-    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
+    ```vue
+    <template>
+      <CreativeEditor
+        :config="{ baseURL: '/assets' }"
+        :init="initAdvancedVideoEditor"
+        width="100vw"
+        height="100vh"
+      />
+    </template>
+
+    <script setup lang="ts">
+    import { initAdvancedVideoEditor } from '../imgly';
+    import CreativeEditor from '@cesdk/cesdk-js/vue';
+    </script>
     ```
 
-    ## Step 5: Initialize the Editor
+    ## Step 6: Use the Component
 
-    Import and call the initialization function from your application's entry point:
+    Import and use the editor component in your application:
 
-    ```typescript title="src/index.ts"
-    import CreativeEditorSDK from '@cesdk/cesdk-js';
+    ```vue
+    <template>
+      <AdvancedVideoEditor />
+    </template>
 
-    import { initAdvancedVideoEditor } from './imgly';
-
-    const config = {
-      userId: 'your-user-id',
-      baseURL: '/assets'
-      // license: 'YOUR_LICENSE_KEY',
-    };
-
-    CreativeEditorSDK.create('#cesdk_container', config)
-      .then(async (cesdk) => {
-        await initAdvancedVideoEditor(cesdk);
-      })
-      .catch((error) => {
-        console.error('Failed to initialize CE.SDK:', error);
-      });
+    <script setup lang="ts">
+    import AdvancedVideoEditor from './components/AdvancedVideoEditor.vue';
+    </script>
     ```
   </TabItem>
 </Tabs>
@@ -348,6 +392,8 @@ Use `cesdk.actions.run()` to execute any action:
 // Run a built-in action
 await cesdk.actions.run('exportDesign', { mimeType: 'video/mp4' });
 ```
+
+The starter kit includes pre-configured actions in `src/imgly/config/actions.ts`.
 
 #### Import from File Picker
 

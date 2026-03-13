@@ -26,7 +26,9 @@
 - [Panel Customization](./user-interface/customization/panel.md) - Control CE.SDK's UI panels programmatically to create custom editor layouts and workflows.
 - [Inspector Bar](./user-interface/customization/inspector-bar.md) - Customize the inspector bar for editing properties like position, color, and size.
 - [Canvas Menu](./user-interface/customization/canvas-menu.md) - Control visibility and options in the canvas context menu.
+- [Customize the Clip Context Menu](./js.md) - Control which actions appear in the video timeline clip context menu, reorder built-in actions, and add custom entries per clip type.
 - [Canvas Bar](./user-interface/customization/canvas.md) - Edit or hide the floating bar above the canvas to streamline user interactions.
+- [Loading Indicator](./js.md) - Customize the loading screen that appears while the CE.SDK editor initializes by adding headings, body text, or removing the spinner.
 - [Component Order API](./user-interface/customization/reference/component-order-api.md) - Complete reference for the unified Component Order API that controls layout and composition of all CE.SDK UI areas.
 - [Component Reference](./user-interface/customization/reference/component-reference.md) - Complete list of all built-in component IDs for each CE.SDK UI area including navigation bar, dock, inspector bar, canvas menu, and canvas bar.
 

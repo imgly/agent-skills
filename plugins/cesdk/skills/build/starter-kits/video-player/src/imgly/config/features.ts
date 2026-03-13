@@ -110,6 +110,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.effect' /* Effect button */,
     // 'ly.img.blur' /* Blur button */,
     // 'ly.img.shadow' /* Shadow button */,
+    // 'ly.img.shadow.color', /* Shadow color picker */
+    // 'ly.img.shadow.offset', /* Shadow angle and distance */
+    // 'ly.img.shadow.blur', /* Shadow blur radius */
     // 'ly.img.cutout' /* Cutout controls */,
     // #endregion
 
@@ -143,6 +146,10 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.delete' /* Delete button and keyboard shortcut */,
     // 'ly.img.duplicate' /* Duplicate button and copy/paste */,
     // 'ly.img.group' /* Group and Ungroup buttons */,
+    // 'ly.img.group.create', /* Group multiple blocks */
+    // 'ly.img.group.ungroup', /* Dissolve group */
+    // 'ly.img.group.enter', /* Enter group for editing */
+    // 'ly.img.group.select', /* Select parent group */
     // 'ly.img.replace' /* Replace button in Canvas Menu and Fill Panel */,
     // 'ly.img.replace.fill' /* Replace image/video fill content */,
     // 'ly.img.replace.shape' /* Replace block shape */,
@@ -158,6 +165,19 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.page.move' /* Move Up/Down/Left/Right buttons */,
     // 'ly.img.page.add' /* Add Page button in Canvas Bar */,
     // 'ly.img.page.resize' /* Resize button and page formats */,
+    // 'ly.img.page.clipContent', /* Clip content on/off toggle */
+    // #endregion
+
+    // ============================================================================
+    // SCENE FEATURES (DISABLED)
+    // All scene layout features are disabled in player mode
+    // ============================================================================
+
+    // #region Scene Features (Disabled)
+    // 'ly.img.scene.layout', /* Enables all children below */
+    // 'ly.img.scene.layout.horizontal', /* Horizontal layout toggle */
+    // 'ly.img.scene.layout.vertical', /* Vertical layout toggle */
+    // 'ly.img.scene.layout.free', /* Free layout toggle */
     // #endregion
 
     // ============================================================================
@@ -167,12 +187,32 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
 
     // #region Styling Features (Disabled)
     // 'ly.img.fill' /* Fill button and Fill Panel */,
+    // 'ly.img.fill.color', /* Solid and gradient fill controls */
+    // 'ly.img.fill.image', /* Image fill controls and crop */
+    // 'ly.img.fill.video', /* Video fill, trim, volume, speed */
     // 'ly.img.stroke' /* Stroke controls (Color, Width) */,
+    // 'ly.img.stroke.color', /* Stroke color picker */
+    // 'ly.img.stroke.width', /* Stroke width input */
+    // 'ly.img.stroke.style', /* Stroke style (dash) selector */
+    // 'ly.img.stroke.position', /* Inner/center/outer selector */
+    // 'ly.img.stroke.cornerGeometry', /* Corner join geometry */
     // 'ly.img.opacity' /* Opacity controls */,
     // 'ly.img.blendMode' /* Blend mode controls */,
     // 'ly.img.shape.options' /* Shape Options dropdown */,
+    // 'ly.img.shape.options.cornerRadius', /* Corner radius (rect/polygon) */
+    // 'ly.img.shape.options.points', /* Star point count */
+    // 'ly.img.shape.options.innerDiameter', /* Star inner diameter */
+    // 'ly.img.shape.options.sides', /* Polygon side count */
+    // 'ly.img.shape.options.lineWidth', /* Line stroke width */
     // 'ly.img.combine' /* Combine dropdown (shapes/cutouts) */,
+    // 'ly.img.combine.union', /* Union boolean operation */
+    // 'ly.img.combine.subtract', /* Subtract boolean operation */
+    // 'ly.img.combine.intersect', /* Intersect boolean operation */
+    // 'ly.img.combine.exclude', /* Exclude/XOR boolean operation */
     // 'ly.img.position' /* Position dropdown */,
+    // 'ly.img.position.arrange', /* Bring forward/backward/front/back */
+    // 'ly.img.position.align', /* Align left/right/center/top/bottom */
+    // 'ly.img.position.distribute', /* Distribute vertically/horizontally */
     // 'ly.img.trim' /* Trim button (video mode) */,
     // #endregion
 
@@ -244,6 +284,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
 
     // #region Video Playback Features (Enabled)
     'ly.img.video.timeline' /* Video Timeline visibility - read-only */,
+    // 'ly.img.video.timeline.ruler', /* Timeline ruler/time scale */
     'ly.img.video.controls' /* Base video control UI */,
     'ly.img.video.controls.playback' /* Play/pause and timestamp */,
     'ly.img.video.controls.loop' /* Loop toggle */
@@ -272,7 +313,6 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // ============================================================================
 
     // #region Media Controls (Disabled)
-    // 'ly.img.audio.replace' /* Audio replace button */,
     // 'ly.img.volume' /* Volume control (video mode) */,
     // 'ly.img.playbackSpeed' /* Playback speed control */,
     // 'ly.img.animations' /* Animations button (video mode) */,

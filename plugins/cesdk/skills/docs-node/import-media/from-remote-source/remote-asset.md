@@ -10,11 +10,11 @@ Load asset definitions from remote JSON files hosted on CDNs or servers into CE.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-from-remote-source-remote-asset-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-from-remote-source-remote-asset-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-from-remote-source-remote-asset-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-from-remote-source-remote-asset-server-js)
 
 Remote asset loading enables you to host asset definitions on a CDN or server and load them dynamically into CE.SDK. This approach separates asset management from your application code, allowing you to update available assets without deploying new app versions. CE.SDK provides `engine.asset.addLocalAssetSourceFromJSONURI()` for loading from URLs and `engine.asset.addLocalAssetSourceFromJSONString()` for loading from JSON content you already have.
 

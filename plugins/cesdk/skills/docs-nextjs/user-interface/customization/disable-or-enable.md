@@ -12,11 +12,11 @@ Control which editor features are available to users using the Feature API.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-customization-disable-or-enable-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-customization-disable-or-enable-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-disable-or-enable-browser/)
 
@@ -447,6 +447,7 @@ CE.SDK includes many built-in features organized by category:
 
 | Feature ID | Description |
 |------------|-------------|
+| `ly.img.navigation` | Parent key: enables all navigation child features |
 | `ly.img.navigation.bar` | Controls visibility of the Navigation Bar |
 | `ly.img.navigation.back` | Controls visibility of the "Back" button |
 | `ly.img.navigation.close` | Controls visibility of the "Close" button |
@@ -466,6 +467,7 @@ CE.SDK includes many built-in features organized by category:
 
 | Feature ID | Description |
 |------------|-------------|
+| `ly.img.canvas` | Parent key: enables all canvas child features |
 | `ly.img.canvas.bar` | Controls visibility of the Canvas Bar |
 | `ly.img.canvas.menu` | Controls visibility of the Canvas Menu |
 
@@ -480,61 +482,124 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.replace.shape` | Controls replacing block shape |
 | `ly.img.replace.audio` | Controls replacing audio block content |
 | `ly.img.group` | Controls grouping functionality |
+| `ly.img.group.create` | Controls grouping multiple selected blocks |
+| `ly.img.group.ungroup` | Controls dissolving a group |
+| `ly.img.group.enter` | Controls entering a group for editing |
+| `ly.img.group.select` | Controls selecting the parent group |
+| `ly.img.combine` | Controls boolean/combine operations |
+| `ly.img.combine.union` | Controls the Union boolean operation |
+| `ly.img.combine.subtract` | Controls the Subtract boolean operation |
+| `ly.img.combine.intersect` | Controls the Intersect boolean operation |
+| `ly.img.combine.exclude` | Controls the Exclude (XOR) boolean operation |
+| `ly.img.position` | Controls the position/arrange/align panel |
+| `ly.img.position.arrange` | Controls bring forward/backward/front/back and pin |
+| `ly.img.position.align` | Controls alignment (left, right, center, top, bottom) |
+| `ly.img.position.distribute` | Controls distribute vertically/horizontally |
 | `ly.img.placeholder` | Controls Placeholder toggle visibility in Inspector |
 
 ### Video Features
 
 | Feature ID | Description |
 |------------|-------------|
+| `ly.img.video` | Parent key: enables all video child features |
 | `ly.img.video.timeline` | Controls visibility of the Video Timeline |
 | `ly.img.video.clips` | Controls visibility of video clips track |
 | `ly.img.video.overlays` | Controls visibility of overlays track |
 | `ly.img.video.audio` | Controls visibility of audio track |
 | `ly.img.video.addClip` | Controls ability to add clips |
-| `ly.img.video.controls.*` | Controls various video controls |
+| `ly.img.video.controls` | Controls base video control UI |
+| `ly.img.video.controls.toggle` | Controls timeline collapse/expand toggle |
+| `ly.img.video.controls.background` | Controls background color controls |
+| `ly.img.video.controls.playback` | Controls play/pause and timestamp |
+| `ly.img.video.controls.loop` | Controls loop toggle |
+| `ly.img.video.controls.split` | Controls split clip control |
+| `ly.img.video.controls.timelineZoom` | Controls timeline zoom controls |
+| `ly.img.video.caption` | Controls video captions |
 
 ### Text Features
 
 | Feature ID | Description |
 |------------|-------------|
+| `ly.img.text` | Parent key: enables all text child features |
 | `ly.img.text.edit` | Controls presence of the Edit button |
 | `ly.img.text.typeface` | Controls typeface dropdown |
 | `ly.img.text.fontSize` | Controls font size input |
 | `ly.img.text.fontStyle` | Controls bold/italic toggles |
 | `ly.img.text.alignment` | Controls text alignment |
 | `ly.img.text.advanced` | Controls advanced text options |
+| `ly.img.text.background` | Controls text background |
 
 ### Effects Features
 
 | Feature ID | Description |
 |------------|-------------|
-| `ly.img.fill` | Controls Fill button |
+| `ly.img.fill` | Controls Fill button and Fill Panel |
+| `ly.img.fill.color` | Controls solid and gradient fill controls |
+| `ly.img.fill.image` | Controls image fill controls and crop |
+| `ly.img.fill.video` | Controls video fill, trim, volume, speed |
 | `ly.img.stroke` | Controls Stroke controls |
+| `ly.img.stroke.color` | Controls stroke color picker |
+| `ly.img.stroke.width` | Controls stroke width input |
+| `ly.img.stroke.style` | Controls stroke style (dash) selector |
+| `ly.img.stroke.position` | Controls stroke position (inner/center/outer) |
+| `ly.img.stroke.cornerGeometry` | Controls stroke corner join geometry |
 | `ly.img.adjustment` | Controls Adjustments button |
 | `ly.img.filter` | Controls Filter button |
 | `ly.img.effect` | Controls Effect button |
 | `ly.img.blur` | Controls Blur button |
 | `ly.img.shadow` | Controls Shadow button |
+| `ly.img.shadow.color` | Controls shadow color picker |
+| `ly.img.shadow.offset` | Controls shadow angle and distance |
+| `ly.img.shadow.blur` | Controls shadow blur radius |
 | `ly.img.crop` | Controls Crop button |
+
+### Shape Options Features
+
+| Feature ID | Description |
+|------------|-------------|
+| `ly.img.shape.options` | Controls the shape-specific options panel |
+| `ly.img.shape.options.cornerRadius` | Controls corner radius (rect/polygon shapes) |
+| `ly.img.shape.options.points` | Controls star point count |
+| `ly.img.shape.options.innerDiameter` | Controls star inner diameter |
+| `ly.img.shape.options.sides` | Controls polygon side count |
+| `ly.img.shape.options.lineWidth` | Controls line stroke width |
 
 ### Transform Features
 
 | Feature ID | Description |
 |------------|-------------|
+| `ly.img.transform` | Parent key: enables all transform child features |
 | `ly.img.transform.position` | Controls X/Y position controls |
 | `ly.img.transform.size` | Controls width/height controls |
 | `ly.img.transform.rotation` | Controls rotation controls |
 | `ly.img.transform.flip` | Controls flip controls |
+
+### Page Features
+
+| Feature ID | Description |
+|------------|-------------|
+| `ly.img.page` | Parent key: enables all page child features |
+| `ly.img.page.add` | Controls Add Page button |
+| `ly.img.page.move` | Controls page move buttons |
+| `ly.img.page.resize` | Controls Resize button |
+| `ly.img.page.clipContent` | Controls clip content on/off toggle |
+
+### Scene Features
+
+| Feature ID | Description |
+|------------|-------------|
+| `ly.img.scene.layout` | Parent key: enables all scene layout child features |
+| `ly.img.scene.layout.horizontal` | Controls horizontal layout toggle |
+| `ly.img.scene.layout.vertical` | Controls vertical layout toggle |
+| `ly.img.scene.layout.free` | Controls free layout toggle |
 
 ### Other Features
 
 | Feature ID | Description |
 |------------|-------------|
 | `ly.img.dock` | Controls visibility of the Dock |
+| `ly.img.library.panel` | Controls Asset Library panel |
 | `ly.img.preview` | Controls Preview button |
-| `ly.img.page.add` | Controls Add Page button |
-| `ly.img.page.move` | Controls page move buttons |
-| `ly.img.page.resize` | Controls Resize button |
 | `ly.img.notifications` | Controls notification toasts |
 | `ly.img.notifications.undo` | Controls undo notifications |
 | `ly.img.notifications.redo` | Controls redo notifications |

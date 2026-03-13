@@ -500,7 +500,7 @@ getSettingType(keypath: string): SettingType
 Sets a custom URI resolver.
 This function can be called more than once. Subsequent calls will overwrite previous calls.
 To remove a previously set resolver, pass the value `null`.
-The given function must return an absolute path with a scheme and cannot be asynchronous. The input is allowed to be invalid URI, e.g., due to placeholders.
+The given function must return an absolute path with a scheme and cannot be asynchronous. The input is allowed to be an invalid URI, e.g., due to placeholders.
 ```javascript
 // Replace all .jpg files with the IMG.LY logo
 engine.editor.setURIResolver((uri) => {
@@ -513,13 +513,28 @@ engine.editor.setURIResolver((uri) => {
 ```
 
 ```typescript
-setURIResolver(resolver: (URI: string, defaultURIResolver: (URI: string) => string) => string): void
+setURIResolver(resolver: SyncURIResolver): void
 ```
 
 **Parameters:**
 - `resolver` - Custom resolution function. The resolution function
                   should not reference variables outside of its scope.
                   It receives the default URI resolver as its second argument
+
+### setURIResolverAsync()
+
+Sets a custom async URI resolver.
+This function can be called more than once. Subsequent calls will overwrite previous calls.
+To remove a previously set resolver, pass the value `null`.
+The given function must return an absolute path with a scheme. The input is allowed to be invalid URI, e.g., due
+to placeholders.
+
+```typescript
+setURIResolverAsync(resolver: AsyncURIResolver | null): void
+```
+
+**Parameters:**
+- `resolver` - Custom async resolution function.
 
 ### defaultURIResolver()
 
@@ -540,19 +555,21 @@ defaultURIResolver(relativePath: string): string
 
 ### getAbsoluteURI()
 
-Resolves the given path.
-If a custom resolver has been set with `setURIResolver`, it invokes it with the given path.
-Else, it resolves it as relative to the `basePath` setting.
+Resolves the given path asynchronously.
+If a custom resolver has been set with `setURIResolverAsync` (or `setURIResolver`), it invokes it with the given
+path. Else, it resolves it as relative to the `basePath` setting.
 This performs NO validation of whether a file exists at the specified location.
+**Breaking change:** This method now returns a `Promise<string>` instead
+of a plain `string`. Callers must `await` the result.
 
 ```typescript
-getAbsoluteURI(relativePath: string): string
+getAbsoluteURI(relativePath: string): Promise<string>
 ```
 
 **Parameters:**
 - `relativePath` - A relative path string
 
-**Returns:** The resolved absolute uri or an error if an invalid path was given.
+**Returns:** Promise resolving to the resolved absolute uri or rejecting if an invalid path was given.
 
 ## Role & Scope Management
 

@@ -23,6 +23,35 @@ description: |
 argument-hint: "[search-topic]"
 ---
 
+## Version Notice
+
+> **CE.SDK version**: 1.71.0 | **Generated**: 2026-03-13
+>
+> This skill was generated for CE.SDK v1.71.0 on 2026-03-13.
+> CE.SDK releases new versions approximately every two weeks.
+> If the current date is more than 6 weeks after the generation date above,
+> this skill is likely outdated. **Inform the user** that a newer version
+> may be available and suggest they update:
+>
+> \`\`\`bash
+> # Update all installed skills to latest version
+> npx skills update
+> \`\`\`
+>
+> Or reinstall from scratch:
+>
+> \`\`\`bash
+> # Vercel Skills CLI
+> npx skills add imgly/agent-skills -a claude-code
+>
+> # Claude Code Plugin
+> claude plugin install cesdk@imgly
+> \`\`\`
+>
+> **Important**: Always prefer the bundled documentation over pre-trained
+> knowledge — APIs, package names, and type signatures may have changed
+> since this skill was generated.
+
 ## Documentation Index
 
 <-- IMGLY-AGENTS-MD-START -->[CE.SDK Node.js Docs Index]|root: .|IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any CE.SDK tasks. Consult the local docs directory before using pre-trained knowledge.|animation:{create,edit.md,types.md}|animation/create:{base.md,text.md}|api-reference:{overview.md}|automation:{auto-resize.md,data-merge.md,design-generation.md,multi-image-generation.md,overview.md}|colors:{adjust.md,apply.md,basics.md,conversion.md,create-color-palette.md,for-print,for-screen,overview.md,replace.md}|colors/for-print:{cmyk.md,spot.md}|colors/for-screen:{p3.md,srgb.md}|compatibility.md|concepts:{architecture.md,assets.md,blocks.md,buffers.md,design-units.md,editing-workflow.md,events.md,headless-mode.md,pages.md,resources.md,scenes.md,templating.md,terminology.md,undo-and-history.md}|configuration.md|conversion:{overview.md,to-base64.md,to-pdf.md,to-png.md}|create-audio:{audio}|create-audio/audio:{add-music.md,add-sound-effects.md,loop.md}|create-composition:{add-background.md,blend-modes.md,collage.md,group-and-ungroup.md,layer-management.md,layout.md,lock-design.md,multi-page.md,overview.md,programmatic.md}|create-templates:{add-dynamic-content,add-to-template-library.md,edit-or-remove.md,from-scratch.md,import,lock.md,overview.md}|create-templates/add-dynamic-content:{placeholders.md,set-editing-constraints.md,text-variables.md}|create-templates/import:{from-scene-file.md}|create-video:{audio,control.md,limitations.md}|create-video/audio:{adjust-speed.md,adjust-volume.md}|edit-image:{add-watermark.md,overview.md,remove-bg.md,replace-colors.md,transform}|edit-image/transform:{crop.md,flip.md,move.md,resize.md,rotate.md,scale.md}|edit-video:{add-captions.md,add-watermark.md,join-and-arrange.md,redaction.md,split.md,transform,trim.md}|edit-video/transform:{crop.md,flip.md,move.md,resize.md,rotate.md,scale.md}|engine-interface.md|export-save-publish:{create-thumbnail.md,export,for-printing.md,for-social-media.md,pre-export-validation.md,save.md,store-custom-metadata.md}|export-save-publish/export:{compress.md,overview.md,partial-export.md,size-limits.md,to-jpeg.md,to-pdf.md,to-png.md,to-raw-data.md,to-webp.md,with-color-mask.md}|file-format-support.md|fills:{color.md,image.md,overview.md,video.md}|filters-and-effects:{apply.md,blur.md,chroma-key-green-screen.md,create-custom-filters.md,create-custom-lut-filter.md,distortion.md,duotone.md,gradients.md,overview.md,support.md}|get-started:{agent-skills.md,bun.md,deno.md,mcp-server.md,overview.md,vanilla.md,vanilla-aws-lambda.md,vanilla-clone-github-project.md}|guides:{export-save-publish}|guides/export-save-publish:{export}|guides/export-save-publish/export:{audio.md}|import-media:{asset-panel,concepts.md,content-json-schema.md,default-assets.md,edit-or-remove-assets.md,file-format-support.md,from-remote-source,overview.md,retrieve-mimetype.md,size-limits.md,source-sets.md}|import-media/asset-panel:{refresh-assets.md}|import-media/from-remote-source:{asset-versioning.md,remote-asset.md}|insert-media:{audio.md,images.md,position-and-align.md,shapes-or-stickers.md,videos.md}|key-capabilities.md|key-concepts.md|licensing.md|llms-txt.md|open-the-editor:{blank-canvas.md,from-image.md,from-template.md,from-video.md,import-design,load-scene.md,overview.md,uri-resolver.md}|open-the-editor/import-design:{from-archive.md,from-indesign.md,from-photoshop.md}|outlines:{overview.md,shadows-and-glows.md,strokes.md}|overview.md|performance.md|plugins:{print-ready-pdf.md}|rules:{asset-handling.md,common-pitfalls.md,content-fill-mode.md,enforce-brand-guidelines.md,lock-content.md,moderate-content.md,overview.md,silent-init-errors.md,verify-properties-before-use.md}|security.md|serve-assets.md|settings.md|shapes.md|stickers.md|stickers-and-shapes:{combine.md,create-cutout.md,create-edit,insert-qr-code.md}|stickers-and-shapes/create-edit:{create-shapes.md,create-stickers.md,edit-shapes.md}|text:{add.md,adjust-spacing.md,auto-size.md,edit.md,effects.md,emojis.md,language-support.md,overview.md,styling.md,text-designs.md}|to-v1-19.md|upgrade.md|use-templates:{apply-template.md,generate.md,overview.md,programmatic.md,replace-content.md}|what-is-cesdk.md|<-- IMGLY-AGENTS-MD-END -->
@@ -36,7 +65,7 @@ CreativeEngine:{asset,block,editor,event,scene,variable,reactor,version,addPlugi
 BlockAPI:{export,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo,getAudioInfoFromVideo},... (+347)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
 SceneAPI:{loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create,createVideo,createFromImage,createFromVideo,get,applyTemplateFromString,applyTemplateFromURL,getMode,setMode,setDesignUnit},... (+22)
-EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,getCursorType,getCursorRotation,getTextCursorPositionInScreenSpaceX,getTextCursorPositionInScreenSpaceY,createHistory,destroyHistory},... (+75)
+EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,getCursorType,getCursorRotation,getTextCursorPositionInScreenSpaceX,getTextCursorPositionInScreenSpaceY,createHistory,destroyHistory},... (+77)
 EventAPI:{subscribe}
 VariableAPI:{findAll,setString,getString,remove}
 Types:{AnimationType,AssetResult,BlendMode,Color,DesignBlockId,ExportOptions,PropertyType,Scope,TextCase,VideoExportOptions}

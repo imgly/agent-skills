@@ -12,7 +12,7 @@ CE.SDK's color palette system allows you to replace the default colors with cust
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >

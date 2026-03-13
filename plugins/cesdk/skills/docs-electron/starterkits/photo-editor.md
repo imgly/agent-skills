@@ -4,8 +4,7 @@
 
 ---
 
-Professional photo editing for your Electron app—crop, filter, adjust, and
-remove backgrounds. Runs entirely client-side with no server dependencies.
+Professional photo editing for your web app—crop, filter, adjust, and remove backgrounds. Runs entirely in the browser with no server dependencies.
 
 ![Photo Editor starter kit showing a professional photo editing interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -23,13 +22,13 @@ remove backgrounds. Runs entirely client-side with no server dependencies.
 
 ***
 
-## Prerequisites
+## Pre-requisites
 
-Before you begin, make sure you have the following:
+This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
-- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list.
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list
 
 ***
 
@@ -37,149 +36,105 @@ Before you begin, make sure you have the following:
   <TabItem label="New Project">
     ## Get Started
 
-    Create a new Electron application with Photo Editor integration.
+    Start fresh with a standalone Photo Editor project. This creates a complete, ready-to-run application.
 
-    ## Step 1: Initialize a New Project
-
-    Create a new Electron app using Vite:
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm create vite@latest your-project-name cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm create vite your-project-name cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn create vite your-project-name cd your-project-name
-      </TerminalTab>
-    </TerminalTabs>
-
-    > **Select Electron:** When prompted, select **Others > Electron**.
-
-    ## Step 2: Clone the Starter Kit
-
-    Clone the starter kit and copy the editor configuration to your project:
+    ## Step 1: Clone the Repository
 
     <TerminalTabs>
       <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-photo-editor-ts-web.git cp -r
-        starterkit-photo-editor-ts-web/src/imgly ./src/imgly rm -rf
-        starterkit-photo-editor-ts-web
+        git clone https://github.com/imgly/starterkit-photo-editor-ts-web.git
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-photo-editor-ts-web/src/imgly ./src/imgly
+        npx degit imgly/starterkit-photo-editor-ts-web starterkit-photo-editor-ts-web
       </TerminalTab>
     </TerminalTabs>
 
-    The `imgly/` folder contains the editor configuration:
+    The `src/` folder contains the editor code:
 
     ```
-    imgly/
-    ├── index.ts                  # Editor initialization function
-    ├── config/
-    │   ├── plugin.ts             # Main configuration plugin
-    │   ├── actions.ts            # Export/import actions
-    │   ├── features.ts           # Feature toggles
-    │   ├── i18n.ts               # Translations
-    │   ├── settings.ts           # Engine settings
-    │   └── ui/                   # UI customization
-    │       ├── index.ts          # Combines UI customization exports
-    │       ├── canvas.ts         # Canvas configuration
-    │       ├── components.ts     # Custom component registration
-    │       ├── dock.ts           # Dock layout configuration
-    │       ├── inspectorBar.ts   # Inspector bar layout
-    │       ├── navigationBar.ts  # Navigation bar layout
-    │       └── panel.ts          # Panel configuration
-    └── plugins/
-        └── background-removal.ts # Background removal plugin
+    src/
+    ├── index.ts                      # Application entry point
+    └── imgly/
+        ├── index.ts                  # Editor initialization function
+        ├── config/
+        │   ├── plugin.ts             # Main configuration plugin
+        │   ├── actions.ts            # Export/import actions
+        │   ├── features.ts           # Feature toggles
+        │   ├── i18n.ts               # Translations
+        │   ├── settings.ts           # Engine settings
+        │   └── ui/                   # UI customization
+        │       ├── index.ts          # Combines UI customization exports
+        │       ├── canvas.ts         # Canvas configuration
+        │       ├── components.ts     # Custom component registration
+        │       ├── dock.ts           # Dock layout configuration
+        │       ├── inspectorBar.ts   # Inspector bar layout
+        │       ├── navigationBar.ts  # Navigation bar layout
+        │       └── panel.ts          # Panel configuration
+        └── plugins/
+            └── background-removal.ts # Background removal plugin
     ```
 
-    ## Step 3: Install Dependencies
+    ## Step 2: Install Dependencies
 
-    Install the required packages for the editor:
-
-    ### Core Editor
-
-    Install the Creative Editor SDK:
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
-    </TerminalTabs>
-
-    ### Background Removal
-
-    Add AI-powered background removal:
+    Install the required packages:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/background-removal onnxruntime-web
+        cd starterkit-photo-editor-ts-web
+        npm install
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/background-removal onnxruntime-web
+        cd starterkit-photo-editor-ts-web
+        pnpm install
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/background-removal onnxruntime-web
+        cd starterkit-photo-editor-ts-web
+        yarn
       </TerminalTab>
     </TerminalTabs>
 
-    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
-
-    ## Step 4: Download Assets
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O
-        https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/ rm imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place
-    > assets in a different location, update the `baseURL` in Step 5: Add a
-    > Container Element.
-
-    ## Step 5: Add a Container Element
-
-    Add a container element to your renderer HTML where the editor will be mounted:
-
-    ```html
-    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
-    ```
-
-    ## Step 6: Initialize the Editor
-
-    Import and call the initialization function from your renderer entry point:
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in `src/index.ts`.
 
     ```typescript title="src/index.ts"
-    import CreativeEditorSDK from '@cesdk/cesdk-js';
-    import { initPhotoEditor } from './imgly';
-
     const config = {
-      baseURL: '/assets',
+      // ...
+      baseURL: '/assets'
+      // ...
     };
-
-    CreativeEditorSDK.create('#cesdk_container', config)
-      .then(async cesdk => {
-        await initPhotoEditor(cesdk);
-      })
-      .catch(error => {
-        console.error('Failed to initialize CE.SDK:', error);
-      });
     ```
 
-    > **Electron Renderer Process:** CE.SDK runs in the Electron renderer process, which provides a full Chromium
-    > browser environment. Ensure your Electron main process creates a
-    > `BrowserWindow` and loads the HTML file containing the container element.
+    ## Step 4: Run the Development Server
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm run dev
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm run dev
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn dev
+      </TerminalTab>
+    </TerminalTabs>
+
+    Open `http://localhost:5173` in your browser.
 
     ## Force Crop
 
@@ -196,7 +151,7 @@ Before you begin, make sure you have the following:
     await cesdk.ui.applyForceCrop(imageBlock, {
       sourceId: 'ly.img.crop.presets',
       presetId: 'ly.img.crop.presets.fixed-ratio.1_1',
-      mode: 'ifNeeded',
+      mode: 'ifNeeded'
     });
     ```
 
@@ -223,21 +178,23 @@ Before you begin, make sure you have the following:
   <TabItem label="Existing Project">
     ## Get Started
 
-    Integrate the Photo Editor into an existing Electron application. This adds the editor configuration to your current project structure.
+    Integrate the Photo Editor into an existing web application. This adds the editor configuration to your current project structure.
 
     ## Step 1: Clone
 
     <TerminalTabs>
-      <TerminalTab label="Navigate">cd your-project</TerminalTab>
+      <TerminalTab label="Navigate">
+        cd your-project
+      </TerminalTab>
     </TerminalTabs>
 
     Clone the starter kit and copy the editor configuration to your project:
 
     <TerminalTabs>
       <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-photo-editor-ts-web.git cp -r
-        starterkit-photo-editor-ts-web/src/imgly ./src/imgly rm -rf
-        starterkit-photo-editor-ts-web
+        git clone https://github.com/imgly/starterkit-photo-editor-ts-web.git
+        cp -r starterkit-photo-editor-ts-web/src/imgly ./src/imgly
+        rm -rf starterkit-photo-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
@@ -245,8 +202,7 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your
-    > project structure.
+    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
     The `imgly/` folder contains the editor configuration:
 
@@ -280,9 +236,17 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">
+        npm install @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm add @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn add @cesdk/cesdk-js
+      </TerminalTab>
     </TerminalTabs>
 
     ### Background Removal
@@ -311,19 +275,17 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O
-        https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/ rm imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place
-    > assets in a different location, update the `baseURL` in Step 4: Add a
-    > Container Element.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
 
     ## Step 4: Add a Container Element
 
-    Add a container element to your renderer HTML where the editor will be mounted:
+    Add a container element to your HTML where the editor will be mounted:
 
     ```html
     <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
@@ -331,28 +293,27 @@ Before you begin, make sure you have the following:
 
     ## Step 5: Initialize the Editor
 
-    Import and call the initialization function from your renderer entry point:
+    Import and call the initialization function from your application's entry point:
 
     ```typescript title="src/index.ts"
     import CreativeEditorSDK from '@cesdk/cesdk-js';
+
     import { initPhotoEditor } from './imgly';
 
     const config = {
-      baseURL: '/assets',
+      userId: 'your-user-id',
+      baseURL: '/assets'
+      // license: 'YOUR_LICENSE_KEY',
     };
 
     CreativeEditorSDK.create('#cesdk_container', config)
-      .then(async cesdk => {
+      .then(async (cesdk) => {
         await initPhotoEditor(cesdk);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Failed to initialize CE.SDK:', error);
       });
     ```
-
-    > **Electron Renderer Process:** CE.SDK runs in the Electron renderer process, which provides a full Chromium
-    > browser environment. Ensure your Electron main process creates a
-    > `BrowserWindow` and loads the HTML file containing the container element.
 
     ## Force Crop
 
@@ -360,7 +321,7 @@ Before you begin, make sure you have the following:
 
     Use `applyForceCrop` to enforce a specific aspect ratio on the selected image:
 
-    ```typescript title="src/imgly/config/actions.ts"
+    ```typescript title="/imgly/config/actions.ts"
     // Get the currently selected image block
     const selectedBlocks = cesdk.engine.block.findAllSelected();
     const imageBlock = selectedBlocks[0];
@@ -369,7 +330,7 @@ Before you begin, make sure you have the following:
     await cesdk.ui.applyForceCrop(imageBlock, {
       sourceId: 'ly.img.crop.presets',
       presetId: 'ly.img.crop.presets.fixed-ratio.1_1',
-      mode: 'ifNeeded',
+      mode: 'ifNeeded'
     });
     ```
 
@@ -398,7 +359,7 @@ Before you begin, make sure you have the following:
 
 CE.SDK offers multiple ways to load content into the editor. Choose the method that matches your use case:
 
-```typescript title="src/imgly/index.ts"
+```typescript title="src/index.ts"
 // Load from an image URL - creates a new scene with the image
 await cesdk.createFromImage('https://example.com/photo.jpg');
 
@@ -414,16 +375,15 @@ await cesdk.loadFromURL('https://example.com/scene.json');
 
 The `createFromImage()` method is ideal for photo editing workflows, as it automatically creates a scene sized to the image dimensions.
 
-> **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading
-> methods.
+> **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading methods.
 
 ## Customize Assets
 
 The Photo Editor uses asset source plugins to provide built-in libraries for filters, effects, stickers, shapes, and fonts. The starter kit includes a curated selection—customize what's included based on your needs.
 
-Asset sources are added via plugins in `src/imgly/index.ts`. Enable or disable individual sources:
+Asset sources are added via plugins in `src/index.ts`. Enable or disable individual sources:
 
-```typescript title="src/imgly/index.ts"
+```typescript title="src/index.ts"
 import {
   FiltersAssetSource,
   StickerAssetSource,
@@ -440,8 +400,7 @@ await cesdk.addPlugin(new VectorShapeAssetSource());
 // ...
 ```
 
-> **Available Asset Sources:** See [Asset Source Plugins](./plugins/asset-sources.md) for the complete list of
-> available sources.
+> **Available Asset Sources:** See [Asset Source Plugins](./plugins/asset-sources.md) for the complete list of available sources.
 
 For production deployments, self-hosting assets is required—the IMG.LY CDN is intended for development only. See [Serve Assets](./serve-assets.md) for downloading assets, configuring `baseURL`, and excluding unused sources to optimize load times.
 
@@ -471,7 +430,7 @@ await cesdk.actions.run('exportDesign', { mimeType: 'image/png' });
 cesdk.actions.register('importImage', async () => {
   const blobURL = await cesdk.utils.loadFile({
     accept: 'image/*',
-    returnType: 'objectURL',
+    returnType: 'objectURL'
   });
   await cesdk.createFromImage(blobURL);
 });
@@ -481,7 +440,7 @@ cesdk.actions.register('importImage', async () => {
 
 ```typescript title="src/imgly/config/actions.ts"
 // Register export action that downloads the edited photo
-cesdk.actions.register('exportDesign', async exportOptions => {
+cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs, options } = await cesdk.utils.export(exportOptions);
   await cesdk.utils.downloadFile(blobs[0], options.mimeType);
 });
@@ -491,7 +450,7 @@ cesdk.actions.register('exportDesign', async exportOptions => {
 
 ```typescript title="src/imgly/config/actions.ts"
 // Override the built-in exportDesign action to send to your server
-cesdk.actions.register('exportDesign', async exportOptions => {
+cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs } = await cesdk.utils.export(exportOptions);
 
   const formData = new FormData();
@@ -499,7 +458,7 @@ cesdk.actions.register('exportDesign', async exportOptions => {
 
   const response = await fetch('/api/upload', {
     method: 'POST',
-    body: formData,
+    body: formData
   });
 
   const { url } = await response.json();
@@ -507,8 +466,7 @@ cesdk.actions.register('exportDesign', async exportOptions => {
 });
 ```
 
-> **Learn More:** See [Actions](./actions.md) for the full list of built-in actions,
-> how to run them, and how to register custom actions.
+> **Learn More:** See [Actions](./actions.md) for the full list of built-in actions, how to run them, and how to register custom actions.
 
 ***
 
@@ -535,15 +493,15 @@ cesdk.i18n.setTranslations({
   en: {
     'actions.export.image': 'Download Photo',
     'common.cancel': 'Cancel',
-    'common.apply': 'Apply',
-  },
+    'common.apply': 'Apply'
+  }
 });
 
 // Add a new language
 cesdk.i18n.setTranslations({
   de: {
-    'actions.export.image': 'Foto herunterladen',
-  },
+    'actions.export.image': 'Foto herunterladen'
+  }
 });
 
 // Set the active locale
@@ -566,21 +524,21 @@ const navOrder = cesdk.ui.getNavigationBarOrder();
 cesdk.ui.insertNavigationBarOrderComponent(
   'ly.img.spacer',
   { id: 'my-custom-action' },
-  'after',
+  'after'
 );
 
 // Rearrange dock items
 cesdk.ui.setDockOrder([
   'ly.img.assetLibrary.dock',
   'ly.img.separator',
-  'my-custom-dock-item',
+  'my-custom-dock-item'
 ]);
 
 // Customize the inspector bar
 cesdk.ui.setInspectorBarOrder([
   'ly.img.fill.inspectorBar',
   'ly.img.separator',
-  'ly.img.filter.inspectorBar',
+  'ly.img.filter.inspectorBar'
 ]);
 ```
 
@@ -606,7 +564,7 @@ cesdk.ui.registerComponent('my-custom-button', ({ builder, engine }) => {
     isDisabled: selectedBlocks.length === 0,
     onClick: () => {
       // Apply custom logic to selected blocks
-    },
+    }
   });
 });
 
@@ -614,7 +572,7 @@ cesdk.ui.registerComponent('my-custom-button', ({ builder, engine }) => {
 cesdk.ui.insertNavigationBarOrderComponent(
   'ly.img.spacer',
   'my-custom-button',
-  'after',
+  'after'
 );
 ```
 
@@ -670,12 +628,10 @@ Extend the editor with generative AI capabilities for text-to-image generation, 
 import AIPlugin from '@imgly/plugin-ai-generation';
 
 // Configure AI generation
-await cesdk.addPlugin(
-  AIPlugin({
-    provider: 'your-ai-provider',
-    apiKey: 'your-api-key',
-  }),
-);
+await cesdk.addPlugin(AIPlugin({
+  provider: 'your-ai-provider',
+  apiKey: 'your-api-key'
+}));
 ```
 
 See [AI Integration](./user-interface/ai-integration.md) for provider setup and supported AI features.
@@ -688,11 +644,9 @@ Connect external asset libraries like Unsplash, Getty Images, or your own conten
 import UnsplashAssetSource from '@imgly/plugin-unsplash';
 
 // Add Unsplash integration
-await cesdk.addPlugin(
-  UnsplashAssetSource({
-    accessKey: 'your-unsplash-access-key',
-  }),
-);
+await cesdk.addPlugin(UnsplashAssetSource({
+  accessKey: 'your-unsplash-access-key'
+}));
 ```
 
 See [Custom Asset Sources](./import-media/from-remote-source/unsplash.md) for integration patterns.
@@ -755,8 +709,7 @@ The Photo Editor includes everything needed for professional image editing.
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get
-> a license key and remove the watermark.
+> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
 
 ***
 
@@ -787,8 +740,7 @@ The Photo Editor includes everything needed for professional image editing.
 
 ## Next Steps
 
-- [Configuration](./configuration.md) – Complete list of initialization
-  options
+- [Configuration](./configuration.md) – Complete list of initialization options
 - [Serve Assets](./serve-assets.md) – Self-host engine assets for production
 - [Actions](./actions.md) – Build custom export and save workflows
 - [Theming](./user-interface/appearance/theming.md) – Customize colors and appearance

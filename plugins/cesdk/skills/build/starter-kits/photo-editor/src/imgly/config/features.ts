@@ -39,12 +39,13 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     // ============================================================================
 
     // #region Navigation Features
-    'ly.img.navigation.bar' /* Navigation Bar visibility */,
-    'ly.img.navigation.back' /* "Back" button */,
-    'ly.img.navigation.close' /* "Close" button */,
-    'ly.img.navigation.undoRedo' /* "Undo" and "Redo" buttons */,
-    'ly.img.navigation.zoom' /* Zoom controls */,
-    'ly.img.navigation.actions' /* Actions dropdown */,
+    'ly.img.navigation' /* Enables all children below */,
+    // 'ly.img.navigation.bar', /* Navigation Bar visibility */
+    // 'ly.img.navigation.back', /* "Back" button */
+    // 'ly.img.navigation.close', /* "Close" button */
+    // 'ly.img.navigation.undoRedo', /* "Undo" and "Redo" buttons */
+    // 'ly.img.navigation.zoom', /* Zoom controls */
+    // 'ly.img.navigation.actions', /* Actions dropdown */
     // #endregion
 
     // ============================================================================
@@ -53,13 +54,14 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     // ============================================================================
 
     // #region Text Features
-    'ly.img.text.edit' /* Edit button in Canvas Menu */,
-    'ly.img.text.typeface' /* Typeface dropdown */,
-    'ly.img.text.fontSize' /* Font Size input */,
-    'ly.img.text.fontStyle' /* Bold and Italic toggles */,
-    'ly.img.text.alignment' /* Text Horizontal Alignment */,
-    'ly.img.text.advanced' /* Advanced text controls */,
-    'ly.img.text.background' /* Text background controls */,
+    'ly.img.text' /* Enables all children below */,
+    // 'ly.img.text.edit', /* Edit button in Canvas Menu */
+    // 'ly.img.text.typeface', /* Typeface dropdown */
+    // 'ly.img.text.fontSize', /* Font Size input */
+    // 'ly.img.text.fontStyle', /* Bold and Italic toggles */
+    // 'ly.img.text.alignment', /* Text Horizontal Alignment */
+    // 'ly.img.text.advanced', /* Advanced text controls */
+    // 'ly.img.text.background', /* Text background controls */
     // #endregion
 
     // ============================================================================
@@ -68,14 +70,14 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     // ============================================================================
 
     // #region Crop Features
-    'ly.img.crop' /* Crop button */,
-    'ly.img.crop.size' /* Crop size controls */,
-    'ly.img.crop.rotation' /* Crop rotation controls */,
-    'ly.img.crop.flip' /* Crop flip controls */,
-    'ly.img.crop.fillMode' /* Crop fill mode controls */,
-    'ly.img.crop.scale' /* Crop scale controls */,
-    'ly.img.crop.position' /* Crop position controls */,
-    'ly.img.crop.panel.autoOpen' /* Auto-open crop panel on crop mode */,
+    'ly.img.crop' /* Enables all children below */,
+    // 'ly.img.crop.size', /* Crop size controls */
+    // 'ly.img.crop.rotation', /* Crop rotation controls */
+    // 'ly.img.crop.flip', /* Crop flip controls */
+    // 'ly.img.crop.fillMode', /* Crop fill mode controls */
+    // 'ly.img.crop.scale', /* Crop scale controls */
+    // 'ly.img.crop.position', /* Crop position controls */
+    // 'ly.img.crop.panel.autoOpen', /* Auto-open crop panel on crop mode */
     // #endregion
 
     // ============================================================================
@@ -89,6 +91,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     'ly.img.effect' /* Effect button */,
     'ly.img.blur' /* Blur button */,
     'ly.img.shadow' /* Shadow button */,
+    // 'ly.img.shadow.color', /* Shadow color picker */
+    // 'ly.img.shadow.offset', /* Shadow angle and distance */
+    // 'ly.img.shadow.blur', /* Shadow blur radius */
     // #endregion
 
     // ============================================================================
@@ -100,10 +105,14 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     'ly.img.delete' /* Delete button and keyboard shortcut */,
     'ly.img.duplicate' /* Duplicate button and copy/paste */,
     'ly.img.group' /* Group and Ungroup buttons */,
-    'ly.img.replace' /* Replace button in Canvas Menu and Fill Panel */,
-    'ly.img.replace.fill' /* Replace image/video fill content */,
-    'ly.img.replace.shape' /* Replace block shape */,
-    'ly.img.replace.audio' /* Replace audio block content */,
+    // 'ly.img.group.create', /* Group multiple blocks */
+    // 'ly.img.group.ungroup', /* Dissolve group */
+    // 'ly.img.group.enter', /* Enter group for editing */
+    // 'ly.img.group.select', /* Select parent group */
+    'ly.img.replace' /* Enables all children below */,
+    // 'ly.img.replace.fill', /* Replace image/video fill content */
+    // 'ly.img.replace.shape', /* Replace block shape */
+    // 'ly.img.replace.audio', /* Replace audio block content */
     // #endregion
 
     // ============================================================================
@@ -113,11 +122,44 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
 
     // #region Styling Features
     'ly.img.fill' /* Fill button and Fill Panel */,
+    // 'ly.img.fill.color', /* Solid and gradient fill controls */
+    // 'ly.img.fill.image', /* Image fill controls and crop */
+    // 'ly.img.fill.video', /* Video fill, trim, volume, speed */
     'ly.img.opacity' /* Opacity controls */,
     'ly.img.blendMode' /* Blend mode controls */,
+    // 'ly.img.page.clipContent', /* Clip content on/off toggle */
+
+    // ============================================================================
+    // SCENE FEATURES
+    // Configure scene layout options
+    // ============================================================================
+
+    // #region Scene Features
+    // 'ly.img.scene.layout', /* Enables all children below */
+    // 'ly.img.scene.layout.horizontal', /* Horizontal layout toggle */
+    // 'ly.img.scene.layout.vertical', /* Vertical layout toggle */
+    // 'ly.img.scene.layout.free', /* Free layout toggle */
+    // #endregion
+
+    // ============================================================================
+    // STYLING FEATURES (continued)
+    // ============================================================================
+
     'ly.img.shape.options' /* Shape Options dropdown */,
+    // 'ly.img.shape.options.cornerRadius', /* Corner radius (rect/polygon) */
+    // 'ly.img.shape.options.points', /* Star point count */
+    // 'ly.img.shape.options.innerDiameter', /* Star inner diameter */
+    // 'ly.img.shape.options.sides', /* Polygon side count */
+    // 'ly.img.shape.options.lineWidth', /* Line stroke width */
     'ly.img.combine' /* Combine dropdown (shapes/cutouts) */,
+    // 'ly.img.combine.union', /* Union boolean operation */
+    // 'ly.img.combine.subtract', /* Subtract boolean operation */
+    // 'ly.img.combine.intersect', /* Intersect boolean operation */
+    // 'ly.img.combine.exclude', /* Exclude/XOR boolean operation */
     'ly.img.position' /* Position dropdown */,
+    // 'ly.img.position.arrange', /* Bring forward/backward/front/back */
+    // 'ly.img.position.align', /* Align left/right/center/top/bottom */
+    // 'ly.img.position.distribute', /* Distribute vertically/horizontally */
     'ly.img.options' /* Options dropdown */,
     // #endregion
 
@@ -127,9 +169,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     // ============================================================================
 
     // #region Notification Features
-    'ly.img.notifications' /* Global notifications visibility */,
-    'ly.img.notifications.undo' /* Undo notifications */,
-    'ly.img.notifications.redo' /* Redo notifications */,
+    'ly.img.notifications' /* Enables all children below */,
+    // 'ly.img.notifications.undo', /* Undo notifications */
+    // 'ly.img.notifications.redo', /* Redo notifications */
     // #endregion
 
     // ============================================================================
@@ -189,6 +231,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
 
     // #region Video Features
     // 'ly.img.video.timeline', /* Video Timeline visibility */
+    // 'ly.img.video.timeline.ruler', /* Timeline ruler/time scale */
     // 'ly.img.video.clips', /* Clips track in timeline */
     // 'ly.img.video.overlays', /* Overlays track in timeline */
     // 'ly.img.video.audio', /* Audio track in timeline */

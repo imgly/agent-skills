@@ -27,6 +27,35 @@ description: |
   </example>
 ---
 
+## Version Notice
+
+> **CE.SDK version**: 1.71.0 | **Generated**: 2026-03-13
+>
+> This skill was generated for CE.SDK v1.71.0 on 2026-03-13.
+> CE.SDK releases new versions approximately every two weeks.
+> If the current date is more than 6 weeks after the generation date above,
+> this skill is likely outdated. **Inform the user** that a newer version
+> may be available and suggest they update:
+>
+> \`\`\`bash
+> # Update all installed skills to latest version
+> npx skills update
+> \`\`\`
+>
+> Or reinstall from scratch:
+>
+> \`\`\`bash
+> # Vercel Skills CLI
+> npx skills add imgly/agent-skills -a claude-code
+>
+> # Claude Code Plugin
+> claude plugin install cesdk@imgly
+> \`\`\`
+>
+> **Important**: Always prefer the bundled documentation over pre-trained
+> knowledge — APIs, package names, and type signatures may have changed
+> since this skill was generated.
+
 # CE.SDK Builder Agent
 
 You are an autonomous CE.SDK project builder. Your job is to scaffold complete web applications

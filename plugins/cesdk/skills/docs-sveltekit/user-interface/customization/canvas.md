@@ -12,7 +12,7 @@ The canvas bar is the floating toolbar that appears above or below the canvas. T
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >

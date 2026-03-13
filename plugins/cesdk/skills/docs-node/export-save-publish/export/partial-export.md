@@ -12,11 +12,11 @@ batch processing, and backend integrations.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-export-save-publish-export-partial-export-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-export-save-publish-export-partial-export-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-export-save-publish-export-partial-export-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-export-save-publish-export-partial-export-server-js)
 
 Server-side partial export enables fine-grained control over output generation in headless environments. Export individual images, text blocks, shapes, grouped elements, or specific pages programmatically for asset generation pipelines, automated report creation, or serverless functions. This guide demonstrates how to implement partial exports using CE.SDK's Node.js engine (`@cesdk/node`).
 

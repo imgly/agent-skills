@@ -10,11 +10,11 @@ Manage assets in local asset sources programmatically on the server by updating 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-edit-or-remove-assets-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-edit-or-remove-assets-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-import-media-edit-or-remove-assets-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-edit-or-remove-assets-server-js)
 
 Assets in local sources can be modified or removed programmatically in server-side workflows. CE.SDK provides methods to query, update, and remove assets, as well as entire asset sources. This guide demonstrates how to manage assets in headless mode for batch processing, cleanup tasks, and automated workflows.
 

@@ -14,7 +14,7 @@ designs.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
