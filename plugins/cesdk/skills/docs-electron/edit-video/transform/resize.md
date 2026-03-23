@@ -54,10 +54,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Setup: Load assets and create scene
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -103,7 +99,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 800, height: 500, unit: 'Pixel' }
     });
 
@@ -359,7 +354,7 @@ The editor provides two kinds of handles:
 
 <Picture src={edgeHandles} style={{ width: '110%' }} alt="Resize edge handles from the default CE.SDK web editor" formats={['webp']} />
 
-Any embedded audio remains synchronous, because resizing affects only the block's frame, not the timeline.
+Any embedded audio remains synchronous, because resizing affects only the block's frame, not the time-based properties.
 
 ### Hide the Resize Handles in the UI
 
@@ -514,7 +509,7 @@ Create templates with finer-grained scope keys to allow rotation or movement whi
 
 | Topic | What you want to do | What happens |
 | --- | --- | --- |
-| **Timeline length** | Resize the block's on-canvas frame. | No need to retime; duration and trims stay untouched. |
+| **Block duration** | Resize the block's on-canvas frame. | No need to retime; duration and trims stay untouched. |
 | **Content fill** | Switch the block to `.contain` or `.cover`. | Update it with `setContentFillMode` (see *common crop APIs*). |
 | **Performance** | Work on large canvases such as 4K. | Plan around GPU limits and the Video Editor 4K constraints. |
 

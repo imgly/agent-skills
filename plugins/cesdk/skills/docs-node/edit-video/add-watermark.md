@@ -4,7 +4,7 @@
 
 ---
 
-Add text and image watermarks to video content for copyright protection, branding, and content attribution using CE.SDK's timeline-aware block system.
+Add text and image watermarks to video content for copyright protection, branding, and content attribution using CE.SDK's time-aware block system.
 
 > **Reading time:** 10 minutes
 >
@@ -16,7 +16,7 @@ Add text and image watermarks to video content for copyright protection, brandin
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-add-watermark-server-js)
 
-Video watermarks in CE.SDK are design blocks positioned over video content. **Text watermarks** display copyright notices, URLs, or branding text, while **image watermarks** show logos or graphics. Both watermark types require timeline management to ensure they remain visible throughout video playback. The key difference from static image watermarking is setting the watermark's `duration` to match the video duration.
+Video watermarks in CE.SDK are design blocks positioned over video content. **Text watermarks** display copyright notices, URLs, or branding text, while **image watermarks** show logos or graphics. Both watermark types need their time-based properties configured to remain visible throughout video playback. The key difference from static image watermarking is setting the watermark's `duration` to match the video duration.
 
 ```typescript file=@cesdk_web_examples/guides-create-video-add-watermark-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';
@@ -175,7 +175,7 @@ try {
 }
 ```
 
-This guide covers how to create text and image watermarks programmatically, position them on the canvas, style them for visibility, and configure their timeline duration to span the entire video.
+This guide covers how to create text and image watermarks programmatically, position them on the canvas, style them for visibility, and configure their duration to span the entire video.
 
 <NodejsVideoExportNotice {...props} />
 
@@ -192,9 +192,9 @@ const engine = await CreativeEngine.init({
 
 The engine initializes with default settings. In production, you would add your license key to remove trial watermarks from exports.
 
-## Creating a Video Scene
+## Creating the Scene
 
-We create a video scene from a video URL. This automatically sets up the timeline and page dimensions based on the video.
+We create a scene from a video URL. This automatically sets up the page dimensions and time-based properties based on the video.
 
 ```typescript highlight-create-video-scene
 // Create a video scene and load a sample video
@@ -202,7 +202,7 @@ const videoUrl = 'https://img.ly/static/ubq_video_samples/bbb.mp4';
 await engine.scene.createFromVideo(videoUrl);
 ```
 
-The `createFromVideo` method loads the video, creates a scene, and sets the page dimensions to match the video's aspect ratio. The video becomes a fill block on the timeline with its duration already set.
+The `createFromVideo` method loads the video, creates a scene, and sets the page dimensions to match the video's aspect ratio. The video becomes a fill block in the composition with its duration already set.
 
 ## Getting Page and Video Information
 
@@ -292,7 +292,7 @@ The watermark must persist throughout video playback. We set its duration to mat
   engine.block.appendChild(page, textWatermark);
 ```
 
-`engine.block.setDuration()` controls how long the block appears in the timeline. `engine.block.setTimeOffset()` of 0 ensures it starts at the beginning. We then append the watermark to the page, placing it above the video content.
+`engine.block.setDuration()` controls how long the block appears in the composition. `engine.block.setTimeOffset()` of 0 ensures it starts at the beginning. We then append the watermark to the page, placing it above the video content.
 
 ## Creating an Image Watermark
 
@@ -429,7 +429,7 @@ Calculate positions dynamically based on page dimensions to handle different vid
 - Choose appropriate font sizes based on your use case (smaller for subtle branding, larger for prominent notices)
 - Test watermarks against different scenes in your video
 
-### Timeline Management
+### Time Management
 
 - Always match watermark duration to video duration
 - Set time offset to 0 for watermarks that should appear from the start
@@ -458,7 +458,7 @@ Calculate positions dynamically based on page dimensions to handle different vid
 | `engine.block.createFill('image')` | Create an image fill for logo watermarks |
 | `engine.block.setString(id, property, value)` | Set string properties like image URI |
 | `engine.block.setContentFillMode(id, mode)` | Set content fill mode ('Crop', 'Cover', 'Contain') |
-| `engine.block.setDuration(id, duration)` | Set watermark timeline duration |
+| `engine.block.setDuration(id, duration)` | Set watermark duration |
 | `engine.block.setTimeOffset(id, offset)` | Set watermark start time |
 | `engine.block.setOpacity(id, opacity)` | Set watermark transparency (0.0-1.0) |
 | `engine.block.setDropShadowEnabled(id, enabled)` | Enable/disable drop shadow |

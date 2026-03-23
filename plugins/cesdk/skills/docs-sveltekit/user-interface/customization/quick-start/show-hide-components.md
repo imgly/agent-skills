@@ -240,7 +240,7 @@ console.log(
 );
 ```
 
-The `when` option accepts an `editMode` property that specifies when the removal applies. Common edit modes include `Transform`, `Crop`, `Trim`, and `Text`. The removal only affects the specified context—the component remains visible in other modes.
+The `when` option accepts an `editMode` property that specifies when the removal applies. Common edit modes include `Transform`, `Crop`, `Trim`, `Text`, and `Vector`. The removal only affects the specified context—the component remains visible in other modes.
 
 ## Verify Component Removal
 

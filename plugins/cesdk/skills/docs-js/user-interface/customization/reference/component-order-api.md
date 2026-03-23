@@ -387,7 +387,7 @@ type ComponentMatcher<C> =
 
 // Order context for conditional ordering
 interface OrderContext {
-  editMode?: string;    // 'Transform', 'Text', 'Crop', 'Trim', etc.
+  editMode?: string;    // 'Transform', 'Text', 'Crop', 'Trim', 'Vector', etc.
 }
 
 // Result types

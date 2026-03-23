@@ -280,7 +280,6 @@ class Example implements EditorPlugin {
     cesdk.ui.addAssetLibraryEntry({
       id: 'text-components-entry',
       sourceIds: ['custom.textComponents'],
-      sceneMode: 'Design',
       previewLength: 2,
       previewBackgroundType: 'contain',
       gridBackgroundType: 'contain',
@@ -709,7 +708,6 @@ After registering the asset source, we configure the UI to display the text comp
     cesdk.ui.addAssetLibraryEntry({
       id: 'text-components-entry',
       sourceIds: ['custom.textComponents'],
-      sceneMode: 'Design',
       previewLength: 2,
       previewBackgroundType: 'contain',
       gridBackgroundType: 'contain',

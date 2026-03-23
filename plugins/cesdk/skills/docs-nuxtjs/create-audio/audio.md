@@ -25,15 +25,15 @@ Each block has:
 
 - Playback properties (time, speed, volume, mute)
 
-- Timeline properties (offset, duration, trim length)
+- Time-based properties (offset, duration, trim length)
 
 - Optional waveform thumbnails for UI visualization
 
-### What Are the Timeline Properties
+### What Are the Time-Based Properties
 
 Each audio block has properties that determine when and how much of the sound plays:
 
-- **Offset:** the delay before an audio block begins playing inside the scene timeline.
+- **Offset:** the delay before an audio block begins playing inside the scene.
 
 - **Trim length**: cuts the audio to keep only a specific part of it.
 
@@ -66,7 +66,7 @@ Each feature is related to an example further down the page.
 |                          | Volume                      | `setVolume`                           | Range `0.0–1.0`. |
 |                          | Mute                        | `setMuted`                            | Boolean. |
 |                          | Playback speed              | `setPlaybackSpeed`                    | Range `0.25–3.0`. |
-| **Timeline Management**  | Offset                      | `setTimeOffset`                       | To move the playback starting point in the scene timeline. |
+| **Time Management**      | Offset                      | `setTimeOffset`                       | To move the playback starting point in the scene. |
 |                          | Duration                    | `setDuration`                         | Total length (seconds). |
 |                          | Trim length                 | `setTrimLength`                       | Cuts content to a defined length. |
 | **Replace Audio Source** | Reload edited scene         | `scene.loadFromString`                | Used when replacing audio at runtime. |
@@ -203,7 +203,7 @@ Find in the following list of examples different API calls listed in the precedi
   </TabItem>
 </Tabs>
 
-### Manage Audio Timeline
+### Manage Audio Timing
 
 <Tabs>
   <TabItem label="Offset">
@@ -217,7 +217,7 @@ Find in the following list of examples different API calls listed in the precedi
 
     Use `engine.block.setTimeOffset(blockId, offset: number)`.
 
-    This example starts the audio at 2 s on the timeline:
+    This example starts the audio at 2 s in the composition:
 
     ```ts
     engine.block.setTimeOffset(blockId, 2);

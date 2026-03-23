@@ -2913,7 +2913,6 @@ addImage(url: string, options?: AddImageOptions): Promise<DesignBlockId>
 
 Adds a video block to the current scene page. The video will be positioned and sized
 according to the provided parameters. Timeline and animation effects can be applied.
-Only works in Video mode, not in Design mode.
 
 ```typescript
 addVideo(url: string, width: number, height: number, options?: AddVideoOptions): Promise<DesignBlockId>
@@ -2954,7 +2953,6 @@ applyDropShadow(block: DesignBlockId, options?: DropShadowOptions): void
 ### generateThumbnailAtTimeOffset()
 
 Generates a thumbnail image of the scene at a specific time.
-Only works in Video mode, not in Design mode.
 
 ```typescript
 generateThumbnailAtTimeOffset(height: number, time: number): Promise<Blob>
@@ -2970,7 +2968,6 @@ generateThumbnailAtTimeOffset(height: number, time: number): Promise<Blob>
 
 Gets the background track of the current scene.
 The background track is the track that determines the page duration.
-Only works in Video mode, not in Design mode.
 
 ```typescript
 getBackgroundTrack(): DesignBlockId | null
@@ -4729,6 +4726,196 @@ setTextCase(id: DesignBlockId, textCase: TextCase, from?: number, to?: number): 
 - `textCase` - The new text case value.
 - `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
 - `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### getTextDecorations()
+
+Gets the unique text decoration configurations within a range of text.
+Each element of the returned array is a decoration configuration representing
+a unique combination of lines, style, color, and thickness found in the range.
+```javascript
+const decorations = engine.block.getTextDecorations(text);
+// e.g., [{ lines: ['None'] }, { lines: ['Underline'], style: 'Dashed' }]
+```
+
+```typescript
+getTextDecorations(id: DesignBlockId, from?: number, to?: number): TextDecorationConfig[]
+```
+
+**Parameters:**
+- `id` - The text block whose text decorations should be returned.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+**Returns:** The ordered list of unique decoration configurations.
+
+### setTextDecoration()
+
+Sets the text decoration for a range of text.
+The config specifies which decoration lines, style, underline color, thickness, and offset to apply.
+Use `{ lines: ['None'] }` to remove all decorations.
+```javascript
+engine.block.setTextDecoration(text, { lines: ['Underline'] });
+engine.block.setTextDecoration(text, { lines: ['Underline', 'Strikethrough'], style: 'Dashed' });
+engine.block.setTextDecoration(text, { lines: ['Overline'], style: 'Wavy', underlineThickness: 2.0 });
+engine.block.setTextDecoration(text, { lines: ['None'] }); // Remove decorations
+```
+
+```typescript
+setTextDecoration(id: DesignBlockId, config: TextDecorationConfig, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block whose text decoration should be changed.
+- `config` - The decoration configuration to apply.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### toggleTextDecorationUnderline()
+
+Toggles the underline decoration for a text range.
+If any part of the range does not have underline, the entire range gets underline.
+If the entire range already has underline, it is removed.
+Other decoration lines (strikethrough, overline) on each text run are preserved.
+```javascript
+engine.block.toggleTextDecorationUnderline(text);
+```
+
+```typescript
+toggleTextDecorationUnderline(id: DesignBlockId, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### toggleTextDecorationStrikethrough()
+
+Toggles the strikethrough decoration for a text range.
+If any part of the range does not have strikethrough, the entire range gets strikethrough.
+If the entire range already has strikethrough, it is removed.
+Other decoration lines (underline, overline) on each text run are preserved.
+```javascript
+engine.block.toggleTextDecorationStrikethrough(text);
+```
+
+```typescript
+toggleTextDecorationStrikethrough(id: DesignBlockId, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### toggleTextDecorationOverline()
+
+Toggles the overline decoration for a text range.
+If any part of the range does not have overline, the entire range gets overline.
+If the entire range already has overline, it is removed.
+Other decoration lines (underline, strikethrough) on each text run are preserved.
+```javascript
+engine.block.toggleTextDecorationOverline(text);
+```
+
+```typescript
+toggleTextDecorationOverline(id: DesignBlockId, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### getTextListStyle()
+
+Gets the list style for a specific paragraph of a text block.
+```javascript
+const listStyle = engine.block.getTextListStyle(text, 0);
+```
+
+```typescript
+getTextListStyle(id: DesignBlockId, paragraphIndex: number): ListStyle
+```
+
+**Parameters:**
+- `id` - The text block whose list style should be returned.
+- `paragraphIndex` - The 0-based index of the paragraph.
+
+**Returns:** The list style of the paragraph.
+
+### setTextListStyle()
+
+Sets the list style for a specific paragraph or all paragraphs of a text block.
+```javascript
+engine.block.setTextListStyle(text, 'Unordered');
+engine.block.setTextListStyle(text, 'Ordered', 0, 2);
+```
+
+```typescript
+setTextListStyle(id: DesignBlockId, listStyle: ListStyle, paragraphIndex?: number, listLevel?: number): void
+```
+
+**Parameters:**
+- `id` - The text block whose list style should be changed.
+- `listStyle` - The list style to apply.
+- `paragraphIndex` - The 0-based index of the paragraph to modify. Negative values apply to all paragraphs.
+- `listLevel` - Optional list nesting level to set atomically with the list style (0 = outermost).
+                   When omitted the existing list level of each paragraph is preserved.
+                   Has no visual effect when listStyle is 'None'.
+
+### getTextListLevel()
+
+Gets the list nesting level for a specific paragraph of a text block.
+```javascript
+const listLevel = engine.block.getTextListLevel(text, 0);
+```
+
+```typescript
+getTextListLevel(id: DesignBlockId, paragraphIndex: number): number
+```
+
+**Parameters:**
+- `id` - The text block whose list level should be returned.
+- `paragraphIndex` - The 0-based index of the paragraph.
+
+**Returns:** The list nesting level of the paragraph.
+
+### setTextListLevel()
+
+Sets the list nesting level for a specific paragraph or all paragraphs of a text block.
+```javascript
+engine.block.setTextListLevel(text, 1);
+engine.block.setTextListLevel(text, 2, 0);
+```
+
+```typescript
+setTextListLevel(id: DesignBlockId, listLevel: number, paragraphIndex?: number): void
+```
+
+**Parameters:**
+- `id` - The text block whose list level should be changed.
+- `listLevel` - The list nesting level (0 = outermost).
+- `paragraphIndex` - The 0-based index of the paragraph to modify. Negative values apply to all paragraphs.
+
+### getTextParagraphIndices()
+
+Returns the 0-based paragraph indices that overlap the given UTF-16 range.
+```javascript
+const indices = engine.block.getTextParagraphIndices(text);
+const indices = engine.block.getTextParagraphIndices(text, 0, 5);
+```
+
+```typescript
+getTextParagraphIndices(id: DesignBlockId, from?: number, to?: number): number[]
+```
+
+**Parameters:**
+- `id` - The text block to query.
+- `from` - The start index of the UTF-16 range. Negative values reference the entire text.
+- `to` - The end index of the UTF-16 range. Negative values reference the entire text.
+
+**Returns:** The paragraph indices overlapping the range.
 
 ### canToggleBoldFont()
 

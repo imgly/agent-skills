@@ -4,7 +4,7 @@
 
 ---
 
-Combine multiple video clips into sequences and organize them on the timeline using CE.SDK's track system and programmatic APIs.
+Combine multiple video clips into sequences and organize them in the composition using CE.SDK's track system and programmatic APIs.
 
 > **Reading time:** 10 minutes
 >
@@ -46,10 +46,10 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene - required for timeline-based editing
-  await engine.scene.createVideo();
-
-  const page = engine.block.findByType('page')[0];
+  // Create a scene with a page
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.appendChild(scene, page);
 
   // Set page to 16:9 landscape (1920x1080 is standard HD video resolution)
   engine.block.setWidth(page, 1920);
@@ -154,7 +154,7 @@ try {
 }
 ```
 
-This guide covers how to programmatically create video scenes, add and arrange clips in tracks, control clip timing, and create multi-track compositions.
+This guide covers how to programmatically create scenes, add and arrange clips in tracks, control clip timing, and create multi-track compositions.
 
 ## Prerequisites and Setup
 
@@ -169,15 +169,15 @@ const engine = await CreativeEngine.init({
 
 The engine runs without a UI, making it suitable for automated workflows, batch processing, or backend services.
 
-## Creating a Video Scene
+## Creating the Scene
 
-We create a video scene to access timeline-based editing capabilities.
+We create a scene and set up a page for the video composition.
 
-```typescript highlight=highlight-create-video-scene
-  // Create a video scene - required for timeline-based editing
-  await engine.scene.createVideo();
-
-  const page = engine.block.findByType('page')[0];
+```typescript highlight=highlight-create-scene
+  // Create a scene with a page
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.appendChild(scene, page);
 
   // Set page to 16:9 landscape (1920x1080 is standard HD video resolution)
   engine.block.setWidth(page, 1920);
@@ -246,7 +246,7 @@ After adding clips, you can query the track's children to verify the order. `get
 
 ## Setting Clip Durations
 
-Each clip needs a duration that determines how long it plays in the timeline.
+Each clip needs a duration that determines how long it plays.
 
 ```typescript highlight=highlight-set-clip-durations
 // Set durations for each clip
@@ -255,13 +255,13 @@ engine.block.setDuration(clipB, 5);
 engine.block.setDuration(clipC, 5);
 ```
 
-Duration is measured in seconds. A 5-second duration means the clip occupies 5 seconds of timeline space.
+Duration is measured in seconds. A 5-second duration means the clip plays for 5 seconds.
 
 ## Arranging Clips
 
 ### Time Offsets
 
-Time offsets control when each clip starts playing. We set offsets to position clips at specific points in the timeline.
+Time offsets control when each clip starts playing. We set offsets to position clips at specific points in the composition.
 
 ```typescript highlight=highlight-time-offsets
   // Set time offsets to position clips sequentially on the timeline
@@ -367,13 +367,13 @@ If video content doesn't appear when using `addVideo`, check that the video URL 
 
 | Method | Description | Parameters | Returns |
 | --- | --- | --- | --- |
-| `scene.createVideo()` | Create a video scene | none | `Promise<DesignBlockId>` |
+| `scene.create()` | Create a scene | none | `Promise<DesignBlockId>` |
 | `block.addVideo(uri, width, height, options)` | Create video clip with automatic resource loading | `uri: string, width: number, height: number, options?: { timeline: { duration, timeOffset } }` | `Promise<DesignBlockId>` |
 | `block.create('track')` | Create a new track | `type: 'track'` | `DesignBlockId` |
 | `block.appendChild(parent, child)` | Add child to parent | `parent: DesignBlockId, child: DesignBlockId` | `void` |
 | `block.insertChild(parent, child, index)` | Insert child at specific position | `parent: DesignBlockId, child: DesignBlockId, index: number` | `void` |
 | `block.getChildren(id)` | Get all children of a block | `id: DesignBlockId` | `DesignBlockId[]` |
-| `block.setTimeOffset(id, offset)` | Set when block starts in timeline | `id: DesignBlockId, offset: number` | `void` |
+| `block.setTimeOffset(id, offset)` | Set when block starts playing | `id: DesignBlockId, offset: number` | `void` |
 | `block.getTimeOffset(id)` | Get block's time offset | `id: DesignBlockId` | `number` |
 | `block.setDuration(id, duration)` | Set block's duration | `id: DesignBlockId, duration: number` | `void` |
 | `block.getDuration(id)` | Get block's duration | `id: DesignBlockId` | `number` |

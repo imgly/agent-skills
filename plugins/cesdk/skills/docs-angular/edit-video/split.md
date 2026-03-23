@@ -67,10 +67,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable video editing features in CE.SDK
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -116,7 +112,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'
@@ -371,22 +366,9 @@ The timeline enforces minimum duration constraints that prevent splitting too cl
 
 For applications that need to split clips programmatically—whether for automation, batch processing, or dynamic editing—CE.SDK provides the `engine.block.split()` method.
 
-### Prerequisites and Setup
-
-Before splitting, ensure video features are enabled and a video scene is created.
-
-```typescript highlight-enable-video-features
-// Enable video editing features in CE.SDK
-cesdk.feature.enable('ly.img.video');
-cesdk.feature.enable('ly.img.timeline');
-cesdk.feature.enable('ly.img.playback');
-```
-
-Video mode is required for split operations. Design mode doesn't provide timeline-based editing capabilities, so use `cesdk.actions.run('scene.create', { mode: 'Video' })` to access split functionality.
-
 ### Basic Splitting at a Specific Time
 
-Split a block by providing the block ID and the split time in seconds. The time parameter is relative to the block's own timeline, accounting for the block's time offset.
+Split a block by providing the block ID and the split time in seconds. The time parameter is relative to the block's own time range, accounting for the block's time offset.
 
 ```typescript highlight-basic-split
     // Create a video block to demonstrate basic splitting
@@ -487,7 +469,7 @@ To implement playhead-based splitting like the built-in UI, get the current play
     );
 ```
 
-The playhead position from `getPlaybackTime(page)` is in absolute timeline time. Subtract the clip's `getTimeOffset()` to convert to block-relative time before passing to `split()`.
+The playhead position from `getPlaybackTime(page)` is in absolute playback time. Subtract the clip's `getTimeOffset()` to convert to block-relative time before passing to `split()`.
 
 ## Understanding Split Results
 

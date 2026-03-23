@@ -80,7 +80,7 @@ setEditMode(mode: EditMode, baseMode?: string): void
 ```
 
 **Parameters:**
-- `mode` - "Transform", "Crop", "Text", "Playback", "Trim" or a custom value.
+- `mode` - "Transform", "Crop", "Text", "Playback", "Trim", "Vector" or a custom value.
 - `baseMode` - Optional base mode from which the custom mode will inherit the settings.
 
 ### getEditMode()
@@ -92,14 +92,14 @@ Edit modes represent different tools or interaction states within the editor. Co
 getEditMode(): EditMode
 ```
 
-**Returns:** "Transform", "Crop", "Text", "Playback", "Trim" or a custom value.
+**Returns:** "Transform", "Crop", "Text", "Playback", "Trim", "Vector" or a custom value.
 
 ### getCursorType()
 
 Get the cursor type that should be displayed.
 
 ```typescript
-getCursorType(): 'Arrow' | 'Move' | 'MoveNotPermitted' | 'Resize' | 'Rotate' | 'Text'
+getCursorType(): 'Arrow' | 'Move' | 'MoveNotPermitted' | 'Resize' | 'Rotate' | 'Text' | 'Cell'
 ```
 
 **Returns:** The cursor type.
@@ -146,6 +146,137 @@ unstable_isInteractionHappening(): boolean
 ```
 
 **Returns:** True if an interaction is happening.
+
+## Vector Edit
+
+### hasSelectedVectorNode()
+
+Check whether a vector anchor node is currently selected in vector edit mode.
+
+```typescript
+hasSelectedVectorNode(): boolean
+```
+
+**Returns:** True if a vector anchor node is selected.
+
+### addVectorNode()
+
+Add a new vertex by splitting the segment after the currently selected vector node.
+
+```typescript
+addVectorNode(): void
+```
+
+### deleteVectorNode()
+
+Delete the currently selected vector node from the path.
+
+```typescript
+deleteVectorNode(): void
+```
+
+### toggleSelectedVectorNodeSmooth()
+
+Toggle the currently selected vector node between smooth (bezier handles)
+and corner (no handles).
+
+```typescript
+toggleSelectedVectorNodeSmooth(): void
+```
+
+### setVectorEditBendMode()
+
+Enable or disable bend mode for vector editing.
+When bend mode is active, clicking an anchor node automatically toggles
+it between smooth (bezier handles) and corner (no handles).
+
+```typescript
+setVectorEditBendMode(active: boolean): void
+```
+
+**Parameters:**
+- `active` - true to enable bend mode, false to return to normal move mode.
+
+### getVectorEditBendMode()
+
+Check whether vector edit bend mode is currently active.
+
+```typescript
+getVectorEditBendMode(): boolean
+```
+
+**Returns:** true if bend mode is active.
+
+### setVectorEditAddMode()
+
+Enable or disable add mode for vector editing.
+When add mode is active, clicking on a path segment inserts a new anchor
+point at the click position. Mutually exclusive with bend and delete modes.
+
+```typescript
+setVectorEditAddMode(active: boolean): void
+```
+
+**Parameters:**
+- `active` - true to enable add mode, false to return to normal move mode.
+
+### getVectorEditAddMode()
+
+Check whether vector edit add mode is currently active.
+
+```typescript
+getVectorEditAddMode(): boolean
+```
+
+**Returns:** true if add mode is active.
+
+### setVectorEditDeleteMode()
+
+Enable or disable delete mode for vector editing.
+When delete mode is active, clicking an anchor node instantly deletes it
+from the path. Mutually exclusive with bend and add modes.
+
+```typescript
+setVectorEditDeleteMode(active: boolean): void
+```
+
+**Parameters:**
+- `active` - true to enable delete mode, false to return to normal move mode.
+
+### getVectorEditDeleteMode()
+
+Check whether vector edit delete mode is currently active.
+
+```typescript
+getVectorEditDeleteMode(): boolean
+```
+
+**Returns:** true if delete mode is active.
+
+### setSelectedVectorNodeMirrorMode()
+
+Set the bezier handle mirror mode for the currently selected vector node.
+Mirror modes control how the opposite handle behaves when one handle is dragged:
+- 0 (None): handles move independently
+- 1 (AngleAndLength): the opposite handle mirrors both angle and length
+- 2 (AngleOnly): the opposite handle mirrors the angle but keeps its own length
+
+```typescript
+setSelectedVectorNodeMirrorMode(mode: number): void
+```
+
+**Parameters:**
+- `mode` - The mirror mode (0, 1, or 2).
+
+### getSelectedVectorNodeMirrorMode()
+
+Get the bezier handle mirror mode of the currently selected vector node.
+
+```typescript
+getSelectedVectorNodeMirrorMode(): number
+```
+
+**Returns:** The mirror mode as a number (0 = None, 1 = AngleAndLength, 2 = AngleOnly).
 
 ## History Management
 

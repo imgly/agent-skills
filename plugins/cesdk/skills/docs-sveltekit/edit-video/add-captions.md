@@ -64,10 +64,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable video editing features including captions
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -113,7 +109,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 
@@ -269,7 +264,7 @@ When you import captions from a subtitle file, CE.SDK automatically creates the 
 
 ### Caption Timing
 
-Each caption has two timing properties: **time offset** (when the caption appears) and **duration** (how long it stays visible). These values are in seconds and synchronize with the video timeline. A caption with a time offset of 2.0 and duration of 3.0 appears at the 2-second mark and disappears at the 5-second mark.
+Each caption has two timing properties: **time offset** (when the caption appears) and **duration** (how long it stays visible). These values are in seconds and synchronize with the video playback. A caption with a time offset of 2.0 and duration of 3.0 appears at the 2-second mark and disappears at the 5-second mark.
 
 ## Importing Captions from Subtitle Files
 
@@ -302,7 +297,7 @@ The `createCaptionsFromURI` method downloads the subtitle file, parses the timin
 
 ### Creating the Caption Track
 
-After importing captions, create a caption track to organize them in the timeline. The caption track manages caption positioning and display.
+After importing captions, create a caption track to organize them in the composition. The caption track manages caption positioning and display.
 
 ```typescript highlight-create-caption-track
     // Create a caption track and add captions to it

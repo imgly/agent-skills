@@ -38,24 +38,18 @@ async function main() {
   });
 
   try {
-    // Create a video scene (required for video fills)
-    // Video fills only work in Video mode, not Design mode
-    engine.scene.createVideo({
-      page: { size: { width: 800, height: 600 } }
-    });
-    const page = engine.block.findByType('page')[0];
+    // Create a scene with a page
+    const scene = engine.scene.create();
+    const page = engine.block.create('page');
+    engine.block.setWidth(page, 800);
+    engine.block.setHeight(page, 600);
+    engine.block.appendChild(scene, page);
 
     // Check if block supports fills before accessing fill APIs
     const testBlock = engine.block.create('graphic');
     const canHaveFill = engine.block.supportsFill(testBlock);
     console.log('Block supports fills:', canHaveFill);
 
-    // Verify we're in Video mode (required for video fills)
-    const sceneMode = engine.scene.getMode();
-    console.log('Scene mode:', sceneMode); // "Video"
-    if (sceneMode !== 'Video') {
-      throw new Error('Video fills require Video mode.');
-    }
     engine.block.destroy(testBlock);
 
     const videoUri = 'https://img.ly/static/ubq_video_samples/bbb.mp4';
@@ -232,18 +226,18 @@ main().catch(console.error);
 
 ## Understanding Video Fills
 
-Video fills require a video scene. The scene must be in Video mode for video fills to work correctly — Design mode does not support video fills.
+Video fills work in any scene. Create a scene and add a page to get started.
 
-```typescript highlight=highlight-create-video-scene
-// Create a video scene (required for video fills)
-// Video fills only work in Video mode, not Design mode
-engine.scene.createVideo({
-  page: { size: { width: 800, height: 600 } }
-});
-const page = engine.block.findByType('page')[0];
+```typescript highlight=highlight-create-scene
+// Create a scene with a page
+const scene = engine.scene.create();
+const page = engine.block.create('page');
+engine.block.setWidth(page, 800);
+engine.block.setHeight(page, 600);
+engine.block.appendChild(scene, page);
 ```
 
-Before working with fills, verify that the block supports fills and that the scene is in the correct mode.
+Before working with fills, verify that the block supports fills.
 
 ```typescript highlight=highlight-check-fill-support
     // Check if block supports fills before accessing fill APIs
@@ -251,12 +245,6 @@ Before working with fills, verify that the block supports fills and that the sce
     const canHaveFill = engine.block.supportsFill(testBlock);
     console.log('Block supports fills:', canHaveFill);
 
-    // Verify we're in Video mode (required for video fills)
-    const sceneMode = engine.scene.getMode();
-    console.log('Scene mode:', sceneMode); // "Video"
-    if (sceneMode !== 'Video') {
-      throw new Error('Video fills require Video mode.');
-    }
     engine.block.destroy(testBlock);
 ```
 
@@ -467,10 +455,9 @@ Always dispose of the engine when finished to release resources.
 
 If video fills don't appear:
 
-1. Verify the scene is in Video mode (`engine.scene.getMode()` returns `'Video'`)
-2. Ensure the video URI is accessible and valid
-3. Check that the block has a shape assigned before setting the fill
-4. Confirm the block has been appended to the page
+1. Ensure the video URI is accessible and valid
+2. Check that the block has a shape assigned before setting the fill
+3. Confirm the block has been appended to the page
 
 ### Metadata Not Available
 

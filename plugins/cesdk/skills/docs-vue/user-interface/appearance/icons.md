@@ -297,6 +297,39 @@ CE.SDK includes a built-in icon set named 'Essentials' with icons for common edi
   </tbody>
 </table>
 
+### Set 'Files and Folders'
+
+<table>
+  <thead>
+    <tr>
+      <th className="align-middle">Name</th>
+      <th className="align-middle">Icon</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {filesAndFoldersIconData.map((iconItem, index) => (
+          <tr className="hover:bg-imglygray-100 dark:hover:bg-dark-imglygray-800">
+            <td className="align-middle">
+              <div className="pl-1">
+                <code>{`@imgly/${iconItem.name}`}</code>
+              </div>
+            </td>
+            <td className="align-middle">
+              <div>
+                <AstroImage
+                  src={iconItem.asset}
+                  alt={`${iconItem.name} Icon`}
+                  class="h-7 w-7 object-contain p-0 grayscale filter hover:filter-none dark:invert hover:dark:filter"
+                  style={'margin:0 !important; padding:0 !important;'}
+                />
+              </div>
+            </td>
+          </tr>
+        ))}
+  </tbody>
+</table>
+
 ## Troubleshooting
 
 ### Custom Icon Not Appearing

@@ -123,6 +123,8 @@ Components available in `'ly.img.inspector.bar'`. The inspector bar supports edi
 | `ly.img.text.fontSize.inspectorBar` | Font size control |
 | `ly.img.text.bold.inspectorBar` | Bold toggle |
 | `ly.img.text.italic.inspectorBar` | Italic toggle |
+| `ly.img.text.underline.inspectorBar` | Underline toggle |
+| `ly.img.text.strikethrough.inspectorBar` | Strikethrough toggle |
 | `ly.img.text.alignHorizontal.inspectorBar` | Text alignment (left, center, right, justify) |
 | `ly.img.text.style.inspectorBar` | Text style presets |
 | `ly.img.text.advanced.inspectorBar` | Advanced text options (line height, letter spacing, etc.) |
@@ -136,6 +138,12 @@ Components available in `'ly.img.inspector.bar'`. The inspector bar supports edi
 | `ly.img.trimControls.inspectorBar` | Video trim controls (shown in Trim edit mode) |
 | `ly.img.crop.inspectorBar` | Image crop button |
 | `ly.img.cropControls.inspectorBar` | Image crop controls (shown in Crop edit mode) |
+| `ly.img.vectorEdit.moveMode.inspectorBar` | Vector edit move mode toggle (shown in Vector edit mode) |
+| `ly.img.vectorEdit.addMode.inspectorBar` | Vector edit add node mode toggle (shown in Vector edit mode) |
+| `ly.img.vectorEdit.deleteMode.inspectorBar` | Vector edit delete node mode toggle (shown in Vector edit mode) |
+| `ly.img.vectorEdit.bendMode.inspectorBar` | Vector edit bend mode toggle (shown in Vector edit mode) |
+| `ly.img.vectorEdit.mirrorMode.inspectorBar` | Vector edit handle mirror mode dropdown (shown in Vector edit mode) |
+| `ly.img.vectorEdit.done.inspectorBar` | Exit vector edit mode button (shown in Vector edit mode) |
 | `ly.img.volume.inspectorBar` | Audio volume control |
 | `ly.img.playbackSpeed.inspectorBar` | Video playback speed |
 | `ly.img.audio.replace.inspectorBar` | Replace audio source |
@@ -207,6 +215,8 @@ Components available in `'ly.img.canvas.menu'`. The canvas menu appears on right
 | `ly.img.text.color.canvasMenu` | Quick text color change |
 | `ly.img.text.bold.canvasMenu` | Toggle bold (in Text edit mode) |
 | `ly.img.text.italic.canvasMenu` | Toggle italic (in Text edit mode) |
+| `ly.img.text.list.unordered.canvasMenu` | Toggle bulleted list (in Text edit mode) |
+| `ly.img.text.list.ordered.canvasMenu` | Toggle numbered list (in Text edit mode) |
 | `ly.img.text.variables.canvasMenu` | Insert variable (in Text edit mode) |
 
 ### Other

@@ -441,7 +441,7 @@ Once we've confirmed a block supports effects, we can create and apply effects u
 > this guide. This built-in helper simplifies image block creation compared to
 > manually constructing graphic blocks with image fills, and provides additional
 > configuration options like positioning, sizing, corner radius, shadows, and
-> timeline properties.
+> time-based properties.
 
 ```typescript highlight-createEffect
   // Create a separate image block for blur demonstration

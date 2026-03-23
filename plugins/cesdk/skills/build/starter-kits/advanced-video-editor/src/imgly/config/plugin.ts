@@ -11,7 +11,7 @@
  *
  * const cesdk = await CreativeEditorSDK.create('#editor', config);
  * await cesdk.addPlugin(new AdvancedVideoEditorConfig());
- * await cesdk.actions.run('scene.create', { mode: 'Video' });
+ * await cesdk.actions.run('scene.create');
  * ```
  *
  * @see https://img.ly/docs/cesdk/js/user-interface/customization/disable-or-enable-f058e2/
@@ -98,6 +98,14 @@ export class AdvancedVideoEditorConfig implements EditorPlugin {
       // Configure engine settings (interactions, video captions, snapping, etc.)
       // See settings.ts for all available settings
       setupSettings(engine);
+      // #endregion
+
+      // #region Browser Capability Checks
+      // Run browser support checks with video editor defaults.
+      await cesdk.actions.run('editor.checkBrowserSupport', {
+        videoDecode: 'block',
+        videoEncode: 'warn'
+      });
       // #endregion
 
       // Re-applies deprecated configuration options (e.g. callbacks,

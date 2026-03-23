@@ -17,7 +17,7 @@ CE.SDK's headless engine for server-side audio processing.
 
 <NodejsVideoExportNotice {...props} />
 
-Audio blocks are standalone timeline elements that play alongside video content, independent of video fills. In headless server environments, you can create audio blocks, configure timeline position and volume, and manage multiple audio tracks programmatically using the Engine API.
+Audio blocks are standalone time-based blocks that play alongside video content, independent of video fills. In headless server environments, you can create audio blocks, configure time-based position and volume, and manage multiple audio tracks programmatically using the Engine API.
 
 ```typescript file=@cesdk_web_examples/guides-create-audio-add-music-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';
@@ -165,7 +165,7 @@ The headless engine provides full API access to audio functionality without brow
 
 ## Creating a Scene
 
-Create a scene with a page to hold audio content. Set the page dimensions and duration to define the timeline length.
+Create a scene with a page to hold audio content. Set the page dimensions and duration to define the composition length.
 
 ```typescript highlight=highlight-create-scene
   // Create a scene with a page for audio content
@@ -179,13 +179,13 @@ Create a scene with a page to hold audio content. Set the page dimensions and du
   engine.block.setDuration(page, 30);
 ```
 
-The page duration determines the maximum playback length for the composition. Audio blocks attached to this page participate in the timeline.
+The page duration determines the maximum playback length for the composition. Audio blocks attached to this page participate in the composition.
 
 ## Programmatic Audio Creation
 
 ### Create Audio Block
 
-We create audio blocks using `engine.block.create('audio')` and set the source file using the `audio/fileURI` property. The audio block must be appended to a page to become part of the timeline.
+We create audio blocks using `engine.block.create('audio')` and set the source file using the `audio/fileURI` property. The audio block must be appended to a page to become part of the composition.
 
 ```typescript highlight=highlight-create-audio-block
   // Create an audio block for background music
@@ -202,9 +202,9 @@ We create audio blocks using `engine.block.create('audio')` and set the source f
 
 Audio blocks support common formats including M4A, MP3, and WAV. The source URI can point to any accessible URL.
 
-### Configure Timeline Position
+### Configure Time Position
 
-Audio blocks have timeline properties that control when and how long they play. We use `setTimeOffset()` to set the start time and `setDuration()` to control playback length.
+Audio blocks have time-based properties that control when and how long they play. We use `setTimeOffset()` to set the start time and `setDuration()` to control playback length.
 
 ```typescript highlight=highlight-configure-timeline
   // Wait for audio to load to get duration
@@ -222,7 +222,7 @@ Audio blocks have timeline properties that control when and how long they play. 
   engine.block.setDuration(audioBlock, playbackDuration);
 ```
 
-The `forceLoadAVResource()` method ensures the audio file is loaded before we access its duration. This is important when you need to know the total length of the audio file for timeline calculations.
+The `forceLoadAVResource()` method ensures the audio file is loaded before we access its duration. This is important when you need to know the total length of the audio file for timing calculations.
 
 ### Configure Volume
 
@@ -330,7 +330,7 @@ Save the scene configuration for later use or rendering. In headless mode, expor
   );
 ```
 
-The exported scene contains all audio configuration including source URIs, timeline positions, durations, and volume levels. Use the CE.SDK Renderer for server-side video rendering with audio.
+The exported scene contains all audio configuration including source URIs, time positions, durations, and volume levels. Use the CE.SDK Renderer for server-side video rendering with audio.
 
 ## Troubleshooting
 
@@ -349,7 +349,7 @@ The exported scene contains all audio configuration including source URIs, timel
 | `block.create('audio')`                     | Create a new audio block          |
 | `block.setString(id, 'audio/fileURI', uri)` | Set the audio source file         |
 | `block.appendChild(parent, child)`          | Append audio to page              |
-| `block.setTimeOffset(id, seconds)`          | Set when audio starts on timeline |
+| `block.setTimeOffset(id, seconds)`          | Set when audio starts playing |
 | `block.setDuration(id, seconds)`            | Set audio playback duration       |
 | `block.setVolume(id, volume)`               | Set volume (0.0 to 1.0)           |
 | `block.getVolume(id)`                       | Get current volume level          |

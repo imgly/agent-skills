@@ -24,8 +24,8 @@ The *Engine* manages:
 
 CE.SDK organizes content in a tree: *Scene* → *Pages* → *Blocks*.
 
-- **Scene**: The root container. One scene per engine instance. Operates in either *Design Mode* (static) or *Video Mode* (timeline-based).
-- **Pages**: Containers within a scene. Artboards in Design Mode, timeline compositions in Video Mode.
+- **Scene**: The root container. One scene per engine instance. Supports both static designs and time-based video editing.
+- **Pages**: Containers within a scene. Artboards for static designs, time-based compositions for video editing.
 - **Blocks**: The atomic units—graphics, text, audio, video. Everything visible is a block.
 
 The **Scene API** manages this hierarchy. The **Block API** manipulates individual blocks within it. See [Scenes](./concepts/scenes.md), [Pages](./concepts/pages.md), and [Blocks](./concepts/blocks.md) for details.
@@ -71,14 +71,14 @@ A typical flow shows the interconnection:
 
 Each API focuses on one domain but works through the others. The *Engine* coordinates these interactions.
 
-## Scene Modes
+## Scene Capabilities
 
-The scene mode affects which features are available:
+CE.SDK scenes support a range of capabilities:
 
-- **Design Mode**: Static designs—social posts, print materials, graphics. Blocks positioned spatially. No timeline.
-- **Video Mode**: Time-based content with duration, playback, and animation. Blocks arranged across time.
+- **Static designs**: Social posts, print materials, graphics. Blocks positioned spatially.
+- **Time-based content**: Duration, playback time, and animation. Blocks arranged across time.
 
-Choose the mode when creating a scene. It determines which *Block API* properties and *Editor API* capabilities are available. See [Scenes](./concepts/scenes.md) for details.
+The scene configuration determines which *Block API* properties and *Editor API* capabilities are available. See [Scenes](./concepts/scenes.md) for details.
 
 ## Integration Patterns
 

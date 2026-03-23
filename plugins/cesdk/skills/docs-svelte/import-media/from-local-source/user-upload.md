@@ -227,7 +227,7 @@ Local uploads store files in browser memory only. Files won't persist when openi
 
 ## Enabling Upload Demo Asset Sources
 
-To enable upload functionality when using demo asset sources, pass the `withUploadAssetSources` option to the `DemoAssetSources` plugin:
+To enable upload functionality, add the `UploadAssetSources` plugin alongside `DemoAssetSources`:
 
 ```typescript highlight-demo-asset-sources
     await cesdk.addPlugin(
@@ -246,7 +246,7 @@ To enable upload functionality when using demo asset sources, pass the `withUplo
     );
 ```
 
-Without this option, demo asset sources won't include upload functionality.
+Without the `UploadAssetSources` plugin, the upload button won't appear in the asset library.
 
 ## Creating a Custom Asset Source with Uploads
 
@@ -421,7 +421,7 @@ This pattern allows you to conditionally choose between local storage and remote
 
 | Method | Category | Purpose |
 |--------|----------|---------|
-| `cesdk.addPlugin(new DemoAssetSources())` | SDK | Add demo asset sources with optional upload support |
+| `cesdk.addPlugin(new DemoAssetSources({ include: [...] }))` | SDK | Add demo asset sources filtered for the editor context |
 | `engine.asset.addSource()` | Asset | Register a custom asset source with upload support |
 | `cesdk.actions.register()` | Actions | Register custom action handlers including uploads |
 | `cesdk.utils.localUpload()` | Utils | Default local upload utility for development |
@@ -430,7 +430,7 @@ This pattern allows you to conditionally choose between local storage and remote
 
 ## Troubleshooting
 
-- **Upload button not visible**: Ensure `withUploadAssetSources: true` is passed when using demo asset sources
+- **Upload button not visible**: Ensure the `UploadAssetSources` plugin is added
 - **Files disappear after refresh**: Implement a custom upload handler to persist files to remote storage
 - **Upload fails silently**: Check that the upload handler returns a valid `AssetDefinition` with required fields (`id`, `meta.uri`)
 - **Progress not updating**: Verify the server supports progress reporting and the `onProgress` callback is called

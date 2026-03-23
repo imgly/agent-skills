@@ -21,7 +21,7 @@ durations using CE.SDK's timeline UI and programmatic trim API.
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-trim-browser/)
 
-Understanding the difference between **fill-level trimming** and **block-level timing** is essential. Fill-level trimming (`setTrimOffset`, `setTrimLength`) controls which portion of the source media plays, while block-level timing (`setTimeOffset`, `setDuration`) controls when and how long the block appears in your timeline. These two systems work together to give you complete control over video playback.
+Understanding the difference between **fill-level trimming** and **block-level timing** is essential. Fill-level trimming (`setTrimOffset`, `setTrimLength`) controls which portion of the source media plays, while block-level timing (`setTimeOffset`, `setDuration`) controls when and how long the block appears in the composition. These two systems work together to give you complete control over video playback.
 
 ```typescript file=@cesdk_web_examples/guides-create-video-trim-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -69,10 +69,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable video editing features in CE.SDK
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -118,7 +114,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'
@@ -369,9 +364,9 @@ This trimming is completely non-destructive—the source video file remains unch
 
 ### Block-Level Timing
 
-Block-level timing is separate from trimming and controls when and how long a block exists in the timeline. `setTimeOffset` determines when the block becomes active in the composition timeline (useful for track-based layouts). `setDuration` controls how long the block appears in the timeline.
+Block-level timing is separate from trimming and controls when and how long a block exists in the composition. `setTimeOffset` determines when the block becomes active in the composition (useful for track-based layouts). `setDuration` controls how long the block appears in the composition.
 
-The *trim* controls what plays from the source media, while the *duration* controls how long that playback appears in your timeline. If the duration exceeds the trim length and if looping is disabled, the trimmed portion will play once and then hold the last frame for the remaining duration.
+The *trim* controls what plays from the source media, while the *duration* controls how long that playback appears in the composition. If the duration exceeds the trim length and if looping is disabled, the trimmed portion will play once and then hold the last frame for the remaining duration.
 
 ### Common Use Cases
 
@@ -414,19 +409,6 @@ CE.SDK enforces a minimum trim duration to prevent creating zero-length or extre
 When clips extend beyond page duration boundaries, grey visual indicators show which portions fall outside. While the video block may be longer than the page, only content within the page duration will appear in exports or final compositions.
 
 ## Programmatic Video Trimming
-
-### Prerequisites and Setup
-
-For applications that need to apply trimming programmatically—whether for automation, batch processing, or dynamic user experiences—we start by setting up CE.SDK in Video mode with the proper configuration.
-
-```typescript highlight-enable-video-features
-// Enable video editing features in CE.SDK
-cesdk.feature.enable('ly.img.video');
-cesdk.feature.enable('ly.img.timeline');
-cesdk.feature.enable('ly.img.playback');
-```
-
-Video mode is required for trimming operations. Design mode doesn't provide timeline-based editing capabilities, so we must use `cesdk.actions.run('scene.create', { mode: 'Video' })` to access trim functionality.
 
 ### Loading Video Resources
 
@@ -690,7 +672,7 @@ With looping enabled, exceeding trim length causes the trimmed segment to repeat
 
 ### Best Practices
 
-For predictable behavior, always consider both trim and duration together. Set trim values first to define the source media segment you want. Then set duration to control timeline length. If you want the entire trimmed segment to play once, match duration to trim length. For looping content, enable looping before setting a longer duration.
+For predictable behavior, always consider both trim and duration together. Set trim values first to define the source media segment you want. Then set duration to control playback length. If you want the entire trimmed segment to play once, match duration to trim length. For looping content, enable looping before setting a longer duration.
 
 When building UIs, update both values together when users adjust trim handles. This prevents confusion about why a video isn't playing the full trimmed length (duration too short) or why it's holding on the last frame (duration too long without looping).
 
@@ -711,7 +693,7 @@ Test your trim operations on target devices early in development to ensure accep
 
 If setting trim values has no visible effect, the most common cause is forgetting to await `forceLoadAVResource`. The resource must be loaded before trim values take effect. Always load resources first.
 
-Another possibility is confusing time offset with trim offset. `setTimeOffset` controls when the block appears in the timeline, while `setTrimOffset` controls where in the source media playback starts. Make sure you're using the correct method.
+Another possibility is confusing time offset with trim offset. `setTimeOffset` controls when the block appears in the composition, while `setTrimOffset` controls where in the source media playback starts. Make sure you're using the correct method.
 
 ### Incorrect Trim Calculation
 

@@ -97,7 +97,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 
@@ -203,7 +202,7 @@ The `isPlaying` method returns the current playback state.
 
 ## Seeking
 
-To jump to a specific position in the timeline, use `setPlaybackTime`. First, check if the block supports playback time with `supportsPlaybackTime`.
+To jump to a specific playback position, use `setPlaybackTime`. First, check if the block supports playback time with `supportsPlaybackTime`.
 
 ```typescript highlight=highlight-seeking
 if (engine.block.supportsPlaybackTime(page)) {

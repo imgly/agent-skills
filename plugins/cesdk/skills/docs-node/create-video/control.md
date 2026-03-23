@@ -46,11 +46,12 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene with page - required for timeline-based editing
-  engine.scene.createVideo({
-    page: { size: { width: 1920, height: 1080 } }
-  });
-  const page = engine.block.findByType('page')[0];
+  // Create a scene with a page
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 1920);
+  engine.block.setHeight(page, 1080);
+  engine.block.appendChild(scene, page);
 
   // Set page duration to accommodate our video content
   engine.block.setDuration(page, 15);
@@ -249,7 +250,7 @@ This guide covers how to load media resources, seek to specific positions, check
 
 ## Setup
 
-We start by initializing the engine in headless mode and creating a video scene with a page and track.
+We start by initializing the engine in headless mode and creating a scene with a page and track.
 
 ```typescript highlight=highlight-setup
 // Initialize CE.SDK engine in headless mode
@@ -310,7 +311,7 @@ The `engine.block.getVideoWidth()` and `engine.block.getVideoHeight()` methods r
 
 ## Playback Control
 
-We check if the block supports playback control using `engine.block.supportsPlaybackControl()`. In headless mode, this determines whether the block can be positioned programmatically on the timeline. The `engine.block.isPlaying()` method returns whether the block is currently playing, which will be `false` in headless mode since there is no active playback.
+We check if the block supports playback control using `engine.block.supportsPlaybackControl()`. In headless mode, this determines whether the block can be positioned programmatically in the composition. The `engine.block.isPlaying()` method returns whether the block is currently playing, which will be `false` in headless mode since there is no active playback.
 
 ```typescript highlight=highlight-playback-control-support
   // Check if a block supports playback control
@@ -330,7 +331,7 @@ We check if the block supports playback control using `engine.block.supportsPlay
 
 ## Seeking
 
-To position the timeline at a specific point, we use `engine.block.setPlaybackTime()`. First, check if the block supports playback time with `engine.block.supportsPlaybackTime()`.
+To set the playback position, we use `engine.block.setPlaybackTime()`. First, check if the block supports playback time with `engine.block.supportsPlaybackTime()`.
 
 ```typescript highlight=highlight-playback-time
   // Check if the page supports playback time operations
@@ -361,7 +362,7 @@ console.log(`Video block visible at current time: ${isVisible}`);
 
 ## Time Offset and Duration
 
-Time offset controls when a block becomes active in the timeline, while duration controls how long the block appears. Use `engine.block.getTimeOffset()` and `engine.block.getDuration()` to query these values, and their corresponding setters to modify them.
+Time offset controls when a block becomes active in the composition, while duration controls how long the block appears. Use `engine.block.getTimeOffset()` and `engine.block.getDuration()` to query these values, and their corresponding setters to modify them.
 
 ```typescript highlight=highlight-time-offset-duration
   // Time offset controls when a block becomes active in the timeline

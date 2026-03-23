@@ -132,11 +132,6 @@ class Example implements EditorPlugin {
     // eslint-disable-next-line no-console
     console.log('Scene layout:', layout);
 
-    // Check scene mode (Design or Video)
-    const mode = engine.scene.getMode();
-    // eslint-disable-next-line no-console
-    console.log('Scene mode:', mode);
-
     // Access pages within the scene
     const pages = engine.scene.getPages();
     // eslint-disable-next-line no-console
@@ -219,16 +214,6 @@ Available layouts include:
 - `DepthStack` — Pages layered on top of each other
 - `Free` — Manual positioning
 
-### Creating for Video Editing
-
-For video projects, use `engine.scene.createVideo()` which configures the scene for timeline-based editing:
-
-```typescript
-const videoScene = engine.scene.createVideo({
-  page: { size: { width: 1920, height: 1080 } }
-});
-```
-
 ### Adding Pages
 
 After creating a scene, add pages using `engine.block.create('page')`. Configure the page dimensions and append it to the scene's stack container.
@@ -303,21 +288,9 @@ Query or configure how measurements are interpreted using `engine.scene.getDesig
     const layout = engine.scene.getLayout();
     // eslint-disable-next-line no-console
     console.log('Scene layout:', layout);
-
-    // Check scene mode (Design or Video)
-    const mode = engine.scene.getMode();
-    // eslint-disable-next-line no-console
-    console.log('Scene mode:', mode);
 ```
 
 Supported units are `'Pixel'`, `'Millimeter'`, and `'Inch'`. For more details, see the [Design Units](./concepts/design-units.md) guide.
-
-### Scene Mode
-
-Scenes operate in either Design mode or Video mode, determined at creation time. Use `engine.scene.getMode()` to check which mode is active:
-
-- **Design** — For static designs like posters, social media graphics, and print materials
-- **Video** — For timeline-based editing with animations and video clips
 
 ### Scene Layout
 

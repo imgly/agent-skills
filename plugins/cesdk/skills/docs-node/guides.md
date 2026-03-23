@@ -24,7 +24,7 @@
 - [Save](./export-save-publish/save.md) - Save design progress locally or to a backend service to allow for later editing or publishing.
 - [Store Custom Metadata](./export-save-publish/store-custom-metadata.md) - Attach, retrieve, and manage custom key-value metadata on design blocks in CE.SDK.
 - [Edit Image](./edit-image.md) - Use CE.SDK to crop, transform, annotate, or enhance images with editing tools and programmatic APIs.
-- [Create Videos](./create-video.md) - Learn how to create and customize videos in CE.SDK using scenes, assets, and timeline-based editing.
+- [Create Videos](./create-video.md) - Learn how to create and customize videos in CE.SDK using scenes, assets, and time-based editing.
 - [Text](./text.md) - Add, style, and customize text layers in your design using CE.SDK’s flexible text editing tools.
 - [Create and Edit Shapes](./shapes.md) - Draw custom vector shapes, combine them with boolean operations, and insert QR codes into your designs.
 - [Create and Edit Stickers](./stickers.md) - Create and customize stickers using image fills for icons, logos, emoji, and multi-color graphics.

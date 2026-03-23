@@ -139,7 +139,7 @@ class Example implements EditorPlugin {
     const videoUrl =
       'https://img.ly/static/ubq_samples/videos/pexels-drone-footage-of-a-surfer-by-ben-chewar-5368886_360p.mp4';
 
-    // Create a scene configured for video mode
+    // Create a scene from an existing video
     // await engine.scene.createFromVideo(videoUrl);
 
     // The scene is set up with timeline controls for video editing
@@ -315,7 +315,7 @@ The scene is ready for editing. You can add text, shapes, effects, and other des
 
 ### From Videos
 
-Use `engine.scene.createFromVideo()` to create a scene configured for video mode with timeline controls.
+Use `engine.scene.createFromVideo()` to create a scene from a video file, automatically setting up dimensions and duration.
 
 ```typescript highlight-create-from-video
     // Create a video editing scene from an existing video
@@ -323,13 +323,13 @@ Use `engine.scene.createFromVideo()` to create a scene configured for video mode
     const videoUrl =
       'https://img.ly/static/ubq_samples/videos/pexels-drone-footage-of-a-surfer-by-ben-chewar-5368886_360p.mp4';
 
-    // Create a scene configured for video mode
+    // Create a scene from an existing video
     // await engine.scene.createFromVideo(videoUrl);
 
     // The scene is set up with timeline controls for video editing
 ```
 
-The scene is set up for video editing with timeline support and video-specific features.
+The scene is set up for video editing with time-based properties and video-specific features.
 
 ## Choosing the Right Import Method
 

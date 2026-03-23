@@ -4,7 +4,7 @@
 
 ---
 
-Open CE.SDK with a video as the starting point for editing. The scene dimensions match the video resolution and timeline mode is enabled.
+Open CE.SDK with a video as the starting point for editing. The scene dimensions match the video resolution and time-based properties are enabled.
 
 ![Create From Video example showing CE.SDK with a video loaded for editing](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -166,7 +166,7 @@ Pass a video URL to `engine.scene.createFromVideo()` to load the video and creat
     const scene = await engine.scene.createFromVideo(videoUrl);
 ```
 
-The scene uses pixel design units and includes a timeline structure. Page dimensions match the video resolution automatically.
+The scene uses pixel design units and includes a time-based structure. Page dimensions match the video resolution automatically.
 
 ## Work With the Video Block
 
@@ -230,7 +230,7 @@ Scenes created from video include:
 
 - Page dimensions matching video resolution
 - Pixel design units
-- Timeline mode enabled
+- Time-based properties enabled
 - A single page with the video graphic block
 
 ## Troubleshooting

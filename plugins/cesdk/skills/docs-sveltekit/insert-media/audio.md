@@ -21,7 +21,7 @@ background music, sound effects, and voiceovers.
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-insert-media-audio-browser/)
 
-Audio blocks are timeline elements that play sound alongside video content. Unlike video fills that attach to graphic blocks, audio blocks exist independently on the timeline with their own duration, position, and volume controls. Audio requires Video scene mode.
+Audio blocks are time-based blocks that play sound alongside video content. Unlike video fills that attach to graphic blocks, audio blocks exist independently in the composition with their own duration, position, and volume controls.
 
 ```typescript file=@cesdk_web_examples/guides-insert-media-audio-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -109,7 +109,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 
@@ -182,11 +181,11 @@ class Example implements EditorPlugin {
 export default Example;
 ```
 
-This guide covers creating audio blocks, configuring timeline properties, controlling playback settings, and managing audio blocks in your scene.
+This guide covers creating audio blocks, configuring time-based properties, controlling playback settings, and managing audio blocks in your scene.
 
 ## Creating an Audio Block
 
-We create audio blocks using `engine.block.create('audio')` and set the source file with the `audio/fileURI` property. Audio blocks must be appended to a page to appear on the timeline.
+We create audio blocks using `engine.block.create('audio')` and set the source file with the `audio/fileURI` property. Audio blocks must be appended to a page to become part of the composition.
 
 ```typescript highlight=highlight-create-audio
 const audioBlock = engine.block.create('audio');
@@ -196,16 +195,16 @@ engine.block.appendChild(page, audioBlock);
 
 CE.SDK supports WAV and MP4 audio formats (including `.m4a` files). The source URI can point to any accessible URL.
 
-## Configuring Timeline Position
+## Configuring Time Position
 
-Audio blocks have timeline properties that control when and how long they play. We use `setTimeOffset()` for the start position and `setDuration()` for playback length.
+Audio blocks have time-based properties that control when and how long they play. We use `setTimeOffset()` for the start position and `setDuration()` for playback length.
 
 ```typescript highlight=highlight-configure-timeline
 engine.block.setTimeOffset(audioBlock, 0);
 engine.block.setDuration(audioBlock, Math.min(totalDuration, 30));
 ```
 
-The `forceLoadAVResource()` method loads the audio file so we can access its total duration. Use `getAVResourceTotalDuration()` to get the full length of the source audio for timeline calculations.
+The `forceLoadAVResource()` method loads the audio file so we can access its total duration. Use `getAVResourceTotalDuration()` to get the full length of the source audio for timing calculations.
 
 ## Adjusting Volume
 
@@ -227,7 +226,7 @@ const isMuted = engine.block.isMuted(audioBlock);
 
 ## Looping Audio
 
-Enable continuous playback with `setLooping()`. When enabled, the audio repeats until the end of the block's duration on the timeline.
+Enable continuous playback with `setLooping()`. When enabled, the audio repeats until the end of the block's duration in the composition.
 
 ```typescript highlight=highlight-loop-audio
 engine.block.setLooping(audioBlock, false);
@@ -256,10 +255,10 @@ engine.block.destroy(tempAudioBlock);
 |--------|-------------|
 | `engine.block.create('audio')` | Create a new audio block |
 | `engine.block.setString(block, 'audio/fileURI', uri)` | Set the audio source file |
-| `engine.block.appendChild(parent, child)` | Add audio block to page/timeline |
+| `engine.block.appendChild(parent, child)` | Add audio block to page |
 | `engine.block.forceLoadAVResource(block)` | Force load the audio file |
 | `engine.block.getAVResourceTotalDuration(block)` | Get total audio duration in seconds |
-| `engine.block.setTimeOffset(block, seconds)` | Set timeline start position |
+| `engine.block.setTimeOffset(block, seconds)` | Set start position |
 | `engine.block.setDuration(block, seconds)` | Set playback duration |
 | `engine.block.setVolume(block, volume)` | Set volume (0.0-1.0) |
 | `engine.block.getVolume(block)` | Get current volume |

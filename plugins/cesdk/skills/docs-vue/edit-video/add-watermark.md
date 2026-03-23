@@ -4,7 +4,7 @@
 
 ---
 
-Add text and image watermarks to video content for copyright protection, branding, and content attribution using CE.SDK's timeline-aware block system.
+Add text and image watermarks to video content for copyright protection, branding, and content attribution using CE.SDK's time-aware block system.
 
 ![Add Watermark example showing video with text and logo watermarks](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -20,7 +20,7 @@ Add text and image watermarks to video content for copyright protection, brandin
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-add-watermark-browser/)
 
-Video watermarks in CE.SDK are design blocks positioned over video content. **Text watermarks** display copyright notices, URLs, or branding text, while **image watermarks** show logos or graphics. Both watermark types require timeline management to ensure they remain visible throughout video playback. The key difference from static image watermarking is setting the watermark's `duration` to match the video duration.
+Video watermarks in CE.SDK are design blocks positioned over video content. **Text watermarks** display copyright notices, URLs, or branding text, while **image watermarks** show logos or graphics. Both watermark types need their time-based properties configured to remain visible throughout video playback. The key difference from static image watermarking is setting the watermark's `duration` to match the video duration.
 
 ```typescript file=@cesdk_web_examples/guides-create-video-add-watermark-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -197,11 +197,11 @@ class Example implements EditorPlugin {
 export default Example;
 ```
 
-This guide covers how to create text and image watermarks programmatically, position them on the canvas, style them for visibility, and configure their timeline duration to span the entire video.
+This guide covers how to create text and image watermarks programmatically, position them on the canvas, style them for visibility, and configure their duration to span the entire video.
 
-## Setting Up Video Mode
+## Setting Up Video Editing
 
-Before adding watermarks, we configure CE.SDK for video editing. Video mode enables timeline features required for watermark duration control.
+Before adding watermarks, we configure CE.SDK for video editing. Timeline features are required for watermark duration control.
 
 ```typescript highlight-setup
 // Enable video editing features in CE.SDK
@@ -210,11 +210,11 @@ cesdk.feature.enable('ly.img.timeline');
 cesdk.feature.enable('ly.img.playback');
 ```
 
-We enable three features: `ly.img.video` for video support, `ly.img.timeline` for timeline controls, and `ly.img.playback` for video playback. These features must be enabled before creating a video scene.
+We enable three features: `ly.img.video` for video support, `ly.img.timeline` for the timeline UI panel, and `ly.img.playback` for the playback UI controls.
 
-## Creating a Video Scene
+## Creating the Scene
 
-We create a video scene from a video URL. This automatically sets up the timeline and page dimensions based on the video.
+We create a scene from a video URL. This automatically sets up the page dimensions and time-based properties based on the video.
 
 ```typescript highlight-create-video-scene
 // Create a video scene from a sample video
@@ -222,7 +222,7 @@ const videoUrl = 'https://img.ly/static/ubq_video_samples/bbb.mp4';
 await cesdk.engine.scene.createFromVideo(videoUrl);
 ```
 
-The `createFromVideo` method loads the video, creates a scene, and sets the page dimensions to match the video's aspect ratio. The video becomes a fill block on the timeline with its duration already set.
+The `createFromVideo` method loads the video, creates a scene, and sets the page dimensions to match the video's aspect ratio. The video becomes a fill block in the composition with its duration already set.
 
 ## Creating a Text Watermark
 
@@ -294,7 +294,7 @@ The watermark must persist throughout video playback. We set its duration to mat
     engine.block.appendChild(page, textWatermark);
 ```
 
-`setDuration` controls how long the block appears in the timeline. `setTimeOffset` of 0 ensures it starts at the beginning. We then append the watermark to the page, placing it above the video content.
+`setDuration` controls how long the block appears in the composition. `setTimeOffset` of 0 ensures it starts at the beginning. We then append the watermark to the page, placing it above the video content.
 
 ## Creating an Image Watermark
 
@@ -388,7 +388,7 @@ Calculate positions dynamically based on page dimensions to handle different vid
 - Choose appropriate font sizes based on your use case (smaller for subtle branding, larger for prominent notices)
 - Test watermarks against different scenes in your video
 
-### Timeline Management
+### Time Management
 
 - Always match watermark duration to video duration
 - Set time offset to 0 for watermarks that should appear from the start
@@ -414,7 +414,7 @@ Calculate positions dynamically based on page dimensions to handle different vid
 | `block.createFill('image')` | Create an image fill for logo watermarks |
 | `block.setString(id, property, value)` | Set string properties like image URI |
 | `block.setContentFillMode(id, mode)` | Set content fill mode ('Crop', 'Cover', 'Contain') |
-| `block.setDuration(id, duration)` | Set watermark timeline duration |
+| `block.setDuration(id, duration)` | Set watermark duration |
 | `block.setTimeOffset(id, offset)` | Set watermark start time |
 | `block.setOpacity(id, opacity)` | Set watermark transparency (0.0-1.0) |
 | `block.setDropShadowEnabled(id, enabled)` | Enable/disable drop shadow |

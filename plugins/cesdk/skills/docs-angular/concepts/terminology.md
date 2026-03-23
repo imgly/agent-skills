@@ -18,10 +18,7 @@ All operations—creating scenes, manipulating blocks, rendering, and exporting�
 
 The root container for all design content. A *Scene* contains *Pages*, which contain *Blocks*. Only one *Scene* can be active per *Engine* instance. You can create a *Scene* programmatically or load one from a file.
 
-*Scenes* operate in one of two modes:
-
-- **Design Mode**: Static designs like social posts, print materials, and graphics
-- **Video Mode**: Timeline-based content with duration, playback, and animation
+*Scenes* support both static designs (social posts, print materials, graphics) and time-based content (duration, playback time, animation).
 
 See [Scenes](./concepts/scenes.md) for details.
 
@@ -29,7 +26,7 @@ See [Scenes](./concepts/scenes.md) for details.
 
 *Pages* are containers within a *Scene* that hold content *Blocks* (see below) and define working area dimensions.
 
-In *Design Mode*, pages are individual artboards. In *Video Mode*, pages are timeline compositions where *Blocks* are arranged across time. See [Pages](./concepts/pages.md) for details.
+For static designs, pages are individual artboards. For video editing, pages are time-based compositions where *Blocks* are arranged across time. See [Pages](./concepts/pages.md) for details.
 
 ### Block
 
@@ -245,14 +242,14 @@ DPI matters when working with physical units (millimeters, inches) as it determi
 
 These terms describe how CE.SDK runs.
 
-### Scene Mode
+### Scene Capabilities
 
-The operational mode of a *Scene* determining available features:
+Every *Scene* supports the full range of features:
 
-- **Design Mode**: Static designs. No timeline, no playback. Content arranged spatially on pages.
-- **Video Mode**: Time-based content. Includes timeline, playback controls, duration properties, and animations.
+- **Static designs**: Content arranged spatially on pages.
+- **Video editing**: Blocks can have duration, time offset, playback time, and animation properties.
 
-Choose the mode when creating a scene—it affects which properties and operations are available. See [Scenes](./concepts/scenes.md) for details.
+See [Scenes](./concepts/scenes.md) for details.
 
 ### Headless Mode
 

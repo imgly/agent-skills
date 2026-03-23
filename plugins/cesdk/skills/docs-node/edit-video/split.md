@@ -173,9 +173,9 @@ splitVideoExample().catch(console.error);
 
 This guide covers how to split clips programmatically for server-side automation and batch processing workflows.
 
-## Setting Up a Video Scene
+## Setting Up the Scene
 
-Before splitting clips, create a video scene with the necessary track structure.
+Before splitting clips, create a scene with the necessary track structure.
 
 ```typescript highlight=highlight-setup
 const engine = await CreativeEngine.init({
@@ -193,11 +193,11 @@ const track = engine.block.create('track');
 engine.block.appendChild(page, track);
 ```
 
-The scene uses `Video` mode to enable timeline-based operations. We create a track to contain the video clips that will be split.
+The scene uses `Video` mode to enable time-based operations. We create a track to contain the video clips that will be split.
 
 ## Basic Splitting at a Specific Time
 
-Split a block by providing the block ID and the split time in seconds. The time parameter is relative to the block's own timeline.
+Split a block by providing the block ID and the split time in seconds. The time parameter is relative to the block's own time range.
 
 ```typescript highlight=highlight-basic-split
     // Create a video block to demonstrate basic splitting

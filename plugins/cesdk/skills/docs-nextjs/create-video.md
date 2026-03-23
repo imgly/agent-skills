@@ -11,7 +11,7 @@
 
 ## Related Pages
 
-- [Create Videos Overview](./create-video/overview.md) - Learn how to create and customize videos in CE.SDK using scenes, assets, and timeline-based editing.
+- [Create Videos Overview](./create-video/overview.md) - Learn how to create and customize videos in CE.SDK using scenes, assets, and time-based editing.
 - [Video and Audio Timeline Web Editor](./create-video/timeline-editor.md) - Use the timeline editor to arrange and edit video clips, audio, and animations frame by frame.
 - [Control Audio and Video](./create-video/control.md) - Learn to play, pause, seek, and preview audio and video content in CE.SDK using playback controls and solo mode.
 - [Trim Video Clips](./edit-video/trim.md) - Learn how to trim video clips in CE.SDK to control which portion of media plays back.

@@ -58,7 +58,7 @@ CE.SDK automatically registers the following default actions:
 
 ### Scene Creation
 
-- `scene.create` - Creates a new scene with configurable mode, layout and page sizes
+- `scene.create` - Creates a new scene with configurable layout and page sizes
 
 ### Action Handlers
 
@@ -107,19 +107,15 @@ CE.SDK automatically registers the following default actions:
 Creates a new scene with configurable mode, layout and page sizes. Returns the scene block ID.
 
 ```javascript
-// Create a default Design scene
+// Create a scene
 await cesdk.actions.run('scene.create');
-
-// Create a Video scene
-await cesdk.actions.run('scene.create', { mode: 'Video' });
 ```
 
 **Options:**
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
-| `mode` | `'Design' \| 'Video'` | `'Design'` | The scene mode. |
-| `layout` | `SceneLayout` | `'VerticalStack'` | The scene layout. Ignored for Video mode. |
+| `layout` | `SceneLayout` | `'VerticalStack'` | The scene layout. |
 | `page` | `PageSpec` | — | A single page specification. Cannot be used together with `pages`. |
 | `pageCount` | `number` | `1` | Number of pages to create from the single `page` spec. Ignored when `pages` is used. |
 | `pages` | `PageSpec[]` | — | An array of page specifications, one page per entry. Cannot be used together with `page`. |
@@ -150,7 +146,6 @@ Reference a page preset from an asset source by its source and asset IDs:
 ```javascript
 // Use an Instagram Story preset
 await cesdk.actions.run('scene.create', {
-  mode: 'Video',
   page: {
     sourceId: 'ly.img.page.presets',
     assetId: 'ly.img.page.presets.instagram.story'
@@ -193,10 +188,6 @@ await cesdk.actions.run('scene.create', {
 
 > **Tip:** When no `page` or `pages` option is provided, `scene.create` creates a single
 > page with the default format from the configured page preset asset sources.
-
-> **Note:** The `createDesignScene()` and `createVideoScene()` methods are deprecated.
-> Use `cesdk.actions.run('scene.create')` and
-> `cesdk.actions.run('scene.create', { mode: 'Video' })` instead.
 
 ### Scene Management Actions
 

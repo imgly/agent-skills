@@ -21,7 +21,7 @@ text with videos using CE.SDK's video fill system.
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-fills-video-browser/)
 
-Understanding the distinction between **video fills** and **video blocks** is essential. Video fills are fill objects that can be applied to any block supporting fills—shapes, text, backgrounds—to paint them with video content. Video blocks, created with `addVideo()`, are dedicated timeline elements with full editing capabilities like trimming and duration control. Video fills focus on applying video as a visual treatment, while video blocks provide complete video editing functionality.
+Understanding the distinction between **video fills** and **video blocks** is essential. Video fills are fill objects that can be applied to any block supporting fills—shapes, text, backgrounds—to paint them with video content. Video blocks, created with `addVideo()`, are dedicated time-based blocks with full editing capabilities like trimming and duration control. Video fills focus on applying video as a visual treatment, while video blocks provide complete video editing functionality.
 
 ```typescript file=@cesdk_web_examples/guides-fills-video-browser/browser.ts reference-only
 import type {
@@ -71,9 +71,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Video fills require Video mode and video features enabled
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.fill');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -119,7 +116,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'
@@ -147,14 +143,6 @@ class Example implements EditorPlugin {
     const supportsFills = engine.block.supportsFill(sampleBlock);
     // eslint-disable-next-line no-console
     console.log('Block supports fills:', supportsFills); // true for graphic blocks
-
-    // Verify we're in Video mode (required for video fills)
-    const sceneMode = engine.scene.getMode();
-    if (sceneMode !== 'Video') {
-      throw new Error('Video fills require Video mode.');
-    }
-    // eslint-disable-next-line no-console
-    console.log('Scene mode:', sceneMode); // "Video"
 
     // Pattern #1: Demonstrate Individual Before Combined
     // Create a basic video fill demonstration
@@ -345,26 +333,13 @@ Video fills are identified by the type `'//ly.img.ubq/fill/video'` or the short 
 
 **Video fills** are fill objects created with `createFill('video')` and applied to blocks with `setFill()`. You can use them to fill shapes with video content, create video backgrounds, or add video textures to text.
 
-**Video blocks** are created with the convenience method `addVideo()` and come pre-configured with timeline integration, trim support, and playback controls. Use video blocks when building video editors or when you need features like trimming, duration adjustment, and precise playback control.
+**Video blocks** are created with the convenience method `addVideo()` and come pre-configured with time-based properties including trim support, duration, and playback time. Use video blocks when you need features like trimming, duration adjustment, and precise playback control.
 
 For this guide, we focus on video fills—applying video content as a fill to design elements. For video editing workflows, see the [Trim Video guide](./edit-video/trim.md).
 
-### Video Mode Requirement
-
-Video fills can only be created in Video mode scenes. Design mode doesn't support video fills. You must initialize CE.SDK with `cesdk.actions.run('scene.create', { mode: 'Video' })` to enable video capabilities.
-
-```typescript
-// Create Video mode scene (required for video fills)
-await cesdk.actions.run('scene.create', { mode: 'Video' });
-
-// Verify scene mode
-const mode = engine.scene.getMode();
-console.log(mode); // "Video"
-```
-
 ## Checking Video Fill Support
 
-Before applying video fills, verify that blocks support fills and that you're in the correct scene mode.
+Before applying video fills, verify that blocks support fills.
 
 ```typescript highlight-check-fill-support
     // Create a sample block to demonstrate fill support checking
@@ -375,14 +350,6 @@ Before applying video fills, verify that blocks support fills and that you're in
     const supportsFills = engine.block.supportsFill(sampleBlock);
     // eslint-disable-next-line no-console
     console.log('Block supports fills:', supportsFills); // true for graphic blocks
-
-    // Verify we're in Video mode (required for video fills)
-    const sceneMode = engine.scene.getMode();
-    if (sceneMode !== 'Video') {
-      throw new Error('Video fills require Video mode.');
-    }
-    // eslint-disable-next-line no-console
-    console.log('Scene mode:', sceneMode); // "Video"
 ```
 
 Graphic blocks, shapes, and text blocks typically support fills. Pages and scenes don't. Always check `supportsFill()` before attempting to apply video fills to prevent errors.
@@ -607,9 +574,7 @@ Check that the video format is supported on your platform. MP4 with H.264 encodi
 
 ### Cannot Create Video Fill
 
-If creating a video fill throws an error, verify you're in Video mode. Design mode doesn't support video fills. Use `engine.scene.getMode()` to check the current mode. If it returns "Design", you need to create a video scene instead.
-
-Call `await cesdk.actions.run('scene.create', { mode: 'Video' })` during initialization to enable video capabilities.
+If creating a video fill throws an error, verify the block supports fills using `engine.block.supportsFill(block)` and that the block is part of a valid scene hierarchy.
 
 ### Video Not Loading
 

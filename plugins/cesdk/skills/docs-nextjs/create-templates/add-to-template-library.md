@@ -114,7 +114,6 @@ class Example implements EditorPlugin {
     cesdk.ui.addAssetLibraryEntry({
       id: 'my-templates-entry',
       sourceIds: ['my-templates'],
-      sceneMode: 'Design',
       previewLength: 3,
       previewBackgroundType: 'cover',
       gridBackgroundType: 'cover',

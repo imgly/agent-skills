@@ -146,7 +146,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'
@@ -324,7 +323,7 @@ class Example implements EditorPlugin {
 export default Example;
 ```
 
-This guide covers installing AI generation packages, initializing CE.SDK with video mode, configuring the AI dock and canvas menu, setting up text, image, video, and audio providers, implementing middleware for custom processing, controlling features with the Feature API, and setting up proxy servers for secure API communication.
+This guide covers installing AI generation packages, initializing CE.SDK, configuring the AI dock and canvas menu, setting up text, image, video, and audio providers, implementing middleware for custom processing, controlling features with the Feature API, and setting up proxy servers for secure API communication.
 
 ## Prerequisites
 
@@ -364,7 +363,7 @@ import { uploadMiddleware } from '@imgly/plugin-ai-generation-web';
 
 ## 2. Initialize CE.SDK
 
-Initialize CE.SDK with Video mode to utilize all AI capabilities:
+Initialize CE.SDK to utilize all AI capabilities:
 
 ```typescript highlight=highlight-setup
     await cesdk.addPlugin(new VideoEditorConfig());
@@ -416,7 +415,6 @@ Initialize CE.SDK with Video mode to utilize all AI capabilities:
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'

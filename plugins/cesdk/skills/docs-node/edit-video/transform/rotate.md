@@ -46,11 +46,12 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene with specific page dimensions
-  engine.scene.createVideo({
-    page: { size: { width: 800, height: 500 } }
-  });
-  const page = engine.block.findByType('page')[0];
+  // Create a scene with a page
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 800);
+  engine.block.setHeight(page, 500);
+  engine.block.appendChild(scene, page);
 
   // Sample video URL for demonstrations
   const videoUri = 'https://img.ly/static/ubq_video_samples/bbb.mp4';
@@ -196,16 +197,17 @@ const engine = await CreativeEngine.init({
 });
 ```
 
-## Create Video Scene
+## Create the Scene
 
-Create a video scene with specific page dimensions. We use `scene.createVideo()` to enable video mode:
+Create a scene with specific page dimensions:
 
 ```typescript highlight-create-scene
-// Create a video scene with specific page dimensions
-engine.scene.createVideo({
-  page: { size: { width: 800, height: 500 } }
-});
-const page = engine.block.findByType('page')[0];
+// Create a scene with a page
+const scene = engine.scene.create();
+const page = engine.block.create('page');
+engine.block.setWidth(page, 800);
+engine.block.setHeight(page, 500);
+engine.block.appendChild(scene, page);
 ```
 
 ## Converting Degrees and Radians
@@ -323,7 +325,7 @@ Remember that positive values rotate counterclockwise in CE.SDK. To rotate clock
 | Method                             | Description                                               |
 | ---------------------------------- | --------------------------------------------------------- |
 | `CreativeEngine.init()`            | Initializes the headless engine for programmatic creation |
-| `engine.scene.createVideo()`       | Creates a new video scene                                 |
+| `engine.scene.create()`            | Creates a new scene                                       |
 | `engine.block.findByType()`        | Finds blocks by type                                      |
 | `engine.block.setRotation()`       | Set block rotation in radians                             |
 | `engine.block.getRotation()`       | Get current rotation in radians                           |

@@ -270,7 +270,7 @@ We create the foundation of our template with custom page dimensions. The `engin
     engine.scene.setDesignUnit('Pixel');
 ```
 
-The scene creation method accepts a layout mode (`'Free'` for design mode) and optional page configuration. When options are provided, the scene automatically includes a page with the specified dimensions.
+The scene creation method accepts a layout mode and optional page configuration. When options are provided, the scene automatically includes a page with the specified dimensions.
 
 ## Set Page Background
 

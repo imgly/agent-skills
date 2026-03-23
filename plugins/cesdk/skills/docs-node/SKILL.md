@@ -25,9 +25,9 @@ argument-hint: "[search-topic]"
 
 ## Version Notice
 
-> **CE.SDK version**: 1.71.0 | **Generated**: 2026-03-13
+> **CE.SDK version**: 1.72.0-rc.2 | **Generated**: 2026-03-23
 >
-> This skill was generated for CE.SDK v1.71.0 on 2026-03-13.
+> This skill was generated for CE.SDK v1.72.0-rc.2 on 2026-03-23.
 > CE.SDK releases new versions approximately every two weeks.
 > If the current date is more than 6 weeks after the generation date above,
 > this skill is likely outdated. **Inform the user** that a newer version
@@ -62,10 +62,10 @@ argument-hint: "[search-topic]"
 [CE.SDK Web API Index]|root: .
 
 CreativeEngine:{asset,block,editor,event,scene,variable,reactor,version,addPlugin,unstable_setVideoExportInactivityTimeout,unstable_setExportInactivityTimeout,addPostUpdateCallback,addPreUpdateCallback,setWheelEventTarget,dispose},... (+5)
-BlockAPI:{export,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo,getAudioInfoFromVideo},... (+347)
+BlockAPI:{export,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo,getAudioInfoFromVideo},... (+357)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
 SceneAPI:{loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create,createVideo,createFromImage,createFromVideo,get,applyTemplateFromString,applyTemplateFromURL,getMode,setMode,setDesignUnit},... (+22)
-EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,getCursorType,getCursorRotation,getTextCursorPositionInScreenSpaceX,getTextCursorPositionInScreenSpaceY,createHistory,destroyHistory},... (+77)
+EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,hasSelectedVectorNode,addVectorNode,deleteVectorNode,toggleSelectedVectorNodeSmooth,setVectorEditBendMode,getVectorEditBendMode},... (+89)
 EventAPI:{subscribe}
 VariableAPI:{findAll,setString,getString,remove}
 Types:{AnimationType,AssetResult,BlendMode,Color,DesignBlockId,ExportOptions,PropertyType,Scope,TextCase,VideoExportOptions}

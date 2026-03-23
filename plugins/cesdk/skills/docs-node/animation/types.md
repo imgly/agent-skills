@@ -34,8 +34,8 @@ async function main() {
   });
 
   try {
-    // Create a video scene - required for animations
-    const scene = engine.scene.createVideo();
+    // Create a scene with a page
+    const scene = engine.scene.create();
     const page = engine.block.create('page');
     engine.block.appendChild(scene, page);
     engine.block.setWidth(page, 1920);
@@ -200,11 +200,11 @@ async function main() {
 main().catch(console.error);
 ```
 
-The example creates a video scene with multiple blocks, each demonstrating different animation types. The scene is exported to a `.scene` file that preserves all animation data for later playback.
+The example creates a scene with multiple blocks, each demonstrating different animation types. The scene is exported to a `.scene` file that preserves all animation data for later playback.
 
 ## Setting Up the Scene
 
-We start by initializing CE.SDK and creating a video scene. Animations require a video scene context to function properly.
+We start by initializing CE.SDK and creating a scene.
 
 ```typescript highlight-setup
 const engine = await CreativeEngine.init({
@@ -212,11 +212,11 @@ const engine = await CreativeEngine.init({
 });
 ```
 
-We create a video scene using `engine.scene.createVideo()`, then create a page and append it to the scene. This sets up the timeline-based environment required for animations.
+We create a scene using `engine.scene.create()`, then create a page and append it to the scene. This sets up the time-based environment required for animations.
 
 ```typescript highlight-create-scene
-// Create a video scene - required for animations
-const scene = engine.scene.createVideo();
+// Create a scene with a page
+const scene = engine.scene.create();
 const page = engine.block.create('page');
 engine.block.appendChild(scene, page);
 engine.block.setWidth(page, 1920);
@@ -385,7 +385,7 @@ The `.scene` format stores the complete scene state including:
 
 - All blocks and their properties
 - Animation configurations
-- Timeline settings
+- Time-based settings
 - Asset references
 
 When loaded in a browser, these animations will play back exactly as configured.
@@ -394,7 +394,7 @@ When loaded in a browser, these animations will play back exactly as configured.
 
 | Method | Description |
 | ------ | ----------- |
-| `engine.scene.createVideo()` | Create a video scene for animations |
+| `engine.scene.create()` | Create a scene for animations |
 | `engine.block.createAnimation(type)` | Create animation by type string |
 | `engine.block.setInAnimation(block, anim)` | Attach entrance animation |
 | `engine.block.setOutAnimation(block, anim)` | Attach exit animation |

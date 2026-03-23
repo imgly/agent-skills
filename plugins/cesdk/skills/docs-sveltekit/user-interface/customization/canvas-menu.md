@@ -367,6 +367,10 @@ console.log('Current canvas menu order:', currentOrder);
 | `ly.img.text.color.canvasMenu` | Text color picker |
 | `ly.img.text.bold.canvasMenu` | Toggle bold |
 | `ly.img.text.italic.canvasMenu` | Toggle italic |
+| `ly.img.text.underline.canvasMenu` | Toggle underline |
+| `ly.img.text.strikethrough.canvasMenu` | Toggle strikethrough |
+| `ly.img.text.list.unordered.canvasMenu` | Toggle bulleted list |
+| `ly.img.text.list.ordered.canvasMenu` | Toggle numbered list |
 | `ly.img.text.variables.canvasMenu` | Insert variable |
 
 ### Group & Page Actions

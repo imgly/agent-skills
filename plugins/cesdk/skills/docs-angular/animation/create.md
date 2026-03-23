@@ -65,10 +65,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable video features for animation playback
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -114,7 +110,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 
@@ -383,7 +378,7 @@ Exit animations define how blocks leave the screen. We attach them with `setOutA
     engine.block.setEnum(fadeOut, 'animationEasing', 'EaseIn');
 ```
 
-When a block has both entrance and exit animations, CE.SDK adjusts their timing based on the block's duration on the timeline.
+When a block has both entrance and exit animations, CE.SDK adjusts their timing based on the block's duration in the composition.
 
 ## Loop Animations
 
@@ -495,7 +490,7 @@ When replacing animations, destroy the old instance with `destroy()` to prevent 
 
 ### Animation Not Playing
 
-Verify the block supports animations with `supportsAnimation()`. Check that the scene is in Video mode, as animations require timeline-based playback.
+Verify the block supports animations with `supportsAnimation()`. Check that playback is active on the page.
 
 ### Duration Issues
 
@@ -550,7 +545,7 @@ If entrance and exit animations seem to overlap incorrectly, CE.SDK automaticall
 
 ## Related Pages
 
-- [Base Animations](./animation/create/base.md) - Apply movement, scaling, rotation, or opacity changes to elements using timeline-based keyframes.
+- [Base Animations](./animation/create/base.md) - Apply movement, scaling, rotation, or opacity changes to elements using time-based keyframes.
 - [Text Animations](./animation/create/text.md) - Animate text elements with effects like fade, typewriter, and bounce for dynamic visual presentation.
 
 

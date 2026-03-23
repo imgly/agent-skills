@@ -393,7 +393,7 @@ try {
 }
 ```
 
-This guide covers working with buffers to create audio data and position it on the timeline in a headless Node.js environment.
+This guide covers working with buffers to create audio data and position it in the composition in a headless Node.js environment.
 
 ## Setting Up the Engine
 
@@ -438,7 +438,7 @@ const data = engine.editor.getBufferData(buffer, 0, length);
 
 ### Adding an Audio Track
 
-Create an audio block and assign the buffer URI to its `audio/fileURI` property. Append it to the page to add it to the timeline:
+Create an audio block and assign the buffer URI to its `audio/fileURI` property. Append it to the page to add it to the composition:
 
 ```typescript highlight-audio-track
 // Create audio block for the chime (starts at 0s)
@@ -672,9 +672,9 @@ Combine the buffer API with the WAV helper to create a complete sound effect. Th
 
 The generator function mixes overlapping notes, each with its own start time and duration. Adding harmonics at lower amplitudes creates a warmer tone than a pure sine wave.
 
-## Positioning on the Timeline
+## Positioning in Time
 
-Audio blocks exist on the timeline and can be positioned precisely. Set when audio starts and how long it plays:
+Audio blocks exist in the composition and can be positioned precisely. Set when audio starts and how long it plays:
 
 ```typescript highlight-timeline-position
 engine.block.setTimeOffset(chimeBlock, 0);

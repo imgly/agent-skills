@@ -217,7 +217,7 @@ export default Example;
 
 This guide covers:
 
-- Understanding the five built-in edit modes (Transform, Crop, Text, Trim, Playback)
+- Understanding the built-in edit modes (Transform, Crop, Text, Trim, Playback, Vector)
 - Switching edit modes programmatically
 - Creating custom edit modes that inherit from built-in modes
 - Subscribing to state changes for UI synchronization
@@ -263,6 +263,7 @@ Available modes include:
 - **Text**: Edit text content inline
 - **Trim**: Adjust clip start and end points (video scenes)
 - **Playback**: Play video or audio content (limited interactions)
+- **Vector**: Edit vector path anchor points and bezier handles
 
 ### Custom Edit Modes
 
@@ -343,6 +344,7 @@ The method returns one of these values:
 - **Resize**: Resize handle is hovered
 - **Rotate**: Rotation handle is hovered
 - **Text**: Text editing cursor
+- **Cell**: Crosshair cursor for precise placement (vector editing)
 
 ### Reading Cursor Rotation
 

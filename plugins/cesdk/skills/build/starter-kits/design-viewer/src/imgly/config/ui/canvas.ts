@@ -72,6 +72,13 @@ export function setupCanvas(cesdk: CreativeEditorSDK): void {
   // );
   // #endregion
 
+  // #region Canvas Menu - Vector Mode
+  // cesdk.ui.setComponentOrder(
+  //   { in: 'ly.img.canvas.menu', when: { editMode: 'Vector' } },
+  //   []
+  // );
+  // #endregion
+
   // #region Canvas Menu - Text mode
   // cesdk.ui.setComponentOrder(
   //   { in: 'ly.img.canvas.menu', when: { editMode: 'Text' } },
@@ -80,6 +87,8 @@ export function setupCanvas(cesdk: CreativeEditorSDK): void {
   //     'ly.img.separator',
   //     'ly.img.text.bold.canvasMenu',
   //     'ly.img.text.italic.canvasMenu',
+  //     'ly.img.text.underline.canvasMenu',
+  //     'ly.img.text.strikethrough.canvasMenu',
   //     'ly.img.separator',
   //     'ly.img.text.variables.canvasMenu',
   //   ]

@@ -4,7 +4,7 @@
 
 ---
 
-Combine multiple video clips into sequences and organize them on the timeline using CE.SDK's track system and programmatic APIs.
+Combine multiple video clips into sequences and organize them in the composition using CE.SDK's track system and programmatic APIs.
 
 ![Join and Arrange Video Clips example showing timeline with video clips organized in tracks](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -66,10 +66,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable video editing features in CE.SDK
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -115,7 +111,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 
@@ -243,7 +238,7 @@ This guide covers how to join clips using the built-in timeline UI, how to progr
 
 ## Joining Clips via UI
 
-CE.SDK's timeline UI provides visual tools for arranging video clips. Select the Video mode to access timeline-based editing.
+CE.SDK's timeline UI provides visual tools for arranging video clips.
 
 ### Adding Clips to Timeline
 
@@ -263,22 +258,9 @@ Add multiple tracks to create layered compositions. Tracks stack vertically in t
 
 ## Programmatic Clip Joining
 
-### Prerequisites and Setup
+### Creating the Scene
 
-For applications that need to join clips programmatically—whether for automation, batch processing, or dynamic compositions—we start by setting up CE.SDK in Video mode.
-
-```typescript highlight=highlight-enable-video-features
-// Enable video editing features in CE.SDK
-cesdk.feature.enable('ly.img.video');
-cesdk.feature.enable('ly.img.timeline');
-cesdk.feature.enable('ly.img.playback');
-```
-
-Video mode enables timeline features and playback controls. The `ly.img.timeline` feature provides the timeline panel, and `ly.img.playback` enables play/pause controls.
-
-### Creating a Video Scene
-
-We create a video scene to access timeline-based editing capabilities. Design mode doesn't support tracks and sequential playback.
+We create a scene and set up a page for the video composition.
 
 ```typescript highlight=highlight-create-video-scene
     await cesdk.addPlugin(new VideoEditorConfig());
@@ -326,7 +308,6 @@ We create a video scene to access timeline-based editing capabilities. Design mo
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 
@@ -397,7 +378,7 @@ After adding clips, you can query the track's children to verify the order. `get
 
 ### Setting Clip Durations
 
-Each clip needs a duration that determines how long it plays in the timeline.
+Each clip needs a duration that determines how long it plays.
 
 ```typescript highlight=highlight-set-clip-durations
 // Set durations for each clip
@@ -406,13 +387,13 @@ engine.block.setDuration(clipB, 5);
 engine.block.setDuration(clipC, 5);
 ```
 
-Duration is measured in seconds. A 5-second duration means the clip occupies 5 seconds of timeline space.
+Duration is measured in seconds. A 5-second duration means the clip plays for 5 seconds.
 
 ## Arranging Clips
 
 ### Time Offsets
 
-Time offsets control when each clip starts playing. We set offsets to position clips at specific points in the timeline.
+Time offsets control when each clip starts playing. We set offsets to position clips at specific points in the composition.
 
 ```typescript highlight=highlight-time-offsets
     // Set time offsets to position clips sequentially on the timeline
@@ -512,7 +493,7 @@ CE.SDK renders tracks from first to last. The first track added appears at the b
 
 ### Clips Not Appearing
 
-If clips don't show on the timeline, verify they're attached to a track that's attached to the page. Use `getParent` and `getChildren` to inspect the hierarchy:
+If clips don't appear in the composition, verify they're attached to a track that's attached to the page. Use `getParent` and `getChildren` to inspect the hierarchy:
 
 ```typescript
 const parent = engine.block.getParent(clipId);
@@ -536,7 +517,7 @@ If video content doesn't appear when using `addVideo`, check that the video URL 
 | `block.appendChild(parent, child)` | Add child to parent | `parent: DesignBlockId, child: DesignBlockId` | `void` |
 | `block.insertChild(parent, child, index)` | Insert child at specific position | `parent: DesignBlockId, child: DesignBlockId, index: number` | `void` |
 | `block.getChildren(id)` | Get all children of a block | `id: DesignBlockId` | `DesignBlockId[]` |
-| `block.setTimeOffset(id, offset)` | Set when block starts in timeline | `id: DesignBlockId, offset: number` | `void` |
+| `block.setTimeOffset(id, offset)` | Set when block starts playing | `id: DesignBlockId, offset: number` | `void` |
 | `block.getTimeOffset(id)` | Get block's time offset | `id: DesignBlockId` | `number` |
 | `block.setDuration(id, duration)` | Set block's duration | `id: DesignBlockId, duration: number` | `void` |
 | `block.getDuration(id)` | Get block's duration | `id: DesignBlockId` | `number` |

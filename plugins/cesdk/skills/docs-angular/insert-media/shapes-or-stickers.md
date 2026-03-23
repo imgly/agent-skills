@@ -378,7 +378,7 @@ Stickers appear in the asset library under their categories. Users browse availa
 
 ### Initialize CE.SDK
 
-Set up CE.SDK with Design mode and configure the scene dimensions for your shapes.
+Set up CE.SDK and configure the scene dimensions for your shapes.
 
 ```typescript highlight-setup
     await cesdk.addPlugin(new DesignEditorConfig());

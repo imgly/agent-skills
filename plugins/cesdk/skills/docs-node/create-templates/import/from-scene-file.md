@@ -69,10 +69,6 @@ async function main() {
     const pages = engine.scene.getPages();
     console.log(`Scene has ${pages.length} page(s)`);
 
-    // Get scene mode (Design or Video)
-    const sceneMode = engine.scene.getMode();
-    console.log('Scene mode:', sceneMode);
-
     // Get design unit (Pixel, Millimeter, Inch)
     const designUnit = engine.scene.getDesignUnit();
     console.log('Design unit:', designUnit);
@@ -271,10 +267,6 @@ After loading a template, we can retrieve information about the scene:
     const pages = engine.scene.getPages();
     console.log(`Scene has ${pages.length} page(s)`);
 
-    // Get scene mode (Design or Video)
-    const sceneMode = engine.scene.getMode();
-    console.log('Scene mode:', sceneMode);
-
     // Get design unit (Pixel, Millimeter, Inch)
     const designUnit = engine.scene.getDesignUnit();
     console.log('Design unit:', designUnit);
@@ -352,7 +344,6 @@ When loading templates from external URLs in Node.js, most CORS restrictions don
 | `engine.scene.applyTemplateFromURL()`    | Applies a template while preserving page dimensions      |
 | `engine.scene.get()`                     | Returns the current scene block ID                        |
 | `engine.scene.getPages()`                | Returns all page IDs in the scene                         |
-| `engine.scene.getMode()`                 | Returns the scene mode (Design or Video)                  |
 | `engine.scene.getDesignUnit()`           | Returns the measurement unit                              |
 | `engine.block.export()`                  | Exports a block to various formats                        |
 | `CreativeEngine.init()`                  | Initializes the headless engine                           |

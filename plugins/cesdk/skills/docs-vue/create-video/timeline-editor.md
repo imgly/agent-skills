@@ -21,7 +21,7 @@ Use the CE.SDK timeline features in web applications that incorporate the follow
 This tutorial will show you how to:
 
 - The video timeline works.
-- To create video scenes.
+- To create scenes for video editing.
 - To manage video layers (tracks).
 - To edit a clip’s duration and offset.
 - To manage video playback.
@@ -35,7 +35,7 @@ This tutorial refers to the timeline, which is the horizontal area below the vid
 - A playhead for navigation
 - Controls for playback and editing
 
-<Picture src={videoMode} style={{ width: '85%' }} alt="Default CE.SDK Editor on Video Mode" formats={['webp']} />
+<Picture src={videoMode} style={{ width: '85%' }} alt="Default CE.SDK Editor with video timeline" formats={['webp']} />
 
 Use the visual timeline for editing actions like:
 
@@ -43,9 +43,9 @@ Use the visual timeline for editing actions like:
 - Trimming clips to change their duration.
 - Layer content visually.
 
-### Activate CE.SDK Video Mode
+### Activate CE.SDK Video Editing
 
-To work with the CE.SDK Editor in video mode, specify the scene’s design as follows:
+To work with the CE.SDK Editor for video editing, set up the scene as follows:
 
 ```ts
 import {
@@ -79,16 +79,24 @@ await cesdk.addPlugin(new VectorShapeAssetSource());
 
 // Add demo and upload sources
 await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
-await cesdk.addPlugin(new DemoAssetSources({ sceneMode: 'Video' }));
+await cesdk.addPlugin(
+  new DemoAssetSources({
+    include: [
+      'ly.img.audio.*',
+      'ly.img.image.*',
+      'ly.img.templates.video.*',
+      'ly.img.video.*'
+    ]
+  })
+);
 
-await cesdk.actions.run('scene.create', { mode: 'Video' });
+await cesdk.actions.run('scene.create');
 ```
 
 This tells the CreativeEditor:
 
-- To use the Video editing mode (rather than the Design one).
 - To load demo video assets to test the editor.
-- To create a video scene, ready for editing.
+- To create a scene, ready for editing.
 
 ### Open/Close the Timeline Editing area
 
@@ -339,13 +347,11 @@ The CreativeEditor SDK ships a UI with the timeline editor activated. To change 
   </TabItem>
 
   <TabItem label="Conditionally show the timeline">
-    Pass the option to selectively hide the timeline unless the scene is in **Video Mode**:
+    Pass the option to selectively show or hide the timeline based on a condition:
 
     ```ts
-    // Only show timeline when in Video mode (this is the default behavior)
-    cesdk.feature.set('ly.img.video.timeline', ({ engine }) => {
-      return engine.scene.getMode() === 'Video';
-    });
+    // Show timeline and conditionally enable split controls
+    cesdk.feature.set('ly.img.video.timeline', true);
 
     cesdk.feature.set('ly.img.video.controls.split', ({ engine }) => {
       const selected = engine.block.findAllSelected();
@@ -580,7 +586,7 @@ cesdk.feature.set('ly.img.video.controls.split', ({ engine }) => {
 
 | Issue | Solution|
 | ----- | ------- |
-| Timeline not displaying | ・ Verify the scene is in video mode.<br />・ Check that `ly.img.video.timeline` feature is enabled. |
+| Timeline not displaying | ・ Check that `ly.img.video.timeline` feature is enabled. |
 | Trim handles not displaying | ・ Click the clip first to reveal handles.<br /> ・ Check if the clip contains video/audio content. |
 | Play not starting | ・ Ensure the video has loaded.<br /> ・ Check the browser console for codec errors.<br /> ・ Check that the playhead falls within the page duration. |
 | Split not working | ・ Check that you’ve selected the clip to split.<br />・ Check that the playhead is within the selected clip’s duration<br />. Make sure you’ve enabled `ly.img.video.controls.split`. |

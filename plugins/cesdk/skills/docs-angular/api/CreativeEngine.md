@@ -154,7 +154,7 @@ addDemoAssetSources({ baseURL, excludeAssetSourceIds, sceneMode, withUploadAsset
         baseURL?: string;
         /** A list of IDs, that will be ignored during load */
         excludeAssetSourceIds?: DemoAssetSourceId[];
-        /** If 'Video' video specific demo asset sources will be loaded as well (default 'Design') */
+        /** @deprecated Since v1.72. Scene mode no longer affects which asset sources are loaded. */
         sceneMode?: SceneMode;
         /** If 'true' asset sources for uploads are added (default false) */
         withUploadAssetSources?: boolean;

@@ -19,7 +19,7 @@ durations using CE.SDK's programmatic trim API in headless mode.
 
 <NodejsVideoExportNotice {...props} />
 
-Understanding the difference between **fill-level trimming** and **block-level timing** is key. Fill-level trimming (`setTrimOffset`, `setTrimLength`) controls which portion of the source media plays, while block-level timing (`setTimeOffset`, `setDuration`) controls when and how long the block appears in your timeline. These two systems work together to give you complete control over video playback.
+Understanding the difference between **fill-level trimming** and **block-level timing** is key. Fill-level trimming (`setTrimOffset`, `setTrimLength`) controls which portion of the source media plays, while block-level timing (`setTimeOffset`, `setDuration`) controls when and how long the block appears in the composition. These two systems work together to give you complete control over video playback.
 
 ```typescript file=@cesdk_web_examples/guides-create-video-trim-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';
@@ -51,11 +51,12 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene with page - required for timeline-based editing and addVideo()
-  engine.scene.createVideo({
-    page: { size: { width: 1280, height: 720 } }
-  });
-  const page = engine.block.findByType('page')[0];
+  // Create a scene with a page
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 1280);
+  engine.block.setHeight(page, 720);
+  engine.block.appendChild(scene, page);
 
   // Set page duration to accommodate all demonstrations
   engine.block.setDuration(page, 30);
@@ -302,9 +303,9 @@ This trimming is completely non-destructive—the source video file remains unch
 
 ### Block-Level Timing
 
-Block-level timing is separate from trimming and controls when and how long a block exists in the timeline. `setTimeOffset` determines when the block becomes active in the composition timeline (useful for track-based layouts). `setDuration` controls how long the block appears in the timeline.
+Block-level timing is separate from trimming and controls when and how long a block exists in the composition. `setTimeOffset` determines when the block becomes active in the composition (useful for track-based layouts). `setDuration` controls how long the block appears in the composition.
 
-The *trim* controls what plays from the source media, while the *duration* controls how long that playback appears in your timeline. If the duration exceeds the trim length and if looping is disabled, the trimmed portion will play once and then hold the last frame for the remaining duration.
+The *trim* controls what plays from the source media, while the *duration* controls how long that playback appears in the composition. If the duration exceeds the trim length and if looping is disabled, the trimmed portion will play once and then hold the last frame for the remaining duration.
 
 ### Common Use Cases
 
@@ -612,7 +613,7 @@ With looping enabled, exceeding trim length causes the trimmed segment to repeat
 
 ### Best Practices
 
-For predictable behavior, always consider both trim and duration together. Set trim values first to define the source media segment you want. Then set duration to control timeline length. If you want the entire trimmed segment to play once, match duration to trim length. For looping content, enable looping before setting a longer duration.
+For predictable behavior, always consider both trim and duration together. Set trim values first to define the source media segment you want. Then set duration to control playback length. If you want the entire trimmed segment to play once, match duration to trim length. For looping content, enable looping before setting a longer duration.
 
 When building automated pipelines, always coordinate trim and duration values. This prevents confusion about why a video isn't playing the full trimmed length (duration too short) or why it's holding on the last frame (duration too long without looping).
 
@@ -633,7 +634,7 @@ Test your trim operations with representative workloads to ensure acceptable per
 
 If setting trim values has no visible effect, the most common cause is forgetting to await `forceLoadAVResource`. The resource must be loaded before trim values take effect. Always load resources first.
 
-Another possibility is confusing time offset with trim offset. `setTimeOffset` controls when the block appears in the timeline, while `setTrimOffset` controls where in the source media playback starts.
+Another possibility is confusing time offset with trim offset. `setTimeOffset` controls when the block appears in the composition, while `setTrimOffset` controls where in the source media playback starts.
 
 ### Incorrect Trim Calculation
 

@@ -12,7 +12,7 @@
  *
  * **History & Layout:**
  * - `'ly.img.undoRedo.navigationBar'` - Undo/Redo buttons
- * - `'ly.img.pageResize.navigationBar'` - Page resize control
+ * - `'ly.img.documentSettings.navigationBar'` - Document settings button
  * - `'ly.img.title.navigationBar'` - Document title display
  * - `'ly.img.zoom.navigationBar'` - Zoom controls
  * - `'ly.img.preview.navigationBar'` - Preview button

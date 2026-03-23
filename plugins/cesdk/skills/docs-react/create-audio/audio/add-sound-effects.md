@@ -270,7 +270,6 @@ class Example implements EditorPlugin {
 
     // Create a video scene (audio blocks require timeline support)
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'
@@ -467,7 +466,7 @@ class Example implements EditorPlugin {
 export default Example;
 ```
 
-This guide covers working with buffers to create audio data and position it on the timeline.
+This guide covers working with buffers to create audio data and position it in the composition.
 
 ## Working with Buffers
 
@@ -501,7 +500,7 @@ const data = engine.editor.getBufferData(buffer, 0, length);
 
 ### Adding an Audio Track
 
-Create an audio block and assign the buffer URI to its `audio/fileURI` property. Append it to the page to add it to the timeline:
+Create an audio block and assign the buffer URI to its `audio/fileURI` property. Append it to the page to add it to the composition:
 
 ```typescript highlight-audio-track
 // Starts at 2.5s (after 2s effect + 0.5s gap)
@@ -606,16 +605,16 @@ Combine the buffer API with the WAV helper to create a complete sound effect. Th
 
 The generator function mixes overlapping notes, each with its own start time and duration. The `adsr()` function shapes each note's volume over time (attack, decay, sustain, release), preventing harsh clicks. Adding a second harmonic at 15% creates a warmer tone than a pure sine wave.
 
-## Positioning on the Timeline
+## Positioning in Time
 
-Audio blocks require a video scene with timeline support. Position audio using time offset (when it starts) and duration (how long it plays):
+Position audio blocks using time offset (when it starts) and duration (how long it plays):
 
 ```typescript highlight-timeline-position
 engine.block.setTimeOffset(melodyBlock, effectDuration + gapDuration); // 2.5s
 engine.block.setDuration(melodyBlock, NOTIFICATION_MELODY.totalDuration);
 ```
 
-The timeline in this example spaces three sound effects with 0.5-second gaps:
+This example spaces three sound effects with 0.5-second gaps:
 
 ```
 Timeline: |----|----|----|----|----|----|----|
@@ -637,7 +636,7 @@ Each effect is 2 seconds with 0.5-second gaps between them, for a total duration
 
 ### No Sound
 
-- **Check timeline** - Audio blocks only work in video scenes
+- **Check scene setup** - Ensure the audio block is attached to a page in the scene
 - **Verify duration** - Ensure the audio block's duration is greater than 0
 - **Check buffer data** - The buffer must contain valid WAV data
 

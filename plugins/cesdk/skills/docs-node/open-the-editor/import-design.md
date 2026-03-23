@@ -270,7 +270,7 @@ The scene is ready for editing. You can add text, shapes, effects, and other des
 
 ### From Videos
 
-Use `engine.scene.createFromVideo()` to create a scene configured for video mode with timeline controls.
+Use `engine.scene.createFromVideo()` to create a scene from a video file, automatically setting up dimensions and duration.
 
 ```typescript highlight-create-from-video
   // Create a scene configured for video editing
@@ -283,7 +283,7 @@ Use `engine.scene.createFromVideo()` to create a scene configured for video mode
   // The scene is set up for video editing with timeline controls
 ```
 
-The scene is set up for video editing with timeline support and video-specific features.
+The scene is set up for video editing with time-based properties and video-specific features.
 
 ## Choosing the Right Import Method
 

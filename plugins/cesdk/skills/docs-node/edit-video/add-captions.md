@@ -45,13 +45,12 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene with page configuration
-  // The page option creates a page with specified dimensions
-  engine.scene.createVideo({
-    page: { size: { width: 1920, height: 1080 } }
-  });
-
-  const page = engine.block.findByType('page')[0];
+  // Create a scene with a page
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 1920);
+  engine.block.setHeight(page, 1080);
+  engine.block.appendChild(scene, page);
 
   // Set page duration to accommodate video content
   engine.block.setDuration(page, 10);
@@ -217,7 +216,7 @@ When you import captions from a subtitle file, CE.SDK automatically creates the 
 
 ### Caption Timing
 
-Each caption has two timing properties: **time offset** (when the caption appears) and **duration** (how long it stays visible). These values are in seconds and synchronize with the video timeline. A caption with a time offset of 2.0 and duration of 3.0 appears at the 2-second mark and disappears at the 5-second mark.
+Each caption has two timing properties: **time offset** (when the caption appears) and **duration** (how long it stays visible). These values are in seconds and synchronize with the video playback. A caption with a time offset of 2.0 and duration of 3.0 appears at the 2-second mark and disappears at the 5-second mark.
 
 ## Initialize CE.SDK
 
@@ -232,18 +231,17 @@ const engine = await CreativeEngine.init({
 
 The headless engine gives you complete control over caption operations, perfect for automated workflows, background processing, and server-side video preparation.
 
-## Creating a Video Scene
+## Creating the Scene
 
-Create a video scene with page configuration. The `page` option creates a page with the specified dimensions.
+Create a scene with page configuration. The `page` option creates a page with the specified dimensions.
 
-```typescript highlight-create-video-scene
-  // Create a video scene with page configuration
-  // The page option creates a page with specified dimensions
-  engine.scene.createVideo({
-    page: { size: { width: 1920, height: 1080 } }
-  });
-
-  const page = engine.block.findByType('page')[0];
+```typescript highlight-create-scene
+  // Create a scene with a page
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 1920);
+  engine.block.setHeight(page, 1080);
+  engine.block.appendChild(scene, page);
 
   // Set page duration to accommodate video content
   engine.block.setDuration(page, 10);
@@ -270,7 +268,7 @@ The `createCaptionsFromURI` method downloads the subtitle file, parses the timin
 
 ### Creating the Caption Track
 
-After importing captions, create a caption track to organize them in the timeline.
+After importing captions, create a caption track to organize them in the composition.
 
 ```typescript highlight-create-caption-track
   // Create a caption track and add captions to it
@@ -484,7 +482,7 @@ If `createCaptionsFromURI` fails, verify the URL is accessible from your server 
 
 | Method | Purpose |
 | --- | --- |
-| `engine.scene.createVideo(options)` | Create video scene with page |
+| `engine.scene.create()` | Create a scene |
 | `engine.block.createCaptionsFromURI(uri)` | Import captions from SRT/VTT file |
 | `engine.block.create('//ly.img.ubq/captionTrack')` | Create caption track container |
 | `engine.block.create('//ly.img.ubq/caption')` | Create caption block |

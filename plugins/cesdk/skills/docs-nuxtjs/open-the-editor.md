@@ -16,7 +16,7 @@
 - [Start With Blank Canvas](./open-the-editor/blank-canvas.md) - Launch the editor with an empty canvas as a starting point for new designs.
 - [Create From Image](./open-the-editor/from-image.md) - Create an editable scene from an image file, with automatic page dimensions matching the source image.
 - [Create From HTMLCanvas](./open-the-editor/from-htmlcanvas.md) - Start the editor from an HTMLCanvas element and enable editing on top of its rendered content.
-- [Create From Video](./open-the-editor/from-video.md) - Load a video file into the editor to start editing frame-based or timeline-based video content.
+- [Create From Video](./open-the-editor/from-video.md) - Load a video file into the editor to start editing frame-based or time-based video content.
 - [Create From Template](./open-the-editor/from-template.md) - Start the editor with a pre-designed template for faster editing and consistent output.
 - [Import a Design](./open-the-editor/import-design.md) - Load previously saved scenes, self-contained archives, or create editable scenes from images and videos.
 - [Set Zoom Level](./open-the-editor/set-zoom-level.md) - Control the canvas zoom level programmatically to focus on specific areas of the design.

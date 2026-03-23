@@ -181,7 +181,7 @@ The `dispose` method releases all engine resources. Use a try/finally pattern to
 | Method | Category | Purpose |
 | --- | --- | --- |
 | `CreativeEngine.init(config)` | Setup | Initialize headless engine |
-| `engine.scene.create(mode, options)` | Scene | Create design scene with page |
+| `engine.scene.create()` | Scene | Create scene with page |
 | `engine.block.create('graphic')` | Creation | Create graphic block for QR code |
 | `engine.block.createShape('rect')` | Shapes | Create rectangle shape |
 | `engine.block.setShape(id, shape)` | Shapes | Apply shape to graphic block |

@@ -18,7 +18,7 @@ Insert videos into your CE.SDK scenes using either the convenience API or manual
 
 <NodejsVideoExportNotice {...props} />
 
-Videos in CE.SDK are graphic blocks with video fills. Two approaches exist: the `addVideo()` method for Video mode scenes, and manual block creation with video fills which works in any scene mode.
+Videos in CE.SDK are graphic blocks with video fills. Two approaches exist: the `addVideo()` convenience method, and manual block creation with video fills.
 
 ```typescript file=@cesdk_web_examples/guides-insert-media-videos-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';
@@ -49,9 +49,12 @@ async function main() {
 
   const engine = await CreativeEngine.init(config);
 
-  // Create a Video mode scene - required for the addVideo() convenience API
-  engine.scene.createVideo();
-  const page = engine.scene.getCurrentPage()!;
+  // Create a scene
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 1920);
+  engine.block.setHeight(page, 1080);
+  engine.block.appendChild(scene, page);
 
   try {
     // Video URL for demonstration
@@ -59,7 +62,7 @@ async function main() {
       'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-drone-footage-of-a-surfer-702788.mp4';
 
     // Using the convenience API - creates a graphic block with video fill automatically
-    // This API only works in Video mode scenes
+    // Creates a graphic block with video fill automatically
     const videoBlock = await engine.block.addVideo(videoUrl, 800, 450);
 
     // Position the video on the canvas
@@ -68,7 +71,7 @@ async function main() {
 
     console.log('Added video using convenience API');
 
-    // Manual video construction - works in both Design and Video modes
+    // Manual video construction - for more control over block setup
     // Create a graphic block container
     const manualBlock = engine.block.create('graphic');
 
@@ -145,7 +148,7 @@ This guide covers how to add videos programmatically and configure video propert
 
 ## Setup
 
-Initialize CE.SDK and create a Video mode scene. Video mode is required for the `addVideo()` convenience API.
+Initialize CE.SDK and create a scene.
 
 ```typescript highlight=highlight-setup
   const config = {
@@ -154,20 +157,23 @@ Initialize CE.SDK and create a Video mode scene. Video mode is required for the 
 
   const engine = await CreativeEngine.init(config);
 
-  // Create a Video mode scene - required for the addVideo() convenience API
-  engine.scene.createVideo();
-  const page = engine.scene.getCurrentPage()!;
+  // Create a scene
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 1920);
+  engine.block.setHeight(page, 1080);
+  engine.block.appendChild(scene, page);
 ```
 
-The `createVideo()` method creates a scene optimized for video editing with timeline support.
+The `scene.create()` method creates a scene for the video composition.
 
 ## Add Videos with addVideo()
 
-The `addVideo()` method creates a graphic block with video fill in a single call. This is the simplest approach in Video mode.
+The `addVideo()` method creates a graphic block with video fill in a single call. This is the simplest approach.
 
 ```typescript highlight=highlight-add-video-convenience
     // Using the convenience API - creates a graphic block with video fill automatically
-    // This API only works in Video mode scenes
+    // Creates a graphic block with video fill automatically
     const videoBlock = await engine.block.addVideo(videoUrl, 800, 450);
 
     // Position the video on the canvas
@@ -177,14 +183,12 @@ The `addVideo()` method creates a graphic block with video fill in a single call
 
 Pass the video URL, width, and height as parameters. The method returns the block ID for further manipulation like positioning.
 
-> **Note:** The `addVideo()` API only works in Video mode. Use manual block creation for Design mode scenes.
-
 ## Add Videos with Graphic Blocks
 
-For more control or when working in Design mode, manually create a graphic block and attach a video fill.
+For more control, manually create a graphic block and attach a video fill.
 
 ```typescript highlight=highlight-manual-construction
-    // Manual video construction - works in both Design and Video modes
+    // Manual video construction - for more control over block setup
     // Create a graphic block container
     const manualBlock = engine.block.create('graphic');
 
@@ -296,17 +300,11 @@ For maximum compatibility, use MP4 with H.264 encoding.
 - Call `forceLoadAVResource()` before setting trim values
 - Verify trim offset + trim length doesn't exceed total duration
 
-### addVideo() Throws Error
-
-- The `addVideo()` API only works in Video mode
-- Create a video scene with `scene.createVideo()` first
-- Use manual block creation for Design mode scenes
-
 ## API Reference
 
 | Method | Description |
 |--------|-------------|
-| `block.addVideo(url, width, height)` | Create video block in Video mode |
+| `block.addVideo(url, width, height)` | Create video block with video fill |
 | `block.create('graphic')` | Create graphic block container |
 | `block.createShape('rect')` | Create rectangular shape |
 | `block.setShape(block, shape)` | Apply shape to block |
@@ -319,7 +317,7 @@ For maximum compatibility, use MP4 with H.264 encoding.
 | `block.setTrimOffset(fill, seconds)` | Set trim start point |
 | `block.setTrimLength(fill, seconds)` | Set trim duration |
 | `block.export(block, options)` | Export block to image blob |
-| `scene.createVideo()` | Create Video mode scene |
+| `scene.create()` | Create a scene |
 | `scene.getCurrentPage()` | Get current scene page |
 | `engine.dispose()` | Dispose engine and free resources |
 

@@ -6,14 +6,14 @@
 
 Display live camera feeds in CE.SDK scenes using `PixelStreamFill` and apply real-time effects to the video.
 
-This guide covers creating a video scene with a pixel stream fill, controlling feed orientation, accessing the camera, and updating the fill with video frames.
+This guide covers creating a scene with a pixel stream fill, controlling feed orientation, accessing the camera, and updating the fill with video frames.
 
-## Create a Video Scene with Camera Fill
+## Create a Scene with Camera Fill
 
-To display a camera feed, create a video scene and set up a page with `PixelStreamFill`. The pixel stream fill accepts live pixel data that you provide frame by frame:
+To display a camera feed, create a scene and set up a page with `PixelStreamFill`. The pixel stream fill accepts live pixel data that you provide frame by frame:
 
 ```js
-engine.scene.createVideo();
+engine.scene.create();
 const stack = engine.block.findByType('stack')[0];
 const page = engine.block.create('page');
 engine.block.appendChild(stack, page);
@@ -24,7 +24,7 @@ engine.block.setFill(page, pixelStreamFill);
 engine.block.appendEffect(page, engine.block.createEffect('half_tone'));
 ```
 
-We create a video scene, add a page to the stack, and assign a `PixelStreamFill` to receive camera data. The `PixelStreamFill` acts as a container that displays whatever pixel data you send to it. You can apply any CE.SDK effect to process the camera feed in real-time.
+We create a scene, add a page to the stack, and assign a `PixelStreamFill` to receive camera data. The `PixelStreamFill` acts as a container that displays whatever pixel data you send to it. You can apply any CE.SDK effect to process the camera feed in real-time.
 
 ## Control Feed Orientation
 
@@ -115,7 +115,7 @@ Ensure `requestVideoFrameCallback` is used instead of `requestAnimationFrame` fo
 
 | Method | Description |
 | --- | --- |
-| `engine.scene.createVideo()` | Create a video scene for camera preview |
+| `engine.scene.create()` | Create a scene for camera preview |
 | `engine.block.create('page')` | Create a page block to hold the camera fill |
 | `engine.block.createFill('pixelStream')` | Create a fill that accepts live pixel data |
 | `engine.block.setFill()` | Assign the pixel stream fill to a block |

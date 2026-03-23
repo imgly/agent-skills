@@ -22,11 +22,11 @@ Customize crop presets to provide users with aspect ratio options tailored to yo
 
 Crop presets define the aspect ratios and dimensions users can select when cropping images or pages. CE.SDK includes a default set of common ratios (1:1, 16:9, 4:3, etc.), and you can replace or extend these with custom presets through asset sources.
 
-```javascript file=@cesdk_web_examples/guides-crop-presets-browser/index.js reference-only
-import CreativeEditorSDK from '@cesdk/cesdk-js';
+```typescript file=@cesdk_web_examples/guides-crop-presets-browser/browser.ts reference-only
+import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
 import {
   BlurAssetSource,
-  CaptionPresetsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -35,170 +35,181 @@ import {
   PagePresetsAssetSource,
   StickerAssetSource,
   TextAssetSource,
+  TextComponentAssetSource,
   TypefaceAssetSource,
+  UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
+import packageJson from './package.json';
 
-const config = {
-  // license: import.meta.env.VITE_CESDK_LICENSE,
-  userId: 'guides-user',
-  // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`,
-  // Use local assets when developing with local packages
-  ...(import.meta.env.CESDK_USE_LOCAL && {
-    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-  }),
-  ui: {
-    stylesheets: {
-      /* ... */
-    },
-    elements: {
-      /* ... */
+/**
+ * CE.SDK Plugin: Custom Crop Presets
+ *
+ * Demonstrates how to create and configure custom crop presets:
+ * - Creating a local asset source for crop presets
+ * - Adding free aspect ratio, fixed aspect ratio, and fixed size presets
+ * - Configuring the UI to use custom crop presets
+ */
+class Example implements EditorPlugin {
+  name = packageJson.name;
+
+  version = packageJson.version;
+
+  async initialize({ cesdk }: EditorPluginContext): Promise<void> {
+    if (!cesdk) {
+      throw new Error('CE.SDK instance is required for this plugin');
     }
+
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: ['ly.img.image.*']
+      })
+    );
+
+    const engine = cesdk.engine;
+
+    // Add a custom crop preset asset source.
+    engine.asset.addLocalSource('my-custom-crop-presets');
+
+    engine.asset.addAssetToSource(
+      'my-custom-crop-presets',
+      {
+        id: 'aspect-ratio-free',
+        label: {
+          en: 'Free'
+        },
+        meta: {
+          width: 80,
+          height: 120,
+          thumbUri: `${window.location.protocol}//${window.location.host}/ratio-free.png`
+        },
+        payload: {
+          transformPreset: {
+            type: 'FreeAspectRatio'
+          }
+        }
+      }
+    );
+
+    engine.asset.addAssetToSource(
+      'my-custom-crop-presets',
+      {
+        id: 'aspect-ratio-16-9',
+        label: {
+          en: '16:9'
+        },
+        meta: {
+          width: 80,
+          height: 120,
+          thumbUri: `${window.location.protocol}//${window.location.host}/ratio-16-9.png`
+        },
+        payload: {
+          transformPreset: {
+            type: 'FixedAspectRatio',
+            width: 16,
+            height: 9
+          }
+        }
+      }
+    );
+
+    engine.asset.addAssetToSource(
+      'my-custom-crop-presets',
+      {
+        id: 'din-a1-portrait',
+        label: {
+          en: 'DIN A1 Portrait'
+        },
+        meta: {
+          width: 80,
+          height: 120,
+          thumbUri: `${window.location.protocol}//${window.location.host}/din-a1-portrait.png`
+        },
+        payload: {
+          transformPreset: {
+            type: 'FixedSize',
+            width: 594,
+            height: 841,
+            designUnit: 'Millimeter'
+          }
+        }
+      }
+    );
+
+    // Update crop presets library entry
+    cesdk.ui.updateAssetLibraryEntry('ly.img.cropPresets', {
+      sourceIds: [
+        // 'ly.img.crop.presets',
+        'my-custom-crop-presets'
+      ]
+    });
+
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
+
+    // Add an image and enable crop mode to show the presets
+    const page = engine.scene.getCurrentPage();
+    if (page == null) return;
+
+    // Get page dimensions for relative sizing
+    const pageWidth = engine.block.getWidth(page);
+    const pageHeight = engine.block.getHeight(page);
+
+    // Create an image block at ~50% of page size
+    const imageBlock = engine.block.create('graphic');
+    engine.block.appendChild(page, imageBlock);
+
+    const rectShape = engine.block.createShape('rect');
+    engine.block.setShape(imageBlock, rectShape);
+
+    const imageWidth = pageWidth * 0.5;
+    const imageHeight = pageHeight * 0.5;
+    engine.block.setWidth(imageBlock, imageWidth);
+    engine.block.setHeight(imageBlock, imageHeight);
+
+    // Center the image on the page
+    engine.block.setPositionX(imageBlock, (pageWidth - imageWidth) / 2);
+    engine.block.setPositionY(imageBlock, (pageHeight - imageHeight) / 2);
+
+    const imageFill = engine.block.createFill('image');
+    engine.block.setString(
+      imageFill,
+      'fill/image/imageFileURI',
+      'https://img.ly/static/ubq_samples/sample_1.jpg'
+    );
+    engine.block.setFill(imageBlock, imageFill);
+
+    // Select the image and enter crop mode
+    engine.block.select(imageBlock);
+    engine.editor.setEditMode('Crop');
   }
-};
+}
 
-CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
-  // Expose for hero image capture
-  window.cesdk = instance;
-  // Do something with the instance of CreativeEditor SDK
-  // Set scale using the new API
-  instance.ui.setScale('normal');
-  // Populate the asset library with default / demo asset sources.
-  instance.addPlugin(new BlurAssetSource());
-  instance.addPlugin(new CaptionPresetsAssetSource());
-  instance.addPlugin(new ColorPaletteAssetSource());
-  instance.addPlugin(new CropPresetsAssetSource());
-  instance.addPlugin(new EffectsAssetSource());
-  instance.addPlugin(new FiltersAssetSource());
-  instance.addPlugin(new PagePresetsAssetSource());
-  instance.addPlugin(new StickerAssetSource());
-  instance.addPlugin(new TextAssetSource());
-  instance.addPlugin(new TypefaceAssetSource());
-  instance.addPlugin(new VectorShapeAssetSource());
-  instance.addPlugin(new DemoAssetSources({
-    sceneMode: 'Design',
-    withUploadAssetSources: true
-  }));
-
-  // Add a custom crop preset asset source.
-  instance.engine.asset.addLocalSource('my-custom-crop-presets');
-
-  instance.engine.asset.addAssetToSource(
-    'my-custom-crop-presets',
-    {
-      id: 'aspect-ratio-free',
-      label: {
-        en: 'Free'
-      },
-      meta: {
-        width: 80,
-        height: 120,
-        thumbUri: `${window.location.protocol}//${window.location.host}/ratio-free.png`
-      },
-      payload: {
-        transformPreset: {
-          type: 'FreeAspectRatio'
-        }
-      }
-    }
-  );
-
-  instance.engine.asset.addAssetToSource(
-    'my-custom-crop-presets',
-    {
-      id: 'aspect-ratio-16-9',
-      label: {
-        en: '16:9'
-      },
-      meta: {
-        width: 80,
-        height: 120,
-        thumbUri: `${window.location.protocol}//${window.location.host}/ratio-16-9.png`
-      },
-      payload: {
-        transformPreset: {
-          type: 'FixedAspectRatio',
-          width: 16,
-          height: 9
-        }
-      }
-    }
-  );
-
-  instance.engine.asset.addAssetToSource(
-    'my-custom-crop-presets',
-    {
-      id: 'din-a1-portrait',
-      label: {
-        en: 'DIN A1 Portrait'
-      },
-      meta: {
-        width: 80,
-        height: 120,
-        thumbUri: `${window.location.protocol}//${window.location.host}/din-a1-portrait.png`
-      },
-      payload: {
-        transformPreset: {
-          type: 'FixedSize',
-          width: 594,
-          height: 841,
-          designUnit: 'Millimeter'
-        }
-      }
-    }
-  );
-
-  // Update crop presets library entry
-  instance.ui.updateAssetLibraryEntry('ly.img.cropPresets', {
-    sourceIds: [
-      // 'ly.img.crop.presets',
-      'my-custom-crop-presets'
-    ]
-  });
-
-  await instance.actions.run('scene.create', {
-    page: {
-      sourceId: 'ly.img.page.presets',
-      assetId: 'ly.img.page.presets.print.iso.a6.landscape'
-    }
-  });
-
-  // Add an image and enable crop mode to show the presets
-  const engine = instance.engine;
-  const page = engine.scene.getCurrentPage();
-
-  // Get page dimensions for relative sizing
-  const pageWidth = engine.block.getWidth(page);
-  const pageHeight = engine.block.getHeight(page);
-
-  // Create an image block at ~50% of page size
-  const imageBlock = engine.block.create('graphic');
-  engine.block.appendChild(page, imageBlock);
-
-  const rectShape = engine.block.createShape('rect');
-  engine.block.setShape(imageBlock, rectShape);
-
-  const imageWidth = pageWidth * 0.5;
-  const imageHeight = pageHeight * 0.5;
-  engine.block.setWidth(imageBlock, imageWidth);
-  engine.block.setHeight(imageBlock, imageHeight);
-
-  // Center the image on the page
-  engine.block.setPositionX(imageBlock, (pageWidth - imageWidth) / 2);
-  engine.block.setPositionY(imageBlock, (pageHeight - imageHeight) / 2);
-
-  const imageFill = engine.block.createFill('image');
-  engine.block.setString(
-    imageFill,
-    'fill/image/imageFileURI',
-    'https://img.ly/static/ubq_samples/sample_1.jpg'
-  );
-  engine.block.setFill(imageBlock, imageFill);
-
-  // Select the image and enter crop mode
-  engine.block.select(imageBlock);
-  engine.editor.setEditMode('Crop');
-});
+export default Example;
 ```
 
 This guide covers how to use the built-in crop UI, understand default presets, create custom crop preset sources, and configure which presets appear in the interface.
@@ -231,7 +242,7 @@ instance.engine.asset.addLocalSource('my-custom-crop-presets');
 
 A free aspect ratio preset enables unconstrained cropping, allowing users to drag the crop frame sides independently.
 
-```javascript highlight-crop-preset-free
+```typescript highlight-crop-preset-free
 {
   id: 'aspect-ratio-free',
   label: {
@@ -256,7 +267,7 @@ The `type: 'FreeAspectRatio'` setting removes aspect ratio constraints from the 
 
 A fixed aspect ratio preset constrains the crop frame to a specific ratio. When applied, the crop frame maintains the `width` to `height` proportion.
 
-```javascript highlight-crop-preset-fixed-aspect
+```typescript highlight-crop-preset-fixed-aspect
 {
   id: 'aspect-ratio-16-9',
   label: {
@@ -283,7 +294,7 @@ The `width` and `height` values define the ratio (16:9 in this example), not abs
 
 A fixed size preset sets exact pixel dimensions for the crop area. This resizes the selected block to match the specified `width` and `height`.
 
-```javascript highlight-crop-preset-fixed-size
+```typescript highlight-crop-preset-fixed-size
 {
   id: 'din-a1-portrait',
   label: {

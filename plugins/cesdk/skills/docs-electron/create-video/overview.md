@@ -4,9 +4,9 @@
 
 ---
 
-In addition to static designs, CE.SDK also allows you to create and edit videos. Working with videos introduces the concept of time into the scene, which requires you to switch the scene into the `"Video"` mode.
+In addition to static designs, CE.SDK also allows you to create and edit videos. Working with videos introduces the concept of time into the scene.
 
-In this mode, each page in the scene has its own separate timeline within which its children can be placed. The `"playback/time"` property of each page controls the progress of time through the page.
+Each page in the scene has its own time axis within which its children can be placed. The `"playback/time"` property of each page controls the progress of time through the page.
 
 In order to add videos to your pages, you can add a block with a `"//ly.img.ubq/fill/video"` fill. As the playback time of the page progresses, the corresponding point in time of the video fill is rendered by the block.
 
@@ -20,16 +20,16 @@ Finally, the whole page can be exported as a video file using the `block.exportV
 
 ## A Note on Browser Support
 
-Video mode heavily relies on modern features like web codecs.
+Video editing heavily relies on modern features like web codecs.
 A detailed list of supported browser versions can be found in our [Supported Browsers](./browser-support.md).
 Please also take note of [possible restrictions based on the host platform](./file-format-support.md) browsers are running on.
 
-## Creating a Video Scene
+## Creating the Scene
 
-First, we create a scene that is set up for video editing by calling the `scene.createVideo()` API. Then we create a page, add it to the scene and define its dimensions. This page will hold our composition.
+First, we create a scene by calling the `scene.create()` API. Then we create a page, add it to the scene and define its dimensions. This page will hold our composition.
 
 ```javascript
-const scene = engine.scene.createVideo();
+const scene = engine.scene.create();
 
 const page = engine.block.create('page');
 engine.block.appendChild(scene, page);

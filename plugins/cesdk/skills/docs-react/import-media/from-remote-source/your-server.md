@@ -99,7 +99,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'
@@ -513,7 +512,7 @@ Each asset requires an `id` and a `meta` object. Set `blockType` to `//ly.img.ub
 
 ### Video Assets
 
-Video assets use a graphic block with video fill. Include `duration` for timeline display and `thumbUri` for the library thumbnail.
+Video assets use a graphic block with video fill. Include `duration` for duration display and `thumbUri` for the library thumbnail.
 
 ```typescript highlight-video-assets
     // Register a custom source for video assets
@@ -542,7 +541,7 @@ Video assets use a graphic block with video fill. Include `duration` for timelin
     });
 ```
 
-The `fillType` tells CE.SDK how to render the asset. Use `//ly.img.ubq/fill/video` for video content. The `duration` metadata enables proper timeline display when working with video scenes.
+The `fillType` tells CE.SDK how to render the asset. Use `//ly.img.ubq/fill/video` for video content. The `duration` metadata enables proper duration display when working with video scenes.
 
 ### Audio Assets
 
@@ -575,7 +574,7 @@ Audio assets require the `mimeType` property for the asset library to display th
     });
 ```
 
-Set `blockType` to `//ly.img.ubq/audio` for audio content. The `mimeType` (e.g., `audio/x-m4a` or `audio/mpeg`) is required for preview playback in the asset library. Include `duration` for timeline display.
+Set `blockType` to `//ly.img.ubq/audio` for audio content. The `mimeType` (e.g., `audio/x-m4a` or `audio/mpeg`) is required for preview playback in the asset library. Include `duration` for duration display.
 
 ### Sticker Assets
 
@@ -747,7 +746,7 @@ Common issues when serving assets from your server.
 | `meta.fillType`              | Fill type (image, video)              |
 | `meta.kind`                  | Asset kind (sticker)                  |
 | `meta.mimeType`              | MIME type (required for audio)        |
-| `meta.duration`              | Duration for video/audio timeline     |
+| `meta.duration`              | Duration for video/audio              |
 | `meta.width` / `meta.height` | Dimensions for aspect ratio           |
 
 ## Next Steps

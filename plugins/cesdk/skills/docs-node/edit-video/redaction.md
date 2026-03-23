@@ -52,12 +52,12 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene - required for timeline-based editing
+  // Create a scene with a page
   const pageWidth = 1920;
   const pageHeight = 1080;
-  const scene = await engine.scene.createVideo();
+  const scene = engine.scene.create();
 
-  // Create a page for the video scene
+  // Create a page
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
 
@@ -223,17 +223,17 @@ const engine = await CreativeEngine.init({
 
 The engine runs without a UI, making it suitable for automated workflows, batch processing, or backend services.
 
-## Creating a Video Scene
+## Creating the Scene
 
-We create a video scene and page to access timeline-based editing capabilities.
+We create a scene and page for the video composition.
 
-```typescript highlight=highlight-create-video-scene
-  // Create a video scene - required for timeline-based editing
+```typescript highlight=highlight-create-scene
+  // Create a scene with a page
   const pageWidth = 1920;
   const pageHeight = 1080;
-  const scene = await engine.scene.createVideo();
+  const scene = engine.scene.create();
 
-  // Create a page for the video scene
+  // Create a page
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
 
@@ -245,7 +245,7 @@ We create a video scene and page to access timeline-based editing capabilities.
   engine.block.setDuration(page, 5 * SEGMENT_DURATION);
 ```
 
-We create a video scene with `createVideo()`, then explicitly create a page and append it to the scene. The page dimensions set the video resolution, and the page duration determines how long the composition plays.
+We create a scene with `scene.create()`, then explicitly create a page and append it to the scene. The page dimensions set the video resolution, and the page duration determines how long the composition plays.
 
 ## Creating Video Blocks
 
@@ -384,7 +384,7 @@ We create a graphic block with a rectangle shape and solid color fill. The overl
 
 ### Time-Based Redaction
 
-Redactions can appear only during specific portions of the video timeline. We use `setTimeOffset()` and `setDuration()` to control when the redaction is visible.
+Redactions can appear only during specific portions of the video. We use `setTimeOffset()` and `setDuration()` to control when the redaction is visible.
 
 ```typescript highlight-time-based-redaction
   // Apply blur to the video
@@ -431,7 +431,7 @@ await writeFile('output/redacted-video.scene', sceneData);
 console.log('Scene saved to output/redacted-video.scene');
 ```
 
-The scene file contains all blocks, effects, and timeline settings. You can load this scene later to continue editing or export the final video.
+The scene file contains all blocks, effects, and time-based settings. You can load this scene later to continue editing or export the final video.
 
 ## Cleanup
 
@@ -486,8 +486,8 @@ Reduce blur intensity, use pixelization instead of heavy blur, or switch to soli
 | `block.createEffect(type)` | Create effect instance (pixelize, etc.) |
 | `block.appendEffect(id, effect)` | Add effect to block |
 | `block.setEffectEnabled(effect, enabled)` | Enable or disable effect |
-| `block.setTimeOffset(id, offset)` | Set when block appears in timeline |
-| `block.setDuration(id, duration)` | Set block duration in timeline |
+| `block.setTimeOffset(id, offset)` | Set when block appears |
+| `block.setDuration(id, duration)` | Set block duration |
 | `block.create(type)` | Create block of specified type |
 | `block.createShape(type)` | Create shape for graphic blocks |
 | `block.setShape(id, shape)` | Apply shape to graphic block |

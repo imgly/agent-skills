@@ -63,11 +63,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable audio and video features in CE.SDK
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.audio');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -113,7 +108,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'
@@ -180,13 +174,13 @@ class Example implements EditorPlugin {
 export default Example;
 ```
 
-This guide covers how to adjust audio playback speed programmatically using the Engine API, understand speed constraints, and manage how speed changes affect timeline duration.
+This guide covers how to adjust audio playback speed programmatically using the Engine API, understand speed constraints, and manage how speed changes affect block duration.
 
 ## Understanding Speed Concepts
 
 CE.SDK supports playback speeds from **0.25x** (quarter speed) to **3.0x** (triple speed), with **1.0x** as the default normal speed. Values below 1.0 slow down playback, values above 1.0 speed it up.
 
-**Speed and Duration**: Adjusting speed automatically changes the block's timeline duration following an inverse relationship: `perceived_duration = original_duration / speed_multiplier`. A 10-second clip at 2.0x speed plays in 5 seconds; at 0.5x speed it takes 20 seconds. This automatic adjustment maintains timeline synchronization when coordinating audio with other elements.
+**Speed and Duration**: Adjusting speed automatically changes the block's duration following an inverse relationship: `perceived_duration = original_duration / speed_multiplier`. A 10-second clip at 2.0x speed plays in 5 seconds; at 0.5x speed it takes 20 seconds. This automatic adjustment maintains synchronization when coordinating audio with other elements.
 
 **Common use cases**: Podcast playback controls (1.5x-2.0x), accessibility features (0.75x for easier comprehension), time-compressed narration, dramatic slow-motion effects (0.25x-0.5x), transcription work, and music tempo adjustments.
 
@@ -271,11 +265,11 @@ engine.block.setPlaybackSpeed(maxSpeedAudioBlock, 3.0);
 
 At maximum speed, audio plays very quickly—a 10-second clip finishes in just 3.33 seconds. This extreme speed is useful for rapidly skimming through content to find specific moments, though comprehension becomes challenging at this rate.
 
-## Speed and Timeline Duration
+## Speed and Block Duration
 
 ### Understanding Duration Changes
 
-When we change playback speed, CE.SDK automatically adjusts the block's timeline duration to reflect the new playback time.
+When we change playback speed, CE.SDK automatically adjusts the block's duration to reflect the new playback time.
 
 ```typescript highlight-speed-and-duration
     // Log duration changes for demonstration
@@ -291,9 +285,9 @@ When we change playback speed, CE.SDK automatically adjusts the block's timeline
     console.log(`Maximum speed (3.0x) duration: ${maxDuration.toFixed(2)}s`);
 ```
 
-The original duration represents how long the audio takes to play at normal speed. When we double the speed to 2.0x, the duration is automatically halved. The audio content is the same, but it plays through in half the time, so the timeline block shrinks accordingly.
+The original duration represents how long the audio takes to play at normal speed. When we double the speed to 2.0x, the duration is automatically halved. The audio content is the same, but it plays through in half the time, so the block duration shrinks accordingly.
 
-This automatic adjustment keeps your timeline synchronized. If you have multiple audio tracks or need to coordinate audio with video, the timeline will accurately reflect the new playback duration after speed changes.
+This automatic adjustment keeps your composition synchronized. If you have multiple audio tracks or need to coordinate audio with video, the block durations will accurately reflect the new playback duration after speed changes.
 
 
 

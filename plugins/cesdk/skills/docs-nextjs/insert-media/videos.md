@@ -20,7 +20,7 @@ Insert videos into your CE.SDK scenes using either the convenience API or manual
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-insert-media-videos-browser/)
 
-Videos in CE.SDK are graphic blocks with video fills. Two approaches exist: the `addVideo()` method for Video mode scenes, and manual block creation with video fills which works in any scene mode.
+Videos in CE.SDK are graphic blocks with video fills. Two approaches exist: the `addVideo()` convenience method, and manual block creation with video fills.
 
 ```typescript file=@cesdk_web_examples/guides-insert-media-videos-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -47,8 +47,8 @@ import packageJson from './package.json';
  * CE.SDK Plugin: Insert Videos Guide
  *
  * Demonstrates inserting videos into a CE.SDK scene:
- * - Using the addVideo() convenience API (Video mode only)
- * - Using graphic blocks with video fills (works in any mode)
+ * - Using the addVideo() convenience API
+ * - Using graphic blocks with video fills
  * - Configuring trim offset and trim length
  */
 class Example implements EditorPlugin {
@@ -104,9 +104,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    cesdk.feature.enable('ly.img.video');
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'
@@ -192,12 +190,10 @@ After inserting a video, users can move it by dragging, resize it with corner ha
 
 ## Setup
 
-Enable video features and create a Video mode scene. Video mode is required for the `addVideo()` convenience API.
+Enable video features and create a scene.
 
 ```typescript highlight=highlight-setup
-cesdk.feature.enable('ly.img.video');
 await cesdk.actions.run('scene.create', {
-  mode: 'Video',
   page: {
     sourceId: 'ly.img.page.presets',
     assetId: 'ly.img.page.presets.instagram.story'
@@ -205,11 +201,11 @@ await cesdk.actions.run('scene.create', {
 });
 ```
 
-The `scene.create` action with `{ mode: 'Video' }` creates a scene optimized for video editing with timeline support.
+This creates a scene for the video composition.
 
 ## Add Videos with addVideo()
 
-The `addVideo()` method creates a graphic block with video fill in a single call. This is the simplest approach in Video mode.
+The `addVideo()` method creates a graphic block with video fill in a single call. This is the simplest approach.
 
 ```typescript highlight=highlight-add-video-convenience
 const videoBlock = await engine.block.addVideo(
@@ -223,11 +219,9 @@ engine.block.setPositionY(videoBlock, margin);
 
 Pass the video URL, width, and height as parameters. The method returns the block ID for further manipulation like positioning.
 
-> **Note:** The `addVideo()` API only works in Video mode. Use manual block creation for Design mode scenes.
-
 ## Add Videos with Graphic Blocks
 
-For more control or when working in Design mode, manually create a graphic block and attach a video fill.
+For more control, manually create a graphic block and attach a video fill.
 
 ```typescript highlight=highlight-add-video-manual
 const block = engine.block.create('graphic');
@@ -277,17 +271,11 @@ For maximum compatibility, use MP4 with H.264 encoding.
 - Call `forceLoadAVResource()` before setting trim values
 - Verify trim offset + trim length doesn't exceed total duration
 
-### addVideo() Throws Error
-
-- The `addVideo()` API only works in Video mode
-- Create a video scene with `cesdk.actions.run('scene.create', { mode: 'Video' })` first
-- Use manual block creation for Design mode scenes
-
 ## API Reference
 
 | Method | Description |
 |--------|-------------|
-| `block.addVideo(url, width, height)` | Create video block in Video mode |
+| `block.addVideo(url, width, height)` | Create video block with video fill |
 | `block.create('graphic')` | Create graphic block container |
 | `block.createShape('rect')` | Create rectangular shape |
 | `block.setShape(block, shape)` | Apply shape to block |

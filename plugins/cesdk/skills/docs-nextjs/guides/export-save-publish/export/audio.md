@@ -24,10 +24,10 @@ The `exportAudio` API allows you to extract audio from any block that contains a
 
 Audio can be exported from multiple block types:
 
-- **Page blocks** - Export the complete mixed audio timeline
+- **Page blocks** - Export the complete mixed audio composition
 - **Video blocks** - Extract audio tracks from videos
 - **Audio blocks** - Export standalone audio content
-- **Track blocks** - Export audio from specific timeline tracks
+- **Track blocks** - Export audio from specific tracks
 
 ## Export Audio
 

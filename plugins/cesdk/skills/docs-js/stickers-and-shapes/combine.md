@@ -573,7 +573,17 @@ await cesdk.addPlugin(new VectorShapeAssetSource());
 
 // Add demo and upload sources
 await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
-await cesdk.addPlugin(new DemoAssetSources({ sceneMode: 'Design' }));
+await cesdk.addPlugin(
+  new DemoAssetSources({
+    include: [
+      'ly.img.templates.blank.*',
+      'ly.img.templates.presentation.*',
+      'ly.img.templates.print.*',
+      'ly.img.templates.social.*',
+      'ly.img.image.*'
+    ]
+  })
+);
 await cesdk.actions.run('scene.create');
 
 const engine = cesdk.engine;

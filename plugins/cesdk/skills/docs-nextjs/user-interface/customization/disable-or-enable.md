@@ -124,9 +124,9 @@ class Example implements EditorPlugin {
     });
 
     // Extend default predicate with additional condition
-    cesdk.feature.set('ly.img.delete', ({ defaultPredicate }) => {
-      // Only allow delete in design mode
-      return defaultPredicate() && engine.scene.getMode() === 'Design';
+    cesdk.feature.set('ly.img.delete', ({ defaultPredicate, engine }) => {
+      // Only allow delete when a block is selected
+      return defaultPredicate() && engine.block.findAllSelected().length > 0;
     });
 
     // Chain multiple predicates using isPreviousEnable
@@ -360,9 +360,9 @@ You can build on a feature's default predicate using `defaultPredicate()`. This 
 
 ```typescript highlight-extend-default
 // Extend default predicate with additional condition
-cesdk.feature.set('ly.img.delete', ({ defaultPredicate }) => {
-  // Only allow delete in design mode
-  return defaultPredicate() && engine.scene.getMode() === 'Design';
+cesdk.feature.set('ly.img.delete', ({ defaultPredicate, engine }) => {
+  // Only allow delete when a block is selected
+  return defaultPredicate() && engine.block.findAllSelected().length > 0;
 });
 ```
 
@@ -525,7 +525,11 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.text.typeface` | Controls typeface dropdown |
 | `ly.img.text.fontSize` | Controls font size input |
 | `ly.img.text.fontStyle` | Controls bold/italic toggles |
+| `ly.img.text.decoration` | Controls underline/strikethrough toggles |
 | `ly.img.text.alignment` | Controls text alignment |
+| `ly.img.text.list` | Parent key: enables all list style child features |
+| `ly.img.text.list.unordered` | Controls bulleted list |
+| `ly.img.text.list.ordered` | Controls numbered list |
 | `ly.img.text.advanced` | Controls advanced text options |
 | `ly.img.text.background` | Controls text background |
 
@@ -558,11 +562,24 @@ CE.SDK includes many built-in features organized by category:
 | Feature ID | Description |
 |------------|-------------|
 | `ly.img.shape.options` | Controls the shape-specific options panel |
+| `ly.img.shape.edit` | Controls the Edit Path button for vector path editing |
 | `ly.img.shape.options.cornerRadius` | Controls corner radius (rect/polygon shapes) |
 | `ly.img.shape.options.points` | Controls star point count |
 | `ly.img.shape.options.innerDiameter` | Controls star inner diameter |
 | `ly.img.shape.options.sides` | Controls polygon side count |
 | `ly.img.shape.options.lineWidth` | Controls line stroke width |
+
+### Vector Edit Features
+
+| Feature ID | Description |
+|------------|-------------|
+| `ly.img.vectorEdit` | Parent key: enables all vector edit child features |
+| `ly.img.vectorEdit.moveMode` | Controls the move/select mode toggle |
+| `ly.img.vectorEdit.addMode` | Controls the add node mode toggle |
+| `ly.img.vectorEdit.deleteMode` | Controls the delete node mode toggle |
+| `ly.img.vectorEdit.bendMode` | Controls the bend mode toggle |
+| `ly.img.vectorEdit.mirrorMode` | Controls the handle mirror mode dropdown |
+| `ly.img.vectorEdit.done` | Controls the exit vector edit button |
 
 ### Transform Features
 
@@ -582,6 +599,8 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.page.add` | Controls Add Page button |
 | `ly.img.page.move` | Controls page move buttons |
 | `ly.img.page.resize` | Controls Resize button |
+| `ly.img.page.settings` | Controls read-only page dimensions, unit and resolution display |
+| `ly.img.page.bleedMargin` | Controls bleed margin settings |
 | `ly.img.page.clipContent` | Controls clip content on/off toggle |
 
 ### Scene Features
@@ -612,7 +631,7 @@ If a feature doesn't appear in the UI after calling `enable()`:
 
 1. Check if a `set()` call with a boolean is overriding it. Boolean predicates are terminal and take precedence.
 2. Verify the feature ID spelling matches exactly.
-3. Confirm the feature is relevant for the current context (e.g., video features only appear in Video mode).
+3. Confirm the feature is relevant for the current context.
 
 ### `disable()` Not Working
 

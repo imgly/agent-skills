@@ -173,10 +173,6 @@ class Example implements EditorPlugin {
     const pagesByType = engine.block.findByType('page');
     console.log('Pages found by type:', pagesByType);
 
-    // Check the scene mode (Design vs Video)
-    const sceneMode = engine.scene.getMode();
-    console.log('Scene mode:', sceneMode);
-
     // Select the first page and zoom to fit
     engine.block.select(firstPage);
     engine.scene.enableZoomAutoFit(firstPage, 'Both');
@@ -371,26 +367,20 @@ The scene's layout mode controls how multiple pages are arranged. Set this using
 
 - **VerticalStack** (default): Pages stack vertically, one below the other
 - **HorizontalStack**: Pages arrange horizontally, side by side
-- **DepthStack**: Pages overlay each other, typically used in video mode
+- **DepthStack**: Pages overlay each other, typically used for video editing
 - **Free**: Pages can be positioned freely without automatic arrangement
 
-## Pages in Design Mode vs. Video Mode
+## Pages for Static Designs vs. Video Editing
 
-Page behavior varies depending on the scene mode. Query the current mode with `engine.scene.getMode()`.
+Page behavior varies depending on how the scene is used.
 
-```typescript highlight=highlight-scene-mode
-// Check the scene mode (Design vs Video)
-const sceneMode = engine.scene.getMode();
-console.log('Scene mode:', sceneMode);
-```
+### Static Designs
 
-### Design Mode
+For static designs, pages act like artboards. Each page is a separate canvas ideal for multi-page documents, social media posts, or print layouts. Pages exist side by side and don't have time-based properties.
 
-In Design mode, pages act like artboards. Each page is a separate canvas ideal for multi-page documents, social media posts, or print layouts. Pages exist side by side and don't have time-based properties.
+### Video Editing
 
-### Video Mode
-
-In Video mode, pages represent timeline compositions that transition sequentially during playback. Each page has playback properties:
+For video editing, pages represent time-based compositions that transition sequentially during playback. Each page has playback properties:
 
 - `playback/duration` controls how long the page appears (in seconds)
 - `playback/time` tracks the current playback position

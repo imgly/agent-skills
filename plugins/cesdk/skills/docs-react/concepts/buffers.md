@@ -151,7 +151,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'
@@ -298,9 +297,9 @@ export default Example;
 
 This guide covers how to create and manage buffers, write and read binary data, assign buffers to block properties like audio sources, and handle transient resources when saving scenes.
 
-## Setting Up a Video Scene
+## Setting Up the Scene
 
-Since this example uses audio blocks, we first create a video scene. Audio blocks require a timeline-based scene context.
+We first create a scene and set up a page for our audio composition.
 
 ```typescript highlight-create-video-scene
     await cesdk.addPlugin(new VideoEditorConfig());
@@ -348,7 +347,6 @@ Since this example uses audio blocks, we first create a video scene. Audio block
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'

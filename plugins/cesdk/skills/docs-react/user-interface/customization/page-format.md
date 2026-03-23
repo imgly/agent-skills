@@ -205,7 +205,7 @@ To display custom formats in this panel, you register them with the `ly.img.page
 
 ## Adding Default Asset Sources
 
-Before adding custom formats, we load the default CE.SDK asset sources to ensure the editor has access to standard assets for design mode.
+Before adding custom formats, we load the default CE.SDK asset sources to ensure the editor has access to standard assets.
 
 ```typescript highlight-add-default-sources
     await cesdk.addPlugin(new DesignEditorConfig());

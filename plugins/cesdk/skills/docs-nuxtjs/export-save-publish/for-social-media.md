@@ -109,7 +109,6 @@ class Example implements EditorPlugin {
 
     // Create a vertical video scene (9:16) for Instagram Reels, TikTok, YouTube Shorts
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1080, height: 1920, unit: 'Pixel' }
     });
 
@@ -183,14 +182,13 @@ export default Example;
 
 This guide covers creating a vertical video scene, exporting with resolution, framerate, and bitrate settings, and tracking export progress.
 
-## Creating a Video Scene
+## Creating a Scene
 
-Create a video scene with the correct dimensions for vertical video. Use `cesdk.actions.run('scene.create', { mode: 'Video' })` with explicit pixel dimensions to ensure your content matches platform requirements.
+Create a scene with the correct dimensions for vertical video. Use `cesdk.actions.run('scene.create')` with explicit pixel dimensions to ensure your content matches platform requirements.
 
 ```typescript highlight-setup
     // Create a vertical video scene (9:16) for Instagram Reels, TikTok, YouTube Shorts
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1080, height: 1920, unit: 'Pixel' }
     });
 
@@ -277,7 +275,7 @@ This utility handles the download process automatically, including memory cleanu
 
 | Method | Purpose |
 |--------|---------|
-| `cesdk.actions.run('scene.create', { mode: 'Video' })` | Create a video scene with specified dimensions |
+| `cesdk.actions.run('scene.create')` | Create a scene with specified dimensions |
 | `engine.block.exportVideo()` | Export block as video (MP4) |
 | `engine.scene.getCurrentPage()` | Get the active page for export |
 | `cesdk.utils.downloadFile()` | Trigger browser download for exported files |

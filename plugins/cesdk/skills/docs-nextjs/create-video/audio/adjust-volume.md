@@ -64,11 +64,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable audio and video features in CE.SDK
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.audio');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -114,7 +109,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'
@@ -196,20 +190,6 @@ CE.SDK supports volume levels from **0.0** (silent) to **1.0** (full volume), wi
 **Common use cases**: Background music mixing (0.3-0.5 under voiceover), user volume controls, audio balancing for multi-track projects, fade effects (gradually adjusting volume over time), and accessibility features.
 
 ## Setting Up Audio for Volume Control
-
-### Enabling Audio Features
-
-Before working with audio, we need to enable the required features in CE.SDK.
-
-```typescript highlight-enable-audio-features
-// Enable audio and video features in CE.SDK
-cesdk.feature.enable('ly.img.video');
-cesdk.feature.enable('ly.img.audio');
-cesdk.feature.enable('ly.img.timeline');
-cesdk.feature.enable('ly.img.playback');
-```
-
-These features enable video mode (required for audio timeline), audio support, the timeline UI for visual audio editing, and playback controls.
 
 ### Loading Audio Files
 

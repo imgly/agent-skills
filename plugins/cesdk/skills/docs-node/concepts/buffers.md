@@ -87,12 +87,12 @@ async function main(): Promise<void> {
   });
 
   try {
-    // Create a video scene - required for audio blocks
-    await engine.scene.createVideo();
-
-    // Get the page (first container in video scenes)
-    const pages = engine.block.findByType('page');
-    const page = pages[0];
+    // Create a scene with a page
+    const scene = engine.scene.create();
+    const page = engine.block.create('page');
+    engine.block.setWidth(page, 1920);
+    engine.block.setHeight(page, 1080);
+    engine.block.appendChild(scene, page);
 
     // Create a buffer and get its URI
     const bufferUri = engine.editor.createBuffer();
@@ -209,13 +209,17 @@ const engine = await CreativeEngine.init({
 });
 ```
 
-## Setting Up a Video Scene
+## Setting Up the Scene
 
-Since this example uses audio blocks, we create a video scene. Audio blocks require a timeline-based scene context.
+We first create a scene and set up a page for our audio composition.
 
-```typescript highlight-create-video-scene
-// Create a video scene - required for audio blocks
-await engine.scene.createVideo();
+```typescript highlight-create-scene
+// Create a scene with a page
+const scene = engine.scene.create();
+const page = engine.block.create('page');
+engine.block.setWidth(page, 1920);
+engine.block.setHeight(page, 1080);
+engine.block.appendChild(scene, page);
 ```
 
 ## Creating and Managing Buffers

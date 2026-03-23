@@ -129,11 +129,6 @@ class Example implements EditorPlugin {
       // eslint-disable-next-line no-console
       console.log(`Scene has ${pages.length} page(s)`);
 
-      // Get scene mode
-      const sceneMode = engine.scene.getMode();
-      // eslint-disable-next-line no-console
-      console.log('Scene mode:', sceneMode);
-
       // Get design unit
       const designUnit = engine.scene.getDesignUnit();
       // eslint-disable-next-line no-console
@@ -290,11 +285,6 @@ class Example implements EditorPlugin {
       // eslint-disable-next-line no-console
       console.log(`Scene has ${pages.length} page(s)`);
 
-      // Get scene mode
-      const sceneMode = engine.scene.getMode();
-      // eslint-disable-next-line no-console
-      console.log('Scene mode:', sceneMode);
-
       // Get design unit
       const designUnit = engine.scene.getDesignUnit();
       // eslint-disable-next-line no-console
@@ -436,7 +426,6 @@ When loading templates from external URLs, ensure proper CORS headers are set on
 | `engine.scene.applyTemplateFromURL()`    | Applies a template while preserving page dimensions      |
 | `engine.scene.get()`                     | Returns the current scene block ID                        |
 | `engine.scene.getPages()`                | Returns all page IDs in the scene                         |
-| `engine.scene.getMode()`                 | Returns the scene mode (Design or Video)                  |
 | `engine.scene.getDesignUnit()`           | Returns the measurement unit                              |
 | `engine.scene.zoomToBlock()`             | Zooms the viewport to fit a specific block                |
 

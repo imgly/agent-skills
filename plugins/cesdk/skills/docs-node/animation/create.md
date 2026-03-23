@@ -46,8 +46,8 @@ async function main(): Promise<void> {
   });
 
   try {
-    // Create a video scene (required for animations)
-    const scene = engine.scene.createVideo();
+    // Create a scene with a page
+    const scene = engine.scene.create();
     const page = engine.block.create('page');
     engine.block.appendChild(scene, page);
 
@@ -327,7 +327,7 @@ Exit animations define how blocks leave the screen. We attach them with `engine.
     engine.block.setEnum(fadeOut, 'animationEasing', 'EaseIn');
 ```
 
-When a block has both entrance and exit animations, CE.SDK adjusts their timing based on the block's duration on the timeline.
+When a block has both entrance and exit animations, CE.SDK adjusts their timing based on the block's duration in the composition.
 
 ## Loop Animations
 
@@ -460,7 +460,7 @@ The saved `.scene` file can be loaded later using `engine.scene.loadFromString()
 
 ### Animation Not Playing
 
-Verify the block supports animations with `engine.block.supportsAnimation()`. Ensure the scene is created with `engine.scene.createVideo()`, as animations require timeline-based playback.
+Verify the block supports animations with `engine.block.supportsAnimation()`. Ensure playback is active on the page.
 
 ### Duration Issues
 
@@ -509,7 +509,7 @@ If entrance and exit animations seem to overlap incorrectly, CE.SDK automaticall
 
 ## Related Pages
 
-- [Base Animations](./animation/create/base.md) - Apply movement, scaling, rotation, or opacity changes to elements using timeline-based keyframes.
+- [Base Animations](./animation/create/base.md) - Apply movement, scaling, rotation, or opacity changes to elements using time-based keyframes.
 - [Text Animations](./animation/create/text.md) - Animate text elements with effects like fade, typewriter, and bounce for dynamic visual presentation.
 
 

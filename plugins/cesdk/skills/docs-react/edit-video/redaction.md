@@ -90,10 +90,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable video editing features
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     cesdk.feature.enable('ly.img.blur');
     cesdk.feature.enable('ly.img.effect');
     await cesdk.addPlugin(new VideoEditorConfig());
@@ -141,7 +137,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 
@@ -451,7 +446,7 @@ We create a graphic block with a rectangle shape and solid color fill. The overl
 
 ### Time-Based Redaction
 
-Redactions can appear only during specific portions of the video timeline. We use `setTimeOffset()` and `setDuration()` to control when the redaction is visible.
+Redactions can appear only during specific portions of the video. We use `setTimeOffset()` and `setDuration()` to control when the redaction is visible.
 
 ```typescript highlight-time-based-redaction
     // Apply blur to the video
@@ -530,8 +525,8 @@ Reduce blur intensity, use pixelization instead of heavy blur, or switch to soli
 | `block.createEffect(type)` | Create effect instance (pixelize, etc.) |
 | `block.appendEffect(id, effect)` | Add effect to block |
 | `block.setEffectEnabled(effect, enabled)` | Enable or disable effect |
-| `block.setTimeOffset(id, offset)` | Set when block appears in timeline |
-| `block.setDuration(id, duration)` | Set block duration in timeline |
+| `block.setTimeOffset(id, offset)` | Set when block appears |
+| `block.setDuration(id, duration)` | Set block duration |
 | `block.create(type)` | Create block of specified type |
 | `block.createShape(type)` | Create shape for graphic blocks |
 | `block.setShape(id, shape)` | Apply shape to graphic block |

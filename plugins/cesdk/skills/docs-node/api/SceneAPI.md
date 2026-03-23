@@ -125,12 +125,9 @@ create(sceneLayout?: SceneLayout, options?: CreateSceneOptions): DesignBlockId
 
 **Returns:** The scene's handle.
 
-### createVideo()
+### createVideo() *(deprecated)*
 
 Create a new scene in video mode, along with its own camera.
-```javascript
-const scene = engine.scene.createVideo();
-```
 
 ```typescript
 createVideo(options?: CreateSceneOptions): DesignBlockId
@@ -196,28 +193,19 @@ get(): DesignBlockId | null
 
 **Returns:** The scene or null, if none was created yet.
 
-### getMode()
+### getMode() *(deprecated)*
 
 Get the current scene mode.
-```javascript
-const mode = scene.getMode();
-```
 
 ```typescript
-getMode(): SceneMode
+getMode(): SceneMode | null
 ```
 
-**Returns:** The current mode of the scene.
+**Returns:** The current mode of the scene, or null if no mode has been set.
 
-### setMode()
+### setMode() *(deprecated)*
 
 Set the mode of the scene.
-Changing the scene mode affects how the engine processes and renders the scene:
-- Video mode enables timeline-based playback, animations, and audio processing.
-- Design mode disables playback-related features and uses different color space settings.
-```javascript
-engine.scene.setMode('Video');
-```
 
 ```typescript
 setMode(mode: SceneMode): void

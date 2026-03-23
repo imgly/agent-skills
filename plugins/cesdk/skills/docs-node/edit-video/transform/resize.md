@@ -44,11 +44,12 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene with specific page dimensions
-  engine.scene.createVideo({
-    page: { size: { width: 800, height: 500 } }
-  });
-  const page = engine.block.findByType('page')[0];
+  // Create a scene with a page
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 800);
+  engine.block.setHeight(page, 500);
+  engine.block.appendChild(scene, page);
 
   // Sample video URL for demonstrations
   const videoUri = 'https://img.ly/static/ubq_video_samples/bbb.mp4';
@@ -197,16 +198,17 @@ const engine = await CreativeEngine.init({
 });
 ```
 
-## Create Video Scene
+## Create the Scene
 
-Create a video scene with specific page dimensions. Use `scene.createVideo()` to enable video mode:
+Create a scene with specific page dimensions:
 
 ```typescript highlight-create-scene
-// Create a video scene with specific page dimensions
-engine.scene.createVideo({
-  page: { size: { width: 800, height: 500 } }
-});
-const page = engine.block.findByType('page')[0];
+// Create a scene with a page
+const scene = engine.scene.create();
+const page = engine.block.create('page');
+engine.block.setWidth(page, 800);
+engine.block.setHeight(page, 500);
+engine.block.appendChild(scene, page);
 ```
 
 ## Resize a Video Block with JavaScript
@@ -330,7 +332,7 @@ engine.dispose();
 
 | Topic | What you want to do | What happens |
 | --- | --- | --- |
-| **Timeline length** | Resize the block's on-canvas frame. | No need to retime; duration and trims stay untouched. |
+| **Block duration** | Resize the block's on-canvas frame. | No need to retime; duration and trims stay untouched. |
 | **Content fill** | Switch the block to `.contain` or `.cover`. | Update it with `setContentFillMode`. |
 | **Batch processing** | Resize multiple videos programmatically. | Use loops and save each scene to separate files. |
 
@@ -339,7 +341,7 @@ engine.dispose();
 | Method | Description |
 | --- | --- |
 | `CreativeEngine.init()` | Initializes the headless engine for programmatic creation |
-| `engine.scene.createVideo()` | Creates a new video scene |
+| `engine.scene.create()` | Creates a new scene |
 | `engine.block.findByType()` | Finds blocks by type |
 | `engine.block.addVideo()` | Create and size video in one operation |
 | `engine.block.setWidth()` | Set block width value |

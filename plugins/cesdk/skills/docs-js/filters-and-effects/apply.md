@@ -539,7 +539,7 @@ Once we've confirmed a block supports effects, we can create and apply effects u
 > this guide. This built-in helper simplifies image block creation compared to
 > manually constructing graphic blocks with image fills, and provides additional
 > configuration options like positioning, sizing, corner radius, shadows, and
-> timeline properties.
+> time-based properties.
 
 ```typescript highlight-apply-basic-effects
     // Pattern #1: Demonstrate Individual Before Combined
@@ -897,14 +897,14 @@ For applications that need to apply the same effects to multiple elements, we ca
 
 When batch processing, check effect support before creating effects to avoid unnecessary work. You can also reuse effect instances when applying the same configuration to multiple blocks, though be careful to destroy them properly when done.
 
-### Dynamic Effects in Video Mode
+### Dynamic Effects with Animations
 
-When working in Video mode (not Design mode), you can combine effects with CE.SDK's built-in animation system to create dynamic visual treatments that change over time.
+You can combine effects with CE.SDK's built-in animation system to create dynamic visual treatments that change over time.
 
 > **Caution:** Effect parameters are static properties and cannot be animated using
 > JavaScript timers like `setInterval` or `requestAnimationFrame`. For animated
 > content, use CE.SDK's built-in animation blocks (`createAnimation()`,
-> `setInAnimation()`, etc.) in Video mode or refer to the animation guides.
+> `setInAnimation()`, etc.) or refer to the animation guides.
 
 For dynamic visual effects in video projects, explore CE.SDK's animation system which provides professionally designed transitions and effects that integrate seamlessly with the rendering pipeline.
 

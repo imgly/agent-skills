@@ -10,9 +10,8 @@
  * - `'ly.img.back.navigationBar'` - Back button (requires onClick handler)
  * - `'ly.img.close.navigationBar'` - Close button (requires onClick handler)
  *
- * **History & Layout:**
+ * **History:**
  * - `'ly.img.undoRedo.navigationBar'` - Undo/Redo buttons
- * - `'ly.img.pageResize.navigationBar'` - Page resize control
  * - `'ly.img.title.navigationBar'` - Document title display
  * - `'ly.img.zoom.navigationBar'` - Zoom controls
  * - `'ly.img.preview.navigationBar'` - Preview button
@@ -60,7 +59,6 @@ export function setupNavigationBar(cesdk: CreativeEditorSDK): void {
     // Left Section - History
     // ============================
     'ly.img.undoRedo.navigationBar',
-    'ly.img.pageResize.navigationBar',
 
     // ============================
     // Center Section - Title

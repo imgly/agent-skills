@@ -78,13 +78,14 @@ const engine = await CreativeEngine.init({
 console.log('✓ Engine initialized');
 
 try {
-  // Create a video scene with specific page dimensions
-  console.log('⏳ Creating video scene...');
-  engine.scene.createVideo({
-    page: { size: { width: 800, height: 500 } }
-  });
-  const page = engine.block.findByType('page')[0];
-  console.log('✓ Video scene created');
+  // Create a scene with a page
+  console.log('⏳ Creating scene...');
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 800);
+  engine.block.setHeight(page, 500);
+  engine.block.appendChild(scene, page);
+  console.log('✓ Scene created');
 
   // Sample video URL for demonstrations
   const videoUri = 'https://img.ly/static/ubq_video_samples/bbb.mp4';
@@ -236,17 +237,18 @@ const engine = await CreativeEngine.init({
 });
 ```
 
-## Create Video Scene
+## Create the Scene
 
-Create a video scene with specific page dimensions. Use `scene.createVideo()` to enable video mode:
+Create a scene with specific page dimensions:
 
 ```typescript highlight-create-scene
-// Create a video scene with specific page dimensions
-console.log('⏳ Creating video scene...');
-engine.scene.createVideo({
-  page: { size: { width: 800, height: 500 } }
-});
-const page = engine.block.findByType('page')[0];
+// Create a scene with a page
+console.log('⏳ Creating scene...');
+const scene = engine.scene.create();
+const page = engine.block.create('page');
+engine.block.setWidth(page, 800);
+engine.block.setHeight(page, 500);
+engine.block.appendChild(scene, page);
 ```
 
 ## Scale a Video Uniformly
@@ -474,7 +476,7 @@ When using `setWidth` or `setHeight`, pass `true` as the third parameter to main
 | API                          | Usage                                                              |
 | ---------------------------- | ------------------------------------------------------------------ |
 | `CreativeEngine.init`        | Initializes the headless engine for programmatic creation.         |
-| `scene.createVideo`          | Creates a new video scene.                                         |
+| `scene.create`               | Creates a new scene.                                               |
 | `block.scale`                | Performs uniform or anchored scaling on blocks and groups.         |
 | `block.setWidthMode`         | Enables absolute sizing before changing a single axis.             |
 | `block.getWidth`             | Reads the current width before non-uniform scaling.                |
