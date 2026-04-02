@@ -320,7 +320,7 @@ Common builder methods for creating UI elements:
 | `builder.Button()` | Clickable button | `label`, `icon`, `onClick`, `variant` |
 | `builder.Separator()` | Visual divider | None |
 | `builder.Checkbox()` | Toggle control | `value`, `setValue`, `inputLabel` |
-| `builder.Select()` | Dropdown selector | `values`, `value`, `setValue` |
+| `builder.Select()` | Dropdown selector | `values`, `value`, `setValue`, `searchable`, `searchPlaceholder` |
 | `builder.Slider()` | Range input | `min`, `max`, `value`, `setValue` |
 
 For the complete builder API, see [Register New Component](./user-interface/ui-extensions/register-new-component.md).

@@ -356,7 +356,7 @@ Not every location supports every builder component yet. The following table sho
 | `builder.Separator`   | Adds visual separation between entries. | No properties. Follows special layout rules for consecutive separators. |
 | `builder.Component`   | Renders another registered component. | **componentId**: The registered component ID.<br /> **payload**: Optional data passed to the component. |
 | `builder.Checkbox`    | Toggle checkbox control. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **inputLabel**: Checkbox label.<br /> **truncateLabel**: Truncate the label with an ellipsis when it overflows (default: `false`). |
-| `builder.Select`      | Dropdown select with options. | **value**: Current selection object.<br /> **setValue**: Change handler.<br /> **values**: Array of option objects with `id`, `label`, and optional `icon`. |
+| `builder.Select`      | Dropdown select with options. | **value**: Current selection object.<br /> **setValue**: Change handler.<br /> **values**: Array of option objects with `id`, `label`, and optional `icon`.<br /> **searchable**: When `true`, adds a search input that filters the dropdown options by label.<br /> **searchPlaceholder**: Placeholder text for the search input. |
 | `builder.TextInput`   | Text input field. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **placeholder**: Placeholder text. |
 | `builder.NumberInput` | Numeric input field. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **min/max**: Range limits. |
 | `builder.Slider`      | Numeric range slider. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **min/max/step**: Range configuration. |

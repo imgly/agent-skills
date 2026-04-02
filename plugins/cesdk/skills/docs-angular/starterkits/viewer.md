@@ -4,7 +4,7 @@
 
 ---
 
-Lightweight design viewing for your Angular app—pan, zoom, and navigate multi-page designs. Runs entirely in the browser with no server dependencies.
+Lightweight design viewing for your web app—pan, zoom, and navigate multi-page designs. Runs entirely in the browser with no server dependencies.
 
 ![Viewer starter kit showing a lightweight content display interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -22,13 +22,13 @@ Lightweight design viewing for your Angular app—pan, zoom, and navigate multi-
 
 ***
 
-## Prerequisites
+## Pre-requisites
 
-Before you begin, make sure you have the following:
+This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
-- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list.
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list
 
 ***
 
@@ -36,72 +36,58 @@ Before you begin, make sure you have the following:
   <TabItem label="New Project">
     ## Get Started
 
-    Create a new Angular application with Design Viewer integration.
+    Start fresh with a standalone Design Viewer project. This creates a complete, ready-to-run application.
 
-    ## Step 1: Create a New Project
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        ng new your-project-name
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        ng new your-project-name --package-manager pnpm
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        ng new your-project-name --package-manager yarn
-        cd your-project-name
-      </TerminalTab>
-    </TerminalTabs>
-
-    ## Step 2: Clone the Starter Kit
-
-    Clone the starter kit and copy the viewer configuration to your project:
+    ## Step 1: Clone the Repository
 
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-design-viewer-ts-web.git
-        cp -r starterkit-design-viewer-ts-web/src/app/imgly ./src/app/imgly
-        rm -rf starterkit-design-viewer-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-design-viewer-ts-web/src/app/imgly ./src/app/imgly
+        npx degit imgly/starterkit-design-viewer-ts-web starterkit-design-viewer-ts-web
       </TerminalTab>
     </TerminalTabs>
 
-    > **Adjust Path:** The default destination is `./src/app/imgly`. Adjust the path to match your project structure.
+    The `src/` folder contains the viewer code:
 
-    ## Step 3: Install Dependencies
-
-    The Creative Editor SDK package provides all viewing functionality.
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
-    </TerminalTabs>
-
-    ### Configure Bundle Budgets
-
-    CE.SDK may exceed Angular's default bundle size limits. Increase the budget in `angular.json`:
-
-    ```json
-    {
-      "budgets": [
-        {
-          "type": "initial",
-          "maximumWarning": "2mb",
-          "maximumError": "5mb"
-        }
-      ]
-    }
+    ```
+    src/
+    ├── index.ts                      # Application entry point
+    └── imgly/
+        ├── index.ts                  # Viewer initialization function
+        └── config/
+            ├── plugin.ts             # Main configuration plugin
+            ├── features.ts           # Feature toggles
+            ├── i18n.ts               # Translations
+            ├── settings.ts           # Engine settings
+            └── ui/                   # UI customization
+                ├── index.ts          # Combines UI customization exports
+                ├── canvas.ts         # Canvas configuration
+                └── navigationBar.ts  # Navigation bar layout
     ```
 
-    ## Step 4: Download Assets
+    ## Step 2: Install Dependencies
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        cd starterkit-design-viewer-ts-web
+        npm install
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        cd starterkit-design-viewer-ts-web
+        pnpm install
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        cd starterkit-design-viewer-ts-web
+        yarn
+      </TerminalTab>
+    </TerminalTabs>
+
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -113,81 +99,84 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 5: Create the Viewer Component
+    The `baseURL` in your configuration should point to this location:
 
-    Create an Angular component using the official CE.SDK Angular wrapper (e.g., `design-viewer.component.ts`):
-
-    ```typescript
-    import { Component } from '@angular/core';
-    import { CreativeEditor } from '@cesdk/cesdk-js/angular';
-    import { initDesignViewer } from '../../app/imgly';
-
-    @Component({
-      selector: 'app-design-viewer',
-      standalone: true,
-      imports: [CreativeEditor],
-      template: `
-        <creative-editor
-          [config]="{ baseURL: '/assets' }"
-          [init]="initDesignViewer"
-          width="100vw"
-          height="100vh"
-        />
-      `
-    })
-    export class DesignViewerComponent {
-      initDesignViewer = initDesignViewer;
-    }
+    ```typescript title="src/index.ts"
+    const config = {
+      // ...
+      baseURL: '/assets'
+    };
     ```
 
-    ## Step 6: Use the Component
+    ## Step 4: Run the Development Server
 
-    Import and use the Design Viewer component in your application:
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm run dev
+      </TerminalTab>
 
-    ```typescript
-    import { Component } from '@angular/core';
-    import { DesignViewerComponent } from './design-viewer.component';
+      <TerminalTab label="pnpm">
+        pnpm run dev
+      </TerminalTab>
 
-    @Component({
-      selector: 'app-root',
-      standalone: true,
-      imports: [DesignViewerComponent],
-      template: `<app-design-viewer />`
-    })
-    export class AppComponent {}
-    ```
+      <TerminalTab label="yarn">
+        yarn dev
+      </TerminalTab>
+    </TerminalTabs>
+
+    Open `http://localhost:5173` in your browser.
   </TabItem>
 
   <TabItem label="Existing Project">
     ## Get Started
 
-    Integrate the Design Viewer into an existing Angular application. This adds the viewer configuration to your current project structure.
+    Integrate the Design Viewer into an existing web application. This adds the viewer configuration to your current project structure.
 
-    ## Step 1: Navigate to Your Project
+    ## Step 1: Copy Viewer Configuration
 
     <TerminalTabs>
-      <TerminalTab label="Navigate">cd your-project</TerminalTab>
+      <TerminalTab label="Navigate">
+        cd your-project
+      </TerminalTab>
     </TerminalTabs>
 
-    ## Step 2: Clone the Starter Kit
-
-    Clone the starter kit and copy the viewer configuration to your existing Angular project:
+    Clone the starter kit and copy the viewer configuration to your project:
 
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-design-viewer-ts-web.git
-        cp -r starterkit-design-viewer-ts-web/src/app/imgly ./src/app/imgly
+        cp -r starterkit-design-viewer-ts-web/src/imgly ./src/imgly
         rm -rf starterkit-design-viewer-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-design-viewer-ts-web/src/app/imgly ./src/app/imgly
+        npx degit imgly/starterkit-design-viewer-ts-web/src/imgly ./src/imgly
       </TerminalTab>
     </TerminalTabs>
 
-    > **Adjust Path:** The default destination is `./src/app/imgly`. Adjust the path to match your project structure.
+    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
-    ## Step 3: Install Dependencies
+    The `imgly/` folder contains the viewer configuration:
+
+    ```
+    imgly/
+    ├── index.ts                  # Viewer initialization function
+    └── config/
+        ├── plugin.ts             # Main configuration plugin
+        ├── features.ts           # Feature toggles
+        ├── i18n.ts               # Translations
+        ├── settings.ts           # Engine settings
+        └── ui/                   # UI customization
+            ├── index.ts          # Combines UI customization exports
+            ├── canvas.ts         # Canvas configuration
+            └── navigationBar.ts  # Navigation bar layout
+    ```
+
+    ## Step 2: Install Dependencies
+
+    The Design Viewer requires one core package:
+
+    ### Core Editor
 
     The Creative Editor SDK package provides all viewing functionality.
 
@@ -205,23 +194,7 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    ### Configure Bundle Budgets
-
-    CE.SDK may exceed Angular's default bundle size limits. Increase the budget in `angular.json`:
-
-    ```json
-    {
-      "budgets": [
-        {
-          "type": "initial",
-          "maximumWarning": "2mb",
-          "maximumError": "5mb"
-        }
-      ]
-    }
-    ```
-
-    ## Step 4: Download Assets
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -233,48 +206,45 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 5: Create the Viewer Component
+    The `baseURL` in your configuration should point to this location:
 
-    Create an Angular component using the official CE.SDK Angular wrapper (e.g., `design-viewer.component.ts`):
-
-    ```typescript
-    import { Component } from '@angular/core';
-    import { CreativeEditor } from '@cesdk/cesdk-js/angular';
-    import { initDesignViewer } from '../../app/imgly';
-
-    @Component({
-      selector: 'app-design-viewer',
-      standalone: true,
-      imports: [CreativeEditor],
-      template: `
-        <creative-editor
-          [config]="{ baseURL: '/assets' }"
-          [init]="initDesignViewer"
-          width="100vw"
-          height="100vh"
-        />
-      `
-    })
-    export class DesignViewerComponent {
-      initDesignViewer = initDesignViewer;
-    }
+    ```typescript title="src/index.ts"
+    const config = {
+      // ...
+      baseURL: '/assets'
+    };
     ```
 
-    ## Step 6: Use the Component
+    ## Step 4: Add a Container Element
 
-    Import and use the Design Viewer component in your application:
+    Add a container element to your HTML where the viewer will be mounted:
 
-    ```typescript
-    import { Component } from '@angular/core';
-    import { DesignViewerComponent } from './design-viewer.component';
+    ```html
+    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
+    ```
 
-    @Component({
-      selector: 'app-root',
-      standalone: true,
-      imports: [DesignViewerComponent],
-      template: `<app-design-viewer />`
-    })
-    export class AppComponent {}
+    ## Step 5: Initialize the Viewer
+
+    Import and call the initialization function from your application's entry point:
+
+    ```typescript title="src/index.ts"
+    import CreativeEditorSDK from '@cesdk/cesdk-js';
+
+    import { initDesignViewer } from './imgly';
+
+    const config = {
+      userId: 'your-user-id',
+      baseURL: '/assets'
+      // license: 'YOUR_LICENSE_KEY',
+    };
+
+    CreativeEditorSDK.create('#cesdk_container', config)
+      .then(async (cesdk) => {
+        await initDesignViewer(cesdk);
+      })
+      .catch((error) => {
+        console.error('Failed to initialize CE.SDK:', error);
+      });
     ```
   </TabItem>
 </Tabs>
@@ -308,7 +278,7 @@ await cesdk.actions.run('zoom.toPage', {
 
 CE.SDK supports light and dark themes out of the box, plus automatic system preference detection. Switch between themes programmatically:
 
-```typescript title="src/app/imgly/config/settings.ts"
+```typescript title="src/imgly/config/settings.ts"
 // 'light' | 'dark' | 'system' | (() => 'light' | 'dark')
 cesdk.ui.setTheme('dark');
 ```
@@ -319,7 +289,7 @@ See [Theming](./user-interface/appearance/theming.md) for custom color schemes, 
 
 Customize UI labels and add support for multiple languages. The i18n system supports translation keys for all UI elements:
 
-```typescript title="src/app/imgly/config/i18n.ts"
+```typescript title="src/imgly/config/i18n.ts"
 // Override specific labels
 cesdk.i18n.setTranslations({
   en: {

@@ -4,7 +4,7 @@
 
 ---
 
-Professional design editing for your Angular app—create graphics, templates, and multi-page documents. Runs entirely in the browser with no server dependencies.
+Professional design editing for your web app—create graphics, templates, and multi-page documents. Runs entirely in the browser with no server dependencies.
 
 ![Design Editor starter kit showing a professional design editing interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -22,13 +22,13 @@ Professional design editing for your Angular app—create graphics, templates, a
 
 ***
 
-## Prerequisites
+## Pre-requisites
 
-Before you begin, make sure you have the following:
+This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
-- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list.
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list
 
 ***
 
@@ -36,99 +36,67 @@ Before you begin, make sure you have the following:
   <TabItem label="New Project">
     ## Get Started
 
-    Create a new Angular application with Design Editor integration.
+    Start fresh with a standalone Design Editor project. This creates a complete, ready-to-run application.
 
-    ## Step 1: Create a New Project
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        ng new your-project-name
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        ng new your-project-name --package-manager pnpm
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        ng new your-project-name --package-manager yarn
-        cd your-project-name
-      </TerminalTab>
-    </TerminalTabs>
-
-    ## Step 2: Clone the Starter Kit
-
-    Clone the starter kit and copy the editor configuration to your project:
+    ## Step 1: Clone the Repository
 
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-design-editor-ts-web.git
-        cp -r starterkit-design-editor-ts-web/src/app/imgly ./src/app/imgly
-        rm -rf starterkit-design-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-design-editor-ts-web/src/app/imgly ./src/app/imgly
+        npx degit imgly/starterkit-design-editor-ts-web starterkit-design-editor-ts-web
       </TerminalTab>
     </TerminalTabs>
 
-    > **Adjust Path:** The default destination is `./src/app/imgly`. Adjust the path to match your project structure.
+    The `src/` folder contains the editor code:
 
-    ## Step 3: Install Dependencies
+    ```
+    src/
+    ├── index.ts                      # Application entry point
+    └── imgly/
+        ├── index.ts                  # Editor initialization function
+        ├── config/
+        │   ├── plugin.ts             # Main configuration plugin
+        │   ├── actions.ts            # Export/import actions
+        │   ├── features.ts           # Feature toggles
+        │   ├── i18n.ts               # Translations
+        │   ├── settings.ts           # Engine settings
+        │   └── ui/                   # UI customization
+        │       ├── index.ts          # Combines UI customization exports
+        │       ├── canvas.ts         # Canvas configuration
+        │       ├── components.ts     # Custom component registration
+        │       ├── dock.ts           # Dock layout configuration
+        │       ├── inspectorBar.ts   # Inspector bar layout
+        │       ├── navigationBar.ts  # Navigation bar layout
+        │       └── panel.ts          # Panel configuration
+        └── plugins/
+            └── background-removal.ts # Background removal plugin
+    ```
 
-    Install the required packages for the editor:
+    ## Step 2: Install Dependencies
 
-    ### Core Editor
-
-    Install the Creative Editor SDK:
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
-    </TerminalTabs>
-
-    ### Background Removal
-
-    Add AI-powered background removal:
+    Install the required packages:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/background-removal onnxruntime-web
+        cd starterkit-design-editor-ts-web
+        npm install
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/background-removal onnxruntime-web
+        cd starterkit-design-editor-ts-web
+        pnpm install
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/background-removal onnxruntime-web
+        cd starterkit-design-editor-ts-web
+        yarn
       </TerminalTab>
     </TerminalTabs>
 
-    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
-
-    ### Configure Bundle Budgets
-
-    CE.SDK requires adjusting Angular's default bundle size limits. Update the `budgets` array in your `angular.json` under `architect.build.configurations.production`:
-
-    ```json
-    "budgets": [
-      {
-        "type": "initial",
-        "maximumWarning": "3MB",
-        "maximumError": "5MB"
-      },
-      {
-        "type": "anyComponentStyle",
-        "maximumWarning": "4kB",
-        "maximumError": "8kB"
-      }
-    ]
-    ```
-
-    ## Step 4: Download Assets
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -140,57 +108,39 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Create the Editor Component.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in `src/index.ts`.
 
-    ## Step 5: Create the Editor Component
-
-    Create an Angular component using the official CE.SDK Angular wrapper (e.g., `design-editor.component.ts`):
-
-    ```typescript
-    import { Component } from '@angular/core';
-    import { CreativeEditor } from '@cesdk/cesdk-js/angular';
-    import { initDesignEditor } from './imgly';
-
-    @Component({
-      selector: 'app-design-editor',
-      standalone: true,
-      imports: [CreativeEditor],
-      template: `
-        <creative-editor
-          [config]="{ baseURL: '/assets' }"
-          [init]="initDesignEditor"
-          width="100vw"
-          height="100vh"
-        />
-      `
-    })
-    export class DesignEditorComponent {
-      initDesignEditor = initDesignEditor;
-    }
+    ```typescript title="src/index.ts"
+    const config = {
+      // ...
+      baseURL: '/assets'
+      // ...
+    };
     ```
 
-    ## Step 6: Use the Component
+    ## Step 4: Run the Development Server
 
-    Use the component in your app:
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm run dev
+      </TerminalTab>
 
-    ```typescript
-    import { Component } from '@angular/core';
-    import { DesignEditorComponent } from './design-editor.component';
+      <TerminalTab label="pnpm">
+        pnpm run dev
+      </TerminalTab>
 
-    @Component({
-      selector: 'app-root',
-      standalone: true,
-      imports: [DesignEditorComponent],
-      template: '<app-design-editor />'
-    })
-    export class AppComponent {}
-    ```
+      <TerminalTab label="yarn">
+        yarn dev
+      </TerminalTab>
+    </TerminalTabs>
+
+    Open `http://localhost:5173` in your browser.
   </TabItem>
 
   <TabItem label="Existing Project">
     ## Get Started
 
-    Integrate the Design Editor into an existing Angular application. This adds the editor configuration to your current project structure.
+    Integrate the Design Editor into an existing web application. This adds the editor configuration to your current project structure.
 
     ## Step 1: Clone
 
@@ -205,16 +155,16 @@ Before you begin, make sure you have the following:
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-design-editor-ts-web.git
-        cp -r starterkit-design-editor-ts-web/src/app/imgly ./src/app/imgly
+        cp -r starterkit-design-editor-ts-web/src/imgly ./src/imgly
         rm -rf starterkit-design-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-design-editor-ts-web/src/app/imgly ./src/app/imgly
+        npx degit imgly/starterkit-design-editor-ts-web/src/imgly ./src/imgly
       </TerminalTab>
     </TerminalTabs>
 
-    > **Adjust Path:** The default destination is `./src/app/imgly`. Adjust the path to match your project structure.
+    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
     The `imgly/` folder contains the editor configuration:
 
@@ -281,28 +231,9 @@ Before you begin, make sure you have the following:
 
     The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
 
-    ### Configure Bundle Budgets
-
-    CE.SDK requires adjusting Angular's default bundle size limits. Update the `budgets` array in your `angular.json` under `architect.build.configurations.production`:
-
-    ```json
-    "budgets": [
-      {
-        "type": "initial",
-        "maximumWarning": "3MB",
-        "maximumError": "5MB"
-      },
-      {
-        "type": "anyComponentStyle",
-        "maximumWarning": "4kB",
-        "maximumError": "8kB"
-      }
-    ]
-    ```
-
     ## Step 3: Download Assets
 
-    CE.SDK requires engine assets (fonts, icons, UI elements) to function. For Angular projects, place these in your `public/` directory which is served automatically.
+    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
     <TerminalTabs>
       <TerminalTab label="Download">
@@ -312,50 +243,38 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 4: Create the Editor Component.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
 
-    ## Step 4: Create the Editor Component
+    ## Step 4: Add a Container Element
 
-    Create an Angular component using the official CE.SDK Angular wrapper (e.g., `design-editor.component.ts`):
+    Add a container element to your HTML where the editor will be mounted:
 
-    ```typescript
-    import { Component } from '@angular/core';
-    import { CreativeEditor } from '@cesdk/cesdk-js/angular';
-    import { initDesignEditor } from './imgly';
-
-    @Component({
-      selector: 'app-design-editor',
-      standalone: true,
-      imports: [CreativeEditor],
-      template: `
-        <creative-editor
-          [config]="{ baseURL: '/assets' }"
-          [init]="initDesignEditor"
-          width="100vw"
-          height="100vh"
-        />
-      `
-    })
-    export class DesignEditorComponent {
-      initDesignEditor = initDesignEditor;
-    }
+    ```html
+    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
     ```
 
-    ## Step 5: Use the Component
+    ## Step 5: Initialize the Editor
 
-    Use the component in your app:
+    Import and call the initialization function from your application's entry point:
 
-    ```typescript
-    import { Component } from '@angular/core';
-    import { DesignEditorComponent } from './design-editor.component';
+    ```typescript title="src/index.ts"
+    import CreativeEditorSDK from '@cesdk/cesdk-js';
 
-    @Component({
-      selector: 'app-root',
-      standalone: true,
-      imports: [DesignEditorComponent],
-      template: '<app-design-editor />'
-    })
-    export class AppComponent {}
+    import { initDesignEditor } from './imgly';
+
+    const config = {
+      userId: 'your-user-id',
+      baseURL: '/assets'
+      // license: 'YOUR_LICENSE_KEY',
+    };
+
+    CreativeEditorSDK.create('#cesdk_container', config)
+      .then(async (cesdk) => {
+        await initDesignEditor(cesdk);
+      })
+      .catch((error) => {
+        console.error('Failed to initialize CE.SDK:', error);
+      });
     ```
   </TabItem>
 </Tabs>
@@ -364,7 +283,7 @@ Before you begin, make sure you have the following:
 
 CE.SDK offers multiple ways to load content into the editor. Choose the method that matches your use case:
 
-```typescript title="src/app/imgly/index.ts"
+```typescript title="src/index.ts"
 // Create a blank design canvas - starts with an empty design scene
 await cesdk.actions.run('scene.create');
 
@@ -386,9 +305,9 @@ The `createDesignScene()` method is ideal for design workflows, as it creates a 
 
 The Design Editor uses asset source plugins to provide built-in libraries for templates, stickers, shapes, and fonts. The starter kit includes a curated selection—customize what's included based on your needs.
 
-Asset sources are added via plugins in `src/app/imgly/index.ts`. Enable or disable individual sources:
+Asset sources are added via plugins in `src/index.ts`. Enable or disable individual sources:
 
-```typescript title="src/app/imgly/index.ts"
+```typescript title="src/index.ts"
 import {
   FiltersAssetSource,
   StickerAssetSource,
@@ -432,7 +351,7 @@ await cesdk.actions.run('exportDesign', { mimeType: 'image/png' });
 
 #### Import from File Picker
 
-```typescript title="src/app/imgly/config/actions.ts"
+```typescript title="src/imgly/config/actions.ts"
 // Let users open images from their device
 cesdk.actions.register('importImage', async () => {
   const blobURL = await cesdk.utils.loadFile({
@@ -445,7 +364,7 @@ cesdk.actions.register('importImage', async () => {
 
 #### Export and Save
 
-```typescript title="src/app/imgly/config/actions.ts"
+```typescript title="src/imgly/config/actions.ts"
 // Register export action that downloads the edited design
 cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs, options } = await cesdk.utils.export(exportOptions);
@@ -455,7 +374,7 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
 
 #### Upload to Your Backend
 
-```typescript title="src/app/imgly/config/actions.ts"
+```typescript title="src/imgly/config/actions.ts"
 // Override the built-in exportDesign action to send to your server
 cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs } = await cesdk.utils.export(exportOptions);
@@ -483,7 +402,7 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
 
 CE.SDK supports light and dark themes out of the box, plus automatic system preference detection. Switch between themes programmatically:
 
-```typescript title="src/app/imgly/config/settings.ts"
+```typescript title="src/imgly/config/settings.ts"
 // 'light' | 'dark' | 'system' | (() => 'light' | 'dark')
 cesdk.ui.setTheme('dark');
 ```
@@ -494,7 +413,7 @@ See [Theming](./user-interface/appearance/theming.md) for custom color schemes, 
 
 Customize UI labels and add support for multiple languages. The i18n system supports translation keys for all UI elements:
 
-```typescript title="src/app/imgly/config/i18n.ts"
+```typescript title="src/imgly/config/i18n.ts"
 // Override specific labels
 cesdk.i18n.setTranslations({
   en: {
@@ -523,7 +442,7 @@ See [Localization](./user-interface/localization.md) for supported languages, tr
 
 Customize the editor interface by modifying the dock, inspector bar, navigation bar, and canvas menu. CE.SDK provides Order APIs to control which components appear and in what sequence.
 
-```typescript title="src/app/imgly/config/ui/navigationBar.ts"
+```typescript title="src/imgly/config/ui/navigationBar.ts"
 // Get current navigation bar components
 const navOrder = cesdk.ui.getNavigationBarOrder();
 
@@ -561,7 +480,7 @@ See [Dock](./user-interface/customization/dock.md), [Inspector Bar](./user-inter
 
 Build custom UI components using the builder system and integrate them in the editor. Custom components receive reactive state updates and can interact with the engine API.
 
-```typescript title="src/app/imgly/config/ui/components.ts"
+```typescript title="src/imgly/config/ui/components.ts"
 // Register a custom component
 cesdk.ui.registerComponent('my-custom-button', ({ builder, engine }) => {
   const selectedBlocks = engine.block.findAllSelected();
@@ -593,7 +512,7 @@ Fine-tune editor behavior through settings and features.
 
 **Settings** configure core engine behavior—rendering, input handling, and history management:
 
-```typescript title="src/app/imgly/config/settings.ts"
+```typescript title="src/imgly/config/settings.ts"
 cesdk.engine.editor.setSettingBool('page/dimOutOfPageAreas', true);
 cesdk.engine.editor.setSettingBool('mouse/enableZoomControl', true);
 cesdk.engine.editor.setSettingBool('features/undoHistory', true);
@@ -601,7 +520,7 @@ cesdk.engine.editor.setSettingBool('features/undoHistory', true);
 
 **Features** toggle which editing tools and panels appear in the UI:
 
-```typescript title="src/app/imgly/config/features.ts"
+```typescript title="src/imgly/config/features.ts"
 // Toggle editor features
 cesdk.feature.enable('ly.img.crop', true);
 cesdk.feature.enable('ly.img.filter', true);
@@ -616,9 +535,9 @@ CE.SDK has a rich plugin ecosystem that extends the editor with powerful capabil
 
 #### Background Removal
 
-Add AI-powered background removal: The background removal plugin processes images directly in the browser without sending data to external servers.
+Add AI-powered background removal that runs entirely client-side. The background removal plugin processes images directly in the browser without sending data to external servers.
 
-```typescript title="src/app/imgly/config/plugin.ts"
+```typescript title="src/imgly/config/plugin.ts"
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal';
 
 // Add background removal capability
@@ -631,7 +550,7 @@ See [Background Removal](./edit-image/remove-bg.md) for setup instructions and c
 
 Export print-ready PDF/X-3 files with CMYK color profiles for professional printing workflows.
 
-```typescript title="src/app/imgly/config/plugin.ts"
+```typescript title="src/imgly/config/plugin.ts"
 import PrintReadyPDFPlugin from '@imgly/plugin-print-ready-pdf';
 
 // Add print-ready PDF export capability
@@ -644,7 +563,7 @@ See [Print Ready PDF](./plugins/print-ready-pdf.md) for setup instructions and c
 
 Extend the editor with generative AI capabilities for text-to-image generation, image enhancement, and intelligent editing features. CE.SDK integrates with various AI providers.
 
-```typescript title="src/app/imgly/config/plugin.ts"
+```typescript title="src/imgly/config/plugin.ts"
 import AIPlugin from '@imgly/plugin-ai-generation';
 
 // Configure AI generation
@@ -660,7 +579,7 @@ See [AI Integration](./user-interface/ai-integration.md) for provider setup and 
 
 Connect external asset libraries like Unsplash, Getty Images, or your own content management system. Asset sources let users browse and insert content from any source.
 
-```typescript title="src/app/imgly/config/plugin.ts"
+```typescript title="src/imgly/config/plugin.ts"
 import UnsplashAssetSource from '@imgly/plugin-unsplash';
 
 // Add Unsplash integration

@@ -4,7 +4,7 @@
 
 ---
 
-Lightweight video playback for your Angular app—play, pause, and navigate video content. Runs entirely in the browser with no server dependencies.
+Lightweight video playback for your web app—play, pause, and navigate video content. Runs entirely in the browser with no server dependencies.
 
 ![Player starter kit showing a lightweight video playback interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -22,13 +22,13 @@ Lightweight video playback for your Angular app—play, pause, and navigate vide
 
 ***
 
-## Prerequisites
+## Pre-requisites
 
-Before you begin, make sure you have the following:
+This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
-- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list.
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list
 
 ***
 
@@ -36,84 +36,58 @@ Before you begin, make sure you have the following:
   <TabItem label="New Project">
     ## Get Started
 
-    Integrate the Video Player into your Angular application using the official Angular wrapper.
+    Start fresh with a standalone Video Player project. This creates a complete, ready-to-run application.
 
-    ## Step 1: Create a New Project
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        ng new your-project-name
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm dlx @angular/cli new your-project-name
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn dlx @angular/cli new your-project-name
-        cd your-project-name
-      </TerminalTab>
-    </TerminalTabs>
-
-    ## Step 2: Clone the Starter Kit
-
-    Clone the starter kit and copy the player configuration to your project:
+    ## Step 1: Clone the Repository
 
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-video-player-ts-web.git
-        cp -r starterkit-video-player-ts-web/src/app/imgly ./src/app/imgly
-        rm -rf starterkit-video-player-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-video-player-ts-web/src/app/imgly ./src/app/imgly
+        npx degit imgly/starterkit-video-player-ts-web starterkit-video-player-ts-web
       </TerminalTab>
     </TerminalTabs>
 
-    > **Adjust Path:** The default destination is `./src/app/imgly`. Adjust the path to match your project structure.
-
-    The `imgly/` folder contains the player configuration:
+    The `src/` folder contains the player code:
 
     ```
-    src/app/imgly/
-    ├── index.ts                  # Player initialization function
-    └── config/
-        ├── plugin.ts             # Main configuration plugin
-        ├── features.ts           # Feature toggles
-        ├── i18n.ts               # Translations
-        └── settings.ts           # Engine settings
+    src/
+    ├── index.ts                      # Application entry point
+    └── imgly/
+        ├── index.ts                  # Player initialization function
+        └── config/
+            ├── plugin.ts             # Main configuration plugin
+            ├── features.ts           # Feature toggles
+            ├── i18n.ts               # Translations
+            ├── settings.ts           # Engine settings
+            └── ui/                   # UI customization
+                ├── index.ts          # Combines UI customization exports
+                ├── canvas.ts         # Canvas configuration
+                └── navigationBar.ts  # Navigation bar layout
     ```
 
-    ## Step 3: Install Dependencies
-
-    The Creative Editor SDK package provides all playback functionality.
+    ## Step 2: Install Dependencies
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">
+        cd starterkit-video-player-ts-web
+        npm install
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        cd starterkit-video-player-ts-web
+        pnpm install
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        cd starterkit-video-player-ts-web
+        yarn
+      </TerminalTab>
     </TerminalTabs>
 
-    ### Configure Bundle Budgets
-
-    CE.SDK may exceed Angular's default bundle size limits. Increase the budget in `angular.json`:
-
-    ```json
-    {
-      "budgets": [
-        {
-          "type": "initial",
-          "maximumWarning": "2mb",
-          "maximumError": "5mb"
-        }
-      ]
-    }
-    ```
-
-    ## Step 4: Download Assets
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -125,109 +99,102 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in the player component.
+    The `baseURL` in your configuration should point to this location:
 
-    ## Step 5: Create the Player Component
-
-    Create an Angular component using the official CE.SDK Angular wrapper (e.g., `video-player.component.ts`):
-
-    ```typescript
-    import { Component } from '@angular/core';
-    import { CreativeEditor } from '@cesdk/cesdk-js/angular';
-    import { initVideoPlayer } from '../imgly';
-
-    @Component({
-      selector: 'app-video-player',
-      standalone: true,
-      imports: [CreativeEditor],
-      template: `
-        <creative-editor
-          [config]="{ baseURL: '/assets' }"
-          [init]="initVideoPlayer"
-          width="100vw"
-          height="100vh"
-        />
-      `
-    })
-    export class VideoPlayerComponent {
-      initVideoPlayer = initVideoPlayer;
-    }
+    ```typescript title="src/index.ts"
+    const config = {
+      // ...
+      baseURL: '/assets'
+    };
     ```
 
-    ## Step 6: Use the Component
+    ## Step 4: Run the Development Server
 
-    Import and use the Video Player component in your application:
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm run dev
+      </TerminalTab>
 
-    ```typescript
-    import { Component } from '@angular/core';
-    import { VideoPlayerComponent } from './video-player.component';
+      <TerminalTab label="pnpm">
+        pnpm run dev
+      </TerminalTab>
 
-    @Component({
-      selector: 'app-root',
-      standalone: true,
-      imports: [VideoPlayerComponent],
-      template: `<app-video-player />`
-    })
-    export class AppComponent {}
-    ```
+      <TerminalTab label="yarn">
+        yarn dev
+      </TerminalTab>
+    </TerminalTabs>
+
+    Open `http://localhost:5173` in your browser.
   </TabItem>
 
   <TabItem label="Existing Project">
     ## Get Started
 
-    Integrate the Video Player into an existing Angular application. This adds the player configuration to your current project structure.
+    Integrate the Video Player into an existing web application. This adds the player configuration to your current project structure.
 
-    ### Step 1: Navigate to Your Project
+    ## Step 1: Copy Player Configuration
 
     <TerminalTabs>
-      <TerminalTab label="Navigate">cd your-project</TerminalTab>
+      <TerminalTab label="Navigate">
+        cd your-project
+      </TerminalTab>
     </TerminalTabs>
-
-    ### Step 2: Clone the Starter Kit
 
     Clone the starter kit and copy the player configuration to your project:
 
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-video-player-ts-web.git
-        cp -r starterkit-video-player-ts-web/src/app/imgly ./src/app/imgly
+        cp -r starterkit-video-player-ts-web/src/imgly ./src/imgly
         rm -rf starterkit-video-player-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-video-player-ts-web/src/app/imgly ./src/app/imgly
+        npx degit imgly/starterkit-video-player-ts-web/src/imgly ./src/imgly
       </TerminalTab>
     </TerminalTabs>
 
-    > **Adjust Path:** The default destination is `./src/app/imgly`. Adjust the path to match your project structure.
+    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
-    ### Step 3: Install Dependencies
+    The `imgly/` folder contains the player configuration:
+
+    ```
+    imgly/
+    ├── index.ts                  # Player initialization function
+    └── config/
+        ├── plugin.ts             # Main configuration plugin
+        ├── features.ts           # Feature toggles
+        ├── i18n.ts               # Translations
+        ├── settings.ts           # Engine settings
+        └── ui/                   # UI customization
+            ├── index.ts          # Combines UI customization exports
+            ├── canvas.ts         # Canvas configuration
+            └── navigationBar.ts  # Navigation bar layout
+    ```
+
+    ## Step 2: Install Dependencies
+
+    The Video Player requires one core package:
+
+    ### Core Editor
 
     The Creative Editor SDK package provides all playback functionality.
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">
+        npm install @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm add @cesdk/cesdk-js
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn add @cesdk/cesdk-js
+      </TerminalTab>
     </TerminalTabs>
 
-    #### Configure Bundle Budgets
-
-    CE.SDK may exceed Angular's default bundle size limits. Increase the budget in `angular.json`:
-
-    ```json
-    {
-      "budgets": [
-        {
-          "type": "initial",
-          "maximumWarning": "2mb",
-          "maximumError": "5mb"
-        }
-      ]
-    }
-    ```
-
-    ### Step 4: Download Assets
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -239,59 +206,54 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    ### Step 5: Create the Player Component
+    The `baseURL` in your configuration should point to this location:
 
-    Create an Angular component using the official CE.SDK Angular wrapper (e.g., `video-player.component.ts`):
-
-    ```typescript
-    import { Component } from '@angular/core';
-    import { CreativeEditor } from '@cesdk/cesdk-js/angular';
-    import { initVideoPlayer } from '../imgly';
-
-    @Component({
-      selector: 'app-video-player',
-      standalone: true,
-      imports: [CreativeEditor],
-      template: `
-        <creative-editor
-          [config]="{ baseURL: '/assets' }"
-          [init]="initVideoPlayer"
-          width="100vw"
-          height="100vh"
-        />
-      `
-    })
-    export class VideoPlayerComponent {
-      initVideoPlayer = initVideoPlayer;
-    }
+    ```typescript title="src/index.ts"
+    const config = {
+      // ...
+      baseURL: '/assets'
+    };
     ```
 
-    ### Step 6: Use the Component
+    ## Step 4: Add a Container Element
 
-    Import and use the Video Player component in your application:
+    Add a container element to your HTML where the player will be mounted:
 
-    ```typescript
-    import { Component } from '@angular/core';
-    import { VideoPlayerComponent } from './video-player.component';
+    ```html
+    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
+    ```
 
-    @Component({
-      selector: 'app-root',
-      standalone: true,
-      imports: [VideoPlayerComponent],
-      template: `<app-video-player />`
-    })
-    export class AppComponent {}
+    ## Step 5: Initialize the Player
+
+    Import and call the initialization function from your application's entry point:
+
+    ```typescript title="src/index.ts"
+    import CreativeEditorSDK from '@cesdk/cesdk-js';
+
+    import { initVideoPlayer } from './imgly';
+
+    const config = {
+      userId: 'your-user-id',
+      baseURL: '/assets'
+      // license: 'YOUR_LICENSE_KEY',
+    };
+
+    CreativeEditorSDK.create('#cesdk_container', config)
+      .then(async (cesdk) => {
+        await initVideoPlayer(cesdk);
+      })
+      .catch((error) => {
+        console.error('Failed to initialize CE.SDK:', error);
+      });
     ```
   </TabItem>
 </Tabs>
-
-***
 
 ## Set Up a Scene
 
 CE.SDK offers multiple ways to load content into the player. Choose the method that matches your use case:
 
-```typescript title="src/app/imgly/index.ts"
+```typescript title="src/index.ts"
 // Load from a template archive - loads a previously saved project
 await cesdk.loadFromArchiveURL('https://example.com/video.zip');
 
@@ -302,7 +264,7 @@ await cesdk.loadFromURL('https://example.com/scene.json');
 await cesdk.actions.run('zoom.toPage', {
   page: 'first',
   autoFit: true,
-  padding: 24,
+  padding: 24
 });
 ```
 
@@ -316,7 +278,7 @@ await cesdk.actions.run('zoom.toPage', {
 
 CE.SDK supports light and dark themes out of the box, plus automatic system preference detection. Switch between themes programmatically:
 
-```typescript title="src/app/imgly/config/settings.ts"
+```typescript title="src/imgly/config/settings.ts"
 // 'light' | 'dark' | 'system' | (() => 'light' | 'dark')
 cesdk.ui.setTheme('dark');
 ```
@@ -327,20 +289,20 @@ See [Theming](./user-interface/appearance/theming.md) for custom color schemes, 
 
 Customize UI labels and add support for multiple languages. The i18n system supports translation keys for all UI elements:
 
-```typescript title="src/app/imgly/config/i18n.ts"
+```typescript title="src/imgly/config/i18n.ts"
 // Override specific labels
 cesdk.i18n.setTranslations({
   en: {
     'common.play': 'Play Video',
-    'common.pause': 'Pause',
-  },
+    'common.pause': 'Pause'
+  }
 });
 
 // Add a new language
 cesdk.i18n.setTranslations({
   de: {
-    'common.play': 'Video abspielen',
-  },
+    'common.play': 'Video abspielen'
+  }
 });
 
 // Set the active locale
@@ -377,7 +339,8 @@ The Video Player includes everything needed for video playback.
   },
   {
     title: 'Page Navigation',
-    description: 'Navigate between pages in multi-page video projects.',
+    description:
+      'Navigate between pages in multi-page video projects.',
     imageId: 'text-editing',
   },
   {
@@ -397,8 +360,7 @@ The Video Player includes everything needed for video playback.
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get
-> a license key and remove the watermark.
+> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
 
 ***
 
@@ -429,8 +391,7 @@ The Video Player includes everything needed for video playback.
 
 ## Next Steps
 
-- [Configuration](./configuration.md) – Complete list of initialization
-  options
+- [Configuration](./configuration.md) – Complete list of initialization options
 - [Serve Assets](./serve-assets.md) – Self-host engine assets for production
 - [Theming](./user-interface/appearance/theming.md) – Customize colors and appearance
 - [Localization](./user-interface/localization.md) – Add translations and language support

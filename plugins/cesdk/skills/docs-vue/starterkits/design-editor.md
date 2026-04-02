@@ -4,7 +4,7 @@
 
 ---
 
-Professional design editing for your web app—create graphics, templates, and multi-page documents. Runs entirely in the browser with no server dependencies.
+Professional design editing for your Vue app—create graphics, templates, and multi-page documents. Runs entirely in the browser with no server dependencies.
 
 ![Design Editor starter kit showing a professional design editing interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -22,13 +22,13 @@ Professional design editing for your web app—create graphics, templates, and m
 
 ***
 
-## Pre-requisites
+## Prerequisites
 
-This guide assumes basic familiarity with JavaScript or TypeScript.
+Before you begin, make sure you have the following:
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
-- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list.
 
 ***
 
@@ -36,67 +36,80 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
   <TabItem label="New Project">
     ## Get Started
 
-    Start fresh with a standalone Design Editor project. This creates a complete, ready-to-run application.
+    Create a new Vue application with Design Editor integration.
 
-    ## Step 1: Clone the Repository
+    ## Step 1: Create a New Project
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm create vue@latest your-project-name
+        cd your-project-name
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm create vue your-project-name
+        cd your-project-name
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn create vue your-project-name
+        cd your-project-name
+      </TerminalTab>
+    </TerminalTabs>
+
+    ## Step 2: Clone the Starter Kit
+
+    Clone the starter kit and copy the editor configuration to your project:
 
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-design-editor-ts-web.git
+        cp -r starterkit-design-editor-ts-web/src/imgly ./src/imgly
+        rm -rf starterkit-design-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-design-editor-ts-web starterkit-design-editor-ts-web
+        npx degit imgly/starterkit-design-editor-ts-web/src/imgly ./src/imgly
       </TerminalTab>
     </TerminalTabs>
 
-    The `src/` folder contains the editor code:
+    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
-    ```
-    src/
-    ├── index.ts                      # Application entry point
-    └── imgly/
-        ├── index.ts                  # Editor initialization function
-        ├── config/
-        │   ├── plugin.ts             # Main configuration plugin
-        │   ├── actions.ts            # Export/import actions
-        │   ├── features.ts           # Feature toggles
-        │   ├── i18n.ts               # Translations
-        │   ├── settings.ts           # Engine settings
-        │   └── ui/                   # UI customization
-        │       ├── index.ts          # Combines UI customization exports
-        │       ├── canvas.ts         # Canvas configuration
-        │       ├── components.ts     # Custom component registration
-        │       ├── dock.ts           # Dock layout configuration
-        │       ├── inspectorBar.ts   # Inspector bar layout
-        │       ├── navigationBar.ts  # Navigation bar layout
-        │       └── panel.ts          # Panel configuration
-        └── plugins/
-            └── background-removal.ts # Background removal plugin
-    ```
+    ## Step 3: Install Dependencies
 
-    ## Step 2: Install Dependencies
+    Install the required packages for the editor:
 
-    Install the required packages:
+    ### Core Editor
+
+    Install the Creative Editor SDK:
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+    </TerminalTabs>
+
+    ### Background Removal
+
+    Add AI-powered background removal:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        cd starterkit-design-editor-ts-web
-        npm install
+        npm install @imgly/background-removal onnxruntime-web
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        cd starterkit-design-editor-ts-web
-        pnpm install
+        pnpm add @imgly/background-removal onnxruntime-web
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        cd starterkit-design-editor-ts-web
-        yarn
+        yarn add @imgly/background-removal onnxruntime-web
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 3: Download Assets
+    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
+
+    ## Step 4: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -108,39 +121,47 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in `src/index.ts`.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Create the Editor Component.
 
-    ```typescript title="src/index.ts"
-    const config = {
-      // ...
-      baseURL: '/assets'
-      // ...
-    };
+    ## Step 5: Create the Editor Component
+
+    Create a Vue component using the official CE.SDK Vue wrapper (e.g., `DesignEditor.vue`):
+
+    ```vue
+    <template>
+      <CreativeEditor
+        :config="{ baseURL: '/assets' }"
+        :init="initDesignEditor"
+        width="100vw"
+        height="100vh"
+      />
+    </template>
+
+    <script setup lang="ts">
+    import { initDesignEditor } from './imgly';
+    import CreativeEditor from '@cesdk/cesdk-js/vue';
+    </script>
     ```
 
-    ## Step 4: Run the Development Server
+    ## Step 6: Use the Component
 
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm run dev
-      </TerminalTab>
+    Use the component in your app:
 
-      <TerminalTab label="pnpm">
-        pnpm run dev
-      </TerminalTab>
+    ```vue
+    <template>
+      <DesignEditor />
+    </template>
 
-      <TerminalTab label="yarn">
-        yarn dev
-      </TerminalTab>
-    </TerminalTabs>
-
-    Open `http://localhost:5173` in your browser.
+    <script setup lang="ts">
+    import DesignEditor from './components/DesignEditor.vue';
+    </script>
+    ```
   </TabItem>
 
   <TabItem label="Existing Project">
     ## Get Started
 
-    Integrate the Design Editor into an existing web application. This adds the editor configuration to your current project structure.
+    Integrate the Design Editor into an existing Vue application. This adds the editor configuration to your current project structure.
 
     ## Step 1: Clone
 
@@ -233,7 +254,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     ## Step 3: Download Assets
 
-    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
+    CE.SDK requires engine assets (fonts, icons, UI elements) to function. For Vue projects, place these in your `public/` directory which is served automatically.
 
     <TerminalTabs>
       <TerminalTab label="Download">
@@ -243,38 +264,40 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 4: Create the Editor Component.
 
-    ## Step 4: Add a Container Element
+    ## Step 4: Create the Editor Component
 
-    Add a container element to your HTML where the editor will be mounted:
+    Create a Vue component using the official CE.SDK Vue wrapper (e.g., `DesignEditor.vue`):
 
-    ```html
-    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
+    ```vue
+    <template>
+      <CreativeEditor
+        :config="{ baseURL: '/assets' }"
+        :init="initDesignEditor"
+        width="100vw"
+        height="100vh"
+      />
+    </template>
+
+    <script setup lang="ts">
+    import { initDesignEditor } from './imgly';
+    import CreativeEditor from '@cesdk/cesdk-js/vue';
+    </script>
     ```
 
-    ## Step 5: Initialize the Editor
+    ## Step 5: Use the Component
 
-    Import and call the initialization function from your application's entry point:
+    Use the component in your app:
 
-    ```typescript title="src/index.ts"
-    import CreativeEditorSDK from '@cesdk/cesdk-js';
+    ```vue
+    <template>
+      <DesignEditor />
+    </template>
 
-    import { initDesignEditor } from './imgly';
-
-    const config = {
-      userId: 'your-user-id',
-      baseURL: '/assets'
-      // license: 'YOUR_LICENSE_KEY',
-    };
-
-    CreativeEditorSDK.create('#cesdk_container', config)
-      .then(async (cesdk) => {
-        await initDesignEditor(cesdk);
-      })
-      .catch((error) => {
-        console.error('Failed to initialize CE.SDK:', error);
-      });
+    <script setup lang="ts">
+    import DesignEditor from './components/DesignEditor.vue';
+    </script>
     ```
   </TabItem>
 </Tabs>
@@ -283,7 +306,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
 CE.SDK offers multiple ways to load content into the editor. Choose the method that matches your use case:
 
-```typescript title="src/index.ts"
+```typescript title="src/imgly/index.ts"
 // Create a blank design canvas - starts with an empty design scene
 await cesdk.actions.run('scene.create');
 
@@ -305,9 +328,9 @@ The `createDesignScene()` method is ideal for design workflows, as it creates a 
 
 The Design Editor uses asset source plugins to provide built-in libraries for templates, stickers, shapes, and fonts. The starter kit includes a curated selection—customize what's included based on your needs.
 
-Asset sources are added via plugins in `src/index.ts`. Enable or disable individual sources:
+Asset sources are added via plugins in `src/imgly/index.ts`. Enable or disable individual sources:
 
-```typescript title="src/index.ts"
+```typescript title="src/imgly/index.ts"
 import {
   FiltersAssetSource,
   StickerAssetSource,
@@ -535,7 +558,7 @@ CE.SDK has a rich plugin ecosystem that extends the editor with powerful capabil
 
 #### Background Removal
 
-Add AI-powered background removal that runs entirely client-side. The background removal plugin processes images directly in the browser without sending data to external servers.
+Add AI-powered background removal: The background removal plugin processes images directly in the browser without sending data to external servers.
 
 ```typescript title="src/imgly/config/plugin.ts"
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal';
