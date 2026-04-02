@@ -45,6 +45,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.navigation.undoRedo', /* "Undo" and "Redo" buttons */
     // 'ly.img.navigation.zoom', /* Zoom controls */
     // 'ly.img.navigation.actions', /* Actions dropdown */
+    // 'ly.img.navigation.documentSettings', /* Document settings button */
     // #endregion
 
     // ============================================================================
@@ -161,8 +162,8 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
 
     // #region Page Features
     // 'ly.img.page', /* Enables all page children below */
-    'ly.img.page.move' /* Move Up/Down/Left/Right buttons */,
-    'ly.img.page.add' /* Add Page button in Canvas Bar */,
+    // 'ly.img.page.move', /* Move Up/Down/Left/Right buttons */
+    // 'ly.img.page.add', /* Add Page button in Canvas Bar */
     'ly.img.page.resize' /* Resize button and page formats */,
     'ly.img.page.settings' /* Read-only page dimensions, unit, and resolution */,
     // 'ly.img.page.bleedMargin', /* Bleed margin controls */

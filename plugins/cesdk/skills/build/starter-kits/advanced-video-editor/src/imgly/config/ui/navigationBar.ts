@@ -10,7 +10,8 @@
  * - `'ly.img.back.navigationBar'` - Back button (requires onClick handler)
  * - `'ly.img.close.navigationBar'` - Close button (requires onClick handler)
  *
- * **History:**
+ * **Document & History:**
+ * - `'ly.img.documentSettings.navigationBar'` - Document settings button
  * - `'ly.img.undoRedo.navigationBar'` - Undo/Redo buttons
  * - `'ly.img.title.navigationBar'` - Document title display
  * - `'ly.img.zoom.navigationBar'` - Zoom controls
@@ -56,8 +57,9 @@ export function setupNavigationBar(cesdk: CreativeEditorSDK): void {
   // #region Navigation Bar Order
   cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
     // ============================
-    // Left Section - History
+    // Left Section - Document Settings & History
     // ============================
+    'ly.img.documentSettings.navigationBar',
     'ly.img.undoRedo.navigationBar',
 
     // ============================

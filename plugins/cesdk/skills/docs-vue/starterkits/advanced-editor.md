@@ -4,7 +4,7 @@
 
 ---
 
-Comprehensive design editing for your Vue app—professional tools for graphics, templates, and multi-page documents. Runs entirely in the browser with no server dependencies.
+Comprehensive design editing for your web app—professional tools for graphics, templates, and multi-page documents. Runs entirely in the browser with no server dependencies.
 
 ![Design Editor (Advanced) starter kit showing a comprehensive professional editing interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -22,109 +22,81 @@ Comprehensive design editing for your Vue app—professional tools for graphics,
 
 ***
 
-## Prerequisites
+## Pre-requisites
 
-Before you begin, make sure you have the following:
+This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
-- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list.
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list
 
 ***
 
 <Tabs syncKey="project-type">
   <TabItem label="New Project">
-    ## Step 1: Create a New Project
+    ## Get Started
 
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm create vue@latest your-project-name
-        cd your-project-name
-      </TerminalTab>
+    Start fresh with a standalone Design Editor (Advanced) project. This creates a complete, ready-to-run application.
 
-      <TerminalTab label="pnpm">
-        pnpm create vue@latest your-project-name
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn create vue your-project-name
-        cd your-project-name
-      </TerminalTab>
-    </TerminalTabs>
-
-    ## Step 2: Clone the Starter Kit
-
-    Clone the starter kit and copy the editor configuration to your project:
+    ## Step 1: Clone the Repository
 
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-advanced-design-editor-ts-web.git
-        cp -r starterkit-advanced-design-editor-ts-web/src/imgly ./src/imgly
-        rm -rf starterkit-advanced-design-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-advanced-design-editor-ts-web/src/imgly ./src/imgly
+        npx degit imgly/starterkit-advanced-design-editor-ts-web starterkit-advanced-design-editor-ts-web
       </TerminalTab>
     </TerminalTabs>
 
-    The `imgly/` folder contains the editor configuration:
+    The `src/` folder contains the editor code:
 
     ```
-    imgly/
-    ├── index.ts                  # Editor initialization function
-    ├── config/
-    │   ├── plugin.ts             # Main configuration plugin
-    │   ├── actions.ts            # Export/import actions
-    │   ├── features.ts           # Feature toggles
-    │   ├── i18n.ts               # Translations
-    │   ├── settings.ts           # Engine settings
-    │   └── ui/                   # UI customization
-    │       ├── index.ts          # Combines UI customization exports
-    │       ├── canvas.ts         # Canvas configuration
-    │       ├── components.ts     # Custom component registration
-    │       ├── dock.ts           # Dock layout configuration
-    │       ├── inspectorBar.ts   # Inspector bar layout
-    │       ├── navigationBar.ts  # Navigation bar layout
-    │       └── panel.ts          # Panel configuration
-    └── plugins/
-        └── background-removal.ts # Background removal plugin
+    src/
+    ├── index.ts                      # Application entry point
+    └── imgly/
+        ├── index.ts                  # Editor initialization function
+        ├── config/
+        │   ├── plugin.ts             # Main configuration plugin
+        │   ├── actions.ts            # Export/import actions
+        │   ├── features.ts           # Feature toggles
+        │   ├── i18n.ts               # Translations
+        │   ├── settings.ts           # Engine settings
+        │   └── ui/                   # UI customization
+        │       ├── index.ts          # Combines UI customization exports
+        │       ├── canvas.ts         # Canvas configuration
+        │       ├── components.ts     # Custom component registration
+        │       ├── dock.ts           # Dock layout configuration
+        │       ├── inspectorBar.ts   # Inspector bar layout
+        │       ├── navigationBar.ts  # Navigation bar layout
+        │       └── panel.ts          # Panel configuration
+        └── plugins/
+            └── background-removal.ts # Background removal plugin
     ```
 
-    ## Step 3: Install Dependencies
+    ## Step 2: Install Dependencies
 
-    Install the required packages for the editor:
-
-    ### Core Editor
-
-    Install the Creative Editor SDK:
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
-    </TerminalTabs>
-
-    ### Background Removal
-
-    Add AI-powered background removal:
+    Install the required packages:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/background-removal onnxruntime-web
+        cd starterkit-advanced-design-editor-ts-web
+        npm install
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/background-removal onnxruntime-web
+        cd starterkit-advanced-design-editor-ts-web
+        pnpm install
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/background-removal onnxruntime-web
+        cd starterkit-advanced-design-editor-ts-web
+        yarn
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 4: Download Assets
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -136,55 +108,49 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 5: Create the Editor Component
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in `src/index.ts`.
 
-    Create a Vue component using the official CE.SDK Vue wrapper:
-
-    ```vue
-    <template>
-      <CreativeEditor
-        :config="{ baseURL: '/assets' }"
-        :init="initAdvancedEditor"
-        width="100vw"
-        height="100vh"
-      />
-    </template>
-
-    <script setup lang="ts">
-    import { initAdvancedEditor } from './imgly';
-    import CreativeEditor from '@cesdk/cesdk-js/vue';
-    </script>
+    ```typescript title="src/index.ts"
+    const config = {
+      // ...
+      baseURL: '/assets'
+      // ...
+    };
     ```
 
-    ## Step 6: Use the Component
+    ## Step 4: Run the Development Server
 
-    Import and use the editor component in your application:
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm run dev
+      </TerminalTab>
 
-    ```vue
-    <template>
-      <AdvancedEditor />
-    </template>
+      <TerminalTab label="pnpm">
+        pnpm run dev
+      </TerminalTab>
 
-    <script setup lang="ts">
-    import AdvancedEditor from './components/AdvancedEditor.vue';
-    </script>
-    ```
+      <TerminalTab label="yarn">
+        yarn dev
+      </TerminalTab>
+    </TerminalTabs>
+
+    Open `http://localhost:5173` in your browser.
   </TabItem>
 
   <TabItem label="Existing Project">
     ## Get Started
 
-    Integrate Design Editor (Advanced) into an existing Vue application. This adds the editor configuration to your current project structure.
+    Integrate Design Editor (Advanced) into an existing web application. This adds the editor configuration to your current project structure.
 
-    ### Step 1: Navigate to Your Project
+    ## Step 1: Clone
 
     <TerminalTabs>
-      <TerminalTab label="Navigate">cd your-project</TerminalTab>
+      <TerminalTab label="Navigate">
+        cd your-project
+      </TerminalTab>
     </TerminalTabs>
 
-    ### Step 2: Copy the Editor Configuration
-
-    Clone the starter kit and copy the `imgly` folder to your project:
+    Clone the starter kit and copy the editor configuration to your project:
 
     <TerminalTabs>
       <TerminalTab label="git">
@@ -223,11 +189,11 @@ Before you begin, make sure you have the following:
         └── background-removal.ts # Background removal plugin
     ```
 
-    ### Step 3: Install Dependencies
+    ## Step 2: Install Dependencies
 
     Install the required packages for the editor:
 
-    #### Core Editor
+    ### Core Editor
 
     Install the Creative Editor SDK:
 
@@ -245,7 +211,7 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    #### Background Removal
+    ### Background Removal
 
     Add AI-powered background removal:
 
@@ -263,7 +229,9 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    ### Step 4: Download Assets
+    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
+
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -275,40 +243,38 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Create the Editor Component.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
 
-    ### Step 5: Create the Editor Component
+    ## Step 4: Add a Container Element
 
-    Create a Vue component using the official CE.SDK Vue wrapper:
+    Add a container element to your HTML where the editor will be mounted:
 
-    ```vue
-    <template>
-      <CreativeEditor
-        :config="{ baseURL: '/assets' }"
-        :init="initAdvancedEditor"
-        width="100vw"
-        height="100vh"
-      />
-    </template>
-
-    <script setup lang="ts">
-    import { initAdvancedEditor } from './imgly';
-    import CreativeEditor from '@cesdk/cesdk-js/vue';
-    </script>
+    ```html
+    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
     ```
 
-    ### Step 6: Use the Component
+    ## Step 5: Initialize the Editor
 
-    Import and use the editor component in your application:
+    Import and call the initialization function from your application's entry point:
 
-    ```vue
-    <template>
-      <AdvancedEditor />
-    </template>
+    ```typescript title="src/index.ts"
+    import CreativeEditorSDK from '@cesdk/cesdk-js';
 
-    <script setup lang="ts">
-    import AdvancedEditor from './components/AdvancedEditor.vue';
-    </script>
+    import { initAdvancedEditor } from './imgly';
+
+    const config = {
+      userId: 'your-user-id',
+      baseURL: '/assets'
+      // license: 'YOUR_LICENSE_KEY',
+    };
+
+    CreativeEditorSDK.create('#cesdk_container', config)
+      .then(async (cesdk) => {
+        await initAdvancedEditor(cesdk);
+      })
+      .catch((error) => {
+        console.error('Failed to initialize CE.SDK:', error);
+      });
     ```
   </TabItem>
 </Tabs>
@@ -385,7 +351,7 @@ await cesdk.actions.run('exportDesign', { mimeType: 'image/png' });
 
 #### Import from File Picker
 
-```typescript title="/imgly/config/actions.ts"
+```typescript title="src/imgly/config/actions.ts"
 // Let users open images from their device
 cesdk.actions.register('importImage', async () => {
   const blobURL = await cesdk.utils.loadFile({
@@ -398,7 +364,7 @@ cesdk.actions.register('importImage', async () => {
 
 #### Export and Save
 
-```typescript title="/imgly/config/actions.ts"
+```typescript title="src/imgly/config/actions.ts"
 // Register export action that downloads the edited design
 cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs, options } = await cesdk.utils.export(exportOptions);
@@ -408,7 +374,7 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
 
 #### Upload to Your Backend
 
-```typescript title="/imgly/config/actions.ts"
+```typescript title="src/imgly/config/actions.ts"
 // Override the built-in exportDesign action to send to your server
 cesdk.actions.register('exportDesign', async (exportOptions) => {
   const { blobs } = await cesdk.utils.export(exportOptions);

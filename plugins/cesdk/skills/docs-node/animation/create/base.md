@@ -35,7 +35,7 @@ async function main() {
 
   try {
     // Create a scene with a page
-    const scene = engine.scene.create();
+    const scene = engine.scene.create('DepthStack');
     const page = engine.block.create('page');
     engine.block.setWidth(page, 1920);
     engine.block.setHeight(page, 1080);

@@ -35,7 +35,7 @@ async function main() {
 
   try {
     // Create a scene with a page
-    const scene = engine.scene.create();
+    const scene = engine.scene.create('DepthStack');
     const page = engine.block.create('page');
     engine.block.appendChild(scene, page);
     engine.block.setWidth(page, 1920);
@@ -216,7 +216,7 @@ We create a scene using `engine.scene.create()`, then create a page and append i
 
 ```typescript highlight-create-scene
 // Create a scene with a page
-const scene = engine.scene.create();
+const scene = engine.scene.create('DepthStack');
 const page = engine.block.create('page');
 engine.block.appendChild(scene, page);
 engine.block.setWidth(page, 1920);

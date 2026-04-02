@@ -287,6 +287,7 @@ The following feature keys control navigation bar sub-components:
 | `ly.img.navigation.undoRedo` | Undo/redo buttons |
 | `ly.img.navigation.zoom` | Zoom controls |
 | `ly.img.navigation.preview` | Preview toggle |
+| `ly.img.navigation.documentSettings` | Document settings button |
 
 For more visibility control options, see [Show/Hide Components](./user-interface/customization/quick-start/show-hide-components.md).
 

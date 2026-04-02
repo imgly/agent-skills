@@ -45,7 +45,7 @@ const engine = await CreativeEngine.init({
 
 try {
   // Create a scene with a page
-  const scene = engine.scene.create();
+  const scene = engine.scene.create('DepthStack');
   const page = engine.block.create('page');
   engine.block.setWidth(page, 800);
   engine.block.setHeight(page, 500);
@@ -204,7 +204,7 @@ Create a scene with specific page dimensions:
 
 ```typescript highlight-create-scene
 // Create a scene with a page
-const scene = engine.scene.create();
+const scene = engine.scene.create('DepthStack');
 const page = engine.block.create('page');
 engine.block.setWidth(page, 800);
 engine.block.setHeight(page, 500);

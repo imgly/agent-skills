@@ -55,7 +55,7 @@ try {
   // Create a scene with a page
   const pageWidth = 1920;
   const pageHeight = 1080;
-  const scene = engine.scene.create();
+  const scene = engine.scene.create('DepthStack');
 
   // Create a page
   const page = engine.block.create('page');
@@ -231,7 +231,7 @@ We create a scene and page for the video composition.
   // Create a scene with a page
   const pageWidth = 1920;
   const pageHeight = 1080;
-  const scene = engine.scene.create();
+  const scene = engine.scene.create('DepthStack');
 
   // Create a page
   const page = engine.block.create('page');

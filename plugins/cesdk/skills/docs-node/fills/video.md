@@ -39,7 +39,7 @@ async function main() {
 
   try {
     // Create a scene with a page
-    const scene = engine.scene.create();
+    const scene = engine.scene.create('DepthStack');
     const page = engine.block.create('page');
     engine.block.setWidth(page, 800);
     engine.block.setHeight(page, 600);
@@ -230,7 +230,7 @@ Video fills work in any scene. Create a scene and add a page to get started.
 
 ```typescript highlight=highlight-create-scene
 // Create a scene with a page
-const scene = engine.scene.create();
+const scene = engine.scene.create('DepthStack');
 const page = engine.block.create('page');
 engine.block.setWidth(page, 800);
 engine.block.setHeight(page, 600);

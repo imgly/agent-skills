@@ -47,7 +47,7 @@ async function main(): Promise<void> {
 
   try {
     // Create a scene with a page
-    const scene = engine.scene.create();
+    const scene = engine.scene.create('DepthStack');
     const page = engine.block.create('page');
     engine.block.appendChild(scene, page);
 

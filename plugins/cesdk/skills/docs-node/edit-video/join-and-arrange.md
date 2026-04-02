@@ -47,7 +47,7 @@ const engine = await CreativeEngine.init({
 
 try {
   // Create a scene with a page
-  const scene = engine.scene.create();
+  const scene = engine.scene.create('DepthStack');
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
 
@@ -175,7 +175,7 @@ We create a scene and set up a page for the video composition.
 
 ```typescript highlight=highlight-create-scene
   // Create a scene with a page
-  const scene = engine.scene.create();
+  const scene = engine.scene.create('DepthStack');
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
 

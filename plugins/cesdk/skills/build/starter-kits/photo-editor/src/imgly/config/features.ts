@@ -39,13 +39,14 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     // ============================================================================
 
     // #region Navigation Features
-    'ly.img.navigation' /* Enables all children below */,
-    // 'ly.img.navigation.bar', /* Navigation Bar visibility */
-    // 'ly.img.navigation.back', /* "Back" button */
-    // 'ly.img.navigation.close', /* "Close" button */
-    // 'ly.img.navigation.undoRedo', /* "Undo" and "Redo" buttons */
-    // 'ly.img.navigation.zoom', /* Zoom controls */
-    // 'ly.img.navigation.actions', /* Actions dropdown */
+    // 'ly.img.navigation' /* Enables all children below */,
+    'ly.img.navigation.bar' /* Navigation Bar visibility */,
+    'ly.img.navigation.back' /* "Back" button */,
+    'ly.img.navigation.close' /* "Close" button */,
+    'ly.img.navigation.undoRedo' /* "Undo" and "Redo" buttons */,
+    'ly.img.navigation.zoom' /* Zoom controls */,
+    'ly.img.navigation.actions' /* Actions dropdown */,
+    // 'ly.img.navigation.documentSettings', /* Document settings button */
     // #endregion
 
     // ============================================================================
@@ -125,9 +126,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     // ============================================================================
 
     // #region Styling Features
-    'ly.img.fill' /* Fill button and Fill Panel */,
-    // 'ly.img.fill.color', /* Solid and gradient fill controls */
-    // 'ly.img.fill.image', /* Image fill controls and crop */
+    // 'ly.img.fill' /* Fill button and Fill Panel */,
+    'ly.img.fill.color' /* Solid and gradient fill controls */,
+    'ly.img.fill.image' /* Image fill controls and crop */,
     // 'ly.img.fill.video', /* Video fill, trim, volume, speed */
     'ly.img.opacity' /* Opacity controls */,
     'ly.img.blendMode' /* Blend mode controls */,

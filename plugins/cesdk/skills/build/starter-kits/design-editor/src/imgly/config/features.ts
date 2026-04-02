@@ -45,6 +45,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.navigation.undoRedo', /* "Undo" and "Redo" buttons */
     // 'ly.img.navigation.zoom', /* Zoom controls */
     // 'ly.img.navigation.actions', /* Actions dropdown */
+    // 'ly.img.navigation.documentSettings', /* Document settings button */
     // #endregion
 
     // ============================================================================
@@ -187,9 +188,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // ============================================================================
 
     // #region Styling Features
-    'ly.img.fill' /* Fill button and Fill Panel */,
-    // 'ly.img.fill.color', /* Solid and gradient fill controls */
-    // 'ly.img.fill.image', /* Image fill controls and crop */
+    // 'ly.img.fill' /* Fill button and Fill Panel */,
+    'ly.img.fill.color' /* Solid and gradient fill controls */,
+    'ly.img.fill.image' /* Image fill controls and crop */,
     // 'ly.img.fill.video', /* Video fill, trim, volume, speed */
     'ly.img.stroke' /* Stroke controls (Color, Width) */,
     // 'ly.img.stroke.color', /* Stroke color picker */

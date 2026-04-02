@@ -129,6 +129,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
+      layout: 'DepthStack',
       page: { width: 800, height: 500, unit: 'Pixel' }
     });
 

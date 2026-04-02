@@ -454,6 +454,7 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.navigation.undoRedo` | Controls visibility of "Undo" and "Redo" buttons |
 | `ly.img.navigation.zoom` | Controls visibility of zoom controls |
 | `ly.img.navigation.actions` | Controls visibility of navigation actions |
+| `ly.img.navigation.documentSettings` | Controls visibility of the document settings button |
 
 ### Inspector Features
 

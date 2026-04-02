@@ -29,6 +29,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.navigation.undoRedo', /* "Undo" and "Redo" buttons */
     'ly.img.navigation.zoom' /* Zoom controls */
     // 'ly.img.navigation.actions', /* Actions dropdown */
+    // 'ly.img.navigation.documentSettings', /* Document settings button */
     // 'ly.img.navigation.*', /* All navigation features */
 
     /* ============================== */

@@ -4,7 +4,7 @@
 
 ---
 
-Professional photo editing for your Vue app—crop, filter, adjust, and remove backgrounds. Runs entirely in the browser with no server dependencies.
+Professional photo editing for your web app—crop, filter, adjust, and remove backgrounds. Runs entirely in the browser with no server dependencies.
 
 ![Photo Editor starter kit showing a professional photo editing interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -22,13 +22,13 @@ Professional photo editing for your Vue app—crop, filter, adjust, and remove b
 
 ***
 
-## Prerequisites
+## Pre-requisites
 
-Before you begin, make sure you have the following:
+This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
-- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list.
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list
 
 ***
 
@@ -36,80 +36,67 @@ Before you begin, make sure you have the following:
   <TabItem label="New Project">
     ## Get Started
 
-    Create a new Vue application with Photo Editor integration.
+    Start fresh with a standalone Photo Editor project. This creates a complete, ready-to-run application.
 
-    ## Step 1: Create a New Project
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm create vue@latest your-project-name
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm create vue your-project-name
-        cd your-project-name
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn create vue your-project-name
-        cd your-project-name
-      </TerminalTab>
-    </TerminalTabs>
-
-    ## Step 2: Clone the Starter Kit
-
-    Clone the starter kit and copy the editor configuration to your project:
+    ## Step 1: Clone the Repository
 
     <TerminalTabs>
       <TerminalTab label="git">
         git clone https://github.com/imgly/starterkit-photo-editor-ts-web.git
-        cp -r starterkit-photo-editor-ts-web/src/imgly ./src/imgly
-        rm -rf starterkit-photo-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-photo-editor-ts-web/src/imgly ./src/imgly
+        npx degit imgly/starterkit-photo-editor-ts-web starterkit-photo-editor-ts-web
       </TerminalTab>
     </TerminalTabs>
 
-    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
+    The `src/` folder contains the editor code:
 
-    ## Step 3: Install Dependencies
+    ```
+    src/
+    ├── index.ts                      # Application entry point
+    └── imgly/
+        ├── index.ts                  # Editor initialization function
+        ├── config/
+        │   ├── plugin.ts             # Main configuration plugin
+        │   ├── actions.ts            # Export/import actions
+        │   ├── features.ts           # Feature toggles
+        │   ├── i18n.ts               # Translations
+        │   ├── settings.ts           # Engine settings
+        │   └── ui/                   # UI customization
+        │       ├── index.ts          # Combines UI customization exports
+        │       ├── canvas.ts         # Canvas configuration
+        │       ├── components.ts     # Custom component registration
+        │       ├── dock.ts           # Dock layout configuration
+        │       ├── inspectorBar.ts   # Inspector bar layout
+        │       ├── navigationBar.ts  # Navigation bar layout
+        │       └── panel.ts          # Panel configuration
+        └── plugins/
+            └── background-removal.ts # Background removal plugin
+    ```
 
-    Install the required packages for the editor:
+    ## Step 2: Install Dependencies
 
-    ### Core Editor
-
-    Install the Creative Editor SDK:
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
-    </TerminalTabs>
-
-    ### Background Removal
-
-    Add AI-powered background removal:
+    Install the required packages:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/background-removal onnxruntime-web
+        cd starterkit-photo-editor-ts-web
+        npm install
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/background-removal onnxruntime-web
+        cd starterkit-photo-editor-ts-web
+        pnpm install
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/background-removal onnxruntime-web
+        cd starterkit-photo-editor-ts-web
+        yarn
       </TerminalTab>
     </TerminalTabs>
 
-    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
-
-    ## Step 4: Download Assets
+    ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -121,41 +108,33 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Create the Editor Component.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in `src/index.ts`.
 
-    ## Step 5: Create the Editor Component
-
-    Create a Vue component using the official CE.SDK Vue wrapper (e.g., `PhotoEditor.vue`):
-
-    ```vue
-    <template>
-      <CreativeEditor
-        :config="{ baseURL: '/assets' }"
-        :init="initPhotoEditor"
-        width="100vw"
-        height="100vh"
-      />
-    </template>
-
-    <script setup lang="ts">
-    import { initPhotoEditor } from './imgly';
-    import CreativeEditor from '@cesdk/cesdk-js/vue';
-    </script>
+    ```typescript title="src/index.ts"
+    const config = {
+      // ...
+      baseURL: '/assets'
+      // ...
+    };
     ```
 
-    ## Step 6: Use the Component
+    ## Step 4: Run the Development Server
 
-    Use the component in your app:
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm run dev
+      </TerminalTab>
 
-    ```vue
-    <template>
-      <PhotoEditor />
-    </template>
+      <TerminalTab label="pnpm">
+        pnpm run dev
+      </TerminalTab>
 
-    <script setup lang="ts">
-    import PhotoEditor from './components/PhotoEditor.vue';
-    </script>
-    ```
+      <TerminalTab label="yarn">
+        yarn dev
+      </TerminalTab>
+    </TerminalTabs>
+
+    Open `http://localhost:5173` in your browser.
 
     ## Force Crop
 
@@ -199,7 +178,7 @@ Before you begin, make sure you have the following:
   <TabItem label="Existing Project">
     ## Get Started
 
-    Integrate the Photo Editor into an existing Vue application. This adds the editor configuration to your current project structure.
+    Integrate the Photo Editor into an existing web application. This adds the editor configuration to your current project structure.
 
     ## Step 1: Clone
 
@@ -302,40 +281,38 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 4: Create the Editor Component.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
 
-    ## Step 4: Create the Editor Component
+    ## Step 4: Add a Container Element
 
-    Create a Vue component that uses the `CreativeEditor` wrapper with the `initPhotoEditor` function from the starterkit:
+    Add a container element to your HTML where the editor will be mounted:
 
-    ```vue
-    <template>
-      <CreativeEditor
-        :config="{ baseURL: '/assets' }"
-        :init="initPhotoEditor"
-        width="100vw"
-        height="100vh"
-      />
-    </template>
-
-    <script setup lang="ts">
-    import { initPhotoEditor } from './imgly';
-    import CreativeEditor from '@cesdk/cesdk-js/vue';
-    </script>
+    ```html
+    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
     ```
 
-    ## Step 5: Use the Component
+    ## Step 5: Initialize the Editor
 
-    Use the component in your app:
+    Import and call the initialization function from your application's entry point:
 
-    ```vue
-    <template>
-      <PhotoEditor />
-    </template>
+    ```typescript title="src/index.ts"
+    import CreativeEditorSDK from '@cesdk/cesdk-js';
 
-    <script setup>
-    import PhotoEditor from './components/PhotoEditor.vue';
-    </script>
+    import { initPhotoEditor } from './imgly';
+
+    const config = {
+      userId: 'your-user-id',
+      baseURL: '/assets'
+      // license: 'YOUR_LICENSE_KEY',
+    };
+
+    CreativeEditorSDK.create('#cesdk_container', config)
+      .then(async (cesdk) => {
+        await initPhotoEditor(cesdk);
+      })
+      .catch((error) => {
+        console.error('Failed to initialize CE.SDK:', error);
+      });
     ```
 
     ## Force Crop
@@ -382,7 +359,7 @@ Before you begin, make sure you have the following:
 
 CE.SDK offers multiple ways to load content into the editor. Choose the method that matches your use case:
 
-```typescript title="src/imgly/index.ts"
+```typescript title="src/index.ts"
 // Load from an image URL - creates a new scene with the image
 await cesdk.createFromImage('https://example.com/photo.jpg');
 
@@ -404,9 +381,9 @@ The `createFromImage()` method is ideal for photo editing workflows, as it autom
 
 The Photo Editor uses asset source plugins to provide built-in libraries for filters, effects, stickers, shapes, and fonts. The starter kit includes a curated selection—customize what's included based on your needs.
 
-Asset sources are added via plugins in `src/imgly/index.ts`. Enable or disable individual sources:
+Asset sources are added via plugins in `src/index.ts`. Enable or disable individual sources:
 
-```typescript title="src/imgly/index.ts"
+```typescript title="src/index.ts"
 import {
   FiltersAssetSource,
   StickerAssetSource,
