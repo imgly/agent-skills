@@ -12,7 +12,7 @@ This guide shows how to use the vector edit APIs to enter path editing mode, swi
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-stickers-and-shapes-vector-edit-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-stickers-and-shapes-vector-edit-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-stickers-and-shapes-vector-edit-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-stickers-and-shapes-vector-edit-browser/)
 

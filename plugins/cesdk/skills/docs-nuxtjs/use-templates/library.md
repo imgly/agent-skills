@@ -16,7 +16,7 @@ Configure and populate the Template Library in CE.SDK so users can browse and se
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-use-templates-library-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-use-templates-library-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-library-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-use-templates-library-browser/)
 

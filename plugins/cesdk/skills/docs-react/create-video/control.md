@@ -16,7 +16,7 @@ Play, pause, seek, and preview audio and video content programmatically using CE
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-control-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-control-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-control-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-control-browser/)
 

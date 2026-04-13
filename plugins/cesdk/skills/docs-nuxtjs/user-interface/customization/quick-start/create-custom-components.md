@@ -16,7 +16,7 @@ Create and place custom UI components in CE.SDK using `registerComponent()` and 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-customization-quick-start-create-custom-components-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-customization-quick-start-create-custom-components-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-quick-start-create-custom-components-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-quick-start-create-custom-components-browser/)
 

@@ -17,7 +17,7 @@ block system for rich multimedia experiences.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-audio-add-music-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-audio-add-music-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-audio-add-music-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-audio-add-music-browser/)
 
@@ -125,8 +125,8 @@ class Example implements EditorPlugin {
 
     // Enable audio and timeline features for the UI
     cesdk.feature.enable('ly.img.video.timeline');
-    cesdk.feature.enable('ly.img.video.audio');
-    cesdk.feature.enable('ly.img.video.controls.playback');
+    cesdk.feature.enable('ly.img.video.timeline.audio');
+    cesdk.feature.enable('ly.img.video.timeline.controls.playback');
 
     // Create an audio block for background music
     const audioBlock = engine.block.create('audio');
@@ -227,15 +227,15 @@ Audio blocks require timeline support. Enable the audio and timeline features to
 ```typescript highlight-enable-audio-features
 // Enable audio and timeline features for the UI
 cesdk.feature.enable('ly.img.video.timeline');
-cesdk.feature.enable('ly.img.video.audio');
-cesdk.feature.enable('ly.img.video.controls.playback');
+cesdk.feature.enable('ly.img.video.timeline.audio');
+cesdk.feature.enable('ly.img.video.timeline.controls.playback');
 ```
 
 These features control:
 
 - `ly.img.video.timeline` - Shows the timeline for positioning audio tracks
-- `ly.img.video.audio` - Enables the audio library in the dock
-- `ly.img.video.controls.playback` - Adds playback controls for previewing audio
+- `ly.img.video.timeline.audio` - Enables the audio library in the dock
+- `ly.img.video.timeline.controls.playback` - Adds playback controls for previewing audio
 
 ### User Workflow
 
@@ -382,8 +382,8 @@ Always destroy blocks that are no longer needed to prevent memory leaks, especia
 | Method                                             | Description                         |
 | -------------------------------------------------- | ----------------------------------- |
 | `feature.enable('ly.img.video.timeline')`          | Show timeline for audio positioning |
-| `feature.enable('ly.img.video.audio')`             | Enable audio library in dock        |
-| `feature.enable('ly.img.video.controls.playback')` | Add playback controls               |
+| `feature.enable('ly.img.video.timeline.audio')`             | Enable audio library in dock        |
+| `feature.enable('ly.img.video.timeline.controls.playback')` | Add playback controls               |
 | `block.create('audio')`                            | Create a new audio block            |
 | `block.setString(id, 'audio/fileURI', uri)`        | Set the audio source file           |
 | `block.setTimeOffset(id, seconds)`                 | Set when audio starts playing       |

@@ -16,9 +16,9 @@ dependencies.
 >
 > - [Download examples](https://github.com/imgly/starterkit-video-editor-ts-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-video-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-video-editor/)
 
@@ -44,8 +44,8 @@ Integrate the Video Editor into your React application using the official React 
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm create vite@latest your-project-name -- --template react-ts cd
-        your-project-name
+        npm create vite@latest your-project-name -- --template react-ts
+        cd your-project-name
       </TerminalTab>
 
       <TerminalTab label="pnpm">
@@ -54,7 +54,8 @@ Integrate the Video Editor into your React application using the official React 
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn create vite your-project-name --template react-ts cd your-project-name
+        yarn create vite your-project-name --template react-ts
+        cd your-project-name
       </TerminalTab>
     </TerminalTabs>
 
@@ -64,9 +65,9 @@ Integrate the Video Editor into your React application using the official React 
 
     <TerminalTabs>
       <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-video-editor-ts-web.git cp -r
-        starterkit-video-editor-ts-web/src/imgly ./src/imgly rm -rf
-        starterkit-video-editor-ts-web
+        git clone https://github.com/imgly/starterkit-video-editor-ts-web.git
+        cp -r starterkit-video-editor-ts-web/src/imgly ./src/imgly
+        rm -rf starterkit-video-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
@@ -135,9 +136,9 @@ Integrate the Video Editor into your React application using the official React 
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O
-        https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/ rm imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
       </TerminalTab>
     </TerminalTabs>
 
@@ -183,9 +184,9 @@ Integrate the Video Editor into your React application using the official React 
 
     <TerminalTabs>
       <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-video-editor-ts-web.git cp -r
-        starterkit-video-editor-ts-web/src/imgly ./src/imgly rm -rf
-        starterkit-video-editor-ts-web
+        git clone https://github.com/imgly/starterkit-video-editor-ts-web.git
+        cp -r starterkit-video-editor-ts-web/src/imgly ./src/imgly
+        rm -rf starterkit-video-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
@@ -232,9 +233,9 @@ Integrate the Video Editor into your React application using the official React 
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O
-        https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/ rm imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
       </TerminalTab>
     </TerminalTabs>
 

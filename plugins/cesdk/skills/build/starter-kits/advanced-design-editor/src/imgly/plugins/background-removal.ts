@@ -111,9 +111,7 @@ async function convertUriToBlob(
 /**
  * Applies background removal to the selected image block.
  */
-async function applyBackgroundRemoval(
-  cesdk: CreativeEditorSDK
-): Promise<void> {
+async function applyBackgroundRemoval(cesdk: CreativeEditorSDK): Promise<void> {
   const engine = cesdk.engine;
 
   // 1. Check selection - must have exactly one block selected

@@ -16,7 +16,7 @@ Rearrange UI components using `getComponentOrder()` to inspect the current layou
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-customization-quick-start-reorder-components-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-customization-quick-start-reorder-components-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-quick-start-reorder-components-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-quick-start-reorder-components-browser/)
 

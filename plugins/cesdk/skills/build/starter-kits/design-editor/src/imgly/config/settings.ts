@@ -118,9 +118,6 @@ export function setupSettings(engine: CreativeEngine): void {
   // Separator between page number and name (e.g., "Page 1 - Cover")
   engine.editor.setSetting('page/title/separator', '-');
 
-  // Allow editing page titles by double-clicking
-  engine.editor.setSetting('page/title/canEdit', true);
-
   // Custom font for page titles (optional)
   // engine.editor.setSetting('page/title/fontFileUri', 'https://example.com/font.ttf');
   // #endregion

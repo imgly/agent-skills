@@ -17,7 +17,7 @@ documents with millimeter or inch units and configurable DPI for export quality.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-design-units-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-design-units-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-design-units-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-concepts-design-units-browser/)
 

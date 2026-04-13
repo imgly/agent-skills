@@ -16,7 +16,7 @@ Implement undo/redo functionality and manage multiple history stacks to track ed
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-undo-and-history-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-undo-and-history-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-undo-and-history-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-concepts-undo-and-history-browser/)
 

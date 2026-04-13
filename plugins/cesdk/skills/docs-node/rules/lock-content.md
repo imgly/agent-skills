@@ -14,7 +14,7 @@ Lock design elements to prevent unwanted modifications using CE.SDK's scope-base
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-rules-lock-content-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-rules-lock-content-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-rules-lock-content-server-js)
 
 CE.SDK uses **scopes** to control what users can modify in a design. Each scope gates a specific capability—moving, resizing, text editing, image replacement, and more. The permission system has two layers: **global scopes** set defaults for the entire editor, and **block-level scopes** override those defaults when the global scope is set to `Defer`.
 

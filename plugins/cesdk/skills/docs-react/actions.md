@@ -875,7 +875,7 @@ const { blobs, options } = await cesdk.utils.export({
 // Load file from user
 const file = await cesdk.utils.loadFile({
   accept: 'image/*',
-  returnType: 'File', // 'dataURL', 'text', 'blob', 'arrayBuffer', or 'File'
+  returnType: 'File', // 'dataURL', 'objectURL', 'text', 'blob', 'arrayBuffer', or 'File'
 });
 
 // Download file to user's device

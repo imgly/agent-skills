@@ -18,7 +18,7 @@ compliance—all client-side without any backend infrastructure.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/plugins-print-ready-pdf-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/plugins-print-ready-pdf-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/plugins-print-ready-pdf-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/plugins-print-ready-pdf-browser/)
 

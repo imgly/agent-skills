@@ -14,7 +14,7 @@ Create automatic stack layouts in CE.SDK that arrange pages vertically or horizo
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-layout-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-layout-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-layout-server-js)
 
 CE.SDK provides stack layouts that automatically arrange pages with consistent spacing. Vertical stacks arrange pages top-to-bottom, horizontal stacks arrange left-to-right. This eliminates manual positioning for compositions like photo collages, product catalogs, social media carousels, and magazine layouts.
 

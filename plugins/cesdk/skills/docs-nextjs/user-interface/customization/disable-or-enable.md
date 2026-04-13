@@ -16,7 +16,7 @@ Control which editor features are available to users using the Feature API.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-disable-or-enable-browser/)
 
@@ -504,17 +504,17 @@ CE.SDK includes many built-in features organized by category:
 |------------|-------------|
 | `ly.img.video` | Parent key: enables all video child features |
 | `ly.img.video.timeline` | Controls visibility of the Video Timeline |
-| `ly.img.video.clips` | Controls visibility of video clips track |
-| `ly.img.video.overlays` | Controls visibility of overlays track |
-| `ly.img.video.audio` | Controls visibility of audio track |
-| `ly.img.video.addClip` | Controls ability to add clips |
-| `ly.img.video.controls` | Controls base video control UI |
-| `ly.img.video.controls.toggle` | Controls timeline collapse/expand toggle |
-| `ly.img.video.controls.background` | Controls background color controls |
-| `ly.img.video.controls.playback` | Controls play/pause and timestamp |
-| `ly.img.video.controls.loop` | Controls loop toggle |
-| `ly.img.video.controls.split` | Controls split clip control |
-| `ly.img.video.controls.timelineZoom` | Controls timeline zoom controls |
+| `ly.img.video.timeline.clips` | Controls visibility of video clips track |
+| `ly.img.video.timeline.overlays` | Controls visibility of overlays track |
+| `ly.img.video.timeline.audio` | Controls visibility of audio track |
+| `ly.img.video.timeline.addClip` | Controls ability to add clips |
+| `ly.img.video.timeline.controls` | Controls base video control UI |
+| `ly.img.video.timeline.controls.toggle` | Controls timeline collapse/expand toggle |
+| `ly.img.video.timeline.controls.background` | Controls background color controls |
+| `ly.img.video.timeline.controls.playback` | Controls play/pause and timestamp |
+| `ly.img.video.timeline.controls.loop` | Controls loop toggle |
+| `ly.img.video.timeline.controls.split` | Controls split clip control |
+| `ly.img.video.timeline.controls.timelineZoom` | Controls timeline zoom controls |
 | `ly.img.video.caption` | Controls video captions |
 
 ### Text Features

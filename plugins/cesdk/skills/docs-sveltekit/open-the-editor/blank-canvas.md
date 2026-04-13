@@ -16,7 +16,7 @@ Create a new scene from scratch to build designs with complete control over canv
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-blank-canvas-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-blank-canvas-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-blank-canvas-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-blank-canvas-browser/)
 

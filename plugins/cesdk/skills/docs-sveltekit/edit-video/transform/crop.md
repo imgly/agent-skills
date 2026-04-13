@@ -16,7 +16,7 @@ Crop videos to focus on specific areas, remove unwanted edges, or prepare clips 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-transform-crop-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-transform-crop-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-transform-crop-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-transform-crop-browser/)
 

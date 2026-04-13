@@ -17,7 +17,7 @@ blend mode system for professional layered compositions.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-blend-modes-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-blend-modes-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-blend-modes-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-composition-blend-modes-browser/)
 

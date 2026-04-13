@@ -1,5 +1,5 @@
 /**
- * Dock Configuration - Left Side Asset Panel
+ * Dock Configuration - Asset Panel
  *
  * Configure the asset dock to control which asset libraries appear.
  * Each dock entry opens a panel with assets from the specified sources.

@@ -14,7 +14,7 @@ Learn how to intercept and transform asset URIs in headless Node.js environments
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-uri-resolver-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-uri-resolver-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-uri-resolver-server-js)
 
 When CE.SDK loads an asset in Node.js, it resolves the URI to an absolute path before fetching. You can intercept this process to add authentication tokens or transform URIs for your automation workflows.
 

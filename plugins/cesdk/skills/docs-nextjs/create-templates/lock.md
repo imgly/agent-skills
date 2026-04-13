@@ -16,7 +16,7 @@ Set up a two-surface integration where template creators have full editing acces
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-templates-lock-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-templates-lock-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-lock-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-lock-browser/)
 

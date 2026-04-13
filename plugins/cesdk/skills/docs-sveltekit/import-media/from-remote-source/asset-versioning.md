@@ -16,7 +16,7 @@ Manage how CE.SDK stores and resolves asset URLs in saved designs, ensuring desi
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-from-remote-source-asset-versioning-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-from-remote-source-asset-versioning-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-from-remote-source-asset-versioning-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-from-remote-source-asset-versioning-browser/)
 

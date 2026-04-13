@@ -16,7 +16,7 @@ CE.SDK lets you load complete design templates from scene files to start project
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-templates-import-from-scene-file-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-templates-import-from-scene-file-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-import-from-scene-file-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-import-from-scene-file-browser/)
 

@@ -1,5 +1,5 @@
 /**
- * Dock Configuration - Left Side Photo Tools and Asset Panel
+ * Dock Configuration - Photo Tools and Asset Panel
  *
  * Configure the dock to control which photo editing tools and asset libraries appear.
  *

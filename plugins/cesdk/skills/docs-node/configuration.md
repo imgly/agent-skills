@@ -14,7 +14,7 @@ Set up CE.SDK engine with license keys, asset base URLs, user IDs, and configura
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-configuration-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-configuration-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-configuration-server-js)
 
 `CreativeEngine.init()` initializes the CE.SDK engine for headless operations in Node.js environments. The configuration object controls license validation, asset loading, user tracking, and logging behavior.
 

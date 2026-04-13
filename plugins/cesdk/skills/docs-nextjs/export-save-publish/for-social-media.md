@@ -17,7 +17,7 @@ Configure video exports with appropriate resolution, framerate, and bitrate opti
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-export-save-publish-export-for-social-media-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-export-save-publish-export-for-social-media-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-for-social-media-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-export-for-social-media-browser/)
 
@@ -109,7 +109,7 @@ class Example implements EditorPlugin {
 
     // Create a vertical video scene (9:16) for Instagram Reels, TikTok, YouTube Shorts
     await cesdk.actions.run('scene.create', {
-      page: { width: 1080, height: 1920, unit: 'Pixel' }
+      page: { width: 1080, height: 1920, unit: 'Pixel', color: { r: 0, g: 0, b: 0, a: 1 } }
     });
 
     const page = engine.scene.getCurrentPage();
@@ -189,7 +189,7 @@ Create a scene with the correct dimensions for vertical video. Use `cesdk.action
 ```typescript highlight-setup
     // Create a vertical video scene (9:16) for Instagram Reels, TikTok, YouTube Shorts
     await cesdk.actions.run('scene.create', {
-      page: { width: 1080, height: 1920, unit: 'Pixel' }
+      page: { width: 1080, height: 1920, unit: 'Pixel', color: { r: 0, g: 0, b: 0, a: 1 } }
     });
 
     const page = engine.scene.getCurrentPage();

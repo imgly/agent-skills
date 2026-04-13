@@ -17,7 +17,7 @@ CE.SDK for integration with CMS, DAM, or custom asset management systems.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-from-remote-source-your-server-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-from-remote-source-your-server-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-from-remote-source-your-server-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-from-remote-source-your-server-browser/)
 
@@ -101,7 +101,8 @@ class Example implements EditorPlugin {
     await cesdk.actions.run('scene.create', {
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
     });
 

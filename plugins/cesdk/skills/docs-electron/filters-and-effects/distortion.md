@@ -16,7 +16,7 @@ Apply distortion effects to warp, shift, and transform images and videos for dyn
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-filters-and-effects-distortion-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-filters-and-effects-distortion-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-filters-and-effects-distortion-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-filters-and-effects-distortion-browser/)
 

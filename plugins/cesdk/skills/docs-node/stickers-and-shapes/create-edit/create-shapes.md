@@ -16,7 +16,7 @@ combined with fills.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 
 ```typescript file=@cesdk_web_examples/guides-stickers-and-shapes-create-shapes-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';

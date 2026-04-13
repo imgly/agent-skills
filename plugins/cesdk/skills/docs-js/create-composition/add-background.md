@@ -16,7 +16,7 @@ Add backgrounds to designs using fills for pages and shapes, and the background 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-add-background-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-add-background-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-add-background-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-composition-add-background-browser/)
 

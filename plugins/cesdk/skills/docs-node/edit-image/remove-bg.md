@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Edit Images](./edit-image.md) > [Remove Background](./edit-image/remove-bg.md)
+**Navigation:** [Guides](./guides.md) > [Create and Edit Images](./edit-image.md) > [Remove Background](./edit-image/remove-bg.md) > [Plugins](./plugins.md) > [Background Removal](./edit-image/remove-bg.md)
 
 ---
 
@@ -14,7 +14,7 @@ Remove image backgrounds programmatically on the server for automated processing
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-image-remove-bg-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-image-remove-bg-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-remove-bg-server-js)
 
 The `@imgly/background-removal-node` package provides AI-powered background removal for Node.js applications. Processing runs entirely on your server using native bindings, eliminating external API dependencies and ensuring data privacy.
 

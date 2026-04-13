@@ -17,7 +17,7 @@ layout APIs and snapping system.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-position-and-align-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-position-and-align-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-position-and-align-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-composition-position-and-align-browser/)
 

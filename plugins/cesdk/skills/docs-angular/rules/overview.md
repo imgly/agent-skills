@@ -16,7 +16,7 @@ Learn how CE.SDK's rules system enforces design constraints and controls editing
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-rules-overview-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-rules-overview-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-rules-overview-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-rules-overview-browser/)
 

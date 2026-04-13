@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Edit Images](./edit-image.md) > [Vectorize](./edit-image/vectorize.md)
+**Navigation:** [Guides](./guides.md) > [Create and Edit Images](./edit-image.md) > [Vectorize](./edit-image/vectorize.md) > [Plugins](./plugins.md) > [Vectorizer](./edit-image/vectorize.md)
 
 ---
 
@@ -16,7 +16,7 @@ Convert raster images into scalable vector graphics that resize without quality 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-image-vectorize-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-image-vectorize-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-vectorize-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-image-vectorize-browser/)
 
