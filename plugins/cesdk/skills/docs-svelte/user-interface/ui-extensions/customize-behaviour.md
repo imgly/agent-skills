@@ -16,7 +16,7 @@ Control CE.SDK's interface programmatically at runtime through event subscriptio
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ui-extensions-customize-behaviour-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-customize-behaviour-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ui-extensions-customize-behaviour-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ui-extensions-customize-behaviour-browser/)
 

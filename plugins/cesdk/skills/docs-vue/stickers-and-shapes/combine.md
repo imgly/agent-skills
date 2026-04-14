@@ -16,7 +16,7 @@ Combine multiple shapes using boolean operations to create custom compound desig
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-stickers-and-shapes-combine-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-stickers-and-shapes-combine-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-stickers-and-shapes-combine-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-stickers-and-shapes-combine-browser/)
 

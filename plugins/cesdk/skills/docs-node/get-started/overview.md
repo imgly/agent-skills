@@ -8,6 +8,16 @@ Everything you need to integrate CE.SDK into your application. Learn what the
 SDK offers, get up and running with starter kits, explore AI-powered
 workflows, and understand our licensing model.
 
+## Next Steps
+
+- [What is CE.SDK?](https://img.ly/docs/cesdk/props.paths['2e7acd'])
+
+- [Quickstart](https://img.ly/docs/cesdk/props.paths['r1q2w3e'])
+
+- [Vibecoding](https://img.ly/docs/cesdk/props.paths['c3014f'])
+
+- [Licensing](https://img.ly/docs/cesdk/props.paths['8aa063'])
+
 
 
 ---
@@ -18,7 +28,9 @@ workflows, and understand our licensing model.
 - [Node.js - New Project](./get-started/vanilla.md) - Getting started with CE.SDK Engine in Node.js using Vanilla JS
 - [Deno](./get-started/deno.md) - Getting started with CE.SDK Engine in Node.js using Deno
 - [Bun](./get-started/bun.md) - Getting started with CE.SDK Engine in Node.js using Bun
-- [Build with AI](./get-started/build-with-ai.md) - Give your AI coding assistant context about CE.SDK to generate accurate code and get instant answers.
+- [MCP Server](./get-started/mcp-server.md) - Connect AI assistants to CE.SDK documentation using the Model Context Protocol (MCP) server.
+- [Agent Skills](./get-started/agent-skills.md) - Install CE.SDK documentation and code generation skills for AI coding assistants.
+- [LLMs.txt](./llms-txt.md) - Our documentation is available in LLMs.txt format
 - [Licensing](./licensing.md) - Understand CE.SDK’s flexible licensing, trial options, and how keys work across dev, staging, and production.
 
 

@@ -20,7 +20,6 @@
 - [To JPEG](./export-save-publish/export/to-jpeg.md) - Export CE.SDK designs to JPEG format with configurable quality settings for photographs, web images, and social media content.
 - [To PNG](./export-save-publish/export/to-png.md) - Export your designs as PNG images with transparency support and configurable compression for web graphics, UI elements, and content requiring crisp edges.
 - [To WebP](./export-save-publish/export/to-webp.md) - Export your CE.SDK designs to WebP format for optimized web delivery with lossy and lossless compression options.
-- [Export to HTML5](./export-save-publish/export/to-html5.md) - Export CE.SDK designs as HTML5 bundles with customizable output for display ads and interactive web content.
 - [Export to Raw Data](./export-save-publish/export/to-raw-data.md) - Export designs to uncompressed RGBA pixel data for custom image processing, GPU uploads, and advanced graphics workflows.
 - [Compress](./export-save-publish/export/compress.md) - Reduce file sizes when exporting images by configuring compression and quality settings for PNG, JPEG, and WebP formats.
 - [Export with a Color Mask](./export-save-publish/export/with-color-mask.md) - Learn how to export design blocks with color masking in CE.SDK to remove specific colors and generate alpha masks for print workflows and compositing.

@@ -15,7 +15,7 @@ creating depth, focus, and atmospheric effects.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-filters-and-effects-blur-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-filters-and-effects-blur-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-filters-and-effects-blur-server-js)
 
 Unlike general effects that stack on elements, blur is a dedicated feature with its own API methods. Each block supports exactly one blur at a time, though the same blur instance can be shared across multiple blocks. CE.SDK provides four blur types: **uniform** for consistent softening, **linear** and **mirrored** for gradient-based effects along axes, and **radial** for circular focal points.
 

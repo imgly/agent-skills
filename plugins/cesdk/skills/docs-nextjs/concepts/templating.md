@@ -16,7 +16,7 @@ Templates transform static designs into dynamic, data-driven content. They combi
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-templating-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-templating-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-templating-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-concepts-templating-browser/)
 

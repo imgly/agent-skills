@@ -17,7 +17,7 @@ uploads, or asset libraries using CE.SDK's versatile image fill system.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-fills-image-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-fills-image-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-fills-image-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-fills-image-browser/)
 

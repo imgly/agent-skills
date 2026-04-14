@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Build with AI](./get-started/build-with-ai.md) > [MCP Server](./get-started/mcp-server.md)
+**Navigation:** [Get Started](./get-started/overview.md) > [MCP Server](./get-started/mcp-server.md)
 
 ---
 

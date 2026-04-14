@@ -15,9 +15,9 @@ multi-page designs. Runs entirely in the browser with no server dependencies.
 >
 > - [Download examples](https://github.com/imgly/starterkit-design-viewer-ts-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-design-viewer-ts-web/tree/v$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-design-viewer-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-design-viewer-ts-web/tree/v$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-design-viewer-ts-web/tree/release-$UBQ_VERSION$)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-design-viewer/)
 
@@ -43,18 +43,16 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm create vite@latest your-project-name -- --template react-ts
-        cd your-project-name
+        npm create vite@latest your-project-name -- --template react-ts cd
+        your-project-name
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm create vite your-project-name --template react-ts
-        cd your-project-name
+        pnpm create vite your-project-name --template react-ts cd your-project-name
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn create vite your-project-name --template react-ts
-        cd your-project-name
+        yarn create vite your-project-name --template react-ts cd your-project-name
       </TerminalTab>
     </TerminalTabs>
 
@@ -64,9 +62,9 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-design-viewer-ts-web.git
-        cp -r starterkit-design-viewer-ts-web/src/imgly ./src/imgly
-        rm -rf starterkit-design-viewer-ts-web
+        git clone https://github.com/imgly/starterkit-design-viewer-ts-web.git cp -r
+        starterkit-design-viewer-ts-web/src/imgly ./src/imgly rm -rf
+        starterkit-design-viewer-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
@@ -93,9 +91,9 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/
-        rm imgly-assets.zip
+        curl -O
+        https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/ rm imgly-assets.zip
       </TerminalTab>
     </TerminalTabs>
 
@@ -151,9 +149,9 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-design-viewer-ts-web.git
-        cp -r starterkit-design-viewer-ts-web/src/imgly ./src/imgly
-        rm -rf starterkit-design-viewer-ts-web
+        git clone https://github.com/imgly/starterkit-design-viewer-ts-web.git cp -r
+        starterkit-design-viewer-ts-web/src/imgly ./src/imgly rm -rf
+        starterkit-design-viewer-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
@@ -180,9 +178,9 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/
-        rm imgly-assets.zip
+        curl -O
+        https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/ rm imgly-assets.zip
       </TerminalTab>
     </TerminalTabs>
 

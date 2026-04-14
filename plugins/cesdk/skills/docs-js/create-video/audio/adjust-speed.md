@@ -17,7 +17,7 @@ timeline UI and programmatic speed adjustment API.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-audio-audio-adjust-speed-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-audio-audio-adjust-speed-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-audio-audio-adjust-speed-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-audio-audio-adjust-speed-browser/)
 
@@ -111,8 +111,7 @@ class Example implements EditorPlugin {
       layout: 'DepthStack',
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story',
-        color: { r: 0, g: 0, b: 0, a: 1 }
+        assetId: 'ly.img.page.presets.instagram.story'
       }
     });
 

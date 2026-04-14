@@ -12,7 +12,7 @@ Generate sound effects programmatically using buffers with arbitrary audio data.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-audio-add-sound-effects-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-audio-add-sound-effects-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-audio-add-sound-effects-server-js)
 
 <NodejsVideoExportNotice {...props} />
 

@@ -16,7 +16,7 @@ Rotate images to adjust orientation, correct crooked photos, or create creative 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-image-transform-rotate-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-transform-rotate-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-image-transform-rotate-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-image-transform-rotate-browser/)
 

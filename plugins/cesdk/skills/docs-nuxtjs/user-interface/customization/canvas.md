@@ -16,7 +16,7 @@ The canvas bar is the floating toolbar that appears above or below the canvas. T
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-canvas-browser/)
 

@@ -16,7 +16,7 @@ Group multiple blocks to move, scale, and transform them as a single unit; ungro
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-grouping-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-grouping-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-grouping-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-composition-grouping-browser/)
 

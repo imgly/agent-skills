@@ -16,7 +16,7 @@ Detect the MIME type of resources loaded in the engine and relocate them to exte
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-retrieve-mimetype-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-retrieve-mimetype-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-retrieve-mimetype-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-retrieve-mimetype-browser/)
 

@@ -14,7 +14,7 @@ Apply template content to an existing scene while preserving your canvas dimensi
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-use-templates-apply-template-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-apply-template-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-use-templates-apply-template-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-use-templates-apply-template-browser/)
 

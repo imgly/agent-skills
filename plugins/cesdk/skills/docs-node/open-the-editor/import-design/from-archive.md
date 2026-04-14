@@ -14,7 +14,7 @@ Load archived CE.SDK scenes in headless Node.js environments. Archives bundle de
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-import-design-from-archive-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-import-design-from-archive-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-import-design-from-archive-server-js)
 
 ```typescript file=@cesdk_web_examples/guides-open-the-editor-import-design-from-archive-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';

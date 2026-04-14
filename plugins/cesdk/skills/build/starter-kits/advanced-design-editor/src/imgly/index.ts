@@ -17,7 +17,6 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
-  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -102,13 +101,6 @@ export async function initAdvancedEditor(cesdk: CreativeEditorSDK) {
   await cesdk.addPlugin(new TextComponentAssetSource());
   await cesdk.addPlugin(new TypefaceAssetSource());
   await cesdk.addPlugin(new VectorShapeAssetSource());
-
-  // Premium templates
-  await cesdk.addPlugin(
-    new PremiumTemplatesAssetSource({
-      include: ['ly.img.templates.premium.*']
-    })
-  );
   // highlight-asset-sources
 
   // ============================================================================

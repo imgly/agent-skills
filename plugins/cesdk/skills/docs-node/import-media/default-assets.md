@@ -161,7 +161,7 @@ Load all asset sources from IMG.LY's CDN to populate your CE.SDK engine with sha
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-default-assets-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-default-assets-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-default-assets-server-js)
 
 CE.SDK provides built-in asset sources for shapes, stickers, filters, effects, fonts, and sample media. This guide demonstrates loading all available asset sources from IMG.LY's CDN and applying them to create a scene with a star shape, a sticker, and an image, then exporting to PNG.
 

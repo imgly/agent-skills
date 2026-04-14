@@ -14,7 +14,7 @@ Combine multiple video clips into sequences and organize them in the composition
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-join-and-arrange-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-join-and-arrange-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-join-and-arrange-server-js)
 
 Video compositions in CE.SDK use a hierarchy: **Scene → Page → Track → Clip**. Tracks organize clips for sequential playback—when you add clips to a track, they play one after another. You can control precise timing using time offsets and create layered compositions by adding multiple tracks to a page.
 

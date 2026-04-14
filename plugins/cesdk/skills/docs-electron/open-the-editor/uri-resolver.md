@@ -16,7 +16,7 @@ Learn how to intercept and transform asset URIs in CE.SDK, enabling authenticati
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-uri-resolver-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-uri-resolver-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-uri-resolver-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-uri-resolver-browser/)
 

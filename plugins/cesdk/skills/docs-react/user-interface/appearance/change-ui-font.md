@@ -16,7 +16,7 @@ Customize the font family used throughout the CE.SDK editor interface to match y
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-appearance-change-ui-font-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-appearance-change-ui-font-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-appearance-change-ui-font-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-appearance-change-ui-font-browser/)
 

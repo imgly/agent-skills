@@ -4,7 +4,7 @@
 
 ---
 
-Export your designs to multiple formats including PNG, JPEG, WebP, SVG, PDF, and MP4. CE.SDK handles all export processing entirely on the client side, giving you fine-grained control over format-specific options like compression, quality, and target dimensions.
+Export your designs to multiple formats including PNG, JPEG, WebP, PDF, and MP4. CE.SDK handles all export processing entirely on the client side, giving you fine-grained control over format-specific options like compression, quality, and target dimensions.
 
 ![Export overview showing different export format options](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -16,7 +16,7 @@ Export your designs to multiple formats including PNG, JPEG, WebP, SVG, PDF, and
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-export-overview-browser/)
 
@@ -272,12 +272,11 @@ CE.SDK supports exporting scenes, pages, groups, or individual blocks in these f
 | PNG | `image/png` | Yes | Web graphics, UI elements, logos |
 | JPEG | `image/jpeg` | No | Photographs, web images |
 | WebP | `image/webp` | Yes (lossless) | Web delivery, smaller files |
-| SVG | `image/svg+xml` | Yes | Scalable graphics, web embedding, post-processing |
 | PDF | `application/pdf` | Partial | Print, documents |
 | MP4 | `video/mp4` | No | Video content |
 | Binary | `application/octet-stream` | Yes | Raw data processing |
 
-Each format serves different purposes. PNG preserves transparency and works well for graphics with sharp edges or text. JPEG compresses photographs efficiently but drops transparency. WebP provides excellent compression with optional lossless mode. SVG produces scalable vector output ideal for web embedding and post-processing with standard SVG tooling. PDF preserves vector information for print workflows. MP4 exports animated content as video.
+Each format serves different purposes. PNG preserves transparency and works well for graphics with sharp edges or text. JPEG compresses photographs efficiently but drops transparency. WebP provides excellent compression with optional lossless mode. PDF preserves vector information for print workflows. MP4 exports animated content as video.
 
 ## Export Images
 
@@ -322,28 +321,11 @@ const webpBlob = await engine.block.export(page, {
 
 The `webpQuality` ranges from 0 to 1. At 1.0, WebP uses lossless compression that typically produces smaller files than equivalent PNG exports.
 
-### Export to SVG
-
-SVG export produces scalable vector graphics that can be embedded directly in web pages, post-processed with standard SVG tooling, or scaled to any resolution without quality loss.
-
-```typescript
-const blob = await engine.block.export(page, {
-  mimeType: 'image/svg+xml'
-});
-await cesdk.utils.downloadFile(blob, 'image/svg+xml');
-```
-
-Text is exported as vector paths to ensure consistent rendering across environments without requiring the original fonts. Shapes, strokes, and gradients are exported as native SVG elements.
-
-> **Note:** Drop shadows, blur, effects (filters, adjustments), and raster images cannot be represented as native SVG vector elements. These features are rasterized and embedded as PNG images within the SVG. This preserves visual fidelity but increases file size and means those parts of the output are not scalable.
-
-> **Note:** SVG export renders a single page. To export a multi-page scene, export each page individually.
-
 ### Image Export Options
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
-| `mimeType` | `string` | - | Output format: `'image/png'`, `'image/jpeg'`, `'image/webp'`, or `'image/svg+xml'` |
+| `mimeType` | `string` | - | Output format: `'image/png'`, `'image/jpeg'`, or `'image/webp'` |
 | `pngCompressionLevel` | `number` | `5` | PNG compression level (0-9). Higher = smaller file, slower encoding |
 | `jpegQuality` | `number` | `0.9` | JPEG quality (0-1). Higher = better quality, larger file |
 | `webpQuality` | `number` | `0.8` | WebP quality (0-1). Set to 1.0 for lossless compression |

@@ -16,7 +16,7 @@ Add text and image watermarks to designs programmatically using CE.SDK's block A
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-image-add-watermark-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-add-watermark-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-image-add-watermark-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-image-add-watermark-browser/)
 

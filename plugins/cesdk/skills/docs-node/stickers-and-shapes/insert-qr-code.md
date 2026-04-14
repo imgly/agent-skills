@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Edit Shapes](./shapes.md) > [Insert QR Code](./stickers-and-shapes/insert-qr-code.md) > [Plugins](./plugins.md) > [QR Code](./stickers-and-shapes/insert-qr-code.md)
+**Navigation:** [Guides](./guides.md) > [Create and Edit Shapes](./shapes.md) > [Insert QR Code](./stickers-and-shapes/insert-qr-code.md)
 
 ---
 
@@ -14,7 +14,7 @@ Add scannable QR codes to designs programmatically using image fills.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-stickers-and-shapes-insert-qr-code-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-stickers-and-shapes-insert-qr-code-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-stickers-and-shapes-insert-qr-code-server-js)
 
 QR codes encode URLs that mobile devices can scan, making them useful for marketing materials, business cards, event posters, and product packaging. This guide shows how to generate QR codes as images and add them to CE.SDK designs in a headless Node.js environment.
 

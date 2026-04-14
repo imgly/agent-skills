@@ -14,7 +14,7 @@ Control what users can edit in templates by setting fine-grained permissions on 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 
 Editing constraints in CE.SDK allow you to lock specific properties of design elements programmatically from your server or Node.js application. The Scope system provides granular control over 20+ editing capabilities including movement, resizing, rotation, fill changes, text editing, and lifecycle operations.
 

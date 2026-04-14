@@ -16,7 +16,7 @@ Extend CE.SDK with your own LUT filters by creating and registering custom filte
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-filters-and-effects-add-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-filters-and-effects-add-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-filters-and-effects-add-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-filters-and-effects-add-browser/)
 

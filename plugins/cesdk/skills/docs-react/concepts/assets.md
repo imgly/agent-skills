@@ -16,7 +16,7 @@ Understand the asset system—how external media and resources like images, stic
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-assets-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-assets-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-assets-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-concepts-assets-browser/)
 

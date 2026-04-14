@@ -16,7 +16,7 @@ Load and configure custom fonts in CE.SDK to match brand guidelines or provide u
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-fonts-typefaces-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-fonts-typefaces-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-fonts-typefaces-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-fonts-typefaces-browser/)
 

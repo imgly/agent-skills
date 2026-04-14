@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Text Generation](./user-interface/ai-integration/text-generation.md) > [Plugins](./plugins.md) > [AI: Text Generation](./user-interface/ai-integration/text-generation.md)
+**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Text Generation](./user-interface/ai-integration/text-generation.md)
 
 ---
 
@@ -16,7 +16,7 @@ We add AI-powered text generation to CE.SDK applications for creating headlines,
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ai-integration-text-generation-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-text-generation-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ai-integration-text-generation-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ai-integration-text-generation-browser/)
 

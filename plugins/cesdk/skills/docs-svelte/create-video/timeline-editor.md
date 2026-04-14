@@ -353,7 +353,7 @@ The CreativeEditor SDK ships a UI with the timeline editor activated. To change 
     // Show timeline and conditionally enable split controls
     cesdk.feature.set('ly.img.video.timeline', true);
 
-    cesdk.feature.set('ly.img.video.timeline.controls.split', ({ engine }) => {
+    cesdk.feature.set('ly.img.video.controls.split', ({ engine }) => {
       const selected = engine.block.findAllSelected();
       return selected.length === 1;
     });
@@ -371,14 +371,14 @@ Simplify the CreativeEditor interface by leveraging the track visibility setting
     **Enable** video features with:
 
     ```ts
-    cesdk.feature.enable('ly.img.video.timeline.clips');
+    cesdk.feature.enable('ly.img.video.clips');
 
     ```
 
     **Hide** video feature with:
 
     ```ts
-    cesdk.feature.disable('ly.img.video.timeline.clips');
+    cesdk.feature.disable('ly.img.video.clips');
 
     ```
 
@@ -389,14 +389,14 @@ Simplify the CreativeEditor interface by leveraging the track visibility setting
     **Display** overlays tracks with:
 
     ```ts
-    cesdk.feature.enable('ly.img.video.timeline.overlays');
+    cesdk.feature.enable('ly.img.video.overlays');
 
     ```
 
     **Hide** overlay tracks with:
 
     ```ts
-    cesdk.feature.disable('ly.img.video.timeline.overlays');
+    cesdk.feature.disable('ly.img.video.overlays');
 
     ```
   </TabItem>
@@ -405,14 +405,14 @@ Simplify the CreativeEditor interface by leveraging the track visibility setting
     **Display** audio tracks with:
 
     ```ts
-    cesdk.feature.enable('ly.img.video.timeline.audio');
+    cesdk.feature.enable('ly.img.video.audio');
 
     ```
 
     **Hide** audio tracks with:
 
     ```ts
-    cesdk.feature.disable('ly.img.video.timeline.audio');
+    cesdk.feature.disable('ly.img.video.audio');
 
     ```
   </TabItem>
@@ -422,9 +422,9 @@ Simplify the CreativeEditor interface by leveraging the track visibility setting
 
     ```ts
     cesdk.feature.enable([
-      'ly.img.video.timeline.clips',
-      'ly.img.video.timeline.overlays',
-      'ly.img.video.timeline.audio'
+      'ly.img.video.clips',
+      'ly.img.video.overlays',
+      'ly.img.video.audio'
     ]);
 
     ```
@@ -433,9 +433,9 @@ Simplify the CreativeEditor interface by leveraging the track visibility setting
 
     ```ts
     cesdk.feature.disable([
-      'ly.img.video.timeline.clips',
-      'ly.img.video.timeline.overlays',
-      'ly.img.video.timeline.audio'
+      'ly.img.video.clips',
+      'ly.img.video.overlays',
+      'ly.img.video.audio'
     ]);
 
     ```
@@ -451,14 +451,14 @@ Simplify the play bar by hiding or displaying controls in the UI:
     **Display** the play bar with:
 
     ```ts
-    cesdk.feature.enable('ly.img.video.timeline.controls.playback');
+    cesdk.feature.enable('ly.img.video.controls.playback');
 
     ```
 
     **Hide** the play bar with:
 
     ```ts
-    cesdk.feature.disable('ly.img.video.timeline.controls.playback');
+    cesdk.feature.disable('ly.img.video.controls.playback');
 
     ```
   </TabItem>
@@ -467,14 +467,14 @@ Simplify the play bar by hiding or displaying controls in the UI:
     **Display** the loop control with:
 
     ```ts
-    cesdk.feature.enable('ly.img.video.timeline.controls.loop');
+    cesdk.feature.enable('ly.img.video.controls.loop');
 
     ```
 
     **Hide** the loop control with:
 
     ```ts
-    cesdk.feature.disable('ly.img.video.timeline.controls.loop');
+    cesdk.feature.disable('ly.img.video.controls.loop');
 
     ```
   </TabItem>
@@ -483,14 +483,14 @@ Simplify the play bar by hiding or displaying controls in the UI:
     **Display** the zoom on the timeline with:
 
     ```ts
-    cesdk.feature.enable('ly.img.video.timeline.controls.timelineZoom');
+    cesdk.feature.enable('ly.img.video.controls.timelineZoom');
 
     ```
 
     **Hide** the zoom into the timeline with:
 
     ```ts
-    cesdk.feature.disable('ly.img.video.timeline.controls.timelineZoom');
+    cesdk.feature.disable('ly.img.video.controls.timelineZoom');
 
     ```
   </TabItem>
@@ -505,7 +505,7 @@ Restrict or allow editing actions by hiding or displaying the editing controls:
     **Hide** the split button with:
 
     ```ts
-    cesdk.feature.disable('ly.img.video.timeline.controls.split');
+    cesdk.feature.disable('ly.img.video.controls.split');
 
     ```
   </TabItem>
@@ -514,7 +514,7 @@ Restrict or allow editing actions by hiding or displaying the editing controls:
     **Hide** the **Add Clip** button with:
 
     ```ts
-    cesdk.feature.disable('ly.img.video.timeline.addClip');
+    cesdk.feature.disable('ly.img.video.addClip');
 
     ```
   </TabItem>
@@ -523,7 +523,7 @@ Restrict or allow editing actions by hiding or displaying the editing controls:
     **Hide** the background button with:
 
     ```ts
-    cesdk.feature.disable('ly.img.video.timeline.controls.background');
+    cesdk.feature.disable('ly.img.video.controls.background');
 
     ```
   </TabItem>
@@ -558,7 +558,7 @@ The following example detects the scene state:
 
 ```ts
 // Disable split control when nothing is selected
-cesdk.feature.set('ly.img.video.timeline.controls.split', ({ engine }) => {
+cesdk.feature.set('ly.img.video.controls.split', ({ engine }) => {
   const selected = engine.block.findAllSelected();
   return selected.length === 1;
 });
@@ -570,17 +570,17 @@ cesdk.feature.set('ly.img.video.timeline.controls.split', ({ engine }) => {
 | Feature ID | Description |
 |------------|-------------|
 | `ly.img.video.timeline` | Show or hide the entire timeline panel |
-| `ly.img.video.timeline.clips` | Show or hide the video clips track |
-| `ly.img.video.timeline.overlays` | Show or hide the overlay track |
-| `ly.img.video.timeline.audio` | Show or hide the audio track |
-| `ly.img.video.timeline.addClip` | Enable or disable adding new clips |
-| `ly.img.video.timeline.controls` | Base feature for all video controls |
-| `ly.img.video.timeline.controls.toggle` | Show or hide timeline collapse/expand button |
-| `ly.img.video.timeline.controls.playback` | Show or hide play/pause and timestamp |
-| `ly.img.video.timeline.controls.loop` | Show or hide loop toggle |
-| `ly.img.video.timeline.controls.split` | Show or hide split clip control |
-| `ly.img.video.timeline.controls.background` | Show or hide background color controls |
-| `ly.img.video.timeline.controls.timelineZoom` | Show or hide zoom controls |
+| `ly.img.video.clips` | Show or hide the video clips track |
+| `ly.img.video.overlays` | Show or hide the overlay track |
+| `ly.img.video.audio` | Show or hide the audio track |
+| `ly.img.video.addClip` | Enable or disable adding new clips |
+| `ly.img.video.controls` | Base feature for all video controls |
+| `ly.img.video.controls.toggle` | Show or hide timeline collapse/expand button |
+| `ly.img.video.controls.playback` | Show or hide play/pause and timestamp |
+| `ly.img.video.controls.loop` | Show or hide loop toggle |
+| `ly.img.video.controls.split` | Show or hide split clip control |
+| `ly.img.video.controls.background` | Show or hide background color controls |
+| `ly.img.video.controls.timelineZoom` | Show or hide zoom controls |
 
 ## Troubleshooting
 
@@ -589,7 +589,7 @@ cesdk.feature.set('ly.img.video.timeline.controls.split', ({ engine }) => {
 | Timeline not displaying | ・ Check that `ly.img.video.timeline` feature is enabled. |
 | Trim handles not displaying | ・ Click the clip first to reveal handles.<br /> ・ Check if the clip contains video/audio content. |
 | Play not starting | ・ Ensure the video has loaded.<br /> ・ Check the browser console for codec errors.<br /> ・ Check that the playhead falls within the page duration. |
-| Split not working | ・ Check that you’ve selected the clip to split.<br />・ Check that the playhead is within the selected clip’s duration<br />. Make sure you’ve enabled `ly.img.video.timeline.controls.split`. |
+| Split not working | ・ Check that you’ve selected the clip to split.<br />・ Check that the playhead is within the selected clip’s duration<br />. Make sure you’ve enabled `ly.img.video.controls.split`. |
 
 ## Next Steps
 

@@ -16,7 +16,7 @@ Convert CE.SDK exports to Base64-encoded strings for embedding in HTML, storing 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-conversion-to-base64-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-conversion-to-base64-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-conversion-to-base64-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-conversion-to-base64-browser/)
 

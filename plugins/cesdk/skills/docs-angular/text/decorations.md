@@ -16,7 +16,7 @@ Add underline, strikethrough, and overline decorations to text blocks with confi
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-text-decorations-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-decorations-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-text-decorations-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-decorations-browser/)
 

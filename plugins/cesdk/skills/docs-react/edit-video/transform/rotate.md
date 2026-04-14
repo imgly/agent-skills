@@ -16,7 +16,7 @@ Rotate video elements to any angle using radians or degrees, with precise progra
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-transform-rotate-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-transform-rotate-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-transform-rotate-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-transform-rotate-browser/)
 

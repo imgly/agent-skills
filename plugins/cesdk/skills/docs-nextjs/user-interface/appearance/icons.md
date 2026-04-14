@@ -16,7 +16,7 @@ Customize the editor's icons by registering custom SVG icon sets and using them 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-appearance-icons-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-appearance-icons-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-appearance-icons-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-appearance-icons-browser/)
 

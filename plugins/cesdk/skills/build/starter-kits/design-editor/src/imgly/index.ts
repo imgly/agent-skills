@@ -17,7 +17,6 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
-  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -131,13 +130,6 @@ export async function initDesignEditor(cesdk: CreativeEditorSDK) {
 
   // Vector shapes (rectangles, circles, arrows, etc.)
   await cesdk.addPlugin(new VectorShapeAssetSource());
-
-  // Premium templates
-  await cesdk.addPlugin(
-    new PremiumTemplatesAssetSource({
-      include: ['ly.img.templates.premium.*']
-    })
-  );
   // highlight-asset-sources
 
   // ============================================================================

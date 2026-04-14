@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Build with AI](./get-started/build-with-ai.md) > [Agent Skills](./get-started/agent-skills.md)
+**Navigation:** [Get Started](./get-started/overview.md) > [Agent Skills](./get-started/agent-skills.md)
 
 ---
 

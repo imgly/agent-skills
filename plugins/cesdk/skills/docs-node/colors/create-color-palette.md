@@ -15,7 +15,7 @@ support for sRGB, CMYK, and Spot colors in server-side Node.js applications.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-colors-create-color-palette-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-create-color-palette-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-colors-create-color-palette-server-js)
 
 Color libraries in CE.SDK are implemented as local asset sources containing individual colors as assets. Each library has a unique source ID and can include sRGB colors for screen display, CMYK colors for print workflows, and Spot colors for specialized printing applications. You can create, populate, query, and manage these libraries programmatically using the engine's asset API.
 

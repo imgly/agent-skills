@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Edit Stickers](./stickers.md) > [Create Cutout](./stickers-and-shapes/create-cutout.md) > [Plugins](./plugins.md) > [Cutout Library](./stickers-and-shapes/create-cutout.md)
+**Navigation:** [Guides](./guides.md) > [Create and Edit Stickers](./stickers.md) > [Create Cutout](./stickers-and-shapes/create-cutout.md)
 
 ---
 
@@ -17,7 +17,7 @@ decals, and custom-shaped prints programmatically.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-stickers-and-shapes-create-cutout-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-stickers-and-shapes-create-cutout-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-stickers-and-shapes-create-cutout-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-stickers-and-shapes-create-cutout-browser/)
 

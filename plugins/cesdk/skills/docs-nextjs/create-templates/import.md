@@ -16,7 +16,7 @@ Load design templates into CE.SDK from archive URLs, scene URLs, and serialized 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-templates-import-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-import-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-templates-import-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-import-browser/)
 

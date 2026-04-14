@@ -18,7 +18,7 @@ can also customize the navigation bar with your own zoom controls.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-set-zoom-level-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-set-zoom-level-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-set-zoom-level-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-set-zoom-level-browser/)
 

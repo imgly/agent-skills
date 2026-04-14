@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Audio Generation](./user-interface/ai-integration/audio-generation.md) > [Plugins](./plugins.md) > [AI: Audio Generation](./user-interface/ai-integration/audio-generation.md)
+**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Audio Generation](./user-interface/ai-integration/audio-generation.md)
 
 ---
 
@@ -17,7 +17,7 @@ CE.SDK application using the Audio Generation plugin powered by ElevenLabs.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ai-integration-audio-generation-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-audio-generation-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ai-integration-audio-generation-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ai-integration-audio-generation-browser/)
 
@@ -103,8 +103,7 @@ class Example implements EditorPlugin {
       layout: 'DepthStack',
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story',
-        color: { r: 0, g: 0, b: 0, a: 1 }
+        assetId: 'ly.img.page.presets.instagram.story'
       }
     });
 

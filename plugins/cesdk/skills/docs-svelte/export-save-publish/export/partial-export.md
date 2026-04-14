@@ -18,7 +18,7 @@ API.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-export-partial-export-browser/)
 

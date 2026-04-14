@@ -14,7 +14,7 @@ Build compositions entirely through code using CE.SDK's APIs for automation, bat
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-programmatic-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-programmatic-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-composition-programmatic-server-js)
 
 CE.SDK provides a complete API for building designs through code. In headless environments, you can create scenes, add blocks like text, images, and shapes, and position them programmatically. This enables server-side rendering, batch processing, and automated content generation without a browser.
 

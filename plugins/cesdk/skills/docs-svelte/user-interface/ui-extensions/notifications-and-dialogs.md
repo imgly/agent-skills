@@ -17,7 +17,7 @@ experience using CE.SDK's UI API.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ui-extensions-notifications-and-dialogs-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-notifications-and-dialogs-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ui-extensions-notifications-and-dialogs-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ui-extensions-notifications-and-dialogs-browser/)
 

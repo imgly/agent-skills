@@ -16,7 +16,7 @@ The **CreativeEditor SDK (CE.SDK)** provides a video resizing feature. This guid
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-video-transform-resize-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-video-transform-resize-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-video-transform-resize-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-video-transform-resize-browser/)
 

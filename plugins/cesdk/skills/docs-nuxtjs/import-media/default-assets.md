@@ -238,7 +238,7 @@ Load all asset sources from IMG.LY's CDN to populate your CE.SDK editor with sha
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-default-assets-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-default-assets-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-import-media-default-assets-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-default-assets-browser/)
 

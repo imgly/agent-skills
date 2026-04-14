@@ -17,7 +17,7 @@ update, and destruction events in your CE.SDK scene.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-events-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-events-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-events-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-concepts-events-browser/)
 

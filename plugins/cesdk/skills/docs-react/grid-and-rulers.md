@@ -12,7 +12,7 @@ Enable and configure grid overlays, snap-to-grid behavior, and canvas rulers so 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-grid-and-rulers-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-grid-and-rulers-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-grid-and-rulers-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-grid-and-rulers-browser/)
 

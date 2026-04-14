@@ -14,7 +14,7 @@ Rotate images programmatically in headless server-side processing for orientatio
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-image-transform-rotate-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-transform-rotate-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-edit-image-transform-rotate-server-js)
 
 Rotation uses radians where `Math.PI / 2` equals 90°, `Math.PI` equals 180°, and negative values rotate clockwise. Server-side rotation is useful for normalizing uploads, generating asset variations, and enforcing template rules.
 

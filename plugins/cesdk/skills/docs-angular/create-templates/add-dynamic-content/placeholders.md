@@ -16,7 +16,7 @@ Placeholders turn design blocks into drop-zones that users can swap content into
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-templates-dynamic-content-placeholders-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-dynamic-content-placeholders-browser)
+> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-templates-dynamic-content-placeholders-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-dynamic-content-placeholders-browser/)
 
