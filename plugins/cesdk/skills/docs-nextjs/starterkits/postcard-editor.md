@@ -1,58 +1,198 @@
 > This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Starter Kits](./starterkits.md) > [Postcard Editor](./starterkits/postcard-editor.md)
+**Navigation:** [Starter Kits](./starterkits.md) > [Custom Built UIs](./starterkits/custom-built-uis.md) > [Postcard UI](./starterkits/postcard-editor.md)
 
 ---
 
-The Postcard Editor is a prebuilt CreativeEditor SDK (CE.SDK) solution designed for quickly creating and personalizing postcards and greeting cards. It provides an intuitive UI that guides users through selecting a design, editing its contents, and customizing messaging—all without needing design expertise.
+Built to facilitate optimal post- and greeting-card design, from changing accent colors and selecting fonts to custom messages and pictures.
 
-This ready-to-use editor can be easily added to your web app and fully customized to match your brand, making it ideal for direct mail campaigns, seasonal greetings, or personalized customer engagement.
+![Postcard UI starter kit showing a greeting card design interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
-[Launch Web Demo](https://img.ly/showcases/cesdk/post-greeting-cards/)
+> **Reading time:** 10 minutes
+>
+> **Resources:**
+>
+> - [Download examples](https://github.com/imgly/starterkit-postcard-ui-react-web/archive/refs/heads/main.zip)
+>
+> - [View source on GitHub](https://github.com/imgly/starterkit-postcard-ui-react-web)
+>
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-postcard-ui/)
 
-[View on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/showcase-post-greeting-cards)
+***
 
-## What is the Postcard Editor Solution?
+## Pre-requisites
 
-The Postcard Editor is a prebuilt CreativeEditor SDK (CE.SDK) solution designed for quickly creating and personalizing postcards and greeting cards. It provides an intuitive UI that guides users through selecting a design, editing its contents, and customizing messaging—all without needing design expertise.
+This guide assumes basic familiarity with React and TypeScript.
 
-With built-in support for style presets, design constraints, and variable-driven personalization, the Postcard Editor enables scalable creation of high-quality, print-ready content for direct mail, seasonal greetings, and personalized campaigns.
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list
 
-## Key Features
+***
 
-- **Style presets**\
-  Jump-start the design process with a collection of professionally crafted postcard templates.
+## Get Started
 
-- **Design mode**\
-  After selecting a style, users can personalize the design. Depending on the template configuration, they can:
+Start fresh with a standalone Postcard Editor project. This creates a complete, ready-to-run application with a custom React-based interface.
 
-  - Change accent and background colors
-  - Replace photos from a library or upload their own
-  - Edit headings and body text (fonts, colors, layout)
-  - Add stickers, shapes, or other decorative elements
+## Step 1: Clone the Repository
 
-- **Write mode**\
-  Users can add a personal message and address the card. Text styling options include font, size, and color customization.
+<TerminalTabs>
+  <TerminalTab label="git">
+    git clone https://github.com/imgly/starterkit-postcard-ui-react-web.git
+    cd starterkit-postcard-ui-react-web
+  </TerminalTab>
 
-- **Dynamic variables**\
-  Enable scalable personalization using variables like `{{firstname}}` or `{{address}}`. Templates can be connected to external data sources for automated batch generation.
+  <TerminalTab label="degit">
+    npx degit imgly/starterkit-postcard-ui-react-web starterkit-postcard-ui-react-web
+    cd starterkit-postcard-ui-react-web
+  </TerminalTab>
+</TerminalTabs>
 
-- **Print-ready export**\
-  Designs are exported in high-resolution, print-friendly formats, suitable for direct mail or digital delivery.
+The `src/` folder contains the editor code:
 
-## Why Use This Solution?
+```
+src/
+├── app/                          # Demo application
+├── imgly/
+│   ├── CreativeEditor.tsx
+│   ├── CreativeEngine.tsx
+│   ├── PremiumTemplateUtilities.ts
+│   ├── contexts/
+│   │   ├── EngineContext.tsx
+│   │   ├── SelectionContext.tsx
+│   │   └── SinglePageModeContext.tsx
+│   ├── createApplyLayoutAsset.js
+│   ├── hooks/
+│   │   ├── UseEditMode.ts
+│   │   ├── UseHistory.ts
+│   │   ├── UseImageUpload.ts
+│   │   ├── UseSelectedProperty.ts
+│   │   └── UseSinglePageFocus.ts
+│   ├── index.ts                  # Editor initialization function
+│   ├── loadAssetSourceFromContentJSON.ts
+│   ├── localDownload.ts
+│   ├── postcard-catalog.ts
+│   └── utils/
+│       ├── ColorUtilities.ts
+│       ├── CreativeEngineUtils.js
+│       └── UnsplashSource.ts
+└── index.tsx                 # Application entry point
+```
 
-- **Accelerate development**\
-  Save time with a pre-configured UI that’s production-ready and easily customizable via CE.SDK’s headless API.
+## Step 2: Install Dependencies
 
-- **Empower non-designers**\
-  Make creative tools accessible to any user by enforcing design constraints and simplifying the editing experience.
+Install the required packages:
 
-- **Scale personalization**\
-  Integrate with external data to programmatically generate personalized postcards for marketing, e-commerce, or events.
+<TerminalTabs syncKey="package-manager">
+  <TerminalTab label="npm">
+    npm install
+  </TerminalTab>
 
-- **Cross-platform ready**\
-  The Postcard Editor works across web, mobile, and desktop environments, offering a seamless user experience wherever it’s deployed.
+  <TerminalTab label="pnpm">
+    pnpm install
+  </TerminalTab>
+
+  <TerminalTab label="yarn">
+    yarn
+  </TerminalTab>
+</TerminalTabs>
+
+## Step 3: Run the Development Server
+
+<TerminalTabs syncKey="package-manager">
+  <TerminalTab label="npm">
+    npm run dev
+  </TerminalTab>
+
+  <TerminalTab label="pnpm">
+    pnpm run dev
+  </TerminalTab>
+
+  <TerminalTab label="yarn">
+    yarn dev
+  </TerminalTab>
+</TerminalTabs>
+
+Open `http://localhost:5173` in your browser.
+
+***
+
+## Key Capabilities
+
+The Postcard Editor includes everything needed for postcard creation workflows.
+
+<CapabilityGrid
+  features={[
+  {
+    title: 'Style Presets',
+    description:
+      'Professionally crafted postcard templates to jump-start the design process.',
+    imageId: 'filters',
+  },
+  {
+    title: 'Design Mode',
+    description:
+      'Full editing capabilities including color changes, photo replacement, and text editing.',
+    imageId: 'transform',
+  },
+  {
+    title: 'Write Mode',
+    description:
+      'Personal message composition with font, size, and color customization.',
+    imageId: 'text-editing',
+  },
+  {
+    title: 'Dynamic Variables',
+    description:
+      'Support for personalization variables for batch generation.',
+    imageId: 'asset-libraries',
+  },
+  {
+    title: 'Mobile-Friendly',
+    description:
+      'Responsive interface optimized for both desktop and mobile devices.',
+    imageId: 'client-side',
+  },
+  {
+    title: 'Export Options',
+    description:
+      'Export designs in high-resolution, print-friendly formats.',
+    imageId: 'green-screen',
+  },
+]}
+/>
+
+<br />
+
+> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+
+***
+
+## Troubleshooting
+
+### Editor doesn't load
+
+- **Check console errors**: Look for CORS or network errors in browser developer tools
+- **Verify dependencies**: Ensure all npm packages are installed correctly
+
+### Assets don't appear
+
+- **Check network requests**: Open DevTools Network tab and look for failed requests
+- **Verify baseURL**: Ensure the asset URL is accessible
+
+### Watermark appears in production
+
+- **Add your license key**: Set the `license` property in your configuration
+- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+
+***
+
+## Next Steps
+
+- [Configuration](./configuration.md) – Complete list of initialization options
+- [Serve Assets](./serve-assets.md) – Self-host engine assets for production
+- [Theming](./user-interface/appearance/theming.md) – Customize colors and appearance
+- [Localization](./user-interface/localization.md) – Add translations and language support
 
 
 

@@ -16,7 +16,7 @@ Insert videos into your CE.SDK scenes using either the convenience API or manual
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-insert-media-videos-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-insert-media-videos-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-insert-media-videos-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-insert-media-videos-browser/)
 
@@ -108,7 +108,8 @@ class Example implements EditorPlugin {
       layout: 'DepthStack',
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
     });
 
@@ -198,7 +199,8 @@ await cesdk.actions.run('scene.create', {
   layout: 'DepthStack',
   page: {
     sourceId: 'ly.img.page.presets',
-    assetId: 'ly.img.page.presets.instagram.story'
+    assetId: 'ly.img.page.presets.instagram.story',
+    color: { r: 0, g: 0, b: 0, a: 1 }
   }
 });
 ```

@@ -16,9 +16,9 @@ server dependencies.
 >
 > - [Download examples](https://github.com/imgly/starterkit-advanced-video-editor-ts-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-advanced-video-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-advanced-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-video-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-advanced-video-editor/)
 
@@ -44,13 +44,13 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm create vite@latest your-project-name -- --template react-ts cd
-        your-project-name
+        npm create vite@latest your-project-name -- --template react-ts
+        cd your-project-name
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm create vite@latest your-project-name -- --template react-ts cd
-        your-project-name
+        pnpm create vite@latest your-project-name -- --template react-ts
+        cd your-project-name
       </TerminalTab>
 
       <TerminalTab label="yarn">
@@ -65,15 +65,13 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="git">
-        git clone
-        https://github.com/imgly/starterkit-advanced-video-editor-ts-web.git cp -r
-        starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly rm -rf
-        starterkit-advanced-video-editor-ts-web
+        git clone https://github.com/imgly/starterkit-advanced-video-editor-ts-web.git
+        cp -r starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly
+        rm -rf starterkit-advanced-video-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-advanced-video-editor-ts-web/src/imgly
-        ./src/imgly
+        npx degit imgly/starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly
       </TerminalTab>
     </TerminalTabs>
 
@@ -136,9 +134,9 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O
-        https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/ rm imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
       </TerminalTab>
     </TerminalTabs>
 
@@ -194,15 +192,13 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="git">
-        git clone
-        https://github.com/imgly/starterkit-advanced-video-editor-ts-web.git cp -r
-        starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly rm -rf
-        starterkit-advanced-video-editor-ts-web
+        git clone https://github.com/imgly/starterkit-advanced-video-editor-ts-web.git
+        cp -r starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly
+        rm -rf starterkit-advanced-video-editor-ts-web
       </TerminalTab>
 
       <TerminalTab label="degit">
-        npx degit imgly/starterkit-advanced-video-editor-ts-web/src/imgly
-        ./src/imgly
+        npx degit imgly/starterkit-advanced-video-editor-ts-web/src/imgly ./src/imgly
       </TerminalTab>
     </TerminalTabs>
 
@@ -270,9 +266,9 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O
-        https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/ rm imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
       </TerminalTab>
     </TerminalTabs>
 

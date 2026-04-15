@@ -14,7 +14,7 @@ Learn how to restrict users to approved brand assets—specific colors, fonts, a
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-rules-enforce-brand-guidelines-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-rules-enforce-brand-guidelines-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-rules-enforce-brand-guidelines-server-js)
 
 Brand guidelines enforcement in CE.SDK combines two complementary approaches: restricting which assets can be used (colors, fonts, images) and controlling what editing operations are permitted on brand elements. In server-side contexts, you can create templates with locked brand elements and validate user designs against brand rules before processing.
 

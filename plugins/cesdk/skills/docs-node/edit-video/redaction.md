@@ -14,7 +14,7 @@ Redact sensitive video content using blur, pixelization, or solid overlays for p
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-redaction-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-redaction-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-redaction-server-js)
 
 CE.SDK applies effects to blocks themselves, not as overlays affecting content beneath. This means redaction involves applying effects directly to the block for complete obscuration. Four techniques cover most privacy scenarios: full-block blur, radial blur, pixelization, and solid overlays.
 

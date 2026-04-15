@@ -41,6 +41,15 @@ CreativeEditorSDK.create('#cesdk_container', config)
     (window as any).cesdk = cesdk;
 
     await initPhotoEditor(cesdk);
+    // ============================================================================
+    // Scene Loading
+    // ============================================================================
+
+    // highlight-scene-loading
+    await cesdk.loadFromArchiveURL(
+      'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/16-9-fashion-ad.zip'
+    );
+    // highlight-scene-loading
   })
   .catch((error) => {
     // eslint-disable-next-line no-console

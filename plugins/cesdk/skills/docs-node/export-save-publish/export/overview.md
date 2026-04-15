@@ -4,7 +4,7 @@
 
 ---
 
-Export your designs to multiple formats including PNG, JPEG, WebP, and PDF.
+Export your designs to multiple formats including PNG, JPEG, WebP, SVG, and PDF.
 CE.SDK handles all export processing entirely on the server side, giving you
 fine-grained control over format-specific options like compression, quality,
 and target dimensions.
@@ -17,7 +17,7 @@ and target dimensions.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 
 Whether you're building a content automation workflow, batch processing system, or server-side rendering pipeline, understanding export options helps you deliver the right output for each use case. This guide covers supported formats, their options, and how to export programmatically.
 
@@ -200,15 +200,16 @@ This guide covers how to export designs in different formats, configure format-s
 
 CE.SDK supports exporting scenes, pages, groups, or individual blocks in these formats:
 
-| Format | MIME Type                  | Transparency   | Best For                         |
-| ------ | -------------------------- | -------------- | -------------------------------- |
-| PNG    | `image/png`                | Yes            | Web graphics, UI elements, logos |
-| JPEG   | `image/jpeg`               | No             | Photographs, web images          |
-| WebP   | `image/webp`               | Yes (lossless) | Web delivery, smaller files      |
-| PDF    | `application/pdf`          | Partial        | Print, documents                 |
-| Binary | `application/octet-stream` | Yes            | Raw data processing              |
+| Format | MIME Type                  | Transparency   | Best For                                          |
+| ------ | -------------------------- | -------------- | ------------------------------------------------- |
+| PNG    | `image/png`                | Yes            | Web graphics, UI elements, logos                  |
+| JPEG   | `image/jpeg`               | No             | Photographs, web images                           |
+| WebP   | `image/webp`               | Yes (lossless) | Web delivery, smaller files                       |
+| SVG    | `image/svg+xml`            | Yes            | Scalable graphics, web embedding, post-processing |
+| PDF    | `application/pdf`          | Partial        | Print, documents                                  |
+| Binary | `application/octet-stream` | Yes            | Raw data processing                               |
 
-Each format serves different purposes. PNG preserves transparency and works well for graphics with sharp edges or text. JPEG compresses photographs efficiently but drops transparency. WebP provides excellent compression with optional lossless mode. PDF preserves vector information for print workflows.
+Each format serves different purposes. PNG preserves transparency and works well for graphics with sharp edges or text. JPEG compresses photographs efficiently but drops transparency. WebP provides excellent compression with optional lossless mode. SVG produces scalable vector output ideal for web embedding and post-processing with standard SVG tooling. PDF preserves vector information for print workflows.
 
 ## Export Images
 
@@ -258,11 +259,30 @@ const webpBlob = await engine.block.export(page, {
 
 The `webpQuality` ranges from 0 to 1. At 1.0, WebP uses lossless compression that typically produces smaller files than equivalent PNG exports.
 
+### Export to SVG
+
+SVG export produces scalable vector graphics that can be post-processed with standard SVG tooling or scaled to any resolution without quality loss.
+
+```typescript
+const blob = await engine.block.export(page, {
+  mimeType: 'image/svg+xml'
+});
+
+const buffer = Buffer.from(await blob.arrayBuffer());
+writeFileSync('output/design.svg', buffer);
+```
+
+Text is exported as vector paths to ensure consistent rendering across environments without requiring the original fonts. Shapes, strokes, and gradients are exported as native SVG elements.
+
+> **Note:** Drop shadows, blur, effects (filters, adjustments), and raster images cannot be represented as native SVG vector elements. These features are rasterized and embedded as PNG images within the SVG. This preserves visual fidelity but increases file size and means those parts of the output are not scalable.
+
+> **Note:** SVG export renders a single page. To export a multi-page scene, export each page individually.
+
 ### Image Export Options
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
-| `mimeType` | `string` | - | Output format: `'image/png'`, `'image/jpeg'`, or `'image/webp'` |
+| `mimeType` | `string` | - | Output format: `'image/png'`, `'image/jpeg'`, `'image/webp'`, or `'image/svg+xml'` |
 | `pngCompressionLevel` | `number` | `5` | PNG compression level (0-9). Higher = smaller file, slower encoding |
 | `jpegQuality` | `number` | `0.9` | JPEG quality (0-1). Higher = better quality, larger file |
 | `webpQuality` | `number` | `0.8` | WebP quality (0-1). Set to 1.0 for lossless compression |

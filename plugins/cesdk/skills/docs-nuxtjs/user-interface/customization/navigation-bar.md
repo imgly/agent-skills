@@ -16,7 +16,7 @@ The navigation bar is the horizontal toolbar at the top of the editor containing
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-navigation-bar-browser/)
 

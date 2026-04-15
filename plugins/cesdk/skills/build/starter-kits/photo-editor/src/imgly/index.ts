@@ -121,13 +121,4 @@ export async function initPhotoEditor(cesdk: CreativeEditorSDK) {
     }
   );
 
-  // ============================================================================
-  // Scene Loading
-  // ============================================================================
-
-  // highlight-scene-loading
-  await cesdk.loadFromArchiveURL(
-    'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/16-9-fashion-ad.zip'
-  );
-  // highlight-scene-loading
 }

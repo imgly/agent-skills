@@ -25,6 +25,7 @@
 import type { AssetDefinition, CreativeEngine } from '@cesdk/cesdk-js';
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import { removeBackground } from '@imgly/background-removal';
+import { resolveAssetPath } from '../resolveAssetPath';
 
 // Installed plugins
 
@@ -60,7 +61,7 @@ export function setupBackgroundRemovalPlugin(cesdk: CreativeEditorSDK): void {
     meta: {
       width: 80,
       height: 120,
-      thumbUri: '/remove-bg.png'
+      thumbUri: resolveAssetPath('/assets/remove-bg.png')
     }
   };
 
@@ -111,9 +112,7 @@ async function convertUriToBlob(
 /**
  * Applies background removal to the selected image block.
  */
-async function applyBackgroundRemoval(
-  cesdk: CreativeEditorSDK
-): Promise<void> {
+async function applyBackgroundRemoval(cesdk: CreativeEditorSDK): Promise<void> {
   const engine = cesdk.engine;
 
   // 1. Check selection - must have exactly one block selected

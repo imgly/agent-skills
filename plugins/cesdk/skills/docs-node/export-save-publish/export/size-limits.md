@@ -14,7 +14,7 @@ Configure size limits to balance quality and performance in headless Node.js wor
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 
 CE.SDK processes images and videos in server environments using CPU and GPU resources, which means size limits depend on your server's hardware capabilities and available memory. Understanding and configuring these limits helps you build automation workflows that deliver high-quality results while maintaining efficient resource usage in batch processing, serverless functions, and containerized deployments.
 

@@ -16,9 +16,11 @@ Add AI-powered generation capabilities to your CE.SDK application for generating
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ai-integration-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ai-integration-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ai-integration-browser/)
+
+> **Looking for the easy path?:** The [IMG.LY AI Gateway](./user-interface/ai-integration/gateway-provider.md) is the fastest way to add AI generation to CE.SDK. We handle proxying, authentication, model routing, and billing — you only need a JWT-minting endpoint and a single gateway URL. The rest of this guide covers configuring upstream providers directly, which is useful when you need full control or already run your own proxy.
 
 This tutorial will guide you through integrating AI-powered generation capabilities into your CreativeEditor SDK application using the `@imgly/plugin-ai-apps-web` package. You'll learn how to set up various AI providers for generating images, videos, audio, and text.
 
@@ -148,7 +150,8 @@ class Example implements EditorPlugin {
     await cesdk.actions.run('scene.create', {
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
 
     // Configure AI Apps dock position
@@ -417,7 +420,8 @@ Initialize CE.SDK to utilize all AI capabilities:
     await cesdk.actions.run('scene.create', {
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
 ```
 
@@ -945,6 +949,7 @@ Your proxy server should handle authentication, forward requests to the appropri
 
 ## Next Steps
 
+- [IMG.LY AI Gateway](./user-interface/ai-integration/gateway-provider.md) — The easiest integration path: managed proxy, auth, and billing
 - [Proxy Server](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication for production
 - [Text Generation](./user-interface/ai-integration/text-generation.md) — Deep dive into text generation and transformation
 - [Image Generation](./user-interface/ai-integration/image-generation.md) — Advanced image generation configuration

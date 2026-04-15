@@ -14,7 +14,7 @@ Add text and image watermarks to video content for copyright protection, brandin
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-add-watermark-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-add-watermark-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-add-watermark-server-js)
 
 Video watermarks in CE.SDK are design blocks positioned over video content. **Text watermarks** display copyright notices, URLs, or branding text, while **image watermarks** show logos or graphics. Both watermark types need their time-based properties configured to remain visible throughout video playback. The key difference from static image watermarking is setting the watermark's `duration` to match the video duration.
 

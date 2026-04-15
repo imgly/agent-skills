@@ -15,7 +15,7 @@ environments for server-side video processing workflows.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-from-video-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-from-video-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-from-video-server-js)
 
 Starting from an existing video allows you to create editable scenes on the server. The `engine.scene.createFromVideo()` method fetches the video, creates a scene with matching dimensions, and sets up pixel-based design units. This is useful for server-side video processing pipelines where you need to prepare scenes for later editing in browser environments.
 

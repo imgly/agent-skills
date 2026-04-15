@@ -14,7 +14,7 @@ Automate template workflows with CE.SDK's engine APIs for batch processing, pers
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-use-templates-programmatic-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-use-templates-programmatic-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-programmatic-server-js)
 
 Templates are scenes with predefined structures that support dynamic content through variables. This guide shows you how to work with templates programmatically using CE.SDK's engine APIs—without requiring user interface interactions.
 

@@ -14,7 +14,7 @@
  *
  * Use glob patterns to enable/disable entire feature groups:
  * - `'ly.img.video.*'` - All video features
- * - `'ly.img.video.controls.*'` - All video control features
+ * - `'ly.img.video.timeline.controls.*'` - All video control features
  * - `'ly.img.navigation.*'` - All navigation features
  *
  * ## Player Features Philosophy
@@ -299,11 +299,11 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // ============================================================================
 
     // #region Video Playback Features (Enabled)
-    'ly.img.video.timeline' /* Video Timeline visibility - read-only */,
+    // 'ly.img.video.timeline' /* Video Timeline visibility - read-only */,
     // 'ly.img.video.timeline.ruler', /* Timeline ruler/time scale */
-    'ly.img.video.controls' /* Base video control UI */,
-    'ly.img.video.controls.playback' /* Play/pause and timestamp */,
-    'ly.img.video.controls.loop' /* Loop toggle */
+    'ly.img.video.timeline.controls' /* Base video control UI */,
+    'ly.img.video.timeline.controls.playback' /* Play/pause and timestamp */,
+    'ly.img.video.timeline.controls.loop' /* Loop toggle */
     // #endregion
 
     // ============================================================================
@@ -312,14 +312,14 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // ============================================================================
 
     // #region Video Editing Features (Disabled)
-    // 'ly.img.video.clips' /* Clips track in timeline */,
-    // 'ly.img.video.overlays' /* Overlays track in timeline */,
-    // 'ly.img.video.audio' /* Audio track in timeline */,
-    // 'ly.img.video.addClip' /* Add clips to timeline */,
-    // 'ly.img.video.controls.toggle' /* Timeline collapse/expand toggle */,
-    // 'ly.img.video.controls.background' /* Background color controls */,
-    // 'ly.img.video.controls.split' /* Split clip control */,
-    // 'ly.img.video.controls.timelineZoom' /* Timeline zoom controls */,
+    // 'ly.img.video.timeline.clips' /* Clips track in timeline */,
+    // 'ly.img.video.timeline.overlays' /* Overlays track in timeline */,
+    // 'ly.img.video.timeline.audio' /* Audio track in timeline */,
+    // 'ly.img.video.timeline.addClip' /* Add clips to timeline */,
+    // 'ly.img.video.timeline.controls.toggle' /* Timeline collapse/expand toggle */,
+    // 'ly.img.video.timeline.controls.background' /* Background color controls */,
+    // 'ly.img.video.timeline.controls.split' /* Split clip control */,
+    // 'ly.img.video.timeline.controls.timelineZoom' /* Timeline zoom controls */,
     // 'ly.img.video.caption' /* Video captions */,
     // #endregion
 

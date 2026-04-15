@@ -16,7 +16,7 @@ Customize UI text labels in CE.SDK to match your brand voice and product termino
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-appearance-custom-labels-browser/)
 

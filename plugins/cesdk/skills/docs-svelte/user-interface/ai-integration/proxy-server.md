@@ -4,6 +4,8 @@
 
 ---
 
+> **Prefer not to run a proxy?:** The [IMG.LY AI Gateway](./user-interface/ai-integration/gateway-provider.md) is the recommended path for most integrations. We run the proxy, authentication, model routing, and billing for you — no server required beyond a short-lived JWT-minting endpoint. Use the steps below when you need to self-host the proxy or forward requests through your own infrastructure.
+
 For security reasons, you should never include your AI service API keys directly in client-side code. Instead, you should set up proxy services that securely forward requests to AI providers while keeping your API keys secure on the server side.
 
 Each AI provider configuration requires a `proxyUrl` parameter, which should point to your server-side endpoint that handles authentication and forwards requests to the AI service:

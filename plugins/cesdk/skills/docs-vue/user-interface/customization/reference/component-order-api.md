@@ -16,7 +16,7 @@ The Component Order API supports five UI areas, each with specific purposes and 
 
 | Area | Location Value | Description | Special Options |
 |------|----------------|-------------|-----------------|
-| Dock | `'ly.img.dock'` | Asset library and tool buttons on the side | — |
+| Dock | `'ly.img.dock'` | Asset library and tool buttons | `at: 'left' \| 'right' \| 'bottom'` (optional, defaults to `'left'`) |
 | Inspector Bar | `'ly.img.inspector.bar'` | Property controls and settings panel | `when.editMode` |
 | Canvas Menu | `'ly.img.canvas.menu'` | Right-click/long-press context menu on canvas | `when.editMode` |
 | Navigation Bar | `'ly.img.navigation.bar'` | Top navigation with actions and controls | — |
@@ -125,7 +125,7 @@ cesdk.ui.getComponentOrder<A extends UIArea>(
 **Parameters:**
 
 - `options.in` — The UI area to query (required)
-- `options.at` — For canvas bar only: `'top'` or `'bottom'` (required for canvas bar)
+- `options.at` — Position within the area. Required for canvas bar (`'top'` or `'bottom'`). Optional for dock (`'left'`, `'right'`, or `'bottom'`). When omitted for dock, returns components from all positions.
 - `options.when` — Optional edit mode context filter
 
 **Returns:** Array of component objects in their current order.
@@ -133,8 +133,14 @@ cesdk.ui.getComponentOrder<A extends UIArea>(
 **Examples:**
 
 ```javascript
-// Get dock order
-const dockOrder = cesdk.ui.getComponentOrder({ in: 'ly.img.dock' });
+// Get all dock components across all positions
+const allDock = cesdk.ui.getComponentOrder({ in: 'ly.img.dock' });
+
+// Get dock order at a specific position
+const rightDock = cesdk.ui.getComponentOrder({
+  in: 'ly.img.dock',
+  at: 'right'
+});
 
 // Get canvas bar top order
 const canvasBarTop = cesdk.ui.getComponentOrder({
@@ -165,18 +171,28 @@ cesdk.ui.setComponentOrder<A extends UIArea>(
 **Parameters:**
 
 - `options.in` — The UI area to set (required)
-- `options.at` — For canvas bar only: `'top'` or `'bottom'` (required for canvas bar)
+- `options.at` — Position within the area. Required for canvas bar (`'top'` or `'bottom'`). Optional for dock (`'left'`, `'right'`, or `'bottom'`, defaults to `'left'`).
 - `options.when` — Optional edit mode context for conditional ordering
 - `order` — Array of component IDs or component objects
 
 **Examples:**
 
 ```javascript
-// Set dock order with simple IDs
+// Set dock order (defaults to 'left' position)
 cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
   'ly.img.spacer',
   'my.custom.button',
   'ly.img.separator',
+  'ly.img.assetLibrary.dock'
+]);
+
+// Place dock on the right side
+cesdk.ui.setComponentOrder({ in: 'ly.img.dock', at: 'right' }, [
+  'ly.img.assetLibrary.dock'
+]);
+
+// Place dock at the bottom
+cesdk.ui.setComponentOrder({ in: 'ly.img.dock', at: 'bottom' }, [
   'ly.img.assetLibrary.dock'
 ]);
 
@@ -209,7 +225,7 @@ cesdk.ui.insertOrderComponent<A extends UIArea>(
 **Parameters:**
 
 - `options.in` — The UI area (required)
-- `options.at` — For canvas bar only: `'top'` or `'bottom'` (required for canvas bar)
+- `options.at` — Position within the area. Required for canvas bar (`'top'` or `'bottom'`). Optional for dock (`'left'`, `'right'`, or `'bottom'`, defaults to `'left'`).
 - `options.when` — Optional edit mode context
 - `options.before` — Insert before matching component (matcher)
 - `options.after` — Insert after matching component (matcher)
@@ -279,7 +295,7 @@ cesdk.ui.updateOrderComponent<A extends UIAreaSpecifier>(
 **Parameters:**
 
 - `options.in` — The UI area, array of areas, or glob pattern (required)
-- `options.at` — For canvas bar: `'top'`, `'bottom'`, or omit for both
+- `options.at` — Position within the area. For canvas bar: `'top'`, `'bottom'`, or omit for both. For dock: `'left'`, `'right'`, `'bottom'`, or omit to apply to all positions.
 - `options.when` — Optional edit mode context
 - `options.match` — Component matcher (required)
 - `update` — New ID, partial properties, or updater function
@@ -289,7 +305,7 @@ cesdk.ui.updateOrderComponent<A extends UIAreaSpecifier>(
 **Examples:**
 
 ```javascript
-// Update by exact ID
+// Update by exact ID (applies to all dock positions)
 cesdk.ui.updateOrderComponent(
   { in: 'ly.img.dock', match: 'ly.img.separator' },
   { key: 'my-separator' }
@@ -329,7 +345,7 @@ cesdk.ui.removeOrderComponent<A extends UIAreaSpecifier>(
 **Parameters:**
 
 - `options.in` — The UI area, array of areas, or glob pattern (required)
-- `options.at` — For canvas bar: `'top'`, `'bottom'`, or omit for both
+- `options.at` — Position within the area. For canvas bar: `'top'`, `'bottom'`, or omit for both. For dock: `'left'`, `'right'`, `'bottom'`, or omit to apply to all positions.
 - `options.when` — Optional edit mode context
 - `options.match` — Component matcher (required)
 

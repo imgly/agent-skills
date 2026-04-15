@@ -24,7 +24,7 @@ const config = {
   // Local assets for development
   ...(import.meta.env.CESDK_USE_LOCAL && {
     baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-  }),
+  })
 
   // license: 'YOUR_LICENSE_KEY',
 };
@@ -40,6 +40,15 @@ CreativeEditorSDK.create('#cesdk_container', config)
     (window as any).cesdk = cesdk;
 
     await initAdvancedEditor(cesdk);
+    // ============================================================================
+    // Scene Loading
+    // ============================================================================
+
+    // highlight-scene-loading
+    await cesdk.loadFromArchiveURL(
+      'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/9-16-marketing-ad-fragrance.zip'
+    );
+    // highlight-scene-loading
   })
   .catch((error) => {
     // eslint-disable-next-line no-console

@@ -16,7 +16,7 @@ Create and customize text designs (text components) that appear in CE.SDK's asse
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-text-text-designs-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-text-text-designs-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-text-designs-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-text-designs-browser/)
 

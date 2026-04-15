@@ -17,7 +17,7 @@ and rhythmic elements using CE.SDK's audio looping system.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-audio-audio-loop-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-audio-audio-loop-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-audio-audio-loop-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-audio-audio-loop-browser/)
 

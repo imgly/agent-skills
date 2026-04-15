@@ -15,7 +15,7 @@ origins, storing application state, or linking to external systems.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-export-save-publish-store-custom-metadata-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-export-save-publish-store-custom-metadata-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-store-custom-metadata-server-js)
 
 Metadata lets you attach arbitrary string key-value pairs to any design block. This data is invisible to end users but persists with the scene through save/load operations. Common use cases include tracking asset origins, storing application-specific state, and linking blocks to external databases or content management systems.
 

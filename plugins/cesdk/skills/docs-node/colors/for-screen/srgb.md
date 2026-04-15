@@ -14,7 +14,7 @@ Apply sRGB colors to design elements for screen-based output using RGBA color va
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-colors-for-screen-srgb-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-colors-for-screen-srgb-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-for-screen-srgb-server-js)
 
 sRGB is the standard color space for screen displays. CE.SDK represents sRGB colors as RGBA objects where each component (red, green, blue, alpha) uses floating-point values between 0.0 and 1.0. This differs from the traditional 0-255 integer range used in many design tools.
 

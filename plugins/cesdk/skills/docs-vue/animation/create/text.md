@@ -16,7 +16,7 @@ Create engaging text animations that reveal content line by line, word by word, 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-animation-create-text-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-animation-create-text-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-animation-create-text-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-animation-create-text-browser/)
 

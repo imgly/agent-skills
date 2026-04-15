@@ -16,7 +16,7 @@ Generate sound effects programmatically using buffers with arbitrary audio data.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-audio-add-sound-effects-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-audio-add-sound-effects-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-audio-add-sound-effects-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-audio-add-sound-effects-browser/)
 
@@ -273,7 +273,8 @@ class Example implements EditorPlugin {
       layout: 'DepthStack',
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
     });
 

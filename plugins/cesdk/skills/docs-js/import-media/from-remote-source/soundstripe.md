@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Import From Remote Source](./import-media/from-remote-source.md) > [From Soundstripe](./import-media/from-remote-source/soundstripe.md)
+**Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Import From Remote Source](./import-media/from-remote-source.md) > [From Soundstripe](./import-media/from-remote-source/soundstripe.md) > [Plugins](./plugins.md) > [Soundstripe](./import-media/from-remote-source/soundstripe.md)
 
 ---
 
@@ -18,7 +18,7 @@ designs.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-from-remote-source-soundstripe-browser/)
 
@@ -115,7 +115,8 @@ class Example implements EditorPlugin {
     await cesdk.actions.run('scene.create', {
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
     });
 

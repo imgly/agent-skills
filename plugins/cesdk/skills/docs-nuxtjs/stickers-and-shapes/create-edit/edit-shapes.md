@@ -16,7 +16,7 @@ This guide shows how to programmatically edit shapes using the Block API, coveri
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-stickers-and-shapes-edit-shapes-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-stickers-and-shapes-edit-shapes-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-stickers-and-shapes-edit-shapes-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-stickers-and-shapes-edit-shapes-browser/)
 

@@ -16,7 +16,7 @@ Store and manage temporary binary data directly in memory using CE.SDK's buffer 
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-buffers-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-buffers-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-buffers-browser)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-concepts-buffers-browser/)
 
@@ -153,7 +153,8 @@ class Example implements EditorPlugin {
     await cesdk.actions.run('scene.create', {
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
     });
 
@@ -349,7 +350,8 @@ We first create a scene and set up a page for our audio composition.
     await cesdk.actions.run('scene.create', {
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
     });
 ```

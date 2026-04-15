@@ -24,7 +24,9 @@
 
 import type { AssetDefinition, CreativeEngine } from '@cesdk/cesdk-js';
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
+import { resolveAssetPath } from '../resolveAssetPath';
 import { removeBackground } from '@imgly/background-removal';
+import { resolveAssetPath } from '../resolveAssetPath';
 
 // Installed plugins
 
@@ -61,7 +63,7 @@ export function setupBackgroundRemovalPlugin(cesdk: CreativeEditorSDK): void {
       width: 80,
       height: 120,
       thumbUri:
-        'https://img.ly/showcases/cesdk/cases/photo-editor-ui/remove-bg.png'
+        resolveAssetPath('/assets/remove-bg.png')
     }
   };
 

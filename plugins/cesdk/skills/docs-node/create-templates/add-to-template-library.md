@@ -14,7 +14,7 @@ Create a template library where templates can be stored, managed, and applied pr
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-templates-add-to-template-library-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-templates-add-to-template-library-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-add-to-template-library-server-js)
 
 Templates in CE.SDK are stored and accessed through the asset system. A template library is a local asset source configured to hold and serve template assets, enabling server-side workflows to manage templates programmatically.
 

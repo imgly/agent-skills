@@ -14,24 +14,24 @@ professional editing capabilities into your web application.
 
 ## Related Pages
 
-- [Photo Editor](./starterkits/photo-editor.md) - Add professional photo editing to your web app in minutes. Crop, filter, remove backgrounds, and export—all client-side.
-- [Design Editor](./starterkits/design-editor.md) - Add professional design editing to your web app in minutes. Create graphics, templates, and multi-page documents—all client-side.
-- [Design Editor (Advanced)](./starterkits/advanced-editor.md) - Add a comprehensive design editor to your web app in minutes. Professional tools for graphics, templates, and multi-page documents—all client-side.
-- [Design Viewer](./starterkits/viewer.md) - Add design viewing to your web app in minutes. Pan, zoom, and navigate multi-page designs—all client-side.
-- [Video Editor](./starterkits/video-editor.md) - Add professional video editing to your web app in minutes. Edit clips, add effects, and export to MP4—all client-side.
-- [Video Editor (Advanced)](./starterkits/advanced-video-editor.md) - Add a comprehensive video editor to your web app in minutes. Professional tools for timeline editing, effects, and MP4 export—all client-side.
-- [Video Player](./starterkits/player.md) - Add video playback to your web app in minutes. Play, pause, and navigate video content—all client-side.
-- [AI Image and Video Editor](./starterkits/ai-editor.md) - Add AI-powered image, video, audio, and voice generation directly into your app’s editing interface.
-- [T-Shirt Designer](./starterkits/t-shirt-designer.md) - Embed a t-shirt design editor with print areas, PDF export, and a focused UI for apparel customization.
-- [Postcard Editor](./starterkits/postcard-editor.md) - Let users personalize postcards with templates, style presets, and print-ready exports—no design skills needed.
-- [3D Product Configurator](./starterkits/3d-product-configurator.md) - Show real-time 3D previews of designs on products by combining CE.SDK with external 3D rendering libraries.
-- [Automated Video Generation](./starterkits/automated-video-generation.md) - Automate video creation from templates using CE.SDK’s UI or headless API for scalable, on-brand content.
-- [Automated Image Resizing](./starterkits/auto-resize.md) - Resize a single design into multiple platform-ready formats automatically—with editable, on-brand results.
-- [Data Merge](./starterkits/data-merge.md) - Merge structured data into templates to create personalized, editable designs at scale using CE.SDK’s headless API.
-- [Photobook Editor](./starterkits/photobook-editor.md) - Let users create themed, multi-page photobooks with guided layouts, placeholders, and a simplified editing UI.
-- [Mockup Editor](./starterkits/mockup-editor.md) - Let users preview designs on real products in real time with an embeddable mockup editor for web apps.
-- [Design Generation](./starterkits/design-generation.md) - Generate dynamic, on-brand visuals at scale using templates, data inputs, and CE.SDK’s headless API.
-- [Multi Image Generation](./starterkits/multi-image-generation.md) - Generate multiple on-brand image variations from structured data using CE.SDK’s headless API and custom templates.
+- [Photo Editor for Angular](./starterkits/photo-editor.md) - Add professional photo editing to your Angular app in minutes. Crop, filter, remove backgrounds, and export—all client-side.
+- [Design Editor for Angular](./starterkits/design-editor.md) - Add professional design editing to your Angular app in minutes. Create graphics, templates, and multi-page documents—all client-side.
+- [Design Editor (Advanced) for Angular](./starterkits/advanced-editor.md) - Add a comprehensive design editor to your Angular app in minutes. Professional tools for graphics, templates, and multi-page documents—all client-side.
+- [Design Viewer for Angular](./starterkits/viewer.md) - Add design viewing to your Angular app in minutes. Pan, zoom, and navigate multi-page designs—all client-side.
+- [Video Editor for Angular](./starterkits/video-editor.md) - Add professional video editing to your Angular app in minutes. Edit clips, add effects, and export to MP4—all client-side.
+- [Video Editor (Advanced) for Angular](./starterkits/advanced-video-editor.md) - Add a comprehensive video editor to your Angular app in minutes. Professional tools for timeline editing, effects, and MP4 export—all client-side.
+- [Video Player for Angular](./starterkits/player.md) - Add video playback to your Angular app in minutes. Play, pause, and navigate video content—all client-side.
+- [AI Editor for Angular](./starterkits/ai-editor.md) - Quickly add AI-powered visual editing and media generation to your web app — seamlessly connect any AI model.
+- [T-Shirt Designer for Angular](./starterkits/t-shirt-designer.md) - Apparel Editor for creating print-ready design.
+- [Product Editor for Angular](./starterkits/product-editor.md) - Product Editor for customizing any product with print-ready designs.
+- [Video Editing](./starterkits/video-editing.md) - Create and edit video compositions with timeline editing, captions, animations, and template-based generation.
+- [Plugins](./starterkits/plugins.md) - Add powerful custom functionality to the editor — background removal, QR codes, vectorization, and more.
+- [Custom Built UIs](./starterkits/custom-built-uis.md) - Fully custom UIs built with React using the Engine API. Freely adapt to your use case.
+- [Customization](./starterkits/customization.md) - Configure the editor UI to fit your design — theming, localization, export options, and layout controls.
+- [Assets](./starterkits/assets.md) - Leverage the versatile asset API to add custom asset sources or create new asset types.
+- [Templating](./starterkits/templating.md) - Create templates by defining placeholders, constraints, and premium content libraries.
+- [Creative Automation](./starterkits/creative-automation.md) - Create dynamic templates to auto-generate image and design variations from data sources.
+- [Extensibility](./starterkits/extensibility.md) - Extend editor functionality with file format imports, content moderation, design validation, and version history.
 
 
 ---

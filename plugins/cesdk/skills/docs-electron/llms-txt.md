@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Vibe Coding](./llms-txt.md)
+**Navigation:** [Get Started](./get-started/overview.md) > [Build with AI](./get-started/build-with-ai.md) > [LLMs.txt](./llms-txt.md)
 
 ---
 
@@ -25,15 +25,23 @@ LLMs.txt is an emerging standard for making documentation AI-friendly. Unlike tr
 
 By using our platform-specific LLMs.txt files, you'll ensure that AI tools have the most relevant and complete context for helping with your development tasks.
 
+## Markdown Content Negotiation
+
+Our documentation pages also serve clean markdown directly when requested with the `Accept: text/markdown` HTTP header. AI agents and tools that support content negotiation can fetch any documentation page and receive a markdown response instead of HTML — no separate download required.
+
+```bash
+curl -H "Accept: text/markdown" https://img.ly/docs/cesdk/react/get-started/overview/
+```
+
+This means AI tools like web-browsing agents can access individual pages in a format optimized for their context windows without needing the full LLMs.txt bundle.
+
 ## Handling Large Documentation Files
 
 Due to the size of our documentation files (upward of 500 000 tokens) most AI tools will face context window limitations. Standard models typically have context windows ranging from 8,000 to 200,000 tokens, making it challenging to process our complete documentation in a single session.
 
-### Recommended AI Model for Full Documentation
+### Using Large Documentation Files
 
-For working with our complete documentation files, we recommend:
-
-- **Gemini 2.5 Flash**: Available via Google AI Studio with a context window of 1-2 million tokens, capable of handling even our largest documentation file
+To work with our complete documentation files, use an AI model with a large context window. Many current models support 200,000+ tokens, and some support over 1 million tokens. Check your model's context window limits when loading the full documentation file.
 
 
 

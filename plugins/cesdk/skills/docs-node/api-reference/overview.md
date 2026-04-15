@@ -4,7 +4,7 @@
 
 ---
 
-For , the @cesdk/node/ package is available.
+For , the @cesdk/node package is available.
 With this package you can load, edit, and export CE.SDK scene files.
 Note: it doesn't support exporting to video formats. This is only supported in a browser environment with the browser-based packages.
 

@@ -4,9 +4,10 @@
 
 ---
 
-The dock is the vertical sidebar containing buttons that open asset library
-panels. This guide covers dock-specific features like appearance settings,
-edit mode contexts, and the asset source relationship.
+The dock is a sidebar containing buttons that open asset library panels. You
+can position it on the left, right, or bottom of the editor. By default it
+appears on the left side. This guide covers dock positioning, appearance
+settings, edit mode contexts, and the asset source relationship.
 
 ![Dock customization example showing large icons, hidden labels, and a custom settings button](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -18,7 +19,7 @@ edit mode contexts, and the asset source relationship.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-dock-browser/)
 
@@ -197,7 +198,39 @@ class Example implements EditorPlugin {
 export default Example;
 ```
 
-This guide covers configuring dock appearance settings, setting up edit mode-specific layouts, understanding the relationship between dock entries and asset sources, adding custom registered components, and viewing the default component order.
+This guide covers dock positioning, configuring dock appearance settings, setting up edit mode-specific layouts, understanding the relationship between dock entries and asset sources, adding custom registered components, and viewing the default component order.
+
+## Dock Position
+
+Use the `at` option in `setComponentOrder` to place the dock on the left, right, or bottom of the editor. When `at` is omitted, `setComponentOrder` targets the `'left'` position.
+
+```typescript
+// Place dock on the right side
+cesdk.ui.setComponentOrder({ in: 'ly.img.dock', at: 'right' }, [
+  'ly.img.assetLibrary.dock'
+]);
+
+// Place dock at the bottom (renders horizontally)
+cesdk.ui.setComponentOrder({ in: 'ly.img.dock', at: 'bottom' }, [
+  'ly.img.assetLibrary.dock'
+]);
+```
+
+You can place dock components at multiple positions simultaneously. Each position renders independently:
+
+```typescript
+// Main dock on the left
+cesdk.ui.setComponentOrder({ in: 'ly.img.dock', at: 'left' }, [
+  'ly.img.assetLibrary.dock'
+]);
+
+// Secondary tools on the right
+cesdk.ui.setComponentOrder({ in: 'ly.img.dock', at: 'right' }, [
+  'my.custom.tool'
+]);
+```
+
+On small viewports, all dock positions automatically collapse into a single horizontal dock at the bottom.
 
 ## Show or Hide the Dock
 
@@ -348,29 +381,17 @@ console.log('Current dock order:', currentOrder);
 | `variant` | `'regular' \| 'plain'` | Visual variant of the button. Defaults to `'regular'`. |
 | `color` | `'accent' \| 'danger'` | Color scheme of the button. |
 
-## Edit Mode Context
-
-The dock order can vary based on the current edit mode. Pass an `orderContext` parameter to configure different dock orders for Transform, Text, Crop, Trim, or custom edit modes:
-
-```javascript
-// Set dock order for Text edit mode
-cesdk.ui.setDockOrder(components, { editMode: 'Text' });
-
-// Get dock order for Crop edit mode
-const cropOrder = cesdk.ui.getDockOrder({ editMode: 'Crop' });
-```
-
 ## API Reference
 
-| Method                                | Purpose                                        |
-| ------------------------------------- | ---------------------------------------------- |
-| `cesdk.ui.getDockOrder()`             | Get current dock component order               |
-| `cesdk.ui.setDockOrder()`             | Set complete dock component order              |
-| `cesdk.ui.updateDockOrderComponent()` | Update existing dock components                |
-| `cesdk.ui.removeDockOrderComponent()` | Remove dock components                         |
-| `cesdk.ui.insertDockOrderComponent()` | Insert new dock components                     |
-| `cesdk.ui.registerComponent()`        | Register custom components for dock use        |
-| `cesdk.engine.editor.setSetting()`    | Configure dock appearance settings             |
+| Method                                                          | Purpose                                   |
+| --------------------------------------------------------------- | ----------------------------------------- |
+| `cesdk.ui.getComponentOrder({ in: 'ly.img.dock', at? })`       | Get dock component order at a position    |
+| `cesdk.ui.setComponentOrder({ in: 'ly.img.dock', at? }, order)` | Set dock component order at a position    |
+| `cesdk.ui.insertOrderComponent({ in: 'ly.img.dock', at? }, c)` | Insert components into the dock           |
+| `cesdk.ui.updateOrderComponent({ in: 'ly.img.dock', at? }, u)` | Update dock components                    |
+| `cesdk.ui.removeOrderComponent({ in: 'ly.img.dock', at? })`    | Remove dock components                    |
+| `cesdk.ui.registerComponent()`                                  | Register custom components for dock use   |
+| `cesdk.engine.editor.setSetting()`                              | Configure dock appearance settings        |
 
 
 

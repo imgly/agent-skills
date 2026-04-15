@@ -41,20 +41,4 @@ export async function initDesignViewer(cesdk: CreativeEditorSDK) {
   // cesdk.setLocale('en');
   // highlight-theme
 
-  // ============================================================================
-  // Scene Loading
-  // ============================================================================
-
-  // highlight-scene-loading
-  await cesdk.loadFromArchiveURL(
-    'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/1-1-marketing-multipost.zip'
-  );
-
-  // Zoom to fit the content with padding
-  cesdk.actions.run('zoom.toPage', {
-    page: 'first',
-    autoFit: true,
-    padding: 24
-  });
-  // highlight-scene-loading
 }

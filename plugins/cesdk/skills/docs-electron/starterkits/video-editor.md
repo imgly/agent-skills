@@ -4,7 +4,9 @@
 
 ---
 
-Professional video editing for your web app—edit clips, add effects, trim footage, and export to MP4. Runs entirely in the browser with no server dependencies.
+Professional video editing for your Electron app—edit clips, add effects, trim
+footage, and export to MP4. Runs entirely client-side with no server
+dependencies.
 
 ![Video Editor starter kit showing a professional video editing interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -14,141 +16,52 @@ Professional video editing for your web app—edit clips, add effects, trim foot
 >
 > - [Download examples](https://github.com/imgly/starterkit-video-editor-ts-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-video-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-video-editor/)
 
 ***
 
-## Pre-requisites
+## Prerequisites
 
-This guide assumes basic familiarity with JavaScript or TypeScript.
+Before you begin, make sure you have the following:
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
-- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list.
 
 ***
 
+## Get Started
+
+Integrate the Video Editor into your Electron application using the imperative API.
+
 <Tabs syncKey="project-type">
   <TabItem label="New Project">
-    ## Get Started
+    ## Step 1: Initialize a New Project
 
-    Start fresh with a standalone Video Editor project. This creates a complete, ready-to-run application.
-
-    ## Step 1: Clone the Repository
-
-    <TerminalTabs>
-      <TerminalTab label="git">
-        git clone https://github.com/imgly/starterkit-video-editor-ts-web.git
-      </TerminalTab>
-
-      <TerminalTab label="degit">
-        npx degit imgly/starterkit-video-editor-ts-web starterkit-video-editor-ts-web
-      </TerminalTab>
-    </TerminalTabs>
-
-    The `src/` folder contains the editor code:
-
-    ```
-    src/
-    ├── index.ts                      # Application entry point
-    └── imgly/
-        ├── index.ts                  # Editor initialization function
-        ├── config/
-        │   ├── plugin.ts             # Main configuration plugin
-        │   ├── actions.ts            # Export/import actions
-        │   ├── features.ts           # Feature toggles
-        │   ├── i18n.ts               # Translations
-        │   ├── settings.ts           # Engine settings
-        │   └── ui/                   # UI customization
-        │       ├── index.ts          # Combines UI customization exports
-        │       ├── canvas.ts         # Canvas configuration
-        │       ├── components.ts     # Custom component registration
-        │       ├── dock.ts           # Dock layout configuration
-        │       ├── inspectorBar.ts   # Inspector bar layout
-        │       ├── navigationBar.ts  # Navigation bar layout
-        │       └── panel.ts          # Panel configuration
-        └── plugins/
-            └── background-removal.ts # Background removal plugin
-    ```
-
-    ## Step 2: Install Dependencies
-
-    Install the required packages:
+    Create a new Electron app using Vite:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        cd starterkit-video-editor-ts-web
-        npm install
+        npm create vite@latest your-project-name
+        cd your-project-name
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        cd starterkit-video-editor-ts-web
-        pnpm install
+        pnpm create vite your-project-name cd your-project-name
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        cd starterkit-video-editor-ts-web
-        yarn
+        yarn create vite your-project-name cd your-project-name
       </TerminalTab>
     </TerminalTabs>
 
-    ## Step 3: Download Assets
+    > **Select Electron:** When prompted, select **Others > Electron**.
 
-    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
-
-    <TerminalTabs>
-      <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
-        unzip imgly-assets.zip -d public/
-        rm imgly-assets.zip
-      </TerminalTab>
-    </TerminalTabs>
-
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in `src/index.ts`.
-
-    ```typescript title="src/index.ts"
-    const config = {
-      // ...
-      baseURL: '/assets'
-      // ...
-    };
-    ```
-
-    ## Step 4: Run the Development Server
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm run dev
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm run dev
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn dev
-      </TerminalTab>
-    </TerminalTabs>
-
-    Open `http://localhost:5173` in your browser.
-  </TabItem>
-
-  <TabItem label="Existing Project">
-    ## Get Started
-
-    Integrate the Video Editor into an existing web application. This adds the editor configuration to your current project structure.
-
-    ## Step 1: Clone
-
-    <TerminalTabs>
-      <TerminalTab label="Navigate">
-        cd your-project
-      </TerminalTab>
-    </TerminalTabs>
+    ## Step 2: Clone the Starter Kit
 
     Clone the starter kit and copy the editor configuration to your project:
 
@@ -163,8 +76,6 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
         npx degit imgly/starterkit-video-editor-ts-web/src/imgly ./src/imgly
       </TerminalTab>
     </TerminalTabs>
-
-    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
     The `imgly/` folder contains the editor configuration:
 
@@ -189,7 +100,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
         └── background-removal.ts # Background removal plugin
     ```
 
-    ## Step 2: Install Dependencies
+    ## Step 3: Install Dependencies
 
     Install the required packages for the editor:
 
@@ -198,17 +109,9 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js
-      </TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
     </TerminalTabs>
 
     ### Background Removal
@@ -229,9 +132,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
       </TerminalTab>
     </TerminalTabs>
 
-    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
-
-    ## Step 3: Download Assets
+    ## Step 4: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
@@ -243,29 +144,24 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
+    ## Step 5: Add a Container Element
 
-    ## Step 4: Add a Container Element
-
-    Add a container element to your HTML where the editor will be mounted:
+    Add a container element to your renderer HTML where the editor will be mounted:
 
     ```html
     <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
     ```
 
-    ## Step 5: Initialize the Editor
+    ## Step 6: Initialize the Editor
 
-    Import and call the initialization function from your application's entry point:
+    Import and call the initialization function from your renderer entry point:
 
     ```typescript title="src/index.ts"
     import CreativeEditorSDK from '@cesdk/cesdk-js';
-
     import { initVideoEditor } from './imgly';
 
     const config = {
-      userId: 'your-user-id',
       baseURL: '/assets'
-      // license: 'YOUR_LICENSE_KEY',
     };
 
     CreativeEditorSDK.create('#cesdk_container', config)
@@ -276,14 +172,143 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
         console.error('Failed to initialize CE.SDK:', error);
       });
     ```
+
+    > **Electron Renderer Process:** CE.SDK runs in the Electron renderer process, which provides a full Chromium
+    > browser environment. Ensure your Electron main process creates a
+    > `BrowserWindow` and loads the HTML file containing the container element.
+  </TabItem>
+
+  <TabItem label="Existing Project">
+    ## Step 1: Navigate to Your Project
+
+    <TerminalTabs>
+      <TerminalTab label="Navigate">cd your-project</TerminalTab>
+    </TerminalTabs>
+
+    ## Step 2: Clone the Configuration
+
+    Copy the Video Editor configuration to your project:
+
+    <TerminalTabs>
+      <TerminalTab label="git">
+        git clone https://github.com/imgly/starterkit-video-editor-ts-web.git
+        cp -r starterkit-video-editor-ts-web/src/imgly ./src/imgly
+        rm -rf starterkit-video-editor-ts-web
+      </TerminalTab>
+
+      <TerminalTab label="degit">
+        npx degit imgly/starterkit-video-editor-ts-web/src/imgly ./src/imgly
+      </TerminalTab>
+    </TerminalTabs>
+
+    > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your
+    > project structure.
+
+    ## Step 3: Install Dependencies
+
+    ### Core Editor
+
+    Install the Creative Editor SDK:
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+    </TerminalTabs>
+
+    ### Background Removal
+
+    Add AI-powered background removal:
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm install @imgly/background-removal onnxruntime-web
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm add @imgly/background-removal onnxruntime-web
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn add @imgly/background-removal onnxruntime-web
+      </TerminalTab>
+    </TerminalTabs>
+
+    ## Step 4: Download Assets
+
+    CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
+
+    <TerminalTabs>
+      <TerminalTab label="Download">
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        unzip imgly-assets.zip -d public/
+        rm imgly-assets.zip
+      </TerminalTab>
+    </TerminalTabs>
+
+    ## Step 5: Add a Container Element
+
+    Add a container element to your renderer HTML where the editor will be mounted:
+
+    ```html
+    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
+    ```
+
+    ## Step 6: Initialize the Editor
+
+    Import and call the initialization function from your renderer entry point:
+
+    ```typescript title="src/index.ts"
+    import CreativeEditorSDK from '@cesdk/cesdk-js';
+    import { initVideoEditor } from './imgly';
+
+    const config = {
+      baseURL: '/assets'
+    };
+
+    CreativeEditorSDK.create('#cesdk_container', config)
+      .then(async (cesdk) => {
+        await initVideoEditor(cesdk);
+      })
+      .catch((error) => {
+        console.error('Failed to initialize CE.SDK:', error);
+      });
+    ```
+
+    > **Electron Renderer Process:** CE.SDK runs in the Electron renderer process, which provides a full Chromium
+    > browser environment. Ensure your Electron main process creates a
+    > `BrowserWindow` and loads the HTML file containing the container element.
   </TabItem>
 </Tabs>
+
+The `imgly/` folder contains the editor configuration:
+
+```
+imgly/
+├── index.ts                  # Editor initialization function
+├── config/
+│   ├── plugin.ts             # Main configuration plugin
+│   ├── actions.ts            # Export/import actions
+│   ├── features.ts           # Feature toggles
+│   ├── i18n.ts               # Translations
+│   ├── settings.ts           # Engine settings
+│   └── ui/                   # UI customization
+│       ├── index.ts          # Combines UI customization exports
+│       ├── canvas.ts         # Canvas configuration
+│       ├── components.ts     # Custom component registration
+│       ├── dock.ts           # Dock layout configuration
+│       ├── inspectorBar.ts   # Inspector bar layout
+│       ├── navigationBar.ts  # Navigation bar layout
+│       └── panel.ts          # Panel configuration
+└── plugins/
+    └── background-removal.ts # Background removal plugin
+```
 
 ## Set Up a Scene
 
 CE.SDK offers multiple ways to load content into the editor. Choose the method that matches your use case:
 
-```typescript title="src/index.ts"
+```typescript title="src/imgly/index.ts"
 // Load from a video URL - creates a new scene with the video
 await cesdk.createFromVideo('https://example.com/video.mp4');
 
@@ -299,21 +324,22 @@ await cesdk.loadFromURL('https://example.com/scene.json');
 
 The `createFromVideo()` method is ideal for video editing workflows, as it automatically creates a scene with the video on a timeline.
 
-> **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading methods.
+> **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading
+> methods.
 
 ## Customize Assets
 
 The Video Editor uses asset source plugins to provide built-in libraries for video clips, audio, effects, stickers, and fonts. The starter kit includes a curated selection—customize what's included based on your needs.
 
-Asset sources are added via plugins in `src/index.ts`. Enable or disable individual sources:
+Asset sources are added via plugins in `src/imgly/index.ts`. Enable or disable individual sources:
 
-```typescript title="src/index.ts"
+```typescript title="src/imgly/index.ts"
 import {
   FiltersAssetSource,
   StickerAssetSource,
   TextAssetSource,
   VectorShapeAssetSource,
-  EffectsAssetSource,
+  EffectsAssetSource
   // ...
 } from '@cesdk/cesdk-js/plugins';
 
@@ -326,7 +352,8 @@ await cesdk.addPlugin(new EffectsAssetSource());
 // ...
 ```
 
-> **Available Asset Sources:** See [Asset Source Plugins](./plugins/asset-sources.md) for the complete list of available sources.
+> **Available Asset Sources:** See [Asset Source Plugins](./plugins/asset-sources.md) for the complete list of
+> available sources.
 
 For production deployments, self-hosting assets is required—the IMG.LY CDN is intended for development only. See [Serve Assets](./serve-assets.md) for downloading assets, configuring `baseURL`, and excluding unused sources to optimize load times.
 
@@ -348,6 +375,8 @@ Use `cesdk.actions.run()` to execute any action:
 // Run a built-in action
 await cesdk.actions.run('exportDesign', { mimeType: 'video/mp4' });
 ```
+
+Customize actions in `src/imgly/config/actions.ts`:
 
 #### Import from File Picker
 
@@ -392,7 +421,8 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
 });
 ```
 
-> **Learn More:** See [Actions](./actions.md) for the full list of built-in actions, how to run them, and how to register custom actions.
+> **Learn More:** See [Actions](./actions.md) for the full list of built-in actions,
+> how to run them, and how to register custom actions.
 
 ***
 
@@ -554,10 +584,12 @@ Extend the editor with generative AI capabilities for text-to-image generation, 
 import AIPlugin from '@imgly/plugin-ai-generation';
 
 // Configure AI generation
-await cesdk.addPlugin(AIPlugin({
-  provider: 'your-ai-provider',
-  apiKey: 'your-api-key'
-}));
+await cesdk.addPlugin(
+  AIPlugin({
+    provider: 'your-ai-provider',
+    apiKey: 'your-api-key'
+  })
+);
 ```
 
 See [AI Integration](./user-interface/ai-integration.md) for provider setup and supported AI features.
@@ -570,9 +602,11 @@ Connect external asset libraries like Unsplash, Getty Images, or your own conten
 import UnsplashAssetSource from '@imgly/plugin-unsplash';
 
 // Add Unsplash integration
-await cesdk.addPlugin(UnsplashAssetSource({
-  accessKey: 'your-unsplash-access-key'
-}));
+await cesdk.addPlugin(
+  UnsplashAssetSource({
+    accessKey: 'your-unsplash-access-key'
+  })
+);
 ```
 
 See [Custom Asset Sources](./import-media/from-remote-source/unsplash.md) for integration patterns.
@@ -598,44 +632,45 @@ The Video Editor includes everything needed for professional video editing.
     title: 'Timeline Editing',
     description:
       'Multi-track timeline with drag-and-drop clips, transitions, and precise trimming controls.',
-    imageId: 'transform',
+    imageId: 'transform'
   },
   {
     title: 'Visual Effects',
     description:
       'Apply filters, color grading, and visual effects to enhance your video content.',
-    imageId: 'filters',
+    imageId: 'filters'
   },
   {
     title: 'Text & Graphics',
     description:
       'Add animated text, titles, and graphic overlays with comprehensive styling controls.',
-    imageId: 'text-editing',
+    imageId: 'text-editing'
   },
   {
     title: 'Audio Management',
     description:
       'Add background music, voiceovers, and sound effects with volume and timing controls.',
-    imageId: 'green-screen',
+    imageId: 'green-screen'
   },
   {
     title: 'Asset Libraries',
     description:
       'Access built-in collections of video clips, stickers, and graphics, plus import custom assets.',
-    imageId: 'asset-libraries',
+    imageId: 'asset-libraries'
   },
   {
     title: 'Video Export',
     description:
       'Export to MP4 format with customizable resolution, quality, and encoding settings.',
-    imageId: 'client-side',
-  },
+    imageId: 'client-side'
+  }
 ]}
 />
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get
+> a license key and remove the watermark.
 
 ***
 
@@ -679,7 +714,6 @@ The Video Editor includes everything needed for professional video editing.
 
 - [Configuration](./configuration.md) – Complete list of initialization options
 - [Serve Assets](./serve-assets.md) – Self-host engine assets for production
-- [Actions](./actions.md) – Build custom export and save workflows
 - [Theming](./user-interface/appearance/theming.md) – Customize colors and appearance
 - [Localization](./user-interface/localization.md) – Add translations and language support
 
