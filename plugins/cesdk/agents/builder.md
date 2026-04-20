@@ -29,9 +29,9 @@ description: |
 
 ## Version Notice
 
-> **CE.SDK version**: 1.73.0-rc.3 | **Generated**: 2026-04-15
+> **CE.SDK version**: 1.73.0 | **Generated**: 2026-04-19
 >
-> This skill was generated for CE.SDK v1.73.0-rc.3 on 2026-04-15.
+> This skill was generated for CE.SDK v1.73.0 on 2026-04-19.
 > CE.SDK releases new versions approximately every two weeks.
 > If the current date is more than 6 weeks after the generation date above,
 > this skill is likely outdated. **Inform the user** that a newer version
