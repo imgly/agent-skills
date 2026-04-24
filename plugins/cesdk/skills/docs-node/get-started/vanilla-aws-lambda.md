@@ -127,7 +127,7 @@ Create an `src` directory and run `npm init`.
 We'll install all necessary dependencies inside the `src` directory, since only code specified via `code: lambda.Code.fromAsset("src")` in our service file will be made available to our lambda function.
 
 ```bash
-yarn add @cesdk/node @aws-sdk/client-dynamodb uuid
+yarn add @cesdk/node@$UBQ_VERSION$ @aws-sdk/client-dynamodb uuid
 ```
 
 Next initialize an `images-handler.js` file inside it. This lambda function handles the `POST` and `GET` image requests.

@@ -24,7 +24,7 @@ import type { TypefaceResolver } from '@imgly/psd-importer';
 import {
   PSDParser,
   createPNGJSEncodeBufferToPNG,
-  addGoogleFontsAssetLibrary
+  addGfontsAssetLibrary
 } from '@imgly/psd-importer';
 import { PNG } from 'pngjs';
 import { config } from 'dotenv';
@@ -99,7 +99,7 @@ async function convertPsd(
   const psdBuffer = await fs.readFile(psdPath);
 
   // Create parser with Node.js PNG encoder
-  // The addGoogleFontsAssetLibrary() call enables automatic font matching
+  // The addGfontsAssetLibrary() call enables automatic font matching
   // For custom font mapping, pass fontResolver in options (see customFontResolver example)
   // Note: Cast engine to any because psd-importer types expect browser engine
   const parser = await PSDParser.fromFile(
@@ -189,7 +189,7 @@ async function batchConvertPsds(
   try {
     // Configure Google Fonts for text element support
     // Note: Cast engine to any because psd-importer types expect browser engine
-    await addGoogleFontsAssetLibrary(engine as any);
+    await addGfontsAssetLibrary(engine as any);
 
     let successCount = 0;
     let failCount = 0;
@@ -301,7 +301,7 @@ async function main(): Promise<void> {
 
   try {
     // Configure Google Fonts for text element support
-    await addGoogleFontsAssetLibrary(engine as any);
+    await addGfontsAssetLibrary(engine as any);
 
     // Create a sample scene to demonstrate the export format
     // In production, this would be replaced by actual PSD conversion
@@ -335,7 +335,7 @@ main().catch(console.error);
 Install the `@imgly/psd-importer` package alongside the CE.SDK Node.js engine and the `pngjs` package for PNG encoding:
 
 ```bash
-npm install @imgly/psd-importer @cesdk/node pngjs
+npm install @imgly/psd-importer @cesdk/node@$UBQ_VERSION$ pngjs
 ```
 
 The server environment requires `pngjs` because Node.js doesn't have native browser APIs for PNG encoding. The `createPNGJSEncodeBufferToPNG(PNG)` function provides this capability.
@@ -393,7 +393,7 @@ import type { TypefaceResolver } from '@imgly/psd-importer';
 import {
   PSDParser,
   createPNGJSEncodeBufferToPNG,
-  addGoogleFontsAssetLibrary
+  addGfontsAssetLibrary
 } from '@imgly/psd-importer';
 import { PNG } from 'pngjs';
 import { config } from 'dotenv';
@@ -429,7 +429,7 @@ async function convertPsd(
   const psdBuffer = await fs.readFile(psdPath);
 
   // Create parser with Node.js PNG encoder
-  // The addGoogleFontsAssetLibrary() call enables automatic font matching
+  // The addGfontsAssetLibrary() call enables automatic font matching
   // For custom font mapping, pass fontResolver in options (see customFontResolver example)
   // Note: Cast engine to any because psd-importer types expect browser engine
   const parser = await PSDParser.fromFile(
@@ -533,7 +533,7 @@ async function batchConvertPsds(
   try {
     // Configure Google Fonts for text element support
     // Note: Cast engine to any because psd-importer types expect browser engine
-    await addGoogleFontsAssetLibrary(engine as any);
+    await addGfontsAssetLibrary(engine as any);
 
     let successCount = 0;
     let failCount = 0;
@@ -678,7 +678,7 @@ async function main(): Promise<void> {
 
   try {
     // Configure Google Fonts for text element support
-    await addGoogleFontsAssetLibrary(engine as any);
+    await addGfontsAssetLibrary(engine as any);
 
     // Create a sample scene to demonstrate the export format
     // In production, this would be replaced by actual PSD conversion
@@ -793,7 +793,7 @@ The `@imgly/psd-importer` package exports the following key APIs:
 |-----|-------------|
 | `PSDParser.fromFile(engine, buffer, encoder, options?)` | Creates a parser instance from a PSD file buffer. Returns a parser with a `parse()` method. |
 | `createPNGJSEncodeBufferToPNG(PNG)` | Creates a PNG encoder for Node.js using the `pngjs` library. Pass the `PNG` constructor from `pngjs`. |
-| `addGoogleFontsAssetLibrary(engine)` | Registers Google Fonts as a font source for text element matching. Call before parsing. |
+| `addGfontsAssetLibrary(engine)` | Registers Google Fonts as a font source for text element matching. Call before parsing. |
 | `TypefaceResolver` | Type for custom font resolver functions. Receives font parameters and returns a matching typeface/font pair. |
 | `options.fontResolver` | `TypefaceResolver` - Custom function to resolve fonts from the PSD to available typefaces. |
 | `result.logger.getMessages()` | Returns an array of import messages with `type` ('warning' or 'error') and `message` properties. |
@@ -815,7 +815,7 @@ The PSD importer has the following limitations:
 
 **Conversion fails silently:** Check the logger messages from `result.logger.getMessages()`. The batch conversion functions log warnings and errors for each file.
 
-**Text appears with wrong font:** Ensure `addGoogleFontsAssetLibrary()` is called before parsing. The importer attempts to match fonts with Google Fonts and uses a fallback for unavailable fonts.
+**Text appears with wrong font:** Ensure `addGfontsAssetLibrary()` is called before parsing. The importer attempts to match fonts with Google Fonts and uses a fallback for unavailable fonts.
 
 **Memory issues with large files:** Files over 900MB may encounter memory constraints. The importer gracefully skips problematic elements. Consider increasing Node.js memory with `--max-old-space-size`.
 

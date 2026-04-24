@@ -303,21 +303,21 @@ Install `@imgly/plugin-ai-image-generation-web` to access the ImageGeneration pl
 <Tabs syncKey="package-manager">
   <TabItem label="npm">
     ```bash
-    npm install @imgly/plugin-ai-image-generation-web
+    npm install @imgly/plugin-ai-image-generation-web@$UBQ_VERSION$
 
     ```
   </TabItem>
 
   <TabItem label="yarn">
     ```bash
-    yarn add @imgly/plugin-ai-image-generation-web
+    yarn add @imgly/plugin-ai-image-generation-web@$UBQ_VERSION$
 
     ```
   </TabItem>
 
   <TabItem label="pnpm">
     ```bash
-    pnpm add @imgly/plugin-ai-image-generation-web
+    pnpm add @imgly/plugin-ai-image-generation-web@$UBQ_VERSION$
 
     ```
   </TabItem>

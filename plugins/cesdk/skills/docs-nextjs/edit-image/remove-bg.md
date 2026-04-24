@@ -210,7 +210,7 @@ This guide covers installing the plugin, configuring UI placement, and customizi
 Install the background removal plugin and its ONNX runtime peer dependency:
 
 ```bash
-npm install @imgly/plugin-background-removal-web onnxruntime-web@1.21.0
+npm install @imgly/plugin-background-removal-web@$UBQ_VERSION$ onnxruntime-web@1.21.0
 ```
 
 Import the plugin in your application:

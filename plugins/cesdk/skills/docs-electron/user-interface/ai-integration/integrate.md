@@ -340,14 +340,14 @@ First, set up your project and install the necessary packages:
 
 ```bash
 # Initialize a new project or use an existing one
-npm install @cesdk/cesdk-js
-npm install @imgly/plugin-ai-apps-web
+npm install @cesdk/cesdk-js@$UBQ_VERSION$
+npm install @imgly/plugin-ai-apps-web@$UBQ_VERSION$
 
 # Install individual AI generation packages as needed
-npm install @imgly/plugin-ai-image-generation-web
-npm install @imgly/plugin-ai-video-generation-web
-npm install @imgly/plugin-ai-audio-generation-web
-npm install @imgly/plugin-ai-text-generation-web
+npm install @imgly/plugin-ai-image-generation-web@$UBQ_VERSION$
+npm install @imgly/plugin-ai-video-generation-web@$UBQ_VERSION$
+npm install @imgly/plugin-ai-audio-generation-web@$UBQ_VERSION$
+npm install @imgly/plugin-ai-text-generation-web@$UBQ_VERSION$
 ```
 
 Import the providers from their respective packages:

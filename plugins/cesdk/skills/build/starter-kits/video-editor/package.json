@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@cesdk/cesdk-js": "latest",
-    "@imgly/background-removal": "^1.4.5",
-    "onnxruntime-web": "^1.21.0"
+    "@imgly/background-removal": "1.7.0",
+    "onnxruntime-web": "1.21.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",

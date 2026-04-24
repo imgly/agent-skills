@@ -188,21 +188,21 @@ Install the audio generation plugin package:
 <Tabs syncKey="package-manager">
   <TabItem label="npm">
     ```bash
-    npm install @imgly/plugin-ai-audio-generation-web
+    npm install @imgly/plugin-ai-audio-generation-web@$UBQ_VERSION$
 
     ```
   </TabItem>
 
   <TabItem label="yarn">
     ```bash
-    yarn add @imgly/plugin-ai-audio-generation-web
+    yarn add @imgly/plugin-ai-audio-generation-web@$UBQ_VERSION$
 
     ```
   </TabItem>
 
   <TabItem label="pnpm">
     ```bash
-    pnpm add @imgly/plugin-ai-audio-generation-web
+    pnpm add @imgly/plugin-ai-audio-generation-web@$UBQ_VERSION$
 
     ```
   </TabItem>

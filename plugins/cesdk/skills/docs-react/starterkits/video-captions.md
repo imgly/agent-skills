@@ -198,9 +198,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ### Autocaption Plugin
@@ -209,15 +209,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-autocaption-web
+        npm install @imgly/plugin-autocaption-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-autocaption-web
+        pnpm add @imgly/plugin-autocaption-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-autocaption-web
+        yarn add @imgly/plugin-autocaption-web@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 

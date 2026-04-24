@@ -133,8 +133,8 @@ The `@imgly/plugin-vectorizer-web` plugin adds a vectorize button to the canvas 
 Install the plugin via npm or yarn:
 
 ```sh
-yarn add @imgly/plugin-vectorizer-web
-npm install @imgly/plugin-vectorizer-web
+yarn add @imgly/plugin-vectorizer-web@$UBQ_VERSION$
+npm install @imgly/plugin-vectorizer-web@$UBQ_VERSION$
 ```
 
 ### Adding the Plugin

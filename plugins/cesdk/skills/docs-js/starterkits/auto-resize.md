@@ -225,15 +225,15 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js
+        npm install @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js
+        pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js
+        yarn add @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 

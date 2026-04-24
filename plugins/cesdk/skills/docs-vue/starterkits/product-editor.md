@@ -14,21 +14,21 @@ Product Editor for customizing any product with print-ready designs.
 >
 > - [Download examples](https://github.com/imgly/starterkit-product-editor-react-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-product-editor-react-web/tree/release-$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-product-editor-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/starterkit-product-editor-react-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-product-editor-react-web/tree/v$UBQ_VERSION$)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-product-editor/)
 
 ***
 
-## Pre-requisites
+## Prerequisites
 
-This guide assumes basic familiarity with JavaScript or TypeScript.
+Before you begin, make sure you have the following:
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
-- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list.
 
 ***
 
@@ -55,8 +55,9 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     ```
     src/
     ├── app/                          # Demo application
+    │   └── utils/
+    │       └── product.ts                # Scene metadata & asset download helpers
     ├── imgly/
-    │   ├── backdrop.ts               # Backdrop management
     │   ├── config/
     │   │   ├── actions.ts                # Export/import actions
     │   │   ├── features.ts               # Feature toggles
@@ -71,10 +72,9 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     │   │       ├── inspectorBar.ts           # Inspector bar layout
     │   │       ├── navigationBar.ts          # Navigation bar layout
     │   │       └── panel.ts                  # Panel configuration
-    │   ├── constants.ts              # Configuration constants
+    │   ├── plugins/
+    │   │   └── product-backdrop.ts       # ProductBackdrop plugin (scene, backdrop & area actions)
     │   ├── index.ts                  # Editor initialization function
-    │   ├── mask.ts                   # Mask handling
-    │   ├── page.ts                   # Scene and area management
     │   └── types.ts                  # TypeScript type definitions
     └── index.tsx                 # Application entry point
     ```
@@ -144,7 +144,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
   <TabItem label="Existing Project">
     ## Get Started
 
-    Integrate the Product Editor into an existing web application. This adds the editor configuration to your current project structure.
+    Integrate the Product Editor into an existing Vue application. This adds the editor configuration to your current project structure.
 
     ## Step 1: Clone
 
@@ -170,11 +170,10 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
-    The `imgly/` folder contains the editor configuration and product-specific functionality:
+    The `imgly/` folder contains the editor configuration:
 
     ```
     imgly/
-    ├── backdrop.ts               # Backdrop management
     ├── config/
     │   ├── actions.ts                # Export/import actions
     │   ├── features.ts               # Feature toggles
@@ -189,32 +188,27 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     │       ├── inspectorBar.ts           # Inspector bar layout
     │       ├── navigationBar.ts          # Navigation bar layout
     │       └── panel.ts                  # Panel configuration
-    ├── constants.ts              # Configuration constants
+    ├── plugins/
+    │   └── product-backdrop.ts       # ProductBackdrop plugin (scene, backdrop & area actions)
     ├── index.ts                  # Editor initialization function
-    ├── mask.ts                   # Mask handling
-    ├── page.ts                   # Scene and area management
     └── types.ts                  # TypeScript type definitions
     ```
 
     ## Step 2: Install Dependencies
 
-    Install the required packages for the editor:
-
-    ### Core Editor
-
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js
+        npm install @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js
+        pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js
+        yarn add @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 
@@ -230,144 +224,145 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 4: Create the Editor Component.
 
-    ## Step 4: Add a Container Element
+    ## Step 4: Create the Editor Component
 
-    Add a container element to your HTML where the editor will be mounted:
+    Create a Vue component that uses the `CreativeEditor` wrapper with the `initProductEditor` function from the starter kit:
 
-    ```html
-    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
+    ```vue
+    <template>
+      <CreativeEditor
+        :config="{ baseURL: '/assets' }"
+        :init="initProductEditor"
+        width="100vw"
+        height="100vh"
+      />
+    </template>
+
+    <script setup lang="ts">
+    import { initProductEditor } from './imgly';
+    import CreativeEditor from '@cesdk/cesdk-js/vue';
+    </script>
     ```
 
-    ## Step 5: Initialize the Editor
+    ## Step 5: Use the Component
 
-    Import and call the initialization function from your application's entry point:
+    Use the component in your app:
 
-    ```typescript title="src/index.ts"
-    import CreativeEditorSDK from '@cesdk/cesdk-js';
+    ```vue
+    <template>
+      <ProductEditor />
+    </template>
 
-    import { initProductEditor } from './imgly';
-
-    const config = {
-      userId: 'your-user-id',
-      baseURL: '/assets'
-      // license: 'YOUR_LICENSE_KEY',
-    };
-
-    CreativeEditorSDK.create('#cesdk_container', config)
-      .then(async (cesdk) => {
-        await initProductEditor(cesdk);
-      })
-      .catch((error) => {
-        console.error('Failed to initialize CE.SDK:', error);
-      });
+    <script setup>
+    import ProductEditor from './components/ProductEditor.vue';
+    </script>
     ```
   </TabItem>
 </Tabs>
 
 ## Working with Products
 
-The starter kit handles product loading and color switching automatically through React state in `App.tsx`. For advanced use cases—such as integrating with your own product catalog or building custom UI controls—the `imgly` folder exports functions that give you direct control over scenes, backdrops, and masks.
+### The ProductBackdrop Plugin
 
-### Managing the Scene
+`ProductBackdrop` is registered inside `initProductEditor` and owns the scene lifecycle: pages, backdrops, area navigation, page shapes for non-rectangular products, and token substitution on backdrop image URIs.
 
-Each product has one or more print areas (front, back, etc.) represented as pages in the editor scene. Use the scene functions to create these areas programmatically and navigate between them.
+| Action | Purpose |
+| --- | --- |
+| `product.setupScene(options)` | Create or update the scene's pages and backdrops from a product config |
+| `product.switchArea(areaId)` | Focus a print area page and reveal its backdrop |
+| `product.getVisibleAreaId()` | Return the currently visible area's id, or `null` |
+| `product.applyVariables(variables, areas)` | Substitute `{{key}}` tokens in backdrop image URIs |
+
+### Setting Up and Switching Areas
+
+`product.setupScene` takes the list of enabled print areas and the design unit. Each area becomes a separate page with its own backdrop. `product.switchArea` focuses one of them and zooms to fit.
 
 ```typescript
-import { createOrUpdateScene, switchArea, getVisibleAreaId } from './imgly';
-```
-
-The `createOrUpdateScene` function initializes the editor with your product's print areas. Each area becomes a separate page with its own design canvas. Use `switchArea` to navigate between areas—this also updates the backdrop and adjusts the zoom.
-
-```typescript
-// Create pages for each print area
-createOrUpdateScene(
-  cesdk.engine,
-  [
-    { id: 'front', pageSize: { width: 20, height: 20 } },
-    { id: 'back', pageSize: { width: 20, height: 20 } }
+// Build the scene for a t-shirt with front and back print areas
+await cesdk.actions.run('product.setupScene', {
+  areas: [
+    {
+      id: 'front',
+      pageSize: { width: 20, height: 20 },
+      mockup: {
+        images: [{ uri: '/assets/products/tshirt/{{color}}_front.png', width: 815, height: 948 }],
+        printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+      }
+    },
+    {
+      id: 'back',
+      pageSize: { width: 20, height: 20 },
+      mockup: {
+        images: [{ uri: '/assets/products/tshirt/{{color}}_back.png', width: 815, height: 948 }],
+        printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+      }
+    }
   ],
-  'Inch'
-);
+  designUnit: 'Inch',
+  variables: { color: 'white' }
+});
 
-// Navigate to a different area
-await switchArea(cesdk, 'back');
+// Navigate to the back area
+await cesdk.actions.run('product.switchArea', 'back');
 
-// Get the currently visible area
-const currentArea = getVisibleAreaId(cesdk.engine);
+// Which area is currently visible?
+const currentArea = await cesdk.actions.run('product.getVisibleAreaId');
 ```
+
+The `printableAreaPx` property defines where the design canvas sits within the mockup image, keeping designs positioned correctly on the product visualization.
 
 > **Custom Products:** Add your own products by extending the product catalog in `src/app/product-catalog.ts` with new mockup images, print areas, and configuration.
 
-### Managing Backdrops
+### Swapping Colors or Variants
 
-Backdrops are the product mockup images that appear behind the design canvas—showing users how their design will look on the actual product. Each print area has its own backdrop, and you update them when users select different product colors or variants.
+Backdrop image URIs may contain `{{key}}` tokens. The kit's catalog uses `{{color}}`, but any variable name works. Run `product.applyVariables` when the user picks a different color or variant to re-resolve those tokens without rebuilding the scene.
 
 ```typescript
-import {
-  createBackdrop,
-  updateBackdropImages,
-  showBackdrop,
-  clearBackdrops
-} from './imgly';
+const enabledAreas = product.areas
+  .filter((area) => !area.disabled)
+  .map((area) => ({ id: area.id, mockup: area.mockup }));
+
+await cesdk.actions.run(
+  'product.applyVariables',
+  { color: 'red' },
+  enabledAreas
+);
 ```
 
-The `printableAreaPx` property defines where the design canvas sits within the mockup image. This ensures designs are positioned correctly on the product visualization.
+### Non-rectangular Products
+
+Products like arrow signs or custom-shaped panels have non-rectangular print areas. Pass an optional SVG path as `mockup.pageShape` and `product.setupScene` applies it to the page via the engine's native `vector_path` shape. The page is then clipped to that silhouette both on screen and at export—no bitmap mask overlays, no editing/exporting swap at export time.
 
 ```typescript
-// Create a backdrop with mockup image and print area bounds
-createBackdrop(cesdk.engine, 'front', {
-  images: [{ uri: '/assets/products/tshirt/white_front.png', width: 815, height: 948 }],
-  printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+await cesdk.actions.run('product.setupScene', {
+  areas: [
+    {
+      id: 'front',
+      pageSize: { width: 12, height: 8 },
+      mockup: {
+        images: [{ uri: '/assets/products/arrowsign/{{color}}_front.png', width: 1200, height: 800 }],
+        printableAreaPx: { x: 100, y: 80, width: 940, height: 625 },
+        // SVG path in the printable-area coordinate space (0,0 → width,height)
+        pageShape: 'M628 0.97 C623 3.97 ...'
+      }
+    }
+  ],
+  designUnit: 'Inch',
+  variables: { color: 'white' }
 });
-
-// Swap mockup images (e.g., when changing colors)
-updateBackdropImages(cesdk.engine, 'front', [
-  { uri: '/assets/products/tshirt/red_front.png', width: 815, height: 948 }
-]);
-
-// Display the backdrop for an area
-showBackdrop(cesdk.engine, 'front');
-
-// Remove all backdrops
-clearBackdrops(cesdk.engine);
 ```
 
-### Managing Masks
-
-Some products—like mugs, phone cases, or arrow signs—have non-rectangular print areas. Masks define the shape of these areas, constraining where users can place design elements and ensuring exports match the actual printable surface.
-
-```typescript
-import { setMaskConfig, updateMasks, clearMasks } from './imgly';
-```
-
-You can configure separate masks for editing (what users see while designing) and exporting (the final output shape). This is useful when the visual editing area differs slightly from the actual print boundaries.
-
-```typescript
-// Configure mask URLs for an area
-setMaskConfig(cesdk.engine, 'front', {
-  editingUrl: '/assets/products/arrow/mask-editing.svg',
-  exportingUrl: '/assets/products/arrow/mask-export.svg'
-});
-
-// Apply editing masks (visible during design)
-updateMasks(cesdk.engine, 'editing');
-
-// Apply exporting masks (used for final output)
-updateMasks(cesdk.engine, 'exporting');
-
-// Remove all masks
-clearMasks(cesdk.engine);
-```
+Rectangular areas simply omit `pageShape`; the plugin resets the page to a plain rectangle when an area stops supplying one.
 
 ## Customize Assets
 
 The Product Editor uses asset source plugins to provide built-in libraries for stickers, shapes, and fonts. The starter kit includes a curated selection—customize what's included based on your needs.
 
-Asset sources are added via plugins in `src/index.ts`. Enable or disable individual sources:
+Asset sources are added via plugins in `src/imgly/index.ts`. Enable or disable individual sources:
 
-```typescript title="src/index.ts"
+```typescript title="src/imgly/index.ts"
 import {
   FiltersAssetSource,
   StickerAssetSource,
@@ -700,7 +695,7 @@ The Product Editor includes everything needed for multi-product customization an
   {
     title: 'Print-ready Export',
     description:
-      'Export PDF files and PNG thumbnails for all print areas, including masked exports for non-rectangular products.',
+      'Export PDF files and PNG thumbnails for all print areas, with native vector-path page shapes for non-rectangular products.',
     imageId: 'green-screen',
   },
 ]}

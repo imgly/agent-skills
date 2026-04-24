@@ -107,9 +107,9 @@ Integrate the Video Editor into your React application using the official React 
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ### Background Removal
@@ -204,9 +204,9 @@ Integrate the Video Editor into your React application using the official React 
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ### Background Removal

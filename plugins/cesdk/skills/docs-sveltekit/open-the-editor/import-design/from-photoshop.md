@@ -49,7 +49,7 @@ import type {
 import type { TypefaceResolver } from '@imgly/psd-importer';
 import {
   PSDParser,
-  addGoogleFontsAssetLibrary,
+  addGfontsAssetLibrary,
   createWebEncodeBufferToPNG
 } from '@imgly/psd-importer';
 import packageJson from './package.json';
@@ -156,7 +156,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     // Register Google Fonts before parsing PSD files for best font matching
-    await addGoogleFontsAssetLibrary(engine);
+    await addGfontsAssetLibrary(engine);
 
     // Optional: Create a custom font resolver for advanced font mapping
     // Use this when you need to map Photoshop fonts to specific alternatives,
@@ -230,7 +230,7 @@ class Example implements EditorPlugin {
       }
 
       // Parse the PSD file using the PSD importer
-      // The addGoogleFontsAssetLibrary() call above enables automatic font matching
+      // The addGfontsAssetLibrary() call above enables automatic font matching
       // For custom font mapping, pass fontResolver in options (see customFontResolver example)
       const parser = await PSDParser.fromFile(
         engine,
@@ -449,7 +449,7 @@ export default Example;
 Install the `@imgly/psd-importer` package alongside CE.SDK:
 
 ```bash
-npm install @imgly/psd-importer @cesdk/cesdk-js
+npm install @imgly/psd-importer @cesdk/cesdk-js@$UBQ_VERSION$
 ```
 
 The browser environment uses `createWebEncodeBufferToPNG()` for PNG encoding, which requires no additional dependencies.
@@ -495,7 +495,7 @@ The PSD importer preserves the following Photoshop elements:
 
 ## Setting Up Font Matching
 
-Text elements in PSD files reference fonts that may not be available in CE.SDK. Use `addGoogleFontsAssetLibrary()` to register Google Fonts as a font source before parsing:
+Text elements in PSD files reference fonts that may not be available in CE.SDK. Use `addGfontsAssetLibrary()` to register Google Fonts as a font source before parsing:
 
 ```typescript highlight=highlight-setup
     // Initialize CE.SDK with Google Fonts support for PSD text matching
@@ -527,7 +527,7 @@ Text elements in PSD files reference fonts that may not be available in CE.SDK. 
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     // Register Google Fonts before parsing PSD files for best font matching
-    await addGoogleFontsAssetLibrary(engine);
+    await addGfontsAssetLibrary(engine);
 ```
 
 Call this function on the engine before parsing PSD files. The importer attempts to match fonts from the PSD with available Google Fonts. For fonts not found, the importer uses a fallback font.
@@ -610,7 +610,7 @@ Use `PSDParser.fromFile()` with `createWebEncodeBufferToPNG()` for browser envir
       }
 
       // Parse the PSD file using the PSD importer
-      // The addGoogleFontsAssetLibrary() call above enables automatic font matching
+      // The addGfontsAssetLibrary() call above enables automatic font matching
       // For custom font mapping, pass fontResolver in options (see customFontResolver example)
       const parser = await PSDParser.fromFile(
         engine,
@@ -810,7 +810,7 @@ For advanced use cases, create a custom font resolver to control how PSD fonts m
 
 The font resolver receives font parameters (family, style, weight) from each text element in the PSD and returns a matching typeface and font from your available assets. Return `null` to let the parser use its default fallback behavior.
 
-Pass the custom resolver to `PSDParser.fromFile()` via the options parameter. When both `addGoogleFontsAssetLibrary()` and a custom resolver are used, the custom resolver takes precedence for font matching decisions.
+Pass the custom resolver to `PSDParser.fromFile()` via the options parameter. When both `addGfontsAssetLibrary()` and a custom resolver are used, the custom resolver takes precedence for font matching decisions.
 
 ## API Reference
 
@@ -820,7 +820,7 @@ The `@imgly/psd-importer` package exports the following key APIs:
 |-----|-------------|
 | `PSDParser.fromFile(engine, buffer, encoder, options?)` | Creates a parser instance from a PSD file buffer. Returns a parser with a `parse()` method. |
 | `createWebEncodeBufferToPNG()` | Creates a PNG encoder for browser environments using the Canvas API. |
-| `addGoogleFontsAssetLibrary(engine)` | Registers Google Fonts as a font source for text element matching. Call before parsing. |
+| `addGfontsAssetLibrary(engine)` | Registers Google Fonts as a font source for text element matching. Call before parsing. |
 | `TypefaceResolver` | Type for custom font resolver functions. Receives font parameters and returns a matching typeface/font pair. |
 | `options.fontResolver` | `TypefaceResolver` - Custom function to resolve fonts from the PSD to available typefaces. |
 | `result.logger.getMessages()` | Returns an array of import messages with `type` ('warning' or 'error') and `message` properties. |
@@ -840,7 +840,7 @@ The PSD importer has the following limitations:
 
 **Import fails silently:** Check the logger messages for errors using `result.logger.getMessages()`.
 
-**Text appears with wrong font:** Ensure `addGoogleFontsAssetLibrary()` is called before parsing. Verify the font exists in Google Fonts. If not available, a fallback font is used.
+**Text appears with wrong font:** Ensure `addGfontsAssetLibrary()` is called before parsing. Verify the font exists in Google Fonts. If not available, a fallback font is used.
 
 **Missing layers:** Some layer types or blend modes may not be supported. Check the import warnings for details about which layers couldn't be converted.
 

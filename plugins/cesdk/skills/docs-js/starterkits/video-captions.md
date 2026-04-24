@@ -202,15 +202,15 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js
+        npm install @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js
+        pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js
+        yarn add @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 
@@ -220,15 +220,15 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-autocaption-web
+        npm install @imgly/plugin-autocaption-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-autocaption-web
+        pnpm add @imgly/plugin-autocaption-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-autocaption-web
+        yarn add @imgly/plugin-autocaption-web@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 

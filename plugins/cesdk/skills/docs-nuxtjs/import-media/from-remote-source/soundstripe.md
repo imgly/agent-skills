@@ -207,11 +207,11 @@ The proxy approach handles authentication securely, prevents exposing API keys i
 Install the plugin package using a package manager:
 
 ```bash
-pnpm add @imgly/plugin-soundstripe-web
+pnpm add @imgly/plugin-soundstripe-web@$UBQ_VERSION$
 # or
-yarn add @imgly/plugin-soundstripe-web
+yarn add @imgly/plugin-soundstripe-web@$UBQ_VERSION$
 # or
-npm install @imgly/plugin-soundstripe-web
+npm install @imgly/plugin-soundstripe-web@$UBQ_VERSION$
 ```
 
 ## Configuring the Plugin

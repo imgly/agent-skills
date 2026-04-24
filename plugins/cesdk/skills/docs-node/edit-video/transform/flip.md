@@ -10,7 +10,7 @@ Run **CE.SDK** in **Node.js server mode** to mirror video blocks programmaticall
 
 ## Requirements
 
-- CE.SDK server package: `npm install @cesdk/node`
+- CE.SDK server package: `npm install @cesdk/node@$UBQ_VERSION$`
 - **Node.js 18** or newer
 - CE.SDK license key and `baseURL` to the CE.SDK asset bundle
 

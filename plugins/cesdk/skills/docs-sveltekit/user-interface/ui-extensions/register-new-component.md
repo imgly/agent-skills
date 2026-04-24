@@ -360,6 +360,7 @@ Not every location supports every builder component yet. The following table sho
 | `builder.TextInput`   | Text input field. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **placeholder**: Placeholder text. |
 | `builder.NumberInput` | Numeric input field. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **min/max**: Range limits. |
 | `builder.Slider`      | Numeric range slider. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **min/max/step**: Range configuration. |
+| `builder.Spinner`     | Indeterminate loading spinner. Only supported in registered panels. | **label**: Optional caption rendered beneath the spinner (supports i18n keys). |
 | `builder.Section`     | Container for grouping related controls. | **children**: Function to render section contents. |
 
 ## Managing Component State
@@ -508,6 +509,7 @@ Check that the location parameter in `setComponentOrder()` matches the UI area. 
 | `builder.TextInput()` | Builder | Create a text input field |
 | `builder.NumberInput()` | Builder | Create a numeric input field |
 | `builder.Slider()` | Builder | Create a numeric slider control |
+| `builder.Spinner()` | Builder | Create an indeterminate loading spinner (panels only) |
 | `builder.Section()` | Builder | Create a container for grouping controls |
 | `builder.Separator()` | Builder | Create a visual divider |
 | `builder.Heading()` | Builder | Create a heading text element |

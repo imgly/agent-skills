@@ -90,7 +90,7 @@ Configure the editor UI to fit your design—theming, localization, export optio
 
   <SolutionCard title="Start With Image" description="Initialize the editor with an image matching the page size." contentId="stwim1" liveExampleUrl="/examples/starterkit-start-with-image/" heroImage={startWithImageHero} />
 
-  <SolutionCard title="Export Options Editor" description="Export designs in JPG, PNG, or PDF with custom quality, page ranges, and dimensions using CE.SDK's advanced export features." contentId="expopt1" liveExampleUrl="/examples/starterkit-export-options/" heroImage={exportOptionsHero} />
+  <SolutionCard title="Export Options Editor" description="Export designs in JPG, PNG, or PDF with custom quality, page ranges, and dimensions using CE.SDK's advanced export features." contentId="expopt" liveExampleUrl="/examples/starterkit-export-options/" heroImage={exportOptionsHero} />
 
   <SolutionCard title="Force Crop Editor" description="Start editing with predefined crop presets to simplify content creation and maintain layout consistency." contentId="fcrp01" liveExampleUrl="/examples/starterkit-force-crop-editor/" heroImage={forceCropHero} />
 
@@ -144,7 +144,7 @@ Create dynamic templates to auto-generate image and design variations from data 
 
   <SolutionCard title="Auto-Resizer" description="Automatically generate size variations of your design and easily scale your marketing materials across different platforms." contentId="t2jxae" liveExampleUrl="/examples/starterkit-automated-resizing/" heroImage={autoResizeHero} />
 
-  <SolutionCard title="Export Using Renderer" description="The Renderer brings CE.SDK's design engine to your backend with fast, compliant, enterprise-ready export for images, PDFs, and video, enabling organizations to generate media at scale with full fidelity and predictable performance." contentId="exprndr" liveExampleUrl="/examples/starterkit-export-using-renderer/" heroImage={exportRendererHero} />
+  <SolutionCard title="Export Using Renderer" description="The Renderer brings CE.SDK's design engine to your backend with fast, compliant, enterprise-ready export for images, PDFs, and video, enabling organizations to generate media at scale with full fidelity and predictable performance." contentId="exprnd" liveExampleUrl="/examples/starterkit-export-using-renderer/" heroImage={exportRendererHero} />
 </SolutionGrid>
 
 ### Extensibility

@@ -85,9 +85,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ### Background Removal
@@ -96,15 +96,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-background-removal-web @imgly/background-removal onnxruntime-web
+        npm install @imgly/plugin-background-removal-web@$UBQ\_VERSION$ @imgly/background-removal onnxruntime-web
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-background-removal-web @imgly/background-removal onnxruntime-web
+        pnpm add @imgly/plugin-background-removal-web@$UBQ\_VERSION$ @imgly/background-removal onnxruntime-web
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-background-removal-web @imgly/background-removal onnxruntime-web
+        yarn add @imgly/plugin-background-removal-web@$UBQ\_VERSION$ @imgly/background-removal onnxruntime-web
       </TerminalTab>
     </TerminalTabs>
 
@@ -213,24 +213,24 @@ Before you begin, make sure you have the following:
     ### Core Editor
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ### Background Removal
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-background-removal-web @imgly/background-removal onnxruntime-web
+        npm install @imgly/plugin-background-removal-web@$UBQ\_VERSION$ @imgly/background-removal onnxruntime-web
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-background-removal-web @imgly/background-removal onnxruntime-web
+        pnpm add @imgly/plugin-background-removal-web@$UBQ\_VERSION$ @imgly/background-removal onnxruntime-web
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-background-removal-web @imgly/background-removal onnxruntime-web
+        yarn add @imgly/plugin-background-removal-web@$UBQ\_VERSION$ @imgly/background-removal onnxruntime-web
       </TerminalTab>
     </TerminalTabs>
 

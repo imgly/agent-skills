@@ -106,9 +106,9 @@ Integrate the Video Animations into your Electron application using the imperati
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ## Step 4: Download Assets
@@ -190,9 +190,9 @@ Integrate the Video Animations into your Electron application using the imperati
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ## Step 4: Download Assets

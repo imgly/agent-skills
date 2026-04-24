@@ -222,21 +222,21 @@ Install `@imgly/plugin-ai-text-generation-web` to access the TextGeneration plug
 <Tabs syncKey="package-manager">
   <TabItem label="npm">
     ```bash
-    npm install @imgly/plugin-ai-text-generation-web
+    npm install @imgly/plugin-ai-text-generation-web@$UBQ_VERSION$
 
     ```
   </TabItem>
 
   <TabItem label="yarn">
     ```bash
-    yarn add @imgly/plugin-ai-text-generation-web
+    yarn add @imgly/plugin-ai-text-generation-web@$UBQ_VERSION$
 
     ```
   </TabItem>
 
   <TabItem label="pnpm">
     ```bash
-    pnpm add @imgly/plugin-ai-text-generation-web
+    pnpm add @imgly/plugin-ai-text-generation-web@$UBQ_VERSION$
 
     ```
   </TabItem>

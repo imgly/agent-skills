@@ -18,6 +18,7 @@
 - [Text Styling](./text/styling.md) - Apply fonts, colors, alignment, and other styling options to customize text appearance.
 - [Text Decorations](./text/decorations.md) - Add underline, strikethrough, and overline decorations to text with customizable styles, colors, and thickness.
 - [Text Designs](./text/text-designs.md) - Create and customize text component libraries using predefined text designs that appear in your asset library.
+- [Text Enumerations](./text/enumerations.md) - Add bullet lists and numbered lists to text blocks in CE.SDK using per-paragraph list styles and nesting levels.
 - [Auto-Size](./text/auto-size.md) - Configure text blocks to automatically adapt their dimensions or font size for dynamic content.
 - [Text Effects](./text/effects.md) - Apply visual effects to text blocks including drop shadows and stroke outlines.
 - [Emojis](./text/emojis.md) - Insert and style emojis alongside text for expressive, modern typographic designs.

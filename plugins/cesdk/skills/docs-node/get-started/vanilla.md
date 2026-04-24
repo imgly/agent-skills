@@ -56,7 +56,7 @@ touch index.js
 Run the following command to install the required packages:
 
 ```bash
-npm install @cesdk/node
+npm install @cesdk/node@$UBQ_VERSION$
 ```
 
 Your project structure should now look like this:

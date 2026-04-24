@@ -55,8 +55,9 @@ Before you begin, make sure you have the following:
     ```
     src/
     ├── app/                          # Demo application
+    │   └── utils/
+    │       └── product.ts                # Scene metadata & asset download helpers
     ├── imgly/
-    │   ├── backdrop.ts               # Backdrop management
     │   ├── config/
     │   │   ├── actions.ts                # Export/import actions
     │   │   ├── features.ts               # Feature toggles
@@ -71,10 +72,9 @@ Before you begin, make sure you have the following:
     │   │       ├── inspectorBar.ts           # Inspector bar layout
     │   │       ├── navigationBar.ts          # Navigation bar layout
     │   │       └── panel.ts                  # Panel configuration
-    │   ├── constants.ts              # Configuration constants
+    │   ├── plugins/
+    │   │   └── product-backdrop.ts       # ProductBackdrop plugin (scene, backdrop & area actions)
     │   ├── index.ts                  # Editor initialization function
-    │   ├── mask.ts                   # Mask handling
-    │   ├── page.ts                   # Scene and area management
     │   └── types.ts                  # TypeScript type definitions
     └── index.tsx                 # Application entry point
     ```
@@ -173,7 +173,6 @@ Before you begin, make sure you have the following:
 
     ```
     imgly/
-    ├── backdrop.ts               # Backdrop management
     ├── config/
     │   ├── actions.ts                # Export/import actions
     │   ├── features.ts               # Feature toggles
@@ -188,10 +187,9 @@ Before you begin, make sure you have the following:
     │       ├── inspectorBar.ts           # Inspector bar layout
     │       ├── navigationBar.ts          # Navigation bar layout
     │       └── panel.ts                  # Panel configuration
-    ├── constants.ts              # Configuration constants
+    ├── plugins/
+    │   └── product-backdrop.ts       # ProductBackdrop plugin (scene, backdrop & area actions)
     ├── index.ts                  # Editor initialization function
-    ├── mask.ts                   # Mask handling
-    ├── page.ts                   # Scene and area management
     └── types.ts                  # TypeScript type definitions
     ```
 
@@ -204,9 +202,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ## Step 3: Download Assets
@@ -263,98 +261,97 @@ Before you begin, make sure you have the following:
 
 ## Working with Products
 
-The starter kit handles product loading and color switching automatically through React state in `App.tsx`. For advanced use cases—such as integrating with your own product catalog or building custom UI controls—the `imgly` folder exports functions that give you direct control over scenes, backdrops, and masks.
+### The ProductBackdrop Plugin
 
-### Managing the Scene
+`ProductBackdrop` is registered inside `initProductEditor` and owns the scene lifecycle: pages, backdrops, area navigation, page shapes for non-rectangular products, and token substitution on backdrop image URIs.
 
-Each product has one or more print areas (front, back, etc.) represented as pages in the editor scene. Use the scene functions to create these areas programmatically and navigate between them.
+| Action | Purpose |
+| --- | --- |
+| `product.setupScene(options)` | Create or update the scene's pages and backdrops from a product config |
+| `product.switchArea(areaId)` | Focus a print area page and reveal its backdrop |
+| `product.getVisibleAreaId()` | Return the currently visible area's id, or `null` |
+| `product.applyVariables(variables, areas)` | Substitute `{{key}}` tokens in backdrop image URIs |
+
+### Setting Up and Switching Areas
+
+`product.setupScene` takes the list of enabled print areas and the design unit. Each area becomes a separate page with its own backdrop. `product.switchArea` focuses one of them and zooms to fit.
 
 ```typescript
-import { createOrUpdateScene, switchArea, getVisibleAreaId } from './imgly';
-```
-
-The `createOrUpdateScene` function initializes the editor with your product's print areas. Each area becomes a separate page with its own design canvas. Use `switchArea` to navigate between areas—this also updates the backdrop and adjusts the zoom.
-
-```typescript
-// Create pages for each print area
-createOrUpdateScene(
-  cesdk.engine,
-  [
-    { id: 'front', pageSize: { width: 20, height: 20 } },
-    { id: 'back', pageSize: { width: 20, height: 20 } }
+// Build the scene for a t-shirt with front and back print areas
+await cesdk.actions.run('product.setupScene', {
+  areas: [
+    {
+      id: 'front',
+      pageSize: { width: 20, height: 20 },
+      mockup: {
+        images: [{ uri: '/assets/products/tshirt/{{color}}_front.png', width: 815, height: 948 }],
+        printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+      }
+    },
+    {
+      id: 'back',
+      pageSize: { width: 20, height: 20 },
+      mockup: {
+        images: [{ uri: '/assets/products/tshirt/{{color}}_back.png', width: 815, height: 948 }],
+        printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+      }
+    }
   ],
-  'Inch'
-);
+  designUnit: 'Inch',
+  variables: { color: 'white' }
+});
 
-// Navigate to a different area
-await switchArea(cesdk, 'back');
+// Navigate to the back area
+await cesdk.actions.run('product.switchArea', 'back');
 
-// Get the currently visible area
-const currentArea = getVisibleAreaId(cesdk.engine);
+// Which area is currently visible?
+const currentArea = await cesdk.actions.run('product.getVisibleAreaId');
 ```
+
+The `printableAreaPx` property defines where the design canvas sits within the mockup image, keeping designs positioned correctly on the product visualization.
 
 > **Custom Products:** Add your own products by extending the product catalog in `src/app/product-catalog.ts` with new mockup images, print areas, and configuration.
 
-### Managing Backdrops
+### Swapping Colors or Variants
 
-Backdrops are the product mockup images that appear behind the design canvas—showing users how their design will look on the actual product. Each print area has its own backdrop, and you update them when users select different product colors or variants.
+Backdrop image URIs may contain `{{key}}` tokens. The kit's catalog uses `{{color}}`, but any variable name works. Run `product.applyVariables` when the user picks a different color or variant to re-resolve those tokens without rebuilding the scene.
 
 ```typescript
-import {
-  createBackdrop,
-  updateBackdropImages,
-  showBackdrop,
-  clearBackdrops
-} from './imgly';
+const enabledAreas = product.areas
+  .filter((area) => !area.disabled)
+  .map((area) => ({ id: area.id, mockup: area.mockup }));
+
+await cesdk.actions.run(
+  'product.applyVariables',
+  { color: 'red' },
+  enabledAreas
+);
 ```
 
-The `printableAreaPx` property defines where the design canvas sits within the mockup image. This ensures designs are positioned correctly on the product visualization.
+### Non-rectangular Products
+
+Products like arrow signs or custom-shaped panels have non-rectangular print areas. Pass an optional SVG path as `mockup.pageShape` and `product.setupScene` applies it to the page via the engine's native `vector_path` shape. The page is then clipped to that silhouette both on screen and at export—no bitmap mask overlays, no editing/exporting swap at export time.
 
 ```typescript
-// Create a backdrop with mockup image and print area bounds
-createBackdrop(cesdk.engine, 'front', {
-  images: [{ uri: '/assets/products/tshirt/white_front.png', width: 815, height: 948 }],
-  printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+await cesdk.actions.run('product.setupScene', {
+  areas: [
+    {
+      id: 'front',
+      pageSize: { width: 12, height: 8 },
+      mockup: {
+        images: [{ uri: '/assets/products/arrowsign/{{color}}_front.png', width: 1200, height: 800 }],
+        printableAreaPx: { x: 100, y: 80, width: 940, height: 625 },
+        // SVG path in the printable-area coordinate space (0,0 → width,height)
+        pageShape: 'M628 0.97 C623 3.97 ...'
+      }
+    }
+  ],
+  designUnit: 'Inch',
+  variables: { color: 'white' }
 });
-
-// Swap mockup images (e.g., when changing colors)
-updateBackdropImages(cesdk.engine, 'front', [
-  { uri: '/assets/products/tshirt/red_front.png', width: 815, height: 948 }
-]);
-
-// Display the backdrop for an area
-showBackdrop(cesdk.engine, 'front');
-
-// Remove all backdrops
-clearBackdrops(cesdk.engine);
 ```
 
-### Managing Masks
-
-Some products—like mugs, phone cases, or arrow signs—have non-rectangular print areas. Masks define the shape of these areas, constraining where users can place design elements and ensuring exports match the actual printable surface.
-
-```typescript
-import { setMaskConfig, updateMasks, clearMasks } from './imgly';
-```
-
-You can configure separate masks for editing (what users see while designing) and exporting (the final output shape). This is useful when the visual editing area differs slightly from the actual print boundaries.
-
-```typescript
-// Configure mask URLs for an area
-setMaskConfig(cesdk.engine, 'front', {
-  editingUrl: '/assets/products/arrow/mask-editing.svg',
-  exportingUrl: '/assets/products/arrow/mask-export.svg'
-});
-
-// Apply editing masks (visible during design)
-updateMasks(cesdk.engine, 'editing');
-
-// Apply exporting masks (used for final output)
-updateMasks(cesdk.engine, 'exporting');
-
-// Remove all masks
-clearMasks(cesdk.engine);
-```
+Rectangular areas simply omit `pageShape`; the plugin resets the page to a plain rectangle when an area stops supplying one.
 
 ## Customize Assets
 
@@ -695,7 +692,7 @@ The Product Editor includes everything needed for multi-product customization an
   {
     title: 'Print-ready Export',
     description:
-      'Export PDF files and PNG thumbnails for all print areas, including masked exports for non-rectangular products.',
+      'Export PDF files and PNG thumbnails for all print areas, with native vector-path page shapes for non-rectangular products.',
     imageId: 'green-screen',
   },
 ]}

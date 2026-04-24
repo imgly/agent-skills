@@ -210,15 +210,15 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js
+        npm install @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js
+        pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js
+        yarn add @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 
@@ -228,15 +228,15 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-ai-apps-web @imgly/plugin-ai-generation-web
+        npm install @imgly/plugin-ai-apps-web@$UBQ\_VERSION$ @imgly/plugin-ai-generation-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-ai-apps-web @imgly/plugin-ai-generation-web
+        pnpm add @imgly/plugin-ai-apps-web@$UBQ\_VERSION$ @imgly/plugin-ai-generation-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-ai-apps-web @imgly/plugin-ai-generation-web
+        yarn add @imgly/plugin-ai-apps-web@$UBQ\_VERSION$ @imgly/plugin-ai-generation-web@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 
@@ -244,15 +244,15 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-ai-image-generation-web
+        npm install @imgly/plugin-ai-image-generation-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-ai-image-generation-web
+        pnpm add @imgly/plugin-ai-image-generation-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-ai-image-generation-web
+        yarn add @imgly/plugin-ai-image-generation-web@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 
@@ -260,15 +260,15 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-ai-text-generation-web
+        npm install @imgly/plugin-ai-text-generation-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-ai-text-generation-web
+        pnpm add @imgly/plugin-ai-text-generation-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-ai-text-generation-web
+        yarn add @imgly/plugin-ai-text-generation-web@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 
@@ -276,15 +276,15 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-ai-video-generation-web
+        npm install @imgly/plugin-ai-video-generation-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-ai-video-generation-web
+        pnpm add @imgly/plugin-ai-video-generation-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-ai-video-generation-web
+        yarn add @imgly/plugin-ai-video-generation-web@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 
@@ -292,15 +292,15 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-ai-audio-generation-web
+        npm install @imgly/plugin-ai-audio-generation-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-ai-audio-generation-web
+        pnpm add @imgly/plugin-ai-audio-generation-web@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-ai-audio-generation-web
+        yarn add @imgly/plugin-ai-audio-generation-web@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 

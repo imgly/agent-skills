@@ -244,7 +244,7 @@ CE.SDK provides several approaches for importing designs:
 
 ## Import from other Design Tools
 
-CE.SDK provides specialized importers that convert files from Photoshop (`.psd`) and InDesign (`.indd`) into editable scenes. These importers preserve layers, text, effects, and design structure.
+CE.SDK provides specialized importers that convert files from Photoshop (`.psd`) and InDesign (`.idml`) into editable scenes. These importers preserve layers, text, effects, and design structure.
 
 ## Load Saved CE.SDK Scenes
 
@@ -440,7 +440,7 @@ When a scene loads but displays missing images or fonts, the asset URLs referenc
 
 Import failures from Photoshop or InDesign files typically occur when:
 
-- The file format isn't supported (verify `.psd` for Photoshop, `.indd` for InDesign)
+- The file format isn't supported (verify `.psd` for Photoshop, `.idml` for InDesign)
 - The file is corrupted or incomplete
 - The importer service isn't properly configured
 

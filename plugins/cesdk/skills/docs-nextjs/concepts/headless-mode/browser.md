@@ -46,7 +46,7 @@ CE.SDK’s Engine needs a **WebGL-capable environment**. When you ship a headles
 1. Install the Engine package:
 
    ```bash
-   npm install @cesdk/engine
+   npm install @cesdk/engine@$UBQ_VERSION$
    ```
 
 ````

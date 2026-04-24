@@ -22,8 +22,8 @@ professional editing capabilities into your web application.
 - [Video Editor (Advanced) for Vue](./starterkits/advanced-video-editor.md) - Add a comprehensive video editor to your Vue app in minutes. Professional tools for timeline editing, effects, and MP4 export—all client-side.
 - [Video Player for Vue](./starterkits/player.md) - Add video playback to your Vue app in minutes. Play, pause, and navigate video content—all client-side.
 - [AI Editor](./starterkits/ai-editor.md) - Quickly add AI-powered visual editing and media generation to your web app — seamlessly connect any AI model.
-- [T-Shirt Designer](./starterkits/t-shirt-designer.md) - Apparel Editor for creating print-ready design.
-- [Product Editor](./starterkits/product-editor.md) - Product Editor for customizing any product with print-ready designs.
+- [T-Shirt Designer for Vue](./starterkits/t-shirt-designer.md) - Apparel Editor for creating print-ready design.
+- [Product Editor for Vue](./starterkits/product-editor.md) - Product Editor for customizing any product with print-ready designs.
 - [Video Editing](./starterkits/video-editing.md) - Create and edit video compositions with timeline editing, captions, animations, and template-based generation.
 - [Plugins](./starterkits/plugins.md) - Add powerful custom functionality to the editor — background removal, QR codes, vectorization, and more.
 - [Custom Built UIs](./starterkits/custom-built-uis.md) - Fully custom UIs built with React using the Engine API. Freely adapt to your use case.

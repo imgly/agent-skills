@@ -435,7 +435,7 @@ Common return values include `image/jpeg`, `image/png`, `video/mp4`, and `audio/
 
 ## Relocating Resources
 
-Update URL mappings when resources move with `relocateResource()`. This modifies the internal cache without changing scene data.
+Update URL mappings when resources move with `relocateResource()`. This updates all resource references in the scene and clears the internal cache.
 
 ```typescript highlight-relocate-resource
     // Relocate a resource when its URL changes
@@ -449,7 +449,7 @@ Update URL mappings when resources move with `relocateResource()`. This modifies
     console.log('Use relocateResource() after uploading to a CDN');
 ```
 
-Use relocation after uploading resources to a CDN or when migrating assets between storage locations. The scene continues to reference the original URL, but the engine fetches from the new location.
+Use relocation after uploading resources to a CDN or when migrating assets between storage locations. The engine updates all references in the scene and clears cached data so that the resource is fetched from the new URL.
 
 ## Persisting Transient Resources
 

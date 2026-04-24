@@ -55,8 +55,9 @@ Before you begin, make sure you have the following:
     ```
     src/
     ├── app/                          # Demo application
+    │   └── utils/
+    │       └── product.ts                # Scene metadata & asset download helpers
     ├── imgly/
-    │   ├── backdrop.ts               # Backdrop management
     │   ├── config/
     │   │   ├── actions.ts                # Export/import actions
     │   │   ├── features.ts               # Feature toggles
@@ -71,10 +72,9 @@ Before you begin, make sure you have the following:
     │   │       ├── inspectorBar.ts           # Inspector bar layout
     │   │       ├── navigationBar.ts          # Navigation bar layout
     │   │       └── panel.ts                  # Panel configuration
-    │   ├── constants.ts              # Configuration constants
+    │   ├── plugins/
+    │   │   └── product-backdrop.ts       # ProductBackdrop plugin (scene, backdrop & area actions)
     │   ├── index.ts                  # Editor initialization function
-    │   ├── mask.ts                   # Mask handling
-    │   ├── page.ts                   # Scene and area management
     │   └── types.ts                  # TypeScript type definitions
     └── index.tsx                 # Application entry point
     ```
@@ -174,7 +174,6 @@ Before you begin, make sure you have the following:
 
     ```
     imgly/
-    ├── backdrop.ts               # Backdrop management
     ├── config/
     │   ├── actions.ts                # Export/import actions
     │   ├── features.ts               # Feature toggles
@@ -189,10 +188,9 @@ Before you begin, make sure you have the following:
     │       ├── inspectorBar.ts           # Inspector bar layout
     │       ├── navigationBar.ts          # Navigation bar layout
     │       └── panel.ts                  # Panel configuration
-    ├── constants.ts              # Configuration constants
+    ├── plugins/
+    │   └── product-backdrop.ts       # ProductBackdrop plugin (scene, backdrop & area actions)
     ├── index.ts                  # Editor initialization function
-    ├── mask.ts                   # Mask handling
-    ├── page.ts                   # Scene and area management
     └── types.ts                  # TypeScript type definitions
     ```
 
@@ -205,9 +203,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ## Step 3: Download Assets
@@ -302,71 +300,72 @@ Before you begin, make sure you have the following:
 
 ## Working with Products
 
-The starter kit handles t-shirt color switching and area navigation automatically through React state in `App.tsx`. For advanced use cases—such as integrating with your own product catalog or building custom UI controls—the `imgly` folder exports functions that give you direct control over scenes and backdrops.
+### The ProductBackdrop Plugin
 
-### Managing the Scene
+`ProductBackdrop` is registered inside `initTShirtDesigner` and owns the scene lifecycle: pages, backdrops, area navigation, and token substitution on backdrop image URIs.
 
-T-shirts have two print areas: front and back. These are represented as separate pages in the editor scene, each with its own design canvas. Use the scene functions to create these areas programmatically and navigate between them.
+| Action | Purpose |
+| --- | --- |
+| `product.setupScene(options)` | Create or update the scene's pages and backdrops from a product config |
+| `product.switchArea(areaId)` | Focus a print area page and reveal its backdrop |
+| `product.getVisibleAreaId()` | Return the currently visible area's id, or `null` |
+| `product.applyVariables(variables, areas)` | Substitute `{{key}}` tokens in backdrop image URIs |
+
+### Setting Up and Switching Areas
+
+`product.setupScene` takes the list of enabled print areas and the design unit. Each area becomes a separate page with its own backdrop. `product.switchArea` focuses one of them and zooms to fit.
 
 ```typescript
-import { createOrUpdateScene, switchArea, getVisibleAreaId } from './imgly';
-```
-
-The `createOrUpdateScene` function initializes the editor with your t-shirt's print areas. Use `switchArea` to navigate between front and back—this also updates the backdrop mockup and adjusts the zoom to fit the design area.
-
-```typescript
-// Create pages for each print area
-createOrUpdateScene(
-  cesdk.engine,
-  [
-    { id: 'front', pageSize: { width: 20, height: 20 } },
-    { id: 'back', pageSize: { width: 20, height: 20 } }
+// Build the scene for a t-shirt with front and back print areas
+await cesdk.actions.run('product.setupScene', {
+  areas: [
+    {
+      id: 'front',
+      pageSize: { width: 20, height: 20 },
+      mockup: {
+        images: [{ uri: '/assets/products/tshirt/{{color}}_front.png', width: 815, height: 948 }],
+        printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+      }
+    },
+    {
+      id: 'back',
+      pageSize: { width: 20, height: 20 },
+      mockup: {
+        images: [{ uri: '/assets/products/tshirt/{{color}}_back.png', width: 815, height: 948 }],
+        printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+      }
+    }
   ],
-  'Inch'
-);
-
-// Navigate to a different area
-await switchArea(cesdk, 'back');
-
-// Get the currently visible area
-const currentArea = getVisibleAreaId(cesdk.engine);
-```
-
-> **Custom Colors:** Add your own t-shirt colors by extending the product catalog in `src/product-catalog.ts` with new mockup images.
-
-### Managing Backdrops
-
-Backdrops are the t-shirt mockup images that appear behind the design canvas—showing users how their design will look on the actual garment. Each print area (front/back) has its own backdrop, and you update them when users select different t-shirt colors.
-
-```typescript
-import {
-  createBackdrop,
-  updateBackdropImages,
-  showBackdrop,
-  clearBackdrops
-} from './imgly';
-```
-
-The `printableAreaPx` property defines where the design canvas sits within the mockup image. This ensures designs are positioned correctly on the t-shirt visualization—centered on the chest area with appropriate margins.
-
-```typescript
-// Create a backdrop with mockup image and print area bounds
-createBackdrop(cesdk.engine, 'front', {
-  images: [{ uri: '/assets/products/tshirt/white_front.png', width: 815, height: 948 }],
-  printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+  designUnit: 'Inch',
+  variables: { color: 'white' }
 });
 
-// Swap mockup images (e.g., when changing colors)
-updateBackdropImages(cesdk.engine, 'front', [
-  { uri: '/assets/products/tshirt/red_front.png', width: 815, height: 948 }
-]);
+// Navigate to the back area
+await cesdk.actions.run('product.switchArea', 'back');
 
-// Display the backdrop for an area
-showBackdrop(cesdk.engine, 'front');
-
-// Remove all backdrops
-clearBackdrops(cesdk.engine);
+// Which area is currently visible?
+const currentArea = await cesdk.actions.run('product.getVisibleAreaId');
 ```
+
+The `printableAreaPx` property defines where the design canvas sits within the mockup image. This keeps designs positioned correctly on the t-shirt visualization—centered on the chest area with appropriate margins.
+
+### Swapping Colors
+
+Backdrop image URIs may contain `{{key}}` tokens. The kit's catalog uses `{{color}}`, but any variable name works. Run `product.applyVariables` when the user picks a different color to re-resolve those tokens without rebuilding the scene.
+
+```typescript
+const enabledAreas = product.areas
+  .filter((area) => !area.disabled)
+  .map((area) => ({ id: area.id, mockup: area.mockup }));
+
+await cesdk.actions.run(
+  'product.applyVariables',
+  { color: 'red' },
+  enabledAreas
+);
+```
+
+> **Custom Colors:** Add your own t-shirt colors by extending the product catalog in `src/app/product-catalog.ts` with new mockup images. Any `{{key}}` in an image URI is substituted from the `variables` map you pass to `product.setupScene` or `product.applyVariables`.
 
 ## Customize Assets
 

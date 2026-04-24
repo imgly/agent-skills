@@ -344,4 +344,13 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
 
     // 'ly.img.rulers', /* Grid overlay, snap-to-grid, and canvas rulers */
   ]);
+
+  // ============================================================================
+  // DISABLED FEATURES
+  // Features explicitly turned off for the video editor
+  // ============================================================================
+
+  cesdk.feature.disable([
+    'ly.img.video.timeline.ruler' /* Hide the timeline ruler/time scale */
+  ]);
 }

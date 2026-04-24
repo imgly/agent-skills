@@ -377,7 +377,7 @@ cd my-image-provider
 npm init -y
 
 # Install required dependencies
-npm install @imgly/plugin-ai-generation-web @imgly/plugin-ai-image-generation-web @cesdk/cesdk-js typescript
+npm install @imgly/plugin-ai-generation-web@$UBQ_VERSION$ @imgly/plugin-ai-image-generation-web@$UBQ_VERSION$ @cesdk/cesdk-js@$UBQ_VERSION$ typescript
 ```
 
 Then import the packages in your TypeScript file:

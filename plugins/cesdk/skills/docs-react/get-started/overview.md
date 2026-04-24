@@ -15,6 +15,7 @@ workflows, and understand our licensing model.
 ## Related Pages
 
 - [React Creative Editor](./what-is-cesdk.md) - CreativeEditor SDK provides a comprehensive React library designed for creating and editing rich visual designs directly within the browser.
+- [Capabilities](./capabilities.md) - Explore the full list of CE.SDK capabilities available for your platform, including design, video, image, text, and more.
 - [Quickstart](./get-started/react/quickstart.md) - Get started with CE.SDK by choosing a starter kit
 - [Build with AI](./get-started/build-with-ai.md) - Give your AI coding assistant context about CE.SDK to generate accurate code and get instant answers.
 - [Licensing](./licensing.md) - Understand CE.SDK’s flexible licensing, trial options, and how keys work across dev, staging, and production.

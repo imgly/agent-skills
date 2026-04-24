@@ -15,6 +15,7 @@ workflows, and understand our licensing model.
 ## Related Pages
 
 - [Node.js Creative Engine](./what-is-cesdk.md) - Learn what CE.SDK is, how it works, and what you can build with its headless API, and real-time design engine.
+- [Capabilities](./capabilities.md) - Explore the full list of CE.SDK capabilities available for your platform, including design, video, image, text, and more.
 - [Node.js - New Project](./get-started/vanilla.md) - Getting started with CE.SDK Engine in Node.js using Vanilla JS
 - [Deno](./get-started/deno.md) - Getting started with CE.SDK Engine in Node.js using Deno
 - [Bun](./get-started/bun.md) - Getting started with CE.SDK Engine in Node.js using Bun

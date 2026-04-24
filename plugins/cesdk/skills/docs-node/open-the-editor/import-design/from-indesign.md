@@ -21,7 +21,7 @@ The `@imgly/idml-importer` package converts InDesign IDML files into CE.SDK scen
 ```typescript file=@cesdk_web_examples/guides-open-the-editor-import-design-from-indesign-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';
 import type { TypefaceResolver } from '@imgly/idml-importer';
-import { IDMLParser, addGoogleFontsAssetLibrary } from '@imgly/idml-importer';
+import { IDMLParser, addGfontsAssetLibrary } from '@imgly/idml-importer';
 import { JSDOM } from 'jsdom';
 import { config } from 'dotenv';
 import { promises as fs } from 'fs';
@@ -95,7 +95,7 @@ async function convertIdml(
 
   // Parse the IDML file using JSDOM for XML parsing
   // Server-side import requires JSDOM since DOMParser is browser-only
-  // The addGoogleFontsAssetLibrary() call enables automatic font matching
+  // The addGfontsAssetLibrary() call enables automatic font matching
   // For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const parser = await IDMLParser.fromFile(
@@ -179,7 +179,7 @@ async function batchConvertIdmls(
   try {
     // Configure Google Fonts for text element support
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await addGoogleFontsAssetLibrary(engine as any);
+    await addGfontsAssetLibrary(engine as any);
 
     let successCount = 0;
     let failCount = 0;
@@ -284,7 +284,7 @@ async function main(): Promise<void> {
 
   try {
     // Configure Google Fonts for text element support
-    await addGoogleFontsAssetLibrary(engine as any);
+    await addGfontsAssetLibrary(engine as any);
 
     // Create a sample scene to demonstrate the export format
     // In production, this would be replaced by actual IDML conversion
@@ -320,7 +320,7 @@ This guide covers installation, setting up a conversion script, parsing IDML fil
 Install the `@imgly/idml-importer` package alongside the Node.js SDK. Server-side conversion requires `jsdom` for XML parsing:
 
 ```bash
-npm install @imgly/idml-importer @cesdk/node jsdom
+npm install @imgly/idml-importer @cesdk/node@$UBQ_VERSION$ jsdom
 npm install --save-dev @types/jsdom
 ```
 
@@ -340,12 +340,12 @@ The IDML importer preserves the following InDesign elements:
 
 ## Setting Up Font Matching
 
-Text elements in IDML files reference fonts that may not be available in CE.SDK. Use `addGoogleFontsAssetLibrary()` from the `@imgly/idml-importer` package to register Google Fonts as a font source before parsing:
+Text elements in IDML files reference fonts that may not be available in CE.SDK. Use `addGfontsAssetLibrary()` from the `@imgly/idml-importer` package to register Google Fonts as a font source before parsing:
 
 ```typescript highlight=highlight-setup
 import CreativeEngine from '@cesdk/node';
 import type { TypefaceResolver } from '@imgly/idml-importer';
-import { IDMLParser, addGoogleFontsAssetLibrary } from '@imgly/idml-importer';
+import { IDMLParser, addGfontsAssetLibrary } from '@imgly/idml-importer';
 import { JSDOM } from 'jsdom';
 import { config } from 'dotenv';
 import { promises as fs } from 'fs';
@@ -364,7 +364,7 @@ Use `IDMLParser.fromFile()` with `jsdom` for XML parsing. Unlike the browser's n
 ```typescript highlight=highlight-parse-idml
 // Parse the IDML file using JSDOM for XML parsing
 // Server-side import requires JSDOM since DOMParser is browser-only
-// The addGoogleFontsAssetLibrary() call enables automatic font matching
+// The addGfontsAssetLibrary() call enables automatic font matching
 // For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const parser = await IDMLParser.fromFile(
@@ -425,7 +425,7 @@ async function convertIdml(
 
   // Parse the IDML file using JSDOM for XML parsing
   // Server-side import requires JSDOM since DOMParser is browser-only
-  // The addGoogleFontsAssetLibrary() call enables automatic font matching
+  // The addGfontsAssetLibrary() call enables automatic font matching
   // For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const parser = await IDMLParser.fromFile(
@@ -593,7 +593,7 @@ async function batchConvertIdmls(
   try {
     // Configure Google Fonts for text element support
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await addGoogleFontsAssetLibrary(engine as any);
+    await addGfontsAssetLibrary(engine as any);
 
     let successCount = 0;
     let failCount = 0;
@@ -731,7 +731,7 @@ async function main(): Promise<void> {
 
   try {
     // Configure Google Fonts for text element support
-    await addGoogleFontsAssetLibrary(engine as any);
+    await addGfontsAssetLibrary(engine as any);
 
     // Create a sample scene to demonstrate the export format
     // In production, this would be replaced by actual IDML conversion
@@ -800,7 +800,7 @@ The `@imgly/idml-importer` package exports the following key APIs:
 |-----|-------------|
 | `IDMLParser.fromFile(engine, buffer, xmlParser)` | Creates a parser instance from an IDML file buffer. The `xmlParser` function converts XML strings to DOM documents. |
 | `parser.parse()` | Parses the IDML file and creates a CE.SDK scene. Returns when parsing is complete. |
-| `addGoogleFontsAssetLibrary(engine)` | Registers Google Fonts as a font source for text element matching. Call before parsing. |
+| `addGfontsAssetLibrary(engine)` | Registers Google Fonts as a font source for text element matching. Call before parsing. |
 
 ## Limitations
 
@@ -828,7 +828,7 @@ Before exporting from InDesign:
 
 **Missing images:** Ensure images were embedded in InDesign before exporting. Linked images are replaced with placeholders.
 
-**Text appears with wrong font:** Ensure `addGoogleFontsAssetLibrary()` is called before parsing. If the original font isn't available in Google Fonts, a fallback is used.
+**Text appears with wrong font:** Ensure `addGfontsAssetLibrary()` is called before parsing. If the original font isn't available in Google Fonts, a fallback is used.
 
 **Text is duplicated:** This can happen when text flows between multiple frames. The IDML importer doesn't support linked text frames.
 

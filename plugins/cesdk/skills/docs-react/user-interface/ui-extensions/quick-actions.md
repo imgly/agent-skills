@@ -257,19 +257,19 @@ The background removal plugin requires `onnxruntime-web` for its machine learnin
 <Tabs>
   <TabItem label="npm">
     ```sh
-    npm install @imgly/plugin-background-removal-web @imgly/plugin-vectorizer-web @imgly/plugin-qr-code-web onnxruntime-web@1.21.0
+    npm install @imgly/plugin-background-removal-web@$UBQ_VERSION$ @imgly/plugin-vectorizer-web@$UBQ_VERSION$ @imgly/plugin-qr-code-web@$UBQ_VERSION$ onnxruntime-web@1.21.0
     ```
   </TabItem>
 
   <TabItem label="yarn">
     ```sh
-    yarn add @imgly/plugin-background-removal-web @imgly/plugin-vectorizer-web @imgly/plugin-qr-code-web onnxruntime-web@1.21.0
+    yarn add @imgly/plugin-background-removal-web@$UBQ_VERSION$ @imgly/plugin-vectorizer-web@$UBQ_VERSION$ @imgly/plugin-qr-code-web@$UBQ_VERSION$ onnxruntime-web@1.21.0
     ```
   </TabItem>
 
   <TabItem label="pnpm">
     ```sh
-    pnpm add @imgly/plugin-background-removal-web @imgly/plugin-vectorizer-web @imgly/plugin-qr-code-web onnxruntime-web@1.21.0
+    pnpm add @imgly/plugin-background-removal-web@$UBQ_VERSION$ @imgly/plugin-vectorizer-web@$UBQ_VERSION$ @imgly/plugin-qr-code-web@$UBQ_VERSION$ onnxruntime-web@1.21.0
     ```
   </TabItem>
 </Tabs>
@@ -313,7 +313,7 @@ await cesdk.addPlugin(
 Generates QR codes with customizable content and styling.
 
 ```sh
-npm install @imgly/plugin-qr-code-web
+npm install @imgly/plugin-qr-code-web@$UBQ_VERSION$
 ```
 
 Register the plugin:
@@ -339,7 +339,7 @@ cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
 Provides die-cut shapes for print production workflows like stickers, packaging, and labels.
 
 ```sh
-npm install @imgly/plugin-cutout-library-web
+npm install @imgly/plugin-cutout-library-web@$UBQ_VERSION$
 ```
 
 Register the plugin to load the cutout asset source:

@@ -233,6 +233,14 @@ builder.Button('apply', {
   onClick: () => {
 ```
 
+## Showing a Loading Spinner
+
+Display an indeterminate loading spinner while awaiting async work with `builder.Spinner()`. The optional `label` renders beneath the spinner and supports i18n keys.
+
+```typescript
+builder.Spinner('loading', { label: 'Loading…' });
+```
+
 ## Accessing Engine State
 
 Access engine state within the render function to create reactive panels. The panel re-renders when tracked engine state changes.

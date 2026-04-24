@@ -175,6 +175,24 @@ Delete the currently selected vector node from the path.
 deleteVectorNode(): void
 ```
 
+### hasSelectedVectorControlPoint()
+
+Check whether a vector control point handle is currently selected.
+
+```typescript
+hasSelectedVectorControlPoint(): boolean
+```
+
+### deleteSelectedVectorControlPoints()
+
+Delete (reset) the currently selected vector control point handles.
+Removes the bezier handle from the node, converting that side to a straight line.
+If the node has two handles, only the selected one is removed.
+
+```typescript
+deleteSelectedVectorControlPoints(): void
+```
+
 ### toggleSelectedVectorNodeSmooth()
 
 Toggle the currently selected vector node between smooth (bezier handles)

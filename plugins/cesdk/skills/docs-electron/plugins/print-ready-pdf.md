@@ -44,7 +44,7 @@ A complete print-ready PDF export workflow that:
 First, add the Print Ready PDF plugin to your project alongside CE.SDK:
 
 ```bash
-npm install @cesdk/cesdk-js @imgly/plugin-print-ready-pdfs-web@1.0.0
+npm install @cesdk/cesdk-js@$UBQ_VERSION$ @imgly/plugin-print-ready-pdfs-web@1.0.0
 ```
 
 The plugin is a standalone npm package that works with any CE.SDK integration.
@@ -383,6 +383,27 @@ To ensure best results with PDF/X-3, design without transparency:
 - Use solid fills instead of gradients with opacity
 - Avoid gradients that fade to transparent
 - Export without blend modes
+
+## Advanced: Opting Out of ICC Profile Embedding
+
+If a downstream prepress pipeline (e.g. ZePrA, PitStop) handles ICC profile embedding and color normalization, you can keep the RGB→CMYK color conversion from the plugin and skip the embedded OutputIntent so the downstream tool can add its own:
+
+```typescript
+// Convert to CMYK without embedding the ICC profile or PDF/X-3 metadata
+const cmykPDF = await convertToPDFX3(pdfBlob, {
+  outputProfile: 'fogra39',
+  embedICCProfile: false,
+  title: 'CMYK for Downstream Pipeline',
+});
+```
+
+**What changes when `embedICCProfile` is `false`:**
+
+- The selected `outputProfile` still determines whether the output is device CMYK (for `fogra39`, `gracol`, or a custom CMYK profile) or RGB (for `srgb`).
+- The output PDF does not include the ICC profile, the `OutputIntent`, or the `GTS_PDFXVersion`/`GTS_PDFXConformance` markers.
+- The resulting file is a plain CMYK PDF, not PDF/X-3 compliant. Your downstream prepress tool is responsible for assigning the final ICC profile and applying any color normalization.
+
+Use this when your existing pipeline already enforces ICC profile embedding and color normalization rules you need to preserve.
 
 ## Advanced: Custom ICC Profiles
 

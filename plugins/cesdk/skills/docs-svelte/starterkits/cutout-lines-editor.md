@@ -78,17 +78,17 @@ Before you begin, make sure you have the following:
     ### Core Editor
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ### Cutout Lines Plugin
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @imgly/plugin-cutout-lines-web</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @imgly/plugin-cutout-lines-web</TerminalTab>
-      <TerminalTab label="yarn">yarn add @imgly/plugin-cutout-lines-web</TerminalTab>
+      <TerminalTab label="npm">npm install @imgly/plugin-cutout-lines-web@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @imgly/plugin-cutout-lines-web@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @imgly/plugin-cutout-lines-web@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ## Step 4: Download Assets
@@ -174,17 +174,17 @@ Before you begin, make sure you have the following:
     ### Core Editor
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ### Cutout Lines Plugin
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @imgly/plugin-cutout-lines-web</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @imgly/plugin-cutout-lines-web</TerminalTab>
-      <TerminalTab label="yarn">yarn add @imgly/plugin-cutout-lines-web</TerminalTab>
+      <TerminalTab label="npm">npm install @imgly/plugin-cutout-lines-web@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @imgly/plugin-cutout-lines-web@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @imgly/plugin-cutout-lines-web@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
     ## Step 3: Download Assets

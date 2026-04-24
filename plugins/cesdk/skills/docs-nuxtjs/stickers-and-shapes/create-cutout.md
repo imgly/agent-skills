@@ -273,15 +273,15 @@ Install the plugin:
 
 <Tabs syncKey="package-manager">
   <TabItem label="npm">
-    `bash npm install @imgly/plugin-cutout-library-web `
+    `bash npm install @imgly/plugin-cutout-library-web@$UBQ_VERSION$ `
   </TabItem>
 
   <TabItem label="yarn">
-    `bash yarn add @imgly/plugin-cutout-library-web `
+    `bash yarn add @imgly/plugin-cutout-library-web@$UBQ_VERSION$ `
   </TabItem>
 
   <TabItem label="pnpm">
-    `bash pnpm add @imgly/plugin-cutout-library-web `
+    `bash pnpm add @imgly/plugin-cutout-library-web@$UBQ_VERSION$ `
   </TabItem>
 </Tabs>
 

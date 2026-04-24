@@ -96,8 +96,6 @@ class Example implements EditorPlugin {
       }
     });
 
-    const engine = cesdk.engine;
-
     // Register a token action that CE.SDK calls before each generation request.
     // In production, this calls your backend endpoint to mint a short-lived JWT.
     cesdk.actions.register('ly.img.ai.getToken', async () => {
@@ -123,11 +121,8 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       ImageGeneration({
         providers: {
-          text2image: ImageGatewayProvider('fal-ai/flux/dev', gatewayConfig),
-          image2image: ImageGatewayProvider(
-            'fal-ai/flux-kontext/edit',
-            gatewayConfig
-          )
+          text2image: ImageGatewayProvider('bfl/flux-2', gatewayConfig),
+          image2image: ImageGatewayProvider('bfl/flux-2-edit', gatewayConfig)
         }
       })
     );
@@ -136,7 +131,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       TextGeneration({
         providers: {
-          text2text: TextGatewayProvider('openai/gpt-4o', gatewayConfig)
+          text2text: TextGatewayProvider('openai/gpt-5.4-mini', gatewayConfig)
         }
       })
     );
@@ -145,9 +140,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       VideoGeneration({
         providers: {
-          text2video: VideoGatewayProvider('fal-ai/veo3.1', gatewayConfig),
+          text2video: VideoGatewayProvider('google/veo-3.1-fast', gatewayConfig),
           image2video: VideoGatewayProvider(
-            'fal-ai/kling-video/v2.1/standard/image-to-video',
+            'google/veo-3.1-fast-i2v',
             gatewayConfig
           )
         }
@@ -159,12 +154,84 @@ class Example implements EditorPlugin {
       AudioGeneration({
         providers: {
           text2speech: AudioGatewayProvider(
-            'elevenlabs/multilingual-v2',
+            'elevenlabs/eleven-v3-tts',
             gatewayConfig
           )
         }
       })
     );
+
+    // Alternative: discover available models from the gateway and wire them
+    // into providers by capability. Only models the API key's scopes permit
+    // appear in the response.
+    /*
+    type GatewayModel = {
+      id: string;
+      name: string;
+      creator: string;
+      capability: string;
+    };
+    type ModelsByCapability = Partial<Record<string, GatewayModel[]>>;
+
+    // Mint a short-lived JWT via the backend token endpoint (see highlight-token-action)
+    const tokenRes = await fetch('/api/ai/token', { method: 'POST' });
+    const { token } = await tokenRes.json();
+
+    // GET /v1/models returns a flat array; ?groupBy=capability returns an object
+    // keyed by capability (text2image, image2image, text2text, text2video,
+    // image2video, text2speech, speech2text).
+    const modelsRes = await fetch(
+      'https://gateway.img.ly/v1/models?groupBy=capability',
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    const modelsByCapability: ModelsByCapability = await modelsRes.json();
+
+    await cesdk.addPlugin(
+      ImageGeneration({
+        providers: {
+          text2image: modelsByCapability.text2image?.map((model) =>
+            ImageGatewayProvider(model.id, gatewayConfig)
+          ),
+          image2image: modelsByCapability.image2image?.map((model) =>
+            ImageGatewayProvider(model.id, gatewayConfig)
+          )
+        }
+      })
+    );
+
+    await cesdk.addPlugin(
+      VideoGeneration({
+        providers: {
+          text2video: modelsByCapability.text2video?.map((model) =>
+            VideoGatewayProvider(model.id, gatewayConfig)
+          ),
+          image2video: modelsByCapability.image2video?.map((model) =>
+            VideoGatewayProvider(model.id, gatewayConfig)
+          )
+        }
+      })
+    );
+
+    await cesdk.addPlugin(
+      TextGeneration({
+        providers: {
+          text2text: modelsByCapability.text2text?.map((model) =>
+            TextGatewayProvider(model.id, gatewayConfig)
+          )
+        }
+      })
+    );
+
+    await cesdk.addPlugin(
+      AudioGeneration({
+        providers: {
+          text2speech: modelsByCapability.text2speech?.map((model) =>
+            AudioGatewayProvider(model.id, gatewayConfig)
+          )
+        }
+      })
+    );
+    */
 
     // You can also pass arrays of providers to offer model selection in the UI
     /*
@@ -172,27 +239,10 @@ class Example implements EditorPlugin {
       ImageGeneration({
         providers: {
           text2image: [
-            ImageGatewayProvider('fal-ai/flux/dev', gatewayConfig),
-            ImageGatewayProvider('fal-ai/recraft-v3', gatewayConfig)
+            ImageGatewayProvider('bfl/flux-2', gatewayConfig),
+            ImageGatewayProvider('google/nano-banana-pro', gatewayConfig)
           ]
         }
-      })
-    );
-    */
-
-    // Add middleware for logging or rate limiting
-    /*
-    import {
-      loggingMiddleware,
-      rateLimitMiddleware,
-    } from '@imgly/plugin-ai-generation-web';
-
-    await cesdk.addPlugin(
-      ImageGeneration({
-        providers: {
-          text2image: ImageGatewayProvider('fal-ai/flux/dev', gatewayConfig),
-        },
-        middleware: [loggingMiddleware(), rateLimitMiddleware({ maxRequests: 10, timeWindow: 60000 })],
       })
     );
     */
@@ -201,7 +251,7 @@ class Example implements EditorPlugin {
     /*
     cesdk.i18n.setTranslations({
       en: {
-        'ly.img.plugin-ai-image-generation-web.gateway/fal-ai/flux/dev.defaults.property.prompt':
+        'ly.img.plugin-ai-image-generation-web.gateway/bfl/flux-2.defaults.property.prompt':
           'Describe your image',
       },
     });
@@ -297,6 +347,18 @@ The available configuration options are:
 - **`onError`**: Called when schema loading or provider initialization fails.
 - **`debug`**: Enable console logging for troubleshooting.
 
+## Asset URL Lifetime
+
+Output URLs the gateway returns for generated images, videos, and audio are short-lived presigned URLs. They are meant for immediate consumption — the plugin wires each URL into a block fill as soon as generation completes. Fetching the URL after its TTL elapses will fail, and any scene that still references it will render broken.
+
+The `history` option on `GatewayProviderConfiguration` softens this in the same browser:
+
+- `'@imgly/indexedDB'` (default): the plugin downloads each generated asset into the browser's IndexedDB. History-source lookups keep working after the gateway URL expires, but only in the browser that generated the asset.
+- `'@imgly/local'`: metadata only — history entries break once the gateway URL expires.
+- `false`: no history persistence.
+
+IndexedDB persistence does not rewrite block fills that were set from the ephemeral URL — the block still points at the original gateway URL. Scenes that need to outlive the TTL or travel between sessions and browsers should not rely on the gateway URL directly.
+
 ## Setting Up Image Generation
 
 We import `GatewayProvider` from `@imgly/plugin-ai-image-generation-web/gateway` and the default export from `@imgly/plugin-ai-image-generation-web`. We create providers via `GatewayProvider(modelId, config)` for text-to-image and image-to-image models.
@@ -359,8 +421,6 @@ class Example implements EditorPlugin {
       }
     });
 
-    const engine = cesdk.engine;
-
     // Register a token action that CE.SDK calls before each generation request.
     // In production, this calls your backend endpoint to mint a short-lived JWT.
     cesdk.actions.register('ly.img.ai.getToken', async () => {
@@ -386,11 +446,8 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       ImageGeneration({
         providers: {
-          text2image: ImageGatewayProvider('fal-ai/flux/dev', gatewayConfig),
-          image2image: ImageGatewayProvider(
-            'fal-ai/flux-kontext/edit',
-            gatewayConfig
-          )
+          text2image: ImageGatewayProvider('bfl/flux-2', gatewayConfig),
+          image2image: ImageGatewayProvider('bfl/flux-2-edit', gatewayConfig)
         }
       })
     );
@@ -454,8 +511,6 @@ class Example implements EditorPlugin {
       }
     });
 
-    const engine = cesdk.engine;
-
     // Register a token action that CE.SDK calls before each generation request.
     // In production, this calls your backend endpoint to mint a short-lived JWT.
     cesdk.actions.register('ly.img.ai.getToken', async () => {
@@ -481,11 +536,8 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       ImageGeneration({
         providers: {
-          text2image: ImageGatewayProvider('fal-ai/flux/dev', gatewayConfig),
-          image2image: ImageGatewayProvider(
-            'fal-ai/flux-kontext/edit',
-            gatewayConfig
-          )
+          text2image: ImageGatewayProvider('bfl/flux-2', gatewayConfig),
+          image2image: ImageGatewayProvider('bfl/flux-2-edit', gatewayConfig)
         }
       })
     );
@@ -494,7 +546,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       TextGeneration({
         providers: {
-          text2text: TextGatewayProvider('openai/gpt-4o', gatewayConfig)
+          text2text: TextGatewayProvider('openai/gpt-5.4-mini', gatewayConfig)
         }
       })
     );
@@ -556,8 +608,6 @@ class Example implements EditorPlugin {
       }
     });
 
-    const engine = cesdk.engine;
-
     // Register a token action that CE.SDK calls before each generation request.
     // In production, this calls your backend endpoint to mint a short-lived JWT.
     cesdk.actions.register('ly.img.ai.getToken', async () => {
@@ -583,11 +633,8 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       ImageGeneration({
         providers: {
-          text2image: ImageGatewayProvider('fal-ai/flux/dev', gatewayConfig),
-          image2image: ImageGatewayProvider(
-            'fal-ai/flux-kontext/edit',
-            gatewayConfig
-          )
+          text2image: ImageGatewayProvider('bfl/flux-2', gatewayConfig),
+          image2image: ImageGatewayProvider('bfl/flux-2-edit', gatewayConfig)
         }
       })
     );
@@ -596,7 +643,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       TextGeneration({
         providers: {
-          text2text: TextGatewayProvider('openai/gpt-4o', gatewayConfig)
+          text2text: TextGatewayProvider('openai/gpt-5.4-mini', gatewayConfig)
         }
       })
     );
@@ -605,9 +652,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       VideoGeneration({
         providers: {
-          text2video: VideoGatewayProvider('fal-ai/veo3.1', gatewayConfig),
+          text2video: VideoGatewayProvider('google/veo-3.1-fast', gatewayConfig),
           image2video: VideoGatewayProvider(
-            'fal-ai/kling-video/v2.1/standard/image-to-video',
+            'google/veo-3.1-fast-i2v',
             gatewayConfig
           )
         }
@@ -669,8 +716,6 @@ class Example implements EditorPlugin {
       }
     });
 
-    const engine = cesdk.engine;
-
     // Register a token action that CE.SDK calls before each generation request.
     // In production, this calls your backend endpoint to mint a short-lived JWT.
     cesdk.actions.register('ly.img.ai.getToken', async () => {
@@ -696,11 +741,8 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       ImageGeneration({
         providers: {
-          text2image: ImageGatewayProvider('fal-ai/flux/dev', gatewayConfig),
-          image2image: ImageGatewayProvider(
-            'fal-ai/flux-kontext/edit',
-            gatewayConfig
-          )
+          text2image: ImageGatewayProvider('bfl/flux-2', gatewayConfig),
+          image2image: ImageGatewayProvider('bfl/flux-2-edit', gatewayConfig)
         }
       })
     );
@@ -709,7 +751,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       TextGeneration({
         providers: {
-          text2text: TextGatewayProvider('openai/gpt-4o', gatewayConfig)
+          text2text: TextGatewayProvider('openai/gpt-5.4-mini', gatewayConfig)
         }
       })
     );
@@ -718,9 +760,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       VideoGeneration({
         providers: {
-          text2video: VideoGatewayProvider('fal-ai/veo3.1', gatewayConfig),
+          text2video: VideoGatewayProvider('google/veo-3.1-fast', gatewayConfig),
           image2video: VideoGatewayProvider(
-            'fal-ai/kling-video/v2.1/standard/image-to-video',
+            'google/veo-3.1-fast-i2v',
             gatewayConfig
           )
         }
@@ -732,7 +774,7 @@ class Example implements EditorPlugin {
       AudioGeneration({
         providers: {
           text2speech: AudioGatewayProvider(
-            'elevenlabs/multilingual-v2',
+            'elevenlabs/eleven-v3-tts',
             gatewayConfig
           )
         }
@@ -749,8 +791,8 @@ await cesdk.addPlugin(
   ImageGeneration({
     providers: {
       text2image: [
-        ImageGatewayProvider('fal-ai/flux/dev', gatewayConfig),
-        ImageGatewayProvider('fal-ai/recraft-v3', gatewayConfig)
+        ImageGatewayProvider('bfl/flux-2', gatewayConfig),
+        ImageGatewayProvider('google/nano-banana-pro', gatewayConfig)
       ]
     }
   })
@@ -759,24 +801,91 @@ await cesdk.addPlugin(
 
 ## Dynamic Model Discovery
 
-We can also fetch available models from the gateway API to create providers dynamically. Calling `GET /v1/models?groupBy=capability` with your token returns models grouped by capability (`text2image`, `image2image`, `text2text`, `text2video`, `image2video`, `text2speech`). We loop over the results and instantiate the matching `GatewayProvider` for each model.
+We can also fetch available models from the gateway API and create providers dynamically instead of hard-coding model IDs. Only models that the API key's scopes permit appear in the response — we use this to keep the UI in sync with whatever we have provisioned in the Dashboard.
 
-## Middleware
+The gateway exposes two query shapes:
 
-Gateway providers use the same middleware system as direct providers. We import `loggingMiddleware`, `rateLimitMiddleware`, or `uploadMiddleware` from `@imgly/plugin-ai-generation-web` and pass them via the plugin's `middleware` option.
+- `GET /v1/models` — flat array of all accessible models
+- `GET /v1/models?groupBy=capability` — object keyed by capability
 
-```typescript highlight-middleware
-    import {
-      loggingMiddleware,
-      rateLimitMiddleware,
-    } from '@imgly/plugin-ai-generation-web';
+Both require a `Authorization: Bearer <token>` header. Each entry has the following shape:
+
+```json
+{
+  "id": "bfl/flux-2",
+  "name": "FLUX.2",
+  "creator": "Black Forest Labs",
+  "capability": "text2image"
+}
+```
+
+Supported capabilities are `text2image`, `image2image`, `text2text`, `text2video`, `image2video`, `text2speech`, and `speech2text`. We fetch the grouped form, loop by capability, and instantiate the matching `GatewayProvider` for each `model.id`.
+
+```typescript highlight-dynamic-models
+    type GatewayModel = {
+      id: string;
+      name: string;
+      creator: string;
+      capability: string;
+    };
+    type ModelsByCapability = Partial<Record<string, GatewayModel[]>>;
+
+    // Mint a short-lived JWT via the backend token endpoint (see highlight-token-action)
+    const tokenRes = await fetch('/api/ai/token', { method: 'POST' });
+    const { token } = await tokenRes.json();
+
+    // GET /v1/models returns a flat array; ?groupBy=capability returns an object
+    // keyed by capability (text2image, image2image, text2text, text2video,
+    // image2video, text2speech, speech2text).
+    const modelsRes = await fetch(
+      'https://gateway.img.ly/v1/models?groupBy=capability',
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    const modelsByCapability: ModelsByCapability = await modelsRes.json();
 
     await cesdk.addPlugin(
       ImageGeneration({
         providers: {
-          text2image: ImageGatewayProvider('fal-ai/flux/dev', gatewayConfig),
-        },
-        middleware: [loggingMiddleware(), rateLimitMiddleware({ maxRequests: 10, timeWindow: 60000 })],
+          text2image: modelsByCapability.text2image?.map((model) =>
+            ImageGatewayProvider(model.id, gatewayConfig)
+          ),
+          image2image: modelsByCapability.image2image?.map((model) =>
+            ImageGatewayProvider(model.id, gatewayConfig)
+          )
+        }
+      })
+    );
+
+    await cesdk.addPlugin(
+      VideoGeneration({
+        providers: {
+          text2video: modelsByCapability.text2video?.map((model) =>
+            VideoGatewayProvider(model.id, gatewayConfig)
+          ),
+          image2video: modelsByCapability.image2video?.map((model) =>
+            VideoGatewayProvider(model.id, gatewayConfig)
+          )
+        }
+      })
+    );
+
+    await cesdk.addPlugin(
+      TextGeneration({
+        providers: {
+          text2text: modelsByCapability.text2text?.map((model) =>
+            TextGatewayProvider(model.id, gatewayConfig)
+          )
+        }
+      })
+    );
+
+    await cesdk.addPlugin(
+      AudioGeneration({
+        providers: {
+          text2speech: modelsByCapability.text2speech?.map((model) =>
+            AudioGatewayProvider(model.id, gatewayConfig)
+          )
+        }
       })
     );
 ```
@@ -788,7 +897,7 @@ Gateway providers register translation keys using the pattern `ly.img.plugin-ai-
 ```typescript highlight-translations
 cesdk.i18n.setTranslations({
   en: {
-    'ly.img.plugin-ai-image-generation-web.gateway/fal-ai/flux/dev.defaults.property.prompt':
+    'ly.img.plugin-ai-image-generation-web.gateway/bfl/flux-2.defaults.property.prompt':
       'Describe your image',
   },
 });
@@ -814,6 +923,8 @@ Common issues when configuring gateway providers:
 
 **CORS errors**: The gateway must allow requests from your application's origin.
 
+**Previously-generated assets appear broken after some time**: The gateway's output URLs are short-lived presigned URLs. Keep `history: '@imgly/indexedDB'` (default) for persistent history lookups in the same browser. See [Asset URL Lifetime](#asset-url-lifetime).
+
 ## API Reference
 
 | Method / Type                  | Category   | Purpose                                                         |
@@ -830,9 +941,6 @@ Common issues when configuring gateway providers:
 | `TextGeneration`               | Plugin     | Default export from `@imgly/plugin-ai-text-generation-web`      |
 | `VideoGeneration`              | Plugin     | Default export from `@imgly/plugin-ai-video-generation-web`     |
 | `AudioGeneration`              | Plugin     | Default export from `@imgly/plugin-ai-audio-generation-web`     |
-| `loggingMiddleware`            | Middleware | Log generation requests and responses                           |
-| `rateLimitMiddleware`          | Middleware | Rate-limit generation requests                                  |
-| `uploadMiddleware`             | Middleware | Handle file uploads for generation inputs                       |
 | `cesdk.addPlugin()`            | Plugin     | Register a plugin with the editor                               |
 | `cesdk.actions.register()`     | Action     | Register a named action (used for token retrieval)              |
 | `cesdk.i18n.setTranslations()` | I18n       | Customize UI labels and translations                            |

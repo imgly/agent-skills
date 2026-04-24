@@ -140,7 +140,7 @@ This guide covers installing the library, configuring processing options, and in
 Install the background removal library alongside the CE.SDK Node engine:
 
 ```bash
-npm install @cesdk/node @imgly/background-removal-node
+npm install @cesdk/node@$UBQ_VERSION$ @imgly/background-removal-node
 ```
 
 Import the `removeBackground` function and `Config` type:

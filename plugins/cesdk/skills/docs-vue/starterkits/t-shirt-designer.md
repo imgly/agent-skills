@@ -14,21 +14,21 @@ Apparel Editor for creating print-ready design.
 >
 > - [Download examples](https://github.com/imgly/starterkit-t-shirt-designer-react-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-t-shirt-designer-react-web/tree/release-$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-t-shirt-designer-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/starterkit-t-shirt-designer-react-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-t-shirt-designer-react-web/tree/v$UBQ_VERSION$)
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-t-shirt-designer/)
 
 ***
 
-## Pre-requisites
+## Prerequisites
 
-This guide assumes basic familiarity with JavaScript or TypeScript.
+Before you begin, make sure you have the following:
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
-- **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
-  See [Browser Support](./browser-support.md) for the full list
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
+  See [Browser Support](./browser-support.md) for the full list.
 
 ***
 
@@ -55,8 +55,9 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     ```
     src/
     ├── app/                          # Demo application
+    │   └── utils/
+    │       └── product.ts                # Scene metadata & asset download helpers
     ├── imgly/
-    │   ├── backdrop.ts               # Backdrop management
     │   ├── config/
     │   │   ├── actions.ts                # Export/import actions
     │   │   ├── features.ts               # Feature toggles
@@ -71,10 +72,9 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     │   │       ├── inspectorBar.ts           # Inspector bar layout
     │   │       ├── navigationBar.ts          # Navigation bar layout
     │   │       └── panel.ts                  # Panel configuration
-    │   ├── constants.ts              # Configuration constants
+    │   ├── plugins/
+    │   │   └── product-backdrop.ts       # ProductBackdrop plugin (scene, backdrop & area actions)
     │   ├── index.ts                  # Editor initialization function
-    │   ├── mask.ts                   # Mask handling
-    │   ├── page.ts                   # Scene and area management
     │   └── types.ts                  # TypeScript type definitions
     └── index.tsx                 # Application entry point
     ```
@@ -144,7 +144,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
   <TabItem label="Existing Project">
     ## Get Started
 
-    Integrate the T-Shirt Designer into an existing web application. This adds the editor configuration to your current project structure.
+    Integrate the T-Shirt Designer into an existing Vue application. This adds the editor configuration to your current project structure.
 
     ## Step 1: Clone
 
@@ -170,11 +170,10 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     > **Adjust Path:** The default destination is `./src/imgly`. Adjust the path to match your project structure.
 
-    The `imgly/` folder contains the editor configuration and product-specific functionality:
+    The `imgly/` folder contains the editor configuration:
 
     ```
     imgly/
-    ├── backdrop.ts               # Backdrop management
     ├── config/
     │   ├── actions.ts                # Export/import actions
     │   ├── features.ts               # Feature toggles
@@ -189,32 +188,27 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     │       ├── inspectorBar.ts           # Inspector bar layout
     │       ├── navigationBar.ts          # Navigation bar layout
     │       └── panel.ts                  # Panel configuration
-    ├── constants.ts              # Configuration constants
+    ├── plugins/
+    │   └── product-backdrop.ts       # ProductBackdrop plugin (scene, backdrop & area actions)
     ├── index.ts                  # Editor initialization function
-    ├── mask.ts                   # Mask handling
-    ├── page.ts                   # Scene and area management
     └── types.ts                  # TypeScript type definitions
     ```
 
     ## Step 2: Install Dependencies
 
-    Install the required packages for the editor:
-
-    ### Core Editor
-
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js
+        npm install @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js
+        pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js
+        yarn add @cesdk/cesdk-js@$UBQ\_VERSION$
       </TerminalTab>
     </TerminalTabs>
 
@@ -230,117 +224,120 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
       </TerminalTab>
     </TerminalTabs>
 
-    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 5: Initialize the Editor.
+    > **Asset Configuration:** The starter kit is pre-configured to load assets from `/assets`. If you place assets in a different location, update the `baseURL` in Step 4: Create the Editor Component.
 
-    ## Step 4: Add a Container Element
+    ## Step 4: Create the Editor Component
 
-    Add a container element to your HTML where the editor will be mounted:
+    Create a Vue component that uses the `CreativeEditor` wrapper with the `initTShirtDesigner` function from the starter kit:
 
-    ```html
-    <div id="cesdk_container" style="width: 100%; height: 100vh;"></div>
+    ```vue
+    <template>
+      <CreativeEditor
+        :config="{ baseURL: '/assets' }"
+        :init="initTShirtDesigner"
+        width="100vw"
+        height="100vh"
+      />
+    </template>
+
+    <script setup lang="ts">
+    import { initTShirtDesigner } from './imgly';
+    import CreativeEditor from '@cesdk/cesdk-js/vue';
+    </script>
     ```
 
-    ## Step 5: Initialize the Editor
+    ## Step 5: Use the Component
 
-    Import and call the initialization function from your application's entry point:
+    Use the component in your app:
 
-    ```typescript title="src/index.ts"
-    import CreativeEditorSDK from '@cesdk/cesdk-js';
+    ```vue
+    <template>
+      <TShirtDesigner />
+    </template>
 
-    import { initTShirtDesigner } from './imgly';
-
-    const config = {
-      userId: 'your-user-id',
-      baseURL: '/assets'
-      // license: 'YOUR_LICENSE_KEY',
-    };
-
-    CreativeEditorSDK.create('#cesdk_container', config)
-      .then(async (cesdk) => {
-        await initTShirtDesigner(cesdk);
-      })
-      .catch((error) => {
-        console.error('Failed to initialize CE.SDK:', error);
-      });
+    <script setup>
+    import TShirtDesigner from './components/TShirtDesigner.vue';
+    </script>
     ```
   </TabItem>
 </Tabs>
 
 ## Working with Products
 
-The starter kit handles t-shirt color switching and area navigation automatically through React state in `App.tsx`. For advanced use cases—such as integrating with your own product catalog or building custom UI controls—the `imgly` folder exports functions that give you direct control over scenes and backdrops.
+### The ProductBackdrop Plugin
 
-### Managing the Scene
+`ProductBackdrop` is registered inside `initTShirtDesigner` and owns the scene lifecycle: pages, backdrops, area navigation, and token substitution on backdrop image URIs.
 
-T-shirts have two print areas: front and back. These are represented as separate pages in the editor scene, each with its own design canvas. Use the scene functions to create these areas programmatically and navigate between them.
+| Action | Purpose |
+| --- | --- |
+| `product.setupScene(options)` | Create or update the scene's pages and backdrops from a product config |
+| `product.switchArea(areaId)` | Focus a print area page and reveal its backdrop |
+| `product.getVisibleAreaId()` | Return the currently visible area's id, or `null` |
+| `product.applyVariables(variables, areas)` | Substitute `{{key}}` tokens in backdrop image URIs |
+
+### Setting Up and Switching Areas
+
+`product.setupScene` takes the list of enabled print areas and the design unit. Each area becomes a separate page with its own backdrop. `product.switchArea` focuses one of them and zooms to fit.
 
 ```typescript
-import { createOrUpdateScene, switchArea, getVisibleAreaId } from './imgly';
-```
-
-The `createOrUpdateScene` function initializes the editor with your t-shirt's print areas. Use `switchArea` to navigate between front and back—this also updates the backdrop mockup and adjusts the zoom to fit the design area.
-
-```typescript
-// Create pages for each print area
-createOrUpdateScene(
-  cesdk.engine,
-  [
-    { id: 'front', pageSize: { width: 20, height: 20 } },
-    { id: 'back', pageSize: { width: 20, height: 20 } }
+// Build the scene for a t-shirt with front and back print areas
+await cesdk.actions.run('product.setupScene', {
+  areas: [
+    {
+      id: 'front',
+      pageSize: { width: 20, height: 20 },
+      mockup: {
+        images: [{ uri: '/assets/products/tshirt/{{color}}_front.png', width: 815, height: 948 }],
+        printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+      }
+    },
+    {
+      id: 'back',
+      pageSize: { width: 20, height: 20 },
+      mockup: {
+        images: [{ uri: '/assets/products/tshirt/{{color}}_back.png', width: 815, height: 948 }],
+        printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+      }
+    }
   ],
-  'Inch'
-);
-
-// Navigate to a different area
-await switchArea(cesdk, 'back');
-
-// Get the currently visible area
-const currentArea = getVisibleAreaId(cesdk.engine);
-```
-
-> **Custom Colors:** Add your own t-shirt colors by extending the product catalog in `src/product-catalog.ts` with new mockup images.
-
-### Managing Backdrops
-
-Backdrops are the t-shirt mockup images that appear behind the design canvas—showing users how their design will look on the actual garment. Each print area (front/back) has its own backdrop, and you update them when users select different t-shirt colors.
-
-```typescript
-import {
-  createBackdrop,
-  updateBackdropImages,
-  showBackdrop,
-  clearBackdrops
-} from './imgly';
-```
-
-The `printableAreaPx` property defines where the design canvas sits within the mockup image. This ensures designs are positioned correctly on the t-shirt visualization—centered on the chest area with appropriate margins.
-
-```typescript
-// Create a backdrop with mockup image and print area bounds
-createBackdrop(cesdk.engine, 'front', {
-  images: [{ uri: '/assets/products/tshirt/white_front.png', width: 815, height: 948 }],
-  printableAreaPx: { x: 227, y: 194, width: 360, height: 360 }
+  designUnit: 'Inch',
+  variables: { color: 'white' }
 });
 
-// Swap mockup images (e.g., when changing colors)
-updateBackdropImages(cesdk.engine, 'front', [
-  { uri: '/assets/products/tshirt/red_front.png', width: 815, height: 948 }
-]);
+// Navigate to the back area
+await cesdk.actions.run('product.switchArea', 'back');
 
-// Display the backdrop for an area
-showBackdrop(cesdk.engine, 'front');
-
-// Remove all backdrops
-clearBackdrops(cesdk.engine);
+// Which area is currently visible?
+const currentArea = await cesdk.actions.run('product.getVisibleAreaId');
 ```
+
+The `printableAreaPx` property defines where the design canvas sits within the mockup image. This keeps designs positioned correctly on the t-shirt visualization—centered on the chest area with appropriate margins.
+
+### Swapping Colors
+
+Backdrop image URIs may contain `{{key}}` tokens. The kit's catalog uses `{{color}}`, but any variable name works. Run `product.applyVariables` when the user picks a different color to re-resolve those tokens without rebuilding the scene.
+
+```typescript
+const enabledAreas = product.areas
+  .filter((area) => !area.disabled)
+  .map((area) => ({ id: area.id, mockup: area.mockup }));
+
+await cesdk.actions.run(
+  'product.applyVariables',
+  { color: 'red' },
+  enabledAreas
+);
+```
+
+> **Custom Colors:** Add your own t-shirt colors by extending the product catalog in `src/app/product-catalog.ts` with new mockup images. Any `{{key}}` in an image URI is substituted from the `variables` map you pass to `product.setupScene` or `product.applyVariables`.
 
 ## Customize Assets
 
 The T-Shirt Designer uses asset source plugins to provide built-in libraries for templates, stickers, shapes, and fonts. The starter kit includes a curated selection—customize what's included based on your needs.
 
-Asset sources are added via plugins in `src/index.ts`. Enable or disable individual sources:
+Asset sources are added via plugins in `src/imgly/index.ts`. Enable or disable individual sources:
 
-```typescript title="src/index.ts"
+```typescript title="src/imgly/index.ts"
 import {
   FiltersAssetSource,
   StickerAssetSource,
