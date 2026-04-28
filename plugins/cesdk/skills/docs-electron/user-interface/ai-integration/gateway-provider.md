@@ -140,7 +140,10 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       VideoGeneration({
         providers: {
-          text2video: VideoGatewayProvider('google/veo-3.1-fast', gatewayConfig),
+          text2video: VideoGatewayProvider(
+            'google/veo-3.1-fast',
+            gatewayConfig
+          ),
           image2video: VideoGatewayProvider(
             'google/veo-3.1-fast-i2v',
             gatewayConfig
@@ -256,6 +259,40 @@ class Example implements EditorPlugin {
       },
     });
     */
+
+    // Route generated assets through your own storage so scenes outlive
+    // the short-lived gateway URL. The middleware rewrites the output URL
+    // before CE.SDK wires it into a block fill.
+    /*
+    import { uploadMiddleware } from '@imgly/plugin-ai-generation-web';
+
+    async function uploadToYourStorageServer(assetUrl: string): Promise<string> {
+      // Replace with your actual storage API call
+      const response = await fetch('https://your-server.com/api/store', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: assetUrl })
+      });
+      const { permanentUrl } = await response.json();
+      return permanentUrl;
+    }
+
+    await cesdk.addPlugin(
+      ImageGeneration({
+        providers: {
+          text2image: ImageGatewayProvider('bfl/flux-2', {
+            ...gatewayConfig,
+            middlewares: [
+              uploadMiddleware(async (output) => ({
+                ...output,
+                url: await uploadToYourStorageServer(output.url)
+              }))
+            ]
+          })
+        }
+      })
+    );
+    */
   }
 }
 
@@ -344,8 +381,49 @@ The available configuration options are:
 - **`history`**: Where generated assets are stored. Defaults to `'@imgly/indexedDB'`. Set to `'@imgly/local'` for in-memory storage or `false` to disable.
 - **`tokenActionId`**: Action ID for token retrieval. Defaults to `'ly.img.ai.getToken'`.
 - **`tokenCacheTTL`**: Token cache duration in milliseconds. Defaults to `300000` (5 minutes).
+- **`middlewares`**: Middleware functions that wrap the generation call. See [Middleware](#middleware).
 - **`onError`**: Called when schema loading or provider initialization fails.
+- **`supportedQuickActions`**: Enable or disable individual quick actions on the gateway model. Map a quick-action ID to `false` to disable it, or `true` to keep the default. Omitted IDs keep their defaults.
 - **`debug`**: Enable console logging for troubleshooting.
+
+## Middleware
+
+Gateway providers accept the shared `middlewares` option that every other AI provider exposes. Hook into generation for logging, rate limiting, custom error handling, or persisting outputs to your own storage.
+
+The most common use case is solving the short-lived URL problem described in [Asset URL Lifetime](#asset-url-lifetime): `uploadMiddleware` runs after generation completes and rewrites the returned URL, so CE.SDK sets the block fill from your persistent copy rather than the ephemeral gateway URL.
+
+```typescript highlight-upload-middleware
+    import { uploadMiddleware } from '@imgly/plugin-ai-generation-web';
+
+    async function uploadToYourStorageServer(assetUrl: string): Promise<string> {
+      // Replace with your actual storage API call
+      const response = await fetch('https://your-server.com/api/store', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: assetUrl })
+      });
+      const { permanentUrl } = await response.json();
+      return permanentUrl;
+    }
+
+    await cesdk.addPlugin(
+      ImageGeneration({
+        providers: {
+          text2image: ImageGatewayProvider('bfl/flux-2', {
+            ...gatewayConfig,
+            middlewares: [
+              uploadMiddleware(async (output) => ({
+                ...output,
+                url: await uploadToYourStorageServer(output.url)
+              }))
+            ]
+          })
+        }
+      })
+    );
+```
+
+See [Integrate AI Features → Using Middleware](./user-interface/ai-integration/integrate.md) for the available middlewares, ordering semantics, and end-to-end examples.
 
 ## Asset URL Lifetime
 
@@ -357,7 +435,7 @@ The `history` option on `GatewayProviderConfiguration` softens this in the same 
 - `'@imgly/local'`: metadata only — history entries break once the gateway URL expires.
 - `false`: no history persistence.
 
-IndexedDB persistence does not rewrite block fills that were set from the ephemeral URL — the block still points at the original gateway URL. Scenes that need to outlive the TTL or travel between sessions and browsers should not rely on the gateway URL directly.
+IndexedDB persistence does not rewrite block fills that were set from the ephemeral URL — the block still points at the original gateway URL. Scenes that need to outlive the TTL or travel between sessions and browsers should re-upload generated outputs to their own storage via [Middleware](#middleware) (`uploadMiddleware`) before the URL is wired into the block.
 
 ## Setting Up Image Generation
 
@@ -652,7 +730,10 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       VideoGeneration({
         providers: {
-          text2video: VideoGatewayProvider('google/veo-3.1-fast', gatewayConfig),
+          text2video: VideoGatewayProvider(
+            'google/veo-3.1-fast',
+            gatewayConfig
+          ),
           image2video: VideoGatewayProvider(
             'google/veo-3.1-fast-i2v',
             gatewayConfig
@@ -760,7 +841,10 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(
       VideoGeneration({
         providers: {
-          text2video: VideoGatewayProvider('google/veo-3.1-fast', gatewayConfig),
+          text2video: VideoGatewayProvider(
+            'google/veo-3.1-fast',
+            gatewayConfig
+          ),
           image2video: VideoGatewayProvider(
             'google/veo-3.1-fast-i2v',
             gatewayConfig
@@ -923,7 +1007,7 @@ Common issues when configuring gateway providers:
 
 **CORS errors**: The gateway must allow requests from your application's origin.
 
-**Previously-generated assets appear broken after some time**: The gateway's output URLs are short-lived presigned URLs. Keep `history: '@imgly/indexedDB'` (default) for persistent history lookups in the same browser. See [Asset URL Lifetime](#asset-url-lifetime).
+**Previously-generated assets appear broken after some time**: The gateway's output URLs are short-lived presigned URLs. Keep `history: '@imgly/indexedDB'` (default) for persistent history lookups in the same browser, or use `uploadMiddleware` to re-upload outputs to your own storage — see [Middleware](#middleware) and [Asset URL Lifetime](#asset-url-lifetime).
 
 ## API Reference
 

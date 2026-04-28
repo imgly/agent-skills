@@ -74,7 +74,11 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -223,7 +227,8 @@ class Example implements EditorPlugin {
       },
       meta: {
         uri: '{{base_url}}/ly.img.caption.presets/presets/neon-glow.preset',
-        thumbUri: '{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png',
+        thumbUri:
+          '{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png',
         mimeType: 'application/ubq-blocks-string'
       },
       payload: {
@@ -477,7 +482,8 @@ We define which properties users can customize without changing the entire prese
       },
       meta: {
         uri: '{{base_url}}/ly.img.caption.presets/presets/neon-glow.preset',
-        thumbUri: '{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png',
+        thumbUri:
+          '{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png',
         mimeType: 'application/ubq-blocks-string'
       },
       payload: {

@@ -79,7 +79,10 @@ export class Example {
     this.engine.block.setShape(shapeBlock, shape);
     const fill = this.engine.block.createFill('color');
     this.engine.block.setColor(fill, 'fill/color/value', {
-      r: 0.2, g: 0.6, b: 0.9, a: 1.0
+      r: 0.2,
+      g: 0.6,
+      b: 0.9,
+      a: 1.0
     });
     this.engine.block.setFill(shapeBlock, fill);
     this.engine.block.setPositionX(shapeBlock, 450);
@@ -121,7 +124,11 @@ export class Example {
 
   private addTextBlock() {
     const textBlock = this.engine.block.create('text');
-    this.engine.block.setString(textBlock, 'text/text', 'Lorem ipsum dolor sit amet');
+    this.engine.block.setString(
+      textBlock,
+      'text/text',
+      'Lorem ipsum dolor sit amet'
+    );
     this.engine.block.setPositionX(textBlock, 80);
     this.engine.block.setPositionY(textBlock, 80);
     this.engine.block.setWidth(textBlock, 300);
@@ -136,7 +143,10 @@ export class Example {
     this.engine.block.setShape(shapeBlock, shape);
     const fill = this.engine.block.createFill('color');
     this.engine.block.setColor(fill, 'fill/color/value', {
-      r: 0.2, g: 0.6, b: 0.9, a: 1.0
+      r: 0.2,
+      g: 0.6,
+      b: 0.9,
+      a: 1.0
     });
     this.engine.block.setFill(shapeBlock, fill);
     this.engine.block.setPositionX(shapeBlock, 80);
@@ -148,10 +158,18 @@ export class Example {
   }
 
   private setupPropertyPanel() {
-    this.bindInput('input-x', (v) => this.engine.block.setPositionX(this.selectedBlock!, v));
-    this.bindInput('input-y', (v) => this.engine.block.setPositionY(this.selectedBlock!, v));
-    this.bindInput('input-width', (v) => this.engine.block.setWidth(this.selectedBlock!, v));
-    this.bindInput('input-height', (v) => this.engine.block.setHeight(this.selectedBlock!, v));
+    this.bindInput('input-x', (v) =>
+      this.engine.block.setPositionX(this.selectedBlock!, v)
+    );
+    this.bindInput('input-y', (v) =>
+      this.engine.block.setPositionY(this.selectedBlock!, v)
+    );
+    this.bindInput('input-width', (v) =>
+      this.engine.block.setWidth(this.selectedBlock!, v)
+    );
+    this.bindInput('input-height', (v) =>
+      this.engine.block.setHeight(this.selectedBlock!, v)
+    );
     this.bindInput('input-rotation', (v) => {
       this.engine.block.setRotation(this.selectedBlock!, (v * Math.PI) / 180);
     });
@@ -187,11 +205,16 @@ export class Example {
     setInput('input-y', this.engine.block.getPositionY(this.selectedBlock));
     setInput('input-width', this.engine.block.getWidth(this.selectedBlock));
     setInput('input-height', this.engine.block.getHeight(this.selectedBlock));
-    setInput('input-rotation', (this.engine.block.getRotation(this.selectedBlock) * 180) / Math.PI);
+    setInput(
+      'input-rotation',
+      (this.engine.block.getRotation(this.selectedBlock) * 180) / Math.PI
+    );
   }
 
   private async exportDesign() {
-    const blob = await this.engine.block.export(this.page, { mimeType: 'image/png' });
+    const blob = await this.engine.block.export(this.page, {
+      mimeType: 'image/png'
+    });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -278,7 +301,10 @@ We create a new scene with `engine.scene.create()` and add a page to define the 
     this.engine.block.setShape(shapeBlock, shape);
     const fill = this.engine.block.createFill('color');
     this.engine.block.setColor(fill, 'fill/color/value', {
-      r: 0.2, g: 0.6, b: 0.9, a: 1.0
+      r: 0.2,
+      g: 0.6,
+      b: 0.9,
+      a: 1.0
     });
     this.engine.block.setFill(shapeBlock, fill);
     this.engine.block.setPositionX(shapeBlock, 450);
@@ -344,7 +370,11 @@ We create new blocks using `engine.block.create()` with different block types (`
 ```typescript highlight-add-blocks
   private addTextBlock() {
     const textBlock = this.engine.block.create('text');
-    this.engine.block.setString(textBlock, 'text/text', 'Lorem ipsum dolor sit amet');
+    this.engine.block.setString(
+      textBlock,
+      'text/text',
+      'Lorem ipsum dolor sit amet'
+    );
     this.engine.block.setPositionX(textBlock, 80);
     this.engine.block.setPositionY(textBlock, 80);
     this.engine.block.setWidth(textBlock, 300);
@@ -359,7 +389,10 @@ We create new blocks using `engine.block.create()` with different block types (`
     this.engine.block.setShape(shapeBlock, shape);
     const fill = this.engine.block.createFill('color');
     this.engine.block.setColor(fill, 'fill/color/value', {
-      r: 0.2, g: 0.6, b: 0.9, a: 1.0
+      r: 0.2,
+      g: 0.6,
+      b: 0.9,
+      a: 1.0
     });
     this.engine.block.setFill(shapeBlock, fill);
     this.engine.block.setPositionX(shapeBlock, 80);
@@ -379,10 +412,18 @@ We build property controls that read and update block properties. Input changes 
 
 ```typescript highlight-property-panel
   private setupPropertyPanel() {
-    this.bindInput('input-x', (v) => this.engine.block.setPositionX(this.selectedBlock!, v));
-    this.bindInput('input-y', (v) => this.engine.block.setPositionY(this.selectedBlock!, v));
-    this.bindInput('input-width', (v) => this.engine.block.setWidth(this.selectedBlock!, v));
-    this.bindInput('input-height', (v) => this.engine.block.setHeight(this.selectedBlock!, v));
+    this.bindInput('input-x', (v) =>
+      this.engine.block.setPositionX(this.selectedBlock!, v)
+    );
+    this.bindInput('input-y', (v) =>
+      this.engine.block.setPositionY(this.selectedBlock!, v)
+    );
+    this.bindInput('input-width', (v) =>
+      this.engine.block.setWidth(this.selectedBlock!, v)
+    );
+    this.bindInput('input-height', (v) =>
+      this.engine.block.setHeight(this.selectedBlock!, v)
+    );
     this.bindInput('input-rotation', (v) => {
       this.engine.block.setRotation(this.selectedBlock!, (v * Math.PI) / 180);
     });
@@ -418,7 +459,10 @@ We build property controls that read and update block properties. Input changes 
     setInput('input-y', this.engine.block.getPositionY(this.selectedBlock));
     setInput('input-width', this.engine.block.getWidth(this.selectedBlock));
     setInput('input-height', this.engine.block.getHeight(this.selectedBlock));
-    setInput('input-rotation', (this.engine.block.getRotation(this.selectedBlock) * 180) / Math.PI);
+    setInput(
+      'input-rotation',
+      (this.engine.block.getRotation(this.selectedBlock) * 180) / Math.PI
+    );
   }
 ```
 
@@ -430,7 +474,9 @@ We implement export functionality using `engine.block.export()` to render the de
 
 ```typescript highlight-export
 private async exportDesign() {
-  const blob = await this.engine.block.export(this.page, { mimeType: 'image/png' });
+  const blob = await this.engine.block.export(this.page, {
+    mimeType: 'image/png'
+  });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;

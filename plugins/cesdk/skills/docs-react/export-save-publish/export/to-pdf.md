@@ -23,11 +23,7 @@ Export your designs as PDF documents with high compatibility mode and underlayer
 PDF provides a universal document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page documents, and include options for print compatibility. You can configure high compatibility mode to ensure consistent rendering across different PDF viewers, and generate underlayers for special media printing like fabric, glass, or DTF transfers.
 
 ```typescript file=@cesdk_web_examples/guides-export-save-publish-export-to-pdf-browser/browser.ts reference-only
-import {
-  MimeType,
-  type EditorPlugin,
-  type EditorPluginContext
-} from '@cesdk/cesdk-js';
+import { type EditorPlugin, type EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   ColorPaletteAssetSource,
@@ -71,7 +67,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -118,95 +116,100 @@ class Example implements EditorPlugin {
     });
 
     // Configure navigation bar with export buttons using insertOrderComponent
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-pdf',
-          label: 'PDF',
-          icon: '@imgly/Download',
-          onClick: async () => {
-            // Export scene to include all pages in the PDF
-            const scene = engine.scene.get()!;
-            // Export scene as PDF (includes all pages)
-            const pdfBlob = await engine.block.export(scene, {
-              mimeType: 'application/pdf'
-            });
-            // Download using CE.SDK utils
-            await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-high-compat',
-          label: 'High Compat',
-          icon: '@imgly/Download',
-          onClick: async () => {
-            // Export scene to include all pages in the PDF
-            const scene = engine.scene.get()!;
-            // Enable high compatibility mode for consistent rendering across PDF viewers
-            // This rasterizes complex elements like gradients with transparency at scene DPI
-            const pdfBlob = await engine.block.export(scene, {
-              mimeType: 'application/pdf',
-              exportPdfWithHighCompatibility: true
-            });
-            await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-underlayer',
-          label: 'Underlayer',
-          icon: '@imgly/Download',
-          onClick: async () => {
-            // Export scene to include all pages in the PDF
-            const scene = engine.scene.get()!;
-            // Define the underlayer spot color before export
-            // RGB values (0.8, 0.8, 0.8) provide a preview representation
-            engine.editor.setSpotColorRGB('RDG_WHITE', 0.8, 0.8, 0.8);
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-pdf',
+            label: 'PDF',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Export scene as PDF (includes all pages)
+              const pdfBlob = await engine.block.export(scene, {
+                mimeType: 'application/pdf'
+              });
+              // Download using CE.SDK utils
+              await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-high-compat',
+            label: 'High Compat',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Enable high compatibility mode for consistent rendering across PDF viewers
+              // This rasterizes complex elements like gradients with transparency at scene DPI
+              const pdfBlob = await engine.block.export(scene, {
+                mimeType: 'application/pdf',
+                exportPdfWithHighCompatibility: true
+              });
+              await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-underlayer',
+            label: 'Underlayer',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Define the underlayer spot color before export
+              // RGB values (0.8, 0.8, 0.8) provide a preview representation
+              engine.editor.setSpotColorRGB('RDG_WHITE', 0.8, 0.8, 0.8);
 
-            // Export with underlayer for special media printing
-            const pdfBlob = await engine.block.export(scene, {
-              mimeType: 'application/pdf',
-              exportPdfWithHighCompatibility: true,
-              exportPdfWithUnderlayer: true,
-              underlayerSpotColorName: 'RDG_WHITE',
-              // Negative offset shrinks underlayer to prevent visible edges
-              underlayerOffset: -2.0
-            });
-            await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+              // Export with underlayer for special media printing
+              const pdfBlob = await engine.block.export(scene, {
+                mimeType: 'application/pdf',
+                exportPdfWithHighCompatibility: true,
+                exportPdfWithUnderlayer: true,
+                underlayerSpotColorName: 'RDG_WHITE',
+                // Negative offset shrinks underlayer to prevent visible edges
+                underlayerOffset: -2.0
+              });
+              await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-a4',
+            label: 'A4 @ 300 DPI',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Export with specific dimensions for print output
+              const pdfBlob = await engine.block.export(scene, {
+                mimeType: 'application/pdf',
+                targetWidth: 2480, // A4 at 300 DPI (210mm)
+                targetHeight: 3508 // A4 at 300 DPI (297mm)
+              });
+              await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-action',
+            label: 'Export',
+            icon: '@imgly/Download',
+            onClick: () => {
+              // Run built-in export with PDF format
+              cesdk.actions.run('exportDesign', {
+                mimeType: 'application/pdf'
+              });
+            }
           }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-a4',
-          label: 'A4 @ 300 DPI',
-          icon: '@imgly/Download',
-          onClick: async () => {
-            // Export scene to include all pages in the PDF
-            const scene = engine.scene.get()!;
-            // Export with specific dimensions for print output
-            const pdfBlob = await engine.block.export(scene, {
-              mimeType: 'application/pdf',
-              targetWidth: 2480, // A4 at 300 DPI (210mm)
-              targetHeight: 3508 // A4 at 300 DPI (297mm)
-            });
-            await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-action',
-          label: 'Export',
-          icon: '@imgly/Download',
-          onClick: () => {
-            // Run built-in export with PDF format
-            cesdk.actions.run('exportDesign', { mimeType: 'application/pdf' });
-          }
-        }
-      ]
-    });
+        ]
+      }
+    );
   }
 }
 
@@ -307,7 +310,9 @@ Run the `exportDesign` action to execute the default export flow programmaticall
 
 ```typescript highlight=highlight-trigger-export
 // Run built-in export with PDF format
-cesdk.actions.run('exportDesign', { mimeType: 'application/pdf' });
+cesdk.actions.run('exportDesign', {
+  mimeType: 'application/pdf'
+});
 ```
 
 This executes the registered export action, which handles the complete export process including format selection and file download.

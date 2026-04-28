@@ -112,6 +112,7 @@ export class AdvancedVideoEditorConfig implements EditorPlugin {
       // ui.elements.*, locale, i18n) that were cleared by resetEditor() above.
       // If you have already migrated to the respective API calls, you can
       // safely remove this line.
+      // eslint-disable-next-line -- Intentional backward-compat shim for pre-migration user configurations. Remove once all deprecated configuration paths are dropped.
       cesdk.reapplyLegacyUserConfiguration();
     }
   }

@@ -120,5 +120,4 @@ export async function initPhotoEditor(cesdk: CreativeEditorSDK) {
       }
     }
   );
-
 }

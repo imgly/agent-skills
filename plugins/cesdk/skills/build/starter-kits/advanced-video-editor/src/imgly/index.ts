@@ -143,5 +143,4 @@ export async function initAdvancedVideoEditor(cesdk: CreativeEditorSDK) {
       ]
     }
   );
-
 }

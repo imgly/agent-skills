@@ -131,7 +131,7 @@ class Example implements EditorPlugin {
     );
 
     // Add the export buttons to the navigation bar
-    cesdk.ui.setNavigationBarOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
       'ly.img.undoRedo.navigationBar',
       'ly.img.spacer',
       'ly.img.zoom.navigationBar',

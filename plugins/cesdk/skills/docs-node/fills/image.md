@@ -149,7 +149,11 @@ async function main() {
     engine.block.setHeight(dataUriBlock, 150);
 
     const dataUriFill = engine.block.createFill('image');
-    engine.block.setString(dataUriFill, 'fill/image/imageFileURI', imageDataUri);
+    engine.block.setString(
+      dataUriFill,
+      'fill/image/imageFileURI',
+      imageDataUri
+    );
     engine.block.setFill(dataUriBlock, dataUriFill);
     engine.block.appendChild(page, dataUriBlock);
 
@@ -417,7 +421,11 @@ You can embed image data directly using data URIs, which is particularly useful 
     engine.block.setHeight(dataUriBlock, 150);
 
     const dataUriFill = engine.block.createFill('image');
-    engine.block.setString(dataUriFill, 'fill/image/imageFileURI', imageDataUri);
+    engine.block.setString(
+      dataUriFill,
+      'fill/image/imageFileURI',
+      imageDataUri
+    );
     engine.block.setFill(dataUriBlock, dataUriFill);
     engine.block.appendChild(page, dataUriBlock);
 ```

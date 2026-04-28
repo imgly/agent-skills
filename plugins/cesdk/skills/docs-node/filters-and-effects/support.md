@@ -151,7 +151,11 @@ async function main() {
       b: 1.0,
       a: 1.0
     }); // Light blue
-    engine.block.setFloat(duotoneEffect, 'effect/duotone_filter/intensity', 0.8);
+    engine.block.setFloat(
+      duotoneEffect,
+      'effect/duotone_filter/intensity',
+      0.8
+    );
 
     // Retrieve all effects applied to a block
     const appliedEffects = engine.block.getEffects(imageBlock);
@@ -249,7 +253,11 @@ engine.block.setColor(duotoneEffect, 'effect/duotone_filter/lightColor', {
   b: 1.0,
   a: 1.0
 }); // Light blue
-engine.block.setFloat(duotoneEffect, 'effect/duotone_filter/intensity', 0.8);
+engine.block.setFloat(
+  duotoneEffect,
+  'effect/duotone_filter/intensity',
+  0.8
+);
 ```
 
 CE.SDK provides typed setter methods for different parameter types:

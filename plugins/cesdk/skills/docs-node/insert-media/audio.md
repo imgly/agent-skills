@@ -80,7 +80,9 @@ try {
   // Query current timeline position
   const timeOffset = engine.block.getTimeOffset(audioBlock);
   const duration = engine.block.getDuration(audioBlock);
-  console.log(`Timeline position: starts at ${timeOffset}s, duration ${duration.toFixed(2)}s`);
+  console.log(
+    `Timeline position: starts at ${timeOffset}s, duration ${duration.toFixed(2)}s`
+  );
 
   // Set audio volume (0.0 = silent, 1.0 = full volume)
   engine.block.setVolume(audioBlock, 0.8);

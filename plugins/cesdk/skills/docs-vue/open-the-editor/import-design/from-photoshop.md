@@ -134,7 +134,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -235,8 +237,8 @@ class Example implements EditorPlugin {
       const parser = await PSDParser.fromFile(
         engine,
         buffer,
-        createWebEncodeBufferToPNG()
-        // Optional: { fontResolver: customFontResolver } for advanced font mapping
+        createWebEncodeBufferToPNG(),
+        { fontResolver: customFontResolver }
       );
       const result = await parser.parse();
 
@@ -268,7 +270,7 @@ class Example implements EditorPlugin {
       const uploadToBackend = async (data: Uint8Array): Promise<string> => {
         // In production, upload the data to your CDN/storage and return the permanent URL
         // For this example, we create a blob URL to demonstrate the workflow
-        const blob = new Blob([data], { type: 'image/png' });
+        const blob = new Blob([new Uint8Array(data)], { type: 'image/png' });
         return URL.createObjectURL(blob);
       };
 
@@ -280,6 +282,9 @@ class Example implements EditorPlugin {
         engine.editor.relocateResource(bufferUri, permanentUrl);
       }
       const sceneString = await engine.scene.saveToString();
+      console.log(
+        `Scene persisted with stable URLs (${sceneString.length} bytes)`
+      );
 
       // Load the archived scene into the editor
       await cesdk.engine.scene.loadFromArchiveURL(archiveUrl);
@@ -505,7 +510,9 @@ Text elements in PSD files reference fonts that may not be available in CE.SDK. 
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -615,8 +622,8 @@ Use `PSDParser.fromFile()` with `createWebEncodeBufferToPNG()` for browser envir
       const parser = await PSDParser.fromFile(
         engine,
         buffer,
-        createWebEncodeBufferToPNG()
-        // Optional: { fontResolver: customFontResolver } for advanced font mapping
+        createWebEncodeBufferToPNG(),
+        { fontResolver: customFontResolver }
       );
       const result = await parser.parse();
 ```
@@ -660,7 +667,7 @@ After parsing the PSD file, use CE.SDK's native APIs to find and relocate all tr
       const uploadToBackend = async (data: Uint8Array): Promise<string> => {
         // In production, upload the data to your CDN/storage and return the permanent URL
         // For this example, we create a blob URL to demonstrate the workflow
-        const blob = new Blob([data], { type: 'image/png' });
+        const blob = new Blob([new Uint8Array(data)], { type: 'image/png' });
         return URL.createObjectURL(blob);
       };
 
@@ -672,6 +679,9 @@ After parsing the PSD file, use CE.SDK's native APIs to find and relocate all tr
         engine.editor.relocateResource(bufferUri, permanentUrl);
       }
       const sceneString = await engine.scene.saveToString();
+      console.log(
+        `Scene persisted with stable URLs (${sceneString.length} bytes)`
+      );
 ```
 
 The relocation workflow:

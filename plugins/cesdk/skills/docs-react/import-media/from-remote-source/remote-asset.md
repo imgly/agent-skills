@@ -61,7 +61,11 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -147,9 +151,8 @@ class Example implements EditorPlugin {
       ]
     });
 
-    const customSourceId = await engine.asset.addLocalAssetSourceFromJSONString(
-      customAssetJSON
-    );
+    const customSourceId =
+      await engine.asset.addLocalAssetSourceFromJSONString(customAssetJSON);
     console.log('Created custom asset source:', customSourceId);
 
     // When loading from string, you can specify a custom base path
@@ -230,7 +233,11 @@ We start by initializing CE.SDK with default and demo asset sources, then create
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -345,9 +352,8 @@ Call `engine.asset.addLocalAssetSourceFromJSONString()` when you have the JSON c
       ]
     });
 
-    const customSourceId = await engine.asset.addLocalAssetSourceFromJSONString(
-      customAssetJSON
-    );
+    const customSourceId =
+      await engine.asset.addLocalAssetSourceFromJSONString(customAssetJSON);
     console.log('Created custom asset source:', customSourceId);
 ```
 

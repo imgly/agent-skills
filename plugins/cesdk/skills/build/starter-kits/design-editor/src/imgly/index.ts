@@ -160,5 +160,4 @@ export async function initDesignEditor(cesdk: CreativeEditorSDK) {
       ]
     }
   );
-
 }

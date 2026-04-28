@@ -91,7 +91,8 @@ try {
 
   // Load and configure the second audio
   await engine.block.forceLoadAVResource(secondAudioBlock);
-  const secondDuration = engine.block.getAVResourceTotalDuration(secondAudioBlock);
+  const secondDuration =
+    engine.block.getAVResourceTotalDuration(secondAudioBlock);
 
   // Start second audio after the first one ends, at lower volume
   engine.block.setTimeOffset(secondAudioBlock, playbackDuration);
@@ -251,7 +252,8 @@ Add multiple audio tracks to create layered soundscapes. Each track can have ind
 
   // Load and configure the second audio
   await engine.block.forceLoadAVResource(secondAudioBlock);
-  const secondDuration = engine.block.getAVResourceTotalDuration(secondAudioBlock);
+  const secondDuration =
+    engine.block.getAVResourceTotalDuration(secondAudioBlock);
 
   // Start second audio after the first one ends, at lower volume
   engine.block.setTimeOffset(secondAudioBlock, playbackDuration);

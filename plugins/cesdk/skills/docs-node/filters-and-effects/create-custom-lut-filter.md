@@ -60,7 +60,9 @@ async function main() {
     engine.block.appendChild(page, imageBlock);
 
     // Create a LUT filter effect
-    const lutEffect = engine.block.createEffect('//ly.img.ubq/effect/lut_filter');
+    const lutEffect = engine.block.createEffect(
+      '//ly.img.ubq/effect/lut_filter'
+    );
 
     // Configure the LUT file URI - this is a tiled PNG containing the color lookup table
     const lutUrl =
@@ -204,7 +206,9 @@ Create a `lut_filter` effect instance using the effect API.
 
 ```typescript highlight=highlight-create-effect
 // Create a LUT filter effect
-const lutEffect = engine.block.createEffect('//ly.img.ubq/effect/lut_filter');
+const lutEffect = engine.block.createEffect(
+  '//ly.img.ubq/effect/lut_filter'
+);
 ```
 
 This creates an effect that can be configured and applied to image blocks.

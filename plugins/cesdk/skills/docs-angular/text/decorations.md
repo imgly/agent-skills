@@ -23,24 +23,24 @@ Add underline, strikethrough, and overline decorations to text blocks with confi
 CE.SDK supports three types of text decorations: underline, strikethrough, and overline. We can toggle decorations on and off, customize them with different line styles, and apply them to specific character ranges. All active decoration lines share the same style and thickness settings.
 
 ```typescript file=@cesdk_web_examples/guides-text-decorations-browser/browser.ts reference-only
-import type { EditorPlugin,EditorPluginContext } from "@cesdk/cesdk-js";
+import type { EditorPlugin, EditorPluginContext } from "@cesdk/cesdk-js";
 
 import {
-BlurAssetSource,
-ColorPaletteAssetSource,
-CropPresetsAssetSource,
-DemoAssetSources,
-EffectsAssetSource,
-FiltersAssetSource,
-PagePresetsAssetSource,
-StickerAssetSource,
-TextAssetSource,
-TextComponentAssetSource,
-TypefaceAssetSource,
-UploadAssetSources,
-VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource,
+} from "@cesdk/cesdk-js/plugins";
+import { DesignEditorConfig } from "./design-editor/plugin";
 import packageJson from "./package.json";
 
 /**
@@ -70,7 +70,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
-      new UploadAssetSources({ include: ["ly.img.image.upload"] })
+      new UploadAssetSources({ include: ["ly.img.image.upload"] }),
     );
     await cesdk.addPlugin(
       new DemoAssetSources({
@@ -81,7 +81,7 @@ class Example implements EditorPlugin {
           "ly.img.templates.social.*",
           "ly.img.image.*",
         ],
-      })
+      }),
     );
     await cesdk.addPlugin(new EffectsAssetSource());
     await cesdk.addPlugin(new FiltersAssetSource());

@@ -23,7 +23,7 @@ Apply bullet lists and numbered lists to text blocks programmatically using per-
 CE.SDK represents list formatting as per-paragraph properties on a text block. Each paragraph independently holds a list style (`'None'`, `'Unordered'`, or `'Ordered'`) and a zero-based nesting level. A single call to `setTextListStyle()` targets either one paragraph or all paragraphs at once, making it straightforward to build structured lists without iterating manually.
 
 ```typescript file=@cesdk_web_examples/guides-text-enumerations-browser/browser.ts reference-only
-import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+import type { EditorPlugin, EditorPluginContext } from "@cesdk/cesdk-js";
 import {
   BlurAssetSource,
   ColorPaletteAssetSource,
@@ -37,10 +37,10 @@ import {
   TextComponentAssetSource,
   TypefaceAssetSource,
   UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
-import packageJson from './package.json';
+  VectorShapeAssetSource,
+} from "@cesdk/cesdk-js/plugins";
+import { DesignEditorConfig } from "./design-editor/plugin";
+import packageJson from "./package.json";
 
 class Example implements EditorPlugin {
   name = packageJson.name;
@@ -49,7 +49,7 @@ class Example implements EditorPlugin {
 
   async initialize({ cesdk }: EditorPluginContext): Promise<void> {
     if (!cesdk) {
-      throw new Error('CE.SDK instance is required for this plugin');
+      throw new Error("CE.SDK instance is required for this plugin");
     }
 
     // DesignEditorConfig uses settings not yet in the published package when this guide
@@ -63,18 +63,18 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
-      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+      new UploadAssetSources({ include: ["ly.img.image.upload"] }),
     );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
-          'ly.img.templates.blank.*',
-          'ly.img.templates.presentation.*',
-          'ly.img.templates.print.*',
-          'ly.img.templates.social.*',
-          'ly.img.image.*'
-        ]
-      })
+          "ly.img.templates.blank.*",
+          "ly.img.templates.presentation.*",
+          "ly.img.templates.print.*",
+          "ly.img.templates.social.*",
+          "ly.img.image.*",
+        ],
+      }),
     );
     await cesdk.addPlugin(new EffectsAssetSource());
     await cesdk.addPlugin(new FiltersAssetSource());
@@ -86,20 +86,20 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     // Create a new design scene with an 800×600 canvas
-    await cesdk.actions.run('scene.create', {
-      page: { width: 800, height: 600, unit: 'Pixel' }
+    await cesdk.actions.run("scene.create", {
+      page: { width: 800, height: 600, unit: "Pixel" },
     });
 
     const engine = cesdk.engine;
-    const page = engine.block.findByType('page')[0];
+    const page = engine.block.findByType("page")[0];
 
     // Create a text block and populate it with three paragraphs
-    const textBlock = engine.block.create('text');
+    const textBlock = engine.block.create("text");
     engine.block.appendChild(page, textBlock);
-    engine.block.replaceText(textBlock, 'First item\nSecond item\nThird item');
+    engine.block.replaceText(textBlock, "First item\nSecond item\nThird item");
     engine.block.setTextFontSize(textBlock, 36);
-    engine.block.setWidthMode(textBlock, 'Auto');
-    engine.block.setHeightMode(textBlock, 'Auto');
+    engine.block.setWidthMode(textBlock, "Auto");
+    engine.block.setHeightMode(textBlock, "Auto");
     engine.block.setPositionX(textBlock, 80);
     engine.block.setPositionY(textBlock, 80);
 
@@ -107,35 +107,35 @@ class Example implements EditorPlugin {
     const block = engine.block as any;
 
     // Apply ordered list style to all paragraphs (paragraphIndex defaults to -1 = all)
-    block.setTextListStyle(textBlock, 'Ordered');
+    block.setTextListStyle(textBlock, "Ordered");
 
     // Override the third paragraph (index 2) to unordered
-    block.setTextListStyle(textBlock, 'Unordered', 2);
+    block.setTextListStyle(textBlock, "Unordered", 2);
 
     // Set the second paragraph (index 1) to nesting level 1 (one indent deep)
     block.setTextListLevel(textBlock, 1, 1);
 
     // Read back the nesting level to confirm
     const level = block.getTextListLevel(textBlock, 1);
-    console.log('Second paragraph nesting level:', level); // 1
+    console.log("Second paragraph nesting level:", level); // 1
 
     // Atomically set both list style and nesting level in one call
     // Sets paragraph 0 to ordered style at nesting level 0 (outermost)
-    block.setTextListStyle(textBlock, 'Ordered', 0, 0);
+    block.setTextListStyle(textBlock, "Ordered", 0, 0);
 
     // Get all paragraph indices in the text block
     const allIndices: number[] = block.getTextParagraphIndices(textBlock);
-    console.log('All paragraph indices:', allIndices); // [0, 1, 2]
+    console.log("All paragraph indices:", allIndices); // [0, 1, 2]
 
     // Get indices overlapping a specific grapheme range
     const rangeIndices = block.getTextParagraphIndices(textBlock, 0, 10);
-    console.log('Indices for range [0, 10):', rangeIndices); // [0]
+    console.log("Indices for range [0, 10):", rangeIndices); // [0]
 
     // Read back the list style and nesting level for each paragraph
     const styles = allIndices.map((i) => block.getTextListStyle(textBlock, i));
     const levels = allIndices.map((i) => block.getTextListLevel(textBlock, i));
-    console.log('Paragraph styles:', styles); // ['Ordered', 'Ordered', 'Unordered']
-    console.log('Paragraph levels:', levels); // [0, 1, 0]
+    console.log("Paragraph styles:", styles); // ['Ordered', 'Ordered', 'Unordered']
+    console.log("Paragraph levels:", levels); // [0, 1, 0]
 
     engine.scene.zoomToBlock(textBlock, { padding: 40 });
     engine.block.setSelected(textBlock, true);
@@ -153,20 +153,20 @@ We start by creating a new design scene, then add a text block to it with three 
 
 ```typescript highlight-setup
     // Create a new design scene with an 800×600 canvas
-    await cesdk.actions.run('scene.create', {
-      page: { width: 800, height: 600, unit: 'Pixel' }
+    await cesdk.actions.run("scene.create", {
+      page: { width: 800, height: 600, unit: "Pixel" },
     });
 
     const engine = cesdk.engine;
-    const page = engine.block.findByType('page')[0];
+    const page = engine.block.findByType("page")[0];
 
     // Create a text block and populate it with three paragraphs
-    const textBlock = engine.block.create('text');
+    const textBlock = engine.block.create("text");
     engine.block.appendChild(page, textBlock);
-    engine.block.replaceText(textBlock, 'First item\nSecond item\nThird item');
+    engine.block.replaceText(textBlock, "First item\nSecond item\nThird item");
     engine.block.setTextFontSize(textBlock, 36);
-    engine.block.setWidthMode(textBlock, 'Auto');
-    engine.block.setHeightMode(textBlock, 'Auto');
+    engine.block.setWidthMode(textBlock, "Auto");
+    engine.block.setHeightMode(textBlock, "Auto");
     engine.block.setPositionX(textBlock, 80);
     engine.block.setPositionY(textBlock, 80);
 ```
@@ -175,10 +175,10 @@ We apply list styles with `engine.block.setTextListStyle()`. Omitting `paragraph
 
 ```typescript highlight-apply-list-styles
     // Apply ordered list style to all paragraphs (paragraphIndex defaults to -1 = all)
-    block.setTextListStyle(textBlock, 'Ordered');
+    block.setTextListStyle(textBlock, "Ordered");
 
     // Override the third paragraph (index 2) to unordered
-    block.setTextListStyle(textBlock, 'Unordered', 2);
+    block.setTextListStyle(textBlock, "Unordered", 2);
 ```
 
 After these two calls, paragraphs 0 and 1 are ordered (numbered) and paragraph 2 is unordered (bulleted).
@@ -193,7 +193,7 @@ We control the visual depth of list items with `engine.block.setTextListLevel()`
 
     // Read back the nesting level to confirm
     const level = block.getTextListLevel(textBlock, 1);
-    console.log('Second paragraph nesting level:', level); // 1
+    console.log("Second paragraph nesting level:", level); // 1
 ```
 
 ## Atomic Style and Level Assignment
@@ -203,7 +203,7 @@ We set both list style and nesting level in a single call by passing the optiona
 ```typescript highlight-atomic
 // Atomically set both list style and nesting level in one call
 // Sets paragraph 0 to ordered style at nesting level 0 (outermost)
-block.setTextListStyle(textBlock, 'Ordered', 0, 0);
+block.setTextListStyle(textBlock, "Ordered", 0, 0);
 ```
 
 ## Resolving Paragraph Indices from Text Ranges
@@ -213,11 +213,11 @@ When working with a text selection or a known grapheme range, `engine.block.getT
 ```typescript highlight-paragraph-indices
     // Get all paragraph indices in the text block
     const allIndices: number[] = block.getTextParagraphIndices(textBlock);
-    console.log('All paragraph indices:', allIndices); // [0, 1, 2]
+    console.log("All paragraph indices:", allIndices); // [0, 1, 2]
 
     // Get indices overlapping a specific grapheme range
     const rangeIndices = block.getTextParagraphIndices(textBlock, 0, 10);
-    console.log('Indices for range [0, 10):', rangeIndices); // [0]
+    console.log("Indices for range [0, 10):", rangeIndices); // [0]
 ```
 
 ## Querying List Styles
@@ -228,8 +228,8 @@ We read back the current list style and nesting level for each paragraph using `
 // Read back the list style and nesting level for each paragraph
 const styles = allIndices.map((i) => block.getTextListStyle(textBlock, i));
 const levels = allIndices.map((i) => block.getTextListLevel(textBlock, i));
-console.log('Paragraph styles:', styles); // ['Ordered', 'Ordered', 'Unordered']
-console.log('Paragraph levels:', levels); // [0, 1, 0]
+console.log("Paragraph styles:", styles); // ['Ordered', 'Ordered', 'Unordered']
+console.log("Paragraph levels:", levels); // [0, 1, 0]
 ```
 
 The logged output confirms styles `['Ordered', 'Ordered', 'Unordered']` and levels `[0, 1, 0]` across the three paragraphs.

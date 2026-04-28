@@ -68,7 +68,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -228,7 +230,7 @@ class Example implements EditorPlugin {
     const isValidAfter = engine.block.isValid(yellowRect);
     console.log('Yellow rectangle valid after destroy:', isValidAfter);
 
-    engine.scene.zoomToBlock(page, 40, 40, 40, 40);
+    await engine.scene.zoomToBlock(page, { padding: 40 });
   }
 }
 
@@ -461,7 +463,7 @@ After destruction, any references to the block become invalid. Attempting to use
 After making layer changes, we zoom to fit the page in the viewport so the composition is clearly visible.
 
 ```typescript highlight=highlight-zoom
-engine.scene.zoomToBlock(page, 40, 40, 40, 40);
+await engine.scene.zoomToBlock(page, { padding: 40 });
 ```
 
 ## Troubleshooting

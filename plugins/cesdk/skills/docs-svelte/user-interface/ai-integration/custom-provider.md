@@ -63,8 +63,10 @@ interface MyProviderInput {
 }
 
 // Define provider configuration interface extending CommonProviderConfiguration
-interface MyProviderConfiguration
-  extends CommonProviderConfiguration<MyProviderInput, ImageOutput> {
+interface MyProviderConfiguration extends CommonProviderConfiguration<
+  MyProviderInput,
+  ImageOutput
+> {
   // Add any provider-specific configuration here
   customApiKey?: string;
 }
@@ -269,7 +271,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -332,18 +336,22 @@ class Example implements EditorPlugin {
 }
 
 // Example: Control which features are visible in the UI
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Reference implementation exported as example snippet in docs.
 function configureFeatures(cesdk: CreativeEditorSDK) {
   // Hide the provider dropdown if you only have one provider
-  cesdk.feature.enable(
+  cesdk.feature.set(
     'ly.img.plugin-ai-image-generation-web.providerSelect',
-    false
+    () => false
   );
   // Enable text-to-image generation
-  cesdk.feature.enable('ly.img.plugin-ai-image-generation-web.fromText', true);
+  cesdk.feature.set(
+    'ly.img.plugin-ai-image-generation-web.fromText',
+    () => true
+  );
   // Disable image-to-image generation
-  cesdk.feature.enable(
+  cesdk.feature.set(
     'ly.img.plugin-ai-image-generation-web.fromImage',
-    false
+    () => false
   );
 }
 
@@ -484,8 +492,10 @@ Before creating your provider, understand the `CommonProviderConfiguration` inte
 
 ```typescript highlight-configuration
 // Define provider configuration interface extending CommonProviderConfiguration
-interface MyProviderConfiguration
-  extends CommonProviderConfiguration<MyProviderInput, ImageOutput> {
+interface MyProviderConfiguration extends CommonProviderConfiguration<
+  MyProviderInput,
+  ImageOutput
+> {
   // Add any provider-specific configuration here
   customApiKey?: string;
 }
@@ -802,16 +812,19 @@ Control which UI elements and features are available to users:
 
 ```typescript highlight-feature-api
 // Hide the provider dropdown if you only have one provider
-cesdk.feature.enable(
+cesdk.feature.set(
   'ly.img.plugin-ai-image-generation-web.providerSelect',
-  false
+  () => false
 );
 // Enable text-to-image generation
-cesdk.feature.enable('ly.img.plugin-ai-image-generation-web.fromText', true);
+cesdk.feature.set(
+  'ly.img.plugin-ai-image-generation-web.fromText',
+  () => true
+);
 // Disable image-to-image generation
-cesdk.feature.enable(
+cesdk.feature.set(
   'ly.img.plugin-ai-image-generation-web.fromImage',
-  false
+  () => false
 );
 ```
 

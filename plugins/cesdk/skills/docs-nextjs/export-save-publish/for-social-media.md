@@ -70,7 +70,11 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -109,7 +113,12 @@ class Example implements EditorPlugin {
 
     // Create a vertical video scene (9:16) for Instagram Reels, TikTok, YouTube Shorts
     await cesdk.actions.run('scene.create', {
-      page: { width: 1080, height: 1920, unit: 'Pixel', color: { r: 0, g: 0, b: 0, a: 1 } }
+      page: {
+        width: 1080,
+        height: 1920,
+        unit: 'Pixel',
+        color: { r: 0, g: 0, b: 0, a: 1 }
+      }
     });
 
     const page = engine.scene.getCurrentPage();
@@ -189,7 +198,12 @@ Create a scene with the correct dimensions for vertical video. Use `cesdk.action
 ```typescript highlight-setup
     // Create a vertical video scene (9:16) for Instagram Reels, TikTok, YouTube Shorts
     await cesdk.actions.run('scene.create', {
-      page: { width: 1080, height: 1920, unit: 'Pixel', color: { r: 0, g: 0, b: 0, a: 1 } }
+      page: {
+        width: 1080,
+        height: 1920,
+        unit: 'Pixel',
+        color: { r: 0, g: 0, b: 0, a: 1 }
+      }
     });
 
     const page = engine.scene.getCurrentPage();

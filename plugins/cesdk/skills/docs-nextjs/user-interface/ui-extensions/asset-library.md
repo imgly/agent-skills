@@ -149,7 +149,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -173,7 +175,12 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Create a design scene to work with
-    await cesdk.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     // Create an Unsplash asset source with remote API fetching
     engine.asset.addSource({
@@ -277,7 +284,7 @@ class Example implements EditorPlugin {
 
     // Register middleware to handle asset application
     engine.asset.registerApplyMiddleware(
-      async (sourceId, assetResult, apply, context) => {
+      async (sourceId, assetResult, apply, _context) => {
         // Log asset application for debugging
         console.log(`Applying asset from source: ${sourceId}`);
         console.log('Asset:', assetResult.label);
@@ -517,7 +524,7 @@ Register middleware with `engine.asset.registerApplyMiddleware()` to intercept a
 ```typescript highlight-apply-middleware
     // Register middleware to handle asset application
     engine.asset.registerApplyMiddleware(
-      async (sourceId, assetResult, apply, context) => {
+      async (sourceId, assetResult, apply, _context) => {
         // Log asset application for debugging
         console.log(`Applying asset from source: ${sourceId}`);
         console.log('Asset:', assetResult.label);

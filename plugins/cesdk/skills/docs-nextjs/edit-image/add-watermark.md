@@ -25,21 +25,6 @@ Watermarks protect intellectual property, indicate ownership, add branding, or m
 ```typescript file=@cesdk_web_examples/guides-edit-image-add-watermark-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import {
-  BlurAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
@@ -63,6 +48,7 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
+    await cesdk.addPlugin(new DesignEditorConfig());
     const engine = cesdk.engine;
 
     // Create a scene with custom page dimensions
@@ -207,26 +193,29 @@ class Example implements EditorPlugin {
     });
 
     // Add export button to the navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-watermarked',
-          label: 'Export',
-          icon: '@imgly/Download',
-          onClick: async () => {
-            // Export the watermarked design
-            const blob = await engine.block.export(page, {
-              mimeType: 'image/png'
-            });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-watermarked',
+            label: 'Export',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export the watermarked design
+              const blob = await engine.block.export(page, {
+                mimeType: 'image/png'
+              });
 
-            // Download the watermarked image
-            await cesdk.utils.downloadFile(blob, 'image/png');
+              // Download the watermarked image
+              await cesdk.utils.downloadFile(blob, 'image/png');
+            }
           }
-        }
-      ]
-    });
+        ]
+      }
+    );
 
     // Zoom to fit the page in view with padding and enable auto-fit
     await engine.scene.zoomToBlock(page, { padding: 40 });
@@ -417,26 +406,29 @@ After adding watermarks, we add an export button to the navigation bar that down
 
 ```typescript highlight=highlight-export-watermarked
     // Add export button to the navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-watermarked',
-          label: 'Export',
-          icon: '@imgly/Download',
-          onClick: async () => {
-            // Export the watermarked design
-            const blob = await engine.block.export(page, {
-              mimeType: 'image/png'
-            });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-watermarked',
+            label: 'Export',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export the watermarked design
+              const blob = await engine.block.export(page, {
+                mimeType: 'image/png'
+              });
 
-            // Download the watermarked image
-            await cesdk.utils.downloadFile(blob, 'image/png');
+              // Download the watermarked image
+              await cesdk.utils.downloadFile(blob, 'image/png');
+            }
           }
-        }
-      ]
-    });
+        ]
+      }
+    );
 ```
 
 We use `cesdk.ui.insertOrderComponent()` to add a custom button to the editor's navigation bar. When clicked, `engine.block.export()` renders the page with all watermarks and returns a blob that `cesdk.utils.downloadFile()` downloads to the user's device. Supported formats include PNG, JPEG, and WebP.

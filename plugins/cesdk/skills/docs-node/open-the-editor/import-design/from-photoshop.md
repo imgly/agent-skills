@@ -105,8 +105,9 @@ async function convertPsd(
   const parser = await PSDParser.fromFile(
     engine as any,
     psdBuffer.buffer,
-    createPNGJSEncodeBufferToPNG(PNG)
-    // Optional: { fontResolver: customFontResolver } for advanced font mapping
+    createPNGJSEncodeBufferToPNG(PNG),
+    // Pass fontResolver for advanced font mapping
+    { fontResolver: customFontResolver }
   );
 
   // Parse the PSD file
@@ -435,8 +436,9 @@ async function convertPsd(
   const parser = await PSDParser.fromFile(
     engine as any,
     psdBuffer.buffer,
-    createPNGJSEncodeBufferToPNG(PNG)
-    // Optional: { fontResolver: customFontResolver } for advanced font mapping
+    createPNGJSEncodeBufferToPNG(PNG),
+    // Pass fontResolver for advanced font mapping
+    { fontResolver: customFontResolver }
   );
 
   // Parse the PSD file

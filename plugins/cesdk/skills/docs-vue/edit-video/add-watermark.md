@@ -25,22 +25,7 @@ Video watermarks in CE.SDK are design blocks positioned over video content. **Te
 ```typescript file=@cesdk_web_examples/guides-create-video-add-watermark-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import {
-  BlurAssetSource,
-  CaptionPresetsAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
+import { CaptionPresetsAssetSource } from '@cesdk/cesdk-js/plugins';
 import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
@@ -114,7 +99,12 @@ class Example implements EditorPlugin {
 
     // Add drop shadow for visibility across different backgrounds
     engine.block.setDropShadowEnabled(textWatermark, true);
-    engine.block.setDropShadowColor(textWatermark, { r: 0, g: 0, b: 0, a: 0.8 });
+    engine.block.setDropShadowColor(textWatermark, {
+      r: 0,
+      g: 0,
+      b: 0,
+      a: 0.8
+    });
     engine.block.setDropShadowOffsetX(textWatermark, 2);
     engine.block.setDropShadowOffsetY(textWatermark, 2);
     engine.block.setDropShadowBlurRadiusX(textWatermark, 4);
@@ -153,7 +143,10 @@ class Example implements EditorPlugin {
     const logoPadding = 20;
     engine.block.setWidth(logoWatermark, logoSize);
     engine.block.setHeight(logoWatermark, logoSize);
-    engine.block.setPositionX(logoWatermark, pageWidth - logoSize - logoPadding);
+    engine.block.setPositionX(
+      logoWatermark,
+      pageWidth - logoSize - logoPadding
+    );
     engine.block.setPositionY(logoWatermark, logoPadding);
 
     // Set opacity for the logo watermark
@@ -272,7 +265,12 @@ Drop shadows ensure text remains readable over both light and dark video backgro
 ```typescript highlight-text-drop-shadow
 // Add drop shadow for visibility across different backgrounds
 engine.block.setDropShadowEnabled(textWatermark, true);
-engine.block.setDropShadowColor(textWatermark, { r: 0, g: 0, b: 0, a: 0.8 });
+engine.block.setDropShadowColor(textWatermark, {
+  r: 0,
+  g: 0,
+  b: 0,
+  a: 0.8
+});
 engine.block.setDropShadowOffsetX(textWatermark, 2);
 engine.block.setDropShadowOffsetY(textWatermark, 2);
 engine.block.setDropShadowBlurRadiusX(textWatermark, 4);
@@ -333,7 +331,10 @@ const logoSize = 80;
 const logoPadding = 20;
 engine.block.setWidth(logoWatermark, logoSize);
 engine.block.setHeight(logoWatermark, logoSize);
-engine.block.setPositionX(logoWatermark, pageWidth - logoSize - logoPadding);
+engine.block.setPositionX(
+  logoWatermark,
+  pageWidth - logoSize - logoPadding
+);
 engine.block.setPositionY(logoWatermark, logoPadding);
 ```
 

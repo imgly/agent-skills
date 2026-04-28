@@ -65,15 +65,15 @@ try {
   // Create video clips using the addVideo helper method
   // Each clip is sized to fill the canvas (1920x1080 is standard video resolution)
   const clipA = await engine.block.addVideo(videoUrl, 1920, 1080, {
-    timeline: { duration: 5, timeOffset: 0 },
+    timeline: { duration: 5, timeOffset: 0 }
   });
 
   const clipB = await engine.block.addVideo(videoUrl, 1920, 1080, {
-    timeline: { duration: 5, timeOffset: 5 },
+    timeline: { duration: 5, timeOffset: 5 }
   });
 
   const clipC = await engine.block.addVideo(videoUrl, 1920, 1080, {
-    timeline: { duration: 5, timeOffset: 10 },
+    timeline: { duration: 5, timeOffset: 10 }
   });
 
   // Create a track and add it to the page
@@ -122,7 +122,9 @@ try {
   finalClips.forEach((clipId, index) => {
     const offset = engine.block.getTimeOffset(clipId);
     const duration = engine.block.getDuration(clipId);
-    console.log(`  Clip ${index + 1}: offset=${offset}s, duration=${duration}s`);
+    console.log(
+      `  Clip ${index + 1}: offset=${offset}s, duration=${duration}s`
+    );
   });
 
   // Create a second track for layered compositions
@@ -131,9 +133,14 @@ try {
   engine.block.appendChild(page, overlayTrack);
 
   // Create an overlay clip for picture-in-picture effect (1/4 size)
-  const overlayClip = await engine.block.addVideo(videoUrl, 1920 / 4, 1080 / 4, {
-    timeline: { duration: 5, timeOffset: 2 },
-  });
+  const overlayClip = await engine.block.addVideo(
+    videoUrl,
+    1920 / 4,
+    1080 / 4,
+    {
+      timeline: { duration: 5, timeOffset: 2 }
+    }
+  );
   engine.block.appendChild(overlayTrack, overlayClip);
 
   // Position overlay in bottom-right corner with padding
@@ -197,15 +204,15 @@ We create video clips as graphic blocks with video fills. Each clip needs a vide
   // Create video clips using the addVideo helper method
   // Each clip is sized to fill the canvas (1920x1080 is standard video resolution)
   const clipA = await engine.block.addVideo(videoUrl, 1920, 1080, {
-    timeline: { duration: 5, timeOffset: 0 },
+    timeline: { duration: 5, timeOffset: 0 }
   });
 
   const clipB = await engine.block.addVideo(videoUrl, 1920, 1080, {
-    timeline: { duration: 5, timeOffset: 5 },
+    timeline: { duration: 5, timeOffset: 5 }
   });
 
   const clipC = await engine.block.addVideo(videoUrl, 1920, 1080, {
-    timeline: { duration: 5, timeOffset: 10 },
+    timeline: { duration: 5, timeOffset: 10 }
   });
 ```
 
@@ -304,7 +311,9 @@ console.log('Final track arrangement:');
 finalClips.forEach((clipId, index) => {
   const offset = engine.block.getTimeOffset(clipId);
   const duration = engine.block.getDuration(clipId);
-  console.log(`  Clip ${index + 1}: offset=${offset}s, duration=${duration}s`);
+  console.log(
+    `  Clip ${index + 1}: offset=${offset}s, duration=${duration}s`
+  );
 });
 ```
 
@@ -321,9 +330,14 @@ Create layered compositions by adding multiple tracks to a page. Track order det
   engine.block.appendChild(page, overlayTrack);
 
   // Create an overlay clip for picture-in-picture effect (1/4 size)
-  const overlayClip = await engine.block.addVideo(videoUrl, 1920 / 4, 1080 / 4, {
-    timeline: { duration: 5, timeOffset: 2 },
-  });
+  const overlayClip = await engine.block.addVideo(
+    videoUrl,
+    1920 / 4,
+    1080 / 4,
+    {
+      timeline: { duration: 5, timeOffset: 2 }
+    }
+  );
   engine.block.appendChild(overlayTrack, overlayClip);
 
   // Position overlay in bottom-right corner with padding

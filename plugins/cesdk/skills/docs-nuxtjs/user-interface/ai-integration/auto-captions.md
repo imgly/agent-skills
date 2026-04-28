@@ -118,7 +118,12 @@ class Example implements EditorPlugin {
 
     // Create a video scene and add a video clip with spoken audio
     await cesdk.actions.run('scene.create', {
-      page: { width: 1920, height: 1080, unit: 'Pixel', color: { r: 0, g: 0, b: 0, a: 1 } }
+      page: {
+        width: 1920,
+        height: 1080,
+        unit: 'Pixel',
+        color: { r: 0, g: 0, b: 0, a: 1 }
+      }
     });
 
     const engine = cesdk.engine;

@@ -68,7 +68,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -118,10 +120,10 @@ class Example implements EditorPlugin {
     }
 
     // Query duotone presets from the asset library
-    const duotoneResults = await engine.asset.findAssets(
-      'ly.img.filter',
-      { page: 0, perPage: 10 }
-    );
+    const duotoneResults = await engine.asset.findAssets('ly.img.filter', {
+      page: 0,
+      perPage: 10
+    });
     const duotonePresets = duotoneResults.assets;
 
     // Apply a preset to the first image
@@ -350,10 +352,10 @@ Use the Asset API to retrieve available duotone presets from the asset library:
 
 ```typescript highlight=highlight-query-presets
 // Query duotone presets from the asset library
-const duotoneResults = await engine.asset.findAssets(
-  'ly.img.filter',
-  { page: 0, perPage: 10 }
-);
+const duotoneResults = await engine.asset.findAssets('ly.img.filter', {
+  page: 0,
+  perPage: 10
+});
 const duotonePresets = duotoneResults.assets;
 ```
 

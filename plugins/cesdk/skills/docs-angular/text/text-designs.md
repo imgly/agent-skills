@@ -74,7 +74,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -235,9 +237,8 @@ class Example implements EditorPlugin {
         if (!assetArchiveUrl) return undefined;
 
         // Load the block from the archive using loadFromArchiveURL()
-        const loadedBlocks = await engine.block.loadFromArchiveURL(
-          assetArchiveUrl
-        );
+        const loadedBlocks =
+          await engine.block.loadFromArchiveURL(assetArchiveUrl);
         const newBlock = loadedBlocks[0];
         if (!newBlock) return undefined;
 
@@ -389,7 +390,9 @@ We initialize CE.SDK with asset sources and create a design scene. The page prov
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -655,9 +658,8 @@ We register a custom asset source using `addLocalSource()` with a custom apply c
         if (!assetArchiveUrl) return undefined;
 
         // Load the block from the archive using loadFromArchiveURL()
-        const loadedBlocks = await engine.block.loadFromArchiveURL(
-          assetArchiveUrl
-        );
+        const loadedBlocks =
+          await engine.block.loadFromArchiveURL(assetArchiveUrl);
         const newBlock = loadedBlocks[0];
         if (!newBlock) return undefined;
 

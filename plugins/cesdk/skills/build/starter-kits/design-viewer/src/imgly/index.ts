@@ -40,5 +40,4 @@ export async function initDesignViewer(cesdk: CreativeEditorSDK) {
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
   // highlight-theme
-
 }

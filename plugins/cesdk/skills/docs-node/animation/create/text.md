@@ -205,7 +205,7 @@ async function main() {
     await mkdir('output', { recursive: true });
 
     // Export first frame as PNG to verify the scene setup
-    const blob = await engine.block.export(page, 'image/png');
+    const blob = await engine.block.export(page, { mimeType: 'image/png' });
     const buffer = Buffer.from(await blob.arrayBuffer());
     await writeFile('output/text-animations.png', buffer);
 

@@ -64,7 +64,7 @@ const ROBOTO_TYPEFACE = {
 
 // Initialize CE.SDK engine in headless mode
 const engine = await CreativeEngine.init({
-  license: process.env.CESDK_LICENSE
+  license: process.env.CESDK_LICENSE,
 });
 
 try {
@@ -263,7 +263,7 @@ We start by initializing the CE.SDK engine in headless mode using `@cesdk/node`:
 ```typescript highlight=highlight-setup
 // Initialize CE.SDK engine in headless mode
 const engine = await CreativeEngine.init({
-  license: process.env.CESDK_LICENSE
+  license: process.env.CESDK_LICENSE,
 });
 ```
 

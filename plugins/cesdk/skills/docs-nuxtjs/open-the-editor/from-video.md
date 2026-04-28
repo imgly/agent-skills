@@ -23,7 +23,7 @@ Open CE.SDK with a video as the starting point for editing. The scene dimensions
 CE.SDK creates video editing scenes from a single video URL using `engine.scene.createFromVideo()`. This approach works well for video trimmers, overlay editors, or processing uploaded video files.
 
 ```typescript file=@cesdk_web_examples/guides-open-the-editor-from-video-browser/browser.ts reference-only
-import type CreativeEngine from '@cesdk/cesdk-js/cesdk-engine';
+import type CreativeEngine from '@cesdk/engine';
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
@@ -47,6 +47,7 @@ import packageJson from './package.json';
 // ===== Handle Different Video Sources =====
 // Helper function to create a scene from a blob (e.g., file upload)
 // This pattern is useful when users upload video files via <input type="file">
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Reference implementation for blob-based video sources; exposed as example pattern in docs.
 async function createSceneFromBlob(
   engine: CreativeEngine,
   blob: Blob
@@ -75,7 +76,11 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -134,6 +139,7 @@ class Example implements EditorPlugin {
     // ===== Control Video Playback =====
     // Get the video duration
     const duration = engine.block.getDuration(scene);
+    console.log(`Video duration: ${duration}s`);
 
     // Set playback position to 2 seconds
     const page = engine.block.findByType('page')[0];
@@ -192,6 +198,7 @@ Use playback controls to start, stop, and seek within the video.
 ```typescript highlight-control-playback
     // Get the video duration
     const duration = engine.block.getDuration(scene);
+    console.log(`Video duration: ${duration}s`);
 
     // Set playback position to 2 seconds
     const page = engine.block.findByType('page')[0];
@@ -210,6 +217,7 @@ Create scenes from blob URLs when working with file uploads.
 ```typescript highlight-blob-source
 // Helper function to create a scene from a blob (e.g., file upload)
 // This pattern is useful when users upload video files via <input type="file">
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Reference implementation for blob-based video sources; exposed as example pattern in docs.
 async function createSceneFromBlob(
   engine: CreativeEngine,
   blob: Blob

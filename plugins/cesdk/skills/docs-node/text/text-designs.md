@@ -188,7 +188,9 @@ async function main(): Promise<void> {
     const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
     writeFileSync(archivePath, archiveBuffer);
     console.log(`Saved archive to: ${archivePath}`);
-    console.log('Extract this archive to create the data/customTitle/ directory');
+    console.log(
+      'Extract this archive to create the data/customTitle/ directory'
+    );
 
     // Save the thumbnail
     const thumbnailPath = `${thumbnailsDir}/customTitle.png`;
@@ -260,7 +262,9 @@ async function main(): Promise<void> {
 
     // Save the promo component as an archive
     const promoArchiveBlob = await engine.block.saveToArchive([promoComponent]);
-    const promoArchiveBuffer = Buffer.from(await promoArchiveBlob.arrayBuffer());
+    const promoArchiveBuffer = Buffer.from(
+      await promoArchiveBlob.arrayBuffer()
+    );
     writeFileSync(`${dataDir}/promo.zip`, promoArchiveBuffer);
     console.log(`Saved promo archive to: ${dataDir}/promo.zip`);
 
@@ -270,7 +274,9 @@ async function main(): Promise<void> {
       targetWidth: 400,
       targetHeight: 320
     });
-    const promoThumbnailBuffer = Buffer.from(await promoThumbnail.arrayBuffer());
+    const promoThumbnailBuffer = Buffer.from(
+      await promoThumbnail.arrayBuffer()
+    );
     writeFileSync(`${thumbnailsDir}/promo.png`, promoThumbnailBuffer);
     console.log(`Saved promo thumbnail to: ${thumbnailsDir}/promo.png`);
 
@@ -520,7 +526,9 @@ We save the archive, thumbnail, and content.json to the filesystem. The archive 
     const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
     writeFileSync(archivePath, archiveBuffer);
     console.log(`Saved archive to: ${archivePath}`);
-    console.log('Extract this archive to create the data/customTitle/ directory');
+    console.log(
+      'Extract this archive to create the data/customTitle/ directory'
+    );
 
     // Save the thumbnail
     const thumbnailPath = `${thumbnailsDir}/customTitle.png`;
@@ -607,7 +615,9 @@ We create a second component with different styling to demonstrate building a li
 
     // Save the promo component as an archive
     const promoArchiveBlob = await engine.block.saveToArchive([promoComponent]);
-    const promoArchiveBuffer = Buffer.from(await promoArchiveBlob.arrayBuffer());
+    const promoArchiveBuffer = Buffer.from(
+      await promoArchiveBlob.arrayBuffer()
+    );
     writeFileSync(`${dataDir}/promo.zip`, promoArchiveBuffer);
     console.log(`Saved promo archive to: ${dataDir}/promo.zip`);
 
@@ -617,7 +627,9 @@ We create a second component with different styling to demonstrate building a li
       targetWidth: 400,
       targetHeight: 320
     });
-    const promoThumbnailBuffer = Buffer.from(await promoThumbnail.arrayBuffer());
+    const promoThumbnailBuffer = Buffer.from(
+      await promoThumbnail.arrayBuffer()
+    );
     writeFileSync(`${thumbnailsDir}/promo.png`, promoThumbnailBuffer);
     console.log(`Saved promo thumbnail to: ${thumbnailsDir}/promo.png`);
 ```

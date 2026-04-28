@@ -78,7 +78,9 @@ class Example implements EditorPlugin {
         include: ['ly.img.image.*']
       })
     );
-    await cesdk.actions.run('scene.create', { page: { width: 800, height: 600, unit: 'Pixel' } });
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
@@ -96,10 +98,13 @@ class Example implements EditorPlugin {
     engine.block.setPositionY(imageBlock, 0);
 
     // Add export button to navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: ['ly.img.exportImage.navigationBar']
-    });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: ['ly.img.exportImage.navigationBar']
+      }
+    );
 
     // Override the built-in exportDesign action
     cesdk.actions.register('exportDesign', async () => {
@@ -152,7 +157,6 @@ class Example implements EditorPlugin {
     width: number,
     height: number
   ): Promise<void> {
-
     // Create canvas and render pixel data
     const canvas = document.createElement('canvas');
     canvas.width = width;

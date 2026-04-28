@@ -58,7 +58,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -99,61 +101,64 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Add export button to navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-design',
-          label: 'Export PNG',
-          icon: '@imgly/Save',
-          onClick: async () => {
-            const blob = await engine.block.export(page, {
-              mimeType: 'image/png'
-            });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-design',
+            label: 'Export PNG',
+            icon: '@imgly/Save',
+            onClick: async () => {
+              const blob = await engine.block.export(page, {
+                mimeType: 'image/png'
+              });
 
-            await cesdk.utils.downloadFile(blob, 'image/png');
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-design',
-          label: 'Export PNG (default)',
-          icon: '@imgly/Save',
-          onClick: () => cesdk.actions.run('exportDesign')
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-design',
-          label: 'Export PNG (compressed)',
-          icon: '@imgly/Save',
-          onClick: async () => {
-            // Export with compression
-            const compressedBlob = await engine.block.export(page, {
-              mimeType: 'image/png',
-              pngCompressionLevel: 9
-            });
+              await cesdk.utils.downloadFile(blob, 'image/png');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-design',
+            label: 'Export PNG (default)',
+            icon: '@imgly/Save',
+            onClick: () => cesdk.actions.run('exportDesign')
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-design',
+            label: 'Export PNG (compressed)',
+            icon: '@imgly/Save',
+            onClick: async () => {
+              // Export with compression
+              const compressedBlob = await engine.block.export(page, {
+                mimeType: 'image/png',
+                pngCompressionLevel: 9
+              });
 
-            await cesdk.utils.downloadFile(compressedBlob, 'image/png');
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-design',
-          label: 'Export PNG (hd)',
-          icon: '@imgly/Save',
-          onClick: async () => {
-            const hdBlob = await engine.block.export(page, {
-              mimeType: 'image/png',
-              targetWidth: 1920,
-              targetHeight: 1080
-            });
+              await cesdk.utils.downloadFile(compressedBlob, 'image/png');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-design',
+            label: 'Export PNG (hd)',
+            icon: '@imgly/Save',
+            onClick: async () => {
+              const hdBlob = await engine.block.export(page, {
+                mimeType: 'image/png',
+                targetWidth: 1920,
+                targetHeight: 1080
+              });
 
-            await cesdk.utils.downloadFile(hdBlob, 'image/png');
+              await cesdk.utils.downloadFile(hdBlob, 'image/png');
+            }
           }
-        }
-      ]
-    });
+        ]
+      }
+    );
   }
 }
 

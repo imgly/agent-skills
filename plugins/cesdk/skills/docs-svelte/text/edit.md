@@ -39,9 +39,9 @@ import {
   TextComponentAssetSource,
   TypefaceAssetSource,
   UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+  VectorShapeAssetSource,
+} from "@cesdk/cesdk-js/plugins";
+import { DesignEditorConfig } from "./design-editor/plugin";
 import packageJson from "./package.json";
 
 /**
@@ -69,17 +69,19 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ["ly.img.image.upload"] }),
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
-          'ly.img.templates.blank.*',
-          'ly.img.templates.presentation.*',
-          'ly.img.templates.print.*',
-          'ly.img.templates.social.*',
-          'ly.img.image.*'
-        ]
-      })
+          "ly.img.templates.blank.*",
+          "ly.img.templates.presentation.*",
+          "ly.img.templates.print.*",
+          "ly.img.templates.social.*",
+          "ly.img.image.*",
+        ],
+      }),
     );
     await cesdk.addPlugin(new EffectsAssetSource());
     await cesdk.addPlugin(new FiltersAssetSource());
@@ -164,7 +166,7 @@ class Example implements EditorPlugin {
 
       const lineBounds = engine.block.getTextVisibleLineGlobalBoundingBoxXYWH(
         text,
-        0
+        0,
       );
       console.log("First line bounds:", lineBounds);
     }
@@ -313,7 +315,7 @@ We query information about rendered text lines including count, content, and bou
 
       const lineBounds = engine.block.getTextVisibleLineGlobalBoundingBoxXYWH(
         text,
-        0
+        0,
       );
       console.log("First line bounds:", lineBounds);
     }

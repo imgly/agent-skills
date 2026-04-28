@@ -106,8 +106,8 @@ async function convertIdml(
         contentType: 'text/xml',
         storageQuota: 10000000,
         url: 'http://localhost'
-      }).window.document
-    // Optional: customFontResolver for advanced font mapping
+      }).window.document,
+    customFontResolver
   );
   await parser.parse();
 
@@ -375,8 +375,8 @@ const parser = await IDMLParser.fromFile(
       contentType: 'text/xml',
       storageQuota: 10000000,
       url: 'http://localhost'
-    }).window.document
-  // Optional: customFontResolver for advanced font mapping
+    }).window.document,
+  customFontResolver
 );
 await parser.parse();
 ```
@@ -436,8 +436,8 @@ async function convertIdml(
         contentType: 'text/xml',
         storageQuota: 10000000,
         url: 'http://localhost'
-      }).window.document
-    // Optional: customFontResolver for advanced font mapping
+      }).window.document,
+    customFontResolver
   );
   await parser.parse();
 

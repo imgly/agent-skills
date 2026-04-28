@@ -73,7 +73,11 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -134,9 +138,8 @@ class Example implements EditorPlugin {
     // Import captions from SRT file
     // createCaptionsFromURI parses SRT/VTT and creates caption blocks with timing
     const captionSrtUrl = 'https://img.ly/static/examples/captions.srt';
-    const captionBlocks = await engine.block.createCaptionsFromURI(
-      captionSrtUrl
-    );
+    const captionBlocks =
+      await engine.block.createCaptionsFromURI(captionSrtUrl);
 
     // eslint-disable-next-line no-console
     console.log(`Imported ${captionBlocks.length} captions from SRT file`);
@@ -277,9 +280,8 @@ The fastest way to add captions is importing from an SRT or VTT subtitle file. C
     // Import captions from SRT file
     // createCaptionsFromURI parses SRT/VTT and creates caption blocks with timing
     const captionSrtUrl = 'https://img.ly/static/examples/captions.srt';
-    const captionBlocks = await engine.block.createCaptionsFromURI(
-      captionSrtUrl
-    );
+    const captionBlocks =
+      await engine.block.createCaptionsFromURI(captionSrtUrl);
 
     // eslint-disable-next-line no-console
     console.log(`Imported ${captionBlocks.length} captions from SRT file`);
