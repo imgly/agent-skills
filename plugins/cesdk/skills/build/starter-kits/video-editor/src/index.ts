@@ -45,8 +45,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // ============================================================================
 
     // highlight-scene-loading
-    await cesdk.loadFromArchiveURL(
-      'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/video-fashion-portfolio.zip'
+    await cesdk.loadFromURL(
+      'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/video-fashion-portfolio/scene.scene'
     );
     // highlight-scene-loading
   })

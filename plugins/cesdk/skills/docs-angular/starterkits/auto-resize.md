@@ -232,6 +232,16 @@ Before you begin, make sure you have the following:
       <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
     </TerminalTabs>
 
+    ### Headless Engine
+
+    The starter kit boots a headless `CreativeEngine` for variant generation. Install the engine package alongside the editor:
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">npm install @cesdk/engine@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/engine@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/engine@$UBQ\_VERSION$</TerminalTab>
+    </TerminalTabs>
+
     ### Configure Bundle Budgets
 
     CE.SDK requires adjusting Angular's default bundle size limits. Update the `budgets` array in your `angular.json` under `architect.build.configurations.production`:

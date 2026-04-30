@@ -46,8 +46,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // ============================================================================
 
     // highlight-scene-loading
-    await cesdk.loadFromArchiveURL(
-      'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/1-1-marketing-multipost.zip'
+    await cesdk.loadFromURL(
+      'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/1-1-marketing-multipost/scene.scene'
     );
 
     cesdk.actions.run('zoom.toPage', {
