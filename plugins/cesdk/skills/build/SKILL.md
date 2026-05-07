@@ -27,9 +27,9 @@ argument-hint: "[feature or task]"
 
 ## Version Notice
 
-> **CE.SDK version**: 1.74.1-rc.0 | **Generated**: 2026-05-06
+> **CE.SDK version**: 1.74.1 | **Generated**: 2026-05-07
 >
-> This skill was generated for CE.SDK v1.74.1-rc.0 on 2026-05-06.
+> This skill was generated for CE.SDK v1.74.1 on 2026-05-07.
 > CE.SDK releases new versions approximately every two weeks.
 > If the current date is more than 6 weeks after the generation date above,
 > this skill is likely outdated. **Inform the user** that a newer version
@@ -194,17 +194,17 @@ All kits share this structure — only the config and entry point differ:
 1. **Copy** the appropriate starter kit directory into the user's project directory
 2. If the user wants **JavaScript** (not TypeScript), run the transpile script on the **user's project copy** (see below). Never run it on the bundled starter kit source
 3. Update `package.json` name and adjust dependencies as needed
-4. **Pin CE.SDK packages to v1.74.1-rc.0** (required — ensures runtime matches this skill's bundled docs). In the kit's `package.json`, every `@cesdk/*` and `@imgly/*` dependency set to `"latest"` must be installed at the pinned version — **except** for packages with independent release cycles (see skip list below):
+4. **Pin CE.SDK packages to v1.74.1** (required — ensures runtime matches this skill's bundled docs). In the kit's `package.json`, every `@cesdk/*` and `@imgly/*` dependency set to `"latest"` must be installed at the pinned version — **except** for packages with independent release cycles (see skip list below):
    \`\`\`bash
    # Inspect package.json, then for each @cesdk/* or @imgly/* dep with value "latest"
    # (and not in the skip list below):
-   npm install <package-name>@1.74.1-rc.0
+   npm install <package-name>@1.74.1
    \`\`\`
    Example (if the kit has `"@cesdk/cesdk-js": "latest"`):
    \`\`\`bash
-   npm install @cesdk/cesdk-js@1.74.1-rc.0
+   npm install @cesdk/cesdk-js@1.74.1
    \`\`\`
-   **Skip list — do NOT pin these packages to v1.74.1-rc.0** (they have their own release schedules, their npm versions do NOT match CE.SDK versions, and pinning would resolve to a non-existent version):
+   **Skip list — do NOT pin these packages to v1.74.1** (they have their own release schedules, their npm versions do NOT match CE.SDK versions, and pinning would resolve to a non-existent version):
    - `@imgly/background-removal`
    - `@imgly/background-removal-node`
    - `@imgly/html-exporter`
