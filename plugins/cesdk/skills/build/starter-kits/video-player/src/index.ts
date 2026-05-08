@@ -16,15 +16,13 @@ import { initVideoPlayer } from './imgly';
 
 // highlight-license
 const config = {
-  userId: 'starterkit-player-user',
+  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
+  userId: 'starterkit-video-player-user',
 
   // IMG.LY CDN (for quick testing only, NOT recommended for production)
-  // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`,
+  // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
 
   // Local assets for development
-  ...(import.meta.env.CESDK_USE_LOCAL && {
-    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-  }),
 
   license: import.meta.env.VITE_CESDK_LICENSE
 };

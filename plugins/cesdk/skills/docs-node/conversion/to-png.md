@@ -77,7 +77,7 @@ async function selectExports(): Promise<string[]> {
 
 // Initialize CE.SDK engine with baseURL for asset loading
 const engine = await CreativeEngine.init({
-  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
 });
 
 try {

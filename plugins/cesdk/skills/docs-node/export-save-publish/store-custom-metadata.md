@@ -40,6 +40,7 @@ config();
 async function main() {
   // Initialize the headless Creative Engine
   const engine = await CreativeEngine.init({
+    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE
   });
 
@@ -133,6 +134,7 @@ We start by initializing the CE.SDK engine with a basic configuration. The metad
 ```typescript highlight-setup
   // Initialize the headless Creative Engine
   const engine = await CreativeEngine.init({
+    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE
   });
 

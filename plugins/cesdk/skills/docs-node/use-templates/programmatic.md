@@ -41,6 +41,7 @@ async function run() {
 
   try {
     const config = {
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
       // license: process.env.CESDK_LICENSE,
       logger: (message: string, logLevel?: string) => {
         if (logLevel === 'ERROR' || logLevel === 'WARN') {
@@ -191,6 +192,7 @@ We start by initializing CE.SDK and creating a design scene. This provides the f
 
 ```typescript highlight=highlight-setup
     const config = {
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
       // license: process.env.CESDK_LICENSE,
       logger: (message: string, logLevel?: string) => {
         if (logLevel === 'ERROR' || logLevel === 'WARN') {

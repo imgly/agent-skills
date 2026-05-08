@@ -19,6 +19,7 @@
 - [Page Format](./user-interface/customization/page-format.md) - Define default page size, orientation, and other format settings for your design canvas.
 - [Crop Presets](./user-interface/customization/crop-presets.md) - Define crop presets settings for your design.
 - [Force Crop](./user-interface/customization/force-crop.md) - Define crop presets settings for your design.
+- [Movement Constraints](./user-interface/customization/movement-constraints.md) - Restrict how far blocks can be dragged outside the page in the CE.SDK web editor.
 - [Color Palette](./user-interface/customization/color-palette.md) - Customize the color palette available to users for consistent branding and styling.
 - [Disable or Enable Features](./user-interface/customization/disable-or-enable.md) - Control which editor features are available to users by enabling, disabling, or conditionally toggling them using the Feature API.
 - [Navigation Bar](./user-interface/customization/navigation-bar.md) - Show, hide, or customize the editor’s top navigation bar to match your app layout.

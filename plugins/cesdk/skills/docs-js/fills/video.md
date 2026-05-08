@@ -47,7 +47,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from './video-editor/plugin';
+import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
 import { calculateGridLayout } from './utils';
 
 /**

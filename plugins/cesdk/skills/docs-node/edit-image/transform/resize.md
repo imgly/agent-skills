@@ -32,6 +32,7 @@ async function resizeImagesExample() {
   try {
     // Initialize headless engine for programmatic creation
     engine = await CreativeEngine.init({
+      baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
       // license: process.env.CESDK_LICENSE,
     });
 
@@ -172,6 +173,7 @@ Create a headless engine instance for programmatic creation and manipulation of 
 ```typescript highlight-setup
 // Initialize headless engine for programmatic creation
 engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE,
 });
 ```

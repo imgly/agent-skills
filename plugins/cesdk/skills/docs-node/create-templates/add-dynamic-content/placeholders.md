@@ -228,6 +228,7 @@ try {
 
   // Add descriptive labels above each block
   const labelConfig = {
+    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
     height: 40,
     fontSize: 34,
     fontUri:

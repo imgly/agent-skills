@@ -26,7 +26,7 @@ Image compression reduces file sizes while maintaining acceptable visual quality
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import { CaptionPresetsAssetSource } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from './video-editor/plugin';
+import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
 import packageJson from './package.json';
 
 /**

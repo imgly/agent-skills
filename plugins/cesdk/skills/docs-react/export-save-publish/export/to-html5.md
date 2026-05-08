@@ -45,7 +45,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from './video-editor/plugin';
+import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
 import packageJson from './package.json';
 
 import { exportHtml, injectGsapPlayer } from '@imgly/html-exporter';

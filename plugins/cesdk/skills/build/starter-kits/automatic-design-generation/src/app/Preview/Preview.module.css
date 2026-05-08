@@ -1,0 +1,41 @@
+.previewWrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0.18px;
+  margin: 0;
+}
+
+.previewImageWrapper {
+  aspect-ratio: 1 / 1;
+  background-color: rgb(220, 220, 220);
+  position: relative;
+}
+
+.previewImageWrapper.loading {
+  animation: pulsePreview 1.5s cubic-bezier(0.2, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulsePreview {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.previewImage {
+  width: 100%;
+  object-fit: contain;
+}

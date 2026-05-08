@@ -14,7 +14,7 @@ CE.SDK for Node.js supports importing the following media types:
 
 | Category        | Supported Formats                                                                       |
 | --------------- | --------------------------------------------------------------------------------------- |
-| **Images**      | `.png`, `.jpeg`, `.jpg`, `.gif`, `.webp`, `.svg`, `.bmp`                               |
+| **Images**      | `.png`, `.apng`, `.jpeg`, `.jpg`, `.gif`, `.webp`, `.svg`, `.bmp`                       |
 | **Video**       | `.mp4` (H.264/AVC, H.265/HEVC), `.mov` (H.264/AVC, H.265/HEVC), `.webm` (VP8, VP9, AV1) |
 | **Audio**       | `.mp3`, `.m4a`, `.mp4` (AAC or MP3), `.mov` (AAC or MP3)                               |
 | **Animation**   | `.json` (Lottie)                                                                        |
@@ -108,12 +108,14 @@ The following SVG elements are not supported:
 
 WebP images are fully supported for import in Node.js environments. CE.SDK handles both lossy and lossless WebP formats, including images with transparency (alpha channel). WebP provides excellent compression with high quality, making it ideal for optimizing storage and bandwidth in server applications.
 
-### Animated GIF Considerations
+### Animated Image Considerations (GIF and APNG)
 
-While CE.SDK can import animated GIF files, they are rendered as static images showing only the first frame. For animated content in server environments, consider using:
+CE.SDK handles animated GIF and APNG files based on scene type:
 
-- **Video files** (`.mp4`) for complex animated content with better compression
-- Process frame-by-frame if you need to extract all GIF frames
+- **Design scenes**: rendered as a static image showing the first frame.
+- **Video scenes**: imported as a looping video fill, with frame timing and duration parsed from the file's metadata.
+
+For complex animated content in server environments, prefer `.mp4`, which offers better compression and broader codec support. If you need to extract every frame from a GIF or APNG, process the file frame-by-frame outside of CE.SDK.
 
 ### Template Format Details
 

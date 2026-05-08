@@ -40,6 +40,7 @@ config();
 
 // Initialize CE.SDK engine in headless mode
 const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE, // Optional (trial mode available)
 });
 
@@ -218,6 +219,7 @@ Initialize the CE.SDK engine in headless mode for server-side processing.
 ```typescript highlight-setup
 // Initialize CE.SDK engine in headless mode
 const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE, // Optional (trial mode available)
 });
 ```

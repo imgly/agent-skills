@@ -25,7 +25,7 @@ CE.SDK's UI uses CSS custom properties for typography, allowing you to apply a c
 ```typescript file=@cesdk_web_examples/guides-user-interface-appearance-change-ui-font-browser/browser.ts reference-only
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import { PagePresetsAssetSource } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 
 export async function initialize(cesdk: CreativeEditorSDK) {
   await cesdk.addPlugin(new DesignEditorConfig());

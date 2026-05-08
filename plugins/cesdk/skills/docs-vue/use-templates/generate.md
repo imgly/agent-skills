@@ -25,7 +25,7 @@ Template generation transforms templates into finished designs by populating dat
 ```typescript file=@cesdk_web_examples/guides-use-templates-generate-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 /**

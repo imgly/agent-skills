@@ -34,7 +34,7 @@ console.log(meta.channels); // 4
 CE.SDK resolves **relative URIs** against `config.baseURL`, which defaults to the IMG.LY CDN:
 
 ```
-config.baseURL = 'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0/assets'
+config.baseURL = 'https://cdn.img.ly/packages/imgly/cesdk-js/<version>/assets'
 ```
 
 A URI like `/mockups/tshirt.png` becomes `https://cdn.img.ly/.../mockups/tshirt.png` — not `https://yourapp.com/mockups/tshirt.png`.

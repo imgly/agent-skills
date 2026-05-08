@@ -42,7 +42,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from './video-editor/plugin';
+import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
 import packageJson from './package.json';
 
 /**
@@ -230,6 +230,15 @@ class Example implements EditorPlugin {
       console.log(`  - ${uri}`);
     }
 
+    // List blocks that are not attached to any scene.
+    // Useful for cleanup and for skipping resource relocation on unreachable blocks.
+    const unusedBlocks = engine.block.findAllUnused();
+    console.log(`Scene contains ${unusedBlocks.length} unused blocks`);
+    for (const blockId of unusedBlocks) {
+      // Free memory before saving by destroying the dangling block.
+      engine.block.destroy(blockId);
+    }
+
     // Detect the MIME type of a resource
     // This downloads the resource if not already cached
     const imageUri = 'https://img.ly/static/ubq_samples/sample_4.jpg';
@@ -346,7 +355,7 @@ Load resources before they're needed with `forceLoadResources()`. Pass block IDs
     console.log('Image block resources preloaded');
 ```
 
-Pass the scene to preload all resources in the entire design, or pass specific blocks to load only what you need.
+Pass the scene to preload all resources in the entire design, or pass specific blocks to load only what you need. Pass an empty array to load every resource currently known to the engine.
 
 ## Preloading Audio and Video
 
@@ -422,6 +431,23 @@ for (const uri of mediaURIs) {
 ```
 
 Use this for pre-fetching resources, validating availability, or building a manifest of all assets in a design.
+
+## Finding Unused Blocks
+
+List every block that is not attached to any scene with `findAllUnused()`. A block is considered unused when it has no scene reference and no ancestor that belongs to a scene. Render blocks (fills, effects, shapes, blurs) are excluded.
+
+```typescript highlight-find-unused-blocks
+// List blocks that are not attached to any scene.
+// Useful for cleanup and for skipping resource relocation on unreachable blocks.
+const unusedBlocks = engine.block.findAllUnused();
+console.log(`Scene contains ${unusedBlocks.length} unused blocks`);
+for (const blockId of unusedBlocks) {
+  // Free memory before saving by destroying the dangling block.
+  engine.block.destroy(blockId);
+}
+```
+
+Pair this with `findAllMediaURIs()` to skip relocating resources for blocks that are no longer reachable, or call `engine.block.destroy()` on each id to free memory before saving.
 
 ## Detecting MIME Types
 

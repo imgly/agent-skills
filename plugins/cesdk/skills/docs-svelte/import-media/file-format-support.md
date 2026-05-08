@@ -14,7 +14,7 @@ CE.SDK supports importing the following media types directly in the browser:
 
 | Category        | Supported Formats                                                                       |
 | --------------- | --------------------------------------------------------------------------------------- |
-| **Images**      | `.png`, `.jpeg`, `.jpg`, `.gif`, `.webp`, `.svg`, `.bmp`                               |
+| **Images**      | `.png`, `.apng`, `.jpeg`, `.jpg`, `.gif`, `.webp`, `.svg`, `.bmp`                       |
 | **Video**       | `.mp4` (H.264/AVC, H.265/HEVC), `.mov` (H.264/AVC, H.265/HEVC), `.webm` (VP8, VP9, AV1) |
 | **Audio**       | `.mp3`, `.m4a`, `.mp4` (AAC or MP3), `.mov` (AAC or MP3)                               |
 | **Animation**   | `.json` (Lottie)                                                                        |
@@ -107,12 +107,14 @@ The following SVG elements are not supported:
 
 WebP images are fully supported for import. CE.SDK handles both lossy and lossless WebP formats, including images with transparency (alpha channel). WebP provides excellent compression with high quality, making it ideal for web-based creative applications.
 
-### Animated GIF Considerations
+### Animated Image Considerations (GIF and APNG)
 
-While CE.SDK can import animated GIF files, they are rendered as static images showing only the first frame. For animated content, consider using:
+CE.SDK handles animated GIF and APNG files based on scene type:
 
-- **Lottie animations** (`.json`) for vector-based animations
-- **Video files** (`.mp4`, `.webm`) for complex animated content
+- **Design scenes**: rendered as a static image showing the first frame.
+- **Video scenes**: imported as a looping video fill, with frame timing and duration parsed from the file's metadata.
+
+For vector-based animations, consider **Lottie** (`.json`). For complex animated content, prefer `.mp4` or `.webm`, which offer better compression and broader codec support.
 
 ### Template Format Details
 

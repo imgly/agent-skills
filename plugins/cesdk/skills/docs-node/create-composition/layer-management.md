@@ -37,7 +37,9 @@ config();
  * - Exporting the result
  */
 
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
+});
 
 try {
   // Create a scene with a page
@@ -193,7 +195,9 @@ This guide covers how to navigate the block hierarchy, reorder elements in the l
 We initialize the headless CE.SDK engine for server-side processing.
 
 ```typescript highlight=highlight-setup
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
+});
 ```
 
 ## Creating Visual Blocks

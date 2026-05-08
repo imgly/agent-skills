@@ -198,7 +198,9 @@ const ALERT_TONE = {
  * - Exporting the scene for rendering
  */
 
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
+});
 
 try {
   // Create a scene with a page for audio content
@@ -400,7 +402,9 @@ This guide covers working with buffers to create audio data and position it in t
 Initialize CE.SDK's headless engine for server-side audio generation:
 
 ```typescript highlight-setup
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
+});
 ```
 
 The headless engine provides full API access for buffer creation and audio synthesis without browser dependencies.

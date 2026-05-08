@@ -208,6 +208,7 @@ Here's the full integration combining all steps:
 
 ```typescript file=@cesdk_web_examples/plugins-print-ready-pdf-browser/src/index.ts reference-only
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+type CreativeEditorSDK = InstanceType<typeof CreativeEditorSDK>;
 // @ts-expect-error - Plugin types will be available in future release
 import { convertToPDFX3 } from '@imgly/plugin-print-ready-pdfs-web';
 import {
@@ -232,11 +233,8 @@ const config = {
   // Get a free trial license at https://img.ly/forms/free-trial to remove it.
   // Uncomment the line below and add your license key:
   // license: 'your-license-key-here',
-  // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`,
-  // Use local assets when developing with local packages
-  ...((import.meta as any).env?.CESDK_USE_LOCAL && {
-    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-  })
+  // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
+  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL
 };
 
 async function init() {

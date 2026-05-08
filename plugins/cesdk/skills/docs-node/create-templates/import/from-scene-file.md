@@ -38,6 +38,7 @@ import { config } from 'dotenv';
 config();
 
 const configuration = {
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
   userId: 'guides-user'
 };
 

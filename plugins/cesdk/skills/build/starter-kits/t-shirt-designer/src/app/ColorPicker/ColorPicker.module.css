@@ -1,0 +1,54 @@
+/**
+ * CE.SDK T-Shirt Designer - Color Picker Styles
+ */
+
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+  margin: 0;
+}
+
+.colors {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 6px;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.wrapper {
+  display: flex;
+  padding: 2px;
+  align-items: center;
+  border-radius: 100px;
+  border: 2px solid transparent;
+  transition: border-color 0.1s ease;
+}
+
+.active {
+  border-color: #000;
+}
+
+.button {
+  width: 24px;
+  height: 24px;
+  border-radius: 100px;
+  border: 1px solid rgba(18, 26, 33, 0.25);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}

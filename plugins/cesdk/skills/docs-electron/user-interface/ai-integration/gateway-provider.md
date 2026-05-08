@@ -40,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import ImageGeneration from '@imgly/plugin-ai-image-generation-web';
 import { GatewayProvider as ImageGatewayProvider } from '@imgly/plugin-ai-image-generation-web/gateway';
 import TextGeneration from '@imgly/plugin-ai-text-generation-web';
@@ -114,6 +114,7 @@ class Example implements EditorPlugin {
     // All gateway providers share this configuration.
     // An empty object uses sensible defaults (gateway URL, token action ID, etc.).
     const gatewayConfig = {
+      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       debug: true
     };
 
@@ -371,6 +372,7 @@ All gateway providers share a `GatewayProviderConfiguration` object. An empty ob
 // All gateway providers share this configuration.
 // An empty object uses sensible defaults (gateway URL, token action ID, etc.).
 const gatewayConfig = {
+  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   debug: true
 };
 ```
@@ -517,6 +519,7 @@ class Example implements EditorPlugin {
     // All gateway providers share this configuration.
     // An empty object uses sensible defaults (gateway URL, token action ID, etc.).
     const gatewayConfig = {
+      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       debug: true
     };
 
@@ -607,6 +610,7 @@ class Example implements EditorPlugin {
     // All gateway providers share this configuration.
     // An empty object uses sensible defaults (gateway URL, token action ID, etc.).
     const gatewayConfig = {
+      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       debug: true
     };
 
@@ -704,6 +708,7 @@ class Example implements EditorPlugin {
     // All gateway providers share this configuration.
     // An empty object uses sensible defaults (gateway URL, token action ID, etc.).
     const gatewayConfig = {
+      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       debug: true
     };
 
@@ -815,6 +820,7 @@ class Example implements EditorPlugin {
     // All gateway providers share this configuration.
     // An empty object uses sensible defaults (gateway URL, token action ID, etc.).
     const gatewayConfig = {
+      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       debug: true
     };
 

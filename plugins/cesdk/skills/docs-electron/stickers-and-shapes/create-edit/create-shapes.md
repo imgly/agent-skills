@@ -40,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource,
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -781,11 +781,12 @@ A shape block representing a custom vector path.
 
 This section describes the properties available for the **Vector Path Type** (`//ly.img.ubq/shape/vector_path`) block type.
 
-| Property                   | Type     | Default | Description                                            |
-| -------------------------- | -------- | ------- | ------------------------------------------------------ |
-| `shape/vector_path/height` | `Float`  | `100`   | The coordinate bounds in y direction.                  |
-| `shape/vector_path/path`   | `String` | `""`    | The path string, accepts a subset of svg path strings. |
-| `shape/vector_path/width`  | `Float`  | `100`   | The coordinate bounds in x direction.                  |
+| Property                     | Type     | Default     | Description                                                                                                                      |
+| ---------------------------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `shape/vector_path/fillRule` | `Enum`   | `"EvenOdd"` | Fill rule for resolving self-intersecting or overlapping subpaths of the path string., Possible values: `"EvenOdd"`, `"NonZero"` |
+| `shape/vector_path/height`   | `Float`  | `100`       | The coordinate bounds in y direction.                                                                                            |
+| `shape/vector_path/path`     | `String` | `""`        | The path string, accepts a subset of svg path strings.                                                                           |
+| `shape/vector_path/width`    | `Float`  | `100`       | The coordinate bounds in x direction.                                                                                            |
 
 
 

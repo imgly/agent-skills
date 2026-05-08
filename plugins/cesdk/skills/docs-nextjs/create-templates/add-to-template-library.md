@@ -25,7 +25,7 @@ Templates in CE.SDK are stored and accessed through the asset system. A template
 ```typescript file=@cesdk_web_examples/guides-create-templates-add-to-template-library-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 /**

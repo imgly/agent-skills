@@ -1,0 +1,23 @@
+# Environment variables
+.env.local
+.env
+
+# Build output
+dist/
+node_modules/
+
+# Lock files (use npm ci in CI)
+yarn.lock
+tsconfig.tsbuildinfo
+
+# Auto-generated TypeScript config for local development
+tsconfig.local.json
+
+# Release directory - ignore generated files, keep templates
+release/*
+!release/package.json
+!release/tsconfig.json
+!release/vite.config.ts
+!release/src/
+release/src/*
+!release/src/index.tsx

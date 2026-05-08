@@ -26,7 +26,7 @@ Video watermarks in CE.SDK are design blocks positioned over video content. **Te
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import { CaptionPresetsAssetSource } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from './video-editor/plugin';
+import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
 import packageJson from './package.json';
 
 /**

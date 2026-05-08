@@ -26,7 +26,7 @@ Starting from an existing image allows you to use the editor for customizing ind
 ```typescript file=@cesdk_web_examples/guides-open-the-editor-from-image-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {

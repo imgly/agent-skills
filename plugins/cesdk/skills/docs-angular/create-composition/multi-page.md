@@ -25,7 +25,7 @@ Multi-page layouts allow you to create documents with multiple artboards within 
 ```typescript file=@cesdk_web_examples/guides-create-composition-multi-page-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 /**

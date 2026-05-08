@@ -1,0 +1,33 @@
+/**
+ * CE.SDK T-Shirt Designer - Add to Cart Styles
+ */
+
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.button {
+  width: 100%;
+  height: 32px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 8px;
+  background: #161617;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.button:hover {
+  background: #333;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

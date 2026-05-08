@@ -32,6 +32,7 @@ async function flipImagesExample() {
   try {
     // Initialize headless engine for programmatic creation
     engine = await CreativeEngine.init({
+      baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
       // license: process.env.CESDK_LICENSE,
     });
 
@@ -198,6 +199,7 @@ Create a headless engine instance for programmatic manipulation:
 ```typescript highlight=highlight-setup
 // Initialize headless engine for programmatic creation
 engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE,
 });
 ```

@@ -42,6 +42,7 @@ config();
 
 async function main(): Promise<void> {
   const engine = await CreativeEngine.init({
+    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE
   });
 

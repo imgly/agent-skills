@@ -37,7 +37,9 @@ config();
  * - Managing multiple audio blocks
  */
 
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
+});
 
 try {
   // Create a scene with a page for audio content
@@ -159,7 +161,9 @@ This guide covers how to create and configure audio blocks programmatically usin
 Initialize the CE.SDK engine in headless mode for server-side audio processing.
 
 ```typescript highlight=highlight-setup
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
+});
 ```
 
 The headless engine provides full API access to audio functionality without browser dependencies, making it ideal for batch processing, automated workflows, and server-side content generation.

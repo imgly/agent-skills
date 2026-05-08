@@ -27,9 +27,9 @@ argument-hint: "[feature or task]"
 
 ## Version Notice
 
-> **CE.SDK version**: 1.74.1 | **Generated**: 2026-05-07
+> **CE.SDK version**: 1.75.0-rc.3 | **Generated**: 2026-05-08
 >
-> This skill was generated for CE.SDK v1.74.1 on 2026-05-07.
+> This skill was generated for CE.SDK v1.75.0-rc.3 on 2026-05-08.
 > CE.SDK releases new versions approximately every two weeks.
 > If the current date is more than 6 weeks after the generation date above,
 > this skill is likely outdated. **Inform the user** that a newer version
@@ -185,26 +185,72 @@ All kits share this structure — only the config and entry point differ:
 | video-editor | `starter-kits/video-editor/` | Video editing, transitions, MP4 export |
 | photo-editor | `starter-kits/photo-editor/` | Crop, filter, adjust, background removal |
 | advanced-design-editor | `starter-kits/advanced-design-editor/` | Desktop-style design with layers panel |
-| advanced-video-editor | `starter-kits/advanced-video-editor/` | Multi-track timeline, professional export |
+| advanced-video-editor | `starter-kits/advanced-video-editor/` | Multi-track timeline, professional video export |
 | design-viewer | `starter-kits/design-viewer/` | Lightweight pan/zoom/navigate viewer |
 | video-player | `starter-kits/video-player/` | Lightweight video playback |
+| single-page-editor | `starter-kits/single-page-editor/` | Social posts, business cards, and other single-page formats |
+| mobile-ui | `starter-kits/mobile-ui/` | Mobile-optimized editor with a custom React UI |
+| photo-ui | `starter-kits/photo-ui/` | Custom React photo-editing interface |
+| postcard-ui | `starter-kits/postcard-ui/` | Postcard and greeting-card editor with a custom React UI |
+| photobook-ui | `starter-kits/photobook-ui/` | Photobook editor with multi-page navigation and a custom React UI |
+| apparel-ui | `starter-kits/apparel-ui/` | T-shirt and apparel design editor with a custom React UI |
+| t-shirt-designer | `starter-kits/t-shirt-designer/` | T-shirt designer with front/back print areas, color and size selection |
+| product-editor | `starter-kits/product-editor/` | Product personalization editor with mockup preview |
+| product-preview | `starter-kits/product-preview/` | Mockup preview of designs on physical products (read-only) |
+| 3d-product-preview | `starter-kits/3d-product-preview/` | Interactive 3D product configurator with rotatable preview |
+| qr-code-editor | `starter-kits/qr-code-editor/` | Editor with embedded QR-code generation |
+| pptx-template-import | `starter-kits/pptx-template-import/` | Import PowerPoint .pptx files as editable design templates |
+| psd-template-import | `starter-kits/psd-template-import/` | Import Photoshop .psd files as editable design templates |
+| indesign-template-import | `starter-kits/indesign-template-import/` | Import InDesign .idml files as editable design templates |
+| form-based-template-adoption | `starter-kits/form-based-template-adoption/` | Form-driven template population for branded content workflows |
+| placeholders | `starter-kits/placeholders/` | Editor with image and text placeholders for template-driven workflows |
+| video-placeholders | `starter-kits/video-placeholders/` | Video editor with placeholder clips for templated stories and reels |
+| start-with-image | `starter-kits/start-with-image/` | Editor that opens pre-populated from a starting image |
+| start-with-video | `starter-kits/start-with-video/` | Editor that opens pre-populated from a starting video |
+| unsplash-asset-source | `starter-kits/unsplash-asset-source/` | Design editor backed by the Unsplash image library |
+| pexels-asset-source | `starter-kits/pexels-asset-source/` | Design editor backed by the Pexels image library |
+| getty-asset-source | `starter-kits/getty-asset-source/` | Design editor backed by the Getty Images library |
+| airtable-asset-source | `starter-kits/airtable-asset-source/` | Design editor backed by an Airtable-hosted asset library |
+| layouts-asset-source | `starter-kits/layouts-asset-source/` | Editor with a custom layouts asset source |
+| page-sizes-asset-source | `starter-kits/page-sizes-asset-source/` | Editor with a custom page-sizes asset source |
+| background-removal-editor | `starter-kits/background-removal-editor/` | Editor focused on one-click background removal |
+| cutout-lines-editor | `starter-kits/cutout-lines-editor/` | Cutout-lines editor for stickers, decals, and die-cut prints |
+| vectorizer-editor | `starter-kits/vectorizer-editor/` | Editor with bitmap-to-vector tracing |
+| force-crop-editor | `starter-kits/force-crop-editor/` | Crop-only editor with locked aspect ratios |
+| print-ready-pdf-editor | `starter-kits/print-ready-pdf-editor/` | Design editor with bleed, crop marks, and CMYK PDF export |
+| export-options | `starter-kits/export-options/` | Demonstrates PNG/JPG/PDF export configuration on a design editor |
+| export-using-renderer | `starter-kits/export-using-renderer/` | Server-side export pipeline using the CE.SDK Renderer |
+| video-export-options | `starter-kits/video-export-options/` | Demonstrates video export configuration on a video editor |
+| html5-ads-exporter | `starter-kits/html5-ads-exporter/` | Design editor that exports HTML5 banner ads |
+| video-captions | `starter-kits/video-captions/` | Video editor with auto-caption generation and styling |
+| video-animations | `starter-kits/video-animations/` | Video editor showcasing keyframe animations |
+| ai-editor | `starter-kits/ai-editor/` | AI-powered design, photo, and video editing with provider integration |
+| automated-resizing | `starter-kits/automated-resizing/` | Content-aware automated resizing across social-media formats |
+| automatic-design-generation | `starter-kits/automatic-design-generation/` | Programmatic generation of social-media assets from data |
+| batch-image-generation | `starter-kits/batch-image-generation/` | Bulk image generation from a data source |
+| multi-image-generation | `starter-kits/multi-image-generation/` | Generate multiple branded images from a single record |
+| design-validation | `starter-kits/design-validation/` | Editor that runs design-validation rules and surfaces feedback |
+| content-moderation | `starter-kits/content-moderation/` | Editor with a content-moderation pipeline |
+| version-history | `starter-kits/version-history/` | Editor with snapshot-based version history |
+| theming | `starter-kits/theming/` | Editor with custom theme tokens and color palette |
+| translation-internationalization | `starter-kits/translation-internationalization/` | Editor with dynamic locale switching |
 
 ### Scaffolding a New Project
 
 1. **Copy** the appropriate starter kit directory into the user's project directory
 2. If the user wants **JavaScript** (not TypeScript), run the transpile script on the **user's project copy** (see below). Never run it on the bundled starter kit source
 3. Update `package.json` name and adjust dependencies as needed
-4. **Pin CE.SDK packages to v1.74.1** (required — ensures runtime matches this skill's bundled docs). In the kit's `package.json`, every `@cesdk/*` and `@imgly/*` dependency set to `"latest"` must be installed at the pinned version — **except** for packages with independent release cycles (see skip list below):
+4. **Pin CE.SDK packages to v1.75.0-rc.3** (required — ensures runtime matches this skill's bundled docs). In the kit's `package.json`, every `@cesdk/*` and `@imgly/*` dependency set to `"latest"` must be installed at the pinned version — **except** for packages with independent release cycles (see skip list below):
    \`\`\`bash
    # Inspect package.json, then for each @cesdk/* or @imgly/* dep with value "latest"
    # (and not in the skip list below):
-   npm install <package-name>@1.74.1
+   npm install <package-name>@1.75.0-rc.3
    \`\`\`
    Example (if the kit has `"@cesdk/cesdk-js": "latest"`):
    \`\`\`bash
-   npm install @cesdk/cesdk-js@1.74.1
+   npm install @cesdk/cesdk-js@1.75.0-rc.3
    \`\`\`
-   **Skip list — do NOT pin these packages to v1.74.1** (they have their own release schedules, their npm versions do NOT match CE.SDK versions, and pinning would resolve to a non-existent version):
+   **Skip list — do NOT pin these packages to v1.75.0-rc.3** (they have their own release schedules, their npm versions do NOT match CE.SDK versions, and pinning would resolve to a non-existent version):
    - `@imgly/background-removal`
    - `@imgly/background-removal-node`
    - `@imgly/html-exporter`

@@ -40,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 /**
@@ -524,7 +524,7 @@ CE.SDK includes many built-in features organized by category:
 | Feature ID | Description |
 |------------|-------------|
 | `ly.img.text` | Parent key: enables all text child features |
-| `ly.img.text.edit` | Controls presence of the Edit button |
+| `ly.img.text.edit` | Controls presence of the Edit button. The text color panel's sub-controls are gated via the fill sub-keys (`ly.img.fill.color.*`). |
 | `ly.img.text.typeface` | Controls typeface dropdown |
 | `ly.img.text.fontSize` | Controls font size input |
 | `ly.img.text.fontStyle` | Controls bold/italic toggles |
@@ -535,6 +535,9 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.text.list.ordered` | Controls numbered list |
 | `ly.img.text.advanced` | Controls advanced text options |
 | `ly.img.text.background` | Controls text background |
+| `ly.img.text.background.picker` | Controls the color picker inside the text background color panel |
+| `ly.img.text.background.picker.opacity` | Controls the alpha/opacity slider inside the text background color panel |
+| `ly.img.text.background.library` | Controls the swatch library inside the text background color panel |
 
 ### Effects Features
 
@@ -542,10 +545,17 @@ CE.SDK includes many built-in features organized by category:
 |------------|-------------|
 | `ly.img.fill` | Controls Fill button and Fill Panel |
 | `ly.img.fill.color` | Controls solid and gradient fill controls |
+| `ly.img.fill.color.picker` | Controls the color picker inside the fill color panel |
+| `ly.img.fill.color.picker.gradient` | Controls the gradient mode selector and stops editor inside the fill color panel |
+| `ly.img.fill.color.picker.opacity` | Controls the alpha/opacity slider inside the fill color panel |
+| `ly.img.fill.color.library` | Controls the swatch library inside the fill color panel |
 | `ly.img.fill.image` | Controls image fill controls and crop |
 | `ly.img.fill.video` | Controls video fill, trim, volume, speed |
 | `ly.img.stroke` | Controls Stroke controls |
 | `ly.img.stroke.color` | Controls stroke color picker |
+| `ly.img.stroke.color.picker` | Controls the color picker inside the stroke color panel |
+| `ly.img.stroke.color.picker.opacity` | Controls the alpha/opacity slider inside the stroke color panel |
+| `ly.img.stroke.color.library` | Controls the swatch library inside the stroke color panel |
 | `ly.img.stroke.width` | Controls stroke width input |
 | `ly.img.stroke.style` | Controls stroke style (dash) selector |
 | `ly.img.stroke.position` | Controls stroke position (inner/center/outer) |
@@ -556,6 +566,9 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.blur` | Controls Blur button |
 | `ly.img.shadow` | Controls Shadow button |
 | `ly.img.shadow.color` | Controls shadow color picker |
+| `ly.img.shadow.color.picker` | Controls the color picker inside the shadow color panel |
+| `ly.img.shadow.color.picker.opacity` | Controls the alpha/opacity slider inside the shadow color panel |
+| `ly.img.shadow.color.library` | Controls the swatch library inside the shadow color panel |
 | `ly.img.shadow.offset` | Controls shadow angle and distance |
 | `ly.img.shadow.blur` | Controls shadow blur radius |
 | `ly.img.crop` | Controls Crop button |
