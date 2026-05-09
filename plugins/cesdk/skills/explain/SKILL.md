@@ -26,9 +26,9 @@ argument-hint: "[topic or question]"
 
 ## Version Notice
 
-> **CE.SDK version**: 1.75.0-rc.4 | **Generated**: 2026-05-09
+> **CE.SDK version**: 1.75.0-rc.5 | **Generated**: 2026-05-09
 >
-> This skill was generated for CE.SDK v1.75.0-rc.4 on 2026-05-09.
+> This skill was generated for CE.SDK v1.75.0-rc.5 on 2026-05-09.
 > CE.SDK releases new versions approximately every two weeks.
 > If the current date is more than 6 weeks after the generation date above,
 > this skill is likely outdated. **Inform the user** that a newer version
