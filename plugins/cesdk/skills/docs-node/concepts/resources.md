@@ -42,7 +42,6 @@ config();
 async function main(): Promise<void> {
   // Initialize the headless Creative Engine
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE,
   });
 
@@ -264,7 +263,7 @@ Load resources before they're needed with `forceLoadResources()`. Pass block IDs
     console.log('Image block resources preloaded');
 ```
 
-Pass the scene to preload all resources in the entire design, or pass specific blocks to load only what you need. Pass an empty array to load every resource currently known to the engine.
+Pass the scene to preload all resources in the entire design, or pass specific blocks to load only what you need.
 
 ## Preloading Audio and Video
 
@@ -340,20 +339,6 @@ for (const uri of mediaURIs) {
 ```
 
 Use this for pre-fetching resources, validating availability, or building a manifest of all assets in a design.
-
-## Finding Unused Blocks
-
-List every block that is not attached to any scene with `findAllUnused()`. A block is considered unused when it has no scene reference and no ancestor that belongs to a scene. Render blocks (fills, effects, shapes, blurs) are excluded.
-
-```typescript
-const unusedBlocks = engine.block.findAllUnused();
-console.log(`Scene contains ${unusedBlocks.length} unused blocks`);
-for (const blockId of unusedBlocks) {
-  engine.block.destroy(blockId);
-}
-```
-
-Pair this with `findAllMediaURIs()` to skip relocating resources for blocks that are no longer reachable, or call `engine.block.destroy()` on each id to free memory before saving.
 
 ## Detecting MIME Types
 

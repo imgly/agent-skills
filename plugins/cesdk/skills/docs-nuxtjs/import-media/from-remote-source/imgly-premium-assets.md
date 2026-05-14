@@ -46,7 +46,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 
 /**
  * Type definition for IMG.LY Premium Assets content.json manifest

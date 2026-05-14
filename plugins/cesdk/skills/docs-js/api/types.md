@@ -12,7 +12,7 @@ Types: MimeType, ImageMimeType, AudioMimeType, VideoMimeType, ApplicationMimeTyp
 
 ## asset
 
-Types: Locale, Groups, SortingOrder, Source, AssetMetaData, AssetRGBColor, AssetCMYKColor, AssetSpotColor, AssetColor, AssetFixedAspectRatio, AssetFreeAspectRatio, AssetContentAspectRatio, AssetFixedSize, AssetTransformPreset, AssetStringProperty, AssetNumberProperty, AssetBooleanProperty, AssetEnumProperty, AssetColorProperty, AssetProperty, AssetPayload, Asset, AssetDefinition, AssetResult, CompleteAssetResult, AssetQueryData, AssetsQueryResult, AssetSource
+Types: Locale, Groups, SortingOrder, Source, AssetMetaData, AssetRGBColor, AssetCMYKColor, AssetSpotColor, AssetColor, AssetFixedAspectRatio, AssetFreeAspectRatio, AssetFixedSize, AssetTransformPreset, AssetStringProperty, AssetNumberProperty, AssetBooleanProperty, AssetEnumProperty, AssetColorProperty, AssetProperty, AssetPayload, Asset, AssetDefinition, AssetResult, CompleteAssetResult, AssetQueryData, AssetsQueryResult, AssetSource
 
 ## audioTrackInfo
 
@@ -48,7 +48,7 @@ Types: FontWeight, FontStyle, Font, Typeface
 
 ## propertyTypes
 
-Types: BoolPropertyName, EnumPropertyName, FloatPropertyName, StringPropertyName, DoublePropertyName, ColorPropertyName, IntPropertyName, PageGuidesSource, SourceSetPropertyName, BlendMode, ContentFillMode, HeightMode, PositionXMode, PositionYMode, SceneDesignUnit, SceneLayout, SceneMode, WidthMode, StrokeCornerGeometry, StrokePosition, StrokeStyle, TextHorizontalAlignment, TextVerticalAlignment, CutoutType, CaptionHorizontalAlignment, CaptionVerticalAlignment, AnimationEasing, TextAnimationWritingStyle, AnimationGrowDirection, AnimationScaleLoopDirection, AnimationWipeDirection, AnimationBaselineDirection, AnimationSpinDirection, AnimationSpinLoopDirection, AnimationJumpLoopDirection, AnimationTypewriterTextWritingStyle, AnimationBlockSwipeTextDirection, AnimationMergeTextDirection, AnimationKenBurnsDirection, FillPixelStreamOrientation, ShapeVectorPathFillRule, EnumValues, BlockEnumType
+Types: BoolPropertyName, EnumPropertyName, FloatPropertyName, StringPropertyName, DoublePropertyName, ColorPropertyName, IntPropertyName, SourceSetPropertyName, BlendMode, ContentFillMode, HeightMode, PositionXMode, PositionYMode, SceneDesignUnit, SceneLayout, SceneMode, WidthMode, StrokeCornerGeometry, StrokePosition, StrokeStyle, TextHorizontalAlignment, TextVerticalAlignment, CutoutType, CaptionHorizontalAlignment, CaptionVerticalAlignment, AnimationEasing, TextAnimationWritingStyle, AnimationGrowDirection, AnimationScaleLoopDirection, AnimationWipeDirection, AnimationBaselineDirection, AnimationSpinDirection, AnimationSpinLoopDirection, AnimationJumpLoopDirection, AnimationTypewriterTextWritingStyle, AnimationBlockSwipeTextDirection, AnimationMergeTextDirection, AnimationKenBurnsDirection, FillPixelStreamOrientation, EnumValues, BlockEnumType
 
 ## role
 

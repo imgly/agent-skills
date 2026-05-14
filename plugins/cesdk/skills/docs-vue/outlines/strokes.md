@@ -40,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 
 class Example implements EditorPlugin {
   name = 'guides-outlines-stroke-browser';

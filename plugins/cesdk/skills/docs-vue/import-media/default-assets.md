@@ -6,7 +6,7 @@
 
 ```typescript file=@cesdk_web_examples/guides-import-media-default-assets-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**

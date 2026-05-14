@@ -48,7 +48,6 @@ async function main() {
 
   // Initialize the engine
   const config = {
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
     license: process.env.CESDK_LICENSE || ''
   };
 

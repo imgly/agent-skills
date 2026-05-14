@@ -45,7 +45,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 
 // Define color assets for each color space type
 const colors: AssetDefinition[] = [

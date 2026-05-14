@@ -68,7 +68,6 @@ CE.SDK automatically registers the following default actions:
 - `importScene` - Imports scene or archive files (default: opens file picker)
 - `exportScene` - Exports scene or archive (default: downloads the file)
 - `uploadFile` - Uploads files to asset sources (default: local upload for development)
-- `asset.delete` - Deletes an asset from an asset source via the asset library card (default: built-in confirmation dialog)
 - `onUnsupportedBrowser` - Handles unsupported browsers (no default implementation)
 - `video.decode.checkSupport` - Checks video decoding/playback support (shows blocking dialog if unsupported)
 - `video.encode.checkSupport` - Checks video encoding/export support (shows warning dialog if unsupported)
@@ -428,49 +427,6 @@ cesdk.engine.editor.setSettingString(
 
 > **Caution:** The default `uploadFile` implementation uses local upload for development
 > only. Always register a proper upload handler for production.
-
-### Asset Library Actions
-
-#### `asset.delete`
-
-Invoked when the user deletes an asset from an asset source via the asset library card. The default implementation opens a confirmation dialog and, on confirm, removes the asset from its source. Register a custom implementation to replace the dialog content, swap in your own dialog, or change the deletion behavior entirely.
-
-The handler receives the source id and the full `AssetResult`, so you can derive per-asset context such as metadata or a page number for your custom UI.
-
-```javascript
-cesdk.actions.register('asset.delete', async ({ sourceId, asset }) => {
-  const pageNumber = asset.meta?.pageNumber;
-
-  cesdk.ui.showDialog({
-    type: 'error',
-    content: {
-      title: `Delete page ${pageNumber}?`,
-      message: 'This will also remove the page from your design.',
-    },
-    actions: [
-      {
-        color: 'danger',
-        label: 'Delete',
-        onClick: ({ id }) => {
-          cesdk.engine.asset.removeAssetFromSource(sourceId, asset.id);
-          cesdk.engine.asset.assetSourceContentsChanged(sourceId);
-          cesdk.ui.closeDialog(id);
-        },
-      },
-    ],
-    cancel: {
-      variant: 'plain',
-      label: 'Cancel',
-      onClick: ({ id }) => cesdk.ui.closeDialog(id),
-    },
-  });
-});
-```
-
-> **Note:** A custom handler is responsible for the deletion itself. To preserve the
-> default behavior, call `cesdk.engine.asset.removeAssetFromSource(sourceId,
->   asset.id)` followed by
-> `cesdk.engine.asset.assetSourceContentsChanged(sourceId)`.
 
 ### Unsupported Browser Action
 

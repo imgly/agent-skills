@@ -36,9 +36,7 @@ config();
  * - Exporting multi-page designs
  */
 
-const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
-});
+const engine = await CreativeEngine.init({});
 
 try {
   // Create a scene with HorizontalStack layout
@@ -105,9 +103,7 @@ This guide covers how to create multi-page scenes, add pages, configure spacing,
 First, initialize the CE.SDK engine in headless mode for server-side processing.
 
 ```typescript highlight=highlight-setup
-const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
-});
+const engine = await CreativeEngine.init({});
 ```
 
 ## Creating Multi-Page Scenes

@@ -57,11 +57,19 @@ Apply this before passing URIs to `setSourceSet` or `setString('fill/image/image
 
 ```typescript
 // Approach A: Action-based scene creation (recommended)
-// Scenes are unified by default — design and video capabilities both work.
 await cesdk.actions.run('scene.create', {
   page: {
     sourceId: 'ly.img.page.presets',
     assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+  }
+});
+
+// For video scenes, add mode: 'Video'
+await cesdk.actions.run('scene.create', {
+  mode: 'Video',
+  page: {
+    sourceId: 'ly.img.page.presets',
+    assetId: 'ly.img.page.presets.instagram.story'
   }
 });
 
@@ -71,7 +79,7 @@ await cesdk.actions.run('scene.create', {
 });
 
 // Approach B: Manual scene creation (preferred for mockup editors)
-engine.scene.create();
+engine.scene.create('Free');
 engine.editor.setSettingBool('page/dimOutOfPageAreas', false);
 ```
 

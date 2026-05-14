@@ -25,7 +25,7 @@ Templates provide consistent layouts and styling that users can customize for th
 ```typescript file=@cesdk_web_examples/guides-open-the-editor-from-template-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 import businessCardSceneString from './assets/business-card.scene?raw';
 

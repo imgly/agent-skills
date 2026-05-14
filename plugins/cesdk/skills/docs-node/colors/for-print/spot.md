@@ -56,7 +56,7 @@ config();
 // Initialize CE.SDK engine with baseURL for asset loading
 const engine = await CreativeEngine.init({
   // license: process.env.CESDK_LICENSE,
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
+  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`
 });
 
 try {
@@ -313,7 +313,7 @@ Initialize the CE.SDK engine for server-side spot color management:
 // Initialize CE.SDK engine with baseURL for asset loading
 const engine = await CreativeEngine.init({
   // license: process.env.CESDK_LICENSE,
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
+  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`
 });
 ```
 

@@ -40,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 import AiApps from '@imgly/plugin-ai-apps-web';
 import Anthropic from '@imgly/plugin-ai-text-generation-web/anthropic';
 import OpenAI from '@imgly/plugin-ai-text-generation-web/open-ai';

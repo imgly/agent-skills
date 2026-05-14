@@ -435,24 +435,6 @@ Fixed aspect ratio presets maintain proportions while allowing flexible sizing. 
 
 Free aspect ratio presets allow unrestricted resizing without maintaining proportions.
 
-**Content Aspect Ratio:**
-
-```json
-{
-  "payload": {
-    "transformPreset": {
-      "type": "ContentAspectRatio"
-    }
-  }
-}
-```
-
-Content aspect ratio presets snap the block's frame to the intrinsic aspect ratio of its content, resolved from the fill's `sourceSet` when the preset is applied. Use this to revert a cropped image or video block to its natural proportions. Applying this preset to a block without resolvable content dimensions (e.g. a text block, empty placeholder, or page) returns an error.
-
-| Property | Type | Description |
-|----------|------|-------------|
-| `type` | `"ContentAspectRatio"` | Preset type |
-
 ## Base URL Placeholder
 
 The `{{base_url}}` placeholder enables portable asset definitions. CE.SDK replaces this placeholder with the actual base path when loading:

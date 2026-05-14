@@ -7,13 +7,13 @@
  * @see https://img.ly/docs/cesdk/js/getting-started/
  */
 
-import type CreativeEditorSDK from '@cesdk/cesdk-js';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 // Configuration
-import { PlayerConfig } from '@cesdk/core-configs-web/player-editor';
+import { PlayerConfig } from './config/plugin';
 
 // Re-export for external use
-export { PlayerConfig } from '@cesdk/core-configs-web/player-editor';
+export { PlayerConfig } from './config/plugin';
 
 /**
  * Initialize the CE.SDK Player with a complete configuration.

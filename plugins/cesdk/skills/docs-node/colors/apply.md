@@ -24,7 +24,6 @@ import * as fs from 'fs';
 
 async function main() {
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: 'YOUR_CESDK_LICENSE_KEY'
   });
 
@@ -126,7 +125,6 @@ We start by initializing the headless Creative Engine with a scene and page for 
 ```typescript highlight=highlight-setup
 async function main() {
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: 'YOUR_CESDK_LICENSE_KEY'
   });
 

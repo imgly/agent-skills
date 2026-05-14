@@ -40,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
+import { VideoEditorConfig } from './video-editor/plugin';
 
 import AutocaptionPlugin from '@imgly/plugin-autocaption-web';
 import { ElevenLabsScribeV2 } from '@imgly/plugin-autocaption-web/fal-ai';

@@ -27,7 +27,6 @@ config(); // Load .env file
 
 async function splitVideoExample() {
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE,
   });
 
@@ -180,7 +179,6 @@ Before splitting clips, create a scene with the necessary track structure.
 
 ```typescript highlight=highlight-setup
 const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE,
 });
 ```

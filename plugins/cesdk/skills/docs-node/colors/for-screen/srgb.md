@@ -40,7 +40,6 @@ config();
 async function main(): Promise<void> {
   // Initialize the Creative Engine
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE,
   });
 
@@ -254,7 +253,6 @@ We initialize the Creative Engine and create a scene with a page.
 ```typescript highlight=highlight-setup
 // Initialize the Creative Engine
 const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE,
 });
 ```

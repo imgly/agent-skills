@@ -25,7 +25,7 @@ Watermarks protect intellectual property, indicate ownership, add branding, or m
 ```typescript file=@cesdk_web_examples/guides-edit-image-add-watermark-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**

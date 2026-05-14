@@ -4,9 +4,7 @@
 
 ---
 
-> **Note:** You can also connect your AI assistant directly to our documentation using our&#x20;
-> [MCP Server](./get-started/mcp-server.md). This enables real-time search and
-> retrieval without downloading large files.
+> **Note:** You can also connect your AI assistant directly to our documentation using our [MCP Server](./get-started/mcp-server.md). This enables real-time search and retrieval without downloading large files.
 
 Our documentation is now available in LLMs.txt format, optimized for AI reasoning engines. To better support platform-specific development, we've created separate documentation files for each platform.
 

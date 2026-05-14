@@ -40,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 import CutoutLibraryPlugin from '@imgly/plugin-cutout-library-web';
 import QRCodePlugin from '@imgly/plugin-qr-code-web';

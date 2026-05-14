@@ -52,7 +52,6 @@ async function main() {
 
   const choice = (await prompt('Select save option (1-4): ')) || '4';
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE
   });
 
@@ -249,7 +248,6 @@ We start by initializing CE.SDK's Node.js engine for server-side rendering and s
 
 ```typescript highlight=highlight-setup
 const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE
 });
 ```

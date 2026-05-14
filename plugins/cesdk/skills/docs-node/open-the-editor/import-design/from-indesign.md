@@ -173,7 +173,6 @@ async function batchConvertIdmls(
 
   // Initialize engine once for all conversions
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE,
   });
 
@@ -588,7 +587,6 @@ async function batchConvertIdmls(
 
   // Initialize engine once for all conversions
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE,
   });
 

@@ -37,9 +37,7 @@ config();
  * - Understanding how speed affects duration
  */
 
-const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
-});
+const engine = await CreativeEngine.init({});
 
 try {
   // Create a scene with a page for audio content
@@ -121,9 +119,7 @@ CE.SDK supports playback speeds from **0.25x** (quarter speed) to **3.0x** (trip
 For headless audio processing, initialize CE.SDK's Node.js engine. This provides full API access without browser dependencies, ideal for server-side automation and batch processing.
 
 ```typescript highlight=highlight-setup
-const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
-});
+const engine = await CreativeEngine.init({});
 ```
 
 ## Setting Up Audio for Speed Adjustment

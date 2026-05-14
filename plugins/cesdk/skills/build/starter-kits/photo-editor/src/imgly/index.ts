@@ -7,7 +7,7 @@
  * @see https://img.ly/docs/cesdk/js/getting-started/
  */
 
-import type CreativeEditorSDK from '@cesdk/cesdk-js';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
@@ -24,11 +24,11 @@ import {
 } from '@cesdk/cesdk-js/plugins';
 
 // Configuration and plugins
-import { PhotoEditorConfig } from '@cesdk/core-configs-web/photo-editor';
+import { PhotoEditorConfig } from './config/plugin';
 import { setupBackgroundRemovalPlugin } from './plugins/background-removal';
 
 // Re-export for external use
-export { PhotoEditorConfig } from '@cesdk/core-configs-web/photo-editor';
+export { PhotoEditorConfig } from './config/plugin';
 export { setupBackgroundRemovalPlugin } from './plugins/background-removal';
 
 /**

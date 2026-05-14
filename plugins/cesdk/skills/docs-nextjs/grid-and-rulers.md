@@ -36,7 +36,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { AdvancedEditorConfig } from '@cesdk/core-configs-web/advanced-editor';
+import { AdvancedEditorConfig } from './advanced-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -205,33 +205,6 @@ Different editor plugins configure grid and rulers with different defaults:
 
 To add grid and ruler support to an editor that doesn't enable them by default, set the settings and feature flag manually as shown in the examples above.
 
-## Per-Page Grid Overrides
-
-Each page in the scene can override the document-level grid configuration through the `page/guides/*` block properties. Setting `page/guides/source` to `'Custom'` switches that page onto its own values; leaving it at `'Document'` keeps the page on the engine-wide defaults. Ruler visibility remains document-level only — there is no per-page ruler override.
-
-Per-page grids are **session-only** — they are not persisted when the scene is saved. Opening the scene again starts every page back on the document-level grid.
-
-```typescript
-// Opt a specific page into its own grid configuration.
-engine.block.setEnum(pageId, 'page/guides/source', 'Custom');
-engine.block.setBool(pageId, 'page/guides/gridEnabled', true);
-engine.block.setFloat(pageId, 'page/guides/gridSpacingX', 20);
-engine.block.setFloat(pageId, 'page/guides/gridSpacingY', 20);
-engine.block.setColor(pageId, 'page/guides/gridColor', {
-  colorSpace: 'sRGB',
-  r: 0.2,
-  g: 0.4,
-  b: 0.9,
-  a: 0.5
-});
-engine.block.setBool(pageId, 'page/guides/gridSnapEnabled', true);
-
-// Revert the page to the document defaults.
-engine.block.setEnum(pageId, 'page/guides/source', 'Document');
-```
-
-In the default Advanced Editor UI, grid controls live only in the Page Inspector — selecting a page shows a "Grid" section that writes to that page's `page/guides/*` properties. The Document Inspector exposes only the "Show Rulers" toggle; the global `grid/*` settings are still used as the fallback for pages in `Document` mode, but have no UI of their own. When users add a new page, the editor seeds its grid from the immediately previous page when that page is in `Custom` mode, so the grid they were just working with carries over without re-entry. If the previous page is in `Document` mode, the new page also uses `Document` — new pages never revive older per-page overrides.
-
 ## API Reference
 
 | API | Type | Default | Description |
@@ -241,12 +214,6 @@ In the default Advanced Editor UI, grid controls live only in the Page Inspector
 | `grid/spacingX` | Float | `32` | Horizontal spacing between grid lines (design units) |
 | `grid/spacingY` | Float | `32` | Vertical spacing between grid lines (design units) |
 | `grid/color` | Color | `{ r: 0, g: 0, b: 0, a: 0.12 }` | Grid line color with alpha |
-| `page/guides/source` | Enum (`'Document'` / `'Custom'`) | `'Document'` | Per-page resolution source; `Document` falls back to the `grid/*` settings |
-| `page/guides/gridEnabled` | Bool | `false` | Per-page override of `grid/enabled` (applied when source is `Custom`) |
-| `page/guides/gridSnapEnabled` | Bool | `false` | Per-page override of `grid/snapEnabled` |
-| `page/guides/gridSpacingX` | Float | `10` | Per-page override of `grid/spacingX` |
-| `page/guides/gridSpacingY` | Float | `10` | Per-page override of `grid/spacingY` |
-| `page/guides/gridColor` | Color | neutral gray | Per-page override of `grid/color` |
 
 
 

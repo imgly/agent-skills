@@ -81,7 +81,6 @@ async function selectImportMethod(): Promise<string> {
 }
 
 const configuration = {
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
   userId: 'guides-user'
 };
 

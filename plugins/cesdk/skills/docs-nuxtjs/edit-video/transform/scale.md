@@ -72,7 +72,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
+import { VideoEditorConfig } from './video-editor/plugin';
 
 class Example implements EditorPlugin {
   name = 'guides-create-video-transform-scale-browser';

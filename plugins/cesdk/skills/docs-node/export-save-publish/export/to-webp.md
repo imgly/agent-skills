@@ -85,7 +85,7 @@ console.log(`\nSelected: ${selected.name} (quality: ${selected.quality})\n`);
 const stopLoading = showLoading('Initializing CE.SDK engine...');
 
 const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
+  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`
 });
 
 stopLoading();

@@ -47,7 +47,6 @@ function isSpotColor(
 
 async function main() {
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE
   });
 
@@ -219,7 +218,6 @@ Set up the headless Creative Engine for server-side color operations.
 
 ```typescript highlight=highlight-setup
 const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE
 });
 ```

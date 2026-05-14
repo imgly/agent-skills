@@ -25,7 +25,7 @@ A template is a regular CE.SDK scene that contains **variable tokens** in text a
 ```typescript file=@cesdk_web_examples/guides-concepts-templating-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**

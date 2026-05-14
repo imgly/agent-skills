@@ -38,7 +38,6 @@ config();
 
 // Initialize CE.SDK engine in headless mode
 const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
   // license: process.env.CESDK_LICENSE, // Optional (trial mode available)
 });
 
@@ -759,12 +758,11 @@ A shape block representing a custom vector path.
 
 This section describes the properties available for the **Vector Path Type** (`//ly.img.ubq/shape/vector_path`) block type.
 
-| Property                     | Type     | Default     | Description                                                                                                                      |
-| ---------------------------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `shape/vector_path/fillRule` | `Enum`   | `"EvenOdd"` | Fill rule for resolving self-intersecting or overlapping subpaths of the path string., Possible values: `"EvenOdd"`, `"NonZero"` |
-| `shape/vector_path/height`   | `Float`  | `100`       | The coordinate bounds in y direction.                                                                                            |
-| `shape/vector_path/path`     | `String` | `""`        | The path string, accepts a subset of svg path strings.                                                                           |
-| `shape/vector_path/width`    | `Float`  | `100`       | The coordinate bounds in x direction.                                                                                            |
+| Property                   | Type     | Default | Description                                            |
+| -------------------------- | -------- | ------- | ------------------------------------------------------ |
+| `shape/vector_path/height` | `Float`  | `100`   | The coordinate bounds in y direction.                  |
+| `shape/vector_path/path`   | `String` | `""`    | The path string, accepts a subset of svg path strings. |
+| `shape/vector_path/width`  | `Float`  | `100`   | The coordinate bounds in x direction.                  |
 
 
 

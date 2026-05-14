@@ -40,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 import AiApps from '@imgly/plugin-ai-apps-web';
 import FalAiImage from '@imgly/plugin-ai-image-generation-web/fal-ai';
 import OpenAiImage from '@imgly/plugin-ai-image-generation-web/open-ai';

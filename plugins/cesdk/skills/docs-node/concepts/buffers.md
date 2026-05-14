@@ -83,7 +83,6 @@ function writeString(view: DataView, offset: number, str: string): void {
 async function main(): Promise<void> {
   // Initialize the headless Creative Engine
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE
   });
 
@@ -206,7 +205,6 @@ We start by initializing the headless Creative Engine for server-side processing
 ```typescript highlight-setup
 // Initialize the headless Creative Engine
 const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE
 });
 ```

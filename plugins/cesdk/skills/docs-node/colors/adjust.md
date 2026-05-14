@@ -40,7 +40,6 @@ config();
 async function main() {
   // Initialize the headless Creative Engine
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE
   });
 
@@ -227,7 +226,6 @@ We start by initializing the headless Creative Engine with a scene and page for 
 ```typescript highlight=highlight-setup
   // Initialize the headless Creative Engine
   const engine = await CreativeEngine.init({
-    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE
   });
 

@@ -38,9 +38,7 @@ config();
  */
 
 // Initialize CE.SDK engine in headless mode
-const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
-});
+const engine = await CreativeEngine.init({});
 
 try {
   // Create a design scene with specific page dimensions

@@ -47,7 +47,6 @@ config();
 
 // Initialize CE.SDK engine in headless mode
 const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE, // Optional (trial mode available)
 });
 
@@ -327,7 +326,6 @@ For headless video processing, we initialize CE.SDK's Node.js engine. This provi
 ```typescript highlight-setup
 // Initialize CE.SDK engine in headless mode
 const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE, // Optional (trial mode available)
 });
 ```

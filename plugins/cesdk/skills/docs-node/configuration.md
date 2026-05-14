@@ -51,7 +51,6 @@ const userId = 'server-process-' + process.pid;
  * Configuration for CreativeEngine.init()
  */
 const initConfig = {
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
   license,
   userId,
   logger: createLogger('CE.SDK')

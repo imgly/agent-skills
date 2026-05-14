@@ -39,9 +39,7 @@ export class Example {
   private unsubscribeEvents?: () => void;
 
   async initialize(): Promise<void> {
-    this.engine = await CreativeEngine.init({
-      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL
-    });
+    this.engine = await CreativeEngine.init({});
 
     const canvasWrapper = document.getElementById('canvas-wrapper');
     if (canvasWrapper && this.engine.element) {
@@ -255,9 +253,7 @@ export class Example {
   private unsubscribeEvents?: () => void;
 
   async initialize(): Promise<void> {
-    this.engine = await CreativeEngine.init({
-      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL
-    });
+    this.engine = await CreativeEngine.init({});
 
     const canvasWrapper = document.getElementById('canvas-wrapper');
     if (canvasWrapper && this.engine.element) {

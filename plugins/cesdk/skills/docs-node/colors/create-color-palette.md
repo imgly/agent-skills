@@ -32,7 +32,6 @@ async function main() {
   let engine;
   try {
     engine = await CreativeEngine.init({
-      baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
       // license: 'YOUR_CESDK_LICENSE_KEY'
     });
     // Create a scene with a page
@@ -175,7 +174,6 @@ We start by initializing the headless Creative Engine with a scene and page for 
 
 ```typescript highlight=highlight-setup
 engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: 'YOUR_CESDK_LICENSE_KEY'
 });
 // Create a scene with a page

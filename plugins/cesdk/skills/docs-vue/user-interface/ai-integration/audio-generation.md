@@ -42,7 +42,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
+import { VideoEditorConfig } from './video-editor/plugin';
 import AiApps from '@imgly/plugin-ai-apps-web';
 import Elevenlabs from '@imgly/plugin-ai-audio-generation-web/elevenlabs';
 import packageJson from './package.json';

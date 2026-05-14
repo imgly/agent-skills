@@ -74,7 +74,6 @@ async function run() {
 
   try {
     const config = {
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
       // license: process.env.CESDK_LICENSE,
       logger: (message: string, logLevel?: string) => {
         if (logLevel === 'ERROR' || logLevel === 'WARN') {
@@ -298,7 +297,6 @@ Start by initializing the headless engine.
 
 ```typescript highlight=highlight-setup
     const config = {
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
       // license: process.env.CESDK_LICENSE,
       logger: (message: string, logLevel?: string) => {
         if (logLevel === 'ERROR' || logLevel === 'WARN') {

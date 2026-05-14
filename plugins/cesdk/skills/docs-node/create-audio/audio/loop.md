@@ -36,9 +36,7 @@ config();
  * - Combining looping with trim settings
  */
 
-const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
-});
+const engine = await CreativeEngine.init({});
 
 try {
   // Create a scene with a page for audio content
@@ -148,9 +146,7 @@ This guide covers how to enable and disable audio looping, control looping behav
 First, we initialize the CE.SDK engine in headless mode for server-side processing.
 
 ```typescript highlight-setup
-const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
-});
+const engine = await CreativeEngine.init({});
 ```
 
 The headless engine provides full API access to audio looping operations without browser dependencies.

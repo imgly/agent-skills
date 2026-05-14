@@ -38,7 +38,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -328,7 +328,6 @@ class Example implements EditorPlugin {
 
     // Add descriptive labels above each block
     const labelConfig = {
-      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       height: 40,
       fontSize: 34,
       fontUri:

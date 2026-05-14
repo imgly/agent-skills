@@ -32,9 +32,7 @@ config();
  * - Volume levels for multiple audio sources
  */
 
-const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
-});
+const engine = await CreativeEngine.init({});
 
 try {
   // Create a scene with a page for audio content
@@ -103,9 +101,7 @@ This guide covers how to adjust audio volume programmatically using the Engine A
 First, initialize the CE.SDK engine in headless mode for server-side processing.
 
 ```typescript highlight=highlight-setup
-const engine = await CreativeEngine.init({
-  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
-});
+const engine = await CreativeEngine.init({});
 ```
 
 ## Understanding Volume Concepts
