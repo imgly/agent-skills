@@ -28,6 +28,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -41,7 +42,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from './video-editor/plugin';
+import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
 
 class Example implements EditorPlugin {
   name = 'guides-import-media-from-remote-source-remote-asset-browser';
@@ -57,6 +58,7 @@ class Example implements EditorPlugin {
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -151,8 +153,9 @@ class Example implements EditorPlugin {
       ]
     });
 
-    const customSourceId =
-      await engine.asset.addLocalAssetSourceFromJSONString(customAssetJSON);
+    const customSourceId = await engine.asset.addLocalAssetSourceFromJSONString(
+      customAssetJSON
+    );
     console.log('Created custom asset source:', customSourceId);
 
     // When loading from string, you can specify a custom base path
@@ -229,6 +232,7 @@ We start by initializing CE.SDK with default and demo asset sources, then create
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -352,8 +356,9 @@ Call `engine.asset.addLocalAssetSourceFromJSONString()` when you have the JSON c
       ]
     });
 
-    const customSourceId =
-      await engine.asset.addLocalAssetSourceFromJSONString(customAssetJSON);
+    const customSourceId = await engine.asset.addLocalAssetSourceFromJSONString(
+      customAssetJSON
+    );
     console.log('Created custom asset source:', customSourceId);
 ```
 

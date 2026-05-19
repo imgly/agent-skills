@@ -29,6 +29,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -42,7 +43,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from './video-editor/plugin';
+import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -59,6 +60,7 @@ class Example implements EditorPlugin {
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(

@@ -63,8 +63,9 @@ await cesdk.addPlugin(new CaptionPresetsAssetSource());
 Provides default color palette presets for the color picker.
 
 ```typescript
-import { ColorPaletteAssetSource } from '@cesdk/cesdk-js/plugins';
+import { ImageColorsAssetSource, ColorPaletteAssetSource } from '@cesdk/cesdk-js/plugins';
 
+await cesdk.addPlugin(new ImageColorsAssetSource());
 await cesdk.addPlugin(new ColorPaletteAssetSource());
 ```
 

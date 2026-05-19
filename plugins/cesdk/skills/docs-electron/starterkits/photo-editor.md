@@ -166,14 +166,14 @@ Before you begin, make sure you have the following:
     import { initPhotoEditor } from './imgly';
 
     const config = {
-      baseURL: '/assets'
+      baseURL: '/assets',
     };
 
     CreativeEditorSDK.create('#cesdk_container', config)
-      .then(async (cesdk) => {
+      .then(async cesdk => {
         await initPhotoEditor(cesdk);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Failed to initialize CE.SDK:', error);
       });
     ```
@@ -197,7 +197,7 @@ Before you begin, make sure you have the following:
     await cesdk.ui.applyForceCrop(imageBlock, {
       sourceId: 'ly.img.crop.presets',
       presetId: 'ly.img.crop.presets.fixed-ratio.1_1',
-      mode: 'ifNeeded'
+      mode: 'ifNeeded',
     });
     ```
 
@@ -339,14 +339,14 @@ Before you begin, make sure you have the following:
     import { initPhotoEditor } from './imgly';
 
     const config = {
-      baseURL: '/assets'
+      baseURL: '/assets',
     };
 
     CreativeEditorSDK.create('#cesdk_container', config)
-      .then(async (cesdk) => {
+      .then(async cesdk => {
         await initPhotoEditor(cesdk);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Failed to initialize CE.SDK:', error);
       });
     ```
@@ -370,7 +370,7 @@ Before you begin, make sure you have the following:
     await cesdk.ui.applyForceCrop(imageBlock, {
       sourceId: 'ly.img.crop.presets',
       presetId: 'ly.img.crop.presets.fixed-ratio.1_1',
-      mode: 'ifNeeded'
+      mode: 'ifNeeded',
     });
     ```
 
@@ -429,7 +429,7 @@ import {
   FiltersAssetSource,
   StickerAssetSource,
   TextAssetSource,
-  VectorShapeAssetSource
+  VectorShapeAssetSource,
   // ...
 } from '@cesdk/cesdk-js/plugins';
 
@@ -472,7 +472,7 @@ await cesdk.actions.run('exportDesign', { mimeType: 'image/png' });
 cesdk.actions.register('importImage', async () => {
   const blobURL = await cesdk.utils.loadFile({
     accept: 'image/*',
-    returnType: 'objectURL'
+    returnType: 'objectURL',
   });
   await cesdk.createFromImage(blobURL);
 });
@@ -482,7 +482,7 @@ cesdk.actions.register('importImage', async () => {
 
 ```typescript title="src/imgly/config/actions.ts"
 // Register export action that downloads the edited photo
-cesdk.actions.register('exportDesign', async (exportOptions) => {
+cesdk.actions.register('exportDesign', async exportOptions => {
   const { blobs, options } = await cesdk.utils.export(exportOptions);
   await cesdk.utils.downloadFile(blobs[0], options.mimeType);
 });
@@ -492,7 +492,7 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
 
 ```typescript title="src/imgly/config/actions.ts"
 // Override the built-in exportDesign action to send to your server
-cesdk.actions.register('exportDesign', async (exportOptions) => {
+cesdk.actions.register('exportDesign', async exportOptions => {
   const { blobs } = await cesdk.utils.export(exportOptions);
 
   const formData = new FormData();
@@ -500,7 +500,7 @@ cesdk.actions.register('exportDesign', async (exportOptions) => {
 
   const response = await fetch('/api/upload', {
     method: 'POST',
-    body: formData
+    body: formData,
   });
 
   const { url } = await response.json();
@@ -536,15 +536,15 @@ cesdk.i18n.setTranslations({
   en: {
     'actions.export.image': 'Download Photo',
     'common.cancel': 'Cancel',
-    'common.apply': 'Apply'
-  }
+    'common.apply': 'Apply',
+  },
 });
 
 // Add a new language
 cesdk.i18n.setTranslations({
   de: {
-    'actions.export.image': 'Foto herunterladen'
-  }
+    'actions.export.image': 'Foto herunterladen',
+  },
 });
 
 // Set the active locale
@@ -567,21 +567,21 @@ const navOrder = cesdk.ui.getNavigationBarOrder();
 cesdk.ui.insertNavigationBarOrderComponent(
   'ly.img.spacer',
   { id: 'my-custom-action' },
-  'after'
+  'after',
 );
 
 // Rearrange dock items
 cesdk.ui.setDockOrder([
   'ly.img.assetLibrary.dock',
   'ly.img.separator',
-  'my-custom-dock-item'
+  'my-custom-dock-item',
 ]);
 
 // Customize the inspector bar
 cesdk.ui.setInspectorBarOrder([
   'ly.img.fill.inspectorBar',
   'ly.img.separator',
-  'ly.img.filter.inspectorBar'
+  'ly.img.filter.inspectorBar',
 ]);
 ```
 
@@ -607,7 +607,7 @@ cesdk.ui.registerComponent('my-custom-button', ({ builder, engine }) => {
     isDisabled: selectedBlocks.length === 0,
     onClick: () => {
       // Apply custom logic to selected blocks
-    }
+    },
   });
 });
 
@@ -615,7 +615,7 @@ cesdk.ui.registerComponent('my-custom-button', ({ builder, engine }) => {
 cesdk.ui.insertNavigationBarOrderComponent(
   'ly.img.spacer',
   'my-custom-button',
-  'after'
+  'after',
 );
 ```
 
@@ -674,8 +674,8 @@ import AIPlugin from '@imgly/plugin-ai-generation';
 await cesdk.addPlugin(
   AIPlugin({
     provider: 'your-ai-provider',
-    apiKey: 'your-api-key'
-  })
+    apiKey: 'your-api-key',
+  }),
 );
 ```
 
@@ -691,8 +691,8 @@ import UnsplashAssetSource from '@imgly/plugin-unsplash';
 // Add Unsplash integration
 await cesdk.addPlugin(
   UnsplashAssetSource({
-    accessKey: 'your-unsplash-access-key'
-  })
+    accessKey: 'your-unsplash-access-key',
+  }),
 );
 ```
 
@@ -719,38 +719,38 @@ The Photo Editor includes everything needed for professional image editing.
     title: 'Transform Operations',
     description:
       'Crop, rotate, resize, and flip images with precision controls and visual feedback.',
-    imageId: 'transform'
+    imageId: 'transform',
   },
   {
     title: 'Professional Filters',
     description:
       'Apply color grading with LUT filters, duotone effects, and customizable image adjustments.',
-    imageId: 'filters'
+    imageId: 'filters',
   },
   {
     title: 'Background Removal',
     description:
       'AI-powered background removal that runs entirely in the browser without server dependencies.',
-    imageId: 'green-screen'
+    imageId: 'green-screen',
   },
   {
     title: 'Text Overlays',
     description:
       'Add styled text with comprehensive typography controls, fonts, and visual effects.',
-    imageId: 'text-editing'
+    imageId: 'text-editing',
   },
   {
     title: 'Asset Libraries',
     description:
       'Access built-in collections of stickers, shapes, and graphics, plus import custom assets.',
-    imageId: 'asset-libraries'
+    imageId: 'asset-libraries',
   },
   {
     title: 'Export Options',
     description:
       'Export to multiple formats including PNG, JPEG, and PDF with quality and size controls.',
-    imageId: 'client-side'
-  }
+    imageId: 'client-side',
+  },
 ]}
 />
 
@@ -788,7 +788,8 @@ The Photo Editor includes everything needed for professional image editing.
 
 ## Next Steps
 
-- [Configuration](./configuration.md) – Complete list of initialization options
+- [Configuration](./configuration.md) – Complete list of initialization
+  options
 - [Serve Assets](./serve-assets.md) – Self-host engine assets for production
 - [Actions](./actions.md) – Build custom export and save workflows
 - [Theming](./user-interface/appearance/theming.md) – Customize colors and appearance

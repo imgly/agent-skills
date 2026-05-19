@@ -289,6 +289,7 @@ async function main() {
 
   // Initialize the engine
   const config = {
+    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
     license: process.env.CESDK_LICENSE || '',
     logger: (level, ...args) => {
       if (level === 'error' || level === 'warn') {
@@ -666,6 +667,7 @@ async function main() {
 
   // Initialize the engine
   const config = {
+    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
     license: process.env.CESDK_LICENSE || '',
     logger: (level, ...args) => {
       if (level === 'error' || level === 'warn') {

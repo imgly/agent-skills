@@ -32,7 +32,7 @@ Add unique markers to confirm which execution you're observing:
 ```ts
 import { DesignEditorConfig } from './config/plugin';
 import {
-  BlurAssetSource, ColorPaletteAssetSource, CropPresetsAssetSource,
+  ImageColorsAssetSource, BlurAssetSource, ColorPaletteAssetSource, CropPresetsAssetSource,
   DemoAssetSources, EffectsAssetSource, FiltersAssetSource,
   PagePresetsAssetSource, StickerAssetSource, TextAssetSource,
   TextComponentAssetSource, TypefaceAssetSource, UploadAssetSources,
@@ -51,6 +51,7 @@ let initCounter = 0;
 
     // Default asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(new EffectsAssetSource());

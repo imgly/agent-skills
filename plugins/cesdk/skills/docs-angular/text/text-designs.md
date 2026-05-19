@@ -27,6 +27,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -40,7 +41,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 // Import the pre-generated thumbnail for the asset library
 import customTitleThumbnail from './assets/custom-title-thumbnail.png';
@@ -72,6 +73,7 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -237,8 +239,9 @@ class Example implements EditorPlugin {
         if (!assetArchiveUrl) return undefined;
 
         // Load the block from the archive using loadFromArchiveURL()
-        const loadedBlocks =
-          await engine.block.loadFromArchiveURL(assetArchiveUrl);
+        const loadedBlocks = await engine.block.loadFromArchiveURL(
+          assetArchiveUrl
+        );
         const newBlock = loadedBlocks[0];
         if (!newBlock) return undefined;
 
@@ -388,6 +391,7 @@ We initialize CE.SDK with asset sources and create a design scene. The page prov
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -658,8 +662,9 @@ We register a custom asset source using `addLocalSource()` with a custom apply c
         if (!assetArchiveUrl) return undefined;
 
         // Load the block from the archive using loadFromArchiveURL()
-        const loadedBlocks =
-          await engine.block.loadFromArchiveURL(assetArchiveUrl);
+        const loadedBlocks = await engine.block.loadFromArchiveURL(
+          assetArchiveUrl
+        );
         const newBlock = loadedBlocks[0];
         if (!newBlock) return undefined;
 

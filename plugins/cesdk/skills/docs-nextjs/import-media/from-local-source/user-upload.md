@@ -33,6 +33,7 @@ import packageJson from './package.json';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -46,7 +47,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 
 /**
  * CE.SDK Plugin: User Upload Guide
@@ -157,6 +158,7 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(

@@ -29,9 +29,10 @@ import type {
   EditorPluginContext
 } from '@cesdk/cesdk-js';
 import type { BlockEvent } from '@cesdk/cesdk-js';
-import CreativeEditorSDK from '@cesdk/cesdk-js';
+import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -45,7 +46,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 
 export default class CustomizeBehaviorExample implements EditorPlugin {
   name = 'CustomizeBehaviorExample';
@@ -60,6 +61,7 @@ export default class CustomizeBehaviorExample implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(

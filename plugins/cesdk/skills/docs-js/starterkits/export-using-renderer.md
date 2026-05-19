@@ -283,7 +283,7 @@ Or configure programmatically in your code:
 
 ```typescript title="src/imgly/renderer.ts"
 // The renderer URL is configured via environment variable or defaults
-const rendererUrl = import.meta.env.VITE_RENDERER_PROXY_URL || DEFAULT_RENDERER_URL;
+const rendererUrl = import.meta.env.VITE_RENDERER_PROXY_URL;
 ```
 
 ***

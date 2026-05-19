@@ -27,6 +27,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -40,7 +41,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import {
   CommonProviderConfiguration,
   ImageOutput,
@@ -63,10 +64,8 @@ interface MyProviderInput {
 }
 
 // Define provider configuration interface extending CommonProviderConfiguration
-interface MyProviderConfiguration extends CommonProviderConfiguration<
-  MyProviderInput,
-  ImageOutput
-> {
+interface MyProviderConfiguration
+  extends CommonProviderConfiguration<MyProviderInput, ImageOutput> {
   // Add any provider-specific configuration here
   customApiKey?: string;
 }
@@ -269,6 +268,7 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -492,10 +492,8 @@ Before creating your provider, understand the `CommonProviderConfiguration` inte
 
 ```typescript highlight-configuration
 // Define provider configuration interface extending CommonProviderConfiguration
-interface MyProviderConfiguration extends CommonProviderConfiguration<
-  MyProviderInput,
-  ImageOutput
-> {
+interface MyProviderConfiguration
+  extends CommonProviderConfiguration<MyProviderInput, ImageOutput> {
   // Add any provider-specific configuration here
   customApiKey?: string;
 }

@@ -25,7 +25,7 @@ Pages provide the canvas and frame for your designs. Whether you're building a m
 ```typescript file=@cesdk_web_examples/guides-concepts-pages-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 /**

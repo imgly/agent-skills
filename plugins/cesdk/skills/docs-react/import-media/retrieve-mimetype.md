@@ -25,7 +25,7 @@ When loading scene archives in CE.SDK, embedded media resources are stored with 
 ```typescript file=@cesdk_web_examples/guides-import-media-retrieve-mimetype-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {

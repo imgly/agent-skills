@@ -96,7 +96,7 @@ module.exports = { CESDKService };
 
 This service has to be added to the stack definition in the `lib/cesdk-aws-lambda-stack` file.
 
-```javascript file=@cesdk_node_examples/cookbook-aws-lambda/lib/cesdk-aws-lambda-stack.js
+```javascript file=@cesdk_web_examples/cookbooks-aws-lambda/lib/cesdk-aws-lambda-stack.js
 const { Stack } = require("aws-cdk-lib");
 const CESDKService = require("../lib/cesdk-service");
 
@@ -136,7 +136,7 @@ In the first case, we create a unique image id and a file name derived from it, 
 
 The second case takes the image id from the request and simply returns the record from the database.
 
-```javascript file=@cesdk_node_examples/cookbook-aws-lambda/src/images-handler.js
+```javascript file=@cesdk_web_examples/cookbooks-aws-lambda/src/images-handler.js
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const {
   DynamoDBDocumentClient,
@@ -240,7 +240,7 @@ Inside the `cesdk-service.js` we’ll first define the lambda function increasin
 
 Then we’ll grant the required permissions to perform updates to the images table and finally, we’ll add a DynamoDB event stream to the `cesdkHandler`. The complete `cesdk-service.js` file is as follows:
 
-```javascript file=@cesdk_node_examples/cookbook-aws-lambda/lib/cesdk-service.js
+```javascript file=@cesdk_web_examples/cookbooks-aws-lambda/lib/cesdk-service.js
 const { Construct } = require("constructs");
 const apigateway = require("aws-cdk-lib/aws-apigateway");
 const lambda = require("aws-cdk-lib/aws-lambda");
@@ -361,7 +361,7 @@ We receive the newly created image record via the event that is passed into the 
 
 Lastly, we update the image with the URL and set the `creationStatus` to `FINISHED`. The complete handler file now looks as follows:
 
-```javascript file=@cesdk_node_examples/cookbook-aws-lambda/src/cesdk-handler.js
+```javascript file=@cesdk_web_examples/cookbooks-aws-lambda/src/cesdk-handler.js
 const CreativeEngine = require("@cesdk/node");
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const {

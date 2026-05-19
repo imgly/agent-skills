@@ -66,6 +66,28 @@ exportAudio(handle: DesignBlockId, options?: AudioExportOptions): Promise<Blob>
 
 **Returns:** A promise that resolves with an audio blob or is rejected with an error.
 
+## Block Analysis
+
+### getDominantColors()
+
+Extracts the dominant colors from the rendered appearance of a block.
+Performs an internal update to resolve the final layout for the block. Will not
+complete as long as assets are in a pending state; asset loading progresses during
+engine updates. Crops, color adjustments, and effects applied to the block are
+reflected in the returned palette. Fully or mostly transparent pixels are excluded
+from the analysis.
+
+```typescript
+getDominantColors(handle: DesignBlockId, options?: DominantColorsOptions): Promise<DominantColor[]>
+```
+
+**Parameters:**
+- `handle` - The design block element to analyze. Must be attached to a scene
+and render visible content.
+- `options` - See `DominantColorsOptions`.
+
+**Returns:** A promise that resolves with the dominant colors sorted by weight, descending.
+
 ## Block Lifecycle
 
 Manage the complete lifecycle: create, find, duplicate, destroy, and serialize blocks.
@@ -213,13 +235,15 @@ destroy(id: DesignBlockId): void
 
 Forces the loading of resources for a set of blocks and their children.
 This is useful for preloading resources. If a resource failed to load previously, it will be reloaded.
+Pass an empty array to load resources for every block currently known to the engine.
 
 ```typescript
 forceLoadResources(ids: DesignBlockId[]): Promise<void>
 ```
 
 **Parameters:**
-- `ids` - The blocks whose resources should be loaded.
+- `ids` - The blocks whose resources should be loaded. Pass an empty array to load resources for every
+  block currently known to the engine.
 
 **Returns:** A Promise that resolves once all resources have finished loading.
 
@@ -536,6 +560,40 @@ setFillEnabled(id: DesignBlockId, enabled: boolean): void
 **Parameters:**
 - `id` - The block whose fill should be enabled or disabled.
 - `enabled` - If true, the fill will be enabled.
+
+### getFillOverprint()
+
+Queries whether the fill of a block is marked as overprint for PDF export.
+```javascript
+const overprint = engine.block.getFillOverprint(block);
+```
+
+```typescript
+getFillOverprint(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - The block whose fill overprint flag should be queried.
+
+**Returns:** The fill overprint flag.
+
+### setFillOverprint()
+
+Marks the fill of a block as overprint for PDF export.
+The flag is only honored by the PDF writer when the fill uses a spot color
+(Separation/DeviceN). For process-color fills it is a silent no-op. On-screen
+rendering ignores the flag.
+```javascript
+engine.block.setFillOverprint(block, true);
+```
+
+```typescript
+setFillOverprint(id: DesignBlockId, overprint: boolean): void
+```
+
+**Parameters:**
+- `id` - The block whose fill overprint flag should be set.
+- `overprint` - If true, the fill is marked as overprint in exported PDFs.
 
 ### getFill()
 
@@ -1859,6 +1917,22 @@ findAllPlaceholders(): DesignBlockId[]
 ```
 
 **Returns:** A list of block ids.
+
+### findAllUnused()
+
+Finds all blocks that are not attached to any scene.
+A block is considered unused when it has no path to a scene (no scene
+reference and no ancestor that belongs to a scene) and is not itself a
+scene. Generated blocks and render blocks (fills, effects, shapes, blurs)
+are excluded, matching the behaviour of {@link BlockAPI.findAll}.
+This is useful for cleanup workflows and for filtering the URIs returned
+by {@link EditorAPI.findAllMediaURIs} before relocating resources.
+
+```typescript
+findAllUnused(): DesignBlockId[]
+```
+
+**Returns:** A list of block ids that are not attached to any scene.
 
 ## Block Shapes
 
@@ -3768,6 +3842,28 @@ setCropAspectRatioLocked(id: DesignBlockId, locked: boolean): void
 - `id` - The block to update.
 - `locked` - Whether aspect ratio should be locked.
 
+### canRevertToOriginalRatio()
+
+Checks whether the "Original" crop preset (`ContentAspectRatio`) can be applied to a block.
+This runs the same preliminary check the apply path performs: it resolves the intrinsic
+content dimensions from the block's image/video fill (an image fill resolves only from its
+`sourceSet`; a video fill resolves from its `sourceSet` or the first decoded frame). Use it
+to gate UI that would otherwise call the preset and fail — e.g. an unreplaced placeholder
+image fill with an empty `sourceSet`.
+```javascript
+const canRevert = engine.block.canRevertToOriginalRatio(block);
+```
+
+```typescript
+canRevertToOriginalRatio(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** True if the preset would resolve, false if it cannot (no/placeholder fill, empty
+sourceSet, video not yet decoded, or unsupported fill type).
+
 ## Block Effects
 
 Create, manage, and apply various visual effects to blocks.
@@ -4064,6 +4160,40 @@ isStrokeEnabled(id: DesignBlockId): boolean
 - `id` - The block whose stroke state should be queried.
 
 **Returns:** True if the block's stroke is enabled.
+
+### setStrokeOverprint()
+
+Marks the stroke of a block as overprint for PDF export.
+The flag is only honored by the PDF writer when the stroke uses a spot color
+(Separation/DeviceN). For process-color strokes it is a silent no-op. On-screen
+rendering ignores the flag.
+```javascript
+engine.block.setStrokeOverprint(block, true);
+```
+
+```typescript
+setStrokeOverprint(id: DesignBlockId, overprint: boolean): void
+```
+
+**Parameters:**
+- `id` - The block whose stroke overprint flag should be set.
+- `overprint` - If true, the stroke is marked as overprint in exported PDFs.
+
+### getStrokeOverprint()
+
+Queries whether the stroke of a block is marked as overprint for PDF export.
+```javascript
+const overprint = engine.block.getStrokeOverprint(block);
+```
+
+```typescript
+getStrokeOverprint(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - The block whose stroke overprint flag should be queried.
+
+**Returns:** The stroke overprint flag.
 
 ### setStrokeColorRGBA() *(deprecated)*
 
@@ -4827,6 +4957,48 @@ toggleTextDecorationOverline(id: DesignBlockId, from?: number, to?: number): voi
 - `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
 - `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
 
+### getTextHorizontalAlignment()
+
+Gets the paragraph-level horizontal alignment override for a specific paragraph,
+or the block-level alignment.
+```javascript
+const alignment = engine.block.getTextHorizontalAlignment(text, 0);
+const blockAlignment = engine.block.getTextHorizontalAlignment(text); // paragraphIndex defaults to -1
+// e.g. 'Left' | 'Center' | 'Right' | 'Auto' | undefined
+```
+
+```typescript
+getTextHorizontalAlignment(id: DesignBlockId, paragraphIndex?: number): TextHorizontalAlignment | undefined
+```
+
+**Parameters:**
+- `id` - The text block to query.
+- `paragraphIndex` - The 0-based index of the paragraph to query.
+Negative values return the block-level `text/horizontalAlignment` setting.
+
+**Returns:** The paragraph override, `undefined` if no override is set,
+or the block-level alignment when `paragraphIndex < 0`.
+
+### setTextHorizontalAlignment()
+
+Sets the paragraph-level horizontal alignment override for one or all paragraphs.
+```javascript
+engine.block.setTextHorizontalAlignment(text, 'Center', 0);
+engine.block.setTextHorizontalAlignment(text, undefined, 0); // clear override
+engine.block.setTextHorizontalAlignment(text, 'Right'); // apply to all
+```
+
+```typescript
+setTextHorizontalAlignment(id: DesignBlockId, alignment: TextHorizontalAlignment | undefined, paragraphIndex?: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `alignment` - The alignment to apply, or `undefined` to clear the paragraph override.
+- `paragraphIndex` - The 0-based index of the paragraph.
+Negative values clear all paragraph-level alignment overrides and, when `alignment` is provided,
+apply that alignment to the whole text block.
+
 ### getTextListStyle()
 
 Gets the list style for a specific paragraph of a text block.
@@ -4901,9 +5073,15 @@ setTextListLevel(id: DesignBlockId, listLevel: number, paragraphIndex?: number):
 ### getTextParagraphIndices()
 
 Returns the 0-based paragraph indices that overlap the given UTF-16 range.
+The range is half-open (exclusive): `from` is inclusive, `to` is exclusive (one past the last
+code unit of interest). When `from === to` the range is a cursor position and the paragraph
+containing `from` is returned. This convention matches `getTextCursorRange`, so the values
+it returns can be passed directly without adjustment.
+Negative values for either parameter cause all paragraph indices to be returned.
 ```javascript
 const indices = engine.block.getTextParagraphIndices(text);
-const indices = engine.block.getTextParagraphIndices(text, 0, 5);
+const { from, to } = engine.block.getTextCursorRange();
+const indices = engine.block.getTextParagraphIndices(text, from, to);
 ```
 
 ```typescript
@@ -4912,8 +5090,8 @@ getTextParagraphIndices(id: DesignBlockId, from?: number, to?: number): number[]
 
 **Parameters:**
 - `id` - The text block to query.
-- `from` - The start index of the UTF-16 range. Negative values reference the entire text.
-- `to` - The end index of the UTF-16 range. Negative values reference the entire text.
+- `from` - The inclusive start UTF-16 index. Negative values reference the entire text.
+- `to` - The exclusive end UTF-16 index. Negative values reference the entire text.
 
 **Returns:** The paragraph indices overlapping the range.
 
@@ -5062,7 +5240,10 @@ getTypefaces(id: DesignBlockId, from?: number, to?: number): Typeface[]
 ### getTextCursorRange()
 
 Gets the current text cursor or selection range.
-Returns the UTF-16 indices of the selected range of the text block that is currently being edited.
+Returns the UTF-16 indices of the selected range of the text block that is currently being
+edited. The range is half-open (exclusive): `from` is the index of the first selected code
+unit, `to` is one past the last selected code unit. When `from === to` the cursor is
+positioned between characters with no text selected.
 ```javascript
 const selectedRange = engine.block.getTextCursorRange();
 ```

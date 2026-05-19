@@ -25,7 +25,7 @@ Vectorization transforms pixel-based images into vector paths that can be scaled
 ```typescript file=@cesdk_web_examples/guides-edit-image-vectorize-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import VectorizerPlugin from '@imgly/plugin-vectorizer-web';
 import packageJson from './package.json';
 

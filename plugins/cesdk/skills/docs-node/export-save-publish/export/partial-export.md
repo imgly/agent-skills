@@ -41,7 +41,9 @@ config();
  */
 
 // Initialize CE.SDK engine in headless mode
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
+});
 
 try {
   // Create a design scene with specific page dimensions
@@ -290,7 +292,9 @@ Server-side uses the `@cesdk/node` package and `CreativeEngine.init()` instead o
 
 ```typescript highlight-initialize-engine
 // Initialize CE.SDK engine in headless mode
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
+});
 ```
 
 ## Understanding Block Hierarchy and Export

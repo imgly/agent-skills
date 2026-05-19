@@ -1,0 +1,69 @@
+import { RGBAColor } from '@cesdk/engine';
+import classNames from 'classnames';
+import ColorPicker from '../ColorPicker/ColorPicker';
+import {
+  hexToRgba,
+  isColorEqual,
+  rgbaToHex
+} from '../../contexts/color-utilities';
+import { caseAssetPath } from '../../util';
+import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
+import classes from './ColorSelect.module.css';
+
+interface ColorSelectProps {
+  colorPalette: Array<RGBAColor>;
+  onClick: (color: RGBAColor) => void;
+  activeColor?: RGBAColor;
+}
+
+function ColorSelect({
+  colorPalette,
+  onClick,
+  activeColor = {
+    r: 0,
+    g: 0,
+    b: 0,
+    a: 1
+  }
+}: ColorSelectProps) {
+  return (
+    // Resetting the overflow property to allow the ColorPicker to flow out of the boundings of the AdjustmentsBar.
+    // Scrolling is not needed for in the ColorSelect Bar.
+
+    <AdjustmentsBar gap="md" style={{ overflow: 'initial' }}>
+      {colorPalette.map((color) => (
+        <button
+          key={color.r + color.g + color.b}
+          onClick={() => onClick(color)}
+          style={{
+            backgroundColor: `rgb(${color.r * 255},${color.g * 255},${
+              color.b * 255
+            })`
+          }}
+          className={classNames(classes.colorButton, {
+            [classes['colorButton--active']]: isColorEqual(color, activeColor)
+          })}
+        />
+      ))}
+      <ColorPicker
+        name="color-picker"
+        positionX="left"
+        positionY="top"
+        onChange={(hex) => {
+          if (hex === '#NaNNaNNaN') return;
+          try {
+            const color = hexToRgba(hex);
+            onClick(color);
+          } catch {}
+        }}
+        // value={activeColorHex}
+        value={rgbaToHex(activeColor)}
+      >
+        <button className={classes.colorButton}>
+          <img src={caseAssetPath('/ColorPicker.png')} alt="Pick color" />
+        </button>
+      </ColorPicker>
+    </AdjustmentsBar>
+  );
+}
+export default ColorSelect;

@@ -28,6 +28,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -41,7 +42,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from './video-editor/plugin';
+import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
 import packageJson from './package.json';
 
 // Helper function to create a WAV file from audio samples
@@ -111,6 +112,7 @@ class Example implements EditorPlugin {
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -312,6 +314,7 @@ We first create a scene and set up a page for our audio composition.
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(

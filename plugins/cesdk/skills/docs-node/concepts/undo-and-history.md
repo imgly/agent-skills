@@ -26,6 +26,7 @@ import { config } from 'dotenv';
 config();
 
 const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE
 });
 
@@ -172,6 +173,7 @@ We start by initializing the CE.SDK engine and creating a design scene. The engi
 
 ```typescript highlight=highlight-setup
 const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE
 });
 

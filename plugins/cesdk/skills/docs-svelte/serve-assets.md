@@ -33,6 +33,7 @@ Then configure CE.SDK to use your self-hosted assets:
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -199,6 +200,7 @@ Configure asset sources after initializing the editor by adding individual asset
 ```javascript
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -268,6 +270,7 @@ If you only need a subset of default assets, simply omit the plugins you don't n
 ```javascript
 // Only add the plugins you need
 await cesdk.addPlugin(new BlurAssetSource());
+await cesdk.addPlugin(new ImageColorsAssetSource());
 await cesdk.addPlugin(new ColorPaletteAssetSource());
 await cesdk.addPlugin(new CropPresetsAssetSource());
 await cesdk.addPlugin(new EffectsAssetSource());

@@ -26,6 +26,7 @@ The builder system provides a declarative API for creating UI components that in
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -39,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 
 const registerNewComponentPlugin: EditorPlugin = {
   name: 'ly.img.registerNewComponentPlugin',
@@ -52,6 +53,7 @@ const registerNewComponentPlugin: EditorPlugin = {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(

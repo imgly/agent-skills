@@ -63,6 +63,7 @@ function generateThumbnail(label: string): string {
 
 // Initialize CE.SDK engine in headless mode
 const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE, // Optional (trial mode available)
 });
 

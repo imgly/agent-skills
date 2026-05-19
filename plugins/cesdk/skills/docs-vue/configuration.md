@@ -49,16 +49,12 @@ const config = {
 
   // Location of core engine assets (WASM, data files)
   // Default: IMG.LY CDN. For production, host assets yourself.
-  // baseURL: 'https://your-cdn.com/cesdk-assets/',
-
-  // Use local assets when developing with local packages
-  ...(import.meta.env.CESDK_USE_LOCAL && {
-    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-  })
+  // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
+  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL
 };
 
 CreativeEditorSDK.create('#cesdk_container', config)
-  .then(async (cesdk: CreativeEditorSDK) => {
+  .then(async (cesdk) => {
 
     // Expose cesdk for debugging and hero screenshot generation
     (window as any).cesdk = cesdk;
@@ -75,7 +71,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 ```typescript file=@cesdk_web_examples/guides-configuration-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -315,7 +311,7 @@ Content assets like stickers and filters are loaded separately via asset source 
 ```typescript highlight=highlight-baseURL
 // Location of core engine assets (WASM, data files)
 // Default: IMG.LY CDN. For production, host assets yourself.
-// baseURL: 'https://your-cdn.com/cesdk-assets/',
+// baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
 ```
 
 ### Initialization
@@ -324,7 +320,7 @@ Pass the configuration object to `CreativeEditorSDK.create()` along with a conta
 
 ```typescript highlight=highlight-create
 CreativeEditorSDK.create('#cesdk_container', config)
-  .then(async (cesdk: CreativeEditorSDK) => {
+  .then(async (cesdk) => {
 ```
 
 ## Runtime Configuration

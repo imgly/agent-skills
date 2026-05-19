@@ -1,0 +1,13 @@
+.airtableSidebar {
+  flex-shrink: 0;
+  border-radius: 12px;
+  height: 100%;
+}
+
+.airtableEmbed {
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+}

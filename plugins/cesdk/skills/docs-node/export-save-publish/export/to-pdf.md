@@ -54,7 +54,7 @@ const choice = (await prompt('Select export option (1-5): ')) || '5';
 console.log('\n⏳ Initializing engine...');
 
 const engine = await CreativeEngine.init({
-  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
 });
 
 try {

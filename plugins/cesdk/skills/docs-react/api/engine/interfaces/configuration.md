@@ -1,0 +1,38 @@
+> This is one page of the CE.SDK React `@cesdk/engine` API reference. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md) or the [engine API Index](./api/engine.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+
+---
+
+Specifies the configuration for the Creative Editor SDK.
+
+The `Configuration` interface provides a set of properties that control the behavior
+and settings of the editor. These options include settings for the base URL, license,
+user ID, core settings, logger, feature flags, presets, force WebGL1, audio output,
+and role.
+
+## Properties
+
+| Property | Type | Description |
+| ------ | ------ | ------ |
+|  `baseURL` | `string` | - |
+|  `license?` | `string` | - |
+|  `userId?` | `string` | - |
+|  `core` | `object` | - |
+| `core.baseURL` | `string` | - |
+|  `logger` | [`Logger`](./api/engine/interfaces/logger.md) | - |
+|  `featureFlags?` | `object` | - |
+|  ~~`presets`~~ | `object` | **Deprecated** This config key is not used anymore and will be removed. |
+| `presets.typefaces?` | `object` | **Deprecated** The configuration option `presets.typefaces` does not exist anymore. Custom typefaces should be defined as asset sources using the `cesdk.engine.asset.addSource` or `cesdk.engine.asset.addLocalSource` instead. |
+|  `forceWebGL1?` | `boolean` | By default the engine tries to create a webgl2 context. If this fails it falls back to trying to create a webgl1 context. If this configuration option is set to true, it will no longer try to create a webgl2 context and always create a webgl1 context. |
+|  `audioOutput?` | `"auto"` | `"none"` | Whether the engine should automatically choose an audio output device or should not output audio at all. If not configured the fallback value is 'auto'. |
+|  `role?` | [`RoleString`](./api/engine/type-aliases/rolestring.md) | - |
+
+
+---
+
+## More Resources
+
+- **[React Documentation Index](https://img.ly/docs/cesdk/react.md)** - Browse all React documentation
+- **[engine API Reference](./api/engine.md)** - Full engine API reference
+- **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
+- **[Web Documentation](./react.md)** - Interactive documentation with examples
+- **[Support](mailto:support@img.ly)** - Contact IMG.LY support

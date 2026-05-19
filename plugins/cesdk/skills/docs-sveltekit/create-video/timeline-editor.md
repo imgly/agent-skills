@@ -50,6 +50,7 @@ To work with the CE.SDK Editor for video editing, set up the scene as follows:
 ```ts
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -66,6 +67,7 @@ import {
 
 // Add default asset source plugins
 await cesdk.addPlugin(new BlurAssetSource());
+await cesdk.addPlugin(new ImageColorsAssetSource());
 await cesdk.addPlugin(new ColorPaletteAssetSource());
 await cesdk.addPlugin(new CropPresetsAssetSource());
 await cesdk.addPlugin(new EffectsAssetSource());

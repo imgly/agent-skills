@@ -1,0 +1,46 @@
+/**
+ * EditorModal Component Styles
+ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 6px;
+  background: transparent;
+  z-index: 999;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg-card);
+  overflow: hidden;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0px 0px 2px rgba(22, 22, 23, 0.25),
+    0px 4px 6px -2px rgba(22, 22, 23, 0.12),
+    0px 2px 2.5px -2px rgba(22, 22, 23, 0.12),
+    0px 1px 1.75px -2px rgba(22, 22, 23, 0.12);
+}
+
+.editor {
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .overlay {
+    padding: 16px;
+  }
+
+  .modal {
+    height: 90vh;
+    max-height: none;
+  }
+}

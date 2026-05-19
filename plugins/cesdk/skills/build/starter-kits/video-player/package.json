@@ -1,14 +1,13 @@
 {
   "name": "starterkit-video-player",
   "version": "1.0.0",
+  "description": "CE.SDK Video Player Starterkit",
   "private": true,
   "scripts": {
     "secrets": "bash scripts/setup-secrets.sh",
-    "dev": "vite",
-    "dev:local": "CESDK_USE_LOCAL=true vite",
+    "dev": "cesdk-js-dev vite",
     "prebuild": "npm run check:all",
     "build": "vite build",
-    "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
     "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
@@ -23,14 +22,13 @@
     "test:e2e": "exit 0",
     "test:all": "npm run test:unit && npm run test:integration && npm run test:component && npm run test:e2e",
     "qa": "npm run build && npm run test:all",
-    "qa:local": "npm run build:local && npm run test:all",
-    "ci": "npm run check:all && npm run qa:local",
-    "capture:hero_image": "node scripts/capture-hero.mjs",
-    "postinstall": "npm run tsconfig:local || true",
-    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs"
+    "ci": "npm run check:all && npm run qa",
+    "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "latest"
+    "@cesdk/cesdk-js": "workspace:*",
+    "@cesdk/core-configs-web": "workspace:*",
+    "@cesdk/engine": "workspace:*"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -42,6 +40,7 @@
     "prettier": "^3.0.0",
     "sharp": "^0.34.4",
     "typescript": "^5.0.0",
-    "vite": "^6.0.3"
+    "vite": "^6.0.3",
+    "@types/node": "^20.0.0"
   }
 }

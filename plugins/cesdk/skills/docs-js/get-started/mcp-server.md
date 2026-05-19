@@ -18,15 +18,15 @@ The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open 
 
 The MCP server exposes two tools:
 
-| Tool | Description |
-|------|-------------|
-| `search` | Search documentation by query string |
-| `fetch` | Retrieve the full content of a document by ID |
+| Tool     | Description                                   |
+| -------- | --------------------------------------------- |
+| `search` | Search documentation by query string          |
+| `fetch`  | Retrieve the full content of a document by ID |
 
 ## Server Endpoint
 
-| URL | Transport |
-|-----|-----------|
+| URL                      | Transport       |
+| ------------------------ | --------------- |
 | `https://mcp.img.ly/mcp` | Streamable HTTP |
 
 No authentication is required.

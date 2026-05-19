@@ -42,6 +42,7 @@ config();
 
 async function main(): Promise<void> {
   const engine = await CreativeEngine.init({
+    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
     // license: process.env.CESDK_LICENSE,
   });
 
@@ -299,6 +300,7 @@ We initialize the headless engine for server-side text component generation. The
 
 ```typescript highlight=highlight-setup
 const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL
   // license: process.env.CESDK_LICENSE,
 });
 ```

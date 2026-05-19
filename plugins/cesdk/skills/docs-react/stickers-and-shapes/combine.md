@@ -27,6 +27,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -40,7 +41,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import { calculateGridLayout } from './utils';
 import packageJson from './package.json';
 
@@ -57,6 +58,7 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -535,6 +537,7 @@ Here's the complete implementation showing all four boolean operations:
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -560,6 +563,7 @@ const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);
 
 // Add default asset source plugins
 await cesdk.addPlugin(new BlurAssetSource());
+await cesdk.addPlugin(new ImageColorsAssetSource());
 await cesdk.addPlugin(new ColorPaletteAssetSource());
 await cesdk.addPlugin(new CropPresetsAssetSource());
 await cesdk.addPlugin(new EffectsAssetSource());

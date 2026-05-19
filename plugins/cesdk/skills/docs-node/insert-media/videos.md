@@ -44,6 +44,7 @@ function confirmExport(): Promise<boolean> {
 
 async function main() {
   const config = {
+    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
     license: process.env.CESDK_LICENSE
   };
 
@@ -152,6 +153,7 @@ Initialize CE.SDK and create a scene.
 
 ```typescript highlight=highlight-setup
   const config = {
+    baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
     license: process.env.CESDK_LICENSE
   };
 

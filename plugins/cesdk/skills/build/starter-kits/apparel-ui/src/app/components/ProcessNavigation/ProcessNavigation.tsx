@@ -1,0 +1,25 @@
+import { useEditor } from '../../contexts/EditorContext';
+
+import SegmentedControl from '../../ui/SegmentedControl/SegmentedControl';
+import classes from './ProcessNavigation.module.css';
+
+const ProcessNavigation = () => {
+  const { currentStep, setCurrentStep } = useEditor();
+  return (
+    <nav className={classes.wrapper}>
+      <SegmentedControl
+        options={[
+          { label: 'Edit', value: 'edit' },
+          { label: 'Preview', value: 'preview' }
+        ]}
+        value={currentStep}
+        name="currentStep"
+        onChange={(value) => setCurrentStep(value as typeof currentStep)}
+        size="sm"
+        buttonStyle={{ minWidth: '75px' }}
+        label={''}
+      />
+    </nav>
+  );
+};
+export default ProcessNavigation;

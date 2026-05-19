@@ -26,6 +26,7 @@ JPEG uses lossy compression optimized for photographs and smooth color gradients
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -39,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -52,6 +53,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new DesignEditorConfig());
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -133,7 +135,9 @@ class Example implements EditorPlugin {
               });
               await cesdk.utils.downloadFile(exported, 'image/jpeg');
               cesdk.ui.showNotification({
-                message: `High Quality (${(exported.size / 1024).toFixed(0)} KB)`,
+                message: `High Quality (${(exported.size / 1024).toFixed(
+                  0
+                )} KB)`,
                 type: 'success'
               });
             },

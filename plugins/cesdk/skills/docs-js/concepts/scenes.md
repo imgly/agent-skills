@@ -27,7 +27,7 @@ Every design you create starts with a scene. Scenes contain pages, and pages con
 ```typescript file=@cesdk_web_examples/guides-concepts-scenes-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 /**

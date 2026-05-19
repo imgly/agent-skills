@@ -35,6 +35,7 @@ import packageJson from './package.json';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -48,7 +49,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 
 /**
  * CE.SDK Plugin: Create Custom Filters Guide
@@ -74,6 +75,7 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -265,8 +267,9 @@ class Example implements EditorPlugin {
     });
 
     // Create asset source from JSON string
-    const jsonSourceId =
-      await engine.asset.addLocalAssetSourceFromJSONString(filterConfigJSON);
+    const jsonSourceId = await engine.asset.addLocalAssetSourceFromJSONString(
+      filterConfigJSON
+    );
     // eslint-disable-next-line no-console
     console.log('Created JSON-based filter source:', jsonSourceId);
 
@@ -537,8 +540,9 @@ For larger filter collections, we load definitions from JSON using `engine.asset
     });
 
     // Create asset source from JSON string
-    const jsonSourceId =
-      await engine.asset.addLocalAssetSourceFromJSONString(filterConfigJSON);
+    const jsonSourceId = await engine.asset.addLocalAssetSourceFromJSONString(
+      filterConfigJSON
+    );
     // eslint-disable-next-line no-console
     console.log('Created JSON-based filter source:', jsonSourceId);
 ```

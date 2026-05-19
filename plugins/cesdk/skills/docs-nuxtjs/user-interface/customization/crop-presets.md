@@ -27,6 +27,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -40,7 +41,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 /**
@@ -65,6 +66,7 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(new EffectsAssetSource());
@@ -226,7 +228,7 @@ import { CropPresetsAssetSource } from '@cesdk/cesdk-js/plugins';
 await instance.addPlugin(new CropPresetsAssetSource());
 ```
 
-This loads the `ly.img.crop.presets` asset source, which contains common ratios including free, 1:1, 9:16, 16:9, 4:3, and others.
+This loads the `ly.img.crop.presets` asset source, which contains common ratios including free, original, 1:1, 9:16, 16:9, 4:3, and others. The `Original` preset resizes the selected block's frame to match the intrinsic aspect ratio of its content (image or video), providing a quick way to return a cropped block to its natural proportions.
 
 ## Creating Custom Crop Preset Sources
 
@@ -289,6 +291,22 @@ A fixed aspect ratio preset constrains the crop frame to a specific ratio. When 
 ```
 
 The `width` and `height` values define the ratio (16:9 in this example), not absolute dimensions.
+
+### Content Aspect Ratio
+
+A content aspect ratio preset resizes the selected block to match the intrinsic aspect ratio of its image or video content. The engine resolves the content's natural width and height from the fill's `sourceSet` when the preset is applied.
+
+```typescript
+const contentAspectRatioAsset = {
+  id: 'aspect-ratio-original',
+  label: { en: 'Original' },
+  payload: {
+    transformPreset: { type: 'ContentAspectRatio' }
+  }
+};
+```
+
+Use this preset to let users revert a cropped block back to the natural proportions of its underlying content. Applying it to a block without resolvable content dimensions (e.g. a text block, an empty placeholder, or a page) returns an error.
 
 ### Fixed Size
 
@@ -370,6 +388,7 @@ Ensure the `type` value is one of:
 
 - `'FreeAspectRatio'` - for unconstrained cropping
 - `'FixedAspectRatio'` - for ratio-locked cropping
+- `'ContentAspectRatio'` - for snapping to the content's intrinsic ratio
 - `'FixedSize'` - for exact dimension cropping
 
 ### Missing Labels

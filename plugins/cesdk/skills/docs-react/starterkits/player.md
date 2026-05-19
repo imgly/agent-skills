@@ -254,7 +254,7 @@ await cesdk.loadFromURL('https://example.com/scene.json');
 await cesdk.actions.run('zoom.toPage', {
   page: 'first',
   autoFit: true,
-  padding: 24
+  padding: 24,
 });
 ```
 
@@ -285,15 +285,15 @@ Customize UI labels and add support for multiple languages. The i18n system supp
 cesdk.i18n.setTranslations({
   en: {
     'common.play': 'Play Video',
-    'common.pause': 'Pause'
-  }
+    'common.pause': 'Pause',
+  },
 });
 
 // Add a new language
 cesdk.i18n.setTranslations({
   de: {
-    'common.play': 'Video abspielen'
-  }
+    'common.play': 'Video abspielen',
+  },
 });
 
 // Set the active locale
@@ -314,37 +314,37 @@ The Video Player includes everything needed for video playback.
     title: 'Playback Controls',
     description:
       'Play, pause, and seek through video content with intuitive controls.',
-    imageId: 'transform'
+    imageId: 'transform',
   },
   {
     title: 'Timeline Navigation',
     description:
       'Scrub through the timeline to preview any point in the video.',
-    imageId: 'filters'
+    imageId: 'filters',
   },
   {
     title: 'Zoom Controls',
     description:
       'Zoom in and out of the video canvas with fit-to-screen options.',
-    imageId: 'green-screen'
+    imageId: 'green-screen',
   },
   {
     title: 'Page Navigation',
     description: 'Navigate between pages in multi-page video projects.',
-    imageId: 'text-editing'
+    imageId: 'text-editing',
   },
   {
     title: 'Read-Only Mode',
     description:
       'Display video content without editing capabilities for preview and review workflows.',
-    imageId: 'asset-libraries'
+    imageId: 'asset-libraries',
   },
   {
     title: 'Lightweight Interface',
     description:
       'Minimal UI focused on playback experience without editing distractions.',
-    imageId: 'client-side'
-  }
+    imageId: 'client-side',
+  },
 ]}
 />
 
@@ -382,7 +382,8 @@ The Video Player includes everything needed for video playback.
 
 ## Next Steps
 
-- [Configuration](./configuration.md) – Complete list of initialization options
+- [Configuration](./configuration.md) – Complete list of initialization
+  options
 - [Serve Assets](./serve-assets.md) – Self-host engine assets for production
 - [Theming](./user-interface/appearance/theming.md) – Customize colors and appearance
 - [Localization](./user-interface/localization.md) – Add translations and language support

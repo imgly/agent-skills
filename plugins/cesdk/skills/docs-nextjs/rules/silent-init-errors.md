@@ -10,6 +10,7 @@ During development, wrap sections of the `init` callback in `try/catch` with `co
 import { DesignEditorConfig } from './config/plugin';
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -32,6 +33,7 @@ import {
 
       // Add default asset source plugins
       await cesdk.addPlugin(new BlurAssetSource());
+      await cesdk.addPlugin(new ImageColorsAssetSource());
       await cesdk.addPlugin(new ColorPaletteAssetSource());
       await cesdk.addPlugin(new CropPresetsAssetSource());
       await cesdk.addPlugin(new EffectsAssetSource());
@@ -96,6 +98,7 @@ init={async (cesdk) => {
 
     // Default asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(new EffectsAssetSource());

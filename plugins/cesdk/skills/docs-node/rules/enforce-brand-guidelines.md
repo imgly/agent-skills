@@ -35,7 +35,9 @@ config();
  */
 
 // Initialize CE.SDK engine in headless mode
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
+});
 
 try {
   // Create a design scene
@@ -237,7 +239,9 @@ Initialize the headless engine for server-side processing:
 
 ```typescript highlight-setup
 // Initialize CE.SDK engine in headless mode
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+  baseURL: process.env.IMGLY_LOCAL_ASSETS_URL,
+});
 ```
 
 ## Restricting Colors to Brand Palette

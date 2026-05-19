@@ -26,6 +26,7 @@ PNG is a lossless image format that preserves image quality and supports transpa
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -39,7 +40,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './design-editor/plugin';
+import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -55,6 +56,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new DesignEditorConfig());
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -128,8 +130,9 @@ class Example implements EditorPlugin {
     // Override the default export action to customize behavior
     cesdk.actions.register('exportDesign', async (options) => {
       // Use the utils API to export with a loading dialog
-      const { blobs, options: exportOptions } =
-        await cesdk.utils.export(options);
+      const { blobs, options: exportOptions } = await cesdk.utils.export(
+        options
+      );
 
       // Custom logic: log the export details
       console.log(
@@ -255,8 +258,9 @@ Register a custom handler for the `exportDesign` action to customize behavior. T
     // Override the default export action to customize behavior
     cesdk.actions.register('exportDesign', async (options) => {
       // Use the utils API to export with a loading dialog
-      const { blobs, options: exportOptions } =
-        await cesdk.utils.export(options);
+      const { blobs, options: exportOptions } = await cesdk.utils.export(
+        options
+      );
 
       // Custom logic: log the export details
       console.log(
