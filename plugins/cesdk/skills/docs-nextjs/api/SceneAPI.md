@@ -110,6 +110,8 @@ saveToArchive(): Promise<Blob>
 Create a new design scene, along with its own camera.
 ```javascript
 const scene = engine.scene.create(layout);
+// With a specific design unit and auto-paired font-size unit:
+const pxScene = engine.scene.create('Free', { designUnit: 'Pixel' });
 ```
 
 ```typescript
@@ -122,6 +124,9 @@ create(sceneLayout?: SceneLayout, options?: CreateSceneOptions): DesignBlockId
   - `page` - Page options. Properties:
     - `size` - The size of the page.
     - `color` - Optional background color of the page.
+  - `designUnit` - The design unit of the new scene. Defaults to `Pixel`.
+  - `fontSizeUnit` - The font-size unit. If omitted, paired with `designUnit`
+    (`Pixel` design unit → `Pixel` font unit, others → `Point`).
 
 **Returns:** The scene's handle.
 
@@ -240,6 +245,35 @@ getDesignUnit(): DesignUnit
 ```
 
 **Returns:** The current design unit.
+
+### setFontSizeUnit()
+
+Sets the unit in which font sizes for `setTextFontSize` and `getTextFontSizes` are interpreted.
+The engine continues to store font sizes in points internally; this only affects how values
+are interpreted at the API boundary when callers don't specify a `unit` in `TextFontSizeOptions`.
+```javascript
+engine.scene.setFontSizeUnit('Pixel');
+```
+
+```typescript
+setFontSizeUnit(fontSizeUnit: FontSizeUnit): void
+```
+
+**Parameters:**
+- `fontSizeUnit` - The new font-size unit of the scene.
+
+### getFontSizeUnit()
+
+Returns the font-size unit of the current scene.
+```javascript
+engine.scene.getFontSizeUnit();
+```
+
+```typescript
+getFontSizeUnit(): FontSizeUnit
+```
+
+**Returns:** The current font-size unit.
 
 ### getLayout()
 

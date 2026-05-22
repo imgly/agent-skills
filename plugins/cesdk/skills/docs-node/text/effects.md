@@ -170,7 +170,7 @@ We add a colored border around text using stroke APIs. We enable stroke with `se
   engine.block.setStrokePosition(outlineText, 'Center');
 ```
 
-The stroke width is specified in pixels. Text blocks use centered stroke positioning. Stroke styles include `'Solid'`, `'Dashed'`, `'Dotted'`, and other line patterns.
+The stroke width is specified in pixels. Text blocks support `'Center'`, `'Inner'`, and `'Outer'` stroke positioning via `setStrokePosition()`. Stroke styles include `'Solid'`, `'Dashed'`, `'Dotted'`, and other line patterns.
 
 ## API Reference
 

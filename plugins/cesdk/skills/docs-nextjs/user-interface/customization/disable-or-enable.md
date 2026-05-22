@@ -585,7 +585,7 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.shape.options.points` | Controls star point count |
 | `ly.img.shape.options.innerDiameter` | Controls star inner diameter |
 | `ly.img.shape.options.sides` | Controls polygon side count |
-| `ly.img.shape.options.lineWidth` | Controls line stroke width |
+| `ly.img.shape.options.lineWidth` | Controls the stroke-width input for line graphics (line thickness is sourced from stroke width) |
 
 ### Vector Edit Features
 
@@ -629,6 +629,7 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.scene.layout.horizontal` | Controls horizontal layout toggle |
 | `ly.img.scene.layout.vertical` | Controls vertical layout toggle |
 | `ly.img.scene.layout.free` | Controls free layout toggle |
+| `ly.img.scene.fontSizeUnit` | Controls visibility of the per-scene font-size unit selector in the page resize panel |
 
 ### Other Features
 

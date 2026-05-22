@@ -83,6 +83,23 @@ try {
   // 'Cover' automatically scales and positions to fill the entire frame
   engine.block.setContentFillMode(imageBlock, 'Cover');
 
+  // Alignment only applies in 'Cover' and 'Contain' fill modes — it controls
+  // which part of the content stays visible (Cover) or where the letterboxed
+  // content sits (Contain). It is ignored in 'Crop' mode.
+  // Pin the content to the top-left corner instead of the default center
+  engine.block.setContentFillHorizontalAlignment(imageBlock, 'Left');
+  engine.block.setContentFillVerticalAlignment(imageBlock, 'Top');
+
+  // Read the current alignment values
+  const horizontalAlignment =
+    engine.block.getContentFillHorizontalAlignment(imageBlock);
+  const verticalAlignment =
+    engine.block.getContentFillVerticalAlignment(imageBlock);
+  console.log('Content fill alignment:', {
+    horizontalAlignment,
+    verticalAlignment
+  });
+
   // Create another image block to demonstrate crop scaling
   const scaleBlock = await engine.block.addImage(imageUri, {
     size: { width: 200, height: 200 }
@@ -278,6 +295,31 @@ The available fill modes are:
 - **Contain** - Automatically scales and positions content to fit within the frame (may show gaps)
 
 Use `Crop` mode when you need precise control over which part of the image is visible. Use `Cover` for automatic framing that fills the entire space.
+
+### Align Content Fill
+
+In `Cover` and `Contain` modes, content is centered inside the block by default. Use the alignment APIs to pin content to a specific edge instead — for example, to keep the top-left of an image visible regardless of the image's aspect ratio.
+
+```typescript highlight-content-fill-alignment
+  // Alignment only applies in 'Cover' and 'Contain' fill modes — it controls
+  // which part of the content stays visible (Cover) or where the letterboxed
+  // content sits (Contain). It is ignored in 'Crop' mode.
+  // Pin the content to the top-left corner instead of the default center
+  engine.block.setContentFillHorizontalAlignment(imageBlock, 'Left');
+  engine.block.setContentFillVerticalAlignment(imageBlock, 'Top');
+
+  // Read the current alignment values
+  const horizontalAlignment =
+    engine.block.getContentFillHorizontalAlignment(imageBlock);
+  const verticalAlignment =
+    engine.block.getContentFillVerticalAlignment(imageBlock);
+  console.log('Content fill alignment:', {
+    horizontalAlignment,
+    verticalAlignment
+  });
+```
+
+The horizontal options are `'Left'`, `'Center'` (default), and `'Right'`. The vertical options are `'Top'`, `'Center'` (default), and `'Bottom'`. In `Cover` mode the alignment controls which part of the oversized content stays visible; in `Contain` mode it controls where the letterboxed content sits. The alignment is ignored in `Crop` mode, where translation is set explicitly.
 
 ### Scale Content
 
@@ -519,6 +561,10 @@ engine.dispose();
 | `block.supportsContentFillMode(id)` | Check if block supports fill modes |
 | `block.setContentFillMode(id, mode)` | Set content fill mode |
 | `block.getContentFillMode(id)` | Get current content fill mode |
+| `block.setContentFillHorizontalAlignment(id, alignment)` | Align fill horizontally (Left, Center, Right) in Cover/Contain modes |
+| `block.getContentFillHorizontalAlignment(id)` | Get horizontal fill alignment |
+| `block.setContentFillVerticalAlignment(id, alignment)` | Align fill vertically (Top, Center, Bottom) in Cover/Contain modes |
+| `block.getContentFillVerticalAlignment(id)` | Get vertical fill alignment |
 | `block.getCropScaleX(id)` | Get horizontal crop scale |
 | `block.getCropScaleY(id)` | Get vertical crop scale |
 | `block.getCropScaleRatio(id)` | Get uniform crop scale ratio |

@@ -59,6 +59,8 @@ Add powerful custom functionality to the editor in a matter of seconds.
   <SolutionCard title="Cutout Lines Editor" description="CE.SDK's cutout plugin enables effortless creation and customization of cutout shapes for web-to-print users." contentId="ctltl1" liveExampleUrl="/examples/starterkit-cutout-lines-editor/" heroImage={cutoutHero} />
 
   <SolutionCard title="Vectorizer Editor" description="Transform your pixel-based images into scalable vector graphics with Vectorizer Plugin." contentId="vctre1" liveExampleUrl="/examples/starterkit-vectorizer-editor/" heroImage={vectorizerHero} />
+
+  <SolutionCard title="Perfectly Clear Editor" description="One-click image enhancement using the Perfectly Clear (eyeQ) plugin — scene-aware correction running entirely in-browser via WebAssembly." contentId="pfcce1" liveExampleUrl="/examples/starterkit-perfectlyclear-editor/" heroImage={perfectlyClearHero} />
 </SolutionGrid>
 
 ### Custom Built UIs
@@ -155,6 +157,8 @@ Extend editor functionality with file format imports, content moderation, design
   <SolutionCard title="Photoshop Template Import" description="Transform your existing Photoshop templates for use in the CE.SDK with our Importer. Preserve design elements and streamline the transition between platforms." contentId="psd001" liveExampleUrl="/examples/starterkit-psd-template-import/" heroImage={psdHero} />
 
   <SolutionCard title="PowerPoint Template Import" description="Transform PowerPoint slides into editable CE.SDK designs. All formatting preserved." contentId="pptx01" liveExampleUrl="/examples/starterkit-pptx-template-import/" heroImage={pptxHero} />
+
+  <SolutionCard title="PDF Template Import" description="Transform PDF documents into editable CE.SDK designs. Preserve text, images, and layout while making them fully editable." contentId="pdf001" liveExampleUrl="/examples/starterkit-pdf-template-import/" heroImage={pdfHero} />
 
   <SolutionCard title="InDesign Template Import" description="Transform your existing InDesign templates for use in the CE.SDK with our Importer. Preserve design elements and streamline the transition between platforms." contentId="idml01" liveExampleUrl="/examples/starterkit-indesign-template-import/" heroImage={indesignHero} />
 

@@ -1,4 +1,4 @@
-# Design Editor Starter Kit
+# Form-Based Template Adoption Starter Kit
 
 Use a form-based custom panel in CE.SDK to enable users to easily customize templates. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
 
@@ -6,7 +6,7 @@ Use a form-based custom panel in CE.SDK to enable users to easily customize temp
   <a href="https://img.ly/docs/cesdk/js/starterkits/form-based-template-adoption-fbtmp1/">Documentation</a>
 </p>
 
-![Design Editor starter kit showing a graphic design interface](./hero.webp)
+![Form-Based Template Adoption starter kit showing a customization form panel](./hero.webp)
 
 ## Getting Started
 
@@ -131,7 +131,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Design Editor Documentation](https://img.ly/docs/cesdk/starterkits/design-editor/).
+For complete integration guides and API reference, visit the [Form-Based Template Adoption Documentation](https://img.ly/docs/cesdk/starterkits/form-based-template-adoption/).
 
 ## License
 
@@ -139,4 +139,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">IMG.LY</a></p>
+<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-form-based-template-adoption">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-form-based-template-adoption">IMG.LY</a></p>

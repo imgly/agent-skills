@@ -20,6 +20,7 @@ type BlockEnumType = object;
 |  `scene/layout` | [`SceneLayout`](./api/node/type-aliases/scenelayout.md) |
 |  `scene/mode` | [`SceneMode`](./api/node/type-aliases/scenemode.md) |
 |  `width/mode` | [`WidthMode`](./api/node/type-aliases/widthmode.md) |
+|  `stroke/cap` | [`StrokeCap`](./api/node/type-aliases/strokecap.md) |
 |  `stroke/cornerGeometry` | [`StrokeCornerGeometry`](./api/node/type-aliases/strokecornergeometry.md) |
 |  `stroke/position` | [`StrokePosition`](./api/node/type-aliases/strokeposition.md) |
 |  `stroke/style` | [`StrokeStyle`](./api/node/type-aliases/strokestyle.md) |

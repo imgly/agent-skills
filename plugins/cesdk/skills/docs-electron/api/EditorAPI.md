@@ -18,20 +18,27 @@ onStateChanged(callback: () => void): (() => void)
 ### onHistoryUpdated()
 
 Subscribe to undo/redo history changes.
+The callback receives a {@link HistoryUpdate} describing what kind of update happened so consumers can
+distinguish a real change to the active history's snapshots (e.g. an edit, undo, or redo) from a pure activation
+via `setActiveHistory`.
 ```javascript
-const unsubscribe = engine.editor.onHistoryUpdated(() => {
+const unsubscribe = engine.editor.onHistoryUpdated((kind) => {
+  if (kind === 'Activated') {
+    // The active history was switched; no scene change happened on this event.
+    return;
+  }
   const canUndo = engine.editor.canUndo();
   const canRedo = engine.editor.canRedo();
-  console.log("History updated", {canUndo, canRedo});
-})
+  console.log('History updated', { canUndo, canRedo });
+});
 ```
 
 ```typescript
-onHistoryUpdated(callback: () => void): (() => void)
+onHistoryUpdated(callback: (kind: HistoryUpdate) => void): (() => void)
 ```
 
 **Parameters:**
-- `callback` - Function called when the undo/redo history changes.
+- `callback` - Function called when the undo/redo history changes. The argument describes the kind of update.
 
 **Returns:** A method to unsubscribe from the event.
 

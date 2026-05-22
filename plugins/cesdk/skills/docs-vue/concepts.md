@@ -28,6 +28,7 @@ Key Concepts and principles of CE.SDK.
 - [Resources](./concepts/resources.md) - Learn how CE.SDK loads and manages external media files, including preloading for performance, handling transient data, and relocating resources when URLs change.
 - [Undo and History](./concepts/undo-and-history.md) - Manage undo and redo stacks in CE.SDK using multiple histories, callbacks, and API-based controls.
 - [Design Units](./concepts/design-units.md) - Configure design units (pixels, millimeters, inches) and DPI settings for print-ready output in CE.SDK.
+- [Font Size Unit](./concepts/font-size-unit.md) - Configure how font sizes are interpreted (Point vs Pixel) per scene in the CE.SDK Web engine.
 - [Headless](./concepts/headless-mode/browser.md) - Run headless CE.SDK's Engine inside a browser-based app.
 
 

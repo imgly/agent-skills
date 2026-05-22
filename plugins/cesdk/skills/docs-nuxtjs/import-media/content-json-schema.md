@@ -293,8 +293,8 @@ CMYK is used for print production. Component values represent ink percentages fr
   "payload": {
     "color": {
       "colorSpace": "SpotColor",
-      "name": "Pantone 286 C",
-      "externalReference": "pantone://286-c",
+      "name": "Brand-Blue-286",
+      "externalReference": "spot://brand-blue-286",
       "representation": {
         "colorSpace": "sRGB",
         "r": 0.0,
@@ -306,7 +306,7 @@ CMYK is used for print production. Component values represent ink percentages fr
 }
 ```
 
-Spot colors reference named colors from systems like Pantone. The `representation` provides a screen preview while the actual color is defined by the external reference for accurate print reproduction.
+Spot colors reference named colors from a named-color system (for example, your in-house brand palette or a print vendor's spot-color library). The `representation` provides a screen preview while the actual color is defined by the external reference for accurate print reproduction.
 
 | Property | Type | Description |
 |----------|------|-------------|

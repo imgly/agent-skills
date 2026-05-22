@@ -321,7 +321,7 @@ const engine = await CreativeEngine.init({
 
 A spot color in CE.SDK consists of:
 
-- **Name**: A unique identifier for the spot color (e.g., "PANTONE 185 C", "Brand-Primary")
+- **Name**: A unique identifier for the spot color (e.g., "Brand-Red-185", "Brand-Primary")
 - **Tint**: A value from 0.0 to 1.0 controlling color intensity
 - **External Reference**: Optional metadata linking to external color systems
 
@@ -626,7 +626,7 @@ When exporting to PDF, spot colors are embedded as named separations that RIP so
 
 **Define early** - Register spot colors at initialization before applying them to blocks. Undefined colors display as magenta, which can confuse users.
 
-**Use descriptive names** - Match your print vendor's reference (e.g., "Pantone-485-C") to ensure correct ink matching in production.
+**Use descriptive names** - Match your print vendor's reference (e.g., "Brand-Red-485") to ensure correct ink matching in production.
 
 **Provide both approximations** - RGB for screen display, CMYK for print-accurate previews. This gives designers the best experience across different workflows.
 

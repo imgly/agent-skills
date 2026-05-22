@@ -1,4 +1,4 @@
-# Design Editor Starter Kit
+# Version History Starter Kit
 
 With Version History, you can monitor changes made to each design and easily restore past versions if needed. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
 
@@ -6,7 +6,7 @@ With Version History, you can monitor changes made to each design and easily res
   <a href="https://img.ly/docs/cesdk/js/starterkits/version-history-vh1st0/">Documentation</a>
 </p>
 
-![Design Editor starter kit showing a graphic design interface](./hero.webp)
+![Version History starter kit showing design revisions in CE.SDK](./hero.webp)
 
 ## Getting Started
 
@@ -133,7 +133,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Design Editor Documentation](https://img.ly/docs/cesdk/starterkits/design-editor/).
+For complete integration guides and API reference, visit the [Version History Documentation](https://img.ly/docs/cesdk/starterkits/version-history/).
 
 ## License
 
@@ -141,4 +141,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">IMG.LY</a></p>
+<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-version-history">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-version-history">IMG.LY</a></p>

@@ -482,6 +482,10 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.timeline.video.options.description` | `string` |
 |  `component.topbar.back` | `string` |
 |  `component.topbar.close` | `string` |
+|  `component.typefaceLibrary` | `string` |
+|  `component.typefaceLibrary.allTypefaces` | `string` |
+|  `component.typefaceLibrary.inThisFile` | `string` |
+|  `component.typefaceLibrary.toggleVariants` | `string` |
 |  `component.undo.redo` | `string` |
 |  `component.undo.undo` | `string` |
 |  `component.video.properties` | `string` |
@@ -799,6 +803,8 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `property.adjustments.sharpness` | `string` |
 |  `property.adjustments.temperature` | `string` |
 |  `property.adjustments.whites` | `string` |
+|  `property.advancedStrokeOptions` | `string` |
+|  `property.advancedStrokeOptions.description` | `string` |
 |  `property.animation.baseline` | `string` |
 |  `property.animation.baseline.direction` | `string` |
 |  `property.animation.baseline.direction.Down` | `string` |
@@ -990,6 +996,17 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `property.color.description` | `string` |
 |  `property.cornerRadius` | `string` |
 |  `property.crop` | `string` |
+|  `property.crop.contentFillAlignment` | `string` |
+|  `property.crop.contentFillAlignment.bottomCenter` | `string` |
+|  `property.crop.contentFillAlignment.bottomLeft` | `string` |
+|  `property.crop.contentFillAlignment.bottomRight` | `string` |
+|  `property.crop.contentFillAlignment.centerCenter` | `string` |
+|  `property.crop.contentFillAlignment.centerLeft` | `string` |
+|  `property.crop.contentFillAlignment.centerRight` | `string` |
+|  `property.crop.contentFillAlignment.description` | `string` |
+|  `property.crop.contentFillAlignment.topCenter` | `string` |
+|  `property.crop.contentFillAlignment.topLeft` | `string` |
+|  `property.crop.contentFillAlignment.topRight` | `string` |
 |  `property.crop.contentFillMode` | `string` |
 |  `property.crop.contentFillMode.contain` | `string` |
 |  `property.crop.contentFillMode.cover` | `string` |
@@ -1218,8 +1235,6 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `property.strokePosition.description` | `string` |
 |  `property.strokePosition.inner` | `string` |
 |  `property.strokePosition.outer` | `string` |
-|  `property.strokePositionAndCornerGeometry` | `string` |
-|  `property.strokePositionAndCornerGeometry.description` | `string` |
 |  `property.strokeStyle` | `string` |
 |  `property.strokeStyle.dashed` | `string` |
 |  `property.strokeStyle.dashedRound` | `string` |
@@ -1319,6 +1334,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `settings.feature.combine.subtract` | `string` |
 |  `settings.feature.combine.union` | `string` |
 |  `settings.feature.crop` | `string` |
+|  `settings.feature.crop.fillAlignment` | `string` |
 |  `settings.feature.crop.fillMode` | `string` |
 |  `settings.feature.crop.flip` | `string` |
 |  `settings.feature.crop.panel.autoOpen` | `string` |

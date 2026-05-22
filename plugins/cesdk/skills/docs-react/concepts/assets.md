@@ -150,6 +150,25 @@ class Example implements EditorPlugin {
     });
     console.log('Found assets:', results.total);
 
+    // Narrow a query with structured predicates. The top-level array is
+    // an implicit AND of its entries.
+    const happyStickers = await engine.asset.findAssets('my-assets', {
+      page: 0,
+      perPage: 10,
+      filter: [
+        // Either tag matches (combinators nest arbitrarily).
+        {
+          or: [
+            { property: 'tags', equals: 'happy' },
+            { property: 'tags', equals: 'celebratory' }
+          ]
+        },
+        // Exclude archived items.
+        { not: { property: 'meta.kind', equals: 'archived' } }
+      ]
+    });
+    console.log('Filtered stickers:', happyStickers.total);
+
     // Apply an asset to create a block in the scene
     if (results.assets.length > 0) {
       const blockId = await engine.asset.apply('my-assets', results.assets[0]);
@@ -286,6 +305,41 @@ console.log('Found assets:', results.total);
 ```
 
 Results include pagination info. Loop through pages until `nextPage` is undefined to retrieve all matching assets.
+
+### Filtering by property
+
+The optional `filter` parameter narrows a query with structured predicates against the resolved asset. All entries in the top-level array must match (implicit AND). Each entry is either a property predicate (`{ property, contains?, equals? }`) or a logical combinator (`{ and: [...] }`, `{ or: [...] }`, `{ not: ... }`). Combinators nest.
+
+```typescript highlight-filter-assets
+// Narrow a query with structured predicates. The top-level array is
+// an implicit AND of its entries.
+const happyStickers = await engine.asset.findAssets('my-assets', {
+  page: 0,
+  perPage: 10,
+  filter: [
+    // Either tag matches (combinators nest arbitrarily).
+    {
+      or: [
+        { property: 'tags', equals: 'happy' },
+        { property: 'tags', equals: 'celebratory' }
+      ]
+    },
+    // Exclude archived items.
+    { not: { property: 'meta.kind', equals: 'archived' } }
+  ]
+});
+console.log('Filtered stickers:', happyStickers.total);
+```
+
+The `property` field is a dot-path against the resolved asset: `label`, `tags`, `id`, `groups`, or `meta.<key>`. Use `equals` for categorical or single-value fields and `contains` for free-text or list-encoded values. Both operators are case-insensitive. On a string array (`tags`, `groups`), the predicate matches if any element matches.
+
+> **\`not\` against a missing key:** A predicate evaluates to `false` on an asset that lacks the targeted field, so `not { property: 'meta.legacy', equals: 'true' }` matches every asset where `meta.legacy !== 'true'` **and** every asset that lacks `meta.legacy` entirely. If you need "field is present and not equal to x," combine with a presence check: `and: [{ property: 'meta.legacy', contains: '' }, { not: { ... } }]`.
+
+> **\`meta\` values are flat strings:** The engine stores every `meta.<key>` value as a flat string. `equals: 'true'` matches the literal string `"true"`; if a meta value was originally serialized as a number or boolean, stringify it the same way before comparing. For multi-valued data, prefer separate `tags` / `groups` elements over comma-separated `meta` values so `equals` can be element-exact.
+
+`filter` and the legacy `tags` / `groups` / `excludeGroups` fields can be combined — they are AND-combined before pagination. Prefer `filter` for anything beyond a plain case-sensitive include/exclude list (substring matches, `meta.<key>`, `or` / `not` combinators); reach for the legacy fields only when you want their case-sensitive exact-match semantics.
+
+Malformed filters reject the returned promise with the engine's parse-error message (for example, `"Unknown asset property '…'"` or `"Asset property filter must have exactly one of 'contains' or 'equals'."`).
 
 ## Applying Assets
 

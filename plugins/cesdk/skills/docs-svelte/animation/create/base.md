@@ -219,7 +219,10 @@ class Example implements EditorPlugin {
     engine.block.setInAnimation(block5, slideFromTop);
     engine.block.setDuration(slideFromTop, 1.0);
 
-    // Set slide direction (in radians: 0=right, PI/2=bottom, PI=left, 3*PI/2=top)
+    // Set slide direction (radians describe the motion direction the block
+    // travels along; the block enters from the opposite side):
+    //   0=slides right (enters from left), PI/2=slides down (enters from top),
+    //   PI=slides left (enters from right), 3*PI/2=slides up (enters from bottom)
     engine.block.setFloat(
       slideFromTop,
       'animation/slide/direction',
@@ -358,7 +361,10 @@ Each animation type has specific configurable properties. We use `findAllPropert
     engine.block.setInAnimation(block5, slideFromTop);
     engine.block.setDuration(slideFromTop, 1.0);
 
-    // Set slide direction (in radians: 0=right, PI/2=bottom, PI=left, 3*PI/2=top)
+    // Set slide direction (radians describe the motion direction the block
+    // travels along; the block enters from the opposite side):
+    //   0=slides right (enters from left), PI/2=slides down (enters from top),
+    //   PI=slides left (enters from right), 3*PI/2=slides up (enters from bottom)
     engine.block.setFloat(
       slideFromTop,
       'animation/slide/direction',
@@ -372,12 +378,12 @@ Each animation type has specific configurable properties. We use `findAllPropert
     console.log('Slide animation properties:', properties);
 ```
 
-For slide animations, the `animation/slide/direction` property controls the entry direction in radians:
+For slide animations, the `animation/slide/direction` property is the angle in radians that the block travels along during entrance — the block starts off-screen on the opposite side and slides in:
 
-- `0` — From the right
-- `Math.PI / 2` — From the bottom
-- `Math.PI` — From the left
-- `3 * Math.PI / 2` — From the top
+- `0` — Slides right (enters from the left)
+- `Math.PI / 2` — Slides down (enters from the top)
+- `Math.PI` — Slides left (enters from the right)
+- `3 * Math.PI / 2` — Slides up (enters from the bottom)
 
 ## Managing Animation Lifecycle
 

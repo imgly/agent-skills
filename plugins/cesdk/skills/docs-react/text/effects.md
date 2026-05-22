@@ -213,7 +213,7 @@ Stroke outlines add a colored border around text. We enable stroke with `setStro
     engine.block.setStrokePosition(outlineText, 'Center');
 ```
 
-The stroke width is specified in pixels. Text blocks use centered stroke positioning. Stroke styles include `'Solid'`, `'Dashed'`, `'Dotted'`, and other line patterns.
+The stroke width is specified in pixels. Text blocks support `'Center'`, `'Inner'`, and `'Outer'` stroke positioning via `setStrokePosition()`. Stroke styles include `'Solid'`, `'Dashed'`, `'Dotted'`, and other line patterns.
 
 ## API Reference
 

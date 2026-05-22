@@ -994,6 +994,36 @@ Structure designs by positioning, sizing, layering, aligning, and distributing b
 
 <details>
   <summary>
+    ### isLineOrigin()
+
+    <br /><p>Checks whether a graphic block originated as a line shape. Survives the
+    line's conversion to a vector path during vector-edit; resets only when
+    the shape is replaced by a non-line shape via <code>setShape</code>.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block to query. |
+
+  #### Returns
+
+  `boolean`
+
+  True if the block originated as a line shape, false otherwise.
+
+  #### Signature
+
+  ```typescript
+  isLineOrigin(id: number): boolean
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### setTransformLocked()
 
     <br /><p>Sets the transform-locked state of a block.</p>
@@ -3219,6 +3249,138 @@ Create, configure, and manage block fills, including solid colors, gradients, an
 
 <details>
   <summary>
+    ### setContentFillHorizontalAlignment()
+
+    <br /><p>Sets the horizontal alignment of the content fill within a block.</p>
+  </summary>
+
+  Only affects 'Contain' and 'Cover' fill modes; has no visible effect in 'Crop' mode,
+  where the user positions the content explicitly.
+
+  ```javascript
+  engine.block.setContentFillHorizontalAlignment(image, 'Left');
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block to update. |
+  | `alignment` | `"Right"` | `"Left"` | `"Center"` | The horizontal alignment: 'Left', 'Center' or 'Right'. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setContentFillHorizontalAlignment(id: number, alignment: "Right" | "Left" | "Center"): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getContentFillHorizontalAlignment()
+
+    <br /><p>Gets the horizontal alignment of the content fill within a block.</p>
+  </summary>
+
+  ```javascript
+  engine.block.getContentFillHorizontalAlignment(image);
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block to query. |
+
+  #### Returns
+
+  `"Right"` | `"Left"` | `"Center"`
+
+  The current alignment: 'Left', 'Center' or 'Right'.
+
+  #### Signature
+
+  ```typescript
+  getContentFillHorizontalAlignment(id: number): "Right" | "Left" | "Center"
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setContentFillVerticalAlignment()
+
+    <br /><p>Sets the vertical alignment of the content fill within a block.</p>
+  </summary>
+
+  Only affects 'Contain' and 'Cover' fill modes; has no visible effect in 'Crop' mode,
+  where the user positions the content explicitly.
+
+  ```javascript
+  engine.block.setContentFillVerticalAlignment(image, 'Top');
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block to update. |
+  | `alignment` | `"Center"` | `"Top"` | `"Bottom"` | The vertical alignment: 'Top', 'Center' or 'Bottom'. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setContentFillVerticalAlignment(id: number, alignment: "Center" | "Top" | "Bottom"): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getContentFillVerticalAlignment()
+
+    <br /><p>Gets the vertical alignment of the content fill within a block.</p>
+  </summary>
+
+  ```javascript
+  engine.block.getContentFillVerticalAlignment(image);
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block to query. |
+
+  #### Returns
+
+  `"Center"` | `"Top"` | `"Bottom"`
+
+  The current alignment: 'Top', 'Center' or 'Bottom'.
+
+  #### Signature
+
+  ```typescript
+  getContentFillVerticalAlignment(id: number): "Center" | "Top" | "Bottom"
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### setGradientColorStops()
 
     <br /><p>Sets the color stops for a gradient property.</p>
@@ -4583,6 +4745,76 @@ Create, edit, and style text content.
 
 <details>
   <summary>
+    ### setTextKerning()
+
+    <br /><p>Sets kerning for a grapheme range.</p>
+  </summary>
+
+  Applies an additional offset in em units on top of the font's built-in kern.
+  `1.0` equals the run's font size, so the offset scales proportionally with text size.
+
+  ```javascript
+  engine.block.setTextKerning(text, 0.1); // add 10% of font size as extra spacing
+  engine.block.setTextKerning(text, -0.05, 0, 5); // tighten first 5 graphemes
+  engine.block.setTextKerning(text, 0); // reset to no extra offset
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to modify. |
+  | `kerning` | `number` | Additional kerning in em units (1.0 = one full em). Use 0 for no extra offset. |
+  | `from?` | `number` | The start index of the UTF-16 range. Defaults to the start of the current selection or text. |
+  | `to?` | `number` | The end index of the UTF-16 range. Defaults to the end of the current selection or text. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setTextKerning(id: number, kerning: number, from?: number, to?: number): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getTextKernings()
+
+    <br /><p>Returns the unique kerning values across the grapheme range.</p>
+  </summary>
+
+  ```javascript
+  const kernings = engine.block.getTextKernings(text); // e.g. [0] or [0.1, 0]
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to query. |
+  | `from?` | `number` | The start index of the UTF-16 range. Defaults to the start of the current selection or text. |
+  | `to?` | `number` | The end index of the UTF-16 range. Defaults to the end of the current selection or text. |
+
+  #### Returns
+
+  `number`\[]
+
+  #### Signature
+
+  ```typescript
+  getTextKernings(id: number, from?: number, to?: number): number[]
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### toggleTextDecorationUnderline()
 
     <br /><p>Toggles the underline decoration for a text range.</p>
@@ -4931,6 +5163,75 @@ Create, edit, and style text content.
 
   ```typescript
   getTextParagraphIndices(id: number, from?: number, to?: number): number[]
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setTextLineHeight()
+
+    <br /><p>Sets the line height multiplier for a specific paragraph or all paragraphs of a text block.</p>
+  </summary>
+
+  ```javascript
+  engine.block.setTextLineHeight(text, 1.5);
+  engine.block.setTextLineHeight(text, 1.5, 0);
+  engine.block.setTextLineHeight(text, null); // reset all paragraphs to block default
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to modify. |
+  | `lineHeight` | `number` | The line height multiplier, or `null` to reset to the block-level default. |
+  | `paragraphIndex?` | `number` | The 0-based index of the paragraph to modify. Negative values apply to all paragraphs. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setTextLineHeight(id: number, lineHeight: number, paragraphIndex?: number): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getTextLineHeight()
+
+    <br /><p>Returns the line height multiplier for a specific paragraph of a text block.</p>
+  </summary>
+
+  Returns the per-paragraph override if one is set, otherwise returns the block-level `lineHeight`.
+
+  ```javascript
+  const lineHeight = engine.block.getTextLineHeight(text, 0);
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to query. |
+  | `paragraphIndex` | `number` | The 0-based index of the paragraph. |
+
+  #### Returns
+
+  `number`
+
+  The line height multiplier for the paragraph.
+
+  #### Signature
+
+  ```typescript
+  getTextLineHeight(id: number, paragraphIndex: number): number
   ```
 
   ***
@@ -5365,6 +5666,38 @@ Create, edit, and style text content.
 
   ```typescript
   getTextVisibleLineContent(id: number, lineIndex: number): string
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getTextCharacterInkBoxes()
+
+    <br /><p>Returns the tight ink-paint bounding box for each grapheme in the range.
+    One entry per grapheme in \[from, to). Non-printable graphemes get a zero-rect.
+    Coordinates are in global scene space.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to query. |
+  | `from?` | `number` | Start grapheme index (-1 = start of cursor selection or 0). |
+  | `to?` | `number` | End grapheme index (-1 = end of cursor selection or text length). |
+
+  #### Returns
+
+  [`CharacterInkBox`](./api/node/interfaces/characterinkbox.md)\[]
+
+  Array of CharacterInkBox, one per grapheme in range, in text order.
+
+  #### Signature
+
+  ```typescript
+  getTextCharacterInkBoxes(id: number, from?: number, to?: number): CharacterInkBox[]
   ```
 
   ***
@@ -8155,45 +8488,6 @@ Crop, scale, translate, and transform block content.
   ```typescript
   setCropAspectRatioLocked(id: number, locked: boolean): void
   ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### canRevertToOriginalRatio()
-
-    <br /><p>Checks whether the "Original" crop preset (<code>ContentAspectRatio</code>) can be applied to a block.</p>
-  </summary>
-
-  This runs the same preliminary check the apply path performs: it resolves the intrinsic
-  content dimensions from the block's image/video fill (an image fill resolves only from its
-  `sourceSet`; a video fill resolves from its `sourceSet` or the first decoded frame). Use it
-  to gate UI that would otherwise call the preset and fail — e.g. an unreplaced placeholder
-  image fill with an empty `sourceSet`.
-
-  ```javascript
-  const canRevert = engine.block.canRevertToOriginalRatio(block);
-  ```
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The block to query. |
-
-  #### Returns
-
-  `boolean`
-
-  True if the preset would resolve, false if it cannot (no/placeholder fill, empty
-  sourceSet, video not yet decoded, or unsupported fill type).
-
-  #### Signature
-
-  ```typescript
-  canRevertToOriginalRatio(id: number): boolean
-  ```
 </details>
 
 ## Block Events
@@ -9733,6 +10027,404 @@ Control stroke appearance, including color, width, style, and position.
 
   ```typescript
   getStrokeCornerGeometry(id: number): "Bevel" | "Miter" | "Round"
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### ~~setStrokeCap()~~
+
+    <br /><p>Sets the stroke cap of a block. Writes both the start and end caps to the
+    same value.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose stroke cap should be set. |
+  | `cap` | `"Round"` | `"Butt"` | `"Square"` | The stroke cap to be set. |
+
+  #### Returns
+
+  `void`
+
+  #### Deprecated
+
+  Use `setStrokeStartCap` and `setStrokeEndCap` to set each end
+  independently.
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### ~~getStrokeCap()~~
+
+    <br /><p>Gets the legacy single stroke cap of a block. Tracks the value last written
+    via <code>setStrokeCap</code> or <code>setStrokeStartCap</code>; ignores changes made via
+    <code>setStrokeEndCap</code>.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose stroke cap should be queried. |
+
+  #### Returns
+
+  `"Round"` | `"Butt"` | `"Square"`
+
+  The stroke cap.
+
+  #### Deprecated
+
+  Use `getStrokeStartCap` and `getStrokeEndCap` instead.
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setStrokeStartCap()
+
+    <br /><p>Sets the cap geometry at the start of an open stroked path. Use this with
+    <code>setStrokeEndCap</code> to set distinct caps for each end of a stroke (for
+    example a flat start with an arrowhead end). <code>setStrokeCap</code> continues to
+    set both ends at once and is preserved for backwards compatibility.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose stroke start cap should be set. |
+  | `cap` | `"Round"` | `"Butt"` | `"Square"` | The cap geometry to use at the path start. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setStrokeStartCap(id: number, cap: "Round" | "Butt" | "Square"): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getStrokeStartCap()
+
+    <br /><p>Gets the cap geometry at the start of an open stroked path.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose stroke start cap should be queried. |
+
+  #### Returns
+
+  `"Round"` | `"Butt"` | `"Square"`
+
+  The start cap.
+
+  #### Signature
+
+  ```typescript
+  getStrokeStartCap(id: number): "Round" | "Butt" | "Square"
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setStrokeEndCap()
+
+    <br /><p>Sets the cap geometry at the end of an open stroked path. Use this with
+    <code>setStrokeStartCap</code> to set distinct caps for each end of a stroke.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose stroke end cap should be set. |
+  | `cap` | `"Round"` | `"Butt"` | `"Square"` | The cap geometry to use at the path end. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setStrokeEndCap(id: number, cap: "Round" | "Butt" | "Square"): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getStrokeEndCap()
+
+    <br /><p>Gets the cap geometry at the end of an open stroked path.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose stroke end cap should be queried. |
+
+  #### Returns
+
+  `"Round"` | `"Butt"` | `"Square"`
+
+  The end cap.
+
+  #### Signature
+
+  ```typescript
+  getStrokeEndCap(id: number): "Round" | "Butt" | "Square"
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setStrokeDashStartCap()
+
+    <br /><p>Sets the cap geometry at the leading edge of each dash piece (excluding the
+    line's actual start). Only takes effect when a dash pattern is active.
+    Distinct from <code>setStrokeStartCap</code>, which only applies to the start of the
+    open path itself.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose dash start cap should be set. |
+  | `cap` | `"Round"` | `"Butt"` | `"Square"` | The cap geometry to use at the leading edge of each dash piece. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setStrokeDashStartCap(id: number, cap: "Round" | "Butt" | "Square"): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getStrokeDashStartCap()
+
+    <br /><p>Gets the cap geometry at the leading edge of each dash piece.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose dash start cap should be queried. |
+
+  #### Returns
+
+  `"Round"` | `"Butt"` | `"Square"`
+
+  The dash start cap.
+
+  #### Signature
+
+  ```typescript
+  getStrokeDashStartCap(id: number): "Round" | "Butt" | "Square"
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setStrokeDashEndCap()
+
+    <br /><p>Sets the cap geometry at the trailing edge of each dash piece (excluding the
+    line's actual end). Only takes effect when a dash pattern is active. Distinct
+    from <code>setStrokeEndCap</code>, which only applies to the end of the open path itself.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose dash end cap should be set. |
+  | `cap` | `"Round"` | `"Butt"` | `"Square"` | The cap geometry to use at the trailing edge of each dash piece. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setStrokeDashEndCap(id: number, cap: "Round" | "Butt" | "Square"): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getStrokeDashEndCap()
+
+    <br /><p>Gets the cap geometry at the trailing edge of each dash piece.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose dash end cap should be queried. |
+
+  #### Returns
+
+  `"Round"` | `"Butt"` | `"Square"`
+
+  The dash end cap.
+
+  #### Signature
+
+  ```typescript
+  getStrokeDashEndCap(id: number): "Round" | "Butt" | "Square"
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setStrokeDashArray()
+
+    <br /><p>Sets a custom dash pattern for the block's stroke. Semantics match SVG's
+    <code>stroke-dasharray</code>: alternating on/off lengths in design-unit space. When the
+    pattern is non-empty it overrides the preset implied by <code>StrokeStyle</code>. Pass an
+    empty array to fall back to the preset.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose stroke dash pattern should be set. |
+  | `dashArray` | `number`\[] | Alternating on/off lengths. Odd-length arrays are doubled to an even length, matching SVG behaviour. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setStrokeDashArray(id: number, dashArray: number[]): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getStrokeDashArray()
+
+    <br /><p>Gets the custom dash pattern of the block's stroke.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose stroke dash pattern should be queried. |
+
+  #### Returns
+
+  `number`\[]
+
+  The dash pattern, or an empty array if no custom pattern is set.
+
+  #### Signature
+
+  ```typescript
+  getStrokeDashArray(id: number): number[]
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setStrokeDashOffset()
+
+    <br /><p>Sets the dash offset of the block's stroke. Semantics match SVG's
+    <code>stroke-dashoffset</code>. Ignored when the custom dash pattern is empty.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose stroke dash offset should be set. |
+  | `dashOffset` | `number` | The dash offset in design-unit space. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setStrokeDashOffset(id: number, dashOffset: number): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getStrokeDashOffset()
+
+    <br /><p>Gets the dash offset of the block's stroke.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The block whose stroke dash offset should be queried. |
+
+  #### Returns
+
+  `number`
+
+  The dash offset.
+
+  #### Signature
+
+  ```typescript
+  getStrokeDashOffset(id: number): number
   ```
 </details>
 

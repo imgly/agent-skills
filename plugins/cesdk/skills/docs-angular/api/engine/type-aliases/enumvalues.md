@@ -14,6 +14,7 @@ type EnumValues =
   | SceneLayout
   | SceneMode
   | WidthMode
+  | StrokeCap
   | StrokeCornerGeometry
   | StrokePosition
   | StrokeStyle

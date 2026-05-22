@@ -8,7 +8,7 @@ Options for text font size operations with unit support.
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-|  `unit?` | [`FontSizeUnit`](./api/engine/type-aliases/fontsizeunit.md) | The unit of the font size. Defaults to 'Point' |
+|  `unit?` | [`FontSizeUnit`](./api/engine/type-aliases/fontsizeunit.md) | The unit of the font size. Defaults to the scene's `fontSizeUnit` (configured via `engine.scene.setFontSizeUnit()`), which itself defaults to `'Point'`. |
 |  `from?` | `number` | The start index of the UTF-16 range. Defaults to -1 (start of selection/text) |
 |  `to?` | `number` | The end index of the UTF-16 range. Defaults to -1 (end of selection/text) |
 

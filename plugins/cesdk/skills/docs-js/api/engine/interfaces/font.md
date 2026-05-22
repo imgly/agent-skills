@@ -2,17 +2,16 @@
 
 ---
 
-Represents a font.
-
-The Font interface defines the structure of a font within the Creative Editor SDK.
-It includes properties for the uri, subFamily, weight, and style.
+Individual font within a typeface. Field optionality matches `@cesdk/engine`
+(WASM) — fields not present in the engine response are simply omitted
+rather than empty strings.
 
 ## Properties
 
 | Property | Type |
 | ------ | ------ |
 |  `uri` | `string` |
-|  `subFamily` | `string` |
+|  `subFamily?` | `string` |
 |  `weight?` | [`FontWeight`](./api/engine/type-aliases/fontweight.md) |
 |  `style?` | [`FontStyle`](./api/engine/type-aliases/fontstyle.md) |
 

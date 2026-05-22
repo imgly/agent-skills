@@ -26,8 +26,8 @@ Generic asset information
 | `width?` | `number` | - |
 | `height?` | `number` | - |
 | `duration?` | `string` | - |
-| `effectType?` | [`EffectType`](./api/engine/type-aliases/effecttype.md) | - |
-| `blurType?` | [`BlurType`](./api/engine/type-aliases/blurtype.md) | - |
+| `effectType?` | `string` | Effect kind hint. Widened to `string` so this metadata stays cross-binding (the narrow `EffectType` union remains the source of truth for `BlockAPI.createEffect`). |
+| `blurType?` | `string` | Blur kind hint. Widened to `string` for the same reason as `effectType` — the narrow `BlurType` union still gates `BlockAPI.createBlur`. |
 | `looping?` | `boolean` | - |
 
 

@@ -398,13 +398,13 @@ This guide covers how to define spot colors with RGB and CMYK approximations, ap
 Spot colors differ from CMYK process colors in several important ways:
 
 - **Exact color matching** - Premixed inks guarantee consistent color reproduction across print runs
-- **Brand consistency** - Essential for logos and brand colors (e.g., Pantone colors)
+- **Brand consistency** - Essential for logos and corporate brand colors
 - **Specialty effects** - Enable metallic, fluorescent, and other specialty inks
 - **Color gamut** - Some colors are unreproducible with CMYK process inks
 
 In CE.SDK, spot colors have three components:
 
-- **Name** - The identifier used in print output (e.g., "Pantone-485-C")
+- **Name** - The identifier used in print output (e.g., "Brand-Red-485")
 - **Approximations** - RGB and/or CMYK values for screen display
 - **Tint** - A value from 0.0 to 1.0 controlling color intensity
 
@@ -461,7 +461,7 @@ The SpotColor object has these properties:
 
 - **name** - Must match a defined spot color exactly (case-sensitive)
 - **tint** - Controls intensity from 0.0 (transparent) to 1.0 (full strength)
-- **externalReference** - Optional metadata like the color system origin (e.g., "Pantone")
+- **externalReference** - Optional metadata identifying the color system origin (e.g., your in-house brand palette or a print vendor's spot-color library)
 
 > **Note:** The spot color must be defined before applying it to blocks. Undefined spot colors display as magenta—the default fallback color.
 
@@ -706,7 +706,7 @@ Use `engine.editor.setSpotColorForCutoutType()` to associate a spot color with a
 
 **Define early** - Register spot colors at initialization before applying them to blocks. Undefined colors display as magenta, which can confuse users.
 
-**Use descriptive names** - Match your print vendor's reference (e.g., "Pantone-485-C") to ensure correct ink matching in production.
+**Use descriptive names** - Match your print vendor's reference (e.g., "Brand-Red-485") to ensure correct ink matching in production.
 
 **Provide both approximations** - RGB for screen display, CMYK for print-accurate previews. This gives designers the best experience across different workflows.
 

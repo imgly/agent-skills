@@ -787,6 +787,7 @@ Different fonts allocate the EM square differently. A serif font like Playfair D
 | `engine.block.getString(id, 'text/fontFileUri')` | Get current font file URI |
 | `engine.block.getTextVisibleLineContent(id, lineIndex)` | Get rendered text content for a specific visual line |
 | `engine.block.getTextVisibleLineCount(id)` | Get number of rendered text lines |
+| `engine.block.getTextCharacterInkBoxes(id, from, to)` | Get tight ink bounding boxes per grapheme in global scene coordinates |
 | `engine.block.getPositionX/Y(id)` | Get block position in design units |
 | `engine.block.getFrameWidth/Height(id)` | Get block frame dimensions |
 | `engine.asset.findAssets('ly.img.typeface', options)` | Query typeface asset source by name |

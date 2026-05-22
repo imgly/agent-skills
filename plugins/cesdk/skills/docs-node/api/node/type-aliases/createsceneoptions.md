@@ -12,9 +12,11 @@ Options for creating a video scene.
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-|  `page` | `object` | The page options |
+|  `page?` | `object` | The page options |
 | `page.size` | | `number` | \{ `width`: `number`; `height`: `number`; } | The size of the page |
 | `page.color?` | [`Color`](./api/node/type-aliases/color.md) | The background color of the page |
+|  `designUnit?` | [`DesignUnit`](./api/node/type-aliases/designunit.md) | The design unit of the new scene. Defaults to `Pixel`. |
+|  `fontSizeUnit?` | [`SceneFontSizeUnit`](./api/node/type-aliases/scenefontsizeunit.md) | The unit in which font sizes for `setTextFontSize` and `getTextFontSizes` are interpreted. If omitted, it is paired with `designUnit`: `Pixel` scenes get `Pixel`, all other scenes get `Point`. |
 
 
 ---

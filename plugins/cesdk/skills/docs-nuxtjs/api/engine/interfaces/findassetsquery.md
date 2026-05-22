@@ -25,6 +25,7 @@ Methods for working with queries for finding assets.
 |  `sortingOrder` | [`SortingOrder`](./api/engine/type-aliases/sortingorder.md) |
 |  `sortKey` | `string` |
 |  `sortActiveFirst` | `boolean` |
+|  `filter` | [`AssetFilter`](./api/engine/type-aliases/assetfilter.md)\[] |
 
 
 ---

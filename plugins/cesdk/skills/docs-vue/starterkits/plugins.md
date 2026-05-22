@@ -16,6 +16,7 @@ Add powerful custom functionality to the editor — background removal, QR codes
 - [QR Code Editor for Vue](./starterkits/qr-code-editor.md) - Easily generate and customize QR codes within CE.SDK.
 - [Cutout Lines Editor for Vue](./starterkits/cutout-lines-editor.md) - CE.SDK's cutout plugin enables effortless creation and customization of cutout shapes for web-to-print users.
 - [Vectorizer Editor for Vue](./starterkits/vectorizer-editor.md) - Transform your pixel-based images into scalable vector graphics with Vectorizer Plugin.
+- [Perfectly Clear Editor for Vue](./starterkits/perfectly-clear-editor.md) - One-click image enhancement using the Perfectly Clear (eyeQ) plugin — scene-aware correction running entirely in-browser via WebAssembly.
 
 
 ---

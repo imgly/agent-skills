@@ -326,6 +326,72 @@ getContentFillMode(id: DesignBlockId): ContentFillMode
 
 **Returns:** The current mode: 'Crop', 'Cover' or 'Contain'.
 
+### setContentFillHorizontalAlignment()
+
+Sets the horizontal alignment of the content fill within a block.
+Only affects 'Contain' and 'Cover' fill modes; has no visible effect in 'Crop' mode,
+where the user positions the content explicitly.
+```javascript
+engine.block.setContentFillHorizontalAlignment(image, 'Left');
+```
+
+```typescript
+setContentFillHorizontalAlignment(id: DesignBlockId, alignment: HorizontalContentFillAlignment): void
+```
+
+**Parameters:**
+- `id` - The block to update.
+- `alignment` - The horizontal alignment: 'Left', 'Center' or 'Right'.
+
+### getContentFillHorizontalAlignment()
+
+Gets the horizontal alignment of the content fill within a block.
+```javascript
+engine.block.getContentFillHorizontalAlignment(image);
+```
+
+```typescript
+getContentFillHorizontalAlignment(id: DesignBlockId): HorizontalContentFillAlignment
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** The current alignment: 'Left', 'Center' or 'Right'.
+
+### setContentFillVerticalAlignment()
+
+Sets the vertical alignment of the content fill within a block.
+Only affects 'Contain' and 'Cover' fill modes; has no visible effect in 'Crop' mode,
+where the user positions the content explicitly.
+```javascript
+engine.block.setContentFillVerticalAlignment(image, 'Top');
+```
+
+```typescript
+setContentFillVerticalAlignment(id: DesignBlockId, alignment: VerticalContentFillAlignment): void
+```
+
+**Parameters:**
+- `id` - The block to update.
+- `alignment` - The vertical alignment: 'Top', 'Center' or 'Bottom'.
+
+### getContentFillVerticalAlignment()
+
+Gets the vertical alignment of the content fill within a block.
+```javascript
+engine.block.getContentFillVerticalAlignment(image);
+```
+
+```typescript
+getContentFillVerticalAlignment(id: DesignBlockId): VerticalContentFillAlignment
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** The current alignment: 'Top', 'Center' or 'Bottom'.
+
 ### setGradientColorStops()
 
 Sets the color stops for a gradient property.
@@ -2294,6 +2360,21 @@ isTransformLocked(id: DesignBlockId): boolean
 
 **Returns:** True if transform locked, false otherwise.
 
+### isLineOrigin()
+
+Checks whether a graphic block originated as a line shape. Survives the
+line's conversion to a vector path during vector-edit; resets only when
+the shape is replaced by a non-line shape via `setShape`.
+
+```typescript
+isLineOrigin(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** True if the block originated as a line shape, false otherwise.
+
 ### setTransformLocked()
 
 Sets the transform-locked state of a block.
@@ -3842,28 +3923,6 @@ setCropAspectRatioLocked(id: DesignBlockId, locked: boolean): void
 - `id` - The block to update.
 - `locked` - Whether aspect ratio should be locked.
 
-### canRevertToOriginalRatio()
-
-Checks whether the "Original" crop preset (`ContentAspectRatio`) can be applied to a block.
-This runs the same preliminary check the apply path performs: it resolves the intrinsic
-content dimensions from the block's image/video fill (an image fill resolves only from its
-`sourceSet`; a video fill resolves from its `sourceSet` or the first decoded frame). Use it
-to gate UI that would otherwise call the preset and fail — e.g. an unreplaced placeholder
-image fill with an empty `sourceSet`.
-```javascript
-const canRevert = engine.block.canRevertToOriginalRatio(block);
-```
-
-```typescript
-canRevertToOriginalRatio(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True if the preset would resolve, false if it cannot (no/placeholder fill, empty
-sourceSet, video not yet decoded, or unsupported fill type).
-
 ## Block Effects
 
 Create, manage, and apply various visual effects to blocks.
@@ -4347,6 +4406,198 @@ getStrokeCornerGeometry(id: DesignBlockId): StrokeCornerGeometry
 - `id` - The block whose stroke corner geometry should be queried.
 
 **Returns:** The stroke corner geometry.
+
+### setStrokeCap() *(deprecated)*
+
+Sets the stroke cap of a block. Writes both the start and end caps to the
+same value.
+
+```typescript
+setStrokeCap(id: DesignBlockId, cap: StrokeCap): void
+```
+
+**Parameters:**
+- `id` - The block whose stroke cap should be set.
+- `cap` - The stroke cap to be set.
+
+### getStrokeCap() *(deprecated)*
+
+Gets the legacy single stroke cap of a block. Tracks the value last written
+via `setStrokeCap` or `setStrokeStartCap`; ignores changes made via
+`setStrokeEndCap`.
+
+```typescript
+getStrokeCap(id: DesignBlockId): StrokeCap
+```
+
+**Parameters:**
+- `id` - The block whose stroke cap should be queried.
+
+**Returns:** The stroke cap.
+
+### setStrokeStartCap()
+
+Sets the cap geometry at the start of an open stroked path. Use this with
+`setStrokeEndCap` to set distinct caps for each end of a stroke (for
+example a flat start with an arrowhead end). `setStrokeCap` continues to
+set both ends at once and is preserved for backwards compatibility.
+
+```typescript
+setStrokeStartCap(id: DesignBlockId, cap: StrokeCap): void
+```
+
+**Parameters:**
+- `id` - The block whose stroke start cap should be set.
+- `cap` - The cap geometry to use at the path start.
+
+### getStrokeStartCap()
+
+Gets the cap geometry at the start of an open stroked path.
+
+```typescript
+getStrokeStartCap(id: DesignBlockId): StrokeCap
+```
+
+**Parameters:**
+- `id` - The block whose stroke start cap should be queried.
+
+**Returns:** The start cap.
+
+### setStrokeEndCap()
+
+Sets the cap geometry at the end of an open stroked path. Use this with
+`setStrokeStartCap` to set distinct caps for each end of a stroke.
+
+```typescript
+setStrokeEndCap(id: DesignBlockId, cap: StrokeCap): void
+```
+
+**Parameters:**
+- `id` - The block whose stroke end cap should be set.
+- `cap` - The cap geometry to use at the path end.
+
+### getStrokeEndCap()
+
+Gets the cap geometry at the end of an open stroked path.
+
+```typescript
+getStrokeEndCap(id: DesignBlockId): StrokeCap
+```
+
+**Parameters:**
+- `id` - The block whose stroke end cap should be queried.
+
+**Returns:** The end cap.
+
+### setStrokeDashStartCap()
+
+Sets the cap geometry at the leading edge of each dash piece (excluding the
+line's actual start). Only takes effect when a dash pattern is active.
+Distinct from `setStrokeStartCap`, which only applies to the start of the
+open path itself.
+
+```typescript
+setStrokeDashStartCap(id: DesignBlockId, cap: StrokeCap): void
+```
+
+**Parameters:**
+- `id` - The block whose dash start cap should be set.
+- `cap` - The cap geometry to use at the leading edge of each dash piece.
+
+### getStrokeDashStartCap()
+
+Gets the cap geometry at the leading edge of each dash piece.
+
+```typescript
+getStrokeDashStartCap(id: DesignBlockId): StrokeCap
+```
+
+**Parameters:**
+- `id` - The block whose dash start cap should be queried.
+
+**Returns:** The dash start cap.
+
+### setStrokeDashEndCap()
+
+Sets the cap geometry at the trailing edge of each dash piece (excluding the
+line's actual end). Only takes effect when a dash pattern is active. Distinct
+from `setStrokeEndCap`, which only applies to the end of the open path itself.
+
+```typescript
+setStrokeDashEndCap(id: DesignBlockId, cap: StrokeCap): void
+```
+
+**Parameters:**
+- `id` - The block whose dash end cap should be set.
+- `cap` - The cap geometry to use at the trailing edge of each dash piece.
+
+### getStrokeDashEndCap()
+
+Gets the cap geometry at the trailing edge of each dash piece.
+
+```typescript
+getStrokeDashEndCap(id: DesignBlockId): StrokeCap
+```
+
+**Parameters:**
+- `id` - The block whose dash end cap should be queried.
+
+**Returns:** The dash end cap.
+
+### setStrokeDashArray()
+
+Sets a custom dash pattern for the block's stroke. Semantics match SVG's
+`stroke-dasharray`: alternating on/off lengths in design-unit space. When the
+pattern is non-empty it overrides the preset implied by `StrokeStyle`. Pass an
+empty array to fall back to the preset.
+
+```typescript
+setStrokeDashArray(id: DesignBlockId, dashArray: number[]): void
+```
+
+**Parameters:**
+- `id` - The block whose stroke dash pattern should be set.
+- `dashArray` - Alternating on/off lengths. Odd-length arrays are doubled to
+  an even length, matching SVG behaviour.
+
+### getStrokeDashArray()
+
+Gets the custom dash pattern of the block's stroke.
+
+```typescript
+getStrokeDashArray(id: DesignBlockId): number[]
+```
+
+**Parameters:**
+- `id` - The block whose stroke dash pattern should be queried.
+
+**Returns:** The dash pattern, or an empty array if no custom pattern is set.
+
+### setStrokeDashOffset()
+
+Sets the dash offset of the block's stroke. Semantics match SVG's
+`stroke-dashoffset`. Ignored when the custom dash pattern is empty.
+
+```typescript
+setStrokeDashOffset(id: DesignBlockId, dashOffset: number): void
+```
+
+**Parameters:**
+- `id` - The block whose stroke dash offset should be set.
+- `dashOffset` - The dash offset in design-unit space.
+
+### getStrokeDashOffset()
+
+Gets the dash offset of the block's stroke.
+
+```typescript
+getStrokeDashOffset(id: DesignBlockId): number
+```
+
+**Parameters:**
+- `id` - The block whose stroke dash offset should be queried.
+
+**Returns:** The dash offset.
 
 ## Block Drop Shadow
 
@@ -4900,6 +5151,43 @@ setTextDecoration(id: DesignBlockId, config: TextDecorationConfig, from?: number
 - `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
 - `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
 
+### setTextKerning()
+
+Sets kerning for a grapheme range.
+Applies an additional offset in em units on top of the font's built-in kern.
+`1.0` equals the run's font size, so the offset scales proportionally with text size.
+```javascript
+engine.block.setTextKerning(text, 0.1); // add 10% of font size as extra spacing
+engine.block.setTextKerning(text, -0.05, 0, 5); // tighten first 5 graphemes
+engine.block.setTextKerning(text, 0); // reset to no extra offset
+```
+
+```typescript
+setTextKerning(id: DesignBlockId, kerning: number, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `kerning` - Additional kerning in em units (1.0 = one full em). Use 0 for no extra offset.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### getTextKernings()
+
+Returns the unique kerning values across the grapheme range.
+```javascript
+const kernings = engine.block.getTextKernings(text); // e.g. [0] or [0.1, 0]
+```
+
+```typescript
+getTextKernings(id: DesignBlockId, from?: number, to?: number): number[]
+```
+
+**Parameters:**
+- `id` - The text block to query.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
 ### toggleTextDecorationUnderline()
 
 Toggles the underline decoration for a text range.
@@ -5094,6 +5382,42 @@ getTextParagraphIndices(id: DesignBlockId, from?: number, to?: number): number[]
 - `to` - The exclusive end UTF-16 index. Negative values reference the entire text.
 
 **Returns:** The paragraph indices overlapping the range.
+
+### setTextLineHeight()
+
+Sets the line height multiplier for a specific paragraph or all paragraphs of a text block.
+```javascript
+engine.block.setTextLineHeight(text, 1.5);
+engine.block.setTextLineHeight(text, 1.5, 0);
+engine.block.setTextLineHeight(text, null); // reset all paragraphs to block default
+```
+
+```typescript
+setTextLineHeight(id: DesignBlockId, lineHeight: number | null, paragraphIndex?: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `lineHeight` - The line height multiplier, or `null` to reset to the block-level default.
+- `paragraphIndex` - The 0-based index of the paragraph to modify. Negative values apply to all paragraphs.
+
+### getTextLineHeight()
+
+Returns the line height multiplier for a specific paragraph of a text block.
+Returns the per-paragraph override if one is set, otherwise returns the block-level `lineHeight`.
+```javascript
+const lineHeight = engine.block.getTextLineHeight(text, 0);
+```
+
+```typescript
+getTextLineHeight(id: DesignBlockId, paragraphIndex: number): number
+```
+
+**Parameters:**
+- `id` - The text block to query.
+- `paragraphIndex` - The 0-based index of the paragraph.
+
+**Returns:** The line height multiplier for the paragraph.
 
 ### canToggleBoldFont()
 
@@ -5312,6 +5636,23 @@ getTextVisibleLineContent(id: DesignBlockId, lineIndex: number): string
 - `lineIndex` - The index of the line whose content should be returned.
 
 **Returns:** The text content of the line.
+
+### getTextCharacterInkBoxes()
+
+Returns the tight ink-paint bounding box for each grapheme in the range.
+One entry per grapheme in [from, to). Non-printable graphemes get a zero-rect.
+Coordinates are in global scene space.
+
+```typescript
+getTextCharacterInkBoxes(id: DesignBlockId, from?: number, to?: number): CharacterInkBox[]
+```
+
+**Parameters:**
+- `id` - The text block to query.
+- `from` - Start grapheme index (-1 = start of cursor selection or 0).
+- `to` - End grapheme index (-1 = end of cursor selection or text length).
+
+**Returns:** Array of CharacterInkBox, one per grapheme in range, in text order.
 
 ### getTextEffectiveHorizontalAlignment()
 

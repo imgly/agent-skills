@@ -26,6 +26,7 @@ Learn how to extend CE.SDK functionality with plugins to add custom features, ef
 - [Export to HTML5](./export-save-publish/export/to-html5.md) - Export CE.SDK designs as HTML5 bundles with customizable output for display ads and interactive web content.
 - [Remove Background](./edit-image/remove-bg.md) - Remove image backgrounds to isolate subjects or prepare assets for compositing and reuse.
 - [Vectorize](./edit-image/vectorize.md) - Convert raster images into scalable vector graphics for flexible resizing and editing.
+- [Perfectly Clear](./plugins/perfectly-clear.md) - One-click image enhancement for CE.SDK using Perfectly Clear (eyeQ) — scene-aware correction running fully in-browser via WebAssembly
 - [Create Cutout](./stickers-and-shapes/create-cutout.md) - Create cutout paths for cutting printers to produce die-cut stickers, iron-on decals, and custom-shaped prints.
 - [Insert QR Code](./stickers-and-shapes/insert-qr-code.md) - Add scannable QR codes to designs using image fills.
 - [Integrate Soundstripe Audio Library](./import-media/from-remote-source/soundstripe.md) - Search and import royalty-free audio tracks from Soundstripe directly into CE.SDK.

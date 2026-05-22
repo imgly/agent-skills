@@ -1,4 +1,4 @@
-# Design Editor Starter Kit
+# Layouts Editor Starter Kit
 
 Allow users to select different layouts without changing page content. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
 
@@ -6,7 +6,7 @@ Allow users to select different layouts without changing page content. Built wit
   <a href="https://img.ly/docs/cesdk/js/starterkits/layouts-editor-layot1/">Documentation</a>
 </p>
 
-![Design Editor starter kit showing a graphic design interface](./hero.webp)
+![Layouts Editor starter kit showing layout selection in CE.SDK](./hero.webp)
 
 ## Getting Started
 
@@ -134,7 +134,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Design Editor Documentation](https://img.ly/docs/cesdk/starterkits/design-editor/).
+For complete integration guides and API reference, visit the [Layouts Editor Documentation](https://img.ly/docs/cesdk/starterkits/layouts-editor/).
 
 ## License
 
@@ -142,4 +142,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">IMG.LY</a></p>
+<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-layouts-asset-source">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-layouts-asset-source">IMG.LY</a></p>

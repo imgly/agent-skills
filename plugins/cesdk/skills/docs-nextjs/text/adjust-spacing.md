@@ -20,7 +20,7 @@ Control letter spacing, line height, and paragraph spacing in text blocks using 
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-adjust-spacing-browser/)
 
-CE.SDK provides three text spacing properties: `text/letterSpacing`, `text/lineHeight`, and `text/paragraphSpacing`. All are float properties controlled via `engine.block.setFloat()` and `engine.block.getFloat()`. Text spacing adjustments are programmatic-only; there is no built-in UI for these properties.
+CE.SDK provides three text spacing properties: `text/letterSpacing`, `text/lineHeight`, and `text/paragraphSpacing`. All are float properties controlled via `engine.block.setFloat()` and `engine.block.getFloat()`. In addition, `engine.block.setTextLineHeight()` and `engine.block.getTextLineHeight()` let you override line height for individual paragraphs. Text spacing adjustments are programmatic-only; there is no built-in UI for these properties.
 
 ```typescript file=@cesdk_web_examples/guides-text-adjust-spacing-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from "@cesdk/cesdk-js";
@@ -141,11 +141,43 @@ class Example implements EditorPlugin {
     const lineHeight = engine.block.getFloat(textLineHeight, "text/lineHeight");
     console.log("Line height:", lineHeight);
 
-    // Text block 3: Paragraph Spacing Demo
+    // Text block 3: Per-Paragraph Line Height Demo
+    const textParaLineHeight = engine.block.create("text");
+    engine.block.appendChild(page, textParaLineHeight);
+    engine.block.setPositionX(textParaLineHeight, 50);
+    engine.block.setPositionY(textParaLineHeight, 350);
+    engine.block.setWidth(textParaLineHeight, 700);
+    engine.block.setHeightMode(textParaLineHeight, "Auto");
+    engine.block.replaceText(
+      textParaLineHeight,
+      "First paragraph\nSecond paragraph\nThird paragraph",
+    );
+    engine.block.setTextFontSize(textParaLineHeight, 36);
+
+    // Set the block-level line height (applies to all paragraphs by default)
+    engine.block.setFloat(textParaLineHeight, "text/lineHeight", 1.2);
+
+    // Override line height for paragraph 0 only
+    engine.block.setTextLineHeight(textParaLineHeight, 2.5, 0);
+
+    // Read the line height for each paragraph
+    // Returns the override for paragraph 0, block-level fallback for others
+    const para0LineHeight = engine.block.getTextLineHeight(textParaLineHeight, 0);
+    const para1LineHeight = engine.block.getTextLineHeight(textParaLineHeight, 1);
+    console.log("Para 0 line height:", para0LineHeight); // 2.5 (override)
+    console.log("Para 1 line height:", para1LineHeight); // 1.2 (block-level fallback)
+
+    // Clear the per-paragraph override — paragraph 0 reverts to block-level value
+    engine.block.setTextLineHeight(textParaLineHeight, null, 0);
+
+    // Set block-level line height and clear all paragraph overrides at once
+    engine.block.setTextLineHeight(textParaLineHeight, 1.8);
+
+    // Text block 4: Paragraph Spacing Demo
     const textParagraphSpacing = engine.block.create("text");
     engine.block.appendChild(page, textParagraphSpacing);
     engine.block.setPositionX(textParagraphSpacing, 50);
-    engine.block.setPositionY(textParagraphSpacing, 350);
+    engine.block.setPositionY(textParagraphSpacing, 490);
     engine.block.setWidth(textParagraphSpacing, 700);
     engine.block.setHeightMode(textParagraphSpacing, "Auto");
     engine.block.replaceText(
@@ -232,16 +264,56 @@ We control the vertical distance between lines using `engine.block.setFloat()` w
 
 Line height affects multi-line text. A single line of text won't show visible differences.
 
+## Per-Paragraph Line Height
+
+Override the line height for individual paragraphs using `engine.block.setTextLineHeight()` with a `paragraphIndex`. Passing `null` for the value clears the override and reverts that paragraph to the block-level value. Calling `setTextLineHeight()` without a `paragraphIndex` (or with `-1`) sets the block-level line height and clears all paragraph overrides at once.
+
+```typescript highlight-paragraph-line-height
+    // Text block 3: Per-Paragraph Line Height Demo
+    const textParaLineHeight = engine.block.create("text");
+    engine.block.appendChild(page, textParaLineHeight);
+    engine.block.setPositionX(textParaLineHeight, 50);
+    engine.block.setPositionY(textParaLineHeight, 350);
+    engine.block.setWidth(textParaLineHeight, 700);
+    engine.block.setHeightMode(textParaLineHeight, "Auto");
+    engine.block.replaceText(
+      textParaLineHeight,
+      "First paragraph\nSecond paragraph\nThird paragraph",
+    );
+    engine.block.setTextFontSize(textParaLineHeight, 36);
+
+    // Set the block-level line height (applies to all paragraphs by default)
+    engine.block.setFloat(textParaLineHeight, "text/lineHeight", 1.2);
+
+    // Override line height for paragraph 0 only
+    engine.block.setTextLineHeight(textParaLineHeight, 2.5, 0);
+
+    // Read the line height for each paragraph
+    // Returns the override for paragraph 0, block-level fallback for others
+    const para0LineHeight = engine.block.getTextLineHeight(textParaLineHeight, 0);
+    const para1LineHeight = engine.block.getTextLineHeight(textParaLineHeight, 1);
+    console.log("Para 0 line height:", para0LineHeight); // 2.5 (override)
+    console.log("Para 1 line height:", para1LineHeight); // 1.2 (block-level fallback)
+
+    // Clear the per-paragraph override — paragraph 0 reverts to block-level value
+    engine.block.setTextLineHeight(textParaLineHeight, null, 0);
+
+    // Set block-level line height and clear all paragraph overrides at once
+    engine.block.setTextLineHeight(textParaLineHeight, 1.8);
+```
+
+`engine.block.getTextLineHeight()` returns the effective line height for a given paragraph — the per-paragraph override if one is set, otherwise the block-level fallback. This makes it easy to read the resolved value without tracking overrides manually.
+
 ## Paragraph Spacing
 
 We add vertical space between paragraphs using `engine.block.setFloat()` with the `text/paragraphSpacing` property. The value is added after each paragraph break (newline characters in the text content).
 
 ```typescript highlight-paragraph-spacing
-    // Text block 3: Paragraph Spacing Demo
+    // Text block 4: Paragraph Spacing Demo
     const textParagraphSpacing = engine.block.create("text");
     engine.block.appendChild(page, textParagraphSpacing);
     engine.block.setPositionX(textParagraphSpacing, 50);
-    engine.block.setPositionY(textParagraphSpacing, 350);
+    engine.block.setPositionY(textParagraphSpacing, 490);
     engine.block.setWidth(textParagraphSpacing, 700);
     engine.block.setHeightMode(textParagraphSpacing, "Auto");
     engine.block.replaceText(
@@ -269,13 +341,15 @@ Paragraph spacing only affects text with actual paragraph breaks. Single paragra
 |--------|---------|
 | `engine.block.setFloat()` | Set numeric spacing property values |
 | `engine.block.getFloat()` | Get current spacing property values |
+| `engine.block.setTextLineHeight()` | Set block-level or per-paragraph line height |
+| `engine.block.getTextLineHeight()` | Get effective line height for a paragraph |
 
 ### Properties Reference
 
 | Property | Type | Purpose |
 |----------|------|---------|
 | `text/letterSpacing` | Float | Space between characters (tracking) |
-| `text/lineHeight` | Float | Multiplier for vertical line distance |
+| `text/lineHeight` | Float | Block-level multiplier for vertical line distance |
 | `text/paragraphSpacing` | Float | Space added after paragraph breaks |
 
 ## Troubleshooting

@@ -30,6 +30,8 @@ Create new scenes from scratch or from media files.
 
   ```javascript
   const scene = engine.scene.create(layout);
+  // With a specific design unit and auto-paired font-size unit:
+  const pxScene = engine.scene.create('Free', { designUnit: 'Pixel' });
   ```
 
   #### Parameters
@@ -37,7 +39,7 @@ Create new scenes from scratch or from media files.
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `sceneLayout?` | `"Free"` | `"VerticalStack"` | `"HorizontalStack"` | `"DepthStack"` | The layout of the scene. |
-  | `options?` | [`CreateSceneOptions`](./api/engine/type-aliases/createsceneoptions.md) | Optional parameters for the scene. Properties: - `page` - Page options. Properties: - `size` - The size of the page. - `color` - Optional background color of the page. |
+  | `options?` | [`CreateSceneOptions`](./api/engine/type-aliases/createsceneoptions.md) | Optional parameters for the scene. Properties: - `page` - Page options. Properties: - `size` - The size of the page. - `color` - Optional background color of the page. - `designUnit` - The design unit of the new scene. Defaults to `Pixel`. - `fontSizeUnit` - The font-size unit. If omitted, paired with `designUnit` (`Pixel` design unit → `Pixel` font unit, others → `Point`). |
 
   #### Returns
 
@@ -843,6 +845,64 @@ Get and set scene properties like design units and mode.
 
   ```typescript
   getDesignUnit(): "Pixel" | "Millimeter" | "Inch"
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setFontSizeUnit()
+
+    <br /><p>Sets the unit in which font sizes for <code>setTextFontSize</code> and <code>getTextFontSizes</code> are interpreted.
+    The engine continues to store font sizes in points internally; this only affects how values
+    are interpreted at the API boundary when callers don't specify a <code>unit</code> in <code>TextFontSizeOptions</code>.</p>
+  </summary>
+
+  ```javascript
+  engine.scene.setFontSizeUnit('Pixel');
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `fontSizeUnit` | `"Pixel"` | `"Point"` | The new font-size unit of the scene. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setFontSizeUnit(fontSizeUnit: "Pixel" | "Point"): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getFontSizeUnit()
+
+    <br /><p>Returns the font-size unit of the current scene.</p>
+  </summary>
+
+  ```javascript
+  engine.scene.getFontSizeUnit();
+  ```
+
+  #### Returns
+
+  `"Pixel"` | `"Point"`
+
+  The current font-size unit.
+
+  #### Signature
+
+  ```typescript
+  getFontSizeUnit(): "Pixel" | "Point"
   ```
 
   ***

@@ -1,4 +1,4 @@
-# Design Editor Starter Kit
+# Theming Starter Kit
 
 Effortlessly adapt the UI of the CreativeEditor SDK to best match your app. With Theming you can easily change elements like theme, scaling, and background. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
 
@@ -6,7 +6,7 @@ Effortlessly adapt the UI of the CreativeEditor SDK to best match your app. With
   <a href="https://img.ly/docs/cesdk/js/starterkits/theming-jkl012/">Documentation</a>
 </p>
 
-![Design Editor starter kit showing a graphic design interface](./hero.webp)
+![Theming starter kit showing a customized CE.SDK editor UI](./hero.webp)
 
 ## Getting Started
 
@@ -130,7 +130,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Design Editor Documentation](https://img.ly/docs/cesdk/starterkits/design-editor/).
+For complete integration guides and API reference, visit the [Theming Documentation](https://img.ly/docs/cesdk/starterkits/theming/).
 
 ## License
 
@@ -138,4 +138,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">IMG.LY</a></p>
+<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-theming">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-theming">IMG.LY</a></p>

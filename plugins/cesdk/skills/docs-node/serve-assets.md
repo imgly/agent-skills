@@ -27,7 +27,7 @@ The `imgly-assets.zip` contains directories organized by function:
 
 ## Engine-Level Assets
 
-The engine uses additional assets for font fallback (Unicode character coverage) and emoji rendering. By default, these are loaded from `https://cdn.img.ly/assets/v4`. When you configure the `basePath` setting for your engine, font fallback files and the emoji font are automatically loaded from that location:
+The engine uses additional assets for font fallback (Unicode character coverage) and emoji rendering. By default, these are loaded from `https://cdn.img.ly/assets/v6`. When you configure the `basePath` setting for your engine, font fallback files and the emoji font are automatically loaded from that location:
 
 - **Font fallback files** — Used when text contains characters not covered by the selected font. Located at `{basePath}/fonts/font-{index}.ttf`.
 - **Emoji font** — The default emoji font (NotoColorEmoji.ttf). Located at `{basePath}/emoji/NotoColorEmoji.ttf`.

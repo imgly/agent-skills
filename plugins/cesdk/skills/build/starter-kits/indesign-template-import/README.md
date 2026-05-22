@@ -1,4 +1,4 @@
-# Design Editor Starter Kit
+# InDesign Template Import Starter Kit
 
 Transform your existing InDesign templates for use in the CE.SDK with our Importer. Preserve design elements and streamline the transition between platforms. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
 
@@ -6,7 +6,7 @@ Transform your existing InDesign templates for use in the CE.SDK with our Import
   <a href="https://img.ly/docs/cesdk/js/starterkits/indesign-template-import-idml01/">Documentation</a>
 </p>
 
-![Design Editor starter kit showing a graphic design interface](./hero.webp)
+![InDesign Template Import starter kit showing the upload interface](./hero.webp)
 
 ## Getting Started
 
@@ -132,7 +132,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Design Editor Documentation](https://img.ly/docs/cesdk/starterkits/design-editor/).
+For complete integration guides and API reference, visit the [InDesign Template Import Documentation](https://img.ly/docs/cesdk/starterkits/indesign-template-import/).
 
 ## License
 
@@ -140,4 +140,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">IMG.LY</a></p>
+<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-indesign-template-import">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-indesign-template-import">IMG.LY</a></p>

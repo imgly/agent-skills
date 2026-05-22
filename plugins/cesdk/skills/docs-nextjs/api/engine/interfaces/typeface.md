@@ -2,17 +2,14 @@
 
 ---
 
-Represents a typeface.
-
-The Typeface interface defines the structure of a typeface within the Creative Editor SDK.
-It includes properties for the name and fonts.
+Typeface definition
 
 ## Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-|  `name` | `string` | The unique name of this typeface |
-|  `fonts` | [`Font`](./api/engine/interfaces/font.md)\[] | The list of all fonts that are part of this typeface. |
+| Property | Type |
+| ------ | ------ |
+|  `name` | `string` |
+|  `fonts` | [`Font`](./api/engine/interfaces/font.md)\[] |
 
 
 ---

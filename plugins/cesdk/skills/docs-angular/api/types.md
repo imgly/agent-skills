@@ -36,19 +36,15 @@ Types: CutoutOperation
 
 ## engine
 
-Types: Vector, DesignBlockId, HistoryId, NumberRange, Vec2, Vec3, Size2, Range, ClampArgs, ClampCameraCommandResult, EmscriptenClassHandle, UBQError, UBQResult, MouseButtonEvent, MouseMoveEvent, MouseWheelEvent, KeyboardKeyEvent, ZoomAutoFitAxis, EngineTouchEvent, TouchRotateEvent, TouchPanEvent, TouchPinchEvent, TrackingMetadata, EditMode
+Types: Vector, DesignBlockId, HistoryId, HistoryUpdate, NumberRange, Vec2, Vec3, Size2, Range, ClampArgs, ClampCameraCommandResult, EmscriptenClassHandle, UBQError, UBQResult, MouseButtonEvent, MouseMoveEvent, MouseWheelEvent, KeyboardKeyEvent, ZoomAutoFitAxis, EngineTouchEvent, TouchRotateEvent, TouchPanEvent, TouchPinchEvent, TrackingMetadata, EditMode
 
 ## fontMetrics
 
 Types: FontMetrics
 
-## fonts
-
-Types: FontWeight, FontStyle, Font, Typeface
-
 ## propertyTypes
 
-Types: BoolPropertyName, EnumPropertyName, FloatPropertyName, StringPropertyName, DoublePropertyName, ColorPropertyName, IntPropertyName, PageGuidesSource, SourceSetPropertyName, BlendMode, ContentFillMode, HeightMode, PositionXMode, PositionYMode, SceneDesignUnit, SceneLayout, SceneMode, WidthMode, StrokeCornerGeometry, StrokePosition, StrokeStyle, TextHorizontalAlignment, TextVerticalAlignment, CutoutType, CaptionHorizontalAlignment, CaptionVerticalAlignment, AnimationEasing, TextAnimationWritingStyle, AnimationGrowDirection, AnimationScaleLoopDirection, AnimationWipeDirection, AnimationBaselineDirection, AnimationSpinDirection, AnimationSpinLoopDirection, AnimationJumpLoopDirection, AnimationTypewriterTextWritingStyle, AnimationBlockSwipeTextDirection, AnimationMergeTextDirection, AnimationKenBurnsDirection, FillPixelStreamOrientation, ShapeVectorPathFillRule, EnumValues, BlockEnumType
+Types: BoolPropertyName, EnumPropertyName, FloatPropertyName, StringPropertyName, DoublePropertyName, ColorPropertyName, IntPropertyName, PageGuidesSource, SourceSetPropertyName, BlendMode, ContentFillMode, HorizontalContentFillAlignment, VerticalContentFillAlignment, HeightMode, PositionXMode, PositionYMode, SceneDesignUnit, SceneFontSizeUnit, SceneLayout, SceneMode, WidthMode, StrokeCornerGeometry, StrokePosition, StrokeStyle, StrokeCap, TextHorizontalAlignment, TextVerticalAlignment, CutoutType, CaptionHorizontalAlignment, CaptionVerticalAlignment, AnimationEasing, TextAnimationWritingStyle, AnimationGrowDirection, AnimationScaleLoopDirection, AnimationWipeDirection, AnimationBaselineDirection, AnimationSpinDirection, AnimationSpinLoopDirection, AnimationJumpLoopDirection, AnimationTypewriterTextWritingStyle, AnimationBlockSwipeTextDirection, AnimationMergeTextDirection, AnimationKenBurnsDirection, FillPixelStreamOrientation, ShapeVectorPathFillRule, EnumValues, BlockEnumType
 
 ## role
 
