@@ -51,6 +51,7 @@ The settings are organized by type:
 |  `placeholderControls/showButton` | `boolean` | Whether to show the placeholder button. |
 |  `placeholderControls/showOverlay` | `boolean` | Whether to show the overlay pattern for placeholders. |
 |  `blockAnimations/enabled` | `boolean` | Whether animations should be enabled or not. |
+|  `playback/showAllBlocks` | `boolean` | When enabled, every block stays visible regardless of the current playback time, instead of being culled outside its time offset/duration. No effect on export. |
 |  `grid/enabled` | `boolean` | Whether the background grid is shown on pages. |
 |  `grid/snapEnabled` | `boolean` | Whether elements should snap to grid lines when dragged. |
 |  `showBuildVersion` | `boolean` | Whether to display the build version in the UI. |

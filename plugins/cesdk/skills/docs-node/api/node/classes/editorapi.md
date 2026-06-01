@@ -175,7 +175,34 @@ Subscribe to editor state changes, history updates, and role changes.
 
 <details>
   <summary>
-    ### onHistoryUpdated
+    ### ~~onHistoryUpdated~~
+
+    <br /><p>Subscribe to undo/redo history changes.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `callback` | () => `void` | Function called when the undo/redo history changes. |
+
+  #### Returns
+
+  A method to unsubscribe from the event.
+
+  () => `void`
+
+  #### Deprecated
+
+  Use [onHistoryUpdatedWithKind](./api/node/classes/editorapi.md) instead, which additionally reports a [HistoryUpdate](./api/node/type-aliases/historyupdate.md)
+  describing the kind of update.
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### onHistoryUpdatedWithKind
 
     <br /><p>Subscribe to undo/redo history changes.</p>
   </summary>
@@ -185,7 +212,7 @@ Subscribe to editor state changes, history updates, and role changes.
   via `setActiveHistory`.
 
   ```javascript
-  const unsubscribe = engine.editor.onHistoryUpdated((kind) => {
+  const unsubscribe = engine.editor.onHistoryUpdatedWithKind((kind) => {
     if (kind === 'Activated') {
       // The active history was switched; no scene change happened on this event.
       return;

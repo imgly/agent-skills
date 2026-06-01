@@ -6,7 +6,7 @@
 type HistoryUpdate = "Updated" | "Activated";
 ```
 
-Describes the kind of update that triggered an `onHistoryUpdated` callback.
+Describes the kind of update that triggered an `onHistoryUpdatedWithKind` callback.
 
 - `Updated`: The active history's snapshots changed: a new snapshot was added (e.g. after an edit), or undo/redo
   was applied. The scene state changed as a direct consequence.

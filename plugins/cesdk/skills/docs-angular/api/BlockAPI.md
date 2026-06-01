@@ -3923,6 +3923,28 @@ setCropAspectRatioLocked(id: DesignBlockId, locked: boolean): void
 - `id` - The block to update.
 - `locked` - Whether aspect ratio should be locked.
 
+### canRevertToOriginalRatio()
+
+Checks whether the "Original" crop preset (`ContentAspectRatio`) can be applied to a block.
+This runs the same preliminary check the apply path performs: it resolves the intrinsic
+content dimensions from the block's image/video fill (an image fill resolves only from its
+`sourceSet`; a video fill resolves from its `sourceSet` or the first decoded frame). Use it
+to gate UI that would otherwise call the preset and fail — e.g. an unreplaced placeholder
+image fill with an empty `sourceSet`.
+```javascript
+const canRevert = engine.block.canRevertToOriginalRatio(block);
+```
+
+```typescript
+canRevertToOriginalRatio(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** True if the preset would resolve, false if it cannot (no/placeholder fill, empty
+sourceSet, video not yet decoded, or unsupported fill type).
+
 ## Block Effects
 
 Create, manage, and apply various visual effects to blocks.

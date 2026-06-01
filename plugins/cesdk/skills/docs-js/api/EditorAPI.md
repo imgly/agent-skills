@@ -15,14 +15,27 @@ onStateChanged(callback: () => void): (() => void)
 
 **Returns:** A method to unsubscribe from the event.
 
-### onHistoryUpdated()
+### onHistoryUpdated() *(deprecated)*
+
+Subscribe to undo/redo history changes.
+
+```typescript
+onHistoryUpdated(callback: () => void): (() => void)
+```
+
+**Parameters:**
+- `callback` - Function called when the undo/redo history changes.
+
+**Returns:** A method to unsubscribe from the event.
+
+### onHistoryUpdatedWithKind()
 
 Subscribe to undo/redo history changes.
 The callback receives a {@link HistoryUpdate} describing what kind of update happened so consumers can
 distinguish a real change to the active history's snapshots (e.g. an edit, undo, or redo) from a pure activation
 via `setActiveHistory`.
 ```javascript
-const unsubscribe = engine.editor.onHistoryUpdated((kind) => {
+const unsubscribe = engine.editor.onHistoryUpdatedWithKind((kind) => {
   if (kind === 'Activated') {
     // The active history was switched; no scene change happened on this event.
     return;
@@ -34,7 +47,7 @@ const unsubscribe = engine.editor.onHistoryUpdated((kind) => {
 ```
 
 ```typescript
-onHistoryUpdated(callback: (kind: HistoryUpdate) => void): (() => void)
+onHistoryUpdatedWithKind(callback: (kind: HistoryUpdate) => void): (() => void)
 ```
 
 **Parameters:**

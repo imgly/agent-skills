@@ -38,7 +38,7 @@ try {
   const page = engine.block.findByType('page')[0];
 
   // Subscribe to history updates.
-  const unsubscribe = engine.editor.onHistoryUpdated((kind) => {
+  const unsubscribe = engine.editor.onHistoryUpdatedWithKind((kind) => {
     if (kind === 'Activated') {
       console.log('Active history switched, scene unchanged.');
       return;
@@ -254,7 +254,7 @@ The redo operation restores the most recently undone change. After redoing, `can
 
 ## Subscribing to History Changes
 
-We use `engine.editor.onHistoryUpdated()` to receive notifications when the history state changes. The callback receives a `HistoryUpdate` argument that distinguishes the kind of change:
+We use `engine.editor.onHistoryUpdatedWithKind()` to receive notifications when the history state changes. The callback receives a `HistoryUpdate` argument that distinguishes the kind of change:
 
 - `'Updated'` — the active history's snapshots changed because of an edit, an `addUndoStep` call, or an `undo`/`redo`. The scene reflects the new state.
 - `'Activated'` — a different history buffer was made active via `setActiveHistory()`. The undo/redo stack visible to the user changed, but no new snapshot was created and no undo or redo was applied.
@@ -263,7 +263,7 @@ This separation lets dirty-state or auto-save logic ignore pure activation event
 
 ```typescript highlight=highlight-subscribe-history
 // Subscribe to history updates.
-const unsubscribe = engine.editor.onHistoryUpdated((kind) => {
+const unsubscribe = engine.editor.onHistoryUpdatedWithKind((kind) => {
   if (kind === 'Activated') {
     console.log('Active history switched, scene unchanged.');
     return;
