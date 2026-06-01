@@ -28,7 +28,7 @@
   "dependencies": {
     "@cesdk/cesdk-js": "workspace:*",
     "@cesdk/engine": "workspace:*",
-    "@imgly/pdf-importer": "workspace:*",
+    "@imgly/pdf-importer": "0.1.0-rc.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-tiny-popover": "^8.1.0",
