@@ -1,11 +1,22 @@
+import { Typeface } from '@cesdk/engine';
 import { useState } from 'react';
 import { useEngine } from '../../contexts/EngineContext';
 import FontSelect from '../FontSelect/FontSelect';
 
 const ChangeFontSecondary = () => {
   const { engine } = useEngine();
-  const [activeTypeface, setActiveTypeface] = useState(
-    engine.block.getTypeface(engine.block.findAllSelected()[0])
+  const [activeTypeface, setActiveTypeface] = useState<Typeface | undefined>(
+    () => {
+      const [block] = engine.block.findAllSelected();
+      if (block == null) return undefined;
+      // Newly created text blocks have no typeface set yet, so getTypeface
+      // throws. Treat that as "no active typeface" instead of crashing.
+      try {
+        return engine.block.getTypeface(block);
+      } catch {
+        return undefined;
+      }
+    }
   );
 
   return (
