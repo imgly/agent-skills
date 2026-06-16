@@ -19,6 +19,7 @@
 - [Create a Color Palette](./colors/create-color-palette.md) - Build reusable color palettes to maintain consistency and streamline user choices.
 - [Replace Individual Colors](./colors/replace.md) - Selectively replace specific colors in images using CE.SDK's Recolor and Green Screen effects to swap colors or remove backgrounds.
 - [Adjust Colors](./colors/adjust.md) - Fine-tune images and design elements by adjusting brightness, contrast, saturation, exposure, and other color properties using CE.SDK's adjustments effect system.
+- [Extract Dominant Colors (Node.js)](./colors/extract-colors.md) - Read the most prominent colors from the rendered appearance of a block with the CE.SDK engine in Node.js.
 - [Color Conversion](./colors/conversion.md) - Learn how to convert colors between color spaces in CE.SDK. Convert sRGB, CMYK, and spot colors programmatically for screen display or print workflows.
 
 

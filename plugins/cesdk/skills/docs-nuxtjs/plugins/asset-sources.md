@@ -237,6 +237,30 @@ await cesdk.addPlugin(new FiltersAssetSource({
 
 ***
 
+## ImageColorsAssetSource
+
+Adds an **Image Colors** group to the color picker that lists the dominant colors of each image in the scene, so users can reuse a color taken straight from their artwork. The plugin reads the colors with the engine's `engine.block.getDominantColors()` API and groups them per image block. It is opt-in — add the plugin to enable the group.
+
+```typescript
+import { ImageColorsAssetSource } from '@cesdk/cesdk-js/plugins';
+
+await cesdk.addPlugin(new ImageColorsAssetSource());
+```
+
+By default the group is added to the `ly.img.colors` color-library entry and only appears while the scene contains at least one image. Use `assetLibraryEntries` to attach it to different color-library entries.
+
+**Options:**
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `assetLibraryEntries` | `string[]` | Color-library entry IDs the Image Colors group is added to. Defaults to `['ly.img.colors']`. |
+
+**Asset Source ID:** `ly.img.colors.imageColors`
+
+To extract dominant colors programmatically instead, see the [Extract Dominant Colors](./colors/extract-colors.md) guide.
+
+***
+
 ## PagePresetsAssetSource
 
 Provides page size presets for social media platforms and print formats.
