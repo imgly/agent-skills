@@ -6,10 +6,10 @@
 type SettingFloatPropertyName = 
   | "positionSnappingThreshold"
   | "rotationSnappingThreshold"
-  | "controlGizmo/blockScaleDownLimit"
-  | "listIndentPerLevel"
   | "grid/spacingX"
   | "grid/spacingY"
+  | "controlGizmo/blockScaleDownLimit"
+  | "listIndentPerLevel"
   | string & object;
 ```
 

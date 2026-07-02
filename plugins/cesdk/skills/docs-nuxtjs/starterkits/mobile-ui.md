@@ -24,7 +24,7 @@ Easily build custom mobile UIs and provide a seamless design editing experience 
 
 This guide assumes basic familiarity with React and TypeScript.
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Node.js v22+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list
 

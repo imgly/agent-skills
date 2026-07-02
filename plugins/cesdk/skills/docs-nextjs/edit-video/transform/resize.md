@@ -368,12 +368,12 @@ Any embedded audio remains synchronous, because resizing affects only the block'
 To prevent manual resizing in the UI, **hide the resize edge handles** using the **EditorAPI**:
 
 1. Call the `setSetting` function.
-2. Include the `"controlGizmo/showResizeHandles"` key.
-3. Set the value to `false`.
+2. Include the `"controlGizmo/resizeHandlesVisibility"` key.
+3. Set the value to `"never"`.
 
 ```ts
 // Hide resize handles if you want to prevent manual resizing
-engine.editor.setSetting("controlGizmo/showResizeHandles", false);
+engine.editor.setSetting("controlGizmo/resizeHandlesVisibility", "never");
 ```
 
 > **Note:** This setting still **displays the corner handles** and helps avoid editing operations that change the size independently in the UI.

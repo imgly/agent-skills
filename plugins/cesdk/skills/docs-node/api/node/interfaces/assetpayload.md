@@ -6,13 +6,14 @@ Asset payload
 
 ## Properties
 
-| Property | Type |
-| ------ | ------ |
-|  `color?` | [`AssetColor`](./api/node/type-aliases/assetcolor.md) |
-|  `sourceSet?` | [`Source`](./api/node/interfaces/source.md)\[] |
-|  `typeface?` | [`Typeface`](./api/node/interfaces/typeface.md) |
-|  `transformPreset?` | [`AssetTransformPreset`](./api/node/type-aliases/assettransformpreset.md) |
-|  `properties?` | [`AssetProperty`](./api/node/type-aliases/assetproperty.md)\[] |
+| Property | Type | Description |
+| ------ | ------ | ------ |
+|  `color?` | [`AssetColor`](./api/node/type-aliases/assetcolor.md) | - |
+|  `sourceSet?` | [`Source`](./api/node/interfaces/source.md)\[] | - |
+|  `typeface?` | [`Typeface`](./api/node/interfaces/typeface.md) | - |
+|  `transformPreset?` | [`AssetTransformPreset`](./api/node/type-aliases/assettransformpreset.md) | - |
+|  `properties?` | [`AssetProperty`](./api/node/type-aliases/assetproperty.md)\[] | - |
+|  `stylePreset?` | [`AssetStylePreset`](./api/node/interfaces/assetstylepreset.md) | A declarative style preset the engine applies to text/caption blocks. |
 
 
 ---

@@ -17,6 +17,8 @@
 - [UI Extensions](./user-interface/ui-extensions.md) - Extend the editor interface with custom components, panels, actions, and dialogs tailored to your workflow.
 - [Build Your Own UI](./user-interface/build-your-own-ui.md) - Build a completely custom editor UI using CE.SDK's headless engine APIs and flexible integration options.
 - [Localization](./user-interface/localization.md) - Learn how to translate and customize the CE.SDK editor interface for different languages and regions using the built-in I18n API.
+- [Custom Error Messages](./user-interface/custom-error-messages.md) - Learn how to override CE.SDK's engine error dialogs with your own localized, customer-facing copy using the I18n API.
+- [Keyboard Shortcuts](./user-interface/keyboard.md) - Learn how to use and customize keyboard shortcuts in CE.SDK
 
 
 ---

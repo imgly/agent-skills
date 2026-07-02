@@ -27,11 +27,11 @@ Updates are memoized (only emit when derived value changes).
 | ------ | ------ | ------ |
 | `sources` | \{ \[K in string | number | symbol]: \_ReadonlyReactiveProperty\<S\[K]> | \_Source\<S\[K]> } | Array of reactive properties or sources to track |
 | `derive` | (...`values`) => `T` | Function that computes the derived value from source values |
-| `options?` | `Pick`\<[`_ReactivePropertyOptions`](./api/engine/interfaces/reactivepropertyoptions.md)\<`T`>, `"equals"`> | Configuration options |
+| `options?` | `Pick`\<[`\_ReactivePropertyOptions`](./api/engine/interfaces/reactivepropertyoptions.md)\<`T`>, `"equals"`> | Configuration options |
 
 ## Returns
 
-[`_ReadonlyReactiveProperty`](./api/engine/interfaces/readonlyreactiveproperty.md)\<`T`>
+[`\_ReadonlyReactiveProperty`](./api/engine/interfaces/readonlyreactiveproperty.md)\<`T`>
 
 A read-only reactive property
 

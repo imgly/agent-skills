@@ -26,7 +26,7 @@ With Version History, you can monitor changes made to each design and easily res
 
 Before you begin, make sure you have the following:
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list.
 
@@ -608,7 +608,7 @@ See [Background Removal](./edit-image/remove-bg.md) for setup instructions and c
 
 #### Print Ready PDF
 
-Export print-ready PDF/X-3 files with CMYK color profiles for professional printing workflows.
+Export print-ready PDF/X-4 and PDF/X-3 files with CMYK color profiles for professional printing workflows.
 
 ```typescript title="app/imgly/config/plugin.ts"
 import PrintReadyPDFPlugin from '@imgly/plugin-print-ready-pdf';

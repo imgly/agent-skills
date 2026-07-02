@@ -527,7 +527,7 @@ CE.SDK includes many built-in features organized by category:
 |------------|-------------|
 | `ly.img.text` | Parent key: enables all text child features |
 | `ly.img.text.edit` | Controls presence of the Edit button. The text color panel's sub-controls are gated via the fill sub-keys (`ly.img.fill.color.*`). |
-| `ly.img.text.typeface` | Controls typeface dropdown |
+| `ly.img.text.typeface` | Controls the typeface selection that opens the typeface library |
 | `ly.img.text.fontSize` | Controls font size input |
 | `ly.img.text.fontStyle` | Controls bold/italic toggles |
 | `ly.img.text.decoration` | Controls underline/strikethrough toggles |
@@ -540,6 +540,7 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.text.background.picker` | Controls the color picker inside the text background color panel |
 | `ly.img.text.background.picker.opacity` | Controls the alpha/opacity slider inside the text background color panel |
 | `ly.img.text.background.library` | Controls the swatch library inside the text background color panel |
+| `ly.img.text.styles` | Controls the Styles button that applies a style preset to a text or caption block |
 
 ### Effects Features
 
@@ -630,6 +631,12 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.scene.layout.vertical` | Controls vertical layout toggle |
 | `ly.img.scene.layout.free` | Controls free layout toggle |
 | `ly.img.scene.fontSizeUnit` | Controls visibility of the per-scene font-size unit selector in the page resize panel |
+
+### Keyboard Shortcut Features
+
+| Feature ID | Description |
+|------------|-------------|
+| `ly.img.keyboard.shortcuts` | Controls whether registered keyboard shortcuts fire. |
 
 ### Other Features
 

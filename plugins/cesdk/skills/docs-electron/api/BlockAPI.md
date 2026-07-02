@@ -5583,6 +5583,25 @@ getTypefaces(id: DesignBlockId, from?: number, to?: number): Typeface[]
 
 **Returns:** The unique typefaces in the range.
 
+### getTextRuns()
+
+Gets all text runs within a range of text.
+Each run represents a contiguous span of text with uniform formatting.
+```javascript
+const runs = engine.block.getTextRuns(text);
+```
+
+```typescript
+getTextRuns(id: DesignBlockId, from?: number, to?: number): TextRunInfo[]
+```
+
+**Parameters:**
+- `id` - The text block to query.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+**Returns:** The ordered list of text runs covering the requested range.
+
 ### getTextCursorRange()
 
 Gets the current text cursor or selection range.
@@ -5690,6 +5709,83 @@ getTextEffectiveHorizontalAlignment(id: DesignBlockId): 'Left' | 'Right' | 'Cent
 - `id` - The text block whose effective alignment should be returned.
 
 **Returns:** The effective alignment ('Left', 'Right', or 'Center').
+
+### setTextOnPath()
+
+Sets the SVG path that the text baseline follows.
+Pass `null` to restore normal straight-line text layout.
+
+```typescript
+setTextOnPath(id: DesignBlockId, svgPath: string | null): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `svgPath` - An SVG path string in the block's local coordinate space, or `null` to clear.
+
+### getTextOnPath()
+
+Gets the SVG path currently used as the text baseline.
+
+```typescript
+getTextOnPath(id: DesignBlockId): string | null
+```
+
+**Parameters:**
+- `id` - The text block to query.
+
+**Returns:** The SVG path string, or `null` if no path is set.
+
+### setTextOnPathOffset()
+
+Sets the start offset along the baseline path as a proportion of the path length.
+Values are clamped to `[-1, 1]`; `1` and `-1` wrap back to the path start.
+
+```typescript
+setTextOnPathOffset(id: DesignBlockId, offset: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `offset` - The proportional offset. Positive values move the text forward along the path.
+
+### getTextOnPathOffset()
+
+Gets the start offset along the baseline path as a proportion of the path length.
+
+```typescript
+getTextOnPathOffset(id: DesignBlockId): number
+```
+
+**Parameters:**
+- `id` - The text block to query.
+
+**Returns:** The proportional offset in `[-1, 1]`.
+
+### setTextOnPathFlipped()
+
+Sets whether text is placed on the opposite side of the baseline path.
+
+```typescript
+setTextOnPathFlipped(id: DesignBlockId, flipped: boolean): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `flipped` - When `true`, text sits on the underside of the curve and reads in the reverse direction.
+
+### getTextOnPathFlipped()
+
+Gets whether the text-on-path rendering is flipped.
+
+```typescript
+getTextOnPathFlipped(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - The text block to query.
+
+**Returns:** `true` when text is on the underside of the curve.
 
 ## Block Placeholder
 

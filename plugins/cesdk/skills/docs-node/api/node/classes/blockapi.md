@@ -5516,6 +5516,42 @@ Create, edit, and style text content.
 
 <details>
   <summary>
+    ### getTextRuns()
+
+    <br /><p>Gets all text runs within a range of text.</p>
+  </summary>
+
+  Each run represents a contiguous span of text with uniform formatting.
+
+  ```javascript
+  const runs = engine.block.getTextRuns(text);
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to query. |
+  | `from?` | `number` | The start index of the UTF-16 range. Defaults to the start of the current selection or text. |
+  | `to?` | `number` | The end index of the UTF-16 range. Defaults to the end of the current selection or text. |
+
+  #### Returns
+
+  [`TextRunInfo`](./api/node/interfaces/textruninfo.md)\[]
+
+  The ordered list of text runs covering the requested range.
+
+  #### Signature
+
+  ```typescript
+  getTextRuns(id: number, from?: number, to?: number): TextRunInfo[]
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### getTextCursorRange()
 
     <br /><p>Gets the current text cursor or selection range.</p>
@@ -5728,6 +5764,173 @@ Create, edit, and style text content.
 
   ```typescript
   getTextEffectiveHorizontalAlignment(id: number): "Right" | "Left" | "Center"
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setTextOnPath()
+
+    <br /><p>Sets the SVG path that the text baseline follows.
+    Pass <code>null</code> to restore normal straight-line text layout.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to modify. |
+  | `svgPath` | `string` | An SVG path string in the block's local coordinate space, or `null` to clear. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setTextOnPath(id: number, svgPath: string): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getTextOnPath()
+
+    <br /><p>Gets the SVG path currently used as the text baseline.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to query. |
+
+  #### Returns
+
+  `string`
+
+  The SVG path string, or `null` if no path is set.
+
+  #### Signature
+
+  ```typescript
+  getTextOnPath(id: number): string
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setTextOnPathOffset()
+
+    <br /><p>Sets the start offset along the baseline path as a proportion of the path length.
+    Values are clamped to <code>\[-1, 1]</code>; <code>1</code> and <code>-1</code> wrap back to the path start.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to modify. |
+  | `offset` | `number` | The proportional offset. Positive values move the text forward along the path. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setTextOnPathOffset(id: number, offset: number): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getTextOnPathOffset()
+
+    <br /><p>Gets the start offset along the baseline path as a proportion of the path length.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to query. |
+
+  #### Returns
+
+  `number`
+
+  The proportional offset in `[-1, 1]`.
+
+  #### Signature
+
+  ```typescript
+  getTextOnPathOffset(id: number): number
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setTextOnPathFlipped()
+
+    <br /><p>Sets whether text is placed on the opposite side of the baseline path.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to modify. |
+  | `flipped` | `boolean` | When `true`, text sits on the underside of the curve and reads in the reverse direction. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setTextOnPathFlipped(id: number, flipped: boolean): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getTextOnPathFlipped()
+
+    <br /><p>Gets whether the text-on-path rendering is flipped.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block to query. |
+
+  #### Returns
+
+  `boolean`
+
+  `true` when text is on the underside of the curve.
+
+  #### Signature
+
+  ```typescript
+  getTextOnPathFlipped(id: number): boolean
   ```
 </details>
 

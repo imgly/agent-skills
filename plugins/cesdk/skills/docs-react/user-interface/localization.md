@@ -624,6 +624,7 @@ The system falls back to English (`en`) for missing translations. The fallback l
 
 ## Next Steps
 
+- [Custom Error Messages](./user-interface/custom-error-messages.md) — Override engine error dialogs with localized, customer-facing copy
 - [UI Customization](./user-interface/customization.md) — Customize editor components and layout
 - [Configuration](./configuration.md) — Explore editor configuration options
 - [Actions](./actions.md) — Handle user interactions and events

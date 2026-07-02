@@ -2,7 +2,7 @@
  * Export Print-Ready PDF Panel Plugin
  *
  * This plugin provides a custom export panel for creating print-ready PDFs
- * with PDF/X-3 compliance, CMYK color profiles, bleed margins, and page range selection.
+ * with PDF/X-4 or PDF/X-3 compliance, CMYK color profiles, bleed margins, and page range selection.
  *
  * @see https://img.ly/docs/cesdk/js/export/
  */
@@ -19,6 +19,19 @@ const COLOR_PROFILE_SELECT_VALUES = [
 ];
 
 const COLOR_PROFILE_DEFAULT_VALUE = COLOR_PROFILE_SELECT_VALUES[0];
+// #endregion
+
+// #region PDF/X Standard
+type PDFXStandard = 'PDF/X-3' | 'PDF/X-4';
+
+const PDFX_STANDARD_SELECT_VALUES = [
+  { id: 'PDF/X-4', label: 'PDF/X-4 (recommended)' },
+  { id: 'PDF/X-3', label: 'PDF/X-3' }
+];
+
+// PDF/X-4 is the default: it preserves live transparency so vector text on
+// transparent pages stays selectable. PDF/X-3 (PDF 1.4) flattens transparency.
+const PDFX_STANDARD_DEFAULT_VALUE = PDFX_STANDARD_SELECT_VALUES[0];
 // #endregion
 
 // #region Page Amount Types
@@ -38,10 +51,10 @@ const DEFAULT_BLEED_MARGIN = 3; // mm
  * Export Print-Ready PDF Panel Plugin
  *
  * Provides a custom panel for exporting print-ready PDFs with:
+ * - PDF/X standard selection (PDF/X-4 or PDF/X-3)
  * - Bleed margin configuration
  * - Color profile selection (CMYK/RGB)
  * - Page range selection
- * - PDF/X-3 compliance
  */
 // highlight-export-plugin
 export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
@@ -73,7 +86,7 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
     // #region Translations
     cesdk.i18n.setTranslations({
       en: {
-        'panel.//ly.img.panel/export-print-ready-pdf': 'Export PDF/X-3',
+        'panel.//ly.img.panel/export-print-ready-pdf': 'Export Print-Ready PDF',
         'pages/all': 'All',
         'pages/custom': 'Custom',
         'bleed/enabled': 'Include Bleed',
@@ -93,6 +106,12 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
           DEFAULT_BLEED_MARGIN
         );
 
+        // State for PDF/X standard
+        const standardState = state<SelectValue>(
+          'standard',
+          PDFX_STANDARD_DEFAULT_VALUE
+        );
+
         // State for color profile
         const colorProfileState = state<SelectValue>(
           'colorProfile',
@@ -106,6 +125,23 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
           'rangeInputError'
         );
         const rangePageState = state<number[]>('rangePages', []);
+
+        // #region PDF/X Standard Section
+        // highlight-standard-section
+        builder.Section('standard-section', {
+          children: () => {
+            builder.Select('pdfx-standard', {
+              inputLabel: 'PDF/X Standard',
+              values: PDFX_STANDARD_SELECT_VALUES,
+              value: standardState.value,
+              setValue: standardState.setValue,
+              tooltip:
+                'PDF/X-4 preserves live transparency and keeps vector text selectable. PDF/X-3 (PDF 1.4) flattens transparency for older prepress workflows.'
+            });
+          }
+        });
+        // highlight-standard-section
+        // #endregion
 
         // #region Bleed Margin Section
         // highlight-bleed-section
@@ -204,16 +240,23 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
               color: 'accent',
               onClick: async () => {
                 loadingState.setValue(true);
-
-                await exportPrintReadyPDF(
-                  engine,
-                  rangeInputState.value,
-                  colorProfileState.value.id as ColorProfile,
-                  bleedEnabledState.value,
-                  bleedMarginState.value
-                );
-
-                loadingState.setValue(false);
+                try {
+                  await exportPrintReadyPDF(
+                    engine,
+                    rangeInputState.value,
+                    colorProfileState.value.id as ColorProfile,
+                    standardState.value.id as PDFXStandard,
+                    bleedEnabledState.value,
+                    bleedMarginState.value
+                  );
+                } catch (error: unknown) {
+                  // Surface the failure instead of leaving the button spinning
+                  // forever if export or PDF/X conversion throws.
+                  // eslint-disable-next-line no-console
+                  console.error('Print-ready PDF export failed:', error);
+                } finally {
+                  loadingState.setValue(false);
+                }
               }
             });
           }
@@ -235,11 +278,12 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
 
 // #region Export Function
 /**
- * Export the scene as a print-ready PDF/X-3
+ * Export the scene as a print-ready PDF/X-4 or PDF/X-3
  *
  * @param engine - The Creative Engine instance
  * @param pageRange - Page range string (e.g., "1,2-5")
  * @param colorProfile - Color profile to use (fogra39, gracol, srgb)
+ * @param outputStandard - PDF/X standard to produce ('PDF/X-4' or 'PDF/X-3')
  * @param bleedEnabled - Whether to include bleed margins
  * @param bleedMargin - Bleed margin size in mm
  */
@@ -248,6 +292,7 @@ const exportPrintReadyPDF = async (
   engine: CreativeEngine,
   pageRange: string,
   colorProfile: ColorProfile,
+  outputStandard: PDFXStandard,
   bleedEnabled: boolean,
   bleedMargin: number
 ) => {
@@ -294,20 +339,16 @@ const exportPrintReadyPDF = async (
     engine.block.setVisible(id, true);
   });
 
-  const { convertToPDFX3 } = (await import(
-    /* webpackIgnore: true */
-    // @ts-expect-error - Dynamic import from CDN, TypeScript cannot resolve this
-    'https://cdn.jsdelivr.net/npm/@imgly/plugin-print-ready-pdfs-web@1.0.0/dist/index.mjs'
-  )) as {
-    convertToPDFX3: (
-      blob: Blob,
-      options: { outputProfile: string; title: string }
-    ) => Promise<Blob>;
-  };
+  // Lazily load the print-ready PDF plugin so its Ghostscript WASM payload is
+  // only fetched when the user actually exports. Resolves to the installed
+  // @imgly/plugin-print-ready-pdfs-web package (bundled as its own chunk), not
+  // a runtime CDN URL.
+  const { convertToPDFX } = await import('@imgly/plugin-print-ready-pdfs-web');
 
-  // Convert to print-ready PDF/X-3
-  const printReadyPDF = await convertToPDFX3(pdfBlob, {
+  // Convert to the selected print-ready PDF/X standard (defaults to PDF/X-4)
+  const printReadyPDF = await convertToPDFX(pdfBlob, {
     outputProfile: colorProfile,
+    outputStandard,
     title: 'Print-Ready Export'
   });
 

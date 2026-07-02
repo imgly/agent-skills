@@ -17,6 +17,7 @@
 - [To v1.32](./to-v1-32.md) - Upgrade to CE.SDK v1.32 with guidance on feature changes, removals, and integration adjustments.
 - [To v1.69+](./to-v1-69.md) - Learn how to migrate to CE.SDK v1.69+ with Starter Kits, new asset source plugins, and updated naming conventions.
 - [To v1.72](./to-v1-72.md) - Learn how to migrate to CE.SDK v1.72, which deprecates scene mode in favor of a single scene type with all capabilities.
+- [To v1.77](./to-v1-77.md) - Learn what changed in v1.77 for web — branch on stable engine error codes, update your setup for the reorganized text and caption presets, and adopt the new public keyboard shortcuts registry.
 
 
 ---

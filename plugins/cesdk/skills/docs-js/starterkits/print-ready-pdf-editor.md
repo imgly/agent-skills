@@ -4,7 +4,7 @@
 
 ---
 
-Deliver print-ready CMYK PDF/X-3 files straight from your web app. Perfect for web-to-print and marketing automation.
+Deliver print-ready CMYK PDF/X-4 and PDF/X-3 files straight from your web app. Perfect for web-to-print and marketing automation.
 
 ![Print-Ready PDF Editor starter kit showing the PDF export interface](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -26,7 +26,7 @@ Deliver print-ready CMYK PDF/X-3 files straight from your web app. Perfect for w
 
 This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Node.js v22+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list
 
@@ -36,7 +36,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
   <TabItem label="New Project">
     ## Get Started
 
-    Start fresh with a standalone Print-Ready PDF Editor project. This creates a complete, ready-to-run application with PDF/X-3 export capabilities.
+    Start fresh with a standalone Print-Ready PDF Editor project. This creates a complete, ready-to-run application with PDF/X-4 and PDF/X-3 export capabilities.
 
     ## Step 1: Clone the Repository
 
@@ -140,7 +140,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
   <TabItem label="Existing Project">
     ## Get Started
 
-    Integrate the Print-Ready PDF Editor into an existing web application. This adds the editor configuration with PDF/X-3 export to your current project structure.
+    Integrate the Print-Ready PDF Editor into an existing web application. This adds the editor configuration with PDF/X-4 and PDF/X-3 export to your current project structure.
 
     ## Step 1: Clone
 
@@ -283,7 +283,7 @@ The `createDesignScene()` method is ideal for design workflows, as it creates a 
 
 ## Print-Ready PDF Export
 
-The Print-Ready PDF Editor includes a custom export panel for producing print-ready PDF/X-3 files. This panel provides professional printing options directly in the editor.
+The Print-Ready PDF Editor includes a custom export panel for producing print-ready PDF/X-4 and PDF/X-3 files. This panel provides professional printing options directly in the editor.
 
 ### Export Panel Features
 
@@ -292,7 +292,8 @@ The export panel includes:
 - **Bleed Margins** – Add configurable bleed margins for professional printing
 - **Color Profiles** – Choose between CMYK (ISO Coated v2, GRACoL 2006) and RGB (sRGB) profiles
 - **Page Range Selection** – Export all pages or specify a custom range
-- **PDF/X-3 Compliance** – Generate PDFs that meet print industry standards
+- **PDF/X Standard** – Choose between PDF/X-4 (default, preserves live transparency) and PDF/X-3 (flattened)
+- **PDF/X-4 & PDF/X-3 Compliance** – Generate PDFs that meet print industry standards
 
 ### Using the Export Panel
 
@@ -301,6 +302,15 @@ Click the "Export PDF" button in the navigation bar to open the export panel:
 ```typescript title="src/imgly/plugins/export-print-ready-pdf.ts"
 // The export panel is registered as a custom component
 cesdk.ui.registerPanel('ly.img.export-print-ready-pdf.panel', ({ builder }) => {
+  // PDF/X standard selection (PDF/X-4 by default, PDF/X-3 as a fallback)
+  builder.Select('pdfx-standard', {
+    inputLabel: 'PDF/X Standard',
+    values: [
+      { id: 'PDF/X-4', label: 'PDF/X-4 (recommended)' },
+      { id: 'PDF/X-3', label: 'PDF/X-3' }
+    ]
+  });
+
   // Bleed margin controls
   builder.Section('bleed-section', { children: () => {
     builder.Checkbox('include-bleed', {
@@ -656,7 +666,7 @@ The Print-Ready PDF Editor includes everything needed for professional print pro
 <CapabilityGrid
   features={[
   {
-    title: 'PDF/X-3 Compliance',
+    title: 'PDF/X-4 & PDF/X-3 Compliance',
     description:
       'Export PDFs that meet print industry standards for professional printing workflows.',
     imageId: 'client-side',
@@ -733,7 +743,7 @@ The Print-Ready PDF Editor includes everything needed for professional print pro
 - [Actions](./actions.md) – Build custom export and save workflows
 - [Theming](./user-interface/appearance/theming.md) – Customize colors and appearance
 - [Localization](./user-interface/localization.md) – Add translations and language support
-- [Print Ready PDF](./plugins/print-ready-pdf.md) – Learn more about PDF/X-3 export options
+- [Print Ready PDF](./plugins/print-ready-pdf.md) – Learn more about PDF/X-4 and PDF/X-3 export options
 
 
 

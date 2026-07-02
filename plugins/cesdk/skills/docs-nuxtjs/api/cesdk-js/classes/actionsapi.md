@@ -11,6 +11,11 @@ This API allows you to:
 - Use default implementations when no custom action is registered
 - Maintain consistent behavior across different UI components
 
+It is a thin facade over the engine's action registry (`engine.actions`): there is a single
+source of truth in the C++ engine. Host (JS) actions run directly in JS, so registering,
+retrieving (`get`), and running them preserves synchronous returns and non-serializable
+payloads (`File`/`Blob`/callbacks).
+
 ## Constructors
 
 <details>
@@ -69,7 +74,7 @@ This API allows you to:
   <summary>
     ### get()
 
-    <br /><p>Returns the custom export video action if registered, otherwise returns the default.</p>
+    <br /><p>Returns the registered action function for an id, or <code>undefined</code> if none is registered.</p>
   </summary>
 
   #### Type Parameters
@@ -180,7 +185,7 @@ This API allows you to:
 
   [`ActionId`](./api/cesdk-js/type-aliases/actionid.md)\[]
 
-  An array of action IDs currently registered in the store
+  An array of action IDs currently registered
 
   #### Example
 

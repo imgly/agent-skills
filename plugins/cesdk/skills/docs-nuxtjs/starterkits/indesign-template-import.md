@@ -26,7 +26,7 @@ Transform your existing InDesign templates for use in the CE.SDK with our Import
 
 Before you begin, make sure you have the following:
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list.
 
@@ -229,6 +229,22 @@ Before you begin, make sure you have the following:
 
       <TerminalTab label="yarn">
         yarn add @imgly/idml-importer
+      </TerminalTab>
+    </TerminalTabs>
+
+    To import embedded PDF and Adobe Illustrator (`.ai`) content inside IDML files as editable CE.SDK blocks, also install `@imgly/pdf-importer` and register its adapter via the `embeddedImporters` option on `IDMLParser.fromFile` (see the parsing step below). Without the adapter, embedded PDFs fall through to a placeholder image:
+
+    <TerminalTabs syncKey="package-manager">
+      <TerminalTab label="npm">
+        npm install @imgly/pdf-importer
+      </TerminalTab>
+
+      <TerminalTab label="pnpm">
+        pnpm add @imgly/pdf-importer
+      </TerminalTab>
+
+      <TerminalTab label="yarn">
+        yarn add @imgly/pdf-importer
       </TerminalTab>
     </TerminalTabs>
 

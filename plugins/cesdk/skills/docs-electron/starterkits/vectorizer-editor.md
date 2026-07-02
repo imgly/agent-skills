@@ -26,7 +26,7 @@ Transform your pixel-based images into scalable vector graphics with Vectorizer 
 
 Before you begin, make sure you have the following:
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - Basic familiarity with Electron's main and renderer process architecture
 
 ***

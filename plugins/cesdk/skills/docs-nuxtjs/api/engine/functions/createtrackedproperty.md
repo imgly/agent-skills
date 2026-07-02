@@ -27,12 +27,12 @@ This is useful for wrapping engine properties or complex state logic.
 | ------ | ------ | ------ |
 | `getter` | () => `T` | Function to get current value |
 | `setter` | (`value`) => `void` | Function to update value |
-| `source` | (`listener`) => [`_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md) | Source to track for updates |
-| `options?` | `Pick`\<[`_ReactivePropertyOptions`](./api/engine/interfaces/reactivepropertyoptions.md)\<`T`>, `"equals"`> | Configuration options |
+| `source` | (`listener`) => [`\_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md) | Source to track for updates |
+| `options?` | `Pick`\<[`\_ReactivePropertyOptions`](./api/engine/interfaces/reactivepropertyoptions.md)\<`T`>, `"equals"`> | Configuration options |
 
 ## Returns
 
-[`_ReactiveProperty`](./api/engine/interfaces/reactiveproperty.md)\<`T`>
+[`\_ReactiveProperty`](./api/engine/interfaces/reactiveproperty.md)\<`T`>
 
 A reactive property
 

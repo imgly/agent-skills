@@ -13,6 +13,10 @@ type SettingEnumType = object;
 |  `touch/pinchAction` | [`TouchPinchAction`](./api/engine/type-aliases/touchpinchaction.md) |
 |  `touch/rotateAction` | [`TouchRotateAction`](./api/engine/type-aliases/touchrotateaction.md) |
 |  `camera/clamping/overshootMode` | [`CameraClampingOvershootMode`](./api/engine/type-aliases/cameraclampingovershootmode.md) |
+|  `controlGizmo/moveHandleVisibility` | [`ControlGizmoMoveHandleVisibility`](./api/engine/type-aliases/controlgizmomovehandlevisibility.md) |
+|  `controlGizmo/resizeHandlesVisibility` | [`ControlGizmoResizeHandlesVisibility`](./api/engine/type-aliases/controlgizmoresizehandlesvisibility.md) |
+|  `controlGizmo/scaleHandlesVisibility` | [`ControlGizmoScaleHandlesVisibility`](./api/engine/type-aliases/controlgizmoscalehandlesvisibility.md) |
+|  `controlGizmo/rotateHandlesVisibility` | [`ControlGizmoRotateHandlesVisibility`](./api/engine/type-aliases/controlgizmorotatehandlesvisibility.md) |
 |  `doubleClickSelectionMode` | [`DoubleClickSelectionMode`](./api/engine/type-aliases/doubleclickselectionmode.md) |
 |  `colorPicker/colorMode` | [`ColorPickerColorMode`](./api/engine/type-aliases/colorpickercolormode.md) |
 |  `timeline/trackVisibility` | [`TimelineTrackVisibility`](./api/engine/type-aliases/timelinetrackvisibility.md) |

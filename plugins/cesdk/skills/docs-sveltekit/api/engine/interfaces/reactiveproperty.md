@@ -14,7 +14,7 @@ A reactive property with subscribe, value, and update methods
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-|  `subscribe` | (`listener`) => [`_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md) | Subscribe to value changes |
+|  `subscribe` | (`listener`) => [`\_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md) | Subscribe to value changes |
 |  `value` | () => `T` | Get current value |
 |  `update` | (`newValue`) => `void` | Update the value (will notify listeners if changed) |
 

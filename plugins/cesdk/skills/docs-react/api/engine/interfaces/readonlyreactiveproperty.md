@@ -14,7 +14,7 @@ A read-only reactive property with subscribe and value methods
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-|  `subscribe` | (`listener`) => [`_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md) | Subscribe to value changes |
+|  `subscribe` | (`listener`) => [`\_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md) | Subscribe to value changes |
 |  `value` | () => `T` | Get current value |
 
 

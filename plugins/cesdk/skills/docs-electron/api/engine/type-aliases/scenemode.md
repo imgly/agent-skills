@@ -6,10 +6,6 @@
 type SceneMode = typeof SceneModeValues[number];
 ```
 
-## Deprecated
-
-Since v1.72. Scene mode no longer affects engine behavior.
-
 
 ---
 

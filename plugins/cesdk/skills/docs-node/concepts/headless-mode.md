@@ -52,7 +52,7 @@ You are responsible for:
 
 ### Requirements to Run CreativeEngine on Node.js
 
-- **Node.js 18+** (or the matching runtime for your serverless provider).
+- **Node.js 22+** (or the matching runtime for your serverless provider).
 - **@cesdk/node@$UBQ\_VERSION$** installed locally: `npm install @cesdk/node@$UBQ_VERSION$`.
 - A valid **CE.SDK license key**.
 - A **base asset bundle** reachable from the runtime (CDN or self-hosted path). The CDN URLs shown below work for quick tests.

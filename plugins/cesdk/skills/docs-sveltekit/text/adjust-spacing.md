@@ -41,7 +41,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource,
 } from "@cesdk/cesdk-js/plugins";
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from "@cesdk/core-configs-web/design-editor";
 import packageJson from "./package.json";
 
 /**
@@ -70,7 +70,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
-      new UploadAssetSources({ include: ["ly.img.image.upload"] }),
+      new UploadAssetSources({ include: ["ly.img.image.upload"] })
     );
     await cesdk.addPlugin(
       new DemoAssetSources({
@@ -81,7 +81,7 @@ class Example implements EditorPlugin {
           "ly.img.templates.social.*",
           "ly.img.image.*",
         ],
-      }),
+      })
     );
     await cesdk.addPlugin(new EffectsAssetSource());
     await cesdk.addPlugin(new FiltersAssetSource());
@@ -116,7 +116,7 @@ class Example implements EditorPlugin {
     // Read current letter spacing value
     const letterSpacing = engine.block.getFloat(
       textLetterSpacing,
-      "text/letterSpacing",
+      "text/letterSpacing"
     );
     console.log("Letter spacing:", letterSpacing);
 
@@ -129,7 +129,7 @@ class Example implements EditorPlugin {
     engine.block.setHeightMode(textLineHeight, "Auto");
     engine.block.replaceText(
       textLineHeight,
-      "Design your ideas\nBring them to life",
+      "Design your ideas\nBring them to life"
     );
     engine.block.setTextFontSize(textLineHeight, 48);
 
@@ -150,7 +150,7 @@ class Example implements EditorPlugin {
     engine.block.setHeightMode(textParaLineHeight, "Auto");
     engine.block.replaceText(
       textParaLineHeight,
-      "First paragraph\nSecond paragraph\nThird paragraph",
+      "First paragraph\nSecond paragraph\nThird paragraph"
     );
     engine.block.setTextFontSize(textParaLineHeight, 36);
 
@@ -162,8 +162,14 @@ class Example implements EditorPlugin {
 
     // Read the line height for each paragraph
     // Returns the override for paragraph 0, block-level fallback for others
-    const para0LineHeight = engine.block.getTextLineHeight(textParaLineHeight, 0);
-    const para1LineHeight = engine.block.getTextLineHeight(textParaLineHeight, 1);
+    const para0LineHeight = engine.block.getTextLineHeight(
+      textParaLineHeight,
+      0
+    );
+    const para1LineHeight = engine.block.getTextLineHeight(
+      textParaLineHeight,
+      1
+    );
     console.log("Para 0 line height:", para0LineHeight); // 2.5 (override)
     console.log("Para 1 line height:", para1LineHeight); // 1.2 (block-level fallback)
 
@@ -182,7 +188,7 @@ class Example implements EditorPlugin {
     engine.block.setHeightMode(textParagraphSpacing, "Auto");
     engine.block.replaceText(
       textParagraphSpacing,
-      "Start Creating\nJoin Today",
+      "Start Creating\nJoin Today"
     );
     engine.block.setTextFontSize(textParagraphSpacing, 48);
 
@@ -192,7 +198,7 @@ class Example implements EditorPlugin {
     // Read current paragraph spacing value
     const paragraphSpacing = engine.block.getFloat(
       textParagraphSpacing,
-      "text/paragraphSpacing",
+      "text/paragraphSpacing"
     );
     console.log("Paragraph spacing:", paragraphSpacing);
 
@@ -228,7 +234,7 @@ We control the horizontal space between characters using `engine.block.setFloat(
     // Read current letter spacing value
     const letterSpacing = engine.block.getFloat(
       textLetterSpacing,
-      "text/letterSpacing",
+      "text/letterSpacing"
     );
     console.log("Letter spacing:", letterSpacing);
 ```
@@ -249,7 +255,7 @@ We control the vertical distance between lines using `engine.block.setFloat()` w
     engine.block.setHeightMode(textLineHeight, "Auto");
     engine.block.replaceText(
       textLineHeight,
-      "Design your ideas\nBring them to life",
+      "Design your ideas\nBring them to life"
     );
     engine.block.setTextFontSize(textLineHeight, 48);
 
@@ -278,7 +284,7 @@ Override the line height for individual paragraphs using `engine.block.setTextLi
     engine.block.setHeightMode(textParaLineHeight, "Auto");
     engine.block.replaceText(
       textParaLineHeight,
-      "First paragraph\nSecond paragraph\nThird paragraph",
+      "First paragraph\nSecond paragraph\nThird paragraph"
     );
     engine.block.setTextFontSize(textParaLineHeight, 36);
 
@@ -290,8 +296,14 @@ Override the line height for individual paragraphs using `engine.block.setTextLi
 
     // Read the line height for each paragraph
     // Returns the override for paragraph 0, block-level fallback for others
-    const para0LineHeight = engine.block.getTextLineHeight(textParaLineHeight, 0);
-    const para1LineHeight = engine.block.getTextLineHeight(textParaLineHeight, 1);
+    const para0LineHeight = engine.block.getTextLineHeight(
+      textParaLineHeight,
+      0
+    );
+    const para1LineHeight = engine.block.getTextLineHeight(
+      textParaLineHeight,
+      1
+    );
     console.log("Para 0 line height:", para0LineHeight); // 2.5 (override)
     console.log("Para 1 line height:", para1LineHeight); // 1.2 (block-level fallback)
 
@@ -318,7 +330,7 @@ We add vertical space between paragraphs using `engine.block.setFloat()` with th
     engine.block.setHeightMode(textParagraphSpacing, "Auto");
     engine.block.replaceText(
       textParagraphSpacing,
-      "Start Creating\nJoin Today",
+      "Start Creating\nJoin Today"
     );
     engine.block.setTextFontSize(textParagraphSpacing, 48);
 
@@ -328,7 +340,7 @@ We add vertical space between paragraphs using `engine.block.setFloat()` with th
     // Read current paragraph spacing value
     const paragraphSpacing = engine.block.getFloat(
       textParagraphSpacing,
-      "text/paragraphSpacing",
+      "text/paragraphSpacing"
     );
     console.log("Paragraph spacing:", paragraphSpacing);
 ```

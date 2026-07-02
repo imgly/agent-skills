@@ -20,7 +20,7 @@ Custom UI for building photo books focusing on theming, page layouts, and managi
 
 ### Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 22+ and npm
 - CE.SDK license key (get yours at [img.ly](https://img.ly))
 
 ### Installation

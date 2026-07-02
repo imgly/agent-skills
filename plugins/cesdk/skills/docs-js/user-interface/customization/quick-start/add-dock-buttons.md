@@ -265,7 +265,7 @@ Common asset library entry identifiers to use in the `entries` array:
 | `ly.img.image` | Image assets |
 | `ly.img.video` | Video assets |
 | `ly.img.audio` | Audio assets |
-| `ly.img.text` | Text presets |
+| `ly.img.text` | Text assets (style presets) |
 | `ly.img.vector.shape` | Shape assets |
 | `ly.img.sticker` | Sticker assets |
 | `ly.img.template` | Templates |

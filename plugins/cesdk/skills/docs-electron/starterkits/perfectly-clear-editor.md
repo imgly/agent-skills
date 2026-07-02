@@ -26,7 +26,7 @@ One-click image enhancement using the Perfectly Clear (eyeQ) plugin — scene-aw
 
 Before you begin, make sure you have the following:
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - Basic familiarity with Electron's main and renderer process architecture
 - A **Perfectly Clear (eyeQ) API key** authorized for the origin you'll run on (the runtime validates the page hostname). Contact your Perfectly Clear account manager or see the [Perfectly Clear plugin guide](./plugins/perfectly-clear.md).
 

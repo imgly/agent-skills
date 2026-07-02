@@ -3,7 +3,7 @@
  *
  * This module provides the main entry point for initializing the print-ready PDF editor.
  * Import and call `initPrintReadyPdfEditor()` to configure a CE.SDK instance for
- * print-ready PDF export with PDF/X-3 compliance, CMYK color profiles, and bleed margins.
+ * print-ready PDF export with PDF/X-4 or PDF/X-3 compliance, CMYK color profiles, and bleed margins.
  *
  * @see https://img.ly/docs/cesdk/js/getting-started/
  */
@@ -41,7 +41,7 @@ export { ExportPrintReadyPDFPanelPlugin } from './plugins/export-print-ready-pdf
  *
  * This function configures a CE.SDK instance with:
  * - Print-ready PDF editor UI configuration
- * - PDF/X-3 export panel with bleed margins and color profiles
+ * - PDF/X-4 or PDF/X-3 export panel with bleed margins and color profiles
  * - Background removal plugin
  * - Asset source plugins (templates, images, shapes, text, etc.)
  * - Actions dropdown in navigation bar
@@ -64,7 +64,7 @@ export async function initPrintReadyPdfEditor(cesdk: CreativeEditorSDK) {
 
   // highlight-export-plugin
   // Add the custom export panel for print-ready PDFs
-  // This provides PDF/X-3 export with color profiles and bleed margins
+  // This provides PDF/X-4 or PDF/X-3 export with color profiles and bleed margins
   await cesdk.addPlugin(ExportPrintReadyPDFPanelPlugin());
   // highlight-export-plugin
 

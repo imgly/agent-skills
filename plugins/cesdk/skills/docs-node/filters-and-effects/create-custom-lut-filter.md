@@ -165,7 +165,7 @@ You can write a Python script using PIL/Pillow and NumPy to convert `.cube` file
 
 ### Using CE.SDK's Built-in LUTs
 
-The simplest approach is to use CE.SDK's existing LUT assets as a starting point. The built-in filters use pre-generated tiled PNGs that you can reference for format verification. Check the filter extension at `ly.img.cesdk.filters.lut` for examples of properly formatted LUT images.
+You can reference CE.SDK's built-in LUT assets as format-verified examples. The filter extension at `ly.img.filter/LUTs` contains pre-generated tiled PNGs you can inspect to confirm tile counts, cube size, and overall layout when authoring or converting your own LUTs.
 
 ## Initialize the Engine
 

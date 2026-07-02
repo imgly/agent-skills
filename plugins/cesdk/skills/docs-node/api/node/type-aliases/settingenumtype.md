@@ -13,6 +13,10 @@ type SettingEnumType = object;
 |  `touch/pinchAction` | [`TouchPinchAction`](./api/node/type-aliases/touchpinchaction.md) |
 |  `touch/rotateAction` | [`TouchRotateAction`](./api/node/type-aliases/touchrotateaction.md) |
 |  `camera/clamping/overshootMode` | [`CameraClampingOvershootMode`](./api/node/type-aliases/cameraclampingovershootmode.md) |
+|  `controlGizmo/moveHandleVisibility` | [`ControlGizmoMoveHandleVisibility`](./api/node/type-aliases/controlgizmomovehandlevisibility.md) |
+|  `controlGizmo/resizeHandlesVisibility` | [`ControlGizmoResizeHandlesVisibility`](./api/node/type-aliases/controlgizmoresizehandlesvisibility.md) |
+|  `controlGizmo/scaleHandlesVisibility` | [`ControlGizmoScaleHandlesVisibility`](./api/node/type-aliases/controlgizmoscalehandlesvisibility.md) |
+|  `controlGizmo/rotateHandlesVisibility` | [`ControlGizmoRotateHandlesVisibility`](./api/node/type-aliases/controlgizmorotatehandlesvisibility.md) |
 |  `doubleClickSelectionMode` | [`DoubleClickSelectionMode`](./api/node/type-aliases/doubleclickselectionmode.md) |
 |  `colorPicker/colorMode` | [`ColorPickerColorMode`](./api/node/type-aliases/colorpickercolormode.md) |
 |  `timeline/trackVisibility` | [`TimelineTrackVisibility`](./api/node/type-aliases/timelinetrackvisibility.md) |

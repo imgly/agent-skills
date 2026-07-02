@@ -253,6 +253,32 @@ Methods for initializing, configuring, and managing the engine lifecycle.
 
     <br /><p>Manage variables in the engine, allowing for dynamic data handling and manipulation.</p>
   </summary>
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### actions
+
+    <br /><p>Register, run, and look up named actions. Use these for app-provided commands like export or
+    upload, alongside built-in ones such as <code>ly.img.undo</code>, <code>redo</code>, and <code>nudge</code>.</p>
+  </summary>
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### shortcuts
+
+    <br /><p>Keyboard shortcuts mapped to actions. Comes with arrow-key nudge and
+    Enter/Shift+Enter for entering/leaving groups. Change any via
+    <code>engine.shortcuts.set</code> / <code>engine.shortcuts.remove</code>.</p>
+  </summary>
+
+  Web-only: keyboard shortcuts belong to the web build, not headless
+  `@cesdk/node`, so this field lives on the `@cesdk/engine` `CreativeEngine`.
 </details>
 
 ## Asset Sources

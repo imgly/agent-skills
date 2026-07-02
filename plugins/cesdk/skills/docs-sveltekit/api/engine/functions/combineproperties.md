@@ -21,11 +21,11 @@ Similar to `combineLatest` from RxJS but simpler. Emits whenever any source emit
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
 | `properties` | \{ \[K in string | number | symbol]: \_ReadonlyReactiveProperty\<T\[K]> } | Array of reactive properties to combine |
-| `options?` | `Pick`\<[`_ReactivePropertyOptions`](./api/engine/interfaces/reactivepropertyoptions.md)\<`T`>, `"equals"`> | Configuration options |
+| `options?` | `Pick`\<[`\_ReactivePropertyOptions`](./api/engine/interfaces/reactivepropertyoptions.md)\<`T`>, `"equals"`> | Configuration options |
 
 ## Returns
 
-[`_ReadonlyReactiveProperty`](./api/engine/interfaces/readonlyreactiveproperty.md)\<`T`>
+[`\_ReadonlyReactiveProperty`](./api/engine/interfaces/readonlyreactiveproperty.md)\<`T`>
 
 A reactive property containing an array of values
 

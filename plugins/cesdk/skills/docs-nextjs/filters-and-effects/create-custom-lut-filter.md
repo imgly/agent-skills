@@ -250,9 +250,26 @@ Standard `.cube` files must be converted to this tiled PNG format using image pr
 
 ## Creating LUT PNG Images
 
+### Starting from the Identity LUT
+
+The fastest way to author a custom LUT filter is to edit the **identity LUT**: a neutral 8×8 tiled PNG (512px cube size) that produces no color change when applied. Any color adjustments you make to this image are recorded as the filter's transformation, and the resulting PNG can be used directly with the `lut_filter` effect.
+
+<img src="content-assets/6e3f49/identity.png" alt="Identity LUT" />
+
+To author a new filter from this identity LUT:
+
+1. [Download the identity LUT](https://img.ly/docs/cesdk/content-assets/6e3f49/identity.png)
+2. Open it in an image editor that operates on the whole image (Adobe Photoshop, Affinity Photo, GIMP, Pixelmator Pro)
+3. Apply color adjustments — curves, levels, hue/saturation, color balance, channel mixer — to the entire image
+4. Export the result as PNG; the exported file is your custom LUT
+
+Do not crop, rotate, resize, or otherwise change the geometry of the image. Each pixel in the identity LUT is a specific color sample; reorganizing pixels breaks the color mapping.
+
+> **WARNING:** Save the edited LUT as PNG. JPEG and other lossy formats introduce compression artifacts that produce visible color banding when the filter is applied.
+
 ### Obtaining LUT Files
 
-LUT files are available from multiple sources:
+LUT files are also available from multiple sources:
 
 - **Color grading software** - Adobe Photoshop, DaVinci Resolve, and Affinity Photo can export 3D LUT files in `.cube` format
 - **Online LUT libraries** - Many free and commercial LUT packs are available for download
@@ -282,7 +299,7 @@ You can write a Python script using PIL/Pillow and NumPy to convert `.cube` file
 
 ### Using CE.SDK's Built-in LUTs
 
-The simplest approach is to use CE.SDK's existing LUT assets as a starting point. The built-in filters use pre-generated tiled PNGs that you can reference for format verification. Check the filter extension at `ly.img.cesdk.filters.lut` for examples of properly formatted LUT images.
+You can also reference CE.SDK's built-in LUT assets as format-verified examples. The filter extension at `ly.img.filter/LUTs` contains pre-generated tiled PNGs you can inspect to confirm tile counts, cube size, and overall layout when authoring or converting your own LUTs.
 
 ## Hosting LUT Files
 

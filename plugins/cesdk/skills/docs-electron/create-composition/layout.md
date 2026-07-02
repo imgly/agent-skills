@@ -389,7 +389,6 @@ Free layout gives full control over page positions. Use this when you need preci
 - [Auto-resize](./automation/auto-resize.md) — Make blocks fit parent containers
 - [Manual Positioning](./edit-image/transform/move.md) — Position blocks in free layouts
 - [Layer Hierarchies](./create-composition/layer-management.md) — Organize blocks in hierarchical structures
-- [Create a Collage](./create-composition/collage.md) — Build photo collages with templates
 
 
 

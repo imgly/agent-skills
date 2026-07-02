@@ -38,7 +38,7 @@ The SDK’s plugin architecture ensures you can scale your functionality without
 CE.SDK ships with a robust system for managing reusable content:
 
 - Built-in libraries of stickers, icons, overlays, and fonts
-- Integration with third-party providers like Getty Images, Unsplash, or Airtable
+- Integration with third-party providers like Getty Images, Unsplash
 - Programmatic filtering and categorization
 - Organize by brand, user, or use case
 

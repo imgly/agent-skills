@@ -22,11 +22,11 @@ Values are memoized by default (only emit when value changes).
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
 | `initialValue` | `T` | The initial value of the property |
-| `options?` | [`_ReactivePropertyOptions`](./api/engine/interfaces/reactivepropertyoptions.md)\<`T`> | Configuration options |
+| `options?` | [`\_ReactivePropertyOptions`](./api/engine/interfaces/reactivepropertyoptions.md)\<`T`> | Configuration options |
 
 ## Returns
 
-[`_ReactiveProperty`](./api/engine/interfaces/reactiveproperty.md)\<`T`>
+[`\_ReactiveProperty`](./api/engine/interfaces/reactiveproperty.md)\<`T`>
 
 A reactive property with subscribe, value, and update methods
 

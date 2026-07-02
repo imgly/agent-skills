@@ -116,7 +116,10 @@ The ZIP file contains directories organized by function:
 | `ly.img.page.presets/`          | Page format presets                                    | No              | If using default assets |
 | `ly.img.page.presets.video/`    | Video page presets                                     | No              | If using default assets |
 | `ly.img.caption.presets/`       | Caption formatting presets                             | No              | If using default assets |
-| `ly.img.text.components/`       | Text components                                        | No              | If using default assets |
+| `ly.img.text/`                  | Text style presets (Plain Text)                        | No              | If using default assets |
+| `ly.img.text.styles/`           | Text style presets (Text Styles)                       | No              | If using default assets |
+| `ly.img.text.curves/`           | Text style presets (Curved Text)                       | No              | If using default assets |
+| `ly.img.text.components/`       | Text combinations                                      | No              | If using default assets |
 | `ly.img.animation/`             | Animation presets                                      | No              | If using default assets |
 | `ly.img.animation.text/`        | Text animation presets                                 | No              | If using default assets |
 | `ly.img.image/`                 | Sample images (demo content)                           | No              | No                      |
@@ -149,7 +152,10 @@ Adding the default asset source plugins registers these asset sources:
 - `ly.img.page.presets` - Page format presets
 - `ly.img.page.presets.video` - Video page presets
 - `ly.img.caption.presets` - Caption formatting
-- `ly.img.text.components` - Text components
+- `ly.img.text` - Text style presets (Plain Text)
+- `ly.img.text.styles` - Text style presets (Text Styles)
+- `ly.img.text.curves` - Text style presets (Curved Text)
+- `ly.img.text.components` - Text combinations
 - `ly.img.animation` - Animation presets
 - `ly.img.animation.text` - Text animation presets
 

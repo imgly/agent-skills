@@ -96,7 +96,7 @@ Configure the editor UI to fit your design—theming, localization, export optio
 
   <SolutionCard title="Force Crop Editor" description="Start editing with predefined crop presets to simplify content creation and maintain layout consistency." contentId="fcrp01" liveExampleUrl="/examples/starterkit-force-crop-editor/" heroImage={forceCropHero} />
 
-  <SolutionCard title="Print-Ready PDF Editor" description="Deliver print-ready CMYK PDF/X-3 files straight from your web app. Perfect for web-to-print and marketing automation." contentId="prpdf1" liveExampleUrl="/examples/starterkit-print-ready-pdf-editor/" heroImage={printPdfHero} />
+  <SolutionCard title="Print-Ready PDF Editor" description="Deliver print-ready CMYK PDF/X-4 and PDF/X-3 files straight from your web app. Perfect for web-to-print and marketing automation." contentId="prpdf1" liveExampleUrl="/examples/starterkit-print-ready-pdf-editor/" heroImage={printPdfHero} />
 
   <SolutionCard title="Video Export Options" description="Choose a suitable Frames per Second option and export videos in SD, HD, FHD, 2K, 4K, or define custom quality." contentId="veo001" liveExampleUrl="/examples/starterkit-video-export-options/" heroImage={videoExportHero} />
 </SolutionGrid>
@@ -111,8 +111,6 @@ Leverage the versatile asset API to add custom asset sources or create new asset
   <SolutionCard title="Pexels Image Editor" description="CE.SDK can include assets from third-party libraries accessible via API. Search and browse images from Pexels in the editor." contentId="pxlsie" liveExampleUrl="/examples/starterkit-pexels-image-asset-source/" heroImage={pexelsHero} />
 
   <SolutionCard title="Getty Images Editor" description="CE.SDK can include assets from third-party libraries accessible via API. Search and browse images from Getty Images in the editor." contentId="gtyie1" liveExampleUrl="/examples/starterkit-getty-images-asset-source/" heroImage={gettyHero} />
-
-  <SolutionCard title="Airtable Image Editor" description="CE.SDK can include assets from third-party libraries accessible via API. Search and browse images from an Airtable spreadsheet in the editor." contentId="artbl1" liveExampleUrl="/examples/starterkit-airtable-image-asset-source/" heroImage={airtableHero} />
 
   <SolutionCard title="Layouts Editor" description="Allow users to select different layouts without changing page content." contentId="layot1" liveExampleUrl="/examples/starterkit-layouts-asset-source/" heroImage={layoutsHero} />
 

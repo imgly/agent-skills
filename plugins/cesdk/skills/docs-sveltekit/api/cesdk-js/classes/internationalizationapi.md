@@ -198,6 +198,7 @@ Methods for managing locale settings and custom translations within the editor.
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `key` | `string` | `string`\[] | A translation key string or an array of translation keys to try in order. |
+  | `options?` | `Record`\<`string`, `unknown`> | Optional interpolation values for `{{placeholder}}` tokens in the resolved string. |
 
   #### Returns
 
@@ -216,12 +217,66 @@ Methods for managing locale settings and custom translations within the editor.
   const translation = cesdk.i18n.translate(['specific.save', 'common.save']);
   // Tries 'specific.save' first, then 'common.save'
   // Returns the first found translation or "common.save" if neither exists
+
+  // With interpolation values
+  const translation = cesdk.i18n.translate('error.fileTooLarge', { maxSize: '10MB' });
   ```
 
   #### Signature
 
   ```typescript
-  translate(key: string | string[]): string
+  translate(key: string | string[], options?: Record<string, unknown>): string
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### localizedEngineErrorMessage()
+
+    <br /><p>Resolves a thrown engine error into the customer-facing copy the editor's
+    built-in error dialogs display.</p>
+  </summary>
+
+  Use this in your own error handling—a custom `onError`, a toast, or a
+  headless flow—to show the same localized text without reimplementing the
+  lookup. For a @cesdk/engine#EngineError with a catalog
+  `code` it returns your authored `error.<code>` / `error.<code>.description`
+  override (registered via [setTranslations](./api/cesdk-js/classes/internationalizationapi.md)), falling back to the
+  engine's English message and hint when no copy is authored—so the result is
+  never blank or a raw code. Plain `Error`s return only a `description` (their
+  message); branch on the structured `code` rather than the message string for
+  stable handling.
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `error` | `unknown` | The thrown error, typically caught from an engine operation. |
+
+  #### Returns
+
+  [`EngineErrorMessage`](./api/cesdk-js/interfaces/engineerrormessage.md)
+
+  The resolved `{ message, description }` copy, or `undefined` when
+  there is nothing to show.
+
+  #### Example
+
+  ```typescript
+  try {
+    await cesdk.engine.scene.loadFromURL(sceneUrl);
+  } catch (error) {
+    const copy = cesdk.i18n.localizedEngineErrorMessage(error);
+    showToast(copy?.message ?? copy?.description ?? 'Something went wrong.');
+  }
+  ```
+
+  #### Signature
+
+  ```typescript
+  localizedEngineErrorMessage(error: unknown): EngineErrorMessage
   ```
 </details>
 

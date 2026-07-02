@@ -26,7 +26,7 @@ Lightweight design viewing for your Angular app—pan, zoom, and navigate multi-
 
 Before you begin, make sure you have the following:
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list.
 

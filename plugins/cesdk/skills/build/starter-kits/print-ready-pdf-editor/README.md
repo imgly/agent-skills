@@ -1,6 +1,6 @@
 # Print-Ready PDF Editor Starter Kit
 
-Deliver print-ready CMYK PDF/X-3 files straight from your web app. Perfect for web-to-print and marketing automation. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
+Deliver print-ready CMYK PDF/X-4 and PDF/X-3 files straight from your web app. Perfect for web-to-print and marketing automation. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
 
 <p>
   <a href="https://img.ly/docs/cesdk/js/starterkits/print-ready-pdf-editor-prpdf1/">Documentation</a>
@@ -109,7 +109,7 @@ src/
 
 ## Key Capabilities
 
-- **Print-Ready PDF Export** – PDF/X-3 compliance for professional printing
+- **Print-Ready PDF Export** – PDF/X-4 and PDF/X-3 compliance for professional printing
 - **Color Profiles** – CMYK (ISO Coated v2, GRACoL) and RGB (sRGB) support
 - **Bleed Margins** – Configurable bleed margins for print production
 - **Page Range Selection** – Export all pages or custom ranges
@@ -121,7 +121,7 @@ src/
 
 ## Prerequisites
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Node.js v22+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 
 ## Troubleshooting

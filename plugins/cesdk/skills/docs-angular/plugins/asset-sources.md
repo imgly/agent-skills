@@ -34,7 +34,7 @@ await cesdk.addPlugin(new BlurAssetSource());
 
 ## CaptionPresetsAssetSource
 
-Provides caption text presets for video editing with custom application logic for applying captions.
+Provides caption style presets for video editing. Captions use the same declarative style-preset format as text, so a single click applies a complete caption look (font, color, background, and alignment).
 
 ```typescript
 import { CaptionPresetsAssetSource } from '@cesdk/cesdk-js/plugins';
@@ -350,7 +350,7 @@ await cesdk.addPlugin(new StickerAssetSource({
 
 ## TextAssetSource
 
-Provides text style presets for headlines, body text, and other typography styles.
+Provides reusable text style presets that apply a complete look (font, color, outline, background, shadow, and animations) in a single step. Includes text-on-curve presets (Circle, Arch, Wave, and Elevate).
 
 ```typescript
 import { TextAssetSource } from '@cesdk/cesdk-js/plugins';
@@ -366,11 +366,13 @@ await cesdk.addPlugin(new TextAssetSource());
 | `include` | `string[]` | GLOB patterns to filter which assets to load |
 | `assetLibraryEntries` | `Record<string, string \| string[]>` | Map asset source IDs to UI library entry IDs |
 
-**Asset Source ID:** `ly.img.text`
+**Asset Source IDs:** `ly.img.text`, `ly.img.text.styles`, `ly.img.text.curves`
 
 **Default `include` patterns:**
 
 - `ly.img.text.*`
+- `ly.img.text.styles.*`
+- `ly.img.text.curves.*`
 
 ***
 
@@ -548,7 +550,7 @@ The following library entry IDs are pre-registered by CE.SDK:
 | `ly.img.image` | Images panel |
 | `ly.img.video` | Videos panel |
 | `ly.img.audio` | Audio panel |
-| `ly.img.text` | Text panel |
+| `ly.img.text` | Text panel (Plain Text, Text Styles, Curved Text, Text Combinations) |
 | `ly.img.vector.shape` | Shapes panel |
 | `ly.img.sticker` | Stickers panel |
 | `ly.img.colors` | Colors panel |

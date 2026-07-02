@@ -299,14 +299,15 @@ and custom interface elements within the editor.
     <br /><p>Sets a function that determines which asset library entries to use for replacement operations.</p>
   </summary>
 
-  The function receives context information (like selected blocks or default entry IDs)
-  and returns the appropriate asset library entry IDs for replacement.
+  The function receives context (selected blocks, the default entries, the replace intent) and
+  returns the entries to show. Each entry is either an entry ID, or `{ entry, excludeSourceIds }`
+  to show that entry with specific sources hidden for this replacement only.
 
   #### Parameters
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `replaceAssetLibraryEntries` | (`context`) => [`AssetEntryId`](./api/cesdk-js/type-aliases/assetentryid.md)\[] | Function that receives context and returns an array of asset library entry IDs for replacement. |
+  | `replaceAssetLibraryEntries` | (`context`) => [`AssetLibraryEntryInput`](./api/cesdk-js/type-aliases/assetlibraryentryinput.md)\[] | Function that receives context and returns the asset library entries (IDs, or `{ entry, excludeSourceIds }`) to show when replacing. |
 
   #### Returns
 
@@ -315,7 +316,7 @@ and custom interface elements within the editor.
   #### Signature
 
   ```typescript
-  setReplaceAssetLibraryEntries(replaceAssetLibraryEntries: (context: ReplaceAssetLibraryEntriesContext) => AssetEntryId[]): void
+  setReplaceAssetLibraryEntries(replaceAssetLibraryEntries: (context: ReplaceAssetLibraryEntriesContext) => AssetLibraryEntryInput[]): void
   ```
 </details>
 

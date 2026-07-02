@@ -26,7 +26,7 @@ CE.SDK's cutout plugin enables effortless creation and customization of cutout s
 
 Before you begin, make sure you have the following:
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - Basic familiarity with Electron's main and renderer process architecture
 
 ***

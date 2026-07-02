@@ -18,7 +18,7 @@ This is the most basic building block - a pub/sub pattern without state manageme
 
 ## Returns
 
-[`_Source`](./api/engine/interfaces/source-1.md)\<`T`>
+[`\_Source`](./api/engine/interfaces/source-1.md)\<`T`>
 
 A source function with an emit method
 

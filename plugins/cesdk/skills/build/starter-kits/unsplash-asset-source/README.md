@@ -140,7 +140,7 @@ The starter kit handles all attribution requirements automatically.
 
 ## Prerequisites
 
-- **Node.js v20+** with npm - [Download](https://nodejs.org/)
+- **Node.js v22+** with npm - [Download](https://nodejs.org/)
 - **Supported browsers** - Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 
 ## Troubleshooting

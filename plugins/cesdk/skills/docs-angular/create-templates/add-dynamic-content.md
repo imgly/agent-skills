@@ -303,6 +303,7 @@ The `setScopeEnabled()` method controls individual properties. Setting `'editor/
 - [Text Variables](./create-templates/add-dynamic-content/text-variables.md) - Define dynamic text elements that can be populated with custom values during design generation.
 - [Placeholders](./create-templates/add-dynamic-content/placeholders.md) - Use placeholders to mark editable image, video, or text areas within a locked template layout.
 - [Set Editing Constraints](./create-templates/add-dynamic-content/set-editing-constraints.md) - Learn how to control editing capabilities in CE.SDK templates using the Scope system to lock positions, prevent transformations, and create guided editing experiences
+- [Form-Based Editing](./create-templates/add-dynamic-content/form-based-editing.md) - Documentation for Form-Based Editing
 
 
 ---

@@ -65,7 +65,7 @@ class CESDKService extends Construct {
 
     // lambda function for images endpoint creating new images and returning images
     const imagesHandler = new lambda.Function(this, 'ImagesHandler', {
-      runtime: lambda.Runtime.NODEJS_20_X,
+      runtime: lambda.Runtime.NODEJS_22_X,
       code: lambda.Code.fromAsset('src'),
       handler: 'images-handler.main',
       environment: {
@@ -259,7 +259,7 @@ class CESDKService extends Construct {
 
     // lambda function for images endpoint creating new images and returning images
     const imagesHandler = new lambda.Function(this, "ImagesHandler", {
-      runtime: lambda.Runtime.NODEJS_20_X,
+      runtime: lambda.Runtime.NODEJS_22_X,
       code: lambda.Code.fromAsset("src"),
       handler: "images-handler.main",
       environment: {
@@ -269,7 +269,7 @@ class CESDKService extends Construct {
 
     // lambda function running CE.SDK and rendering image
     const cesdkHandler = new lambda.Function(this, "CESDKHandler", {
-      runtime: lambda.Runtime.NODEJS_20_X,
+      runtime: lambda.Runtime.NODEJS_22_X,
       code: lambda.Code.fromAsset("src"),
       handler: "cesdk-handler.main",
       environment: {

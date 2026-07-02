@@ -179,7 +179,7 @@ src/
 
 ## Prerequisites
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Node.js v22+** with npm – [Download](https://nodejs.org/)
 - **Getty Images API Proxy** – Server-side proxy for Getty Images API authentication
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 

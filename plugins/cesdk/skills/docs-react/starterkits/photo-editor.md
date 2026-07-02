@@ -27,7 +27,7 @@ backgrounds. Runs entirely in the browser with no server dependencies.
 
 Before you begin, make sure you have the following:
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list.
 
@@ -45,16 +45,19 @@ Before you begin, make sure you have the following:
       <TerminalTab label="npm">
         npm create vite@latest your-project-name -- --template react-ts
         cd your-project-name
+        npm install
       </TerminalTab>
 
       <TerminalTab label="pnpm">
         pnpm create vite your-project-name --template react-ts
         cd your-project-name
+        pnpm install
       </TerminalTab>
 
       <TerminalTab label="yarn">
         yarn create vite your-project-name --template react-ts
         cd your-project-name
+        yarn install
       </TerminalTab>
     </TerminalTabs>
 
@@ -129,11 +132,11 @@ Before you begin, make sure you have the following:
 
     ## Step 5: Create the Editor Component
 
-    Create a React component using the official CE.SDK React wrapper (e.g., `PhotoEditor.tsx`):
+    In your project's `src/` folder, create a new file at `src/components/PhotoEditor.tsx` using the official CE.SDK React wrapper. The Vite `react-ts` template does not include a `components/` directory, so create it if it does not already exist:
 
-    ```tsx
+    ```tsx title="src/components/PhotoEditor.tsx"
     import CreativeEditor from '@cesdk/cesdk-js/react';
-    import { initPhotoEditor } from './imgly';
+    import { initPhotoEditor } from '../imgly';
 
     export default function PhotoEditor() {
       return (
@@ -151,7 +154,7 @@ Before you begin, make sure you have the following:
 
     Use the component in your app:
 
-    ```tsx
+    ```tsx title="src/App.tsx"
     import PhotoEditor from './components/PhotoEditor';
 
     function App() {
@@ -303,11 +306,11 @@ Before you begin, make sure you have the following:
 
     ## Step 4: Create the Editor Component
 
-    Create a React component that uses the `CreativeEditor` wrapper with the `initPhotoEditor` function from the starterkit:
+    In your project's `src/` folder, create a new file at `src/components/PhotoEditor.tsx` that uses the `CreativeEditor` wrapper with the `initPhotoEditor` function from the starter kit. Create the `src/components/` directory if it does not already exist:
 
-    ```tsx
+    ```tsx title="src/components/PhotoEditor.tsx"
     import CreativeEditor from '@cesdk/cesdk-js/react';
-    import { initPhotoEditor } from './imgly';
+    import { initPhotoEditor } from '../imgly';
 
     export default function PhotoEditor() {
       return (
@@ -327,7 +330,7 @@ Before you begin, make sure you have the following:
 
     Render the component in your app:
 
-    ```tsx
+    ```tsx title="src/App.tsx"
     import PhotoEditor from './components/PhotoEditor';
 
     export default function App() {

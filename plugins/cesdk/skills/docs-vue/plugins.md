@@ -15,7 +15,7 @@ Learn how to extend CE.SDK functionality with plugins to add custom features, ef
 ## Related Pages
 
 - [Asset Source Plugins](./plugins/asset-sources.md) - Reference documentation for CE.SDK asset source plugins - pre-built asset libraries for images, stickers, filters, effects, fonts, and more
-- [How to Export Print-Ready PDFs with CE.SDK](./plugins/print-ready-pdf.md) - Learn to convert CE.SDK's PDF exports into PDF/X-3 compliant, CMYK print-ready files for professional commercial printing
+- [How to Export Print-Ready PDFs with CE.SDK](./plugins/print-ready-pdf.md) - Learn to convert CE.SDK's PDF exports into PDF/X compliant, CMYK print-ready files for professional commercial printing
 - [AI Integration](./user-interface/ai-integration.md) - Integrate external AI services into CE.SDK to enhance creative workflows and power advanced features.
 - [IMG.LY AI Gateway](./user-interface/ai-integration/gateway-provider.md) - Connect CE.SDK to AI models for image, video, text, and audio generation through the IMG.LY AI Gateway, a managed service that handles authentication, model routing, and billing.
 - [AI Text Generation](./user-interface/ai-integration/text-generation.md) - Generate creative content for headlines, descriptions, captions, and marketing copy using Claude or GPT with both a built-in UI and programmatic control.

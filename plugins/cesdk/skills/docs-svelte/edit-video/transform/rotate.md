@@ -291,7 +291,7 @@ Verify the block exists in the scene and is not a page block. Check if rotation 
 
 ### Rotation Handle Missing
 
-Check if rotation handles are hidden globally via `controlGizmo/showRotateHandles` setting. Verify the `'layer/rotate'` scope is enabled for the block.
+Check if rotation handles are hidden globally via `controlGizmo/rotateHandlesVisibility` setting. Verify the `'layer/rotate'` scope is enabled for the block.
 
 ### Unexpected Rotation Direction
 

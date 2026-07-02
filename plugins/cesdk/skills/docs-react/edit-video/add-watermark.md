@@ -25,7 +25,6 @@ Video watermarks in CE.SDK are design blocks positioned over video content. **Te
 ```typescript file=@cesdk_web_examples/guides-create-video-add-watermark-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { CaptionPresetsAssetSource } from '@cesdk/cesdk-js/plugins';
 import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
 import packageJson from './package.json';
 

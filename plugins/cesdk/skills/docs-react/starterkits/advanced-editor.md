@@ -28,7 +28,7 @@ with no server dependencies.
 
 Before you begin, make sure you have the following:
 
-- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list.
 
@@ -76,6 +76,7 @@ Before you begin, make sure you have the following:
     ```
     imgly/
     ├── index.ts                  # Editor initialization function
+    ├── resolveAssetPath.ts       # BASE_URL-aware asset path resolver
     ├── config/
     │   ├── plugin.ts             # Main configuration plugin
     │   ├── actions.ts            # Export/import actions
@@ -140,11 +141,11 @@ Before you begin, make sure you have the following:
 
     ## Step 5: Create the Editor Component
 
-    Create a React component using the official CE.SDK React wrapper:
+    Create `src/components/AdvancedEditor.tsx` (create the `components/` directory if it doesn't exist) using the official CE.SDK React wrapper:
 
-    ```tsx
+    ```tsx title="src/components/AdvancedEditor.tsx"
     import CreativeEditor from '@cesdk/cesdk-js/react';
-    import { initAdvancedEditor } from './imgly';
+    import { initAdvancedEditor } from '../imgly';
 
     export default function AdvancedEditor() {
       return (
@@ -160,9 +161,9 @@ Before you begin, make sure you have the following:
 
     ## Step 6: Use the Component
 
-    Import and use the editor component in your application:
+    Replace the contents of `src/App.tsx` with:
 
-    ```tsx
+    ```tsx title="src/App.tsx"
     import AdvancedEditor from './components/AdvancedEditor';
 
     function App() {
@@ -206,6 +207,7 @@ Before you begin, make sure you have the following:
     ```
     imgly/
     ├── index.ts                  # Editor initialization function
+    ├── resolveAssetPath.ts       # BASE_URL-aware asset path resolver
     ├── config/
     │   ├── plugin.ts             # Main configuration plugin
     │   ├── actions.ts            # Export/import actions
@@ -276,11 +278,11 @@ Before you begin, make sure you have the following:
 
     ## Step 4: Create the Editor Component
 
-    Create a React component using the official CE.SDK React wrapper:
+    Create `src/components/AdvancedEditor.tsx` (create the `components/` directory if it doesn't exist) using the official CE.SDK React wrapper:
 
-    ```tsx
+    ```tsx title="src/components/AdvancedEditor.tsx"
     import CreativeEditor from '@cesdk/cesdk-js/react';
-    import { initAdvancedEditor } from './imgly';
+    import { initAdvancedEditor } from '../imgly';
 
     export default function AdvancedEditor() {
       return (
@@ -582,7 +584,7 @@ See [Background Removal](./edit-image/remove-bg.md) for setup instructions and c
 
 #### Print Ready PDF
 
-Export print-ready PDF/X-3 files with CMYK color profiles for professional printing workflows.
+Export print-ready PDF/X-4 and PDF/X-3 files with CMYK color profiles for professional printing workflows.
 
 ```typescript title="src/imgly/config/plugin.ts"
 import PrintReadyPDFPlugin from '@imgly/plugin-print-ready-pdf';

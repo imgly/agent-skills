@@ -287,6 +287,18 @@ to build and manipulate designs programmatically, or in a browser to create inte
 
 <details>
   <summary>
+    ### actions
+
+    <br /><p>Register, run, and discover named, overridable actions. On headless Node the registry
+    starts with only the engine-default <code>ly.img.\*</code> actions (no host UI), but the API is
+    identical to the browser engine.</p>
+  </summary>
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### version
   </summary>
 

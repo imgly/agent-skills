@@ -84,6 +84,7 @@ type FeatureId =
   | "ly.img.text.background.picker"
   | "ly.img.text.background.picker.opacity"
   | "ly.img.text.background.library"
+  | "ly.img.text.styles"
   | "ly.img.adjustment"
   | "ly.img.filter"
   | "ly.img.effect"
@@ -186,6 +187,7 @@ type FeatureId =
   | "ly.img.notifications"
   | "ly.img.notifications.undo"
   | "ly.img.notifications.redo"
+  | "ly.img.keyboard.shortcuts"
   | string & object;
 ```
 

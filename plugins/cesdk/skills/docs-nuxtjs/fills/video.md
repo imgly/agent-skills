@@ -4,8 +4,8 @@
 
 ---
 
-Apply motion content to design elements by filling shapes, backgrounds, and
-text with videos using CE.SDK's video fill system.
+Apply motion content to design elements by filling graphic shapes and
+backgrounds with videos using CE.SDK's video fill system.
 
 ![CE.SDK video fills example showing a 3x3 grid with video content applied to different blocks including rectangles, ellipse, and opacity variations](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -21,7 +21,7 @@ text with videos using CE.SDK's video fill system.
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-fills-video-browser/)
 
-Understanding the distinction between **video fills** and **video blocks** is essential. Video fills are fill objects that can be applied to any block supporting fills—shapes, text, backgrounds—to paint them with video content. Video blocks, created with `addVideo()`, are dedicated time-based blocks with full editing capabilities like trimming and duration control. Video fills focus on applying video as a visual treatment, while video blocks provide complete video editing functionality.
+Understanding the distinction between **video fills** and **video blocks** is essential. Video fills are fill objects that can be applied to blocks supporting fills, such as graphic shapes and pages, to paint them with video content. Video blocks, created with `addVideo()`, are dedicated time-based blocks with full editing capabilities like trimming and duration control. Video fills focus on applying video as a visual treatment, while video blocks provide complete video editing functionality.
 
 ```typescript file=@cesdk_web_examples/guides-fills-video-browser/browser.ts reference-only
 import type {
@@ -339,7 +339,7 @@ Video fills are identified by the type `'//ly.img.ubq/fill/video'` or the short 
 
 ### Video Fill vs Video Blocks
 
-**Video fills** are fill objects created with `createFill('video')` and applied to blocks with `setFill()`. You can use them to fill shapes with video content, create video backgrounds, or add video textures to text.
+**Video fills** are fill objects created with `createFill('video')` and applied to blocks with `setFill()`. You can use them to fill shapes with video content or create video backgrounds.
 
 **Video blocks** are created with the convenience method `addVideo()` and come pre-configured with time-based properties including trim support, duration, and playback time. Use video blocks when you need features like trimming, duration adjustment, and precise playback control.
 
@@ -360,7 +360,7 @@ Before applying video fills, verify that blocks support fills.
     console.log('Block supports fills:', supportsFills); // true for graphic blocks
 ```
 
-Graphic blocks, shapes, and text blocks typically support fills. Pages and scenes don't. Always check `supportsFill()` before attempting to apply video fills to prevent errors.
+Graphic blocks and pages support fills; scenes do not. Text blocks may report fill support, but CreativeEngine text rendering is solid-fill-oriented, so keep video fill examples on graphic blocks or pages. Always check `supportsFill()` before attempting to apply video fills to prevent errors.
 
 ## Creating Video Fills
 

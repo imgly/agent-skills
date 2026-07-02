@@ -14,9 +14,9 @@ Options for creating a reactive property
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-|  `equals?` | [`_EqualsFn`](./api/engine/type-aliases/equalsfn.md)\<`T`> | Equality comparison function (default: strict equality) |
+|  `equals?` | [`\_EqualsFn`](./api/engine/type-aliases/equalsfn.md)\<`T`> | Equality comparison function (default: strict equality) |
 |  `emitOnSubscribe?` | `boolean` | If true, emit the initial value to new subscribers |
-|  `trackSource?` | (`listener`) => [`_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md) | Optional source to track (will subscribe and forward updates) |
+|  `trackSource?` | (`listener`) => [`\_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md) | Optional source to track (will subscribe and forward updates) |
 
 
 ---

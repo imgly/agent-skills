@@ -8,7 +8,7 @@ Use the CE.SDK headless Server Mode to resize and scale design blocks without re
 
 ## Requirements
 
-- **Node.js 18** or newer
+- **Node.js 22** or newer
 - CE.SDK server package: `npm install @cesdk/node@$UBQ_VERSION$`
 
 ## What You’ll Learn

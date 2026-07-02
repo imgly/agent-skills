@@ -19,7 +19,7 @@ Built to facilitate optimal post- and greeting-card design, from changing accent
 
 ### Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 22+ and npm
 - CE.SDK license key (set in `.env` as `VITE_CESDK_LICENSE`)
 
 ### Installation

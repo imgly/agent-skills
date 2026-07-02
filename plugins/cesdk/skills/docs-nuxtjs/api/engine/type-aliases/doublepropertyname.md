@@ -11,9 +11,6 @@ type DoublePropertyName =
   | "playback/trimLength"
   | "playback/trimOffset"
   | "fill/video/totalDuration"
-  | "animation/scale_loop/startDelay"
-  | "animation/scale_loop/holdDuration"
-  | "animation/scale_loop/easingDuration"
   | string & object;
 ```
 

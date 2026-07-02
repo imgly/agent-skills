@@ -97,6 +97,16 @@ Instance members that allow access to the underlying engine, user interface, and
 
 <details>
   <summary>
+    ### shortcuts
+
+    <br /><p>Register, list, and remove keyboard shortcuts.</p>
+  </summary>
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### version
 
     <br /><p>The version of the Creative Editor SDK</p>

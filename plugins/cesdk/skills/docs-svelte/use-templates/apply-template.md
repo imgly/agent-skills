@@ -67,7 +67,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -88,7 +90,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    await cesdk.actions.run('scene.create', { page: { width: 1080, height: 1920, unit: 'Pixel' } });
+    await cesdk.actions.run('scene.create', {
+      page: { width: 1080, height: 1920, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
@@ -159,7 +163,9 @@ We first create a scene with specific dimensions. These dimensions will be prese
     await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -180,7 +186,9 @@ We first create a scene with specific dimensions. These dimensions will be prese
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    await cesdk.actions.run('scene.create', { page: { width: 1080, height: 1920, unit: 'Pixel' } });
+    await cesdk.actions.run('scene.create', {
+      page: { width: 1080, height: 1920, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];

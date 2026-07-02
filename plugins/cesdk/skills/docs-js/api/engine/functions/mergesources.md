@@ -14,13 +14,13 @@ This is useful for tracking properties that depend on multiple independent event
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| ...`sources` | (`listener`) => [`_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md)\[] | Event source functions to merge |
+| ...`sources` | (`listener`) => [`\_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md)\[] | Event source functions to merge |
 
 ## Returns
 
 A merged source that emits when any source emits
 
-(`listener`) => [`_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md)
+(`listener`) => [`\_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md)
 
 ## Example
 

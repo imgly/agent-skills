@@ -17,7 +17,7 @@ Custom, mobile apparel UI for creating print-ready design. Built with [CE.SDK](h
 
 ### Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 22+ and npm
 
 ### Installation
 

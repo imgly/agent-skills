@@ -32,6 +32,9 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  */
 export function setupFeatures(cesdk: CreativeEditorSDK): void {
   cesdk.feature.enable([
+    // #region Keyboard Shortcuts
+    'ly.img.keyboard.shortcuts' /* Enable keyboard shortcuts */,
+    // #endregion
     // ============================================================================
     // NAVIGATION FEATURES
     // Configure the top navigation bar visibility and controls
@@ -69,6 +72,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.text.background.picker', /* Color picker body (hue/saturation, hex, RGB/CMYK) */
     // 'ly.img.text.background.picker.opacity', /* Alpha/opacity slider */
     // 'ly.img.text.background.library', /* Swatch library */
+    // 'ly.img.text.styles', /* Styles button (style presets) in Canvas Menu */
     // #endregion
 
     // ============================================================================

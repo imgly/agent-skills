@@ -4,13 +4,13 @@
 
 ---
 
-Extend CE.SDK's video caption feature with custom caption presets by updating
-the content.json file. Caption presets let your users apply predefined styles
-to video captions with a single click.
+Add custom caption presets to CE.SDK's video caption feature. A caption preset is a declarative
+style preset: you describe the look as JSON and the engine applies it to a caption block with a
+single click.
 
 ![Update Caption Presets example showing a styled neon glow caption preset](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
-> **Reading time:** 10 minutes
+> **Reading time:** 6 minutes
 >
 > **Resources:**
 >
@@ -22,10 +22,14 @@ to video captions with a single click.
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-update-caption-presets-browser/)
 
-Video captions have become an essential part of digital content, improving accessibility and engagement. With CE.SDK's caption presets feature, you can offer your users a selection of predefined caption styles that they can apply with a single click. This guide shows you how to create styled text blocks, serialize them as preset files, and structure the content.json to make them available in the caption presets panel.
+CE.SDK ships built-in caption presets so users can restyle their captions in one click, and you can add your own. A preset is just a JSON object that describes the look, so there are no blocks to build or files to serialize. This guide shows how to define a preset, register it at runtime, and host your own set.
 
 ```typescript file=@cesdk_web_examples/guides-create-video-update-caption-presets-browser/browser.ts reference-only
-import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+import type {
+  AssetStylePreset,
+  EditorPlugin,
+  EditorPluginContext
+} from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
@@ -51,10 +55,9 @@ import packageJson from './package.json';
  * CE.SDK Plugin: Update Caption Presets Guide
  *
  * Demonstrates creating custom caption presets in CE.SDK:
- * - Creating a styled text block as a preset base
- * - Applying neon glow styling with colors and drop shadow
- * - Serializing the block for use as a preset file
- * - Understanding the content.json structure for caption presets
+ * - Defining a declarative style preset for a caption look
+ * - Registering the preset so it appears in the caption presets panel
+ * - Understanding the content.json structure for hosted caption presets
  */
 class Example implements EditorPlugin {
   name = packageJson.name;
@@ -126,147 +129,79 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    // Create a text block to use as the preset base
-    // Text blocks support all the styling properties needed for captions
-    const textBlock = engine.block.create('text');
-
-    // Set sample caption text
-    engine.block.setString(textBlock, 'text/text', 'NEON GLOW');
-
-    // Position and size the text block
-    engine.block.setPositionX(textBlock, 50);
-    engine.block.setPositionY(textBlock, 200);
-    engine.block.setWidth(textBlock, 600);
-    engine.block.setHeightMode(textBlock, 'Auto');
-
-    // Style the text with a bright neon cyan color
-    // This will be the fill/solid/color property in the preset
-    engine.block.setColor(textBlock, 'fill/solid/color', {
-      r: 0.0,
-      g: 1.0,
-      b: 1.0,
-      a: 1.0
-    });
-
-    // Set font properties for the caption style
-    engine.block.setFloat(textBlock, 'text/fontSize', 48);
-
-    // Use a bold font for better visibility
-    // Load and set a typeface
-    const typefaceResult = await engine.asset.findAssets('ly.img.typeface', {
-      query: 'Roboto',
-      page: 0,
-      perPage: 10
-    });
-
-    if (typefaceResult.assets.length > 0) {
-      const typefaceAsset = typefaceResult.assets[0];
-      const typeface = typefaceAsset.payload?.typeface;
-      if (typeface && typeface.fonts?.[0]?.uri) {
-        engine.block.setFont(textBlock, typeface.fonts[0].uri, typeface);
-      }
-    }
-
-    // Add a glowing drop shadow effect for the neon look
-    // This creates the characteristic neon glow effect
-    engine.block.setDropShadowEnabled(textBlock, true);
-
-    // Set glow color (bright cyan to match text)
-    engine.block.setColor(textBlock, 'dropShadow/color', {
-      r: 0.0,
-      g: 1.0,
-      b: 1.0,
-      a: 0.8
-    });
-
-    // Configure shadow properties for a soft glow
-    engine.block.setFloat(textBlock, 'dropShadow/blurRadius/x', 20);
-    engine.block.setFloat(textBlock, 'dropShadow/blurRadius/y', 20);
-    engine.block.setFloat(textBlock, 'dropShadow/offset/x', 0);
-    engine.block.setFloat(textBlock, 'dropShadow/offset/y', 0);
-
-    // Optionally add a semi-transparent dark background
-    // This helps the caption stand out against video content
-    engine.block.setBackgroundColorEnabled(textBlock, true);
-    engine.block.setColor(textBlock, 'backgroundColor/color', {
-      r: 0.0,
-      g: 0.0,
-      b: 0.1,
-      a: 0.7
-    });
-
-    // Add the styled text block to the page
-    const pages = engine.block.findByType('page');
-    if (pages.length > 0) {
-      engine.block.appendChild(pages[0], textBlock);
-    }
-
-    // Select the block and zoom to it so it's visible in the editor
-    engine.block.select(textBlock);
-    await engine.scene.zoomToBlock(textBlock, { padding: 40 });
-
-    // Serialize the styled text block to create a preset file
-    // This serialized string can be saved as a .blocks or .preset file
-    // Include 'bundle' scheme to allow serialization of blocks with bundled fonts
-    const serializedPreset = await engine.block.saveToString(
-      [textBlock],
-      ['buffer', 'http', 'https', 'bundle']
-    );
-
-    // eslint-disable-next-line no-console
-    console.log('=== Serialized Preset ===');
-    // eslint-disable-next-line no-console
-    console.log('Save this as a .preset file (e.g., neon-glow.preset):');
-    // eslint-disable-next-line no-console
-    console.log(serializedPreset);
-
-    // Example content.json entry for the custom preset
-    // This shows the structure needed to add the preset to content.json
-    const contentJsonEntry = {
-      id: '//ly.img.caption.presets/neon-glow',
-      label: {
-        en: 'Neon Glow'
+    // Describe the look as a declarative style preset. The engine reads this
+    // object and applies it to a caption block, so there is no styled block to
+    // serialize. Colors are RGB(A) objects in the 0-1 range.
+    const neonGlowStylePreset: AssetStylePreset = {
+      blockType: '//ly.img.ubq/caption',
+      // `replace` resets the properties the preset does not list, so switching
+      // presets never stacks leftover decorations.
+      mode: 'replace',
+      typeface: {
+        family: 'Monoton',
+        weight: 'normal',
+        style: 'normal'
       },
+      properties: {
+        // Keys without a slash are namespaced to the block (caption/*).
+        'caption/horizontalAlignment': 'Center',
+        'caption/verticalAlignment': 'Center',
+        // Bright cyan text fill.
+        'fill/enabled': true,
+        'fill/solid/color': { r: 0, g: 1, b: 1, a: 1 },
+        // Semi-transparent background so captions stay readable over video.
+        'backgroundColor/enabled': true,
+        'backgroundColor/color': { r: 0, g: 0, b: 0.1, a: 0.7 },
+        // A matching glow built from a soft drop shadow.
+        'dropShadow/enabled': true,
+        'dropShadow/color': { r: 0, g: 1, b: 1, a: 0.8 },
+        'dropShadow/clip': false
+      },
+      // Keep the background rounding and the glow proportional to the font size
+      // instead of baking in fixed pixel values. Each entry sets its property to
+      // `ratio * fontSize`.
+      scaleWithFontSize: [
+        { property: 'backgroundColor/cornerRadius', ratio: 0.2 },
+        { property: 'dropShadow/blurRadius/x', ratio: 0.8 },
+        { property: 'dropShadow/blurRadius/y', ratio: 0.8 }
+      ]
+    };
+
+    // Add the preset to the existing caption presets source so it shows up in
+    // the caption presets panel next to the built-in presets.
+    engine.asset.addAssetToSource('ly.img.caption.presets', {
+      id: 'ly.img.caption.presets.neon-glow',
+      label: { en: 'Neon Glow' },
       meta: {
-        uri: '{{base_url}}/ly.img.caption.presets/presets/neon-glow.preset',
-        thumbUri:
-          '{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png',
-        mimeType: 'application/ubq-blocks-string'
+        thumbUri: '{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png'
       },
-      payload: {
-        properties: [
-          {
-            type: 'Color',
-            property: 'fill/solid/color',
-            value: { r: 0.0, g: 1.0, b: 1.0, a: 1.0 },
-            defaultValue: { r: 0.0, g: 1.0, b: 1.0, a: 1.0 }
-          },
-          {
-            type: 'Color',
-            property: 'dropShadow/color',
-            value: { r: 0.0, g: 1.0, b: 1.0, a: 0.8 },
-            defaultValue: { r: 0.0, g: 1.0, b: 1.0, a: 0.8 }
-          },
-          {
-            type: 'Color',
-            property: 'backgroundColor/color',
-            value: { r: 0.0, g: 0.0, b: 0.1, a: 0.7 },
-            defaultValue: { r: 0.0, g: 0.0, b: 0.1, a: 0.7 }
-          }
-        ]
-      }
+      groups: ['caption'],
+      payload: { stylePreset: neonGlowStylePreset }
+    });
+
+    // To host the preset instead of registering it at runtime, add the same
+    // entry to your content.json. The style preset lives in payload.stylePreset
+    // and meta only needs a thumbUri.
+    const contentJsonEntry = {
+      id: 'ly.img.caption.presets.neon-glow',
+      label: { en: 'Neon Glow' },
+      meta: {
+        thumbUri: '{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png'
+      },
+      groups: ['caption'],
+      payload: { stylePreset: neonGlowStylePreset }
     };
 
     // eslint-disable-next-line no-console
-    console.log('\n=== content.json Entry ===');
+    console.log('=== content.json Entry ===');
     // eslint-disable-next-line no-console
     console.log('Add this entry to your content.json assets array:');
     // eslint-disable-next-line no-console
     console.log(JSON.stringify(contentJsonEntry, null, 2));
 
-    // Example of a complete content.json file structure
+    // A complete content.json wraps the preset entries in the assets array.
     const completeContentJson = {
-      version: '3.0.0',
+      version: '7.0.0',
       id: 'ly.img.caption.presets',
       assets: [contentJsonEntry]
     };
@@ -280,397 +215,157 @@ class Example implements EditorPlugin {
     console.log('\n=== Caption Preset Guide ===');
     // eslint-disable-next-line no-console
     console.log(
-      'The styled text block above demonstrates a "Neon Glow" caption preset.'
+      'Open the caption presets panel to apply the "Neon Glow" preset to a caption.'
     );
     // eslint-disable-next-line no-console
-    console.log('To use this preset:');
+    console.log('To host this preset:');
     // eslint-disable-next-line no-console
-    console.log('1. Save the serialized preset string as a .preset file');
+    console.log('1. Add the content.json entry to your assets folder');
     // eslint-disable-next-line no-console
     console.log('2. Create a thumbnail image showing the preset appearance');
     // eslint-disable-next-line no-console
-    console.log('3. Add the content.json entry to your assets folder');
-    // eslint-disable-next-line no-console
-    console.log('4. Configure CE.SDK baseURL to point to your assets location');
+    console.log('3. Configure CE.SDK baseURL to point to your assets location');
   }
 }
 
 export default Example;
 ```
 
-This guide covers how to understand the caption presets folder structure, create custom caption styles from text blocks, serialize presets for hosting, define customizable properties, and configure CE.SDK to load your custom presets.
+## Define a caption style preset
 
-## Understanding the Caption Presets Structure
+Describe the look as a plain object. The engine applies it to a caption block, so you never create or serialize a styled block yourself.
 
-### Folder Organization
+```typescript highlight-define-style-preset
+// Describe the look as a declarative style preset. The engine reads this
+// object and applies it to a caption block, so there is no styled block to
+// serialize. Colors are RGB(A) objects in the 0-1 range.
+const neonGlowStylePreset: AssetStylePreset = {
+  blockType: '//ly.img.ubq/caption',
+  // `replace` resets the properties the preset does not list, so switching
+  // presets never stacks leftover decorations.
+  mode: 'replace',
+  typeface: {
+    family: 'Monoton',
+    weight: 'normal',
+    style: 'normal'
+  },
+  properties: {
+    // Keys without a slash are namespaced to the block (caption/*).
+    'caption/horizontalAlignment': 'Center',
+    'caption/verticalAlignment': 'Center',
+    // Bright cyan text fill.
+    'fill/enabled': true,
+    'fill/solid/color': { r: 0, g: 1, b: 1, a: 1 },
+    // Semi-transparent background so captions stay readable over video.
+    'backgroundColor/enabled': true,
+    'backgroundColor/color': { r: 0, g: 0, b: 0.1, a: 0.7 },
+    // A matching glow built from a soft drop shadow.
+    'dropShadow/enabled': true,
+    'dropShadow/color': { r: 0, g: 1, b: 1, a: 0.8 },
+    'dropShadow/clip': false
+  },
+  // Keep the background rounding and the glow proportional to the font size
+  // instead of baking in fixed pixel values. Each entry sets its property to
+  // `ratio * fontSize`.
+  scaleWithFontSize: [
+    { property: 'backgroundColor/cornerRadius', ratio: 0.2 },
+    { property: 'dropShadow/blurRadius/x', ratio: 0.8 },
+    { property: 'dropShadow/blurRadius/y', ratio: 0.8 }
+  ]
+};
+```
 
-CE.SDK's caption presets use a specific directory structure that the engine expects when loading presets. The base path is `assets/v5/ly.img.caption.presets/` and contains:
+The fields:
+
+- `blockType`: the target block. Use `'//ly.img.ubq/caption'`.
+- `mode`: `'replace'` (the default) clears anything the preset omits, so presets never stack. `'merge'` layers the preset on top and keeps untouched properties.
+- `typeface`: the font, resolved by `family` with optional `weight` and `style`.
+- `properties`: a flat map of property paths to values. Keys without a slash are namespaced to the block (for example `caption/horizontalAlignment`); colors are RGB(A) objects in the 0-1 range. Common paths are `fill/solid/color`, `backgroundColor/color`, `dropShadow/color`, and `caption/horizontalAlignment`.
+- `scaleWithFontSize` (optional): keeps a decoration proportional to the font size. Each `{ property, ratio }` entry sets `property` to `ratio × fontSize`. Supported for `stroke/width`, the `dropShadow` offset and blur radius, and `backgroundColor/cornerRadius`.
+
+## Register the preset
+
+CE.SDK already includes the `ly.img.caption.presets` source. Add your preset to it so it appears in the caption presets panel:
+
+```typescript highlight-register-preset
+// Add the preset to the existing caption presets source so it shows up in
+// the caption presets panel next to the built-in presets.
+engine.asset.addAssetToSource('ly.img.caption.presets', {
+  id: 'ly.img.caption.presets.neon-glow',
+  label: { en: 'Neon Glow' },
+  meta: {
+    thumbUri: '{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png'
+  },
+  groups: ['caption'],
+  payload: { stylePreset: neonGlowStylePreset }
+});
+```
+
+Users apply it from the panel like any built-in preset. To apply it in code, use `engine.asset.applyToBlock('ly.img.caption.presets', asset, captionBlockId)`.
+
+## Host your own presets
+
+To serve presets from your own server instead of registering them at runtime, host a `content.json` and point the engine's `baseURL` at it. The source needs only the index file and a thumbnails folder:
 
 ```
-assets/v5/ly.img.caption.presets/
-├── content.json                # Master index of all presets
-├── presets/                    # Folder containing preset files
-│   ├── my-custom-preset.preset # Serialized caption block with styling
-│   └── ...
-└── thumbnails/                 # Folder containing preview images
-    ├── my-custom-preset.png    # Preview image for preset
-    └── ...
+assets/v7/ly.img.caption.presets/
+├── content.json
+└── thumbnails/
+    └── neon-glow.png
 ```
 
-The main `content.json` file acts as an index that lists all available presets with their metadata. When CE.SDK loads caption presets, it reads this file to discover available presets and their locations.
-
-### content.json Format
-
-The content.json file follows a specific format with version, asset source ID, and an assets array:
+Each asset carries its look inline in `payload.stylePreset` and a preview in `meta.thumbUri`. There are no separate preset files:
 
 ```json
 {
-  "version": "3.0.0",
+  "version": "7.0.0",
   "id": "ly.img.caption.presets",
   "assets": [
     {
-      "id": "ly.img.caption.presets.my-preset",
-      "label": { "en": "My Preset" },
+      "id": "ly.img.caption.presets.neon-glow",
+      "label": { "en": "Neon Glow" },
       "meta": {
-        "uri": "{{base_url}}/ly.img.caption.presets/presets/my-preset.preset",
-        "thumbUri": "{{base_url}}/ly.img.caption.presets/thumbnails/my-preset.png",
-        "mimeType": "application/ubq-blocks-string"
+        "thumbUri": "{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png"
       },
+      "groups": ["caption"],
       "payload": {
-        "properties": []
+        "stylePreset": {
+          "blockType": "//ly.img.ubq/caption",
+          "mode": "replace",
+          "typeface": { "family": "Monoton", "weight": "normal" },
+          "properties": {
+            "fill/enabled": true,
+            "fill/solid/color": { "r": 0, "g": 1, "b": 1, "a": 1 }
+          }
+        }
       }
     }
   ]
 }
 ```
 
-Each asset entry requires a unique ID with namespace, localized label, meta with URIs and mime type, and optional payload properties for customization.
-
-## Creating Custom Caption Presets
-
-### Designing a Caption Style
-
-We create a styled text block as the basis for our preset. Text blocks support all the styling properties needed for captions including colors, fonts, backgrounds, shadows, and effects.
-
-```typescript highlight-create-text-block
-    // Create a text block to use as the preset base
-    // Text blocks support all the styling properties needed for captions
-    const textBlock = engine.block.create('text');
-
-    // Set sample caption text
-    engine.block.setString(textBlock, 'text/text', 'NEON GLOW');
-
-    // Position and size the text block
-    engine.block.setPositionX(textBlock, 50);
-    engine.block.setPositionY(textBlock, 200);
-    engine.block.setWidth(textBlock, 600);
-    engine.block.setHeightMode(textBlock, 'Auto');
-```
-
-We position and size the text block, then set sample caption text. The text block serves as our canvas for applying the styling that will define the preset's appearance.
-
-### Styling with Colors and Fonts
-
-We style the text with colors and configure font properties. The fill color becomes the `fill/solid/color` property in the preset:
-
-```typescript highlight-style-text-color
-// Style the text with a bright neon cyan color
-// This will be the fill/solid/color property in the preset
-engine.block.setColor(textBlock, 'fill/solid/color', {
-  r: 0.0,
-  g: 1.0,
-  b: 1.0,
-  a: 1.0
-});
-```
-
-We also configure font size and load a typeface. When users apply this preset, their captions will inherit these font settings:
-
-```typescript highlight-style-font
-    // Set font properties for the caption style
-    engine.block.setFloat(textBlock, 'text/fontSize', 48);
-
-    // Use a bold font for better visibility
-    // Load and set a typeface
-    const typefaceResult = await engine.asset.findAssets('ly.img.typeface', {
-      query: 'Roboto',
-      page: 0,
-      perPage: 10
-    });
-
-    if (typefaceResult.assets.length > 0) {
-      const typefaceAsset = typefaceResult.assets[0];
-      const typeface = typefaceAsset.payload?.typeface;
-      if (typeface && typeface.fonts?.[0]?.uri) {
-        engine.block.setFont(textBlock, typeface.fonts[0].uri, typeface);
-      }
-    }
-```
-
-### Adding Visual Effects
-
-We add a glowing drop shadow effect for the neon look. Drop shadow creates the characteristic glow effect that makes caption presets visually distinctive:
-
-```typescript highlight-style-drop-shadow
-    // Add a glowing drop shadow effect for the neon look
-    // This creates the characteristic neon glow effect
-    engine.block.setDropShadowEnabled(textBlock, true);
-
-    // Set glow color (bright cyan to match text)
-    engine.block.setColor(textBlock, 'dropShadow/color', {
-      r: 0.0,
-      g: 1.0,
-      b: 1.0,
-      a: 0.8
-    });
-
-    // Configure shadow properties for a soft glow
-    engine.block.setFloat(textBlock, 'dropShadow/blurRadius/x', 20);
-    engine.block.setFloat(textBlock, 'dropShadow/blurRadius/y', 20);
-    engine.block.setFloat(textBlock, 'dropShadow/offset/x', 0);
-    engine.block.setFloat(textBlock, 'dropShadow/offset/y', 0);
-```
-
-Optionally, we add a semi-transparent background to help the caption stand out against video content:
-
-```typescript highlight-style-background
-// Optionally add a semi-transparent dark background
-// This helps the caption stand out against video content
-engine.block.setBackgroundColorEnabled(textBlock, true);
-engine.block.setColor(textBlock, 'backgroundColor/color', {
-  r: 0.0,
-  g: 0.0,
-  b: 0.1,
-  a: 0.7
-});
-```
-
-### Serializing the Preset
-
-We serialize the styled text block using `block.saveToString()`. This creates a serialized string that can be saved as a `.preset` or `.blocks` file:
-
-```typescript highlight-serialize-preset
-    // Serialize the styled text block to create a preset file
-    // This serialized string can be saved as a .blocks or .preset file
-    // Include 'bundle' scheme to allow serialization of blocks with bundled fonts
-    const serializedPreset = await engine.block.saveToString(
-      [textBlock],
-      ['buffer', 'http', 'https', 'bundle']
-    );
-
-    // eslint-disable-next-line no-console
-    console.log('=== Serialized Preset ===');
-    // eslint-disable-next-line no-console
-    console.log('Save this as a .preset file (e.g., neon-glow.preset):');
-    // eslint-disable-next-line no-console
-    console.log(serializedPreset);
-```
-
-The serialized string contains all block properties and styling. Save this output as a file (e.g., `neon-glow.preset`) and create a thumbnail image showing the preset appearance.
-
-## Defining Customizable Properties
-
-### Color Properties
-
-We define which properties users can customize without changing the entire preset. Color properties allow users to modify specific color aspects of a preset:
-
-```typescript highlight-content-json-structure
-    // Example content.json entry for the custom preset
-    // This shows the structure needed to add the preset to content.json
-    const contentJsonEntry = {
-      id: '//ly.img.caption.presets/neon-glow',
-      label: {
-        en: 'Neon Glow'
-      },
-      meta: {
-        uri: '{{base_url}}/ly.img.caption.presets/presets/neon-glow.preset',
-        thumbUri:
-          '{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png',
-        mimeType: 'application/ubq-blocks-string'
-      },
-      payload: {
-        properties: [
-          {
-            type: 'Color',
-            property: 'fill/solid/color',
-            value: { r: 0.0, g: 1.0, b: 1.0, a: 1.0 },
-            defaultValue: { r: 0.0, g: 1.0, b: 1.0, a: 1.0 }
-          },
-          {
-            type: 'Color',
-            property: 'dropShadow/color',
-            value: { r: 0.0, g: 1.0, b: 1.0, a: 0.8 },
-            defaultValue: { r: 0.0, g: 1.0, b: 1.0, a: 0.8 }
-          },
-          {
-            type: 'Color',
-            property: 'backgroundColor/color',
-            value: { r: 0.0, g: 0.0, b: 0.1, a: 0.7 },
-            defaultValue: { r: 0.0, g: 0.0, b: 0.1, a: 0.7 }
-          }
-        ]
-      }
-    };
-
-    // eslint-disable-next-line no-console
-    console.log('\n=== content.json Entry ===');
-    // eslint-disable-next-line no-console
-    console.log('Add this entry to your content.json assets array:');
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(contentJsonEntry, null, 2));
-```
-
-Each property in the `payload.properties` array needs:
-
-- `type`: Must be `"Color"` for color properties
-- `property`: Property path (e.g., `"fill/solid/color"`, `"backgroundColor/color"`, `"dropShadow/color"`)
-- `value`: Current RGBA color object with `r`, `g`, `b`, `a` values (0-1 range)
-- `defaultValue`: Initial RGBA color object
-
-### Supported Property Paths
-
-Available property paths for caption customization:
-
-- `fill/solid/color`: Text fill color
-- `backgroundColor/color`: Background color behind text
-- `dropShadow/color`: Drop shadow color
-- `stroke/color`: Stroke/outline color
-
-## Updating the content.json File
-
-### Adding a New Preset Entry
-
-Add a new object to the `assets` array with all required fields. The complete structure for a preset entry:
-
-```json
-{
-  "id": "ly.img.caption.presets.neon-glow",
-  "label": { "en": "Neon Glow" },
-  "meta": {
-    "uri": "{{base_url}}/ly.img.caption.presets/presets/neon-glow.preset",
-    "thumbUri": "{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png",
-    "mimeType": "application/ubq-blocks-string"
-  },
-  "payload": {
-    "properties": [
-      {
-        "type": "Color",
-        "property": "fill/solid/color",
-        "value": { "r": 0.0, "g": 1.0, "b": 1.0, "a": 1.0 },
-        "defaultValue": { "r": 0.0, "g": 1.0, "b": 1.0, "a": 1.0 }
-      },
-      {
-        "type": "Color",
-        "property": "dropShadow/color",
-        "value": { "r": 0.0, "g": 1.0, "b": 1.0, "a": 0.8 },
-        "defaultValue": { "r": 0.0, "g": 1.0, "b": 1.0, "a": 0.8 }
-      }
-    ]
-  }
-}
-```
-
-Ensure the `mimeType` is set to `"application/ubq-blocks-string"` and use the `{{base_url}}` placeholder for dynamic path resolution.
-
-### Complete content.json Example
-
-The complete content.json file structure wraps preset entries in the assets array:
-
-```typescript highlight-complete-content-json
-    // Example of a complete content.json file structure
-    const completeContentJson = {
-      version: '3.0.0',
-      id: 'ly.img.caption.presets',
-      assets: [contentJsonEntry]
-    };
-
-    // eslint-disable-next-line no-console
-    console.log('\n=== Complete content.json Example ===');
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(completeContentJson, null, 2));
-```
-
-## Hosting and Serving Custom Presets
-
-### Server Setup
-
-Prepare the folder structure and upload files to your server:
-
-1. Create folder structure matching `assets/v5/ly.img.caption.presets/`
-2. Upload `content.json` to the root folder
-3. Upload `.preset` files to `presets/` subfolder
-4. Upload thumbnail images to `thumbnails/` subfolder
-5. Ensure files are accessible via HTTP/HTTPS
-6. Configure CORS headers if serving cross-origin
-
-### Verifying File Access
-
-Test that all files are accessible before configuring CE.SDK:
-
-- Access `content.json` directly in browser
-- Access preset files and thumbnails via their URLs
-- Check browser console for CORS errors
-
-## Loading Custom Presets into CE.SDK
-
-### Base URL Configuration
-
-To load your custom caption presets into CE.SDK, you need to tell the engine where to find your updated content.json file. Since CE.SDK already includes a caption presets asset source with the ID "ly.img.caption.presets", we'll update this existing source rather than creating a new one.
-
-Set the base URL to point to your asset hosting location. CE.SDK automatically looks for `ly.img.caption.presets/content.json` relative to the base URL:
+CE.SDK loads `ly.img.caption.presets/content.json` relative to `baseURL`, so your presets replace the defaults automatically:
 
 ```typescript
-const config = {
+const cesdk = await CreativeEditorSDK.create('#cesdk_container', {
   baseURL: 'https://your-server.com/assets/'
-};
-
-CreativeEditorSDK.create('#cesdk_container', config).then(async (cesdk) => {
-  // Caption presets load automatically from baseURL + 'ly.img.caption.presets/content.json'
 });
 ```
-
-Your custom presets will seamlessly integrate with any built-in presets and automatically appear in the caption presets panel in the UI. No additional source registration is needed when replacing the default presets.
 
 ## Troubleshooting
 
-### Preset Not Loading
-
-- Verify `content.json` is accessible at expected URL
-- Check browser console for 404 errors on preset files
-- Ensure `mimeType` is set to `"application/ubq-blocks-string"`
-- Verify `{{base_url}}` placeholder is used correctly
-
-### Preset Styles Not Applying
-
-- Ensure preset was serialized from a text block (not other block types)
-- Verify the serialized block contains styling properties
-- Check that property paths in `payload.properties` are correct
-
-### Thumbnail Not Displaying
-
-- Verify thumbnail file exists at the `thumbUri` path
-- Check image format is PNG
-- Ensure CORS headers allow image loading
-
-### Custom Colors Not Working
-
-- Verify `properties` array structure in content.json
-- Check property `type` is `"Color"`
-- Ensure `value` and `defaultValue` have correct RGBA format (0-1 range)
+- **Preset not loading**: confirm `content.json` is reachable with no 404 or CORS errors, and that `version` is `7.0.0`.
+- **Styles not applying**: set `blockType` to `'//ly.img.ubq/caption'` and check the property paths. `mode: 'replace'` drops anything the preset omits, so switch to `'merge'` to layer on top.
+- **Color or decoration missing**: use RGB(A) values in the 0-1 range, and enable a decoration before coloring it (for example `dropShadow/enabled: true` alongside `dropShadow/color`).
+- **Thumbnail blank**: verify the `thumbUri` path resolves and the image is a PNG.
 
 ## API Reference
 
-| Method                                       | Category | Purpose                                     |
-| -------------------------------------------- | -------- | ------------------------------------------- |
-| `engine.block.create('text')`                | Block    | Create text block for preset styling        |
-| `engine.block.saveToString(blocks)`          | Block    | Serialize styled block to preset format     |
-| `engine.block.setColor(id, property, color)` | Block    | Set color property (fill, background, etc.) |
-| `engine.block.setBackgroundColorEnabled()`   | Block    | Enable background color                     |
-| `engine.block.setDropShadowEnabled()`        | Block    | Enable drop shadow                          |
-| `engine.block.setFloat(id, property, value)` | Block    | Set numeric properties (font size, etc.)    |
-| `engine.block.setString(id, property, val)`  | Block    | Set string properties (text, font URI)      |
-| `engine.asset.findAssets(sourceId, query)`   | Asset    | Find assets like typefaces                  |
-| `CreativeEngine.init(config)`                | Engine   | Initialize engine with base URL config      |
+| Method | Purpose |
+| --- | --- |
+| `engine.asset.addAssetToSource(sourceId, asset)` | Register a custom preset in an asset source |
+| `engine.asset.applyToBlock(sourceId, asset, block)` | Apply a preset to a caption block |
+| `CreativeEditorSDK.create(container, config)` | Initialize the editor with a `baseURL` |
 
 
 

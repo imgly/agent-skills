@@ -20,11 +20,11 @@ A source that can emit values to subscribed listeners
 
 | Parameter | Type |
 | ------ | ------ |
-| `listener` | [`_Listener`](./api/engine/type-aliases/listener.md)\<`T`> |
+| `listener` | [`\_Listener`](./api/engine/type-aliases/listener.md)\<`T`> |
 
 ## Returns
 
-[`_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md)
+[`\_Unsubscribe`](./api/engine/type-aliases/unsubscribe.md)
 
 ## Properties
 

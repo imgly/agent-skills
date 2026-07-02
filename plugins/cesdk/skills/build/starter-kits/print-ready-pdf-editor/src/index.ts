@@ -1,7 +1,7 @@
 /**
  * CE.SDK Print-Ready PDF Editor Starterkit - Main Entry Point
  *
- * A professional design editor with PDF/X-3 export compliance, CMYK color profiles,
+ * A professional design editor with PDF/X-4 and PDF/X-3 export compliance, CMYK color profiles,
  * and bleed margin support for print-ready production.
  *
  * @see https://img.ly/docs/cesdk/js/getting-started/

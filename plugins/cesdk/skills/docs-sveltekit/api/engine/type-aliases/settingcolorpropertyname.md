@@ -16,13 +16,13 @@ type SettingColorPropertyName =
   | "borderOutlineColor"
   | "progressColor"
   | "errorStateColor"
+  | "grid/color"
   | "page/title/color"
   | "page/marginFillColor"
   | "page/marginFrameColor"
   | "page/innerBorderColor"
   | "page/outerBorderColor"
   | "colorMaskingSettings/maskColor"
-  | "grid/color"
   | string & object;
 ```
 

@@ -20,11 +20,11 @@ The settings are organized by type:
 | ------ | ------ | ------ |
 |  `controlGizmo/showCropHandles` | `boolean` | Whether to show handles for adjusting the crop area during crop mode. |
 |  `controlGizmo/showCropScaleHandles` | `boolean` | Whether to display the outer handles that scale the full image during crop. |
-|  `controlGizmo/showMoveHandles` | `boolean` | Whether to show the move handles. |
-|  `controlGizmo/dynamicMoveHandleVisibility` | `boolean` | Whether the move handle visibility is dynamic based on block size. Set to false to always show. |
-|  `controlGizmo/showResizeHandles` | `boolean` | Whether to display the non-proportional resize handles (edge handles). |
-|  `controlGizmo/showRotateHandles` | `boolean` | Whether to show the rotation handles. |
-|  `controlGizmo/showScaleHandles` | `boolean` | Whether to display the proportional scale handles (corner handles). |
+|  ~~`controlGizmo/showMoveHandles`~~ | `boolean` | **Deprecated** Use `controlGizmo/moveHandleVisibility`. `false` hides the move handle. |
+|  ~~`controlGizmo/dynamicMoveHandleVisibility`~~ | `boolean` | **Deprecated** Use `controlGizmo/moveHandleVisibility`. `false` shows the move handle at any block size. |
+|  ~~`controlGizmo/showResizeHandles`~~ | `boolean` | **Deprecated** Use `controlGizmo/resizeHandlesVisibility`. `false` hides the edge (resize) handles. |
+|  ~~`controlGizmo/showRotateHandles`~~ | `boolean` | **Deprecated** Use `controlGizmo/rotateHandlesVisibility`. `false` hides the rotation handle. |
+|  ~~`controlGizmo/showScaleHandles`~~ | `boolean` | **Deprecated** Use `controlGizmo/scaleHandlesVisibility`. `false` hides the corner (scale) handles. |
 |  `doubleClickToCropEnabled` | `boolean` | Enable double-click to enter crop mode. |
 |  `features/singlePageModeEnabled` | `boolean` | Enable single page mode where only one page is shown at a time. |
 |  `features/fileSystemUsageEnabled` | `boolean` | Enable file system usage, that allows the engine to use the file system to store files for local uploads. |
@@ -102,6 +102,10 @@ The settings are organized by type:
 |  `textVariableHighlightColor` | [`Color`](./api/node/type-aliases/color.md) | The highlight color for text variables. |
 |  `handleFillColor` | [`Color`](./api/node/type-aliases/color.md) | The fill color for handles. |
 |  `grid/color` | [`Color`](./api/node/type-aliases/color.md) | Color of the grid lines. |
+|  `controlGizmo/moveHandleVisibility` | `"auto"` | `"always"` | `"never"` | When the move handle is shown: 'auto' (by block size), 'always' (even while editing text, not in crop mode), or 'never'. Replaces deprecated `controlGizmo/showMoveHandles`/`dynamicMoveHandleVisibility`. |
+|  `controlGizmo/resizeHandlesVisibility` | `"auto"` | `"always"` | `"never"` | When the edge (resize) handles are shown: 'auto' (default), 'always' (even while editing text, not in crop mode), or 'never'. Replaces the deprecated `controlGizmo/showResizeHandles`. |
+|  `controlGizmo/scaleHandlesVisibility` | `"auto"` | `"always"` | `"never"` | When the corner (scale) handles are shown: 'auto' (default), 'always' (even while editing text, not in crop mode), or 'never'. Replaces the deprecated `controlGizmo/showScaleHandles`. |
+|  `controlGizmo/rotateHandlesVisibility` | `"auto"` | `"always"` | `"never"` | When the rotation handle is shown: 'auto' (default), 'always' (even while editing text, not in crop mode), or 'never'. Replaces the deprecated `controlGizmo/showRotateHandles`. |
 |  `doubleClickSelectionMode` | `"Direct"` | `"Hierarchical"` | The selection mode for double-click: Direct selects the clicked element, Hierarchical traverses the hierarchy. |
 |  `touch/pinchAction` | `"Auto"` | `"None"` | `"Zoom"` | `"Scale"` | `"Dynamic"` | The action performed for pinch gestures: None, Zoom, Scale, Auto, or Dynamic. |
 |  `touch/rotateAction` | `"None"` | `"Rotate"` | The action performed for rotate gestures: None or Rotate. |

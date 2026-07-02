@@ -26,7 +26,7 @@ Comprehensive design editing for your web app—professional tools for graphics,
 
 This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Node.js v22+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list
 
@@ -57,6 +57,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     ├── index.ts                      # Application entry point
     └── imgly/
         ├── index.ts                  # Editor initialization function
+        ├── resolveAssetPath.ts       # BASE_URL-aware asset path resolver
         ├── config/
         │   ├── plugin.ts             # Main configuration plugin
         │   ├── actions.ts            # Export/import actions
@@ -171,6 +172,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     ```
     imgly/
     ├── index.ts                  # Editor initialization function
+    ├── resolveAssetPath.ts       # BASE_URL-aware asset path resolver
     ├── config/
     │   ├── plugin.ts             # Main configuration plugin
     │   ├── actions.ts            # Export/import actions
@@ -548,7 +550,7 @@ See [Background Removal](./edit-image/remove-bg.md) for setup instructions and c
 
 #### Print Ready PDF
 
-Export print-ready PDF/X-3 files with CMYK color profiles for professional printing workflows.
+Export print-ready PDF/X-4 and PDF/X-3 files with CMYK color profiles for professional printing workflows.
 
 ```typescript title="src/imgly/config/plugin.ts"
 import PrintReadyPDFPlugin from '@imgly/plugin-print-ready-pdf';

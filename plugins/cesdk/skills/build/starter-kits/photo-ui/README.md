@@ -15,7 +15,7 @@ Photo UI is equipped with advanced photo editing options while remaining easy an
 
 ### Prerequisites
 
-- Node.js 18+ and npm/yarn
+- Node.js 22+ and npm/yarn
 - A CE.SDK license (optional for development)
 
 ### Installation

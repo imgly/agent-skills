@@ -5,9 +5,11 @@
 ---
 
 In this guide, you'll learn how to use the Print Ready PDF plugin to transform
-CE.SDK's standard RGB PDF exports into PDF/X-3 compliant, CMYK-based files
-suitable for professional commercial printing. We'll add a custom export
-button that handles color space conversion, ICC profile embedding, and PDF/X
+CE.SDK's standard RGB PDF exports into PDF/X compliant, CMYK-based files
+suitable for professional commercial printing. By default the plugin produces
+PDF/X-4 output (live transparency, vector text preserved); PDF/X-3 is
+available as an opt-in fallback. We'll add a custom export button that
+handles color space conversion, ICC profile embedding, and PDF/X
 compliance—all client-side without any backend infrastructure.
 
 > **Reading time:** 15 minutes
@@ -29,8 +31,8 @@ A complete print-ready PDF export workflow that:
 - Adds a custom "Export Print-Ready PDF" button to CE.SDK
 - Exports designs as standard PDFs using CE.SDK's engine
 - Converts RGB PDFs to CMYK with professional ICC profiles
-- Adds PDF/X-3:2003 compliance for commercial printing
-- Handles transparency flattening automatically
+- Produces PDF/X-4 compliant output (with PDF/X-3 available as a fallback) for commercial printing
+- Preserves live transparency and vector text on transparent pages
 - Downloads print-ready files directly in the browser
 
 ## Prerequisites
@@ -135,23 +137,25 @@ The `engine.block.export()` method is the recommended approach for PDF export. C
 
 ## Step 4: Convert to Print-Ready Format
 
-Use the plugin to convert CE.SDK's RGB PDF to CMYK PDF/X-3 format:
+Use the plugin to convert CE.SDK's RGB PDF into a CMYK PDF/X file:
 
 ```typescript
-// Convert to print-ready PDF/X-3 format
-const printReadyPDF = await convertToPDFX3(pdfBlob, {
+// Convert to print-ready PDF/X-4 (default)
+const printReadyPDF = await convertToPDFX(pdfBlob, {
   outputProfile: 'fogra39', // European printing standard
   title: 'Print-Ready Export',
 });
 ```
+
+`convertToPDFX` produces PDF/X-4 output by default. Pass `outputStandard: 'PDF/X-3'` if your prepress pipeline requires the older standard.
 
 **How this integrates with CE.SDK:**
 
 - CE.SDK exports standard RGB PDF (optimized for screens)
 - Plugin intercepts the PDF blob
 - Converts RGB colors to CMYK using professional ICC profiles
-- Adds PDF/X-3:2003 compliance markers
-- Embeds color profile for consistent printing
+- Adds PDF/X-4 (ISO 15930-7) compliance markers, including the strict XMP packet
+- Embeds the ICC profile in an OutputIntent for consistent printing
 
 **Color profile selection:**
 
@@ -200,7 +204,7 @@ This pattern works in all modern browsers without requiring server endpoints.
 2. Click "Export Print-Ready PDF" button
 3. Browser should prompt to save file
 4. Downloaded PDF should open in PDF viewers
-5. Check file properties for PDF/X-3:2003 compliance
+5. Check file properties for PDF/X-4 compliance (or PDF/X-3:2003 if you opted in)
 
 ## Complete Implementation
 
@@ -210,7 +214,7 @@ Here's the full integration combining all steps:
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 type CreativeEditorSDK = InstanceType<typeof CreativeEditorSDK>;
 // @ts-expect-error - Plugin types will be available in future release
-import { convertToPDFX3 } from '@imgly/plugin-print-ready-pdfs-web';
+import { convertToPDFX } from '@imgly/plugin-print-ready-pdfs-web';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
@@ -308,8 +312,9 @@ async function exportPrintReadyPDF() {
       mimeType: 'application/pdf'
     });
 
-    // Convert to print-ready PDF/X-3 format
-    const printReadyPDF = await convertToPDFX3(pdfBlob, {
+    // Convert to print-ready PDF/X-4 (default). Pass
+    // `outputStandard: 'PDF/X-3'` to fall back to the older standard.
+    const printReadyPDF = await convertToPDFX(pdfBlob, {
       outputProfile: 'fogra39', // European printing standard
       title: 'Print-Ready Export'
     });
@@ -341,11 +346,30 @@ Find the complete working example in the [GitHub repository](https://github.com/
 
 ## Transparency Handling
 
-PDF/X-3:2003 is based on PDF 1.3 which does not support transparency. By default, the plugin flattens all transparency to ensure compliance.
+The default output is PDF/X-4, which is based on PDF 1.6 and supports live transparency natively. Vector text and gradients on transparent pages are preserved without flattening, so no special handling is required.
 
-**Why Flattening is Required:**
+```typescript
+// Default — PDF/X-4 with live transparency preserved
+const printReadyPDF = await convertToPDFX(pdfBlob, {
+  outputProfile: 'fogra39',
+  title: 'Print-Ready Export',
+});
+```
 
-Transparency flattening is mandatory for PDF/X-3 compliance—this is a requirement of the standard itself, not a limitation of the tooling. Any PDF with transparency must have those elements composited into opaque equivalents before it can be a valid PDF/X-3 file.
+## Fallback: PDF/X-3
+
+If your downstream pipeline does not accept PDF/X-4, opt back into the older PDF/X-3 standard with `outputStandard: 'PDF/X-3'`:
+
+```typescript
+// PDF/X-3 fallback (PDF 1.4, no live transparency)
+const printReadyPDF = await convertToPDFX(pdfBlob, {
+  outputStandard: 'PDF/X-3',
+  outputProfile: 'fogra39',
+  title: 'Print-Ready Export (X-3)',
+});
+```
+
+PDF/X-3:2003 is based on PDF 1.3 which does not support transparency. The plugin flattens transparency by default for this path so the output is strictly compliant.
 
 **What happens during flattening:**
 
@@ -355,50 +379,43 @@ Transparency flattening is mandatory for PDF/X-3 compliance—this is a requirem
 
 ### Known Issue: Black Backgrounds During Flattening
 
-During the flattening process, certain elements with transparency may render with black backgrounds instead of their intended appearance. Affected elements include:
+During flattening, certain elements may render with black backgrounds instead of their intended appearance:
 
 - Gradients that fade to transparent
 - PNG images with alpha channels (e.g., stickers, icons)
 - Text with emoji characters
 - Overlapping semi-transparent elements
 
-### Workaround: Preserve Transparency
+If you hit any of these, switch back to the PDF/X-4 default — X-4 preserves transparency live and avoids the flattening artifacts entirely.
 
-If visual fidelity is more important than strict PDF/X-3 compliance, you can disable transparency flattening:
+### Workaround: Preserve Transparency on X-3
+
+If you must stay on X-3 but visual fidelity matters more than strict compliance, disable flattening:
 
 ```typescript
-// Preserve transparency for better visual fidelity
-const printReadyPDF = await convertToPDFX3(pdfBlob, {
+// X-3 output with live transparency — non-strict
+const printReadyPDF = await convertToPDFX(pdfBlob, {
+  outputStandard: 'PDF/X-3',
   outputProfile: 'fogra39',
-  title: 'Visual Fidelity Preserved',
-  flattenTransparency: false, // Preserves appearance but may not be strictly PDF/X-3 compliant
+  title: 'X-3 with Preserved Transparency',
+  flattenTransparency: false,
 });
 ```
 
-### Trade-offs
-
 | Setting | Visual Fidelity | PDF/X-3 Compliance |
 |---------|----------------|-------------------|
-| `flattenTransparency: true` (default) | May have artifacts | Strictly compliant |
+| `flattenTransparency: true` (default for X-3) | May have artifacts | Strictly compliant |
 | `flattenTransparency: false` | Preserved | May not validate if transparency exists |
 
-### Designing for Print Compatibility
-
-To ensure best results with PDF/X-3, design without transparency:
-
-- Use 100% opacity for all elements
-- Avoid PNG images with alpha channels
-- Use solid fills instead of gradients with opacity
-- Avoid gradients that fade to transparent
-- Export without blend modes
+The `flattenTransparency` option is ignored when `outputStandard` is `'PDF/X-4'` — X-4 keeps transparency live by definition.
 
 ## Advanced: Opting Out of ICC Profile Embedding
 
 If a downstream prepress pipeline (e.g. ZePrA, PitStop) handles ICC profile embedding and color normalization, you can keep the RGB→CMYK color conversion from the plugin and skip the embedded OutputIntent so the downstream tool can add its own:
 
 ```typescript
-// Convert to CMYK without embedding the ICC profile or PDF/X-3 metadata
-const cmykPDF = await convertToPDFX3(pdfBlob, {
+// Convert to CMYK without embedding the ICC profile or PDF/X metadata
+const cmykPDF = await convertToPDFX(pdfBlob, {
   outputProfile: 'fogra39',
   embedICCProfile: false,
   title: 'CMYK for Downstream Pipeline',
@@ -408,8 +425,8 @@ const cmykPDF = await convertToPDFX3(pdfBlob, {
 **What changes when `embedICCProfile` is `false`:**
 
 - The selected `outputProfile` still determines whether the output is device CMYK (for `fogra39`, `gracol`, or a custom CMYK profile) or RGB (for `srgb`).
-- The output PDF does not include the ICC profile, the `OutputIntent`, or the `GTS_PDFXVersion`/`GTS_PDFXConformance` markers.
-- The resulting file is a plain CMYK PDF, not PDF/X-3 compliant. Your downstream prepress tool is responsible for assigning the final ICC profile and applying any color normalization.
+- The output PDF does not include the ICC profile, the `OutputIntent`, or the PDF/X conformance markers.
+- The resulting file is a plain CMYK PDF, not PDF/X compliant. Your downstream prepress tool is responsible for assigning the final ICC profile and applying any color normalization.
 
 Use this when your existing pipeline already enforces ICC profile embedding and color normalization rules you need to preserve.
 
@@ -421,7 +438,7 @@ Use printer-specific ICC profiles:
 // Load custom ICC profile from your server
 const customProfile = await fetch('/path/to/custom.icc').then(r => r.blob());
 
-const printReadyPDF = await convertToPDFX3(pdfBlob, {
+const printReadyPDF = await convertToPDFX(pdfBlob, {
   outputProfile: 'custom',
   customProfile: customProfile,
   title: 'Custom Profile Export',

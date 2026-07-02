@@ -2,15 +2,16 @@
 
 ---
 
-Provides context for replacing asset library entries, including selected blocks and default entry IDs.
+Provides context for replacing asset library entries, including the selected blocks and the
+default entries (each may carry per-entry source exclusions).
 
 ## Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
 |  `selectedBlocks` | `object`\[] | - |
-|  `defaultEntryIds` | `string`\[] | - |
-|  `replaceIntent?` | `"shape"` | `"fill"` | The intent of the replacement operation. - `'shape'`: User explicitly wants to replace the shape (e.g., from shape options panel) - `'fill'`: User wants to replace the fill content - `undefined`: No explicit intent, system determines based on block properties |
+|  `defaultEntryIds` | [`AssetLibraryEntryInput`](./api/cesdk-js/type-aliases/assetlibraryentryinput.md)\[] | - |
+|  `replaceIntent?` | `"shape"` | `"fill"` | `"textStyle"` | `"captionStyle"` | The intent of the replacement operation. - `'shape'`: User explicitly wants to replace the shape (e.g., from shape options panel) - `'fill'`: User wants to replace the fill content - `'textStyle'`: User wants to apply a text style preset - `'captionStyle'`: User wants to apply a caption style preset - `undefined`: No explicit intent, system determines based on block properties |
 
 
 ---

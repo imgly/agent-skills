@@ -212,6 +212,7 @@ Components available in `'ly.img.canvas.menu'`. The canvas menu appears on right
 | ID | Description |
 |----|-------------|
 | `ly.img.text.edit.canvasMenu` | Enter text edit mode |
+| `ly.img.text.styles.canvasMenu` | Apply a style preset |
 | `ly.img.text.color.canvasMenu` | Quick text color change |
 | `ly.img.text.bold.canvasMenu` | Toggle bold (in Text edit mode) |
 | `ly.img.text.italic.canvasMenu` | Toggle italic (in Text edit mode) |

@@ -26,7 +26,7 @@ Ensure staying on brand and simplify the design process by defining placeholders
 
 This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Node.js v22+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list
 

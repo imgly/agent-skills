@@ -135,7 +135,9 @@ class Example implements EditorPlugin {
 
       downloadBlob(pdfBlob, 'print-high-compatibility.pdf');
       cesdk.ui.showNotification({
-        message: `PDF exported with high compatibility (${(pdfBlob.size / 1024).toFixed(1)} KB)`,
+        message: `PDF exported with high compatibility (${(
+          pdfBlob.size / 1024
+        ).toFixed(1)} KB)`,
         type: 'success'
       });
     };
@@ -151,7 +153,9 @@ class Example implements EditorPlugin {
 
       downloadBlob(pdfBlob, 'print-standard.pdf');
       cesdk.ui.showNotification({
-        message: `Standard PDF exported (${(pdfBlob.size / 1024).toFixed(1)} KB)`,
+        message: `Standard PDF exported (${(pdfBlob.size / 1024).toFixed(
+          1
+        )} KB)`,
         type: 'success'
       });
     };
@@ -176,7 +180,9 @@ class Example implements EditorPlugin {
 
       downloadBlob(pdfBlob, 'print-with-underlayer.pdf');
       cesdk.ui.showNotification({
-        message: `PDF exported with underlayer (${(pdfBlob.size / 1024).toFixed(1)} KB)`,
+        message: `PDF exported with underlayer (${(pdfBlob.size / 1024).toFixed(
+          1
+        )} KB)`,
         type: 'success'
       });
     };
