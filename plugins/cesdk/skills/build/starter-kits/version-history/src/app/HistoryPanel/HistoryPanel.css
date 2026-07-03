@@ -1,0 +1,137 @@
+/**
+ * CE.SDK Version History - History Panel Styles
+ */
+
+/* Sidebar container */
+.sidebar {
+  display: flex;
+  height: 100%;
+  flex-basis: 300px;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow:
+    0px 0px 2px rgba(22, 22, 23, 0.25),
+    0px 4px 6px -2px rgba(22, 22, 23, 0.12),
+    0px 2px 2.5px -2px rgba(22, 22, 23, 0.12),
+    0px 1px 1.75px -2px rgba(22, 22, 23, 0.12);
+  color: #161617;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-headline {
+  color: rgba(22, 22, 23, 0.65);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  line-height: 1.25rem;
+  margin: 0;
+}
+
+.snapshot-count {
+  color: rgba(22, 22, 23, 0.65);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.snapshot-list {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: stretch;
+  align-self: stretch;
+  padding: 0.75rem 1rem;
+  gap: 0.25rem;
+  overflow-y: auto;
+}
+
+/* Individual snapshot item */
+.snapshot-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  gap: 0.5rem;
+  text-align: start;
+  transition: background 0.2s ease-in-out;
+  background: transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.snapshot-item:hover,
+.snapshot-item:focus-visible {
+  background: rgba(71, 26, 255, 0.05);
+}
+
+.snapshot-item:hover .snapshot-item-button,
+.snapshot-item:focus-visible .snapshot-item-button {
+  background: rgba(71, 26, 255, 0.25);
+}
+
+.snapshot-divider {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+.snapshot-item-image {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #f5f5f5;
+}
+
+.snapshot-item-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.125rem;
+}
+
+.snapshot-item-name {
+  color: #161617;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.0175rem;
+  line-height: 1.25rem;
+}
+
+.snapshot-item-date {
+  color: rgba(22, 22, 23, 0.65);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+.snapshot-item-button {
+  display: flex;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0rem 0.5rem;
+  border-radius: 0.5rem;
+  color: #3d5cf5;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.0175rem;
+  line-height: 1.25rem;
+  transition: background 0.2s ease-in-out;
+  white-space: nowrap;
+  background: transparent;
+}

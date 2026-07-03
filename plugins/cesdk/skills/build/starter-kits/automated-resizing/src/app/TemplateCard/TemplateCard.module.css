@@ -1,0 +1,47 @@
+.card {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: border-color 0.1s ease;
+  background: #ffffff;
+}
+
+.card:hover {
+  border-color: #471aff66;
+}
+
+.card.selected {
+  border-color: #471aff;
+}
+
+.card.selected:hover {
+  border-color: #471aff;
+}
+
+.preview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Edit overlay styling */
+.card > div {
+  background-color: rgba(236, 236, 238, 0.5);
+}
+
+.card.selected:hover > div,
+.card.selected:focus > div {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 140px;
+    height: 140px;
+  }
+}

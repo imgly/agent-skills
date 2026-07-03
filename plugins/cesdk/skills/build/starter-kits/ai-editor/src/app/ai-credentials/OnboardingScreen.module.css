@@ -1,0 +1,241 @@
+/**
+ * Onboarding screen shown when the AI gateway rejects credentials or
+ * when no credentials have been configured yet.
+ */
+
+.container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background: #f9fafb;
+  border-radius: 8px;
+  overflow-y: auto;
+  color: #161617;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+}
+
+.card {
+  max-width: 560px;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badgeInvalid {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  line-height: 32px;
+}
+
+.lead {
+  font-size: 15px;
+  color: #4b5563;
+  margin: 0;
+  line-height: 22px;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.stepNumber {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #111827;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stepText {
+  font-size: 14px;
+  color: #1f2937;
+  line-height: 20px;
+  margin: 0;
+}
+
+.stepText code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.stepText a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+}
+
+.stepText a:hover {
+  color: #1d4ed8;
+}
+
+.codeBlock {
+  background: #111827;
+  color: #f9fafb;
+  padding: 12px 14px;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  line-height: 18px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+  justify-content: center;
+}
+
+.primary,
+.secondary {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid transparent;
+}
+
+.primary {
+  background: #111827;
+  color: white;
+}
+
+.primary:hover {
+  background: #1f2937;
+}
+
+.secondary {
+  background: white;
+  color: #111827;
+  border-color: #d1d5db;
+}
+
+.secondary:hover {
+  background: #f9fafb;
+}
+
+.errorDetails {
+  font-size: 13px;
+  color: #7c2d12;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 6px;
+  padding: 10px 12px;
+  line-height: 18px;
+  margin: 0;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #111827;
+  line-height: 20px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.helperText {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 16px;
+}
+
+.helperText a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.primary:disabled,
+.secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,25 @@
+# Environment variables
+.env.local
+.env
+
+# Build output
+dist/
+node_modules/
+
+# Lock files (use npm ci in CI)
+yarn.lock
+tsconfig.tsbuildinfo
+
+# Auto-generated TypeScript config for local development
+tsconfig.local.json
+
+# Release build generated content (copied from src/ during build)
+release/src/imgly/
+release/src/app/
+release/public/
+release/index.html
+release/README.md
+release/.env.example
+release/.eslintrc.js
+release/LICENSE
+release/hero.webp
