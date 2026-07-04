@@ -18,7 +18,7 @@
  * Registers a single sparkle dock button ("AI Edit") that opens a panel
  * with the i2i provider's schema UI (prompt + optional style picker).
  *
- * @see https://img.ly/docs/cesdk/js/plugins/ai-generation/
+ * @see https://img.ly/docs/cesdk/js/user-interface/ai-integration/integrate-8e906c/
  */
 
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';

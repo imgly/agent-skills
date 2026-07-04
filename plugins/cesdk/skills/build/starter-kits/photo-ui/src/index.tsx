@@ -4,7 +4,7 @@
  * Demonstrates a custom photo editing UI built with CE.SDK.
  * Features crop, filters, adjustments, and a mobile-optimized interface.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import { createRoot } from 'react-dom/client';

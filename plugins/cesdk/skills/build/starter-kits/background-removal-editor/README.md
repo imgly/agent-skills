@@ -104,7 +104,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Background Removal Plugin Documentation](https://img.ly/docs/cesdk/js/plugins/background-removal/).
+For complete integration guides and API reference, visit the [Background Removal Plugin Documentation](https://img.ly/docs/cesdk/js/edit-image/remove-bg-9dfcf7/).
 
 ## License
 

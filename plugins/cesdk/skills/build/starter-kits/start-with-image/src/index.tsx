@@ -4,7 +4,7 @@
  * A design editor that starts with an image, perfect for photo editing
  * workflows, social media editors, or image-based design tools.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import { StrictMode } from 'react';

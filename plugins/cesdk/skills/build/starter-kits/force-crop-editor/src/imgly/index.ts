@@ -8,7 +8,7 @@
  * The force crop feature allows you to enforce specific aspect ratios on images,
  * such as Instagram Portrait (4:5), LinkedIn Profile (1:1), or Facebook Shared (1.91:1).
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  * @see https://img.ly/docs/cesdk/js/user-interface/customization/force-crop-c2854e/
  */
 

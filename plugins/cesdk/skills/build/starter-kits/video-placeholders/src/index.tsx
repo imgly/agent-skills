@@ -5,7 +5,7 @@
  * Placeholders allow template creators to define editable regions that
  * adopters can fill with their own content in a video editing context.
  *
- * @see https://img.ly/docs/cesdk/js/features/placeholders/
+ * @see https://img.ly/docs/cesdk/js/create-templates/add-dynamic-content/placeholders-d9ba8a/
  */
 
 import { StrictMode } from 'react';

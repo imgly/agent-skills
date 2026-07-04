@@ -6,7 +6,7 @@
  * - Placeholder regions can be defined for video clips, images, and other elements
  * - Adopters can fill placeholders with their own content
  *
- * @see https://img.ly/docs/cesdk/js/features/placeholders/
+ * @see https://img.ly/docs/cesdk/js/create-templates/add-dynamic-content/placeholders-d9ba8a/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

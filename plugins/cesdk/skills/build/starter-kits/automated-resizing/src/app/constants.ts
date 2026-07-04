@@ -3,7 +3,7 @@
  *
  * This module defines size presets and templates for the automated resizing demo.
  *
- * @see https://img.ly/docs/cesdk/js/block-layout/content-aware-resize-2eb7ee/
+ * @see https://img.ly/docs/cesdk/js/automation/auto-resize-4c2d58/
  */
 
 import type { SizePreset, Template } from '../imgly/types';

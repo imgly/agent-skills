@@ -5,8 +5,8 @@
  * Features a sidebar panel for selecting AI providers and a mode selector for switching
  * between Design and Video editing modes.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
- * @see https://img.ly/docs/cesdk/js/plugins/ai-generation/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
+ * @see https://img.ly/docs/cesdk/js/user-interface/ai-integration/integrate-8e906c/
  */
 
 import { createRoot } from 'react-dom/client';

@@ -4,7 +4,7 @@
  * A video editor focused on animations with custom scene templates,
  * audio assets, and auto-opening animation panel.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

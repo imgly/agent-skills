@@ -15,7 +15,7 @@
  * await cesdk.addPlugin(new Html5ExportPanelPlugin());
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/export/to-html5/
+ * @see https://img.ly/docs/cesdk/js/export-save-publish/export/to-html5-76d2ab/
  */
 
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';

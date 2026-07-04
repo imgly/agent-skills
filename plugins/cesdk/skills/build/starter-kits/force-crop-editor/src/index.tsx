@@ -5,7 +5,7 @@
  * on images. The force crop API ensures images meet required dimensions for
  * platforms like Instagram, LinkedIn, or Facebook.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  * @see https://img.ly/docs/cesdk/js/user-interface/customization/force-crop-c2854e/
  */
 

@@ -28,7 +28,7 @@
  * URL.revokeObjectURL(result.sceneArchiveUrl);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/features/import-pdf/
+ * @see https://img.ly/docs/cesdk/js/starterkits/pdf-template-import-pdf001/
  */
 
 import CreativeEngine from '@cesdk/engine';

@@ -6,7 +6,7 @@
  * to configure a CE.SDK instance with format selection, quality settings,
  * resolution control, and page range selection for exports.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

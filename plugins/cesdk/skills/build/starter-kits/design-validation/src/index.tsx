@@ -4,7 +4,7 @@
  * Demonstrates design validation checks using CE.SDK engine APIs.
  * Validates elements for issues like protruding from page, low resolution, etc.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import { StrictMode } from 'react';

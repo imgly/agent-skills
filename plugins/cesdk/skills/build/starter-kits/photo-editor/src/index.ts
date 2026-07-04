@@ -4,7 +4,7 @@
  * This file initializes the photo editor.
  * For customization options, see the `./imgly/` folder.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

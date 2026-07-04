@@ -4,7 +4,7 @@
  * This plugin provides a custom export panel for creating print-ready PDFs
  * with PDF/X-4 or PDF/X-3 compliance, CMYK color profiles, bleed margins, and page range selection.
  *
- * @see https://img.ly/docs/cesdk/js/export/
+ * @see https://img.ly/docs/cesdk/js/export-save-publish/export/overview-9ed3a8/
  */
 
 import { type CreativeEngine, EditorPlugin } from '@cesdk/cesdk-js';

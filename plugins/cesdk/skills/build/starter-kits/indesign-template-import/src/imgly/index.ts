@@ -5,7 +5,7 @@
  * import editor. Import and call `initInDesignTemplateImportEditor()` to configure
  * a CE.SDK instance for editing imported InDesign (IDML) templates.
  *
- * @see https://img.ly/docs/cesdk/js/features/
+ * @see https://img.ly/docs/cesdk/js/key-capabilities-dbb5b1/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

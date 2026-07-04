@@ -4,7 +4,7 @@
  * This module provides a video editor with custom export options panel
  * allowing users to select resolution and FPS for video export.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

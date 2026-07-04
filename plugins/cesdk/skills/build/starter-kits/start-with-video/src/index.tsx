@@ -4,7 +4,7 @@
  * Demonstrates creating a video editor scene from a selected video file.
  * Users select a video thumbnail, then the editor initializes with that video.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import { StrictMode } from 'react';

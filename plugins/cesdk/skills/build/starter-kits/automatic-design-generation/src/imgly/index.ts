@@ -4,7 +4,7 @@
  * This module provides the public API for the automatic design generation
  * functionality, including editor initialization and asset generation.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

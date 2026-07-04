@@ -32,7 +32,7 @@ type CreativeEditorSDK = InstanceType<typeof CreativeEditorSDK>;
  * await initAutomatedResizingAdvancedEditor(cesdk);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/block-layout/content-aware-resize-2eb7ee/
+ * @see https://img.ly/docs/cesdk/js/automation/auto-resize-4c2d58/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

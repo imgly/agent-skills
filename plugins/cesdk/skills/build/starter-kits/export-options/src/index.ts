@@ -5,7 +5,7 @@
  * (JPEG, PNG, PDF), quality settings, resolution control, and page range
  * selection for multi-page documents.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

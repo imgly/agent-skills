@@ -25,7 +25,7 @@
  * await cesdk.addPlugin(new AiAppsConfig(providers, 'Design'));
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/plugins/ai-generation/
+ * @see https://img.ly/docs/cesdk/js/user-interface/ai-integration/integrate-8e906c/
  */
 
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';

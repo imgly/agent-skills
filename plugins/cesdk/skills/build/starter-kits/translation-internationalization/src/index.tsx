@@ -4,7 +4,7 @@
  * Demonstrates dynamic locale switching in the design editor.
  * Switch between English and German to see the UI update in real-time.
  *
- * @see https://img.ly/docs/cesdk/web/ui-styling/localization/
+ * @see https://img.ly/docs/cesdk/js/user-interface/localization-508e20/
  */
 
 import { StrictMode } from 'react';

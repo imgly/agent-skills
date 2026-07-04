@@ -4,7 +4,7 @@
  * A design editor with image vectorization prominently featured.
  * Click on an image to see the "Vectorize" option in the canvas menu.
  *
- * @see https://img.ly/docs/cesdk/js/plugins/vectorizer/
+ * @see https://img.ly/docs/cesdk/js/edit-image/vectorize-2b4c7f/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

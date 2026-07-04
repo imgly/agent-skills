@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [Basics](./colors/basics.md)
+**Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [Color Basics](./colors/basics.md)
 
 ---
 

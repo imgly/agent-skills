@@ -4,7 +4,7 @@
  * This module provides functionality to export scenes using a CE.SDK Renderer API server.
  * The renderer performs server-side video encoding for faster exports.
  *
- * @see https://img.ly/docs/cesdk/renderer/overview/
+ * @see https://img.ly/docs/cesdk/js/starterkits/export-using-renderer-exprnd/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

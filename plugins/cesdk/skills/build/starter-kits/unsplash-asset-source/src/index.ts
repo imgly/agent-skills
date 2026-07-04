@@ -4,7 +4,7 @@
  * A design editor with Unsplash image integration for creating graphics,
  * templates, and multi-page documents with free high-quality images.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  * @see https://unsplash.com/documentation
  */
 

@@ -4,7 +4,7 @@
  * A fully customizable mobile-responsive UI for CE.SDK built with React.
  * Demonstrates how to build a complete custom editor interface from scratch.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import { createRoot } from 'react-dom/client';

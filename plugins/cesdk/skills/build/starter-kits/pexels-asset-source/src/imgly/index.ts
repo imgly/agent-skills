@@ -5,7 +5,7 @@
  * with Pexels stock photos integration. Import and call `initPexelsImageEditor()`
  * to configure a CE.SDK instance with Pexels as the primary image source.
  *
- * @see https://img.ly/docs/cesdk/js/custom-asset-sources/
+ * @see https://img.ly/docs/cesdk/js/import-media/asset-panel/customize-c9a4de/
  * @see https://www.pexels.com/api/documentation/
  */
 

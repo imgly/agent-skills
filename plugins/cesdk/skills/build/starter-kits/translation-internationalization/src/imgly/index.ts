@@ -5,7 +5,7 @@
  * Import and call `initTranslationInternationalizationEditor()` to configure a CE.SDK instance with
  * localization support.
  *
- * @see https://img.ly/docs/cesdk/web/ui-styling/localization/
+ * @see https://img.ly/docs/cesdk/js/user-interface/localization-508e20/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

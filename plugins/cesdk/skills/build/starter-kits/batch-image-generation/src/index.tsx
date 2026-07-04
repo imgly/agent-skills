@@ -5,7 +5,7 @@
  * Uses @cesdk/engine for headless batch rendering and @cesdk/cesdk-js
  * for modal-based template and instance editing.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type { Configuration } from '@cesdk/cesdk-js';

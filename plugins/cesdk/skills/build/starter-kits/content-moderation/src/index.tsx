@@ -4,7 +4,7 @@
  * Demonstrates content moderation by checking images for inappropriate content
  * using external moderation APIs.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type { Configuration } from '@cesdk/cesdk-js';

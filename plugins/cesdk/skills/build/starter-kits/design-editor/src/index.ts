@@ -3,7 +3,7 @@
  *
  * A complete design editor for creating graphics, templates, and multi-page documents.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

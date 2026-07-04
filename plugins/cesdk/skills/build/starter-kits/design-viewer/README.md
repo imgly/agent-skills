@@ -62,7 +62,7 @@ await cesdk.actions.run('zoom.toPage', {
 });
 ```
 
-See [Open the Editor](https://img.ly/docs/cesdk/web/guides/open-editor/) for all loading methods.
+See [Open the Editor](https://img.ly/docs/cesdk/js/open-the-editor/load-scene-478833/) for all loading methods.
 
 ### Theming
 
@@ -70,7 +70,7 @@ See [Open the Editor](https://img.ly/docs/cesdk/web/guides/open-editor/) for all
 cesdk.ui.setTheme('dark'); // 'light' | 'dark' | 'system'
 ```
 
-See [Theming](https://img.ly/docs/cesdk/web/ui-styling/theming/) for custom color schemes and styling.
+See [Theming](https://img.ly/docs/cesdk/js/user-interface/appearance/theming-4b0938/) for custom color schemes and styling.
 
 ### Localization
 
@@ -81,7 +81,7 @@ cesdk.i18n.setTranslations({
 cesdk.i18n.setLocale('de');
 ```
 
-See [Localization](https://img.ly/docs/cesdk/web/ui-styling/localization/) for supported languages and translation keys.
+See [Localization](https://img.ly/docs/cesdk/js/user-interface/localization-508e20/) for supported languages and translation keys.
 
 ## Architecture
 
@@ -127,7 +127,7 @@ starterkit-design-viewer-ts-web/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Design Viewer Documentation](https://img.ly/docs/cesdk/starterkits/viewer/).
+For complete integration guides and API reference, visit the [Design Viewer Documentation](https://img.ly/docs/cesdk/js/starterkits/viewer-zgs556/).
 
 ## License
 

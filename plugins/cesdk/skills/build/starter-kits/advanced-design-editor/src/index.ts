@@ -3,7 +3,7 @@
  *
  * A full-featured design editor with advanced tools and comprehensive asset libraries.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

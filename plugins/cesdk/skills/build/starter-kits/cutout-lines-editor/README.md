@@ -104,7 +104,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Cutout Library Plugin Documentation](https://img.ly/docs/cesdk/js/plugins/cutout-library/).
+For complete integration guides and API reference, visit the [Cutout Library Plugin Documentation](https://img.ly/docs/cesdk/js/stickers-and-shapes/create-cutout-384be3/).
 
 ## License
 

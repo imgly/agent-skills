@@ -5,7 +5,7 @@
  * A headless engine handles batch rendering while the editor provides
  * interactive template editing.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type { Configuration } from '@cesdk/cesdk-js';

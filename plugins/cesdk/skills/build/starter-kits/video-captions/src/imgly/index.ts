@@ -7,7 +7,7 @@
  * - import: SRT file import
  * - pre-captioned: Edit existing captions
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

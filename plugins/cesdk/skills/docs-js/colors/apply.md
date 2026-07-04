@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [Apply Color](./colors/apply.md)
+**Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [Apply Colors](./colors/apply.md)
 
 ---
 

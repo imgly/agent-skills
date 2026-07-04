@@ -5,7 +5,7 @@
  * Import and call `initSinglePageEditor()` to configure a CE.SDK instance for
  * single-page design editing (social media posts, business cards, etc.).
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
