@@ -1,0 +1,35 @@
+> This is one page of the CE.SDK Electron `@cesdk/cesdk-js` API reference. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md) or the [cesdk-js API Index](./api/cesdk-js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+
+---
+
+```ts
+type OrderComponentMatcher<C> = 
+  | "first"
+  | "last"
+  | number
+  | C["id"]
+  | Partial<C>
+  | ((component, index) => boolean);
+```
+
+Represents a matcher for order components.
+
+The OrderComponentMatcher type defines the possible matchers for order components.
+It includes predefined matchers for component IDs, partial components, and custom matchers.
+
+## Type Parameters
+
+| Type Parameter |
+| ------ |
+| `C` *extends* [`OrderComponent`](./api/cesdk-js/interfaces/ordercomponent.md) |
+
+
+---
+
+## More Resources
+
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
+- **[cesdk-js API Reference](./api/cesdk-js.md)** - Full cesdk-js API reference
+- **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
+- **[Web Documentation](./electron.md)** - Interactive documentation with examples
+- **[Support](mailto:support@img.ly)** - Contact IMG.LY support

@@ -1,0 +1,20 @@
+# Environment variables
+.env.local
+.env
+
+# Build output
+dist/
+node_modules/
+
+# Lock files (use npm ci in CI)
+yarn.lock
+tsconfig.tsbuildinfo
+
+# Auto-generated TypeScript config for local development
+tsconfig.local.json
+
+# CI-generated release directory contents
+# The imgly folder is copied from src/imgly during CI release build
+release/src/imgly/
+release/node_modules/
+release/dist/

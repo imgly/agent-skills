@@ -1,0 +1,209 @@
+/**
+ * CE.SDK Mockup Editor - App Layout Styles
+ */
+
+:global(html) {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.45;
+}
+
+:global(*),
+:global(*::before),
+:global(*::after) {
+  border-style: solid;
+  border-width: 0;
+  box-sizing: border-box;
+}
+
+:global(body),
+:global(blockquote),
+:global(dl),
+:global(dd),
+:global(h1),
+:global(h2),
+:global(h3),
+:global(h4),
+:global(h5),
+:global(h6),
+:global(hr),
+:global(figure),
+:global(p),
+:global(pre) {
+  margin: 0;
+}
+
+:global(button) {
+  background-color: transparent;
+  padding: 0;
+}
+
+:global(button),
+:global([role='button']) {
+  cursor: pointer;
+}
+
+:global(button::-moz-focus-inner) {
+  border: 0 !important;
+}
+
+:global(h1),
+:global(h2),
+:global(h3),
+:global(h4),
+:global(h5),
+:global(h6) {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+:global(button),
+:global(input),
+:global(optgroup),
+:global(select),
+:global(textarea) {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:global(img),
+:global(svg),
+:global(video),
+:global(canvas),
+:global(audio),
+:global(iframe),
+:global(embed),
+:global(object) {
+  display: block;
+}
+
+:global(img),
+:global(video) {
+  height: auto;
+  max-width: 100%;
+}
+
+:global(a) {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+:global(*:focus) {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* ============================================================================
+ * Global Layout
+ * ============================================================================ */
+
+:global(html),
+:global(body) {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+:global(#root) {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================================================
+   CSS Variables
+   ============================================================================ */
+
+:global(:root) {
+  --primary-color: #3d5cf5;
+  --primary-hover: #6a82ff;
+  --bg-color: #f5f5f5;
+  --border-color: #e2e8f0;
+  --text-color: #121a21;
+  --surface-color: #ffffff;
+  --mockup-bg: #d6dbe1;
+}
+
+/* ============================================================================
+   App Container
+   ============================================================================ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+  padding: 1rem;
+  overflow: hidden;
+  overscroll-behavior: auto;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* START_HIDDEN_BLOCK */
+
+:global(html.demo-preview) .app {
+  background-color: transparent;
+}
+
+/* END_HIDDEN_BLOCK */
+
+/* ============================================================================
+   Main Layout - Editor LEFT, Mockup RIGHT
+   ============================================================================ */
+
+.mainLayout {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-grow: 1;
+  min-height: 0;
+  gap: 1rem;
+}
+
+/* ============================================================================
+   Fullscreen Layout - Mockup expands inline
+   ============================================================================ */
+
+.fullscreenLayout {
+  flex-direction: column;
+}
+
+/* ============================================================================
+   CE.SDK Editor Wrapper
+   ============================================================================ */
+
+.editorWrapper {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  flex: 1;
+  width: calc(100% - 24px);
+  margin: 0 12px 12px;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0px 0px 2px rgba(22, 22, 23, 0.25),
+    0px 4px 6px -2px rgba(22, 22, 23, 0.12),
+    0px 2px 2.5px -2px rgba(22, 22, 23, 0.12),
+    0px 1px 1.75px -2px rgba(22, 22, 23, 0.12);
+}
+
+.editor {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,31 @@
+/**
+ * PDF Template Import Starterkit - Entry Point
+ *
+ * This is the main entry point for the application.
+ * It configures the CE.SDK editor and renders the App component.
+ */
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import type { Configuration } from '@cesdk/cesdk-js';
+import { App } from './app/App';
+
+/**
+ * CE.SDK Editor Configuration
+ *
+ * This configuration is passed to the CreativeEditor component
+ * when opening the editor to edit imported PDF files.
+ *
+ * Note: Role, theme, and typeface libraries are configured via
+ * runtime APIs in the AdvancedEditorConfig plugin.
+ */
+export const editorConfig: Configuration = {
+  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
+  userId: 'starterkit-pdf-template-import-user',
+  license: import.meta.env.VITE_CESDK_LICENSE
+};
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App editorConfig={editorConfig} />
+  </StrictMode>
+);
