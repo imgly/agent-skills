@@ -688,6 +688,8 @@ Complete translation type that includes both built-in and custom translations.
 |  `input.styles.text.label` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`input.styles.text.label`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `input.text.advanced` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`input.text.advanced`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `input.text.advanced.description` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`input.text.advanced.description`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `input.text.path` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`input.text.path`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `input.text.path.tooltip` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`input.text.path.tooltip`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `input.text.placeholder` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`input.text.placeholder`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `input.time.end` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`input.time.end`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `input.time.start` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`input.time.start`](./api/cesdk-js/interfaces/builtintranslations.md) |
@@ -1298,6 +1300,15 @@ Complete translation type that includes both built-in and custom translations.
 |  `property.textCase.normal` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textCase.normal`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `property.textCase.titlecase` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textCase.titlecase`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `property.textCase.uppercase` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textCase.uppercase`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `property.textOnPath.curve.arch` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textOnPath.curve.arch`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `property.textOnPath.curve.circle` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textOnPath.curve.circle`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `property.textOnPath.curve.wave` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textOnPath.curve.wave`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `property.textOnPath.direction` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textOnPath.direction`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `property.textOnPath.direction.forward` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textOnPath.direction.forward`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `property.textOnPath.direction.reversed` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textOnPath.direction.reversed`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `property.textOnPath.none` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textOnPath.none`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `property.textOnPath.offset` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textOnPath.offset`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `property.textOnPath.position` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textOnPath.position`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `property.textWritingStyle` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textWritingStyle`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `property.textWritingStyle.Block` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textWritingStyle.Block`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `property.textWritingStyle.Character` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`property.textWritingStyle.Character`](./api/cesdk-js/interfaces/builtintranslations.md) |
@@ -1518,6 +1529,7 @@ Complete translation type that includes both built-in and custom translations.
 |  `settings.feature.text.list` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.text.list`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `settings.feature.text.list.ordered` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.text.list.ordered`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `settings.feature.text.list.unordered` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.text.list.unordered`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `settings.feature.text.path` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.text.path`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `settings.feature.text.typeface` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.text.typeface`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `settings.feature.transform` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.transform`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `settings.feature.transform.flip` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.transform.flip`](./api/cesdk-js/interfaces/builtintranslations.md) |

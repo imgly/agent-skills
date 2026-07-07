@@ -4,9 +4,9 @@
 
 ---
 
-Register, remove, and gate keyboard shortcuts in CE.SDK. Override the
-built-in catalog or add your own bindings — chords, single keys, and
-sequences are all supported.
+Register, remove, and gate keyboard shortcuts in CE.SDK. Override the built-in
+catalog or add your own bindings — chords, single keys, and sequences are all
+supported.
 
 ![Keyboard shortcuts in CE.SDK — the design editor with the default catalog loaded](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -293,11 +293,11 @@ These are the shortcuts the core configs register out of the box. `Mod` resolves
 
 ### Selection
 
-| Action                            | Shortcut                  |
-| --------------------------------- | ------------------------- |
-| Select all elements on the page   | `Mod+A`                   |
-| Enter or exit the selected group  | `Enter`                   |
-| Select parent group or deselect   | `Escape`                  |
+| Action                           | Shortcut |
+| -------------------------------- | -------- |
+| Select all elements on the page  | `Mod+A`  |
+| Enter or exit the selected group | `Enter`  |
+| Select parent group or deselect  | `Escape` |
 
 ### Editing
 
@@ -315,19 +315,19 @@ These are the shortcuts the core configs register out of the box. `Mod` resolves
 
 ### Text Formatting
 
-| Action                                  | Shortcut                  |
-| --------------------------------------- | ------------------------- |
-| Toggle bold on selected text            | `Mod+B`                   |
-| Toggle italic on selected text          | `Mod+I`                   |
-| Toggle underline on selected text       | `Mod+U`                   |
-| Toggle strikethrough on selected text   | `Mod+Shift+X` / `Alt+Shift+5` |
+| Action                                | Shortcut                      |
+| ------------------------------------- | ----------------------------- |
+| Toggle bold on selected text          | `Mod+B`                       |
+| Toggle italic on selected text        | `Mod+I`                       |
+| Toggle underline on selected text     | `Mod+U`                       |
+| Toggle strikethrough on selected text | `Mod+Shift+X` / `Alt+Shift+5` |
 
 ### Movement
 
-| Action                                | Shortcut                  |
-| ------------------------------------- | ------------------------- |
-| Nudge selection                       | `ArrowUp` / `ArrowDown` / `ArrowLeft` / `ArrowRight` |
-| Nudge selection (extended step)       | `Shift+ArrowUp` / `Shift+ArrowDown` / `Shift+ArrowLeft` / `Shift+ArrowRight` |
+| Action                          | Shortcut                                                                     |
+| ------------------------------- | ---------------------------------------------------------------------------- |
+| Nudge selection                 | `ArrowUp` / `ArrowDown` / `ArrowLeft` / `ArrowRight`                         |
+| Nudge selection (extended step) | `Shift+ArrowUp` / `Shift+ArrowDown` / `Shift+ArrowLeft` / `Shift+ArrowRight` |
 
 ### Page Navigation
 
@@ -338,26 +338,26 @@ These are the shortcuts the core configs register out of the box. `Mod` resolves
 
 ### Playback
 
-| Action                       | Shortcut | Notes                                |
-| ---------------------------- | -------- | ------------------------------------ |
-| Play / pause the current page | `Space` | Only when focus is in the video timeline |
+| Action                        | Shortcut | Notes                                    |
+| ----------------------------- | -------- | ---------------------------------------- |
+| Play / pause the current page | `Space`  | Only when focus is in the video timeline |
 
 ### View
 
-| Action                          | Shortcut                  |
-| ------------------------------- | ------------------------- |
-| Zoom to fit                     | `Shift+1`                 |
-| Zoom to 100%                    | `Shift+2`                 |
-| Zoom in                         | `+` / `Shift++`           |
-| Zoom out                        | `-`                       |
-| Show or hide the user interface | `Mod+.`                   |
+| Action                          | Shortcut        |
+| ------------------------------- | --------------- |
+| Zoom to fit                     | `Shift+1`       |
+| Zoom to 100%                    | `Shift+2`       |
+| Zoom in                         | `+` / `Shift++` |
+| Zoom out                        | `-`             |
+| Show or hide the user interface | `Mod+.`         |
 
 ### History
 
-| Action                  | Shortcut                              |
-| ----------------------- | ------------------------------------- |
-| Undo last action        | `Mod+Z`                               |
-| Redo last undone action | `Mod+Shift+Z`                         |
+| Action                  | Shortcut      |
+| ----------------------- | ------------- |
+| Undo last action        | `Mod+Z`       |
+| Redo last undone action | `Mod+Shift+Z` |
 
 ### File
 
@@ -621,10 +621,20 @@ Each config's `setupKeyboardShortcuts(cesdk)` calls `cesdk.shortcuts.set` for ea
 - Confirm the active scope matches the shortcut's `scope` — if focus has moved off the intended surface, a scoped shortcut won't be a candidate.
 - Confirm the `when:` predicate is returning `true` for the current state.
 - If focus is in an `<input>`, `<textarea>`, `contenteditable`, or `role="textbox"` element, all shortcuts are suppressed by design. Shortcuts that must fire inside text inputs are a planned runtime feature; until then they live on the legacy widget hook.
+- Confirm the chord is not a [reserved keyword](#reserved-keywords) (`F6`, `Shift+F6`, `Alt+1`, `Alt+2`, `Alt+3`). The reserved accessibility layer handles these first, so a catalog binding on the same chord never runs.
 
 ### Browser or OS Conflicts
 
 Some combinations cannot be reliably preempted. `Cmd+W`, `Cmd+T`, `Cmd+Q` are reserved by the browser or OS. Pick a different binding.
+
+## Reserved Keywords
+
+A small set of chords is **reserved** by the editor for accessibility — `F6`, `Shift+F6`, `Alt+1`, `Alt+2`, and `Alt+3` (focus navigation between the canvas, inspector bar, and canvas menu).
+
+- Are always active and are not affected by the `ly.img.keyboard.shortcuts` feature flag.
+- Fire even while focus is in a text input, so keyboard users can always move focus back out to the canvas.
+- Cannot be listed, removed, or rebound through `cesdk.shortcuts`.
+- **Take precedence over application-level shortcuts**: if you register one of these chords with `cesdk.shortcuts.set`, the reserved binding runs and your binding never fires.
 
 
 
