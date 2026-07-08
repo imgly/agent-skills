@@ -1,10 +1,14 @@
 > This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Plugins](./plugins.md) > [AI: Integration](./user-interface/ai-integration.md)
+**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md)
 
 ---
 
-Learn how CE.SDK’s new AI intgrations bring intelligent content generation and enhancement directly into your creative workflow - no tool-switching, no additional complexity.
+Add AI generation features — image, video, audio, and text — directly into the CE.SDK editor, so your users can create and enhance content without switching tools.
+
+Start with [Integrate AI Into CE.SDK](./user-interface/ai-integration/integrate.md) for the full walkthrough, then choose how to connect AI (the [Managed Gateway](./user-interface/ai-integration/gateway-provider.md) is the fastest path) and configure each generation capability.
+
+> **Note:** Looking instead to use AI coding assistants to **build** your CE.SDK integration? See [Build with AI](./get-started/build-with-ai.md).
 
 
 
@@ -13,14 +17,13 @@ Learn how CE.SDK’s new AI intgrations bring intelligent content generation and
 ## Related Pages
 
 - [Integrate AI Into CE.SDK](./user-interface/ai-integration/integrate.md) - Add AI features like image generation or content suggestions directly into the editor.
-- [IMG.LY AI Gateway](./user-interface/ai-integration/gateway-provider.md) - Connect CE.SDK to AI models for image, video, text, and audio generation through the IMG.LY AI Gateway, a managed service that handles authentication, model routing, and billing.
-- [Custom AI Provider](./user-interface/ai-integration/custom-provider.md) - Connect your own AI service for design automation, asset generation, or enhancements.
-- [AI Text Generation](./user-interface/ai-integration/text-generation.md) - Generate creative content for headlines, descriptions, captions, and marketing copy using Claude or GPT with both a built-in UI and programmatic control.
+- [Managed Model Gateway](./user-interface/ai-integration/gateway-provider.md) - Connect CE.SDK to AI models for image, video, text, and audio generation through the IMG.LY AI Gateway, a managed service that handles authentication, model routing, and billing.
 - [AI Image Generation](./user-interface/ai-integration/image-generation.md) - Create visuals from text prompts or transform existing images using leading AI providers like fal.ai (RecraftV3, Recraft20b, IdeogramV3, GeminiFlash) and OpenAI (GPT Image) with support for both raster and vector outputs.
-- [Audio Generation](./user-interface/ai-integration/audio-generation.md) - Integrate AI-powered audio generation into CE.SDK with text-to-speech and sound effects using the Audio Generation plugin.
 - [AI Video Generation](./user-interface/ai-integration/video-generation.md) - Create dynamic videos from text descriptions or animate static images using leading AI providers like fal.ai with Minimax Video, Pixverse, Kling Video, and ByteDance Seedance models.
+- [Audio Generation](./user-interface/ai-integration/audio-generation.md) - Integrate AI-powered audio generation into CE.SDK with text-to-speech and sound effects using the Audio Generation plugin.
+- [AI Text Generation](./user-interface/ai-integration/text-generation.md) - Generate creative content for headlines, descriptions, captions, and marketing copy using Claude or GPT with both a built-in UI and programmatic control.
 - [Auto Captions](./user-interface/ai-integration/auto-captions.md) - Integrate automatic caption generation into your CE.SDK application using the Auto Caption plugin with pluggable speech-to-text providers.
-- [Proxy Server](./user-interface/ai-integration/proxy-server.md) - Route AI requests through a secure proxy server to meet privacy or infrastructure needs.
+- [Customize Connection](./user-interface/ai-integration/customize-connection.md) - Customize how CE.SDK connects to AI — bring your own model provider or route requests through your own proxy.
 
 
 ---

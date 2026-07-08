@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Video Generation](./user-interface/ai-integration/video-generation.md) > [Plugins](./plugins.md) > [AI: Video Generation](./user-interface/ai-integration/video-generation.md)
+**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Video Generation](./user-interface/ai-integration/video-generation.md)
 
 ---
 
@@ -255,7 +255,7 @@ We configure MinimaxVideo01Live for text-to-video and MinimaxVideo01LiveImageToV
 
 ## Proxy Server
 
-A proxy server protects your API keys by forwarding requests server-side. See the [Proxy Server](./user-interface/ai-integration/proxy-server.md) guide for implementation details and examples.
+A proxy server protects your API keys by forwarding requests server-side. See the [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) guide for implementation details and examples.
 
 ## Text-to-Video Generation
 
@@ -479,8 +479,8 @@ Common issues when configuring the plugin:
 
 ## Next Steps
 
-- [Proxy Server](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
-- [Custom Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
+- [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
+- [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
 - [Integrate AI Features](./user-interface/ai-integration/integrate.md) — Overview of AI integration
 - [Asset Library Basics](./import-media/asset-panel/basics.md) — Work with generated assets
 - [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset sources

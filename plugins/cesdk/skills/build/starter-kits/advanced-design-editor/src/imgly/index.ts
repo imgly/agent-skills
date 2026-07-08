@@ -27,13 +27,13 @@ import {
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 
+import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
+
 // Configuration and plugins
 import { AdvancedEditorConfig } from '@cesdk/core-configs-web/advanced-editor';
-import { setupBackgroundRemovalPlugin } from './plugins/background-removal';
 
 // Re-export for external use
 export { AdvancedEditorConfig } from '@cesdk/core-configs-web/advanced-editor';
-export { setupBackgroundRemovalPlugin } from './plugins/background-removal';
 
 /**
  * Initialize the CE.SDK Advanced Editor with a complete configuration.
@@ -61,12 +61,6 @@ export async function initAdvancedEditor(cesdk: CreativeEditorSDK) {
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
   // highlight-theme
-
-  // ============================================================================
-  // Background Removal Plugin
-  // ============================================================================
-
-  setupBackgroundRemovalPlugin(cesdk);
 
   // ============================================================================
   // Asset Source Plugins
@@ -131,5 +125,18 @@ export async function initAdvancedEditor(cesdk: CreativeEditorSDK) {
         'ly.img.importArchive.navigationBar'
       ]
     }
+  );
+
+  // ============================================================================
+  // Background Removal Plugin
+  // ============================================================================
+
+  await cesdk.addPlugin(
+    BackgroundRemovalPlugin({
+      ui: { locations: ['canvasMenu'] },
+      provider: {
+        type: '@imgly/background-removal'
+      }
+    })
   );
 }

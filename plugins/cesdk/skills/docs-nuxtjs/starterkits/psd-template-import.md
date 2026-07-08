@@ -308,6 +308,10 @@ The PSD importer parses Adobe Photoshop files and converts them to editable CE.S
 - **Smart Objects**: Handles embedded smart objects as image blocks
 - **Blend Modes**: Preserves common blend modes and opacity settings
 
+### Limitations
+
+The PSD importer doesn't yet support every Photoshop feature, which can cause rendering differences between the original PSD and the imported scene. For the current list of limitations, see the [`@imgly/psd-importer` package documentation](https://www.npmjs.com/package/@imgly/psd-importer).
+
 ### Import Result Structure
 
 ```typescript

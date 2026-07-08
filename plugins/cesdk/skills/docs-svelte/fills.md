@@ -13,7 +13,7 @@
 
 - [Fills](./fills/overview.md) - Apply solid colors, gradients, images, or videos as fills to shapes, text, and other design elements.
 - [Color Fills](./fills/color.md) - Learn how to apply solid color fills to design elements using RGB, CMYK, and Spot Colors in CE.SDK
-- [Gradient Fills](./filters-and-effects/gradients.md) - Learn how to create and apply linear, radial, and conical gradient fills to design elements in CE.SDK
+- [Gradient Fills](./fills/gradient.md) - Learn how to create and apply linear, radial, and conical gradient fills to design elements in CE.SDK
 - [Image Fills](./fills/image.md) - Apply photos, textures, and patterns to design elements using image fills in CE.SDK for web browsers.
 - [Video Fills](./fills/video.md) - Learn how to apply video content as fills to design elements in CE.SDK.
 

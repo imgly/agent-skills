@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Custom AI Provider](./user-interface/ai-integration/custom-provider.md)
+**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Customize Connection](./user-interface/ai-integration/customize-connection.md) > [Custom Model Provider](./user-interface/ai-integration/custom-provider.md)
 
 ---
 

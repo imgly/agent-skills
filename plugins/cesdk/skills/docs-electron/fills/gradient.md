@@ -1,6 +1,6 @@
-> This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Fills](./fills.md) > [Gradient](./filters-and-effects/gradients.md)
+**Navigation:** [Guides](./guides.md) > [Fills](./fills.md) > [Gradient](./fills/gradient.md)
 
 ---
 
@@ -1412,7 +1412,7 @@ Now that you understand gradient fills, explore other fill types and color manag
 
 ## More Resources
 
-- **[Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md)** - Browse all Svelte documentation
+- **[Electron Documentation Index](https://img.ly/docs/cesdk/electron.md)** - Browse all Electron documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
-- **[Web Documentation](./svelte.md)** - Interactive documentation with examples
+- **[Web Documentation](./electron.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support
