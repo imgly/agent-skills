@@ -128,6 +128,7 @@ Components available in `'ly.img.inspector.bar'`. The inspector bar supports edi
 | `ly.img.text.alignHorizontal.inspectorBar` | Text alignment (left, center, right, justify) |
 | `ly.img.text.style.inspectorBar` | Text style presets |
 | `ly.img.text.advanced.inspectorBar` | Advanced text options (line height, letter spacing, etc.) |
+| `ly.img.text.path.inspectorBar` | Text on a path or circle |
 | `ly.img.text.background.inspectorBar` | Text background highlight |
 
 ### Media Controls

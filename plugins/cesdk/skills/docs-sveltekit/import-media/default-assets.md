@@ -31,8 +31,8 @@ class Example implements EditorPlugin {
     // Versioned CDN URLs using the SDK package (recommended)
     // For production, self-host these assets - see the Serve Assets guide
     const PACKAGE_BASE = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets`;
-    const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/v4/`;
-    const DEMO_ASSETS_URL = `${PACKAGE_BASE}/demo/v3/`;
+    const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/`;
+    const DEMO_ASSETS_URL = `${PACKAGE_BASE}/`;
 
     // Load default asset sources (core editor components)
     await engine.asset.addLocalAssetSourceFromJSONURI(
@@ -279,7 +279,7 @@ IMG.LY provides two categories of asset sources hosted on the IMG.LY CDN for dev
 Use `addLocalAssetSourceFromJSONURI()` to load an asset source directly from a JSON URL:
 
 ```typescript
-const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets/v4/`;
+const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets/`;
 await engine.asset.addLocalAssetSourceFromJSONURI(
   `${baseURL}ly.img.vector.shape/content.json`
 );
@@ -293,8 +293,8 @@ Use the SDK version to construct versioned CDN URLs. This ensures assets are com
 // Versioned CDN URLs using the SDK package (recommended)
 // For production, self-host these assets - see the Serve Assets guide
 const PACKAGE_BASE = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets`;
-const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/v4/`;
-const DEMO_ASSETS_URL = `${PACKAGE_BASE}/demo/v3/`;
+const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/`;
+const DEMO_ASSETS_URL = `${PACKAGE_BASE}/`;
 ```
 
 ## Loading Default Asset Sources
@@ -337,7 +337,7 @@ cesdk.ui.updateAssetLibraryEntry('ly.img.sticker', {
 Use the `matcher` option to load only specific assets from a source:
 
 ```typescript
-const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets/v4/`;
+const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets/`;
 
 // Load only star and arrow shapes
 await engine.asset.addLocalAssetSourceFromJSONURI(

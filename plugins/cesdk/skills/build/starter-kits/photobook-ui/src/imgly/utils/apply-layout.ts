@@ -1,6 +1,6 @@
 /**
  * Creates a function that can be used to apply a layout asset to the current page
- * @param {import('@cesdk/cesdk-js').CreativeEngine} engine
+ * @param {import('@cesdk/engine').default} engine
  * @param {Object} config
  * @returns a function that can be used to apply a layout asset to the current page
  */
@@ -50,7 +50,7 @@ export const createApplyLayoutAsset = (
 
 /**
  * Copies image files and text block contents from one page to another, while retaining the layout.
- * @param {import('@cesdk/cesdk-js').CreativeEngine} engine
+ * @param {import('@cesdk/engine').default} engine
  * @param {Number} fromPageId
  * @param {Number} toPageId
  */

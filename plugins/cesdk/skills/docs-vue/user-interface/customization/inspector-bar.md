@@ -345,6 +345,8 @@ console.log('Current inspector bar order:', currentOrder);
 | `ly.img.text.bold.inspectorBar` | Bold toggle |
 | `ly.img.text.italic.inspectorBar` | Italic toggle |
 | `ly.img.text.alignHorizontal.inspectorBar` | Horizontal alignment |
+| `ly.img.text.advanced.inspectorBar` | Advanced text options |
+| `ly.img.text.path.inspectorBar` | Text on a path or circle |
 
 ### Layout
 

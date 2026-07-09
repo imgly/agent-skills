@@ -17,6 +17,7 @@
 - [Edit Text](./text/edit.md) - Edit text content directly on the canvas or through the properties panel.
 - [Text Styling](./text/styling.md) - Apply fonts, colors, alignment, and other styling options to customize text appearance.
 - [Text Decorations](./text/decorations.md) - Add underline, strikethrough, and overline decorations to text with customizable styles, colors, and thickness.
+- [Text on a Path](./text/text-on-path.md) - Place text along an SVG path — a circle, arch, wave, or any curve — using the built-in Path inspector or the setTextOnPath engine API.
 - [Text Designs](./text/text-designs.md) - Create and customize text component libraries using predefined text designs that appear in your asset library.
 - [Text Enumerations](./text/enumerations.md) - Add bullet lists and numbered lists to text blocks in CE.SDK using per-paragraph list styles and nesting levels.
 - [Auto-Size](./text/auto-size.md) - Configure text blocks to automatically adapt their dimensions or font size for dynamic content.

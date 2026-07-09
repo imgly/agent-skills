@@ -301,17 +301,17 @@ These are the shortcuts the core configs register out of the box. `Mod` resolves
 
 ### Editing
 
-| Action                                                | Shortcut                  |
-| ----------------------------------------------------- | ------------------------- |
-| Delete selected elements                              | `Delete` / `Backspace`    |
-| Delete selected vector node or control point          | `Delete` / `Backspace`    |
-| Duplicate selected elements                           | `Mod+D`                   |
-| Group selected elements                               | `Mod+G`                   |
-| Ungroup the selected group                            | `Mod+Shift+G`             |
-| Copy                                                  | `Mod+C`                   |
-| Cut                                                   | `Mod+X`                   |
-| Paste                                                 | `Mod+V`                   |
-| Split the selected clip at the playhead               | `S`                       |
+| Action                                       | Shortcut               |
+| -------------------------------------------- | ---------------------- |
+| Delete selected elements                     | `Delete` / `Backspace` |
+| Delete selected vector node or control point | `Delete` / `Backspace` |
+| Duplicate selected elements                  | `Mod+D`                |
+| Group selected elements                      | `Mod+G`                |
+| Ungroup the selected group                   | `Mod+Shift+G`          |
+| Copy                                         | `Mod+C`                |
+| Cut                                          | `Mod+X`                |
+| Paste                                        | `Mod+V`                |
+| Split the selected clip at the playhead      | `S`                    |
 
 ### Text Formatting
 
@@ -324,23 +324,46 @@ These are the shortcuts the core configs register out of the box. `Mod` resolves
 
 ### Movement
 
-| Action                          | Shortcut                                                                     |
-| ------------------------------- | ---------------------------------------------------------------------------- |
-| Nudge selection                 | `ArrowUp` / `ArrowDown` / `ArrowLeft` / `ArrowRight`                         |
-| Nudge selection (extended step) | `Shift+ArrowUp` / `Shift+ArrowDown` / `Shift+ArrowLeft` / `Shift+ArrowRight` |
+| Action                                                  | Shortcut                                                                                                                     |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Nudge selection                                         | `ArrowUp` / `ArrowDown` / `ArrowLeft` / `ArrowRight`                                                                         |
+| Nudge selection (extended step)                         | `Shift+ArrowUp` / `Shift+ArrowDown` / `Shift+ArrowLeft` / `Shift+ArrowRight`                                                 |
+| Rotate selection                                        | `Alt+ArrowLeft` / `Alt+ArrowRight`                                                                                           |
+| Rotate selection (extended step)                        | `Alt+Shift+ArrowLeft` / `Alt+Shift+ArrowRight`                                                                               |
+| Resize selection                                        | `Mod+ArrowRight` / `Mod+ArrowLeft` / `Mod+ArrowDown` / `Mod+ArrowUp`                                                         |
+| Resize selection (extended step)                        | `Mod+Shift+ArrowRight` / `Mod+Shift+ArrowLeft` / `Mod+Shift+ArrowDown` / `Mod+Shift+ArrowUp`                                 |
+| Resize selection from the opposite edge                 | `Mod+Control+ArrowLeft` / `Mod+Control+ArrowRight` / `Mod+Control+ArrowUp` / `Mod+Control+ArrowDown`                         |
+| Resize selection from the opposite edge (extended step) | `Mod+Control+Shift+ArrowLeft` / `Mod+Control+Shift+ArrowRight` / `Mod+Control+Shift+ArrowUp` / `Mod+Control+Shift+ArrowDown` |
+| Move the image inside its crop frame                    | `ArrowUp` / `ArrowDown` / `ArrowLeft` / `ArrowRight` — while cropping                                                        |
+| Move the image inside its crop frame (extended step)    | `Shift+ArrowUp` / `Shift+ArrowDown` / `Shift+ArrowLeft` / `Shift+ArrowRight` — while cropping                                |
 
 ### Page Navigation
 
-| Action                  | Shortcut                  | Notes                                  |
-| ----------------------- | ------------------------- | -------------------------------------- |
-| Scroll to next page     | `ArrowDown` / `ArrowRight` | Only when editor role is `Presenter`  |
-| Scroll to previous page | `ArrowUp` / `ArrowLeft`   | Only when editor role is `Presenter`   |
+| Action                  | Shortcut                   | Notes                                |
+| ----------------------- | -------------------------- | ------------------------------------ |
+| Scroll to next page     | `ArrowDown` / `ArrowRight` | Only when editor role is `Presenter` |
+| Scroll to previous page | `ArrowUp` / `ArrowLeft`    | Only when editor role is `Presenter` |
 
 ### Playback
 
 | Action                        | Shortcut | Notes                                    |
 | ----------------------------- | -------- | ---------------------------------------- |
 | Play / pause the current page | `Space`  | Only when focus is in the video timeline |
+
+### Timeline
+
+All timeline shortcuts fire only when focus is in the video timeline and act on every selected clip. Trim adjusts the selected clip directly — no separate trim mode required.
+
+| Action                                               | Shortcut                                       |
+| ---------------------------------------------------- | ---------------------------------------------- |
+| Move the selected clips in time                      | `ArrowLeft` / `ArrowRight`                     |
+| Move the selected clips in time (extended step)      | `Shift+ArrowLeft` / `Shift+ArrowRight`         |
+| Move the selected clips to the track above / below   | `ArrowUp` / `ArrowDown`                        |
+| Move the selected clips to a new track above / below | `Shift+ArrowUp` / `Shift+ArrowDown`            |
+| Move the playhead                                    | `,` / `.`                                      |
+| Move the playhead to start / end                     | `Home` / `End`                                 |
+| Adjust the trim out point                            | `Alt+ArrowLeft` / `Alt+ArrowRight`             |
+| Adjust the trim in point                             | `Alt+Shift+ArrowLeft` / `Alt+Shift+ArrowRight` |
 
 ### View
 
@@ -361,10 +384,10 @@ These are the shortcuts the core configs register out of the box. `Mod` resolves
 
 ### File
 
-| Action       | Shortcut                  |
-| ------------ | ------------------------- |
-| Save scene   | `Mod+S`                   |
-| Save archive | `Mod+Shift+S`             |
+| Action       | Shortcut      |
+| ------------ | ------------- |
+| Save scene   | `Mod+S`       |
+| Save archive | `Mod+Shift+S` |
 
 ## Customizing Keyboard Shortcuts
 

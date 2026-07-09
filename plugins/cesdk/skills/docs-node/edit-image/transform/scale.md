@@ -45,7 +45,6 @@ A value of `2.0`, for example, makes the block twice as large.
   2. Add credentials to `.env`:
      ```bash
      LICENSE_KEY="<your_license_key>"
-     CESDK_BASE_URL="https://cdn.img.ly/packages/imgly/cesdk-node/1.60.0/assets"
      ```
 
   ````
@@ -59,8 +58,7 @@ A value of `2.0`, for example, makes the block twice as large.
 
   async function run() {
     const engine = await CreativeEngine.init({
-      license: process.env.LICENSE_KEY,
-      baseURL: process.env.CESDK_BASE_URL
+      license: process.env.LICENSE_KEY
     });
 
     try {

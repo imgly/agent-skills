@@ -200,7 +200,6 @@ async function convertToPrintReady() {
   // Initialize CE.SDK Engine
   const engine = await CreativeEngine.init({
     license: 'YOUR_CESDK_LICENSE_KEY',
-    baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
   });
 
   // Load scene from file
@@ -328,7 +327,6 @@ import { readdirSync } from 'fs';
 async function batchConvert() {
   const engine = await CreativeEngine.init({
     license: 'YOUR_CESDK_LICENSE_KEY',
-    baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
   });
 
   // Find all .scene files

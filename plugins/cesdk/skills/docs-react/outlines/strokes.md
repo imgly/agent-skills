@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Outlines](./outlines.md) > [Stroke (Outline)](./outlines/strokes.md)
+**Navigation:** [Guides](./guides.md) > [Outlines](./outlines.md) > [Using Strokes](./outlines/strokes.md)
 
 ---
 

@@ -5,13 +5,6 @@ import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { useSinglePageFocus } from '../hooks/UseSinglePageFocus';
 import { caseAssetPath } from '../../imgly/utils';
 import { SelectionProvider } from '../hooks/UseSelection';
-import {
-  DemoAssetSources,
-  StickerAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
 
 interface SelectedBlock {
   id: number;
@@ -128,22 +121,38 @@ export const EditorProvider = ({
         (window as Window & { engine?: CreativeEngine }).engine = engine;
       }
 
-      await engine.addPlugin(new TypefaceAssetSource());
-      await engine.addPlugin(
-        new VectorShapeAssetSource({
-          include: ['ly.img.vector.shape.filled.*']
-        })
+      // Register the default asset sources directly on the headless engine.
+      // getBaseURL() returns the configured base URL with a trailing slash, and
+      // each source is parsed from `${baseURL}<sourceId>/content.json`.
+      const baseURL = engine.getBaseURL();
+
+      // Typefaces
+      await engine.asset.addLocalAssetSourceFromJSONURI(
+        `${baseURL}ly.img.typeface/content.json`
       );
-      await engine.addPlugin(new StickerAssetSource());
-      await engine.addPlugin(
-        new UploadAssetSources({
-          include: ['ly.img.image.upload']
-        })
+      // Filled vector shapes only
+      await engine.asset.addLocalAssetSourceFromJSONURI(
+        `${baseURL}ly.img.vector.shape/content.json`,
+        { matcher: ['ly.img.vector.shape.filled.*'] }
       );
-      await engine.addPlugin(
-        new DemoAssetSources({
-          include: ['ly.img.image.*']
-        })
+      // Stickers
+      await engine.asset.addLocalAssetSourceFromJSONURI(
+        `${baseURL}ly.img.sticker/content.json`
+      );
+      // Local source for user image uploads
+      engine.asset.addLocalSource('ly.img.image.upload', [
+        'image/jpeg',
+        'image/png',
+        'image/webp',
+        'image/svg+xml',
+        'image/bmp',
+        'image/gif',
+        'image/apng'
+      ]);
+      // Demo images
+      await engine.asset.addLocalAssetSourceFromJSONURI(
+        `${baseURL}ly.img.image/content.json`,
+        { matcher: ['ly.img.image.*'] }
       );
       engine.editor.setSetting('page/title/show', false);
       engine.editor.onStateChanged(() => editorUpdateCallbackRef.current());

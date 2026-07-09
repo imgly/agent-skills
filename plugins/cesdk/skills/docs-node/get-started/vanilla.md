@@ -89,7 +89,6 @@ import CreativeEngine from '@cesdk/node';
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your CE.SDK license key
-  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
 };
 
 try {
@@ -139,7 +138,6 @@ const { MimeType } = CreativeEngine;
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your CE.SDK license key
-  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
 };
 
 // Initialize CE.SDK Engine

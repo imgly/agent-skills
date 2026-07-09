@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "secrets": "bash scripts/setup-secrets.sh",
-    "dev": "cesdk-js-dev vite",
+    "dev": "cesdk-engine-dev vite",
     "prebuild": "npm run check:all",
     "build": "vite build",
     "preview": "vite preview",
@@ -26,7 +26,6 @@
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "workspace:*",
     "@cesdk/engine": "workspace:*",
     "classnames": "^2.3.2",
     "react": "^18.3.1",

@@ -904,6 +904,24 @@ The Actions API provides four methods:
     - `selection.nudgeUp` / `selection.nudgeDown` / `selection.nudgeLeft` / `selection.nudgeRight` - Nudge the selection by one step
     - `selection.nudgeUpExtended` / `selection.nudgeDownExtended` / `selection.nudgeLeftExtended` / `selection.nudgeRightExtended` - Nudge the selection by a larger step
 
+    ### Rotation Actions
+
+    - `selection.rotateCW` / `selection.rotateCCW` - Rotate the selection clockwise / counter-clockwise by one step
+    - `selection.rotateCWExtended` / `selection.rotateCCWExtended` - Rotate the selection by a larger step
+
+    ### Resize Actions
+
+    - `selection.resizeWidthGrow` / `selection.resizeWidthShrink` - Grow / shrink the selection's width by one step
+    - `selection.resizeHeightGrow` / `selection.resizeHeightShrink` - Grow / shrink the selection's height by one step
+    - `selection.resizeWidthGrowFromLeft` / `selection.resizeWidthShrinkFromLeft` - Resize the width from the opposite (left) edge
+    - `selection.resizeHeightGrowFromTop` / `selection.resizeHeightShrinkFromTop` - Resize the height from the opposite (top) edge
+    - Each resize action has an `…Extended` variant that applies a larger step
+
+    ### Crop Nudge Actions
+
+    - `crop.nudgeUp` / `crop.nudgeDown` / `crop.nudgeLeft` / `crop.nudgeRight` - Move the image inside its crop frame by one step
+    - `crop.nudgeUpExtended` / `crop.nudgeDownExtended` / `crop.nudgeLeftExtended` / `crop.nudgeRightExtended` - Move the image inside its crop frame by a larger step
+
     ### Text Formatting Actions
 
     - `text.toggleBold` - Toggle bold on the selected text
@@ -919,6 +937,20 @@ The Actions API provides four methods:
     - `editor.checkBrowserSupport` - Check whether the current browser is supported
     - `timeline.collapse` - Collapse the video timeline
     - `timeline.expand` - Expand the video timeline
+
+    ### Timeline Keyboard Actions
+
+    The keyboard alternative to dragging clips, trim handles, and the playhead in the video timeline. Each acts on every selected clip.
+
+    - `timeline.clip.moveEarlier` / `timeline.clip.moveLater` - Move the selected clips earlier / later in time by one step
+    - `timeline.clip.moveEarlierExtended` / `timeline.clip.moveLaterExtended` - Move the selected clips by a larger step
+    - `timeline.clip.insertPushEarlier` / `timeline.clip.insertPushLater` - Move earlier / later, pushing overlapping neighbors aside to make room
+    - `timeline.clip.moveToTrackAbove` / `timeline.clip.moveToTrackBelow` - Move the selected clips to the track above / below, keeping their time offset (a new track is created when there is no room)
+    - `timeline.clip.newTrackAbove` / `timeline.clip.newTrackBelow` - Move the selected clips onto a brand-new track above / below
+    - `timeline.skim.back` / `timeline.skim.forward` - Move the playhead back / forward by one step
+    - `timeline.skim.toStart` / `timeline.skim.toEnd` - Move the playhead to the start / end
+    - `trim.moveOutEarlier` / `trim.moveOutLater` - Move the selected clips' out point (end) earlier / later
+    - `trim.moveInEarlier` / `trim.moveInLater` - Move the selected clips' in point (start) earlier / later
 
     ### History
 
