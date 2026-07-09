@@ -1,4 +1,5 @@
-import { AssetResult, CreativeEngine } from '@cesdk/cesdk-js';
+import type CreativeEngine from '@cesdk/engine';
+import type { AssetResult } from '@cesdk/engine';
 
 interface ApplyLayoutAssetConfig {
   addUndoStep: boolean;

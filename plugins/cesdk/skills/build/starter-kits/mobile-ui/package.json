@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "secrets": "bash scripts/setup-secrets.sh",
-    "dev": "cesdk-js-dev vite",
+    "dev": "cesdk-engine-dev vite",
     "prebuild": "npm run check:all",
     "build": "vite build",
     "preview": "vite preview",
@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.0",
-    "@cesdk/cesdk-js": "workspace:*",
     "@cesdk/engine": "workspace:*",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",

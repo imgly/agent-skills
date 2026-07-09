@@ -9,124 +9,300 @@ instead of the IMG.LY CDN for production deployments.
 
 Self-hosting assets is required for production use. The IMG.LY CDN is intended for development and prototyping only—you'll see a console warning when using the default CDN configuration. Hosting assets yourself gives you control over performance, availability, and compliance requirements.
 
-[Download Assets (v$UBQ\_VERSION$)](https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ_VERSION$/imgly-assets.zip)
+Use the switch below to choose your setup: the full **Editor** (`@cesdk/cesdk-js`), which registers asset sources through editor plugins, or a **Headless** custom UI (`@cesdk/engine`), which registers them directly with the engine API.
 
-This guide covers the asset categories CE.SDK uses, how to configure `baseURL` and asset source paths, and how to automate asset updates during SDK upgrades.
+<Tabs syncKey="cesdk-web-package">
+  <TabItem label="Editor">
+    The full editor registers asset sources through plugins imported from `@cesdk/cesdk-js/plugins`, each of which accepts a `baseURL` option.
 
-## Quick Start
+    [Download Assets (v$UBQ\_VERSION$)](https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ_VERSION$/imgly-assets.zip)
 
-Download and extract the essential assets for your SDK version:
+    ### Quick Start
 
-```bash
-# Download assets for current SDK version
-curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ_VERSION$/imgly-assets.zip
+    Download and extract the essential assets for your SDK version:
 
-# Create versioned directory and extract assets
-mkdir -p public/cesdk/$UBQ_VERSION$
-unzip imgly-assets.zip -d public/cesdk/$UBQ_VERSION$/
-rm imgly-assets.zip
-```
+    ```bash
+    # Download assets for current SDK version
+    curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ_VERSION$/imgly-assets.zip
 
-Then configure CE.SDK to use your self-hosted assets:
+    # Create versioned directory and extract assets
+    mkdir -p public/cesdk/$UBQ_VERSION$
+    unzip imgly-assets.zip -d public/cesdk/$UBQ_VERSION$/
+    rm imgly-assets.zip
+    ```
 
-```javascript
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import {
-  BlurAssetSource,
-  ImageColorsAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource,
-} from '@cesdk/cesdk-js/plugins';
+    Then configure CE.SDK to use your self-hosted assets:
 
-const config = {
-  license: 'YOUR_CESDK_LICENSE_KEY',
-  baseURL: `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`,
-};
+    ```javascript
+    import CreativeEditorSDK from '@cesdk/cesdk-js';
+    import {
+      BlurAssetSource,
+      ImageColorsAssetSource,
+      ColorPaletteAssetSource,
+      CropPresetsAssetSource,
+      DemoAssetSources,
+      EffectsAssetSource,
+      FiltersAssetSource,
+      PagePresetsAssetSource,
+      StickerAssetSource,
+      TextAssetSource,
+      TextComponentAssetSource,
+      TypefaceAssetSource,
+      UploadAssetSources,
+      VectorShapeAssetSource
+    } from '@cesdk/cesdk-js/plugins';
 
-CreativeEditorSDK.create(container, config).then(async (cesdk) => {
-  const assetBaseURL = `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`;
+    const config = {
+      license: 'YOUR_CESDK_LICENSE_KEY',
+      baseURL: `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`
+    };
 
-  // Add default asset source plugins
-  await cesdk.addPlugin(new BlurAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new ColorPaletteAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new CropPresetsAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new EffectsAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new FiltersAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new PagePresetsAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new StickerAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new TextAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new TextComponentAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new TypefaceAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new VectorShapeAssetSource({ baseURL: assetBaseURL }));
+    CreativeEditorSDK.create(container, config).then(async (cesdk) => {
+      const assetBaseURL = `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`;
 
-  // Add demo and upload sources
-  await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      include: [
-        'ly.img.templates.blank.*',
-        'ly.img.templates.presentation.*',
-        'ly.img.templates.print.*',
-        'ly.img.templates.social.*',
-        'ly.img.image.*'
-      ]
-    })
-  );
-});
-```
+      // Add default asset source plugins
+      await cesdk.addPlugin(new BlurAssetSource({ baseURL: assetBaseURL }));
+      await cesdk.addPlugin(new ColorPaletteAssetSource({ baseURL: assetBaseURL }));
+      await cesdk.addPlugin(new CropPresetsAssetSource({ baseURL: assetBaseURL }));
+      await cesdk.addPlugin(new EffectsAssetSource({ baseURL: assetBaseURL }));
+      await cesdk.addPlugin(new FiltersAssetSource({ baseURL: assetBaseURL }));
+      await cesdk.addPlugin(new PagePresetsAssetSource({ baseURL: assetBaseURL }));
+      await cesdk.addPlugin(new StickerAssetSource({ baseURL: assetBaseURL }));
+      await cesdk.addPlugin(new TextAssetSource({ baseURL: assetBaseURL }));
+      await cesdk.addPlugin(
+        new TextComponentAssetSource({ baseURL: assetBaseURL })
+      );
+      await cesdk.addPlugin(new TypefaceAssetSource({ baseURL: assetBaseURL }));
+      await cesdk.addPlugin(new VectorShapeAssetSource({ baseURL: assetBaseURL }));
 
-> **Note:** **Versioned paths recommended**: Using version-specific paths like
-> `/cesdk/${CreativeEditorSDK.version}/` allows you to run multiple SDK versions in parallel,
-> simplifies rollbacks, and ensures clean cache invalidation during upgrades.
+      // Add demo and upload sources
+      await cesdk.addPlugin(
+        new UploadAssetSources({ include: ['ly.img.image.upload'] })
+      );
+      await cesdk.addPlugin(
+        new DemoAssetSources({
+          include: [
+            'ly.img.templates.blank.*',
+            'ly.img.templates.presentation.*',
+            'ly.img.templates.print.*',
+            'ly.img.templates.social.*',
+            'ly.img.image.*'
+          ]
+        })
+      );
+    });
+    ```
+
+    > **Note:** **Versioned paths recommended**: Using version-specific paths like `/cesdk/$   {CreativeEditorSDK.version}/` allows you to run multiple SDK versions in parallel,
+    > simplifies rollbacks, and ensures clean cache invalidation during upgrades.
+
+    ### Configuration Options
+
+    Browser configuration involves three settings: `baseURL`, `core.baseURL`, and the `baseURL` option for asset sources.
+
+    #### Editor Configuration
+
+    Pass configuration to `CreativeEditorSDK.create()`:
+
+    ```javascript
+    import CreativeEditorSDK from '@cesdk/cesdk-js';
+
+    const config = {
+      baseURL: `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`,
+      core: {
+        baseURL: 'core/'
+      }
+    };
+
+    CreativeEditorSDK.create(container, config).then((cesdk) => {
+      // Editor initialized with self-hosted assets
+    });
+    ```
+
+    **`baseURL`** — Base path for all engine assets. Can be an absolute URL or a relative path. Relative paths resolve against `window.location.href`. Defaults to the IMG.LY CDN.
+
+    **`core.baseURL`** — Path to WASM files. Defaults to `core/` relative to `baseURL`. Usually you don't need to change this unless hosting WASM files separately.
+
+    #### Asset Sources Configuration
+
+    Each asset-source plugin accepts a `baseURL` option pointing at your self-hosted assets:
+
+    ```javascript
+    await cesdk.addPlugin(new StickerAssetSource({ baseURL: assetBaseURL }));
+    await cesdk.addPlugin(new TypefaceAssetSource({ baseURL: assetBaseURL }));
+    ```
+
+    The `baseURL` must be an absolute URL. The engine looks up each source's definition at `{baseURL}/{sourceId}/content.json` and references files like `{baseURL}/{sourceId}/images/example.png`. Register the full set the same way—the Quick Start above shows the complete list.
+
+    ### Default Asset Sources
+
+    Adding the default asset source plugins registers these asset sources:
+
+    - `ly.img.sticker` - Stickers
+    - `ly.img.sticker.misc` - Additional stickers
+    - `ly.img.vector.shape` - Shapes and arrows
+    - `ly.img.typeface` - Font definitions
+    - `ly.img.color.palette` - Color palettes
+    - `ly.img.filter` - Filter effects
+    - `ly.img.effect` - Visual effects
+    - `ly.img.blur` - Blur presets
+    - `ly.img.crop.presets` - Crop aspect ratios
+    - `ly.img.page.presets` - Page format presets
+    - `ly.img.page.presets.video` - Video page presets
+    - `ly.img.caption.presets` - Caption formatting
+    - `ly.img.text` - Text style presets (Plain Text)
+    - `ly.img.text.styles` - Text style presets (Text Styles)
+    - `ly.img.text.curves` - Text style presets (Curved Text)
+    - `ly.img.text.components` - Text combinations
+    - `ly.img.animation` - Animation presets
+    - `ly.img.animation.text` - Text animation presets
+
+    ### Demo Asset Sources
+
+    Adding the `DemoAssetSources` and `UploadAssetSources` plugins registers sample content sources for development:
+
+    - `ly.img.image` - Sample images
+    - `ly.img.video` - Sample videos
+    - `ly.img.audio` - Sample audio
+    - `ly.img.template` - Design templates
+    - `ly.img.video.template` - Video templates
+    - `ly.img.image.upload`, `ly.img.video.upload`, `ly.img.audio.upload` - Upload sources
+
+    These are intended for development and prototyping—replace them with your own content in production.
+
+    ### Excluding Unused Asset Sources
+
+    If you only need a subset of default assets, simply omit the plugins you don't need. For example, to skip stickers and video page presets, add all plugins except `StickerAssetSource` and the video page presets:
+
+    ```javascript
+    // Only add the plugins you need
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    // StickerAssetSource omitted
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+    ```
+
+    This reduces initial load time by not fetching unused asset definitions.
+  </TabItem>
+
+  <TabItem label="Headless">
+    When you build your own UI on the headless `@cesdk/engine`, don't use the `@cesdk/cesdk-js/plugins` asset-source plugins—they are coupled to the editor and pull it in. Instead, set `baseURL` when initializing the engine and register each content asset source directly through the engine API.
+
+    [Download Assets (v$UBQ\_VERSION$)](https://cdn.img.ly/packages/imgly/cesdk-engine/$UBQ_VERSION$/imgly-assets.zip)
+
+    ### Quick Start
+
+    Download and extract the assets for your SDK version:
+
+    ```bash
+    # Download assets for current SDK version
+    curl -O https://cdn.img.ly/packages/imgly/cesdk-engine/$UBQ_VERSION$/imgly-assets.zip
+
+    # Create versioned directory and extract assets
+    mkdir -p public/cesdk/$UBQ_VERSION$
+    unzip imgly-assets.zip -d public/cesdk/$UBQ_VERSION$/
+    rm imgly-assets.zip
+    ```
+
+    ### Initialize with a Base URL
+
+    Set `baseURL` to the location where you extracted the archive. The engine loads `core/`, `fonts/`, and `emoji/` from this location, and resolves each asset source relative to it.
+
+    ```javascript
+    import CreativeEngine from '@cesdk/engine';
+
+    const engine = await CreativeEngine.init({
+      license: 'YOUR_CESDK_LICENSE_KEY',
+      baseURL: `https://cdn.yourdomain.com/cesdk/${CreativeEngine.version}/`
+    });
+    ```
+
+    The engine's default `baseURL` already points at the `cesdk-engine` CDN, so you only need to set it when self-hosting for production.
+
+    ### Register Asset Sources
+
+    Register the content sources you need by pointing each one at its `content.json` under the base URL. `engine.getBaseURL()` returns the configured base:
+
+    ```javascript
+    const baseURL = engine.getBaseURL();
+
+    for (const sourceId of [
+      'ly.img.sticker',
+      'ly.img.vector.shape',
+      'ly.img.typeface',
+      'ly.img.color.palette'
+    ]) {
+      await engine.asset.addLocalAssetSourceFromJSONURI(
+        `${baseURL}${sourceId}/content.json`
+      );
+    }
+    ```
+
+    Pass a `matcher` to load only a subset of a source's assets:
+
+    ```javascript
+    await engine.asset.addLocalAssetSourceFromJSONURI(
+      `${baseURL}ly.img.sticker/content.json`,
+      { matcher: ['*emoji*'] }
+    );
+    ```
+
+    For user uploads, register a local source with the MIME types it accepts:
+
+    ```javascript
+    engine.asset.addLocalSource('ly.img.image.upload', ['image/png', 'image/jpeg']);
+    ```
+
+    For the full list of source IDs and matcher filtering, see the [Default Assets](./import-media/default-assets.md) guide.
+  </TabItem>
+</Tabs>
 
 ## Understanding CE.SDK Assets
 
-CE.SDK assets are distributed in an `imgly-assets.zip` file available for download from the IMG.LY CDN. Understanding what's in this archive helps you decide which assets to host and how to keep them updated.
+CE.SDK assets are distributed in an `imgly-assets.zip` file available for download from the IMG.LY CDN. Understanding what's in this archive helps you decide which assets to host and how to keep them updated. Both packages use the same archive layout; only the download location differs (`cesdk-js` for the editor, `cesdk-engine` for the headless engine).
 
 ### Asset Categories
 
 The ZIP file contains directories organized by function:
 
-| Directory                       | Contents                                               | Version-Locked? | Required?               |
-| ------------------------------- | ------------------------------------------------------ | --------------- | ----------------------- |
-| `core/`                         | WASM engine files (`.wasm`, `.data`, `worker-host.js`) | **Yes**         | **Yes**                 |
-| `ui/`                           | UI resources (audio waveform, fonts, stylesheets)      | **Yes**         | **Yes**                 |
-| `emoji/`                        | Emoji assets                                           | **Yes**         | **Yes**                 |
-| `fonts/`                        | System fonts                                           | **Yes**         | **Yes**                 |
-| `i18n/`                         | Translations                                           | **Yes**         | No (bundled in SDK)     |
-| `ly.img.sticker/`               | Stickers                                               | No              | If using default assets |
-| `ly.img.sticker.misc/`          | Additional stickers                                    | No              | If using default assets |
-| `ly.img.vector.shape/`          | Shapes and arrows                                      | No              | If using default assets |
-| `ly.img.typeface/`              | Font definitions                                       | No              | If using default assets |
-| `ly.img.filter/`                | Filter effects (LUT and duotone)                       | No              | If using default assets |
-| `ly.img.effect/`                | Visual effects                                         | No              | If using default assets |
-| `ly.img.blur/`                  | Blur presets                                           | No              | If using default assets |
-| `ly.img.color.palette/`         | Color palettes                                         | No              | If using default assets |
-| `ly.img.crop.presets/`          | Crop aspect ratios                                     | No              | If using default assets |
-| `ly.img.page.presets/`          | Page format presets                                    | No              | If using default assets |
-| `ly.img.page.presets.video/`    | Video page presets                                     | No              | If using default assets |
-| `ly.img.caption.presets/`       | Caption formatting presets                             | No              | If using default assets |
-| `ly.img.text/`                  | Text style presets (Plain Text)                        | No              | If using default assets |
-| `ly.img.text.styles/`           | Text style presets (Text Styles)                       | No              | If using default assets |
-| `ly.img.text.curves/`           | Text style presets (Curved Text)                       | No              | If using default assets |
-| `ly.img.text.components/`       | Text combinations                                      | No              | If using default assets |
-| `ly.img.animation/`             | Animation presets                                      | No              | If using default assets |
-| `ly.img.animation.text/`        | Text animation presets                                 | No              | If using default assets |
-| `ly.img.image/`                 | Sample images (demo content)                           | No              | No                      |
-| `ly.img.video/`                 | Sample videos (demo content)                           | No              | No                      |
-| `ly.img.audio/`                 | Sample audio (demo content)                            | No              | No                      |
-| `ly.img.template/`              | Design templates (demo content)                        | No              | No                      |
-| `ly.img.video.template/`        | Video templates (demo content)                         | No              | No                      |
+| Directory                    | Contents                                               | Version-Locked? | Required?               |
+| ---------------------------- | ------------------------------------------------------ | --------------- | ----------------------- |
+| `core/`                      | WASM engine files (`.wasm`, `.data`, `worker-host.js`) | **Yes**         | **Yes**                 |
+| `ui/`                        | UI resources (audio waveform, fonts, stylesheets)      | **Yes**         | **Yes**                 |
+| `emoji/`                     | Emoji assets                                           | **Yes**         | **Yes**                 |
+| `fonts/`                     | System fonts                                           | **Yes**         | **Yes**                 |
+| `i18n/`                      | Translations                                           | **Yes**         | No (bundled in SDK)     |
+| `ly.img.sticker/`            | Stickers                                               | No              | If using default assets |
+| `ly.img.sticker.misc/`       | Additional stickers                                    | No              | If using default assets |
+| `ly.img.vector.shape/`       | Shapes and arrows                                      | No              | If using default assets |
+| `ly.img.typeface/`           | Font definitions                                       | No              | If using default assets |
+| `ly.img.filter/`             | Filter effects (LUT and duotone)                       | No              | If using default assets |
+| `ly.img.effect/`             | Visual effects                                         | No              | If using default assets |
+| `ly.img.blur/`               | Blur presets                                           | No              | If using default assets |
+| `ly.img.color.palette/`      | Color palettes                                         | No              | If using default assets |
+| `ly.img.crop.presets/`       | Crop aspect ratios                                     | No              | If using default assets |
+| `ly.img.page.presets/`       | Page format presets                                    | No              | If using default assets |
+| `ly.img.page.presets.video/` | Video page presets                                     | No              | If using default assets |
+| `ly.img.caption.presets/`    | Caption formatting presets                             | No              | If using default assets |
+| `ly.img.text/`               | Text style presets (Plain Text)                        | No              | If using default assets |
+| `ly.img.text.styles/`        | Text style presets (Text Styles)                       | No              | If using default assets |
+| `ly.img.text.curves/`        | Text style presets (Curved Text)                       | No              | If using default assets |
+| `ly.img.text.components/`    | Text combinations                                      | No              | If using default assets |
+| `ly.img.animation/`          | Animation presets                                      | No              | If using default assets |
+| `ly.img.animation.text/`     | Text animation presets                                 | No              | If using default assets |
+| `ly.img.image/`              | Sample images (demo content)                           | No              | No                      |
+| `ly.img.video/`              | Sample videos (demo content)                           | No              | No                      |
+| `ly.img.audio/`              | Sample audio (demo content)                            | No              | No                      |
+| `ly.img.template/`           | Design templates (demo content)                        | No              | No                      |
+| `ly.img.video.template/`     | Video templates (demo content)                         | No              | No                      |
 
 For most integrations, you need `core/`, `ui/`, `emoji/`, `fonts/`, and the `ly.img.*` asset sources you use.
 
@@ -134,129 +310,9 @@ For most integrations, you need `core/`, `ui/`, `emoji/`, `fonts/`, and the `ly.
 
 **Version-locked assets** (`core/`, `ui/`, `i18n/`) must match your SDK version. Mismatched versions cause load errors—the engine will fail to initialize if core files don't match.
 
-**Independent assets** (`ly.img.*` directories) can be updated separately. Configure these via asset source plugins (imported from `@cesdk/cesdk-js/plugins`), each of which accepts a `baseURL` option. Check the changelog when upgrading to see if asset versions have changed.
+**Independent assets** (`ly.img.*` directories) can be updated separately. Register each one as an asset source that points at its `content.json` under your `baseURL`. Check the changelog when upgrading to see if asset versions have changed.
 
-### Default Asset Sources
-
-Adding the default asset source plugins registers these asset sources:
-
-- `ly.img.sticker` - Stickers
-- `ly.img.sticker.misc` - Additional stickers
-- `ly.img.vector.shape` - Shapes and arrows
-- `ly.img.typeface` - Font definitions
-- `ly.img.color.palette` - Color palettes
-- `ly.img.filter` - Filter effects
-- `ly.img.effect` - Visual effects
-- `ly.img.blur` - Blur presets
-- `ly.img.crop.presets` - Crop aspect ratios
-- `ly.img.page.presets` - Page format presets
-- `ly.img.page.presets.video` - Video page presets
-- `ly.img.caption.presets` - Caption formatting
-- `ly.img.text` - Text style presets (Plain Text)
-- `ly.img.text.styles` - Text style presets (Text Styles)
-- `ly.img.text.curves` - Text style presets (Curved Text)
-- `ly.img.text.components` - Text combinations
-- `ly.img.animation` - Animation presets
-- `ly.img.animation.text` - Text animation presets
-
-### Demo Asset Sources
-
-Adding the `DemoAssetSources` and `UploadAssetSources` plugins registers sample content sources for development:
-
-- `ly.img.image` - Sample images
-- `ly.img.video` - Sample videos
-- `ly.img.audio` - Sample audio
-- `ly.img.template` - Design templates
-- `ly.img.video.template` - Video templates
-- `ly.img.image.upload`, `ly.img.video.upload`, `ly.img.audio.upload` - Upload sources
-
-These are intended for development and prototyping—replace them with your own content in production.
-
-## Configuration Options
-
-Browser configuration involves three settings: `baseURL`, `core.baseURL`, and the `baseURL` option for asset sources.
-
-### Editor Configuration
-
-Pass configuration to `CreativeEditorSDK.create()`:
-
-```javascript
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-
-const config = {
-  baseURL: `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`,
-  core: {
-    baseURL: 'core/',
-  },
-};
-
-CreativeEditorSDK.create(container, config).then(cesdk => {
-  // Editor initialized with self-hosted assets
-});
-```
-
-**`baseURL`** — Base path for all engine assets. Can be an absolute URL or a relative path. Relative paths resolve against `window.location.href`. Defaults to the IMG.LY CDN.
-
-**`core.baseURL`** — Path to WASM files. Defaults to `core/` relative to `baseURL`. Usually you don't need to change this unless hosting WASM files separately.
-
-### Asset Sources Configuration
-
-Configure asset sources after initializing the editor by adding individual asset source plugins:
-
-```javascript
-import {
-  BlurAssetSource,
-  ImageColorsAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource,
-} from '@cesdk/cesdk-js/plugins';
-
-CreativeEditorSDK.create(container, config).then(async (cesdk) => {
-  const assetBaseURL = `https://cdn.yourdomain.com/cesdk/${CreativeEditorSDK.version}/`;
-
-  // Point default assets to your server
-  await cesdk.addPlugin(new BlurAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new ColorPaletteAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new CropPresetsAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new EffectsAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new FiltersAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new PagePresetsAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new StickerAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new TextAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new TextComponentAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new TypefaceAssetSource({ baseURL: assetBaseURL }));
-  await cesdk.addPlugin(new VectorShapeAssetSource({ baseURL: assetBaseURL }));
-
-  // Optional: Add demo assets for development
-  await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      baseURL: assetBaseURL,
-      include: [
-        'ly.img.templates.blank.*',
-        'ly.img.templates.presentation.*',
-        'ly.img.templates.print.*',
-        'ly.img.templates.social.*',
-        'ly.img.image.*'
-      ]
-    })
-  );
-});
-```
-
-The `baseURL` for asset sources must be an absolute URL. The engine looks up asset definitions at `{baseURL}/{sourceId}/content.json` and references files like `{baseURL}/{sourceId}/images/example.png`.
-
-### Engine-Level Assets
+## Engine-Level Assets
 
 The engine uses additional assets for font fallback (Unicode character coverage) and emoji rendering. When you configure `baseURL` for self-hosting, the engine automatically uses the same location for these assets:
 
@@ -265,31 +321,9 @@ The engine uses additional assets for font fallback (Unicode character coverage)
 
 The `fonts/` and `emoji/` directories are already included in the `imgly-assets.zip` download, so no additional configuration is needed when self-hosting—just ensure these directories are present at your `baseURL` location.
 
-> **Note:** **Troubleshooting**: If you see 404 errors for font files when self-hosting, verify that the
-> `fonts/` and `emoji/` directories from `imgly-assets.zip` are properly extracted at your
-> `baseURL` location.
-
-## Excluding Unused Asset Sources
-
-If you only need a subset of default assets, simply omit the plugins you don't need. For example, to skip stickers and video page presets, add all plugins except `StickerAssetSource` and the video page presets:
-
-```javascript
-// Only add the plugins you need
-await cesdk.addPlugin(new BlurAssetSource());
-await cesdk.addPlugin(new ImageColorsAssetSource());
-await cesdk.addPlugin(new ColorPaletteAssetSource());
-await cesdk.addPlugin(new CropPresetsAssetSource());
-await cesdk.addPlugin(new EffectsAssetSource());
-await cesdk.addPlugin(new FiltersAssetSource());
-await cesdk.addPlugin(new PagePresetsAssetSource());
-// StickerAssetSource omitted
-await cesdk.addPlugin(new TextAssetSource());
-await cesdk.addPlugin(new TextComponentAssetSource());
-await cesdk.addPlugin(new TypefaceAssetSource());
-await cesdk.addPlugin(new VectorShapeAssetSource());
-```
-
-This reduces initial load time by not fetching unused asset definitions.
+> **Note:** **Troubleshooting**: If you see 404 errors for font files when self-hosting,
+> verify that the `fonts/` and `emoji/` directories from `imgly-assets.zip` are
+> properly extracted at your `baseURL` location.
 
 ## Troubleshooting
 
@@ -305,7 +339,7 @@ If the engine fails to initialize with missing `.wasm` or `.data` errors, verify
 
 If the console shows 404 errors for `content.json` files:
 
-1. Verify the `baseURL` passed to your asset source plugins is correct
+1. Verify the `baseURL` your asset sources resolve against is correct
 2. Check that asset directories exist at the expected paths
 3. Configure CORS headers if serving assets from a different domain
 
@@ -315,13 +349,26 @@ The warning "You're using the IMG.LY CDN" appears when using default configurati
 
 ## API Reference
 
-| Method/Config                           | Purpose                                       |
-| --------------------------------------- | --------------------------------------------- |
-| `CreativeEditorSDK.create(container, config)` | Initialize editor with configuration    |
-| `config.baseURL`                        | Base path for all engine assets (including fonts and emoji) |
-| `config.core.baseURL`                   | Path to WASM/core files (relative to baseURL) |
-| `cesdk.addPlugin(new XyzAssetSource())` | Add individual asset source plugins           |
-| `CreativeEditorSDK.version`             | Get current SDK version string                |
+### Editor (`@cesdk/cesdk-js`)
+
+| Method/Config                                 | Purpose                                                     |
+| --------------------------------------------- | ----------------------------------------------------------- |
+| `CreativeEditorSDK.create(container, config)` | Initialize editor with configuration                        |
+| `config.baseURL`                              | Base path for all engine assets (including fonts and emoji) |
+| `config.core.baseURL`                         | Path to WASM/core files (relative to baseURL)               |
+| `cesdk.addPlugin(new XyzAssetSource())`       | Add individual asset source plugins                         |
+| `CreativeEditorSDK.version`                   | Get current SDK version string                              |
+
+### Custom UI (`@cesdk/engine`)
+
+| Method/Config                                                       | Purpose                                                 |
+| ------------------------------------------------------------------- | ------------------------------------------------------- |
+| `CreativeEngine.init(config)`                                       | Initialize the headless engine with configuration       |
+| `config.baseURL`                                                    | Base path for engine and content assets                 |
+| `engine.getBaseURL()`                                               | Return the configured base URL                          |
+| `engine.asset.addLocalAssetSourceFromJSONURI(contentURI, options?)` | Register a content asset source from its `content.json` |
+| `engine.asset.addLocalSource(id, supportedMimeTypes?)`              | Register a local source for uploads                     |
+| `CreativeEngine.version`                                            | Get current SDK version string                          |
 
 
 

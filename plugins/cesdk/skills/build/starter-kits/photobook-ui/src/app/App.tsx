@@ -7,15 +7,6 @@
 
 import { useState } from 'react';
 import type { Configuration } from '@cesdk/engine';
-import {
-  ImageColorsAssetSource,
-  ColorPaletteAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
 
 import { EngineProvider } from './contexts/EngineContext';
 import { SinglePageModeProvider } from './contexts/SinglePageModeContext';
@@ -32,6 +23,7 @@ import {
   loadAssetSourceFromContentJSON
 } from '../imgly';
 import { createApplyLayoutAsset } from '../imgly/utils/apply-layout';
+import { createImageColorsSource } from '../imgly/utils/imageColorsSource';
 
 import styles from './App.module.css';
 
@@ -82,26 +74,60 @@ export default function App({ engineConfig }: AppProps) {
               engine.editor.setSetting('page/title/show', false);
               engine.editor.setRole('Adopter');
 
-              // Add asset sources
-              await engine.addPlugin(new ImageColorsAssetSource());
-              await engine.addPlugin(new ColorPaletteAssetSource());
-              await engine.addPlugin(new TypefaceAssetSource());
-              await engine.addPlugin(new TextAssetSource());
-              await engine.addPlugin(new TextComponentAssetSource());
-              await engine.addPlugin(
-                new VectorShapeAssetSource({
-                  include: ['ly.img.vector.shape.filled.*']
-                })
+              // Add default asset sources via the engine-native asset API.
+              // The engine resolves each `content.json` relative to `baseURL`.
+              const baseURL = engine.getBaseURL();
+
+              // Image colors: virtual source built from the scene's images.
+              engine.asset.addSource(createImageColorsSource(engine));
+
+              // Content sources loaded from bundled `content.json` files.
+              await Promise.all(
+                [
+                  { id: 'ly.img.color.palette' },
+                  { id: 'ly.img.typeface' },
+                  // Text style presets live in three engine-side sources.
+                  { id: 'ly.img.text' },
+                  { id: 'ly.img.text.styles' },
+                  { id: 'ly.img.text.curves' },
+                  { id: 'ly.img.text.components' },
+                  {
+                    id: 'ly.img.vector.shape',
+                    matcher: ['ly.img.vector.shape.filled.*']
+                  }
+                ].map(({ id, matcher }) =>
+                  engine.asset.addLocalAssetSourceFromJSONURI(
+                    `${baseURL}${id}/content.json`,
+                    { matcher }
+                  )
+                )
               );
-              await engine.addPlugin(
-                new UploadAssetSources({
-                  include: [
-                    'ly.img.image.upload',
-                    'ly.img.video.upload',
-                    'ly.img.audio.upload'
-                  ]
-                })
-              );
+
+              // Local upload sources for images, videos, and audio.
+              engine.asset.addLocalSource('ly.img.image.upload', [
+                'image/jpeg',
+                'image/png',
+                'image/webp',
+                'image/svg+xml',
+                'image/bmp',
+                'image/gif',
+                'image/apng'
+              ]);
+              engine.asset.addLocalSource('ly.img.video.upload', [
+                'application/json',
+                'video/mp4',
+                'video/quicktime',
+                'video/webm',
+                'video/matroska',
+                'image/gif',
+                'image/apng'
+              ]);
+              engine.asset.addLocalSource('ly.img.audio.upload', [
+                'audio/mpeg',
+                'audio/mp3',
+                'audio/x-m4a',
+                'audio/wav'
+              ]);
 
               // Load custom assets
               // Use absolute URL to avoid double-slash issues

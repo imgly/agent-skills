@@ -12,5 +12,9 @@ export {
   getImageSize
 } from './utils/CreativeEngineUtils';
 export { default as createUnsplashSource } from './utils/UnsplashSource';
+export {
+  createImageColorsSource,
+  IMAGE_COLORS_SOURCE_ID
+} from './imageColorsSource';
 export { POSTCARD_TEMPLATES } from './postcard-catalog';
 export type { PostcardTemplate } from './postcard-catalog';

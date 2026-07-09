@@ -81,7 +81,6 @@ const { MimeType } = CreativeEngine as any;
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your CE.SDK license key
-  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
 };
 
 // Initialize CE.SDK Engine
@@ -141,7 +140,6 @@ const { MimeType } = CreativeEngine as any;
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your CE.SDK license key
-  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
 };
 
 // Initialize CE.SDK Engine
