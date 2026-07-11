@@ -18,10 +18,10 @@ A single property predicate. Exactly one of `contains` (case-insensitive
 substring) or `equals` (case-insensitive equality) must be set — the
 type forbids passing both or neither. On a string-array property
 (`tags`, `groups`), the operator matches if any element matches.
+`meta.<key>` values are flat strings, compared whole.
 
-`meta.<key>` values are flat strings in the engine; if a meta value
-was originally serialized as a number or boolean, stringify it the
-same way before comparing.
+If a meta value was originally serialized as a number or boolean,
+stringify it the same way before comparing.
 
 ## Type Declaration
 

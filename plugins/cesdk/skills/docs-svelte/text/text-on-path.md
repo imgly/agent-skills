@@ -150,13 +150,14 @@ This guide covers the built-in Path inspector, the bundled curved-text presets, 
 Selecting a single text block reveals a **Path** button in the inspector bar that opens the Path panel. No code is required — the panel exposes every control a user needs:
 
 - **Curve** — choose None, Circle, Arch, Wave, or Elevate. Picking a curve bends the text to follow it; **None** removes it and restores normal layout.
+- **Horizontal Alignment** — Left, Center, Right, or Auto, controlling how the text is aligned along the path (Auto follows the text's writing direction).
 - **Path Position** — Top, Center, or Bottom, controlling where the text sits relative to the path.
 - **Direction** — Forward or Reversed, flipping the text to the other side of the curve.
 - **Offset** — a slider that slides the text along the path, centered at zero.
 - **Edit Path** — opens the vector path editor to hand-shape the baseline, turning the picker selection into a "Custom" curve. Shown only in editors where vector editing is enabled.
 - **Reset** — clears the offset and direction.
 
-Which of these controls appear is governed by the `ly.img.text.path*` feature flags (see **Configuring Availability** below).
+Which of these controls appear is governed by the `ly.img.text.path*` feature flags — except **Horizontal Alignment** (see **Configuring Availability** below).
 
 ## Applying Curved Text Presets from the Asset Library
 
@@ -256,6 +257,8 @@ cesdk.feature.disable('ly.img.text.path.offset');
 - `ly.img.text.path.direction` — the direction control
 - `ly.img.text.path.offset` — the offset slider
 - `ly.img.text.path.edit` — the Edit Path button (also requires `ly.img.vectorEdit`, so it only appears in editors with vector editing)
+
+The **Horizontal Alignment** control isn't part of this group — it follows the general `ly.img.text.alignment` feature, so disabling that hides it here and in the main text inspector alike.
 
 ## Troubleshooting
 
