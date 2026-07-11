@@ -19,7 +19,6 @@ workflows, and understand our licensing model.
 - [Node.js - New Project](./get-started/vanilla.md) - Getting started with CE.SDK Engine in Node.js using Vanilla JS
 - [Deno](./get-started/deno.md) - Getting started with CE.SDK Engine in Node.js using Deno
 - [Bun](./get-started/bun.md) - Getting started with CE.SDK Engine in Node.js using Bun
-- [Build with AI](./get-started/build-with-ai.md) - Give your AI coding assistant context about CE.SDK to generate accurate code and get instant answers.
 - [Licensing](./licensing.md) - Understand CE.SDK’s flexible licensing, trial options, and how keys work across dev, staging, and production.
 
 

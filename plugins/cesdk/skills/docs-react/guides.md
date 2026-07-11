@@ -12,13 +12,13 @@
 
 ## Related Pages
 
+- [AI Features](./user-interface/ai-integration.md) - Add AI generation features — image, video, audio, and text — into the CE.SDK editor for your users.
 - [Configuration](./configuration.md) - Learn how to configure CE.SDK to match your application's functional, visual, and performance requirements.
 - [Actions API](./actions.md) - Learn how to use the Actions API to register and customize action handlers in CE.SDK
 - [Settings](./settings.md) - Explore all configurable editor settings and learn how to read, update, and observe them via the Settings API.
 - [Serve Assets](./serve-assets.md) - Configure CE.SDK to load engine and content assets from your own servers instead of the IMG.LY CDN for production deployments.
 - [Engine Interface](./engine-interface.md) - Understand CE.SDK's architecture and learn when to use direct Engine access for automation workflows
 - [Automate Workflows](./automation.md) - Automate repetitive editing tasks using CE.SDK’s headless APIs to generate assets at scale.
-- [AI Integration](./user-interface/ai-integration.md) - Integrate external AI services into CE.SDK to enhance creative workflows and power advanced features.
 - [User Interface](./user-interface.md) - Use CE.SDK’s customizable, production-ready UI or replace it entirely with your own interface.
 - [Open the Editor](./open-the-editor.md) - Learn how to load and create scenes, set the zoom level, and configure file proxies or URI resolvers.
 - [Insert Media Into Scenes](./insert-media.md) - Understand how insertion works, how inserted media behave within scenes, and how to control them via UI or code.

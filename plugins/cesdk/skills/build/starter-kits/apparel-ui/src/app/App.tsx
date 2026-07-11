@@ -7,17 +7,7 @@ import { EngineProvider } from './contexts/EngineContext';
 import { SinglePageModeProvider } from './contexts/SinglePageModeContext';
 import { SelectionProvider } from './contexts/UseSelection';
 import createUnsplashSource from '../imgly/UnsplashSource';
-import {
-  ImageColorsAssetSource,
-  ColorPaletteAssetSource,
-  DemoAssetSources,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
+import createImageColorsSource from '../imgly/ImageColorsSource';
 import type CreativeEngine from '@cesdk/engine';
 
 interface AppProps {
@@ -61,31 +51,62 @@ const App = ({ engineConfig }: AppProps) => {
             configure={async (engine) => {
               setEngine(engine);
               engine.editor.setSetting('page/title/show', false);
-              await engine.addPlugin(new ImageColorsAssetSource());
-              await engine.addPlugin(new ColorPaletteAssetSource());
-              await engine.addPlugin(new StickerAssetSource());
-              await engine.addPlugin(new TypefaceAssetSource());
-              await engine.addPlugin(new TextAssetSource());
-              await engine.addPlugin(new TextComponentAssetSource());
-              await engine.addPlugin(
-                new VectorShapeAssetSource({
-                  include: ['ly.img.vector.shape.filled.*']
-                })
-              );
-              await engine.addPlugin(
-                new UploadAssetSources({
-                  include: [
-                    'ly.img.image.upload',
-                    'ly.img.video.upload',
-                    'ly.img.audio.upload'
-                  ]
-                })
-              );
-              await engine.addPlugin(
-                new DemoAssetSources({
-                  include: ['ly.img.templates.*']
-                })
-              );
+
+              // Register the default asset sources directly against the engine.
+              // `getBaseURL()` returns the configured assets base, already
+              // trailing-slash normalized.
+              const baseURL = engine.getBaseURL();
+              const addContentSource = (sourceId: string, matcher?: string[]) =>
+                engine.asset.addLocalAssetSourceFromJSONURI(
+                  `${baseURL}${sourceId}/content.json`,
+                  matcher ? { matcher } : undefined
+                );
+
+              // Dominant colors extracted from the scene's image blocks.
+              engine.asset.addSource(createImageColorsSource(engine));
+
+              // Content sources loaded from their bundled `content.json`.
+              await addContentSource('ly.img.color.palette');
+              await addContentSource('ly.img.sticker');
+              await addContentSource('ly.img.typeface');
+              // Text style presets live in three engine-side sources.
+              await addContentSource('ly.img.text');
+              await addContentSource('ly.img.text.styles');
+              await addContentSource('ly.img.text.curves');
+              await addContentSource('ly.img.text.components');
+              await addContentSource('ly.img.vector.shape', [
+                'ly.img.vector.shape.filled.*'
+              ]);
+              await addContentSource('ly.img.templates', [
+                'ly.img.templates.*'
+              ]);
+
+              // Local upload sources (empty until the user uploads).
+              engine.asset.addLocalSource('ly.img.image.upload', [
+                'image/jpeg',
+                'image/png',
+                'image/webp',
+                'image/svg+xml',
+                'image/bmp',
+                'image/gif',
+                'image/apng'
+              ]);
+              engine.asset.addLocalSource('ly.img.video.upload', [
+                'application/json',
+                'video/mp4',
+                'video/quicktime',
+                'video/webm',
+                'video/matroska',
+                'image/gif',
+                'image/apng'
+              ]);
+              engine.asset.addLocalSource('ly.img.audio.upload', [
+                'audio/mpeg',
+                'audio/mp3',
+                'audio/x-m4a',
+                'audio/wav'
+              ]);
+
               engine.editor.setGlobalScope('lifecycle/destroy', 'Defer');
 
               engine.asset.addSource(createUnsplashSource(engine));

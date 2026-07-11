@@ -1,4 +1,5 @@
-import { AssetDefinition, AssetResult, CreativeEngine } from '@cesdk/cesdk-js';
+import type CreativeEngine from '@cesdk/engine';
+import type { AssetDefinition, AssetResult } from '@cesdk/engine';
 
 async function loadAssetSourceFromContentJSON(
   engine: CreativeEngine,

@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Build with AI](./get-started/build-with-ai.md)
+**Navigation:** [Build with AI](./get-started/build-with-ai.md)
 
 ---
 
@@ -14,6 +14,12 @@ code and get instant answers. Choose the integration that fits your workflow.
 If you're working with an AI coding assistant like Claude Code or OpenAI Codex, install our **Agent Skills** for the best experience. Skills bundle offline documentation, guided code generation and autonomous project scaffolding directly into your agent.
 
 [Set Up Agent Skills](./get-started/agent-skills.md)
+
+### Want Everything in One Install?
+
+Install the **CE.SDK Agent Plugin** into Claude Code to get the documentation skills, guided code generation, and the autonomous project scaffolder in a single command.
+
+[Install the Agent Plugin](./get-started/cesdk-plugin-coding-agents.md)
 
 ### Using an AI-Powered IDE?
 
@@ -33,8 +39,9 @@ Download our **LLMs.txt** files to manually load CE.SDK documentation into any A
 
 ## Related Pages
 
-- [Agent Skills](./get-started/agent-skills.md) - Install CE.SDK documentation and code generation skills for AI coding assistants.
+- [Agent Plugin](./get-started/cesdk-plugin-coding-agents.md) - Install the CE.SDK plugin to give Claude Code and other coding agents documentation, skills, and code generation in one command.
 - [MCP Server](./get-started/mcp-server.md) - Connect AI assistants to CE.SDK documentation using the Model Context Protocol (MCP) server.
+- [Agent Skills](./get-started/agent-skills.md) - Install CE.SDK documentation and code generation skills for AI coding assistants.
 - [LLMs.txt](./llms-txt.md) - Our documentation is available in LLMs.txt format
 
 

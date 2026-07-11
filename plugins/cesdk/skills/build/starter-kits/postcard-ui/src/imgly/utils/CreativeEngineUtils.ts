@@ -1,4 +1,4 @@
-import { CreativeEngine } from '@cesdk/cesdk-js';
+import type CreativeEngine from '@cesdk/engine';
 
 export const zoomToSelectedText = async (
   engine: CreativeEngine,

@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Audio Generation](./user-interface/ai-integration/audio-generation.md) > [Plugins](./plugins.md) > [AI: Audio Generation](./user-interface/ai-integration/audio-generation.md)
+**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Audio Generation](./user-interface/ai-integration/audio-generation.md)
 
 ---
 
@@ -254,7 +254,7 @@ The `proxyUrl` parameter is required and should point to your proxy server that 
 
 ## Setting Up a Proxy Server
 
-A proxy server protects your API keys by forwarding requests server-side. See the [Proxy Server](./user-interface/ai-integration/proxy-server.md) guide for implementation details and examples.
+A proxy server protects your API keys by forwarding requests server-side. See the [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) guide for implementation details and examples.
 
 ## Customizing Voice Parameters
 
@@ -414,8 +414,8 @@ Common issues when configuring the Audio Generation plugin:
 
 ## Next Steps
 
-- [Proxy Server](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
-- [Custom Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
+- [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
+- [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
 - [Integrate AI Features](./user-interface/ai-integration/integrate.md) — Overview of AI integration
 - [Asset Library Basics](./import-media/asset-panel/basics.md) — Work with generated assets
 - [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset sources
