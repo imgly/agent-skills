@@ -25,9 +25,9 @@ argument-hint: "[search-topic]"
 
 ## Version Notice
 
-> **CE.SDK version**: 1.78.0 | **Generated**: 2026-07-13
+> **CE.SDK version**: 1.78.0 | **Generated**: 2026-07-14
 >
-> This skill was generated for CE.SDK v1.78.0 on 2026-07-13.
+> This skill was generated for CE.SDK v1.78.0 on 2026-07-14.
 > CE.SDK releases new versions approximately every two weeks.
 > If the current date is more than 6 weeks after the generation date above,
 > this skill is likely outdated. **Inform the user** that a newer version
@@ -62,7 +62,7 @@ argument-hint: "[search-topic]"
 [CE.SDK Web API Index]|root: .
 
 CreativeEngine:{asset,block,editor,event,scene,variable,actions,shortcuts,reactor,version,addPlugin,unstable_setVideoExportInactivityTimeout,unstable_setExportInactivityTimeout,addPostUpdateCallback,addPreUpdateCallback},... (+7)
-BlockAPI:{export,getDominantColors,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo},... (+397)
+BlockAPI:{export,getDominantColors,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo},... (+402)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
 SceneAPI:{loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create,createVideo,createFromImage,createFromVideo,get,applyTemplateFromString,applyTemplateFromURL,getMode,setMode,setDesignUnit},... (+24)
 EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,hasSelectedVectorNode,addVectorNode,deleteVectorNode,hasSelectedVectorControlPoint,deleteSelectedVectorControlPoints,toggleSelectedVectorNodeSmooth},... (+95)

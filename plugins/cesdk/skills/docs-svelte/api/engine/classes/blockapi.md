@@ -12680,6 +12680,160 @@ Create cutout operations and path-based modifications.
   ```
 </details>
 
+## Block Transitions
+
+<details>
+  <summary>
+    ### createTransition()
+
+    <br /><p>Creates a new transition block.</p>
+  </summary>
+
+  The created block is standalone until assigned to a clip with `setTransition`.
+  Once assigned, it is owned by that clip: it is destroyed together with the
+  clip, and the engine also destroys it automatically when the two clips stop
+  being timeline-adjacent on the track (e.g. after a manual gap is introduced).
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `type` | [`TransitionType`](./api/engine/type-aliases/transitiontype.md) | The type of transition to create. |
+
+  #### Returns
+
+  `number`
+
+  The handle of the new transition instance.
+
+  #### Signature
+
+  ```typescript
+  createTransition(type: TransitionType): number
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### supportsTransition()
+
+    <br /><p>Checks whether a clip can own an outgoing clip-to-clip transition.</p>
+  </summary>
+
+  Only leaf clips inside a video track qualify. Audio, group, caption, and
+  cutout blocks — as well as blocks outside a video track — report `false`.
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The clip block to check. |
+
+  #### Returns
+
+  `boolean`
+
+  Whether the block can own an outgoing transition.
+
+  #### Signature
+
+  ```typescript
+  supportsTransition(id: number): boolean
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setTransition()
+
+    <br /><p>Assigns the outgoing transition of a clip.</p>
+  </summary>
+
+  A previously assigned transition block is detached but not destroyed
+  automatically. Throws an error if the given transition block is invalid or
+  already assigned to another clip. Both the clip and its following clip on
+  the track must support transitions, see `supportsTransition`. To clear a
+  clip's transition, use `removeTransition` instead.
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The outgoing clip that owns the transition relation. |
+  | `transition` | `number` | The transition block to assign. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setTransition(id: number, transition: number): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### removeTransition()
+
+    <br /><p>Removes the outgoing transition of a clip.</p>
+  </summary>
+
+  The removed transition block is detached but not destroyed automatically.
+  Removing from a clip without an assigned transition is a no-op.
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The outgoing clip whose transition relation should be cleared. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  removeTransition(id: number): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getTransition()
+
+    <br /><p>Gets the outgoing transition assigned to a clip.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The outgoing clip whose transition relation should be queried. |
+
+  #### Returns
+
+  `number`
+
+  The assigned transition block, or an invalid block if unset.
+
+  #### Signature
+
+  ```typescript
+  getTransition(id: number): number
+  ```
+</details>
+
 ## Helper
 
 Convenient high-level functions that combine multiple operations into single, easy-to-use methods for common tasks like adding media, applying effects, and positioning blocks.

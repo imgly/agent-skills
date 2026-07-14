@@ -217,6 +217,9 @@
 | [TimelineTrackVisibility](./api/engine/type-aliases/timelinetrackvisibility.md) | - |
 | [TouchPinchAction](./api/engine/type-aliases/touchpinchaction.md) | - |
 | [TouchRotateAction](./api/engine/type-aliases/touchrotateaction.md) | - |
+| [TransitionType](./api/engine/type-aliases/transitiontype.md) | The block type IDs for the transition blocks. These are the IDs used to create new transitions using `cesdk.engine.block.createTransition(id)`. Refer to [TransitionTypeShorthand](./api/engine/type-aliases/transitiontypeshorthand.md) and [TransitionTypeLonghand](./api/engine/type-aliases/transitiontypelonghand.md) for more details. |
+| [TransitionTypeLonghand](./api/engine/type-aliases/transitiontypelonghand.md) | The longhand block type IDs for the transition blocks. These are the IDs used to create new transitions using `cesdk.engine.block.createTransition(id)`. |
+| [TransitionTypeShorthand](./api/engine/type-aliases/transitiontypeshorthand.md) | - |
 | [~~TypefaceDefinition~~](./api/engine/type-aliases/typefacedefinition.md) | Represents a typeface definition used in the editor. |
 | [\_Unsubscribe](./api/engine/type-aliases/unsubscribe.md) | An unsubscribe function that removes a listener |
 | [VerticalBlockAlignment](./api/engine/type-aliases/verticalblockalignment.md) | - |
@@ -379,6 +382,7 @@
 | [TimelineTrackVisibilityValues](./api/engine/variables/timelinetrackvisibilityvalues.md) | - |
 | [TouchPinchActionValues](./api/engine/variables/touchpinchactionvalues.md) | - |
 | [TouchRotateActionValues](./api/engine/variables/touchrotateactionvalues.md) | - |
+| [TRANSITION\_TYPES](./api/engine/variables/transition_types.md) | The shorthand block type IDs for the transition blocks. These are the IDs used to create new transitions using `cesdk.engine.block.createTransition(id)`. |
 | [VerticalContentFillAlignmentValues](./api/engine/variables/verticalcontentfillalignmentvalues.md) | - |
 | [WidthModeValues](./api/engine/variables/widthmodevalues.md) | - |
 

@@ -9,7 +9,8 @@ type ObjectTypeShorthand =
   | `fill/${FillTypeShorthand}`
   | `effect/${EffectTypeShorthand}`
   | `blur/${BlurTypeShorthand}`
-  | `animation/${AnimationTypeShorthand}`;
+  | `animation/${AnimationTypeShorthand}`
+  | `transition/${TransitionTypeShorthand}`;
 ```
 
 The shorthand block type IDs for all blocks types in the Creative Engine. Those are the types that can be

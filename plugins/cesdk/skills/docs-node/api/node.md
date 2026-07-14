@@ -188,6 +188,9 @@
 | [TimelineTrackVisibility](./api/node/type-aliases/timelinetrackvisibility.md) | - |
 | [TouchPinchAction](./api/node/type-aliases/touchpinchaction.md) | - |
 | [TouchRotateAction](./api/node/type-aliases/touchrotateaction.md) | - |
+| [TransitionType](./api/node/type-aliases/transitiontype.md) | The block type IDs for the transition blocks. These are the IDs used to create new transitions using `cesdk.engine.block.createTransition(id)`. Refer to [TransitionTypeShorthand](./api/node/type-aliases/transitiontypeshorthand.md) and [TransitionTypeLonghand](./api/node/type-aliases/transitiontypelonghand.md) for more details. |
+| [TransitionTypeLonghand](./api/node/type-aliases/transitiontypelonghand.md) | The longhand block type IDs for the transition blocks. These are the IDs used to create new transitions using `cesdk.engine.block.createTransition(id)`. |
+| [TransitionTypeShorthand](./api/node/type-aliases/transitiontypeshorthand.md) | - |
 | [~~TypefaceDefinition~~](./api/node/type-aliases/typefacedefinition.md) | Represents a typeface definition used in the editor. |
 | [VerticalBlockAlignment](./api/node/type-aliases/verticalblockalignment.md) | - |
 | [VerticalContentFillAlignment](./api/node/type-aliases/verticalcontentfillalignment.md) | - |
@@ -328,6 +331,7 @@
 | [TimelineTrackVisibilityValues](./api/node/variables/timelinetrackvisibilityvalues.md) | - |
 | [TouchPinchActionValues](./api/node/variables/touchpinchactionvalues.md) | - |
 | [TouchRotateActionValues](./api/node/variables/touchrotateactionvalues.md) | - |
+| [TRANSITION\_TYPES](./api/node/variables/transition_types.md) | The shorthand block type IDs for the transition blocks. These are the IDs used to create new transitions using `cesdk.engine.block.createTransition(id)`. |
 | [VerticalContentFillAlignmentValues](./api/node/variables/verticalcontentfillalignmentvalues.md) | - |
 | [WidthModeValues](./api/node/variables/widthmodevalues.md) | - |
 

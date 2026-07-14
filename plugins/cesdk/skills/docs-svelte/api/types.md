@@ -20,7 +20,7 @@ Types: AudioTrackInfo
 
 ## blockTypes
 
-Types: DesignBlockTypeShorthand, DesignBlockTypeLonghand, DesignBlockType, ShapeTypeShorthand, ShapeTypeLonghand, ShapeType, FillTypeShorthand, FillTypeLonghand, FillType, EffectTypeShorthand, EffectTypeLonghand, EffectType, BlurTypeShorthand, BlurTypeLonghand, BlurType, AnimationTypeShorthand, AnimationTypeLonghand, AnimationType, ObjectTypeShorthand, ObjectTypeLonghand, ObjectType
+Types: DesignBlockTypeShorthand, DesignBlockTypeLonghand, DesignBlockType, ShapeTypeShorthand, ShapeTypeLonghand, ShapeType, FillTypeShorthand, FillTypeLonghand, FillType, EffectTypeShorthand, EffectTypeLonghand, EffectType, BlurTypeShorthand, BlurTypeLonghand, BlurType, AnimationTypeShorthand, AnimationTypeLonghand, AnimationType, TransitionTypeShorthand, TransitionTypeLonghand, TransitionType, ObjectTypeShorthand, ObjectTypeLonghand, ObjectType
 
 ## canvas
 

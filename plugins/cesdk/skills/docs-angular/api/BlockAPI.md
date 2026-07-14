@@ -6224,6 +6224,83 @@ getOutAnimation(id: DesignBlockId): DesignBlockId
 
 **Returns:** The "out" animation of the block.
 
+## Block Transitions
+
+### createTransition()
+
+Creates a new transition block.
+The created block is standalone until assigned to a clip with `setTransition`.
+Once assigned, it is owned by that clip: it is destroyed together with the
+clip, and the engine also destroys it automatically when the two clips stop
+being timeline-adjacent on the track (e.g. after a manual gap is introduced).
+
+```typescript
+createTransition(type: TransitionType): DesignBlockId
+```
+
+**Parameters:**
+- `type` - The type of transition to create.
+
+**Returns:** The handle of the new transition instance.
+
+### supportsTransition()
+
+Checks whether a clip can own an outgoing clip-to-clip transition.
+Only leaf clips inside a video track qualify. Audio, group, caption, and
+cutout blocks — as well as blocks outside a video track — report `false`.
+
+```typescript
+supportsTransition(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - The clip block to check.
+
+**Returns:** Whether the block can own an outgoing transition.
+
+### setTransition()
+
+Assigns the outgoing transition of a clip.
+A previously assigned transition block is detached but not destroyed
+automatically. Throws an error if the given transition block is invalid or
+already assigned to another clip. Both the clip and its following clip on
+the track must support transitions, see `supportsTransition`. To clear a
+clip's transition, use `removeTransition` instead.
+
+```typescript
+setTransition(id: DesignBlockId, transition: DesignBlockId): void
+```
+
+**Parameters:**
+- `id` - The outgoing clip that owns the transition relation.
+- `transition` - The transition block to assign.
+
+### removeTransition()
+
+Removes the outgoing transition of a clip.
+The removed transition block is detached but not destroyed automatically.
+Removing from a clip without an assigned transition is a no-op.
+
+```typescript
+removeTransition(id: DesignBlockId): void
+```
+
+**Parameters:**
+- `id` - The outgoing clip whose transition relation should be cleared.
+
+### getTransition()
+
+Gets the outgoing transition assigned to a clip.
+
+```typescript
+getTransition(id: DesignBlockId): DesignBlockId
+```
+
+**Parameters:**
+- `id` - The outgoing clip whose transition relation should be queried.
+
+**Returns:** The assigned transition block, or an invalid block if unset.
+
 ---
 
 For complete type definitions, see the [CE.SDK TypeScript API Reference](https://img.ly/docs/cesdk/engine/api/).
