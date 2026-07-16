@@ -33,7 +33,7 @@ The key is the error `code`, camel-cased into a single token prefixed with `erro
 | `ASSET.UNSUPPORTED_MIME_TYPE_FOR_BLOCK` | `error.assetUnsupportedMimeTypeForBlock` | `error.assetUnsupportedMimeTypeForBlock.description` |
 | `BLOCK.TEXT_INVALID_FONT_SIZE` | `error.blockTextInvalidFontSize` | `error.blockTextInvalidFontSize.description` |
 
-For the complete list of error codes you can override, see the [Error Catalog](#broken-link-z3djzn).
+For the complete list of error codes you can override, see the [Error Catalog](./concepts/error-catalog.md).
 
 ## Adding Custom Error Copy
 
@@ -127,7 +127,7 @@ Branching on `error.code` rather than the message string keeps your handling sta
 
 ### My Translation Doesn't Appear
 
-Check the key derivation against the [Error Catalog](#broken-link-z3djzn)—the key is the camel-cased `code` (for example `error.sceneNotValid`), and the body uses the `.description` suffix. To confirm the exact key for a given error, log `error.code` from your error handler and camel-case it: a `code` of `SCENE.NOT_VALID` becomes the key `error.sceneNotValid`.
+Check the key derivation against the [Error Catalog](./concepts/error-catalog.md)—the key is the camel-cased `code` (for example `error.sceneNotValid`), and the body uses the `.description` suffix. To confirm the exact key for a given error, log `error.code` from your error handler and camel-case it: a `code` of `SCENE.NOT_VALID` becomes the key `error.sceneNotValid`.
 
 ### Copy Shows for the Wrong Locale
 
@@ -141,7 +141,7 @@ Use the `{{argument}}` (double-brace) syntax and the exact argument name from th
 
 - [Localization](./user-interface/localization.md) — Manage locales and translate the rest of the editor interface.
 - [Migrate to Structured Errors](./to-v1-77.md) — Branch on stable error codes instead of matching message strings.
-- [Error Catalog](#broken-link-z3djzn) — Every engine error code, its message, and its hint.
+- [Error Catalog](./concepts/error-catalog.md) — Every engine error code, its message, and its hint.
 - [Notifications and Dialogs](./user-interface/ui-extensions/notifications-and-dialogs.md) — Show your own notifications and dialogs from the editor.
 
 
