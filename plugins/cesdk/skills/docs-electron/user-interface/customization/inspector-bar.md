@@ -18,7 +18,7 @@ The inspector bar is the contextual toolbar that appears above the canvas when a
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-inspector-bar-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/guides-user-interface-customization-inspector-bar-browser/index.html)
 
 For general component manipulation (reordering, inserting, removing), see the [Component Order API Reference](./user-interface/customization/reference/component-order-api.md).
 

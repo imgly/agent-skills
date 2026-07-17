@@ -18,7 +18,7 @@ Create and configure text blocks in CE.SDK with custom fonts, rich text styling,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-add-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-add-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/guides-text-add-browser/index.html)
 
 Text blocks are fundamental design elements for displaying titles, captions, labels, and body text. CE.SDK provides a range-based styling system that allows different formatting within a single text block, enabling rich text with multiple colors, font weights, and styles.
 

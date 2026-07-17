@@ -18,7 +18,7 @@ CE.SDK can include assets from third-party libraries accessible via API. Search 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-getty-asset-source-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-getty-asset-source/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/starterkit-getty-asset-source/index.html)
 
 ***
 

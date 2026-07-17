@@ -19,7 +19,7 @@ backgrounds. Runs entirely in the browser with no server dependencies.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-photo-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-photo-editor/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/starterkit-photo-editor/index.html)
 
 ***
 

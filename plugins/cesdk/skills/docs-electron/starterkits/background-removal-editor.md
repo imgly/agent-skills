@@ -18,7 +18,7 @@ Effortlessly remove background from images directly in the browser with no addit
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-background-removal-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-background-removal-editor/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/starterkit-background-removal-editor/index.html)
 
 ***
 
@@ -275,19 +275,11 @@ Before you begin, make sure you have the following:
 
 ## Using Background Removal
 
-The editor provides two ways to remove backgrounds:
-
-### Via Canvas Menu
+To remove a background:
 
 1. Select an image in the editor
 2. The canvas menu appears with a "BG Removal" button
 3. Click the button to AI-remove the background
-
-### Via Apps Panel
-
-1. Click the "Apps" button in the dock (left sidebar)
-2. The Apps panel opens showing "Remove Background"
-3. Select an image, then click "Remove Background" in the panel
 
 > **First Use:** The first time you use background removal, it downloads the AI models (~30MB).
 > Subsequent uses are instant as the models are cached by the browser.

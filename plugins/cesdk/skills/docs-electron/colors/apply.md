@@ -18,7 +18,7 @@ Apply solid colors to design elements like shapes, text, and backgrounds using C
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-apply-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-colors-apply-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/guides-colors-apply-browser/index.html)
 
 Colors in CE.SDK are applied to block properties like fill, stroke, and shadow using `engine.block.setColor()`. The engine supports three color spaces: sRGB for screen display, CMYK for print production, and spot colors for specialized printing requirements.
 

@@ -18,7 +18,7 @@ Understand the asset system—how external media and resources like images, stic
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-assets-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-concepts-assets-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/guides-concepts-assets-browser/index.html)
 
 Images, videos, audio, fonts, stickers, and templates—every premade resource you can add to a design is what we call an *Asset*. The editor gets access to these Assets through *Asset Sources*. When you apply an Asset, CE.SDK creates or modifies a Block to display that content.
 
@@ -136,7 +136,16 @@ class Example implements EditorPlugin {
           assets: [stickerAsset],
           total: 1,
           currentPage: query.page,
-          nextPage: undefined
+          nextPage: undefined,
+          // Return distributions for the requested facet paths
+          facets: query.facets?.length
+            ? {
+                tags: [
+                  { value: 'emoji', count: 1 },
+                  { value: 'happy', count: 1 }
+                ]
+              }
+            : undefined
         };
       }
     };
@@ -168,6 +177,23 @@ class Example implements EditorPlugin {
       ]
     });
     console.log('Filtered stickers:', happyStickers.total);
+
+    // Request value distributions ("facets") alongside a page of assets—
+    // exactly what a filter dropdown needs.
+    const faceted = await engine.asset.findAssets('my-assets', {
+      page: 0,
+      perPage: 24,
+      facets: ['tags']
+    });
+    console.log('Tag distribution:', faceted.facets?.tags);
+
+    // Enumerate values without fetching assets (perPage: 0).
+    const { facets } = await engine.asset.findAssets('my-assets', {
+      page: 0,
+      perPage: 0,
+      facets: ['tags']
+    });
+    console.log('Available tags:', facets?.tags);
 
     // Apply an asset to create a block in the scene
     if (results.assets.length > 0) {
@@ -279,7 +305,16 @@ Asset sources provide assets to the editor. Each source has an `id` and implemen
           assets: [stickerAsset],
           total: 1,
           currentPage: query.page,
-          nextPage: undefined
+          nextPage: undefined,
+          // Return distributions for the requested facet paths
+          facets: query.facets?.length
+            ? {
+                tags: [
+                  { value: 'emoji', count: 1 },
+                  { value: 'happy', count: 1 }
+                ]
+              }
+            : undefined
         };
       }
     };
@@ -287,7 +322,7 @@ Asset sources provide assets to the editor. Each source has an `id` and implemen
     engine.asset.addSource(customSource);
 ```
 
-The `findAssets()` callback receives query parameters (`page`, `perPage`, `query`, `tags`, `groups`) and returns a result object with `assets`, `total`, `currentPage`, and `nextPage`.
+The `findAssets()` callback receives query parameters (`page`, `perPage`, `query`, `tags`, `groups`, `filter`, `facets`) and returns a result object with `assets`, `total`, `currentPage`, and `nextPage`, plus a `facets` object when the query requests distributions.
 
 Sources can also implement optional methods like `getGroups()`, `getSupportedMimeTypes()`, and `applyAsset()` for custom behavior.
 
@@ -340,6 +375,37 @@ The `property` field is a dot-path against the resolved asset: `label`, `tags`, 
 `filter` and the legacy `tags` / `groups` / `excludeGroups` fields can be combined — they are AND-combined before pagination. Prefer `filter` for anything beyond a plain case-sensitive include/exclude list (substring matches, `meta.<key>`, `or` / `not` combinators); reach for the legacy fields only when you want their case-sensitive exact-match semantics.
 
 Malformed filters reject the returned promise with the engine's parse-error message (for example, `"Unknown asset property '…'"` or `"Asset property filter must have exactly one of 'contains' or 'equals'."`).
+
+### Enumerating values with facets
+
+The optional `facets` parameter requests value distributions for facetable property paths—`tags`, `groups`, or `meta.<key>`—alongside the assets. Each distribution lists which values exist on the matched set (every asset matching the query, before pagination) and how many matched assets carry each value, which is exactly what a filter dropdown needs.
+
+```typescript highlight-facets
+    // Request value distributions ("facets") alongside a page of assets—
+    // exactly what a filter dropdown needs.
+    const faceted = await engine.asset.findAssets('my-assets', {
+      page: 0,
+      perPage: 24,
+      facets: ['tags']
+    });
+    console.log('Tag distribution:', faceted.facets?.tags);
+
+    // Enumerate values without fetching assets (perPage: 0).
+    const { facets } = await engine.asset.findAssets('my-assets', {
+      page: 0,
+      perPage: 0,
+      facets: ['tags']
+    });
+    console.log('Available tags:', facets?.tags);
+```
+
+The result's `facets` object is keyed by the exact requested path strings. Each distribution is ordered by `count` descending (ties by `value` ascending). A missing key means the source did not compute that facet; a key holding an empty array means the facet was computed and no values exist. With `perPage: 0`, `nextPage` is still set whenever `total > 0`—facet-only callers ignore it.
+
+Bucket values are raw: returned exactly as stored on the asset, with case-sensitive distinctness (`tags` resolve to the query's `locale` first). Since filter predicates are case-insensitive, any returned value round-trips into an `equals` predicate that matches at least the assets counted for that bucket. On a multi-valued property, each array element counts toward its own bucket, so counts can sum to more than `total`.
+
+`label` and `id` are not facetable—their value sets are unbounded—so requesting them rejects the promise with `"Asset property '…' is not facetable. Use 'tags', 'groups', or 'meta.<key>'."`.
+
+> **Facets from custom sources:** A custom source's `findAssets` callback receives the requested `facets` as path strings on its query data and may return distributions for any subset of them on its result—a missing key signals that facet was not computed, and `count` may be omitted where counting is expensive. The request maps directly onto a backend's native faceting—a faceted-search index, an aggregation query, or a SQL `GROUP BY`. A source may compute distributions over its full catalog instead of the matched set; consumers should tolerate this.
 
 ## Applying Assets
 

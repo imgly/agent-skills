@@ -14,7 +14,6 @@ Learn how to extend CE.SDK functionality with plugins to add custom features, ef
 
 ## Related Pages
 
-- [AI Feature Plugins](./plugins/ai-image-generation.md) - Install the CE.SDK AI plugins to add image, video, audio, and text generation to the editor, then configure them with the AI Features guides.
 - [How to Export Print-Ready PDFs in Node.js](./plugins/print-ready-pdf.md) - Learn to automate PDF/X conversion with CE.SDK Engine in Node.js for batch processing and server-side workflows
 - [Remove Background](./edit-image/remove-bg.md) - Remove image backgrounds to isolate subjects or prepare assets for compositing and reuse.
 - [Create Cutout](./stickers-and-shapes/create-cutout.md) - Create cutout paths for cutting printers to produce die-cut stickers, iron-on decals, and custom-shaped prints.

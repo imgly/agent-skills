@@ -18,7 +18,7 @@ Effortlessly add animations to any element in CE.SDK videos using our extensive 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-animations-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-video-animations/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/starterkit-video-animations/index.html)
 
 ***
 

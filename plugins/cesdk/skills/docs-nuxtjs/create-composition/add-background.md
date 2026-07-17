@@ -18,7 +18,7 @@ Add backgrounds to designs using fills for pages and shapes, and the background 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-add-background-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-composition-add-background-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/guides-create-composition-add-background-browser/index.html)
 
 CE.SDK provides two distinct approaches for adding backgrounds to design elements. Understanding when to use each approach ensures your designs render correctly and efficiently.
 

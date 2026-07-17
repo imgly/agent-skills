@@ -18,7 +18,7 @@ Transform your existing Photoshop templates for use in the CE.SDK with our Impor
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-psd-template-import-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-psd-template-import/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/starterkit-psd-template-import/index.html)
 
 ***
 
@@ -299,6 +299,10 @@ The PSD importer parses Adobe Photoshop files and converts them to editable CE.S
 - **Image Layers**: Imports raster layers with proper positioning and transformations
 - **Smart Objects**: Handles embedded smart objects as image blocks
 - **Blend Modes**: Preserves common blend modes and opacity settings
+
+### Limitations
+
+The PSD importer doesn't yet support every Photoshop feature, which can cause rendering differences between the original PSD and the imported scene. For the current list of limitations, see the [`@imgly/psd-importer` package documentation](https://www.npmjs.com/package/@imgly/psd-importer).
 
 ### Import Result Structure
 

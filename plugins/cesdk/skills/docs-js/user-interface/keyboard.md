@@ -4,9 +4,9 @@
 
 ---
 
-Register, remove, and gate keyboard shortcuts in CE.SDK. Override the
-built-in catalog or add your own bindings — chords, single keys, and
-sequences are all supported.
+Register, remove, and gate keyboard shortcuts in CE.SDK. Override the built-in
+catalog or add your own bindings — chords, single keys, and sequences are all
+supported.
 
 ![Keyboard shortcuts in CE.SDK — the design editor with the default catalog loaded](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -20,7 +20,7 @@ sequences are all supported.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-keyboard-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-keyboard-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/guides-user-interface-keyboard-browser/index.html)
 
 Power users live on the keyboard. CE.SDK ships with a complete shortcut catalog — undo, redo, copy, paste, nudge, group, save, zoom, text formatting, playback — so the moment your users open the editor, every common action is one chord away. Bind your own shortcuts on top, replace the defaults with your brand's conventions, or scope them to specific surfaces — without writing a keyboard event handler yourself.
 
@@ -293,78 +293,101 @@ These are the shortcuts the core configs register out of the box. `Mod` resolves
 
 ### Selection
 
-| Action                            | Shortcut                  |
-| --------------------------------- | ------------------------- |
-| Select all elements on the page   | `Mod+A`                   |
-| Enter or exit the selected group  | `Enter`                   |
-| Select parent group or deselect   | `Escape`                  |
+| Action                           | Shortcut |
+| -------------------------------- | -------- |
+| Select all elements on the page  | `Mod+A`  |
+| Enter or exit the selected group | `Enter`  |
+| Select parent group or deselect  | `Escape` |
 
 ### Editing
 
-| Action                                                | Shortcut                  |
-| ----------------------------------------------------- | ------------------------- |
-| Delete selected elements                              | `Delete` / `Backspace`    |
-| Delete selected vector node or control point          | `Delete` / `Backspace`    |
-| Duplicate selected elements                           | `Mod+D`                   |
-| Group selected elements                               | `Mod+G`                   |
-| Ungroup the selected group                            | `Mod+Shift+G`             |
-| Copy                                                  | `Mod+C`                   |
-| Cut                                                   | `Mod+X`                   |
-| Paste                                                 | `Mod+V`                   |
-| Split the selected clip at the playhead               | `S`                       |
+| Action                                       | Shortcut               |
+| -------------------------------------------- | ---------------------- |
+| Delete selected elements                     | `Delete` / `Backspace` |
+| Delete selected vector node or control point | `Delete` / `Backspace` |
+| Duplicate selected elements                  | `Mod+D`                |
+| Group selected elements                      | `Mod+G`                |
+| Ungroup the selected group                   | `Mod+Shift+G`          |
+| Copy                                         | `Mod+C`                |
+| Cut                                          | `Mod+X`                |
+| Paste                                        | `Mod+V`                |
+| Split the selected clip at the playhead      | `S`                    |
 
 ### Text Formatting
 
-| Action                                  | Shortcut                  |
-| --------------------------------------- | ------------------------- |
-| Toggle bold on selected text            | `Mod+B`                   |
-| Toggle italic on selected text          | `Mod+I`                   |
-| Toggle underline on selected text       | `Mod+U`                   |
-| Toggle strikethrough on selected text   | `Mod+Shift+X` / `Alt+Shift+5` |
+| Action                                | Shortcut                      |
+| ------------------------------------- | ----------------------------- |
+| Toggle bold on selected text          | `Mod+B`                       |
+| Toggle italic on selected text        | `Mod+I`                       |
+| Toggle underline on selected text     | `Mod+U`                       |
+| Toggle strikethrough on selected text | `Mod+Shift+X` / `Alt+Shift+5` |
 
 ### Movement
 
-| Action                                | Shortcut                  |
-| ------------------------------------- | ------------------------- |
-| Nudge selection                       | `ArrowUp` / `ArrowDown` / `ArrowLeft` / `ArrowRight` |
-| Nudge selection (extended step)       | `Shift+ArrowUp` / `Shift+ArrowDown` / `Shift+ArrowLeft` / `Shift+ArrowRight` |
+| Action                                                  | Shortcut                                                                                                                     |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Nudge selection                                         | `ArrowUp` / `ArrowDown` / `ArrowLeft` / `ArrowRight`                                                                         |
+| Nudge selection (extended step)                         | `Shift+ArrowUp` / `Shift+ArrowDown` / `Shift+ArrowLeft` / `Shift+ArrowRight`                                                 |
+| Rotate selection                                        | `Alt+ArrowLeft` / `Alt+ArrowRight`                                                                                           |
+| Rotate selection (extended step)                        | `Alt+Shift+ArrowLeft` / `Alt+Shift+ArrowRight`                                                                               |
+| Resize selection                                        | `Mod+ArrowRight` / `Mod+ArrowLeft` / `Mod+ArrowDown` / `Mod+ArrowUp`                                                         |
+| Resize selection (extended step)                        | `Mod+Shift+ArrowRight` / `Mod+Shift+ArrowLeft` / `Mod+Shift+ArrowDown` / `Mod+Shift+ArrowUp`                                 |
+| Resize selection from the opposite edge                 | `Mod+Control+ArrowLeft` / `Mod+Control+ArrowRight` / `Mod+Control+ArrowUp` / `Mod+Control+ArrowDown`                         |
+| Resize selection from the opposite edge (extended step) | `Mod+Control+Shift+ArrowLeft` / `Mod+Control+Shift+ArrowRight` / `Mod+Control+Shift+ArrowUp` / `Mod+Control+Shift+ArrowDown` |
+| Move the image inside its crop frame                    | `ArrowUp` / `ArrowDown` / `ArrowLeft` / `ArrowRight` — while cropping                                                        |
+| Move the image inside its crop frame (extended step)    | `Shift+ArrowUp` / `Shift+ArrowDown` / `Shift+ArrowLeft` / `Shift+ArrowRight` — while cropping                                |
 
 ### Page Navigation
 
-| Action                  | Shortcut                  | Notes                                  |
-| ----------------------- | ------------------------- | -------------------------------------- |
-| Scroll to next page     | `ArrowDown` / `ArrowRight` | Only when editor role is `Presenter`  |
-| Scroll to previous page | `ArrowUp` / `ArrowLeft`   | Only when editor role is `Presenter`   |
+| Action                  | Shortcut                   | Notes                                |
+| ----------------------- | -------------------------- | ------------------------------------ |
+| Scroll to next page     | `ArrowDown` / `ArrowRight` | Only when editor role is `Presenter` |
+| Scroll to previous page | `ArrowUp` / `ArrowLeft`    | Only when editor role is `Presenter` |
 
 ### Playback
 
-| Action                       | Shortcut | Notes                                |
-| ---------------------------- | -------- | ------------------------------------ |
-| Play / pause the current page | `Space` | Only when focus is in the video timeline |
+| Action                        | Shortcut | Notes                                    |
+| ----------------------------- | -------- | ---------------------------------------- |
+| Play / pause the current page | `Space`  | Only when focus is in the video timeline |
+
+### Timeline
+
+All timeline shortcuts fire only when focus is in the video timeline and act on every selected clip. Trim adjusts the selected clip directly — no separate trim mode required.
+
+| Action                                               | Shortcut                                       |
+| ---------------------------------------------------- | ---------------------------------------------- |
+| Move the selected clips in time                      | `ArrowLeft` / `ArrowRight`                     |
+| Move the selected clips in time (extended step)      | `Shift+ArrowLeft` / `Shift+ArrowRight`         |
+| Move the selected clips to the track above / below   | `ArrowUp` / `ArrowDown`                        |
+| Move the selected clips to a new track above / below | `Shift+ArrowUp` / `Shift+ArrowDown`            |
+| Move the playhead                                    | `,` / `.`                                      |
+| Move the playhead to start / end                     | `Home` / `End`                                 |
+| Adjust the trim out point                            | `Alt+ArrowLeft` / `Alt+ArrowRight`             |
+| Adjust the trim in point                             | `Alt+Shift+ArrowLeft` / `Alt+Shift+ArrowRight` |
 
 ### View
 
-| Action                          | Shortcut                  |
-| ------------------------------- | ------------------------- |
-| Zoom to fit                     | `Shift+1`                 |
-| Zoom to 100%                    | `Shift+2`                 |
-| Zoom in                         | `+` / `Shift++`           |
-| Zoom out                        | `-`                       |
-| Show or hide the user interface | `Mod+.`                   |
+| Action                          | Shortcut        |
+| ------------------------------- | --------------- |
+| Zoom to fit                     | `Shift+1`       |
+| Zoom to 100%                    | `Shift+2`       |
+| Zoom in                         | `+` / `Shift++` |
+| Zoom out                        | `-`             |
+| Show or hide the user interface | `Mod+.`         |
 
 ### History
 
-| Action                  | Shortcut                              |
-| ----------------------- | ------------------------------------- |
-| Undo last action        | `Mod+Z`                               |
-| Redo last undone action | `Mod+Shift+Z`                         |
+| Action                  | Shortcut      |
+| ----------------------- | ------------- |
+| Undo last action        | `Mod+Z`       |
+| Redo last undone action | `Mod+Shift+Z` |
 
 ### File
 
-| Action       | Shortcut                  |
-| ------------ | ------------------------- |
-| Save scene   | `Mod+S`                   |
-| Save archive | `Mod+Shift+S`             |
+| Action       | Shortcut      |
+| ------------ | ------------- |
+| Save scene   | `Mod+S`       |
+| Save archive | `Mod+Shift+S` |
 
 ## Customizing Keyboard Shortcuts
 
@@ -621,10 +644,20 @@ Each config's `setupKeyboardShortcuts(cesdk)` calls `cesdk.shortcuts.set` for ea
 - Confirm the active scope matches the shortcut's `scope` — if focus has moved off the intended surface, a scoped shortcut won't be a candidate.
 - Confirm the `when:` predicate is returning `true` for the current state.
 - If focus is in an `<input>`, `<textarea>`, `contenteditable`, or `role="textbox"` element, all shortcuts are suppressed by design. Shortcuts that must fire inside text inputs are a planned runtime feature; until then they live on the legacy widget hook.
+- Confirm the chord is not a [reserved keyword](#reserved-keywords) (`F6`, `Shift+F6`, `Alt+1`, `Alt+2`, `Alt+3`). The reserved accessibility layer handles these first, so a catalog binding on the same chord never runs.
 
 ### Browser or OS Conflicts
 
 Some combinations cannot be reliably preempted. `Cmd+W`, `Cmd+T`, `Cmd+Q` are reserved by the browser or OS. Pick a different binding.
+
+## Reserved Keywords
+
+A small set of chords is **reserved** by the editor for accessibility — `F6`, `Shift+F6`, `Alt+1`, `Alt+2`, and `Alt+3` (focus navigation between the canvas, inspector bar, and canvas menu).
+
+- Are always active and are not affected by the `ly.img.keyboard.shortcuts` feature flag.
+- Fire even while focus is in a text input, so keyboard users can always move focus back out to the canvas.
+- Cannot be listed, removed, or rebound through `cesdk.shortcuts`.
+- **Take precedence over application-level shortcuts**: if you register one of these chords with `cesdk.shortcuts.set`, the reserved binding runs and your binding never fires.
 
 
 

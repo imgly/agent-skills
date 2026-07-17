@@ -18,7 +18,7 @@ Comprehensive design editing for your Next.js app—professional tools for graph
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-design-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-advanced-design-editor/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/starterkit-advanced-design-editor/index.html)
 
 ***
 

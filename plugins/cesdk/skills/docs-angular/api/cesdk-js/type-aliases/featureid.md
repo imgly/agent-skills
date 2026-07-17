@@ -158,6 +158,7 @@ type FeatureId =
   | "ly.img.position.align"
   | "ly.img.position.distribute"
   | "ly.img.animations"
+  | "ly.img.transitions"
   | "ly.img.opacity"
   | "ly.img.blendMode"
   | "ly.img.video"

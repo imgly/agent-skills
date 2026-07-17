@@ -29,7 +29,7 @@
     "@cesdk/cesdk-js": "workspace:*",
     "@cesdk/core-configs-web": "workspace:*",
     "@cesdk/engine": "workspace:*",
-    "@imgly/background-removal": "1.7.0",
+    "@imgly/plugin-background-removal-web": "workspace:*",
     "onnxruntime-web": "1.21.0"
   },
   "devDependencies": {

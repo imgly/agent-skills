@@ -28,6 +28,7 @@ Key Concepts and principles of CE.SDK.
 - [Undo and History](./concepts/undo-and-history.md) - Manage undo and redo stacks in CE.SDK using multiple histories, callbacks, and API-based controls.
 - [Design Units](./concepts/design-units.md) - Configure design units (pixels, millimeters, inches) and DPI settings for print-ready output in CE.SDK.
 - [Headless](./concepts/headless-mode.md) - Run CE.SDK programmatically without any user interface (UI).
+- [Error Catalog](./concepts/error-catalog.md) - Reference of every structured CE.SDK engine error code, its message, hint, and related documentation page.
 
 
 ---
