@@ -7,7 +7,7 @@
  * - Import: Import SRT caption files
  * - Pre-captioned: Edit existing captions
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import { StrictMode } from 'react';

@@ -71,6 +71,12 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.text.advanced', /* Advanced text controls */
     // 'ly.img.text.background', /* Text background controls */
     // 'ly.img.text.styles', /* Styles button (style presets) in Canvas Menu */
+    // 'ly.img.text.path', /* Text on a path / circle */
+    // 'ly.img.text.path.curve', /* Curve picker */
+    // 'ly.img.text.path.position', /* Path Position control */
+    // 'ly.img.text.path.direction', /* Direction control */
+    // 'ly.img.text.path.offset', /* Offset slider */
+    // 'ly.img.text.path.edit', /* Edit Path button (requires ly.img.vectorEdit) */
     // #endregion
 
     // ============================================================================

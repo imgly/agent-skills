@@ -28,7 +28,7 @@
  * URL.revokeObjectURL(result.sceneArchiveUrl);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/features/import-psd/
+ * @see https://img.ly/docs/cesdk/js/open-the-editor/import-design/from-photoshop-cca6bb/
  */
 
 import CreativeEngine from '@cesdk/engine';

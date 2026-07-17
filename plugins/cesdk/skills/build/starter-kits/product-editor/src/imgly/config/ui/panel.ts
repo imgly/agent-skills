@@ -19,7 +19,7 @@
  * - `true` - Panel floats over canvas
  * - `false` - Panel docked to side
  *
- * @see https://img.ly/docs/cesdk/js/user-interface/customization/panel/
+ * @see https://img.ly/docs/cesdk/js/user-interface/ui-extensions/create-custom-panel-d87b83/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

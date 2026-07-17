@@ -1,6 +1,6 @@
-> This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Fills](./fills.md) > [Gradient](./filters-and-effects/gradients.md)
+**Navigation:** [Guides](./guides.md) > [Fills](./fills.md) > [Gradient](./fills/gradient.md)
 
 ---
 
@@ -1412,7 +1412,7 @@ Now that you understand gradient fills, explore other fill types and color manag
 
 ## More Resources
 
-- **[Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md)** - Browse all Next.js documentation
+- **[Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md)** - Browse all Vanilla JS/TS documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
-- **[Web Documentation](./nextjs.md)** - Interactive documentation with examples
+- **[Web Documentation](./js.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

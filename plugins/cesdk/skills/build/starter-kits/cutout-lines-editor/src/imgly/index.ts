@@ -5,7 +5,7 @@
  * Import and call `initCutoutLinesEditor()` to configure a CE.SDK instance
  * with cutout line creation functionality prominently featured.
  *
- * @see https://img.ly/docs/cesdk/js/plugins/cutout-library/
+ * @see https://img.ly/docs/cesdk/js/stickers-and-shapes/create-cutout-384be3/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

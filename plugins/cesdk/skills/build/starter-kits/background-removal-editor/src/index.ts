@@ -4,7 +4,7 @@
  * A design editor with AI-powered background removal prominently featured.
  * Click on an image to see the background removal option in the canvas menu.
  *
- * @see https://img.ly/docs/cesdk/js/plugins/background-removal/
+ * @see https://img.ly/docs/cesdk/js/edit-image/remove-bg-9dfcf7/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

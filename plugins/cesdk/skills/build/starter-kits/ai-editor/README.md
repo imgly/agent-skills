@@ -49,7 +49,7 @@ cp .env.example .env
 VITE_AI_API_KEY=sk_your_api_key_here
 ```
 
-> **Heads up.** The key is passed to the gateway via `{ dangerouslyExposeApiKey }` and ends up in the browser. That's fine for local development. For production, swap this out for a short-lived token minted by your backend — see [Gateway Token Action](https://img.ly/docs/cesdk/js/plugins/ai-generation/) for the pattern used by the `ly.img.ai.getToken` action.
+> **Heads up.** The key is passed to the gateway via `{ dangerouslyExposeApiKey }` and ends up in the browser. That's fine for local development. For production, swap this out for a short-lived token minted by your backend — see [Gateway Token Action](https://img.ly/docs/cesdk/js/user-interface/ai-integration/integrate-8e906c/) for the pattern used by the `ly.img.ai.getToken` action.
 
 When the starterkit is embedded inside the IMG.LY showcases demo, the hosting page provides a session token via `postMessage` and `VITE_AI_API_KEY` is ignored — no extra setup needed.
 
@@ -81,7 +81,7 @@ await cesdk.loadFromURL('https://example.com/scene.json');
 await cesdk.createFromImage('https://example.com/image.jpg');
 ```
 
-See [Open the Editor](https://img.ly/docs/cesdk/web/guides/open-editor/) for all loading methods.
+See [Open the Editor](https://img.ly/docs/cesdk/js/open-the-editor/load-scene-478833/) for all loading methods.
 
 ### Theming
 
@@ -89,7 +89,7 @@ See [Open the Editor](https://img.ly/docs/cesdk/web/guides/open-editor/) for all
 cesdk.ui.setTheme('dark'); // 'light' | 'dark' | 'system'
 ```
 
-See [Theming](https://img.ly/docs/cesdk/web/ui-styling/theming/) for custom color schemes and styling.
+See [Theming](https://img.ly/docs/cesdk/js/user-interface/appearance/theming-4b0938/) for custom color schemes and styling.
 
 ### Localization
 
@@ -100,7 +100,7 @@ cesdk.i18n.setTranslations({
 cesdk.i18n.setLocale('de');
 ```
 
-See [Localization](https://img.ly/docs/cesdk/web/ui-styling/localization/) for supported languages and translation keys.
+See [Localization](https://img.ly/docs/cesdk/js/user-interface/localization-508e20/) for supported languages and translation keys.
 
 ### AI Providers
 
@@ -181,7 +181,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [AI Editor Documentation](https://img.ly/docs/cesdk/starterkits/ai-editor/).
+For complete integration guides and API reference, visit the [AI Editor Documentation](https://img.ly/docs/cesdk/js/starterkits/ai-editor-4z6j9l/).
 
 ## License
 

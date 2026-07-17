@@ -3,7 +3,7 @@
  *
  * Video editor with server-side rendering export via CE.SDK Renderer API.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

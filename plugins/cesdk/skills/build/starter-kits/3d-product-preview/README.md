@@ -3,7 +3,7 @@
 Integrate CE.SDK with 3D libraries for real-time, interactive design previews on products. Enhance accuracy and boost conversions with lifelike visuals. Built with [CE.SDK](https://img.ly/creative-sdk) and [Google Model Viewer](https://modelviewer.dev/) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
 
 <p>
-  <a href="https://img.ly/docs/cesdk/js/starterkits/3d-product-configurator-od0zz3/">Documentation</a>
+  <a href="https://img.ly/docs/cesdk/js/starterkits/3d-mockup-editor-od0zz3/">Documentation</a>
 </p>
 
 ![3D Product Configurator starter kit showing a 3D product preview interface](./hero.webp)
@@ -85,7 +85,7 @@ Then add the required assets in `public/mug/`:
 cesdk.ui.setTheme('dark'); // 'light' | 'dark' | 'system'
 ```
 
-See [Theming](https://img.ly/docs/cesdk/web/ui-styling/theming/) for custom color schemes and styling.
+See [Theming](https://img.ly/docs/cesdk/js/user-interface/appearance/theming-4b0938/) for custom color schemes and styling.
 
 ### Localization
 
@@ -96,7 +96,7 @@ cesdk.i18n.setTranslations({
 cesdk.i18n.setLocale('de');
 ```
 
-See [Localization](https://img.ly/docs/cesdk/web/ui-styling/localization/) for supported languages and translation keys.
+See [Localization](https://img.ly/docs/cesdk/js/user-interface/localization-508e20/) for supported languages and translation keys.
 
 ## Architecture
 
@@ -149,7 +149,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [3D Product Configurator Documentation](https://img.ly/docs/cesdk/starterkits/3d-mockup-editor/).
+For complete integration guides and API reference, visit the [3D Product Configurator Documentation](https://img.ly/docs/cesdk/js/starterkits/3d-mockup-editor-od0zz3/).
 
 ## License
 

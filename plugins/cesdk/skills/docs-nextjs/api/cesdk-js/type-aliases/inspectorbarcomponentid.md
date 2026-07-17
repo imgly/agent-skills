@@ -23,6 +23,7 @@ type InspectorBarComponentId =
   | "ly.img.text.fontSize.inspectorBar"
   | "ly.img.text.alignHorizontal.inspectorBar"
   | "ly.img.text.advanced.inspectorBar"
+  | "ly.img.text.path.inspectorBar"
   | "ly.img.combine.inspectorBar"
   | "ly.img.separator"
   | "ly.img.fill.inspectorBar"

@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Integrate AI Into CE.SDK](./user-interface/ai-integration/integrate.md)
+**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Integrate AI Into CE.SDK](./user-interface/ai-integration/integrate.md)
 
 ---
 
@@ -20,7 +20,7 @@ Add AI-powered generation capabilities to your CE.SDK application for generating
 >
 > - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ai-integration-browser/)
 
-> **Looking for the easy path?:** The [IMG.LY AI Gateway](./user-interface/ai-integration/gateway-provider.md) is the fastest way to add AI generation to CE.SDK. We handle proxying, authentication, model routing, and billing — you only need a JWT-minting endpoint and a single gateway URL. The rest of this guide covers configuring upstream providers directly, which is useful when you need full control or already run your own proxy.
+> **Looking for the easy path?:** The [Managed Model Gateway](./user-interface/ai-integration/gateway-provider.md) is the fastest way to add AI generation to CE.SDK. We handle proxying, authentication, model routing, and billing — you only need a JWT-minting endpoint and a single gateway URL. The rest of this guide covers configuring upstream providers directly, which is useful when you need full control or already run your own proxy.
 
 This tutorial will guide you through integrating AI-powered generation capabilities into your CreativeEditor SDK application using the `@imgly/plugin-ai-apps-web` package. You'll learn how to set up various AI providers for generating images, videos, audio, and text.
 
@@ -952,13 +952,13 @@ Your proxy server should handle authentication, forward requests to the appropri
 
 ## Next Steps
 
-- [IMG.LY AI Gateway](./user-interface/ai-integration/gateway-provider.md) — The easiest integration path: managed proxy, auth, and billing
-- [Proxy Server](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication for production
+- [Managed Model Gateway](./user-interface/ai-integration/gateway-provider.md) — The easiest integration path: managed proxy, auth, and billing
+- [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication for production
 - [Text Generation](./user-interface/ai-integration/text-generation.md) — Deep dive into text generation and transformation
 - [Image Generation](./user-interface/ai-integration/image-generation.md) — Advanced image generation configuration
 - [Video Generation](./user-interface/ai-integration/video-generation.md) — Video generation with multiple providers
 - [Audio Generation](./user-interface/ai-integration/audio-generation.md) — Text-to-speech and sound effects
-- [Custom Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
+- [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
 - [Asset Library Basics](./import-media/asset-panel/basics.md) — Work with generated assets
 
 

@@ -161,7 +161,7 @@ This separation ensures the engine integration is reusable and testable independ
 ## Learn More
 
 - [CE.SDK Documentation](https://img.ly/docs/cesdk)
-- [CE.SDK Web API Reference](https://img.ly/docs/cesdk/web/api)
+- [CE.SDK Web API Reference](https://img.ly/docs/cesdk/js/api/cesdk-js/)
 - [Feature-Sliced Design](https://feature-sliced.design/)
 
 ## License

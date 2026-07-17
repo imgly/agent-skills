@@ -10,7 +10,7 @@
  * - Change page dimensions using the built-in page resize panel
  * - Choose from standard page size presets (A4, Letter, social media sizes, etc.)
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

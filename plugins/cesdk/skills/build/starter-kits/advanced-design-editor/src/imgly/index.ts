@@ -4,7 +4,7 @@
  * This module provides the main entry point for initializing the advanced editor.
  * Import and call `initAdvancedEditor()` to configure a CE.SDK instance for advanced editing.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

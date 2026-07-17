@@ -4,7 +4,7 @@
  * A design editor with version history (snapshot) functionality.
  * Allows users to save snapshots, view history, and load previous versions.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import { StrictMode } from 'react';

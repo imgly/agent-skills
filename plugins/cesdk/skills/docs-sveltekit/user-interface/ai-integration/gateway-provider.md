@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK SvelteKit documentation. For a complete overview, see the [SvelteKit Documentation Index](https://img.ly/docs/cesdk/sveltekit.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [IMG.LY AI Gateway](./user-interface/ai-integration/gateway-provider.md) > [Plugins](./plugins.md) > [AI: IMG.LY AI Gateway](./user-interface/ai-integration/gateway-provider.md)
+**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Managed Model Gateway](./user-interface/ai-integration/gateway-provider.md)
 
 ---
 
@@ -1047,7 +1047,7 @@ Common issues when configuring gateway providers:
 - [Text Generation](./user-interface/ai-integration/text-generation.md) — Direct provider configuration for text models
 - [Video Generation](./user-interface/ai-integration/video-generation.md) — Direct provider configuration for video models
 - [Audio Generation](./user-interface/ai-integration/audio-generation.md) — Direct provider configuration for audio models
-- [Custom Provider](./user-interface/ai-integration/custom-provider.md) — Build a provider from scratch using the core interface
+- [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Build a provider from scratch using the core interface
 - [Integrate AI Features](./user-interface/ai-integration/integrate.md) — Overview of AI integration in CE.SDK
 
 

@@ -5,7 +5,7 @@
  * content-aware resizing algorithm to intelligently adapt designs to
  * different aspect ratios and dimensions.
  *
- * @see https://img.ly/docs/cesdk/js/block-layout/content-aware-resize-2eb7ee/
+ * @see https://img.ly/docs/cesdk/js/automation/auto-resize-4c2d58/
  */
 
 import type { VariantBlob, ResizeOptions } from './types';

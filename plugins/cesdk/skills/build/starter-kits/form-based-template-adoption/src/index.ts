@@ -10,7 +10,7 @@
  * - Edit colors across all elements
  * - Simplified UI with hidden dock/inspector
  *
- * @see https://img.ly/docs/cesdk/js/features/
+ * @see https://img.ly/docs/cesdk/js/key-capabilities-dbb5b1/
  */
 
 import CreativeEditorSDK, { Configuration } from '@cesdk/cesdk-js';

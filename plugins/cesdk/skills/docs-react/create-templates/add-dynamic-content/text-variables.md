@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Insert Dynamic Content](./create-templates/add-dynamic-content.md) > [Text Variables](./create-templates/add-dynamic-content/text-variables.md)
+**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Dynamic Content](./create-templates/add-dynamic-content.md) > [Text Variables](./create-templates/add-dynamic-content/text-variables.md)
 
 ---
 

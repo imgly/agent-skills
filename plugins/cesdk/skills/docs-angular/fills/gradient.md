@@ -1,6 +1,6 @@
-> This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+> This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Fills](./fills.md) > [Gradient](./filters-and-effects/gradients.md)
+**Navigation:** [Guides](./guides.md) > [Fills](./fills.md) > [Gradient](./fills/gradient.md)
 
 ---
 
@@ -1412,7 +1412,7 @@ Now that you understand gradient fills, explore other fill types and color manag
 
 ## More Resources
 
-- **[React Documentation Index](https://img.ly/docs/cesdk/react.md)** - Browse all React documentation
+- **[Angular Documentation Index](https://img.ly/docs/cesdk/angular.md)** - Browse all Angular documentation
 - **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
-- **[Web Documentation](./react.md)** - Interactive documentation with examples
+- **[Web Documentation](./angular.md)** - Interactive documentation with examples
 - **[Support](mailto:support@img.ly)** - Contact IMG.LY support

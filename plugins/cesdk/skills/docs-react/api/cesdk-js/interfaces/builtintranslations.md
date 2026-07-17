@@ -679,6 +679,8 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `input.styles.text.label` | `string` |
 |  `input.text.advanced` | `string` |
 |  `input.text.advanced.description` | `string` |
+|  `input.text.path` | `string` |
+|  `input.text.path.tooltip` | `string` |
 |  `input.text.placeholder` | `string` |
 |  `input.time.end` | `string` |
 |  `input.time.start` | `string` |
@@ -1289,6 +1291,15 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `property.textCase.normal` | `string` |
 |  `property.textCase.titlecase` | `string` |
 |  `property.textCase.uppercase` | `string` |
+|  `property.textOnPath.curve.arch` | `string` |
+|  `property.textOnPath.curve.circle` | `string` |
+|  `property.textOnPath.curve.wave` | `string` |
+|  `property.textOnPath.direction` | `string` |
+|  `property.textOnPath.direction.forward` | `string` |
+|  `property.textOnPath.direction.reversed` | `string` |
+|  `property.textOnPath.none` | `string` |
+|  `property.textOnPath.offset` | `string` |
+|  `property.textOnPath.position` | `string` |
 |  `property.textWritingStyle` | `string` |
 |  `property.textWritingStyle.Block` | `string` |
 |  `property.textWritingStyle.Character` | `string` |
@@ -1509,6 +1520,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `settings.feature.text.list` | `string` |
 |  `settings.feature.text.list.ordered` | `string` |
 |  `settings.feature.text.list.unordered` | `string` |
+|  `settings.feature.text.path` | `string` |
 |  `settings.feature.text.typeface` | `string` |
 |  `settings.feature.transform` | `string` |
 |  `settings.feature.transform.flip` | `string` |

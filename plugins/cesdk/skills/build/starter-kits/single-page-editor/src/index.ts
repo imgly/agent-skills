@@ -4,7 +4,7 @@
  * A design editor configured for single-page designs like social media posts,
  * business cards, or fixed single-page graphics.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

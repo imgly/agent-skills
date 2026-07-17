@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Outlines](./outlines.md) > [Stroke (Outline)](./outlines/strokes.md)
+**Navigation:** [Guides](./guides.md) > [Outlines](./outlines.md) > [Using Strokes](./outlines/strokes.md)
 
 ---
 

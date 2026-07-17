@@ -5,7 +5,7 @@
  * with an image as the starting point. Import and call `initStartWithImageEditor()`
  * to configure a CE.SDK instance for image-first design editing.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

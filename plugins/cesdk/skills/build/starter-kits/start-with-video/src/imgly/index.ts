@@ -4,7 +4,7 @@
  * This module provides the main entry point for initializing the video editor
  * with a scene created from a video file.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

@@ -102,7 +102,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Vectorizer Plugin Documentation](https://img.ly/docs/cesdk/js/plugins/vectorizer/).
+For complete integration guides and API reference, visit the [Vectorizer Plugin Documentation](https://img.ly/docs/cesdk/js/edit-image/vectorize-2b4c7f/).
 
 ## License
 

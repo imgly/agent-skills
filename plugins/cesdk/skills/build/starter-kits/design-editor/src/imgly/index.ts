@@ -4,7 +4,7 @@
  * This module provides the main entry point for initializing the design editor.
  * Import and call `initDesignEditor()` to configure a CE.SDK instance for design editing.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

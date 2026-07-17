@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [Basics](./colors/basics.md)
+**Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [Color Basics](./colors/basics.md)
 
 ---
 

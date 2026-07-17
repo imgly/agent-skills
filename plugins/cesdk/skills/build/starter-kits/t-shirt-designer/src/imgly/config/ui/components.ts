@@ -19,7 +19,7 @@
  * - `builder.Slider(id, options)` - Create a slider
  * - `builder.TextInput(id, options)` - Create a text input
  *
- * @see https://img.ly/docs/cesdk/js/user-interface/customization/register-new-component-b04a04/
+ * @see https://img.ly/docs/cesdk/js/user-interface/ui-extensions/register-new-component-b04a04/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

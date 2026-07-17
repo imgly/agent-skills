@@ -6,7 +6,7 @@
  * - Apply layouts to existing pages while preserving content
  * - Swap between different layouts dynamically
  *
- * @see https://img.ly/docs/cesdk/js/custom-asset-sources/
+ * @see https://img.ly/docs/cesdk/js/import-media/asset-panel/customize-c9a4de/
  */
 
 import type {

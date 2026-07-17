@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Insert Dynamic Content](./create-templates/add-dynamic-content.md) > [Set Editing Constraints](./create-templates/add-dynamic-content/set-editing-constraints.md)
+**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Dynamic Content](./create-templates/add-dynamic-content.md) > [Set Editing Constraints](./create-templates/add-dynamic-content/set-editing-constraints.md)
 
 ---
 

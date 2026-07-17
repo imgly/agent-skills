@@ -28,7 +28,7 @@
  * URL.revokeObjectURL(result.sceneArchiveUrl);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/features/import-pptx/
+ * @see https://img.ly/docs/cesdk/js/starterkits/pptx-template-import-pptx01/
  */
 
 import CreativeEngine from '@cesdk/engine';

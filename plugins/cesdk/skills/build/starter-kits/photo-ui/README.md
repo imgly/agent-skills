@@ -133,7 +133,7 @@ Sample images are located in `public/images/`. You can replace them with your ow
 
 - [CE.SDK Documentation](https://img.ly/docs/cesdk/)
 - [CE.SDK Web API Reference](https://img.ly/docs/cesdk/web/engine/)
-- [More Starterkits](https://img.ly/docs/cesdk/starterkits/)
+- [More Starterkits](https://img.ly/docs/cesdk/js/starterkits-kxg120/)
 
 ## License
 

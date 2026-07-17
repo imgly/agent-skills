@@ -4,7 +4,7 @@
  * A design editor with HTML5 export capabilities including embedded/external
  * format options, GSAP animation support, and ZIP download.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

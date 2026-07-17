@@ -3,7 +3,7 @@
  *
  * Exports only the init function for the PSD template import editor.
  *
- * @see https://img.ly/docs/cesdk/js/features/
+ * @see https://img.ly/docs/cesdk/js/key-capabilities-dbb5b1/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

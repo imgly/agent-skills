@@ -1,10 +1,10 @@
 > This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Proxy Server](./user-interface/ai-integration/proxy-server.md)
+**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Customize Connection](./user-interface/ai-integration/customize-connection.md) > [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md)
 
 ---
 
-> **Prefer not to run a proxy?:** The [IMG.LY AI Gateway](./user-interface/ai-integration/gateway-provider.md) is the recommended path for most integrations. We run the proxy, authentication, model routing, and billing for you — no server required beyond a short-lived JWT-minting endpoint. Use the steps below when you need to self-host the proxy or forward requests through your own infrastructure.
+> **Prefer not to run a proxy?:** The [Managed Model Gateway](./user-interface/ai-integration/gateway-provider.md) is the recommended path for most integrations. We run the proxy, authentication, model routing, and billing for you — no server required beyond a short-lived JWT-minting endpoint. Use the steps below when you need to self-host the proxy or forward requests through your own infrastructure.
 
 For security reasons, you should never include your AI service API keys directly in client-side code. Instead, you should set up proxy services that securely forward requests to AI providers while keeping your API keys secure on the server side.
 

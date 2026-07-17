@@ -5,7 +5,7 @@
  * Import and call `initBackgroundRemovalEditor()` to configure a CE.SDK instance
  * with background removal functionality prominently featured.
  *
- * @see https://img.ly/docs/cesdk/js/plugins/background-removal/
+ * @see https://img.ly/docs/cesdk/js/edit-image/remove-bg-9dfcf7/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

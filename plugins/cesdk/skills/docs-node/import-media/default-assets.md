@@ -195,7 +195,7 @@ CE.SDK ships two categories of asset sources you self-host and register with the
 | `ly.img.audio` | Sample audio tracks |
 | `ly.img.template` | Design templates |
 | `ly.img.video.template` | Video templates |
-| `ly.img.textComponents` | Text component presets |
+| `ly.img.text.components` | Text component presets |
 
 ## Loading Assets from URL
 

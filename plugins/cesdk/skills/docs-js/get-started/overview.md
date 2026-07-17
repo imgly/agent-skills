@@ -17,7 +17,6 @@ workflows, and understand our licensing model.
 - [Javascript Creative Editor SDK](./what-is-cesdk.md) - CreativeEditor SDK offers a fully-featured JavaScript library for creating and editing rich visual designs directly within the browser.
 - [Capabilities](./capabilities.md) - Explore the full list of CE.SDK capabilities available for your platform, including design, video, image, text, and more.
 - [Quickstart](./get-started/vanilla-js/quickstart.md) - Get started with CE.SDK by choosing a starter kit
-- [Build with AI](./get-started/build-with-ai.md) - Give your AI coding assistant context about CE.SDK to generate accurate code and get instant answers.
 - [Licensing](./licensing.md) - Understand CE.SDK’s flexible licensing, trial options, and how keys work across dev, staging, and production.
 
 

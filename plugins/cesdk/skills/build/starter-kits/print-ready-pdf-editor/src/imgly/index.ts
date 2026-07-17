@@ -5,7 +5,7 @@
  * Import and call `initPrintReadyPdfEditor()` to configure a CE.SDK instance for
  * print-ready PDF export with PDF/X-4 or PDF/X-3 compliance, CMYK color profiles, and bleed margins.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

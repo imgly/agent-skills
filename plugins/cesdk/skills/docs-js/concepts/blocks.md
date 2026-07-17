@@ -486,7 +486,7 @@ Graphic blocks display content through fills. We create a fill, attach it to a b
     engine.block.setEnum(graphic, 'contentFill/mode', 'Cover');
 ```
 
-CE.SDK supports several fill types including image, video, color, and gradient fills. See the [Fills guide](./filters-and-effects/gradients.md) for details on available fill types.
+CE.SDK supports several fill types including image, video, color, and gradient fills. See the [Fills guide](./fills/gradient.md) for details on available fill types.
 
 ## Creating Text Blocks
 

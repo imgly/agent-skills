@@ -7,7 +7,7 @@
  * - Animation panel auto-open
  * - Template switching via URL parameter
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

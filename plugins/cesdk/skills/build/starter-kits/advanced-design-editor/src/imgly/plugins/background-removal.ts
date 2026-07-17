@@ -19,7 +19,7 @@
  * setupBackgroundRemovalPlugin(cesdk);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/plugins/background-removal/
+ * @see https://img.ly/docs/cesdk/js/edit-image/remove-bg-9dfcf7/
  */
 
 import type { AssetDefinition, CreativeEngine } from '@cesdk/cesdk-js';

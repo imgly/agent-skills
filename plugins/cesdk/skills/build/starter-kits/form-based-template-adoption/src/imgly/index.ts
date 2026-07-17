@@ -5,7 +5,7 @@
  * modify template content through structured forms instead of direct
  * canvas manipulation.
  *
- * @see https://img.ly/docs/cesdk/js/features/
+ * @see https://img.ly/docs/cesdk/js/key-capabilities-dbb5b1/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

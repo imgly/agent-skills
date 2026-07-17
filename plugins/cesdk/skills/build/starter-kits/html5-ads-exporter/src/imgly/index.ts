@@ -9,7 +9,7 @@
  * is primarily used for animated content (HTML5 banners, ads) that requires
  * timeline and animation support.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

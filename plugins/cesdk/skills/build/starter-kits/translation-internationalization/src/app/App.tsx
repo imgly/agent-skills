@@ -5,7 +5,7 @@
  * in the CE.SDK design editor. Users can switch between English and German
  * locales using the i18n runtime API.
  *
- * @see https://img.ly/docs/cesdk/web/ui-styling/localization/
+ * @see https://img.ly/docs/cesdk/js/user-interface/localization-508e20/
  */
 
 import { useCallback, useRef, useState } from 'react';

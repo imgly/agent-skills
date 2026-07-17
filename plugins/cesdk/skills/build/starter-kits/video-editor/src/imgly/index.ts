@@ -4,7 +4,7 @@
  * This module provides the main entry point for initializing the video editor.
  * Import and call `initVideoEditor()` to configure a CE.SDK instance for video editing.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

@@ -52,7 +52,7 @@ Modify a *Block's* appearance and behavior by attaching *Fills*, *Shapes*, and *
 - **Image Fill**: Image content
 - **Video Fill**: Video content
 
-See the [Color Fills](./fills/color.md), [Gradient Fills](./filters-and-effects/gradients.md), [Image Fills](./fills/image.md), and [Video Fills](./fills/video.md) guides.
+See the [Color Fills](./fills/color.md), [Gradient Fills](./fills/gradient.md), [Image Fills](./fills/image.md), and [Video Fills](./fills/video.md) guides.
 
 ### Shape
 

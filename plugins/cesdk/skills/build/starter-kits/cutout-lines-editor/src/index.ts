@@ -4,7 +4,7 @@
  * A design editor with cutout line creation prominently featured.
  * Click on a shape and select "Create Cutout" from the canvas menu.
  *
- * @see https://img.ly/docs/cesdk/js/plugins/cutout-library/
+ * @see https://img.ly/docs/cesdk/js/stickers-and-shapes/create-cutout-384be3/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

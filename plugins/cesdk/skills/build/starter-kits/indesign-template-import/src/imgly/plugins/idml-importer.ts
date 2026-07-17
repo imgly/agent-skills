@@ -38,7 +38,7 @@
  * URL.revokeObjectURL(result.sceneArchiveUrl);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/features/import-indesign/
+ * @see https://img.ly/docs/cesdk/js/open-the-editor/import-design/from-indesign-ba3988/
  */
 
 import CreativeEngine from '@cesdk/engine';

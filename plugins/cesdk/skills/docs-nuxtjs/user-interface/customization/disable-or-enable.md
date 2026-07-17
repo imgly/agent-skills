@@ -536,6 +536,12 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.text.list.unordered` | Controls bulleted list |
 | `ly.img.text.list.ordered` | Controls numbered list |
 | `ly.img.text.advanced` | Controls advanced text options |
+| `ly.img.text.path` | Parent key: enables all text-on-path child features |
+| `ly.img.text.path.curve` | Controls the curve picker for placing text on a path or circle |
+| `ly.img.text.path.position` | Controls the text position relative to the path |
+| `ly.img.text.path.direction` | Controls the text direction along the path |
+| `ly.img.text.path.offset` | Controls the text offset along the path |
+| `ly.img.text.path.edit` | Controls the Edit Path button that enters path editing |
 | `ly.img.text.background` | Controls text background |
 | `ly.img.text.background.picker` | Controls the color picker inside the text background color panel |
 | `ly.img.text.background.picker.opacity` | Controls the alpha/opacity slider inside the text background color panel |

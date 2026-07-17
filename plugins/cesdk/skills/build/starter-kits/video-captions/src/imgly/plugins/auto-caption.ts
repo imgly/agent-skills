@@ -4,7 +4,7 @@
  * Provides AI-powered caption generation using ElevenLabs Scribe V2
  * via the fal.ai proxy.
  *
- * @see https://img.ly/docs/cesdk/plugins/autocaption/
+ * @see https://img.ly/docs/cesdk/js/edit-video/add-captions-f67565/
  */
 
 import AutocaptionPlugin from '@imgly/plugin-autocaption-web';

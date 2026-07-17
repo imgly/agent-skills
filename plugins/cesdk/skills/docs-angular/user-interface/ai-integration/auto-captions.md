@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Auto Captions](./user-interface/ai-integration/auto-captions.md) > [Plugins](./plugins.md) > [AI: Auto Captions](./user-interface/ai-integration/auto-captions.md)
+**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Auto Captions](./user-interface/ai-integration/auto-captions.md)
 
 ---
 
@@ -243,7 +243,7 @@ Your proxy endpoint needs to:
 - Forward the request body to fal.ai
 - Handle CORS so the browser can reach the endpoint
 
-For detailed proxy implementation instructions, see [Proxy Server](./user-interface/ai-integration/proxy-server.md).
+For detailed proxy implementation instructions, see [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md).
 
 ## Implementing a Custom Transcription Provider
 
@@ -328,8 +328,8 @@ The plugin handles errors per-block, so if one block fails, others continue proc
 
 - [Add Captions](./edit-video/add-captions.md) — Manually create and edit caption blocks
 - [Update Caption Presets](./create-video/update-caption-presets.md) — Customize caption styling presets
-- [Proxy Server](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
-- [Custom Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
+- [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
+- [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
 - [Integrate AI Features](./user-interface/ai-integration/integrate.md) — Overview of AI integration
 
 

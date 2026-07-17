@@ -199,7 +199,7 @@ export default function App() {
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Automated Resizing Documentation](https://img.ly/docs/cesdk/starterkits/auto-resize/).
+For complete integration guides and API reference, visit the [Automated Resizing Documentation](https://img.ly/docs/cesdk/js/starterkits/auto-resize-t2jxae/).
 
 ## License
 

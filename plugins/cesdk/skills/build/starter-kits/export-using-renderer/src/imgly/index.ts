@@ -4,7 +4,7 @@
  * This module provides the main entry point for initializing the export using renderer starterkit.
  * Import and call `initExportUsingRenderer()` to configure a CE.SDK instance for server-side rendering export.
  *
- * @see https://img.ly/docs/cesdk/renderer/overview/
+ * @see https://img.ly/docs/cesdk/js/starterkits/export-using-renderer-exprnd/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

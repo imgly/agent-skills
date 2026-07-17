@@ -5,7 +5,7 @@
  * with Getty Images stock photos integration. Import and call `initGettyImagesEditor()`
  * to configure a CE.SDK instance with Getty Images as the primary image source.
  *
- * @see https://img.ly/docs/cesdk/js/custom-asset-sources/
+ * @see https://img.ly/docs/cesdk/js/import-media/asset-panel/customize-c9a4de/
  * @see https://developer.gettyimages.com/
  */
 

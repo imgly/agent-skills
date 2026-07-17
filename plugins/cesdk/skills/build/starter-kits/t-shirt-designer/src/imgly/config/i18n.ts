@@ -3,7 +3,7 @@
  *
  * This file configures custom translations and labels for the product editor.
  *
- * @see https://img.ly/docs/cesdk/js/localization/
+ * @see https://img.ly/docs/cesdk/js/user-interface/localization-508e20/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

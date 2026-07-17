@@ -4,7 +4,7 @@
  * A design editor with a custom dock button that opens the built-in
  * page resize panel, allowing users to change page dimensions.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

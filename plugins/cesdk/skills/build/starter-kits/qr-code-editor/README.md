@@ -108,7 +108,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [QR Code Plugin Documentation](https://img.ly/docs/cesdk/js/plugins/qr-code/).
+For complete integration guides and API reference, visit the [QR Code Plugin Documentation](https://img.ly/docs/cesdk/js/stickers-and-shapes/insert-qr-code-b6cc53/).
 
 ## License
 

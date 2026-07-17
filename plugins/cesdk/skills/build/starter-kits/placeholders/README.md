@@ -98,7 +98,7 @@ await cesdk.loadFromURL('https://example.com/scene.json');
 await cesdk.createFromImage('https://example.com/image.jpg');
 ```
 
-See [Open the Editor](https://img.ly/docs/cesdk/web/guides/open-editor/) for all loading methods.
+See [Open the Editor](https://img.ly/docs/cesdk/js/open-the-editor/load-scene-478833/) for all loading methods.
 
 ### Theming
 
@@ -106,7 +106,7 @@ See [Open the Editor](https://img.ly/docs/cesdk/web/guides/open-editor/) for all
 cesdk.ui.setTheme('dark'); // 'light' | 'dark' | 'system'
 ```
 
-See [Theming](https://img.ly/docs/cesdk/web/ui-styling/theming/) for custom color schemes and styling.
+See [Theming](https://img.ly/docs/cesdk/js/user-interface/appearance/theming-4b0938/) for custom color schemes and styling.
 
 ### Localization
 
@@ -117,7 +117,7 @@ cesdk.i18n.setTranslations({
 cesdk.i18n.setLocale('de');
 ```
 
-See [Localization](https://img.ly/docs/cesdk/web/ui-styling/localization/) for supported languages and translation keys.
+See [Localization](https://img.ly/docs/cesdk/js/user-interface/localization-508e20/) for supported languages and translation keys.
 
 ## Architecture
 
@@ -172,7 +172,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Placeholders Editor Documentation](https://img.ly/docs/cesdk/starterkits/placeholders-editor/).
+For complete integration guides and API reference, visit the [Placeholders Editor Documentation](https://img.ly/docs/cesdk/js/starterkits/placeholders-ghi789/).
 
 ## License
 

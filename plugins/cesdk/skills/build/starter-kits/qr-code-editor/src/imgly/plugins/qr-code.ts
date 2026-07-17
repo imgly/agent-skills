@@ -19,7 +19,7 @@
  * await setupQRCodePlugin(cesdk);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/plugins/qr-code/
+ * @see https://img.ly/docs/cesdk/js/stickers-and-shapes/insert-qr-code-b6cc53/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Get Started](./get-started/overview.md) > [Build with AI](./get-started/build-with-ai.md) > [Agent Skills](./get-started/agent-skills.md)
+**Navigation:** [Build with AI](./get-started/build-with-ai.md) > [Agent Skills](./get-started/agent-skills.md)
 
 ---
 
@@ -16,20 +16,20 @@ The CE.SDK Agent Skills plugin gives AI coding assistants bundled documentation,
 
 ## Available Skills
 
-| Skill | Description |
-|-------|-------------|
-| `docs-react` | Look up CE.SDK React reference guides and documentation |
-| `docs-vue` | Look up CE.SDK Vue.js reference guides and documentation |
-| `docs-svelte` | Look up CE.SDK Svelte reference guides and documentation |
-| `docs-sveltekit` | Look up CE.SDK SvelteKit reference guides and documentation |
-| `docs-angular` | Look up CE.SDK Angular reference guides and documentation |
-| `docs-nextjs` | Look up CE.SDK Next.js reference guides and documentation |
-| `docs-nuxtjs` | Look up CE.SDK Nuxt.js reference guides and documentation |
-| `docs-electron` | Look up CE.SDK Electron reference guides and documentation |
-| `docs-js` | Look up CE.SDK Vanilla JavaScript reference guides and documentation |
-| `docs-node` | Look up CE.SDK Node.js reference guides and documentation |
-| `build` | Implement features, write code, and set up CE.SDK Web projects |
-| `explain` | Explain how CE.SDK Web features work — concepts, architecture, workflows |
+| Skill            | Description                                                              |
+| ---------------- | ------------------------------------------------------------------------ |
+| `docs-react`     | Look up CE.SDK React reference guides and documentation                  |
+| `docs-vue`       | Look up CE.SDK Vue.js reference guides and documentation                 |
+| `docs-svelte`    | Look up CE.SDK Svelte reference guides and documentation                 |
+| `docs-sveltekit` | Look up CE.SDK SvelteKit reference guides and documentation              |
+| `docs-angular`   | Look up CE.SDK Angular reference guides and documentation                |
+| `docs-nextjs`    | Look up CE.SDK Next.js reference guides and documentation                |
+| `docs-nuxtjs`    | Look up CE.SDK Nuxt.js reference guides and documentation                |
+| `docs-electron`  | Look up CE.SDK Electron reference guides and documentation               |
+| `docs-js`        | Look up CE.SDK Vanilla JavaScript reference guides and documentation     |
+| `docs-node`      | Look up CE.SDK Node.js reference guides and documentation                |
+| `build`          | Implement features, write code, and set up CE.SDK Web projects           |
+| `explain`        | Explain how CE.SDK Web features work — concepts, architecture, workflows |
 
 The plugin also includes a **builder** agent that autonomously scaffolds complete CE.SDK web applications — detecting your framework, applying starter kit templates, and implementing features end-to-end.
 
@@ -75,6 +75,65 @@ cp -r agent-skills/plugins/cesdk/skills/docs-react .claude/skills/cesdk-docs-rea
 
 # Or copy the builder agent
 cp agent-skills/plugins/cesdk/agents/builder.md .claude/agents/cesdk-builder.md
+```
+
+## Prerelease and Nightly Versions
+
+By default every install method above tracks the **latest stable** CE.SDK release. If you build against a prerelease or nightly engine build (for example `@cesdk/node-native` on the `next` or `dev` npm dist-tag), you can install the matching skills from a dedicated release channel. The channels mirror the npm dist-tag names:
+
+| Channel    | Branch            | Matches engine dist-tag | Contents                                              |
+| ---------- | ----------------- | ----------------------- | ----------------------------------------------------- |
+| Stable     | `main` / `latest` | `latest`                | Latest stable release (default)                       |
+| Prerelease | `next`            | `next`                  | Latest release candidate (e.g. `1.77.0-rc.4`)         |
+| Nightly    | `dev`             | `dev`                   | Latest nightly build (e.g. `1.78.0-nightly.20260630`) |
+
+Every published version is also available under an exact `v<version>` git tag for pinning, so you can either track a moving channel (latest of that kind) or pin to one specific build. All three install methods accept a channel branch or a version tag.
+
+> **Note:** The `v<version>` tag for a given nightly only exists if that nightly actually published skills — when a night's generated content is identical to the previous publish, no new tag is created for that date.
+
+### Claude Code Plugin
+
+Pin the marketplace to a channel branch or a version tag with the `@<ref>` suffix:
+
+```bash
+# Prerelease (release candidate) channel — latest rc
+claude plugin marketplace add imgly/agent-skills@next
+claude plugin install cesdk@imgly
+
+# Nightly channel — latest nightly
+claude plugin marketplace add imgly/agent-skills@dev
+claude plugin install cesdk@imgly
+
+# A specific published version
+claude plugin marketplace add imgly/agent-skills@v1.78.0-nightly.20260630
+claude plugin install cesdk@imgly
+```
+
+### Vercel Skills CLI
+
+Specify a channel branch or version tag with the `#<ref>` fragment (or an equivalent `/tree/<ref>` URL):
+
+```bash
+# Nightly channel — latest nightly
+npx skills add imgly/agent-skills#dev -a claude-code
+
+# A specific published version
+npx skills add imgly/agent-skills#v1.78.0-nightly.20260630 -a claude-code
+
+# A single skill from a pinned version (`@` selects the skill)
+npx skills add imgly/agent-skills#v1.78.0-nightly.20260630@docs-node -a claude-code
+```
+
+### Manual Copy
+
+Clone a specific channel branch or an exact version tag:
+
+```bash
+# Nightly channel — latest nightly
+git clone -b dev https://github.com/imgly/agent-skills.git
+
+# A specific published version
+git clone -b v1.78.0-nightly.20260630 https://github.com/imgly/agent-skills.git
 ```
 
 ## Usage

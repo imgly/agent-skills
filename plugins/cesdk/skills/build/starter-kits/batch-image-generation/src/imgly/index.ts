@@ -4,7 +4,7 @@
  * This module provides the main entry points for initializing CE.SDK editors
  * for template editing (Creator role) and instance editing (Adopter role).
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

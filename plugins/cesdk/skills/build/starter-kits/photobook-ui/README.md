@@ -169,7 +169,7 @@ The starterkit includes:
 
 - [CE.SDK Documentation](https://img.ly/docs/cesdk)
 - [CE.SDK Web API Reference](https://img.ly/docs/cesdk/web/engine/api)
-- [More Starterkits](https://img.ly/docs/cesdk/web/starterkits)
+- [More Starterkits](https://img.ly/docs/cesdk/js/starterkits-kxg120/)
 
 ## License
 

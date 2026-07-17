@@ -36,7 +36,7 @@
  *   - Returns: Promise<string> - Blob URL that can be used with engine
  *
  * @see https://img.ly/docs/cesdk/js/actions-6ch24x
- * @see https://img.ly/docs/cesdk/js/export/
+ * @see https://img.ly/docs/cesdk/js/export-save-publish/export/overview-9ed3a8/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

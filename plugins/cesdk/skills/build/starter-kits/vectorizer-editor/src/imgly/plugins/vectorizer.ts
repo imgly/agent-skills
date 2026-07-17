@@ -19,7 +19,7 @@
  * await setupVectorizerPlugin(cesdk);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/plugins/vectorizer/
+ * @see https://img.ly/docs/cesdk/js/edit-image/vectorize-2b4c7f/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';

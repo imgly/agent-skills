@@ -4,7 +4,7 @@
  * A design editor with QR code generation prominently featured.
  * Use the QR Code button in the dock or the canvas menu to generate QR codes.
  *
- * @see https://img.ly/docs/cesdk/js/plugins/qr-code/
+ * @see https://img.ly/docs/cesdk/js/stickers-and-shapes/insert-qr-code-b6cc53/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';

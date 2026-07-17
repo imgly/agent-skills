@@ -4,7 +4,7 @@
  * A design editor with pre-designed layout templates for creating graphics,
  * collages, and multi-page documents with consistent layouts.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
