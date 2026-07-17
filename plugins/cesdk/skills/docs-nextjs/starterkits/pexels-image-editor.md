@@ -18,7 +18,7 @@ CE.SDK can include assets from third-party libraries accessible via API. Search 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-pexels-asset-source-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-pexels-asset-source/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/starterkit-pexels-asset-source/index.html)
 
 ***
 

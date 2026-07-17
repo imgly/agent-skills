@@ -19,7 +19,7 @@ and programmatic split API to create independent segments.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-split-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-split-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/guides-create-video-split-browser/index.html)
 
 Clip splitting divides one block into two at a specified time. The original block ends at the split point; a new block starts there. Both blocks reference the same source media with independent timing. This differs from trimming, which adjusts a single block's playback range without creating new blocks.
 

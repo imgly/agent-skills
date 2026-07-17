@@ -16,7 +16,7 @@ Built to facilitate optimal post- and greeting-card design, from changing accent
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-postcard-ui-react-web)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-postcard-ui/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/starterkit-postcard-ui/index.html)
 
 ***
 

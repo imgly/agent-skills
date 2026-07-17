@@ -20,7 +20,7 @@ compositing pipelines.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-export-with-color-mask-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/guides-export-save-publish-export-with-color-mask-browser/index.html)
 
 When exporting, CE.SDK can remove specific RGB colors by replacing matching pixels with transparency. The export generates two files: the masked image with transparent areas and an alpha mask showing removed pixels.
 

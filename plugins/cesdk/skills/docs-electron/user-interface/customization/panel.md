@@ -18,7 +18,7 @@ This guide shows you how to control CE.SDK's UI panels programmatically, allowin
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-panel-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/guides-user-interface-customization-panel-browser/index.html)
 
 ```typescript file=@cesdk_web_examples/guides-user-interface-customization-panel-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';

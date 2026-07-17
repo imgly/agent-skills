@@ -18,7 +18,7 @@ Start editing with predefined crop presets to simplify content creation and main
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-force-crop-editor-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-force-crop-editor/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/starterkit-force-crop-editor/index.html)
 
 ***
 

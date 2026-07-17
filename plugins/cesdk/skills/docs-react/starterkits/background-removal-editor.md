@@ -18,7 +18,7 @@ Effortlessly remove background from images directly in the browser with no addit
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-background-removal-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-background-removal-editor/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/starterkit-background-removal-editor/index.html)
 
 ***
 

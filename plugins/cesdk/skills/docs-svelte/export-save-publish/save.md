@@ -18,7 +18,7 @@ Save and serialize designs in CE.SDK for later retrieval, sharing, or storage us
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-save-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/guides-export-save-publish-save-browser/index.html)
 
 CE.SDK provides two formats for persisting designs. Choose the format based on your storage and portability requirements.
 

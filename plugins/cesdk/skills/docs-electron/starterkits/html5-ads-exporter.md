@@ -18,7 +18,7 @@ Export static and animated designs as HTML5 ad banners in a customizable, ad-net
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-html5-ads-exporter-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-html5-ads-exporter/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/starterkit-html5-ads-exporter/index.html)
 
 ***
 

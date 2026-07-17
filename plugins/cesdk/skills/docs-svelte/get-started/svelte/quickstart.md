@@ -108,9 +108,9 @@ Leverage the versatile asset API to add custom asset sources or create new asset
 <SolutionGrid>
   <SolutionCard title="Unsplash Editor" description="CE.SDK can include assets from third-party libraries accessible via API. Search and browse images from Unsplash in the editor." contentId="u5sp1h" liveExampleUrl="/examples/starterkit-unsplash-asset-source/" heroImage={unsplashHero} />
 
-  <SolutionCard title="Pexels Image Editor" description="CE.SDK can include assets from third-party libraries accessible via API. Search and browse images from Pexels in the editor." contentId="pxlsie" liveExampleUrl="/examples/starterkit-pexels-image-asset-source/" heroImage={pexelsHero} />
+  <SolutionCard title="Pexels Image Editor" description="CE.SDK can include assets from third-party libraries accessible via API. Search and browse images from Pexels in the editor." contentId="pxlsie" liveExampleUrl="/examples/starterkit-pexels-asset-source/" heroImage={pexelsHero} />
 
-  <SolutionCard title="Getty Images Editor" description="CE.SDK can include assets from third-party libraries accessible via API. Search and browse images from Getty Images in the editor." contentId="gtyie1" liveExampleUrl="/examples/starterkit-getty-images-asset-source/" heroImage={gettyHero} />
+  <SolutionCard title="Getty Images Editor" description="CE.SDK can include assets from third-party libraries accessible via API. Search and browse images from Getty Images in the editor." contentId="gtyie1" liveExampleUrl="/examples/starterkit-getty-asset-source/" heroImage={gettyHero} />
 
   <SolutionCard title="Layouts Editor" description="Allow users to select different layouts without changing page content." contentId="layot1" liveExampleUrl="/examples/starterkit-layouts-asset-source/" heroImage={layoutsHero} />
 

@@ -20,7 +20,7 @@ dependencies.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-video-editor/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/starterkit-video-editor/index.html)
 
 ***
 
