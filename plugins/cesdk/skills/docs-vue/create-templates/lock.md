@@ -18,7 +18,7 @@ Set up a two-surface integration where template creators have full editing acces
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-lock-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/guides-create-templates-lock-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260718/examples/guides-create-templates-lock-browser/index.html)
 
 Many integrations need two different editing experiences: one for designers who build templates, and one for end users who customize them. The Creator and Adopter roles make this possible—same CE.SDK, different permissions based on who's using it. For detailed scope configuration patterns, see [Lock Content](./rules/lock-content.md).
 

@@ -18,7 +18,7 @@ Export your video compositions as MP4 files with H.264 encoding, progress tracki
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-mp4-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-nightly.20260717/examples/guides-export-save-publish-export-to-mp4-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260718/examples/guides-export-save-publish-export-to-mp4-browser/index.html)
 
 MP4 is the most widely supported video format, using H.264 encoding for efficient compression. CE.SDK handles frame rendering, encoding, and audio muxing entirely client-side, giving you control over quality and file size.
 
