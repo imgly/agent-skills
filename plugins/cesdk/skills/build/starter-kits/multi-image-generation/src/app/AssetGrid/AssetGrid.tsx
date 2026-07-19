@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 
 import type { Template, GeneratedAsset } from '../types';
-import { resolveAssetPath } from '../resolveAssetPath';
 
 import styles from './AssetGrid.module.css';
 
@@ -47,7 +46,7 @@ export default function AssetGrid({
               style={{ width: template.width }}
             >
               <img
-                src={asset.src || resolveAssetPath(template.previewImagePath)}
+                src={asset.src || template.previewImagePath}
                 width={template.width}
                 height={template.height}
                 alt={`${template.label} template`}

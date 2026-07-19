@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { useEngine } from '../../contexts/EngineContext';
 import { usePagePreview } from '../../contexts/PagePreviewContext';
 import { useSinglePageMode } from '../../contexts/SinglePageModeContext';
-import { caseAssetPath } from '../../util';
+import { DEMO_ASSETS_BASE_URL } from '../../contexts/EditorContext';
 import classes from './BookPreviewBar.module.css';
 
 function BookPreviewBar() {
@@ -27,9 +27,9 @@ function BookPreviewBar() {
     const pagesParent = engine.block.getParent(
       engine.block.findByType('page')[0]
     );
-    const sceneString = await fetch(caseAssetPath('/template-0.scene')).then(
-      (response) => response.text()
-    );
+    const sceneString = await fetch(
+      `${DEMO_ASSETS_BASE_URL}/template-0.scene`
+    ).then((response) => response.text());
     const blocks = await engine.block.loadFromString(sceneString);
     const page = blocks[0];
     engine.block.setVisible(page, false);

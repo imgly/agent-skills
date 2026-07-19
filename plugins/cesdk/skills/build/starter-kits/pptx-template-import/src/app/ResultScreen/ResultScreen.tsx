@@ -4,8 +4,8 @@
 import { useState } from 'react';
 import { CreativeEditor } from '../CreativeEditor/CreativeEditor';
 import { useFileProcessing } from '../FileProcessingContext/FileProcessingContext';
+import { DEMO_ASSETS_BASE_URL } from '../FileSelection/FileSelection';
 import { InfoButton } from '../InfoButton/InfoButton';
-import { resolveAssetPath } from '../resolveAssetPath';
 import classes from './ResultScreen.module.css';
 
 export function ResultScreen() {
@@ -36,7 +36,7 @@ export function ResultScreen() {
           <div className={classes.resultHeader}>
             <button className="btn btn-plain" onClick={() => resetState()}>
               <img
-                src={resolveAssetPath('/icons/chevron-left.svg')}
+                src={`${DEMO_ASSETS_BASE_URL}/icons/chevron-left.svg`}
                 alt="Back"
               />
               <span>New File</span>
@@ -67,7 +67,7 @@ export function ResultScreen() {
               ) : (
                 <div className={classes.noPreview}>
                   <img
-                    src={resolveAssetPath('/icons/pptx-file.svg')}
+                    src={`${DEMO_ASSETS_BASE_URL}/icons/pptx-file.svg`}
                     alt="PowerPoint"
                   />
                   <p>
@@ -99,7 +99,10 @@ export function ResultScreen() {
                 className="btn btn-primary btn-small"
                 onClick={() => setEditorOpen(true)}
               >
-                <img src={resolveAssetPath('/icons/edit.svg')} alt="Edit" />
+                <img
+                  src={`${DEMO_ASSETS_BASE_URL}/icons/edit.svg`}
+                  alt="Edit"
+                />
                 <span>Edit</span>
               </button>
               <button
@@ -107,7 +110,7 @@ export function ResultScreen() {
                 onClick={handleDownloadArchive}
               >
                 <img
-                  src={resolveAssetPath('/icons/download.svg')}
+                  src={`${DEMO_ASSETS_BASE_URL}/icons/download.svg`}
                   alt="Download"
                 />
                 <span>Download CE.SDK Archive</span>

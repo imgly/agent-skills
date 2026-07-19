@@ -18,7 +18,7 @@ Allow users to select different layouts without changing page content.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-layouts-asset-source-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260718/examples/starterkit-layouts-asset-source/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260719/examples/starterkit-layouts-asset-source/index.html)
 
 ***
 
@@ -70,11 +70,10 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     │   │       ├── navigationBar.ts          # Navigation bar layout
     │   │       └── panel.ts                  # Panel configuration
     │   ├── index.ts                  # Editor initialization function
-    │   ├── plugins/
-    │   │   └── layouts/
-    │   │       ├── CustomLayouts.json
-    │   │       └── layout.ts
-    │   └── resolveAssetPath.ts
+    │   └── plugins/
+    │       └── layouts/
+    │           ├── CustomLayouts.json
+    │           └── layout.ts
     └── index.ts
     ```
 
@@ -188,11 +187,10 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     │       ├── navigationBar.ts          # Navigation bar layout
     │       └── panel.ts                  # Panel configuration
     ├── index.ts                  # Editor initialization function
-    ├── plugins/
-    │   └── layouts/
-    │       ├── CustomLayouts.json
-    │       └── layout.ts
-    └── resolveAssetPath.ts
+    └── plugins/
+        └── layouts/
+            ├── CustomLayouts.json
+            └── layout.ts
     ```
 
     ## Step 2: Install Dependencies

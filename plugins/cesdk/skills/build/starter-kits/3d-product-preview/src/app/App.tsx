@@ -8,7 +8,6 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import type { Configuration } from '@cesdk/cesdk-js';
 
 import { init3dProductPreviewEditor, disposeMockupRenderer } from '../imgly';
-import { resolveAssetPath } from './resolveAssetPath';
 import { useMockupRenderer } from './hooks/useMockupRenderer';
 import { Topbar } from './Topbar/Topbar';
 import { Mockup3DPreview } from './Mockup3DPreview/Mockup3DPreview';
@@ -166,7 +165,7 @@ export default function App({ config }: AppProps) {
       >
         <Mockup3DPreview
           mockupImageUrl={mockupImageUrl}
-          modelUrl={resolveAssetPath(getModelUrl(currentProductKey))}
+          modelUrl={getModelUrl(currentProductKey)}
           cameraOrbit={product.cameraOrbit}
           baseColorTextureIndex={product.baseColorTextureIndex}
           isLoading={isLoading}

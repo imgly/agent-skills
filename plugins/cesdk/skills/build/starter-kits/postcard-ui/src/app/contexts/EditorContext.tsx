@@ -30,15 +30,16 @@ interface EditorContextType {
 
 const EditorContext = createContext<EditorContextType | undefined>(undefined);
 
-// Asset path helper for this starterkit - returns absolute URL for engine
-// Uses import.meta.env.BASE_URL which is set by Vite during build
-export const caseAssetPath = (path: string): string => {
-  if (path.startsWith('http://') || path.startsWith('https://')) {
-    return path;
-  }
-  return new URL(import.meta.env.BASE_URL + path.slice(1), window.location.href)
-    .href;
-};
+/**
+ * Demo assets for this example (images, scenes, …) are loaded from
+ * the IMG.LY CDN by default. To host them yourself, copy this kit's asset
+ * folder to your own CDN or server and change this constant — or set it to
+ * `''` and place the files in this app's `public/` directory. No trailing
+ * slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/0.1.0/starterkit-postcard-ui';
 
 export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const { engine, isLoaded: engineIsLoaded } = useEngine();
@@ -50,7 +51,9 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const postcardTemplate = useMemo(
     () =>
       postcardTemplateId
-        ? POSTCARD_TEMPLATES[postcardTemplateId as keyof typeof POSTCARD_TEMPLATES]
+        ? POSTCARD_TEMPLATES[
+            postcardTemplateId as keyof typeof POSTCARD_TEMPLATES
+          ]
         : undefined,
     [postcardTemplateId]
   );
@@ -72,7 +75,9 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       if (engineIsLoaded && postcardTemplate) {
         setEnabled(false);
         setSceneIsLoaded(false);
-        await engine.scene.loadFromURL(caseAssetPath(postcardTemplate.scene));
+        await engine.scene.loadFromURL(
+          `${DEMO_ASSETS_BASE_URL}${postcardTemplate.scene}`
+        );
         const pages = engine.scene.getPages();
         setCurrentPageBlockId(pages[0]);
         setEnabled(true);

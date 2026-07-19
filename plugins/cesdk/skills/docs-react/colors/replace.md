@@ -18,7 +18,7 @@ Selectively replace specific colors in images using CE.SDK's Recolor and Green S
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-replace-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260718/examples/guides-colors-replace-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260719/examples/guides-colors-replace-browser/index.html)
 
 CE.SDK provides two specialized effects for color replacement: the **Recolor** effect swaps pixels matching a source color with a target color, while the **Green Screen** effect removes pixels matching a specified color to create transparency. Both effects use configurable tolerance parameters to control which pixels are affected, enabling use cases from product color variations to background removal.
 

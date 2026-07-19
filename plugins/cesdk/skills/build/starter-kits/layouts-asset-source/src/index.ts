@@ -9,8 +9,7 @@
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
-import { initLayoutsAssetSource } from './imgly';
-import { resolveAssetPath } from './imgly/resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL, initLayoutsAssetSource } from './imgly';
 
 // ============================================================================
 // Configuration
@@ -46,7 +45,9 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     // Load the custom layouts scene with pre-designed content
-    await cesdk.loadFromURL(resolveAssetPath('/assets/custom-layouts.scene'));
+    await cesdk.loadFromURL(
+      `${DEMO_ASSETS_BASE_URL}/assets/custom-layouts.scene`
+    );
     // highlight-scene-loading
   })
   .catch((error) => {

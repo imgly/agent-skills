@@ -18,7 +18,7 @@ Effortlessly add animations to any element in CE.SDK videos using our extensive 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-animations-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260718/examples/starterkit-video-animations/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260719/examples/starterkit-video-animations/index.html)
 
 ***
 
@@ -91,8 +91,7 @@ Integrate the Video Animations into your React application using the official Re
     │       ├── inspectorBar.ts           # Inspector bar layout
     │       ├── navigationBar.ts          # Navigation bar layout
     │       └── panel.ts                  # Panel configuration
-    ├── index.ts                  # Editor initialization function
-    └── resolveAssetPath.ts
+    └── index.ts                  # Editor initialization function
     ```
 
     ## Step 3: Install Dependencies
@@ -270,8 +269,7 @@ imgly/
 │       ├── inspectorBar.ts           # Inspector bar layout
 │       ├── navigationBar.ts          # Navigation bar layout
 │       └── panel.ts                  # Panel configuration
-├── index.ts                  # Editor initialization function
-└── resolveAssetPath.ts
+└── index.ts                  # Editor initialization function
 ```
 
 ## Set Up a Scene

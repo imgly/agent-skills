@@ -5,7 +5,7 @@
  */
 
 import classNames from 'classnames';
-import { ProductConfig } from '../product-catalog';
+import { ASSETS_BASE, ProductConfig } from '../product-catalog';
 import styles from './ProductGrid.module.css';
 
 interface ProductGridProps {
@@ -34,7 +34,7 @@ export function ProductGrid({
           >
             <img
               className={styles.thumbnail}
-              src={`${import.meta.env.BASE_URL}assets/products/${product.id}/thumbnail.png`}
+              src={`${ASSETS_BASE}/${product.id}/thumbnail.png`}
               alt={product.label}
               draggable={false}
             />

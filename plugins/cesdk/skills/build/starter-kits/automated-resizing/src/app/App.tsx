@@ -3,13 +3,7 @@ import type { Configuration } from '@cesdk/cesdk-js';
 
 import type { Template, VariantImage } from '../imgly';
 
-import {
-  useEngine,
-  useTemplates,
-  useEditorModal,
-  useVariants,
-  resolveSceneUrl
-} from './hooks';
+import { useEngine, useTemplates, useEditorModal, useVariants } from './hooks';
 import { TemplateSection } from './TemplateSection/TemplateSection';
 import { VariantsSection } from './VariantsSection/VariantsSection';
 import { EditorModal } from './EditorModal/EditorModal';
@@ -49,7 +43,7 @@ export default function App({ config }: AppProps) {
       try {
         let scene = template.sceneString;
         if (!scene) {
-          await engine.scene.loadFromURL(resolveSceneUrl(template.sceneUrl));
+          await engine.scene.loadFromURL(template.sceneUrl);
           scene = await engine.scene.saveToString();
         }
         if (scene) {

@@ -1,6 +1,5 @@
-import { useEditor } from '../contexts/EditorContext';
+import { DEMO_ASSETS_BASE_URL, useEditor } from '../contexts/EditorContext';
 import { POSTCARD_TEMPLATES } from '../../imgly/postcard-catalog';
-import { caseAssetPath } from '../contexts/EditorContext';
 import classes from './ChooseTemplateStep.module.css';
 
 const ChooseTemplateStep = () => {
@@ -21,7 +20,7 @@ const ChooseTemplateStep = () => {
           >
             <img
               alt={`Choose ${template.name} Template`}
-              src={caseAssetPath(template.preview)}
+              src={`${DEMO_ASSETS_BASE_URL}${template.preview}`}
             />
           </button>
         ))}

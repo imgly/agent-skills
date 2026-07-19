@@ -24,7 +24,7 @@
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
-import { resolveAssetPath } from '../../resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from '../../index';
 
 /**
  * Configure the dock panel layout.
@@ -67,7 +67,7 @@ export function setupDock(cesdk: CreativeEditorSDK): void {
       id: 'ly.img.assetLibrary.dock',
       key: 'examples',
       label: 'libraries.ly.img.video.scene.label',
-      icon: () => resolveAssetPath('/assets/static-video-scenes-icon.svg'),
+      icon: () => `${DEMO_ASSETS_BASE_URL}/assets/static-video-scenes-icon.svg`,
       entries: ['ly.img.video.scene']
     },
     {

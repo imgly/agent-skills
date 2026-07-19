@@ -112,8 +112,7 @@ text2image.providers.push({
   name: 'My Custom Model',
   label: 'Custom',
   selected: true,
-  provider: () =>
-    ImageGatewayProvider('fal-ai/my-custom-model', gatewayConfig)
+  provider: () => ImageGatewayProvider('fal-ai/my-custom-model', gatewayConfig)
 });
 ```
 
@@ -171,17 +170,46 @@ src/
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Editor doesn't load | Verify assets are accessible at `baseURL` |
-| Assets don't appear | Check `public/assets/` directory exists |
-| Watermark appears | Add your license key |
+| Issue                                        | Solution                                                                                          |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Editor doesn't load                          | Verify assets are accessible at `baseURL`                                                         |
+| Assets don't appear                          | Check `public/assets/` directory exists                                                           |
+| Watermark appears                            | Add your license key                                                                              |
 | "AI features are disabled" dialog on startup | Set `VITE_AI_API_KEY` in `.env` using a key from the [IMG.LY dashboard](https://img.ly/dashboard) |
-| AI requests fail with an auth error | The key is missing, expired, or lacks access to the requested model |
+| AI requests fail with an auth error          | The key is missing, expired, or lacks access to the requested model                               |
 
 ## Documentation
 
 For complete integration guides and API reference, visit the [AI Editor Documentation](https://img.ly/docs/cesdk/js/starterkits/ai-editor-4z6j9l/).
+
+## Demo Assets
+
+The demo assets for this starter kit load from the IMG.LY CDN by default —
+nothing to configure. If you want to own them — edit them, meet compliance
+requirements, or remove the CDN dependency for production — eject them
+(the archive contains only this kit's files):
+
+```bash
+# Download this starter kit's demo assets
+curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/0.1.0/starterkit-ai-editor/demo-assets.zip
+unzip demo-assets.zip -d demo-assets
+rm demo-assets.zip
+```
+
+Upload the extracted files to your own server or CDN, then point the app
+at them via `.env`:
+
+```bash
+VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
+```
+
+The default URL is the `DEMO_ASSETS_BASE_URL` constant in `src/app/constants.ts` if you
+prefer changing it in code.
+
+The demo assets are intended for development and prototyping — replace
+them with your own content or licensed stock assets before shipping to
+production (see `DEMO-ASSETS-NOTICE.txt` in the download). This applies in
+particular to media such as music tracks and stock imagery.
 
 ## License
 

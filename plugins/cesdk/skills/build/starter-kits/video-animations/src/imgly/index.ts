@@ -34,10 +34,20 @@ import type { AssetDefinition, AssetResult } from '@cesdk/cesdk-js';
 
 // Configuration and plugins
 import { VideoEditorConfig } from './config/plugin';
-import { resolveAssetPath } from './resolveAssetPath';
 
 // Re-export for external use
 export { VideoEditorConfig } from './config/plugin';
+
+/**
+ * Demo assets for this example (scenes, audio, icons, …) are loaded from the
+ * IMG.LY CDN by default. To host them yourself, copy this kit's asset
+ * folder to your own CDN or server and change this constant — or set it to
+ * `''` and place the files in this app's `public/` directory. No trailing
+ * slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/0.1.0/starterkit-video-animations';
 
 // ============================================================================
 // Types
@@ -54,7 +64,7 @@ interface ContentJSON {
 // ============================================================================
 
 // Remote CDN base URL for initial scene loading
-const SCENES_CDN_URL = resolveAssetPath('/assets/templates');
+const SCENES_CDN_URL = `${DEMO_ASSETS_BASE_URL}/assets/templates`;
 
 // highlight-video-scene-assets
 const VIDEO_SCENES_ASSETS: ContentJSON = {
@@ -322,7 +332,7 @@ export async function initVideoAnimationsEditor(cesdk: CreativeEditorSDK) {
   // Load custom audio assets using built-in JSON loader
   await engine.asset.addLocalAssetSourceFromJSONString(
     JSON.stringify(AUDIO_ASSETS),
-    resolveAssetPath('/assets/audio')
+    `${DEMO_ASSETS_BASE_URL}/assets/audio`
   );
   // highlight-custom-assets
 }

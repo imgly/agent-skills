@@ -2,29 +2,12 @@
  * App-layer utilities for the Automated Resizing demo.
  *
  * This module consolidates all utility functions including:
- * - Asset path resolution (environment-aware)
  * - Size preset helpers
  * - Platform icon mapping
  * - Download utilities
  */
 
 import type { SizePreset } from '../imgly/types';
-import { resolveAssetPath } from './resolveAssetPath';
-
-// Re-export resolveAssetPath for convenience
-export { resolveAssetPath } from './resolveAssetPath';
-
-// ============================================================================
-// Scene URL Resolution
-// ============================================================================
-
-/**
- * Resolve a scene URL from a relative path.
- * Uses the app-layer resolveAssetPath for proper deployment context handling.
- */
-export function resolveSceneUrl(relativePath: string): string {
-  return resolveAssetPath(relativePath);
-}
 
 // ============================================================================
 // Size Preset Utilities

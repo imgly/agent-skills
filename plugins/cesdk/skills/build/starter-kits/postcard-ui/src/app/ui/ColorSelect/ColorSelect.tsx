@@ -1,10 +1,14 @@
 import { RGBAColor } from '@cesdk/engine';
 import classNames from 'classnames';
 import { ColorPicker } from '../ColorPicker/ColorPicker';
-import { caseAssetPath } from '../../contexts/EditorContext';
+import { DEMO_ASSETS_BASE_URL } from '../../contexts/EditorContext';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import classes from './ColorSelect.module.css';
-import { hexToRgba, isColorEqual, rgbaToHex } from '../../../imgly/utils/ColorUtilities';
+import {
+  hexToRgba,
+  isColorEqual,
+  rgbaToHex
+} from '../../../imgly/utils/ColorUtilities';
 
 interface ColorSelectProps {
   colorPalette: Array<RGBAColor>;
@@ -37,7 +41,7 @@ const ColorSelect = ({
           className={classNames(classes.colorButton, {
             [classes['colorButton--active']]: isColorEqual(color, activeColor)
           })}
-        ></button>
+        />
       ))}
       <ColorPicker
         name="color-picker"
@@ -53,7 +57,10 @@ const ColorSelect = ({
         value={rgbaToHex(activeColor)}
       >
         <button className={classes.colorButton}>
-          <img src={caseAssetPath('/ColorPicker.png')} alt={'Pick color'} />
+          <img
+            src={`${DEMO_ASSETS_BASE_URL}/ColorPicker.png`}
+            alt={'Pick color'}
+          />
         </button>
       </ColorPicker>
     </AdjustmentsBar>

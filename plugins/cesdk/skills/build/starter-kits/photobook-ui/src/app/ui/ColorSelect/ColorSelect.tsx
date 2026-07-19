@@ -6,7 +6,7 @@ import {
   isColorEqual,
   rgbaToHex
 } from '../../contexts/color-utilities';
-import { caseAssetPath } from '../../util';
+import { DEMO_ASSETS_BASE_URL } from '../../contexts/EditorContext';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import classes from './ColorSelect.module.css';
 
@@ -60,7 +60,10 @@ function ColorSelect({
         value={rgbaToHex(activeColor)}
       >
         <button className={classes.colorButton}>
-          <img src={caseAssetPath('/ColorPicker.png')} alt="Pick color" />
+          <img
+            src={`${DEMO_ASSETS_BASE_URL}/ColorPicker.png`}
+            alt="Pick color"
+          />
         </button>
       </ColorPicker>
     </AdjustmentsBar>

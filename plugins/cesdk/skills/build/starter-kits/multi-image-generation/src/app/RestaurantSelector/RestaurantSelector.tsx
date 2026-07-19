@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 
 import type { Restaurant } from '../types';
-import { resolveAssetPath } from '../resolveAssetPath';
 
 import styles from './RestaurantSelector.module.css';
 
@@ -40,10 +39,7 @@ export default function RestaurantSelector({
             disabled={disabled}
             onClick={() => handleClick(restaurant)}
           >
-            <img
-              src={resolveAssetPath(restaurant.cardPath)}
-              alt={restaurant.name}
-            />
+            <img src={restaurant.cardPath} alt={restaurant.name} />
           </button>
         ))}
       </div>

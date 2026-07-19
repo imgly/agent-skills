@@ -18,18 +18,19 @@ import {
 import { useSinglePageFocus } from '../../imgly/hooks/useSinglePageFocus';
 import { getImageSize } from '../../imgly/engine-utils';
 
-// Helper to convert relative paths to absolute URLs for the engine
-// Uses import.meta.env.BASE_URL which is set by Vite during build based on --base flag.
-const toAbsoluteUrl = (path: string): string => {
-  if (path.startsWith('http://') || path.startsWith('https://')) {
-    return path;
-  }
-  return new URL(import.meta.env.BASE_URL + path.slice(1), window.location.href)
-    .href;
-};
+/**
+ * Demo assets for this example (images, …) are loaded from
+ * the IMG.LY CDN by default. To host them yourself, copy this kit's asset
+ * folder to your own CDN or server and change this constant — or set it to
+ * `''` and place the files in this app's `public/` directory. No trailing
+ * slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/0.1.0/starterkit-photo-ui';
 
-const INITIAL_PORTRAIT_IMAGE_PATH = toAbsoluteUrl('/images/mountains.jpg');
-const INITIAL_LANDSCAPE_IMAGE_PATH = toAbsoluteUrl('/images/woman.jpg');
+const INITIAL_PORTRAIT_IMAGE_PATH = `${DEMO_ASSETS_BASE_URL}/images/mountains.jpg`;
+const INITIAL_LANDSCAPE_IMAGE_PATH = `${DEMO_ASSETS_BASE_URL}/images/woman.jpg`;
 // For demonstration purposes we initially use either a portrait or a landscape image
 const INITIAL_IMAGE_PATH =
   window.innerWidth / window.innerHeight > 1
