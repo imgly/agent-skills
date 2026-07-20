@@ -18,7 +18,7 @@ Transform PowerPoint slides into editable CE.SDK designs. All formatting preserv
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-pptx-template-import-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260719/examples/starterkit-pptx-template-import/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260720/examples/starterkit-pptx-template-import/index.html)
 
 ***
 

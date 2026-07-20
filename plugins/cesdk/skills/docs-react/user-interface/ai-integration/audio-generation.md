@@ -19,7 +19,7 @@ CE.SDK application using the Audio Generation plugin powered by ElevenLabs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-audio-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260719/examples/guides-user-interface-ai-integration-audio-generation-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260720/examples/guides-user-interface-ai-integration-audio-generation-browser/index.html)
 
 The Audio Generation plugin provides two main capabilities: text-to-speech with multiple voice options and sound effect generation from text descriptions. The plugin adds a built-in UI to CE.SDK that allows end users to generate audio content, while also providing programmatic control for automation workflows.
 
