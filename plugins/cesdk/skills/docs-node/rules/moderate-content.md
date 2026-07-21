@@ -756,7 +756,7 @@ console.log('✓ Scene contains sample content for moderation\n');
 
 Now that you understand content moderation in Node.js, explore related features:
 
-- [Rules Overview](./rules/overview.md) — Learn about CE.SDK's comprehensive validation system
+- [Rules Overview](./rules/overview.md) — Understand the scopes and permission model behind CE.SDK rules
 
 
 

@@ -95,7 +95,7 @@ For resource-intensive tasks like high-resolution exports, consider server-side 
 
 ## Next Steps
 
-- [Node.js SDK](./what-is-cesdk.md) for server-side processing
+- [Node.js SDK](#broken-link-n1234a) for server-side processing
 - [Automation Overview](./automation/overview.md) for workflow examples
 
 

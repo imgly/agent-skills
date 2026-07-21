@@ -12,10 +12,10 @@
 
 ## Related Pages
 
-- [Basics](./import-media/asset-panel/basics.md) - Explore the core functionality of the asset library and how users browse, search, and insert media.
-- [Customize](./import-media/asset-panel/customize.md) - Adapt the asset library UI and behavior to suit your application’s structure and user needs.
-- [Thumbnails](./import-media/asset-panel/thumbnails.md) - Configure thumbnail images for assets in CE.SDK's asset library with proper sizing, preview URIs for audio, and customized UI display.
-- [Refresh Assets](./import-media/asset-panel/refresh-assets.md) - Trigger asset reloads to ensure the library reflects newly uploaded or updated items.
+- [Basics](./import-media/asset-library/basics.md) - Explore the core functionality of the asset library and how users browse, search, and insert media.
+- [Customize](./import-media/asset-library/customize.md) - Adapt the asset library UI and behavior to suit your application’s structure and user needs.
+- [Thumbnails](./import-media/asset-library/thumbnails.md) - Configure thumbnail images for assets in CE.SDK's asset library with proper sizing, preview URIs for audio, and customized UI display.
+- [Refresh Assets](./import-media/asset-library/refresh-assets.md) - Trigger asset reloads to ensure the library reflects newly uploaded or updated items.
 
 
 ---

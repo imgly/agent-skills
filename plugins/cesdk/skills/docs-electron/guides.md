@@ -20,7 +20,7 @@
 - [Engine Interface](./engine-interface.md) - Understand CE.SDK's architecture and learn when to use direct Engine access for automation workflows
 - [Automate Workflows](./automation.md) - Automate repetitive editing tasks using CE.SDK’s headless APIs to generate assets at scale.
 - [User Interface](./user-interface.md) - Use CE.SDK’s customizable, production-ready UI or replace it entirely with your own interface.
-- [Open the Editor](./open-the-editor.md) - Learn how to load and create scenes, set the zoom level, and configure file proxies or URI resolvers.
+- [Open the Editor](./open-the-editor.md) - Learn how to load and create scenes, set the zoom level, and configure URI resolvers.
 - [Insert Media Into Scenes](./insert-media.md) - Understand how insertion works, how inserted media behave within scenes, and how to control them via UI or code.
 - [Import Media](./import-media.md) - Learn how to import, manage, and customize assets from local, remote, or camera sources in CE.SDK.
 - [Export](./export-save-publish/export.md) - Explore export options, supported formats, and configuration features for sharing or rendering output.

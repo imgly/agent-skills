@@ -18,7 +18,7 @@ Control which editor features are available to users using the Feature API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260720/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260721/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
 
 The Feature API provides global control over feature visibility throughout the editor. Use it to hide delete buttons from certain users, disable crop controls based on context, or conditionally enable features based on user roles or selection state. Unlike the Component Order API which targets specific components in specific areas, the Feature API affects features everywhere in the editor at once.
 
@@ -520,6 +520,8 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.video.timeline.controls.split` | Controls split clip control |
 | `ly.img.video.timeline.controls.timelineZoom` | Controls timeline zoom controls |
 | `ly.img.video.caption` | Controls video captions |
+| `ly.img.animations` | Controls the Animations button (video mode) |
+| `ly.img.transitions` | Controls the clip-to-clip Transitions UI on the timeline (video mode) |
 
 ### Text Features
 

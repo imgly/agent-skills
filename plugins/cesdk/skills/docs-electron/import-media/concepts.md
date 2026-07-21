@@ -160,8 +160,8 @@ Common conceptual misunderstandings:
 ## Next Steps
 
 - [Your Server](./import-media/from-remote-source/your-server.md) — Connect your own backend as an asset source
-- [Asset Library Basics](./import-media/asset-panel/basics.md) — Configure the asset library UI on web
-- [Customize Asset Library](./import-media/asset-panel/customize.md) — Customize asset library appearance
+- [Asset Library Basics](./import-media/asset-library/basics.md) — Configure the asset library UI on web
+- [Customize Asset Library](./import-media/asset-library/customize.md) — Customize asset library appearance
 
 
 

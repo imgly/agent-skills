@@ -19,7 +19,7 @@ directly to your designs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-from-remote-source-pexels-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260720/examples/guides-import-media-from-remote-source-pexels-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260721/examples/guides-import-media-from-remote-source-pexels-browser/index.html)
 
 Pexels provides a vast library of high-quality, royalty-free stock photos through their public API. We integrate Pexels directly into CE.SDK so users can search, preview, and add photos without leaving the editor.
 
@@ -678,9 +678,9 @@ Common issues when integrating Pexels:
 
 ## Next Steps
 
-- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset panels and
+- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure asset panels and
   UI
-- [Asset Library Basics](./import-media/asset-panel/basics.md) — Understand asset sources
+- [Asset Library Basics](./import-media/asset-library/basics.md) — Understand asset sources
 - [Integrate Unsplash Images](./import-media/from-remote-source/unsplash.md) — Add another stock image
   source
 - [From Remote Source](./import-media/from-remote-source.md) — Explore other remote asset

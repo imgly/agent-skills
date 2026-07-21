@@ -18,7 +18,7 @@ The CreativeEditor provides a scaling feature to edit videos in your web app, to
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-transform-scale-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260720/examples/guides-create-video-transform-scale-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260721/examples/guides-create-video-transform-scale-browser/index.html)
 
 ## What You'll Learn
 

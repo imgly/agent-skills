@@ -520,7 +520,7 @@ Using a `try/finally` block ensures the engine is disposed even if an error occu
 ## Next Steps
 
 - [Layer Management](./create-composition/layer-management.md) - Control block stacking and organization
-- [Positioning and Alignment](./insert-media/position-and-align.md) - Precise block placement
+- [Positioning and Alignment](./create-composition/position-and-align.md) - Precise block placement
 - [Group and Ungroup](./create-composition/group-and-ungroup.md) - Group blocks for unified transforms
 - [Blend Modes](./create-composition/blend-modes.md) - Control how blocks interact visually
 - [Export](./export-save-publish/export.md) - Export options and formats

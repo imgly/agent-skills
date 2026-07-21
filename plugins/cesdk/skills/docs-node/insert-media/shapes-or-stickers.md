@@ -769,7 +769,7 @@ If `createShape()` throws an error:
 
 - [Colors](./colors.md) - Work with colors, fills, and gradients
 - [Filters and Effects](./filters-and-effects.md) - Apply visual effects to design elements
-- [Position and Align](./insert-media/position-and-align.md) - Position elements precisely on the canvas
+- [Position and Align](./create-composition/position-and-align.md) - Position elements precisely on the canvas
 
 
 

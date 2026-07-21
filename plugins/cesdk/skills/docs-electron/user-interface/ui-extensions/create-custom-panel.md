@@ -18,7 +18,7 @@ Create custom sidebar panels that integrate with CE.SDK's user interface using t
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-create-custom-panel-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260720/examples/guides-user-interface-ui-extensions-create-custom-panel-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260721/examples/guides-user-interface-ui-extensions-create-custom-panel-browser/index.html)
 
 Custom panels extend CE.SDK by adding sidebar interfaces that match the editor's design language. The builder system provides pre-built components for forms, buttons, and media display, allowing you to create rich editing experiences without building UI from scratch.
 
