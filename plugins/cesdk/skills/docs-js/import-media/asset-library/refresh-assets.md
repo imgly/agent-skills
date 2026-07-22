@@ -18,7 +18,7 @@ Learn how to refresh asset sources when external changes occur outside CE.SDK.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-asset-library-refresh-assets-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260721/examples/guides-import-media-asset-library-refresh-assets-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/guides-import-media-asset-library-refresh-assets-browser/index.html)
 
 CE.SDK automatically refreshes the asset library for built-in operations like uploads and deletions. However, when assets are modified outside of CE.SDK—through a custom CMS, cloud storage, or third-party upload widget—the asset panel won't reflect these changes automatically. Use `engine.asset.assetSourceContentsChanged()` to notify the engine and trigger a refresh.
 

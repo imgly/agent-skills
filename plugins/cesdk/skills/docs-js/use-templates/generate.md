@@ -18,7 +18,7 @@ Generate finished designs from templates by loading, populating variables, and e
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-generate-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260721/examples/guides-use-templates-generate-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/guides-use-templates-generate-browser/index.html)
 
 Template generation transforms templates into finished designs by populating data and exporting to output formats. Load templates with `engine.scene.loadFromURL()`, set variables with `engine.variable.setString()`, and export with `engine.block.export()`. This enables batch processing, personalization systems, and automated design production.
 

@@ -20,7 +20,7 @@ designs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260721/examples/guides-import-media-from-remote-source-soundstripe-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/guides-import-media-from-remote-source-soundstripe-browser/index.html)
 
 Soundstripe provides a vast library of high-quality, royalty-free audio tracks through their API. This guide shows you how to integrate Soundstripe's audio search and browsing capabilities directly into CE.SDK using the official `@imgly/plugin-soundstripe-web` plugin. You'll learn how to set up Soundstripe API authentication (including proxy server requirements for production), implement search and discovery features, configure the asset library UI, and handle automatic URI refresh for expired audio links.
 

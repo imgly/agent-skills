@@ -18,7 +18,7 @@ Transform images by swapping specific colors using the Recolor effect or remove 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-replace-colors-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260721/examples/guides-edit-image-replace-colors-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/guides-edit-image-replace-colors-browser/index.html)
 
 CE.SDK offers two color replacement effects. The **Recolor** effect swaps one color for another while preserving image details. The **Green Screen** effect removes background colors with transparency. Both effects provide precise control over color matching, edge smoothness, and intensity.
 

@@ -510,7 +510,7 @@ If entrance and exit animations seem to overlap incorrectly, CE.SDK automaticall
 
 ## Related Pages
 
-- [Base Animations](./animation/create/base.md) - Apply movement, scaling, rotation, or opacity changes to elements using time-based keyframes.
+- [Base Animations](./animation/create/base.md) - Apply entrance, exit, and loop animation presets with duration, easing, and type-specific properties.
 - [Text Animations](./animation/create/text.md) - Animate text elements with effects like fade, typewriter, and bounce for dynamic visual presentation.
 
 

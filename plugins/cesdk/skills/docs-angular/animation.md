@@ -13,7 +13,7 @@
 
 - [Overview](./animation/overview.md) - Add motion to designs with support for keyframes, timeline editing, and programmatic animation control.
 - [Supported Animation Types](./animation/types.md) - Apply different animation types to design blocks in CE.SDK and configure their properties.
-- [Create Animations](./animation/create.md) - Build animations manually or with presets to animate objects, text, and scenes within your design.
+- [Create Animations](./animation/create.md) - Create entrance, exit, loop, and text animations with CE.SDK preset animation APIs.
 - [Edit Animations](./animation/edit.md) - Modify existing animations in CE.SDK by reading properties, changing duration and easing, adjusting direction, and replacing or removing animations from blocks.
 
 

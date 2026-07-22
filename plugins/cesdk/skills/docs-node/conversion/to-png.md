@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Conversion](./conversion.md) > [To PNG](./conversion/to-png.md)
-
 ---
 
 Export designs to PNG format with lossless quality and optional transparency support.
@@ -233,7 +231,7 @@ engine.dispose();
 
 - [Conversion Overview](./conversion/overview.md) - Learn about other export formats
 - [Export Overview](./export-save-publish/export/overview.md) - Understand the full export workflow
-- [To PDF](./conversion/to-pdf.md) - Export designs to PDF format
+- [To PDF](./export-save-publish/export/to-pdf.md) - Export designs to PDF format
 
 
 

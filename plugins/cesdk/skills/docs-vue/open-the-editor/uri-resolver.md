@@ -18,7 +18,7 @@ Learn how to intercept and transform asset URIs in CE.SDK, enabling authenticati
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-uri-resolver-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260721/examples/guides-open-the-editor-uri-resolver-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/guides-open-the-editor-uri-resolver-browser/index.html)
 
 When CE.SDK loads an asset, it resolves the URI to an absolute path before fetching. You can intercept this process to add authentication tokens or transform URIs based on your application's needs.
 

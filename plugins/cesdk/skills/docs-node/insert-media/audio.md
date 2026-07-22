@@ -278,7 +278,7 @@ To remove an audio block, call `destroy()`. This removes the block from the scen
 
 ## Next Steps
 
-[Insert Media Overview](./overview.md) - Learn about adding different media types to your projects
+[Insert Media Overview](./insert-media/overview.md) - Learn about adding different media types to your projects
 
 [Split Video](./edit-video/split.md) - Split video clips on the timeline
 

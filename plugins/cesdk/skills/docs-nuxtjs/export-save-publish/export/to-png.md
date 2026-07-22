@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Nuxt.js documentation. For a complete overview, see the [Nuxt.js Documentation Index](https://img.ly/docs/cesdk/nuxtjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Export Media Assets](./export-save-publish/export.md) > [To PNG](./export-save-publish/export/to-png.md)
+**Navigation:** [Guides](./guides.md) > [Export Media Assets](./export-save-publish/export.md) > [To PNG](./export-save-publish/export/to-png.md) > [Conversion](./conversion.md) > [To PNG](./export-save-publish/export/to-png.md)
 
 ---
 
@@ -18,7 +18,7 @@ Export your designs as PNG images with full transparency support and configurabl
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-png-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260721/examples/guides-export-save-publish-export-to-png-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/guides-export-save-publish-export-to-png-browser/index.html)
 
 PNG (Portable Network Graphics) provides lossless compression with full alpha channel support. It's ideal for web graphics, UI elements, and content requiring crisp edges or transparency.
 

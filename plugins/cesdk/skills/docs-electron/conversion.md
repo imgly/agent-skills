@@ -14,7 +14,7 @@
 
 - [Overview](./conversion/overview.md) - Convert designs into different formats such as PDF, PNG, MP4, and more using CE.SDK tools.
 - [To Base64](./conversion/to-base64.md) - Convert CE.SDK exports to Base64-encoded strings for embedding in URLs, storing in databases, or transmitting via APIs.
-- [To PNG](./conversion/to-png.md) - Export designs and images to PNG format with compression settings and target dimensions using CE.SDK.
+- [To PNG](./export-save-publish/export/to-png.md) - Export your designs as PNG images with transparency support and configurable compression for web graphics, UI elements, and content requiring crisp edges.
 - [To PDF](./conversion/to-pdf.md) - Convert your design or document into a high-quality, print-ready PDF format.
 
 
