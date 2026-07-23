@@ -18,7 +18,7 @@ Quickly add AI-powered visual editing and media generation to your web app — s
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-ai-editor-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/starterkit-ai-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260723/examples/starterkit-ai-editor/index.html)
 
 ***
 

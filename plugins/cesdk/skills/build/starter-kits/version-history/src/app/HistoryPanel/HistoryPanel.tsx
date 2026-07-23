@@ -4,7 +4,7 @@
  * Displays the list of saved snapshots in a sidebar.
  */
 
-import { Snapshot } from '../types';
+import { Snapshot } from '../../imgly';
 import { SnapshotItem } from '../SnapshotItem/SnapshotItem';
 import './HistoryPanel.css';
 

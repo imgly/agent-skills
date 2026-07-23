@@ -18,7 +18,7 @@ Comprehensive design editing for your Svelte app—professional tools for graphi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-design-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/starterkit-advanced-design-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260723/examples/starterkit-advanced-design-editor/index.html)
 
 ***
 

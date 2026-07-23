@@ -22,7 +22,7 @@ compliance—all client-side without any backend infrastructure.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/plugins-print-ready-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/plugins-print-ready-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260723/examples/plugins-print-ready-pdf-browser/index.html)
 
 ## What You'll Build
 

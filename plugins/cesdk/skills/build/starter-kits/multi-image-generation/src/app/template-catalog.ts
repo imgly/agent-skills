@@ -5,7 +5,7 @@
  */
 
 import { DEMO_ASSETS_BASE_URL } from './restaurant-catalog';
-import type { Template } from './types';
+import type { Template } from '../imgly';
 
 /**
  * Available templates for image generation.

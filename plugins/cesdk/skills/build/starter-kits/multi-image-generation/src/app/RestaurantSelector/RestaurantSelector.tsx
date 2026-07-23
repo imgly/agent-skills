@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import type { Restaurant } from '../types';
+import type { Restaurant } from '../../imgly';
 
 import styles from './RestaurantSelector.module.css';
 

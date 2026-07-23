@@ -16,7 +16,7 @@ Apply template content to an existing scene while preserving your canvas dimensi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-apply-template-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/guides-use-templates-apply-template-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260723/examples/guides-use-templates-apply-template-browser/index.html)
 
 ![Apply a Template](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 

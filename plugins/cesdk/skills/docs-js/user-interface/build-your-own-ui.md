@@ -18,7 +18,7 @@ Build completely custom UIs by integrating CE.SDK's headless engine directly int
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-build-your-own-ui-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260722/examples/guides-user-interface-build-your-own-ui-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260723/examples/guides-user-interface-build-your-own-ui-browser/index.html)
 
 When you need complete control over the editing experience, the headless engine approach lets you build entirely custom interfaces. Instead of using CE.SDK's built-in editor UI, you initialize the engine directly and create your own tools, panels, and workflows that integrate seamlessly with your application's design system.
 

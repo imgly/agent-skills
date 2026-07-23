@@ -60,18 +60,12 @@ import { DesignEditorConfig } from './design-editor-config/plugin';
 // Re-exports
 // ============================================================================
 
-// Types
-// Utilities (consolidated in app layer)
-export {
-  getPlatformIconFilename,
-  getSizeById,
-  getSizesByPlatform
-} from '../app/utils';
 // Configuration plugins (for advanced use cases)
 export { AdvancedEditorConfig } from './advanced-editor-config/plugin';
 export { DesignEditorConfig } from './design-editor-config/plugin';
 // Resizing functions
 export { resize } from './resizing';
+export { DEFAULT_SIZES } from './sizes';
 export type {
   AppConfig,
   ResizeOptions,

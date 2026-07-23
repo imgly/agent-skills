@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useEngine } from '../app/contexts/EngineContext';
-import { useSelection } from '../app/contexts/UseSelection';
+import { useEngine } from '../contexts/EngineContext';
+import { useSelection } from '../contexts/UseSelection';
 import CreativeEngine, { PropertyType } from '@cesdk/engine';
 
 export const useProperty = (

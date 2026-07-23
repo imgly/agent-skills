@@ -18,7 +18,7 @@ import { renderSceneToImage, generateAssets } from '../imgly';
 import { RESTAURANTS } from './restaurant-catalog';
 import { TEMPLATES } from './template-catalog';
 import SCENES from './scenes.json';
-import type { Restaurant, Template, GeneratedAsset } from './types';
+import type { Restaurant, Template, GeneratedAsset } from '../imgly';
 
 import RestaurantSelector from './RestaurantSelector/RestaurantSelector';
 import AssetGrid from './AssetGrid/AssetGrid';

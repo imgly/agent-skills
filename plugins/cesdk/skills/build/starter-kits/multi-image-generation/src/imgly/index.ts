@@ -54,6 +54,7 @@ import { AdvancedEditorConfig } from './config/advanced-design-editor/plugin';
 // =============================================================================
 
 export { hexToRgba, replaceImageByName, exportSceneAsImage } from './utils';
+export type { Restaurant, Template, GeneratedAsset } from './types';
 
 // =============================================================================
 // Engine Utilities
