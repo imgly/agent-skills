@@ -6,11 +6,14 @@ import {
   useMemo,
   useState
 } from 'react';
-import { useEngine } from '../../imgly/contexts/EngineContext';
-import { POSTCARD_TEMPLATES } from '../../imgly/postcard-catalog';
-import { useSinglePageMode } from '../../imgly/contexts/SinglePageModeContext';
+import { useEngine } from '@/app/contexts/EngineContext';
+import { POSTCARD_TEMPLATES } from '@/imgly/postcard-catalog';
+import { useSinglePageMode } from '@/app/contexts/SinglePageModeContext';
 import type { CompleteAssetResult, RGBAColor } from '@cesdk/engine';
-import { hexToRgba } from '../../imgly/utils/ColorUtilities';
+import {
+  findImageAssets as findImageAssetsQuery,
+  hexToRgba
+} from '@/imgly/utils';
 
 export const ALL_STEPS = ['Style', 'Design', 'Write'] as const;
 type Step = (typeof ALL_STEPS)[number];
@@ -60,7 +63,8 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentStep, setCurrentStep] = useState<(typeof ALL_STEPS)[number]>(
     ALL_STEPS[0]
   );
-  const { setCurrentPageBlockId, setEnabled } = useSinglePageMode();
+  const { setCurrentPageBlockId, setEnabled, zoomToBlockId } =
+    useSinglePageMode();
 
   useEffect(() => {
     if (!engineIsLoaded || engine.scene.get() === null) return;
@@ -75,52 +79,32 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       if (engineIsLoaded && postcardTemplate) {
         setEnabled(false);
         setSceneIsLoaded(false);
-        await engine.scene.loadFromURL(
-          `${DEMO_ASSETS_BASE_URL}${postcardTemplate.scene}`
-        );
-        const pages = engine.scene.getPages();
-        setCurrentPageBlockId(pages[0]);
-        setEnabled(true);
-        // Wait for zoom to finish
-        await new Promise((resolve) => setTimeout(resolve, 100));
-        setSceneIsLoaded(true);
+        try {
+          await engine.scene.loadFromURL(
+            `${DEMO_ASSETS_BASE_URL}${postcardTemplate.scene}`
+          );
+          const pages = engine.scene.getPages();
+          setEnabled(true);
+          await setCurrentPageBlockId(pages[0]);
+          // Reveal the canvas only once the initial zoom has actually finished.
+          await zoomToBlockId(pages[0]);
+          setSceneIsLoaded(true);
+        } catch (error) {
+          console.error(
+            `Failed to load postcard template "${postcardTemplateId}" from ${postcardTemplate.scene}`,
+            error
+          );
+        }
       }
     };
     loadPostcardTemplate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engineIsLoaded, engine, postcardTemplate]);
 
-  const findImageAssets = useCallback(async () => {
-    const UPLOAD_ASSET_LIBRARY_ID = 'ly.img.image.upload';
-    const UNSPLASH_ASSET_LIBRARY_ID = 'unsplash';
-
-    const uploadResults = await engine.asset.findAssets(
-      UPLOAD_ASSET_LIBRARY_ID,
-      {
-        page: 0,
-        perPage: 9999
-      }
-    );
-
-    // Only query unsplash if the source is registered
-    const registeredSources = engine.asset.findAllSources();
-    const hasUnsplash = registeredSources.includes(UNSPLASH_ASSET_LIBRARY_ID);
-
-    let unsplashAssets: CompleteAssetResult[] = [];
-    if (hasUnsplash) {
-      const unsplashResults = await engine.asset.findAssets(
-        UNSPLASH_ASSET_LIBRARY_ID,
-        {
-          page: 0,
-          perPage: 10,
-          query: postcardTemplate?.keyword
-        }
-      );
-      unsplashAssets = unsplashResults.assets;
-    }
-
-    return [...uploadResults.assets.reverse(), ...unsplashAssets];
-  }, [postcardTemplate, engine]);
+  const findImageAssets = useCallback(
+    () => findImageAssetsQuery(engine, postcardTemplate?.keyword),
+    [engine, postcardTemplate]
+  );
 
   const getColorPalette = useCallback(
     () => postcardTemplate?.colors.map((color) => hexToRgba(color)) ?? [],

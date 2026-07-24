@@ -18,7 +18,7 @@ Initialize the editor with an image matching the page size.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-start-with-image-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260723/examples/starterkit-start-with-image/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/starterkit-start-with-image/index.html)
 
 ***
 
