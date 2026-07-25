@@ -77,7 +77,7 @@ const engine = await CreativeEngine.init({
 try {
   console.log('⏳ Loading template scene...');
 
-  await engine.scene.loadFromURL(
+  await engine.scene.load(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
@@ -96,9 +96,10 @@ try {
   if (saveString) {
     console.log('⏳ Saving to string...');
     const sceneString = await engine.scene.saveToString();
-    writeFileSync(`${outputDir}/scene.scene`, sceneString);
+    // Persist saved scenes with the `.imgly` extension
+    writeFileSync(`${outputDir}/scene.imgly`, sceneString);
     console.log(
-      `✅ Scene saved: output/scene.scene (${(sceneString.length / 1024).toFixed(1)} KB)`
+      `✅ Scene saved: output/scene.imgly (${(sceneString.length / 1024).toFixed(1)} KB)`
     );
 
     // Example: Save with compression (requires local build)
@@ -109,34 +110,35 @@ try {
         level: CompressionLevel.Default
       }
     });
-    writeFileSync(`${outputDir}/scene-compressed.scene`, compressed);
+    writeFileSync(`${outputDir}/scene-compressed.imgly`, compressed);
     console.log(
-      `✅ Compressed scene saved: output/scene-compressed.scene (${(compressed.length / 1024).toFixed(1)} KB, ${((1 - compressed.length / sceneString.length) * 100).toFixed(1)}% smaller)`
+      `✅ Compressed scene saved: output/scene-compressed.imgly (${(compressed.length / 1024).toFixed(1)} KB, ${((1 - compressed.length / sceneString.length) * 100).toFixed(1)}% smaller)`
     );
   }
 
   if (saveArchive) {
     console.log('⏳ Saving to archive...');
     const archiveBlob = await engine.scene.saveToArchive();
+    // Persist saved archives with the `.imgly` extension
     const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
-    writeFileSync(`${outputDir}/scene.zip`, archiveBuffer);
+    writeFileSync(`${outputDir}/scene-archive.imgly`, archiveBuffer);
     console.log(
-      `✅ Archive saved: output/scene.zip (${(archiveBuffer.length / 1024).toFixed(1)} KB)`
+      `✅ Archive saved: output/scene-archive.imgly (${(archiveBuffer.length / 1024).toFixed(1)} KB)`
     );
   }
 
   if (saveString) {
     console.log('\n⏳ Loading from saved scene file...');
-    const sceneString = readFileSync(`${outputDir}/scene.scene`, 'utf-8');
-    await engine.scene.loadFromString(sceneString);
+    const sceneString = readFileSync(`${outputDir}/scene.imgly`, 'utf-8');
+    await engine.scene.load(sceneString);
     console.log('✅ Scene loaded from file');
   }
 
   if (saveArchive) {
     console.log('⏳ Loading from saved archive...');
-    const archivePath = path.resolve(`${outputDir}/scene.zip`);
+    const archivePath = path.resolve(`${outputDir}/scene-archive.imgly`);
     const archiveFileUrl = `file://${archivePath}`;
-    await engine.scene.loadFromArchiveURL(archiveFileUrl);
+    await engine.scene.load(archiveFileUrl);
     console.log('✅ Scene loaded from archive');
   }
 
@@ -156,6 +158,8 @@ try {
 **String format** produces a lightweight Base64-encoded string where assets remain as URL references. Use this when asset URLs will remain accessible.
 
 **Archive format** creates a self-contained ZIP with all assets embedded. Use this for portable designs that work offline.
+
+Both formats are saved as `.imgly` files — use this extension when persisting them. Either kind loads back through the same `engine.scene.load()` call, which detects the format automatically; `.scene` and `.zip` files also load.
 
 ## Save to String
 
@@ -219,35 +223,37 @@ Use Node.js `writeFileSync` to persist saved designs to the file system.
 Scene strings can be written directly as text:
 
 ```typescript highlight=highlight-write-scene
-writeFileSync(`${outputDir}/scene.scene`, sceneString);
+// Persist saved scenes with the `.imgly` extension
+writeFileSync(`${outputDir}/scene.imgly`, sceneString);
 ```
 
 For archives, convert the Blob to a Buffer before writing:
 
 ```typescript highlight=highlight-write-archive
+// Persist saved archives with the `.imgly` extension
 const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
-writeFileSync(`${outputDir}/scene.zip`, archiveBuffer);
+writeFileSync(`${outputDir}/scene-archive.imgly`, archiveBuffer);
 ```
 
 ## Load Scene from File
 
-Read a previously saved `.scene` file from disk and restore it to the engine.
+Read a previously saved `.imgly` scene file from disk and restore it to the engine.
 
 ```typescript highlight=highlight-load-scene
-const sceneString = readFileSync(`${outputDir}/scene.scene`, 'utf-8');
-await engine.scene.loadFromString(sceneString);
+const sceneString = readFileSync(`${outputDir}/scene.imgly`, 'utf-8');
+await engine.scene.load(sceneString);
 ```
 
 Scene files are lightweight but require the original asset URLs to remain accessible.
 
 ## Load Archive from File
 
-Read a self-contained `.zip` archive from disk with all embedded assets.
+Read a self-contained `.imgly` archive from disk with all embedded assets.
 
 ```typescript highlight=highlight-load-archive
-const archivePath = path.resolve(`${outputDir}/scene.zip`);
+const archivePath = path.resolve(`${outputDir}/scene-archive.imgly`);
 const archiveFileUrl = `file://${archivePath}`;
-await engine.scene.loadFromArchiveURL(archiveFileUrl);
+await engine.scene.load(archiveFileUrl);
 ```
 
 Archives are portable and work offline since all assets are bundled within the file.
@@ -258,9 +264,7 @@ Archives are portable and work offline since all assets are bundled within the f
 | ------ | ----------- |
 | `engine.scene.saveToString()` | Serialize scene to Base64 string |
 | `engine.scene.saveToArchive()` | Save scene with assets as ZIP blob |
-| `engine.scene.loadFromString()` | Load scene from serialized string |
-| `engine.scene.loadFromURL()` | Load scene from remote URL |
-| `engine.scene.loadFromArchiveURL()` | Load scene from URL (file://, http://, https://, or object URL) |
+| `engine.scene.load()` | Load scene or archive from URL or string |
 
 ## Next Steps
 

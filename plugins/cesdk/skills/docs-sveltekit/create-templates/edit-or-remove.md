@@ -18,7 +18,7 @@ Modify existing templates and manage template lifecycle in your asset library us
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-edit-or-remove-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-create-templates-edit-or-remove-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-create-templates-edit-or-remove-browser/index.html)
 
 Templates evolve as designs change. You might need to update branding, fix content errors, or remove outdated templates from your library. CE.SDK provides APIs for adding, editing, and removing templates from asset sources.
 
@@ -118,7 +118,7 @@ class Example implements EditorPlugin {
       if (!uri) return undefined;
       const base64Content = uri.split(',')[1];
       if (!base64Content) return undefined;
-      await engine.scene.loadFromString(base64Content);
+      await engine.scene.load(base64Content);
       return engine.scene.get() ?? undefined;
     });
 
@@ -263,7 +263,7 @@ class Example implements EditorPlugin {
     console.log('Template updated in asset source');
 
     // Apply the original template to show the starting point
-    await engine.scene.loadFromString(originalContent);
+    await engine.scene.load(originalContent);
     // eslint-disable-next-line no-console
     console.log(
       'Original template applied - browse "My Templates" in the dock'
@@ -287,7 +287,7 @@ engine.asset.addLocalSource('my-templates', undefined, async (asset) => {
   if (!uri) return undefined;
   const base64Content = uri.split(',')[1];
   if (!base64Content) return undefined;
-  await engine.scene.loadFromString(base64Content);
+  await engine.scene.load(base64Content);
   return engine.scene.get() ?? undefined;
 });
 ```
@@ -437,7 +437,7 @@ Templates stored as base64 data URIs remain in memory. For production applicatio
 | `engine.asset.removeAssetFromSource()` | Remove template from asset source |
 | `engine.asset.assetSourceContentsChanged()` | Notify UI of asset source changes |
 | `engine.scene.saveToString()` | Save scene as base64 string |
-| `engine.scene.loadFromString()` | Load scene from base64 string |
+| `engine.scene.load()` | Load scene from base64 string |
 
 
 

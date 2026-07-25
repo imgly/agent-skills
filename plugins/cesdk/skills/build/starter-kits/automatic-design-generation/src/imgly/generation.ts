@@ -67,7 +67,7 @@ export async function generateAsset(
   } = options;
 
   // Load template
-  await engine.scene.loadFromURL(templateUrl);
+  await engine.scene.load(templateUrl);
 
   // Get page
   const [page] = engine.block.findByKind('page');

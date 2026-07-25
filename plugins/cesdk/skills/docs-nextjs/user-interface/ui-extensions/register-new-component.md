@@ -18,7 +18,7 @@ Register custom UI components using CE.SDK's builder system and place them in di
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-register-new-component-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-user-interface-ui-extensions-register-new-component-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-user-interface-ui-extensions-register-new-component-browser/index.html)
 
 The builder system provides a declarative API for creating UI components that integrate with CE.SDK. Components registered via `cesdk.ui.registerComponent()` receive a render function that is automatically re-invoked when relevant engine state changes, enabling reactive UIs without manual subscription management. You can create buttons, dropdowns, inputs, and other UI elements that react to engine state changes.
 
@@ -80,7 +80,7 @@ const registerNewComponentPlugin: EditorPlugin = {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     // Load a scene so the editor has content to display
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 

@@ -18,9 +18,9 @@ Generate finished designs from templates by loading, populating variables, and e
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-generate-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-use-templates-generate-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-use-templates-generate-browser/index.html)
 
-Template generation transforms templates into finished designs by populating data and exporting to output formats. Load templates with `engine.scene.loadFromURL()`, set variables with `engine.variable.setString()`, and export with `engine.block.export()`. This enables batch processing, personalization systems, and automated design production.
+Template generation transforms templates into finished designs by populating data and exporting to output formats. Load templates with `engine.scene.load()`, set variables with `engine.variable.setString()`, and export with `engine.block.export()`. This enables batch processing, personalization systems, and automated design production.
 
 ```typescript file=@cesdk_web_examples/guides-use-templates-generate-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -52,7 +52,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load a template from URL - this template has visible {{variable}} placeholders
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_2.scene'
     );
     console.log(
@@ -156,7 +156,7 @@ class Example implements EditorPlugin {
 
     for (const record of dataRecords) {
       // Reload template for each record
-      await engine.scene.loadFromString(templateString);
+      await engine.scene.load(templateString);
 
       // Populate with record data
       engine.variable.setString('first_name', record.firstName);
@@ -174,7 +174,7 @@ class Example implements EditorPlugin {
     console.log(`Batch processed ${dataRecords.length} records`);
 
     // Reload the original template for display
-    await engine.scene.loadFromString(templateString);
+    await engine.scene.load(templateString);
     engine.variable.setString('first_name', 'Alice');
     engine.variable.setString('last_name', 'Smith');
     engine.variable.setString('city', 'Paris');
@@ -193,11 +193,11 @@ This guide covers how to load templates, populate variables, update placeholder 
 
 ## Loading Templates
 
-Load templates from various sources before populating and exporting. Use `engine.scene.loadFromURL()` for remote templates, `engine.scene.loadFromString()` for serialized data, or `engine.scene.loadFromArchiveURL()` for templates with embedded assets.
+`engine.scene.load()` accepts a URL to a scene or archive file, or a serialized scene string.
 
 ```typescript highlight=highlight-load-template
 // Load a template from URL - this template has visible {{variable}} placeholders
-await engine.scene.loadFromURL(
+await engine.scene.load(
   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_2.scene'
 );
 console.log(
@@ -314,7 +314,7 @@ if (scene !== null) {
 
 ## Batch Generation Workflows
 
-Process multiple data records through a single template. Save the template once with `engine.scene.saveToString()`, then loop through records—reloading the template with `engine.scene.loadFromString()`, populating variables, and exporting for each iteration.
+Process multiple data records through a single template. Save the template once with `engine.scene.saveToString()`, then loop through records—reloading the template with `engine.scene.load()`, populating variables, and exporting for each iteration.
 
 ```typescript highlight=highlight-batch-generation
     // Demonstrate batch generation workflow
@@ -346,7 +346,7 @@ Process multiple data records through a single template. Save the template once 
 
     for (const record of dataRecords) {
       // Reload template for each record
-      await engine.scene.loadFromString(templateString);
+      await engine.scene.load(templateString);
 
       // Populate with record data
       engine.variable.setString('first_name', record.firstName);
@@ -386,9 +386,7 @@ Verify the exact name string matches what's set in the template. Names are case-
 
 | Method | Description |
 |--------|-------------|
-| `scene.loadFromURL(url)` | Load template from remote URL |
-| `scene.loadFromString(data)` | Load template from serialized string |
-| `scene.loadFromArchiveURL(url)` | Load archived template with embedded assets |
+| `scene.load(sceneOrURL)` | Load a template from a URL (scene or archive, detected automatically) or a serialized string |
 | `scene.saveToString()` | Serialize scene for batch processing |
 | `variable.setString(name, value)` | Set text variable value |
 | `variable.getString(name)` | Retrieve current variable value |

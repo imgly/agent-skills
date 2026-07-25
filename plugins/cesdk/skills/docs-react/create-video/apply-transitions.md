@@ -18,7 +18,7 @@ Blend adjacent video clips into each other with clip-to-clip transitions such as
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-apply-transitions-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-create-video-apply-transitions-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-create-video-apply-transitions-browser/index.html)
 
 A transition belongs to the **outgoing clip** and blends it into the following clip on the same track. When you assign one, the engine overlaps the two clips for the transition duration: the incoming clip—and every clip after it—moves earlier on the timeline, and audio cross-fades linearly over the same window.
 

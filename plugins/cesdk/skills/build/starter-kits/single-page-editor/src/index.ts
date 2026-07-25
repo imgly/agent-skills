@@ -65,7 +65,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // Load a multi-page social media template to demonstrate single-page mode
     // This 4-page Instagram post template showcases page navigation in single-page mode
     // Alternatively, create a blank scene via: await cesdk.actions.run('scene.create');
-    await cesdk.loadFromArchiveURL(
+    await cesdk.load(
       `${DEMO_ASSETS_BASE_URL}/assets/ig-post.archive`
     );
     // highlight-scene-loading

@@ -65,7 +65,7 @@ async function initializeEditor(): Promise<void> {
 
     // highlight-load-scene
     // Load the HTML5 banner demo scene (an animated banner template)
-    await cesdk.loadFromArchiveURL(
+    await cesdk.load(
       `${DEMO_ASSETS_BASE_URL}/assets/html5-banner.zip`
     );
     // highlight-load-scene

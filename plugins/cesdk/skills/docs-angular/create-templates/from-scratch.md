@@ -18,7 +18,7 @@ Build reusable design templates entirely through code using CE.SDK's programmati
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-from-scratch-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-create-templates-from-scratch-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-create-templates-from-scratch-browser/index.html)
 
 CE.SDK provides a complete API for building design templates through code. Instead of starting from an existing template, you can create a blank scene, define page dimensions, add text and graphic blocks, configure placeholders for swappable media, add text variables for dynamic content, apply editing constraints to protect layout integrity, and save the template for reuse. This approach enables automation workflows, batch template generation, and integration with custom template creation tools.
 
@@ -232,7 +232,7 @@ class Example implements EditorPlugin {
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'template.scene';
+          link.download = 'template.imgly';
           link.click();
           URL.revokeObjectURL(url);
         }
@@ -256,7 +256,7 @@ class Example implements EditorPlugin {
           const url = URL.createObjectURL(templateArchive);
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'template.zip';
+          link.download = 'template-archive.imgly';
           link.click();
           URL.revokeObjectURL(url);
         }
@@ -465,7 +465,7 @@ We persist the template in two formats: a lightweight string for CDN-hosted asse
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'template.scene';
+          link.download = 'template.imgly';
           link.click();
           URL.revokeObjectURL(url);
         }
@@ -489,7 +489,7 @@ We persist the template in two formats: a lightweight string for CDN-hosted asse
           const url = URL.createObjectURL(templateArchive);
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'template.zip';
+          link.download = 'template-archive.imgly';
           link.click();
           URL.revokeObjectURL(url);
         }

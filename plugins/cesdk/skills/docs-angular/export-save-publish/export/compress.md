@@ -18,7 +18,7 @@ Compression reduces file sizes during export while maintaining visual quality. W
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-compress-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-export-save-publish-export-compress-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-export-save-publish-export-compress-browser/index.html)
 
 Image compression reduces file sizes while maintaining acceptable visual quality. CE.SDK supports format-specific compression controls: lossless compression for PNG, lossy quality settings for JPEG, and both modes for WebP. The example includes a navigation bar dropdown menu with export options for comparing different formats and compression levels.
 
@@ -54,7 +54,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
 
     // Load a video template scene for demonstration
-    await cesdk.loadFromURL(
+    await cesdk.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.video.template/templates/milli-surf-school.scene'
     );
 

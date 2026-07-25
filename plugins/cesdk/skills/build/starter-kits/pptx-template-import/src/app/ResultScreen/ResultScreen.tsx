@@ -25,7 +25,7 @@ export function ResultScreen() {
   const handleDownloadArchive = () => {
     const link = document.createElement('a');
     link.href = result.sceneArchiveUrl;
-    link.download = `${result.fileName.replace(/\.pptx$/i, '')}.archive.zip`;
+    link.download = `${result.fileName.replace(/\.pptx$/i, '')}.imgly`;
     link.click();
   };
 

@@ -25,7 +25,7 @@ export function ResultScreen() {
   const handleDownloadArchive = () => {
     const link = document.createElement('a');
     link.href = result.sceneArchiveUrl;
-    link.download = `${result.fileName.replace(/\.pdf$/i, '')}.archive.zip`;
+    link.download = `${result.fileName.replace(/\.pdf$/i, '')}.imgly`;
     link.click();
   };
 

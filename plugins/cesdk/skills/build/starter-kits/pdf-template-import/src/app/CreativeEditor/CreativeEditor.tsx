@@ -39,7 +39,7 @@ export function CreativeEditor({
             );
 
             // Load the scene from the archive URL
-            await cesdk.loadFromArchiveURL(sceneArchiveUrl);
+            await cesdk.load(sceneArchiveUrl);
 
             // Zoom auto-fit to page
             cesdk.actions.run('zoom.toPage', { autoFit: true });

@@ -80,9 +80,9 @@ export async function renderMockup(
 
   // Load scene
   if (typeof sceneSource === 'string') {
-    await cachedEngine.scene.loadFromURL(sceneSource);
+    await cachedEngine.scene.load(sceneSource);
   } else {
-    await cachedEngine.scene.loadFromString(sceneSource.sceneString);
+    await cachedEngine.scene.load(sceneSource.sceneString);
   }
 
   // Track blob URLs we create

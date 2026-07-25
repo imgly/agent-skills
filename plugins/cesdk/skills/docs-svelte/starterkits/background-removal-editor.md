@@ -18,7 +18,7 @@ Effortlessly remove background from images directly in the browser with no addit
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-background-removal-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/starterkit-background-removal-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/starterkit-background-removal-editor/index.html)
 
 ***
 
@@ -300,13 +300,13 @@ CE.SDK offers multiple ways to load content into the editor. Choose the method t
 await cesdk.actions.run('scene.create');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.loadFromArchiveURL('https://example.com/template.zip');
+await cesdk.load('https://example.com/template.zip');
 
 // Load from an image URL - creates a new scene with the image
 await cesdk.createFromImage('https://example.com/image.jpg');
 
 // Load from a scene file - restores a scene from JSON
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 ```
 
 The `createDesignScene()` method is ideal for design workflows, as it creates a blank canvas ready for content.

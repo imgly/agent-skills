@@ -18,7 +18,7 @@ The navigation bar is the horizontal toolbar at the top of the editor containing
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-user-interface-customization-navigation-bar-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-user-interface-customization-navigation-bar-browser/index.html)
 
 Actions that affect browser navigation (e.g., going back or closing the editor), have global effects on the scene (e.g., undo/redo and zoom), or process the scene in some way (e.g., saving and exporting) belong in the navigation bar.
 
@@ -464,8 +464,8 @@ When using built-in action button IDs without registering a custom callback, the
 
 | Component ID | Callback | Default Behavior |
 |--------------|----------|------------------|
-| `ly.img.saveScene.navigationBar` | `saveScene` | Downloads `.scene` file |
-| `ly.img.importScene.navigationBar` | `importScene` | Opens file picker for `.scene` |
+| `ly.img.saveScene.navigationBar` | `saveScene` | Downloads `.imgly` file |
+| `ly.img.importScene.navigationBar` | `importScene` | Opens file picker for `.imgly` or `.scene` |
 | `ly.img.exportImage.navigationBar` | `exportDesign` | Exports and downloads image |
 | `ly.img.exportPDF.navigationBar` | `exportDesign` | Exports and downloads PDF |
 | `ly.img.exportVideo.navigationBar` | `exportDesign` | Exports and downloads video |

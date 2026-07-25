@@ -65,7 +65,7 @@ export { DesignEditorConfig } from './config/design-editor/plugin';
  * // Set placeholder variables
  * cesdk.engine.variable.setString('FirstName', 'Firstname');
  * // Load scene
- * await cesdk.loadFromString(sceneString);
+ * await cesdk.load(sceneString);
  * ```
  */
 export async function initBatchImageGenerationTemplateEditor(
@@ -139,7 +139,7 @@ export async function initBatchImageGenerationTemplateEditor(
  * // Set variables from employee data
  * cesdk.engine.variable.setString('FirstName', employee.firstName);
  * // Load scene
- * await cesdk.loadFromString(sceneString);
+ * await cesdk.load(sceneString);
  * ```
  */
 export async function initBatchImageGenerationInstanceEditor(

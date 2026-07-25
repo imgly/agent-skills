@@ -22,7 +22,7 @@ export function useEngine(config: Partial<Configuration>) {
       }
       engine.editor.setSetting('page/title/show', false);
       const template = DEFAULT_TEMPLATES[0];
-      await engine.scene.loadFromURL(template.sceneUrl);
+      await engine.scene.load(template.sceneUrl);
       engineRef.current = engine;
       setIsReady(true);
     });

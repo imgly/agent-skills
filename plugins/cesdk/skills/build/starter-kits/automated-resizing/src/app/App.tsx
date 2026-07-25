@@ -26,7 +26,7 @@ export default function App({ config }: AppProps) {
   const renderPreview = useCallback(
     async (sceneString: string): Promise<string | undefined> => {
       if (!engine) return undefined;
-      await engine.scene.loadFromString(sceneString);
+      await engine.scene.load(sceneString);
       const scene = engine.scene.get();
       if (scene == null) return undefined;
       const blob = await engine.block.export(scene, { mimeType: 'image/png' });
@@ -43,7 +43,7 @@ export default function App({ config }: AppProps) {
       try {
         let scene = template.sceneString;
         if (!scene) {
-          await engine.scene.loadFromURL(template.sceneUrl);
+          await engine.scene.load(template.sceneUrl);
           scene = await engine.scene.saveToString();
         }
         if (scene) {

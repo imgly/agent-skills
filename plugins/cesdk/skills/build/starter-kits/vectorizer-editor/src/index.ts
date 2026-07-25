@@ -55,7 +55,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // Load the vectorizer demo scene from the public showcases URL
     // This scene contains an image optimized for demonstrating vectorization
-    await cesdk.loadFromArchiveURL(
+    await cesdk.load(
       `${DEMO_ASSETS_BASE_URL}/assets/scene.archive`
     );
 

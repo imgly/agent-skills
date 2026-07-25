@@ -87,7 +87,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // highlight-scene-loading
     // Load the Getty Images demo scene from CDN
     // This scene showcases images that can be replaced with photos from Getty Images
-    await cesdk.loadFromURL(resolveAssetPath('/assets/getty-images.scene'));
+    await cesdk.load(resolveAssetPath('/assets/getty-images.scene'));
     // highlight-scene-loading
     // highlight-init
   })

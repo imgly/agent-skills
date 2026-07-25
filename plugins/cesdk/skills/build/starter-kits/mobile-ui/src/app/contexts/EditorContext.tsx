@@ -159,7 +159,7 @@ export const EditorProvider = ({
       engine.event.subscribe([], (events: unknown[]) =>
         engineEventCallbackRef.current(events)
       );
-      await engine.scene.loadFromURL(caseAssetPath('/social-media.scene'));
+      await engine.scene.load(caseAssetPath('/social-media.scene'));
 
       setFocusEngine(engine);
       setFocusEnabled(true);

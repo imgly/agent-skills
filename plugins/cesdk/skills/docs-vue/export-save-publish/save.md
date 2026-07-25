@@ -18,7 +18,7 @@ Save and serialize designs in CE.SDK for later retrieval, sharing, or storage us
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-export-save-publish-save-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-export-save-publish-save-browser/index.html)
 
 CE.SDK provides two formats for persisting designs. Choose the format based on your storage and portability requirements.
 
@@ -92,7 +92,7 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -114,7 +114,7 @@ class Example implements EditorPlugin {
       const sceneBlob = new Blob([sceneString], {
         type: 'application/octet-stream'
       });
-      await cesdk.utils.downloadFile(sceneBlob, 'application/octet-stream');
+      await cesdk.utils.downloadFile(sceneBlob, 'text/plain;charset=UTF-8');
       cesdk.ui.showNotification({
         message: `Scene downloaded (${(sceneString.length / 1024).toFixed(
           1
@@ -200,6 +200,8 @@ export default Example;
 
 **Archive format** creates a self-contained ZIP with all assets embedded. Use this for portable designs that work offline.
 
+Both formats are saved as `.imgly` files — use this extension when persisting them. Either kind loads back through the same `engine.scene.load()` call, which detects the format automatically; `.scene` and `.zip` files also load.
+
 ## Save to String
 
 Serialize the current scene to a Base64-encoded string suitable for database storage.
@@ -257,7 +259,7 @@ For scene strings, convert to a Blob first:
 const sceneBlob = new Blob([sceneString], {
   type: 'application/octet-stream'
 });
-await cesdk.utils.downloadFile(sceneBlob, 'application/octet-stream');
+await cesdk.utils.downloadFile(sceneBlob, 'text/plain;charset=UTF-8');
 ```
 
 For archive blobs, pass directly to the download utility:
@@ -270,7 +272,7 @@ This utility handles creating and revoking object URLs automatically.
 
 ## Load Scene from File
 
-Use the built-in `importScene` action to open a file picker for `.scene` files. This restores a previously saved design from its serialized string format.
+Use the built-in `importScene` action to open a file picker for scene files (`.imgly` or `.scene`). This restores a previously saved design from its serialized string format.
 
 ```typescript highlight=highlight-load-scene
 const handleLoadScene = async () => {
@@ -282,7 +284,7 @@ Scene files are lightweight but require the original asset URLs to remain access
 
 ## Load Archive from File
 
-Load a self-contained `.zip` archive that includes all embedded assets.
+Load a self-contained `.imgly` archive (the `.zip` extension also works) that includes all embedded assets.
 
 ```typescript highlight=highlight-load-archive
 const handleLoadArchive = async () => {
@@ -303,7 +305,7 @@ Trigger the default save behavior programmatically using `actions.run()`:
 await cesdk.actions.run('saveScene');
 ```
 
-This executes the registered handler for `saveScene`, which by default downloads the scene file.
+This executes the registered handler for `saveScene`, which by default downloads the scene file named with the `.imgly` extension.
 
 ### Customizing an Action
 
@@ -325,9 +327,7 @@ The registered handler runs when the built-in save button is clicked or when the
 | ------ | ----------- |
 | `engine.scene.saveToString()` | Serialize scene to Base64 string |
 | `engine.scene.saveToArchive()` | Save scene with assets as ZIP blob |
-| `engine.scene.loadFromString()` | Load scene from serialized string |
-| `engine.scene.loadFromURL()` | Load scene from remote URL |
-| `engine.scene.loadFromArchiveURL()` | Load scene from URL (file://, http://, https://, or object URL) |
+| `engine.scene.load()` | Load scene or archive from URL or string |
 | `cesdk.utils.downloadFile()` | Download blob or string to user device |
 | `cesdk.actions.run()` | Execute a registered action with parameters |
 | `cesdk.actions.register()` | Register or override an action handler |

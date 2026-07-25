@@ -79,7 +79,7 @@ export function EditorModal({
 
       // Load scene and configure
       cesdk.engine.editor.setSetting('page/title/show', false);
-      await cesdk.loadFromString(asset.sceneString);
+      await cesdk.load(asset.sceneString);
 
       // Set the scene name
       const scene = cesdk.engine.scene.get();

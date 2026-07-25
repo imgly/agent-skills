@@ -80,7 +80,7 @@ export function App({ editorConfig }: AppProps) {
         case 'autocaption': {
           await initVideoCaptionsAutocaptionEditor(cesdk);
 
-          await cesdk.loadFromArchiveURL(
+          await cesdk.load(
             `${DEMO_ASSETS_BASE_URL}/assets/autocaption.archive.zip`
           );
 
@@ -136,7 +136,7 @@ export function App({ editorConfig }: AppProps) {
         case 'import': {
           await initVideoCaptionsImportEditor(cesdk);
 
-          await cesdk.loadFromArchiveURL(
+          await cesdk.load(
             `${DEMO_ASSETS_BASE_URL}/assets/captions.archive`
           );
 
@@ -164,7 +164,7 @@ export function App({ editorConfig }: AppProps) {
         case 'pre-captioned': {
           await initVideoCaptionsPreCaptionedEditor(cesdk);
 
-          await cesdk.loadFromArchiveURL(
+          await cesdk.load(
             `${DEMO_ASSETS_BASE_URL}/assets/captions-pre-captioned.archive`
           );
 

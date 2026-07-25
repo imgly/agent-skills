@@ -49,10 +49,10 @@ Load content into the player using one of these methods:
 
 ```typescript
 // Load from a template archive
-await cesdk.loadFromArchiveURL('https://example.com/video.zip');
+await cesdk.load('https://example.com/video.zip');
 
 // Load from a scene file
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 
 // Zoom to fit the content
 await cesdk.actions.run('zoom.toPage', {

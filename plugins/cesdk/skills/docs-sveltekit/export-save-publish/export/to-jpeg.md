@@ -18,7 +18,7 @@ Export CE.SDK designs to JPEG format—ideal for photographs, social media, and 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-jpeg-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-export-save-publish-export-to-jpeg-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-export-save-publish-export-to-jpeg-browser/index.html)
 
 JPEG uses lossy compression optimized for photographs and smooth color gradients. Unlike PNG, JPEG does not support transparency—transparent areas render with a solid background.
 
@@ -81,7 +81,7 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
     const page = engine.scene.getCurrentPage()!;

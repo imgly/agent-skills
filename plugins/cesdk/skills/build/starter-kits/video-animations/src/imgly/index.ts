@@ -303,7 +303,7 @@ export async function initVideoAnimationsEditor(cesdk: CreativeEditorSDK) {
       if (!asset.meta || !asset.meta.uri) {
         throw new Error('Asset does not have a uri');
       }
-      await engine.scene.loadFromURL(asset.meta.uri as string);
+      await engine.scene.load(asset.meta.uri as string);
       // Zoom auto-fit to page
       cesdk.actions.run('zoom.toPage', {
         autoFit: true

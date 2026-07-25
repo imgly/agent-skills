@@ -18,7 +18,7 @@ Generate multiple image variants for a single data point.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-multi-image-generation-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/starterkit-multi-image-generation/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/starterkit-multi-image-generation/index.html)
 
 ***
 
@@ -343,7 +343,7 @@ const config = {
   config={config}
   init={async (cesdk) => {
     await initMultiImageGenerationDesignEditor(cesdk);
-    await cesdk.engine.scene.loadFromString(sceneString);
+    await cesdk.engine.scene.load(sceneString);
   }}
 />
 
@@ -403,13 +403,13 @@ CE.SDK offers multiple ways to load content into the editor. Choose the method t
 await cesdk.actions.run('scene.create');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.loadFromArchiveURL('https://example.com/template.zip');
+await cesdk.load('https://example.com/template.zip');
 
 // Load from an image URL - creates a new scene with the image
 await cesdk.createFromImage('https://example.com/image.jpg');
 
 // Load from a scene file - restores a scene from JSON
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 ```
 
 > **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading methods.

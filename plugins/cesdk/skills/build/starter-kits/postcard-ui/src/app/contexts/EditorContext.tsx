@@ -80,7 +80,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
         setEnabled(false);
         setSceneIsLoaded(false);
         try {
-          await engine.scene.loadFromURL(
+          await engine.scene.load(
             `${DEMO_ASSETS_BASE_URL}${postcardTemplate.scene}`
           );
           const pages = engine.scene.getPages();

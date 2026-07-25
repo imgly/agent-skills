@@ -49,7 +49,7 @@ export async function resize(options: ResizeOptions): Promise<VariantBlob[]> {
     let index = 0;
     for (const size of sizes) {
       // Load source scene fresh for each variant
-      await engine.scene.loadFromString(scene);
+      await engine.scene.load(scene);
 
       // Apply content-aware resizing
       const pages = engine.scene.getPages();
@@ -74,6 +74,6 @@ export async function resize(options: ResizeOptions): Promise<VariantBlob[]> {
     return variants;
   } finally {
     // Restore original scene
-    await engine.scene.loadFromString(originalScene);
+    await engine.scene.load(originalScene);
   }
 }

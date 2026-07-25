@@ -68,7 +68,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     await initFormBasedTemplateAdoption(cesdk);
 
     // Load the template scene
-    await cesdk.engine.scene.loadFromArchiveURL(SCENE_ARCHIVE_URL);
+    await cesdk.engine.scene.load(SCENE_ARCHIVE_URL);
   })
   .catch((error) => {
     // eslint-disable-next-line no-console

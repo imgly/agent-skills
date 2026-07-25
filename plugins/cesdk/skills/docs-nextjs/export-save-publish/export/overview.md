@@ -18,7 +18,7 @@ Export your designs to multiple formats including PNG, JPEG, WebP, SVG, PDF, and
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-export-save-publish-export-overview-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-export-save-publish-export-overview-browser/index.html)
 
 Whether you're building a design tool, photo editor, or content automation workflow, understanding export options helps you deliver the right output for each use case. This guide covers supported formats, their options, and how to export programmatically or via the UI.
 
@@ -94,7 +94,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load a template scene from a remote URL
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 

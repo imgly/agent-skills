@@ -150,7 +150,7 @@ Below are key features and APIs provided by the CreativeEngine:
 The APIs of CE.SDK are grouped into several categories, reflecting different aspects of scene management and manipulation.
 
 [Scene API:](./concepts/scenes.md)- **Creating and Loading
-Scenes:** `jsx engine.scene.create(); engine.scene.loadFromURL(url); `
+Scenes:** `jsx engine.scene.create(); engine.scene.load(url); `
 
 - **Zoom Control:**
 

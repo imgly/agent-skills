@@ -76,7 +76,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         setSceneIsLoaded(false);
 
         // Load the photobook scene
-        await engine.scene.loadFromURL(
+        await engine.scene.load(
           `${DEMO_ASSETS_BASE_URL}${template.scene}`
         );
 

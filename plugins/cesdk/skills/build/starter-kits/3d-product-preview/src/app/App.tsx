@@ -62,7 +62,7 @@ export default function App({ config }: AppProps) {
 
       try {
         const sceneUrl = getDesignSceneUrl(productKey);
-        await designEngine.engine.scene.loadFromURL(sceneUrl);
+        await designEngine.engine.scene.load(sceneUrl);
 
         // Zoom to fit the first page
         await designEngine.actions.run('zoom.toPage', {
@@ -116,12 +116,12 @@ export default function App({ config }: AppProps) {
       const savedDesignScene = designSceneStringRef.current;
       if (savedDesignScene) {
         try {
-          await cesdk.engine.scene.loadFromString(savedDesignScene);
+          await cesdk.engine.scene.load(savedDesignScene);
         } catch {
-          await cesdk.loadFromURL(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
+          await cesdk.load(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
         }
       } else {
-        await cesdk.loadFromURL(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
+        await cesdk.load(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
       }
 
       // Zoom to fit the first page

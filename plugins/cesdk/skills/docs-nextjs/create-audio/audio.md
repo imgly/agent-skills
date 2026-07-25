@@ -69,7 +69,7 @@ Each feature is related to an example further down the page.
 | **Time Management**      | Offset                      | `setTimeOffset`                       | To move the playback starting point in the scene. |
 |                          | Duration                    | `setDuration`                         | Total length (seconds). |
 |                          | Trim length                 | `setTrimLength`                       | Cuts content to a defined length. |
-| **Replace Audio Source** | Reload edited scene         | `scene.loadFromString`                | Used when replacing audio at runtime. |
+| **Replace Audio Source** | Reload edited scene         | `scene.load`                | Used when replacing audio at runtime. |
 | **Waveforms**            | Generate thumbnails         | `generateAudioThumbnailSequence`      | Produces waveform sample data for UI. |
 | **Export Audio**         | Export WAV                  | `exportAudio`                         | MIME type: `audio/wav`. |
 |                          | Export MP4                  | `exportAudio`                         | MIME type: `audio/mp4`. |

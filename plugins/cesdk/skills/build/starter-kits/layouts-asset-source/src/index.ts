@@ -45,7 +45,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     // Load the custom layouts scene with pre-designed content
-    await cesdk.loadFromURL(
+    await cesdk.load(
       `${DEMO_ASSETS_BASE_URL}/assets/custom-layouts.scene`
     );
     // highlight-scene-loading

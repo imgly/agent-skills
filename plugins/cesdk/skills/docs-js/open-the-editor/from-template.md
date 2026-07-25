@@ -18,7 +18,7 @@ Load pre-designed templates to give users a professional starting point instead 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-from-template-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/guides-open-the-editor-from-template-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/guides-open-the-editor-from-template-browser/index.html)
 
 Templates provide consistent layouts and styling that users can customize for their needs. CE.SDK supports loading templates from remote URLs, local strings, and applying template content to existing scenes while preserving page dimensions.
 
@@ -43,7 +43,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
     const templateUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.loadFromURL(templateUrl);
+    await engine.scene.load(templateUrl);
 
     const textBlocks = engine.block.findByType('text');
     if (textBlocks.length > 0) {
@@ -68,7 +68,7 @@ class Example implements EditorPlugin {
             label: 'Load from String',
             iconName: '@imgly/icons/Essentials/Download',
             onClick: async () => {
-              await engine.scene.loadFromString(businessCardSceneString);
+              await engine.scene.load(businessCardSceneString);
               const scene = engine.scene.get();
               if (scene != null) {
                 await engine.scene.zoomToBlock(scene, { padding: 40 });
@@ -108,17 +108,17 @@ The most common approach is loading templates from a remote URL. The engine repl
 ```typescript highlight-load-from-url
 const templateUrl =
   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-await engine.scene.loadFromURL(templateUrl);
+await engine.scene.load(templateUrl);
 ```
 
 The template URL should point to a valid `.scene` file hosted on a server with appropriate CORS headers.
 
 ## Load a Template from String
 
-When templates are stored in a database or retrieved from custom storage, use `engine.scene.loadFromString()`. This accepts the scene data as a string, typically from a previous `engine.scene.saveToString()` call.
+When templates are stored in a database or retrieved from custom storage, use `engine.scene.load()`. This accepts the scene data as a string, typically from a previous `engine.scene.saveToString()` call.
 
 ```typescript highlight-load-from-string
-await engine.scene.loadFromString(businessCardSceneString);
+await engine.scene.load(businessCardSceneString);
 ```
 
 This approach is useful for loading templates from your backend API, restoring saved user designs, or working with templates stored in databases.
@@ -168,8 +168,7 @@ Common modifications include:
 
 | Method | Description |
 | ------ | ----------- |
-| `engine.scene.loadFromURL()` | Load a scene from a remote URL |
-| `engine.scene.loadFromString()` | Load a scene from a string |
+| `engine.scene.load()` | Load a scene from a remote URL or a serialized string |
 | `engine.scene.applyTemplateFromURL()` | Apply template to existing scene from URL |
 | `engine.scene.applyTemplateFromString()` | Apply template to existing scene from string |
 | `engine.block.findByType()` | Find blocks by type |

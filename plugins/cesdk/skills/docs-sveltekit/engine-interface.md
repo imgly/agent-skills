@@ -66,7 +66,7 @@ const backgroundEngine = await CreativeEngine.init({
 });
 
 async function generateThumbnail(sceneData) {
-  await backgroundEngine.scene.loadFromString(sceneData);
+  await backgroundEngine.scene.load(sceneData);
   const page = backgroundEngine.scene.getPages()[0];
   return await backgroundEngine.block.export(page, 'image/jpeg', {
     targetWidth: 200,

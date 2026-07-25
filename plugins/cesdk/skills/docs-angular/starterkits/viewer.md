@@ -18,7 +18,7 @@ Lightweight design viewing for your Angular app—pan, zoom, and navigate multi-
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-design-viewer-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260724/examples/starterkit-design-viewer/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260725/examples/starterkit-design-viewer/index.html)
 
 ***
 
@@ -285,10 +285,10 @@ CE.SDK offers multiple ways to load content into the viewer. Choose the method t
 
 ```typescript title="src/index.ts"
 // Load from a template archive - loads a previously saved project
-await cesdk.loadFromArchiveURL('https://example.com/design.zip');
+await cesdk.load('https://example.com/design.zip');
 
 // Load from a scene file - restores a scene from JSON
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 
 // Zoom to fit the content
 await cesdk.actions.run('zoom.toPage', {

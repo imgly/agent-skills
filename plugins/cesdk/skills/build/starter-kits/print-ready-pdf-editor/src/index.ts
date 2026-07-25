@@ -47,7 +47,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     // Load the example scene for print-ready PDF export
-    await cesdk.loadFromURL(resolveAssetPath('/assets/example-1.scene'));
+    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
     // highlight-scene-loading
   })
   .catch((error) => {

@@ -153,7 +153,7 @@ CE.SDK’s APIs are categorized into several groups, reflecting different aspect
 
   ```javascript
   engine.scene.create();
-  engine.scene.loadFromURL(url);
+  engine.scene.load(url);
   ```
 
 ````
