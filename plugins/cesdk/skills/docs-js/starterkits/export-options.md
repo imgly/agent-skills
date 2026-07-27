@@ -18,7 +18,7 @@ Export designs in JPG, PNG, or PDF with custom quality, page ranges, and dimensi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-export-options-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260726/examples/starterkit-export-options/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260727/examples/starterkit-export-options/index.html)
 
 ***
 
