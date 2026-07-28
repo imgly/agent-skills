@@ -18,7 +18,7 @@ Organize design elements in CE.SDK using a hierarchical layer stack to control s
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-layer-management-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-composition-layer-management-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-create-composition-layer-management-browser/index.html)
 
 Design elements in CE.SDK are organized in a hierarchical parent-child structure. Children of a block are rendered in order, with the last child appearing on top. This layer stack model gives you precise control over how elements overlap and interact visually.
 

@@ -19,7 +19,7 @@ backgrounds with videos using CE.SDK's video fill system.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-fills-video-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-fills-video-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-fills-video-browser/index.html)
 
 Understanding the distinction between **video fills** and **video blocks** is essential. Video fills are fill objects that can be applied to blocks supporting fills, such as graphic shapes and pages, to paint them with video content. Video blocks, created with `addVideo()`, are dedicated time-based blocks with full editing capabilities like trimming and duration control. Video fills focus on applying video as a visual treatment, while video blocks provide complete video editing functionality.
 

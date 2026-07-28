@@ -32,8 +32,6 @@ import { VideoEditorConfig } from './config/plugin';
 
 // Re-export for external use
 export { VideoEditorConfig } from './config/plugin';
-export { VIDEO_CATALOG } from '../app/video-catalog';
-export type { VideoAsset } from '../app/video-catalog';
 
 /**
  * Initialize the CE.SDK Video Editor with a video file.

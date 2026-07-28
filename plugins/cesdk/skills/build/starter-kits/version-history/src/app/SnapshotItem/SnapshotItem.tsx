@@ -4,7 +4,7 @@
  * Renders a single snapshot entry with thumbnail, info, and load button.
  */
 
-import { Snapshot } from '../types';
+import { Snapshot } from '../../imgly';
 import { formatDate } from '../../imgly/utils';
 
 interface SnapshotItemProps {

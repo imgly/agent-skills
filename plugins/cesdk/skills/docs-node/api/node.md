@@ -46,12 +46,13 @@
 | [AnimationWipeDirection](./api/node/type-aliases/animationwipedirection.md) | - |
 | [ApplicationMimeType](./api/node/type-aliases/applicationmimetype.md) | Represents the application MIME types used in the editor. |
 | [AssetColor](./api/node/type-aliases/assetcolor.md) | Asset Color payload |
+| [AssetFacetPath](./api/node/type-aliases/assetfacetpath.md) | Property paths that can be faceted — the facetable subset of `AssetPropertyPath`. `label` and `id` are excluded because their cardinality is unbounded. |
 | [AssetFilter](./api/node/type-aliases/assetfilter.md) | Filter expression — predicate or logical combinator. Combinators nest arbitrarily. The union is mutually exclusive: an object with both `and` and `or`, or with `property` next to a combinator key, is rejected at the type level. |
 | [AssetGroups](./api/node/type-aliases/assetgroups.md) | An asset can be member of multiple groups. Groups have a semantic meaning used to build and group UIs exploring the assets, e.g.sections in the content library, or for things like topics in Unsplash for instance. |
 | [AssetMetaData](./api/node/type-aliases/assetmetadata.md) | Generic asset information |
 | [AssetProperty](./api/node/type-aliases/assetproperty.md) | Asset property for payload |
-| [AssetPropertyFilter](./api/node/type-aliases/assetpropertyfilter.md) | A single property predicate. Exactly one of `contains` (case-insensitive substring) or `equals` (case-insensitive equality) must be set — the type forbids passing both or neither. On a string-array property (`tags`, `groups`), the operator matches if any element matches. |
-| [AssetPropertyPath](./api/node/type-aliases/assetpropertypath.md) | Dot-path against the resolved asset that a property predicate targets: `label`, `id`, `tags`, `groups`, or `meta.<key>` (one segment — meta values in the engine are flat strings). |
+| [AssetPropertyFilter](./api/node/type-aliases/assetpropertyfilter.md) | A single property predicate. Exactly one of `contains` (case-insensitive substring) or `equals` (case-insensitive equality) must be set — the type forbids passing both or neither. On a string-array property (`tags`, `groups`), the operator matches if any element matches. `meta.<key>` values are flat strings, compared whole. |
+| [AssetPropertyPath](./api/node/type-aliases/assetpropertypath.md) | Dot-path against the resolved asset that a property predicate targets: `label`, `id`, `tags`, `groups`, or `meta.<key>` (one segment). |
 | [AssetStylePresetAnimationProperties](./api/node/type-aliases/assetstylepresetanimationproperties.md) | The parameters of an [AssetStylePresetAnimation](./api/node/interfaces/assetstylepresetanimation.md): a map of the animation's property paths to values. The animation's `animation/*` properties (e.g. `animation/slide/fade`, `animation/grow/scaleFactor`) are value-checked and autocomplete, as are the animation controls (`playback/duration`, `animationEasing`, `textWritingStyle`, `textWritingOverlap`); any other property path is still accepted. These are animation paths, distinct from the block-property paths in [AssetStylePresetProperties](./api/node/type-aliases/assetstylepresetproperties.md). |
 | [AssetStylePresetProperties](./api/node/type-aliases/assetstylepresetproperties.md) | The look of an [AssetStylePreset](./api/node/interfaces/assetstylepreset.md): a map of property paths to values. Known paths are value-checked and autocomplete (e.g. `stroke/enabled` must be a boolean, `stroke/width` a number, `fill/solid/color` a color); any other property path is still accepted with the broader [AssetStylePresetPropertyValue](./api/node/type-aliases/assetstylepresetpropertyvalue.md). Keys without a `/` are namespaced to the block (`text/` or `caption/`); keys with a `/` are used verbatim. |
 | [AssetStylePresetPropertyValue](./api/node/type-aliases/assetstylepresetpropertyvalue.md) | A value a style preset can set on a property: a boolean, number, string (including enum values) or an RGB(A) color. Colors must be RGB(A) (`{ r, g, b, a? }`); CMYK and spot colors are not supported in presets. Structs and source sets cannot be set from a preset. A `null` value is ignored for regular properties; for the virtual `text/path` property it clears the baseline path. |
@@ -187,6 +188,9 @@
 | [TimelineTrackVisibility](./api/node/type-aliases/timelinetrackvisibility.md) | - |
 | [TouchPinchAction](./api/node/type-aliases/touchpinchaction.md) | - |
 | [TouchRotateAction](./api/node/type-aliases/touchrotateaction.md) | - |
+| [TransitionType](./api/node/type-aliases/transitiontype.md) | The block type IDs for the transition blocks. These are the IDs used to create new transitions using `cesdk.engine.block.createTransition(id)`. Refer to [TransitionTypeShorthand](./api/node/type-aliases/transitiontypeshorthand.md) and [TransitionTypeLonghand](./api/node/type-aliases/transitiontypelonghand.md) for more details. |
+| [TransitionTypeLonghand](./api/node/type-aliases/transitiontypelonghand.md) | The longhand block type IDs for the transition blocks. These are the IDs used to create new transitions using `cesdk.engine.block.createTransition(id)`. |
+| [TransitionTypeShorthand](./api/node/type-aliases/transitiontypeshorthand.md) | - |
 | [~~TypefaceDefinition~~](./api/node/type-aliases/typefacedefinition.md) | Represents a typeface definition used in the editor. |
 | [VerticalBlockAlignment](./api/node/type-aliases/verticalblockalignment.md) | - |
 | [VerticalContentFillAlignment](./api/node/type-aliases/verticalcontentfillalignment.md) | - |
@@ -217,6 +221,7 @@
 | [AssetContentAspectRatio](./api/node/interfaces/assetcontentaspectratio.md) | Asset transform preset payload that snaps a block's frame to the intrinsic aspect ratio of the block's content (e.g. the underlying image or video). |
 | [AssetDefinition](./api/node/interfaces/assetdefinition.md) | Definition of an asset used if an asset is added to an asset source. |
 | [AssetEnumProperty](./api/node/interfaces/assetenumproperty.md) | Asset enum property definition |
+| [AssetFacetValue](./api/node/interfaces/assetfacetvalue.md) | One bucket of a facet distribution. |
 | [AssetFixedAspectRatio](./api/node/interfaces/assetfixedaspectratio.md) | Asset transform preset payload fixed aspect ratio |
 | [AssetFixedSize](./api/node/interfaces/assetfixedsize.md) | Asset transform preset payload fixed size |
 | [AssetFreeAspectRatio](./api/node/interfaces/assetfreeaspectratio.md) | Asset transform preset payload free aspect ratio |
@@ -326,6 +331,7 @@
 | [TimelineTrackVisibilityValues](./api/node/variables/timelinetrackvisibilityvalues.md) | - |
 | [TouchPinchActionValues](./api/node/variables/touchpinchactionvalues.md) | - |
 | [TouchRotateActionValues](./api/node/variables/touchrotateactionvalues.md) | - |
+| [TRANSITION\_TYPES](./api/node/variables/transition_types.md) | The shorthand block type IDs for the transition blocks. These are the IDs used to create new transitions using `cesdk.engine.block.createTransition(id)`. |
 | [VerticalContentFillAlignmentValues](./api/node/variables/verticalcontentfillalignmentvalues.md) | - |
 | [WidthModeValues](./api/node/variables/widthmodevalues.md) | - |
 

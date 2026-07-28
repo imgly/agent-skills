@@ -28,15 +28,13 @@ import {
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 
+import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
+
 // Configuration plugin
 import { DesignEditorConfig } from './config/plugin';
 
-// Background removal plugin
-import { setupBackgroundRemovalPlugin } from './plugins/background-removal';
-
 // Re-export for external use
 export { DesignEditorConfig } from './config/plugin';
-export { setupBackgroundRemovalPlugin } from './plugins/background-removal';
 
 /**
  * Initialize the CE.SDK Background Removal Editor with a complete configuration.
@@ -132,8 +130,12 @@ export async function initBackgroundRemovalEditor(cesdk: CreativeEditorSDK) {
   // Background Removal Plugin
   // ============================================================================
 
-  // Setup background removal with both canvas menu and Apps dock entry
-  // - Canvas menu: Uses official @imgly/plugin-background-removal-web
-  // - Apps dock: Custom implementation with "Remove Background" action
-  await setupBackgroundRemovalPlugin(cesdk);
+  await cesdk.addPlugin(
+    BackgroundRemovalPlugin({
+      ui: { locations: ['canvasMenu'] },
+      provider: {
+        type: '@imgly/background-removal'
+      }
+    })
+  );
 }

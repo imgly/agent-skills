@@ -18,7 +18,7 @@ Learn how to configure thumbnail images for assets in CE.SDK's asset library.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-asset-library-thumbnails-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-asset-library-thumbnails-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-import-media-asset-library-thumbnails-browser/index.html)
 
 Thumbnails provide visual previews of assets in the asset library, improving the user experience when browsing images, videos, audio files, and other media. We recommend using **512px width for thumbUri** to ensure quality across platforms.
 

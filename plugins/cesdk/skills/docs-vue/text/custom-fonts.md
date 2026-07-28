@@ -18,7 +18,7 @@ Load and configure custom fonts in CE.SDK to match brand guidelines or provide u
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-fonts-typefaces-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-fonts-typefaces-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-fonts-typefaces-browser/index.html)
 
 CE.SDK includes a set of default typefaces, but you can customize the available fonts by creating custom asset sources with your own typeface definitions. Fonts are managed through the asset system and displayed in the editor UI via the typeface library.
 
@@ -91,7 +91,7 @@ class CustomFontsExample implements EditorPlugin {
 
     await engine.asset.addAssetToSource(sourceId, {
       id: 'orbitron',
-      groups: ['latin'],
+      meta: { languages: 'latin' },
       payload: {
         typeface: orbitronTypeface
       }
@@ -270,7 +270,7 @@ We first create the source with `engine.asset.addLocalSource()`, then add typefa
 
     await engine.asset.addAssetToSource(sourceId, {
       id: 'orbitron',
-      groups: ['latin'],
+      meta: { languages: 'latin' },
       payload: {
         typeface: orbitronTypeface
       }
@@ -328,9 +328,9 @@ The order in `sourceIds` determines the display order in the UI.
 
 ## Group Typefaces by Language
 
-Each typeface asset declares the subsets it covers with a top-level `groups` array. The Orbitron asset created earlier uses `['latin']`. The typeface library reads these `groups` to populate its **language filter**, letting users narrow the list to the subset they need.
+Each typeface asset declares the subsets it covers with a `meta.languages` string—a comma-separated list of subset names. The Orbitron asset created earlier uses `'latin'`. The typeface library reads `meta.languages` to populate its **language filter**, letting users narrow the list to the subset they need.
 
-Built-in subsets such as `latin`, `cyrillic`, `greek`, and `hebrew` show localized labels in the filter, and other tokens appear as written. A typeface without `groups` still appears by default. It only drops out once a user selects a specific subset in the filter, so set `groups` on your custom fonts to keep them discoverable.
+Built-in subsets such as `latin`, `cyrillic`, `greek`, and `hebrew` show localized labels in the filter, and other tokens appear as written. A typeface without `meta.languages` still appears by default. It only drops out once a user selects a specific subset in the filter, so set `meta.languages` on your custom fonts to keep them discoverable.
 
 By default each source renders as a flat, filterable list. To show a grouped overview with one section per subset instead, enable `showGroupOverview` on the entry:
 

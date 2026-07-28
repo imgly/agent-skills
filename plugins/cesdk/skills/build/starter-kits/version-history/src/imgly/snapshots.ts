@@ -8,8 +8,14 @@
  * making the React components simple consumers of the state.
  */
 
-import { Snapshot } from '../app/types';
 import { resolveAssetPath } from './resolveAssetPath';
+
+export interface Snapshot {
+  thumbnailUrl: string;
+  sceneUrl: string;
+  createdAt: string;
+  userName: string;
+}
 
 // ============================================================================
 // Initial Snapshots Data (from CDN)

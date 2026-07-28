@@ -1,5 +1,5 @@
 import { rgbaToHex } from '../../../imgly/ColorUtilities';
-import { useSelectedProperty } from '../../../imgly/UseSelectedProperty';
+import { useSelectedProperty } from '../../hooks/UseSelectedProperty';
 import classes from './CurrentColorIcon.module.css';
 
 const CurrentColorIcon = ({ property = 'fill/solid/color' }) => {

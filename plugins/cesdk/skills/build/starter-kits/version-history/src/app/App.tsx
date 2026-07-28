@@ -9,7 +9,7 @@ import { useState, useRef, useCallback } from 'react';
 import CreativeEditorSDK, { Configuration } from '@cesdk/cesdk-js';
 import CreativeEditor from '@cesdk/cesdk-js/react';
 import { HistoryPanel } from './HistoryPanel/HistoryPanel';
-import { Snapshot } from './types';
+import { Snapshot } from '../imgly';
 import {
   initVersionHistoryEditor,
   loadSnapshot,

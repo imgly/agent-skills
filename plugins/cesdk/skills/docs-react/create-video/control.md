@@ -18,7 +18,7 @@ Play, pause, seek, and preview audio and video content programmatically using CE
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-control-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-control-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-create-video-control-browser/index.html)
 
 CE.SDK provides playback control for audio and video through the Block API. Playback state, seeking, and solo preview are controlled programmatically. Resources must be loaded before accessing metadata like duration and dimensions.
 
@@ -277,8 +277,8 @@ Enabling solo on one block automatically disables it on all others. This is usef
 <ul className="nx-list-disc nx-list-inside">
   <li>[Trim Video and Audio](./edit-video/trim.md) - Control which portion of source media plays</li>
   <li>[Loop Audio](./create-audio/audio/loop.md) - Enable repeating playback for audio blocks</li>
-  <li>[Adjust Volume](./create-video/audio/adjust-volume.md) - Control audio volume and muting</li>
-  <li>[Adjust Speed](./create-video/audio/adjust-speed.md) - Change playback speed for audio</li>
+  <li>[Adjust Volume](./create-audio/audio/adjust-volume.md) - Control audio volume and muting</li>
+  <li>[Adjust Speed](./create-audio/audio/adjust-speed.md) - Change playback speed for audio</li>
   <li>[Video Timeline Overview](./create-video/timeline-editor.md) - Timeline editing system</li>
 </ul>
 

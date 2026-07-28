@@ -16,7 +16,7 @@ import {
   generateColorAbstractionTokensCanvas,
   generateColorAbstractionTokensSurface,
   generateStaticTokens
-} from './color';
+} from '../imgly';
 import { ScaleControl, type Scale } from './ScaleControl';
 import { ThemeControl, type Theme } from './ThemeControl';
 import { ColorPicker } from './ColorPicker/ColorPicker';

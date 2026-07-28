@@ -18,6 +18,7 @@ Return type of a `findAssets` query.
 |  `currentPage` | `number` | The current, requested page |
 |  `nextPage?` | `number` | The next page to query if it exists |
 |  `total` | `number` | How many assets are there in total for the current query regardless of the page |
+|  `facets?` | `object` | Distributions for the requested facet paths, keyed by the exact requested path string. Ordered by count descending, ties by value ascending. A missing key signals the source did not compute that facet. Absent entirely when no facets were requested or none were computed. |
 
 
 ---

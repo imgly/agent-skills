@@ -287,6 +287,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     // 'ly.img.video.caption', /* Video captions */
     // 'ly.img.playbackSpeed', /* Playback speed control */
     // 'ly.img.animations', /* Animations button */
+    // 'ly.img.transitions', /* Transitions button */
     // #endregion
 
     // ============================================================================

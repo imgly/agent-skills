@@ -18,7 +18,7 @@ This guide shows how to programmatically edit shapes using the Block API, coveri
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-stickers-and-shapes-edit-shapes-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-stickers-and-shapes-edit-shapes-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-stickers-and-shapes-edit-shapes-browser/index.html)
 
 The `graphic` block in CE.SDK allows you to modify and replace its shape. CE.SDK supports many different types of shapes, such as rectangles, lines, ellipses, polygons, stars, and custom vector paths.
 

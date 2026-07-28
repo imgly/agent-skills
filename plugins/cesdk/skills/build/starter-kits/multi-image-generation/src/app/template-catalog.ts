@@ -4,7 +4,7 @@
  * Template configurations for multi-image generation.
  */
 
-import type { Template } from './types';
+import type { Template } from '../imgly';
 
 /**
  * Available templates for image generation.

@@ -559,6 +559,7 @@ The following library entry IDs are pre-registered by CE.SDK:
 | `ly.img.cropPresets` | Crop presets panel |
 | `ly.img.library.captionPresets` | Caption presets panel |
 | `ly.img.animations` | Animations panel |
+| `ly.img.transitions` | Transitions panel |
 | `ly.img.textAnimations` | Text animations panel |
 
 You can also use custom entry IDs to create your own library panels.

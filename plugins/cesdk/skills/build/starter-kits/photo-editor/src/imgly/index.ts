@@ -24,13 +24,13 @@ import {
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 
+import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
+
 // Configuration and plugins
 import { PhotoEditorConfig } from '@cesdk/core-configs-web/photo-editor';
-import { setupBackgroundRemovalPlugin } from './plugins/background-removal';
 
 // Re-export for external use
 export { PhotoEditorConfig } from '@cesdk/core-configs-web/photo-editor';
-export { setupBackgroundRemovalPlugin } from './plugins/background-removal';
 
 /**
  * Initialize the CE.SDK Photo Editor with a complete configuration.
@@ -62,14 +62,6 @@ export async function initPhotoEditor(cesdk: CreativeEditorSDK) {
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
   // highlight-theme
-
-  // ============================================================================
-  // Background Removal Plugin
-  // ============================================================================
-
-  // Setup AI-powered background removal
-  // Requires: npm install @imgly/background-removal onnxruntime-web
-  setupBackgroundRemovalPlugin(cesdk);
 
   // ============================================================================
   // Asset Source Plugins
@@ -121,5 +113,23 @@ export async function initPhotoEditor(cesdk: CreativeEditorSDK) {
         });
       }
     }
+  );
+
+  // ============================================================================
+  // Background Removal Plugin
+  // ============================================================================
+
+  await cesdk.addPlugin(
+    BackgroundRemovalPlugin({
+      provider: {
+        type: '@imgly/background-removal'
+      }
+    })
+  );
+
+  // Add Background Removal to the dock, grouped with the other photo tools.
+  cesdk.ui.insertOrderComponent(
+    { in: 'ly.img.dock', after: { key: 'ly.img.effects' } },
+    '@imgly/plugin-background-removal-web.dock'
   );
 }

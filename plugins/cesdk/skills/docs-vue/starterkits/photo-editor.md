@@ -18,7 +18,7 @@ Professional photo editing for your Vue app—crop, filter, adjust, and remove b
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-photo-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-photo-editor/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/starterkit-photo-editor/index.html)
 
 ***
 

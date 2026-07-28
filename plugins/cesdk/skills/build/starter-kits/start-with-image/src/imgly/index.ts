@@ -31,13 +31,13 @@ import {
 // Configuration and plugins
 import { PhotoEditorConfig } from './config/plugin';
 
-// Image catalog for sample images
-import { IMAGE_CATALOG } from '../app/image-catalog';
+import { resolveAssetPath } from './resolveAssetPath';
 
 // Re-export for external use
 export { PhotoEditorConfig } from './config/plugin';
-export { IMAGE_CATALOG } from '../app/image-catalog';
-export type { ImageAsset } from '../app/image-catalog';
+
+/** Sample image used when no image URL is provided. */
+const DEFAULT_IMAGE_URL = resolveAssetPath('/assets/images/mountain-1200.jpg');
 
 /**
  * Initialize the CE.SDK Start With Image Editor with a complete configuration.
@@ -142,7 +142,7 @@ export async function initStartWithImageEditor(
   // highlight-create-from-image
   // Create a design scene from the provided image URL
   // This is the key feature of the start-with-image workflow
-  const imageToLoad = imageUrl || IMAGE_CATALOG[0].full;
+  const imageToLoad = imageUrl || DEFAULT_IMAGE_URL;
   await cesdk.createFromImage(imageToLoad);
 
   // Select the image block for immediate editing

@@ -20,21 +20,6 @@ export const DEFAULT_RENDER_DEBOUNCE_MS = 1500;
 export const DEFAULT_EXPORT_WIDTH = 512;
 export const DEFAULT_EXPORT_HEIGHT = 512;
 
-/** Default MIME type for mockup export */
-export const DEFAULT_EXPORT_MIME_TYPE = 'image/jpeg' as const;
-
-// ============================================================================
-// Mockup Placeholder Configuration
-// ============================================================================
-
-/**
- * Data URI for a 1x1 white pixel image.
- * Used to clear unused placeholder slots in mockup scenes.
- * Using a data URI avoids external network requests.
- */
-export const WHITE_1PX_DATA_URI =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==';
-
 // ============================================================================
 // Scene Configuration
 // ============================================================================

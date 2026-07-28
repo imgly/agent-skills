@@ -14,7 +14,6 @@ Learn how to extend CE.SDK functionality with plugins to add custom features, ef
 
 ## Related Pages
 
-- [AI Feature Plugins](./plugins/ai-image-generation.md) - Install the CE.SDK AI plugins to add image, video, audio, and text generation to the editor, then configure them with the AI Features guides.
 - [Asset Source Plugins](./plugins/asset-sources.md) - Reference documentation for CE.SDK asset source plugins - pre-built asset libraries for images, stickers, filters, effects, fonts, and more
 - [How to Export Print-Ready PDFs with CE.SDK](./plugins/print-ready-pdf.md) - Learn to convert CE.SDK's PDF exports into PDF/X compliant, CMYK print-ready files for professional commercial printing
 - [Export to HTML5](./export-save-publish/export/to-html5.md) - Export CE.SDK designs as HTML5 bundles with customizable output for display ads and interactive web content.

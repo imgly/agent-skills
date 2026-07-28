@@ -18,7 +18,7 @@ Bundle custom functionality into reusable plugins for CE.SDK.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-add-custom-feature-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ui-extensions-add-custom-feature-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-user-interface-ui-extensions-add-custom-feature-browser/index.html)
 
 Plugins provide a structured way to package UI components, event handlers, actions, and configuration into a single unit. While you can customize CE.SDK without plugins by calling APIs directly after initialization, plugins help organize code for sharing across projects or publishing for others to use.
 

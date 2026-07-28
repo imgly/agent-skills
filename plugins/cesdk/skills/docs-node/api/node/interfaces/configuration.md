@@ -23,7 +23,7 @@ and role.
 |  ~~`presets`~~ | `object` | **Deprecated** This config key is not used anymore and will be removed. |
 | `presets.typefaces?` | `object` | **Deprecated** The configuration option `presets.typefaces` does not exist anymore. Custom typefaces should be defined as asset sources using the `cesdk.engine.asset.addSource` or `cesdk.engine.asset.addLocalSource` instead. |
 |  `forceWebGL1?` | `boolean` | By default the engine tries to create a webgl2 context. If this fails it falls back to trying to create a webgl1 context. If this configuration option is set to true, it will no longer try to create a webgl2 context and always create a webgl1 context. |
-|  `audioOutput?` | `"auto"` | `"none"` | Whether the engine should automatically choose an audio output device or should not output audio at all. If not configured the fallback value is 'auto'. |
+|  `audioOutput?` | `"none"` | `"auto"` | Whether the engine should automatically choose an audio output device or should not output audio at all. If not configured the fallback value is 'auto'. |
 |  `role?` | [`RoleString`](./api/node/type-aliases/rolestring.md) | - |
 
 

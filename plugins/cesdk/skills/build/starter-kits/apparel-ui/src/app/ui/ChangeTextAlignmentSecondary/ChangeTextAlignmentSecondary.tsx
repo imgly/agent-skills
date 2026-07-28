@@ -1,4 +1,4 @@
-import { useSelectedProperty } from '../../../imgly/UseSelectedProperty';
+import { useSelectedProperty } from '../../hooks/UseSelectedProperty';
 import AlignmentSelect from '../AlignmentSelect/AlignmentSelect';
 
 const ChangeTextAlignmentSecondary = () => {

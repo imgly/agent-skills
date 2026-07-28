@@ -18,7 +18,7 @@ Easily generate and customize QR codes within CE.SDK.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-qr-code-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-qr-code-editor/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/starterkit-qr-code-editor/index.html)
 
 ***
 

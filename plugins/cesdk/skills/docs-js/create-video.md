@@ -18,6 +18,7 @@
 - [Split Video and Audio](./edit-video/split.md) - Learn how to split video and audio clips at specific time points in CE.SDK, creating two independent segments from a single clip.
 - [Join and Arrange Video Clips](./edit-video/join-and-arrange.md) - Combine multiple video clips into sequences and organize them on the timeline using tracks and time offsets in CE.SDK.
 - [Transform](./edit-video/transform.md) - Documentation for Transform
+- [Apply Transitions](./create-video/apply-transitions.md) - Documentation for Apply Transitions
 - [Add Captions](./edit-video/add-captions.md) - Documentation for adding captions to videos
 - [Update Caption Presets](./create-video/update-caption-presets.md) - Extend video captions with custom caption styles using simple content.json updates
 - [Add Watermark](./edit-video/add-watermark.md) - Add text and image watermarks to videos using CE.SDK for copyright protection, branding, and content attribution with timeline management and visibility controls.

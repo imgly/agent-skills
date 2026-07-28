@@ -18,7 +18,7 @@ Combine multiple shapes using boolean operations to create custom compound desig
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-stickers-and-shapes-combine-browser)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/guides-stickers-and-shapes-combine-browser/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-stickers-and-shapes-combine-browser/index.html)
 
 CE.SDK provides four boolean operations for combining shapes: *Union*, *Difference*, *Intersection*, and *XOR*. These operations work with graphic blocks and text blocks, allowing you to build complex designs from simple primitives.
 

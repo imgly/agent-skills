@@ -18,7 +18,7 @@ Reduce the risk of misprints and speed up validation process thanks to design va
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-design-validation-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-design-validation/)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/starterkit-design-validation/index.html)
 
 ***
 
