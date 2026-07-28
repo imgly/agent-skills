@@ -91,6 +91,8 @@ export async function generateAsset(
   } else {
     blob = await engine.block.exportVideo(page, {
       mimeType: 'video/mp4',
+      // 'Auto' derives a bounded bitrate from the resolution/framerate
+      videoBitrate: 'Auto',
       targetWidth: width,
       targetHeight: height
     });

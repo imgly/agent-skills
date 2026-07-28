@@ -52,7 +52,14 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  * // Export video to MP4
  * await cesdk.actions.run('exportDesign', { mimeType: 'video/mp4' });
  *
- * // Export with custom video settings
+ * // Export with the recommended automatic bitrate.
+ * // 'Auto' derives a bounded bitrate from the resolution/framerate.
+ * await cesdk.actions.run('exportDesign', {
+ *   mimeType: 'video/mp4',
+ *   videoBitrate: 'Auto'
+ * });
+ *
+ * // Or export with an explicit bitrate in bits per second
  * await cesdk.actions.run('exportDesign', {
  *   mimeType: 'video/mp4',
  *   videoBitrate: 15_000_000,
@@ -94,7 +101,11 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   cesdk.actions.register('exportDesign', async (exportOptions) => {
     // Export video using cesdk.utils.export
     // Supports options: mimeType, videoCodec, videoBitrate, targetHeight, targetWidth, frameRate
-    const { blobs, options } = await cesdk.utils.export(exportOptions);
+    // videoBitrate accepts a number (bits/sec), 'Auto' (bounded default, recommended) or 'System' (platform default).
+    const { blobs, options } = await cesdk.utils.export({
+      videoBitrate: 'Auto',
+      ...exportOptions
+    });
 
     // Download the exported video
     await cesdk.utils.downloadFile(blobs[0], options.mimeType);
@@ -112,7 +123,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   //   const { blobs, options } = await cesdk.utils.export({
   //     mimeType: 'video/mp4',
   //     videoCodec: 'h264',
-  //     videoBitrate: 10_000_000,
+  //     videoBitrate: 'Auto', // or a number in bits/sec
   //     targetHeight: 1080
   //   });
   //   await cesdk.utils.downloadFile(blobs[0], options.mimeType);
@@ -209,7 +220,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // #region Share Video Action
   // Share exported video using Web Share API
   // cesdk.actions.register('share', async () => {
-  //   const { blobs } = await cesdk.utils.export({ mimeType: 'video/mp4' });
+  //   const { blobs } = await cesdk.utils.export({ mimeType: 'video/mp4', videoBitrate: 'Auto' });
   //   const file = new File([blobs[0]], 'video.mp4', { type: 'video/mp4' });
   //
   //   if (navigator.share && navigator.canShare({ files: [file] })) {

@@ -43,7 +43,6 @@ export { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
  * - Video editor UI configuration
  * - Background removal plugin
  * - Asset source plugins (videos, audio, images, effects, etc.)
- * - Custom translations
  * - Export video button in navigation bar
  *
  * @param cesdk - The CreativeEditorSDK instance to configure
@@ -156,34 +155,15 @@ export async function initVideoEditor(cesdk: CreativeEditorSDK) {
   // highlight-asset-sources
 
   // ============================================================================
-  // Localization
-  // ============================================================================
-
-  // highlight-localization
-  // Add custom translations for UI labels
-  cesdk.i18n.setTranslations({
-    en: { 'actions.export.video': 'Export Video' }
-  });
-  // highlight-localization
-
-  // ============================================================================
   // Navigation Bar Button
   // ============================================================================
 
-  // Add export video button to navigation bar
+  // Add the built-in "Export Video" button, styled as an accent (primary) action.
   cesdk.ui.insertOrderComponent(
     { in: 'ly.img.navigation.bar', position: 'end' },
     {
-      id: 'ly.img.action.navigationBar',
-      key: 'actions.export.video',
-      color: 'accent',
-      icon: '@imgly/Video',
-      label: 'actions.export.video',
-      onClick: async () => {
-        await cesdk.actions.run('exportDesign', {
-          mimeType: 'video/mp4'
-        });
-      }
+      id: 'ly.img.exportVideo.navigationBar',
+      color: 'accent'
     }
   );
 

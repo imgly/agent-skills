@@ -19,7 +19,7 @@ Configure video exports with appropriate resolution, framerate, and bitrate opti
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-for-social-media-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260727/examples/guides-export-save-publish-export-for-social-media-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260728/examples/guides-export-save-publish-export-for-social-media-browser/index.html)
 
 Short-form vertical video has become the dominant format for social media. Instagram Reels, TikTok, and YouTube Shorts all use the 9:16 aspect ratio at 1080×1920 pixels. This guide demonstrates how to create and export vertical video content with the correct settings for these platforms.
 
@@ -153,7 +153,7 @@ class Example implements EditorPlugin {
         targetWidth: 1080,
         targetHeight: 1920,
         framerate: 30,
-        videoBitrate: 8_000_000, // 8 Mbps
+        videoBitrate: 'Auto', // Derives a bounded bitrate from the resolution/framerate. Pass a number (bits/sec) for an explicit bitrate.
         onProgress: (renderedFrames, encodedFrames, totalFrames) => {
           const percent = Math.round((encodedFrames / totalFrames) * 100);
           console.log(
@@ -236,7 +236,7 @@ const videoBlob = await engine.block.exportVideo(currentPage, {
   targetWidth: 1080,
   targetHeight: 1920,
   framerate: 30,
-  videoBitrate: 8_000_000, // 8 Mbps
+  videoBitrate: 'Auto', // Derives a bounded bitrate from the resolution/framerate. Pass a number (bits/sec) for an explicit bitrate.
   onProgress: (renderedFrames, encodedFrames, totalFrames) => {
     const percent = Math.round((encodedFrames / totalFrames) * 100);
     console.log(
@@ -253,7 +253,7 @@ Key video export settings:
 - **framerate**: 30 frames per second (standard for social media)
 - **videoBitrate**: 8 Mbps provides good quality while keeping file sizes reasonable
 
-Higher bitrates produce better quality but larger files. For short-form vertical video, 8 Mbps (8,000,000 bits per second) balances quality and upload speed.
+Higher bitrates produce better quality but larger files. For short-form vertical video, 8 Mbps (8,000,000 bits per second) balances quality and upload speed. If you prefer an automatic value, set `videoBitrate: 'Auto'` for a bounded, resolution-aware bitrate. Avoid the default `'System'` mode for large exports in the browser, where the encoder may pick a very high, near-lossless rate that can fail with an out-of-memory error.
 
 ## Tracking Export Progress
 
@@ -304,7 +304,7 @@ This utility handles the download process automatically, including memory cleanu
 | `targetWidth` | `number` | Output width in pixels |
 | `targetHeight` | `number` | Output height in pixels |
 | `framerate` | `number` | Frames per second |
-| `videoBitrate` | `number` | Video bitrate in bits per second |
+| `videoBitrate` | `number \| 'System' \| 'Auto'` | Video bitrate in bits per second, or a named automatic mode (`'Auto'` recommended in the browser; default `'System'`) |
 | `onProgress` | `function` | Progress callback with frame counts |
 
 ## Next Steps

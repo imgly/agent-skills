@@ -18,7 +18,7 @@ Generate a batch of images from a set of data, for instance team cards.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-batch-image-generation-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260727/examples/starterkit-batch-image-generation/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260728/examples/starterkit-batch-image-generation/index.html)
 
 ***
 

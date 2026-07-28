@@ -224,6 +224,7 @@
 | [\_Unsubscribe](./api/engine/type-aliases/unsubscribe.md) | An unsubscribe function that removes a listener |
 | [VerticalBlockAlignment](./api/engine/type-aliases/verticalblockalignment.md) | - |
 | [VerticalContentFillAlignment](./api/engine/type-aliases/verticalcontentfillalignment.md) | - |
+| [VideoBitrateMode](./api/engine/type-aliases/videobitratemode.md) | Selects how the video bitrate is determined when no explicit bitrate is given. - `'System'`: let the platform encoder choose the bitrate (the default). In the browser this can be a very high, near-lossless rate that may cause large exports to fail with an out-of-memory error. - `'Auto'`: a bounded default derived from the output resolution and framerate, consistent across platforms. |
 | [VideoExportOptions](./api/engine/type-aliases/videoexportoptions.md) | Represents the options for exporting a video. |
 | [VideoMimeType](./api/engine/type-aliases/videomimetype.md) | Represents the video MIME types used in the editor. |
 | [WidthMode](./api/engine/type-aliases/widthmode.md) | - |

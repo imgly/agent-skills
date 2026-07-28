@@ -128,11 +128,14 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // ============================================================================
 
   // #region Export Video Action
-  // Export the timeline as an MP4 video file
-  // Uses default export settings (30fps, 0.85 quality)
+  // Export the timeline as an MP4 video file.
+  // videoBitrate: 'Auto' derives a bounded bitrate from the resolution/framerate.
+  // It is recommended over the default 'System' mode. Pass a number (bits/sec)
+  // instead for an explicit bitrate.
   cesdk.actions.register('exportVideo', async () => {
     const { blobs, options } = await cesdk.utils.export({
-      mimeType: 'video/mp4'
+      mimeType: 'video/mp4',
+      videoBitrate: 'Auto'
     });
     await cesdk.utils.downloadFile(blobs[0], options.mimeType);
   });
@@ -142,7 +145,10 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // Generic export action supporting multiple formats
   // Used by the UI for exporting with custom options
   cesdk.actions.register('exportDesign', async (exportOptions) => {
-    const { blobs, options } = await cesdk.utils.export(exportOptions);
+    const { blobs, options } = await cesdk.utils.export({
+      videoBitrate: 'Auto',
+      ...exportOptions
+    });
     await cesdk.utils.downloadFile(blobs[0], options.mimeType);
   });
   // #endregion
@@ -182,7 +188,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // #region Share Action
   // Share video using the Web Share API or fallback to download
   // cesdk.actions.register('share', async () => {
-  //   const { blobs } = await cesdk.utils.export({ mimeType: 'video/mp4' });
+  //   const { blobs } = await cesdk.utils.export({ mimeType: 'video/mp4', videoBitrate: 'Auto' });
   //   const file = new File([blobs[0]], 'video.mp4', { type: 'video/mp4' });
   //
   //   if (navigator.share && navigator.canShare({ files: [file] })) {

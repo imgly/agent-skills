@@ -18,7 +18,7 @@ Remove image backgrounds to isolate subjects for compositing, product photograph
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-remove-bg-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260727/examples/guides-edit-image-remove-bg-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260728/examples/guides-edit-image-remove-bg-browser/index.html)
 
 The `@imgly/plugin-background-removal-web` plugin adds AI-powered background removal directly to the CE.SDK editor. Processing runs locally in the browser using WebAssembly and WebGPU, ensuring privacy since images never leave the client.
 

@@ -323,6 +323,8 @@ export const ExportVideoPanelPlugin = (
                 try {
                   const { blobs } = await cesdk.utils.export({
                     mimeType: 'video/mp4',
+                    // 'Auto' derives a bounded bitrate from the resolution/framerate
+                    videoBitrate: 'Auto',
                     targetWidth: resolutionState.value.value.width,
                     targetHeight: resolutionState.value.value.height,
                     framerate: fpsState.value.value

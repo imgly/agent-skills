@@ -194,6 +194,7 @@
 | [~~TypefaceDefinition~~](./api/node/type-aliases/typefacedefinition.md) | Represents a typeface definition used in the editor. |
 | [VerticalBlockAlignment](./api/node/type-aliases/verticalblockalignment.md) | - |
 | [VerticalContentFillAlignment](./api/node/type-aliases/verticalcontentfillalignment.md) | - |
+| [VideoBitrateMode](./api/node/type-aliases/videobitratemode.md) | Selects how the video bitrate is determined when no explicit bitrate is given. - `'System'`: let the platform encoder choose the bitrate (the default). In the browser this can be a very high, near-lossless rate that may cause large exports to fail with an out-of-memory error. - `'Auto'`: a bounded default derived from the output resolution and framerate, consistent across platforms. |
 | [VideoExportOptions](./api/node/type-aliases/videoexportoptions.md) | Represents the options for exporting a video. |
 | [VideoMimeType](./api/node/type-aliases/videomimetype.md) | Represents the video MIME types used in the editor. |
 | [WidthMode](./api/node/type-aliases/widthmode.md) | - |

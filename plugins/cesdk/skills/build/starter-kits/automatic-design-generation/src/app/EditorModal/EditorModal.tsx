@@ -64,6 +64,8 @@ export function EditorModal({
               engine.scene.getCurrentPage() as number,
               {
                 mimeType: 'video/mp4',
+                // 'Auto' derives a bounded bitrate from the resolution/framerate
+                videoBitrate: 'Auto',
                 targetWidth: asset.width,
                 targetHeight: asset.height
               }

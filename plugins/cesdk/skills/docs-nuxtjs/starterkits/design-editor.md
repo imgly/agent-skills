@@ -18,7 +18,7 @@ Professional design editing for your Nuxt.js app—create graphics, templates, a
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-design-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260727/examples/starterkit-design-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260728/examples/starterkit-design-editor/index.html)
 
 ***
 
