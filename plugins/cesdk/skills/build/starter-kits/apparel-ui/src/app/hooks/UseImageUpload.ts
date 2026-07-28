@@ -1,6 +1,6 @@
 import { CompleteAssetResult } from '@cesdk/engine';
 import { useCallback } from 'react';
-import { useEngine } from '../app/contexts/EngineContext';
+import { useEngine } from '../contexts/EngineContext';
 
 interface ImageUploadOptions {
   onUpload: (asset: CompleteAssetResult) => Promise<void>;

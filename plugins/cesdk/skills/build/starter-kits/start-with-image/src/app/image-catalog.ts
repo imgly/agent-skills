@@ -8,7 +8,7 @@
  * - Surf: https://unsplash.com/photos/y-GMWtWW_H8
  */
 
-import { resolveAssetPath } from './resolveAssetPath';
+import { resolveAssetPath } from '../imgly/resolveAssetPath';
 
 // ============================================================================
 // Types

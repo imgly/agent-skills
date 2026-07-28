@@ -35,14 +35,14 @@ import { DesignEditorConfig } from './config/plugin';
 // Re-export for external use
 export { DesignEditorConfig } from './config/plugin';
 
-// Re-export color utilities (from app/ where they are co-located with sidebar)
+// Re-export color utilities
 export {
   generateColorAbstractionTokensAccent,
   generateColorAbstractionTokensActive,
   generateColorAbstractionTokensCanvas,
   generateColorAbstractionTokensSurface,
   generateStaticTokens
-} from '../app/color';
+} from './color';
 
 /**
  * Initialize the CE.SDK Theming Editor.

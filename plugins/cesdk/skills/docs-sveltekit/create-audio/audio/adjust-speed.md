@@ -19,7 +19,7 @@ timeline UI and programmatic speed adjustment API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-audio-audio-adjust-speed-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/guides-create-audio-audio-adjust-speed-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-create-audio-audio-adjust-speed-browser/index.html)
 
 Playback speed adjustment changes how fast or slow audio plays without changing its pitch (though pitch shifting may occur depending on the audio processing implementation). A speed multiplier of 1.0 represents normal speed, values below 1.0 slow down playback, and values above 1.0 speed it up. This technique is commonly used for podcast speed controls, time-compressed narration, slow-motion audio effects, and accessibility features.
 

@@ -18,7 +18,7 @@ Content moderation made easy. Decide what type of imagery to restrict and receiv
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-content-moderation-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/starterkit-content-moderation/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/starterkit-content-moderation/index.html)
 
 ***
 

@@ -28,7 +28,7 @@ import {
 } from '@cesdk/cesdk-js/plugins';
 
 import { DesignEditorConfig } from './config/plugin';
-import { Snapshot } from '../app/types';
+import { Snapshot } from './snapshots';
 
 // Re-export plugin for external use
 export { DesignEditorConfig } from './config/plugin';
@@ -38,6 +38,7 @@ export { createSnapshot } from './history';
 
 // Export initial snapshots data
 export { INITIAL_SNAPSHOTS, getInitialSceneUrl } from './snapshots';
+export type { Snapshot } from './snapshots';
 
 // ============================================================================
 // Main Initialization

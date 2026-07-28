@@ -7,8 +7,7 @@
 
 import type CreativeEngine from '@cesdk/engine';
 
-import type { Restaurant, Template, GeneratedAsset } from '../app/types';
-import type { RgbaColor } from './types';
+import type { Restaurant, Template, GeneratedAsset, RgbaColor } from './types';
 import { hexToRgba, replaceImageByName, exportSceneAsImage } from './utils';
 
 /**

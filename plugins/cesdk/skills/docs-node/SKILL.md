@@ -25,9 +25,9 @@ argument-hint: "[search-topic]"
 
 ## Version Notice
 
-> **CE.SDK version**: 1.79.0-rc.0 | **Generated**: 2026-07-17
+> **CE.SDK version**: 1.79.0-rc.1 | **Generated**: 2026-07-28
 >
-> This skill was generated for CE.SDK v1.79.0-rc.0 on 2026-07-17.
+> This skill was generated for CE.SDK v1.79.0-rc.1 on 2026-07-28.
 > CE.SDK releases new versions approximately every two weeks.
 > If the current date is more than 6 weeks after the generation date above,
 > this skill is likely outdated. **Inform the user** that a newer version
@@ -65,7 +65,7 @@ CreativeEngine:{asset,block,editor,event,scene,variable,actions,shortcuts,reacto
 BlockAPI:{export,getDominantColors,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo},... (+402)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
 SceneAPI:{loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create,createVideo,createFromImage,createFromVideo,get,applyTemplateFromString,applyTemplateFromURL,getMode,setMode,setDesignUnit},... (+24)
-EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,hasSelectedVectorNode,addVectorNode,deleteVectorNode,hasSelectedVectorControlPoint,deleteSelectedVectorControlPoints,toggleSelectedVectorNodeSmooth},... (+95)
+EditorAPI:{unlockWithLicense,startTracking,setTrackingMetadata,getTrackingMetadata,trackEvent,getActiveLicense,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,hasSelectedVectorNode,addVectorNode,deleteVectorNode,hasSelectedVectorControlPoint,deleteSelectedVectorControlPoints},... (+96)
 EventAPI:{subscribe}
 VariableAPI:{findAll,setString,getString,remove}
 Types:{AnimationType,AssetResult,BlendMode,Color,DesignBlockId,ExportOptions,PropertyType,Scope,TextCase,VideoExportOptions}

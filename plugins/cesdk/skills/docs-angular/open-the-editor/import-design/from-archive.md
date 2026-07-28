@@ -18,7 +18,7 @@ Load archived CE.SDK scenes that bundle design structure with all fonts, images,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-import-design-from-archive-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/guides-open-the-editor-import-design-from-archive-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-open-the-editor-import-design-from-archive-browser/index.html)
 
 Archives solve the portability problem inherent in scene files. While scene files reference assets by URL, archives package everything together in a single `.zip` file. If asset URLs become unavailable, scene files fail to load properly. Archives avoid this issue by bundling all fonts, images, videos, and other resources directly within the archive, making them self-contained and reliable across different environments.
 

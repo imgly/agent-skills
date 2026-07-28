@@ -4,7 +4,7 @@
  * Demo restaurant data for template personalization.
  */
 
-import type { Restaurant } from './types';
+import type { Restaurant } from '../imgly';
 
 /**
  * Demo restaurants with brand colors and assets.

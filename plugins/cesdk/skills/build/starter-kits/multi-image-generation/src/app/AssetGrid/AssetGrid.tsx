@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import type { Template, GeneratedAsset } from '../types';
+import type { Template, GeneratedAsset } from '../../imgly';
 import { resolveAssetPath } from '../resolveAssetPath';
 
 import styles from './AssetGrid.module.css';

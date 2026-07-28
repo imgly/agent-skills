@@ -18,7 +18,7 @@ Generate multiple image variants for a single data point.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-multi-image-generation-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.0/examples/starterkit-multi-image-generation/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/starterkit-multi-image-generation/index.html)
 
 ***
 
@@ -370,7 +370,7 @@ import {
   fillTemplate,
   generateAssets
 } from './imgly';
-import type { Restaurant, Template, GeneratedAsset } from './app/types';
+import type { Restaurant, Template, GeneratedAsset } from './imgly';
 
 // Initialize headless engine (no UI)
 const engine = await initMultiImageGenerationHeadlessEngine();

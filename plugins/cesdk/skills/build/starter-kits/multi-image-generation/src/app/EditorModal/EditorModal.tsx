@@ -16,7 +16,7 @@ import {
   initMultiImageGenerationAdvancedDesignEditor,
   applyRestaurantColors
 } from '../../imgly';
-import type { Restaurant, Template } from '../types';
+import type { Restaurant, Template } from '../../imgly';
 import SCENES from '../scenes.json';
 
 import styles from './EditorModal.module.css';
