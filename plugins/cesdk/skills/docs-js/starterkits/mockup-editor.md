@@ -18,7 +18,7 @@ Easily visualize the final product with the Mockup Editor. Suitable for apparel,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-product-preview-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260728/examples/starterkit-product-preview/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260729/examples/starterkit-product-preview/index.html)
 
 ***
 
