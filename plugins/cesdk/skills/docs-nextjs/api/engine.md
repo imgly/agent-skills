@@ -9,7 +9,7 @@
 | [AssetAPI](./api/engine/classes/assetapi.md) | Manage asset sources and apply assets to scenes. |
 | [BlockAPI](./api/engine/classes/blockapi.md) | Create, manipulate, and query the building blocks of your design. |
 | [CreativeEngine](./api/engine/classes/creativeengine.md) | The CreativeEngine is the core processing unit of CE.SDK and handles state management, rendering, input handling, and much more. It provides APIs to directly interact with assets, blocks, scenes, and variables. These APIs can be used in a headless environment to build and manipulate designs programmatically, or in a browser to create interactive applications. |
-| [EditorAPI](./api/engine/classes/editorapi.md) | Control the design editor's behavior and settings. |
+| [EditorAPI](./api/engine/classes/editorapi.md) | - |
 | [EngineActions](./api/engine/classes/engineactions.md) | Named, overridable actions for one engine. Actions are either JS closures you register or engine defaults (e.g. undo/redo), and either kind can override the other by reusing the id. |
 | [EngineError](./api/engine/classes/engineerror.md) | Structured CE.SDK error. Extends the standard JS `Error` so existing `try { ... } catch (error) { console.log(error.message); }` flows keep working — `message` is the engine's rendered English string. The structured fields (`code`, `category`, `hint`, `args`, `docsUrl`, `silent`) let consumers branch on stable identifiers instead of matching on the message string and surface customer-facing copy + doc links. |
 | [EventAPI](./api/engine/classes/eventapi.md) | Subscribe to block lifecycle events in the design engine. |
@@ -119,6 +119,7 @@
 | [EffectTypeLonghand](./api/engine/type-aliases/effecttypelonghand.md) | The longhand block type IDs for the effect blocks. These are the IDs used to create new effects using `cesdk.engine.block.createEffect(id)`. |
 | [EffectTypeShorthand](./api/engine/type-aliases/effecttypeshorthand.md) | - |
 | [EngineActionId](./api/engine/type-aliases/engineactionid.md) | Known action ids from [EngineActionsRegistry](./api/engine/interfaces/engineactionsregistry.md). |
+| [EngineCapability](./api/engine/type-aliases/enginecapability.md) | A platform capability queryable via `EditorAPI.isCapabilitySupported`. |
 | [EngineCustomActionFunction](./api/engine/type-aliases/enginecustomactionfunction.md) | A generic, untyped action function for custom ids. |
 | [EngineErrorArg](./api/engine/type-aliases/engineerrorarg.md) | Typed value of a structured-error template argument. The engine preserves the original primitive type (`boolean`, `number`, `string`) when crossing the binding boundary, so customer-facing i18n layers can format numbers, plurals, etc. without parsing stringified values. |
 | [EngineErrorCode](./api/engine/type-aliases/engineerrorcode.md) | Every stable catalog error code as a string-literal union. Use it to type-check a branch on [EngineError.code](./api/engine/classes/engineerror.md) (which stays a plain `string` so unknown/future codes never break consumers): |

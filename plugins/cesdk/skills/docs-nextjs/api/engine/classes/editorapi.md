@@ -2,12 +2,6 @@
 
 ---
 
-Control the design editor's behavior and settings.
-
-The EditorAPI provides access to edit modes, history management, editor settings, color management,
-resource handling, and global scope controls. It serves as the central configuration and control interface
-for the design editor engine.
-
 ## Constructors
 
 <details>
@@ -19,8 +13,6 @@ for the design editor engine.
 </details>
 
 ## Role & Scope Management
-
-Manage user roles and global scope permissions.
 
 <details>
   <summary>
@@ -148,8 +140,6 @@ Manage user roles and global scope permissions.
 </details>
 
 ## Event Subscriptions
-
-Subscribe to editor state changes, history updates, and role changes.
 
 <details>
   <summary>
@@ -284,8 +274,6 @@ Subscribe to editor state changes, history updates, and role changes.
 </details>
 
 ## Edit Mode Management
-
-Control the editor's current editing mode and interaction state.
 
 <details>
   <summary>
@@ -439,8 +427,6 @@ Control the editor's current editing mode and interaction state.
 </details>
 
 ## History Management
-
-Create, manage, and operate on undo/redo history stacks.
 
 <details>
   <summary>
@@ -723,8 +709,6 @@ Create, manage, and operate on undo/redo history stacks.
 </details>
 
 ## Color Management
-
-Handle spot colors, color conversion, and color space operations.
 
 <details>
   <summary>
@@ -1027,8 +1011,6 @@ Handle spot colors, color conversion, and color space operations.
 </details>
 
 ## Resource Management
-
-Manage buffers, URIs, and resource data handling.
 
 <details>
   <summary>
@@ -1412,8 +1394,6 @@ Manage buffers, URIs, and resource data handling.
 </details>
 
 ## Editor Settings
-
-Configure editor behavior through typed settings for different data types.
 
 <details>
   <summary>
@@ -2628,8 +2608,6 @@ Configure editor behavior through typed settings for different data types.
 
 ## System Information
 
-Access memory usage, export limits, and system capabilities.
-
 <details>
   <summary>
     ### getAvailableMemory()
@@ -2717,6 +2695,61 @@ Access memory usage, export limits, and system capabilities.
 </details>
 
 ## Other
+
+<details>
+  <summary>
+    ### isCapabilitySupported()
+
+    <br /><p>Whether the current platform supports a capability, measured once with behavioral
+    probes during engine initialization.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `capability` | [`EngineCapability`](./api/engine/type-aliases/enginecapability.md) | The capability to query. |
+
+  #### Returns
+
+  `boolean`
+
+  Whether the capability is supported.
+
+  #### Throws
+
+  For unknown capability names.
+
+  #### Signature
+
+  ```typescript
+  isCapabilitySupported(capability: EngineCapability): boolean
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### checkCapabilities()
+
+    <br /><p>Runs the platform's capability detection; awaited during engine initialization.</p>
+  </summary>
+
+  #### Returns
+
+  `Promise`\<`void`>
+
+  Resolves once every capability has been measured.
+
+  #### Signature
+
+  ```typescript
+  checkCapabilities(): Promise<void>
+  ```
+
+  ***
+</details>
 
 <details>
   <summary>

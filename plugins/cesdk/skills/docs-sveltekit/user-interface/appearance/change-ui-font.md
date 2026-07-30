@@ -18,7 +18,7 @@ Customize the font family used throughout the CE.SDK editor interface to match y
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-appearance-change-ui-font-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260729/examples/guides-user-interface-appearance-change-ui-font-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260730/examples/guides-user-interface-appearance-change-ui-font-browser/index.html)
 
 CE.SDK's UI uses CSS custom properties for typography, allowing you to apply a custom font to all editor elements—panels, buttons, labels, and inputs—through a single CSS variable.
 

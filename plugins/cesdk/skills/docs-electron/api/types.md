@@ -26,6 +26,10 @@ Types: DesignBlockTypeShorthand, DesignBlockTypeLonghand, DesignBlockType, Shape
 
 Types: OffscreenCanvas, Canvas
 
+## capabilities
+
+Types: EngineCapability
+
 ## color
 
 Types: HexColorString, PaletteColor, Color, ColorSpace, RGBColor, HSLColor, HSVColor, ColorNameObject, RGBAColor, CMYKColor, SpotColor, ColorInternal, GradientColorStop

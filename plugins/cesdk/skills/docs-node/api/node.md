@@ -9,7 +9,7 @@
 | [AssetAPI](./api/node/classes/assetapi.md) | Manage asset sources and apply assets to scenes. |
 | [BlockAPI](./api/node/classes/blockapi.md) | Create, manipulate, and query the building blocks of your design. |
 | [CreativeEngine](./api/node/classes/creativeengine.md) | The CreativeEngine is the core processing unit of CE.SDK and handles state management, rendering, input handling, and much more. It provides APIs to directly interact with assets, blocks, scenes, and variables. These APIs can be used in a headless environment to build and manipulate designs programmatically, or in a browser to create interactive applications. |
-| [EditorAPI](./api/node/classes/editorapi.md) | Control the design editor's behavior and settings. |
+| [EditorAPI](./api/node/classes/editorapi.md) | - |
 | [EngineActions](./api/node/classes/engineactions.md) | Named, overridable actions for one engine. Actions are either JS closures you register or engine defaults (e.g. undo/redo), and either kind can override the other by reusing the id. |
 | [EventAPI](./api/node/classes/eventapi.md) | Subscribe to block lifecycle events in the design engine. |
 | [SceneAPI](./api/node/classes/sceneapi.md) | Create, load, save, and manipulate scenes. |
@@ -100,6 +100,7 @@
 | [EffectTypeLonghand](./api/node/type-aliases/effecttypelonghand.md) | The longhand block type IDs for the effect blocks. These are the IDs used to create new effects using `cesdk.engine.block.createEffect(id)`. |
 | [EffectTypeShorthand](./api/node/type-aliases/effecttypeshorthand.md) | - |
 | [EngineActionId](./api/node/type-aliases/engineactionid.md) | Known action ids from [EngineActionsRegistry](./api/node/interfaces/engineactionsregistry.md). |
+| [EngineCapability](./api/node/type-aliases/enginecapability.md) | A platform capability queryable via `EditorAPI.isCapabilitySupported`. |
 | [EngineCustomActionFunction](./api/node/type-aliases/enginecustomactionfunction.md) | A generic, untyped action function for custom ids. |
 | [EnginePluginContext](./api/node/type-aliases/engineplugincontext.md) | Represents the context for an engine plugin. |
 | [EnumPropertyName](./api/node/type-aliases/enumpropertyname.md) | - |
