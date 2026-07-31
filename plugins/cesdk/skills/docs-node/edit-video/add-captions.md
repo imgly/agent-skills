@@ -183,7 +183,7 @@ try {
   const outputDir = join(process.cwd(), 'output');
   await mkdir(outputDir, { recursive: true });
 
-  const outputPath = join(outputDir, 'video-with-captions.scene');
+  const outputPath = join(outputDir, 'video-with-captions.imgly');
   await writeFile(outputPath, sceneString);
 
   console.log(`Scene saved: ${outputPath}`);
@@ -442,7 +442,7 @@ After adding captions, save the scene to a `.scene` file for later use or render
   const outputDir = join(process.cwd(), 'output');
   await mkdir(outputDir, { recursive: true });
 
-  const outputPath = join(outputDir, 'video-with-captions.scene');
+  const outputPath = join(outputDir, 'video-with-captions.imgly');
   await writeFile(outputPath, sceneString);
 
   console.log(`Scene saved: ${outputPath}`);

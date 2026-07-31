@@ -25,6 +25,8 @@ type EnumPropertyName =
   | "stroke/position"
   | "stroke/startCap"
   | "stroke/style"
+  | "playback/fadeIn/easing"
+  | "playback/fadeOut/easing"
   | "text/horizontalAlignment"
   | "text/verticalAlignment"
   | "cutout/type"

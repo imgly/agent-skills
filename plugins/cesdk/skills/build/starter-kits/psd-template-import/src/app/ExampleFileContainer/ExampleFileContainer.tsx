@@ -1,7 +1,7 @@
 /**
  * ExampleFileContainer - Example PSD files grid
  */
-import { resolveAssetPath } from '../resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from '../FileSelection/FileSelection';
 import type { ExampleFile } from '../types';
 import classes from './ExampleFileContainer.module.css';
 
@@ -30,7 +30,7 @@ export function ExampleFileContainer({
               alt={file.alt}
             />
             <img
-              src={resolveAssetPath('/icons/photoshop-file.svg')}
+              src={`${DEMO_ASSETS_BASE_URL}/icons/photoshop-file.svg`}
               alt="Photoshop"
               className={classes.fileTypeIcon}
             />

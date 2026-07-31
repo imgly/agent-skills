@@ -164,6 +164,45 @@ Load scenes from various sources including strings, URLs, and archives.
 
 <details>
   <summary>
+    ### load()
+
+    <br /><p>Load a scene from a scene string or from a URL to a scene or archive file.</p>
+  </summary>
+
+  The input kind is detected automatically: serialized scene content is loaded directly, while a
+  URL is fetched and loaded as an archive or as a scene file depending on its content. This loads
+  `.imgly` files as well as the legacy `.scene` and `.zip` formats. Any existing scene is replaced
+  by the new one.
+
+  ```javascript
+  await creativeEngine.scene.load('https://example.com/my-scene.imgly');
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `source` | `string` | `URL` | A scene string previously created by `saveToString`, or the URL of a scene or archive file. Pass a `URL` instance to load a URL unambiguously; strings are detected by their content. |
+  | `overrideEditorConfig?` | `boolean` | Whether to override editor configuration with settings and data from the scene file. Defaults to false. |
+  | `waitForResources?` | `boolean` | Whether to wait for all resources to finish loading before resolving. Defaults to false. |
+
+  #### Returns
+
+  `Promise`\<`number`>
+
+  A handle to the loaded scene.
+
+  #### Signature
+
+  ```typescript
+  load(source: string | URL, overrideEditorConfig?: boolean, waitForResources?: boolean): Promise<number>
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### loadFromString()
 
     <br /><p>Load the contents of a scene file.</p>
@@ -303,6 +342,7 @@ Save and export scenes to different formats.
   ```
 
   Serializes the current scene into a string. Selection is discarded.
+  When persisting the result as a file, use the `.imgly` extension.
 
   ##### Parameters
 
@@ -343,7 +383,8 @@ Save and export scenes to different formats.
 
   The archive contains all assets, that were accessible when this function was called.
   Blocks in the archived scene reference assets relative from to the location of the scene
-  file. These references are resolved when loading such a scene via `loadSceneFromURL`.
+  file. These references are resolved when loading such a scene via `load`.
+  When persisting the result as a file, use the `.imgly` extension.
 
   #### Returns
 

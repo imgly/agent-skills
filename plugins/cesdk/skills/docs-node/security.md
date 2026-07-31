@@ -176,9 +176,9 @@ CE.SDK performs a license validation check with our servers once upon initializa
 While CE.SDK does not track user actions other than the exceptions listed below through telemetry or analytics by default, there are specific events tracked to manage customer usage, particularly for API key usage tracking. We gather the following information during these events:
 
 - **When the engine loads:** App identifier, platform, engine version, user ID (provided by the client), device ID (mobile only), and session ID.
-- **When a photo or video is exported:** User ID, device ID, session ID, media type (photo/video), resolution (width and height), FPS (video only), and duration (video only).
+- **When a photo or video is exported:** User ID, device ID, session ID, media type (photo/video), format, resolution (width and height), page count (photo only), FPS (video only), and duration (video only).
 
-This tracking is solely for ensuring accurate usage calculation and managing monthly active user billing. Enterprise clients can opt out of this tracking under specific agreements.
+This tracking is solely for ensuring accurate usage calculation and managing monthly active user billing. Enterprise clients can opt out of this tracking under specific agreements. For a precise definition of which operations count as an export and when export events are recorded, see [Export Counting](./export-counting.md).
 
 ### **Personal Identifiable Information (PII)**
 

@@ -85,7 +85,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // highlight-scene-loading
     // Load the Pexels demo scene from CDN
     // This scene showcases images that can be replaced with photos from Pexels
-    await cesdk.loadFromURL(resolveAssetPath('/assets/pexels.scene'));
+    await cesdk.load(resolveAssetPath('/assets/pexels.scene'));
     // highlight-scene-loading
     // highlight-init
   })

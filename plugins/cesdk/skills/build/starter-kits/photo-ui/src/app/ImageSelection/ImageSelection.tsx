@@ -1,6 +1,5 @@
 import classNames from 'classnames';
-import { useEditor } from '../contexts/EditorContext';
-import { caseAssetPath } from '../util';
+import { DEMO_ASSETS_BASE_URL, useEditor } from '../contexts/EditorContext';
 import classes from './ImageSelection.module.css';
 
 interface ImageSelectionProps {
@@ -34,15 +33,15 @@ export default function ImageSelection({
                 className={classNames(classes.imageButton, {
                   [classes['imageButton--active']]:
                     selectedImageUrl ===
-                    caseAssetPath('/images/' + src + '.jpg')
+                    `${DEMO_ASSETS_BASE_URL}/images/${src}.jpg`
                 })}
                 onClick={() =>
-                  onClick(caseAssetPath('/images/' + src + '.jpg'))
+                  onClick(`${DEMO_ASSETS_BASE_URL}/images/${src}.jpg`)
                 }
               >
                 <img
                   alt={`Image ${i}`}
-                  src={caseAssetPath('/images/small-' + src + '.jpg')}
+                  src={`${DEMO_ASSETS_BASE_URL}/images/small-${src}.jpg`}
                 />
               </button>
             ))}

@@ -4,42 +4,40 @@
 import { ExampleFileContainer } from '../ExampleFileContainer/ExampleFileContainer';
 import { useFileProcessing } from '../FileProcessingContext/FileProcessingContext';
 import { UploadZone } from '../UploadZone/UploadZone';
-import { resolveAssetPath } from '../resolveAssetPath';
 import type { ExampleFile } from '../types';
 import classes from './FileSelection.module.css';
+
+/**
+ * Demo assets for this example (PDF files, previews, icons, …) are loaded
+ * from the IMG.LY CDN by default. To host them yourself, copy this kit's
+ * asset folder to your own CDN or server and change this constant — or set
+ * it to `''` and place the files in this app's `public/` directory. No
+ * trailing slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.0/starterkit-pdf-template-import';
 
 const EXAMPLE_FILES: ExampleFile[] = [
   {
     name: 'postcard',
-    pdfUrl: resolveAssetPath('/cases/pdf-template-import/postcard.pdf'),
-    thumbnailBaseUrl: resolveAssetPath(
-      '/cases/pdf-template-import/postcard-thumb'
-    ),
-    previewUrl: resolveAssetPath(
-      '/cases/pdf-template-import/postcard-preview.png'
-    ),
+    pdfUrl: `${DEMO_ASSETS_BASE_URL}/cases/pdf-template-import/postcard.pdf`,
+    thumbnailBaseUrl: `${DEMO_ASSETS_BASE_URL}/cases/pdf-template-import/postcard-thumb`,
+    previewUrl: `${DEMO_ASSETS_BASE_URL}/cases/pdf-template-import/postcard-preview.png`,
     alt: 'Postcard'
   },
   {
     name: 'poster',
-    pdfUrl: resolveAssetPath('/cases/pdf-template-import/poster.pdf'),
-    thumbnailBaseUrl: resolveAssetPath(
-      '/cases/pdf-template-import/poster-thumb'
-    ),
-    previewUrl: resolveAssetPath(
-      '/cases/pdf-template-import/poster-preview.png'
-    ),
+    pdfUrl: `${DEMO_ASSETS_BASE_URL}/cases/pdf-template-import/poster.pdf`,
+    thumbnailBaseUrl: `${DEMO_ASSETS_BASE_URL}/cases/pdf-template-import/poster-thumb`,
+    previewUrl: `${DEMO_ASSETS_BASE_URL}/cases/pdf-template-import/poster-preview.png`,
     alt: 'Poster'
   },
   {
     name: 'socialmedia',
-    pdfUrl: resolveAssetPath('/cases/pdf-template-import/socialmedia.pdf'),
-    thumbnailBaseUrl: resolveAssetPath(
-      '/cases/pdf-template-import/socialmedia-thumb'
-    ),
-    previewUrl: resolveAssetPath(
-      '/cases/pdf-template-import/socialmedia-preview.png'
-    ),
+    pdfUrl: `${DEMO_ASSETS_BASE_URL}/cases/pdf-template-import/socialmedia.pdf`,
+    thumbnailBaseUrl: `${DEMO_ASSETS_BASE_URL}/cases/pdf-template-import/socialmedia-thumb`,
+    previewUrl: `${DEMO_ASSETS_BASE_URL}/cases/pdf-template-import/socialmedia-preview.png`,
     alt: 'Social Media'
   }
 ];

@@ -45,7 +45,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // Load the QR code demo scene from the public showcases URL
     // This scene contains pre-made QR code elements for demonstration
-    await cesdk.loadFromArchiveURL(resolveAssetPath('/assets/scene.archive'));
+    await cesdk.load(resolveAssetPath('/assets/scene.archive'));
 
     // Select the first QR code block for immediate editing
     const qrCodeBlock = cesdk.engine.block.findByName('QR Code 1')[0];

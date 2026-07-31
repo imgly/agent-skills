@@ -33,14 +33,19 @@ import {
 
 // Configuration plugin
 import { DesignEditorConfig } from './config/plugin';
-import { resolveAssetPath } from './resolveAssetPath';
 
 // Layouts plugin
-import { LayoutsAssetSourcePlugin } from './plugins/layouts/layout';
+import {
+  DEMO_ASSETS_BASE_URL,
+  LayoutsAssetSourcePlugin
+} from './plugins/layouts/layout';
 
 // Re-export for external use
 export { DesignEditorConfig } from './config/plugin';
-export { LayoutsAssetSourcePlugin } from './plugins/layouts/layout';
+export {
+  DEMO_ASSETS_BASE_URL,
+  LayoutsAssetSourcePlugin
+} from './plugins/layouts/layout';
 export type { LayoutsAssetSourcePluginOptions } from './plugins/layouts/layout';
 
 /**
@@ -139,7 +144,7 @@ export async function initLayoutsAssetSource(cesdk: CreativeEditorSDK) {
   // This provides pre-designed layout templates that can be applied to pages
   await cesdk.addPlugin(
     new LayoutsAssetSourcePlugin({
-      baseURL: resolveAssetPath('/assets')
+      baseURL: `${DEMO_ASSETS_BASE_URL}/assets`
     })
   );
 

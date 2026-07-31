@@ -156,11 +156,11 @@ try {
   }
 
   const sceneString = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/watermarked-video.scene`, sceneString);
+  writeFileSync(`${outputDir}/watermarked-video.imgly`, sceneString);
 
   console.log('');
   console.log(
-    'Watermarked video scene saved to output/watermarked-video.scene'
+    'Watermarked video scene saved to output/watermarked-video.imgly'
   );
   console.log('');
   console.log('Scene contains:');
@@ -382,11 +382,11 @@ After adding watermarks, we save the scene for later rendering. Since video expo
   }
 
   const sceneString = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/watermarked-video.scene`, sceneString);
+  writeFileSync(`${outputDir}/watermarked-video.imgly`, sceneString);
 
   console.log('');
   console.log(
-    'Watermarked video scene saved to output/watermarked-video.scene'
+    'Watermarked video scene saved to output/watermarked-video.imgly'
   );
   console.log('');
   console.log('Scene contains:');

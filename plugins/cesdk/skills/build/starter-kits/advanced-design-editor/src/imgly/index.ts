@@ -121,8 +121,7 @@ export async function initAdvancedEditor(cesdk: CreativeEditorSDK) {
         'ly.img.exportPDF.navigationBar',
         'ly.img.exportScene.navigationBar',
         'ly.img.exportArchive.navigationBar',
-        'ly.img.importScene.navigationBar',
-        'ly.img.importArchive.navigationBar'
+        'ly.img.importScene.navigationBar'
       ]
     }
   );

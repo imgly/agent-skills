@@ -17,7 +17,7 @@
 - [Serve Assets](./serve-assets.md) - Configure CE.SDK to load engine and content assets from your own servers instead of the IMG.LY CDN for production deployments.
 - [Engine Interface](./engine-interface.md) - Understand CE.SDK's architecture and learn when to use direct Engine access for automation workflows
 - [Automate Workflows](./automation.md) - Automate repetitive editing tasks using CE.SDK’s headless APIs to generate assets at scale.
-- [Open the Editor](./open-the-editor.md) - Learn how to load and create scenes, set the zoom level, and configure file proxies or URI resolvers.
+- [Open the Editor](./open-the-editor.md) - Learn how to load and create scenes, set the zoom level, and configure URI resolvers.
 - [Insert Media Into Scenes](./insert-media.md) - Understand how insertion works, how inserted media behave within scenes, and how to control them via UI or code.
 - [Import Media](./import-media.md) - Learn how to import, manage, and customize assets from local, remote, or camera sources in CE.SDK.
 - [Export](./export-save-publish/export.md) - Explore export options, supported formats, and configuration features for sharing or rendering output.
@@ -34,7 +34,7 @@
 - [Fills](./fills.md) - Apply solid colors, gradients, images, or videos as fills to shapes, text, and other design elements.
 - [Outlines](./outlines.md) - Enhance design elements with strokes, shadows, and glow effects to improve contrast and visual appeal.
 - [Filters and Effects](./filters-and-effects.md) - Enhance visual elements with filters and effects such as blur, duotone, LUTs, and chroma keying.
-- [Animation](./animation.md) - Add motion to designs with support for keyframes, timeline editing, and programmatic animation control.
+- [Animation](./animation.md) - Add motion to designs with entrance, exit, and loop animation presets, timing controls, and programmatic APIs.
 - [Rules](./rules.md) - Define and enforce layout, branding, and safety rules to ensure consistent and compliant designs.
 - [Conversion](./conversion.md) - Convert designs into different formats such as PDF, PNG, MP4, and more using CE.SDK tools.
 - [Improve Performance](./performance.md) - Optimize CE.SDK server integration with code splitting, memory monitoring, export timeouts, and lifecycle best practices for Node.js.

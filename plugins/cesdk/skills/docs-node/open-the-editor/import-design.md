@@ -82,7 +82,7 @@ try {
   const savedSceneString = sceneString;
 
   // Load the scene from string content
-  await engine.scene.loadFromString(savedSceneString);
+  await engine.scene.load(savedSceneString);
 
   // The scene is restored from the string representation
 
@@ -95,17 +95,17 @@ try {
 
   const archiveBlob = await engine.scene.saveToArchive();
   const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
-  writeFileSync('output/temp-archive.zip', archiveBuffer);
+  writeFileSync('output/temp-archive.imgly', archiveBuffer);
 
   // In server environments, load archives using file:// URLs
   // This works the same as loading from HTTP/HTTPS URLs
 
   // Convert filesystem path to file:// URL
-  const archivePath = path.resolve('output/temp-archive.zip');
+  const archivePath = path.resolve('output/temp-archive.imgly');
   const archiveFileUrl = `file://${archivePath}`;
 
-  // Load the archive using loadFromArchiveURL
-  await engine.scene.loadFromArchiveURL(archiveFileUrl);
+  // Load the archive using engine.scene.load
+  await engine.scene.load(archiveFileUrl);
 
   // Archives include all assets, making them portable across environments
   // No external asset URLs need to be accessible
@@ -121,7 +121,7 @@ try {
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
   // Load the scene from remote URL
-  await engine.scene.loadFromURL(sceneUrl);
+  await engine.scene.load(sceneUrl);
 
   // The scene is now loaded and ready for editing
   // All blocks and properties from the saved scene are restored
@@ -209,11 +209,11 @@ CE.SDK provides specialized importers that convert files from Photoshop (`.psd`)
 
 ## Load Saved CE.SDK Scenes
 
-Load previously saved scenes to resume editing work. CE.SDK provides three methods depending on your source.
+Load previously saved scenes to resume editing work. The unified `engine.scene.load()` call handles all sources: pass a URL or the scene content as a string, and the engine detects the file kind (plain scene or archive) automatically.
 
 ### From a URL
 
-Use `engine.scene.loadFromURL()` to load scenes from a server or cloud storage. This works well for cloud-based processing where scenes are stored remotely.
+Use `engine.scene.load()` with a URL to load scenes from a server or cloud storage. This works well for cloud-based processing where scenes are stored remotely.
 
 ```typescript highlight-load-from-url
   // URL to a saved CE.SDK scene file
@@ -221,7 +221,7 @@ Use `engine.scene.loadFromURL()` to load scenes from a server or cloud storage. 
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
   // Load the scene from remote URL
-  await engine.scene.loadFromURL(sceneUrl);
+  await engine.scene.load(sceneUrl);
 
   // The scene is now loaded and ready for editing
   // All blocks and properties from the saved scene are restored
@@ -231,14 +231,14 @@ The engine fetches the scene file asynchronously and replaces the current scene 
 
 ### From a String
 
-Use `engine.scene.loadFromString()` when you have scene content as a string from a database, file system, or a previous `engine.scene.saveToString()` call.
+Use `engine.scene.load()` when you have scene content as a string from a database, file system, or a previous `engine.scene.saveToString()` call.
 
 ```typescript highlight-load-from-string
   // Scene content as a string (from saveToString() or storage)
   const savedSceneString = sceneString;
 
   // Load the scene from string content
-  await engine.scene.loadFromString(savedSceneString);
+  await engine.scene.load(savedSceneString);
 
   // The scene is restored from the string representation
 ```
@@ -247,7 +247,7 @@ This approach works well for scenes stored in databases or when integrating with
 
 ### From an Archive
 
-For self-contained packages that bundle the scene with all assets, use archives. See the [Import Design from Archive](./open-the-editor/import-design/from-archive.md) guide for complete details on working with archive files.
+For self-contained packages that bundle the scene with all assets, use archives. The same `engine.scene.load()` call opens them — the kind is detected automatically from the content. See the [Import Design from Archive](./open-the-editor/import-design/from-archive.md) guide for complete details on working with archive files.
 
 ## Create Scenes from Media
 
@@ -290,7 +290,7 @@ The scene is set up for video editing with time-based properties and video-speci
 
 Choose your import method based on your source and requirements:
 
-- **Resuming previous work?** Use `engine.scene.loadFromURL()` or `engine.scene.loadFromString()` for scenes you previously saved with CE.SDK.
+- **Resuming previous work?** Use `engine.scene.load()` with a URL or string for scenes you previously saved with CE.SDK.
 
 - **Need self-contained files?** Use archives that bundle scenes with all assets ([see guide](./open-the-editor/import-design/from-archive.md)).
 
@@ -308,7 +308,7 @@ Always wrap import operations in try-catch blocks to handle failures gracefully:
 
 ```typescript
 try {
-  await engine.scene.loadFromURL(sceneUrl);
+  await engine.scene.load(sceneUrl);
 } catch (error) {
   // Log error and handle gracefully
   console.error('Failed to load scene:', error);
@@ -414,9 +414,7 @@ When `createFromImage()` or `createFromVideo()` fails:
 
 | Method                                     | Purpose                                     |
 | ------------------------------------------ | ------------------------------------------- |
-| `engine.scene.loadFromURL(url)`            | Load scene from remote URL                  |
-| `engine.scene.loadFromString(content)`     | Load scene from string content              |
-| `engine.scene.loadFromArchiveURL(url)`     | Load archived scene with bundled assets     |
+| `engine.scene.load(sceneOrURL)`            | Load scene or archive from URL or string    |
 | `engine.scene.createFromImage(url)`        | Create editable scene from image            |
 | `engine.scene.createFromVideo(url)`        | Create video editing scene from video       |
 | `engine.scene.saveToString()`              | Save scene to string for later loading      |

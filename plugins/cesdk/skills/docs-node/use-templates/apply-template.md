@@ -135,7 +135,7 @@ Use `applyTemplateFromURL()` or `applyTemplateFromString()` when you want to:
 - **Batch process with templates**: Apply various templates to a pre-configured scene without dimension drift
 - **Switch templates**: Iterate through templates while keeping consistent export dimensions
 
-Use `loadFromString()` or `loadFromURL()` when you need the template's original dimensions.
+Use `engine.scene.load()` when you need the template's original dimensions.
 
 **Key distinction**: Loading replaces everything; applying preserves dimensions and merges content.
 

@@ -45,7 +45,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // Load the cutout lines demo scene.
     // This scene contains pre-made shapes ready for cutout line creation.
-    await cesdk.loadFromURL(resolveAssetPath('/assets/example.scene'));
+    await cesdk.load(resolveAssetPath('/assets/example.scene'));
   })
   .catch((error) => {
     // eslint-disable-next-line no-console

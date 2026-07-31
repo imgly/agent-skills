@@ -1293,6 +1293,34 @@ getVolume(id: DesignBlockId): number
 
 **Returns:** The volume, ranging from 0.0 to 1.0.
 
+### setAudioFadeIn()
+
+Sets an audio fade-in for a block. The audio ramps up from silence to the
+block's volume over the given duration at the start of the block.
+
+```typescript
+setAudioFadeIn(id: DesignBlockId, duration: number, easing?: AnimationEasing): void
+```
+
+**Parameters:**
+- `id` - The audio block or video fill to update.
+- `duration` - The fade-in duration in seconds. A value of 0 disables the fade-in and negative values are clamped to 0.
+- `easing` - The easing curve of the fade. Defaults to 'Linear'.
+
+### setAudioFadeOut()
+
+Sets an audio fade-out for a block. The audio ramps down from the block's
+volume to silence over the given duration at the end of the block.
+
+```typescript
+setAudioFadeOut(id: DesignBlockId, duration: number, easing?: AnimationEasing): void
+```
+
+**Parameters:**
+- `id` - The audio block or video fill to update.
+- `duration` - The fade-out duration in seconds. A value of 0 disables the fade-out and negative values are clamped to 0.
+- `easing` - The easing curve of the fade. Defaults to 'Linear'.
+
 ### setPlaybackSpeed()
 
 Sets the playback speed multiplier of a block that supports playback control.

@@ -20,7 +20,7 @@ manages only one active scene at a time.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-scenes-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-concepts-scenes-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-concepts-scenes-browser/index.html)
 
 Every design you create starts with a scene. Scenes contain pages, and pages contain the visible design elements—text, images, shapes, and other blocks. Understanding how scenes work is essential for building, saving, and restoring user designs.
 
@@ -146,7 +146,7 @@ class Example implements EditorPlugin {
 
     // Demonstrate loading the scene from the saved string
     // This replaces the current scene with the saved version
-    await engine.scene.loadFromString(sceneString);
+    await engine.scene.load(sceneString);
     // eslint-disable-next-line no-console
     console.log('Scene loaded from saved string');
 
@@ -340,18 +340,18 @@ const sceneString = await engine.scene.saveToString();
 console.log('Scene saved successfully. String length:', sceneString.length);
 ```
 
-The serialized string references external assets by URL rather than embedding them. For complete portability including assets, use `engine.scene.saveToArchive()`.
+The serialized string references external assets by URL rather than embedding them. For complete portability including assets, use `engine.scene.saveToArchive()`. Persist saved scenes and archives with the `.imgly` file extension.
 
 ## Loading Scenes
 
 ### Loading from String
 
-Use `engine.scene.loadFromString()` to restore a scene from a saved string:
+Use `engine.scene.load()` to restore a scene from a saved string:
 
 ```typescript highlight-load-scene
     // Demonstrate loading the scene from the saved string
     // This replaces the current scene with the saved version
-    await engine.scene.loadFromString(sceneString);
+    await engine.scene.load(sceneString);
     // eslint-disable-next-line no-console
     console.log('Scene loaded from saved string');
 
@@ -366,10 +366,10 @@ Loading a new scene replaces any existing scene. The engine only holds one activ
 
 ### Loading from URL
 
-Use `engine.scene.loadFromURL()` to load a scene directly from a remote location:
+Use `engine.scene.load()` to load a scene directly from a remote location. It opens both plain scenes and archives, detecting the kind automatically from the file content; `.scene` and `.zip` files also load:
 
 ```typescript
-await engine.scene.loadFromURL('https://example.com/design.scene');
+await engine.scene.load('https://example.com/design.imgly');
 ```
 
 ## Troubleshooting

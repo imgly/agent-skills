@@ -52,10 +52,10 @@ Load content into the editor using one of these methods:
 await cesdk.createVideoScene();
 
 // Load from a template archive
-await cesdk.loadFromArchiveURL('https://example.com/video-template.zip');
+await cesdk.load('https://example.com/video-template.zip');
 
 // Load from a scene file
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 
 // Load from a video URL
 await cesdk.createFromVideo('https://example.com/video.mp4');
@@ -101,8 +101,7 @@ src/
 │   │       ├── inspectorBar.ts           # Inspector bar layout
 │   │       ├── navigationBar.ts          # Navigation bar layout
 │   │       └── panel.ts                  # Panel configuration
-│   ├── index.ts                  # Editor initialization function
-│   └── resolveAssetPath.ts
+│   └── index.ts                  # Editor initialization function
 └── index.ts
 ```
 
@@ -122,16 +121,45 @@ src/
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Editor doesn't load | Verify assets are accessible at `baseURL` |
-| Assets don't appear | Check `public/assets/` directory exists |
-| Video doesn't play | Check browser autoplay policies and video format (MP4, WebM) |
-| Watermark appears | Add your license key |
+| Issue               | Solution                                                     |
+| ------------------- | ------------------------------------------------------------ |
+| Editor doesn't load | Verify assets are accessible at `baseURL`                    |
+| Assets don't appear | Check `public/assets/` directory exists                      |
+| Video doesn't play  | Check browser autoplay policies and video format (MP4, WebM) |
+| Watermark appears   | Add your license key                                         |
 
 ## Documentation
 
 For complete integration guides and API reference, visit the [Video Editor Documentation](https://img.ly/docs/cesdk/js/starterkits/video-animations-vanim1/).
+
+## Demo Assets
+
+The demo assets for this starter kit load from the IMG.LY CDN by default —
+nothing to configure. If you want to own them — edit them, meet compliance
+requirements, or remove the CDN dependency for production — eject them
+(the archive contains only this kit's files):
+
+```bash
+# Download this starter kit's demo assets
+curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.0/starterkit-video-animations/demo-assets.zip
+unzip demo-assets.zip -d demo-assets
+rm demo-assets.zip
+```
+
+Upload the extracted files to your own server or CDN, then point the app
+at them via `.env`:
+
+```bash
+VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
+```
+
+The default URL is the `DEMO_ASSETS_BASE_URL` constant in `src/imgly/index.ts` if you
+prefer changing it in code.
+
+The demo assets are intended for development and prototyping — replace
+them with your own content or licensed stock assets before shipping to
+production (see `DEMO-ASSETS-NOTICE.txt` in the download). This applies in
+particular to media such as music tracks and stock imagery.
 
 ## License
 

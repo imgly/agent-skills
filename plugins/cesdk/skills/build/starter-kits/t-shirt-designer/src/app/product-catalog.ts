@@ -67,11 +67,16 @@ export interface ProductSize {
 }
 
 /**
- * Base URL for product assets.
- * Must be a full URL to avoid CE.SDK baseURL resolution.
- * The engine resolves relative URLs against its baseURL (CDN by default).
+ * Demo assets for this example (product mockups, …) are loaded from the
+ * IMG.LY CDN by default. To host them yourself, copy the folder below to
+ * your own CDN or server and change this constant. Must resolve to full
+ * URLs to avoid CE.SDK baseURL resolution. No trailing slash.
  */
-const ASSETS_BASE = `${window.location.origin}${import.meta.env.BASE_URL}assets/products`;
+const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.0/starterkit-t-shirt-designer';
+
+const ASSETS_BASE = `${DEMO_ASSETS_BASE_URL}/assets/products`;
 
 // ============================================================================
 // T-Shirt Measurements (from mockup images: 815x948 pixels)

@@ -11,7 +11,7 @@ import type { Configuration } from '@cesdk/engine';
 import { EngineProvider } from './contexts/EngineContext';
 import { SinglePageModeProvider } from './contexts/SinglePageModeContext';
 import { PagePreviewProvider } from './contexts/PagePreviewContext';
-import { EditorProvider } from './contexts/EditorContext';
+import { DEMO_ASSETS_BASE_URL, EditorProvider } from './contexts/EditorContext';
 import { SelectionProvider } from './contexts/UseSelection';
 
 import PhotoBookUI from './components/PhotoBookUI/PhotoBookUI';
@@ -130,20 +130,15 @@ export default function App({ engineConfig }: AppProps) {
               ]);
 
               // Load custom assets
-              // Use absolute URL to avoid double-slash issues
-              const baseUrl = new URL(
-                import.meta.env.BASE_URL,
-                window.location.origin
-              ).href.replace(/\/$/, '');
               loadAssetSourceFromContentJSON(
                 engine,
                 PHOTOBOOK_STICKERS,
-                baseUrl
+                DEMO_ASSETS_BASE_URL
               );
               loadAssetSourceFromContentJSON(
                 engine,
                 PHOTOBOOK_LAYOUTS,
-                baseUrl,
+                DEMO_ASSETS_BASE_URL,
                 createApplyLayoutAsset(engine)
               );
 

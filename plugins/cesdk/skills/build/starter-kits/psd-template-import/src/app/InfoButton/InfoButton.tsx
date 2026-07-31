@@ -4,7 +4,7 @@
 import classNames from 'classnames';
 import { useMemo, useState } from 'react';
 import { Popover } from 'react-tiny-popover';
-import { resolveAssetPath } from '../resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from '../FileSelection/FileSelection';
 import classes from './InfoButton.module.css';
 
 interface InfoButtonProps {
@@ -14,12 +14,12 @@ interface InfoButtonProps {
 
 const TYPE_CONFIG = {
   error: {
-    icon: resolveAssetPath('/icons/error.svg'),
+    icon: `${DEMO_ASSETS_BASE_URL}/icons/error.svg`,
     className: classes.error,
     label: 'Error'
   },
   warning: {
-    icon: resolveAssetPath('/icons/warning.svg'),
+    icon: `${DEMO_ASSETS_BASE_URL}/icons/warning.svg`,
     className: classes.warning,
     label: 'Warning'
   }

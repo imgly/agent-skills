@@ -6974,6 +6974,64 @@ Manage time-based media like video and audio, including playback, timing, and co
 
 <details>
   <summary>
+    ### setAudioFadeIn()
+
+    <br /><p>Sets an audio fade-in for a block. The audio ramps up from silence to the
+    block's volume over the given duration at the start of the block.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The audio block or video fill to update. |
+  | `duration` | `number` | The fade-in duration in seconds. A value of 0 disables the fade-in and negative values are clamped to 0. |
+  | `easing?` | | `"Linear"` | `"EaseIn"` | `"EaseOut"` | `"EaseInOut"` | `"EaseInQuart"` | `"EaseOutQuart"` | `"EaseInOutQuart"` | `"EaseInQuint"` | `"EaseOutQuint"` | `"EaseInOutQuint"` | `"EaseInBack"` | `"EaseOutBack"` | `"EaseInOutBack"` | `"EaseInSpring"` | `"EaseOutSpring"` | `"EaseInOutSpring"` | The easing curve of the fade. Defaults to 'Linear'. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setAudioFadeIn(id: number, duration: number, easing?: "Linear" | "EaseIn" | "EaseOut" | "EaseInOut" | "EaseInQuart" | "EaseOutQuart" | "EaseInOutQuart" | "EaseInQuint" | "EaseOutQuint" | "EaseInOutQuint" | "EaseInBack" | "EaseOutBack" | "EaseInOutBack" | "EaseInSpring" | "EaseOutSpring" | "EaseInOutSpring"): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setAudioFadeOut()
+
+    <br /><p>Sets an audio fade-out for a block. The audio ramps down from the block's
+    volume to silence over the given duration at the end of the block.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The audio block or video fill to update. |
+  | `duration` | `number` | The fade-out duration in seconds. A value of 0 disables the fade-out and negative values are clamped to 0. |
+  | `easing?` | | `"Linear"` | `"EaseIn"` | `"EaseOut"` | `"EaseInOut"` | `"EaseInQuart"` | `"EaseOutQuart"` | `"EaseInOutQuart"` | `"EaseInQuint"` | `"EaseOutQuint"` | `"EaseInOutQuint"` | `"EaseInBack"` | `"EaseOutBack"` | `"EaseInOutBack"` | `"EaseInSpring"` | `"EaseOutSpring"` | `"EaseInOutSpring"` | The easing curve of the fade. Defaults to 'Linear'. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setAudioFadeOut(id: number, duration: number, easing?: "Linear" | "EaseIn" | "EaseOut" | "EaseInOut" | "EaseInQuart" | "EaseOutQuart" | "EaseInOutQuart" | "EaseInQuint" | "EaseOutQuint" | "EaseInOutQuint" | "EaseInBack" | "EaseOutBack" | "EaseInOutBack" | "EaseInSpring" | "EaseOutSpring" | "EaseInOutSpring"): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### setPlaybackSpeed()
 
     <br /><p>Sets the playback speed multiplier of a block that supports playback control.

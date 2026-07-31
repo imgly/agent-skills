@@ -93,7 +93,7 @@ export function EditorModal({
       cesdk.engine.variable.setString('Department', variables.department);
 
       // Load scene and zoom to fit
-      await cesdk.loadFromString(sceneString);
+      await cesdk.load(sceneString);
       cesdk.actions.run('zoom.toPage', { autoFit: true });
     },
     [type, title, sceneString, variables, onSave, onClose]

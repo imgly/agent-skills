@@ -305,7 +305,7 @@ async function main() {
   // In production, use your actual scene URL or template
   const templateURL =
     'https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene';
-  await engine.scene.loadFromURL(templateURL);
+  await engine.scene.load(templateURL);
   const page = engine.block.findByType('page')[0];
   console.log('✓ Scene loaded\n');
 
@@ -683,7 +683,7 @@ async function main() {
   // In production, use your actual scene URL or template
   const templateURL =
     'https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene';
-  await engine.scene.loadFromURL(templateURL);
+  await engine.scene.load(templateURL);
   const page = engine.block.findByType('page')[0];
   console.log('✓ Scene loaded\n');
 ```
@@ -756,7 +756,7 @@ console.log('✓ Scene contains sample content for moderation\n');
 
 Now that you understand content moderation in Node.js, explore related features:
 
-- [Rules Overview](./rules/overview.md) — Learn about CE.SDK's comprehensive validation system
+- [Rules Overview](./rules/overview.md) — Understand the scopes and permission model behind CE.SDK rules
 
 
 

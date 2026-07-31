@@ -16,7 +16,7 @@ Apply template content to an existing scene while preserving your canvas dimensi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-apply-template-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-use-templates-apply-template-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-use-templates-apply-template-browser/index.html)
 
 ![Apply a Template](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -147,7 +147,7 @@ Use `applyTemplateFromURL()` or `applyTemplateFromString()` when you want to:
 - **Standardize output dimensions**: Generate content with fixed sizes (e.g., social media formats, print sizes)
 - **Batch process with templates**: Apply various templates to a pre-configured scene without dimension drift
 
-Use `loadFromString()` or `loadFromURL()` when you need the template's original dimensions.
+Use `engine.scene.load()` when you need the template's original dimensions.
 
 **Key distinction**: Loading replaces everything; applying preserves dimensions and merges content.
 

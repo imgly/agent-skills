@@ -4,7 +4,7 @@ import type CreativeEngine from '@cesdk/engine';
 import { resize } from '../../imgly';
 import type { Template, VariantImage, SizePreset } from '../../imgly';
 import { DEFAULT_SIZES } from '../constants';
-import { resolveSceneUrl, downloadFromUrl } from '../utils';
+import { downloadFromUrl } from '../utils';
 
 /**
  * Fetch scene string from URL or return existing scene string.
@@ -13,8 +13,7 @@ async function resolveScene(template: Template): Promise<string> {
   if (template.sceneString) {
     return template.sceneString;
   }
-  const url = resolveSceneUrl(template.sceneUrl);
-  const response = await fetch(url);
+  const response = await fetch(template.sceneUrl);
   return response.text();
 }
 

@@ -146,8 +146,8 @@ try {
   }
 
   // Save scene to .scene file (standard CE.SDK scene format)
-  writeFileSync('output/resize-videos-scene.scene', sceneString);
-  console.log('✓ Saved to output/resize-videos-scene.scene');
+  writeFileSync('output/resize-videos-scene.imgly', sceneString);
+  console.log('✓ Saved to output/resize-videos-scene.imgly');
 
   // Log final dimensions to verify
   console.log('\nVideo dimensions:');
@@ -305,8 +305,8 @@ Save the scene to a file. The scene can later be loaded in a browser environment
   }
 
   // Save scene to .scene file (standard CE.SDK scene format)
-  writeFileSync('output/resize-videos-scene.scene', sceneString);
-  console.log('✓ Saved to output/resize-videos-scene.scene');
+  writeFileSync('output/resize-videos-scene.imgly', sceneString);
+  console.log('✓ Saved to output/resize-videos-scene.imgly');
 
   // Log final dimensions to verify
   console.log('\nVideo dimensions:');

@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Edit Shapes](./shapes.md) > [Combine](./stickers-and-shapes/combine.md)
+**Navigation:** [Guides](./guides.md) > [Create and Edit Shapes](./shapes.md) > [Combine Shapes](./stickers-and-shapes/combine.md)
 
 ---
 
@@ -18,7 +18,7 @@ Combine multiple shapes using boolean operations to create custom compound desig
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-stickers-and-shapes-combine-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-stickers-and-shapes-combine-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-stickers-and-shapes-combine-browser/index.html)
 
 CE.SDK provides four boolean operations for combining shapes: *Union*, *Difference*, *Intersection*, and *XOR*. These operations work with graphic blocks and text blocks, allowing you to build complex designs from simple primitives.
 

@@ -8,6 +8,8 @@ type DoublePropertyName =
   | "playback/duration"
   | "playback/timeOffset"
   | "audio/totalDuration"
+  | "playback/fadeIn/duration"
+  | "playback/fadeOut/duration"
   | "playback/trimLength"
   | "playback/trimOffset"
   | "fill/video/totalDuration"

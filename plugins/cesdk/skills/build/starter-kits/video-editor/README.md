@@ -52,10 +52,10 @@ Load content into the editor using one of these methods:
 await cesdk.actions.run('scene.create');
 
 // Load from a template archive
-await cesdk.loadFromArchiveURL('https://example.com/video-template.zip');
+await cesdk.load('https://example.com/video-template.zip');
 
 // Load from a scene file
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 
 // Load from a video URL
 await cesdk.createFromVideo('https://example.com/video.mp4');

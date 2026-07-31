@@ -8,7 +8,6 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import type { Configuration } from '@cesdk/cesdk-js';
 
 import { init3dProductPreviewEditor, disposeMockupRenderer } from '../imgly';
-import { resolveAssetPath } from './resolveAssetPath';
 import { useMockupRenderer } from './hooks/useMockupRenderer';
 import { Topbar } from './Topbar/Topbar';
 import { Mockup3DPreview } from './Mockup3DPreview/Mockup3DPreview';
@@ -63,7 +62,7 @@ export default function App({ config }: AppProps) {
 
       try {
         const sceneUrl = getDesignSceneUrl(productKey);
-        await designEngine.engine.scene.loadFromURL(sceneUrl);
+        await designEngine.engine.scene.load(sceneUrl);
 
         // Zoom to fit the first page
         await designEngine.actions.run('zoom.toPage', {
@@ -117,12 +116,12 @@ export default function App({ config }: AppProps) {
       const savedDesignScene = designSceneStringRef.current;
       if (savedDesignScene) {
         try {
-          await cesdk.engine.scene.loadFromString(savedDesignScene);
+          await cesdk.engine.scene.load(savedDesignScene);
         } catch {
-          await cesdk.loadFromURL(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
+          await cesdk.load(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
         }
       } else {
-        await cesdk.loadFromURL(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
+        await cesdk.load(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
       }
 
       // Zoom to fit the first page
@@ -166,7 +165,7 @@ export default function App({ config }: AppProps) {
       >
         <Mockup3DPreview
           mockupImageUrl={mockupImageUrl}
-          modelUrl={resolveAssetPath(getModelUrl(currentProductKey))}
+          modelUrl={getModelUrl(currentProductKey)}
           cameraOrbit={product.cameraOrbit}
           baseColorTextureIndex={product.baseColorTextureIndex}
           isLoading={isLoading}

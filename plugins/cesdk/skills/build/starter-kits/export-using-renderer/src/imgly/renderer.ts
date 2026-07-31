@@ -9,7 +9,6 @@
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 
-
 /**
  * Gets the renderer proxy URL from environment or returns the default.
  */
@@ -173,7 +172,6 @@ export function setupRendererExport(cesdk: CreativeEditorSDK): void {
           icon: '@imgly/Video',
           onClick: () => cesdk.actions.run('exportUsingRenderer')
         },
-        'ly.img.importArchive.navigationBar',
         'ly.img.importScene.navigationBar',
         'ly.img.exportScene.navigationBar',
         'ly.img.exportArchive.navigationBar'

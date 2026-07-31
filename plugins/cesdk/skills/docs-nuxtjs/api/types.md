@@ -26,6 +26,10 @@ Types: DesignBlockTypeShorthand, DesignBlockTypeLonghand, DesignBlockType, Shape
 
 Types: OffscreenCanvas, Canvas
 
+## capabilities
+
+Types: EngineCapability
+
 ## color
 
 Types: HexColorString, PaletteColor, Color, ColorSpace, RGBColor, HSLColor, HSVColor, ColorNameObject, RGBAColor, CMYKColor, SpotColor, ColorInternal, GradientColorStop
@@ -44,7 +48,7 @@ Types: FontMetrics
 
 ## propertyTypes
 
-Types: BoolPropertyName, EnumPropertyName, FloatPropertyName, StringPropertyName, DoublePropertyName, ColorPropertyName, IntPropertyName, SourceSetPropertyName, BlendMode, HorizontalContentFillAlignment, ContentFillMode, VerticalContentFillAlignment, HeightMode, PositionXMode, PositionYMode, SceneDesignUnit, SceneFontSizeUnit, SceneLayout, SceneMode, WidthMode, PageGuidesSource, StrokeCap, StrokeCornerGeometry, StrokeDashEndCap, StrokeDashStartCap, StrokeEndCap, StrokePosition, StrokeStartCap, StrokeStyle, TextHorizontalAlignment, TextVerticalAlignment, CutoutType, CaptionHorizontalAlignment, CaptionVerticalAlignment, AnimationEasing, TextAnimationWritingStyle, AnimationGrowDirection, AnimationWipeDirection, AnimationBaselineDirection, AnimationSpinDirection, AnimationSpinLoopDirection, AnimationJumpLoopDirection, AnimationTypewriterTextWritingStyle, AnimationBlockSwipeTextDirection, AnimationMergeTextDirection, AnimationKenBurnsDirection, FillPixelStreamOrientation, ShapeVectorPathFillRule, EnumValues, BlockEnumType
+Types: BoolPropertyName, EnumPropertyName, FloatPropertyName, StringPropertyName, DoublePropertyName, ColorPropertyName, IntPropertyName, SourceSetPropertyName, BlendMode, HorizontalContentFillAlignment, ContentFillMode, VerticalContentFillAlignment, HeightMode, PositionXMode, PositionYMode, SceneDesignUnit, SceneFontSizeUnit, SceneLayout, SceneMode, WidthMode, PageGuidesSource, StrokeCap, StrokeCornerGeometry, StrokeDashEndCap, StrokeDashStartCap, StrokeEndCap, StrokePosition, StrokeStartCap, StrokeStyle, PlaybackFadeInEasing, PlaybackFadeOutEasing, TextHorizontalAlignment, TextVerticalAlignment, CutoutType, CaptionHorizontalAlignment, CaptionVerticalAlignment, AnimationEasing, TextAnimationWritingStyle, AnimationGrowDirection, AnimationWipeDirection, AnimationBaselineDirection, AnimationSpinDirection, AnimationSpinLoopDirection, AnimationJumpLoopDirection, AnimationTypewriterTextWritingStyle, AnimationBlockSwipeTextDirection, AnimationMergeTextDirection, AnimationKenBurnsDirection, FillPixelStreamOrientation, ShapeVectorPathFillRule, EnumValues, BlockEnumType
 
 ## role
 

@@ -18,7 +18,7 @@ Convert CE.SDK exports to Base64-encoded strings for embedding in HTML, storing 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-conversion-to-base64-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-conversion-to-base64-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-conversion-to-base64-browser/index.html)
 
 Base64 encoding transforms binary image data into ASCII text, enabling you to embed images directly in HTML, store them in text-only databases, or transmit them through JSON APIs without binary handling.
 
@@ -81,7 +81,7 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
     const page = engine.scene.getCurrentPage()!;

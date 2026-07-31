@@ -227,7 +227,7 @@ exports.main = async function (event) {
   try {
     const engine = await CreativeEngine.init(config);
     // load scene from remote template file
-    await engine.scene.loadFromURL(templateURL);
+    await engine.scene.load(templateURL);
   } catch (error) {
     console.warn(error);
   }
@@ -389,7 +389,7 @@ exports.main = async function (event) {
   try {
     const engine = await CreativeEngine.init(config);
     // load scene from remote template file
-    await engine.scene.loadFromURL(templateURL);
+    await engine.scene.load(templateURL);
     for (const record of event.Records) {
       const item = record.dynamodb.NewImage;
       const filename = item.filename.S;

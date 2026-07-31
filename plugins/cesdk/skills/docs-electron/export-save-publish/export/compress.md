@@ -18,7 +18,7 @@ Compression reduces file sizes during export while maintaining visual quality. W
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-compress-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-export-save-publish-export-compress-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-export-save-publish-export-compress-browser/index.html)
 
 Image compression reduces file sizes while maintaining acceptable visual quality. CE.SDK supports format-specific compression controls: lossless compression for PNG, lossy quality settings for JPEG, and both modes for WebP. The example includes a navigation bar dropdown menu with export options for comparing different formats and compression levels.
 
@@ -54,7 +54,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
 
     // Load a video template scene for demonstration
-    await cesdk.loadFromURL(
+    await cesdk.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.video.template/templates/milli-surf-school.scene'
     );
 
@@ -304,7 +304,7 @@ To compress assets, use `engine.block.export` with format-specific options. Each
 | PNG | `pngCompressionLevel` | 0–9 | Higher = smaller, slower (lossless) | 5 |
 | JPEG | `jpegQuality` | 0.0–1.0 | Lower = smaller, lower quality | 0.9 |
 | WebP | `webpQuality` | 0.0–1.0 | 1.0 = lossless, below 1.0 = lossy | 1.0 |
-| MP4 | `videoBitrate`, `audioBitrate` | bits/sec | Higher = larger, higher quality | 0 (auto) |
+| MP4 | `videoBitrate`, `audioBitrate` | bits/sec or `'System'` / `'Auto'` | Higher = larger, higher quality | `'System'` |
 
 ## Export with Compression
 
@@ -544,7 +544,7 @@ Adjust bitrate according to your use case:
 
 - **Web/social media clips**: 1–2 Mbps
 - **Downloadable HD video**: 8–12 Mbps
-- **Automatic optimization**: Set `videoBitrate` to `0` to let CE.SDK choose based on resolution and frame rate
+- **Bounded automatic optimization**: Set `videoBitrate` to `'Auto'` to let CE.SDK choose a bounded bitrate based on resolution and frame rate. This is recommended in the browser over the default `'System'` mode, where the browser encoder may pick a very high, near-lossless rate that can make large exports fail with an out-of-memory error.
 
 ### H.264 Profile Selection
 

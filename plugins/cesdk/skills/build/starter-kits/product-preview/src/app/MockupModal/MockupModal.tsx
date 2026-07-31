@@ -108,9 +108,9 @@ export function MockupModal({
 
       // Load scene
       if (sceneString) {
-        await cesdk.loadFromString(sceneString);
+        await cesdk.load(sceneString);
       } else {
-        await cesdk.loadFromURL(sceneUrl);
+        await cesdk.load(sceneUrl);
       }
 
       // Zoom to fit the page

@@ -429,7 +429,7 @@ Generate social media assets from templates by loading a template, modifying tex
 
 ```typescript
 const engine = await CreativeEngine.init(config);
-await engine.scene.loadFromURL('https://example.com/template.scene');
+await engine.scene.load('https://example.com/template.scene');
 
 // Customize content
 const textBlocks = engine.block.findByType('//ly.img.ubq/text');

@@ -66,7 +66,7 @@ const backgroundEngine = await CreativeEngine.init({
 });
 
 async function generateThumbnail(sceneData) {
-  await backgroundEngine.scene.loadFromString(sceneData);
+  await backgroundEngine.scene.load(sceneData);
   const page = backgroundEngine.scene.getPages()[0];
   return await backgroundEngine.block.export(page, 'image/jpeg', {
     targetWidth: 200,
@@ -95,7 +95,7 @@ For resource-intensive tasks like high-resolution exports, consider server-side 
 
 ## Next Steps
 
-- [Node.js SDK](./what-is-cesdk.md) for server-side processing
+- [Node.js SDK](#broken-link-n1234a) for server-side processing
 - [Automation Overview](./automation/overview.md) for workflow examples
 
 

@@ -58,7 +58,7 @@ export default function App({ editorConfig }: AppProps) {
 
     // highlight-scene-loading
     // Load the first snapshot as the initial scene
-    await cesdk.loadFromURL(getInitialSceneUrl());
+    await cesdk.load(getInitialSceneUrl());
     // highlight-scene-loading
 
     // Register save action (app-layer callback)

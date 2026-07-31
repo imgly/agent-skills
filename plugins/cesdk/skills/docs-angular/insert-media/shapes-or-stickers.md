@@ -20,7 +20,7 @@ like corner radius and star points.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-insert-media-shapes-or-stickers-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-insert-media-shapes-or-stickers-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-insert-media-shapes-or-stickers-browser/index.html)
 
 Shapes are vector graphics created with `engine.block.createShape()` and attached to graphic blocks. CE.SDK supports six shape types: **rect**, **ellipse**, **star**, **polygon**, **line**, and **vector\_path**. Stickers are pre-made graphic assets from sources like `ly.img.sticker`. Both require fills or strokes to be visible on the canvas.
 
@@ -797,7 +797,7 @@ If `createShape()` throws an error:
 
 - [Colors](./colors.md) - Work with colors, fills, and gradients
 - [Filters and Effects](./filters-and-effects.md) - Apply visual effects to design elements
-- [Position and Align](./insert-media/position-and-align.md) - Position elements precisely on the canvas
+- [Position and Align](./create-composition/position-and-align.md) - Position elements precisely on the canvas
 
 
 

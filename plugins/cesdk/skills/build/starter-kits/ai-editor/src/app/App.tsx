@@ -190,7 +190,7 @@ export default function App({ config }: AppProps) {
       switch (currentMode) {
         case 'Design':
           await initAiDesignEditor(cesdk, providerMap);
-          await cesdk.loadFromArchiveURL(SCENE_URLS.Design);
+          await cesdk.load(SCENE_URLS.Design);
           break;
         case 'Photo':
           await initAiPhotoEditor(cesdk, providerMap);
@@ -198,11 +198,11 @@ export default function App({ config }: AppProps) {
           break;
         case 'Video':
           await initAiVideoEditor(cesdk, providerMap);
-          await cesdk.loadFromArchiveURL(SCENE_URLS.Video);
+          await cesdk.load(SCENE_URLS.Video);
           break;
         default:
           await initAiDesignEditor(cesdk, providerMap);
-          await cesdk.loadFromArchiveURL(SCENE_URLS.Design);
+          await cesdk.load(SCENE_URLS.Design);
       }
     },
     [boot, currentMode]

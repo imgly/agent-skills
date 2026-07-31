@@ -306,13 +306,13 @@ The Actions API provides four methods:
 
         // Production:
         // const archive = await yourAPI.loadArchive();
-        // await cesdk.engine.scene.loadFromArchiveURL(archive);
+        // await cesdk.engine.scene.load(archive);
       } else {
         console.log('Scene import requested');
 
         // Production:
         // const scene = await yourAPI.loadScene();
-        // await cesdk.engine.scene.loadFromString(scene);
+        // await cesdk.engine.scene.load(scene);
       }
     });
 
@@ -546,7 +546,7 @@ The Actions API provides four methods:
     }
 
     // Safe to proceed with video content
-    await cesdk.engine.scene.loadFromURL(videoSceneUrl);
+    await cesdk.engine.scene.load(videoSceneUrl);
 
     // You can also disable the dialog and handle feedback yourself:
     const supportedSilently = cesdk.actions.run('video.decode.checkSupport', {
@@ -1338,7 +1338,7 @@ Check browser video capabilities before working with video content:
 // Check if video decoding/playback is supported
 if (cesdk.utils.supportsVideoDecode()) {
   // Safe to load and play video content
-  await cesdk.engine.scene.loadFromURL(videoSceneUrl);
+  await cesdk.engine.scene.load(videoSceneUrl);
 } else {
   // Show fallback UI or message
   console.log('Video playback not available in this browser');

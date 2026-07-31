@@ -29,7 +29,7 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  await engine.scene.loadFromURL('https://example.com/template.scene');
+  await engine.scene.load('https://example.com/template.imgly');
   const page = engine.scene.getPages()[0];
   const blob = await engine.block.export(page, 'image/png', {
     targetWidth: 3840,
@@ -61,7 +61,7 @@ const sceneData = await cesdk.engine.scene.saveToString();
 // Server: Load and export at high resolution
 const engine = await CreativeEngine.init({ license: process.env.CESDK_LICENSE });
 try {
-  await engine.scene.loadFromString(sceneData);
+  await engine.scene.load(sceneData);
   const blob = await engine.block.export(engine.scene.getPages()[0], 'image/png', {
     targetWidth: 3840,
     targetHeight: 2160,

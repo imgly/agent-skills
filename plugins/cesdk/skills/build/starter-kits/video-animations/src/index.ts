@@ -9,8 +9,11 @@
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
-import { initVideoAnimationsEditor, openAnimationPanel } from './imgly';
-import { resolveAssetPath } from './imgly/resolveAssetPath';
+import {
+  DEMO_ASSETS_BASE_URL,
+  initVideoAnimationsEditor,
+  openAnimationPanel
+} from './imgly';
 
 // ============================================================================
 // Configuration
@@ -44,8 +47,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     // Load initial scene from CDN
-    await cesdk.loadFromURL(
-      resolveAssetPath('/assets/templates/lunar-cosmetics.scene')
+    await cesdk.load(
+      `${DEMO_ASSETS_BASE_URL}/assets/templates/lunar-video-default.imgly`
     );
     // highlight-scene-loading
 

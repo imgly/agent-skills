@@ -131,7 +131,7 @@ async function convertPsd(
 
   // Generate output filename from input filename
   const inputName = basename(psdPath, '.psd');
-  const archivePath = join(outputDir, `${inputName}.cesdk`);
+  const archivePath = join(outputDir, `${inputName}.imgly`);
 
   // Save as scene archive
   const archive = await engine.scene.saveToArchive();
@@ -163,7 +163,7 @@ async function convertPsd(
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.scene`);
+  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
   await fs.writeFile(sceneStringPath, sceneString);
 
   return { archivePath, sceneStringPath, warnings, errors };
@@ -251,7 +251,7 @@ export async function validateArchive(archivePath: string): Promise<{
     const archiveBlob = new Blob([archiveBuffer]);
     const archiveUrl = URL.createObjectURL(archiveBlob);
 
-    await engine.scene.loadFromArchiveURL(archiveUrl);
+    await engine.scene.load(archiveUrl);
 
     // Get scene information
     const pages = engine.block.findByType('page');
@@ -317,9 +317,9 @@ async function main(): Promise<void> {
     await fs.mkdir('./output', { recursive: true });
     const archive = await engine.scene.saveToArchive();
     const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-    await fs.writeFile('./output/sample.cesdk', archiveBuffer);
+    await fs.writeFile('./output/sample.imgly', archiveBuffer);
 
-    console.log('Sample archive created: ./output/sample.cesdk');
+    console.log('Sample archive created: ./output/sample.imgly');
     console.log('\nTo convert actual PSD files:');
     console.log('1. Place PSD files in an input directory');
     console.log('2. Call: await processDirectory("./input", "./output")');
@@ -366,7 +366,7 @@ await parser.parse();
 
 // Save as a portable archive
 const archive = await engine.scene.saveToArchive();
-await fs.writeFile('./design.cesdk', Buffer.from(await archive.arrayBuffer()));
+await fs.writeFile('./design.imgly', Buffer.from(await archive.arrayBuffer()));
 
 // Clean up
 engine.dispose();
@@ -463,7 +463,7 @@ async function convertPsd(
 
   // Generate output filename from input filename
   const inputName = basename(psdPath, '.psd');
-  const archivePath = join(outputDir, `${inputName}.cesdk`);
+  const archivePath = join(outputDir, `${inputName}.imgly`);
 
   // Save as scene archive
   const archive = await engine.scene.saveToArchive();
@@ -495,7 +495,7 @@ async function convertPsd(
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.scene`);
+  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
   await fs.writeFile(sceneStringPath, sceneString);
 
   return { archivePath, sceneStringPath, warnings, errors };
@@ -508,7 +508,7 @@ The `convertPSDToArchive` function:
 2. Creates a parser instance with the Node.js PNG encoder
 3. Parses the PSD, creating a scene in the engine
 4. Extracts warnings and errors from the logger
-5. Saves the scene as a `.cesdk` archive file
+5. Saves the scene as an `.imgly` archive file
 
 ## Batch Converting Multiple PSD Files
 
@@ -639,7 +639,7 @@ export async function validateArchive(archivePath: string): Promise<{
     const archiveBlob = new Blob([archiveBuffer]);
     const archiveUrl = URL.createObjectURL(archiveBlob);
 
-    await engine.scene.loadFromArchiveURL(archiveUrl);
+    await engine.scene.load(archiveUrl);
 
     // Get scene information
     const pages = engine.block.findByType('page');
@@ -696,9 +696,9 @@ async function main(): Promise<void> {
     await fs.mkdir('./output', { recursive: true });
     const archive = await engine.scene.saveToArchive();
     const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-    await fs.writeFile('./output/sample.cesdk', archiveBuffer);
+    await fs.writeFile('./output/sample.imgly', archiveBuffer);
 
-    console.log('Sample archive created: ./output/sample.cesdk');
+    console.log('Sample archive created: ./output/sample.imgly');
     console.log('\nTo convert actual PSD files:');
     console.log('1. Place PSD files in an input directory');
     console.log('2. Call: await processDirectory("./input", "./output")');
@@ -718,16 +718,17 @@ For production use, modify the script to accept input/output directories as argu
 
 ## Saving and Loading Archives
 
-Scene archives (`.cesdk` files) contain the complete scene with all embedded assets:
+Scene archives (`.imgly` files) contain the complete scene with all embedded assets:
 
 ```typescript
 // Save scene as archive
 const archive = await engine.scene.saveToArchive();
 const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-await fs.writeFile('output.cesdk', archiveBuffer);
+await fs.writeFile('output.imgly', archiveBuffer);
 
-// Load archive in browser or server
-await engine.scene.loadFromArchiveURL(archiveUrl);
+// Load the archive back from a blob URL
+const archiveUrl = URL.createObjectURL(new Blob([archiveBuffer]));
+await engine.scene.load(archiveUrl);
 ```
 
 Archives are portable - convert on server, load in browser or another server instance.
@@ -773,7 +774,7 @@ After parsing the PSD file, use CE.SDK's native APIs to find and relocate all tr
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.scene`);
+  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
   await fs.writeFile(sceneStringPath, sceneString);
 ```
 

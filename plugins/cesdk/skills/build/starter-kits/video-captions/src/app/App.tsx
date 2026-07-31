@@ -16,9 +16,19 @@ import {
   initVideoCaptionsImportEditor,
   initVideoCaptionsPreCaptionedEditor
 } from '../imgly';
-import { resolveAssetPath } from './resolveAssetPath';
 
 import styles from './App.module.css';
+
+/**
+ * Demo assets for this example (images, scene archives, …) are loaded from the
+ * IMG.LY CDN by default. To host them yourself, copy this kit's asset
+ * folder to your own CDN or server and change this constant — or set it to
+ * `''` and place the files in this app's `public/` directory. No trailing
+ * slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.0/starterkit-video-captions';
 
 interface AppProps {
   editorConfig: Configuration;
@@ -34,26 +44,26 @@ const CAPTION_MODES: Array<{
     mode: 'autocaption',
     label: 'AI Auto Captions',
     description: 'Generate captions automatically using AI',
-    image: resolveAssetPath('/assets/autocaption-preview.png')
+    image: `${DEMO_ASSETS_BASE_URL}/assets/autocaption-preview.png`
   },
   {
     mode: 'blank',
     label: 'Blank Video Editor',
     description:
       'Upload or create a video, then manually add or import captions.',
-    image: resolveAssetPath('/assets/blank-preview.png')
+    image: `${DEMO_ASSETS_BASE_URL}/assets/blank-preview.png`
   },
   {
     mode: 'import',
     label: 'Caption Import',
     description: 'Import captions from an SRT file.',
-    image: resolveAssetPath('/assets/import-preview.png')
+    image: `${DEMO_ASSETS_BASE_URL}/assets/import-preview.png`
   },
   {
     mode: 'pre-captioned',
     label: 'Pre-captioned Video',
     description: 'Edit a video with existing captions and adjust as needed.',
-    image: resolveAssetPath('/assets/pre-captioned-preview.png')
+    image: `${DEMO_ASSETS_BASE_URL}/assets/pre-captioned-preview.png`
   }
 ];
 
@@ -70,8 +80,8 @@ export function App({ editorConfig }: AppProps) {
         case 'autocaption': {
           await initVideoCaptionsAutocaptionEditor(cesdk);
 
-          await cesdk.loadFromArchiveURL(
-            resolveAssetPath('/assets/autocaption.archive.zip')
+          await cesdk.load(
+            `${DEMO_ASSETS_BASE_URL}/assets/autocaption.archive.zip`
           );
 
           const autocaptionPage = cesdk.engine.scene.getCurrentPage();
@@ -126,8 +136,8 @@ export function App({ editorConfig }: AppProps) {
         case 'import': {
           await initVideoCaptionsImportEditor(cesdk);
 
-          await cesdk.loadFromArchiveURL(
-            resolveAssetPath('/assets/captions.archive')
+          await cesdk.load(
+            `${DEMO_ASSETS_BASE_URL}/assets/captions.archive`
           );
 
           const importPage = cesdk.engine.scene.getCurrentPage();
@@ -154,8 +164,8 @@ export function App({ editorConfig }: AppProps) {
         case 'pre-captioned': {
           await initVideoCaptionsPreCaptionedEditor(cesdk);
 
-          await cesdk.loadFromArchiveURL(
-            resolveAssetPath('/assets/captions-pre-captioned.archive')
+          await cesdk.load(
+            `${DEMO_ASSETS_BASE_URL}/assets/captions-pre-captioned.archive`
           );
 
           const preCaptionedPage = cesdk.engine.scene.getCurrentPage();
@@ -203,7 +213,7 @@ export function App({ editorConfig }: AppProps) {
 
   const handleDownloadSrt = useCallback(() => {
     const link = document.createElement('a');
-    link.href = resolveAssetPath('/assets/captions.srt');
+    link.href = `${DEMO_ASSETS_BASE_URL}/assets/captions.srt`;
     link.download = 'captions.srt';
     link.click();
   }, []);

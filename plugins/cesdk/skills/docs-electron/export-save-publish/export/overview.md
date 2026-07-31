@@ -18,7 +18,7 @@ Export your designs to multiple formats including PNG, JPEG, WebP, SVG, PDF, and
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-export-save-publish-export-overview-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-export-save-publish-export-overview-browser/index.html)
 
 Whether you're building a design tool, photo editor, or content automation workflow, understanding export options helps you deliver the right output for each use case. This guide covers supported formats, their options, and how to export programmatically or via the UI.
 
@@ -94,7 +94,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load a template scene from a remote URL
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -448,7 +448,7 @@ Configure video encoding with these options:
 | `mimeType` | `'video/mp4'` | `'video/quicktime'` | `'video/mp4'` | Output video format |
 | `h264Profile` | `number` | `77` (Main) | H.264 profile: 66=Baseline, 77=Main, 100=High |
 | `h264Level` | `number` | `52` | Encoding level (multiply desired level by 10, e.g., 52 = level 5.2) |
-| `videoBitrate` | `number` | `0` (auto) | Video bitrate in bits/second. Maximum determined by profile and level |
+| `videoBitrate` | `number` | `'System'` | `'Auto'` | `'System'` | Video bitrate in bits/second, or a named automatic mode. `'System'` (the default, also selected by `0`) lets the browser encoder choose, which can produce a very large, near-lossless file that may fail with an out-of-memory error. `'Auto'` picks a bounded, resolution-aware bitrate and is recommended in the browser. A positive number sets an explicit bitrate (maximum determined by profile and level) |
 | `audioBitrate` | `number` | `0` (auto) | Audio bitrate in bits/second. Default auto-selects 128kbps for stereo AAC |
 | `framerate` | `number` | `30` | Target framerate in Hz |
 | `targetWidth` | `number` | - | Output width in pixels |
@@ -463,6 +463,11 @@ The `h264Profile` determines encoder quality and compatibility:
 - **Baseline (66)**: Broadest device compatibility, lowest quality
 - **Main (77)**: Good balance of quality and compatibility (default)
 - **High (100)**: Best quality, may not play on older devices
+
+The `videoBitrate` option accepts a positive number (explicit bits per second) or one of two named automatic modes:
+
+- **`'System'`** (default): the browser's `VideoEncoder` chooses the bitrate. It may pick a very high, near-lossless rate (Safari has reached ~300 Mbps), so large or long exports can fail with an out-of-memory error.
+- **`'Auto'`**: a bounded bitrate derived from the output resolution and framerate (for example 5 Mbps at 720p30, 8 Mbps at 1080p30, 12 Mbps at 1080p60, 40 Mbps at 4K30). Recommended in the browser to avoid out-of-memory failures.
 
 > **Caution:** H.264 does not support transparency. Transparent areas render with a black background.
 

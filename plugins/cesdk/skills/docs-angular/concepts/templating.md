@@ -18,7 +18,7 @@ Templates transform static designs into dynamic, data-driven content. They combi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-templating-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-concepts-templating-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-concepts-templating-browser/index.html)
 
 A template is a regular CE.SDK scene that contains **variable tokens** in text and **placeholder blocks** for media. When you load a template, you can populate the variables with data and swap placeholder content—producing personalized designs without modifying the underlying layout.
 
@@ -53,7 +53,7 @@ class Example implements EditorPlugin {
     // Templates are scenes containing variable tokens and placeholder blocks
     const templateUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.loadFromURL(templateUrl);
+    await engine.scene.load(templateUrl);
 
     // Zoom to show the full page in the viewport
     const page = engine.scene.getCurrentPage();
@@ -161,14 +161,14 @@ Create template libraries where designers maintain approved layouts and end user
 
 CE.SDK provides two approaches for working with templates:
 
-**Load a template** with `engine.scene.loadFromURL()` to replace the current scene entirely, including page dimensions:
+**Load a template** with `engine.scene.load()` to replace the current scene entirely, including page dimensions:
 
 ```typescript highlight-load-template
     // Load a postcard template from URL
     // Templates are scenes containing variable tokens and placeholder blocks
     const templateUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.loadFromURL(templateUrl);
+    await engine.scene.load(templateUrl);
 
     // Zoom to show the full page in the viewport
     const page = engine.scene.getCurrentPage();

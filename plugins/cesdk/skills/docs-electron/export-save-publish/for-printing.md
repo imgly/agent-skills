@@ -20,7 +20,7 @@ resolution.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-for-printing-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-export-save-publish-for-printing-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-export-save-publish-for-printing-browser/index.html)
 
 CE.SDK exports designs as PDFs, but professional print workflows require specific configurations beyond standard export. This guide covers PDF export options for print, including high compatibility mode for complex designs, underlayers for printing on special media, and output resolution settings.
 
@@ -96,7 +96,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load a template scene - this will be our print design
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -268,7 +268,7 @@ Before exporting, configure your scene with appropriate print settings. Set the 
 
 ```typescript highlight-setup
     // Load a template scene - this will be our print design
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 

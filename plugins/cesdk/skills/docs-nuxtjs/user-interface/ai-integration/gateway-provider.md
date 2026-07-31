@@ -18,7 +18,7 @@ Connect CE.SDK to AI models for image, video, text, and audio generation through
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-gateway-provider-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-user-interface-ai-integration-gateway-provider-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-user-interface-ai-integration-gateway-provider-browser/index.html)
 
 The IMG.LY AI Gateway is a managed API service that sits between CE.SDK and upstream AI providers. Instead of configuring each provider separately with proxy URLs and API keys, we point all generation requests at a single gateway URL. The gateway handles model routing, authentication, billing, and credit management. Each content type has a dedicated `GatewayProvider` factory that fetches the model's OpenAPI schema and renders input fields automatically.
 
@@ -386,7 +386,7 @@ The available configuration options are:
 - **`tokenActionId`**: Action ID for token retrieval. Defaults to `'ly.img.ai.getToken'`.
 - **`tokenCacheTTL`**: Token cache duration in milliseconds. Defaults to `300000` (5 minutes).
 - **`middlewares`**: Middleware functions that wrap the generation call. See [Middleware](#middleware).
-- **`onError`**: Called when schema loading or provider initialization fails.
+- **`onError`**: Called when schema loading or provider initialization fails. Generation failures are handled in middleware — see [Handling Gateway Errors](#handling-gateway-errors).
 - **`supportedQuickActions`**: Enable or disable individual quick actions on the gateway model. Map a quick-action ID to `false` to disable it, or `true` to keep the default. Omitted IDs keep their defaults.
 - **`debug`**: Enable console logging for troubleshooting.
 
@@ -428,6 +428,63 @@ The most common use case is solving the short-lived URL problem described in [As
 ```
 
 See [Integrate AI Features → Using Middleware](./user-interface/ai-integration/integrate.md) for the available middlewares, ordering semantics, and end-to-end examples.
+
+## Handling Gateway Errors
+
+When a gateway request fails, the plugin throws a `GatewayError` and shows a localized notification describing what went wrong — out of credits, an expired token, a model that is not on your plan, or a temporary outage.
+
+To replace that notification, add an error-handling middleware. `isGatewayError` narrows the thrown value so you can branch on `code`, and `options.preventDefault()` suppresses the built-in notification. Running out of credits is a hard stop, so a blocking modal the user has to acknowledge fits better than a toast that slides away:
+
+```typescript
+import { isGatewayError } from '@imgly/plugin-ai-generation-web';
+
+const creditsMiddleware = async (input, options, next) => {
+  try {
+    return await next(input, options);
+  } catch (error) {
+    if (isGatewayError(error) && error.code === 'insufficient_credits') {
+      options.preventDefault();
+      options.cesdk?.ui.showDialog({
+        type: 'error',
+        content: {
+          title: 'Out of AI credits',
+          message: 'You have run out of AI credits. Top up your credit balance in the IMG.LY Dashboard to keep generating.'
+        },
+        actions: {
+          label: 'Manage credits',
+          color: 'accent',
+          onClick: ({ id }) => {
+            window.open('https://img.ly/dashboard/credit-balance', '_blank');
+            options.cesdk?.ui.closeDialog(id);
+          }
+        },
+        cancel: {
+          label: 'Dismiss',
+          onClick: ({ id }) => options.cesdk?.ui.closeDialog(id)
+        },
+        clickOutsideToClose: false
+      });
+    }
+    throw error;
+  }
+};
+```
+
+A `GatewayError` carries:
+
+- **`code`**: The failure reason, such as `insufficient_credits`, `unauthorized`, `provider_not_authorized`, `validation_error`, `upstream_error`, or `timeout`. Treat this as an open set — new codes may appear without a plugin update. One code comes from the plugin rather than the gateway: `network_error`, described in [Network and CORS failures](#network-and-cors-failures).
+- **`status`**: The HTTP status. `0` when there is none — either the gateway reported the failure inside an already-open stream, or the request never reached it.
+- **`operation`**: Which request failed — `'schema'`, `'upload'`, or `'generate'`.
+- **`requestId`**: The gateway's id for the request, worth quoting when you report a problem to support. Present only when the gateway makes it reachable: `x-request-id` is not a CORS-safelisted response header, so a cross-origin gateway has to send `Access-Control-Expose-Headers: x-request-id` or carry the id in the error body as `request_id`.
+- **`provider`** and **`upstreamStatus`**: Identify the model provider and the status it returned, for provider-originated failures such as `upstream_error`.
+
+Schema loading and provider initialization do not go through middleware. Use the `onError` option for those.
+
+### Network and CORS failures
+
+A request can fail without ever producing a status: the user is offline, the gateway is unreachable, or the browser blocked the response because it carried no CORS headers. The browser does not say which, so all three arrive as a `GatewayError` with `code: 'network_error'` and `status: 0`, and the user is asked to check their connection instead of being told the generation failed.
+
+The CORS case deserves attention when you host your own gateway. A gateway that answers correctly can still fail this way if its error responses come from something in front of it — an edge proxy, a WAF, a load balancer — that does not add `Access-Control-Allow-Origin`. The status is then invisible to the plugin, and a 402 for exhausted credits becomes indistinguishable from an outage. Error responses need CORS headers just as much as successful ones.
 
 ## Asset URL Lifetime
 
@@ -1015,9 +1072,9 @@ Common issues when configuring gateway providers:
 
 **Local images not uploading**: The gateway provider uploads `blob:` and `buffer:` URLs automatically. Ensure the gateway URL supports the `/v1/uploads` endpoint.
 
-**Credit errors**: Check your credit balance in the IMG.LY Dashboard. Credits are claimed before generation and released on failure.
+**Credit errors**: Check your credit balance in the IMG.LY Dashboard. Credits are claimed before generation and released on failure. The user sees a localized "out of AI credits" notification — see [Handling Gateway Errors](#handling-gateway-errors) to customize it.
 
-**CORS errors**: The gateway must allow requests from your application's origin.
+**CORS errors**: The gateway must allow requests from your application's origin, on error responses as well as successful ones — otherwise failures reach the editor as a `network_error` with no status. See [Network and CORS failures](#network-and-cors-failures).
 
 **Previously-generated assets appear broken after some time**: The gateway's output URLs are short-lived presigned URLs. Keep `history: '@imgly/indexedDB'` (default) for persistent history lookups in the same browser, or use `uploadMiddleware` to re-upload outputs to your own storage — see [Middleware](#middleware) and [Asset URL Lifetime](#asset-url-lifetime).
 

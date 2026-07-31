@@ -18,7 +18,7 @@ Streamline asset production with video placeholders.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-placeholders-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/starterkit-video-placeholders/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/starterkit-video-placeholders/index.html)
 
 ***
 
@@ -373,13 +373,13 @@ CE.SDK offers multiple ways to load content into the editor. Choose the method t
 await cesdk.actions.run('scene.create');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.loadFromArchiveURL('https://example.com/template.zip');
+await cesdk.load('https://example.com/template.zip');
 
 // Load from a video URL - creates a new scene with the video
 await cesdk.createFromVideo('https://example.com/video.mp4');
 
 // Load from a scene file - restores a scene from JSON
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 ```
 
 > **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading methods.
@@ -423,8 +423,8 @@ Actions are functions that handle user interactions like exporting videos, savin
 
 - `exportVideo` – Export the current video to MP4 or other formats
 - `saveScene` – Save the scene as a JSON string for later editing
-- `importScene` – Import a previously saved scene (supports `.scene` and `.cesdk` formats)
-- `exportScene` – Export the scene as a JSON file or `.cesdk` archive with all assets
+- `importScene` – Import a previously saved scene (`.imgly` or `.scene`)
+- `exportScene` – Export the scene as an `.imgly` file, either the scene alone or an archive with all assets
 - `uploadFile` – Handle file uploads with progress tracking
 
 Use `cesdk.actions.run()` to execute any action:

@@ -1,4 +1,4 @@
-import { resolveAssetPath } from '../imgly/resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from './contexts/EditorContext';
 
 const WEIGHTS: Array<{ weight: number; file: string }> = [
   { weight: 400, file: 'IBMPlexSans-Regular.ttf' },
@@ -17,7 +17,7 @@ export function injectFonts(): void {
   font-family: 'IBM Plex Sans';
   font-style: normal;
   font-weight: ${weight};
-  src: url('${resolveAssetPath(`/fonts/${file}`)}') format('truetype');
+  src: url('${DEMO_ASSETS_BASE_URL}/fonts/${file}') format('truetype');
 }`
   ).join('\n');
 

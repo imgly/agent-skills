@@ -87,7 +87,7 @@ import { readFileSync } from 'fs';
 
 // Load scene from file
 const sceneString = readFileSync('design.scene', 'utf-8');
-await engine.scene.loadFromString(sceneString);
+await engine.scene.load(sceneString);
 
 // Get scene ID
 const sceneId = engine.scene.get();
@@ -100,7 +100,7 @@ console.log('PDF exported:', pdfBlob.size, 'bytes');
 
 **CE.SDK export methods in detail:**
 
-- **`engine.scene.loadFromString()`**: Loads a saved CE.SDK scene from JSON string
+- **`engine.scene.load()`**: Loads a saved CE.SDK scene from JSON string
 - **`engine.scene.get()`**: Returns the ID of the currently loaded scene
 - **`engine.block.export()`**: Exports a block (the entire scene) as a specified format
 
@@ -110,7 +110,7 @@ The `.scene` file format is CE.SDK's native scene format. You can create these f
 
 ```typescript
 // Fetch scene from API
-await engine.scene.loadFromURL('https://api.example.com/scenes/123');
+await engine.scene.load('https://api.example.com/scenes/123');
 ```
 
 **Test your implementation:**
@@ -204,7 +204,7 @@ async function convertToPrintReady() {
 
   // Load scene from file
   const sceneString = readFileSync('design.scene', 'utf-8');
-  await engine.scene.loadFromString(sceneString);
+  await engine.scene.load(sceneString);
 
   // Export as PDF
   const sceneId = engine.scene.get();
@@ -339,7 +339,7 @@ async function batchConvert() {
 
     // Load scene
     const sceneString = readFileSync(file, 'utf-8');
-    await engine.scene.loadFromString(sceneString);
+    await engine.scene.load(sceneString);
 
     // Export and convert
     const sceneId = engine.scene.get();

@@ -14,7 +14,7 @@
 
 - [Node.js Filters & Effects Library](./filters-and-effects/overview.md) - Enhance visual elements with filters and effects such as blur, duotone, LUTs, and chroma keying.
 - [Supported Filters and Effects](./filters-and-effects/support.md) - View the full list of visual effects and filters available in CE.SDK, including both built-in and custom options.
-- [Apply a Filter or Effect](./filters-and-effects/apply.md) - Documentation for Apply a Filter or Effect
+- [Apply a Filter or Effect](./filters-and-effects/apply.md) - Apply, configure, stack, and manage filters and effects with the CE.SDK Engine API.
 - [Create Custom Filters](./filters-and-effects/create-custom-filters.md) - Extend CE.SDK with custom LUT filter asset sources for brand-specific color grading and filter collections.
 - [Chroma Key (Green Screen)](./filters-and-effects/chroma-key-green-screen.md) - Apply the green screen effect to images and videos, replacing specific colors with transparency for compositing workflows.
 - [Blur Effects](./filters-and-effects/blur.md) - Apply blur effects to design elements to create depth, focus attention, or soften backgrounds.

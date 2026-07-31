@@ -9,7 +9,7 @@
 | [AssetAPI](./api/node/classes/assetapi.md) | Manage asset sources and apply assets to scenes. |
 | [BlockAPI](./api/node/classes/blockapi.md) | Create, manipulate, and query the building blocks of your design. |
 | [CreativeEngine](./api/node/classes/creativeengine.md) | The CreativeEngine is the core processing unit of CE.SDK and handles state management, rendering, input handling, and much more. It provides APIs to directly interact with assets, blocks, scenes, and variables. These APIs can be used in a headless environment to build and manipulate designs programmatically, or in a browser to create interactive applications. |
-| [EditorAPI](./api/node/classes/editorapi.md) | Control the design editor's behavior and settings. |
+| [EditorAPI](./api/node/classes/editorapi.md) | - |
 | [EngineActions](./api/node/classes/engineactions.md) | Named, overridable actions for one engine. Actions are either JS closures you register or engine defaults (e.g. undo/redo), and either kind can override the other by reusing the id. |
 | [EventAPI](./api/node/classes/eventapi.md) | Subscribe to block lifecycle events in the design engine. |
 | [SceneAPI](./api/node/classes/sceneapi.md) | Create, load, save, and manipulate scenes. |
@@ -100,6 +100,7 @@
 | [EffectTypeLonghand](./api/node/type-aliases/effecttypelonghand.md) | The longhand block type IDs for the effect blocks. These are the IDs used to create new effects using `cesdk.engine.block.createEffect(id)`. |
 | [EffectTypeShorthand](./api/node/type-aliases/effecttypeshorthand.md) | - |
 | [EngineActionId](./api/node/type-aliases/engineactionid.md) | Known action ids from [EngineActionsRegistry](./api/node/interfaces/engineactionsregistry.md). |
+| [EngineCapability](./api/node/type-aliases/enginecapability.md) | A platform capability queryable via `EditorAPI.isCapabilitySupported`. |
 | [EngineCustomActionFunction](./api/node/type-aliases/enginecustomactionfunction.md) | A generic, untyped action function for custom ids. |
 | [EnginePluginContext](./api/node/type-aliases/engineplugincontext.md) | Represents the context for an engine plugin. |
 | [EnumPropertyName](./api/node/type-aliases/enumpropertyname.md) | - |
@@ -132,6 +133,8 @@
 | [OptionalPrefix](./api/node/type-aliases/optionalprefix.md) | - |
 | [PageGuidesSource](./api/node/type-aliases/pageguidessource.md) | - |
 | [PaletteColor](./api/node/type-aliases/palettecolor.md) | Represents a color definition for the custom color palette. |
+| [PlaybackFadeInEasing](./api/node/type-aliases/playbackfadeineasing.md) | - |
+| [PlaybackFadeOutEasing](./api/node/type-aliases/playbackfadeouteasing.md) | - |
 | [PositionMode](./api/node/type-aliases/positionmode.md) | - |
 | [PositionXMode](./api/node/type-aliases/positionxmode.md) | - |
 | [PositionYMode](./api/node/type-aliases/positionymode.md) | - |
@@ -194,6 +197,7 @@
 | [~~TypefaceDefinition~~](./api/node/type-aliases/typefacedefinition.md) | Represents a typeface definition used in the editor. |
 | [VerticalBlockAlignment](./api/node/type-aliases/verticalblockalignment.md) | - |
 | [VerticalContentFillAlignment](./api/node/type-aliases/verticalcontentfillalignment.md) | - |
+| [VideoBitrateMode](./api/node/type-aliases/videobitratemode.md) | Selects how the video bitrate is determined when no explicit bitrate is given. - `'System'`: let the platform encoder choose the bitrate (the default). In the browser this can be a very high, near-lossless rate that may cause large exports to fail with an out-of-memory error. - `'Auto'`: a bounded default derived from the output resolution and framerate, consistent across platforms. |
 | [VideoExportOptions](./api/node/type-aliases/videoexportoptions.md) | Represents the options for exporting a video. |
 | [VideoMimeType](./api/node/type-aliases/videomimetype.md) | Represents the video MIME types used in the editor. |
 | [WidthMode](./api/node/type-aliases/widthmode.md) | - |
@@ -309,6 +313,8 @@
 | [~~LogLevel~~](./api/node/variables/loglevel.md) | Provides a set of predefined log levels for the Creative Editor SDK. |
 | [~~MimeType~~](./api/node/variables/mimetype.md) | Represents the MIME types used in the editor. |
 | [PageGuidesSourceValues](./api/node/variables/pageguidessourcevalues.md) | - |
+| [PlaybackFadeInEasingValues](./api/node/variables/playbackfadeineasingvalues.md) | - |
+| [PlaybackFadeOutEasingValues](./api/node/variables/playbackfadeouteasingvalues.md) | - |
 | [PositionXModeValues](./api/node/variables/positionxmodevalues.md) | - |
 | [PositionYModeValues](./api/node/variables/positionymodevalues.md) | - |
 | [SceneDesignUnitValues](./api/node/variables/scenedesignunitvalues.md) | - |

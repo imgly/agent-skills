@@ -23,7 +23,7 @@ CE.SDK is offered through a subscription-based commercial model. This allows us 
 
 CE.SDK licenses are tied to a single commercial product instance, verified by the hostname for web apps and bundle/app ID for mobile apps.
 
-Licensing typically uses remote validation and includes lightweight event tracking. It’s possible to disable tracking or use offline-compatible options. To explore these options, [contact our sales team](https://img.ly/forms/contact-sales).
+Licensing typically uses remote validation and includes lightweight event tracking. It’s possible to disable tracking or use offline-compatible options. To explore these options, [contact our sales team](https://img.ly/forms/contact-sales). For details on which operations count as an export, see [Export Counting](./export-counting.md).
 
 ## Trial License Key
 

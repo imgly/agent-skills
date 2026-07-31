@@ -49,7 +49,7 @@ async function main() {
   try {
     const sceneUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.loadFromURL(sceneUrl);
+    await engine.scene.load(sceneUrl);
 
     console.log('Scene loaded successfully from URL.');
 
@@ -95,30 +95,30 @@ The most common approach is loading scenes from a remote URL. The engine replace
 ```typescript highlight-load-from-url
 const sceneUrl =
   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-await engine.scene.loadFromURL(sceneUrl);
+await engine.scene.load(sceneUrl);
 ```
 
-The scene URL should point to a valid `.scene` file hosted on a server with appropriate CORS headers. This method is ideal for loading scenes from a CDN or your backend API.
+The URL should point to a valid scene file hosted on a server with appropriate CORS headers. Scene files use the `.imgly` extension; `.scene` and `.zip` files also load. `engine.scene.load()` detects the file kind automatically from its content, so the same call opens plain scenes and archives alike. This method is ideal for loading scenes from a CDN or your backend API.
 
 ## Load a Scene from String
 
-When scenes are stored in a database or retrieved from local storage, use `engine.scene.loadFromString()`. This accepts the scene data as a string, typically from a previous `engine.scene.saveToString()` call.
+When scenes are stored in a database or retrieved from local storage, use `engine.scene.load()`. This accepts the scene data as a string, typically from a previous `engine.scene.saveToString()` call.
 
 ```typescript
 const sceneContent = await fetchFromDatabase();
-await engine.scene.loadFromString(sceneContent);
+await engine.scene.load(sceneContent);
 ```
 
 This approach is useful for restoring saved user designs, loading scenes from your backend API, or working with scenes stored in databases.
 
 ## Load a Scene from Blob
 
-For file uploads or blob storage, convert the blob to a string first, then load with `engine.scene.loadFromString()`. Use the blob's `text()` method to extract the scene content.
+For file uploads or blob storage, convert the blob to a string first, then load with `engine.scene.load()`. Use the blob's `text()` method to extract the scene content.
 
 ```typescript
 const sceneBlob = fileInput.files[0];
 const sceneContent = await sceneBlob.text();
-await engine.scene.loadFromString(sceneContent);
+await engine.scene.load(sceneContent);
 ```
 
 ## Modify a Loaded Scene
@@ -137,7 +137,7 @@ Common modifications include updating text content, swapping images, and adjusti
 
 ## Scene Files vs Archives
 
-Scene files (`.scene`) are lightweight and store only references to assets. If asset URLs become unavailable, the scene won't display correctly. For self-contained packages with bundled assets, use `engine.scene.loadFromArchiveURL()` instead. See the [Import from Archive](./open-the-editor/import-design/from-archive.md) guide for details.
+Plain scene files are lightweight and store only references to assets. If asset URLs become unavailable, the scene won't display correctly. For self-contained packages with bundled assets, use archives. Both kinds share the `.imgly` extension (`.scene` and `.zip` files also load), and the same `engine.scene.load()` call opens either kind — the format is detected automatically from the content. See the [Import from Archive](./open-the-editor/import-design/from-archive.md) guide for details.
 
 ## Troubleshooting
 
@@ -162,9 +162,7 @@ Scene files (`.scene`) are lightweight and store only references to assets. If a
 
 | Method | Description |
 | ------ | ----------- |
-| `engine.scene.loadFromURL()` | Load a scene from a remote URL |
-| `engine.scene.loadFromString()` | Load a scene from a string |
-| `engine.scene.loadFromArchiveURL()` | Load an archived scene with bundled assets |
+| `engine.scene.load()` | Load a scene or archive from a URL or string |
 | `engine.scene.saveToString()` | Save scene to string for storage |
 | `engine.block.findByType()` | Find blocks by type |
 | `engine.block.findByKind()` | Find blocks by kind |

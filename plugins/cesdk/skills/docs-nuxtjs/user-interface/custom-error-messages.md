@@ -83,7 +83,7 @@ When you run engine operations yourself and want to show the same copy the built
 
 ```typescript
 try {
-  await cesdk.engine.scene.loadFromURL(sceneUrl);
+  await cesdk.engine.scene.load(sceneUrl);
 } catch (error) {
   const copy = cesdk.i18n.localizedEngineErrorMessage(error);
   showToast(copy?.message ?? copy?.description ?? 'Something went wrong.');
@@ -104,7 +104,7 @@ const messagesByCode: Partial<Record<EngineErrorCode, string>> = {
 };
 
 try {
-  await cesdk.engine.scene.loadFromURL(sceneUrl);
+  await cesdk.engine.scene.load(sceneUrl);
 } catch (error) {
   if (error instanceof EngineError) {
     showToast(messagesByCode[error.code as EngineErrorCode] ?? error.message);

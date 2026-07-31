@@ -16,7 +16,7 @@ Import Adobe InDesign (IDML) files into CE.SDK, converting them into editable sc
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-import-design-from-indesign-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-open-the-editor-import-design-from-indesign-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-open-the-editor-import-design-from-indesign-browser/index.html)
 
 ![Import from InDesign](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -290,7 +290,7 @@ class Example implements EditorPlugin {
       );
 
       // Load the archived scene into the editor
-      await cesdk.engine.scene.loadFromArchiveURL(archiveUrl);
+      await cesdk.engine.scene.load(archiveUrl);
 
       // Verify scene loaded correctly
       const loadedPages = engine.scene.getPages();
@@ -428,19 +428,19 @@ class Example implements EditorPlugin {
         } else if (format === 'scene') {
           // Handle standard .scene files
           const scene = await cesdk.utils.loadFile({
-            accept: '.scene',
+            accept: '.imgly,.scene',
             returnType: 'text'
           });
-          await cesdk.engine.scene.loadFromString(scene);
+          await cesdk.engine.scene.load(scene);
           await cesdk.actions.run('zoom.toPage', { page: 'first' });
         } else {
           // Handle archive files (.zip)
           const blobURL = await cesdk.utils.loadFile({
-            accept: '.zip',
+            accept: '.imgly,.zip',
             returnType: 'objectURL'
           });
           try {
-            await cesdk.engine.scene.loadFromArchiveURL(blobURL);
+            await cesdk.engine.scene.load(blobURL);
           } finally {
             URL.revokeObjectURL(blobURL);
           }
@@ -588,7 +588,7 @@ const sceneArchive = await engine.scene.saveToArchive();
 const archiveUrl = URL.createObjectURL(sceneArchive);
 ```
 
-Archives can be stored, shared, or loaded later using `loadFromArchiveURL()`.
+Archives can be stored, shared, or loaded later using `load()`.
 
 ## Saving Scenes with Stable URLs
 
@@ -650,7 +650,7 @@ Load the archived scene into the CE.SDK editor for user editing:
 
 ```typescript highlight=highlight-load-editor
       // Load the archived scene into the editor
-      await cesdk.engine.scene.loadFromArchiveURL(archiveUrl);
+      await cesdk.engine.scene.load(archiveUrl);
 
       // Verify scene loaded correctly
       const loadedPages = engine.scene.getPages();

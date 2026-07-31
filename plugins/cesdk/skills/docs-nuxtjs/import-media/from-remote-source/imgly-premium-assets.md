@@ -19,7 +19,7 @@ directly into CE.SDK's asset library.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-from-remote-source-imgly-premium-assets-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0-rc.1/examples/guides-import-media-from-remote-source-imgly-premium-assets-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-import-media-from-remote-source-imgly-premium-assets-browser/index.html)
 
 IMG.LY offers premium templates through downloadable asset archives. These templates can be hosted on your own infrastructure and seamlessly integrated into CE.SDK's asset library, making them available to users alongside other asset sources. Contact IMG.LY sales to purchase premium template packages.
 
@@ -142,7 +142,7 @@ class Example implements EditorPlugin {
     // Templates are archive files that need special loading
     engine.asset.addLocalSource(sourceId, [], async (asset) => {
       // Load the template from the archive URL
-      await engine.scene.loadFromArchiveURL(asset.meta.uri);
+      await engine.scene.load(asset.meta.uri);
       // Return the scene ID after loading
       return engine.scene.get()!;
     });
@@ -370,13 +370,13 @@ We create a local asset source with a custom apply handler for loading template 
 // Templates are archive files that need special loading
 engine.asset.addLocalSource(sourceId, [], async (asset) => {
   // Load the template from the archive URL
-  await engine.scene.loadFromArchiveURL(asset.meta.uri);
+  await engine.scene.load(asset.meta.uri);
   // Return the scene ID after loading
   return engine.scene.get()!;
 });
 ```
 
-Premium templates are distributed as `.zip` archives, so we provide a custom `applyAsset` callback that uses `loadFromArchiveURL()` instead of the standard asset application logic. This callback:
+Premium templates are distributed as `.zip` archives, so we provide a custom `applyAsset` callback that uses `engine.scene.load()` instead of the standard asset application logic. This callback:
 
 1. Loads the template archive from the asset's URI
 2. Replaces the current scene with the template content
@@ -584,7 +584,7 @@ Environment variables provide additional security benefits by keeping hosting lo
 
 **Base URL configuration errors**: Verify the base URL matches your hosting location exactly, including protocol (http/https) and trailing slashes. Check that the environment variable is loaded correctly using `console.log(import.meta.env.VITE_PREMIUM_TEMPLATES_BASE_URL)`.
 
-**Templates not applying or showing serialization errors**: Premium templates are `.zip` archives that require a custom `applyAsset` callback using `loadFromArchiveURL()`. Verify your asset source creation includes this callback instead of relying on default asset application behavior.
+**Templates not applying or showing serialization errors**: Premium templates are `.zip` archives that require a custom `applyAsset` callback using `engine.scene.load()`. Verify your asset source creation includes this callback instead of relying on default asset application behavior.
 
 **Missing or incorrect file paths (404 errors)**: Check that template folders and files are uploaded correctly and accessible at the expected URLs. Verify the `/dist` path is included if your CDN uses that structure.
 
@@ -604,7 +604,7 @@ Environment variables provide additional security benefits by keeping hosting lo
 | ------------------------------------ | -------- | --------------------------------------------------------- |
 | `engine.asset.addLocalSource()`      | Asset    | Create a local asset source with custom apply callback    |
 | `engine.asset.addAssetToSource()`    | Asset    | Add individual template assets to the source              |
-| `engine.scene.loadFromArchiveURL()`  | Scene    | Load template from .zip archive URL                       |
+| `engine.scene.load()`  | Scene    | Load template from .zip archive URL                       |
 | `engine.asset.findAssets()`          | Asset    | Query assets from a source for programmatic application   |
 | `cesdk.i18n.setTranslations()`       | UI       | Configure category labels and localized strings           |
 | `cesdk.ui.addAssetLibraryEntry()`    | UI       | Add custom asset library panel configuration              |
@@ -615,9 +615,9 @@ Environment variables provide additional security benefits by keeping hosting lo
 
 - [Integrate Unsplash Stock Images](./import-media/from-remote-source/unsplash.md) — Add stock photo
   integration
-- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset panels and
+- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure asset panels and
   UI
-- [Asset Library Basics](./import-media/asset-panel/basics.md) — Understand asset sources
+- [Asset Library Basics](./import-media/asset-library/basics.md) — Understand asset sources
 - [Import Media Concepts](./import-media/concepts.md) — Learn core import concepts
 
 
