@@ -18,7 +18,7 @@ Professional photo editing for your Next.js app—crop, filter, adjust, and remo
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-photo-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260730/examples/starterkit-photo-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260731/examples/starterkit-photo-editor/index.html)
 
 ***
 

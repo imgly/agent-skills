@@ -14,7 +14,7 @@ This guide shows how to use the vector edit APIs to enter path editing mode, swi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-stickers-and-shapes-vector-edit-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260730/examples/guides-stickers-and-shapes-vector-edit-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260731/examples/guides-stickers-and-shapes-vector-edit-browser/index.html)
 
 Vector edit mode lets you modify any shape at the path level. When you enter vector edit mode on a shape, CE.SDK converts it to a vector path and exposes its anchor points and bezier handles for direct manipulation.
 
