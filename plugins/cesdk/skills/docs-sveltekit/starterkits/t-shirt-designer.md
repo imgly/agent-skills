@@ -18,7 +18,7 @@ Apparel Editor for creating print-ready design.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-t-shirt-designer-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260731/examples/starterkit-t-shirt-designer/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260801/examples/starterkit-t-shirt-designer/index.html)
 
 ***
 

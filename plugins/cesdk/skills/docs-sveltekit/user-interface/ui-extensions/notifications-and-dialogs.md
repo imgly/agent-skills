@@ -19,7 +19,7 @@ experience using CE.SDK's UI API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-notifications-and-dialogs-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260731/examples/guides-user-interface-ui-extensions-notifications-and-dialogs-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260801/examples/guides-user-interface-ui-extensions-notifications-and-dialogs-browser/index.html)
 
 Notifications and dialogs are essential for communicating with users during the editing experience. Notifications appear as temporary, non-blocking messages at the edge of the editor for status updates and feedback. Dialogs are modal overlays that interrupt the workflow to present information or collect user decisions. Both are created and controlled through the `cesdk.ui` API.
 

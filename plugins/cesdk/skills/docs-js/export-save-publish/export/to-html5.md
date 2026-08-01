@@ -18,7 +18,7 @@ Export CE.SDK designs as HTML5 bundles containing HTML, images and fonts — rea
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-html5-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260731/examples/guides-export-save-publish-export-to-html5-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260801/examples/guides-export-save-publish-export-to-html5-browser/index.html)
 
 The `@imgly/html-exporter` package converts a CE.SDK scene page into an HTML5 bundle using `exportHtml(engine, options)`. The result is a `FileMap` — a standard `Map` extended with a `toZip()` method — that you can inspect, customize with additional files and scripts, then package as a ZIP for delivery.
 

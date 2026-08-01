@@ -31,6 +31,8 @@ type BlockEnumType = object;
 |  `stroke/position` | [`StrokePosition`](./api/engine/type-aliases/strokeposition.md) |
 |  `stroke/startCap` | [`StrokeStartCap`](./api/engine/type-aliases/strokestartcap.md) |
 |  `stroke/style` | [`StrokeStyle`](./api/engine/type-aliases/strokestyle.md) |
+|  `playback/fadeIn/easing` | [`PlaybackFadeInEasing`](./api/engine/type-aliases/playbackfadeineasing.md) |
+|  `playback/fadeOut/easing` | [`PlaybackFadeOutEasing`](./api/engine/type-aliases/playbackfadeouteasing.md) |
 |  `text/horizontalAlignment` | [`HorizontalTextAlignment`](./api/engine/type-aliases/horizontaltextalignment.md) |
 |  `text/verticalAlignment` | [`TextVerticalAlignment`](./api/engine/type-aliases/textverticalalignment.md) |
 |  `cutout/type` | [`CutoutType`](./api/engine/type-aliases/cutouttype.md) |

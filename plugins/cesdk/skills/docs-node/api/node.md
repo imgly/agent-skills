@@ -133,6 +133,8 @@
 | [OptionalPrefix](./api/node/type-aliases/optionalprefix.md) | - |
 | [PageGuidesSource](./api/node/type-aliases/pageguidessource.md) | - |
 | [PaletteColor](./api/node/type-aliases/palettecolor.md) | Represents a color definition for the custom color palette. |
+| [PlaybackFadeInEasing](./api/node/type-aliases/playbackfadeineasing.md) | - |
+| [PlaybackFadeOutEasing](./api/node/type-aliases/playbackfadeouteasing.md) | - |
 | [PositionMode](./api/node/type-aliases/positionmode.md) | - |
 | [PositionXMode](./api/node/type-aliases/positionxmode.md) | - |
 | [PositionYMode](./api/node/type-aliases/positionymode.md) | - |
@@ -311,6 +313,8 @@
 | [~~LogLevel~~](./api/node/variables/loglevel.md) | Provides a set of predefined log levels for the Creative Editor SDK. |
 | [~~MimeType~~](./api/node/variables/mimetype.md) | Represents the MIME types used in the editor. |
 | [PageGuidesSourceValues](./api/node/variables/pageguidessourcevalues.md) | - |
+| [PlaybackFadeInEasingValues](./api/node/variables/playbackfadeineasingvalues.md) | - |
+| [PlaybackFadeOutEasingValues](./api/node/variables/playbackfadeouteasingvalues.md) | - |
 | [PositionXModeValues](./api/node/variables/positionxmodevalues.md) | - |
 | [PositionYModeValues](./api/node/variables/positionymodevalues.md) | - |
 | [SceneDesignUnitValues](./api/node/variables/scenedesignunitvalues.md) | - |

@@ -18,7 +18,7 @@ Integrate Getty Images' premium stock photography library directly into CE.SDK, 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-nightly.20260731/examples/guides-import-media-from-remote-source-getty-images-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260801/examples/guides-import-media-from-remote-source-getty-images-browser/index.html)
 
 Getty Images provides premium, professionally curated stock photography through their API. This guide shows you how to integrate Getty Images search and browsing directly into CE.SDK using a secure proxy server. The proxy architecture is required because Getty Images uses both an API key and secret for authentication, which cannot be safely exposed in browser code.
 

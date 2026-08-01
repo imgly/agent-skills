@@ -48,7 +48,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // highlight-scene-loading
     // Load initial scene from CDN
     await cesdk.load(
-      `${DEMO_ASSETS_BASE_URL}/assets/templates/lunar-cosmetics.scene`
+      `${DEMO_ASSETS_BASE_URL}/assets/templates/lunar-video-default.imgly`
     );
     // highlight-scene-loading
 
