@@ -18,7 +18,7 @@ Create a new scene from scratch to build designs with complete control over canv
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-blank-canvas-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260801/examples/guides-open-the-editor-blank-canvas-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260802/examples/guides-open-the-editor-blank-canvas-browser/index.html)
 
 Starting from a blank canvas lets you build new designs without pre-existing content. The `engine.scene.create()` method creates an empty scene with its own camera, ready for adding pages and content. This differs from loading templates or images, which start with existing content.
 

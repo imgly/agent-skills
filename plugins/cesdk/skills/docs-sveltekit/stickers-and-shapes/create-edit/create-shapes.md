@@ -20,7 +20,7 @@ combined with fills.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260801/examples/guides-stickers-and-shapes-create-shapes-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260802/examples/guides-stickers-and-shapes-create-shapes-browser/index.html)
 
 ```typescript file=@cesdk_web_examples/guides-stickers-and-shapes-create-shapes-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';

@@ -18,7 +18,7 @@ Configure and populate the Template Library in CE.SDK so users can browse and se
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-library-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260801/examples/guides-use-templates-library-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260802/examples/guides-use-templates-library-browser/index.html)
 
 Templates in CE.SDK are pre-designed scenes stored as assets within asset sources. They contain complete scene definitions that users can load and customize. The Template Library provides a centralized way to organize, browse, and access these templates through both the built-in UI and programmatic APIs.
 
