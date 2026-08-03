@@ -18,7 +18,7 @@ Professional video editing for your Nuxt.js app—edit clips, add effects, trim 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260802/examples/starterkit-video-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260803/examples/starterkit-video-editor/index.html)
 
 ***
 

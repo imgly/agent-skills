@@ -18,7 +18,7 @@ Set up CE.SDK with license keys, asset base URLs, user IDs, and runtime configur
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-configuration-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260802/examples/guides-configuration-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260803/examples/guides-configuration-browser/index.html)
 
 `CreativeEditorSDK.create()` initializes the full CE.SDK editor with UI components. The configuration object controls license validation, asset loading, user tracking, and UI behavior.
 
