@@ -19,7 +19,7 @@ if a block supports them.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-filters-and-effects-support-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260803/examples/guides-filters-and-effects-support-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260804/examples/guides-filters-and-effects-support-browser/index.html)
 
 CE.SDK provides 22 built-in effect types for visual transformations including color adjustments, blur effects, artistic filters, and distortion effects. This reference guide shows how to check effect support and add effects programmatically, followed by detailed property tables for each effect type.
 

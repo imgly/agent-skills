@@ -249,6 +249,7 @@
 | [CharacterInkBox](./api/node/interfaces/characterinkbox.md) | Tight ink-paint bounding box of a single grapheme, in global scene coordinates. Returned by `block.getTextCharacterInkBoxes`. The baseline Y is reported separately because it does not equal `y + height` (the box is the tight ink rect; the baseline anchors glyph descenders). |
 | [CMYKColor](./api/node/interfaces/cmykcolor.md) | Represents a CMYK color value. |
 | [CompleteAssetResult](./api/node/interfaces/completeassetresult.md) | Asset results that are returned from the engine. |
+| [CompressionOptions](./api/node/interfaces/compressionoptions.md) | Compression settings for a serialized scene. |
 | [Configuration](./api/node/interfaces/configuration.md) | Specifies the configuration for the Creative Editor SDK. |
 | [DominantColor](./api/node/interfaces/dominantcolor.md) | A single color extracted from the rendered appearance of a block. |
 | [DominantColorsOptions](./api/node/interfaces/dominantcolorsoptions.md) | Options for `BlockAPI.getDominantColors`. |
@@ -263,6 +264,7 @@
 | [Range](./api/node/interfaces/range.md) | An open range. |
 | [RGBAColor](./api/node/interfaces/rgbacolor.md) | Represents an RGBA color value. |
 | [RGBColor](./api/node/interfaces/rgbcolor.md) | Represents an RGB color value. |
+| [SaveToArchiveOptions](./api/node/interfaces/savetoarchiveoptions.md) | Options for saveSceneToArchive operation. |
 | [Settings](./api/node/interfaces/settings.md) | Map of all available settings with their types. This provides type-safe access to all editor settings. |
 | [Size2](./api/node/interfaces/size2.md) | - |
 | [Source](./api/node/interfaces/source.md) | A single source width an intrinsic width & height. |

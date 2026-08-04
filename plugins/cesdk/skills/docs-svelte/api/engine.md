@@ -282,6 +282,7 @@
 | [CharacterInkBox](./api/engine/interfaces/characterinkbox.md) | Tight ink-paint bounding box of a single grapheme, in global scene coordinates. Returned by `block.getTextCharacterInkBoxes`. The baseline Y is reported separately because it does not equal `y + height` (the box is the tight ink rect; the baseline anchors glyph descenders). |
 | [CMYKColor](./api/engine/interfaces/cmykcolor.md) | Represents a CMYK color value. |
 | [CompleteAssetResult](./api/engine/interfaces/completeassetresult.md) | Asset results that are returned from the engine. |
+| [CompressionOptions](./api/engine/interfaces/compressionoptions.md) | Compression settings for a serialized scene. |
 | [Configuration](./api/engine/interfaces/configuration.md) | Specifies the configuration for the Creative Editor SDK. |
 | [CursorEvent](./api/engine/interfaces/cursorevent.md) | Dispatched on the engine canvas when the text input has been blurred. Call `preventDefault()` to disallow this and refocus the engine text input. |
 | [DominantColor](./api/engine/interfaces/dominantcolor.md) | A single color extracted from the rendered appearance of a block. |
@@ -306,6 +307,7 @@
 | [RefocusEvent](./api/engine/interfaces/refocusevent.md) | Dispatched on the engine canvas right before the engine will refocus its text input after a blur. Call `preventDefault()` to prevent the refocusing. |
 | [RGBAColor](./api/engine/interfaces/rgbacolor.md) | Represents an RGBA color value. |
 | [RGBColor](./api/engine/interfaces/rgbcolor.md) | Represents an RGB color value. |
+| [SaveToArchiveOptions](./api/engine/interfaces/savetoarchiveoptions.md) | Options for saveSceneToArchive operation. |
 | [Settings](./api/engine/interfaces/settings.md) | Map of all available settings with their types. This provides type-safe access to all editor settings. |
 | [Shortcut](./api/engine/interfaces/shortcut.md) | A keyboard shortcut. `keys` is a chord (`'Mod+z'`); sequences (string arrays) currently bind on their first chord. `run` is an action id or an inline function. |
 | [ShortcutContext](./api/engine/interfaces/shortcutcontext.md) | Passed to a shortcut's `when` check and to a function `run`. |

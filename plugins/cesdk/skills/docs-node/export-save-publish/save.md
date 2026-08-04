@@ -119,6 +119,19 @@ try {
   if (saveArchive) {
     console.log('⏳ Saving to archive...');
     const archiveBlob = await engine.scene.saveToArchive();
+
+    // Compress the scene inside the archive. Bundled media is left as-is,
+    // because images, video and fonts already are compressed formats.
+    const compressedArchiveBlob = await engine.scene.saveToArchive({
+      compression: {
+        format: CompressionFormat.Zstd,
+        level: CompressionLevel.Default
+      }
+    });
+    writeFileSync(
+      `${outputDir}/scene-archive-compressed.imgly`,
+      Buffer.from(await compressedArchiveBlob.arrayBuffer())
+    );
     // Persist saved archives with the `.imgly` extension
     const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
     writeFileSync(`${outputDir}/scene-archive.imgly`, archiveBuffer);
@@ -181,40 +194,44 @@ const archiveBlob = await engine.scene.saveToArchive();
 
 The archive includes all pages, elements, and asset data in a single portable file.
 
-## Compression Options (Preview)
+## Compression Options
 
-CE.SDK supports optional compression for saved scenes to reduce file size. Compression is particularly useful for large scenes or when storage space is limited.
+Saved scenes are compressed with Zstd by default, which makes them much smaller and
+speeds up both saving and loading. Pass a format explicitly to change the level, or to turn
+compression off.
 
-```typescript
-import { CompressionFormat, CompressionLevel } from '@cesdk/node';
+```typescript highlight=highlight-save-with-compression
+const compressed = await engine.scene.saveToString({
+  compression: {
+    format: CompressionFormat.Zstd,
+    level: CompressionLevel.Default
+  }
+});
+```
 
-// Save with Zstd compression (recommended)
-const compressed = await engine.scene.saveToString(
-  undefined, // allowedResourceSchemes
-  undefined, // onDisallowedResourceScheme
-  CompressionFormat.Zstd,    // compression format
-  CompressionLevel.Default   // compression level
-);
+An archive can compress its scene the same way. Bundled images, video and fonts are stored as they are, because they already are compressed formats.
+
+```typescript highlight=highlight-save-archive-with-compression
+const compressedArchiveBlob = await engine.scene.saveToArchive({
+  compression: {
+    format: CompressionFormat.Zstd,
+    level: CompressionLevel.Default
+  }
+});
 ```
 
 **Compression Formats:**
 
-- `CompressionFormat.None` - No compression (default)
-- `CompressionFormat.Zstd` - Zstandard compression (recommended for best performance)
+- `CompressionFormat.Zstd` - Zstd compression (default)
+- `CompressionFormat.None` - No compression
 
 **Compression Levels:**
 
 - `CompressionLevel.Fastest` - Fastest compression, larger output
 - `CompressionLevel.Default` - Balanced speed and size (recommended)
-- `CompressionLevel.Best` - Best compression, slower
+- `CompressionLevel.Best` - Best compression, noticeably slower
 
-**Performance:** Compression adds minimal overhead (\<50ms) while reducing scene size by approximately 64%. The Default level provides the best balance of speed and compression ratio.
-
-**Availability:**
-
-- **Browser (Web)**: Available in current release via `@cesdk/cesdk-js`
-- **Node.js**: Available in development builds. Use `npm run dev:local` in examples to test with local build, or wait for the next package release
-- **iOS/Android**: Planned for future releases
+A compressed scene string stays a plain string, so you can still store it in a text column or send it as JSON. It carries a `UBQ2` prefix instead of `UBQ1`; `load` accepts both.
 
 ## Write to File System
 

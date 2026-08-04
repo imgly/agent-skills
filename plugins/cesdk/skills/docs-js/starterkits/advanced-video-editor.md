@@ -18,7 +18,7 @@ Comprehensive video editing for your web app—professional tools for timeline e
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260803/examples/starterkit-advanced-video-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260804/examples/starterkit-advanced-video-editor/index.html)
 
 ***
 

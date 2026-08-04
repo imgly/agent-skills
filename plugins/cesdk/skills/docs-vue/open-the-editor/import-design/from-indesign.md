@@ -16,7 +16,7 @@ Import Adobe InDesign (IDML) files into CE.SDK, converting them into editable sc
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-import-design-from-indesign-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260803/examples/guides-open-the-editor-import-design-from-indesign-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260804/examples/guides-open-the-editor-import-design-from-indesign-browser/index.html)
 
 ![Import from InDesign](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 

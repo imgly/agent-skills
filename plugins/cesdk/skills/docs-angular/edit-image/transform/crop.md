@@ -20,7 +20,7 @@ system.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-transform-crop-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260803/examples/guides-edit-image-transform-crop-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260804/examples/guides-edit-image-transform-crop-browser/index.html)
 
 Image cropping in CreativeEditor SDK (CE.SDK) lets you select a region inside an image and discard everything outside that frame. Unlike resizing which changes overall dimensions uniformly, cropping removes unwanted areas while preserving original pixel quality in the selected region.
 

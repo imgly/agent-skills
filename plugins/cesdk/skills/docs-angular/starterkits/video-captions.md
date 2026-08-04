@@ -18,7 +18,7 @@ Enhance video creation by importing, customizing, and styling captions directly 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-captions-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260803/examples/starterkit-video-captions/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260804/examples/starterkit-video-captions/index.html)
 
 ***
 
