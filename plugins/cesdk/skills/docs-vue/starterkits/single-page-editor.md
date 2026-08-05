@@ -18,7 +18,7 @@ The editor shows only one active page at a time.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-single-page-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260804/examples/starterkit-single-page-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260805/examples/starterkit-single-page-editor/index.html)
 
 ***
 
