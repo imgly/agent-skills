@@ -18,7 +18,7 @@ Extend CE.SDK with your own LUT filters by creating and registering custom filte
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-filters-and-effects-add-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260805/examples/guides-filters-and-effects-add-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260806/examples/guides-filters-and-effects-add-browser/index.html)
 
 CE.SDK provides built-in LUT filters, but many applications need brand-specific color grading or custom filter collections. Custom filter asset sources let you register your own LUT filters that appear alongside or replace the defaults. Once registered, custom filters integrate seamlessly with the built-in UI and can be applied programmatically.
 

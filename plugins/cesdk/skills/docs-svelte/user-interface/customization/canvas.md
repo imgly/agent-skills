@@ -18,7 +18,7 @@ The canvas bar is the floating toolbar that appears above or below the canvas. T
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260805/examples/guides-user-interface-customization-canvas-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260806/examples/guides-user-interface-customization-canvas-browser/index.html)
 
 For general component manipulation (reordering, inserting, removing), see the [Component Order API Reference](./user-interface/customization/reference/component-order-api.md).
 

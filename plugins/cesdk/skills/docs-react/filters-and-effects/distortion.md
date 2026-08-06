@@ -18,7 +18,7 @@ Apply distortion effects to warp, shift, and transform images and videos for dyn
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-filters-and-effects-distortion-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260805/examples/guides-filters-and-effects-distortion-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260806/examples/guides-filters-and-effects-distortion-browser/index.html)
 
 Distortion effects differ from color filters in that they modify the geometry and spatial arrangement of pixels rather than their color values. CE.SDK provides several distortion effect types: liquid warping, mirror reflections, color channel shifting, radial pixelation, and TV glitch. Each effect offers configurable parameters to control the intensity and style of the distortion.
 

@@ -18,7 +18,7 @@ Load design templates into CE.SDK from archive URLs, scene URLs, and serialized 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-import-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260805/examples/guides-create-templates-import-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260806/examples/guides-create-templates-import-browser/index.html)
 
 Templates are pre-designed scenes that provide starting points for user projects. CE.SDK supports loading templates from archive URLs with bundled assets, remote scene URLs, or serialized strings stored in databases.
 

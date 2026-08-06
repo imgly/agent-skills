@@ -18,7 +18,7 @@ Add outlines around shapes, text, and graphics to enhance visual definition and 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-outlines-stroke-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260805/examples/guides-outlines-stroke-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260806/examples/guides-outlines-stroke-browser/index.html)
 
 Strokes add visual outlines that define block boundaries. You can customize their color, width, line style (solid, dashed, dotted), position relative to the block edge, and corner treatment. CE.SDK provides both built-in UI controls and programmatic APIs for stroke management.
 

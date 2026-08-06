@@ -18,7 +18,7 @@ Modify existing animations by reading properties, changing duration and easing, 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-animation-edit-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260805/examples/guides-animation-edit-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260806/examples/guides-animation-edit-browser/index.html)
 
 Editing animations in CE.SDK involves retrieving existing animations from blocks and modifying their properties. This guide assumes you've already created and attached animations to blocks as covered in the [Base Animations](./animation/create/base.md) guide.
 

@@ -18,7 +18,7 @@ In this guide, you'll learn how to integrate the Perfectly Clear plugin into a C
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-perfectlyclear-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260805/examples/starterkit-perfectlyclear-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260806/examples/starterkit-perfectlyclear-editor/index.html)
 
 The plugin registers an Enhance button component for every CE.SDK shell location (canvas menu, dock, inspector bar, navigation bar, canvas bar) but does not auto-insert into any order. You decide where the button appears by adding its component ID to the relevant component order. The runnable example linked above is a full editor with the plugin wired into the canvas menu — open it to see the integration end-to-end.
 
