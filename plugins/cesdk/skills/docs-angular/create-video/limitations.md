@@ -21,7 +21,7 @@ restrictions to help you plan video workflows within platform capabilities.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-limitations-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260806/examples/guides-create-video-limitations-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260807/examples/guides-create-video-limitations-browser/index.html)
 
 Client-side video processing provides significant advantages for privacy and user experience, but it operates within the constraints of the user's device. Understanding these limitations helps you build applications that work reliably across different hardware configurations and browsers.
 
