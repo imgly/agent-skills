@@ -1,0 +1,51 @@
+{
+  "author": {
+    "name": "IMG.LY GmbH",
+    "url": "https://img.ly"
+  },
+  "description": "IMG.LY CreativeEditor SDK builder agent and documentation for Web",
+  "homepage": "https://img.ly/docs/cesdk",
+  "interface": {
+    "capabilities": [
+      "CE.SDK documentation",
+      "Feature implementation",
+      "SDK integration"
+    ],
+    "category": "Developer Tools",
+    "defaultPrompt": [
+      "Build a CE.SDK Web feature.",
+      "Explain a CE.SDK Web API or workflow.",
+      "Find the relevant CE.SDK Web documentation."
+    ],
+    "developerName": "IMG.LY GmbH",
+    "displayName": "CE.SDK Web",
+    "longDescription": "CE.SDK builder agent and documentation for Web — photo editors, video editors, design editors, and creative automation.",
+    "shortDescription": "Build and understand CE.SDK Web projects.",
+    "websiteURL": "https://img.ly/docs/cesdk"
+  },
+  "keywords": [
+    "cesdk",
+    "creative-editor",
+    "photo-editor",
+    "video-editor",
+    "design-editor",
+    "img.ly",
+    "sdk",
+    "creative-automation",
+    "react",
+    "vue",
+    "svelte",
+    "angular",
+    "electron",
+    "js",
+    "node",
+    "nuxtjs",
+    "nextjs",
+    "sveltekit"
+  ],
+  "license": "MIT",
+  "name": "cesdk",
+  "repository": "https://github.com/imgly/agent-skills",
+  "skills": "./skills/",
+  "version": "1.81.0-nightly.20260808"
+}

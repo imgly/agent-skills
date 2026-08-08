@@ -16,11 +16,11 @@ engine.block.setEnum(block, 'contentFill/mode', 'Cover');
 
 ## Common Values
 
-| Value | Behavior |
-|-------|----------|
+| Value       | Behavior                                               |
+| ----------- | ------------------------------------------------------ |
 | `'Contain'` | Scale to fit within the block, preserving aspect ratio |
-| `'Cover'` | Scale to fill the block, cropping as needed |
-| `'Crop'` | Manual crop region |
+| `'Cover'`   | Scale to fill the block, cropping as needed            |
+| `'Crop'`    | Manual crop region                                     |
 
 ## Why This Is Confusing
 

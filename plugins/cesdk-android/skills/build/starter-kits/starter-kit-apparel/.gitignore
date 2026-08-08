@@ -1,0 +1,19 @@
+## DO NOT CHANGE START
+.idea
+.idea/**
+.kotlin
+.kotlin/**
+gradle
+build.gradle.kts
+gradle.properties
+gradlew
+gradlew.bat
+local.properties
+settings.gradle.kts
+**/build/**
+app/build.gradle.kts
+app/src/main/res/**
+app/src/main/AndroidManifest.xml
+## DO NOT CHANGE END
+
+## ADD YOUR CUSTOM IGNORES HERE

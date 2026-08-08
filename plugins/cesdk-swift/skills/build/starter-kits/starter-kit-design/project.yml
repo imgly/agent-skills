@@ -1,0 +1,30 @@
+name: StarterKit-DesignEditor
+options:
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: "16.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    GENERATE_INFOPLIST_FILE: true
+    SUPPORTS_MACCATALYST: false
+    SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: false
+targets:
+  StarterKit-DesignEditor:
+    type: application
+    platform: iOS
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: ly.img.starterkit.design-editor
+      INFOPLIST_KEY_UILaunchScreen_Generation: true
+      INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+      INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+    sources:
+      - path: StarterKit-DesignEditor
+      - path: StarterKit
+    dependencies:
+      - package: IMGLYUI
+        product: IMGLYUI
+packages:
+  IMGLYUI:
+    url: https://github.com/imgly/IMGLYUI-swift.git
+    exactVersion: "1.81.0-nightly.20260808"

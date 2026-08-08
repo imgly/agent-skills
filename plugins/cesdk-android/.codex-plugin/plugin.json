@@ -1,0 +1,40 @@
+{
+  "author": {
+    "name": "IMG.LY GmbH",
+    "url": "https://img.ly"
+  },
+  "description": "IMG.LY CreativeEditor SDK skills for Kotlin and Jetpack Compose on Android",
+  "homepage": "https://img.ly/docs/cesdk",
+  "interface": {
+    "capabilities": [
+      "CE.SDK documentation",
+      "Feature implementation",
+      "SDK integration"
+    ],
+    "category": "Developer Tools",
+    "defaultPrompt": [
+      "Build a CE.SDK Android (Kotlin) feature.",
+      "Explain a CE.SDK Android (Kotlin) API or workflow.",
+      "Find the relevant CE.SDK Android (Kotlin) documentation."
+    ],
+    "developerName": "IMG.LY GmbH",
+    "displayName": "CE.SDK Android (Kotlin)",
+    "longDescription": "CE.SDK documentation and implementation skills for Kotlin and Jetpack Compose on Android.",
+    "shortDescription": "Build and understand CE.SDK Android (Kotlin) projects.",
+    "websiteURL": "https://img.ly/docs/cesdk"
+  },
+  "keywords": [
+    "cesdk",
+    "creative-editor",
+    "android",
+    "kotlin",
+    "jetpack-compose",
+    "gradle",
+    "sdk"
+  ],
+  "license": "MIT",
+  "name": "cesdk-android",
+  "repository": "https://github.com/imgly/agent-skills",
+  "skills": "./skills/",
+  "version": "1.81.0-nightly.20260808"
+}

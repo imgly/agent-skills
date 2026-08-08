@@ -10,7 +10,7 @@ https://github.com/user-attachments/assets/d01073ca-4a6a-49eb-8155-faa25ff04595
 
 - **Offline documentation**: All guides, API references, and best practices bundled locally — no external API calls
 - **Guided code generation**: Build and explain skills that walk through CE.SDK implementation step by step
-- **Autonomous scaffolding**: A builder agent that creates complete CE.SDK projects from scratch
+- **Autonomous scaffolding**: The shared build skill creates and verifies complete CE.SDK projects from scratch
 
 ## Available Skills
 
@@ -26,10 +26,19 @@ https://github.com/user-attachments/assets/d01073ca-4a6a-49eb-8155-faa25ff04595
 | `docs-nuxtjs` | Look up CE.SDK Nuxt.js reference guides and documentation |
 | `docs-nextjs` | Look up CE.SDK Next.js reference guides and documentation |
 | `docs-sveltekit` | Look up CE.SDK SvelteKit reference guides and documentation |
-| `build` | Implement features, write code, and set up CE.SDK Web projects |
+| `build` | Implement features and autonomously scaffold complete CE.SDK Web projects |
 | `explain` | Explain how CE.SDK Web features work — concepts, architecture, workflows |
 
-The plugin also includes a **builder** agent that autonomously scaffolds complete CE.SDK web applications — detecting your framework, applying starter kit templates, and implementing features end-to-end.
+Claude Code additionally receives a thin optional `builder` adapter that
+delegates to the same shared `build` skill. Codex uses the build skill directly.
+
+Separate native plugins provide the same portable `docs`, `explain`, and
+`build` workflow:
+
+| Plugin | Scope |
+|---|---|
+| `cesdk-swift` | Swift on iOS, macOS, and Mac Catalyst |
+| `cesdk-android` | Kotlin and Jetpack Compose on Android |
 
 ## Setup Instructions
 
@@ -43,7 +52,33 @@ claude plugin marketplace add imgly/agent-skills
 
 # Install the plugin
 claude plugin install cesdk@imgly
+
+# Install native plugins
+claude plugin install cesdk-swift@imgly
+claude plugin install cesdk-android@imgly
 ```
+
+### Codex Plugin
+
+Add the same marketplace and install the plugin in Codex:
+
+```bash
+# Add the marketplace (one-time setup)
+codex plugin marketplace add imgly/agent-skills
+
+# Install the plugin
+codex plugin add cesdk@imgly
+
+# Install native plugins
+codex plugin add cesdk-swift@imgly
+codex plugin add cesdk-android@imgly
+```
+
+### Xcode 27
+
+Import `docs.skill`, `explain.skill`, or `build.skill` from
+`xcode/cesdk-swift/` in Xcode's Agent Skills settings. Each archive is
+self-contained.
 
 ### Vercel Skills CLI
 
@@ -68,37 +103,73 @@ For any skills-compatible agent, copy skill folders directly from the [GitHub re
 # Clone the repo
 git clone https://github.com/imgly/agent-skills.git
 
-# Copy a specific skill into your Claude Code project
-cp -r agent-skills/plugins/cesdk/skills/docs-react .claude/skills/cesdk-docs-react
+# Copy a specific skill into your agent's skills directory
+cp -r agent-skills/plugins/cesdk/skills/docs-react <skills-directory>/cesdk-docs-react
 
-# Or copy the builder agent
-cp agent-skills/plugins/cesdk/agents/builder.md .claude/agents/cesdk-builder.md
+# Copy native documentation skills
+cp -r agent-skills/plugins/cesdk-swift/skills/docs <skills-directory>/cesdk-swift-docs
+cp -r agent-skills/plugins/cesdk-android/skills/docs <skills-directory>/cesdk-android-docs
 ```
+
+## Keeping Skills Current
+
+Every generated skill records its CE.SDK version, generation date, and plugin
+identifier. When a bundle is over six weeks old, or when you ask about updates,
+the assistant can compare it with the matching stable, prerelease, or nightly
+IMG.LY channel. This check is read-only.
+
+Before changing anything, the assistant must identify whether the active skill
+came from Claude Code, Codex, the Skills CLI, a Git checkout, or a manual copy.
+It reports unknown or ambiguous installations instead of guessing and requests
+explicit approval for the exact update command and target.
+
+## Release Channels
+
+| Channel | Branch | Matches engine dist-tag |
+|---------|--------|-------------------------|
+| Stable | `main` / `latest` | `latest` |
+| Prerelease | `next` | `next` |
+| Nightly | `dev` | `dev` |
+
+Published versions can also be pinned with an exact `v<version>` Git tag.
+The bundled update workflow keeps channels separate and never replaces a pinned
+version without an explicit request and approval.
 
 ## Usage
 
-Once installed, invoke skills with slash commands in your AI coding assistant:
+Ask naturally and let your assistant select the right skill. For explicit
+selection, type `/` in Claude Code or `$` in Codex, then choose the matching
+skill from the installed CE.SDK plugin.
 
 ### Look up documentation
 
-```
-/cesdk:docs-react configuration
-/cesdk:docs-vue getting started
-/cesdk:docs-nextjs server-side rendering
+```text
+Use the docs-react skill to look up CE.SDK configuration.
+Use the docs-vue skill for getting started.
+Use the docs-nextjs skill to explain server-side rendering.
 ```
 
 ### Build a feature
 
-```
-/cesdk:build add text overlays to images
-/cesdk:build create a photo editor with filters
+```text
+Use the build skill to add text overlays to images.
+Use the build skill to create a photo editor with filters.
 ```
 
 ### Explain a concept
 
+```text
+Use the explain skill to describe how the block hierarchy works.
+Use the explain skill to describe the export pipeline and output formats.
 ```
-/cesdk:explain how the block hierarchy works
-/cesdk:explain export pipeline and output formats
+
+### Native development
+
+```text
+Use the cesdk-swift docs skill to look up IMGLYEngine asset sources.
+Use the cesdk-swift build skill to create an iOS photo editor.
+Use the cesdk-android docs skill to look up the Kotlin BlockApi.
+Use the cesdk-android build skill to create an Android photo editor.
 ```
 
 ## How It Works

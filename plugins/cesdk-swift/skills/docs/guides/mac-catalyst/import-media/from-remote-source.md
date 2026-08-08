@@ -1,0 +1,32 @@
+> This is one page of the CE.SDK Mac Catalyst documentation. For a complete overview, see the [Mac Catalyst Documentation Index](https://img.ly/docs/cesdk/mac-catalyst/). For all docs in one file, see [llms-full.txt](https://img.ly/docs/cesdk/mac-catalyst/llms-full.txt).
+
+**Navigation:** [Guides](../guides.md) > [Import Media Assets](../import-media.md) > [Import From Remote Source](./from-remote-source.md)
+
+---
+
+
+
+
+
+---
+
+## Related Pages
+
+- [Import Remote Assets](./from-remote-source/remote-asset.md) - Load asset definitions from remote JSON files hosted on CDNs or servers into CE.SDK's asset library with filtering and custom base URLs.
+- [From Your Server](./from-remote-source/your-server.md) - Serve images, videos, audio, and stickers from your own backend into CE.SDK by implementing a custom asset source or loading a JSON manifest.
+- [Integrate IMG.LY Premium Assets](./from-remote-source/imgly-premium-assets.md) - Host IMG.LY premium templates on your own infrastructure and integrate them into CE.SDK's asset library.
+- [Integrate Third-Party APIs](./from-remote-source/third-party.md) - Import media from any third-party service into CE.SDK using custom asset sources.
+- [Integrate Unsplash Stock Images](./from-remote-source/unsplash.md) - Search and import high-quality stock images from Unsplash directly into CE.SDK.
+- [Integrate Pexels Stock Images](./from-remote-source/pexels.md) - Search and import high-quality royalty-free stock photos from Pexels directly into CE.SDK.
+- [Integrate Getty Images Stock Photos](./from-remote-source/getty-images.md) - Search and import premium stock photography from Getty Images directly into CE.SDK using a secure proxy server.
+- [Versioning of Assets](./from-remote-source/asset-versioning.md) - Learn how CE.SDK handles asset URLs in saved designs, including strategies for managing URL changes, migrating assets, and choosing between scene serialization and archive exports.
+
+
+---
+
+## More Resources
+
+- **[Mac Catalyst Documentation Index](https://img.ly/docs/cesdk/mac-catalyst/)** - Browse all Mac Catalyst documentation
+- **[Complete Documentation](https://img.ly/docs/cesdk/mac-catalyst/llms-full.txt)** - Full documentation in one file (for LLMs)
+- **[Web Documentation](https://img.ly/docs/cesdk/mac-catalyst/)** - Interactive documentation with examples
+- **[Support](mailto:support@img.ly)** - Contact IMG.LY support
