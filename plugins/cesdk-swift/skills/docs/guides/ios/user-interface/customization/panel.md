@@ -119,7 +119,7 @@ A panel is a UI layer that displays above the canvas and lets the user perform a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260808/editor-guides-configuration-panel)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/editor-guides-configuration-panel)
 
 In CE.SDK on iOS, panels are implemented as sheets — non-modal overlays presented above the canvas. The editor ships with a set of built-in sheet types that cover the most common editing tasks, and you can also present your own SwiftUI content as a custom sheet. The same calls apply regardless of the editor configuration your app extends.
 

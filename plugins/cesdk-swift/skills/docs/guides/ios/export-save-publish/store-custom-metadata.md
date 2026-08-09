@@ -11,7 +11,7 @@ origins, storing application state, or linking to external systems.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260808/engine-guides-store-custom-metadata)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-store-custom-metadata)
 
 Metadata lets you attach arbitrary string key-value pairs to any design block. The data is invisible to end users but persists with the scene through save and load operations. Common use cases include tracking asset origins, storing application-specific state, and linking blocks to external databases or content management systems.
 

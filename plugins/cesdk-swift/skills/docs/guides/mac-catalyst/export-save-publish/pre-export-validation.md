@@ -11,7 +11,7 @@ protruding content, obscured text, and unfilled placeholders.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260808/engine-guides-pre-export-validation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-pre-export-validation)
 
 Pre-export validation catches layout and content issues before export, preventing problems like cropped content, hidden text, and incomplete designs in the final output. The checks shown here run entirely against `IMGLYEngine` block APIs, so they work the same in any export pipeline.
 

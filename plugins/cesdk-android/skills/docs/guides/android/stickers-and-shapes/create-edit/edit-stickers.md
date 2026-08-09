@@ -260,7 +260,7 @@ configured sticker.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260808/engine-guides-edit-stickers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/engine-guides-edit-stickers)
 
 <EngineReferenceNote {...props} />
 

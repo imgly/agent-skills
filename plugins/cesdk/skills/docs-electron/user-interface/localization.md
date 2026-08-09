@@ -18,7 +18,7 @@ Translate and customize the CE.SDK editor interface for different languages usin
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-localization-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260808/examples/guides-user-interface-localization-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260809/examples/guides-user-interface-localization-browser/index.html)
 
 CE.SDK includes a localization system that lets you translate the editor interface, add custom languages, and white-label UI text. The I18n API manages translations programmatically at runtime, enabling you to switch languages dynamically and customize terminology for your brand.
 

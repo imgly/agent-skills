@@ -263,7 +263,7 @@ Load custom typefaces into CE.SDK and apply them through the Android editor UI o
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260808/editor-guides-text-custom-fonts)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/editor-guides-text-custom-fonts)
 
 <EngineReferenceNote {...props} />
 

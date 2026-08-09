@@ -223,7 +223,7 @@ CE.SDK controls editing access through roles and scopes, enabling template workf
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260808/engine-guides-editing-workflow)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/engine-guides-editing-workflow)
 
 <EngineReferenceNote {...props} />
 

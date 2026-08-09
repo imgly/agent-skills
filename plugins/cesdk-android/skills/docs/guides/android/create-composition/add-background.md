@@ -92,7 +92,7 @@ Add backgrounds to designs using fills for pages and shapes, and the background 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260808/engine-guides-add-background)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/engine-guides-add-background)
 
 <EngineReferenceNote {...props} />
 

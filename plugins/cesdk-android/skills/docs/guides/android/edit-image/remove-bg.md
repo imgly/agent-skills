@@ -210,7 +210,7 @@ Add a background removal action to your Android editor so users can remove an im
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260808/editor-guides-background-removal)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/editor-guides-background-removal)
 
 The Background Removal plugin adds a dock action that processes the current page image and replaces its fill with a transparent-background result. This guide explores the [IMG.LY ONNX implementation](./remove-bg.md#imgly-implementation), the [Google ML Kit implementation](./remove-bg.md#google-implementation), and a [custom remover implementation](./remove-bg.md#custom-background-remover).
 
@@ -224,7 +224,7 @@ The IMG.LY implementation runs an ONNX segmentation model on the device. Use it 
 
 ```groovy
 dependencies {
-    implementation("ly.img:plugin-background-removal-imgly:1.81.0-nightly.20260808")
+    implementation("ly.img:plugin-background-removal-imgly:1.81.0-nightly.20260809")
 }
 ```
 
@@ -300,7 +300,7 @@ The Google implementation uses Google's on-device ML Kit segmentation backend. U
 
 ```groovy
 dependencies {
-    implementation("ly.img:plugin-background-removal-google:1.81.0-nightly.20260808")
+    implementation("ly.img:plugin-background-removal-google:1.81.0-nightly.20260809")
 }
 ```
 
@@ -358,7 +358,7 @@ For custom segmentation, include the base plugin package and implement `Backgrou
 
 ```groovy
 dependencies {
-    implementation("ly.img:plugin-background-removal:1.81.0-nightly.20260808")
+    implementation("ly.img:plugin-background-removal:1.81.0-nightly.20260809")
 }
 ```
 

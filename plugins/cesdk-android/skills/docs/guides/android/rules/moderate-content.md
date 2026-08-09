@@ -372,7 +372,7 @@ integrate third-party moderation services to detect inappropriate content.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260808/engine-guides-moderate-content)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/engine-guides-moderate-content)
 
 <EngineReferenceNote {...props} />
 

@@ -140,7 +140,7 @@ Control how the editor behaves at runtime: react to editing events, drive sheets
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260808/editor-guides-ui-extensions-customize-behaviour)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/editor-guides-ui-extensions-customize-behaviour)
 
 ## Overview
 

@@ -126,7 +126,7 @@ appearance, forcing a specific scheme, or letting users switch at runtime.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260808/editor-guides-configuration-theming)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/editor-guides-configuration-theming)
 
 CE.SDK's editor is a SwiftUI view, so theming uses the standard SwiftUI [`colorScheme`](https://developer.apple.com/documentation/swiftui/colorscheme) environment. By default the editor inherits its color scheme from the surrounding view hierarchy, which itself defaults to the user's system appearance. You override the scheme with SwiftUI's [`preferredColorScheme(_:)`](https://developer.apple.com/documentation/swiftui/view/preferredcolorscheme/(_:/)) modifier — there is no separate theming API on the editor itself.
 

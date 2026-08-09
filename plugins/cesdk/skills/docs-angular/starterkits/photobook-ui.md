@@ -16,7 +16,7 @@ Custom UI for building photo books focusing on theming, page layouts, and managi
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-photobook-ui-react-web)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260808/examples/starterkit-photobook-ui/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260809/examples/starterkit-photobook-ui/index.html)
 
 ***
 

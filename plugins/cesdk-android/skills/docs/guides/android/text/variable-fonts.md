@@ -314,7 +314,7 @@ Use variable fonts to offer a full range of font weights and styles from a singl
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260808/editor-guides-text-variable-fonts)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/editor-guides-text-variable-fonts)
 
 <EngineReferenceNote {...props} />
 

@@ -84,7 +84,7 @@ API for Swift, with a duration in seconds and an optional easing curve.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260808/engine-guides-create-audio-audio-fade)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-create-audio-audio-fade)
 
 <EngineReferenceNote {...props} />
 

@@ -82,7 +82,7 @@ Apply a `CameraConfiguration` to the IMG.LY Camera to choose what it captures, t
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260808/camera-guides-configuration)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/camera-guides-configuration)
 
 This guide builds on the [Integrate Camera](./integrate.md) guide and customizes the `Camera` from `IMGLYCamera`. You configure the camera through three inputs you pass when you create it: `EngineSettings` initializes the underlying engine, an optional `CameraConfiguration` controls what the camera captures and how it looks, and the `mode` argument selects the capture mode.
 
@@ -232,7 +232,7 @@ The camera presents the system permission prompts the first time it needs each c
 
 The IMG.LY camera ships with English and German on iOS, and exposes its strings through Apple's String Catalogs so you can override existing values or add new languages. When the camera renders a label, it resolves each key against three catalogs in order and the first match wins: (1) `Localizable.xcstrings` in your app's main bundle, (2) `IMGLYCamera.xcstrings` in your app's main bundle, if you ship one, then (3) the `IMGLYCamera.xcstrings` bundled inside the SDK.
 
-All camera keys live in [https://github.com/imgly/IMGLYUI-swift/blob/1.81.0-nightly.20260808/Sources/IMGLYCamera/IMGLYCamera.xcstrings](https://github.com/imgly/IMGLYUI-swift/blob/1.81.0-nightly.20260808/Sources/IMGLYCamera/IMGLYCamera.xcstrings) and follow a strict naming convention that makes locating them self-explanatory. For example, `ly_img_camera_timer_option_off` is the timer-off button, and `ly_img_camera_dialog_delete_last_recording_title` is the title of the alert shown when deleting the last recording.
+All camera keys live in [https://github.com/imgly/IMGLYUI-swift/blob/1.81.0-nightly.20260809/Sources/IMGLYCamera/IMGLYCamera.xcstrings](https://github.com/imgly/IMGLYUI-swift/blob/1.81.0-nightly.20260809/Sources/IMGLYCamera/IMGLYCamera.xcstrings) and follow a strict naming convention that makes locating them self-explanatory. For example, `ly_img_camera_timer_option_off` is the timer-off button, and `ly_img_camera_dialog_delete_last_recording_title` is the title of the alert shown when deleting the last recording.
 
 ### Replacing Existing Keys
 

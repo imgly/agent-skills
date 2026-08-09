@@ -90,7 +90,7 @@ Render app-controlled Compose UI above the CE.SDK editor to block interaction du
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260808/editor-guides-configuration-overlay)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/editor-guides-configuration-overlay)
 
 This guide uses a small Design Editor setup to show a loading dialog above the editor. The same `EditorConfiguration.overlay` hook applies to your CE.SDK editor UI, including the [Design Editor Starter Kit](../../starterkits/design-editor.md).
 

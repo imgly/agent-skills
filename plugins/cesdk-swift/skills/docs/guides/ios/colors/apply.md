@@ -12,7 +12,7 @@ Apply solid colors to design elements like shapes, text, and backgrounds using C
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260808/engine-guides-colors-apply)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-colors-apply)
 
 Colors in CE.SDK are applied to block properties like fill, stroke, and shadow using `engine.block.setColor`. The engine supports three color spaces: sRGB for screen display, CMYK for print production, and spot colors for specialized printing requirements.
 

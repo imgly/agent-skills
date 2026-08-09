@@ -182,7 +182,7 @@ chained onto an existing editor configuration.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260808/editor-guides-plugins-custom-plugin)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/editor-guides-plugins-custom-plugin)
 
 ## When to Use Plugins
 

@@ -74,7 +74,7 @@ from quarter-speed (0.25x) to triple-speed (3.0x).
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260808/engine-guides-create-audio-adjust-speed)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-create-audio-adjust-speed)
 
 Playback speed adjustment changes how fast or slow audio plays. A speed multiplier of 1.0 represents normal speed, values below 1.0 slow down playback, and values above 1.0 speed it up. This technique is commonly used for podcast speed controls, time-compressed narration, slow-motion audio effects, and accessibility features.
 

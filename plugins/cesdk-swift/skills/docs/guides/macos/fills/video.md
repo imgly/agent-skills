@@ -149,7 +149,7 @@ Fill graphic blocks with video content from URLs or asset libraries using CE.SDK
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260808/engine-guides-fills-video)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-fills-video)
 
 <EngineReferenceNote {...props} />
 

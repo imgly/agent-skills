@@ -12,7 +12,7 @@ engine manages only one active scene at a time.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260808/engine-guides-modifying-scenes)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/engine-guides-modifying-scenes)
 
 <EngineReferenceNote {...props} />
 
