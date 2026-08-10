@@ -51,7 +51,7 @@ let package = Package(
   ],
   // Custom dependencies can be added here
   dependencies: [
-    .package(url: "https://github.com/imgly/IMGLYUI-swift.git", exact: "1.81.0-nightly.20260809"),
+    .package(url: "https://github.com/imgly/IMGLYUI-swift.git", exact: "1.81.0-nightly.20260810"),
     // If you use these libraries in your app, make sure to match exact versions here
     .package(url: "https://github.com/siteline/SwiftUI-Introspect.git", exact: "26.0.0"),
     .package(url: "https://github.com/onevcat/Kingfisher.git", exact: "8.5.0"),

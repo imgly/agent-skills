@@ -12,7 +12,7 @@ Redact sensitive video content using blur, pixelization, or solid overlays for p
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-redaction)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-redaction)
 
 CE.SDK applies effects to blocks themselves, not as overlays affecting content beneath. Redaction therefore means applying effects directly to the block you want to obscure. Four techniques cover most privacy scenarios: full-block blur, radial blur, pixelization, and solid overlays.
 

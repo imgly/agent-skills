@@ -193,7 +193,7 @@ Add visual depth and emphasis to design elements using drop shadows and glow eff
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/engine-guides-shadows-and-glows)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-shadows-and-glows)
 
 <EngineReferenceNote {...props} />
 

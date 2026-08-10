@@ -105,7 +105,7 @@ Apply distortion effects to warp, shift, and transform images and videos for dyn
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-distortion)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-distortion)
 
 <EngineReferenceNote {...props} />
 

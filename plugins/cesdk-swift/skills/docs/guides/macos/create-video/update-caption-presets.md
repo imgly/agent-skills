@@ -106,7 +106,7 @@ preset — you describe the look as JSON and the engine applies it to a caption 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-update-caption-presets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-update-caption-presets)
 
 <EngineReferenceNote {...props} />
 

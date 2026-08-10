@@ -18,7 +18,7 @@ Create and place custom UI components in CE.SDK using `registerComponent()` and 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-quick-start-create-custom-components-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260809/examples/guides-user-interface-customization-quick-start-create-custom-components-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260810/examples/guides-user-interface-customization-quick-start-create-custom-components-browser/index.html)
 
 Custom components let you extend CE.SDK's UI beyond built-in action buttons. The workflow has two steps: register the component with `registerComponent()`, then place it with `insertOrderComponent()`.
 

@@ -200,7 +200,7 @@ Configure and populate a Template Library with the Android Engine API so your ap
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/engine-guides-use-templates-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-use-templates-library)
 
 <EngineReferenceNote {...props} />
 

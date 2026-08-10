@@ -106,7 +106,7 @@ Add the IMGLY Mobile Camera to your iOS app to shoot photos and videos, then han
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/camera-guides-quickstart)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/camera-guides-quickstart)
 
 The camera is a self-contained view that captures media and returns it to your app. For the full set of capture options, see [Mobile Camera Configuration](./camera-configuration.md). For task-specific flows, see [Capture a Photo](./take-photo.md) and [Access Recordings](./recordings.md).
 
@@ -158,7 +158,7 @@ The camera runs its own engine instance, configured with `EngineSettings`. Set t
   </TabItem>
 </Tabs>
 
-`secrets.licenseKey` comes from a small [`Secrets.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.0-nightly.20260809/secrets/Secrets.swift) shim the iOS guides repository ships — substitute your own license key.
+`secrets.licenseKey` comes from a small [`Secrets.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.0-nightly.20260810/secrets/Secrets.swift) shim the iOS guides repository ships — substitute your own license key.
 
 The camera opens in video mode by default. To capture photos, mix photos and videos, or set duration limits, pass a `CameraConfiguration` to the `Camera` initializer — see [Mobile Camera Configuration](./camera-configuration.md).
 

@@ -140,7 +140,7 @@ Work with CMYK colors in CE.SDK for professional print production workflows with
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/engine-guides-colors-for-print-cmyk)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-colors-for-print-cmyk)
 
 <EngineReferenceNote {...props} />
 

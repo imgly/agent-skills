@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    api("ly.img:editor:1.81.0-nightly.20260809")
+    api("ly.img:editor:1.81.0-nightly.20260810")
     // Required for enableEdgeToEdge
     implementation("androidx.activity:activity-ktx:1.9.0")
 }

@@ -119,7 +119,7 @@ sound effects, and voiceovers.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/engine-guides-insert-media-audio)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-insert-media-audio)
 
 <EngineReferenceNote {...props} />
 

@@ -20,7 +20,7 @@ single click.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-update-caption-presets-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260809/examples/guides-create-video-update-caption-presets-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260810/examples/guides-create-video-update-caption-presets-browser/index.html)
 
 CE.SDK ships built-in caption presets so users can restyle their captions in one click, and you can add your own. A preset is just a JSON object that describes the look, so there are no blocks to build or files to serialize. This guide shows how to define a preset, register it at runtime, and host your own set.
 

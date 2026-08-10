@@ -18,7 +18,7 @@ Use a form-based custom panel in CE.SDK to enable users to easily customize temp
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-form-based-template-adoption-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260809/examples/starterkit-form-based-template-adoption/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260810/examples/starterkit-form-based-template-adoption/index.html)
 
 ***
 

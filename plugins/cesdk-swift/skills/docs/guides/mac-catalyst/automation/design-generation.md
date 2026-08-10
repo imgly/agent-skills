@@ -323,7 +323,7 @@ design as a PNG with the CE.SDK Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-design-generation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-design-generation)
 
 <EngineReferenceNote {...props} />
 

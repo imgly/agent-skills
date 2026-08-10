@@ -108,7 +108,7 @@ and trim lengths, while leaving the original media file unchanged.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260809/engine-guides-create-video-trim)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-create-video-trim)
 
 <EngineReferenceNote {...props} />
 

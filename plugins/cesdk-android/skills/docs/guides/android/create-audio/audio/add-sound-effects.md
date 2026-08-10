@@ -370,7 +370,7 @@ Generate sound effects programmatically using buffers with arbitrary audio data.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260809/engine-guides-add-sound-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-add-sound-effects)
 
 <EngineReferenceNote {...props} />
 
