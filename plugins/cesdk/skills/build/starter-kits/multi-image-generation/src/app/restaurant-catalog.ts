@@ -15,7 +15,7 @@ import type { Restaurant } from '../imgly';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.0/starterkit-multi-image-generation';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.1/starterkit-multi-image-generation';
 
 /**
  * Demo restaurants with brand colors and assets.

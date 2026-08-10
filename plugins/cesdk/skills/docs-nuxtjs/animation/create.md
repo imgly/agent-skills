@@ -18,7 +18,7 @@ Add motion to design elements by creating entrance, exit, and loop animations us
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-animation-create-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-animation-create-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/guides-animation-create-browser/index.html)
 
 CE.SDK provides a unified animation system for adding motion to design elements. Animations are created as separate block instances and attached to target blocks using type-specific methods. You can apply entrance animations (how blocks appear), exit animations (how blocks leave), and loop animations (continuous motion while visible). Text blocks support additional properties for word-by-word or character-by-character reveals.
 

@@ -26,7 +26,7 @@ import { initFormBasedTemplateAdoption } from './imgly';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.0/starterkit-form-based-template-adoption';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.1/starterkit-form-based-template-adoption';
 
 // ============================================================================
 // Scene URL

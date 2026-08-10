@@ -18,7 +18,7 @@ Apply bullet lists and numbered lists to text blocks programmatically using per-
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-text-enumerations-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-text-enumerations-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/guides-text-enumerations-browser/index.html)
 
 CE.SDK represents list formatting as per-paragraph properties on a text block. Each paragraph independently holds a list style (`'None'`, `'Unordered'`, or `'Ordered'`) and a zero-based nesting level. A single call to `setTextListStyle()` targets either one paragraph or all paragraphs at once, making it straightforward to build structured lists without iterating manually.
 

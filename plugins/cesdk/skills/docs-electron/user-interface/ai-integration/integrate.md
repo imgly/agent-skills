@@ -18,7 +18,7 @@ Add AI-powered generation capabilities to your CE.SDK application for generating
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-user-interface-ai-integration-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/guides-user-interface-ai-integration-browser/index.html)
 
 > **Looking for the easy path?:** The [Managed Model Gateway](./user-interface/ai-integration/gateway-provider.md) is the fastest way to add AI generation to CE.SDK. We handle proxying, authentication, model routing, and billing — you only need a JWT-minting endpoint and a single gateway URL. The rest of this guide covers configuring upstream providers directly, which is useful when you need full control or already run your own proxy.
 

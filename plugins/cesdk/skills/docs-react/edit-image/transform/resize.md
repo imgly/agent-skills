@@ -18,7 +18,7 @@ Change image dimensions using absolute pixel values, percentage-based sizing for
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-transform-resize-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-edit-image-transform-resize-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/guides-edit-image-transform-resize-browser/index.html)
 
 Image resizing changes actual dimensions rather than applying scale multipliers. Use `engine.block.setWidth()` and `engine.block.setHeight()` for individual dimensions, or `engine.block.setSize()` for both at once.
 

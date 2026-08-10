@@ -21,7 +21,7 @@ per-call overrides when you need them.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-font-size-unit-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-concepts-font-size-unit-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/guides-concepts-font-size-unit-browser/index.html)
 
 A scene's `fontSizeUnit` is the unit `setTextFontSize` and `getTextFontSizes` use when the caller doesn't specify one. CE.SDK supports two values: `'Point'` (the typographic default) and `'Pixel'` (matches Pixel-based design coordinates). The engine still stores font sizes in points internally; the unit only controls the API boundary.
 

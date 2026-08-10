@@ -18,7 +18,7 @@ Curve a text block so its characters follow an SVG path — an arch, a full circ
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-text-on-path-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.0/examples/guides-text-text-on-path-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/guides-text-text-on-path-browser/index.html)
 
 Text on a path makes a text block's baseline follow an SVG curve instead of a straight line — useful for badges, circular seals, and arched headlines. It works both through the editor's Path inspector and the engine API, applies to text blocks only, and disables word wrapping (line breaks collapse to spaces) while a path is active. Setting a path resizes the block to match the path's aspect ratio.
 
