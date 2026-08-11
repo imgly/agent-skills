@@ -102,7 +102,7 @@ Add text and image watermarks to images programmatically using CE.SDK's Engine b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-edit-image-add-watermark)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-edit-image-add-watermark)
 
 <EngineReferenceNote {...props} />
 

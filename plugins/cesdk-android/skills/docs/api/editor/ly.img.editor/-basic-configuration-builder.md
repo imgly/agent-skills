@@ -102,7 +102,7 @@ A helper function that observes the edit mode of the the editor and sets extra c
 fun shareFile(_: Nothing = nothing, authority: String = ".ly.img.editor.fileprovider", file: File, mimeType: MimeType)
 ```
 
-A helper function that opens a system dialog to share the file.
+A helper function that opens a system dialog to share the file. Note that the uri of the file is resolved on a background thread, therefore the system dialog is opened asynchronously. If the uri resolution fails, the error state is set instead of throwing.
 
 ### shareUri
 

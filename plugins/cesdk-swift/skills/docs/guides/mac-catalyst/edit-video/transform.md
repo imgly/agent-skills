@@ -148,7 +148,7 @@ locking them with the CE.SDK engine.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-video-transform)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-video-transform)
 
 <EngineReferenceNote {...props} />
 

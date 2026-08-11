@@ -18,7 +18,7 @@ Initialize the editor with a video matching the page size.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-start-with-video-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260810/examples/starterkit-start-with-video/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/starterkit-start-with-video/index.html)
 
 ***
 

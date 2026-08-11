@@ -253,7 +253,7 @@ scope-based permission system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-lock-content)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-lock-content)
 
 <EngineReferenceNote {...props} />
 

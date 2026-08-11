@@ -176,7 +176,7 @@ for video compositing and virtual background applications.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-filters-and-effects-chroma-key-green-screen)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-filters-and-effects-chroma-key-green-screen)
 
 <EngineReferenceNote {...props} />
 

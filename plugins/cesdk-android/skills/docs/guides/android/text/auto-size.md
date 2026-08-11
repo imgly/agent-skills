@@ -154,7 +154,7 @@ Configure text blocks to automatically adapt their dimensions or font size for d
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-text-auto-size)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-text-auto-size)
 
 <EngineReferenceNote {...props} />
 

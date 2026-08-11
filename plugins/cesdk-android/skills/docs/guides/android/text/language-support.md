@@ -289,7 +289,7 @@ Android designs using CE.SDK text rendering and font APIs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-text-language-support)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-text-language-support)
 
 <EngineReferenceNote {...props} />
 

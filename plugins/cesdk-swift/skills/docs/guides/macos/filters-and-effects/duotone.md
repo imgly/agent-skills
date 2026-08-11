@@ -161,7 +161,7 @@ Apply duotone effects to images with the CE.SDK Engine, mapping image tones to t
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-duotone)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-duotone)
 
 <EngineReferenceNote {...props} />
 

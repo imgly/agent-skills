@@ -32,7 +32,7 @@ Load pre-designed templates to give users a professional starting point instead 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-from-template)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-from-template)
 
 <EngineReferenceNote {...props} />
 

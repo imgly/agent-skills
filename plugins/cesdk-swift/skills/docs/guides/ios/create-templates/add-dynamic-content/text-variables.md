@@ -77,7 +77,7 @@ app supplies, so a single template can produce many personalized results.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-text-variables)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-text-variables)
 
 <EngineReferenceNote {...props} />
 

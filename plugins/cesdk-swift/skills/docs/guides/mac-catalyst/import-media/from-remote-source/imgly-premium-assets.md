@@ -105,7 +105,7 @@ into CE.SDK's asset library alongside your other sources.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-import-media-from-remote-source-imgly-premium-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-import-media-from-remote-source-imgly-premium-assets)
 
 <EngineReferenceNote {...props} />
 

@@ -66,7 +66,7 @@ Learn how to intercept and transform asset URIs in CE.SDK, enabling authenticati
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-uri-resolver)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-uri-resolver)
 
 <EngineReferenceNote {...props} />
 

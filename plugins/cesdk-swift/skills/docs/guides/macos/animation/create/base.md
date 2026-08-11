@@ -90,7 +90,7 @@ CE.SDK's animation system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-base-animations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-base-animations)
 
 Base animations in CE.SDK add motion to design blocks through entrance (In), exit (Out), and loop animations. Animations are created as separate objects and attached to blocks, enabling reusable configurations across multiple elements.
 

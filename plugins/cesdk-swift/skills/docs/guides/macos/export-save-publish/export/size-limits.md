@@ -10,7 +10,7 @@ Configure size limits to balance quality and performance in CE.SDK applications.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-size-limits)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-size-limits)
 
 CE.SDK processes images and videos on the device, so size limits depend on the available memory and the device's rendering hardware. Tuning these limits keeps memory use predictable on smaller devices while still letting capable devices export at high resolution.
 

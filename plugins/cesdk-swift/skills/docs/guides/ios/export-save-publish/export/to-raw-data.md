@@ -10,7 +10,7 @@ Export CE.SDK designs to raw RGBA pixel data—ideal when you need direct pixel 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-export-to-raw-data)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-export-to-raw-data)
 
 ```swift file=@cesdk_swift_examples/engine-guides-export-to-raw-data/ToRawData.swift reference-only
 import CoreGraphics

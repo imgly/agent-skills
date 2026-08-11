@@ -72,7 +72,7 @@ Curve a text block so its characters follow an SVG path — an arch, a full circ
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-text-on-path)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-text-on-path)
 
 <EngineReferenceNote {...props} />
 
@@ -80,13 +80,13 @@ Text on a path makes a text block's baseline follow an SVG curve instead of a st
 
 ## Using the Built-in Path UI
 
-On iOS, CE.SDK's prebuilt editor lets users curve text interactively: select a text block and a **Path** button appears in the inspector bar. Tapping it opens a sheet of curve tiles, and **None** removes the path and restores the straight baseline. The tiles — **Circle**, **Arch**, **Wave**, and **Elevate** by default — are defined by the `ly.img.text.curves` asset source rather than the app, so the set can change with future asset versions or your own presets. Each tile is a style preset, so tapping one does more than bend the baseline: it also replaces the block's text content and horizontal alignment with the preset's own values — expect a typed headline to be overwritten when a tile is applied. While a path is active — whether applied from a tile or set programmatically with a custom SVG string — the sheet shows **Path Position** (Top, Center, Bottom), **Direction** (Forward, Reversed), and an **Offset** slider below the tiles.
+On iOS, CE.SDK's prebuilt editor lets users curve text interactively: select a text block and a **Path** button appears in the inspector bar. Tapping it opens a sheet of curve tiles, and **None** removes the path and restores the straight baseline. The default tiles are **Circle**, **Arch**, **Wave**, and **Elevate**. They are defined by the `ly.img.text.curves` asset source rather than the app, so the set can change with future asset versions or your own presets. Each tile is a style preset that replaces the block's horizontal and vertical alignment, direction, and offset. The block keeps its text because the tile restyles an existing block. A preset sets the text only when it makes a new block. While a path is active, whether applied from a tile or set programmatically with a custom SVG string, the sheet shows **Path Position** (Top, Center, Bottom), **Direction** (Forward, Reversed), and an **Offset** slider below the tiles.
 
 The rest of this guide covers the Engine API behind that experience, which applies text on a path programmatically on every Apple platform.
 
 ## Applying Curved Text Presets from the Asset Library
 
-The same **Curved Text** presets shown in the Path sheet also surface in the asset library's text section, and you can query the source directly with `engine.asset.findAssets(sourceID:query:)`. Applying one from either place is the same operation: it sets the block's path, offset, and vertical alignment together in one step and, because each tile is a style preset, replaces the block's text content and horizontal alignment with the preset's own values.
+The same **Curved Text** presets shown in the Path sheet also surface in the asset library's text section, and you can query the source directly with `engine.asset.findAssets(sourceID:query:)`. Applying one in the Path sheet restyles the selected block: it keeps the block's text while setting its path, offset, direction, and horizontal and vertical alignment. Inserting the same preset from the asset library creates a block with the preset's text.
 
 ## Creating the Text Block
 

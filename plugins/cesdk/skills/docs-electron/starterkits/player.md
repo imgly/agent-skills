@@ -19,7 +19,7 @@ video content. Runs entirely client-side with no server dependencies.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-player-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260810/examples/starterkit-video-player/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/starterkit-video-player/index.html)
 
 ***
 

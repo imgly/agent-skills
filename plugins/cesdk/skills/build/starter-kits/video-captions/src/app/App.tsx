@@ -267,12 +267,14 @@ export function App({ editorConfig }: AppProps) {
 
       {editorMode && (
         <div className={styles.overlay} onClick={handleOverlayClick}>
-          <CreativeEditor
-            key={editorMode}
-            className={styles.editorContainer}
-            config={editorConfig}
-            init={handleInit}
-          />
+          <div className={styles.editorWrapper}>
+            <CreativeEditor
+              key={editorMode}
+              className={styles.editorContainer}
+              config={editorConfig}
+              init={handleInit}
+            />
+          </div>
         </div>
       )}
     </div>

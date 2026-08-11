@@ -114,7 +114,7 @@ decals, and custom-shaped prints programmatically.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-cutouts)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-cutouts)
 
 <EngineReferenceNote {...props} />
 

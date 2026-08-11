@@ -141,7 +141,7 @@ Blend adjacent video clips into each other with clip-to-clip transitions such as
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-apply-transitions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-apply-transitions)
 
 <EngineReferenceNote {...props} />
 

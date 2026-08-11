@@ -100,7 +100,7 @@ Curve a text block so its characters follow an SVG path — an arch, a full circ
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-text-text-on-path)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-text-text-on-path)
 
 <EngineReferenceNote {...props} />
 
@@ -108,7 +108,7 @@ Text on a path makes a text block's baseline follow an SVG curve instead of a st
 
 ## Using the Built-in Path UI
 
-The CE.SDK editor UI lets users curve text interactively: select a text block and tap **Text on Path** in the inspector bar. The **None**, **Circle**, **Arch**, **Wave**, and **Elevate** presets come from `ly.img.text.curves`, so you can customize the set. Applying one also replaces the text, horizontal and vertical alignment, direction, and offset with the preset values. The sheet exposes **Path Position**, **Direction**, and **Offset** for both preset and custom SVG paths.
+The CE.SDK editor UI lets users curve text interactively: select a text block and tap **Text on Path** in the inspector bar. The **None**, **Circle**, **Arch**, **Wave**, and **Elevate** presets come from `ly.img.text.curves`, so you can customize the set. Applying one also replaces the horizontal and vertical alignment, direction, and offset with the preset values. The block keeps its text. A preset sets the text only when it makes a new block. The sheet exposes **Path Position**, **Direction**, and **Offset** for both preset and custom SVG paths.
 
 The rest of this guide covers the Engine API behind that experience, which applies text on a path programmatically.
 

@@ -214,7 +214,7 @@ CE.SDK designs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260810/engine-guides-concepts-blocks)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-concepts-blocks)
 
 <EngineReferenceNote {...props} />
 

@@ -10,7 +10,7 @@ Export CE.SDK designs to JPEG format—ideal for photographs, social media, and 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-export-to-jpeg)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-export-to-jpeg)
 
 JPEG uses lossy compression optimized for photographs and smooth color gradients. Unlike PNG, JPEG does not support transparency—transparent areas render with a solid background.
 

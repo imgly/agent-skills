@@ -171,7 +171,7 @@ above the canvas, while glow effects add luminous halos that draw attention.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-shadows-and-glows)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-shadows-and-glows)
 
 <EngineReferenceNote {...props} />
 

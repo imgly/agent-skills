@@ -18,7 +18,7 @@ Enable users to upload images and videos from their devices directly into CE.SDK
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-from-local-source-user-upload-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260810/examples/guides-import-media-from-local-source-user-upload-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/guides-import-media-from-local-source-user-upload-browser/index.html)
 
 CE.SDK provides a built-in upload handler that stores files locally in memory for development. For production use cases where files need to persist across sessions, you can register a custom upload handler that uploads to your CDN or cloud storage.
 

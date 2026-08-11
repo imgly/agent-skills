@@ -170,7 +170,7 @@ Apply color grading, blur, pixelization, and other visual treatments to design e
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-using-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-using-effects)
 
 <EngineReferenceNote {...props} />
 

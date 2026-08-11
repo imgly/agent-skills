@@ -123,7 +123,7 @@ Manage assets in local asset sources by updating metadata, removing individual a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260810/engine-guides-edit-or-remove-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-edit-or-remove-assets)
 
 <EngineReferenceNote {...props} />
 

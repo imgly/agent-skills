@@ -18,7 +18,7 @@ Style text blocks programmatically with colors, backgrounds, typefaces, and form
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-styling-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260810/examples/guides-text-styling-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/guides-text-styling-browser/index.html)
 
 CE.SDK provides comprehensive text styling capabilities through the Block API. We can control text appearance through colors, backgrounds, typefaces, font weights, and case transformations, with the ability to apply different styling to specific character ranges within a single text block.
 
