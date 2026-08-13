@@ -134,8 +134,7 @@ export async function initAdvancedVideoEditor(cesdk: CreativeEditorSDK) {
         'ly.img.exportVideo.navigationBar',
         'ly.img.exportScene.navigationBar',
         'ly.img.exportArchive.navigationBar',
-        'ly.img.importScene.navigationBar',
-        'ly.img.importArchive.navigationBar'
+        'ly.img.importScene.navigationBar'
       ]
     }
   );

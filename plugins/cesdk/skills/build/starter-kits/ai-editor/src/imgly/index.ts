@@ -74,7 +74,7 @@ export { VideoEditorConfig } from './config/video-editor/plugin';
  * Sets up CE.SDK with the design editor configuration, standard asset
  * sources, and the AI Apps plugin wired to the given provider map. The
  * caller is responsible for loading scene content (e.g. via
- * `cesdk.loadFromArchiveURL(url)`) after this function resolves.
+ * `cesdk.load(url)`) after this function resolves.
  *
  * @param cesdk     - The CreativeEditorSDK instance
  * @param providers - Provider map for `AiApps({ providers: … })`; use
@@ -176,7 +176,7 @@ export async function initAiPhotoEditor(
  * Sets up CE.SDK with the video editor configuration, video/audio asset
  * sources, and the AI Apps plugin wired to the given provider map. The
  * caller is responsible for loading scene content (e.g. via
- * `cesdk.loadFromArchiveURL(url)`) after this function resolves.
+ * `cesdk.load(url)`) after this function resolves.
  *
  * @param cesdk     - The CreativeEditorSDK instance
  * @param providers - Provider map for `AiApps({ providers: … })`; use

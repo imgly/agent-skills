@@ -63,13 +63,13 @@ export default function App({ config, sceneUrl }: AppProps) {
       const savedScene = savedSceneStringRef.current;
       if (savedScene) {
         try {
-          await cesdk.engine.scene.loadFromString(savedScene);
+          await cesdk.engine.scene.load(savedScene);
         } catch {
-          await cesdk.loadFromURL(sceneUrl);
+          await cesdk.load(sceneUrl);
         }
         savedSceneStringRef.current = null;
       } else {
-        await cesdk.loadFromURL(sceneUrl);
+        await cesdk.load(sceneUrl);
       }
 
       // Zoom auto-fit to page

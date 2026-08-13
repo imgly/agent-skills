@@ -19,7 +19,6 @@ import { RESTAURANTS } from './restaurant-catalog';
 import { TEMPLATES } from './template-catalog';
 import SCENES from './scenes.json';
 import type { Restaurant, Template, GeneratedAsset } from '../imgly';
-import { resolveAssetPath } from './resolveAssetPath';
 
 import RestaurantSelector from './RestaurantSelector/RestaurantSelector';
 import AssetGrid from './AssetGrid/AssetGrid';
@@ -75,20 +74,12 @@ export default function App({ engine, editorBaseConfig }: AppProps) {
         prevAssets.map((asset) => ({ ...asset, isLoading: true }))
       );
 
-      // Resolve asset paths for the current deployment context
-      const restaurantWithResolvedPaths: Restaurant = {
-        ...restaurant,
-        photoPath: resolveAssetPath(restaurant.photoPath),
-        logoPath: resolveAssetPath(restaurant.logoPath),
-        cardPath: resolveAssetPath(restaurant.cardPath)
-      };
-
       // Generate assets
       await generateAssets(
         engine,
         SCENES,
         templates,
-        restaurantWithResolvedPaths,
+        restaurant,
         (index, generatedAsset) => {
           setAssets((prevAssets) => {
             const nextAssets = [...prevAssets];

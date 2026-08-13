@@ -18,7 +18,7 @@ We add AI image generation to CE.SDK applications for creating visuals from text
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-image-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-user-interface-ai-integration-image-generation-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-user-interface-ai-integration-image-generation-browser/index.html)
 
 The image generation plugin creates visuals from text descriptions (text-to-image) or transforms existing images (image-to-image). Use models like RecraftV3, Recraft20b, IdeogramV3, GeminiFlash25, and GPT Image with output in raster or vector format.
 
@@ -627,8 +627,8 @@ Common issues when configuring the image generation plugin:
 - [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
 - [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
 - [Integrate AI Features](./user-interface/ai-integration/integrate.md) — Overview of AI integration
-- [Asset Library Basics](./import-media/asset-panel/basics.md) — Work with generated assets
-- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset sources
+- [Asset Library Basics](./import-media/asset-library/basics.md) — Work with generated assets
+- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure asset sources
 
 
 

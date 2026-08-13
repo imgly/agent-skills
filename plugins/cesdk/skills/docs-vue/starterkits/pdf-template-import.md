@@ -18,7 +18,7 @@ Transform PDF documents into editable CE.SDK designs. All formatting preserved.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-pdf-template-import-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/starterkit-pdf-template-import/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/starterkit-pdf-template-import/index.html)
 
 ***
 
@@ -330,13 +330,13 @@ const blob = await fetch('https://example.com/document.pdf').then((r) => r.blob(
 const result = await importPdfFile(blob, 'document.pdf', { baseURL: '/assets' });
 
 // 3. Load the archive into the editor
-await cesdk.loadFromArchiveURL(result.sceneArchiveUrl);
+await cesdk.load(result.sceneArchiveUrl);
 
 // Or: create a blank design canvas
 await cesdk.actions.run('scene.create');
 
 // Or: load from an existing CE.SDK scene archive
-await cesdk.loadFromArchiveURL('https://example.com/template.zip');
+await cesdk.load('https://example.com/template.zip');
 ```
 
 > **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading methods.
@@ -378,8 +378,8 @@ Actions are functions that handle user interactions like exporting designs, savi
 
 - `exportDesign` – Export the current design to PNG, JPEG, PDF, or other formats
 - `saveScene` – Save the scene as a JSON string for later editing
-- `importScene` – Import a previously saved scene (supports `.scene` and `.cesdk` formats)
-- `exportScene` – Export the scene as a JSON file or `.cesdk` archive with all assets
+- `importScene` – Import a previously saved scene (`.imgly` or `.scene`)
+- `exportScene` – Export the scene as an `.imgly` file, either the scene alone or an archive with all assets
 - `uploadFile` – Handle file uploads with progress tracking
 
 Use `cesdk.actions.run()` to execute any action:
@@ -402,7 +402,7 @@ cesdk.actions.register('importImage', async () => {
   URL.revokeObjectURL(blobURL);
 
   const result = await importPdfFile(blob, 'document.pdf');
-  await cesdk.loadFromArchiveURL(result.sceneArchiveUrl);
+  await cesdk.load(result.sceneArchiveUrl);
 });
 ```
 

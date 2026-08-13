@@ -75,7 +75,7 @@ try {
   console.log('CE.SDK Engine initialized (Deno)');
 
   try {
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene',
     );
 

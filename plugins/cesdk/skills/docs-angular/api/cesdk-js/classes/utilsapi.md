@@ -673,11 +673,7 @@ This API includes utilities for:
     <br /><p>Checks if the current browser supports video decoding/playback.</p>
   </summary>
 
-  Video decoding requires the WebCodecs API (VideoFrame, VideoDecoder, VideoEncoder,
-  AudioDecoder, AudioEncoder). These APIs are not available on all platforms.
-
-  **Supported platforms**: Chrome and Edge on Windows and macOS.
-  **Unsupported platforms**: All browsers on Linux, Firefox on any OS.
+  Measured behaviorally (a real H.264 decode) during engine initialization.
 
   #### Returns
 
@@ -713,12 +709,8 @@ This API includes utilities for:
     <br /><p>Checks if the current browser supports video encoding/export.</p>
   </summary>
 
-  Video encoding requires the WebCodecs API with H.264 (AVC) video encoding
-  and AAC audio encoding support. These codecs are patent-encumbered and not
-  included in open-source browser builds.
-
-  **Supported platforms**: Chrome and Edge on Windows and macOS.
-  **Unsupported platforms**: All browsers on Linux, Firefox on any OS.
+  Video export requires H.264 (AVC) video encoding and AAC audio encoding, measured
+  behaviorally during engine initialization.
 
   For server-side video rendering that works on all platforms, see CE.SDK Renderer:
   https://img.ly/docs/cesdk/renderer/cesdk-renderer-overview-7f3e9a/

@@ -43,7 +43,7 @@ const engine = await CreativeEngine.init({
 
 try {
   // Load a template scene from a remote URL
-  await engine.scene.loadFromURL(
+  await engine.scene.load(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
@@ -97,7 +97,7 @@ const engine = await CreativeEngine.init({
 
 try {
   // Load a template scene from a remote URL
-  await engine.scene.loadFromURL(
+  await engine.scene.load(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
@@ -154,7 +154,7 @@ The output directory is created if it doesn't exist. The console output confirms
 |--------|---------|
 | `engine.block.export()` | Export block as image (PNG, JPEG, WebP, PDF) |
 | `engine.block.findByType()` | Find blocks by type (page, text, image, etc.) |
-| `engine.scene.loadFromURL()` | Load a scene from a remote URL |
+| `engine.scene.load()` | Load a scene from a remote URL |
 
 ### Export Options (Images)
 

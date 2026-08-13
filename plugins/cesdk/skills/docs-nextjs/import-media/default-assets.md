@@ -240,7 +240,7 @@ Load all asset sources from IMG.LY's CDN to populate your CE.SDK editor with sha
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-default-assets-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-import-media-default-assets-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-import-media-default-assets-browser/index.html)
 
 CE.SDK provides built-in asset sources for shapes, stickers, filters, effects, fonts, and sample media. This guide demonstrates loading all available asset sources from IMG.LY's CDN and applying them to create a scene with a star shape, a sticker, and an image.
 
@@ -372,8 +372,8 @@ An asset is included if it matches ANY pattern in the array. Patterns support `*
 ## Next Steps
 
 - [Serve Assets](./serve-assets.md) — Self-host assets for production deployments
-- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure the asset library UI and entries
-- [Asset Library Basics](./import-media/asset-panel/basics.md) — Understand asset library structure and concepts
+- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure the asset library UI and entries
+- [Asset Library Basics](./import-media/asset-library/basics.md) — Understand asset library structure and concepts
 - [Import From Remote Source](./import-media/from-remote-source.md) — Load assets from external URLs
 
 

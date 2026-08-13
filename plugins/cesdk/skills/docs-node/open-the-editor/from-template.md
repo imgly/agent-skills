@@ -53,14 +53,14 @@ async function main() {
   try {
     const templateUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.loadFromURL(templateUrl);
+    await engine.scene.load(templateUrl);
 
     console.log('Template loaded successfully.');
 
     // Load scene from string (file read)
     const sceneFilePath = join(__dirname, 'assets', 'business-card.scene');
     const sceneString = readFileSync(sceneFilePath, 'utf-8');
-    await engine.scene.loadFromString(sceneString);
+    await engine.scene.load(sceneString);
 
     console.log('Scene loaded from string.');
 
@@ -107,17 +107,17 @@ The most common approach is loading templates from a remote URL. The engine repl
 ```typescript highlight-load-from-url
 const templateUrl =
   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-await engine.scene.loadFromURL(templateUrl);
+await engine.scene.load(templateUrl);
 ```
 
 The template URL should point to a valid `.scene` file hosted on a server.
 
 ## Load a Template from String
 
-When templates are stored in a database or file system, use `engine.scene.loadFromString()`. This accepts the scene data as a string.
+When templates are stored in a database or file system, use `engine.scene.load()`. This accepts the scene data as a string.
 
 ```typescript highlight-load-from-string
-await engine.scene.loadFromString(sceneString);
+await engine.scene.load(sceneString);
 ```
 
 This approach is useful for loading templates from your backend storage, restoring saved user designs, or working with templates stored in databases.
@@ -202,8 +202,7 @@ Then use the prompt to confirm export:
 
 | Method | Description |
 | ------ | ----------- |
-| `engine.scene.loadFromURL()` | Load a scene from a remote URL |
-| `engine.scene.loadFromString()` | Load a scene from a string |
+| `engine.scene.load()` | Load a scene from a remote URL or a serialized string |
 | `engine.scene.applyTemplateFromURL()` | Apply template to existing scene from URL |
 | `engine.scene.applyTemplateFromString()` | Apply template to existing scene from string |
 | `engine.block.findByType()` | Find blocks by type |

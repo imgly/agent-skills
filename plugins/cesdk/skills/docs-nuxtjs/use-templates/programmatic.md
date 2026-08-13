@@ -18,7 +18,7 @@ Automate template workflows with CE.SDK's engine APIs for batch processing, pers
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-programmatic-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-use-templates-programmatic-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-use-templates-programmatic-browser/index.html)
 
 Templates are scenes with predefined structures that support dynamic content through variables. This guide shows you how to work with templates programmatically using CE.SDK's engine APIs—without requiring user interface interactions.
 
@@ -410,7 +410,7 @@ Batch processing combines template creation, data population, and export operati
 const templateString = await engine.scene.saveToString();
 
 for (const record of dataRecords) {
-  await engine.scene.loadFromString(templateString);
+  await engine.scene.load(templateString);
   engine.variable.setString('name', record.name);
   engine.variable.setString('title', record.title);
 
@@ -424,15 +424,15 @@ This pattern works for generating personalized certificates, greeting cards, soc
 
 ## Loading Existing Templates
 
-Templates can be loaded from various sources. Use `engine.scene.loadFromURL()` to fetch remote templates:
+Templates can be loaded from various sources. Use `engine.scene.load()` to fetch remote templates:
 
 ```typescript
-await engine.scene.loadFromURL(
+await engine.scene.load(
   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
 );
 ```
 
-For templates with embedded assets, `engine.scene.loadFromArchiveURL()` loads the complete package including all resources.
+For templates with embedded assets, `engine.scene.load()` loads the complete package including all resources.
 
 The `engine.scene.applyTemplateFromString()` and `engine.scene.applyTemplateFromURL()` methods merge template content into existing scenes without replacing everything—useful for adding template sections to ongoing designs.
 
@@ -466,8 +466,7 @@ Remove variables with `engine.variable.remove()` when they're no longer needed. 
 | `engine.variable.findAll()` | Get array of all variable keys in the scene |
 | `engine.variable.remove()` | Delete a variable from the scene |
 | `engine.scene.saveToString()` | Serialize scene to portable string |
-| `engine.scene.loadFromString()` | Load scene from serialized string |
-| `engine.scene.loadFromURL()` | Load scene from remote URL |
+| `engine.scene.load()` | Load a scene from a remote URL or a serialized string |
 | `engine.block.export()` | Export block to image blob |
 
 ## Troubleshooting

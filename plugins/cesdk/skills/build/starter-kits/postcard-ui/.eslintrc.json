@@ -14,6 +14,21 @@
   },
   "ignorePatterns": ["dist/**", "node_modules/**", "**/*.js"],
   "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["**/imgly", "**/imgly/**"],
+            "message": "Import the imgly glue layer via the @imgly/* alias, not a relative path."
+          },
+          {
+            "group": ["../../**"],
+            "message": "Imports that leave the current feature/folder must use the @app/* or @imgly/* alias."
+          }
+        ]
+      }
+    ],
     "no-alert": "off",
     "no-console": "off",
     "no-unused-vars": "off",

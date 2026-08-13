@@ -46,7 +46,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // Load the background removal demo scene
     // This scene contains an image optimized for demonstrating background removal
     //
-    await cesdk.loadFromURL(resolveAssetPath('/assets/scene.scene'));
+    await cesdk.load(resolveAssetPath('/assets/scene.scene'));
   })
   .catch((error) => {
     // eslint-disable-next-line no-console

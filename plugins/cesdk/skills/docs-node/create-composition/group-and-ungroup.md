@@ -328,7 +328,7 @@ If a newly created group is not visible:
 Explore related topics:
 
 - [Layer Management](./create-composition/layer-management.md) - Control z-order and visibility of blocks
-- [Position and Align](./insert-media/position-and-align.md) - Arrange blocks precisely on the canvas
+- [Position and Align](./create-composition/position-and-align.md) - Arrange blocks precisely on the canvas
 - [Lock Design](./create-composition/lock-design.md) - Prevent modifications to specific elements
 
 

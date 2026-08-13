@@ -19,7 +19,7 @@ CE.SDK for integration with CMS, DAM, or custom asset management systems.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-from-remote-source-your-server-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-import-media-from-remote-source-your-server-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-import-media-from-remote-source-your-server-browser/index.html)
 
 CE.SDK provides multiple ways to load assets from your servers. Static libraries like stickers and icons use JSON manifests hosted on a CDN. Dynamic libraries like user photos and DAM content require API endpoints backed by databases.
 
@@ -225,7 +225,7 @@ class Example implements EditorPlugin {
       undefined,
       async (asset) => {
         if (asset.meta?.uri) {
-          await engine.scene.loadFromURL(asset.meta.uri as string);
+          await engine.scene.load(asset.meta.uri as string);
         }
         return undefined;
       }
@@ -629,7 +629,7 @@ Templates are complete scenes that users can load as starting points. Use a loca
       undefined,
       async (asset) => {
         if (asset.meta?.uri) {
-          await engine.scene.loadFromURL(asset.meta.uri as string);
+          await engine.scene.load(asset.meta.uri as string);
         }
         return undefined;
       }
@@ -760,8 +760,8 @@ Common issues when serving assets from your server.
 
 - [User Upload](./import-media/from-local-source/user-upload.md) — Handle file uploads with progress tracking
 - [Asset Concepts](./import-media/concepts.md) — Asset sources and metadata architecture
-- [Thumbnails](./import-media/asset-panel/thumbnails.md) — Configure thumbnail display and preview URIs
-- [Customize Asset Library](./import-media/asset-panel/customize.md) — UI customization options
+- [Thumbnails](./import-media/asset-library/thumbnails.md) — Configure thumbnail display and preview URIs
+- [Customize Asset Library](./import-media/asset-library/customize.md) — UI customization options
 
 
 

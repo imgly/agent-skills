@@ -77,7 +77,7 @@ export async function downloadProductAssets(
   for (const [areaId, thumbnail] of Object.entries(thumbnails)) {
     localDownload(thumbnail, `scene-thumbnail-${timestamp}-${areaId}.png`);
   }
-  localDownload(archive, `scene-${timestamp}.zip`);
+  localDownload(archive, `scene-${timestamp}.imgly`);
 }
 
 function localDownload(blob: Blob, filename: string): void {

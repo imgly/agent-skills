@@ -113,7 +113,7 @@ export default function EditorModal({
             });
 
             // Load scene
-            await cesdk.loadFromString(sceneToLoad);
+            await cesdk.load(sceneToLoad);
 
             // Apply restaurant variables and colors if restaurant is selected.
             // Variables are not persisted in the scene string and must be set

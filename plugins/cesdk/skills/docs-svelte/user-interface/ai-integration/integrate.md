@@ -18,7 +18,7 @@ Add AI-powered generation capabilities to your CE.SDK application for generating
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-user-interface-ai-integration-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-user-interface-ai-integration-browser/index.html)
 
 > **Looking for the easy path?:** The [Managed Model Gateway](./user-interface/ai-integration/gateway-provider.md) is the fastest way to add AI generation to CE.SDK. We handle proxying, authentication, model routing, and billing — you only need a JWT-minting endpoint and a single gateway URL. The rest of this guide covers configuring upstream providers directly, which is useful when you need full control or already run your own proxy.
 
@@ -849,6 +849,45 @@ const errorMiddleware = async (input, options, next) => {
 };
 ```
 
+Failures from the IMG.LY AI Gateway are thrown as a `GatewayError`, which carries a machine-readable `code` so you can respond to specific causes. Call `options.preventDefault()` to replace the built-in notification with your own. Running out of credits is a hard stop, so a blocking modal that the user has to acknowledge fits better than a toast that slides away:
+
+```typescript
+import { isGatewayError } from '@imgly/plugin-ai-generation-web';
+
+const creditsMiddleware = async (input, options, next) => {
+  try {
+    return await next(input, options);
+  } catch (error) {
+    if (isGatewayError(error) && error.code === 'insufficient_credits') {
+      options.preventDefault();
+      options.cesdk?.ui.showDialog({
+        type: 'error',
+        content: {
+          title: 'Out of AI credits',
+          message: 'You have run out of AI credits. Top up your credit balance in the IMG.LY Dashboard to keep generating.'
+        },
+        actions: {
+          label: 'Manage credits',
+          color: 'accent',
+          onClick: ({ id }) => {
+            window.open('https://img.ly/dashboard/credit-balance', '_blank');
+            options.cesdk?.ui.closeDialog(id);
+          }
+        },
+        cancel: {
+          label: 'Dismiss',
+          onClick: ({ id }) => options.cesdk?.ui.closeDialog(id)
+        },
+        clickOutsideToClose: false
+      });
+    }
+    throw error;
+  }
+};
+```
+
+See [Gateway Provider → Handling Gateway Errors](./user-interface/ai-integration/gateway-provider.md) for the full list of error codes.
+
 ### Middleware Order
 
 The order of middleware is important - they're executed in the sequence provided:
@@ -959,7 +998,7 @@ Your proxy server should handle authentication, forward requests to the appropri
 - [Video Generation](./user-interface/ai-integration/video-generation.md) — Video generation with multiple providers
 - [Audio Generation](./user-interface/ai-integration/audio-generation.md) — Text-to-speech and sound effects
 - [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
-- [Asset Library Basics](./import-media/asset-panel/basics.md) — Work with generated assets
+- [Asset Library Basics](./import-media/asset-library/basics.md) — Work with generated assets
 
 
 

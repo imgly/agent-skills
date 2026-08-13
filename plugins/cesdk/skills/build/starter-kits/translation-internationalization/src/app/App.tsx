@@ -82,7 +82,7 @@ export function App({ editorConfig }: AppProps) {
     // ============================================================================
 
     // highlight-scene-loading
-    await cesdk.loadFromURL(resolveAssetPath('/assets/example-1.scene'));
+    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
     // highlight-scene-loading
   }, []);
 

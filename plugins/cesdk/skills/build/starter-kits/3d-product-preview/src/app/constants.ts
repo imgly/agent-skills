@@ -5,7 +5,17 @@
  */
 
 import type { Product } from './ProductSelector/ProductSelector';
-import { resolveAssetPath } from './resolveAssetPath';
+
+/**
+ * Demo assets for this example (scenes, textures, icons, …) are loaded from
+ * the IMG.LY CDN by default. To host them yourself, copy this kit's asset
+ * folder to your own CDN or server and change this constant — or set it to
+ * `''` and place the files in this app's `public/` directory. No trailing
+ * slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0/starterkit-3d-product-preview';
 
 // ============================================================================
 // Render Defaults
@@ -27,7 +37,7 @@ export const DEFAULT_EXPORT_HEIGHT = 1048;
 
 /**
  * Product configurations for 3D mockup editor.
- * Each product has assets in public/{assetsFolderName}/.
+ * Each product's assets live under `${DEMO_ASSETS_BASE_URL}/{assetsFolderName}/`.
  */
 export const PRODUCTS: Record<string, Product> = {
   businesscard: {
@@ -66,7 +76,7 @@ export function getDesignSceneUrl(productKey: string): string {
   if (!product) {
     throw new Error(`Unknown product key: ${productKey}`);
   }
-  return resolveAssetPath(`/${product.assetsFolderName}/design.scene`);
+  return `${DEMO_ASSETS_BASE_URL}/${product.assetsFolderName}/design.scene`;
 }
 
 /**
@@ -77,9 +87,7 @@ export function getMockupSceneUrl(productKey: string): string {
   if (!product) {
     throw new Error(`Unknown product key: ${productKey}`);
   }
-  return resolveAssetPath(
-    `/${product.assetsFolderName}/textures/Material_baseColor.scene`
-  );
+  return `${DEMO_ASSETS_BASE_URL}/${product.assetsFolderName}/textures/Material_baseColor.scene`;
 }
 
 /**
@@ -90,5 +98,5 @@ export function getModelUrl(productKey: string): string {
   if (!product) {
     throw new Error(`Unknown product key: ${productKey}`);
   }
-  return `/${product.assetsFolderName}/scene.gltf`;
+  return `${DEMO_ASSETS_BASE_URL}/${product.assetsFolderName}/scene.gltf`;
 }

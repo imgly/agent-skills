@@ -52,13 +52,13 @@ Load content into the editor using one of these methods:
 await cesdk.createFromImage('https://example.com/photo.jpg');
 
 // Load from a template archive
-await cesdk.loadFromArchiveURL('https://example.com/template.zip');
+await cesdk.load('https://example.com/template.zip');
 
 // Create a blank canvas
 await cesdk.actions.run('scene.create');
 
 // Load from a scene file
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 ```
 
 See [Open the Editor](https://img.ly/docs/cesdk/js/open-the-editor/load-scene-478833/) for all loading methods.

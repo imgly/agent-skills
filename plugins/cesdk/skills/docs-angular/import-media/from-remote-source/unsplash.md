@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Import From Remote Source](./import-media/from-remote-source.md) > [From a Custom Source](./import-media/from-remote-source/unsplash.md)
+**Navigation:** [Guides](./guides.md) > [Import Media Assets](./import-media.md) > [Import From Remote Source](./import-media/from-remote-source.md) > [From Unsplash](./import-media/from-remote-source/unsplash.md)
 
 ---
 
@@ -18,7 +18,7 @@ Integrate Unsplash's vast library of royalty-free stock images directly into CE.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-import-media-from-remote-source-unsplash-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-import-media-from-remote-source-unsplash-browser/index.html)
 
 Unsplash provides a vast library of high-quality, royalty-free stock images through their public API. This guide shows you how to integrate Unsplash's image search and browsing capabilities directly into CE.SDK using custom asset sources.
 
@@ -910,8 +910,8 @@ Local sources keep track of added assets and return matching items based on sear
 
 ## Next Steps
 
-- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset panels and UI
-- [Asset Library Basics](./import-media/asset-panel/basics.md) — Understand asset sources
+- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure asset panels and UI
+- [Asset Library Basics](./import-media/asset-library/basics.md) — Understand asset sources
 - [Integrate Soundstripe Audio](./import-media/from-remote-source/soundstripe.md) — Add audio assets
 - [IMG.LY Premium Assets](./import-media/from-remote-source/imgly-premium-assets.md) — Access premium stock content
 - [Import Media Concepts](./import-media/concepts.md) — Learn core import concepts

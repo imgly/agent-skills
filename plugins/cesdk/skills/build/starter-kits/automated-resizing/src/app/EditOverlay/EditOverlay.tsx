@@ -1,8 +1,8 @@
-import { resolveAssetPath } from '../utils';
+import { DEMO_ASSETS_BASE_URL } from '../constants';
 
 import styles from './EditOverlay.module.css';
 
-const EDIT_ICON_PATH = resolveAssetPath('icons/edit.svg');
+const EDIT_ICON_PATH = `${DEMO_ASSETS_BASE_URL}/icons/edit.svg`;
 
 interface EditOverlayProps {
   onClick?: (e: React.MouseEvent) => void;

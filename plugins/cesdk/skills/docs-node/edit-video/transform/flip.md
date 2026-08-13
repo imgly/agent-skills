@@ -40,7 +40,7 @@ const engine = await CreativeEngine.init({
   baseURL: process.env.CESDK_BASE_URL
 });
 
-await engine.scene.loadFromURL(
+await engine.scene.load(
   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_video_landscape_1.scene'
 );
 

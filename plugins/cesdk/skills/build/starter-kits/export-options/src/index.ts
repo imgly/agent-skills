@@ -56,7 +56,7 @@ async function initializeEditor(): Promise<void> {
 
     // highlight-load-scene
     // Load the demo scene
-    await cesdk.loadFromURL(resolveAssetPath('/assets/example-1.scene'));
+    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
     // highlight-load-scene
   } catch (error) {
     // eslint-disable-next-line no-console

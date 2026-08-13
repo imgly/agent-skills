@@ -69,7 +69,7 @@ Each feature is related to an example further down the page.
 | **Time Management**      | Offset                      | `setTimeOffset`                       | To move the playback starting point in the scene. |
 |                          | Duration                    | `setDuration`                         | Total length (seconds). |
 |                          | Trim length                 | `setTrimLength`                       | Cuts content to a defined length. |
-| **Replace Audio Source** | Reload edited scene         | `scene.loadFromString`                | Used when replacing audio at runtime. |
+| **Replace Audio Source** | Reload edited scene         | `scene.load`                | Used when replacing audio at runtime. |
 | **Waveforms**            | Generate thumbnails         | `generateAudioThumbnailSequence`      | Produces waveform sample data for UI. |
 | **Export Audio**         | Export WAV                  | `exportAudio`                         | MIME type: `audio/wav`. |
 |                          | Export MP4                  | `exportAudio`                         | MIME type: `audio/mp4`. |
@@ -313,6 +313,7 @@ For each feature’s detailed instructions and options:
 - [Add Sound Effects](./create-audio/audio/add-sound-effects.md) - Learn how to use buffers with arbitrary data to generate sound effects programmatically
 - [Add Music](./create-audio/audio/add-music.md) - Add background music and audio tracks to video projects using CE.SDK's audio block system.
 - [Adjust Audio Volume](./create-audio/audio/adjust-volume.md) - Learn how to adjust audio volume in CE.SDK to control playback levels, mute audio, and balance multiple audio sources in video projects.
+- [Fade Audio In and Out](./create-audio/audio/fade.md) - Learn how to fade audio in and out in CE.SDK, choose an easing curve, and read fade settings back from audio blocks and video fills.
 - [Adjust Audio Playback Speed](./create-audio/audio/adjust-speed.md) - Learn how to adjust audio playback speed in CE.SDK to create slow-motion, time-stretched, and fast-forward audio effects.
 - [Loop Audio](./create-audio/audio/loop.md) - Create seamless repeating audio playback for background music and sound effects using CE.SDK's audio looping system.
 

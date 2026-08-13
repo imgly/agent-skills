@@ -18,7 +18,7 @@ Transform your existing Photoshop templates for use in the CE.SDK with our Impor
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-psd-template-import-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/starterkit-psd-template-import/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/starterkit-psd-template-import/index.html)
 
 ***
 
@@ -355,17 +355,21 @@ result.messages.forEach((msg) => {
 
 ## Set Up a Scene
 
-CE.SDK offers multiple ways to load content into the editor. For Photoshop import, you can load PSD files directly:
+CE.SDK offers multiple ways to load content into the editor. For Photoshop import, convert the PSD file with the bundled importer plugin, then load the result:
 
 ```typescript title="src/index.ts"
-// Import a Photoshop file from URL
-await cesdk.loadFromURL('https://example.com/template.psd');
+import { importPsdFile } from './imgly/plugins/psd-importer';
+
+// Import a Photoshop file with the bundled importer plugin
+const psdBlob = await fetch('https://example.com/template.psd').then(res => res.blob());
+const result = await importPsdFile(psdBlob, 'template.psd');
+await cesdk.load(result.sceneArchiveUrl);
 
 // Create a blank design canvas - starts with an empty design scene
 await cesdk.actions.run('scene.create');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.loadFromArchiveURL('https://example.com/template.zip');
+await cesdk.load('https://example.com/template.zip');
 ```
 
 > **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading methods.
@@ -407,8 +411,8 @@ Actions are functions that handle user interactions like exporting designs, savi
 
 - `exportDesign` – Export the current design to PNG, JPEG, PDF, or other formats
 - `saveScene` – Save the scene as a JSON string for later editing
-- `importScene` – Import a previously saved scene (supports `.scene` and `.cesdk` formats)
-- `exportScene` – Export the scene as a JSON file or `.cesdk` archive with all assets
+- `importScene` – Import a previously saved scene (`.imgly` or `.scene`)
+- `exportScene` – Export the scene as an `.imgly` file, either the scene alone or an archive with all assets
 - `uploadFile` – Handle file uploads with progress tracking
 
 Use `cesdk.actions.run()` to execute any action:
@@ -421,13 +425,16 @@ await cesdk.actions.run('exportDesign', { mimeType: 'image/png' });
 #### Import from File Picker
 
 ```typescript title="src/app/imgly/config/actions.ts"
+import { importPsdFile } from '../plugins/psd-importer';
+
 // Let users open Photoshop files from their device
 cesdk.actions.register('importImage', async () => {
-  const blobURL = await cesdk.utils.loadFile({
+  const psdBlob = await cesdk.utils.loadFile({
     accept: '.psd,image/*',
-    returnType: 'objectURL'
+    returnType: 'blob'
   });
-  await cesdk.loadFromURL(blobURL);
+  const result = await importPsdFile(psdBlob, 'design.psd');
+  await cesdk.load(result.sceneArchiveUrl);
 });
 ```
 

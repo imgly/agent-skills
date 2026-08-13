@@ -20,7 +20,7 @@ designs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-import-media-from-remote-source-soundstripe-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-import-media-from-remote-source-soundstripe-browser/index.html)
 
 Soundstripe provides a vast library of high-quality, royalty-free audio tracks through their API. This guide shows you how to integrate Soundstripe's audio search and browsing capabilities directly into CE.SDK using the official `@imgly/plugin-soundstripe-web` plugin. You'll learn how to set up Soundstripe API authentication (including proxy server requirements for production), implement search and discovery features, configure the asset library UI, and handle automatic URI refresh for expired audio links.
 
@@ -485,9 +485,9 @@ Common issues and solutions:
 
 ## Next Steps
 
-- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset panels and
+- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure asset panels and
   UI
-- [Asset Library Basics](./import-media/asset-panel/basics.md) — Understand asset sources
+- [Asset Library Basics](./import-media/asset-library/basics.md) — Understand asset sources
 - [Integrate Unsplash Images](./import-media/from-remote-source/unsplash.md) — Add stock image sources
 - [IMG.LY Premium Assets](./import-media/from-remote-source/imgly-premium-assets.md) — Access premium stock content
 - [Import Media Concepts](./import-media/concepts.md) — Learn core import concepts

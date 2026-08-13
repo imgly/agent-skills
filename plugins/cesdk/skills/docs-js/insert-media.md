@@ -12,7 +12,7 @@
 
 ## Related Pages
 
-- [Overview](./overview.md) - Understand how insertion works, how inserted media behave within scenes, and how to control them via UI or code.
+- [Overview](./insert-media/overview.md) - Understand how insertion works, how inserted media behave within scenes, and how to control them via UI or code.
 - [Insert Images](./insert-media/images.md) - Documentation for Insert Images
 - [Insert Videos](./insert-media/videos.md) - Learn how to insert videos into CE.SDK scenes using the convenience API or manual block creation with video fills.
 - [Insert Audio](./insert-media/audio.md) - Add audio files to your video projects programmatically, configure timeline position, volume, and playback properties.

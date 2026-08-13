@@ -1,7 +1,5 @@
 > This is one page of the CE.SDK Svelte documentation. For a complete overview, see the [Svelte Documentation Index](https://img.ly/docs/cesdk/svelte.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Conversion](./conversion.md) > [To PNG](./conversion/to-png.md)
-
 ---
 
 Export designs to PNG format with lossless quality and optional transparency support.
@@ -18,7 +16,7 @@ Export designs to PNG format with lossless quality and optional transparency sup
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-conversion-to-png-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-conversion-to-png-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-conversion-to-png-browser/index.html)
 
 PNG is a lossless image format that preserves image quality and supports transparency. It's ideal for designs requiring pixel-perfect fidelity, logos, graphics with transparent backgrounds, and any content where quality cannot be compromised.
 
@@ -84,7 +82,7 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
     const page = engine.scene.getCurrentPage();
@@ -288,7 +286,7 @@ The `cesdk.utils.export()` method handles the export with a loading dialog, whil
 
 - [Conversion Overview](./conversion/overview.md) - Learn about other export formats
 - [Export Overview](./export-save-publish/export/overview.md) - Understand the full export workflow
-- [To PDF](./conversion/to-pdf.md) - Export designs to PDF format
+- [To PDF](./export-save-publish/export/to-pdf.md) - Export designs to PDF format
 
 
 

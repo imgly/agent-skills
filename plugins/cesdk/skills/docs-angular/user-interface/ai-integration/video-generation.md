@@ -19,7 +19,7 @@ videos from text or animating static images.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-video-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-user-interface-ai-integration-video-generation-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-user-interface-ai-integration-video-generation-browser/index.html)
 
 The video generation plugin creates videos from text descriptions (text-to-video) or animates static images (image-to-video). Use models like Minimax Video, Pixverse, Kling Video, and ByteDance Seedance.
 
@@ -482,8 +482,8 @@ Common issues when configuring the plugin:
 - [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
 - [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
 - [Integrate AI Features](./user-interface/ai-integration/integrate.md) — Overview of AI integration
-- [Asset Library Basics](./import-media/asset-panel/basics.md) — Work with generated assets
-- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset sources
+- [Asset Library Basics](./import-media/asset-library/basics.md) — Work with generated assets
+- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure asset sources
 
 
 

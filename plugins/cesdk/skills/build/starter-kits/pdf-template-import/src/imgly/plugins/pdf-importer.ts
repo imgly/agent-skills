@@ -21,7 +21,7 @@
  * });
  *
  * // Load into editor
- * await cesdk.loadFromArchiveURL(result.sceneArchiveUrl);
+ * await cesdk.load(result.sceneArchiveUrl);
  *
  * // Clean up when done (at app level)
  * URL.revokeObjectURL(result.imageUrl);

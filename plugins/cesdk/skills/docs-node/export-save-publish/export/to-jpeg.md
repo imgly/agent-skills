@@ -72,7 +72,7 @@ try {
   const choice = await promptChoice();
 
   let done = showProgress('Loading scene...');
-  await engine.scene.loadFromURL(
+  await engine.scene.load(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
   done();
@@ -208,7 +208,7 @@ JPEG works well for:
 | Method | Description |
 |--------|-------------|
 | `engine.block.export(block, options)` | Export a block to the specified format |
-| `engine.scene.loadFromURL(url)` | Load a scene from a remote URL |
+| `engine.scene.load(url)` | Load a scene from a remote URL |
 | `engine.block.findByType(type)` | Find all blocks of a specific type |
 | `writeFileSync(path, buffer)` | Write buffer to file system (Node.js) |
 

@@ -30,6 +30,7 @@ Key Concepts and principles of CE.SDK.
 - [Design Units](./concepts/design-units.md) - Configure design units (pixels, millimeters, inches) and DPI settings for print-ready output in CE.SDK.
 - [Font Size Unit](./concepts/font-size-unit.md) - Configure how font sizes are interpreted (Point vs Pixel) per scene in the CE.SDK Web engine.
 - [Headless](./concepts/headless-mode/browser.md) - Run headless CE.SDK's Engine inside a browser-based app.
+- [Export Counting](./export-counting.md) - Learn which operations count as an export in CE.SDK, when export events are recorded, and what data they contain.
 - [Error Catalog](./concepts/error-catalog.md) - Reference of every structured CE.SDK engine error code, its message, hint, and related documentation page.
 
 

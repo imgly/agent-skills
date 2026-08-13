@@ -23,8 +23,8 @@ Scene files are portable design templates that preserve the entire design struct
  * CE.SDK Node.js Example: Import Templates from Scene Files
  *
  * This example demonstrates:
- * - Loading scenes from .scene file URLs
- * - Loading scenes from .archive (ZIP) URLs
+ * - Loading scenes from scene file URLs
+ * - Loading scenes from archive URLs
  * - Applying templates while preserving page dimensions
  * - Understanding the difference between loading and applying templates
  * - Working with scene files programmatically in a headless environment
@@ -51,9 +51,9 @@ async function main() {
     // This is the recommended approach for loading complete templates
     // with all their assets embedded in a ZIP file
 
-    // Load a complete template from an archive (ZIP) file
+    // Load a complete template from an archive file
     // This loads both the scene structure and all embedded assets
-    await engine.scene.loadFromArchiveURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/templates/starterkits/16-9-fashion-ad.zip'
     );
 
@@ -80,10 +80,10 @@ async function main() {
     writeFileSync('output-from-archive.png', buffer);
     console.log('Exported scene to output-from-archive.png');
 
-    // Alternative: Load scene from URL (.scene file)
+    // Alternative: Load scene from URL (plain scene file)
     // This loads only the scene structure - assets must be accessible via URLs
     // Uncomment to try:
-    // await engine.scene.loadFromURL(
+    // await engine.scene.load(
     //   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     // );
     //
@@ -141,9 +141,9 @@ This guide covers loading scenes from archives, loading from URLs, applying temp
 
 ## Scene File Formats
 
-CE.SDK supports two scene file formats for importing templates:
+CE.SDK supports two kinds of scene files for importing templates. Both use the `.imgly` extension and load through the same `engine.scene.load()` call, which detects the kind automatically from the file content; `.scene` and `.zip` files also load.
 
-### Scene Format (.scene)
+### Scene Format
 
 Scene files are JSON-based representations of design structures. They reference external assets via URLs, making them lightweight and suitable for database storage. However, the referenced assets must remain accessible at their URLs.
 
@@ -153,9 +153,9 @@ Scene files are JSON-based representations of design structures. They reference 
 - Templates with hosted assets
 - Lightweight transmission
 
-### Archive Format (.archive or .zip)
+### Archive Format
 
-Archive files are self-contained packages that bundle the scene structure with all referenced assets in a ZIP file. This makes them portable and suitable for offline use.
+Archive files are self-contained packages that bundle the scene structure with all referenced assets in a zip-compressed file. This makes them portable and suitable for offline use.
 
 **When to use:**
 
@@ -169,26 +169,26 @@ Archive files are self-contained packages that bundle the scene structure with a
 The most common way to load templates is from archive URLs. This method loads both the scene structure and all embedded assets:
 
 ```typescript highlight-load-from-archive
-// Load a complete template from an archive (ZIP) file
+// Load a complete template from an archive file
 // This loads both the scene structure and all embedded assets
-await engine.scene.loadFromArchiveURL(
+await engine.scene.load(
   'https://cdn.img.ly/assets/templates/starterkits/16-9-fashion-ad.zip'
 );
 ```
 
 When you load from an archive:
 
-- The ZIP file is fetched and extracted
+- The archive is fetched and extracted
 - All assets are registered with CE.SDK
 - The scene structure is loaded
 - Asset paths are automatically resolved
 
 ## Load Scene from URL
 
-You can also load scenes directly from .scene file URLs. This approach requires that all referenced assets remain accessible at their original URLs:
+You can also load plain scene files directly from URLs. This approach requires that all referenced assets remain accessible at their original URLs:
 
 ```typescript highlight-load-from-url
-// await engine.scene.loadFromURL(
+// await engine.scene.load(
 //   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
 // );
 //
@@ -210,7 +210,7 @@ CE.SDK provides two approaches for working with templates, each serving differen
 
 ### Load Scene
 
-When you use `loadFromURL()` or `loadFromArchiveURL()`, CE.SDK:
+When you use `engine.scene.load()`, CE.SDK:
 
 - Replaces the entire current scene
 - Adopts the template's page dimensions
@@ -295,7 +295,7 @@ Template URLs might be unreachable:
 
 ```typescript
 try {
-  await engine.scene.loadFromArchiveURL(templateUrl);
+  await engine.scene.load(templateUrl);
 } catch (error) {
   console.error('Failed to load template:', error);
   // Fall back to default template or handle error
@@ -308,7 +308,7 @@ The file might not be a valid scene:
 
 ```typescript
 try {
-  await engine.scene.loadFromURL(sceneUrl);
+  await engine.scene.load(sceneUrl);
 } catch (error) {
   if (error.message.includes('parse')) {
     console.error('Invalid scene file format');
@@ -318,7 +318,7 @@ try {
 
 ### Missing Assets
 
-For .scene files, referenced assets might be unavailable. The scene loads but assets appear missing. Consider using archives to avoid this issue.
+For plain scene files, the referenced assets must remain accessible at their URLs. If they are unavailable, the scene loads but assets appear as missing on the canvas. Consider using archives to avoid this issue.
 
 ## Performance Considerations
 
@@ -340,8 +340,7 @@ When loading templates from external URLs in Node.js, most CORS restrictions don
 
 | Method                                   | Description                                               |
 | ---------------------------------------- | --------------------------------------------------------- |
-| `engine.scene.loadFromArchiveURL()`      | Loads a complete scene from an archive (ZIP) file        |
-| `engine.scene.loadFromURL()`             | Loads a scene from a .scene file URL                      |
+| `engine.scene.load()`                    | Loads a scene or archive from a URL or string             |
 | `engine.scene.applyTemplateFromURL()`    | Applies a template while preserving page dimensions      |
 | `engine.scene.get()`                     | Returns the current scene block ID                        |
 | `engine.scene.getPages()`                | Returns all page IDs in the scene                         |

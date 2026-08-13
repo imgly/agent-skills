@@ -9,7 +9,17 @@ import {
 import { useEngine } from './EngineContext';
 import { useSinglePageMode } from './SinglePageModeContext';
 import { usePagePreview } from './PagePreviewContext';
-import { caseAssetPath } from '../util';
+
+/**
+ * Demo assets for this example (images, scenes, fonts, …) are loaded from
+ * the IMG.LY CDN by default. To host them yourself, copy this kit's asset
+ * folder to your own CDN or server and change this constant — or set it to
+ * `''` and place the files in this app's `public/` directory. No trailing
+ * slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0/starterkit-photobook-ui';
 
 const template = {
   name: 'Example Photobook',
@@ -66,7 +76,9 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         setSceneIsLoaded(false);
 
         // Load the photobook scene
-        await engine.scene.loadFromURL(caseAssetPath(template.scene));
+        await engine.scene.load(
+          `${DEMO_ASSETS_BASE_URL}${template.scene}`
+        );
 
         // Simulate that a user has replaced the placeholder images
         engine.block

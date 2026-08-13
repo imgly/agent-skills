@@ -4,7 +4,16 @@
  * Sample videos from Pexels.com (licensed for free use)
  */
 
-import { resolveAssetPath } from './resolveAssetPath';
+/**
+ * Demo assets for this example (videos, thumbnails, …) are loaded from the
+ * IMG.LY CDN by default. To host them yourself, copy this kit's asset
+ * folder to your own CDN or server and change this constant — or set it to
+ * `''` and place the files in this app's `public/` directory. No trailing
+ * slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0/starterkit-start-with-video';
 
 // ============================================================================
 // Types
@@ -31,10 +40,8 @@ export interface VideoAsset {
 // highlight-video-catalog
 export const VIDEO_CATALOG: VideoAsset[] = [
   {
-    full: resolveAssetPath('/assets/videos/pexels-koolshooters-6975806.mp4'),
-    thumbUri: resolveAssetPath(
-      '/assets/videos/pexels-koolshooters-6975806.png'
-    ),
+    full: `${DEMO_ASSETS_BASE_URL}/assets/videos/pexels-koolshooters-6975806.mp4`,
+    thumbUri: `${DEMO_ASSETS_BASE_URL}/assets/videos/pexels-koolshooters-6975806.png`,
     alt: 'A Young Man Squeezing An Orange',
     author: {
       name: 'KoolShooters',
@@ -42,10 +49,8 @@ export const VIDEO_CATALOG: VideoAsset[] = [
     }
   },
   {
-    full: resolveAssetPath('/assets/videos/pexels-nicola-barts-7930811.mp4'),
-    thumbUri: resolveAssetPath(
-      '/assets/videos/pexels-nicola-barts-7930811.png'
-    ),
+    full: `${DEMO_ASSETS_BASE_URL}/assets/videos/pexels-nicola-barts-7930811.mp4`,
+    thumbUri: `${DEMO_ASSETS_BASE_URL}/assets/videos/pexels-nicola-barts-7930811.png`,
     alt: 'Person Decorating Dessert With Kiwi',
     author: {
       name: 'Nicola Barts',
@@ -53,12 +58,8 @@ export const VIDEO_CATALOG: VideoAsset[] = [
     }
   },
   {
-    full: resolveAssetPath(
-      '/assets/videos/pexels-tima-miroshnichenko-7033913.mp4'
-    ),
-    thumbUri: resolveAssetPath(
-      '/assets/videos/pexels-tima-miroshnichenko-7033913.png'
-    ),
+    full: `${DEMO_ASSETS_BASE_URL}/assets/videos/pexels-tima-miroshnichenko-7033913.mp4`,
+    thumbUri: `${DEMO_ASSETS_BASE_URL}/assets/videos/pexels-tima-miroshnichenko-7033913.png`,
     alt: 'Close Up Video Of An Opened Pomegranate',
     author: {
       name: 'Tima Miroshnichenko',

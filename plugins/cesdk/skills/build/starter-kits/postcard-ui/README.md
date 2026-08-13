@@ -52,46 +52,78 @@ npm run build:local
 
 ```
 src/
-├── app/                          # Demo application
-├── imgly/
-│   ├── CreativeEditor.tsx
-│   ├── CreativeEngine.tsx
-│   ├── contexts/
-│   │   ├── EngineContext.tsx
-│   │   ├── SelectionContext.tsx
-│   │   └── SinglePageModeContext.tsx
-│   ├── createApplyLayoutAsset.js
-│   ├── hooks/
-│   │   ├── UseEditMode.ts
-│   │   ├── UseHistory.ts
-│   │   ├── UseImageUpload.ts
-│   │   ├── UseSelectedProperty.ts
-│   │   └── UseSinglePageFocus.ts
-│   ├── index.ts                  # Editor initialization function
-│   ├── loadAssetSourceFromContentJSON.ts
-│   ├── localDownload.ts
-│   ├── postcard-catalog.ts
-│   └── utils/
-│       ├── ColorUtilities.ts
-│       ├── CreativeEngineUtils.js
-│       └── UnsplashSource.ts
-└── index.tsx                 # Application entry point
+├── imgly/                        # CE.SDK glue layer (reusable)
+│   ├── constants.ts              # Block names, asset source ids, font subset
+│   ├── contexts/                 # Engine, selection, and single-page-mode contexts
+│   ├── hooks/                    # Reactive state bridges (UseEditMode, UseHistory, …)
+│   │   └── useEditorActions.ts   # Thin hook — binds engine to pure action functions
+│   ├── actions/                  # All engine mutations as pure functions
+│   │   ├── assets.ts             # findShapes, findStickers, findTypefaces, …
+│   │   ├── block.ts              # deleteSelected, setEditMode, resetCrop, …
+│   │   ├── export.ts             # exportToPdf (try/finally hardened), downloadBlob
+│   │   ├── history.ts            # undo, redo
+│   │   ├── pageStyle.ts          # setColorByBlockName, setFontByBlockName, …
+│   │   └── text.ts               # addText, replaceFontOnSelection, …
+│   ├── utils/                    # ColorUtilities, CreativeEngineUtils, UnsplashSource, ImageColorsSource
+│   └── index.ts                  # Public surface
+├── app/                          # Postcard UI (application-specific)
+│   ├── contexts/                 # EditorContext (template/scene/step), PageSettingsContext
+│   ├── components/               # Generic UI primitives (IconButton, Dropdown, …)
+│   ├── features/                 # Editor panels grouped by feature
+│   │   ├── text/                 # AddTextSecondary, ChangeFontSecondary, …
+│   │   ├── image/                # AddImageSecondary, ImageAdjustmentBar, …
+│   │   ├── shape/                # AddShapeSecondary, ShapesBar, …
+│   │   ├── sticker/              # AddStickerSecondary, StickerBar, …
+│   │   └── blocks/               # AddBlockBar, DeleteSelectedButton, BottomControls
+│   ├── layout/                   # App shell & chrome
+│   │   ├── PostcardUI/           # Root editor shell (switches between steps)
+│   │   ├── ProcessNavigation/    # Step navigation (Style → Design → Write)
+│   │   └── PageToolbar/          # Front/back page toolbars
+│   ├── steps/                    # One screen per wizard step
+│   │   └── ChooseTemplateStep/   # The "Style" step (template selection)
+│   └── icons/                    # SVG icons (imported as React components)
+└── index.tsx                     # Application entry point
 ```
 
 ## Architecture
 
-This starterkit follows a clear separation of concerns:
+The codebase is organized into two clearly separated layers.
 
-- **`src/app/`**: React components and application logic
-  - Self-contained UI components with CSS modules
-  - Application-specific contexts for editor state and page settings
+### `src/imgly/` — CE.SDK glue (reusable)
 
-- **`src/imgly/`**: CE.SDK integration layer
-  - Engine initialization and configuration
-  - Reusable hooks and utilities
-  - Asset source configuration
+Encapsulates everything that touches the CE.SDK engine:
 
-The `src/imgly/` directory is designed to be self-contained and reusable across different projects.
+- **`contexts/`** — React contexts for engine lifecycle (`EngineContext`), block selection (`SelectionContext`), and single-page-focus mode (`SinglePageModeContext`).
+- **`hooks/`** — Reactive state bridges (`UseEditMode`, `UseHistory`, `UseImageUpload`, `UseSelectedProperty`). `useEditorActions()` is a thin ergonomic wrapper that binds the engine from context to the pure action functions below.
+- **`actions/`** — All engine **mutations** as plain, testable functions (`addText(engine, …)`, `deleteSelected(engine)`, `exportToPdf(engine, …)`, etc.). Pure functions: no React imports, no context reads — the engine is always an explicit parameter.
+- **`utils/`** — Stateless helpers (`ColorUtilities`, `CreativeEngineUtils`) and engine-native asset sources (`UnsplashSource`, `ImageColorsSource`).
+- **`constants.ts`** — Shared constants: `BLOCK_NAMES`, `ASSET_SOURCES`, `FONT_SUBSET`.
+
+### `src/app/` — Postcard UI (application-specific)
+
+Owns all React UI that is specific to the postcard use-case:
+
+- **`contexts/`** — Domain state: `EditorContext` (template selection, scene loading, step management) and `PageSettingsContext` (front/back colors, fonts, sizes).
+- **`components/`** — Generic, reusable UI primitives (buttons, dropdowns incl. `ColorDropdown`, color pickers, layout primitives). No engine calls.
+- **`features/`** — Editor panels grouped feature-first (`text/`, `image/`, `shape/`, `sticker/`, `blocks/`). Each panel reads engine state via `imgly` hooks and triggers changes via `useEditorActions()`.
+- **`layout/`** — App shell and chrome: `PostcardUI` (composition root that switches between steps), `ProcessNavigation` (the Style → Design → Write stepper), and `PageToolbar` (front/back page toolbars).
+- **`steps/`** — One screen per wizard step (e.g. `ChooseTemplateStep`, the "Style" step). The steps themselves are listed in `ALL_STEPS` in `EditorContext`.
+
+### The golden rule
+
+**UI components never call `engine.*` to mutate state.** They call `imgly/actions` functions via `useEditorActions()`. This keeps mutations testable in isolation (plain functions, no React), and makes it obvious where all engine side-effects live.
+
+### Path aliases
+
+| Alias | Maps to |
+| ----- | ------- |
+| `@/*` | `src/*` |
+
+### Type checking
+
+```bash
+npm run check:syntax  # TypeScript strict-mode type check
+```
 
 ## Key Components
 
@@ -149,11 +181,40 @@ All components use CSS modules for scoped styling. Global styles are defined in 
 - `npm run dev` - Start development server
 - `npm run build` - Production build
 - `npm run preview` - Preview production build
-- `npm run check:syntax` - TypeScript type checking
+- `npm run check:syntax` - TypeScript strict-mode type checking
 - `npm run check:format` - Prettier formatting check
 - `npm run check:lint` - ESLint checking
 - `npm run check:all` - Run all checks
 - `npm run fix:all` - Auto-fix formatting and linting issues
+
+## Demo Assets
+
+The demo assets for this starter kit load from the IMG.LY CDN by default —
+nothing to configure. If you want to own them — edit them, meet compliance
+requirements, or remove the CDN dependency for production — eject them
+(the archive contains only this kit's files):
+
+```bash
+# Download this starter kit's demo assets
+curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0/starterkit-postcard-ui/demo-assets.zip
+unzip demo-assets.zip -d demo-assets
+rm demo-assets.zip
+```
+
+Upload the extracted files to your own server or CDN, then point the app
+at them via `.env`:
+
+```bash
+VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
+```
+
+The default URL is the `DEMO_ASSETS_BASE_URL` constant in `src/app/contexts/EditorContext.tsx` if you
+prefer changing it in code.
+
+The demo assets are intended for development and prototyping — replace
+them with your own content or licensed stock assets before shipping to
+production (see `DEMO-ASSETS-NOTICE.txt` in the download). This applies in
+particular to media such as music tracks and stock imagery.
 
 ## License
 

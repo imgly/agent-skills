@@ -1,7 +1,17 @@
 import type { ImageConfig } from '../imgly';
-import { resolveAssetPath } from '../imgly/resolveAssetPath';
 
-const CASE_ASSET_PATH = resolveAssetPath('/assets/force-crop');
+/**
+ * Demo assets for this example (images, icons, …) are loaded from the
+ * IMG.LY CDN by default. To host them yourself, copy this kit's asset
+ * folder to your own CDN or server and change this constant — or set it to
+ * `''` and place the files in this app's `public/` directory. No trailing
+ * slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0/starterkit-force-crop-editor';
+
+const CASE_ASSET_PATH = `${DEMO_ASSETS_BASE_URL}/assets/force-crop`;
 
 /**
  * Sample images for demonstration purposes.

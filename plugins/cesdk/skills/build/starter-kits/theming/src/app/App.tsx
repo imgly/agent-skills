@@ -32,7 +32,7 @@ export function App({ editorConfig }: AppProps) {
     // Scene Loading
     // ============================================================================
 
-    await instance.loadFromURL(resolveAssetPath('/assets/example-1.scene'));
+    await instance.load(resolveAssetPath('/assets/example-1.scene'));
 
     setCesdk(instance);
   }, []);

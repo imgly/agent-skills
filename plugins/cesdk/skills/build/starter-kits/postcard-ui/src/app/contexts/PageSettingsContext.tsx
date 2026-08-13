@@ -1,14 +1,9 @@
 import { RGBAColor, Typeface } from '@cesdk/engine';
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState
-} from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useEditor } from './EditorContext';
-import { useEngine } from '../../imgly/contexts/EngineContext';
-import { hexToRgba } from '../../imgly/utils/ColorUtilities';
+import { useEngine } from '@/app/contexts/EngineContext';
+import { BLOCK_NAMES } from '@/imgly/constants';
+import { hexToRgba } from '@/imgly/utils';
 
 interface PageSettingsContextType {
   frontBackgroundColor: RGBAColor;
@@ -55,86 +50,58 @@ export const PageSettingsProvider = ({
   const [backGreetingsTextSize, setBackGreetingsTextSize] =
     useState<number>(22);
 
+  // Read initial typeface (read-only engine access, kept here)
   useEffect(() => {
-    if (!engine || !sceneIsLoaded) {
-      return;
-    }
-    const [block] = engine.block.findByName('Greeting');
-    if (!block) {
-      return;
-    }
+    if (!engine || !sceneIsLoaded) return;
+    const [block] = engine.block.findByName(BLOCK_NAMES.greeting);
+    if (!block) return;
     setBackGreetingsTextTypeface(engine.block.getTypeface(block));
   }, [engine, sceneIsLoaded]);
 
-  const setColorByBlockName = useCallback(
-    (blockName: string, color: RGBAColor | null) => {
-      if (!sceneIsLoaded || !color) {
-        return;
-      }
-      const { r, g, b } = color;
-      engine.block.findByName(blockName).forEach((blockId) => {
-        if (engine.block.hasStroke(blockId)) {
-          engine.block.setStrokeColor(blockId, { r, g, b, a: 1.0 });
-        }
-        engine.block.setColor(blockId, 'fill/solid/color', { r, g, b, a: 1.0 });
-      });
-      engine.editor.addUndoStep();
-    },
-    [engine, sceneIsLoaded]
-  );
+  useEffect(() => {
+    if (sceneIsLoaded)
+      engine.actions.run(
+        'setColorByBlockName',
+        BLOCK_NAMES.accent,
+        frontAccentColor
+      );
+  }, [sceneIsLoaded, engine, frontAccentColor]);
 
-  const setTextSizeByBlockName = useCallback(
-    (blockName: string, size: number | null) => {
-      if (!sceneIsLoaded || !size) {
-        return;
-      }
-      engine.block.findByName(blockName).forEach((blockId) => {
-        engine.block.setFloat(blockId, 'text/fontSize', size);
-      });
-      engine.editor.addUndoStep();
-    },
-    [sceneIsLoaded, engine]
-  );
+  useEffect(() => {
+    if (sceneIsLoaded)
+      engine.actions.run(
+        'setColorByBlockName',
+        BLOCK_NAMES.background,
+        frontBackgroundColor
+      );
+  }, [sceneIsLoaded, engine, frontBackgroundColor]);
 
-  const setTextFontByBlockName = useCallback(
-    (blockName: string, typeface: Typeface | null) => {
-      if (!sceneIsLoaded || !typeface) {
-        return;
-      }
-      const font =
-        typeface.fonts.find(
-          (font) => font.style === 'normal' && font.weight === 'normal'
-        ) ?? typeface.fonts[0];
-      engine.editor.setEditMode('Transform');
-      engine.block.findByName(blockName).forEach((blockId) => {
-        engine.block.setFont(blockId, font.uri, typeface);
-      });
-      engine.editor.addUndoStep();
-    },
-    [sceneIsLoaded, engine]
-  );
+  useEffect(() => {
+    if (sceneIsLoaded && backGreetingsTextTypeface)
+      engine.actions.run(
+        'setFontByBlockName',
+        BLOCK_NAMES.greeting,
+        backGreetingsTextTypeface
+      );
+  }, [sceneIsLoaded, engine, backGreetingsTextTypeface]);
 
-  useEffect(
-    () => setColorByBlockName('Accent', frontAccentColor),
-    [setColorByBlockName, frontAccentColor]
-  );
-  useEffect(
-    () => setColorByBlockName('Background', frontBackgroundColor),
-    [setColorByBlockName, frontBackgroundColor]
-  );
+  useEffect(() => {
+    if (sceneIsLoaded)
+      engine.actions.run(
+        'setColorByBlockName',
+        BLOCK_NAMES.greeting,
+        backGreetingsTextColor
+      );
+  }, [sceneIsLoaded, engine, backGreetingsTextColor]);
 
-  useEffect(
-    () => setTextFontByBlockName('Greeting', backGreetingsTextTypeface),
-    [setTextFontByBlockName, backGreetingsTextTypeface]
-  );
-  useEffect(
-    () => setColorByBlockName('Greeting', backGreetingsTextColor),
-    [setColorByBlockName, backGreetingsTextColor]
-  );
-  useEffect(
-    () => setTextSizeByBlockName('Greeting', backGreetingsTextSize),
-    [setTextSizeByBlockName, backGreetingsTextSize]
-  );
+  useEffect(() => {
+    if (sceneIsLoaded)
+      engine.actions.run(
+        'setTextSizeByBlockName',
+        BLOCK_NAMES.greeting,
+        backGreetingsTextSize
+      );
+  }, [sceneIsLoaded, engine, backGreetingsTextSize]);
 
   useEffect(() => {
     if (postcardTemplate) {

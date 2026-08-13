@@ -18,7 +18,7 @@ Export your video compositions as MP4 files with H.264 encoding, progress tracki
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-mp4-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-export-save-publish-export-to-mp4-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-export-save-publish-export-to-mp4-browser/index.html)
 
 MP4 is the most widely supported video format, using H.264 encoding for efficient compression. CE.SDK handles frame rendering, encoding, and audio muxing entirely client-side, giving you control over quality and file size.
 
@@ -86,7 +86,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     cesdk.feature.enable('ly.img.video');
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.video.template/templates/milli-surf-school.scene'
     );
     const page = engine.scene.getCurrentPage();
@@ -134,6 +134,7 @@ class Example implements EditorPlugin {
               try {
                 const blob = await engine.block.exportVideo(page, {
                   mimeType: 'video/mp4',
+                  videoBitrate: 'Auto',
                   onProgress: (_, encoded, total) => {
                     dialog.updateProgress({ value: encoded, max: total });
                   }
@@ -251,6 +252,7 @@ Call `engine.block.exportVideo()` with a page block to export it as an MP4 video
 ```typescript highlight=highlight-export-video
 const blob = await engine.block.exportVideo(page, {
   mimeType: 'video/mp4',
+  videoBitrate: 'Auto',
 ```
 
 Pass the page ID from `engine.scene.getCurrentPage()` to export the current video scene.
@@ -308,7 +310,7 @@ The `h264Profile` option controls encoding quality and device compatibility:
 - **77 (Main)**: Balanced quality and compatibility (default)
 - **100 (High)**: Best compression, modern devices only
 
-Set `videoBitrate` in bits per second to control file size.
+Set `videoBitrate` to a positive number of bits per second to control file size, or use one of the named automatic modes. `'System'` (the default, also selected by `0`) lets the browser encoder choose, which can produce a very large, near-lossless file that may fail with an out-of-memory error. `'Auto'` picks a bounded, resolution-aware bitrate and is recommended in the browser to avoid out-of-memory failures.
 
 ```typescript highlight=highlight-quality
 const blob = await engine.block.exportVideo(page, {
@@ -327,7 +329,7 @@ const blob = await engine.block.exportVideo(page, {
 | `framerate` | Target framerate in Hz. Defaults to `30`. |
 | `h264Profile` | H.264 profile: 66 (Baseline), 77 (Main), 100 (High). Defaults to `77`. |
 | `h264Level` | H.264 level multiplied by 10 (e.g., 52 = level 5.2). Defaults to `52`. |
-| `videoBitrate` | Video bitrate in bits/second. `0` enables automatic selection. |
+| `videoBitrate` | Type `number \| 'System' \| 'Auto'`. Video bitrate in bits/second, or a named automatic mode. Defaults to `'System'` (browser encoder chooses; may produce a very large file that fails with out-of-memory). Use `'Auto'` for a bounded, resolution-aware bitrate (recommended in the browser). |
 | `audioBitrate` | Audio bitrate in bits/second. `0` enables automatic selection. |
 | `timeOffset` | Start time in seconds for partial export. Defaults to `0`. |
 | `duration` | Export duration in seconds. Defaults to scene duration. |
@@ -356,7 +358,7 @@ The built-in action exports the current page as MP4 and prompts the user to down
 
 - [Export Overview](./export-save-publish/export/overview.md) - Compare all supported export formats
 - [Export Size Limits](./export-save-publish/export/size-limits.md) - Check device limits before exporting large videos
-- [Export Audio](./guides/export-save-publish/export/audio.md) - Export audio tracks separately
+- [Export Audio](./export-save-publish/export/audio.md) - Export audio tracks separately
 - [Partial Export](./export-save-publish/export/partial-export.md) - Export specific blocks or timeline segments
 
 

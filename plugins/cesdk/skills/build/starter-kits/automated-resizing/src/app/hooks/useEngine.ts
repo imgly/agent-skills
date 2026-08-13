@@ -3,7 +3,6 @@ import CreativeEngine from '@cesdk/engine';
 import type { Configuration } from '@cesdk/cesdk-js';
 
 import { DEFAULT_TEMPLATES } from '../constants';
-import { resolveSceneUrl } from '../utils';
 
 /**
  * Boots a headless `CreativeEngine` for variant generation.
@@ -23,7 +22,7 @@ export function useEngine(config: Partial<Configuration>) {
       }
       engine.editor.setSetting('page/title/show', false);
       const template = DEFAULT_TEMPLATES[0];
-      await engine.scene.loadFromURL(resolveSceneUrl(template.sceneUrl));
+      await engine.scene.load(template.sceneUrl);
       engineRef.current = engine;
       setIsReady(true);
     });

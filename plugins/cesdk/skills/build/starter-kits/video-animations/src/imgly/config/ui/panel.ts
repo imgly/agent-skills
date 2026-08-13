@@ -42,7 +42,7 @@ export function setupPanels(cesdk: CreativeEditorSDK): void {
 
   // #region Inspector Panel
   // Position: 'left' | 'right'
-  cesdk.ui.setPanelPosition('//ly.img.panel/inspector', 'left');
+  cesdk.ui.setPanelPosition('//ly.img.panel/inspector', 'right');
 
   // Floating: true (float over canvas) | false (push canvas)
   cesdk.ui.setPanelFloating('//ly.img.panel/inspector', false);

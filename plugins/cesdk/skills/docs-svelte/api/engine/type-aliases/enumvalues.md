@@ -25,6 +25,8 @@ type EnumValues =
   | StrokePosition
   | StrokeStartCap
   | StrokeStyle
+  | PlaybackFadeInEasing
+  | PlaybackFadeOutEasing
   | HorizontalTextAlignment
   | TextVerticalAlignment
   | CutoutType

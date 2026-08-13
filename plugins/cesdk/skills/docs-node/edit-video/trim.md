@@ -271,8 +271,8 @@ try {
   }
 
   // Save to file
-  writeFileSync('output/trimmed-video.scene', sceneString);
-  console.log('Exported to output/trimmed-video.scene');
+  writeFileSync('output/trimmed-video.imgly', sceneString);
+  console.log('Exported to output/trimmed-video.imgly');
 
   console.log('');
   console.log('Video trim guide completed successfully.');
@@ -599,8 +599,8 @@ After applying trim settings, export the processed content to a file. In headles
   }
 
   // Save to file
-  writeFileSync('output/trimmed-video.scene', sceneString);
-  console.log('Exported to output/trimmed-video.scene');
+  writeFileSync('output/trimmed-video.imgly', sceneString);
+  console.log('Exported to output/trimmed-video.imgly');
 ```
 
 The export operation renders all video blocks at their current trim positions and saves the result to the file system. For full video encoding and export, use the browser SDK with video export capabilities. Always dispose of the engine instance when processing is complete to free resources.

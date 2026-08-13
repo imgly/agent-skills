@@ -18,7 +18,7 @@ Load design templates into CE.SDK from archive URLs, scene URLs, and serialized 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-import-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-create-templates-import-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-create-templates-import-browser/index.html)
 
 Templates are pre-designed scenes that provide starting points for user projects. CE.SDK supports loading templates from archive URLs with bundled assets, remote scene URLs, or serialized strings stored in databases.
 
@@ -43,7 +43,7 @@ import {
 import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
 import packageJson from './package.json';
 
-// Import scene file as string for loadFromString demonstration
+// Import scene file as string for the load-from-string demonstration
 import businessCardSceneString from './assets/business-card.scene?raw';
 
 // Template sources
@@ -57,8 +57,8 @@ const postcardSceneUrl =
  * CE.SDK Plugin: Import Templates
  *
  * Demonstrates loading templates from different sources:
- * - Archive URLs (.zip files with bundled assets)
- * - Scene URLs (.scene files)
+ * - Archive URLs (.imgly files with bundled assets; legacy .zip still loads)
+ * - Scene URLs (.imgly files; legacy .scene still loads)
  * - Serialized strings (imported scene content)
  */
 class Example implements EditorPlugin {
@@ -102,7 +102,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load template from a scene file URL
-    await engine.scene.loadFromURL(postcardSceneUrl);
+    await engine.scene.load(postcardSceneUrl);
 
     // Zoom viewport to fit the loaded scene
     const scene = engine.scene.get();
@@ -130,7 +130,7 @@ class Example implements EditorPlugin {
         variant: 'regular',
         onClick: async () => {
           // Load template from archive URL (bundled assets)
-          await engine.scene.loadFromArchiveURL(fashionAdArchiveUrl);
+          await engine.scene.load(fashionAdArchiveUrl);
           const s = engine.scene.get();
           if (s != null) {
             await engine.scene.zoomToBlock(s, { padding: 40 });
@@ -145,7 +145,7 @@ class Example implements EditorPlugin {
         variant: 'regular',
         onClick: async () => {
           // Load template from scene URL
-          await engine.scene.loadFromURL(postcardSceneUrl);
+          await engine.scene.load(postcardSceneUrl);
           const s = engine.scene.get();
           if (s != null) {
             await engine.scene.zoomToBlock(s, { padding: 40 });
@@ -160,7 +160,7 @@ class Example implements EditorPlugin {
         variant: 'regular',
         onClick: async () => {
           // Load template from serialized string
-          await engine.scene.loadFromString(businessCardSceneString);
+          await engine.scene.load(businessCardSceneString);
           const s = engine.scene.get();
           if (s != null) {
             await engine.scene.zoomToBlock(s, { padding: 40 });
@@ -178,29 +178,29 @@ This guide covers how to load templates from archives, URLs, and strings, and wo
 
 ## Load from Archive
 
-Load a template from an archive URL using `loadFromArchiveURL()`. Archives are `.zip` files that bundle the scene with all its assets, making them portable and self-contained.
+Load a template from an archive URL using `engine.scene.load()`. Archives are `.imgly` files (the `.zip` extension also works) that bundle the scene with all its assets, making them portable and self-contained. The engine detects the file kind automatically from its content.
 
 ```typescript highlight=highlight-load-from-archive
 // Load template from archive URL (bundled assets)
-await engine.scene.loadFromArchiveURL(fashionAdArchiveUrl);
+await engine.scene.load(fashionAdArchiveUrl);
 ```
 
 ## Load from URL
 
-Load a template from a remote `.scene` file URL using `loadFromURL()`. The scene file is a JSON-based format that references assets via URLs.
+Load a template from a remote scene file URL using `engine.scene.load()`. The scene file (`.imgly` or `.scene`) is a JSON-based format that references assets via URLs.
 
 ```typescript highlight=highlight-load-from-url
 // Load template from a scene file URL
-await engine.scene.loadFromURL(postcardSceneUrl);
+await engine.scene.load(postcardSceneUrl);
 ```
 
 ## Load from String
 
-For templates stored in databases or received from APIs, load from a serialized string using `loadFromString()`. This method works with content previously saved using `engine.scene.saveToString()`.
+For templates stored in databases or received from APIs, load from a serialized string using `engine.scene.load()`. This method works with content previously saved using `engine.scene.saveToString()`.
 
 ```typescript highlight=highlight-load-from-string
 // Load template from serialized string
-await engine.scene.loadFromString(businessCardSceneString);
+await engine.scene.load(businessCardSceneString);
 ```
 
 ## Working with the Loaded Scene

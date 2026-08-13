@@ -59,11 +59,12 @@ try {
   const demoArchiveBlob = await engine.scene.saveToArchive();
 
   // Save the archive to filesystem for demonstration
+  // Use the `.imgly` extension when persisting saved files
   const archiveBuffer = Buffer.from(await demoArchiveBlob.arrayBuffer());
-  const archivePath = path.resolve('output/demo-archive.zip');
+  const archivePath = path.resolve('output/demo-archive.imgly');
   writeFileSync(archivePath, archiveBuffer);
 
-  console.log('✓ Created demo archive: output/demo-archive.zip');
+  console.log('✓ Created demo archive: output/demo-archive.imgly');
 
   // ========================================
   // Demonstration 1: Load Archive from Filesystem
@@ -76,7 +77,7 @@ try {
   const archiveFileUrl = `file://${archivePath}`;
 
   // Load the archive using the file URL
-  await engine.scene.loadFromArchiveURL(archiveFileUrl);
+  await engine.scene.load(archiveFileUrl);
 
   console.log('✓ Archive loaded from filesystem successfully');
 
@@ -89,7 +90,7 @@ try {
 
   const loadArchiveFromUrl = async (url: string): Promise<void> => {
     try {
-      await engine.scene.loadFromArchiveURL(url);
+      await engine.scene.load(url);
       console.log('✓ Archive loaded from URL successfully');
     } catch (error) {
       console.error('Failed to load archive from URL:', error);
@@ -154,9 +155,9 @@ try {
   // Save the modified scene as a new archive
   const newArchiveBlob = await engine.scene.saveToArchive();
   const newArchiveBuffer = Buffer.from(await newArchiveBlob.arrayBuffer());
-  writeFileSync('output/modified-archive.zip', newArchiveBuffer);
+  writeFileSync('output/modified-archive.imgly', newArchiveBuffer);
 
-  console.log('✓ New archive saved to: output/modified-archive.zip');
+  console.log('✓ New archive saved to: output/modified-archive.imgly');
 
   // Archives are perfect for:
   // - Sharing designs between systems
@@ -172,13 +173,13 @@ try {
 }
 ```
 
-Archives solve the portability problem inherent in scene files. While scene files reference assets by URL, archives package everything together in a single `.zip` file. If asset URLs become unavailable, scene files fail to load properly. Archives avoid this issue by bundling all fonts, images, videos, and other resources directly within the archive, making them self-contained and reliable across different environments.
+Archives solve the portability problem inherent in scene files. While scene files reference assets by URL, archives package everything together in a single `.imgly` file (the `.zip` extension also works). If asset URLs become unavailable, scene files fail to load properly. Archives avoid this issue by bundling all fonts, images, videos, and other resources directly within the archive, making them self-contained and reliable across different environments.
 
 This guide covers how to load archived scenes from URLs, work with local files, and process archive content in Node.js workflows.
 
 ## Understanding CE.SDK Archives
 
-CE.SDK archives are `.zip` files created with `engine.scene.saveToArchive()` that contain both the scene structure and all referenced assets. The scene file uses relative paths to reference bundled assets, eliminating the need for external URLs to remain accessible.
+CE.SDK archives are zip-compressed files created with `engine.scene.saveToArchive()` that contain both the scene structure and all referenced assets. Save them with the `.imgly` extension; the `.zip` extension also works. The scene file uses relative paths to reference bundled assets, eliminating the need for external URLs to remain accessible.
 
 Archives contain a predictable directory structure:
 
@@ -202,14 +203,14 @@ In Node.js environments, you often load archives from the filesystem. This is co
   const archiveFileUrl = `file://${archivePath}`;
 
   // Load the archive using the file URL
-  await engine.scene.loadFromArchiveURL(archiveFileUrl);
+  await engine.scene.load(archiveFileUrl);
 
   console.log('✓ Archive loaded from filesystem successfully');
 ```
 
-Convert filesystem paths to `file://` URLs and load using `engine.scene.loadFromArchiveURL()`. The loaded scene replaces the current scene in the engine and becomes immediately available for processing.
+Convert filesystem paths to `file://` URLs and load using `engine.scene.load()`. The loaded scene replaces the current scene in the engine and becomes immediately available for processing.
 
-> **Note:** **Unified API**: Both Node.js and browser environments use `engine.scene.loadFromArchiveURL(url)` to load archives. In Node.js, convert local file paths to `file://` URLs. In browsers, you can use HTTP/HTTPS URLs or object URLs created from Blobs.
+> **Note:** **Unified API**: Both Node.js and browser environments use `engine.scene.load(url)` to load archives. In Node.js, convert local file paths to `file://` URLs. In browsers, you can use HTTP/HTTPS URLs or object URLs created from Blobs.
 
 ## Load Archive from Remote URL
 
@@ -221,7 +222,7 @@ When you have an archive hosted on a remote server, CDN, or cloud storage, load 
 
   const loadArchiveFromUrl = async (url: string): Promise<void> => {
     try {
-      await engine.scene.loadFromArchiveURL(url);
+      await engine.scene.load(url);
       console.log('✓ Archive loaded from URL successfully');
     } catch (error) {
       console.error('Failed to load archive from URL:', error);
@@ -303,9 +304,9 @@ Save modified scenes as new archives to preserve all changes and bundled assets.
   // Save the modified scene as a new archive
   const newArchiveBlob = await engine.scene.saveToArchive();
   const newArchiveBuffer = Buffer.from(await newArchiveBlob.arrayBuffer());
-  writeFileSync('output/modified-archive.zip', newArchiveBuffer);
+  writeFileSync('output/modified-archive.imgly', newArchiveBuffer);
 
-  console.log('✓ New archive saved to: output/modified-archive.zip');
+  console.log('✓ New archive saved to: output/modified-archive.imgly');
 
   // Archives are perfect for:
   // - Sharing designs between systems
@@ -337,9 +338,9 @@ The relative URI pattern (`./images/photo-123.jpg`) ensures assets are resolved 
 
 ## Archives vs Scene Files
 
-CE.SDK provides two save formats that handle assets differently:
+CE.SDK provides two save formats that handle assets differently. Both are saved with the `.imgly` extension and open through the same `engine.scene.load()` call, which detects the kind automatically from the file content; the `.scene` and `.zip` extensions also work.
 
-**Scene Files** (`.scene`) are lightweight JSON-based files that store design structure, layout, and properties. When you save a scene, it stores the design structure, all block properties, and URL references to images, fonts, and other resources. Assets are referenced by their original URLs.
+**Scene Files** are lightweight JSON-based files that store design structure, layout, and properties. When you save a scene, it stores the design structure, all block properties, and URL references to images, fonts, and other resources. Assets are referenced by their original URLs.
 
 Use scene files when:
 
@@ -348,7 +349,7 @@ Use scene files when:
 - Assets are managed separately (CDN, asset management system)
 - You're working in a stable environment with reliable asset URLs
 
-**Archives** (`.zip`) bundle the scene file with all referenced assets into a single package. When you create an archive, CE.SDK packages the scene structure along with all images, fonts, videos, and other resources. Assets in archived scenes use relative paths (like `./images/photo-123.jpg`) instead of external URLs, making them portable across different environments.
+**Archives** bundle the scene file with all referenced assets into a single zip-compressed package. When you create an archive, CE.SDK packages the scene structure along with all images, fonts, videos, and other resources. Assets in archived scenes use relative paths (like `./images/photo-123.jpg`) instead of external URLs, making them portable across different environments.
 
 Use archives when:
 
@@ -437,7 +438,7 @@ When loading very large archives causes memory errors:
 
 | Method                                   | Purpose                                        |
 | ---------------------------------------- | ---------------------------------------------- |
-| `engine.scene.loadFromArchiveURL(url)`   | Load archive from URL (file://, http://, https://, or object URL) |
+| `engine.scene.load(url)`                 | Load scene or archive from URL (file://, http://, https://, or object URL) or string |
 | `engine.scene.saveToArchive()`           | Create archive with scene and bundled assets   |
 | `engine.block.findByType(type)`          | Find blocks in loaded scene                    |
 | `engine.block.export(block, options)`    | Export blocks from loaded archive              |

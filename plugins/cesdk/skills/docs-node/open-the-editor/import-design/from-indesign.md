@@ -130,7 +130,7 @@ async function convertIdml(
 
   // Generate output filename from input filename
   const inputName = basename(idmlPath, '.idml');
-  const archivePath = join(outputDir, `${inputName}.cesdk`);
+  const archivePath = join(outputDir, `${inputName}.imgly`);
 
   // Save as scene archive
   const archive = await engine.scene.saveToArchive();
@@ -162,7 +162,7 @@ async function convertIdml(
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.scene`);
+  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
   await fs.writeFile(sceneStringPath, sceneString);
 
   return { archivePath, sceneStringPath, pageCount: pages.length };
@@ -243,7 +243,7 @@ export async function validateArchive(archivePath: string): Promise<{
     const archiveBlob = new Blob([archiveBuffer]);
     const archiveUrl = URL.createObjectURL(archiveBlob);
 
-    await engine.scene.loadFromArchiveURL(archiveUrl);
+    await engine.scene.load(archiveUrl);
 
     // Get scene information
     const pages = engine.block.findByType('page');
@@ -309,9 +309,9 @@ async function main(): Promise<void> {
     await fs.mkdir('./output', { recursive: true });
     const archive = await engine.scene.saveToArchive();
     const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-    await fs.writeFile('./output/sample.cesdk', archiveBuffer);
+    await fs.writeFile('./output/sample.imgly', archiveBuffer);
 
-    console.log('Sample archive created: ./output/sample.cesdk');
+    console.log('Sample archive created: ./output/sample.imgly');
     console.log('\nTo convert actual IDML files:');
     console.log('1. Place IDML files in an input directory');
     console.log('2. Call: await processDirectory("./input", "./output")');
@@ -486,7 +486,7 @@ async function convertIdml(
 
   // Generate output filename from input filename
   const inputName = basename(idmlPath, '.idml');
-  const archivePath = join(outputDir, `${inputName}.cesdk`);
+  const archivePath = join(outputDir, `${inputName}.imgly`);
 
   // Save as scene archive
   const archive = await engine.scene.saveToArchive();
@@ -518,7 +518,7 @@ async function convertIdml(
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.scene`);
+  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
   await fs.writeFile(sceneStringPath, sceneString);
 
   return { archivePath, sceneStringPath, pageCount: pages.length };
@@ -531,7 +531,7 @@ The `convertIdmlToArchive` function:
 2. Creates a parser instance with JSDOM for XML parsing
 3. Parses the IDML, creating a scene in the engine
 4. Verifies pages were imported successfully
-5. Saves the scene as a `.cesdk` archive file
+5. Saves the scene as an `.imgly` archive file
 
 ## Saving as Archive
 
@@ -544,7 +544,7 @@ const archiveBuffer = Buffer.from(await archive.arrayBuffer());
 await fs.writeFile(archivePath, archiveBuffer);
 ```
 
-Write the archive to the filesystem as a `.cesdk` file for later use with `loadFromArchiveURL()`.
+Write the archive to the filesystem as an `.imgly` file for later use with `load()`.
 
 ## Saving Scenes with Stable URLs
 
@@ -587,7 +587,7 @@ After parsing the IDML file, use CE.SDK's native APIs to find and relocate all t
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.scene`);
+  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
   await fs.writeFile(sceneStringPath, sceneString);
 ```
 
@@ -725,7 +725,7 @@ export async function validateArchive(archivePath: string): Promise<{
     const archiveBlob = new Blob([archiveBuffer]);
     const archiveUrl = URL.createObjectURL(archiveBlob);
 
-    await engine.scene.loadFromArchiveURL(archiveUrl);
+    await engine.scene.load(archiveUrl);
 
     // Get scene information
     const pages = engine.block.findByType('page');
@@ -782,9 +782,9 @@ async function main(): Promise<void> {
     await fs.mkdir('./output', { recursive: true });
     const archive = await engine.scene.saveToArchive();
     const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-    await fs.writeFile('./output/sample.cesdk', archiveBuffer);
+    await fs.writeFile('./output/sample.imgly', archiveBuffer);
 
-    console.log('Sample archive created: ./output/sample.cesdk');
+    console.log('Sample archive created: ./output/sample.imgly');
     console.log('\nTo convert actual IDML files:');
     console.log('1. Place IDML files in an input directory');
     console.log('2. Call: await processDirectory("./input", "./output")');
@@ -804,16 +804,17 @@ For production use, modify the script to accept input/output directories as argu
 
 ## Saving and Loading Archives
 
-Scene archives (`.cesdk` files) contain the complete scene with all embedded assets:
+Scene archives (`.imgly` files) contain the complete scene with all embedded assets:
 
 ```typescript
 // Save scene as archive
 const archive = await engine.scene.saveToArchive();
 const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-await fs.writeFile('output.cesdk', archiveBuffer);
+await fs.writeFile('output.imgly', archiveBuffer);
 
-// Load archive in browser or server
-await engine.scene.loadFromArchiveURL(archiveUrl);
+// Load the archive back from a blob URL
+const archiveUrl = URL.createObjectURL(new Blob([archiveBuffer]));
+await engine.scene.load(archiveUrl);
 ```
 
 Archives are portable - convert on server, load in browser or another server instance.

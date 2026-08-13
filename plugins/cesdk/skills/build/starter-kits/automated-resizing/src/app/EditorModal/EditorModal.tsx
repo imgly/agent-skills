@@ -52,7 +52,7 @@ export function EditorModal({
       );
 
       // Load scene
-      await cesdk.loadFromString(scene);
+      await cesdk.load(scene);
     },
     [scene, mode, onClose, onSave]
   );

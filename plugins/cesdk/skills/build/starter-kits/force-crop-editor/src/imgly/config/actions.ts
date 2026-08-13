@@ -157,31 +157,21 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // #endregion
 
   // #region Import Scene Action
-  // // Import scene from file picker
-  // cesdk.actions.register('importScene', async ({ format = 'scene' } = {}) => {
-  //   if (format === 'scene') {
-  //     // Load JSON scene file
-  //     const scene = await cesdk.utils.loadFile({
-  //       accept: '.scene',
-  //       returnType: 'text'
-  //     });
-  //     await cesdk.engine.scene.loadFromString(scene);
-  //   } else {
-  //     // Load .cesdk archive file
-  //     const blobURL = await cesdk.utils.loadFile({
-  //       accept: '.zip,.cesdk',
-  //       returnType: 'objectURL'
-  //     });
-  //
-  //     try {
-  //       await cesdk.engine.scene.loadFromArchiveURL(blobURL);
-  //     } finally {
-  //       // Clean up blob URL to prevent memory leaks
-  //       URL.revokeObjectURL(blobURL);
-  //     }
+  // A single Import action. The engine inspects the file's content to tell a
+  // scene from an archive, so one picker handles .imgly files as well as the
+  // legacy .scene and .zip formats.
+  // cesdk.actions.register('importScene', async () => {
+  //   const blobURL = await cesdk.utils.loadFile({
+  //     accept: '.imgly,.scene,.zip',
+  //     returnType: 'objectURL'
+  //   });
+  //   try {
+  //     await cesdk.engine.scene.load(blobURL);
+  //   } finally {
+  //     URL.revokeObjectURL(blobURL);
   //   }
   //
-  //   // Zoom to fit the loaded scene
+  //   // Reset zoom to show the first page after import
   //   await cesdk.actions.run('zoom.toPage', { page: 'first' });
   // });
   // #endregion

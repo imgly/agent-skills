@@ -18,7 +18,7 @@ Transform PowerPoint slides into editable CE.SDK designs. All formatting preserv
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-pptx-template-import-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/starterkit-pptx-template-import/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/starterkit-pptx-template-import/index.html)
 
 ***
 
@@ -343,17 +343,21 @@ result.messages.forEach((msg) => {
 
 ## Set Up a Scene
 
-CE.SDK offers multiple ways to load content into the editor. For PowerPoint import, you can load PPTX files directly:
+CE.SDK offers multiple ways to load content into the editor. For PowerPoint import, convert the PPTX file with the bundled importer plugin, then load the result:
 
 ```typescript title="src/index.ts"
-// Import a PowerPoint file from URL
-await cesdk.loadFromURL('https://example.com/presentation.pptx');
+import { importPptxFile } from './imgly/plugins/pptx-importer';
+
+// Import a PowerPoint file with the bundled importer plugin
+const pptxBlob = await fetch('https://example.com/presentation.pptx').then(res => res.blob());
+const result = await importPptxFile(pptxBlob, 'presentation.pptx');
+await cesdk.load(result.sceneArchiveUrl);
 
 // Create a blank design canvas - starts with an empty design scene
 await cesdk.actions.run('scene.create');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.loadFromArchiveURL('https://example.com/template.zip');
+await cesdk.load('https://example.com/template.zip');
 ```
 
 > **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading methods.
@@ -395,8 +399,8 @@ Actions are functions that handle user interactions like exporting designs, savi
 
 - `exportDesign` – Export the current design to PNG, JPEG, PDF, or other formats
 - `saveScene` – Save the scene as a JSON string for later editing
-- `importScene` – Import a previously saved scene (supports `.scene` and `.cesdk` formats)
-- `exportScene` – Export the scene as a JSON file or `.cesdk` archive with all assets
+- `importScene` – Import a previously saved scene (`.imgly` or `.scene`)
+- `exportScene` – Export the scene as an `.imgly` file, either the scene alone or an archive with all assets
 - `uploadFile` – Handle file uploads with progress tracking
 
 Use `cesdk.actions.run()` to execute any action:
@@ -409,13 +413,16 @@ await cesdk.actions.run('exportDesign', { mimeType: 'image/png' });
 #### Import from File Picker
 
 ```typescript title="app/imgly/config/actions.ts"
+import { importPptxFile } from '../plugins/pptx-importer';
+
 // Let users open PowerPoint files from their device
 cesdk.actions.register('importImage', async () => {
-  const blobURL = await cesdk.utils.loadFile({
+  const pptxBlob = await cesdk.utils.loadFile({
     accept: '.pptx,image/*',
-    returnType: 'objectURL'
+    returnType: 'blob'
   });
-  await cesdk.loadFromURL(blobURL);
+  const result = await importPptxFile(pptxBlob, 'design.pptx');
+  await cesdk.load(result.sceneArchiveUrl);
 });
 ```
 

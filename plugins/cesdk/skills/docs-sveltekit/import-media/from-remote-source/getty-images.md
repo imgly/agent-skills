@@ -18,7 +18,7 @@ Integrate Getty Images' premium stock photography library directly into CE.SDK, 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-import-media-from-remote-source-getty-images-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-import-media-from-remote-source-getty-images-browser/index.html)
 
 Getty Images provides premium, professionally curated stock photography through their API. This guide shows you how to integrate Getty Images search and browsing directly into CE.SDK using a secure proxy server. The proxy architecture is required because Getty Images uses both an API key and secret for authentication, which cannot be safely exposed in browser code.
 
@@ -619,8 +619,8 @@ You can modify the query to test different search terms and verify results.
 
 ## Next Steps
 
-- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset panels and UI
-- [Asset Library Basics](./import-media/asset-panel/basics.md) — Understand asset sources
+- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure asset panels and UI
+- [Asset Library Basics](./import-media/asset-library/basics.md) — Understand asset sources
 - [Integrate Unsplash Images](./import-media/from-remote-source/unsplash.md) — Add another stock image source
 - [Integrate Pexels Images](./import-media/from-remote-source/pexels.md) — Free stock photo alternative
 - [Import Media Concepts](./import-media/concepts.md) — Learn core import concepts

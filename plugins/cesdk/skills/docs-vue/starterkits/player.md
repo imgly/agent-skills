@@ -18,7 +18,7 @@ Lightweight video playback for your Vue app—play, pause, and navigate video co
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-player-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/starterkit-video-player/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/starterkit-video-player/index.html)
 
 ***
 
@@ -241,10 +241,10 @@ CE.SDK offers multiple ways to load content into the player. Choose the method t
 
 ```typescript title="src/imgly/index.ts"
 // Load from a template archive - loads a previously saved project
-await cesdk.loadFromArchiveURL('https://example.com/video.zip');
+await cesdk.load('https://example.com/video.zip');
 
 // Load from a scene file - restores a scene from JSON
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 
 // Zoom to fit the content
 await cesdk.actions.run('zoom.toPage', {

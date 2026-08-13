@@ -18,7 +18,7 @@ Export designs to WebP format for optimized web delivery with smaller file sizes
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-webp-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-export-save-publish-export-to-webp-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-export-save-publish-export-to-webp-browser/index.html)
 
 WebP delivers smaller file sizes than PNG and JPEG while preserving image quality and transparency support.
 
@@ -93,7 +93,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load template and zoom to fit
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
     const page = engine.scene.getCurrentPage();

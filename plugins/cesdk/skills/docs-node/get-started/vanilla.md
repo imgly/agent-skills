@@ -98,7 +98,7 @@ try {
 
   try {
     // Load a scene from a URL
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene',
     );
 
@@ -147,7 +147,7 @@ CreativeEngine.init(config)
 
     try {
       // Load a scene from a URL
-      await engine.scene.loadFromURL(
+      await engine.scene.load(
         'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene',
       );
 

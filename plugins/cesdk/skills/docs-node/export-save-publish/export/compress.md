@@ -56,7 +56,7 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  await engine.scene.loadFromURL(
+  await engine.scene.load(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
@@ -219,7 +219,7 @@ Create the output directory if it doesn't exist before writing files.
 | ------ | ----------- |
 | `engine.block.export(blockId, options)` | Export a block with compression and format options |
 | `engine.block.findByType('page')` | Find all pages in the current scene |
-| `engine.scene.loadFromURL(url)` | Load a scene from a remote URL |
+| `engine.scene.load(url)` | Load a scene from a remote URL |
 | `engine.dispose()` | Clean up engine resources when done |
 
 ## Next Steps

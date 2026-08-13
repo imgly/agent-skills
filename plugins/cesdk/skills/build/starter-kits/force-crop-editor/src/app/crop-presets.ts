@@ -1,7 +1,7 @@
 import type { CropPreset } from '../imgly';
-import { resolveAssetPath } from '../imgly/resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from './sample-images';
 
-const CASE_ASSET_PATH = resolveAssetPath('/assets/force-crop');
+const CASE_ASSET_PATH = `${DEMO_ASSETS_BASE_URL}/assets/force-crop`;
 
 /**
  * Default crop presets for common social media formats.

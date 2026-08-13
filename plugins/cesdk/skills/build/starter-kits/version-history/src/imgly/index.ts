@@ -133,7 +133,7 @@ export async function loadSnapshot(
   cesdk: CreativeEditorSDK,
   snapshot: Snapshot
 ): Promise<void> {
-  await cesdk.loadFromURL(snapshot.sceneUrl);
+  await cesdk.load(snapshot.sceneUrl);
   const page = cesdk.engine.scene.getPages()[0];
   if (page) {
     cesdk.engine.scene.enableZoomAutoFit(page, 'Both', 20.0, 20.0, 20.0, 20.0);

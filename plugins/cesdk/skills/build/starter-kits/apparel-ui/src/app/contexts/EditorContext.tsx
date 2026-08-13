@@ -37,7 +37,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       if (engineIsLoaded) {
         setEnabled(false);
         setSceneIsLoaded(false);
-        await engine.scene.loadFromURL(resolveAssetPath('/kiosk.scene'));
+        await engine.scene.load(resolveAssetPath('/kiosk.scene'));
         const pages = engine.scene.getPages();
         setCurrentPageBlockId(pages[0]);
         setEnabled(true);

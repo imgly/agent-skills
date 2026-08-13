@@ -71,7 +71,7 @@ Initialize the CE.SDK and load your prepared template. The following example loa
 // Load a template from your server or a CDN
 const sceneUrl =
   'https://cdn.img.ly/assets/demo/v4/ly.img.template/templates/cesdk_postcard_2.scene';
-await engine.scene.loadFromURL(sceneUrl);
+await engine.scene.load(sceneUrl);
 ```
 
 ### 3. Provide Data to Populate the Template
@@ -133,7 +133,7 @@ Need help with exports? Check out the [Export Guide](./export-save-publish/expor
   ```ts
   // Load a template from your server or a CDN
   const sceneUrl = 'https://cdn.img.ly/assets/demo/v4/ly.img.template/templates/cesdk_postcard_2.scene';
-  await engine.scene.loadFromURL(sceneUrl);
+  await engine.scene.load(sceneUrl);
   // Option 1: Prepare your data as a JavaScript object
   const data = {
     textVariables: {

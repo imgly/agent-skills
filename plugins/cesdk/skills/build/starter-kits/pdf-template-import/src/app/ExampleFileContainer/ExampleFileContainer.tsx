@@ -1,7 +1,7 @@
 /**
  * ExampleFileContainer - Example PDF files grid
  */
-import { resolveAssetPath } from '../resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from '../FileSelection/FileSelection';
 import type { ExampleFile } from '../types';
 import classes from './ExampleFileContainer.module.css';
 
@@ -30,7 +30,7 @@ export function ExampleFileContainer({
               alt={file.alt}
             />
             <img
-              src={resolveAssetPath('/icons/pdf-file.svg')}
+              src={`${DEMO_ASSETS_BASE_URL}/icons/pdf-file.svg`}
               alt="PDF"
               className={classes.fileTypeIcon}
             />

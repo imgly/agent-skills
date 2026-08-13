@@ -589,24 +589,33 @@ and encoded scene data.
 
 <details>
   <summary>
-    ### ~~load()~~
+    ### load()
 
-    <br /><p>Load an encoded scene from the provided string.</p>
+    <br /><p>Load a scene from a scene string or from a URL to a scene or archive file.</p>
   </summary>
+
+  The input kind is detected automatically: serialized scene content is loaded directly, while a
+  URL is fetched and loaded as an archive or as a scene file depending on its content. This loads
+  `.imgly` files as well as the legacy `.scene` and `.zip` formats.
 
   #### Parameters
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `scene` | `string` | A string starting with UBQ1 and containing the encoded scene. |
+  | `sceneOrURL` | `string` | A scene string previously created by `save`, or the URL of a scene or archive file. |
+  | `overrideEditorConfig?` | `boolean` | Whether to override editor configuration with settings and data from the scene file. Defaults to false. |
 
   #### Returns
 
   `Promise`\<`number`>
 
-  #### Deprecated
+  a promise which resolves if the scene was successfully loaded.
 
-  Use `loadFromString` instead.
+  #### Signature
+
+  ```typescript
+  load(sceneOrURL: string, overrideEditorConfig?: boolean): Promise<number>
+  ```
 
   ***
 </details>

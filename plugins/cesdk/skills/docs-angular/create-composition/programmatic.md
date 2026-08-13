@@ -18,7 +18,7 @@ Build compositions entirely through code using CE.SDK's APIs for automation, bat
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-programmatic-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.79.0/examples/guides-create-composition-programmatic-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-create-composition-programmatic-browser/index.html)
 
 CE.SDK provides a complete API for building designs through code. Instead of relying on user interactions through the built-in UI, you can create scenes, add blocks like text, images, and shapes, and position them programmatically. This approach enables automation workflows, batch processing, server-side rendering, and integration with custom interfaces.
 
@@ -602,7 +602,7 @@ The export panel lets users choose format and settings interactively, while `ces
 ## Next Steps
 
 - [Layer Management](./create-composition/layer-management.md) - Control block stacking and organization
-- [Positioning and Alignment](./insert-media/position-and-align.md) - Precise block placement
+- [Positioning and Alignment](./create-composition/position-and-align.md) - Precise block placement
 - [Group and Ungroup](./create-composition/group-and-ungroup.md) - Group blocks for unified transforms
 - [Blend Modes](./create-composition/blend-modes.md) - Control how blocks interact visually
 - [Export](./export-save-publish/export.md) - Export options and formats

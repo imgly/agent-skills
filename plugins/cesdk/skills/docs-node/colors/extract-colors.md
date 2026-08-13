@@ -19,7 +19,7 @@ const engine = await CreativeEngine.init({
   license: 'YOUR_CESDK_LICENSE_KEY',
 });
 
-await engine.scene.loadFromURL('https://example.com/scene.scene');
+await engine.scene.load('https://example.com/scene.scene');
 
 const [block] = engine.block.findByType('graphic');
 const colors = await engine.block.getDominantColors(block);
