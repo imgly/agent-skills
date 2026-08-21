@@ -327,11 +327,11 @@ Exports a design block element as a file of the given mime type. Performs an int
 ### export
 
 ```kotlin
-abstract suspend fun export(block: DesignBlock, mimeType: MimeType, options: ExportOptions? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): ByteBuffer
+abstract suspend fun export(block: DesignBlock, mimeType: MimeType, options: ExportOptions? = null, progressCallback: ((ExportPdfProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): ByteBuffer
 ```
 
 ```kotlin
-abstract suspend fun export(blocks: List<DesignBlock>, mimeType: MimeType, options: ExportOptions? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
+abstract suspend fun export(blocks: List<DesignBlock>, mimeType: MimeType, options: ExportOptions? = null, progressCallback: ((ExportPdfProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
 ```
 
 Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance and is alive until the suspending function resumes. Use this lambda to configure the background engine for export. If uriResolver is provided it will be set on the background engine before the exported scene is loaded and once more after onPreExport is invoked (so it takes precedence if onPreExport also sets a resolver).
@@ -471,7 +471,7 @@ Begins loading the resources of the given blocks and their children. If the reso
 abstract fun generateAudioThumbnailSequence(block: DesignBlock, samplesPerChunk: Int, timeBegin: Double, timeEnd: Double, numberOfSamples: Int, numberOfChannels: Int): Flow<AudioThumbnailResult>
 ```
 
-Generate a thumbnail sequence for the given audio block or video fill. A thumbnail in this case is a chunk of samples in the range of 0 to 1. In case stereo data is requested, the samples are interleaved, starting with the left channel. Note: There can only be one thumbnail generation request in progress for a given block. Note: During playback, the thumbnail generation will be paused.
+Generate a thumbnail sequence for the given audio block or video fill. A thumbnail in this case is a chunk of samples in the range of 0 to 1. In case stereo data is requested, the samples are interleaved, starting with the left channel. Note: Only one request per block runs at a time. A second request for the same block waits for the first to finish instead of failing. Note: numberOfSamples counts samples per channel, so each emission carries samplesPerChunk * numberOfChannels floats and the last one may be shorter. Note: Collect on the main thread; collection throws otherwise.
 
 ### generateVideoThumbnailSequence
 
@@ -479,7 +479,7 @@ Generate a thumbnail sequence for the given audio block or video fill. A thumbna
 abstract fun generateVideoThumbnailSequence(block: DesignBlock, thumbnailHeight: Int, timeBegin: Double, timeEnd: Double, numberOfFrames: Int): Flow<VideoThumbnailResult>
 ```
 
-Generate a thumbnail sequence for the given video fill or design block. Note: There can only be one thumbnail generation request in progress for a given block. Note: During playback, the thumbnail generation will be paused.
+Generate a thumbnail sequence for the given video fill or design block. Note: Only one request per block runs at a time. A second request for the same block waits for the first to finish instead of failing. Note: For a video fill, cancelling has no effect once the first frame has been scheduled — the engine still produces the remaining frames. Cancelling the collecting coroutine stops your collector from seeing them. Design block sequences cancel at any time. Note: Collect on the main thread; collection throws otherwise.
 
 ### getAVResourceTotalDuration
 

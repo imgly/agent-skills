@@ -36,6 +36,17 @@ func exportToPdf(engine: Engine) async throws {
   let pdfBlob = try await engine.block.export(scene, mimeType: .pdf)
   try pdfBlob.write(to: exportsDirectory.appendingPathComponent("design.pdf"))
 
+  // Report per-page progress as the PDF is written. The closure runs once per
+  // page; only PDF exports invoke it.
+  let progressBlob = try await engine.block.export(
+    scene,
+    mimeType: .pdf,
+    onProgress: { exportedPages, totalPages in
+      print("Exported \(exportedPages) of \(totalPages) pages")
+    },
+  )
+  try progressBlob.write(to: exportsDirectory.appendingPathComponent("design-with-progress.pdf"))
+
   let highCompatibilityOptions = ExportOptions(exportPdfWithHighCompatibility: true)
   let highCompatibilityBlob = try await engine.block.export(
     page,
@@ -67,11 +78,11 @@ Export your designs as PDF documents with high compatibility mode and underlayer
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-export-to-pdf)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-export-to-pdf)
 
 PDF provides a universal document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page documents, and include options for print compatibility. You can configure high compatibility mode to ensure consistent rendering across different PDF viewers, and generate underlayers for special media printing like fabric, glass, or DTF transfers.
 
-This guide covers exporting designs to PDF, configuring high compatibility mode, generating underlayers with spot colors, and controlling output dimensions.
+This guide covers exporting designs to PDF, configuring high compatibility mode, controlling the quality of rasterized images, generating underlayers with spot colors, and controlling output dimensions.
 
 ## Export to PDF
 
@@ -83,6 +94,25 @@ try pdfBlob.write(to: exportsDirectory.appendingPathComponent("design.pdf"))
 ```
 
 Pass the scene ID from `engine.scene.get()` to export every page as a multi-page PDF, or pass a single page ID from `engine.scene.getCurrentPage()` to export just that page.
+
+## Track Export Progress
+
+Large multi-page PDFs take time to write. Pass an `onProgress` closure to `export(_:mimeType:options:onProgress:)` to report how far the export has advanced.
+
+```swift highlight-exportToPdf-progress
+// Report per-page progress as the PDF is written. The closure runs once per
+// page; only PDF exports invoke it.
+let progressBlob = try await engine.block.export(
+  scene,
+  mimeType: .pdf,
+  onProgress: { exportedPages, totalPages in
+    print("Exported \(exportedPages) of \(totalPages) pages")
+  },
+)
+try progressBlob.write(to: exportsDirectory.appendingPathComponent("design-with-progress.pdf"))
+```
+
+The closure runs once after each page is serialized into the document, receiving the number of pages exported so far and the total page count. It is PDF-specific: raster exports like PNG or JPEG never invoke it. The closure runs on the main actor, so you can update your UI state directly.
 
 ## Configure High Compatibility Mode
 
@@ -105,6 +135,22 @@ Use high compatibility mode when:
 - Maximum compatibility matters more than vector precision
 
 High compatibility mode increases file size because complex elements are converted to raster images rather than remaining as vectors. The flag defaults to `true`, so you only need to set it explicitly when you want to disable it.
+
+## Control the Size of Rasterized Images
+
+When `exportPdfWithHighCompatibility` is `false`, CE.SDK embeds the original data of unmodified JPEG images directly into the PDF. This keeps exports of photo-heavy documents such as photo books fast and small, because the photos are not decoded and encoded again.
+
+CE.SDK must rasterize images that it cannot embed directly, for example images with effects or blurs applied, or every bitmap image when high compatibility mode is enabled. By default these images are encoded losslessly. Set `pdfImageQuality` on `ExportOptions` to a value below `1.0` to encode them as lossy JPEG instead, which produces much smaller files.
+
+```swift
+let imageQualityOptions = ExportOptions(
+  exportPdfWithHighCompatibility: false,
+  pdfImageQuality: 0.85,
+)
+let pdfBlob = try await engine.block.export(page, mimeType: .pdf, options: imageQualityOptions)
+```
+
+Valid values are greater than `0` and at most `1.0`. The default of `1.0` keeps the lossless encoding, in the same way as `webpQuality`. Images that are embedded as their original JPEG data are never encoded again, so this option does not change them.
 
 ## Generate Underlayers for Special Media
 
@@ -163,6 +209,7 @@ For print output, calculate the target dimensions from your desired DPI:
 | ------ | ----------- |
 | `mimeType` | Output format. Pass `MIMEType.pdf`. |
 | `exportPdfWithHighCompatibility` | Rasterize complex elements at scene DPI for consistent rendering. Defaults to `true`. |
+| `pdfImageQuality` | Encoding quality for images that CE.SDK has to rasterize. Values below the default of `1.0` encode them as lossy JPEG. |
 | `exportPdfWithUnderlayer` | Generate an underlayer from design contours. Defaults to `false`. |
 | `underlayerSpotColorName` | Spot color name for the underlayer ink. Required when `exportPdfWithUnderlayer` is `true`. |
 | `underlayerOffset` | Size adjustment in design units. Negative values shrink the underlayer inward. |
@@ -173,7 +220,7 @@ For print output, calculate the target dimensions from your desired DPI:
 
 | Method | Description |
 | ------ | ----------- |
-| `engine.block.export(_:mimeType:options:)` | Export a block as PDF with format and compatibility options |
+| `engine.block.export(_:mimeType:options:onProgress:)` | Export a block as PDF with format and compatibility options, optionally reporting per-page progress through the `onProgress` closure |
 | `engine.editor.setSpotColor(name:r:g:b:)` | Define a spot color for underlayer ink |
 | `engine.scene.get()` | Get the scene for multi-page PDF export |
 | `engine.scene.getCurrentPage()` | Get the current page for single-page export |

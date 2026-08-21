@@ -59,6 +59,14 @@ The canvas menu configuration.
 
 Sets the canvas menu configuration. Merges with any existing configuration.
 
+### Builder.captionsGeneration(_:)
+
+```swift
+@MainActor func captionsGeneration(_ callback: @escaping CaptionsGeneration.Callback)
+```
+
+Sets the caption generation callback that backs the Add Captions sheet’s “Generate Automatically” action. Unlike the chained handlers, the last configured callback wins.
+
 ### colorPalette
 
 ```swift

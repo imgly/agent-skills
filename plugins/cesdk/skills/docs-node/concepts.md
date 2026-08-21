@@ -15,6 +15,7 @@ Key Concepts and principles of CE.SDK.
 - [Key Concepts](./key-concepts.md) - Explore CE.SDK’s key features—manual editing, automation, templates, AI tools, and full UI and API control.
 - [Key Capabilities](./key-capabilities.md) - Explore CE.SDK’s key features—manual editing, automation, templates, AI tools, and full UI and API control.
 - [Architecture](./concepts/architecture.md) - Understand how CE.SDK is structured around the CreativeEngine—the core runtime with six APIs for scenes, blocks, assets, events, variables, and editor state.
+- [Plugin Architecture](./concepts/plugin-architecture.md) - Understand how CE.SDK plugins fit together—what a plugin is, how it attaches to the editor or engine, and which extension surfaces it can reach.
 - [Terminology](./concepts/terminology.md) - Definitions for the core terms and concepts used throughout CE.SDK documentation, including Engine, Scene, Block, Fill, Shape, Effect, and more.
 - [Editing Workflow](./concepts/editing-workflow.md) - Control editing access with Creator, Adopter, Viewer, and Presenter roles using global and block-level scopes for tailored permissions.
 - [Blocks](./concepts/blocks.md) - Learn how blocks define elements in a scene and how to structure them for rendering in CE.SDK.
@@ -22,6 +23,7 @@ Key Concepts and principles of CE.SDK.
 - [Pages](./concepts/pages.md) - Pages structure scenes in CE.SDK and must share the same dimensions to ensure consistent rendering.
 - [Assets](./concepts/assets.md) - Learn how assets provide external content to CE.SDK designs and how asset sources make them available programmatically.
 - [Templating](./concepts/templating.md) - Templates enable dynamic, reusable designs with text variables and placeholder media. Learn to create, load, and personalize templates programmatically.
+- [Import and Export](./concepts/import-export.md) - Understand every way files move in and out of CE.SDK—importing media and design files, loading and saving native scenes, and exporting finished output.
 - [Events](./concepts/events.md) - Subscribe to block creation, update, and deletion events to track changes in your CE.SDK scene.
 - [Buffers](./concepts/buffers.md) - Use buffers to store temporary, non-serializable data in CE.SDK via the CreativeEngine API.
 - [Resources](./concepts/resources.md) - Learn how CE.SDK loads and manages external media files, including preloading for performance, handling transient data, and relocating resources when URLs change.

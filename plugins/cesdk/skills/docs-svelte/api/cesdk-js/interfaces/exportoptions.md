@@ -16,9 +16,11 @@ adding underlayers.
   | `"jpegQuality"`
   | `"webpQuality"`
   | `"exportPdfWithHighCompatibility"`
+  | `"pdfImageQuality"`
   | `"exportPdfWithUnderlayer"`
   | `"underlayerSpotColorName"`
-  | `"underlayerOffset"`>
+  | `"underlayerOffset"`
+  | `"onProgress"`>
 
 ## Properties
 
@@ -28,9 +30,11 @@ adding underlayers.
 |  `jpegQuality` | `EngineExportOptions` | - | `Pick.jpegQuality` |
 |  `webpQuality` | `EngineExportOptions` | - | `Pick.webpQuality` |
 |  `exportPdfWithHighCompatibility` | `EngineExportOptions` | - | `Pick.exportPdfWithHighCompatibility` |
+|  `pdfImageQuality` | `EngineExportOptions` | - | `Pick.pdfImageQuality` |
 |  `exportPdfWithUnderlayer` | `EngineExportOptions` | - | `Pick.exportPdfWithUnderlayer` |
 |  `underlayerSpotColorName` | `EngineExportOptions` | - | `Pick.underlayerSpotColorName` |
 |  `underlayerOffset` | `EngineExportOptions` | - | `Pick.underlayerOffset` |
+|  `onProgress` | `EngineExportOptions` | - | `Pick.onProgress` |
 |  `mimeType` | `MimeType_2` | The mime type of the exported blob | - |
 |  `pages?` | `number`\[] | The pages to export with the selected page as the default | - |
 

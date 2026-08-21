@@ -43,6 +43,22 @@ struct Blur
 
 A sheet that is used to set blurs to design blocks with image and video fills.
 
+### SheetTypes.Captions
+
+```swift
+struct Captions
+```
+
+A sheet that is used to create and edit captions on a video.
+
+### SheetTypes.CaptionStyle
+
+```swift
+struct CaptionStyle
+```
+
+A sheet that is used to apply a caption style preset to a caption block.
+
 ### SheetTypes.ClipSpeed
 
 ```swift
@@ -188,6 +204,22 @@ let style: SheetStyle
 The style of the sheet.
 
 ### Blur.style
+
+```swift
+let style: SheetStyle
+```
+
+The style of the sheet.
+
+### Captions.style
+
+```swift
+let style: SheetStyle
+```
+
+The style of the sheet.
+
+### CaptionStyle.style
 
 ```swift
 let style: SheetStyle

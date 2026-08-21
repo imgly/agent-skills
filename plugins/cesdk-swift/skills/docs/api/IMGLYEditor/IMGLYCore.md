@@ -165,6 +165,14 @@ An icon image for bring forward.
 
 A label style used for the [`CanvasMenu`](../../canvasmenu.md). `style`
 
+### IMGLY.captions
+
+```swift
+static let captions: Image
+```
+
+An icon image for captions.
+
 ### IMGLY.clipSpeed
 
 ```swift

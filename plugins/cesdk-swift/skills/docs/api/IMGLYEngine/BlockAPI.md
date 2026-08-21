@@ -351,21 +351,21 @@ Changes selection from selected group to a block within that group. Nothing happ
 
 Changes selection from a group’s selected block to that group. Nothing happens if the `id` is not part of a group. Required scope: “editor/select” `id`
 
-### export(_:mimeType:options:onPreExport:uriResolver:)-6h5pa
+### export(_:mimeType:options:onPreExport:uriResolver:onProgress:)-3nqrb
 
 ```swift
-@MainActor func export(_ ids: [DesignBlockID], mimeType: MIMEType, options: ExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil) async throws -> AsyncThrowingStream<Blob, any Error>
-```
-
-Exports multiple design block elements as files of the given mime type. Performs an internal update to resolve the final layout for the blocks. This method is more memory efficient than calling `export` repeatedly for multiple blocks as it reuses a single worker engine for all exports. `ids`
-
-### export(_:mimeType:options:onPreExport:uriResolver:)-7aqxn
-
-```swift
-@MainActor func export(_ id: DesignBlockID, mimeType: MIMEType, options: ExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil) async throws -> Blob
+@MainActor func export(_ id: DesignBlockID, mimeType: MIMEType, options: ExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil, onProgress: (@MainActor @Sendable (Int, Int) -> Void)? = nil) async throws -> Blob
 ```
 
 Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. `id`
+
+### export(_:mimeType:options:onPreExport:uriResolver:onProgress:)-7r7re
+
+```swift
+@MainActor func export(_ ids: [DesignBlockID], mimeType: MIMEType, options: ExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil, onProgress: (@MainActor @Sendable (Int, Int) -> Void)? = nil) async throws -> AsyncThrowingStream<Blob, any Error>
+```
+
+Exports multiple design block elements as files of the given mime type. Performs an internal update to resolve the final layout for the blocks. This method is more memory efficient than calling `export` repeatedly for multiple blocks as it reuses a single worker engine for all exports. `ids`
 
 ### exportAudio(_:mimeType:options:)-5xr9k
 
@@ -609,7 +609,7 @@ Begins loading the resources of the given blocks and their children. If the reso
 @MainActor func generateAudioThumbnailSequence(_ id: DesignBlockID, samplesPerChunk: Int, timeRange: ClosedRange<Double>, numberOfSamples: Int, numberOfChannels: Int) -> AsyncThrowingStream<AudioThumbnail, any Error>
 ```
 
-Generate a thumbnail sequence for the given audio block or video fill. A thumbnail in this case is a chunk of samples in the range of 0 to 1. In case stereo data is requested, the samples are interleaved, starting with the left channel. Note: During playback, the thumbnail generation will be paused. `id`
+Generate a thumbnail sequence for the given audio block or video fill. A thumbnail in this case is a chunk of samples in the range of 0 to 1. In case stereo data is requested, the samples are interleaved, starting with the left channel. `id`
 
 ### generateVideoThumbnailSequence(_:thumbnailHeight:timeRange:numberOfFrames:)
 

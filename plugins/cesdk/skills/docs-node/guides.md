@@ -13,6 +13,7 @@
 ## Related Pages
 
 - [Configuration](./configuration.md) - Learn how to configure CE.SDK to match your application's functional, visual, and performance requirements.
+- [Actions API](./actions.md) - Learn how to use the Actions API to register and customize action handlers in CE.SDK on Node.js
 - [Settings](./settings.md) - Explore all configurable editor settings and learn how to read, update, and observe them via the Settings API.
 - [Serve Assets](./serve-assets.md) - Configure CE.SDK to load engine and content assets from your own servers instead of the IMG.LY CDN for production deployments.
 - [Engine Interface](./engine-interface.md) - Understand CE.SDK's architecture and learn when to use direct Engine access for automation workflows

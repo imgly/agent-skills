@@ -232,6 +232,8 @@
 | [SelectValue](./api/cesdk-js/interfaces/selectvalue.md) | Represents a value for a select input. |
 | [SliderOptions](./api/cesdk-js/interfaces/slideroptions.md) | Represents options for a slider. |
 | [SpinnerOptions](./api/cesdk-js/interfaces/spinneroptions.md) | Represents options for a loading spinner. |
+| [TabOptions](./api/cesdk-js/interfaces/taboptions.md) | Represents a single tab of a tab bar. |
+| [TabsOptions](./api/cesdk-js/interfaces/tabsoptions.md) | Represents options for a tab bar. |
 | [TextAreaOptions](./api/cesdk-js/interfaces/textareaoptions.md) | Represents options for a text area. |
 | [TextInputOptions](./api/cesdk-js/interfaces/textinputoptions.md) | Represents options for a text input. |
 | [TextOptions](./api/cesdk-js/interfaces/textoptions.md) | Represents options for text. |

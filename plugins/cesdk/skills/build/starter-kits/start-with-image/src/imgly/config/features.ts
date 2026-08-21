@@ -171,6 +171,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     // 'ly.img.scene.layout.horizontal', /* Horizontal layout toggle */
     // 'ly.img.scene.layout.vertical', /* Vertical layout toggle */
     // 'ly.img.scene.layout.free', /* Free layout toggle */
+    // 'ly.img.scene.layout.spacing', /* Gap + screen-space toggle for stacked layouts */
     // 'ly.img.scene.fontSizeUnit', /* Font size unit selector in page resize panel */
     // #endregion
 

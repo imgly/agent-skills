@@ -18,7 +18,7 @@ Export your designs as PDF documents with high compatibility mode and underlayer
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/guides-export-save-publish-export-to-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-export-save-publish-export-to-pdf-browser/index.html)
 
 PDF provides a universal document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page documents, and include options for print compatibility. You can configure high compatibility mode to ensure consistent rendering across different PDF viewers, and generate underlayers for special media printing like fabric, glass, or DTF transfers.
 
@@ -199,6 +199,27 @@ class Example implements EditorPlugin {
           },
           {
             id: 'ly.img.action.navigationBar',
+            key: 'export-progress',
+            label: 'With Progress',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Report per-page progress as the PDF is written.
+              // The callback runs once per page; only PDF exports invoke it.
+              const pdfBlob = await engine.block.export(scene, {
+                mimeType: 'application/pdf',
+                onProgress: (exportedPages, totalPages) => {
+                  console.log(
+                    `Exported ${exportedPages} of ${totalPages} pages`
+                  );
+                }
+              });
+              await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
             key: 'export-action',
             label: 'Export',
             icon: '@imgly/Download',
@@ -218,7 +239,7 @@ class Example implements EditorPlugin {
 export default Example;
 ```
 
-This guide covers exporting designs to PDF format, configuring high compatibility mode, generating underlayers with spot colors, and controlling output dimensions.
+This guide covers exporting designs to PDF format, configuring high compatibility mode, controlling the quality of rasterized images, generating underlayers with spot colors, and controlling output dimensions.
 
 ## Export to PDF
 
@@ -232,6 +253,25 @@ const pdfBlob = await engine.block.export(scene, {
 ```
 
 Pass the scene ID from `engine.scene.get()` to export all pages as a multi-page PDF. You can also pass a single page ID from `engine.scene.getCurrentPage()` if you only need to export one page.
+
+## Track Export Progress
+
+Large multi-page PDFs take time to write. Pass an `onProgress` callback to report how far the export has advanced, so you can drive a progress bar instead of an indeterminate spinner.
+
+```typescript highlight=highlight-progress
+// Report per-page progress as the PDF is written.
+// The callback runs once per page; only PDF exports invoke it.
+const pdfBlob = await engine.block.export(scene, {
+  mimeType: 'application/pdf',
+  onProgress: (exportedPages, totalPages) => {
+    console.log(
+      `Exported ${exportedPages} of ${totalPages} pages`
+    );
+  }
+});
+```
+
+The callback fires once after each page is serialized into the document, receiving the number of pages exported so far and the total page count. It is PDF-specific: raster exports like PNG or JPEG never invoke it. When you export through the editor's built-in export flow, the export dialog already uses this callback to show a per-page progress bar for PDF exports.
 
 ## Configure High Compatibility Mode
 
@@ -253,6 +293,21 @@ Use high compatibility mode when:
 - Maximum compatibility matters more than vector precision
 
 High compatibility mode increases file size because complex elements are converted to raster images rather than remaining as vectors.
+
+## Control the Size of Rasterized Images
+
+When `exportPdfWithHighCompatibility` is `false`, CE.SDK embeds the original data of unmodified JPEG images directly into the PDF. This keeps exports of photo-heavy documents such as photo books fast and small, because the photos are not decoded and encoded again.
+
+CE.SDK must rasterize images that it cannot embed directly, for example images with effects or blurs applied, or every bitmap image when high compatibility mode is enabled. By default these images are encoded losslessly. Set `pdfImageQuality` to a value below `1.0` to encode them as lossy JPEG instead, which produces much smaller files.
+
+```typescript
+const pdfBlob = await engine.block.export(page, {
+  mimeType: 'application/pdf',
+  pdfImageQuality: 0.85
+});
+```
+
+Valid values are greater than `0` and at most `1.0`. The default of `1.0` keeps the lossless encoding, in the same way as `webpQuality`. Images that are embedded as their original JPEG data are never encoded again, so this option does not change them.
 
 ## Generate Underlayers for Special Media
 
@@ -358,11 +413,13 @@ Pass the blob and MIME type to prompt the user to save the file locally.
 | ------ | ----------- |
 | `mimeType` | Output format. Must be `'application/pdf'`. |
 | `exportPdfWithHighCompatibility` | Rasterize complex elements at scene DPI for consistent rendering. Defaults to `true`. |
+| `pdfImageQuality` | Encoding quality for images that CE.SDK has to rasterize. Values below the default of `1.0` encode them as lossy JPEG. |
 | `exportPdfWithUnderlayer` | Generate an underlayer from design contours. Defaults to `false`. |
 | `underlayerSpotColorName` | Spot color name for the underlayer ink. Required when `exportPdfWithUnderlayer` is true. |
 | `underlayerOffset` | Size adjustment in design units. Negative values shrink the underlayer inward. |
 | `targetWidth` | Target output width in pixels. Must be used with `targetHeight`. |
 | `targetHeight` | Target output height in pixels. Must be used with `targetWidth`. |
+| `onProgress` | Callback invoked once per page during PDF export with `(exportedPages, totalPages)`. Only called for PDF exports. |
 | `abortSignal` | Signal to cancel the export operation. |
 
 ## API Reference

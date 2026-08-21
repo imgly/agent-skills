@@ -27,6 +27,7 @@ maximum value, step value, suffix, and requireConfirm.
 |  `max?` | `number` | `undefined` | - | - |
 |  `step?` | `number` | `undefined` | - | - |
 |  `requireConfirm?` | `boolean` | `true` | Whether to require explicit confirmation (Enter/Escape/blur) before applying changes. When true, changes are only applied when user presses Enter/ESC or blurs the input. When false, changes are applied immediately on every keystroke. | - |
+|  `showStepper?` | `boolean` | `false` | Renders a decrement and an increment button inside the input. Each press changes the value by `step` and stops at `min` and `max`. Holding a button repeats the step. Typing a value into the input keeps working. The buttons are not tab stops. The input's Up and Down arrow keys already do the same thing, which is what the WAI-ARIA spinbutton pattern expects. | - |
 
 
 ---

@@ -261,7 +261,7 @@ The canvas menu is the floating toolbar that appears next to a selected design b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/editor-guides-configuration-canvas-menu)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/editor-guides-configuration-canvas-menu)
 
 ## Canvas Menu Architecture
 
@@ -283,7 +283,7 @@ The canvas menu is part of the editor configuration. Enter it through `builder.c
 | **Replacement** | `canvasMenu.items` | Declaring the exact set of items and their order — version-safe |
 | **Modification** | `canvasMenu.modify` | Adding to, replacing, or removing entries from a list you already declared |
 
-The example builds on `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.0-nightly.20260811/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration — the `canvasMenu` builder is exposed on every configuration, so the rest of the call stays the same. Because this baseline starts with an empty canvas menu, `canvasMenu.items` is the primary path; `canvasMenu.modify` then adjusts the list that `items` established.
+The example builds on `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260821/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration — the `canvasMenu` builder is exposed on every configuration, so the rest of the call stays the same. Because this baseline starts with an empty canvas menu, `canvasMenu.items` is the primary path; `canvasMenu.modify` then adjusts the list that `items` established.
 
 The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole; this guide focuses on the canvas menu surface within it.
 
@@ -493,9 +493,9 @@ The predefined buttons live in the `CanvasMenu.Buttons` namespace. Each returns 
 
 | Button | ID constant | Default visibility |
 |--------|-------------|--------------------|
-| `CanvasMenu.Buttons.bringForward()` | `.bringForward` | When the selected block can be reordered |
-| `CanvasMenu.Buttons.sendBackward()` | `.sendBackward` | When the selected block can be reordered |
-| `CanvasMenu.Buttons.duplicate()` | `.duplicate` | When the block's `lifecycle/duplicate` scope is allowed |
+| `CanvasMenu.Buttons.bringForward()` | `.bringForward` | When the selected block can be reordered. Audio and captions have no z-order, so they never show it |
+| `CanvasMenu.Buttons.sendBackward()` | `.sendBackward` | When the selected block can be reordered. Audio and captions have no z-order, so they never show it |
+| `CanvasMenu.Buttons.duplicate()` | `.duplicate` | When the block's `lifecycle/duplicate` scope is allowed, except for captions |
 | `CanvasMenu.Buttons.delete()` | `.delete` | When the block's `lifecycle/destroy` scope is allowed |
 | `CanvasMenu.Buttons.selectGroup()` | `.selectGroup` | When the block belongs to a group |
 

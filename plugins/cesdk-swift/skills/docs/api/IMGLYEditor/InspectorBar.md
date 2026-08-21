@@ -75,6 +75,7 @@ The id of the [`animation(action:title:icon:isEnabled:isVisible:)`](../animation
     }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.animation }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = { context in
       try context.selection.type != .page &&
         context.selection.type != .audio &&
+        context.selection.type != .caption &&
         context.engine.block.supportsAnimation(context.selection.block)
     }) -> some InspectorBar.Item
 ```
@@ -121,6 +122,29 @@ The id of the [`blur(action:title:icon:isEnabled:isVisible:)`](../blur(action:ti
 ```
 
 Creates a [`InspectorBar.Button`](../button.md) that opens the blur sheet. `action`
+
+### Buttons.ID.captionStyle
+
+```swift
+static var captionStyle: EditorComponentID { get }
+```
+
+The id of the [`captionStyle(action:title:icon:isEnabled:isVisible:)`](../captionstyle(action:title:icon:isenabled:isvisible:).md) button.
+
+### Buttons.captionStyle(action:title:icon:isEnabled:isVisible:)
+
+```swift
+@MainActor static func captionStyle(action: @escaping InspectorBar.Context.To<Void> = {
+      $0.eventHandler.send(.openSheet(type: .captionStyle(id: $0.selection.block)))
+    }, @ViewBuilder title: @escaping InspectorBar.Context.To<some View> = { _ in
+      Text(.imgly.localized("ly_img_editor_inspector_bar_button_caption_style"))
+    }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.textStyles }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = {
+      try $0.selection.type == .caption &&
+        $0.engine.asset.findAllSources().contains("ly.img.caption.presets")
+    }) -> some InspectorBar.Item
+```
+
+Creates a [`InspectorBar.Button`](../button.md) that opens the caption style preset grid. `action`
 
 ### Buttons.ID.clipSpeed
 
@@ -220,12 +244,38 @@ The id of the [`duplicate(action:title:icon:isEnabled:isVisible:)`](../duplicate
 @MainActor static func duplicate(action: @escaping InspectorBar.Context.To<Void> = { $0.eventHandler.send(.duplicateSelection) }, @ViewBuilder title: @escaping InspectorBar.Context.To<some View> = { _ in
       Text(.imgly.localized("ly_img_editor_inspector_bar_button_duplicate"))
     }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.duplicate }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = { context in
+       
       try context.selection.type != .page &&
+        context.selection.type != .caption &&
         context.engine.block.isAllowedByScope(context.selection.block, key: "lifecycle/duplicate")
     }) -> some InspectorBar.Item
 ```
 
 Creates a [`InspectorBar.Button`](../button.md) that duplicates the selected design block. `action`
+
+### Buttons.ID.editCaptions
+
+```swift
+static var editCaptions: EditorComponentID { get }
+```
+
+The id of the [`editCaptions(action:title:icon:isEnabled:isVisible:)`](../editcaptions(action:title:icon:isenabled:isvisible:).md) button.
+
+### Buttons.editCaptions(action:title:icon:isEnabled:isVisible:)
+
+```swift
+@MainActor static func editCaptions(action: @escaping InspectorBar.Context.To<Void> = { $0.eventHandler.send(.openSheet(type: .captions())) }, @ViewBuilder title: @escaping InspectorBar.Context.To<some View> = { _ in
+      Text(.imgly.localized("ly_img_editor_inspector_bar_button_edit_captions"))
+    }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.captions }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = {
+       
+       
+       
+      try $0.selection.type == .caption
+        && $0.engine.block.isAllowedByScope($0.selection.block, key: "text/edit")
+    }) -> some InspectorBar.Item
+```
+
+Creates a [`InspectorBar.Button`](../button.md) that opens the captions sheet to edit the caption list. `action`
 
 ### Buttons.ID.editText
 
@@ -409,7 +459,7 @@ The id of the [`formatText(action:title:icon:isEnabled:isVisible:)`](../formatte
 @MainActor static func formatText(action: @escaping InspectorBar.Context.To<Void> = { $0.eventHandler.send(.openSheet(type: .formatText())) }, @ViewBuilder title: @escaping InspectorBar.Context.To<some View> = { _ in
       Text(.imgly.localized("ly_img_editor_inspector_bar_button_format_text"))
     }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.formatText }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = {
-      try $0.selection.type == .text &&
+      try ($0.selection.type == .text || $0.selection.type == .caption) &&
         $0.engine.block.isAllowedByScope($0.selection.block, key: "text/character")
     }) -> some InspectorBar.Item
 ```
@@ -570,7 +620,7 @@ The id of the [`layer(action:title:icon:isEnabled:isVisible:)`](../layer(action:
         try context.engine.block.isAllowedByScope(context.selection.block, key: "layer/move") &&
           !isBackgroundTrack(context.selection.parentBlock)
       }
-      return try ![.page, .audio].contains(context.selection.type) &&
+      return try ![.page, .audio, .caption].contains(context.selection.type) &&
         context.selection.kind != "voiceover" && (
           context.engine.block.isAllowedByScope(context.selection.block, key: "layer/blendMode") ||
             context.engine.block.isAllowedByScope(context.selection.block, key: "layer/opacity") ||
@@ -613,7 +663,9 @@ The id of the [`moveAsClip(action:title:icon:isEnabled:isVisible:)`](../moveascl
           false
         }
       }
+       
       return try context.selection.type != .audio &&
+        context.selection.type != .caption &&
         !isBackgroundTrack(context.selection.parentBlock)
     }) -> some InspectorBar.Item
 ```
@@ -830,7 +882,19 @@ The id of the [`split(action:title:icon:isEnabled:isVisible:)`](../split(action:
 ```swift
 @MainActor static func split(action: @escaping InspectorBar.Context.To<Void> = { $0.eventHandler.send(.splitSelection) }, @ViewBuilder title: @escaping InspectorBar.Context.To<some View> = { _ in
       Text(.imgly.localized("ly_img_editor_inspector_bar_button_split"))
-    }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.split }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = {
+    }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.split }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { context in
+       
+       
+       
+       
+      guard context.selection.type == .caption else { return true }
+      let margin = 0.1
+      guard let page = try context.engine.scene.getCurrentPage() else { return false }
+      let playhead = try context.engine.block.getPlaybackTime(page)
+      let start = try context.engine.block.getTimeOffset(context.selection.block)
+      let duration = try context.engine.block.getDuration(context.selection.block)
+      return playhead > start + margin && playhead < start + duration - margin
+    }, isVisible: @escaping InspectorBar.Context.To<Bool> = {
       try $0.engine.block.isAllowedByScope($0.selection.block, key: "lifecycle/duplicate")
     }) -> some InspectorBar.Item
 ```
@@ -851,7 +915,7 @@ The id of the [`textBackground(action:title:icon:isEnabled:isVisible:)`](../text
 @MainActor static func textBackground(action: @escaping InspectorBar.Context.To<Void> = { $0.eventHandler.send(.openSheet(type: .textBackground())) }, @ViewBuilder title: @escaping InspectorBar.Context.To<some View> = { _ in
       Text(.imgly.localized("ly_img_editor_inspector_bar_button_text_background"))
     }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { BackgroundColorIcon(id: $0.selection.block) }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = { context in
-      try context.selection.type == .text &&
+      try (context.selection.type == .text || context.selection.type == .caption) &&
         context.engine.block.isAllowedByScope(context.selection.block, key: "text/character")
     }) -> some InspectorBar.Item
 ```

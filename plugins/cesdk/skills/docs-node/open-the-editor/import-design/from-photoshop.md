@@ -340,6 +340,8 @@ Install the `@imgly/psd-importer` package alongside the CE.SDK Node.js engine an
 npm install @imgly/psd-importer @cesdk/node@$UBQ_VERSION$ pngjs
 ```
 
+Using the native Node.js package? Install `@cesdk/node-native@$UBQ_VERSION$` instead of `@cesdk/node` — the engine API is identical.
+
 The server environment requires `pngjs` because Node.js doesn't have native browser APIs for PNG encoding. The `createPNGJSEncodeBufferToPNG(PNG)` function provides this capability.
 
 ## Convert Your First PSD
@@ -803,7 +805,7 @@ The `@imgly/psd-importer` package exports the following key APIs:
 | `options.fontResolver` | `TypefaceResolver` - Custom function to resolve fonts from the PSD to available typefaces. |
 | `result.logger.getMessages()` | Returns an array of import messages with `type` ('warning' or 'error') and `message` properties. |
 
-**Type Casting Note:** The `@imgly/psd-importer` types expect the browser engine. When using `@cesdk/node`, cast the engine: `PSDParser.fromFile(engine as any, ...)`.
+**Type Casting Note:** The `@imgly/psd-importer` types expect the browser engine. When using `@cesdk/node` or `@cesdk/node-native`, cast the engine: `PSDParser.fromFile(engine as any, ...)`.
 
 ## Limitations
 
@@ -813,8 +815,10 @@ The PSD importer has the following limitations:
 - **Text** - No multiple font sizes or families within a single text layer; no text justification
 - **Images** - Image cropping not supported
 - **Fills** - Gradient fills not supported (solid colors only)
-- **Blend modes** - PassThrough, Dissolve, LinearBurn, DarkerColor, LinearDodge, LighterColor, VividLight, LinearLight, PinLight, HardMix, Subtract, Divide not supported
-- **Advanced text** - Kerning, ligatures, strikethrough, underline, baseline shift not fully supported
+- **Blend modes** - Some Photoshop blend modes are not supported (for example PassThrough, Dissolve and Subtract)
+- **Advanced text** - Advanced text styling such as kerning, ligatures and baseline shift is not fully supported
+
+These are the highlights only—the [`@imgly/psd-importer`](https://www.npmjs.com/package/@imgly/psd-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
 
 ## Troubleshooting
 
@@ -822,9 +826,9 @@ The PSD importer has the following limitations:
 
 **Text appears with wrong font:** Ensure `addGfontsAssetLibrary()` is called before parsing. The importer attempts to match fonts with Google Fonts and uses a fallback for unavailable fonts.
 
-**Memory issues with large files:** Files over 900MB may encounter memory constraints. The importer gracefully skips problematic elements. Consider increasing Node.js memory with `--max-old-space-size`.
+**Memory issues with large files:** Very large files may encounter memory constraints, especially with the WASM-based `@cesdk/node` package and its WebAssembly memory ceiling — the native `@cesdk/node-native` package can use the full process memory. The importer gracefully skips problematic elements. `--max-old-space-size` raises only the V8 heap limit, not the engine's own memory.
 
-**Type errors with engine parameter:** The `@imgly/psd-importer` types expect the browser engine. Cast to `any` when using `@cesdk/node`: `PSDParser.fromFile(engine as any, ...)`.
+**Type errors with engine parameter:** The `@imgly/psd-importer` types expect the browser engine. Cast to `any` when using `@cesdk/node` or `@cesdk/node-native`: `PSDParser.fromFile(engine as any, ...)`.
 
 
 

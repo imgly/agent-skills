@@ -75,7 +75,7 @@ CE.SDK lets you load complete design templates from scene files to start project
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-import-from-scene-file)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-import-from-scene-file)
 
 <EngineReferenceNote {...props} />
 

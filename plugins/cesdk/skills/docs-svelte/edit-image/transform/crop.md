@@ -20,7 +20,7 @@ system.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-transform-crop-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/guides-edit-image-transform-crop-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-edit-image-transform-crop-browser/index.html)
 
 Image cropping in CreativeEditor SDK (CE.SDK) lets you select a region inside an image and discard everything outside that frame. Unlike resizing which changes overall dimensions uniformly, cropping removes unwanted areas while preserving original pixel quality in the selected region.
 
@@ -244,6 +244,23 @@ export default Example;
 
 This guide covers both interactive cropping using the built-in UI and programmatic cropping using the engine API for automation workflows.
 
+## What Can Be Cropped
+
+CE.SDK supports two kinds of crop targets, and they behave differently in the editor:
+
+- **Graphic blocks with an image fill** — the typical design editor case. The image is one element on a page, and the crop frame is the block's own frame, adjusted in place with handles.
+- **Pages with an image fill** — the typical photo editor case. The photo is the page's background fill, and the crop frame is the page itself.
+
+|  | Graphic block with image fill | Page with image fill |
+| --- | --- | --- |
+| Typical use case | Multiple images or graphics on a page, each cropped individually | A single image loaded as the page's fill, with no separate block on the page |
+| While cropping | You can move the crop rectangle (the block's frame) and it keeps its new position | The crop rectangle (the page's frame) re-centers after you resize it |
+| Resize the crop frame | `controlGizmo/showCropHandles` (default `true`) | `page/allowResizeInteraction` (default `false`) |
+| Scale the image inside the frame | `controlGizmo/showCropScaleHandles` (default `true`) | `page/allowCropInteraction` (default `true`) |
+| Lock the aspect ratio | `engine.block.setCropAspectRatioLocked()` | `page/restrictResizeInteractionToFixedAspectRatio` (default `false`) |
+
+The last three rows list the settings that control the same crop capability for each target. The `controlGizmo/*` settings apply to pages too — for a page they are prerequisites, and the `page/*` setting in the same row must be enabled in addition: crop frame handles appear only when both `controlGizmo/showCropHandles` and `page/allowResizeInteraction` are `true`, and scale handles only when both `controlGizmo/showCropScaleHandles` and `page/allowCropInteraction` are `true`. The programmatic crop API works the same way for both targets; the differences only affect the interactive crop UI. For the page setup, see [Cropping the Page's Background Image](./edit-image/transform/crop-f67a47/#cropping-the-pages-background-image.md).
+
 ## Using the Built-in Crop UI
 
 The CE.SDK default UI provides an interactive crop tool that allows users to visually adjust crop areas with real-time feedback.
@@ -266,31 +283,59 @@ For developers building custom UIs, you can enable crop functionality using edit
 
 ```typescript
 // Enable double-click to enter crop mode
-cesdk.editor.setSettingBool('doubleClickToCropEnabled', true);
+cesdk.engine.editor.setSettingBool('doubleClickToCropEnabled', true);
 
 // Show crop handles on the control gizmo
-cesdk.editor.setSettingBool('controlGizmo/showCropHandles', true);
+cesdk.engine.editor.setSettingBool('controlGizmo/showCropHandles', true);
 
 // Show crop scale handles
-cesdk.editor.setSettingBool('controlGizmo/showCropScaleHandles', true);
+cesdk.engine.editor.setSettingBool('controlGizmo/showCropScaleHandles', true);
 ```
 
 ### Define Preset Aspect Ratios
 
-You can define available aspect ratios to guide user choices:
+The aspect ratio and size presets offered in the crop panel come from the `ly.img.crop.presets` asset source, which is part of the default asset sources added by `engine.addDefaultAssetSources()`. To offer your own presets — for example social media formats or print sizes — add assets to that source or register your own source with custom preset definitions. See the [crop presets guide](./user-interface/customization/crop-presets.md) for the preset structure and source configuration.
+
+## Cropping the Page's Background Image
+
+In photo editing workflows, the image is usually not a block on the page — it is the page's background fill. Scenes created with `engine.scene.createFromImage()` use this structure, and so does the Photo Editor starter kit. Cropping then targets the page itself: select the page and switch the editor to crop mode, and the page's frame becomes the crop frame.
 
 ```typescript
-const aspectRatios = [
-  'Free',      // Unconstrained
-  '1:1',       // Square
-  '4:5',       // Instagram Portrait
-  '16:9',      // Widescreen
-  'Custom:3:2' // Custom ratios
-];
-cesdk.editor.setSettingString('ui/crop/aspectRatios', aspectRatios.join(','));
+// The photo is the page's fill, so the page is the crop target
+const page = engine.scene.getCurrentPage();
+engine.block.select(page);
+engine.editor.setEditMode('Crop');
 ```
 
-> **Tip:** You can hide the aspect ratio selector entirely by setting `ui/crop/allowAspectRatioSelection` to `false`.
+Unlike graphic blocks, pages gate their crop interaction behind dedicated page settings. These act in addition to the `controlGizmo/showCropHandles` and `controlGizmo/showCropScaleHandles` settings, which apply to pages as well — each handle type only appears when both its `controlGizmo/*` setting and the corresponding `page/*` setting are enabled:
+
+```typescript
+// Let users pan and resize the image under the page's crop frame
+cesdk.engine.editor.setSettingBool('page/allowCropInteraction', true); // default: true
+
+// Show handles to resize the page's crop frame
+cesdk.engine.editor.setSettingBool('page/allowResizeInteraction', true); // default: false
+
+// Keep the page's aspect ratio fixed while resizing with handles
+cesdk.engine.editor.setSettingBool(
+  'page/restrictResizeInteractionToFixedAspectRatio',
+  true
+); // default: false
+```
+
+`page/allowCropInteraction` only covers panning and resizing the image under the page's crop frame. The handles that resize the crop frame itself are gated by `page/allowResizeInteraction`, which defaults to `false` — with default settings, no crop frame handles appear on a page, even though `controlGizmo/showCropHandles` is enabled. The default editor handles this for you: with the `ly.img.crop` feature enabled, the crop inspector panel enables `page/allowResizeInteraction` while a page is in crop mode and restores your original value when crop mode is left.
+
+Two more settings round out cropping a page's background image:
+
+```typescript
+// Keep text and sticker overlays aligned with the photo while cropping
+cesdk.engine.editor.setSettingBool('page/moveChildrenWhenCroppingFill', true); // default: false
+
+// Highlight the page boundary during cropping
+cesdk.engine.editor.setSettingBool('page/highlightWhenCropping', true); // default: false
+```
+
+> **Tip:** Resizing the page's crop frame changes the page's dimensions — and with it the output size of your design. Keep `page/restrictResizeInteractionToFixedAspectRatio` enabled or lock the ratio with `engine.block.setCropAspectRatioLocked(page, true)` when the output format must stay fixed.
 
 ## Programmatic Cropping
 
@@ -298,7 +343,7 @@ For automation, batch processing, or dynamic applications, you can control cropp
 
 ### Check Crop Support
 
-Before applying crop operations, verify the block supports cropping using `engine.block.supportsCrop()`. Graphic blocks with image fills support cropping:
+Before applying crop operations, verify the block supports cropping using `engine.block.supportsCrop()`. Graphic blocks with image fills support cropping, and so do pages whose background fill is an image:
 
 ```typescript highlight-check-crop-support
 // Verify the block supports cropping before applying crop operations
@@ -533,7 +578,8 @@ engine.block.setWidth(imageBlock, 400);
 | Black bars after scaling | Call `adjustCropToFillFrame()` or increase scale ratio |
 | Content not filling frame | Check content fill mode - use 'Cover' for automatic fill |
 | Unexpected crop behavior | Ensure content fill mode is set to 'Crop' for manual control |
-| Crop handles not visible in UI | Enable with `cesdk.editor.setSettingBool('controlGizmo/showCropHandles', true)` |
+| Crop handles not visible on a block | Enable with `cesdk.engine.editor.setSettingBool('controlGizmo/showCropHandles', true)` |
+| Crop handles not visible on a page | Enable both `controlGizmo/showCropHandles` and `page/allowResizeInteraction` (default `false`) - the gizmo setting alone is not enough for pages, see [Cropping the Page's Background Image](./edit-image/transform/crop-f67a47/#cropping-the-pages-background-image.md) |
 
 ## API Reference
 

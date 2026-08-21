@@ -22,9 +22,4 @@ In Claude Code, type `/`; in Codex, type `$`. Then select the
 matching skill from the `cesdk-swift` plugin. Both assistants can also
 select a skill automatically from a natural-language request.
 
-## Xcode 27
 
-Download the self-contained `.skill` archives from
-`xcode/cesdk-swift/` and import `docs.skill`, `explain.skill`, or
-`build.skill` into Xcode's Agent Skills settings. Each archive contains its
-own `SKILL.md` and supporting files; no checkout-relative symlinks are used.

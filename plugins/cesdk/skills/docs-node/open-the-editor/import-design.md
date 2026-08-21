@@ -391,7 +391,7 @@ Improve import performance with these approaches:
 When a scene loads but displays missing images or fonts, the asset URLs referenced in the scene are likely inaccessible. Check that:
 
 - All asset URLs are still valid and return the resources
-- CORS headers allow fetching assets from their URLs (for cross-origin requests)
+- Asset URLs are reachable from your server environment
 - Network connectivity allows reaching the asset servers
 
 **Design tool import fails**
@@ -408,7 +408,7 @@ When `createFromImage()` or `createFromVideo()` fails:
 
 - Verify the media URL is accessible and returns the file
 - Check that the file format is supported (common formats: JPG, PNG, MP4, WebM)
-- Ensure CORS headers allow fetching the media resource for cross-origin requests
+- Ensure the media resource URL is reachable from your server environment
 
 ## API Reference
 

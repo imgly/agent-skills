@@ -276,7 +276,7 @@ Customize the inspector bar — the contextual toolbar that appears when a desig
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/editor-guides-configuration-inspector-bar)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/editor-guides-configuration-inspector-bar)
 
 ## Inspector Bar Architecture
 
@@ -443,7 +443,7 @@ InspectorBar.Buttons.formatText(
 - `action` — the work performed when the user taps the button. This example opens the format text sheet.
 - `title` — the `View` that labels the button. To restyle the default label, rebuild it with `Text(.imgly.localized("…"))` and apply your styling, as shown above. Passing a string literal like `Text("Format")` instead would discard the button's translations.
 - `icon` — the icon `View`. Keep visibility logic out of the icon; use `isVisible` for that. The `Image.imgly` namespace provides the built-in glyphs.
-- `isEnabled` — whether the button is tappable. Use the context to compute state.
+- `isEnabled` — whether the button is tappable. Use the context to compute state. Supplying this closure replaces the factory default, and a few defaults are not simply `true`: `split` disables itself for a caption unless the playhead sits inside it with more than 0.1 seconds to spare at each end, and `volume` disables itself for a video fill playing faster than 3×. Reproduce the default's checks before adding your own conditions.
 - `isVisible` — whether the button appears for the current selection. Supplying this closure replaces the factory default, so reproduce the default's selection-type and scope checks before adding your own conditions.
 
 ### Create New Buttons
@@ -516,11 +516,13 @@ Every predefined button is a static function in the `InspectorBar.Buttons` names
 | --- | --- | --- | --- |
 | `InspectorBar.Buttons.replace` | `InspectorBar.Buttons.ID.replace` | Opens a library sheet via editor event `.openSheet`. The selected asset replaces the content of the currently selected design block. The library is picked from the [Asset Library](../../import-media/asset-library/customize.md) based on the block's type, fill type, and kind. | Page, Video, Image, Audio |
 | `InspectorBar.Buttons.editText` | `InspectorBar.Buttons.ID.editText` | Enters text editing mode for the selected design block. | Text |
-| `InspectorBar.Buttons.formatText` | `InspectorBar.Buttons.ID.formatText` | Opens the format text sheet via editor event `.openSheet`. | Text |
+| `InspectorBar.Buttons.formatText` | `InspectorBar.Buttons.ID.formatText` | Opens the format text sheet via editor event `.openSheet`. | Text, Caption |
 | `InspectorBar.Buttons.textPresets` | `InspectorBar.Buttons.ID.textPresets` | Opens a restyle picker via editor event `.openSheet`. The picker offers three buckets — Plain, Styles, and Curved — that apply a new look to the selected text block in place. Visible when the `ly.img.text.styles` source is registered. | Text |
 | `InspectorBar.Buttons.textOnPath` | `InspectorBar.Buttons.ID.textOnPath` | Opens the text-on-path sheet via editor event `.openSheet`. Reads curve presets from the `ly.img.text.curves` source. | Text |
-| `InspectorBar.Buttons.fillStroke` | `InspectorBar.Buttons.ID.fillStroke` | Opens the fill & stroke sheet via editor event `.openSheet`. | Page, Video, Image, Shape, Text |
-| `InspectorBar.Buttons.textBackground` | `InspectorBar.Buttons.ID.textBackground` | Opens the text background sheet via editor event `.openSheet`. | Text |
+| `InspectorBar.Buttons.fillStroke` | `InspectorBar.Buttons.ID.fillStroke` | Opens the fill & stroke sheet via editor event `.openSheet`. | Page, Video, Image, Shape, Text, Caption |
+| `InspectorBar.Buttons.textBackground` | `InspectorBar.Buttons.ID.textBackground` | Opens the text background sheet via editor event `.openSheet`. | Text, Caption |
+| `InspectorBar.Buttons.editCaptions` | `InspectorBar.Buttons.ID.editCaptions` | Opens the captions sheet via editor event `.openSheet` to edit the caption list. | Caption |
+| `InspectorBar.Buttons.captionStyle` | `InspectorBar.Buttons.ID.captionStyle` | Opens the caption style preset sheet via editor event `.openSheet`. Visible when the `ly.img.caption.presets` source is registered. | Caption |
 | `InspectorBar.Buttons.addVoiceoverRecording` | `InspectorBar.Buttons.ID.addVoiceoverRecording` | Starts a new voiceover recording on a fresh draft track via editor event `.openSheet`. | Voiceover |
 | `InspectorBar.Buttons.volume` | `InspectorBar.Buttons.ID.volume` | Opens the volume sheet via editor event `.openSheet`. | Video, Audio |
 | `InspectorBar.Buttons.clipSpeed` | `InspectorBar.Buttons.ID.clipSpeed` | Opens the clip speed sheet via editor event `.openSheet`. | Video, Audio |
@@ -534,12 +536,12 @@ Every predefined button is a static function in the `InspectorBar.Buttons` names
 | `InspectorBar.Buttons.selectGroup` | `InspectorBar.Buttons.ID.selectGroup` | Selects the group that contains the currently selected design block via editor event `.selectGroupForSelection`. | Video, Image, Sticker, Shape, Text |
 | `InspectorBar.Buttons.enterGroup` | `InspectorBar.Buttons.ID.enterGroup` | Changes the selection from the selected group to a design block within it via editor event `.enterGroupForSelection`. | Group |
 | `InspectorBar.Buttons.layer` | `InspectorBar.Buttons.ID.layer` | Opens the layer sheet via editor event `.openSheet`. | Video, Image, Sticker, Shape, Text |
-| `InspectorBar.Buttons.split` | `InspectorBar.Buttons.ID.split` | Splits the currently selected design block via editor event `.splitSelection` in a video scene. | Video, Image, Sticker, Shape, Text, Audio |
+| `InspectorBar.Buttons.split` | `InspectorBar.Buttons.ID.split` | Splits the currently selected design block via editor event `.splitSelection` in a video scene. For a caption, the split divides the text as well as the time: the playhead's position within the caption picks the split point in the text, snapped outward to the nearest word gap, and the duration is divided in the same proportion. A caption is the one type the button greys itself out for: it stays disabled unless the playhead sits more than 0.1 seconds past the caption's start and more than 0.1 seconds before its end, so it is disabled on any caption 0.2 seconds or shorter, and right after you create a caption or tap into a row in the captions sheet — both park the playhead on that caption's start. Selecting a caption clip in the timeline leaves the playhead where it is. Every other block type stays enabled. That margin guards the button only: sending `.splitSelection` yourself still splits anywhere strictly inside the caption, and is a silent no-op that leaves the scene unchanged when the playhead sits on or outside the caption's edges, or when the snapped cut would leave either half empty. | Video, Image, Sticker, Shape, Text, Audio, Caption |
 | `InspectorBar.Buttons.moveAsClip` | `InspectorBar.Buttons.ID.moveAsClip` | Moves the currently selected design block into the background track as a clip via editor event `.moveSelectionAsClip`. | Video, Image, Sticker, Shape, Text |
 | `InspectorBar.Buttons.moveAsOverlay` | `InspectorBar.Buttons.ID.moveAsOverlay` | Moves the currently selected design block from the background track to an overlay via editor event `.moveSelectionAsOverlay`. | Video, Image, Sticker, Shape, Text |
 | `InspectorBar.Buttons.reorder` | `InspectorBar.Buttons.ID.reorder` | Opens the reorder sheet via editor event `.openSheet` for clips in the background track. | Video, Image, Sticker, Shape, Text |
 | `InspectorBar.Buttons.duplicate` | `InspectorBar.Buttons.ID.duplicate` | Duplicates the currently selected design block via editor event `.duplicateSelection`. | Video, Image, Sticker, Shape, Text, Audio |
-| `InspectorBar.Buttons.delete` | `InspectorBar.Buttons.ID.delete` | Deletes the currently selected design block via editor event `.deleteSelection`. | Video, Image, Sticker, Shape, Text, Audio, Voiceover |
+| `InspectorBar.Buttons.delete` | `InspectorBar.Buttons.ID.delete` | Deletes the currently selected design block via editor event `.deleteSelection`. | Video, Image, Sticker, Shape, Text, Audio, Voiceover, Caption |
 
 ## Next Steps
 

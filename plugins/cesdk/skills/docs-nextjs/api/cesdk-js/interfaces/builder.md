@@ -18,6 +18,7 @@ different component than a button in the topbar or a panel.
 |  `Section` | (`id`, `options`) => `void` |
 |  `Separator` | (`id`) => `void` |
 |  `Spinner` | (`id`, `options?`) => `void` |
+|  `Tabs` | (`id`, `options`) => `void` |
 |  `TextArea` | (`id`, `options`) => `void` |
 |  `TextInput` | (`id`, `options`) => `void` |
 |  `NumberInput` | (`id`, `options`) => `void` |

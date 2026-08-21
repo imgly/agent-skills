@@ -4,7 +4,7 @@
 
 ---
 
-```kotlin file=@cesdk_android_examples/engine-guides-underlayer/Underlayer.kt reference-only
+```kotlin file=@cesdk_android_examples/engine-guides-export-to-pdf/ExportToPdf.kt reference-only
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ly.img.engine.Color
@@ -17,7 +17,7 @@ import ly.img.engine.ShapeType
 import java.io.File
 import java.nio.ByteBuffer
 
-suspend fun underlayer(engine: Engine): List<File> {
+suspend fun exportToPdf(engine: Engine): List<File> {
     // Demo scaffolding: create renderable content for the export snippets. In
     // an app, start from the scene already loaded in the editor.
     val scene = engine.scene.create()
@@ -44,6 +44,17 @@ suspend fun underlayer(engine: Engine): List<File> {
         mimeType = MimeType.PDF,
     )
     val defaultPdf = writePdfExport(fileName = "design-pages.pdf", buffer = pdfData)
+
+    // Report per-page progress as the PDF is written. The callback runs once
+    // per page; only PDF exports invoke it.
+    val progressData = engine.block.export(
+        block = scene,
+        mimeType = MimeType.PDF,
+        progressCallback = { progress ->
+            println("Exported ${progress.exportedPages} of ${progress.totalPages} pages")
+        },
+    )
+    val progressPdf = writePdfExport(fileName = "design-with-progress.pdf", buffer = progressData)
 
     val highCompatibilityOptions = ExportOptions(exportPdfWithHighCompatibility = true)
     val highCompatibilityData = engine.block.export(
@@ -82,7 +93,7 @@ suspend fun underlayer(engine: Engine): List<File> {
     )
     val a4Pdf = writePdfExport(fileName = "design-a4.pdf", buffer = a4Data)
 
-    return listOf(defaultPdf, highCompatibilityPdf, underlayerPdf, a4Pdf)
+    return listOf(defaultPdf, progressPdf, highCompatibilityPdf, underlayerPdf, a4Pdf)
 }
 
 private suspend fun writePdfExport(
@@ -111,13 +122,13 @@ underlayer support for special media printing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-underlayer)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-export-to-pdf)
 
 <EngineReferenceNote {...props} />
 
 PDF provides a document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page scenes, and include options for print compatibility. You can configure high compatibility mode for consistent rendering across PDF viewers, and generate underlayers for printing on transparent or non-white materials.
 
-This guide covers exporting designs to PDF, configuring high compatibility mode, generating underlayers with spot colors, and controlling output dimensions.
+This guide covers exporting designs to PDF, configuring high compatibility mode, controlling the quality of rasterized images, generating underlayers with spot colors, and controlling output dimensions.
 
 ## Export to PDF
 
@@ -151,6 +162,25 @@ private suspend fun writePdfExport(
 }
 ```
 
+## Track Export Progress
+
+Large multi-page PDFs take time to write. Pass a `progressCallback` to `engine.block.export()` to report how far the export has advanced.
+
+```kotlin highlight-android-progress
+// Report per-page progress as the PDF is written. The callback runs once
+// per page; only PDF exports invoke it.
+val progressData = engine.block.export(
+    block = scene,
+    mimeType = MimeType.PDF,
+    progressCallback = { progress ->
+        println("Exported ${progress.exportedPages} of ${progress.totalPages} pages")
+    },
+)
+val progressPdf = writePdfExport(fileName = "design-with-progress.pdf", buffer = progressData)
+```
+
+The callback runs once after each page is serialized into the document. It receives an `ExportPdfProgress` with `exportedPages` and `totalPages`. It is PDF-specific: raster exports like PNG or JPEG never invoke it. The callback runs on the engine's thread, so dispatch to the main thread before updating UI.
+
 ## Configure High Compatibility Mode
 
 Set `exportPdfWithHighCompatibility` on `ExportOptions` to rasterize complex elements like gradients with transparency at the scene's DPI. This produces more consistent output across PDF viewers, but it can increase file size because complex elements are converted to raster images.
@@ -175,6 +205,26 @@ Use high compatibility mode when:
 - Compatibility matters more than keeping every element vector-based
 
 The flag defaults to `true`; set it explicitly when you want the export configuration to be visible in your code.
+
+## Control the Size of Rasterized Images
+
+When `exportPdfWithHighCompatibility` is `false`, CE.SDK embeds the original data of unmodified JPEG images directly into the PDF. This keeps exports of photo-heavy documents such as photo books fast and small, because the photos are not decoded and encoded again.
+
+CE.SDK must rasterize images that it cannot embed directly, for example images with effects or blurs applied, or every bitmap image when high compatibility mode is enabled. By default these images are encoded losslessly. Set `pdfImageQuality` on `ExportOptions` to a value below `1.0` to encode them as lossy JPEG instead, which produces much smaller files.
+
+```kotlin
+val imageQualityOptions = ExportOptions(
+    exportPdfWithHighCompatibility = false,
+    pdfImageQuality = 0.85F,
+)
+val pdfData = engine.block.export(
+    block = page,
+    mimeType = MimeType.PDF,
+    options = imageQualityOptions,
+)
+```
+
+Valid values are greater than `0` and at most `1.0`. The default of `1.0` keeps the lossless encoding, in the same way as `webpQuality`. Images that are embedded as their original JPEG data are never encoded again, so this option does not change them.
 
 ## Generate Underlayers for Special Media
 
@@ -242,6 +292,7 @@ For print output, calculate the target dimensions from your desired DPI:
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `mimeType`                       | Output format. Pass `MimeType.PDF`.                                                                                                                                |
 | `exportPdfWithHighCompatibility` | Rasterize complex elements at scene DPI for consistent rendering. Defaults to `true`.                                                                              |
+| `pdfImageQuality`                | Encoding quality for images that CE.SDK has to rasterize. Values below the default of `1.0` encode them as lossy JPEG.                                             |
 | `exportPdfWithUnderlayer`        | Generate an underlayer from design contours. Defaults to `false`.                                                                                                  |
 | `underlayerSpotColorName`        | Spot color name for the underlayer ink. Required when `exportPdfWithUnderlayer` is `true`.                                                                         |
 | `underlayerOffset`               | Size adjustment in design units. Negative values shrink the underlayer inward.                                                                                     |
@@ -252,13 +303,13 @@ For print output, calculate the target dimensions from your desired DPI:
 
 ## API Reference
 
-| Method                                                                         | Description                                                  |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------ |
-| `engine.block.export(block=_, mimeType=MimeType.PDF, options=_)`               | Export a block as PDF with format and compatibility options. |
-| `engine.editor.setSpotColor(name=_, color=Color.fromRGBA(r=_, g=_, b=_, a=_))` | Define or update the RGB approximation of a spot color.      |
-| `Color.fromRGBA(r=_, g=_, b=_, a=_)`                                           | Create the RGB preview color for the underlayer spot color.  |
-| `engine.scene.get()`                                                           | Get the scene block for a multi-page PDF export.             |
-| `engine.scene.getCurrentPage()`                                                | Get the current page for a single-page PDF export.           |
+| Method                                                                               | Description                                                                                                                     |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| `engine.block.export(block=_, mimeType=MimeType.PDF, options=_, progressCallback=_)` | Export a block as PDF with format and compatibility options, optionally reporting per-page progress through `progressCallback`. |
+| `engine.editor.setSpotColor(name=_, color=Color.fromRGBA(r=_, g=_, b=_, a=_))`       | Define or update the RGB approximation of a spot color.                                                                         |
+| `Color.fromRGBA(r=_, g=_, b=_, a=_)`                                                 | Create the RGB preview color for the underlayer spot color.                                                                     |
+| `engine.scene.get()`                                                                 | Get the scene block for a multi-page PDF export.                                                                                |
+| `engine.scene.getCurrentPage()`                                                      | Get the current page for a single-page PDF export.                                                                              |
 
 ## Next Steps
 

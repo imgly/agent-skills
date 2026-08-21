@@ -165,7 +165,7 @@ Configure typefaces, manage right-to-left text, and bind multilingual content to
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-text-language-support)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-text-language-support)
 
 <EngineReferenceNote {...props} />
 

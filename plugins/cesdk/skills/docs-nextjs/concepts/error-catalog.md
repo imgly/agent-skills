@@ -659,7 +659,7 @@ Image and video encoding/export.
 | `ENCODE.AUDIO_TIME_RANGE_INVALID_AFTER_TRIM` | Invalid time range after applying trim settings and options. | After applying trim/clip parameters the selected range is empty. Adjust start/end times. |  |
 | `ENCODE.AUDIO_TRACK_INDEX_OUT_OF_BOUNDS` | Audio track index \{index} is out of bounds. Valid range: 0-\{max} | Pass an audio track index within \[0, \{max}]. |  |
 | `ENCODE.AUDIO_UNSUPPORTED_EXPORT_FORMAT` | Unsupported audio export format. | Use audio/wav or audio/mp4 as the export target. |  |
-| `ENCODE.BLOCK_MUST_BE_PAGE` | The block to export must be a page. | Audio export targets a page block. Pass a page or call api.scene.getPages() to obtain one. |  |
+| `ENCODE.BLOCK_MUST_BE_PAGE` | The block to export must be a page. | Video export targets a single page block. Pass a page or call api.scene.getPages() to obtain one. Scenes with multiple pages must be exported one page at a time. |  |
 | `ENCODE.BLOCK_SIZE_ZERO` | Block to export has size 0. | Set a positive width and height on the block, or pick a different block, before exporting. |  |
 | `ENCODE.CANCELLED_BY_BLOCK_ERROR` | The export was cancelled due to block \{block} having an error: \{reason} | Block \{block} entered an error state during export (\{reason}). Resolve the block's underlying issue and retry. |  |
 | `ENCODE.COLOR_MASK_DATA_FAILED` | Color masking data could not be generated. | The renderer failed to produce the color-mask buffer. Retry, or simplify the scene if it has very high resolution. |  |
@@ -759,6 +759,9 @@ License unlock, API-key handling, entitlement checks.
 | --- | --- | --- | --- |
 | `LICENSE.ALREADY_UNLOCKED` | License is already unlocked. | The license has already been unlocked successfully. Skip the redundant unlock call. |  |
 | `LICENSE.API_SERVICE_UNAVAILABLE` | API service is unavailable. Please contact support. | The license API endpoint did not respond. Check network connectivity; if the problem persists, contact support. |  |
+| `LICENSE.AV_CONCURRENCY_LIMIT_REACHED` | Codec license concurrency limit reached: \{activeCount} of \{concurrencyLimit} licensed instances are already in use. | Wait for another engine instance to finish its video or audio work and retry, or raise the concurrency limit of your license. |  |
+| `LICENSE.AV_SESSION_ACQUISITION_FAILED` | Could not reserve a video codec license from the license server. | Check network connectivity to the IMG.LY license service and retry the operation. |  |
+| `LICENSE.AV_SESSION_REQUIRES_API_KEY` | Video codec licensing requires unlocking the engine with an API key. | Initialize the engine with the API key from your dashboard instead of an offline license file. |  |
 | `LICENSE.CANNOT_DEACTIVATE_OFFLINE` | Cannot deactivate offline license. | Offline licenses cannot be deactivated remotely. Switch to an online license if dynamic activation is required. |  |
 | `LICENSE.DEACTIVATION_TIMEOUT` | Deactivation timed out. | The license server did not acknowledge the deactivation in time. Retry, or contact support if the issue persists. |  |
 | `LICENSE.ENGINE_VERSION_INVALID` | The License Key (API Key) you are using requires a newer version of the IMG.LY SDK. Please update to the latest version. | Upgrade the CE.SDK engine to a version compatible with this license. |  |

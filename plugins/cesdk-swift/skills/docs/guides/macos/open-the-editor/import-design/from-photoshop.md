@@ -45,7 +45,7 @@ archive on a server, then loading that archive into the engine.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-import-from-photoshop)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-import-from-photoshop)
 
 <EngineReferenceNote {...props} />
 
@@ -97,6 +97,8 @@ The same conversion limitations apply wherever you load the result:
 - **Groups** have limited support, especially single-member groups.
 - **Unavailable fonts** are substituted with fallbacks. Configure Google Fonts matching during conversion for the best results.
 - **Some blend modes** are not supported, including PassThrough, Dissolve, Linear Burn, and Subtract.
+
+These are the highlights only—the [`@imgly/psd-importer`](https://www.npmjs.com/package/@imgly/psd-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
 
 ## API Reference
 

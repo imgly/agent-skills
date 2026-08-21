@@ -59,6 +59,7 @@ type FeatureId =
   | "ly.img.scene.layout.horizontal"
   | "ly.img.scene.layout.vertical"
   | "ly.img.scene.layout.free"
+  | "ly.img.scene.layout.spacing"
   | "ly.img.scene.fontSizeUnit"
   | "ly.img.group"
   | "ly.img.group.create"

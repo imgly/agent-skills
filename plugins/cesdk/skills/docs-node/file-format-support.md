@@ -4,7 +4,7 @@
 
 ---
 
-CreativeEditor SDK (CE.SDK) supports a wide range of modern file types for importing assets and exporting final content. Whether you're working with images, documents, or fonts, CE.SDK provides an editing environment with excellent media compatibility and performance—optimized for modern hardware.
+CreativeEditor SDK (CE.SDK) supports a wide range of modern file types for importing assets and exporting final content. Whether you're working with images, videos, documents, or fonts, CE.SDK provides an editing environment with excellent media compatibility and performance—optimized for modern hardware.
 
 This guide outlines supported formats and known limitations across media types.
 
@@ -16,11 +16,18 @@ This guide outlines supported formats and known limitations across media types.
 
 ## Importing Templates
 
+See [Import and Export](./concepts/import-export.md) for
+how these import and export workflows fit together.
+
 ## Font Formats
 
 ## Size Limits
 
 ### Image Resolution Limits
+
+### Video Resolution Limits
+
+## Codecs
 
 
 

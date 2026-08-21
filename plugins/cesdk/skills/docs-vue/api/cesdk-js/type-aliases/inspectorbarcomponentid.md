@@ -36,6 +36,7 @@ type InspectorBarComponentId =
   | "ly.img.text.background.inspectorBar"
   | "ly.img.separator"
   | "ly.img.animations.inspectorBar"
+  | "ly.img.transitions.inspectorBar"
   | "ly.img.separator"
   | "ly.img.appearance.inspectorBar"
   | "ly.img.adjustment.inspectorBar"

@@ -168,7 +168,7 @@ editor UI.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-conversion-to-pdf)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-conversion-to-pdf)
 
 <EngineReferenceNote {...props} />
 
@@ -384,7 +384,7 @@ the requested dimensions while preserving its aspect ratio.
 
 | Symptom | Resolution |
 | --- | --- |
-| PDF file size is too large | Reduce the scene DPI or disable `exportPdfWithHighCompatibility` when your target viewers support the original content. |
+| PDF file size is too large | Reduce the scene DPI or disable `exportPdfWithHighCompatibility` when your target viewers support the original content. Set `pdfImageQuality` below `1.0` to encode the images that CE.SDK still has to rasterize as lossy JPEG. |
 | Gradients or effects differ between viewers | Enable `exportPdfWithHighCompatibility` so CE.SDK rasterizes complex elements at the scene DPI. |
 | Underlayer is missing from the printed result | Confirm that `underlayerSpotColorName` matches the print provider's configuration and that the PDF was not flattened. |
 
@@ -395,6 +395,7 @@ Pass these fields to `ExportOptions` when calling `engine.block.export()`.
 | Option | Description |
 | --- | --- |
 | `exportPdfWithHighCompatibility` | Rasterize complex elements at the scene DPI. Defaults to `true`. |
+| `pdfImageQuality` | Encoding quality for images that CE.SDK has to rasterize. Values below the default of `1.0` encode them as lossy JPEG. |
 | `exportPdfWithUnderlayer` | Generate an underlayer from the design contours. Defaults to `false`. |
 | `underlayerSpotColorName` | Name of the spot color used for the underlayer ink. |
 | `underlayerOffset` | Size adjustment in design units. Negative values shrink the underlayer inward. |

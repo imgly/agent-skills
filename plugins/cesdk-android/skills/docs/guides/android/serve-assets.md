@@ -126,7 +126,7 @@ or Android app assets instead of the IMG.LY CDN.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-serve-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-serve-assets)
 
 <EngineReferenceNote {...props} />
 
@@ -136,12 +136,12 @@ The editor loads assets from the IMG.LY CDN by default, which is convenient whil
 
 Download the asset archive for the same CE.SDK Android version that your app uses. Android, iOS, and web archives are platform-specific, so use the `cesdk-android` package path for Android projects.
 
-[Download Assets (v1.81.0-nightly.20260811)](https://cdn.img.ly/packages/imgly/cesdk-android/1.81.0-nightly.20260811/imgly-assets.zip)
+[Download Assets (v1.82.0-nightly.20260821)](https://cdn.img.ly/packages/imgly/cesdk-android/1.82.0-nightly.20260821/imgly-assets.zip)
 
 Or download and extract it from the command line:
 
 ```bash
-curl -O https://cdn.img.ly/packages/imgly/cesdk-android/1.81.0-nightly.20260811/imgly-assets.zip
+curl -O https://cdn.img.ly/packages/imgly/cesdk-android/1.82.0-nightly.20260821/imgly-assets.zip
 unzip imgly-assets.zip -d imgly-assets
 ```
 

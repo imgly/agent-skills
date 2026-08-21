@@ -125,6 +125,24 @@ Creates a [`Dock.Button`](../button.md) that opens the blur sheet. `action`
 @MainActor func body(content: Dock.Buttons.AssetLibraryModifier.Content) -> some View
 ```
 
+### Buttons.ID.captions
+
+```swift
+static var captions: EditorComponentID { get }
+```
+
+The id of the [`captions(action:title:icon:isEnabled:isVisible:)`](../captions(action:title:icon:isenabled:isvisible:).md) button.
+
+### Buttons.captions(action:title:icon:isEnabled:isVisible:)
+
+```swift
+@MainActor static func captions(action: @escaping Dock.Context.To<Void> = { $0.eventHandler.send(.openSheet(type: .captions())) }, @ViewBuilder title: @escaping Dock.Context.To<some View> = { _ in
+      Text(.imgly.localized("ly_img_editor_dock_button_captions"))
+    }, @ViewBuilder icon: @escaping Dock.Context.To<some View> = { _ in Image.imgly.captions }, isEnabled: @escaping Dock.Context.To<Bool> = { _ in true }, isVisible: @escaping Dock.Context.To<Bool> = { _ in true }) -> some Dock.Item
+```
+
+Creates a [`Dock.Button`](../button.md) that opens the captions sheet. `action`
+
 ### Buttons.ID.crop
 
 ```swift

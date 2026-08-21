@@ -114,13 +114,13 @@ Communicate with users during editing by triggering the editor's built-in alerts
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/editor-guides-ui-extensions-notifications-and-dialogs)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/editor-guides-ui-extensions-notifications-and-dialogs)
 
 ## Overview
 
 Communicate with users by sending `EditorEvent`s through an `EditorEventHandler`. These events drive the editor's built-in alerts, modal sheets, and progress indicators. For anything the editor doesn't provide — a non-blocking toast or a fully custom confirmation — you use native SwiftUI in your host app.
 
-The examples build on `GuideEditorConfiguration`, a small helper class the iOS guides repository ships as a minimal baseline ([source](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.0-nightly.20260811/editor-guides-quickstart/GuideEditorConfiguration.swift)). Substitute your own editor configuration — the extension points shown here are available on every configuration.
+The examples build on `GuideEditorConfiguration`, a small helper class the iOS guides repository ships as a minimal baseline ([source](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260821/editor-guides-quickstart/GuideEditorConfiguration.swift)). Substitute your own editor configuration — the extension points shown here are available on every configuration.
 
 ## Sending Editor Events
 

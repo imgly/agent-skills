@@ -668,7 +668,9 @@ getSettingType(keypath: string): SettingType
 
 Sets a custom URI resolver.
 This function can be called more than once. Subsequent calls will overwrite previous calls.
-To remove a previously set resolver, pass the value `null`.
+To remove a previously set resolver, pass `null` or `undefined`.
+`setURIResolver` and `setURIResolverAsync` share one resolver slot, so a
+call to either one replaces the resolver set by the other.
 The given function must return an absolute path with a scheme and cannot be asynchronous. The input is allowed to be an invalid URI, e.g., due to placeholders.
 ```javascript
 // Replace all .jpg files with the IMG.LY logo
@@ -682,7 +684,7 @@ engine.editor.setURIResolver((uri) => {
 ```
 
 ```typescript
-setURIResolver(resolver: SyncURIResolver): void
+setURIResolver(resolver?: SyncURIResolver | null): void
 ```
 
 **Parameters:**
@@ -694,12 +696,14 @@ setURIResolver(resolver: SyncURIResolver): void
 
 Sets a custom async URI resolver.
 This function can be called more than once. Subsequent calls will overwrite previous calls.
-To remove a previously set resolver, pass the value `null`.
+To remove a previously set resolver, pass `null` or `undefined`.
+`setURIResolver` and `setURIResolverAsync` share one resolver slot, so a
+call to either one replaces the resolver set by the other.
 The given function must return an absolute path with a scheme. The input is allowed to be invalid URI, e.g., due
 to placeholders.
 
 ```typescript
-setURIResolverAsync(resolver: AsyncURIResolver | null): void
+setURIResolverAsync(resolver?: AsyncURIResolver | null): void
 ```
 
 **Parameters:**

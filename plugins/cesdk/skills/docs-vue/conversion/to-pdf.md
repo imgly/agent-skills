@@ -18,7 +18,7 @@ The CE.SDK allows you to convert JPEG, PNG, WebP, BMP and SVG images into PDFs d
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-conversion-to-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/guides-conversion-to-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-conversion-to-pdf-browser/index.html)
 
 The CE.SDK supports converting single or multiple images to PDF while allowing transformations such as cropping, rotating, and adding text before exporting. You can also customize PDF output settings, including resolution, compatibility and underlayer.
 
@@ -501,6 +501,7 @@ The `exportPdfWithHighCompatibility` flag significantly impacts PDF export perfo
 **When `false` (faster but needs testing):**
 
 - Embeds images and gradients directly as native PDF objects
+- Embeds unmodified JPEG images with their original data, so photos are neither decoded nor encoded again
 - 6-15x faster export performance for high-DPI content
 - Smaller file sizes (typically 30-40% reduction)
 - May have rendering issues in Safari/macOS Preview with gradients that use transparency
@@ -591,7 +592,7 @@ const blob = await engine.block.export(scene, {
 
 ## Troubleshooting
 
-**PDF file size too large** — Reduce the scene DPI or disable high compatibility mode. Use JPEG compression for embedded images where quality loss is acceptable.
+**PDF file size too large** — Reduce the scene DPI or disable high compatibility mode. Set `pdfImageQuality` below `1.0` to encode the images that CE.SDK still has to rasterize as lossy JPEG, where quality loss is acceptable.
 
 **Gradients look different in some viewers** — Enable `exportPdfWithHighCompatibility` to rasterize gradients at the scene's DPI setting for consistent appearance across all PDF viewers.
 
@@ -601,7 +602,7 @@ const blob = await engine.block.export(scene, {
 
 | Method | Description |
 |--------|-------------|
-| `engine.block.export(block, options)` | Export a block to a Blob with format options (`mimeType`, `exportPdfWithHighCompatibility`, `exportPdfWithUnderlayer`, `underlayerSpotColorName`, `underlayerOffset`, `targetWidth`, `targetHeight`) |
+| `engine.block.export(block, options)` | Export a block to a Blob with format options (`mimeType`, `exportPdfWithHighCompatibility`, `pdfImageQuality`, `exportPdfWithUnderlayer`, `underlayerSpotColorName`, `underlayerOffset`, `targetWidth`, `targetHeight`) |
 | `engine.block.setFloat(block, property, value)` | Set a float property on a block (use `scene/dpi` to control PDF resolution) |
 | `engine.editor.setSpotColorRGB(name, r, g, b)` | Define a spot color for underlayer printing |
 | `engine.scene.get()` | Get the current scene block ID |

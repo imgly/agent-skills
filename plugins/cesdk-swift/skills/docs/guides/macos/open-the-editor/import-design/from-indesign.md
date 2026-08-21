@@ -45,7 +45,7 @@ archive on a server, then loading that archive into the engine.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-import-from-indesign)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-import-from-indesign)
 
 <EngineReferenceNote {...props} />
 
@@ -95,6 +95,8 @@ The same conversion limitations apply wherever you load the result:
 - **Text flow** between multiple frames is not supported and may appear duplicated.
 - **Unavailable fonts** are substituted with fallbacks. Configure font matching during conversion for the best results.
 - **Complex text formatting** beyond bold and italic may not be preserved.
+
+These are the highlights only—the [`@imgly/idml-importer`](https://www.npmjs.com/package/@imgly/idml-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
 
 ## API Reference
 

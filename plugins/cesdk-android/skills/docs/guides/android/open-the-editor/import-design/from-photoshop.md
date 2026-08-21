@@ -41,7 +41,7 @@ Android app, then continue editing the imported design.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-open-the-editor-import-design-from-photoshop)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-open-the-editor-import-design-from-photoshop)
 
 <EngineReferenceNote {...props} />
 
@@ -118,6 +118,8 @@ These conversion limits apply before the archive reaches Android:
 - **Groups** have limited support, especially single-member groups.
 - **Unavailable fonts** use fallbacks selected during conversion.
 - **Some blend modes** are not supported, including PassThrough, Dissolve, Linear Burn, and Subtract.
+
+These are the highlights only—the [`@imgly/psd-importer`](https://www.npmjs.com/package/@imgly/psd-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
 
 ## API Reference
 

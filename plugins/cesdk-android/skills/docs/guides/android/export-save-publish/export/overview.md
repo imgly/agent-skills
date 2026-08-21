@@ -39,6 +39,8 @@ Use these Android `MimeType` values when choosing an export format:
 | MP4    | `MimeType.MP4`     | `video/mp4`                | Timeline-based page export for video sharing or playback.                                              |
 | Binary | `MimeType.BINARY`  | `application/octet-stream` | Raw RGBA8888 data for custom image processing or graphics pipelines.                                   |
 
+For the complete format compatibility matrix, including codecs and size limits, see [File Format Support](../../file-format-support.md).
+
 ## Programmatic Export Basics
 
 Android exports run locally on the device. Use `engine.block.export(...)` for static image, document, SVG, and raw-data output, passing the block to export, a supported `MimeType`, and optional `ExportOptions`. The API returns a `ByteBuffer` that your app can write to app storage, pass to a share flow, or upload to your backend.
@@ -49,6 +51,7 @@ Use `ExportOptions` to configure the options that apply to the selected format:
 - `jpegQuality` controls JPEG visual quality and file size.
 - `targetWidth` and `targetHeight` set a target box that the export fills while preserving the block's aspect ratio; if the ratios differ, one output dimension can exceed the requested target.
 - PDF options such as `exportPdfWithHighCompatibility`, `exportPdfWithUnderlayer`, and the underlayer fields tune print and compatibility workflows.
+- `pdfImageQuality` controls the encoding quality of images that CE.SDK has to rasterize during PDF export; values below the default of `1.0` encode them as lossy JPEG.
 - `allowTextOverhang` includes glyph overhangs when text would otherwise clip at its frame bounds.
 
 For several blocks, use the list overload of `engine.block.export(...)` so the export worker can process them together. Use `engine.block.exportWithColorMask(...)` when you need a masked image and alpha mask from a specific color, and use `engine.block.exportVideo(...)` for MP4 video exports from page blocks with a time offset, duration, progress callback, and optional `ExportVideoOptions`.

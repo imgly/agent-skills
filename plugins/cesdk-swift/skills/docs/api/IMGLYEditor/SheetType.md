@@ -35,6 +35,22 @@ static func blur(style: SheetStyle = .only(detent: .imgly.tiny), id: DesignBlock
 
 Creates a [`SheetType`](../sheettype.md) that is used to set blurs to design blocks with image and video fills. `style`
 
+### captions(style:)
+
+```swift
+static func captions(style: SheetStyle = .default(detent: .imgly.small, detents: [.imgly.small, .imgly.medium, .imgly.large])) -> Self
+```
+
+Creates a [`SheetType`](../sheettype.md) that is used to create and edit captions on a video. `style`
+
+### captionStyle(style:id:)
+
+```swift
+static func captionStyle(style: SheetStyle = .only(detent: .imgly.tiny), id: DesignBlockID) -> Self
+```
+
+Creates a [`SheetType`](../sheettype.md) that is used to apply a caption style preset to a caption block. `style`
+
 ### clipSpeed(style:)
 
 ```swift

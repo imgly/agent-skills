@@ -4,9 +4,9 @@
 
 ---
 
-In CE.SDK, a *template* is a reusable, structured design that defines editable areas and constraints for end users. Templates can be based on static visuals and are used to guide content creation, enable mass personalization, and enforce design consistency.
+In CE.SDK, a *template* is a reusable, structured design that defines editable areas and constraints for end users. Templates can be based on static visuals or video compositions and are used to guide content creation, enable mass personalization, and enforce design consistency.
 
-Unlike a regular editable design, a template introduces structure through placeholders and constraints, allowing you to define which elements users can change and how. Templates support static output formats (like PNG, PDF) and can be created or applied using the API.
+Unlike a regular editable design, a template introduces structure through placeholders and constraints, allowing you to define which elements users can change and how. Templates support static output formats (like PNG, PDF) — and MP4 video with the native `@cesdk/node-native` package — and can be created or applied using the API.
 
 Templates are a core part of enabling design automation, personalization, and streamlined workflows in any app that includes creative functionality.
 

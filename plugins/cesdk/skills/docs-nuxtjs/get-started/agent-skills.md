@@ -111,15 +111,6 @@ npx skills add imgly/agent-skills --skill docs-react -a claude-code
 npx skills add imgly/agent-skills --list
 ```
 
-### Xcode 27
-
-Download the self-contained Swift archives from
-`xcode/cesdk-swift/` in the published
-[Agent Skills repository](https://github.com/imgly/agent-skills), then import
-`docs.skill`, `explain.skill`, or `build.skill` in Xcode's Agent Skills
-settings. The archives include their required API digests, guides, starter
-kits, scaffold support files, and update reference.
-
 ### Manual Copy
 
 For any skills-compatible agent, copy skill folders directly from the [GitHub repository](https://github.com/imgly/agent-skills):

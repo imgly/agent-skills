@@ -18,7 +18,7 @@ Learn how to intercept and transform asset URIs in CE.SDK, enabling authenticati
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-uri-resolver-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/guides-open-the-editor-uri-resolver-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-open-the-editor-uri-resolver-browser/index.html)
 
 When CE.SDK loads an asset, it resolves the URI to an absolute path before fetching. You can intercept this process to add authentication tokens or transform URIs based on your application's needs.
 
@@ -175,10 +175,8 @@ class Example implements EditorPlugin {
     // Section 3: Removing a Custom Resolver
     // ========================================
 
-    // Remove the custom resolver to restore default behavior
-    engine.editor.setURIResolver((uri, defaultURIResolver) =>
-      defaultURIResolver(uri)
-    );
+    // Pass null to remove the custom resolver and restore default behavior
+    engine.editor.setURIResolver(null);
     // eslint-disable-next-line no-console
     console.log('\n✓ Removed custom resolver - back to default behavior');
 
@@ -319,13 +317,11 @@ Your server validates the token and redirects to the actual asset (e.g., pre-sig
 
 ## Removing a Resolver
 
-Restore default behavior by setting a resolver that delegates to `defaultURIResolver`:
+Pass `null` (or `undefined`) to remove the custom resolver and restore default behavior. `setURIResolver` and `setURIResolverAsync` share one resolver slot, so either call clears whichever one is active:
 
 ```typescript highlight=highlight-remove-resolver
-// Remove the custom resolver to restore default behavior
-engine.editor.setURIResolver((uri, defaultURIResolver) =>
-  defaultURIResolver(uri)
-);
+// Pass null to remove the custom resolver and restore default behavior
+engine.editor.setURIResolver(null);
 // eslint-disable-next-line no-console
 console.log('\n✓ Removed custom resolver - back to default behavior');
 ```

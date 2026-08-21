@@ -12,7 +12,7 @@ graphics pipelines.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-export-to-raw-data)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-export-to-raw-data)
 
 <EngineReferenceNote {...props} />
 

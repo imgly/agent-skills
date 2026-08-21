@@ -20,7 +20,7 @@
 - [Join and Arrange Video Clips](./edit-video/join-and-arrange.md) - Combine multiple video clips into sequences and organize them on the timeline using tracks and time offsets in CE.SDK.
 - [Transform](./edit-video/transform.md) - Learn how CE.SDK video transforms use block geometry, crop transforms, groups, animations, and transform permissions.
 - [Apply Transitions](./create-video/apply-transitions.md) - Blend adjacent video clips with clip-to-clip transitions such as cross-fades, pushes, and wipes using CE.SDK's transitions API.
-- [Add Captions](./edit-video/add-captions.md) - Add synchronized captions to video scenes with CE.SDK's caption tracks, caption blocks, subtitle import, styling, and burned-in video export.
+- [Add Captions](./edit-video/add-captions.md) - Let users add, import, and style synchronized captions in the CE.SDK iOS video editor using the captions dock button, caption sheets, and style presets.
 - [Update Caption Presets](./create-video/update-caption-presets.md) - Extend CE.SDK video captions with custom declarative caption style presets using the engine's asset APIs.
 - [Add Watermark](./edit-video/add-watermark.md) - Add text and image watermarks to videos with timeline duration, positioning, opacity, and visibility controls in Swift.
 - [Annotation](./edit-video/annotation.md) - Add timed text, shapes, and highlights to video scenes with CE.SDK.

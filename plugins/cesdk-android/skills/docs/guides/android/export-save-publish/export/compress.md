@@ -46,6 +46,7 @@ You pass these through the `ExportOptions` structure when calling the export fun
 | ------ | ------------------------- | -------- | ----------------------------------- | ------- |
 | PNG    | `pngCompressionLevel`     | 0–9      | Higher = smaller, slower (lossless) | 5       |
 | JPEG   | `jpegQuality`             | 0.0–1.0  | Lower = smaller, lower quality      | 0.9     |
+| PDF    | `pdfImageQuality`         | 0.0–1.0  | 1.0 = lossless, lower = lossy JPEG for rasterized images | 1.0 |
 | MP4    | Video bitrate via options | bits/sec | Higher = larger, higher quality     | Auto    |
 
 ## Export Images with Compression

@@ -18,7 +18,7 @@ Blend adjacent video clips into each other with clip-to-clip transitions such as
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-apply-transitions-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/guides-create-video-apply-transitions-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-create-video-apply-transitions-browser/index.html)
 
 A transition belongs to the **outgoing clip** and blends it into the following clip on the same track. When you assign one, the engine overlaps the two clips for the transition duration: the incoming clip—and every clip after it—moves earlier on the timeline, and audio cross-fades linearly over the same window.
 
@@ -234,13 +234,13 @@ Transitions are available two ways: from the editor's timeline UI and through th
 
 ## Using the Built-in Transitions UI
 
-In the video editor, transitions are added right on the **timeline** — not from the inspector bar. Hover the seam between two adjacent clips and a round control appears; clicking it opens the **Transitions** panel. No code is required:
+In the video editor, transitions are added from the **timeline** or from the selected clip's **inspector**. Hover the seam between two adjacent clips and a round control appears, or select a clip and use the **Transitions** entry in the inspector bar or inspector panel — either opens the same **Transitions** panel, targeting the transition on the selected clip's trailing edge. No code is required:
 
 - **Transitions library** — a grid of presets (Cross Fade, Cross Blur, Cross Zoom, Push, Slide, Wipe, Color Wipe, the Fades, and more, plus **None** to remove a transition). Selecting one drops it on the seam and plays a live preview on the canvas.
 - **Per-type settings** — each preset exposes its own controls in the panel — duration, direction, color, morph, and so on — and the canvas re-previews as you adjust them. The duration is clamped to half of the shorter neighboring clip.
 - **Apply to All / Remove All** — the panel footer copies the current transition, with its settings, to every eligible clip on the track, or clears every transition on the track at once.
 
-The control only appears where a transition is valid: both the outgoing and the incoming clip must support one, so it never shows across a real gap, on the track's last clip, or into a group, caption, or cutout clip. Clicking away — or selecting a clip that isn't on a seam — closes the panel. The feature lives in video mode and is gated by the `ly.img.transitions` flag (see **Configuring Availability** below).
+The controls only appear where a transition is valid: both the outgoing and the incoming clip must support one, so they never show on the track's last clip or into a group, caption, or cutout clip. The timeline control additionally hides across a real gap, while the inspector entry follows clip order and stays available. Selecting a clip without an eligible cut — or deselecting — closes the panel; closing the panel keeps the clip selected. The feature lives in video mode and is gated by the `ly.img.transitions` flag (see **Configuring Availability** below).
 
 ## Creating the Video Timeline
 
@@ -426,7 +426,9 @@ Removing from a clip without an assigned transition is a no-op.
 
 ## Configuring Availability
 
-Use the Feature API to hide the transitions UI. Disabling `ly.img.transitions` removes the seam control and the Transitions panel; the feature is available in video mode only. See [Disable or Enable Features](./user-interface/customization/disable-or-enable.md).
+Use the Feature API to hide the transitions UI. Disabling `ly.img.transitions` removes the seam control, the inspector bar and inspector panel entries, and the Transitions panel; the feature is available in video mode only. See [Disable or Enable Features](./user-interface/customization/disable-or-enable.md).
+
+The inspector bar entry is the `'ly.img.transitions.inspectorBar'` component. The prebuilt video-editor configurations list it after Animations; a custom inspector bar order can place it the same way (see [Component Reference](./user-interface/customization/reference/component-reference.md)).
 
 ```typescript
 // Hide the transitions UI

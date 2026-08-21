@@ -45,7 +45,7 @@ chmod +x download-maven-version.sh
 You can inspect the matching files without downloading them:
 
 ```bash
-./download-maven-version.sh --dry-run 1.81.0-nightly.20260811
+./download-maven-version.sh --dry-run 1.82.0-nightly.20260821
 ```
 
 ## Download IMG.LY Artifacts
@@ -53,10 +53,10 @@ You can inspect the matching files without downloading them:
 Run the script with the CE.SDK version and the output directory:
 
 ```bash
-./download-maven-version.sh 1.81.0-nightly.20260811 ./maven-offline
+./download-maven-version.sh 1.82.0-nightly.20260821 ./maven-offline
 ```
 
-The script downloads every file in an exact `1.81.0-nightly.20260811` version directory and keeps the Maven layout. The generated local repository starts at `maven-offline/maven` and contains paths such as `ly/img/editor-core/1.81.0-nightly.20260811/`.
+The script downloads every file in an exact `1.82.0-nightly.20260821` version directory and keeps the Maven layout. The generated local repository starts at `maven-offline/maven` and contains paths such as `ly/img/editor-core/1.82.0-nightly.20260821/`.
 
 ## Transfer the Repository
 

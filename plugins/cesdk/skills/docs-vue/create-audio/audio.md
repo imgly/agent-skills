@@ -263,37 +263,42 @@ Find in the following list of examples different API calls listed in the precedi
 
     ```
 
-    This example generates 1 audio sample that:
+    `numberOfSamples` is the total number of samples to produce **per channel**, and `samplesPerChunk`
+    is how many of them arrive in each callback. The engine emits
+    `ceil(numberOfSamples / samplesPerChunk)` chunks, and the last one may be shorter than the rest.
 
-    - Produces 3 chunks of this sample.
-    - Start at second 8.
-    - End at second 18.
-    - Is stereo audio (1 for mono, 2 for stereo)
+    The example below covers seconds 8 through 18 of the audio, producing 512 samples per channel in
+    stereo, delivered as 8 chunks of 64 samples. Because the data is interleaved, each chunk carries
+    `64 × 2 = 128` floats, starting with the left channel.
 
     > **Note:** `audioBlockId` must refer to an existing block.
 
     ```ts
-    const audioThumbnail = engine.block.generateAudioThumbnailSequence(
+    const cancelAudioThumbnail = engine.block.generateAudioThumbnailSequence(
       audioBlockId,
-      3,   // samplesPerChunk
-      8,   // timeBegin
-      18,  // timeEnd
-      1,   // numberOfSamples
-      2,   // numberOfChannels
-      // Return the result 
+      64, // samplesPerChunk
+      8, // timeBegin
+      18, // timeEnd
+      512, // numberOfSamples (per channel)
+      2, // numberOfChannels (1 for mono, 2 for stereo)
       (chunkIndex, result) => {
         if (result instanceof Error) {
-        console.error('Thumbnail chunk failed', result);
-        audioThumbnail();
-        return;
+          // An error ends the whole sequence — no further chunks arrive.
+          console.error('Thumbnail chunk failed', result);
+          return;
         }
-        console.log(`Chunk ${chunkIndex}`, result);
+        // The Float32Array is a view into engine memory. Copy it before storing it.
+        const samples = new Float32Array(result);
+        console.log(`Chunk ${chunkIndex}`, samples);
       }
     );
-
     ```
 
-    Once generated, integrate the waveform into your UI.
+    Call `cancelAudioThumbnail()` to stop generation early, for example when the user navigates away.
+
+    The values are a normalized amplitude envelope in the range `0` to `1`, not raw PCM, so you can draw
+    them directly by mirroring each value around a centerline. For the full waveform and filmstrip
+    workflow, see [Thumbnail Previews](./export-save-publish/thumbnail-previews.md).
   </TabItem>
 </Tabs>
 

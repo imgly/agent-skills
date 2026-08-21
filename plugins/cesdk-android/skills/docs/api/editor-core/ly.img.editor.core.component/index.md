@@ -828,6 +828,15 @@ fun NavigationBar.Button.rememberTogglePreviewMode(builder: NavigationBar.Button
 
 A composable helper function that creates and remembers an Button that updates editor view mode via EditorEvent.SetViewMode: when current view mode is EditorViewMode.Edit, then EditorViewMode.Preview is set and vice versa. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
+### rememberTransition
+
+```kotlin
+@Composable
+fun InspectorBar.Button.rememberTransition(builder: InspectorBar.ButtonBuilder.() -> Unit = {}): Button<InspectorBar.ItemScope>
+```
+
+A helper function that returns a Button that opens the transition sheet for the selected design block. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
+
 ### rememberUndo
 
 ```kotlin
@@ -1154,6 +1163,14 @@ val NavigationBar.Button.Id.togglePreviewMode: EditorComponentId
 ```
 
 The id of the navigation bar button returned by NavigationBar.Button.rememberTogglePreviewMode.
+
+### transition
+
+```kotlin
+val InspectorBar.Button.Id.transition: EditorComponentId
+```
+
+The id of the inspector bar button returned by InspectorBar.Button.rememberTransition.
 
 ### undo
 

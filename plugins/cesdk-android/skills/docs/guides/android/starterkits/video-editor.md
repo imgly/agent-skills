@@ -261,13 +261,6 @@ suspend fun VideoConfigurationBuilder.onLoadAssetSources() {
         }
     }
 
-    // Required for animations
-    editorContext.engine.block.setMetadata(
-        block = requireNotNull(editorContext.engine.scene.get()),
-        key = "ly.img.defaultAssetSourcesBaseUri",
-        value = editorContext.baseUri.toString(),
-    )
-
     // Load local asset sources
     editorContext.engine.asset.addLocalSource(
         sourceId = "ly.img.image.upload",
@@ -509,9 +502,9 @@ Professional video editing for your Android app—edit clips, add effects, trim 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-video-editor-android/archive/refs/heads/v1.81.0-nightly.20260811.zip)
+> - [Download examples](https://github.com/imgly/starterkit-video-editor-android/archive/refs/heads/v1.82.0-nightly.20260821.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-video-editor-android/tree/v1.81.0-nightly.20260811)
+> - [View source on GitHub](https://github.com/imgly/starterkit-video-editor-android/tree/v1.82.0-nightly.20260821)
 
 ***
 
@@ -533,7 +526,7 @@ This guide assumes basic familiarity with Android and Kotlin. You will need:
     ### Step 1: Clone the Repository
 
     ```bash
-    git clone -b v1.81.0-nightly.20260811 https://github.com/imgly/starterkit-video-editor-android.git
+    git clone -b v1.82.0-nightly.20260821 https://github.com/imgly/starterkit-video-editor-android.git
     cd starterkit-video-editor-android
     ```
 
@@ -599,7 +592,7 @@ This guide assumes basic familiarity with Android and Kotlin. You will need:
 
     ```bash
     repo="starterkit-video-editor-android"
-    version="1.81.0-nightly.20260811"
+    version="1.82.0-nightly.20260821"
     curl -0 "https://codeload.github.com/imgly/${repo}/tar.gz/refs/heads/v${version}" | tar -xz --strip-components=1 "${repo}-${version}/starter-kit"
     ```
 
@@ -944,7 +937,7 @@ Dock.ListBuilder.remember {
 In addition, IMG.LY camera dependency should be added:
 
 ```kotlin title = "starter-kit/build.gradle.kts"
-implementation "ly.img:camera:1.81.0-nightly.20260811"
+implementation "ly.img:camera:1.82.0-nightly.20260821"
 ```
 
 > **IMG.LY Camera Version:** Note that the version of the camera dependency must match with the editor version in order to avoid interoperability issues.
@@ -984,13 +977,6 @@ suspend fun VideoConfigurationBuilder.onLoadAssetSources() {
             }
         }
     }
-
-    // Required for animations
-    editorContext.engine.block.setMetadata(
-        block = requireNotNull(editorContext.engine.scene.get()),
-        key = "ly.img.defaultAssetSourcesBaseUri",
-        value = editorContext.baseUri.toString(),
-    )
 
     // Load local asset sources
     editorContext.engine.asset.addLocalSource(
@@ -1090,7 +1076,7 @@ suspend fun VideoConfigurationBuilder.onPostExport(byteBuffer: ByteBuffer) {
 
 ### Base Uri
 
-The starter kit does not make any `baseUri` configuration, which means it points to `https://cdn.img.ly/packages/imgly/cesdk-engine/1.81.0-nightly.20260811/assets`. If you want to store them in your own CDN or locally, assets can be accessed via [zip file](https://cdn.img.ly/packages/imgly/cesdk-engine/1.81.0-nightly.20260811/imgly-assets.zip). For example, if you want to store them locally, unzip the content and place at `starter-kit/src/main/assets`:
+The starter kit does not make any `baseUri` configuration, which means it points to `https://cdn.img.ly/packages/imgly/cesdk-engine/1.82.0-nightly.20260821/assets`. If you want to store them in your own CDN or locally, assets can be accessed via [zip file](https://cdn.img.ly/packages/imgly/cesdk-engine/1.82.0-nightly.20260821/imgly-assets.zip). For example, if you want to store them locally, unzip the content and place at `starter-kit/src/main/assets`:
 
 ```kotlin highlight-starter-kit-base-uri
 import androidx.compose.runtime.Composable

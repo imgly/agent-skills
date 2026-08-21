@@ -14,6 +14,13 @@ Start with Integrate AI Into CE.SDK for the full walkthrough, then choose how to
 
 ---
 
+## Related Pages
+
+- [Auto Captions](./ai-integration/auto-captions.md) - Integrate automatic caption generation into your CE.SDK application using the Auto Caption plugin with pluggable speech-to-text providers.
+
+
+---
+
 ## More Resources
 
 - **[iOS Documentation Index](https://img.ly/docs/cesdk/ios/)** - Browse all iOS documentation

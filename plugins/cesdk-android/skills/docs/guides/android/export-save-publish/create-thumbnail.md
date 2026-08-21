@@ -141,13 +141,13 @@ Generate small preview images from CE.SDK scenes and pages for galleries, file b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-create-thumbnail)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-create-thumbnail)
 
 <EngineReferenceNote {...props} />
 
 Thumbnails use the same block export API as full-size image exports. Pass a page or scene block to `engine.block.export(...)`, choose an image MIME type, and set target dimensions in `ExportOptions`.
 
-This guide focuses on static image thumbnails. It does not cover audio waveforms or multi-frame scrubber previews.
+This guide focuses on static image thumbnails produced by the export API. For multi-frame scrubber previews, page storyboards, and audio waveforms, see [Thumbnail Previews](./thumbnail-previews.md), which streams each frame and sample chunk as it becomes ready.
 
 ## Export a Thumbnail
 

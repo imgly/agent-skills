@@ -13,7 +13,7 @@ and target dimensions.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-export-overview)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-export-overview)
 
 Whether you're building a design tool, photo editor, or batch rendering pipeline, understanding export options helps you deliver the right output for each use case. This guide covers the supported formats, their options, and how to export programmatically.
 
@@ -156,12 +156,15 @@ CE.SDK supports exporting scenes, pages, groups, or individual blocks in these f
 | JPEG   | `image/jpeg`               | No             | Photographs, web images                           |
 | WebP   | `image/webp`               | Yes (lossless) | Smaller files than PNG with comparable fidelity   |
 | SVG    | `image/svg+xml`            | Yes            | Scalable graphics, post-processing                |
+| TGA    | `image/x-tga`              | Yes            | Image pipelines that require TGA files            |
 | PDF    | `application/pdf`          | Partial        | Print, documents                                  |
 | MP4    | `video/mp4`                | No             | Animated content                                  |
 | WAV    | `audio/wav`                | —              | Lossless audio                                    |
 | Binary | `application/octet-stream` | Yes            | Raw RGBA8888 data for further processing          |
 
 Each format serves different purposes. PNG preserves transparency and works well for graphics with sharp edges or text. JPEG compresses photographs efficiently but drops transparency. WebP provides excellent compression with optional lossless mode. SVG produces scalable vector output ideal for post-processing with standard SVG tooling. PDF preserves vector information for print workflows. MP4 exports animated content as H.264 video, and WAV exports lossless audio tracks.
+
+For the complete format compatibility matrix, including codecs and size limits, see [File Format Support](../../file-format-support.md).
 
 ## Export Images
 
@@ -239,7 +242,7 @@ let pdfBlob = try await engine.block.export(page, mimeType: .pdf, options: pdfOp
 try pdfBlob.write(to: exportsDirectory.appendingPathComponent("design.pdf"))
 ```
 
-When `exportPdfWithHighCompatibility` is `true` (the default), images and effects are rasterized according to the scene's DPI setting. Set it to `false` for faster exports, though gradients with transparency may not render correctly in some PDF viewers.
+When `exportPdfWithHighCompatibility` is `true` (the default), images and effects are rasterized according to the scene's DPI setting. Set it to `false` for faster exports, though gradients with transparency may not render correctly in some PDF viewers. With high compatibility disabled, CE.SDK embeds unmodified JPEG images with their original data, which keeps photo-heavy exports small. Use `pdfImageQuality` to encode the images that CE.SDK still has to rasterize as lossy JPEG.
 
 The underlayer options are useful for print workflows where you need a solid base layer (often white ink) beneath the design. The `underlayerSpotColorName` should match a spot color defined in your print workflow.
 
@@ -248,6 +251,7 @@ The underlayer options are useful for print workflows where you need a solid bas
 | Option                           | Type     | Default | Description                                                                                                    |
 | -------------------------------- | -------- | ------- | -------------------------------------------------------------------------------------------------------------- |
 | `exportPdfWithHighCompatibility` | `Bool`   | `true`  | Rasterize images and effects (like gradients) according to the scene's DPI setting for broader viewer support. |
+| `pdfImageQuality`                | `Float`  | `1.0`   | Encoding quality for images that have to be rasterized. Values below `1.0` encode them as lossy JPEG.         |
 | `exportPdfWithUnderlayer`        | `Bool`   | `false` | Add an underlayer behind existing elements matching the shape of page content.                                 |
 | `underlayerSpotColorName`        | `String` | `""`    | Spot color name for the underlayer fill (used with print workflows).                                           |
 | `underlayerOffset`               | `Float`  | `0`     | Size adjustment for the underlayer shape in design units.                                                      |

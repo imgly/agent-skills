@@ -6,7 +6,7 @@
 The export options.
 
 ```kotlin
-data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val allowTextOverhang: Boolean = false)
+data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val allowTextOverhang: Boolean = false, val pdfImageQuality: Float = 1.0f)
 ```
 
 
@@ -15,7 +15,7 @@ data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Floa
 ### ExportOptions
 
 ```kotlin
-constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, allowTextOverhang: Boolean = false)
+constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, allowTextOverhang: Boolean = false, pdfImageQuality: Float = 1.0f)
 ```
 
 ### allowTextOverhang
@@ -49,6 +49,14 @@ val jpegQuality: Float = 0.9f
 ```
 
 The JPEG quality to use when encoding to JPEG. Valid values are (0-1], higher means better quality. Ignored for other encodings. The default value is 0.9.
+
+### pdfImageQuality
+
+```kotlin
+val pdfImageQuality: Float = 1.0f
+```
+
+The encoding quality to use for images that have to be rasterized during PDF export, e.g. images with effects or blurs applied, or any bitmap image when exportPdfWithHighCompatibility is enabled. Valid values are (0-1]. Exactly 1.0 (the default) keeps the lossless encoding, like webpQuality. Any value below 1.0 re-encodes rasterized images as lossy JPEG at the given quality, which produces much smaller files. Only rasterized content that is fully opaque can be re-encoded, because JPEG has no alpha channel. Content that keeps transparency, for example when exporting a block or a page without a background fill, stays losslessly encoded whatever this option is set to. Images whose original JPE…
 
 ### pngCompressionLevel
 

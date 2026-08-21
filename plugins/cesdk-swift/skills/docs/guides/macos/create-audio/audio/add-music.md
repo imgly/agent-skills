@@ -11,7 +11,7 @@ CE.SDK's Engine API for Swift.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-create-audio-add-music)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-create-audio-add-music)
 
 Audio blocks are standalone time-based blocks that play alongside video content, independent of video fills. Create audio blocks for background music, voiceovers, and sound effects with separate control over each track. Audio blocks support M4A, MP3, and WAV formats.
 

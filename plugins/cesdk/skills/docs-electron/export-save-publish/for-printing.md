@@ -20,7 +20,7 @@ resolution.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-for-printing-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/guides-export-save-publish-for-printing-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-export-save-publish-for-printing-browser/index.html)
 
 CE.SDK exports designs as PDFs, but professional print workflows require specific configurations beyond standard export. This guide covers PDF export options for print, including high compatibility mode for complex designs, underlayers for printing on special media, and output resolution settings.
 
@@ -323,6 +323,10 @@ const pdfBlob = await engine.block.export(page, {
 });
 ```
 
+In this mode CE.SDK embeds unmodified JPEG images with their original data instead of rasterizing them, which strongly reduces export time and file size for photo-heavy documents such as photo books.
+
+Print jobs usually keep the default `pdfImageQuality` of `1.0`, which encodes the images that still have to be rasterized losslessly. Lower the value only when a smaller file matters more than print fidelity.
+
 ## Underlayers for Special Media
 
 Underlayers provide a base ink layer (typically white) for printing on:
@@ -411,6 +415,7 @@ Increase the negative `underlayerOffset` value to shrink the underlayer further 
 | `targetWidth` | Target width for exported PDF in pixels |
 | `targetHeight` | Target height for exported PDF in pixels |
 | `exportPdfWithHighCompatibility` | Rasterize bitmap images and gradients at scene DPI (default: `true`) |
+| `pdfImageQuality` | Encoding quality for rasterized images; values below `1.0` use lossy JPEG (default: `1.0`) |
 | `exportPdfWithUnderlayer` | Generate underlayer from contours (default: `false`) |
 | `underlayerSpotColorName` | Spot color name for underlayer ink |
 | `underlayerOffset` | Size adjustment in design units (negative shrinks) |

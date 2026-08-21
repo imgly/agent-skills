@@ -10,7 +10,7 @@ This guide gives you a high-level look at what CreativeEditor SDK (CE.SDK) can d
 
 It’s designed for developers, product teams, and technical decision-makers evaluating how CE.SDK fits their use case.
 
-- 100% client-side processing
+- 100% in-process processing — no external services required
 - Custom-built rendering engine for consistent cross-platform performance
 - Flexible enough for both low-code and fully custom implementations
 
@@ -19,9 +19,9 @@ It’s designed for developers, product teams, and technical decision-makers eva
 CE.SDK supports a wide range of content types and formats:
 
 - Input types: images, video, audio, structured data, templates
-- Output formats: PNG, JPEG, WebP, PDF, raw data
+- Output formats: PNG, JPEG, WebP, PDF, raw data, and MP4 video (with the native `@cesdk/node-native` package)
 
-All operations—including export—run client-side, ensuring fast performance and data privacy.
+All operations—including export—run inside your Node.js process, ensuring fast performance and data privacy.
 
 ## Extensibility
 

@@ -1,6 +1,6 @@
 # ly.img:editor-core Android API Catalog
 
-Complete catalog of 237 generated API digests.
+Complete catalog of 238 generated API digests.
 
 - [AbstractButtonBuilder](<../editor-core/ly.img.editor.core.component/-abstract-button-builder.md>) — `ly.img.editor.core.component`
 - [AbstractCanvasMenuBuilder](<../editor-core/ly.img.editor.core.component/-abstract-canvas-menu-builder.md>) — `ly.img.editor.core.component`
@@ -199,6 +199,7 @@ Complete catalog of 237 generated API digests.
 - [SheetType.Speed](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-speed.md>) — `ly.img.editor.core.sheet`
 - [SheetType.TextBackground](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-text-background.md>) — `ly.img.editor.core.sheet`
 - [SheetType.TextOnPath](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-text-on-path.md>) — `ly.img.editor.core.sheet`
+- [SheetType.Transition](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-transition.md>) — `ly.img.editor.core.sheet`
 - [SheetType.Voiceover](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-voiceover.md>) — `ly.img.editor.core.sheet`
 - [SheetType.Volume](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-volume.md>) — `ly.img.editor.core.sheet`
 - [SheetValue](<../editor-core/ly.img.editor.core.sheet/-sheet-value.md>) — `ly.img.editor.core.sheet`

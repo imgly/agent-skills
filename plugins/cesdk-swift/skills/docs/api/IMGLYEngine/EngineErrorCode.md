@@ -4049,6 +4049,24 @@ case licenseAlreadyUnlocked
 case licenseApiServiceUnavailable
 ```
 
+### EngineErrorCode.licenseAvConcurrencyLimitReached
+
+```swift
+case licenseAvConcurrencyLimitReached
+```
+
+### EngineErrorCode.licenseAvSessionAcquisitionFailed
+
+```swift
+case licenseAvSessionAcquisitionFailed
+```
+
+### EngineErrorCode.licenseAvSessionRequiresApiKey
+
+```swift
+case licenseAvSessionRequiresApiKey
+```
+
 ### EngineErrorCode.licenseCannotDeactivateOffline
 
 ```swift

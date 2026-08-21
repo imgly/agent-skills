@@ -71,7 +71,7 @@ Creates a [`CanvasMenu.Button`](../button.md) that brings forward the selected d
 @MainActor let canMove: Bool
 ```
 
-Aggregate visibility gate: `true` when the editor allows reordering this selection at all (combines `canBringForward || canSendBackward` with the editor scope, the background-track pin, and the audio-clip exclusion). Drives *visibility* of the reorder controls; for the per-direction enabled state use [`canBringForward`](canbringforward.md) / [`canSendBackward`](cansendbackward.md).
+Aggregate visibility gate: `true` when the editor allows reordering this selection at all (combines `canBringForward || canSendBackward` with the editor scope, the background-track pin, and the audio and caption exclusions). Drives *visibility* of the reorder controls; for the per-direction enabled state use [`canBringForward`](canbringforward.md) / [`canSendBackward`](cansendbackward.md).
 
 ### Context.Selection-swift.struct.canSendBackward
 
@@ -227,7 +227,9 @@ The id of the [`duplicate(action:label:isEnabled:isVisible:)`](../duplicate(acti
         Image.imgly.duplicate
       }
     }, isEnabled: @escaping CanvasMenu.Context.To<Bool> = { _ in true }, isVisible: @escaping CanvasMenu.Context.To<Bool> = {
-      try $0.engine.block.isAllowedByScope($0.selection.block, key: "lifecycle/duplicate")
+       
+      try $0.selection.type != .caption &&
+        $0.engine.block.isAllowedByScope($0.selection.block, key: "lifecycle/duplicate")
     }) -> some CanvasMenu.Item
 ```
 

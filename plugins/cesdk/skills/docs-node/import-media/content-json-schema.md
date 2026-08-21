@@ -620,7 +620,7 @@ Page format presets define canvas sizes for new designs. Use `FixedSize` to spec
 | Invalid asset | Ensure each asset has a unique `id` |
 | Missing thumbnails | Check `thumbUri` points to accessible image URLs |
 | Base URL not resolving | Use exact `{{base_url}}` syntax (double curly braces) |
-| CORS errors | Configure server headers to allow cross-origin requests |
+| Unreachable asset URLs | Verify the asset host is reachable from your server |
 | Wrong block created | Verify `meta.blockType` matches the intended design block |
 
 

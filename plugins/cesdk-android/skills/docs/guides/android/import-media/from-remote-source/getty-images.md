@@ -245,7 +245,7 @@ exposing the results as a CE.SDK asset source.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-import-media-getty-images)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-import-media-getty-images)
 
 <EngineReferenceNote {...props} />
 

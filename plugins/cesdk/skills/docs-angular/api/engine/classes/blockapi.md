@@ -7231,8 +7231,11 @@ Manage time-based media like video and audio, including playback, timing, and co
     <br /><p>Generate a sequence of thumbnails for the given video fill or design block.</p>
   </summary>
 
-  Note: There can only be one thumbnail generation request in progress for a given block.
-  Note: During playback, the thumbnail generation will be paused.
+  Note: Only one request per block runs at a time. A second request for the same block waits
+  for the first to finish instead of failing.
+  Note: For a video fill, cancelling has no effect once the first frame has been scheduled —
+  the remaining frames are still delivered. Cancel before the first frame arrives, or ignore
+  results from a request you have abandoned. Design block sequences cancel at any time.
 
   #### Parameters
 
@@ -7269,7 +7272,10 @@ Manage time-based media like video and audio, including playback, timing, and co
 
   A thumbnail in this case is a chunk of samples in the range of 0 to 1.
   In case stereo data is requested, the samples are interleaved, starting with the left channel.
-  Note: During playback, the thumbnail generation will be paused.
+  Note: `numberOfSamples` counts samples per channel. The callback fires
+  `ceil(numberOfSamples / samplesPerChunk)` times and the last chunk may be shorter.
+  Note: The `Float32Array` is a view into engine memory that is only valid for the duration of
+  the callback. Copy it before storing it.
 
   #### Parameters
 

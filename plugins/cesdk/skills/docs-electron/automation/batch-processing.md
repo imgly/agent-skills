@@ -197,7 +197,7 @@ Extract representative frames from videos efficiently, and automate this action 
 | Load video source | `engine.scene.createFromVideo()` | [Create from Video](./create-video/control.md) |
 | Seek to timestamp | `engine.block.setPlaybackTime()` | [Control Audio and Video](./create-video/control.md) |
 | Export single frame | `engine.block.export(block, options)` | [To PNG](./export-save-publish/export/to-png.md) <br />[Text Designs](./text/text-designs.md) |
-| Generate sequence thumbnails | `engine.block.generateVideoThumbnailSequence()` | [Trim Video Clips](./edit-video/trim.md) |
+| Generate sequence thumbnails | `engine.block.generateVideoThumbnailSequence()` | [Thumbnail Previews](./export-save-publish/thumbnail-previews.md) |
 | Size thumbnails consistently | `targetWidth / targetHeight` export options | [To PNG](./export-save-publish/export/to-png.md) |
 
 The following code shows how to **generate thumbnails from a video**:

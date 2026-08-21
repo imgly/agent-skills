@@ -455,7 +455,7 @@ writeFileSync('output/animated-scene.imgly', sceneString);
 console.log('Scene saved to output/animated-scene.imgly');
 ```
 
-The saved `.scene` file can be loaded later using `engine.scene.load()`.
+The saved `.scene` file can be loaded later using `engine.scene.load()`. With the native `@cesdk/node-native` package you can also render the animation to an MP4 video via `engine.block.exportVideo()`.
 
 ## Troubleshooting
 

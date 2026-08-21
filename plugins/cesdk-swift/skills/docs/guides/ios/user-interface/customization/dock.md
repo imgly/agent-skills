@@ -213,11 +213,11 @@ The dock is the horizontal toolbar along the bottom of the editor. Declare its b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/editor-guides-configuration-dock)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/editor-guides-configuration-dock)
 
 The dock gives users quick access to content libraries (images, text, shapes, stickers) and editing tools (resize, crop, adjustments). You configure it on the `EditorConfiguration` builder's `dock` property — the same place you configure the navigation bar, inspector bar, and canvas menu. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 
-The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.0-nightly.20260811/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `dock` builder is available on every configuration, so the rest of the call stays the same.
+The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260821/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `dock` builder is available on every configuration, so the rest of the call stays the same.
 
 ## Dock Architecture
 
@@ -469,6 +469,7 @@ Predefined buttons are static factory functions in the `Dock.Buttons` namespace.
 | `Dock.Buttons.systemCamera` | `Dock.Buttons.ID.systemCamera` | Captures media with the system camera. |
 | `Dock.Buttons.imglyCamera` | `Dock.Buttons.ID.imglyCamera` | Captures media with the IMG.LY camera. |
 | `Dock.Buttons.voiceover` | `Dock.Buttons.ID.voiceover` | Opens the voiceover recording sheet. |
+| `Dock.Buttons.captions` | `Dock.Buttons.ID.captions` | Opens the captions sheet. Intended for video scenes. |
 | `Dock.Buttons.reorder` | `Dock.Buttons.ID.reorder` | Opens the reorder sheet. Shown only when the background track holds more than one clip. |
 | `Dock.Buttons.adjustments` | `Dock.Buttons.ID.adjustments` | Opens the adjustments sheet. |
 | `Dock.Buttons.filter` | `Dock.Buttons.ID.filter` | Opens the filter sheet. |

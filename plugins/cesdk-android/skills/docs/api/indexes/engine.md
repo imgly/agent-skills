@@ -148,6 +148,7 @@ Complete catalog of 261 generated API digests.
 - [EngineException](<../engine/ly.img.engine/-engine-exception.md>) — `ly.img.engine`
 - [EventApi](<../engine/ly.img.engine/-event-api.md>) — `ly.img.engine`
 - [ExportOptions](<../engine/ly.img.engine/-export-options.md>) — `ly.img.engine`
+- [ExportPdfProgress](<../engine/ly.img.engine/-export-pdf-progress.md>) — `ly.img.engine`
 - [ExportVideoOptions](<../engine/ly.img.engine/-export-video-options.md>) — `ly.img.engine`
 - [ExportVideoOptions.Companion](<../engine/ly.img.engine/-export-video-options/-companion.md>) — `ly.img.engine`
 - [ExportVideoProgress](<../engine/ly.img.engine/-export-video-progress.md>) — `ly.img.engine`
@@ -242,7 +243,6 @@ Complete catalog of 261 generated API digests.
 - [TransitionType.FadeToWhite](<../engine/ly.img.engine/-transition-type/-fade-to-white.md>) — `ly.img.engine`
 - [TransitionType.GradientFade](<../engine/ly.img.engine/-transition-type/-gradient-fade.md>) — `ly.img.engine`
 - [TransitionType.LineWipe](<../engine/ly.img.engine/-transition-type/-line-wipe.md>) — `ly.img.engine`
-- [TransitionType.None](<../engine/ly.img.engine/-transition-type/-none.md>) — `ly.img.engine`
 - [TransitionType.Push](<../engine/ly.img.engine/-transition-type/-push.md>) — `ly.img.engine`
 - [TransitionType.Slide](<../engine/ly.img.engine/-transition-type/-slide.md>) — `ly.img.engine`
 - [TransitionType.Splice](<../engine/ly.img.engine/-transition-type/-splice.md>) — `ly.img.engine`

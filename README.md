@@ -74,12 +74,6 @@ codex plugin add cesdk-swift@imgly
 codex plugin add cesdk-android@imgly
 ```
 
-### Xcode 27
-
-Import `docs.skill`, `explain.skill`, or `build.skill` from
-`xcode/cesdk-swift/` in Xcode's Agent Skills settings. Each archive is
-self-contained.
-
 ### Vercel Skills CLI
 
 Install using the [Vercel Skills CLI](https://github.com/vercel-labs/skills):

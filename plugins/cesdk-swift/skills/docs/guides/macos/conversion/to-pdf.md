@@ -77,7 +77,7 @@ Convert images and multi-page designs to PDF programmatically. Load one or more 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-conversion-to-pdf)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-conversion-to-pdf)
 
 <EngineReferenceNote {...props} />
 
@@ -209,7 +209,7 @@ try combinedPdf.write(to: exportsDirectory.appendingPathComponent("configured.pd
 
 | Symptom | Resolution |
 | --- | --- |
-| PDF file size is too large | Reduce the scene DPI or disable `exportPdfWithHighCompatibility` so bitmap images stay embedded at their original resolution and gradients remain vector-drawn where possible. |
+| PDF file size is too large | Reduce the scene DPI or disable `exportPdfWithHighCompatibility` so bitmap images stay embedded at their original resolution and gradients remain vector-drawn where possible. Set `pdfImageQuality` below `1.0` to encode the images that CE.SDK still has to rasterize as lossy JPEG. |
 | Gradients or effects render inconsistently across viewers | Enable `exportPdfWithHighCompatibility` so complex elements are rasterized at the scene DPI, producing consistent output across PDF viewers. |
 | Underlayer is missing from the printed result | Confirm the spot color name in `underlayerSpotColorName` matches the print provider's configuration exactly, and ensure the PDF was not flattened in post-processing (flattening removes the underlayer shape). |
 
@@ -220,6 +220,7 @@ The fields below are properties on `ExportOptions` you pass to `engine.block.exp
 | Option | Description |
 | --- | --- |
 | `exportPdfWithHighCompatibility` | Rasterize complex elements at scene DPI for consistent rendering across viewers. Defaults to `true`. |
+| `pdfImageQuality` | Encoding quality for images that CE.SDK has to rasterize. Values below the default of `1.0` encode them as lossy JPEG. |
 | `exportPdfWithUnderlayer` | Generate an underlayer from design contours. Defaults to `false`. |
 | `underlayerSpotColorName` | Spot color name for the underlayer ink. Required when `exportPdfWithUnderlayer` is `true`. |
 | `underlayerOffset` | Size adjustment in design units. Negative values shrink the underlayer inward. |

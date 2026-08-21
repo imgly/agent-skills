@@ -288,7 +288,7 @@ This deactivates all transform actions, resize included.
 
 ## Save Scene
 
-Save the scene to a file. The scene can later be loaded in a browser environment or rendered with the CE.SDK Renderer for full video export:
+Save the scene to a file. The scene can later be loaded again for further editing, or rendered to an MP4 video — the native `@cesdk/node-native` package exports video directly via `engine.block.exportVideo()`, while the WASM-based `@cesdk/node` package requires the CE.SDK Renderer for video export:
 
 ```typescript highlight-export
   // Save the scene to preserve the resized videos

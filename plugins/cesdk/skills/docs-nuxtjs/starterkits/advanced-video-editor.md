@@ -18,7 +18,7 @@ Comprehensive video editing for your Nuxt.js app—professional tools for timeli
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-nightly.20260811/examples/starterkit-advanced-video-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/starterkit-advanced-video-editor/index.html)
 
 ***
 
@@ -373,7 +373,7 @@ await cesdk.createFromVideo('https://example.com/video.mp4');
 await cesdk.load('https://example.com/template.zip');
 
 // Create a blank video canvas - starts with an empty video scene
-await cesdk.actions.run('scene.create', { mode: 'Video' });
+await cesdk.actions.run('scene.create');
 
 // Load from a scene file - restores a scene from JSON
 await cesdk.load('https://example.com/scene.json');

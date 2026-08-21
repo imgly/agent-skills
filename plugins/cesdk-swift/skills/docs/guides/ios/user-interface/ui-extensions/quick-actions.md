@@ -147,7 +147,7 @@ A quick action is a one-tap button that edits the selected block immediately, wi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/editor-guides-ui-extensions-quick-actions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/editor-guides-ui-extensions-quick-actions)
 
 ## Overview
 
@@ -162,7 +162,7 @@ CE.SDK ships a set of predefined quick actions and lets you add your own. A cust
 | `CanvasMenu.Context.selection` | The cached selection the handler edits |
 | `InspectorBar.Button(id:action:label:)` | Reuse the action from a second surface |
 
-The example builds on `GuideEditorConfiguration`, the minimal baseline the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.0-nightly.20260811/editor-guides-quickstart/GuideEditorConfiguration.swift) ships with only a navigation bar configured. Substitute your own editor configuration — the `canvasMenu` and `inspectorBar` builders are exposed on every configuration, so the rest of the calls stay the same. Because `canvasMenu.items` and `inspectorBar.items` declare the full list, they replace whatever the configuration already had; use `.modify` to add to an existing list instead, as the [Canvas Menu](../customization/canvas-menu.md) guide explains. The [Configuration](../../configuration.md) guide covers the editor setup as a whole.
+The example builds on `GuideEditorConfiguration`, the minimal baseline the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260821/editor-guides-quickstart/GuideEditorConfiguration.swift) ships with only a navigation bar configured. Substitute your own editor configuration — the `canvasMenu` and `inspectorBar` builders are exposed on every configuration, so the rest of the calls stay the same. Because `canvasMenu.items` and `inspectorBar.items` declare the full list, they replace whatever the configuration already had; use `.modify` to add to an existing list instead, as the [Canvas Menu](../customization/canvas-menu.md) guide explains. The [Configuration](../../configuration.md) guide covers the editor setup as a whole.
 
 ## Built-in Quick Actions
 

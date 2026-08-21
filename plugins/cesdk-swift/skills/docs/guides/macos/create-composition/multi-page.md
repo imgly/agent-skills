@@ -82,7 +82,7 @@ and other documents requiring multiple pages within a single scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-multi-page)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-multi-page)
 
 Multi-page layouts allow you to create documents with multiple artboards within a single scene. Each page operates as an independent canvas that can contain different content while sharing the same scene context. CE.SDK provides scene layout modes that automatically arrange pages vertically, horizontally, or in a free-form canvas.
 
@@ -130,6 +130,10 @@ try engine.block.setBool(stack, property: "stack/spacingInScreenspace", value: t
 ```
 
 Setting `stack/spacingInScreenspace` to `true` means the spacing value is interpreted as screen pixels, maintaining consistent visual spacing regardless of zoom level.
+
+The distinction applies to the canvas preview only. Exports always interpret the spacing in design units, whatever the property is set to.
+
+Switching the property never converts the number. A spacing of `40` stays `40` and is reinterpreted in the other space, which changes how far apart the pages appear.
 
 ### Adding More Pages
 

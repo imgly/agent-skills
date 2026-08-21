@@ -105,7 +105,7 @@ and other documents requiring multiple pages within a single scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-multi-page)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-multi-page)
 
 <EngineReferenceNote {...props} />
 
@@ -154,6 +154,10 @@ engine.block.setBoolean(stack, property = "stack/spacingInScreenspace", value = 
 ```
 
 Setting `stack/spacingInScreenspace` to `true` interprets the spacing value as screen pixels, so the visual spacing stays consistent while zooming.
+
+The distinction applies to the canvas preview only. Exports always interpret the spacing in design units, whatever the property is set to.
+
+Switching the property never converts the number. A spacing of `40` stays `40` and is reinterpreted in the other space, which changes how far apart the pages appear.
 
 ### Adding More Pages
 

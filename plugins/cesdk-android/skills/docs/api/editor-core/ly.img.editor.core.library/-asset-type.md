@@ -84,6 +84,12 @@ enum entry TextStylePreset
 enum entry Text
 ```
 
+### Transition
+
+```kotlin
+enum entry Transition
+```
+
 ### Typeface
 
 ```kotlin

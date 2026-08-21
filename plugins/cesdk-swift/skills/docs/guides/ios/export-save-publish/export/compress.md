@@ -46,6 +46,7 @@ You pass these through the `ExportOptions` or `VideoExportOptions` structure whe
 | PNG | `pngCompressionLevel` | 0–9 | Higher = smaller, slower (lossless) | 5 |
 | JPEG | `jpegQuality` | 0.0–1.0 | Lower = smaller, lower quality | 0.9 |
 | WebP | `webpQuality` | 0.0–1.0 | 1.0 = lossless, \<1.0 = lossy | 1.0 |
+| PDF | `pdfImageQuality` | 0.0–1.0 | 1.0 = lossless, \<1.0 = lossy JPEG for rasterized images | 1.0 |
 | MP4 | `videoBitrate`, `audioBitrate` | bits/sec or `VideoBitrate.system` / `VideoBitrate.auto` | Higher = larger, higher quality | `VideoBitrate.system` |
 
 ## Export Images with Compression
@@ -205,9 +206,9 @@ These presets provide starting points for common export scenarios.
 | **Video for Web / Social** | MP4 | `videoBitrate: 2_000_000`, `audioBitrate: 128_000`, `targetWidth: 1280` | Smooth playback, small file | Adjust for platform |
 | **Video for Download / HD** | MP4 | `videoBitrate: 8_000_000`, `targetWidth: 1920`, `framerate: 30` | Full HD quality | Larger file, slower encode |
 
-**PDF and Print**: PDF exports aren’t compressed by default.
+**PDF and Print**: PDF exports are not compressed by default.
 
-Use `exportPdfWithHighCompatibility` when you need broad software support in print workflows.
+Use `exportPdfWithHighCompatibility` when you need broad software support in print workflows. With that flag disabled, CE.SDK embeds unmodified JPEG images with their original data instead of rasterizing them. Set `pdfImageQuality` below `1.0` to encode the images that CE.SDK still has to rasterize as lossy JPEG. Only rasterized content that is fully opaque can be re-encoded, because JPEG has no alpha channel. Content that keeps transparency, for example when you export a block or a page without a background fill, stays lossless whatever you set this option to.
 
 > **Note:** Consider showing users an **estimated file size** before export. It helps them make informed choices about quality vs. performance.
 

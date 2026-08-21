@@ -214,7 +214,7 @@ After populating variables, export the personalized design:
     console.log('Exported to output/templating-personalized.png');
 ```
 
-Use `engine.block.export()` to render pages to PNG, JPEG, or PDF format. The exported blob can be saved to the file system or uploaded to cloud storage.
+Use `engine.block.export()` to render pages to PNG, JPEG, or PDF format — the native `@cesdk/node-native` package can additionally export MP4 video via `engine.block.exportVideo()`. The exported blob can be saved to the file system or uploaded to cloud storage.
 
 ## Engine Cleanup
 

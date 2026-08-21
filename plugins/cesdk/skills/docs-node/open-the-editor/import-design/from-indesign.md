@@ -335,6 +335,8 @@ npm install @imgly/idml-importer @cesdk/node@$UBQ_VERSION$ jsdom
 npm install --save-dev @types/jsdom
 ```
 
+Using the native Node.js package? Install `@cesdk/node-native@$UBQ_VERSION$` instead of `@cesdk/node` — the engine API is identical.
+
 The `jsdom` package provides the XML parsing functionality that `DOMParser` provides in browsers.
 
 ### Optional: Embedded PDF / Adobe Illustrator support
@@ -850,6 +852,8 @@ The IDML importer has the following limitations:
 - **Image fitting** - Images shrunk inside their frames may not render as expected.
 - **Embedded PDF / `.ai`** - Imports as editable blocks when `@imgly/pdf-importer` is installed and `createPdfEmbeddedImporter(PDFParser)` is registered in `embeddedImporters`. Without the adapter, embeds fall through to a placeholder image. Non-rectangular frame clipping and per-embed PDF crop attributes are not yet applied.
 - **Advanced text** - Complex text formatting beyond bold/italic may not be preserved.
+
+These are the highlights only—the [`@imgly/idml-importer`](https://www.npmjs.com/package/@imgly/idml-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
 
 ## Pre-Import Checklist
 

@@ -4,7 +4,7 @@
 
 ---
 
-Export your designs to multiple formats including PNG, JPEG, WebP, SVG, and PDF.
+Export your designs to multiple formats including PNG, JPEG, WebP, SVG, PDF and — with the native Node.js package — MP4 video.
 CE.SDK handles all export processing entirely on the server side, giving you
 fine-grained control over format-specific options like compression, quality,
 and target dimensions.
@@ -206,10 +206,14 @@ CE.SDK supports exporting scenes, pages, groups, or individual blocks in these f
 | JPEG   | `image/jpeg`               | No             | Photographs, web images                           |
 | WebP   | `image/webp`               | Yes (lossless) | Web delivery, smaller files                       |
 | SVG    | `image/svg+xml`            | Yes            | Scalable graphics, web embedding, post-processing |
+| TGA    | `image/x-tga`              | Yes            | Image pipelines that require TGA files            |
 | PDF    | `application/pdf`          | Partial        | Print, documents                                  |
 | Binary | `application/octet-stream` | Yes            | Raw data processing                               |
+| MP4    | `video/mp4`                | No             | Video export (native `@cesdk/node-native` package only, via `exportVideo()`) |
 
 Each format serves different purposes. PNG preserves transparency and works well for graphics with sharp edges or text. JPEG compresses photographs efficiently but drops transparency. WebP provides excellent compression with optional lossless mode. SVG produces scalable vector output ideal for web embedding and post-processing with standard SVG tooling. PDF preserves vector information for print workflows.
+
+For the complete format compatibility matrix, including codecs and size limits, see [File Format Support](./file-format-support.md).
 
 ## Export Images
 
@@ -301,7 +305,7 @@ const pdfBlob = await engine.block.export(page, {
 });
 ```
 
-When `exportPdfWithHighCompatibility` is `true` (the default), images and effects are rasterized according to the scene's DPI setting. Set it to `false` for faster exports, though gradients with transparency may not render correctly in some PDF viewers.
+When `exportPdfWithHighCompatibility` is `true` (the default), images and effects are rasterized according to the scene's DPI setting. Set it to `false` for faster exports, though gradients with transparency may not render correctly in some PDF viewers. With high compatibility disabled, CE.SDK embeds unmodified JPEG images with their original data, which keeps photo-heavy exports small. Use `pdfImageQuality` to encode the images that CE.SDK still has to rasterize as lossy JPEG.
 
 The underlayer options are useful for print workflows where you need a solid base layer (often white ink) beneath the design elements. The `underlayerSpotColorName` should match a spot color defined in your print workflow.
 
@@ -311,6 +315,7 @@ The underlayer options are useful for print workflows where you need a solid bas
 | ------ | ---- | ------- | ----------- |
 | `mimeType` | `string` | - | Must be `'application/pdf'` |
 | `exportPdfWithHighCompatibility` | `boolean` | `true` | Rasterize images and effects (like gradients) according to the scene's DPI setting for broader viewer support |
+| `pdfImageQuality` | `number` | `1.0` | Encoding quality for images that have to be rasterized; values below `1.0` encode them as lossy JPEG |
 | `exportPdfWithUnderlayer` | `boolean` | `false` | Add an underlayer behind existing elements matching the shape of page content |
 | `underlayerSpotColorName` | `string` | `''` | Spot color name for the underlayer fill (used with print workflows) |
 | `underlayerOffset` | `number` | `0` | Size adjustment for the underlayer shape in design units |

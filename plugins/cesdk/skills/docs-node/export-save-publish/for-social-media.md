@@ -83,7 +83,7 @@ try {
 
 This guide covers loading a template scene, exporting with specific dimensions and quality settings, and saving the result to the file system.
 
-> **Video Export:** The `@cesdk/node` package supports image exports only. For video exports on the server, use [CE.SDK Renderer](#broken-link-7f3e9a)—a native Linux binary with hardware-accelerated video encoding for MP4 output.
+> **Video Export:** The WASM-based `@cesdk/node` package supports image exports only. For video exports on the server, use the native `@cesdk/node-native` package — it exports MP4 directly via `engine.block.exportVideo()` — or the [CE.SDK Renderer](#broken-link-7f3e9a), a native Linux binary with hardware-accelerated video encoding.
 
 ## Loading a Scene
 

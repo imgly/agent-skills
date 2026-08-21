@@ -480,6 +480,12 @@ val IconPack.Textfields: ImageVector
 ```
 > **Deprecated:** Use IconPack.TextFields instead. Replace with `IconPack.TextFields`.
 
+### Transition
+
+```kotlin
+val IconPack.Transition: ImageVector
+```
+
 ### Typeface
 
 ```kotlin

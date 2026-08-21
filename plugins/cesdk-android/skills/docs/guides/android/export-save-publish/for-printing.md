@@ -197,7 +197,7 @@ resolution.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-export-for-printing)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-export-for-printing)
 
 <EngineReferenceNote {...props} />
 
@@ -266,6 +266,10 @@ val standardPdf = engine.block.export(
     check(standardPdf.hasRemaining()) { "Standard PDF export is empty" }
 }
 ```
+
+In this mode CE.SDK embeds unmodified JPEG images with their original data instead of rasterizing them, which strongly reduces export time and file size for photo-heavy documents such as photo books.
+
+Print jobs usually keep the default `pdfImageQuality` of `1.0`, which encodes the images that still have to be rasterized losslessly. Lower the value only when a smaller file matters more than print fidelity.
 
 ## Underlayers for Special Media
 
@@ -372,6 +376,7 @@ Increase the negative `underlayerOffset` to shrink the underlayer further from d
 |---|---|
 | `engine.block.export(block=_, mimeType=MimeType.PDF, options=_)` | Export a block as a PDF `ByteBuffer`; `MimeType.PDF` selects PDF output. |
 | `ExportOptions(exportPdfWithHighCompatibility=_)` | Rasterize bitmap images and gradients at scene DPI; defaults to `true`. |
+| `ExportOptions(pdfImageQuality=_)` | Encoding quality for rasterized images; values below `1.0` use lossy JPEG. Defaults to `1.0`. |
 | `ExportOptions(exportPdfWithUnderlayer=_)` | Generate an underlayer from design contours; defaults to `false`. |
 | `ExportOptions(underlayerSpotColorName=_)` | Spot color name for underlayer ink. |
 | `ExportOptions(underlayerOffset=_)` | Size adjustment in design units; negative values shrink the underlayer. |

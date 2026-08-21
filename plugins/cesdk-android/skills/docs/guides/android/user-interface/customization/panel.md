@@ -134,7 +134,7 @@ Use sheets to show built-in editor panels or your own Compose content in the edi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/editor-guides-configuration-panel)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/editor-guides-configuration-panel)
 
 In Android integrations, panels are implemented as editor sheets. You open a concrete `SheetType` through `EditorEvent.Sheet.Open`, and you close the currently displayed sheet with `EditorEvent.Sheet.Close`.
 
@@ -226,6 +226,7 @@ The editor provides built-in sheet types for common editing tasks:
 | `SheetType.Volume()` | Control audio and video volume. |
 | `SheetType.Voiceover()` | Record voice-over audio in video scenes. |
 | `SheetType.Animation()` | Configure in, out, and loop animations. |
+| `SheetType.Transition(outgoingBlock = outgoingBlock)` | Configure the transition from a clip to its next eligible clip. |
 | `SheetType.TextBackground()` | Configure text background properties. |
 
 ## API Reference

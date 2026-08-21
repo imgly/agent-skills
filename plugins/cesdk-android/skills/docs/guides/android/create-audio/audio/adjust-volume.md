@@ -136,7 +136,7 @@ Control audio playback volume with CE.SDK's Engine API for Android, from silent
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-create-audio-audio-adjust-volume)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-create-audio-audio-adjust-volume)
 
 <EngineReferenceNote {...props} />
 

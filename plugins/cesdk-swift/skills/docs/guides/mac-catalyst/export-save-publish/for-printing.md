@@ -12,7 +12,7 @@ resolution.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-nightly.20260811/engine-guides-export-for-printing)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-export-for-printing)
 
 CE.SDK exports designs as PDFs, but professional print workflows require specific configurations beyond standard export. This guide covers PDF export options for print, including high compatibility mode for complex designs, underlayers for printing on special media, and output resolution settings.
 
@@ -150,6 +150,10 @@ let standardPdf = try await engine.block.export(page, mimeType: .pdf, options: s
 try standardPdf.write(to: exportsDirectory.appendingPathComponent("design.standard.pdf"))
 ```
 
+In this mode CE.SDK embeds unmodified JPEG images with their original data instead of rasterizing them, which strongly reduces export time and file size for photo-heavy documents such as photo books.
+
+Print jobs usually keep the default `pdfImageQuality` of `1.0`, which encodes the images that still have to be rasterized losslessly. Lower the value only when a smaller file matters more than print fidelity.
+
 ## Underlayers for Special Media
 
 Underlayers provide a base ink layer (typically white) for printing on:
@@ -245,6 +249,7 @@ Increase the negative `underlayerOffset` to shrink the underlayer further from d
 | `ExportOptions(targetWidth:)` | Target width for the exported PDF in pixels. |
 | `ExportOptions(targetHeight:)` | Target height for the exported PDF in pixels. |
 | `ExportOptions(exportPdfWithHighCompatibility:)` | Rasterize bitmap images and gradients at scene DPI (default: `true`). |
+| `ExportOptions(pdfImageQuality:)` | Encoding quality for rasterized images; values below `1.0` use lossy JPEG (default: `1.0`). |
 | `ExportOptions(exportPdfWithUnderlayer:)` | Generate underlayer from contours (default: `false`). |
 | `ExportOptions(underlayerSpotColorName:)` | Spot color name for underlayer ink. |
 | `ExportOptions(underlayerOffset:)` | Size adjustment in design units (negative shrinks). |

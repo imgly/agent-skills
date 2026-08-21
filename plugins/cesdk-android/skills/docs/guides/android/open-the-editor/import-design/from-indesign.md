@@ -41,7 +41,7 @@ Android app, then continue editing the imported design.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-nightly.20260811/engine-guides-open-the-editor-import-design-from-indesign)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-open-the-editor-import-design-from-indesign)
 
 <EngineReferenceNote {...props} />
 
@@ -118,6 +118,8 @@ These conversion limits apply before the archive reaches Android:
 - **Embedded PDF or Adobe Illustrator content** needs the embedded importer during conversion; otherwise it becomes a placeholder.
 - **Unavailable fonts** use fallbacks selected during conversion.
 - **Complex text formatting** beyond bold and italic may not be preserved.
+
+These are the highlights only—the [`@imgly/idml-importer`](https://www.npmjs.com/package/@imgly/idml-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
 
 ## API Reference
 

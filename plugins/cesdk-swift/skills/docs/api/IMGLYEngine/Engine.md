@@ -155,6 +155,19 @@ case blur
 
 Default blurs.
 
+### DefaultAssetSource.Engine.DefaultAssetSource.captionPresets
+
+> **Deprecated:** 
+    Uses legacy v4 asset source IDs and will be removed in a future version. Register sources \
+    by raw v5 string ID via 'engine.asset.addLocalAssetSourceFromJSON(_:matcher:)' instead.
+    
+
+```swift
+case captionPresets
+```
+
+Default caption style presets.
+
 ### DefaultAssetSource.Engine.DefaultAssetSource.colorsDefaultPalette
 
 > **Deprecated:** 

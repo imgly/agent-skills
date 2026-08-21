@@ -23,6 +23,7 @@ Key Concepts and principles of CE.SDK.
 - [Assets](./concepts/assets.md) - Learn how assets provide external content to CE.SDK designs and how asset sources make them available programmatically.
 - [Editor State](./concepts/edit-modes.md) - Control how users interact with content by switching between edit modes like transform, crop, and text.
 - [Templating](./concepts/templating.md) - Understand how templates work in CE.SDK—reusable designs with variables for dynamic text and placeholders for swappable media.
+- [Import and Export](./concepts/import-export.md) - Understand every way files move in and out of CE.SDK—importing media and design files, loading and saving native scenes, and exporting finished output.
 - [Events](./concepts/events.md) - Subscribe to block creation, update, and deletion events to track changes in your CE.SDK scene.
 - [Buffers](./concepts/buffers.md) - Use buffers to store temporary, non-serializable data in CE.SDK via the CreativeEngine API.
 - [Working With Resources](./concepts/resources.md) - Preload resources, find transient data, detect MIME types, and relocate URLs in CE.SDK for Swift.

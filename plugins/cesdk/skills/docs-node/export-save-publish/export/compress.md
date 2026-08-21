@@ -179,6 +179,7 @@ All image exports support these compression-related options:
 | `pngCompressionLevel` | `number` | `5` | PNG compression level 0-9. Higher values produce smaller files but take longer. Quality is unaffected. |
 | `jpegQuality` | `number` | `0.9` | JPEG quality from >0 to 1. Higher values preserve more detail. |
 | `webpQuality` | `number` | `1.0` | WebP quality from >0 to 1. Value of 1.0 enables lossless mode. |
+| `pdfImageQuality` | `number` | `1.0` | Quality from >0 to 1 for images that have to be rasterized during PDF export. Value of 1.0 keeps lossless encoding, lower values use lossy JPEG. |
 | `targetWidth` | `number` | — | Target output width in pixels. Must be used with `targetHeight`. |
 | `targetHeight` | `number` | — | Target output height in pixels. Must be used with `targetWidth`. |
 | `abortSignal` | `AbortSignal` | — | Signal to cancel the export operation. |
