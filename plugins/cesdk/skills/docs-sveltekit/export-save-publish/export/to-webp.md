@@ -18,7 +18,7 @@ Export designs to WebP format for optimized web delivery with smaller file sizes
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-webp-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/guides-export-save-publish-export-to-webp-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-rc.1/examples/guides-export-save-publish-export-to-webp-browser/index.html)
 
 WebP delivers smaller file sizes than PNG and JPEG while preserving image quality and transparency support.
 

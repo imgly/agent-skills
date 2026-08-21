@@ -114,6 +114,7 @@ Components available in `'ly.img.inspector.bar'`. The inspector bar supports edi
 | `ly.img.effect.inspectorBar` | Visual effects |
 | `ly.img.blur.inspectorBar` | Blur effects |
 | `ly.img.animations.inspectorBar` | Animation controls |
+| `ly.img.transitions.inspectorBar` | Transition controls |
 
 ### Text Controls
 

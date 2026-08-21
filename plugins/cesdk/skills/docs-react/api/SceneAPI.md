@@ -109,7 +109,7 @@ saveToString(options?: {
     resource's data. The callback should return a new URL for the resource, which will be used in the serialized
     scene. The callback is expected to return the original URL if no persistence is needed.
   - compression: Optional compression settings containing:
-    - format: Compression format (None or Zstd). Defaults to None.
+    - format: Compression format (None or Zstd). Defaults to Zstd.
     - level: Compression level (Fastest, Default, or Best). Defaults to Default.
 
 **Returns:** A promise that resolves with a string on success or an error on failure.
@@ -123,8 +123,15 @@ file. These references are resolved when loading such a scene via `load`.
 When persisting the result as a file, use the `.imgly` extension.
 
 ```typescript
-saveToArchive(): Promise<Blob>
+saveToArchive(options?: SaveToArchiveOptions): Promise<Blob>
 ```
+
+**Parameters:**
+- `options` - Optional settings:
+  - compression: Compression applied to the scene inside the archive, containing:
+    - format: Compression format (None or Zstd). Defaults to Zstd.
+    - level: Compression level (Fastest, Default, or Best). Defaults to Default.
+    Bundled media is always stored uncompressed, because it already is in compressed formats.
 
 **Returns:** A promise that resolves with a Blob on success or an error on failure.
 
@@ -340,7 +347,7 @@ This loads the template scene while keeping the design unit and page dimensions
 of the current scene. The content of the pages is automatically adjusted to fit
 the new dimensions.
 ```javascript
-engine.scene.applyTemplateFromString("UBQ1ewoiZm9ybWF0Ij...");
+engine.scene.applyTemplateFromString(await engine.scene.saveToString());
 ```
 
 ```typescript

@@ -74,7 +74,7 @@ export interface ProductSize {
  */
 const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.1/starterkit-product-editor';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.0-rc.1/starterkit-product-editor';
 
 export const ASSETS_BASE = `${DEMO_ASSETS_BASE_URL}/assets/products`;
 

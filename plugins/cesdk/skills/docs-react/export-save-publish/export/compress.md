@@ -18,7 +18,7 @@ Compression reduces file sizes during export while maintaining visual quality. W
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-compress-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/guides-export-save-publish-export-compress-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-rc.1/examples/guides-export-save-publish-export-compress-browser/index.html)
 
 Image compression reduces file sizes while maintaining acceptable visual quality. CE.SDK supports format-specific compression controls: lossless compression for PNG, lossy quality settings for JPEG, and both modes for WebP. The example includes a navigation bar dropdown menu with export options for comparing different formats and compression levels.
 
@@ -304,6 +304,7 @@ To compress assets, use `engine.block.export` with format-specific options. Each
 | PNG | `pngCompressionLevel` | 0–9 | Higher = smaller, slower (lossless) | 5 |
 | JPEG | `jpegQuality` | 0.0–1.0 | Lower = smaller, lower quality | 0.9 |
 | WebP | `webpQuality` | 0.0–1.0 | 1.0 = lossless, below 1.0 = lossy | 1.0 |
+| PDF | `pdfImageQuality` | 0.0–1.0 | 1.0 = lossless, below 1.0 = lossy JPEG for rasterized images | 1.0 |
 | MP4 | `videoBitrate`, `audioBitrate` | bits/sec or `'System'` / `'Auto'` | Higher = larger, higher quality | `'System'` |
 
 ## Export with Compression
@@ -376,6 +377,19 @@ const exportWebp90 = async () => {
 ```
 
 WebP typically produces 20-30% smaller files than JPEG at equivalent quality, with optional transparency support.
+
+### PDF Image Quality
+
+PDF export embeds unmodified JPEG images with their original data when `exportPdfWithHighCompatibility` is `false`. Images that CE.SDK has to rasterize, for example images with effects or blurs applied, are encoded losslessly by default. Set `pdfImageQuality` below `1.0` to encode those images as lossy JPEG. Only rasterized content that is fully opaque can be re-encoded, because JPEG has no alpha channel. Content that keeps transparency, for example when you export a block or a page without a background fill, stays lossless whatever you set this option to.
+
+```typescript
+const pdfBlob = await engine.block.export(page, {
+  mimeType: 'application/pdf',
+  pdfImageQuality: 0.85
+});
+```
+
+This option does not change images that are embedded as their original JPEG data.
 
 ## Target Dimensions
 

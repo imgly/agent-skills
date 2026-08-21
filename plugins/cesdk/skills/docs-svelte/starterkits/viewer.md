@@ -19,7 +19,7 @@ multi-page designs. Runs entirely in the browser with no server dependencies.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-design-viewer-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/starterkit-design-viewer/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-rc.1/examples/starterkit-design-viewer/index.html)
 
 ***
 

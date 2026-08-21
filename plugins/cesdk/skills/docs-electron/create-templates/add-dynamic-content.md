@@ -18,7 +18,7 @@ Dynamic content transforms static designs into flexible, data-driven templates. 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-add-dynamic-content-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/guides-create-templates-add-dynamic-content-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-rc.1/examples/guides-create-templates-add-dynamic-content-browser/index.html)
 
 ```typescript file=@cesdk_web_examples/guides-create-templates-add-dynamic-content-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';

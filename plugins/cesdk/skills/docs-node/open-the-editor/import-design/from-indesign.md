@@ -851,6 +851,8 @@ The IDML importer has the following limitations:
 - **Embedded PDF / `.ai`** - Imports as editable blocks when `@imgly/pdf-importer` is installed and `createPdfEmbeddedImporter(PDFParser)` is registered in `embeddedImporters`. Without the adapter, embeds fall through to a placeholder image. Non-rectangular frame clipping and per-embed PDF crop attributes are not yet applied.
 - **Advanced text** - Complex text formatting beyond bold/italic may not be preserved.
 
+These are the highlights only—the [`@imgly/idml-importer`](https://www.npmjs.com/package/@imgly/idml-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
+
 ## Pre-Import Checklist
 
 Before exporting from InDesign:

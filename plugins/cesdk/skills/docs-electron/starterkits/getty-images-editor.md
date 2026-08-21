@@ -18,7 +18,7 @@ CE.SDK can include assets from third-party libraries accessible via API. Search 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-getty-asset-source-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/starterkit-getty-asset-source/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-rc.1/examples/starterkit-getty-asset-source/index.html)
 
 ***
 
@@ -479,10 +479,16 @@ See [Background Removal](./edit-image/remove-bg.md) for setup instructions and c
 Export print-ready PDF/X-4 and PDF/X-3 files with CMYK color profiles for professional printing workflows.
 
 ```typescript title="src/imgly/config/plugin.ts"
-import PrintReadyPDFPlugin from '@imgly/plugin-print-ready-pdf';
+import { convertToPDFX } from '@imgly/plugin-print-ready-pdfs-web';
 
-// Add print-ready PDF export capability
-await cesdk.addPlugin(PrintReadyPDFPlugin());
+// Export the current page and convert it into a print-ready PDF/X file
+const [page] = cesdk.engine.block.findByType('page');
+const pdfBlob = await cesdk.engine.block.export(page, {
+  mimeType: 'application/pdf'
+});
+const printReadyPDF = await convertToPDFX(pdfBlob, {
+  outputProfile: 'fogra39'
+});
 ```
 
 See [Print Ready PDF](./plugins/print-ready-pdf.md) for setup instructions and configuration options.

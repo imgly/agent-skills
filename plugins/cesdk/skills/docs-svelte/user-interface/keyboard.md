@@ -20,7 +20,7 @@ supported.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-keyboard-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0-rc.1/examples/guides-user-interface-keyboard-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-rc.1/examples/guides-user-interface-keyboard-browser/index.html)
 
 Power users live on the keyboard. CE.SDK ships with a complete shortcut catalog — undo, redo, copy, paste, nudge, group, save, zoom, text formatting, playback — so the moment your users open the editor, every common action is one chord away. Bind your own shortcuts on top, replace the defaults with your brand's conventions, or scope them to specific surfaces — without writing a keyboard event handler yourself.
 

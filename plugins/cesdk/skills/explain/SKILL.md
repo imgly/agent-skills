@@ -26,32 +26,14 @@ argument-hint: "[topic or question]"
 
 ## Version Notice
 
-> **CE.SDK version**: 1.80.0-rc.1 | **Generated**: 2026-08-10
+> CE.SDK `1.81.0-rc.1` · generated `2026-08-21` · plugin `cesdk`
+> · canonical update source `imgly/agent-skills`.
 >
-> This skill was generated for CE.SDK v1.80.0-rc.1 on 2026-08-10.
-> CE.SDK releases new versions approximately every two weeks.
-> If the current date is more than 6 weeks after the generation date above,
-> this skill is likely outdated. **Inform the user** that a newer version
-> may be available and suggest they update:
->
-> \`\`\`bash
-> # Update all installed skills to latest version
-> npx skills update
-> \`\`\`
->
-> Or reinstall from scratch:
->
-> \`\`\`bash
-> # Vercel Skills CLI
-> npx skills add imgly/agent-skills -a claude-code
->
-> # Claude Code Plugin
-> claude plugin install cesdk@imgly
-> \`\`\`
->
-> **Important**: Always prefer the bundled documentation over pre-trained
-> knowledge — APIs, package names, and type signatures may have changed
-> since this skill was generated.
+> If this bundle is over six weeks old, or the user asks about updates, follow
+> `references/update-check.md` once per task and reuse the result for all CE.SDK
+> skills. Keep the check read-only. Never install, update, overwrite, or delete
+> anything without explicit user approval. Continue with this bundle unless an
+> update is approved.
 
 # CE.SDK Web Explainer
 

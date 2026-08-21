@@ -23,7 +23,12 @@ if (props.includes('animationEasing')) {
 ## Pattern: Safe Property Access
 
 ```ts
-function safeSetEnum(engine: CreativeEngine, block: number, prop: string, value: string): boolean {
+function safeSetEnum(
+  engine: CreativeEngine,
+  block: number,
+  prop: string,
+  value: string
+): boolean {
   const props = engine.block.findAllProperties(block);
   if (props.includes(prop)) {
     engine.block.setEnum(block, prop, value);
@@ -32,7 +37,11 @@ function safeSetEnum(engine: CreativeEngine, block: number, prop: string, value:
   return false;
 }
 
-function safeGetFloat(engine: CreativeEngine, block: number, prop: string): number | undefined {
+function safeGetFloat(
+  engine: CreativeEngine,
+  block: number,
+  prop: string
+): number | undefined {
   const props = engine.block.findAllProperties(block);
   if (props.includes(prop)) {
     return engine.block.getFloat(block, prop);

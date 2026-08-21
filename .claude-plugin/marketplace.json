@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "description": "Unified CE.SDK plugin for IMG.LY CreativeEditor SDK.",
-    "version": "1.80.0-rc.1"
+    "description": "CE.SDK agent skills for Web, Swift, and Android platforms.",
+    "version": "1.81.0-rc.1"
   },
   "name": "imgly",
   "owner": {
@@ -46,7 +46,67 @@
         "creative-editor",
         "Web"
       ],
-      "version": "1.80.0-rc.1"
+      "version": "1.81.0-rc.1"
+    },
+    {
+      "author": {
+        "email": "support@img.ly",
+        "name": "IMG.LY GmbH"
+      },
+      "category": "sdk",
+      "description": "CE.SDK documentation and implementation skills for Swift on iOS, macOS, and Mac Catalyst.",
+      "homepage": "https://img.ly/docs/cesdk",
+      "keywords": [
+        "cesdk",
+        "creative-editor",
+        "swift",
+        "ios",
+        "macos",
+        "mac-catalyst",
+        "xcode",
+        "sdk"
+      ],
+      "license": "MIT",
+      "name": "cesdk-swift",
+      "repository": "https://github.com/imgly/agent-skills",
+      "source": "./plugins/cesdk-swift",
+      "tags": [
+        "cesdk",
+        "Swift",
+        "iOS",
+        "macOS",
+        "Mac Catalyst"
+      ],
+      "version": "1.81.0-rc.1"
+    },
+    {
+      "author": {
+        "email": "support@img.ly",
+        "name": "IMG.LY GmbH"
+      },
+      "category": "sdk",
+      "description": "CE.SDK documentation and implementation skills for Kotlin and Jetpack Compose on Android.",
+      "homepage": "https://img.ly/docs/cesdk",
+      "keywords": [
+        "cesdk",
+        "creative-editor",
+        "android",
+        "kotlin",
+        "jetpack-compose",
+        "gradle",
+        "sdk"
+      ],
+      "license": "MIT",
+      "name": "cesdk-android",
+      "repository": "https://github.com/imgly/agent-skills",
+      "source": "./plugins/cesdk-android",
+      "tags": [
+        "cesdk",
+        "Android",
+        "Kotlin",
+        "Jetpack Compose"
+      ],
+      "version": "1.81.0-rc.1"
     }
   ]
 }

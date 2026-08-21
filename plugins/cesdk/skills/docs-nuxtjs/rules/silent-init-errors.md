@@ -75,7 +75,7 @@ import {
       console.error('[CE.SDK init] Failed:', error);
     }
   }}
-/>
+/>;
 ```
 
 ## Symptoms of Silent Init Failure

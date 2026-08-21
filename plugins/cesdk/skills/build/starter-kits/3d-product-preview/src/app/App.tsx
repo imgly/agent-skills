@@ -23,12 +23,14 @@ interface AppProps {
 
 export default function App({ config }: AppProps) {
   const designEngineRef = useRef<CreativeEditorSDK | null>(null);
-  const designSceneStringRef = useRef<string | null>(null);
 
   const [currentProductKey, setCurrentProductKey] =
     useState(DEFAULT_PRODUCT_KEY);
   const [isProductSwitching, setIsProductSwitching] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const sceneLoadRef = useRef(0);
 
   // Mockup rendering - engine is lazily initialized inside renderMockup
   const {
@@ -55,24 +57,26 @@ export default function App({ config }: AppProps) {
       const designEngine = designEngineRef.current;
       if (!designEngine || productKey === currentProductKey) return;
 
+      const sceneLoad = ++sceneLoadRef.current;
       setIsProductSwitching(true);
       setCurrentProductKey(productKey);
       resetMockupScene();
-      designSceneStringRef.current = null;
 
       try {
         const sceneUrl = getDesignSceneUrl(productKey);
         await designEngine.engine.scene.load(sceneUrl);
+        if (sceneLoad !== sceneLoadRef.current) return;
 
         // Zoom to fit the first page
         await designEngine.actions.run('zoom.toPage', {
           page: 'first',
           autoFit: true
         });
+        if (sceneLoad !== sceneLoadRef.current) return;
 
         await renderMockupForProduct(productKey, undefined);
       } finally {
-        setIsProductSwitching(false);
+        if (sceneLoad === sceneLoadRef.current) setIsProductSwitching(false);
       }
     },
     [currentProductKey, renderMockupForProduct, resetMockupScene]
@@ -82,24 +86,8 @@ export default function App({ config }: AppProps) {
   // Fullscreen Handler
   // ============================================================================
 
-  const isFullscreenRef = useRef(isFullscreen);
-  isFullscreenRef.current = isFullscreen;
-
-  const handleToggleFullscreen = useCallback(async () => {
-    const enteringFullscreen = !isFullscreenRef.current;
-    if (enteringFullscreen) {
-      const cesdk = designEngineRef.current;
-      if (cesdk) {
-        try {
-          designSceneStringRef.current =
-            await cesdk.engine.scene.saveToString();
-        } catch {
-          designSceneStringRef.current = null;
-        }
-      }
-      designEngineRef.current = null;
-    }
-    setIsFullscreen(enteringFullscreen);
+  const handleToggleFullscreen = useCallback(() => {
+    setIsFullscreen((value) => !value);
   }, []);
 
   // ============================================================================
@@ -111,24 +99,19 @@ export default function App({ config }: AppProps) {
     async (cesdk: CreativeEditorSDK) => {
       designEngineRef.current = cesdk;
 
+      const sceneLoad = ++sceneLoadRef.current;
       await init3dProductPreviewEditor(cesdk);
 
-      const savedDesignScene = designSceneStringRef.current;
-      if (savedDesignScene) {
-        try {
-          await cesdk.engine.scene.load(savedDesignScene);
-        } catch {
-          await cesdk.load(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
-        }
-      } else {
-        await cesdk.load(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
-      }
+      await cesdk.load(getDesignSceneUrl(DEFAULT_PRODUCT_KEY));
+
+      setEngineReadyRef.current();
+      setIsInitializing(false);
+
+      if (sceneLoad !== sceneLoadRef.current) return;
 
       // Zoom to fit the first page
       await cesdk.actions.run('zoom.toPage', { page: 'first', autoFit: true });
-
-      // Signal that engine is ready for history subscriptions
-      setEngineReadyRef.current();
+      if (sceneLoad !== sceneLoadRef.current) return;
 
       // Render initial mockup (engine initializes lazily on first render)
       await renderMockupForProductRef.current(DEFAULT_PRODUCT_KEY);
@@ -157,12 +140,10 @@ export default function App({ config }: AppProps) {
       <Topbar
         currentProductKey={currentProductKey}
         onProductChange={handleProductChange}
-        disabled={isProductSwitching}
+        disabled={isProductSwitching || isInitializing}
       />
 
-      <div
-        className={`${styles.mainLayout} ${isFullscreen ? styles.fullscreenLayout : ''}`}
-      >
+      <div className={styles.mainLayout}>
         <Mockup3DPreview
           mockupImageUrl={mockupImageUrl}
           modelUrl={getModelUrl(currentProductKey)}
@@ -173,15 +154,15 @@ export default function App({ config }: AppProps) {
           onToggleFullscreen={handleToggleFullscreen}
         />
 
-        {!isFullscreen && (
-          <div className={styles.editorWrapper}>
-            <CreativeEditor
-              className={styles.editor}
-              config={config}
-              init={handleEditorInit}
-            />
-          </div>
-        )}
+        <div
+          className={`${styles.editorWrapper} ${isFullscreen ? styles.hidden : ''}`}
+        >
+          <CreativeEditor
+            className={styles.editor}
+            config={config}
+            init={handleEditorInit}
+          />
+        </div>
       </div>
     </div>
   );
