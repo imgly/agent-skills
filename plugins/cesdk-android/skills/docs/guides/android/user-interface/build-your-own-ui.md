@@ -445,7 +445,7 @@ own Compose UI and driving every control through Engine APIs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-user-interface-build-your-own-ui)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-user-interface-build-your-own-ui)
 
 When you need complete control over the editing experience, you can start and bind the Engine yourself, host its render surface in your app, and build custom tools around it. This guide shows a Compose-based editor surface with a canvas, toolbar, property controls, event synchronization, block creation, and PNG export.
 

@@ -18,7 +18,7 @@ Add interactive save, export, and custom action buttons to your CE.SDK editor us
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-quick-start-add-action-buttons-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-user-interface-customization-quick-start-add-action-buttons-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260822/examples/guides-user-interface-customization-quick-start-add-action-buttons-browser/index.html)
 
 CE.SDK provides built-in action button components that you can insert and configure inline without needing to register custom components. There are two main approaches:
 

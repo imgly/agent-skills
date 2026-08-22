@@ -10,7 +10,8 @@ type ComponentId =
   | CanvasBarComponentId
   | InspectorBarComponentId
   | CaptionPanelComponentId
-  | ClipContextMenuComponentId;
+  | ClipContextMenuComponentId
+  | VideoTimelineControlsBarComponentId;
 ```
 
 Represents the ID of a component.

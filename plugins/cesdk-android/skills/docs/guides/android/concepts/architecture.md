@@ -80,7 +80,7 @@ Understand how CE.SDK is structured around the CreativeEngine and its six interc
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-concepts-architecture)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-concepts-architecture)
 
 <EngineReferenceNote {...props} />
 

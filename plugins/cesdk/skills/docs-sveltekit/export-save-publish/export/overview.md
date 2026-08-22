@@ -18,7 +18,7 @@ Export your designs to multiple formats including PNG, JPEG, WebP, SVG, PDF, and
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-export-save-publish-export-overview-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260822/examples/guides-export-save-publish-export-overview-browser/index.html)
 
 Whether you're building a design tool, photo editor, or content automation workflow, understanding export options helps you deliver the right output for each use case. This guide covers supported formats, their options, and how to export programmatically or via the UI.
 

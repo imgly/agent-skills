@@ -13,7 +13,7 @@ video workflows that run reliably on Apple devices.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-limitations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/engine-guides-limitations)
 
 Client-side video processing keeps user content on the device and avoids round trips to a server, but it depends on the device's CPU, GPU, and memory. Understanding these constraints helps you build apps that perform reliably across iPhone, iPad, and Mac configurations.
 

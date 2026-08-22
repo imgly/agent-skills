@@ -122,7 +122,7 @@ underlayer support for special media printing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-export-to-pdf)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-export-to-pdf)
 
 <EngineReferenceNote {...props} />
 

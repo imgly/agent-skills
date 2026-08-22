@@ -143,7 +143,7 @@ and swap image sources programmatically.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-replace-content)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/engine-guides-replace-content)
 
 <EngineReferenceNote {...props} />
 

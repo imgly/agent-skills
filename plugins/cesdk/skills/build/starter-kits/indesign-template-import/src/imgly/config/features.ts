@@ -321,6 +321,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.video.timeline.overlays', /* Overlays track in timeline */
     // 'ly.img.video.timeline.audio', /* Audio track in timeline */
     // 'ly.img.video.timeline.addClip', /* Add clips to timeline */
+    // 'ly.img.video.timeline.clip.menu', /* Clip ellipsis button */
     // 'ly.img.video.timeline.controls', /* Base video control UI */
     // 'ly.img.video.timeline.controls.toggle', /* Timeline collapse/expand toggle */
     // 'ly.img.video.timeline.controls.background', /* Background color controls */

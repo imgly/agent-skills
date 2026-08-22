@@ -18,7 +18,7 @@ Comprehensive video editing for your Svelte app—professional tools for timelin
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/starterkit-advanced-video-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260822/examples/starterkit-advanced-video-editor/index.html)
 
 ***
 

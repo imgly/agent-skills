@@ -62,10 +62,10 @@ Sets the canvas menu configuration. Merges with any existing configuration.
 ### Builder.captionsGeneration(_:)
 
 ```swift
-@MainActor func captionsGeneration(_ callback: @escaping CaptionsGeneration.Callback)
+@MainActor func captionsGeneration(_ callback: @escaping @MainActor @Sendable (Engine) async throws -> URL?)
 ```
 
-Sets the caption generation callback that backs the Add Captions sheet’s “Generate Automatically” action. Unlike the chained handlers, the last configured callback wins.
+Sets the caption generation callback that backs the Add Captions sheet’s “Generate Automatically” action. The sheet leaves the action out while no callback is configured, so the editor offers automatic captions only when something can produce them. Unlike the chained handlers, the last configured callback wins. The callback transcribes the scene’s audible content — `engine` reads it — into a temporary SRT or VTT file with cue timings relative to the page timeline. Return `nil` when the audio holds no speech, so the editor can say so specifically; any error thrown surfaces as a generic failure alert. The editor imports the file as a single undo step and deletes it afterwards, and cancels the…
 
 ### colorPalette
 

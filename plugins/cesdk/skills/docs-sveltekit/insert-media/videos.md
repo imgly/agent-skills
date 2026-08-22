@@ -18,7 +18,7 @@ Insert videos into your CE.SDK scenes using either the convenience API or manual
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-insert-media-videos-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-insert-media-videos-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260822/examples/guides-insert-media-videos-browser/index.html)
 
 Videos in CE.SDK are graphic blocks with video fills. Two approaches exist: the `addVideo()` convenience method, and manual block creation with video fills.
 

@@ -106,7 +106,7 @@ system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-set-editing-constraints)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-set-editing-constraints)
 
 <EngineReferenceNote {...props} />
 

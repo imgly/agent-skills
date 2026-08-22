@@ -210,7 +210,7 @@ and export the result to a PNG or PDF.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-use-templates-generate)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-use-templates-generate)
 
 <EngineReferenceNote {...props} />
 

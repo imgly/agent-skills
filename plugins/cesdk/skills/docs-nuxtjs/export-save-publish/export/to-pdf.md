@@ -18,7 +18,7 @@ Export your designs as PDF documents with high compatibility mode and underlayer
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-export-save-publish-export-to-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260822/examples/guides-export-save-publish-export-to-pdf-browser/index.html)
 
 PDF provides a universal document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page documents, and include options for print compatibility. You can configure high compatibility mode to ensure consistent rendering across different PDF viewers, and generate underlayers for special media printing like fabric, glass, or DTF transfers.
 
@@ -272,6 +272,16 @@ const pdfBlob = await engine.block.export(scene, {
 ```
 
 The callback fires once after each page is serialized into the document, receiving the number of pages exported so far and the total page count. It is PDF-specific: raster exports like PNG or JPEG never invoke it. When you export through the editor's built-in export flow, the export dialog already uses this callback to show a per-page progress bar for PDF exports.
+
+## Export Large Documents
+
+PDF exports are streamed internally: the engine writes the document in small chunks, so it never holds the finished file in its memory. Where the browser supports the origin private file system, `engine.block.export()` also stages those chunks in a temporary file on disk and resolves with a `Blob` backed by that file. Memory usage then stays flat at chunk size for the whole export, no matter how large the document gets. Where it does not, the `Blob` is assembled in memory instead. This all happens automatically, and the resolved `Blob` has the same content and type either way.
+
+Check `engine.editor.isCapabilitySupported('tempFileStorage')` to see which path the current browser takes.
+
+The temporary file has to outlive the `Blob` that it backs, so it is not deleted when the export finishes. CE.SDK collects the staging files of earlier page loads for you. Until then they count towards the storage quota of the origin.
+
+A failed staged export reports the `ENCODE.PDF_STAGING_WRITE_FAILED` code rather than returning a truncated file, for example when the device has no space left for the temporary file.
 
 ## Configure High Compatibility Mode
 

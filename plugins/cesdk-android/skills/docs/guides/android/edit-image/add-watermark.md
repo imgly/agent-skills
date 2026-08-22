@@ -145,7 +145,7 @@ Add text and image watermarks to designs programmatically using CE.SDK's block A
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-edit-image-add-watermark)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-edit-image-add-watermark)
 
 <EngineReferenceNote {...props} />
 

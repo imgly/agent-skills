@@ -127,7 +127,7 @@ CE.SDK treats all insertable content as assets—images, videos, audio, stickers
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/editor-guides-import-media-asset-library-basics)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/editor-guides-import-media-asset-library-basics)
 
 The asset library connects the engine to the editor UI through three layers:
 
@@ -150,7 +150,7 @@ The asset library connects the engine to the editor UI through three layers:
 
 You configure all three layers on the same `EditorConfiguration` builder—the same place you configure the dock, navigation bar, inspector bar, and canvas menu. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 
-The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260821/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class—the `onCreate`, `assetLibrary`, and `dock` builders are available on every configuration, so the rest of the calls stay the same.
+The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260822/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class—the `onCreate`, `assetLibrary`, and `dock` builders are available on every configuration, so the rest of the calls stay the same.
 
 This guide covers:
 

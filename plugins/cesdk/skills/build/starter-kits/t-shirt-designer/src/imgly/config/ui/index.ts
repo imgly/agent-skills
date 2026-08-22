@@ -12,6 +12,7 @@ import { setupDock } from './dock';
 import { setupInspectorBar } from './inspectorBar';
 import { setupNavigationBar } from './navigationBar';
 import { setupPanels } from './panel';
+// import { setupVideoTimeline } from './videoTimeline';
 
 /**
  * Configure the complete UI for the product editor.
@@ -25,4 +26,5 @@ export function setupUI(cesdk: CreativeEditorSDK): void {
   setupCanvas(cesdk);
   setupInspectorBar(cesdk);
   setupDock(cesdk);
+  // setupVideoTimeline(cesdk); // Video timeline
 }

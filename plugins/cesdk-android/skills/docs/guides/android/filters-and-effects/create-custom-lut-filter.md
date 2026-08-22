@@ -106,7 +106,7 @@ Android Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-custom-lut-filter)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-custom-lut-filter)
 
 <EngineReferenceNote {...props} />
 

@@ -77,7 +77,7 @@ from quarter-speed (0.25x) to triple-speed (3.0x).
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-create-audio-adjust-speed)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-create-audio-adjust-speed)
 
 <EngineReferenceNote {...props} />
 

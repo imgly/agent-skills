@@ -113,6 +113,7 @@ The settings are organized by type:
 |  `dock/iconSize` | `"normal"` | `"large"` | Controls the icon size of the dock components |
 |  `colorPicker/colorMode` | `"CMYK"` | `"RGB"` | `"Any"` | Controls the color mode of the color picker. When set to 'RGB' or 'CMYK', only colors matching this mode are fully editable. Defaults to 'Any'. |
 |  `timeline/trackVisibility` | `"all"` | `"active"` | Controls which timeline tracks are visible. 'all' shows all tracks, 'active' shows only the track containing the active block. Defaults to 'all'. |
+|  `timeline/transitionControlVisibility` | `"always"` | `"hover"` | Controls the clip transition control on the timeline. 'always' keeps it shown, 'hover' reveals it on hover/focus. Defaults to 'hover'. |
 
 
 ---

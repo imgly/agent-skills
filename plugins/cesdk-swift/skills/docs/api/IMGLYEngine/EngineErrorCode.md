@@ -3827,6 +3827,12 @@ case encodePdfCreateFailedResources
 case encodePdfRenderSizeExceedsMax
 ```
 
+### EngineErrorCode.encodePdfStagingWriteFailed
+
+```swift
+case encodePdfStagingWriteFailed
+```
+
 ### EngineErrorCode.encodePixelBufferUnexpectedSize
 
 ```swift

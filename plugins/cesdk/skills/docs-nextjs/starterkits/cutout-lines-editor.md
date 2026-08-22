@@ -18,7 +18,7 @@ CE.SDK's cutout plugin enables effortless creation and customization of cutout s
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-cutout-lines-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/starterkit-cutout-lines-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260822/examples/starterkit-cutout-lines-editor/index.html)
 
 ***
 

@@ -125,6 +125,14 @@ const blob = await engine.block.export(page, 'image/jpeg', {
 });
 ```
 
+### Large PDF Exports Are Staged on Disk
+
+`engine.block.export()` writes a PDF into a temporary file (origin private file system) while the export runs, and returns a `Blob` backed by that file, so the finished document never sits in memory as a whole. Browsers without that support assemble the `Blob` in memory instead, where a large multi-page document such as a photo book or a magazine becomes the peak allocation.
+
+The temporary file backs the returned `Blob`, so it stays on disk after the export. CE.SDK collects the staging files of earlier page loads for you.
+
+See [Export to PDF](./export-save-publish/export/to-pdf.md) for the full API.
+
 ### Export Size Limits
 
 Check device export capabilities before attempting large exports using `engine.editor.getMaxExportSize()`.

@@ -18,7 +18,7 @@ Create custom sidebar panels that integrate with CE.SDK's user interface using t
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-create-custom-panel-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-user-interface-ui-extensions-create-custom-panel-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260822/examples/guides-user-interface-ui-extensions-create-custom-panel-browser/index.html)
 
 Custom panels extend CE.SDK by adding sidebar interfaces that match the editor's design language. The builder system provides pre-built components for forms, buttons, and media display, allowing you to create rich editing experiences without building UI from scratch.
 
@@ -95,6 +95,11 @@ export default class CreateCustomPanelExample implements EditorPlugin {
 
       const textState = state('text', 'Hello CE.SDK');
       const opacityState = state('opacity', 100);
+      const spacingState = state('spacing', 8);
+      const headlineState = state('headline', 'Product name');
+      const viewState = state('view', 'content');
+      const enabledState = state('enabled', true);
+      const shadowState = state('shadow', false);
 
       builder.Section('settings', {
         title: 'Settings',
@@ -112,10 +117,18 @@ export default class CreateCustomPanelExample implements EditorPlugin {
             ...opacityState
           });
 
+          builder.NumberInput('spacing', {
+            inputLabel: 'Spacing',
+            min: 0,
+            max: 64,
+            step: 4,
+            showStepper: true,
+            ...spacingState
+          });
+
           builder.Checkbox('enabled', {
             inputLabel: 'Enable feature',
-            value: true,
-            setValue: () => {}
+            ...enabledState
           });
 
           builder.Button('apply', {
@@ -131,6 +144,41 @@ export default class CreateCustomPanelExample implements EditorPlugin {
           if (selected.length > 0) {
             builder.Text('info', { content: `${selected.length} selected` });
           }
+        }
+      });
+
+      builder.Section('view', {
+        children: () => {
+          builder.Tabs('view-tabs', {
+            inputLabel: 'View',
+            inputLabelPosition: 'top',
+            ...viewState,
+            tabs: [
+              {
+                id: 'content',
+                label: 'Content',
+                icon: '@imgly/Text',
+                children: () => {
+                  builder.TextInput('headline', {
+                    inputLabel: 'Headline',
+                    ...headlineState
+                  });
+                }
+              },
+              {
+                id: 'style',
+                label: 'Style',
+                icon: '@imgly/Appearance',
+                isActive: opacityState.value < 100,
+                children: () => {
+                  builder.Checkbox('shadow', {
+                    inputLabel: 'Drop shadow',
+                    ...shadowState
+                  });
+                }
+              }
+            ]
+          });
         }
       });
     });
@@ -173,6 +221,11 @@ Use the `state` function to create panel-local state that persists across re-ren
 ```typescript highlight-local-state
 const textState = state('text', 'Hello CE.SDK');
 const opacityState = state('opacity', 100);
+const spacingState = state('spacing', 8);
+const headlineState = state('headline', 'Product name');
+const viewState = state('view', 'content');
+const enabledState = state('enabled', true);
+const shadowState = state('shadow', false);
 ```
 
 State objects integrate directly with input components by spreading the object into the component props.
@@ -215,6 +268,23 @@ builder.Slider('opacity', {
 });
 ```
 
+### Number Input
+
+Capture precise values with `builder.NumberInput()`. Set `showStepper` to `true` to add decrement and increment buttons inside the field. Each press moves the value by `step` and stops at `min` and `max`, and holding a button repeats the step.
+
+```typescript highlight-number-input
+builder.NumberInput('spacing', {
+  inputLabel: 'Spacing',
+  min: 0,
+  max: 64,
+  step: 4,
+  showStepper: true,
+  ...spacingState
+});
+```
+
+Pressing Tab skips the stepper buttons and moves to the next control. Keyboard users step the value with the field's Up and Down arrow keys instead.
+
 ### Checkbox
 
 Toggle boolean values with `builder.Checkbox()`.
@@ -222,8 +292,7 @@ Toggle boolean values with `builder.Checkbox()`.
 ```typescript highlight-checkbox
 builder.Checkbox('enabled', {
   inputLabel: 'Enable feature',
-  value: true,
-  setValue: () => {}
+  ...enabledState
 });
 ```
 
@@ -236,6 +305,55 @@ builder.Button('apply', {
   label: 'Apply',
   onClick: () => {
 ```
+
+## Switching Views with Tabs
+
+Split a panel into alternating views with `builder.Tabs()`. You control the selection: `value` holds the `id` of the selected tab, and `setValue` receives the `id` of the tab the user picks, so panel state drives the bar.
+
+```typescript highlight-tabs
+builder.Section('view', {
+  children: () => {
+    builder.Tabs('view-tabs', {
+      inputLabel: 'View',
+      inputLabelPosition: 'top',
+      ...viewState,
+      tabs: [
+        {
+          id: 'content',
+          label: 'Content',
+          icon: '@imgly/Text',
+          children: () => {
+            builder.TextInput('headline', {
+              inputLabel: 'Headline',
+              ...headlineState
+            });
+          }
+        },
+        {
+          id: 'style',
+          label: 'Style',
+          icon: '@imgly/Appearance',
+          isActive: opacityState.value < 100,
+          children: () => {
+            builder.Checkbox('shadow', {
+              inputLabel: 'Drop shadow',
+              ...shadowState
+            });
+          }
+        }
+      ]
+    });
+  }
+});
+```
+
+Only the selected tab runs its `children` callback, so a hidden tab builds nothing.
+
+Each tab takes an optional `icon`, `tooltip` and `isDisabled`. Setting `isActive` draws a small indicator below the tab icon to signal that the tab holds a value, such as an applied animation. It does not mark the selected tab, and it needs an `icon` to anchor to.
+
+The arrow keys move focus between tabs. Home and End jump to the first and last tab, and Enter or Space selects the focused tab. Focus alone does not select.
+
+> **Note:** Tab bars are only supported in panels. A registered component can use one too, as long as a panel is what renders it. In the dock, the navigation bar, the inspector bar, the canvas menu and the canvas bar, the builder logs a warning and renders nothing.
 
 ## Showing a Loading Spinner
 

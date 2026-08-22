@@ -18,7 +18,7 @@ Add backgrounds to designs using fills for pages and shapes, and the background 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-add-background-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260821/examples/guides-create-composition-add-background-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260822/examples/guides-create-composition-add-background-browser/index.html)
 
 CE.SDK provides two distinct approaches for adding backgrounds to design elements. Understanding when to use each approach ensures your designs render correctly and efficiently.
 
@@ -205,15 +205,18 @@ class Example implements EditorPlugin {
     }
     engine.block.appendChild(page, logoBlock);
 
-    // Check feature support on different blocks
+    // Pages and graphic blocks support fills; text blocks do not
     const pageSupportsFill = engine.block.supportsFill(page);
-    const textSupportsBackground =
-      engine.block.supportsBackgroundColor(featuredText);
     const imageSupportsFill = engine.block.supportsFill(imageBlock);
 
     console.log('Page supports fill:', pageSupportsFill);
-    console.log('Text supports backgroundColor:', textSupportsBackground);
     console.log('Image supports fill:', imageSupportsFill);
+
+    // Only text blocks support background colors
+    const textSupportsBackground =
+      engine.block.supportsBackgroundColor(featuredText);
+
+    console.log('Text supports backgroundColor:', textSupportsBackground);
 
     // Zoom to fit the page
     await engine.scene.zoomToBlock(page, {
@@ -249,15 +252,12 @@ Fills are visual content applied to pages and graphic blocks. Supported fill typ
 
 Before applying a fill, verify the block supports it with `supportsFill()`. Pages and graphic blocks typically support fills, while text blocks handle their content differently.
 
-```typescript highlight=highlight-check-support
-    // Check feature support on different blocks
+```typescript highlight=highlight-check-fill-support
+    // Pages and graphic blocks support fills; text blocks do not
     const pageSupportsFill = engine.block.supportsFill(page);
-    const textSupportsBackground =
-      engine.block.supportsBackgroundColor(featuredText);
     const imageSupportsFill = engine.block.supportsFill(imageBlock);
 
     console.log('Page supports fill:', pageSupportsFill);
-    console.log('Text supports backgroundColor:', textSupportsBackground);
     console.log('Image supports fill:', imageSupportsFill);
 ```
 
@@ -306,16 +306,12 @@ Background color is a dedicated property available specifically on text blocks. 
 
 Use `supportsBackgroundColor()` to verify a block supports this feature. Currently, only text blocks support background colors.
 
-```typescript highlight=highlight-check-support
-    // Check feature support on different blocks
-    const pageSupportsFill = engine.block.supportsFill(page);
+```typescript highlight=highlight-check-background-color-support
+    // Only text blocks support background colors
     const textSupportsBackground =
       engine.block.supportsBackgroundColor(featuredText);
-    const imageSupportsFill = engine.block.supportsFill(imageBlock);
 
-    console.log('Page supports fill:', pageSupportsFill);
     console.log('Text supports backgroundColor:', textSupportsBackground);
-    console.log('Image supports fill:', imageSupportsFill);
 ```
 
 ### Apply Background Color

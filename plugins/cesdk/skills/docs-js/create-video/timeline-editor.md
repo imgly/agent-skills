@@ -521,6 +521,15 @@ Restrict or allow editing actions by hiding or displaying the editing controls:
     ```
   </TabItem>
 
+  <TabItem label="Clip options button">
+    **Hide** the clip ellipsis ("more options") button on timeline clips with:
+
+    ```ts
+    cesdk.feature.disable('ly.img.video.timeline.clip.menu');
+
+    ```
+  </TabItem>
+
   <TabItem label="Background button">
     **Hide** the background button with:
 
@@ -576,6 +585,7 @@ cesdk.feature.set('ly.img.video.timeline.controls.split', ({ engine }) => {
 | `ly.img.video.timeline.overlays` | Show or hide the overlay track |
 | `ly.img.video.timeline.audio` | Show or hide the audio track |
 | `ly.img.video.timeline.addClip` | Enable or disable adding new clips |
+| `ly.img.video.timeline.clip.menu` | Show or hide the clip ellipsis ("more options") button |
 | `ly.img.video.timeline.controls` | Base feature for all video controls |
 | `ly.img.video.timeline.controls.toggle` | Show or hide timeline collapse/expand button |
 | `ly.img.video.timeline.controls.playback` | Show or hide play/pause and timestamp |

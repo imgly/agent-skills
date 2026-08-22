@@ -59,7 +59,7 @@ fun makeEngine(license: String, userId: String) = CoroutineScope(Dispatchers.Mai
     val engine = Engine.getInstance(id = "ly.img.engine.multiimage")
     engine.start(license = license, userId = userId)
     engine.bindOffscreen(width = 1080, height = 1920)
-    val baseUri = Uri.parse("https://cdn.img.ly/packages/imgly/cesdk-android/1.82.0-nightly.20260821/assets")
+    val baseUri = Uri.parse("https://cdn.img.ly/packages/imgly/cesdk-android/1.82.0-nightly.20260822/assets")
     listOf(
         "ly.img.sticker", "ly.img.vector.shape", "ly.img.filter", "ly.img.color.palette",
         "ly.img.effect", "ly.img.blur", "ly.img.typeface", "ly.img.crop.presets",

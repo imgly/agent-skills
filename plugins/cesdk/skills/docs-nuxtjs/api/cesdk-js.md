@@ -142,6 +142,7 @@
 | [TextToggleUnderlineAction](./api/cesdk-js/type-aliases/texttoggleunderlineaction.md) | Action function for toggling underline on selected text. |
 | [TimelineCollapseAction](./api/cesdk-js/type-aliases/timelinecollapseaction.md) | Action function for collapsing the video timeline. |
 | [TimelineExpandAction](./api/cesdk-js/type-aliases/timelineexpandaction.md) | Action function for expanding the video timeline. |
+| [TimelineSetHeightAction](./api/cesdk-js/type-aliases/timelinesetheightaction.md) | Action function for setting the video timeline's height. |
 | [TimelineZoomInAction](./api/cesdk-js/type-aliases/timelinezoominaction.md) | Action function for zooming in the video timeline by one step. |
 | [TimelineZoomOutAction](./api/cesdk-js/type-aliases/timelinezoomoutaction.md) | Action function for zooming out the video timeline by one step. |
 | [TimelineZoomResetAction](./api/cesdk-js/type-aliases/timelinezoomresetaction.md) | Action function for resetting the video timeline zoom to default level (1.0). |
@@ -162,6 +163,7 @@
 | [VideoEncodeCheckSupportAction](./api/cesdk-js/type-aliases/videoencodechecksupportaction.md) | Action function for checking video encoding/export support. Returns true if H.264 video encoding and AAC audio encoding are supported. Shows a warning dialog if not supported (unless dialog is disabled). |
 | [VideoPlayPauseAction](./api/cesdk-js/type-aliases/videoplaypauseaction.md) | Action function for toggling play/pause on the current page. |
 | [VideoSupportDialogOptions](./api/cesdk-js/type-aliases/videosupportdialogoptions.md) | Dialog display options for video support check actions. Allows configuring whether and how the dialog is displayed. |
+| [VideoTimelineControlsBarComponentId](./api/cesdk-js/type-aliases/videotimelinecontrolsbarcomponentid.md) | Represents the ID of a video timeline controls bar component. |
 | [ViewStyle](./api/cesdk-js/type-aliases/viewstyle.md) | Represents the view style options in the Creative Editor SDK. This type defines the possible view styles, which are 'advanced' and 'default'. |
 | [ZoomInAction](./api/cesdk-js/type-aliases/zoominaction.md) | Action function for zooming in by one step |
 | [ZoomOutAction](./api/cesdk-js/type-aliases/zoomoutaction.md) | Action function for zooming out by one step |

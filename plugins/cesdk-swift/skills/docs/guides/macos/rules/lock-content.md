@@ -125,7 +125,7 @@ Lock design elements to prevent unwanted modifications using CE.SDK's scope-base
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/engine-guides-lock-content)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/engine-guides-lock-content)
 
 <EngineReferenceNote {...props} />
 

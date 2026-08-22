@@ -77,15 +77,16 @@ struct AutoCaptionsOptionsSolution: View {
 struct CustomTranscriptionProvider: TranscriptionProvider {
   let name = "My Speech-to-Text Service"
 
-  func transcribe(audio: Data, mimeType: String, options: TranscriptionOptions) async throws -> String {
+  func transcribe(audio: URL, mimeType: String, options: TranscriptionOptions) async throws -> String {
     var request = URLRequest(url: URL(string: "https://example.com/transcribe")!)
     request.httpMethod = "POST"
     request.setValue(mimeType, forHTTPHeaderField: "Content-Type")
     if let language = options.language {
       request.setValue(language, forHTTPHeaderField: "Accept-Language")
     }
-    request.httpBody = audio
-    let (data, _) = try await URLSession.shared.data(for: request)
+    // Upload from the file so a long recording streams out instead of being read
+    // into memory.
+    let (data, _) = try await URLSession.shared.upload(for: request, fromFile: audio)
     // Convert your service's response to SRT here; return an empty string when
     // no speech was detected.
     guard let srt = String(bytes: data, encoding: .utf8) else {
@@ -122,10 +123,10 @@ struct AutoCaptionsGenerationHookSolution: View {
             // Replace this with your own pipeline: transcribe the scene's audible content
             // and serialize the cues as SRT or VTT, timed relative to the page timeline.
             let srt = try await Self.transcribeScene(engine)
-            // Throwing `noSpeech` shows the dedicated "No speech was detected" alert;
-            // any other error shows the generic failure alert.
+            // Returning `nil` shows the dedicated "No speech was detected" alert; any
+            // error you throw shows the generic failure alert.
             guard !srt.isEmpty else {
-              throw CaptionsGeneration.Error.noSpeech
+              return nil
             }
             let file = FileManager.default.temporaryDirectory
               .appendingPathComponent(UUID().uuidString)
@@ -161,7 +162,7 @@ Generate captions automatically from spoken audio in video and audio blocks usin
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260821/editor-guides-auto-captions-plugin)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/editor-guides-auto-captions-plugin)
 
 The Auto Captions plugin transcribes the scene's audible content and creates styled, time-synced caption blocks from the result. It ships with a built-in provider that runs the ElevenLabs Scribe v2 speech-to-text model through the IMG.LY AI Gateway, and you can plug in any speech-to-text service by implementing the `TranscriptionProvider` protocol. For manually creating and editing captions, see [Add Captions](../../edit-video/add-captions.md).
 
@@ -238,7 +239,7 @@ Editor(settings)
 
 ## Implementing a Custom Transcription Provider
 
-Use any speech-to-text service by conforming to the `TranscriptionProvider` protocol. It requires a `name` string and a `transcribe(audio:mimeType:options:)` method that turns audio data into SRT subtitle text:
+Use any speech-to-text service by conforming to the `TranscriptionProvider` protocol. It requires a `name` string and a `transcribe(audio:mimeType:options:)` method that turns a staged audio file into SRT subtitle text:
 
 ```swift highlight-autoCaptionsPlugin-customProvider
 /// A minimal custom provider: send the audio to any speech-to-text service and
@@ -246,15 +247,16 @@ Use any speech-to-text service by conforming to the `TranscriptionProvider` prot
 struct CustomTranscriptionProvider: TranscriptionProvider {
   let name = "My Speech-to-Text Service"
 
-  func transcribe(audio: Data, mimeType: String, options: TranscriptionOptions) async throws -> String {
+  func transcribe(audio: URL, mimeType: String, options: TranscriptionOptions) async throws -> String {
     var request = URLRequest(url: URL(string: "https://example.com/transcribe")!)
     request.httpMethod = "POST"
     request.setValue(mimeType, forHTTPHeaderField: "Content-Type")
     if let language = options.language {
       request.setValue(language, forHTTPHeaderField: "Accept-Language")
     }
-    request.httpBody = audio
-    let (data, _) = try await URLSession.shared.data(for: request)
+    // Upload from the file so a long recording streams out instead of being read
+    // into memory.
+    let (data, _) = try await URLSession.shared.upload(for: request, fromFile: audio)
     // Convert your service's response to SRT here; return an empty string when
     // no speech was detected.
     guard let srt = String(bytes: data, encoding: .utf8) else {
@@ -265,7 +267,9 @@ struct CustomTranscriptionProvider: TranscriptionProvider {
 }
 ```
 
-The method receives the audio as `Data` with its MIME type — `audio/mp4` for the AAC track extracted from a video, and for a standalone audio block the source file's own type, commonly `audio/mpeg` — plus the `TranscriptionOptions` you configured. Return an SRT-formatted string with timings relative to the start of the audio, or an empty string when no speech was detected. Any error you throw surfaces as a generation-failure alert in the editor, and `name` identifies the provider in the failure log. The surrounding task is cancelled when the user taps Cancel, so keep implementations cooperatively cancellable — `URLSession`'s async APIs already are.
+The method receives a file URL for one audible block's whole source track, along with its MIME type — `audio/mp4` for the AAC track extracted from a video, and for a standalone audio block the source file's own type, commonly `audio/mpeg` — plus the `TranscriptionOptions` you configured. Stream the file rather than reading it into memory: a scene's audio is unbounded, and one long recording is enough to exhaust it. `URLSession`'s `upload(for:fromFile:)` does this for you. The plugin deletes the file once generation ends, so don't hold on to the URL past the call.
+
+Return an SRT-formatted string with timings relative to the start of the audio, or an empty string when no speech was detected. Any error you throw surfaces as a generation-failure alert in the editor, and `name` identifies the provider in the failure log. The surrounding task is cancelled when the user taps Cancel, so keep implementations cooperatively cancellable — `URLSession`'s async APIs already are.
 
 Pass your provider to the plugin in place of the built-in one:
 
@@ -289,10 +293,10 @@ Editor(settings)
         // Replace this with your own pipeline: transcribe the scene's audible content
         // and serialize the cues as SRT or VTT, timed relative to the page timeline.
         let srt = try await Self.transcribeScene(engine)
-        // Throwing `noSpeech` shows the dedicated "No speech was detected" alert;
-        // any other error shows the generic failure alert.
+        // Returning `nil` shows the dedicated "No speech was detected" alert; any
+        // error you throw shows the generic failure alert.
         guard !srt.isEmpty else {
-          throw CaptionsGeneration.Error.noSpeech
+          return nil
         }
         let file = FileManager.default.temporaryDirectory
           .appendingPathComponent(UUID().uuidString)
@@ -304,7 +308,7 @@ Editor(settings)
   }
 ```
 
-The callback receives the editor's `Engine` for reading the scene's audio and video content; the skeleton above returns a fixed cue instead. It must return the URL of a temporary SRT or VTT file with cue timings relative to the page timeline. The editor owns the UI around it: it shows the same Generate Automatically action and busy state, imports the returned file — replacing any existing captions — and deletes the file afterwards. Throw `CaptionsGeneration.Error.noSpeech` when there is nothing to transcribe; the editor cancels the surrounding task when the user taps Cancel.
+The callback is a plain `@MainActor (Engine) async throws -> URL?`, so nothing captions-specific has to be imported from the editor. It receives the editor's `Engine` for reading the scene's audio and video content; the skeleton above returns a fixed cue instead. Return the URL of a temporary SRT or VTT file with cue timings relative to the page timeline, or `nil` when there is nothing to transcribe. The editor owns the UI around it: it shows the same Generate Automatically action and busy state, imports the returned file — replacing any existing captions — and deletes the file afterwards. Anything you throw surfaces as a generic failure alert, and the editor cancels the surrounding task when the user taps Cancel. The plugin's own name for this type is `CaptionsGenerator`.
 
 ## Error Handling
 
@@ -332,10 +336,9 @@ When several blocks are transcribed, one block's failure doesn't sink the others
 | `GatewayTranscriptionProvider(apiKey:gatewayURL:)` | Provider | Built-in provider running ElevenLabs Scribe v2 through the IMG.LY AI Gateway. |
 | `TranscriptionOptions(language:maxLineLength:maxLines:)` | Provider | Language and subtitle formatting options passed to the provider. |
 | `TranscriptionProvider` | Provider contract | Protocol for plugging any speech-to-text service into the plugin. |
-| `TranscriptionProvider.transcribe(audio:mimeType:options:)` | Provider contract | Turns audio data into SRT subtitle text. |
+| `TranscriptionProvider.transcribe(audio:mimeType:options:)` | Provider contract | Turns a staged audio file into SRT subtitle text. |
 | `EditorConfiguration.Builder.captionsGeneration(_:)` | Editor hook | Registers a custom generation callback without the plugin. |
-| `CaptionsGeneration.Callback` | Editor hook | `@MainActor (Engine) async throws -> URL` — produces a temporary SRT or VTT file. |
-| `CaptionsGeneration.Error.noSpeech` | Error handling | Thrown by a generation callback to show the dedicated no-speech alert. |
+| `CaptionsGenerator` | Plugin alias | The plugin's alias for `@MainActor (Engine) async throws -> URL?` — produces a temporary SRT or VTT file, or `nil` when no speech was detected. |
 | `Dock.Buttons.captions(action:title:icon:isEnabled:isVisible:)` | Dock | Dock button that opens the Add Captions sheet. |
 
 ## Next Steps

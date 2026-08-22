@@ -261,7 +261,7 @@ reference via URIs in CE.SDK.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-resources)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-resources)
 
 <EngineReferenceNote {...props} />
 

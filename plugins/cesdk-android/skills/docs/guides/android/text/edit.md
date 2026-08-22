@@ -132,7 +132,7 @@ ranges, reading formatting state, and managing the active text selection.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260821/engine-guides-text-edit)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-text-edit)
 
 <EngineReferenceNote {...props} />
 
