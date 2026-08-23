@@ -155,7 +155,7 @@ Control how users interact with content on the canvas by switching between edit 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/editor-guides-editor-state)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/editor-guides-editor-state)
 
 <EngineReferenceNote {...props} />
 

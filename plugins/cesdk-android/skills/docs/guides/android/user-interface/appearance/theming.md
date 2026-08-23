@@ -80,7 +80,7 @@ or dark theme.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/editor-guides-configuration-theming)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/editor-guides-configuration-theming)
 
 The Android editor applies CE.SDK's Compose `EditorTheme` inside the `Editor` composable. Use `uiMode` when your app needs to override the device theme, then style custom editor components from `MaterialTheme.colorScheme` so they stay aligned with the active light or dark palette.
 

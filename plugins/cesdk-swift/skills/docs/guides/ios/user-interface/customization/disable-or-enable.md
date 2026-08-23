@@ -146,7 +146,7 @@ Control which features are available to your users by disabling, enabling, or co
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/editor-guides-customization-disable-or-enable)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/editor-guides-customization-disable-or-enable)
 
 ## Overview
 

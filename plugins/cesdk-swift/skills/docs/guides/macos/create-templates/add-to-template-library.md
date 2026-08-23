@@ -84,7 +84,7 @@ Create a template library where templates are stored, managed, and applied progr
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/engine-guides-create-templates-add-to-template-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/engine-guides-create-templates-add-to-template-library)
 
 <EngineReferenceNote {...props} />
 

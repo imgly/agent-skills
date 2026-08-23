@@ -163,7 +163,7 @@ Apply distortion effects to warp, shift, and transform images and videos for dyn
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-distortion)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-distortion)
 
 <EngineReferenceNote {...props} />
 

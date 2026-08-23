@@ -12,7 +12,7 @@ Add text and image watermarks to video content for copyright protection, brandin
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/engine-guides-create-video-add-watermark)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/engine-guides-create-video-add-watermark)
 
 <EngineReferenceNote {...props} />
 

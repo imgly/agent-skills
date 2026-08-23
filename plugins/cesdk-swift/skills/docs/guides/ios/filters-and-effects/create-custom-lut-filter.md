@@ -70,7 +70,7 @@ Apply custom LUT (Look-Up Table) filters to achieve brand-consistent color gradi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/engine-guides-custom-lut-filter)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/engine-guides-custom-lut-filter)
 
 <EngineReferenceNote {...props} />
 

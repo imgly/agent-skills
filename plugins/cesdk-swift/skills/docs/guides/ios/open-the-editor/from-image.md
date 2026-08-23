@@ -56,7 +56,7 @@ units, ready for immediate editing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/engine-guides-create-scene-from-image-url)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/engine-guides-create-scene-from-image-url)
 
 <EngineReferenceNote {...props} />
 

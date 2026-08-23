@@ -429,7 +429,7 @@ and programmatic split API to create independent segments.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-create-video-split)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-create-video-split)
 
 <EngineReferenceNote {...props} />
 

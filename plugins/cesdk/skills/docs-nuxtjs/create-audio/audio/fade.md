@@ -19,7 +19,7 @@ audio fade API, with a duration in seconds and an optional easing curve.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-audio-audio-fade-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260822/examples/guides-create-audio-audio-fade-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260823/examples/guides-create-audio-audio-fade-browser/index.html)
 
 An audio fade ramps a clip between silence and its configured volume over a fixed duration, so audio eases in at the start and tapers off at the end instead of cutting abruptly. Fades apply to standalone audio blocks and to video fills with embedded audio, and they stay anchored to the clip's edges when the clip is trimmed or resized.
 

@@ -230,7 +230,7 @@ Annotations are timed visual overlays such as text labels, shapes, highlights, s
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-annotation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-annotation)
 
 <EngineReferenceNote {...props} />
 

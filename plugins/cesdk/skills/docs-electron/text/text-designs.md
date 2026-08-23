@@ -18,7 +18,7 @@ Create and customize text designs (text components) that appear in CE.SDK's asse
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-text-designs-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260822/examples/guides-text-text-designs-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260823/examples/guides-text-text-designs-browser/index.html)
 
 Text designs (also known as text components) are pre-designed text layouts stored as serialized blocks in the asset library. Users click on these components to insert them into their designs. CE.SDK ships with over 20 default components; this guide shows how to create custom ones programmatically.
 

@@ -171,7 +171,7 @@ Manage undo and redo operations with the Android CreativeEngine API, subscribe t
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-undo-and-history)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-undo-and-history)
 
 <EngineReferenceNote {...props} />
 

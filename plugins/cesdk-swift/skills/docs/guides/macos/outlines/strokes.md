@@ -69,7 +69,7 @@ Add outlines around shapes, text, and graphics to create emphasis, separation, o
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260822/engine-guides-stroke)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/engine-guides-stroke)
 
 <EngineReferenceNote {...props} />
 

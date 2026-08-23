@@ -269,7 +269,7 @@ Build timeline scrubbers, filmstrips, page storyboards, and waveform lanes from 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-thumbnail-previews)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-thumbnail-previews)
 
 <EngineReferenceNote {...props} />
 

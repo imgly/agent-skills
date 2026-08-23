@@ -185,7 +185,7 @@ show image, video, audio, and remote-source assets.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-asset-library-thumbnails)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-asset-library-thumbnails)
 
 <EngineReferenceNote {...props} />
 

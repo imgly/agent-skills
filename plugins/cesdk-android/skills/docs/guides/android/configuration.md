@@ -60,7 +60,7 @@ tracking, rendering behavior, and runtime Engine settings.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/editor-guides-configuration-basics)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/editor-guides-configuration-basics)
 
 <EngineReferenceNote {...props} />
 
@@ -112,7 +112,7 @@ userId = signedInUserId,
 
 `baseUri` is the base path for relative editor and Engine asset paths. If omitted, `Editor` uses the top-level `defaultBaseUri` from `ly.img.editor`, a versioned IMG.LY CDN URL defined by the Android SDK. For production apps, bundle the CE.SDK Android assets with your app or host them yourself, then point `baseUri` at that location instead of relying on the IMG.LY CDN.
 
-For the local URI shown below, download the versioned CE.SDK Android asset bundle from [the IMG.LY CDN](https://cdn.img.ly/packages/imgly/cesdk-android/1.82.0-nightly.20260822/imgly-assets.zip) and extract it. The archive contains a top-level `assets/` directory; copy that directory into your app module's `src/main/assets/` folder so `file:///android_asset/assets/` points directly at the asset files. If you host the same asset folder, pass its HTTPS base URL as `baseUri` instead; the [Serve Assets From Your Server](./serve-assets.md) guide covers that setup.
+For the local URI shown below, download the versioned CE.SDK Android asset bundle from [the IMG.LY CDN](https://cdn.img.ly/packages/imgly/cesdk-android/1.82.0-nightly.20260823/imgly-assets.zip) and extract it. The archive contains a top-level `assets/` directory; copy that directory into your app module's `src/main/assets/` folder so `file:///android_asset/assets/` points directly at the asset files. If you host the same asset folder, pass its HTTPS base URL as `baseUri` instead; the [Serve Assets From Your Server](./serve-assets.md) guide covers that setup.
 
 ```kotlin highlight-android-base-uri
 baseUri = "file:///android_asset/assets/".toUri(),

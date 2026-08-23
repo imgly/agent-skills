@@ -189,7 +189,7 @@ such as vector shapes, stickers, and sample images from those sources.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-import-media-default-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-import-media-default-assets)
 
 <EngineReferenceNote {...props} />
 

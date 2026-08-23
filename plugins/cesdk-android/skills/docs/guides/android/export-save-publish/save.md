@@ -183,7 +183,7 @@ using string or archive formats.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-save-designs)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-save-designs)
 
 CE.SDK provides two formats for persisting designs. Choose the format based on your storage and portability requirements.
 

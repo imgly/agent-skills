@@ -110,7 +110,7 @@ emoji, and detailed multi-color graphics that keep their original appearance.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260822/engine-guides-create-stickers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-create-stickers)
 
 Stickers are graphic blocks with image fills. They work well when the source image should stay intact, such as emoji, brand marks, or detailed artwork. Unlike shapes, stickers are not meant to be recolored or combined with vector boolean operations.
 
