@@ -348,7 +348,7 @@ Save and export scenes to different formats.
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `options?` | \{ `allowedResourceSchemes?`: `string`\[]; `onDisallowedResourceScheme?`: (`url`, `dataHash`) => `Promise`\<`string`>; `compression?`: \{ `format?`: [`CompressionFormat`](./api/node/enumerations/compressionformat.md); `level?`: [`CompressionLevel`](./api/node/enumerations/compressionlevel.md); }; } | Save options containing: - allowedResourceSchemes: The resource schemes to allow in the saved string. Defaults to \['blob', 'bundle', 'file', 'http', 'https', 'opfs']. - onDisallowedResourceScheme: An optional callback that is called for each resource URL that has a scheme absent from `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the resource's data. The callback should return a new URL for the resource, which will be used in the serialized scene. The callback is expected to return the original URL if no persistence is needed. - compression: Optional compression settings containing: - format: Compression format (None or Zstd). Defaults to None. - level: Compression level (Fastest, Default, or Best). Defaults to Default. |
+  | `options?` | \{ `allowedResourceSchemes?`: `string`\[]; `onDisallowedResourceScheme?`: (`url`, `dataHash`) => `Promise`\<`string`>; `compression?`: \{ `format?`: [`CompressionFormat`](./api/node/enumerations/compressionformat.md); `level?`: [`CompressionLevel`](./api/node/enumerations/compressionlevel.md); }; } | Save options containing: - allowedResourceSchemes: The resource schemes to allow in the saved string. Defaults to \['blob', 'bundle', 'file', 'http', 'https', 'opfs']. - onDisallowedResourceScheme: An optional callback that is called for each resource URL that has a scheme absent from `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the resource's data. The callback should return a new URL for the resource, which will be used in the serialized scene. The callback is expected to return the original URL if no persistence is needed. - compression: Optional compression settings containing: - format: Compression format (None or Zstd). Defaults to Zstd. - level: Compression level (Fastest, Default, or Best). Defaults to Default. |
   | `options.allowedResourceSchemes?` | `string`\[] | - |
   | `options.onDisallowedResourceScheme?` | (`url`, `dataHash`) => `Promise`\<`string`> | - |
   | `options.compression?` | \{ `format?`: [`CompressionFormat`](./api/node/enumerations/compressionformat.md); `level?`: [`CompressionLevel`](./api/node/enumerations/compressionlevel.md); } | - |
@@ -386,6 +386,12 @@ Save and export scenes to different formats.
   file. These references are resolved when loading such a scene via `load`.
   When persisting the result as a file, use the `.imgly` extension.
 
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `options?` | [`SaveToArchiveOptions`](./api/node/interfaces/savetoarchiveoptions.md) | Optional settings: - compression: Compression applied to the scene inside the archive, containing: - format: Compression format (None or Zstd). Defaults to Zstd. - level: Compression level (Fastest, Default, or Best). Defaults to Default. Bundled media is always stored uncompressed, because it already is in compressed formats. |
+
   #### Returns
 
   `Promise`\<`Blob`>
@@ -395,7 +401,7 @@ Save and export scenes to different formats.
   #### Signature
 
   ```typescript
-  saveToArchive(): Promise<Blob>
+  saveToArchive(options?: SaveToArchiveOptions): Promise<Blob>
   ```
 </details>
 
@@ -1024,7 +1030,7 @@ Apply templates to existing scenes.
   the new dimensions.
 
   ```javascript
-  engine.scene.applyTemplateFromString("UBQ1ewoiZm9ybWF0Ij...");
+  engine.scene.applyTemplateFromString(await engine.scene.saveToString());
   ```
 
   #### Parameters

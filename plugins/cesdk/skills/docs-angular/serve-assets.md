@@ -170,6 +170,26 @@ Use the switch below to choose your setup: the full **Editor** (`@cesdk/cesdk-js
 
     These are intended for development and prototyping—replace them with your own content in production.
 
+    ### Premium Templates
+
+    Since v1.73.0, the asset archive also ships IMG.LY's premium templates in the `ly.img.templates.premium/` directory, containing the template archives (`templates/`), preview images (`thumbnails/`) and the source manifest (`content.json`). If you followed the Quick Start above, the templates are already on your server—no separate download is required.
+
+    Register them with the `PremiumTemplatesAssetSource` plugin:
+
+    ```javascript
+    import { PremiumTemplatesAssetSource } from '@cesdk/cesdk-js/plugins';
+
+    await cesdk.addPlugin(
+      new PremiumTemplatesAssetSource({
+        include: ['ly.img.templates.premium.*']
+      })
+    );
+    ```
+
+    Like the other asset source plugins, it resolves against the editor's `baseURL` by default and accepts its own `baseURL` option. The templates appear in the existing templates library entry (`ly.img.templates`) and cover the categories e-commerce, event, personal, professional and socials. Use the `include` patterns to load only a subset, for example `['ly.img.templates.premium.socials.*']`.
+
+    For hosting premium templates at a separate location or building a custom integration, see the [IMG.LY Premium Assets](./import-media/from-remote-source/imgly-premium-assets.md) guide.
+
     ### Excluding Unused Asset Sources
 
     If you only need a subset of default assets, simply omit the plugins you don't need. For example, to skip stickers and video page presets, add all plugins except `StickerAssetSource` and the video page presets:
@@ -298,6 +318,7 @@ The ZIP file contains directories organized by function:
 | `ly.img.text.components/`    | Text combinations                                      | No              | If using default assets |
 | `ly.img.animation/`          | Animation presets                                      | No              | If using default assets |
 | `ly.img.animation.text/`     | Text animation presets                                 | No              | If using default assets |
+| `ly.img.templates.premium/`  | Premium templates (since v1.73.0)                      | No              | No                      |
 | `ly.img.image/`              | Sample images (demo content)                           | No              | No                      |
 | `ly.img.video/`              | Sample videos (demo content)                           | No              | No                      |
 | `ly.img.audio/`              | Sample audio (demo content)                            | No              | No                      |

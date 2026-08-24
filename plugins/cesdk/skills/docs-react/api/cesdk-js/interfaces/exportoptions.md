@@ -16,6 +16,7 @@ adding underlayers.
   | `"jpegQuality"`
   | `"webpQuality"`
   | `"exportPdfWithHighCompatibility"`
+  | `"pdfImageQuality"`
   | `"exportPdfWithUnderlayer"`
   | `"underlayerSpotColorName"`
   | `"underlayerOffset"`>
@@ -28,6 +29,7 @@ adding underlayers.
 |  `jpegQuality` | `EngineExportOptions` | - | `Pick.jpegQuality` |
 |  `webpQuality` | `EngineExportOptions` | - | `Pick.webpQuality` |
 |  `exportPdfWithHighCompatibility` | `EngineExportOptions` | - | `Pick.exportPdfWithHighCompatibility` |
+|  `pdfImageQuality` | `EngineExportOptions` | - | `Pick.pdfImageQuality` |
 |  `exportPdfWithUnderlayer` | `EngineExportOptions` | - | `Pick.exportPdfWithUnderlayer` |
 |  `underlayerSpotColorName` | `EngineExportOptions` | - | `Pick.underlayerSpotColorName` |
 |  `underlayerOffset` | `EngineExportOptions` | - | `Pick.underlayerOffset` |

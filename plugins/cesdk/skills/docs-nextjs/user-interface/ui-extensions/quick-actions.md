@@ -18,7 +18,7 @@ Extend CE.SDK with one-click editing actions using official plugins for backgrou
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-quick-actions-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-user-interface-ui-extensions-quick-actions-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0/examples/guides-user-interface-ui-extensions-quick-actions-browser/index.html)
 
 Quick actions are single-click operations that appear in the canvas menu when users select a block. CE.SDK provides official plugins that add image processing capabilities like background removal, vectorization, and QR code generation. These plugins integrate directly with the editor UI and execute their operations immediately when clicked.
 

@@ -1,0 +1,44 @@
+{
+  "interface": {
+    "displayName": "IMG.LY GmbH"
+  },
+  "name": "imgly",
+  "plugins": [
+    {
+      "category": "Developer Tools",
+      "name": "cesdk",
+      "policy": {
+        "authentication": "ON_INSTALL",
+        "installation": "AVAILABLE"
+      },
+      "source": {
+        "path": "./plugins/cesdk",
+        "source": "local"
+      }
+    },
+    {
+      "category": "Developer Tools",
+      "name": "cesdk-swift",
+      "policy": {
+        "authentication": "ON_INSTALL",
+        "installation": "AVAILABLE"
+      },
+      "source": {
+        "path": "./plugins/cesdk-swift",
+        "source": "local"
+      }
+    },
+    {
+      "category": "Developer Tools",
+      "name": "cesdk-android",
+      "policy": {
+        "authentication": "ON_INSTALL",
+        "installation": "AVAILABLE"
+      },
+      "source": {
+        "path": "./plugins/cesdk-android",
+        "source": "local"
+      }
+    }
+  ]
+}

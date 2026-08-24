@@ -28,7 +28,7 @@ import styles from './App.module.css';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0/starterkit-video-captions';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.0/starterkit-video-captions';
 
 interface AppProps {
   editorConfig: Configuration;
@@ -267,12 +267,14 @@ export function App({ editorConfig }: AppProps) {
 
       {editorMode && (
         <div className={styles.overlay} onClick={handleOverlayClick}>
-          <CreativeEditor
-            key={editorMode}
-            className={styles.editorContainer}
-            config={editorConfig}
-            init={handleInit}
-          />
+          <div className={styles.editorWrapper}>
+            <CreativeEditor
+              key={editorMode}
+              className={styles.editorContainer}
+              config={editorConfig}
+              init={handleInit}
+            />
+          </div>
         </div>
       )}
     </div>

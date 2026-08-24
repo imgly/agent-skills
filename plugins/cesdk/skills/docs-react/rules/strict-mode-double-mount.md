@@ -32,10 +32,19 @@ Add unique markers to confirm which execution you're observing:
 ```ts
 import { DesignEditorConfig } from './config/plugin';
 import {
-  ImageColorsAssetSource, BlurAssetSource, ColorPaletteAssetSource, CropPresetsAssetSource,
-  DemoAssetSources, EffectsAssetSource, FiltersAssetSource,
-  PagePresetsAssetSource, StickerAssetSource, TextAssetSource,
-  TextComponentAssetSource, TypefaceAssetSource, UploadAssetSources,
+  ImageColorsAssetSource,
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 
@@ -84,10 +93,11 @@ let initCounter = 0;
     // ... more setup ...
     console.log(`[INIT run=${runId}] Complete`);
   }}
-/>
+/>;
 ```
 
 Expected output in dev mode:
+
 ```
 [INIT run=1] Starting
 [INIT run=1] Assets loaded

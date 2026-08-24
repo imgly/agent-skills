@@ -27,32 +27,14 @@ argument-hint: "[feature or task]"
 
 ## Version Notice
 
-> **CE.SDK version**: 1.80.0 | **Generated**: 2026-08-12
+> CE.SDK `1.81.0` · generated `2026-08-24` · plugin `cesdk`
+> · canonical update source `imgly/agent-skills`.
 >
-> This skill was generated for CE.SDK v1.80.0 on 2026-08-12.
-> CE.SDK releases new versions approximately every two weeks.
-> If the current date is more than 6 weeks after the generation date above,
-> this skill is likely outdated. **Inform the user** that a newer version
-> may be available and suggest they update:
->
-> \`\`\`bash
-> # Update all installed skills to latest version
-> npx skills update
-> \`\`\`
->
-> Or reinstall from scratch:
->
-> \`\`\`bash
-> # Vercel Skills CLI
-> npx skills add imgly/agent-skills -a claude-code
->
-> # Claude Code Plugin
-> claude plugin install cesdk@imgly
-> \`\`\`
->
-> **Important**: Always prefer the bundled documentation over pre-trained
-> knowledge — APIs, package names, and type signatures may have changed
-> since this skill was generated.
+> If this bundle is over six weeks old, or the user asks about updates, follow
+> `references/update-check.md` once per task and reuse the result for all CE.SDK
+> skills. Keep the check read-only. Never install, update, overwrite, or delete
+> anything without explicit user approval. Continue with this bundle unless an
+> update is approved.
 
 # CE.SDK Web Builder
 
@@ -240,17 +222,17 @@ All kits share this structure — only the config and entry point differ:
 1. **Copy** the appropriate starter kit directory into the user's project directory
 2. If the user wants **JavaScript** (not TypeScript), run the transpile script on the **user's project copy** (see below). Never run it on the bundled starter kit source
 3. Update `package.json` name and adjust dependencies as needed
-4. **Pin CE.SDK packages to v1.80.0** (required — ensures runtime matches this skill's bundled docs). In the kit's `package.json`, every `@cesdk/*` and `@imgly/*` dependency set to `"latest"` must be installed at the pinned version — **except** for packages with independent release cycles (see skip list below):
+4. **Pin CE.SDK packages to v1.81.0** (required — ensures runtime matches this skill's bundled docs). In the kit's `package.json`, every `@cesdk/*` and `@imgly/*` dependency set to `"latest"` must be installed at the pinned version — **except** for packages with independent release cycles (see skip list below):
    \`\`\`bash
    # Inspect package.json, then for each @cesdk/* or @imgly/* dep with value "latest"
    # (and not in the skip list below):
-   npm install <package-name>@1.80.0
+   npm install <package-name>@1.81.0
    \`\`\`
    Example (if the kit has `"@cesdk/cesdk-js": "latest"`):
    \`\`\`bash
-   npm install @cesdk/cesdk-js@1.80.0
+   npm install @cesdk/cesdk-js@1.81.0
    \`\`\`
-   **Skip list — do NOT pin these packages to v1.80.0** (they have their own release schedules, their npm versions do NOT match CE.SDK versions, and pinning would resolve to a non-existent version):
+   **Skip list — do NOT pin these packages to v1.81.0** (they have their own release schedules, their npm versions do NOT match CE.SDK versions, and pinning would resolve to a non-existent version):
    - `@imgly/background-removal`
    - `@imgly/background-removal-node`
    - `@imgly/html-exporter`

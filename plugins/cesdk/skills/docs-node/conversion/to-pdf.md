@@ -92,6 +92,7 @@ The `exportPdfWithHighCompatibility` flag significantly impacts PDF export perfo
 **When `false` (faster but needs testing):**
 
 - Embeds images and gradients directly as native PDF objects
+- Embeds unmodified JPEG images with their original data, so photos are neither decoded nor encoded again
 - 6-15x faster export performance for high-DPI content
 - Smaller file sizes (typically 30-40% reduction)
 - May have rendering issues in Safari/macOS Preview with gradients that use transparency

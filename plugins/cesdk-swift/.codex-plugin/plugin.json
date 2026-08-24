@@ -1,0 +1,41 @@
+{
+  "author": {
+    "name": "IMG.LY GmbH",
+    "url": "https://img.ly"
+  },
+  "description": "IMG.LY CreativeEditor SDK skills for Swift on iOS, macOS, and Mac Catalyst",
+  "homepage": "https://img.ly/docs/cesdk",
+  "interface": {
+    "capabilities": [
+      "CE.SDK documentation",
+      "Feature implementation",
+      "SDK integration"
+    ],
+    "category": "Developer Tools",
+    "defaultPrompt": [
+      "Build a CE.SDK Swift feature.",
+      "Explain a CE.SDK Swift API or workflow.",
+      "Find the relevant CE.SDK Swift documentation."
+    ],
+    "developerName": "IMG.LY GmbH",
+    "displayName": "CE.SDK Swift",
+    "longDescription": "CE.SDK documentation and implementation skills for Swift on iOS, macOS, and Mac Catalyst.",
+    "shortDescription": "Build and understand CE.SDK Swift projects.",
+    "websiteURL": "https://img.ly/docs/cesdk"
+  },
+  "keywords": [
+    "cesdk",
+    "creative-editor",
+    "swift",
+    "ios",
+    "macos",
+    "mac-catalyst",
+    "xcode",
+    "sdk"
+  ],
+  "license": "MIT",
+  "name": "cesdk-swift",
+  "repository": "https://github.com/imgly/agent-skills",
+  "skills": "./skills/",
+  "version": "1.81.0"
+}

@@ -18,7 +18,7 @@ Save and serialize designs in CE.SDK for later retrieval, sharing, or storage us
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-export-save-publish-save-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0/examples/guides-export-save-publish-save-browser/index.html)
 
 CE.SDK provides two formats for persisting designs. Choose the format based on your storage and portability requirements.
 
@@ -224,30 +224,44 @@ The archive includes all pages, elements, and asset data in a single portable fi
 
 ## Compression Options
 
-CE.SDK supports optional compression for saved scenes to reduce file size. Compression is particularly useful for large scenes or when storage space is limited.
+Saved scenes are compressed with Zstd by default, which makes them much smaller and
+speeds up both saving and loading. Pass a format explicitly to change the level, or to turn
+compression off.
 
 ```typescript
-// Save with Zstd compression (recommended)
+import { CompressionFormat, CompressionLevel } from '@cesdk/cesdk-js';
+
+// Save a scene string with Zstd compression
 const compressed = await cesdk.engine.scene.saveToString({
   compression: {
-    format: 'Zstd',
-    level: 'Default'
+    format: CompressionFormat.Zstd,
+    level: CompressionLevel.Default
+  }
+});
+
+// Save an archive whose scene is compressed
+const archive = await cesdk.engine.scene.saveToArchive({
+  compression: {
+    format: CompressionFormat.Zstd,
+    level: CompressionLevel.Default
   }
 });
 ```
 
 **Compression Formats:**
 
-- `'None'` - No compression (default)
-- `'Zstd'` - Zstandard compression (recommended for best performance)
+- `CompressionFormat.Zstd` - Zstandard compression (default)
+- `CompressionFormat.None` - No compression
 
 **Compression Levels:**
 
-- `'Fastest'` - Fastest compression, larger output
-- `'Default'` - Balanced speed and size (recommended)
-- `'Best'` - Best compression, slower
+- `CompressionLevel.Fastest` - Fastest compression, larger output
+- `CompressionLevel.Default` - Balanced speed and size (recommended)
+- `CompressionLevel.Best` - Best compression, noticeably slower
 
-**Performance:** Compression adds minimal overhead (\<50ms) while reducing scene size by approximately 64%. The Default level provides the best balance of speed and compression ratio.
+A compressed scene string stays a plain string, so you can still store it in a text column or send it as JSON. It carries a `UBQ2` prefix instead of `UBQ1`; `load` accepts both.
+
+In an archive, compression applies to the scene only. Bundled images, video and fonts are stored as they are, because they already are compressed formats — so the saving depends on how much of your archive is scene rather than media.
 
 ## Download to User Device
 

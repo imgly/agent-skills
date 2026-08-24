@@ -16,7 +16,7 @@ Import Adobe InDesign (IDML) files into CE.SDK, converting them into editable sc
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-import-design-from-indesign-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-open-the-editor-import-design-from-indesign-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0/examples/guides-open-the-editor-import-design-from-indesign-browser/index.html)
 
 ![Import from InDesign](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -684,6 +684,8 @@ The IDML importer has the following limitations:
 - **Image fitting** - Images shrunk inside their frames may not render as expected.
 - **Embedded PDF / `.ai`** - Imports as editable blocks when `@imgly/pdf-importer` is installed and `createPdfEmbeddedImporter(PDFParser)` is registered in `embeddedImporters` (see "Optional: Embedded PDF / Adobe Illustrator support" above). Without the adapter, embeds fall through to a placeholder image. Non-rectangular frame clipping and per-embed PDF crop attributes are not yet applied.
 - **Advanced text** - Complex text formatting beyond bold/italic may not be preserved.
+
+These are the highlights only—the [`@imgly/idml-importer`](https://www.npmjs.com/package/@imgly/idml-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
 
 ## Pre-Import Checklist
 

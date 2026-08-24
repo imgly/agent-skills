@@ -4,7 +4,7 @@
 
 ---
 
-The CE.SDK plugin is the one-command way to give your AI coding agent everything it needs to build with CreativeEditor SDK: bundled documentation skills, guided code generation, and an autonomous project scaffolder — installed together as a single package.
+The CE.SDK plugin is the one-command way to give your AI coding agent bundled documentation skills and guided workflows for CreativeEditor SDK. Claude Code additionally receives an autonomous project scaffolder.
 
 > **Note:** Looking to add AI **generation features** — image, video, audio, or text —
 > into the editor for your own users? That's a different journey: see&#x20;
@@ -20,14 +20,14 @@ A plugin is the distribution unit that bundles several agent capabilities behind
 - **MCP servers** — live connections to external tools and data
 - **Hooks** — handlers that run at lifecycle points, such as before or after a tool call
 
-The CE.SDK plugin packages documentation skills, two workflow skills, and an autonomous builder agent:
+The CE.SDK plugin packages documentation skills and two workflow skills. Claude Code additionally receives an autonomous builder agent:
 
-| Capability | What it gives your agent |
-|---|---|
-| **Documentation skills** | The complete CE.SDK guides and API reference for each Web framework, bundled locally — no external calls |
-| **Build skill** | Guided code generation and project setup (`/cesdk:build`) |
-| **Explain skill** | Concept and architecture walkthroughs (`/cesdk:explain`) |
-| **Builder agent** | Autonomous scaffolding that detects your framework and implements a working CE.SDK project end to end |
+| Capability                      | What it gives your agent                                                                                 |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Documentation skills**        | The complete CE.SDK guides and API reference for each Web framework, bundled locally — no external calls |
+| **Build skill**                 | Guided code generation and project setup (`/cesdk:build`)                                                |
+| **Explain skill**               | Concept and architecture walkthroughs (`/cesdk:explain`)                                                 |
+| **Builder agent (Claude Code)** | Autonomous scaffolding that detects your framework and implements a working CE.SDK project end to end    |
 
 For the full skill list, see [Agent Skills](./get-started/agent-skills.md). For real-time documentation search, connect the [MCP Server](./get-started/mcp-server.md).
 
@@ -45,9 +45,18 @@ claude plugin marketplace add imgly/agent-skills
 claude plugin install cesdk@imgly
 ```
 
+### OpenAI Codex
+
+Add the same marketplace, then install the plugin:
+
+```bash
+codex plugin marketplace add imgly/agent-skills
+codex plugin add cesdk@imgly
+```
+
 ### Vercel Skills CLI (Codex, Cursor, and more)
 
-The Claude Code commands above install the full plugin — documentation and workflow **skills** plus the builder agent — through the Claude plugin marketplace. Other agents don't have a plugin system, but they do support skills, the portable core of the plugin. Install those across **OpenAI Codex**, Cursor, GitHub Copilot, Windsurf, and 70+ more with the [Vercel Skills CLI](https://github.com/vercel-labs/skills), picking your agent with `-a`:
+Claude Code and Codex can install CE.SDK agent plugins through their respective marketplaces. For a skills-only installation—or for agents without a plugin marketplace—install the portable skills across **OpenAI Codex**, Cursor, GitHub Copilot, Windsurf, and 70+ more with the [Vercel Skills CLI](https://github.com/vercel-labs/skills), picking your agent with `-a`:
 
 ```bash
 # OpenAI Codex
@@ -71,14 +80,27 @@ For any skills-compatible agent, copy skill folders directly from the [GitHub re
 
 ```bash
 git clone https://github.com/imgly/agent-skills.git
+
+# Codex and other agents that read the portable Agent Skills directory
+cp -r agent-skills/plugins/cesdk/skills/docs-react .agents/skills/cesdk-docs-react
+
+# Claude Code
 cp -r agent-skills/plugins/cesdk/skills/docs-react .claude/skills/cesdk-docs-react
 ```
 
 ## Verify
 
-Once installed, invoke a skill with a slash command to confirm the plugin is active:
+Once installed, ask your agent to use one of the bundled skills to confirm the plugin is active:
 
+```text
+Use the CE.SDK build skill to create a photo editor with filters.
+Use the CE.SDK React documentation skill to look up configuration.
+Use the CE.SDK explain skill to describe the block hierarchy.
 ```
+
+Claude Code users can also invoke the same workflows with slash commands:
+
+```text
 /cesdk:build create a photo editor with filters
 /cesdk:docs-react configuration
 /cesdk:explain how the block hierarchy works

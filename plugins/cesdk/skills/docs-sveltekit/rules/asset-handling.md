@@ -7,6 +7,7 @@ Patterns for working with images, URIs, and fills in CE.SDK.
 CE.SDK uses a **Skia-based rendering engine** with limited SVG support. Complex SVGs (gradients, filters, advanced paths) may render incorrectly or as blank.
 
 **Recommended formats:**
+
 - **PNG** — Best compatibility, supports alpha transparency
 - **WebP** — Smaller file size, good browser support
 - **JPEG** — For photos without transparency
@@ -76,6 +77,7 @@ engine.block.setSourceSet(fill, 'fill/image/sourceSet', [
 ```
 
 The `Source` type from `@cesdk/engine`:
+
 ```typescript
 interface Source {
   uri: string;
@@ -89,7 +91,11 @@ interface Source {
 Sets only the URI — the engine must load the image to determine dimensions:
 
 ```typescript
-engine.block.setString(fill, 'fill/image/imageFileURI', 'https://example.com/mockup.png');
+engine.block.setString(
+  fill,
+  'fill/image/imageFileURI',
+  'https://example.com/mockup.png'
+);
 ```
 
 Use `setSourceSet` when you know the image dimensions (which you usually do for mockups and templates).
@@ -100,11 +106,11 @@ Use `setSourceSet` when you know the image dimensions (which you usually do for 
 
 CE.SDK supports several fill types:
 
-| Fill Type | Created With | Use Case |
-|-----------|-------------|----------|
+| Fill Type | Created With                       | Use Case                                  |
+| --------- | ---------------------------------- | ----------------------------------------- |
 | `'image'` | `engine.block.createFill('image')` | Product mockups, user photos, backgrounds |
-| `'color'` | `engine.block.createFill('color')` | Solid color backgrounds, placeholders |
-| `'video'` | `engine.block.createFill('video')` | Video backgrounds |
+| `'color'` | `engine.block.createFill('color')` | Solid color backgrounds, placeholders     |
+| `'video'` | `engine.block.createFill('video')` | Video backgrounds                         |
 
 ### Setting Fills
 
@@ -116,7 +122,12 @@ engine.block.setSourceSet(imageFill, 'fill/image/sourceSet', sources);
 
 // Color fill (e.g. transparent page background)
 const colorFill = engine.block.getFill(page); // pages have a default fill
-engine.block.setColor(colorFill, 'fill/color/value', { r: 0, g: 0, b: 0, a: 0 });
+engine.block.setColor(colorFill, 'fill/color/value', {
+  r: 0,
+  g: 0,
+  b: 0,
+  a: 0
+});
 ```
 
 ---

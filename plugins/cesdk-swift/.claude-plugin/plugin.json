@@ -1,0 +1,11 @@
+{
+  "author": {
+    "name": "IMG.LY GmbH",
+    "url": "https://img.ly"
+  },
+  "description": "IMG.LY CreativeEditor SDK skills for Swift on iOS, macOS, and Mac Catalyst",
+  "homepage": "https://img.ly/docs/cesdk",
+  "license": "MIT",
+  "name": "cesdk-swift",
+  "version": "1.81.0"
+}

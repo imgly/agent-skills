@@ -16,6 +16,7 @@ Learn how to extend CE.SDK functionality with plugins to add custom features, ef
 
 - [Asset Source Plugins](./plugins/asset-sources.md) - Reference documentation for CE.SDK asset source plugins - pre-built asset libraries for images, stickers, filters, effects, fonts, and more
 - [How to Export Print-Ready PDFs with CE.SDK](./plugins/print-ready-pdf.md) - Learn to convert CE.SDK's PDF exports into PDF/X compliant, CMYK print-ready files for professional commercial printing
+- [Custom Feature Plugin](./plugins/custom-plugin.md) - Build a reusable Web editor plugin that wraps options, actions, and UI component configuration.
 - [Export to HTML5](./export-save-publish/export/to-html5.md) - Export CE.SDK designs as HTML5 bundles with customizable output for display ads and interactive web content.
 - [Remove Background](./edit-image/remove-bg.md) - Remove image backgrounds to isolate subjects or prepare assets for compositing and reuse.
 - [Vectorize](./edit-image/vectorize.md) - Convert raster images into scalable vector graphics for flexible resizing and editing.

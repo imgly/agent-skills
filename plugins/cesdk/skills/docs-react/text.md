@@ -25,6 +25,7 @@
 - [Emojis](./text/emojis.md) - Insert and style emojis alongside text for expressive, modern typographic designs.
 - [Adjust Text Spacing](./text/adjust-spacing.md) - Control letter spacing, line height, and paragraph spacing in CE.SDK text blocks for precise typographic control.
 - [Customize Fonts](./text/custom-fonts.md) - Load and manage custom fonts to match brand guidelines or user preferences.
+- [Variable Fonts](./text/variable-fonts.md) - Use variable fonts to render multiple font weights and styles from a single font file.
 - [Text and Language Support](./text/language-support.md) - Create designs that work seamlessly across different languages and writing systems with RTL text, complex scripts, and multilingual font support.
 - [Understanding Text Rendering](./guides/text/rendering-internals.md) - Learn how CE.SDK renders text internally by visualizing font metrics, baselines, ascenders, descenders, and line height.
 

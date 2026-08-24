@@ -813,8 +813,10 @@ The PSD importer has the following limitations:
 - **Text** - No multiple font sizes or families within a single text layer; no text justification
 - **Images** - Image cropping not supported
 - **Fills** - Gradient fills not supported (solid colors only)
-- **Blend modes** - PassThrough, Dissolve, LinearBurn, DarkerColor, LinearDodge, LighterColor, VividLight, LinearLight, PinLight, HardMix, Subtract, Divide not supported
-- **Advanced text** - Kerning, ligatures, strikethrough, underline, baseline shift not fully supported
+- **Blend modes** - Some Photoshop blend modes are not supported (for example PassThrough, Dissolve and Subtract)
+- **Advanced text** - Advanced text styling such as kerning, ligatures and baseline shift is not fully supported
+
+These are the highlights only—the [`@imgly/psd-importer`](https://www.npmjs.com/package/@imgly/psd-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
 
 ## Troubleshooting
 

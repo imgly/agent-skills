@@ -20,10 +20,7 @@ See: `mockup-editor-architecture.md` (in the rules directory)
 
 ```javascript
 import sharp from 'sharp';
-await sharp('mockup.svg')
-  .resize(800, 940)
-  .png()
-  .toFile('mockup.png');
+await sharp('mockup.svg').resize(800, 940).png().toFile('mockup.png');
 ```
 
 Ensure PNGs preserve alpha transparency (`hasAlpha: true`).
@@ -85,10 +82,19 @@ engine.editor.setSettingBool('page/dimOutOfPageAreas', false);
 
 ```typescript
 import {
-  ImageColorsAssetSource, BlurAssetSource, ColorPaletteAssetSource, CropPresetsAssetSource,
-  DemoAssetSources, EffectsAssetSource, FiltersAssetSource,
-  PagePresetsAssetSource, StickerAssetSource, TextAssetSource,
-  TextComponentAssetSource, TypefaceAssetSource, UploadAssetSources,
+  ImageColorsAssetSource,
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 
@@ -119,20 +125,20 @@ await cesdk.addPlugin(
 
 Asset source IDs:
 
-| Plugin Class | Asset Source ID |
-|-------------|----------------|
-| `BlurAssetSource` | `ly.img.blur` |
+| Plugin Class                | Asset Source ID          |
+| --------------------------- | ------------------------ |
+| `BlurAssetSource`           | `ly.img.blur`            |
 | `CaptionPresetsAssetSource` | `ly.img.caption.presets` |
-| `ColorPaletteAssetSource` | `ly.img.color.palette` |
-| `CropPresetsAssetSource` | `ly.img.crop.presets` |
-| `EffectsAssetSource` | `ly.img.effect` |
-| `FiltersAssetSource` | `ly.img.filter` |
-| `PagePresetsAssetSource` | `ly.img.page.presets` |
-| `StickerAssetSource` | `ly.img.sticker` |
-| `TextAssetSource` | `ly.img.text` |
-| `TextComponentAssetSource` | `ly.img.text.components` |
-| `TypefaceAssetSource` | `ly.img.typeface` |
-| `VectorShapeAssetSource` | `ly.img.vector.shape` |
+| `ColorPaletteAssetSource`   | `ly.img.color.palette`   |
+| `CropPresetsAssetSource`    | `ly.img.crop.presets`    |
+| `EffectsAssetSource`        | `ly.img.effect`          |
+| `FiltersAssetSource`        | `ly.img.filter`          |
+| `PagePresetsAssetSource`    | `ly.img.page.presets`    |
+| `StickerAssetSource`        | `ly.img.sticker`         |
+| `TextAssetSource`           | `ly.img.text`            |
+| `TextComponentAssetSource`  | `ly.img.text.components` |
+| `TypefaceAssetSource`       | `ly.img.typeface`        |
+| `VectorShapeAssetSource`    | `ly.img.vector.shape`    |
 
 ---
 
@@ -141,6 +147,7 @@ Asset source IDs:
 **Problem:** Setting a white product mockup as a page's image fill makes it invisible — white image on white canvas background.
 
 **Solution:** Don't use page image fills for mockups. The correct architecture uses:
+
 1. **Transparent** page fill (`{ r: 0, g: 0, b: 0, a: 0 }`)
 2. **Scene-level mockup block** behind the page
 3. CE.SDK's gray canvas background provides contrast
@@ -186,7 +193,11 @@ engine.block.setSourceSet(fill, 'fill/image/sourceSet', [
 ]);
 
 // Avoid for production use
-engine.block.setString(fill, 'fill/image/imageFileURI', 'https://example.com/image.png');
+engine.block.setString(
+  fill,
+  'fill/image/imageFileURI',
+  'https://example.com/image.png'
+);
 ```
 
 The `Source` type from `@cesdk/engine` defines the shape: `{ uri: string; width: number; height: number }`.

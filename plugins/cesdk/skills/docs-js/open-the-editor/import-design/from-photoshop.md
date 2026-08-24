@@ -16,7 +16,7 @@ Import Adobe Photoshop (PSD) files into CE.SDK, converting them into editable sc
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-import-design-from-photoshop-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.80.0/examples/guides-open-the-editor-import-design-from-photoshop-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0/examples/guides-open-the-editor-import-design-from-photoshop-browser/index.html)
 
 ![Import from Photoshop](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -846,8 +846,10 @@ The PSD importer has the following limitations:
 - **Text** - No multiple font sizes or families within a single text layer; no text justification
 - **Images** - Image cropping not supported
 - **Fills** - Gradient fills not supported (solid colors only)
-- **Blend modes** - PassThrough, Dissolve, LinearBurn, DarkerColor, LinearDodge, LighterColor, VividLight, LinearLight, PinLight, HardMix, Subtract, Divide not supported
-- **Advanced text** - Kerning, ligatures, strikethrough, underline, baseline shift not fully supported
+- **Blend modes** - Some Photoshop blend modes are not supported (for example PassThrough, Dissolve and Subtract)
+- **Advanced text** - Advanced text styling such as kerning, ligatures and baseline shift is not fully supported
+
+These are the highlights only—the [`@imgly/psd-importer`](https://www.npmjs.com/package/@imgly/psd-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
 
 ## Troubleshooting
 

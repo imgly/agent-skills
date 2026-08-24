@@ -27,6 +27,7 @@ adding underlayers.
 |  `underlayerMaxError` | `number` |
 |  `allowTextOverhang` | `boolean` |
 |  `exportPdfWithDeviceCMYK` | `boolean` |
+|  `pdfImageQuality` | `number` |
 
 
 ---

@@ -631,7 +631,7 @@ and encoded scene data.
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `scene` | `string` | A string starting with UBQ1 and containing the encoded scene. |
+  | `scene` | `string` | An encoded scene string, as returned by `saveToString`. Treat it as opaque: the prefix is `UBQ1` when uncompressed and `UBQ2` when compressed. |
   | `overrideEditorConfig?` | `boolean` | Whether to override editor configuration with settings and data from the scene file. Defaults to false. |
 
   #### Returns
