@@ -18,7 +18,7 @@ Professional photo editing for your Angular app—crop, filter, adjust, and remo
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-photo-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260823/examples/starterkit-photo-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260824/examples/starterkit-photo-editor/index.html)
 
 ***
 

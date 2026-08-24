@@ -88,7 +88,7 @@ authentication and custom resolution logic.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-uri-resolver)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/engine-guides-uri-resolver)
 
 <EngineReferenceNote {...props} />
 

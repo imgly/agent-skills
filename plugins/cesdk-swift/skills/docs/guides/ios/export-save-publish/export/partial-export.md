@@ -12,7 +12,7 @@ API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/engine-guides-partial-export)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/engine-guides-partial-export)
 
 Partial export gives you fine-grained control over what leaves the scene. Instead of rendering the entire composition, you can target a single graphic, a logical group of blocks, or one page out of a multi-page document. This is the foundation for asset-library generation, "export selection" features, page-by-page previews, and per-element output pipelines.
 

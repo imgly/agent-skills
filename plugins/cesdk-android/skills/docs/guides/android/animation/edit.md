@@ -165,7 +165,7 @@ and replacing or removing animations from Android design blocks.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-edit-animations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/engine-guides-edit-animations)
 
 <EngineReferenceNote {...props} />
 

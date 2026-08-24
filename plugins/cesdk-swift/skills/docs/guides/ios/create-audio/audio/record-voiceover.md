@@ -87,11 +87,11 @@ playback controls.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/editor-guides-create-audio-audio-record-voiceover)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/editor-guides-create-audio-audio-record-voiceover)
 
 Voiceover recording is an editor UI feature provided by `IMGLYEditor`. Recordings are stored as audio blocks with the kind `"voiceover"` so they can be styled and managed separately from regular audio tracks.
 
-The example builds on `GuideEditorConfiguration` — a small helper class the iOS guides repository ships at [`editor-guides-quickstart/GuideEditorConfiguration.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260823/editor-guides-quickstart/GuideEditorConfiguration.swift). Substitute your own editor configuration class — the builders shown below are exposed on every configuration.
+The example builds on `GuideEditorConfiguration` — a small helper class the iOS guides repository ships at [`editor-guides-quickstart/GuideEditorConfiguration.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260824/editor-guides-quickstart/GuideEditorConfiguration.swift). Substitute your own editor configuration class — the builders shown below are exposed on every configuration.
 
 ## Microphone Permission
 

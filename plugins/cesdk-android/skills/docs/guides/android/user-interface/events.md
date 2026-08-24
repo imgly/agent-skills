@@ -165,7 +165,7 @@ and route those events into your Android app state.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/editor-guides-configuration-ui-events)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/editor-guides-configuration-ui-events)
 
 Editor UI events are messages sent through the editor's `EditorEventHandler`.
 Built-in editor components use them for actions such as changing view mode or

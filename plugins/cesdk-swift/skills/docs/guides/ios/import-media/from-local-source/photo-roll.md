@@ -113,7 +113,7 @@ Let users pull photos and videos from their device's library into a design. CE.S
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/editor-guides-import-media-photo-roll)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/editor-guides-import-media-photo-roll)
 
 Photo Roll connects the device's photo library to CE.SDK's asset system through the `PhotoRollAssetSource` and the `Dock.Buttons.photoRoll()` dock button. The button's behavior is determined by the mode you register the source with, so switching between the two experiences is a one-line change. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 

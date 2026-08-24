@@ -28,7 +28,7 @@ Editor string resource names use a `ly_img_editor_` prefix followed by the UI ar
 | `ly_img_editor_canvas_menu_button_*` | `ly_img_editor_canvas_menu_button_delete` | Canvas menu actions |
 | `ly_img_editor_pages_view_mode_dock_button_*` | `ly_img_editor_pages_view_mode_dock_button_add_page` | Page management actions |
 
-Use the public CE.SDK Android source package path as the source of truth for built-in English labels: [sources/editor-core/src/main/res/values/strings.xml](https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260823/sources/editor-core/src/main/res/values/strings.xml).
+Use the public CE.SDK Android source package path as the source of truth for built-in English labels: [sources/editor-core/src/main/res/values/strings.xml](https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260824/sources/editor-core/src/main/res/values/strings.xml).
 
 ## Override Labels in App Resources
 
@@ -122,9 +122,9 @@ If the same concept appears in more than one editor surface, override all relate
 
 Use the default resource files as the source of truth for available Android labels:
 
-- English labels: [sources/editor-core/src/main/res/values/strings.xml](https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260823/sources/editor-core/src/main/res/values/strings.xml)
-- German labels: [sources/editor-core/src/main/res/values-de/strings.xml](https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260823/sources/editor-core/src/main/res/values-de/strings.xml)
-- Plugin labels: each plugin can ship its own `res/values/strings.xml`, for example [background removal](https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260823/sources/plugin-background-removal/src/main/res/values/strings.xml) uses `ly_img_plugin_background_removal_dock_button`
+- English labels: [sources/editor-core/src/main/res/values/strings.xml](https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260824/sources/editor-core/src/main/res/values/strings.xml)
+- German labels: [sources/editor-core/src/main/res/values-de/strings.xml](https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260824/sources/editor-core/src/main/res/values-de/strings.xml)
+- Plugin labels: each plugin can ship its own `res/values/strings.xml`, for example [background removal](https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260824/sources/plugin-background-removal/src/main/res/values/strings.xml) uses `ly_img_plugin_background_removal_dock_button`
 
 Search those files for the visible text first, then copy the matching resource name into your app module. The surrounding prefix usually identifies where the label appears, such as `navigation_bar`, `dock`, `asset_library`, `canvas_menu`, `inspector_bar`, or `dialog`.
 

@@ -139,7 +139,7 @@ Expose a template's variables and placeholders through your own input controls s
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/engine-guides-create-templates-form-based-editing)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/engine-guides-create-templates-form-based-editing)
 
 <EngineReferenceNote {...props} />
 

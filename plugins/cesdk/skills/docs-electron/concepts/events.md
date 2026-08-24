@@ -19,7 +19,7 @@ update, and destruction events in your CE.SDK scene.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-events-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260823/examples/guides-concepts-events-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260824/examples/guides-concepts-events-browser/index.html)
 
 Events enable real-time monitoring of block changes in CE.SDK. When blocks are created, modified, or destroyed, the engine delivers these changes through callback subscriptions at the end of each update cycle. This push-based notification system eliminates the need for polling and enables efficient reactive architectures.
 

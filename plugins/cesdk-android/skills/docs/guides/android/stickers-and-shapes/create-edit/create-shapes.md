@@ -220,7 +220,7 @@ they appear on the design canvas.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-create-shapes)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/engine-guides-create-shapes)
 
 <EngineReferenceNote {...props} />
 

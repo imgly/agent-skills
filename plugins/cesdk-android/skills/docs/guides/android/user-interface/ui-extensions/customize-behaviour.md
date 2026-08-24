@@ -225,7 +225,7 @@ events, Compose state, custom sheets, and runtime theme changes.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/editor-guides-ui-extensions-customize-behaviour)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/editor-guides-ui-extensions-customize-behaviour)
 
 Android behavior customization is built around the Base Editor configuration
 layer. You keep UI state in Compose, use editor-scoped state for values updated

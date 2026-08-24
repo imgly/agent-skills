@@ -18,7 +18,7 @@ Control what users can edit in templates by setting fine-grained permissions on 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-dynamic-content-set-editing-constraints-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260823/examples/guides-create-templates-dynamic-content-set-editing-constraints-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260824/examples/guides-create-templates-dynamic-content-set-editing-constraints-browser/index.html)
 
 Editing constraints in CE.SDK allow you to lock specific properties of design elements while keeping others editable. The Scope system provides granular control over 20+ editing capabilities including movement, resizing, rotation, fill changes, text editing, and lifecycle operations.
 

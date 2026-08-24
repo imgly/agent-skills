@@ -87,7 +87,7 @@ Override individual editor labels on iOS — declaratively through Apple String 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/editor-guides-customization-custom-labels)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/editor-guides-customization-custom-labels)
 
 iOS exposes two complementary paths for changing the editor's UI text. The catalog-based path is a declarative override in `Localizable.xcstrings` / `IMGLYEditor.xcstrings` — the same mechanism the full [Localization](../localization.md) guide uses, so it carries a value per locale you support. The programmatic path replaces the label of a specific button by passing a custom `title:` (or `label:`) closure to a CE.SDK button factory in your editor configuration. The two differ in where the override lives and what it can do: a catalog entry is a static, localizable string keyed by identifier; a programmatic override is code, scoped to the button instance you configure, and can derive its text from runtime state.
 
@@ -107,7 +107,7 @@ The lookup chain only inspects `Localizable.xcstrings` and `IMGLYEditor.xcstring
 
 ## Finding the Key You Want to Customize
 
-Every editor string has a stable key of the form `ly_img_editor_<surface>_<element>_<name>`. Browse the canonical list in the [SDK's `IMGLYEditor.xcstrings`](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260823/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) and search for the visible text you want to change.
+Every editor string has a stable key of the form `ly_img_editor_<surface>_<element>_<name>`. Browse the canonical list in the [SDK's `IMGLYEditor.xcstrings`](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260824/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) and search for the visible text you want to change.
 
 A few examples drawn from common branding requests:
 
@@ -218,7 +218,7 @@ If your overrides grow beyond a small focused list — custom button names, shee
 
 ## Best Practices
 
-**Override only the keys you need.** The lookup chain resolves any missing key against the next layer, so a tight focused list of brand-specific overrides is easier to maintain than a full copy of the SDK's catalog. Compare your overrides against the [SDK's current `IMGLYEditor.xcstrings`](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260823/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) when upgrading versions to catch any new strings that may warrant a branded translation.
+**Override only the keys you need.** The lookup chain resolves any missing key against the next layer, so a tight focused list of brand-specific overrides is easier to maintain than a full copy of the SDK's catalog. Compare your overrides against the [SDK's current `IMGLYEditor.xcstrings`](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260824/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) when upgrading versions to catch any new strings that may warrant a branded translation.
 
 **Keep terminology consistent across related labels.** When you rename "Images" to "Pictures", look for related keys (`ly_img_editor_dock_button_photo_roll`, asset library section labels, related sheet titles) so users see a single coherent terminology set across the editor.
 
@@ -347,7 +347,7 @@ The lookup chain only inspects `Localizable.xcstrings` and `IMGLYEditor.xcstring
 | Concern | Where |
 | --- | --- |
 | Key naming convention | `ly_img_editor_<surface>_<element>_<name>` |
-| Canonical key list | [`IMGLYEditor.xcstrings` in IMGLYUI-swift](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260823/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) |
+| Canonical key list | [`IMGLYEditor.xcstrings` in IMGLYUI-swift](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260824/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) |
 | Override catalog (recommended) | `Localizable.xcstrings` in your main bundle |
 | Override catalog (alternative, for large override sets) | `IMGLYEditor.xcstrings` in your main bundle |
 | Lookup order | App `Localizable` → App `IMGLYEditor` → SDK `IMGLYEditor` |
@@ -365,7 +365,7 @@ The lookup chain only inspects `Localizable.xcstrings` and `IMGLYEditor.xcstring
 | Inspector bar — Duplicate | `ly_img_editor_inspector_bar_button_duplicate` | "Duplicate" |
 | Inspector bar — Delete | `ly_img_editor_inspector_bar_button_delete` | "Delete" |
 
-Browse the [full catalog](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260823/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) for the complete set.
+Browse the [full catalog](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260824/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) for the complete set.
 
 ## Next Steps
 

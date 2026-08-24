@@ -133,7 +133,7 @@ for video compositing and virtual background applications.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/engine-guides-chroma-key-green-screen)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/engine-guides-chroma-key-green-screen)
 
 <EngineReferenceNote {...props} />
 

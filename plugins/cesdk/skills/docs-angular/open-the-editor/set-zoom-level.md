@@ -20,7 +20,7 @@ can also customize the navigation bar with your own zoom controls.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-set-zoom-level-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260823/examples/guides-open-the-editor-set-zoom-level-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260824/examples/guides-open-the-editor-set-zoom-level-browser/index.html)
 
 The zoom level is a ratio where 1.0 equals one design pixel per screen pixel. A zoom level of 2.0 makes content appear twice as large on screen, while 0.5 makes it appear half as large.
 

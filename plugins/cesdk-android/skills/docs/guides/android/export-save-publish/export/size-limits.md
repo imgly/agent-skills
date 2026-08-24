@@ -122,7 +122,7 @@ Configure size limits to balance quality and performance in CE.SDK applications.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-size-limits)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/engine-guides-size-limits)
 
 CE.SDK processes images and videos on the device, so size limits depend on available memory and rendering hardware. Tuning these limits keeps memory use predictable on smaller devices while still letting capable devices export at high resolution.
 

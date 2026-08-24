@@ -276,7 +276,7 @@ Customize the inspector bar — the contextual toolbar that appears when a desig
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260823/editor-guides-configuration-inspector-bar)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/editor-guides-configuration-inspector-bar)
 
 ## Inspector Bar Architecture
 

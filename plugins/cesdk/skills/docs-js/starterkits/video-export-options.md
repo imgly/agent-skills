@@ -18,7 +18,7 @@ Choose a suitable Frames per Second option and export videos in SD, HD, FHD, 2K,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-export-options-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260823/examples/starterkit-video-export-options/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260824/examples/starterkit-video-export-options/index.html)
 
 ***
 

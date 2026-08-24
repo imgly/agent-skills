@@ -214,7 +214,7 @@ generation, and custom template creation tools.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260823/engine-guides-create-templates-from-scratch)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/engine-guides-create-templates-from-scratch)
 
 CE.SDK lets you create a template without starting from an existing scene. You can define the page size, add text and graphic blocks, bind text variables, mark media as a placeholder, restrict editing with scopes, and save the result for reuse.
 
