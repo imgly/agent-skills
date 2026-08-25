@@ -65,7 +65,7 @@ narrate clips without leaving the editor UI.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/editor-guides-record-voiceover)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/editor-guides-record-voiceover)
 
 Voiceover recording is an editor UI feature. The example uses the base
 `Editor` with a timeline bottom panel so recorded takes are visible after the

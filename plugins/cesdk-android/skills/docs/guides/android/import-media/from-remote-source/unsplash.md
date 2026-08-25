@@ -305,7 +305,7 @@ Unsplash API on demand.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/engine-guides-custom-asset-source)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-custom-asset-source)
 
 <EngineReferenceNote {...props} />
 

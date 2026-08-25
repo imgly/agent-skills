@@ -3635,6 +3635,12 @@ case encodeEntityInvalid
 case encodeEntityNotPartOfPage
 ```
 
+### EngineErrorCode.encodeExportCancelled
+
+```swift
+case encodeExportCancelled
+```
+
 ### EngineErrorCode.encodeExportFailed
 
 ```swift
@@ -3867,6 +3873,18 @@ case encodeResourceLoadFailedWithReason
 
 ```swift
 case encodeResultBufferFailed
+```
+
+### EngineErrorCode.encodeStreamExportMimeTypeInvalid
+
+```swift
+case encodeStreamExportMimeTypeInvalid
+```
+
+### EngineErrorCode.encodeStreamExportMissingReceiver
+
+```swift
+case encodeStreamExportMissingReceiver
 ```
 
 ### EngineErrorCode.encodeSvgCanvasCreateFailed

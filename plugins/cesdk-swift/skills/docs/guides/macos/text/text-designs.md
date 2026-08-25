@@ -133,7 +133,7 @@ Build a library of reusable text components — pre-designed, pre-styled text la
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/engine-guides-text-designs)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/engine-guides-text-designs)
 
 <EngineReferenceNote {...props} />
 

@@ -130,7 +130,7 @@ Customize the aspect ratio options users see when they open crop mode in the And
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/editor-guides-crop-presets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/editor-guides-crop-presets)
 
 <EngineReferenceNote {...props} />
 

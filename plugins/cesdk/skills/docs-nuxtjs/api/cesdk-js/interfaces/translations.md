@@ -311,6 +311,9 @@ Complete translation type that includes both built-in and custom translations.
 |  `component.canvas.openLibrary` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.canvas.openLibrary`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.canvas.state.error` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.canvas.state.error`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.canvas.state.unsupported` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.canvas.state.unsupported`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `component.canvasBar.bottom` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.canvasBar.bottom`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `component.canvasBar.top` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.canvasBar.top`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `component.canvasMenu` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.canvasMenu`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.caption` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.caption`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.caption.more` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.caption.more`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.colorPicker.colorItem` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.colorPicker.colorItem`](./api/cesdk-js/interfaces/builtintranslations.md) |
@@ -335,6 +338,9 @@ Complete translation type that includes both built-in and custom translations.
 |  `component.contentFill.options.description` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.contentFill.options.description`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.contentFill.video` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.contentFill.video`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.cutout` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.cutout`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `component.dock.bottom` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.dock.bottom`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `component.dock.left` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.dock.left`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `component.dock.right` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.dock.right`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.dockIconSizeSelect` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.dockIconSizeSelect`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.dockIconSizeSelect.large` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.dockIconSizeSelect.large`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.dockIconSizeSelect.large.description` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.dockIconSizeSelect.large.description`](./api/cesdk-js/interfaces/builtintranslations.md) |
@@ -386,6 +392,7 @@ Complete translation type that includes both built-in and custom translations.
 |  `component.librarySettings.templateLibrary` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.librarySettings.templateLibrary`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.librarySettings.textLibrary` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.librarySettings.textLibrary`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.librarySettings.uploadLibrary` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.librarySettings.uploadLibrary`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `component.navigationBar` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.navigationBar`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.pageResize.label` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.pageResize.label`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.pageResizePanel.apply` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.pageResizePanel.apply`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.pageResizePanel.label` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.pageResizePanel.label`](./api/cesdk-js/interfaces/builtintranslations.md) |
@@ -476,6 +483,7 @@ Complete translation type that includes both built-in and custom translations.
 |  `component.themeSelect.system` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.themeSelect.system`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.themeSelect.system.description` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.themeSelect.system.description`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.timeline.audio.options.description` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.timeline.audio.options.description`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `component.timeline.clip.options` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.timeline.clip.options`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.timeline.collapse` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.timeline.collapse`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.timeline.expand` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.timeline.expand`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.timeline.label` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.timeline.label`](./api/cesdk-js/interfaces/builtintranslations.md) |

@@ -159,7 +159,7 @@ Hide or remove UI elements to create focused editing experiences tailored to you
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/editor-guides-customization-hide-elements)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/editor-guides-customization-hide-elements)
 
 ## Overview
 

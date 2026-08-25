@@ -57,7 +57,7 @@ import IMGLYCore
 func makeEngine() async throws -> Engine {
     let engine = try Engine(license: "<your license key>")
 
-    let baseURL = URL(string: "https://cdn.img.ly/packages/imgly/cesdk-swift/1.82.0-nightly.20260824/assets")!
+    let baseURL = URL(string: "https://cdn.img.ly/packages/imgly/cesdk-swift/1.82.0-nightly.20260825/assets")!
     let sourceIDs = [
         "ly.img.sticker", "ly.img.vector.shape", "ly.img.filter", "ly.img.color.palette",
         "ly.img.effect", "ly.img.blur", "ly.img.typeface", "ly.img.crop.presets",

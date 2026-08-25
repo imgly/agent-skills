@@ -669,6 +669,7 @@ Image and video encoding/export.
 | `ENCODE.DIRECT_EXTRACTION_UNSUPPORTED` | Direct extraction not supported for this block/mime type combination. | The requested block kind cannot be extracted directly to this mime type. Use a transcoding path instead. |  |
 | `ENCODE.ENTITY_INVALID` | Entity is invalid. | The block id no longer references a live block. Re-resolve before exporting. |  |
 | `ENCODE.ENTITY_NOT_PART_OF_PAGE` | Entity is not part of a valid page. | Audio export requires the block to be inside a page. Add the block to a page before exporting. |  |
+| `ENCODE.EXPORT_CANCELLED` | The export was cancelled by the receiver. | The chunk callback or the progress callback returned false. No further data will be delivered. Start a new export if the result is still needed. |  |
 | `ENCODE.EXPORT_FAILED` | Export failed. | A non-specific export error was produced. Check earlier log lines for the root cause and retry. |  |
 | `ENCODE.EXPORT_OPTIONS_NOT_OBJECT` | Export options must be a valid JSON object. | Pass the export options as a JSON object string, e.g. \{"pngCompressionLevel": 6}. |  |
 | `ENCODE.EXPORT_OPTIONS_PARSE_FAILED` | Failed to parse export options: \{reason} | The export options string is not valid JSON (\{reason}). Fix the JSON syntax and retry. |  |
@@ -708,6 +709,8 @@ Image and video encoding/export.
 | `ENCODE.RESOURCE_DATA_EMPTY` | Empty resource data: \{uri} | The resource at '\{uri}' loaded but returned empty bytes. Re-source the file. |  |
 | `ENCODE.RESOURCE_LOAD_FAILED_WITH_REASON` | Failed to load resource '\{uri}': \{reason} | The resource at '\{uri}' failed to load (\{reason}). Confirm reachability and supported format. |  |
 | `ENCODE.RESULT_BUFFER_FAILED` | Could not acquire result buffer. Please try again. | The renderer transiently failed to allocate a result buffer. Retry the export after a short delay. |  |
+| `ENCODE.STREAM_EXPORT_MIME_TYPE_INVALID` | Streamed export only supports "application/pdf". | Pass application/pdf as the mime type or use exportToBuffer for other formats. |  |
+| `ENCODE.STREAM_EXPORT_MISSING_RECEIVER` | Streamed export was started without a data receiver. | Pass a chunk callback to the streamed export. There is nothing to deliver the data to. |  |
 | `ENCODE.SVG_CANVAS_CREATE_FAILED` | Failed to create SVG canvas. | The SVG canvas could not be allocated. Check available memory and retry. |  |
 | `ENCODE.SVG_COLOR_MASK_UNSUPPORTED` | Color masking is not supported for SVG export. | SVG output cannot carry a color mask. Disable color masking or export as PNG/PDF instead. |  |
 | `ENCODE.SVG_MEMORY_ALLOC_FAILED` | Could not allocate memory for SVG export. | Reduce the scene complexity or available pixel count, then retry the SVG export. |  |

@@ -232,7 +232,7 @@ finishes, swap the fill for a `VideoFill` to play the captured file back.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/engine-guides-using-camera)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-using-camera)
 
 <EngineReferenceNote {...props} />
 

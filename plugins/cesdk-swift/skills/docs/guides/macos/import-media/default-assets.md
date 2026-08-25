@@ -112,7 +112,7 @@ Load CE.SDK's built-in asset sources — shapes, stickers, filters, fonts, and s
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/engine-guides-default-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/engine-guides-default-assets)
 
 <EngineReferenceNote {...props} />
 

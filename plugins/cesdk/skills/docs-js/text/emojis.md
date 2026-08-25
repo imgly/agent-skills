@@ -18,7 +18,7 @@ Configure emoji rendering in CE.SDK text blocks using a dedicated emoji font for
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-emojis-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260824/examples/guides-text-emojis-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260825/examples/guides-text-emojis-browser/index.html)
 
 Emojis are Unicode characters representing pictographic symbols. They can be single code points (😀), multi-character sequences (flags like 🇩🇪), ZWJ-joined combinations (👨‍👩‍👧), or skin tone variants (👋🏽). CE.SDK renders text to canvas for precise layout control, which bypasses browser font fallback. This means CE.SDK must explicitly provide an emoji font—it uses Noto Color Emoji by default.
 

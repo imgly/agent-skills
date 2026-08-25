@@ -47,6 +47,19 @@ func exportToPdf(engine: Engine) async throws {
   )
   try progressBlob.write(to: exportsDirectory.appendingPathComponent("design-with-progress.pdf"))
 
+  // Cancelling the task that runs the export stops the export itself. Keep the
+  // task in your view model and cancel it from your Cancel button.
+  let exportTask = Task {
+    try await engine.block.export(scene, mimeType: .pdf)
+  }
+  exportTask.cancel()
+  do {
+    _ = try await exportTask.value
+  } catch {
+    // A cancelled export produces no data.
+    print("Export cancelled: \(error)")
+  }
+
   let highCompatibilityOptions = ExportOptions(exportPdfWithHighCompatibility: true)
   let highCompatibilityBlob = try await engine.block.export(
     page,
@@ -78,7 +91,7 @@ Export your designs as PDF documents with high compatibility mode and underlayer
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/engine-guides-export-to-pdf)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/engine-guides-export-to-pdf)
 
 PDF provides a universal document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page documents, and include options for print compatibility. You can configure high compatibility mode to ensure consistent rendering across different PDF viewers, and generate underlayers for special media printing like fabric, glass, or DTF transfers.
 
@@ -113,6 +126,27 @@ try progressBlob.write(to: exportsDirectory.appendingPathComponent("design-with-
 ```
 
 The closure runs once after each page is serialized into the document, receiving the number of pages exported so far and the total page count. It is PDF-specific: raster exports like PNG or JPEG never invoke it. The closure runs on the main actor, so you can update your UI state directly.
+
+## Cancel a Running Export
+
+`export` follows Swift task cancellation. Cancel the task that runs it, and the export stops. The call throws and returns no data.
+
+```swift highlight-exportToPdf-cancel
+// Cancelling the task that runs the export stops the export itself. Keep the
+// task in your view model and cancel it from your Cancel button.
+let exportTask = Task {
+  try await engine.block.export(scene, mimeType: .pdf)
+}
+exportTask.cancel()
+do {
+  _ = try await exportTask.value
+} catch {
+  // A cancelled export produces no data.
+  print("Export cancelled: \(error)")
+}
+```
+
+Keep the task in your view model rather than discarding it, because cancelling it is the only way to stop the export. For a multi-page PDF the engine stops at the next page boundary, so the pages that are still queued are never rendered. Every other export finishes its current work before the result is dropped, because there is no boundary to stop at.
 
 ## Configure High Compatibility Mode
 

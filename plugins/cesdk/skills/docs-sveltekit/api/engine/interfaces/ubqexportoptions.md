@@ -28,6 +28,7 @@ adding underlayers.
 |  `allowTextOverhang` | `boolean` |
 |  `exportPdfWithDeviceCMYK` | `boolean` |
 |  `pdfImageQuality` | `number` |
+|  `pdfChunkSize` | `number` |
 
 
 ---

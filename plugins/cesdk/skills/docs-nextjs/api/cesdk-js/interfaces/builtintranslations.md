@@ -302,6 +302,9 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.canvas.openLibrary` | `string` |
 |  `component.canvas.state.error` | `string` |
 |  `component.canvas.state.unsupported` | `string` |
+|  `component.canvasBar.bottom` | `string` |
+|  `component.canvasBar.top` | `string` |
+|  `component.canvasMenu` | `string` |
 |  `component.caption` | `string` |
 |  `component.caption.more` | `string` |
 |  `component.colorPicker.colorItem` | `string` |
@@ -326,6 +329,9 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.contentFill.options.description` | `string` |
 |  `component.contentFill.video` | `string` |
 |  `component.cutout` | `string` |
+|  `component.dock.bottom` | `string` |
+|  `component.dock.left` | `string` |
+|  `component.dock.right` | `string` |
 |  `component.dockIconSizeSelect` | `string` |
 |  `component.dockIconSizeSelect.large` | `string` |
 |  `component.dockIconSizeSelect.large.description` | `string` |
@@ -377,6 +383,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.librarySettings.templateLibrary` | `string` |
 |  `component.librarySettings.textLibrary` | `string` |
 |  `component.librarySettings.uploadLibrary` | `string` |
+|  `component.navigationBar` | `string` |
 |  `component.pageResize.label` | `string` |
 |  `component.pageResizePanel.apply` | `string` |
 |  `component.pageResizePanel.label` | `string` |
@@ -467,6 +474,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.themeSelect.system` | `string` |
 |  `component.themeSelect.system.description` | `string` |
 |  `component.timeline.audio.options.description` | `string` |
+|  `component.timeline.clip.options` | `string` |
 |  `component.timeline.collapse` | `string` |
 |  `component.timeline.expand` | `string` |
 |  `component.timeline.label` | `string` |

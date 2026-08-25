@@ -208,11 +208,11 @@ Load and configure custom fonts in CE.SDK to match brand guidelines or provide u
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260824/editor-guides-custom-fonts)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/editor-guides-custom-fonts)
 
 CE.SDK includes a set of default typefaces, but you can customize the available fonts by registering your own typeface assets. The editor's font library reads from a single asset source whose ID is `"ly.img.typeface"` — anything registered under that ID, whether a single custom typeface or a full replacement of the bundled defaults, becomes the editor's font picker.
 
-This guide builds on `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260824/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline; substitute your own editor configuration class — the `onCreate` hook used here is available on every configuration. The [Configuration](../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
+This guide builds on `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260825/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline; substitute your own editor configuration class — the `onCreate` hook used here is available on every configuration. The [Configuration](../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 
 This guide covers how to define typefaces with multiple font weights and styles, add a custom typeface to the font library alongside the bundled defaults, replace the defaults entirely, and apply fonts programmatically to text blocks.
 

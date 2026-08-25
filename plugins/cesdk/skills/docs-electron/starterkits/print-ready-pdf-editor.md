@@ -18,7 +18,7 @@ Deliver print-ready CMYK PDF/X-4 and PDF/X-3 files straight from your web app. P
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-print-ready-pdf-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260824/examples/starterkit-print-ready-pdf-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260825/examples/starterkit-print-ready-pdf-editor/index.html)
 
 ***
 

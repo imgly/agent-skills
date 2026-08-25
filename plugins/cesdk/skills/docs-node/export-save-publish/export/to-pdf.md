@@ -188,6 +188,31 @@ The callback fires once after each page is serialized into the document, receivi
 
 Define it once and pass it to every export, as this example does. There is no reason to leave a server-side export unreported: the callback costs nothing when a document turns out to be a single page, and it is the only way to tell a stalled job from a slow one.
 
+## Cancel a Running Export
+
+Pass an `abortSignal` to stop an export whose result nobody waits for any more, for example when the client of a job has gone away or a deadline has passed. The promise rejects and no file is produced.
+
+```typescript
+const controller = new AbortController();
+// Stop the export after 30 seconds, or call abort() from your own job handler.
+const deadline = setTimeout(() => controller.abort(), 30_000);
+
+try {
+  const blob = await engine.block.export(scene, {
+    mimeType: 'application/pdf',
+    abortSignal: controller.signal,
+    onProgress
+  });
+  writeFileSync(`${outputDir}/design.pdf`, Buffer.from(await blob.arrayBuffer()));
+} catch (error) {
+  console.log('Export cancelled', error);
+} finally {
+  clearTimeout(deadline);
+}
+```
+
+For a multi-page PDF the engine stops at the next page boundary, so the pages that are still queued are never rendered and the worker is free for the next job. Every other export finishes its current work before the result is dropped, because there is no boundary to stop at.
+
 ## Configure High Compatibility Mode
 
 Enable `exportPdfWithHighCompatibility` to rasterize complex elements like gradients with transparency at the scene's DPI. This ensures consistent rendering across all PDF viewers.
@@ -288,7 +313,8 @@ For print output, calculate the target dimensions based on your desired DPI:
 | `targetWidth` | Target output width in pixels. Must be used with `targetHeight`. |
 | `targetHeight` | Target output height in pixels. Must be used with `targetWidth`. |
 | `onProgress` | Callback invoked once per page during PDF export with `(exportedPages, totalPages)`. Only called for PDF exports. |
-| `abortSignal` | Signal to cancel the export operation. |
+| `pdfChunkSize` | Upper bound in bytes for a single chunk the PDF encoder hands to the export. Tunes the memory the export holds while it runs; it does not change the returned document. Defaults to an engine-chosen 512 KiB. Other values are clamped to 4 KiB to 64 MiB. |
+| `abortSignal` | Signal that cancels the export. A multi-page PDF export stops at the next page boundary. |
 
 ## API Reference
 

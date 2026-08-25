@@ -5,7 +5,10 @@
 ---
 
 ```kotlin file=@cesdk_android_examples/engine-guides-export-to-pdf/ExportToPdf.kt reference-only
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ly.img.engine.Color
 import ly.img.engine.DesignBlockType
@@ -55,6 +58,21 @@ suspend fun exportToPdf(engine: Engine): List<File> {
         },
     )
     val progressPdf = writePdfExport(fileName = "design-with-progress.pdf", buffer = progressData)
+
+    // Cancelling the coroutine that runs the export stops the export itself.
+    // Keep the job in your view model and cancel it from your Cancel button.
+    coroutineScope {
+        val exportJob = launch {
+            try {
+                engine.block.export(block = scene, mimeType = MimeType.PDF)
+            } catch (cancellation: CancellationException) {
+                // A cancelled export produces no data.
+                println("Export cancelled")
+                throw cancellation
+            }
+        }
+        exportJob.cancel()
+    }
 
     val highCompatibilityOptions = ExportOptions(exportPdfWithHighCompatibility = true)
     val highCompatibilityData = engine.block.export(
@@ -122,7 +140,7 @@ underlayer support for special media printing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/engine-guides-export-to-pdf)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-export-to-pdf)
 
 <EngineReferenceNote {...props} />
 
@@ -180,6 +198,29 @@ val progressPdf = writePdfExport(fileName = "design-with-progress.pdf", buffer =
 ```
 
 The callback runs once after each page is serialized into the document. It receives an `ExportPdfProgress` with `exportedPages` and `totalPages`. It is PDF-specific: raster exports like PNG or JPEG never invoke it. The callback runs on the engine's thread, so dispatch to the main thread before updating UI.
+
+## Cancel a Running Export
+
+`export` is a suspending function and follows coroutine cancellation. Cancel the job that runs it, and the export stops. The call throws a `CancellationException` and returns no data.
+
+```kotlin highlight-android-cancel
+// Cancelling the coroutine that runs the export stops the export itself.
+// Keep the job in your view model and cancel it from your Cancel button.
+coroutineScope {
+    val exportJob = launch {
+        try {
+            engine.block.export(block = scene, mimeType = MimeType.PDF)
+        } catch (cancellation: CancellationException) {
+            // A cancelled export produces no data.
+            println("Export cancelled")
+            throw cancellation
+        }
+    }
+    exportJob.cancel()
+}
+```
+
+Keep the job in your view model rather than discarding it, because cancelling it is the only way to stop the export. For a multi-page PDF the engine stops at the next page boundary, so the pages that are still queued are never rendered. Every other export finishes its current work before the result is dropped, because there is no boundary to stop at.
 
 ## Configure High Compatibility Mode
 

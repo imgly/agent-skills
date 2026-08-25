@@ -185,7 +185,7 @@ Export design blocks to binary `ByteBuffer` data for saving to disk, uploading t
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/engine-guides-to-blob)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-to-blob)
 
 CE.SDK's `engine.block.export()` method renders a page, scene, or individual design block into binary data. Android returns a `ByteBuffer`, so your app can write the result to app-controlled storage, upload it, share it, or decode image exports with Android platform APIs.
 

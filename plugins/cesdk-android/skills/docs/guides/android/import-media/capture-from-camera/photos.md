@@ -99,7 +99,7 @@ lifetime of their app-local files.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260824/camera-guides-photos)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/camera-guides-photos)
 
 This guide assumes that you already use the standalone camera contract from
 [Integrate Mobile Camera](./integrate.md). It focuses on the result

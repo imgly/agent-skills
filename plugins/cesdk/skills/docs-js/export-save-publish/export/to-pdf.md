@@ -18,7 +18,7 @@ Export your designs as PDF documents with high compatibility mode and underlayer
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260824/examples/guides-export-save-publish-export-to-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260825/examples/guides-export-save-publish-export-to-pdf-browser/index.html)
 
 PDF provides a universal document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page documents, and include options for print compatibility. You can configure high compatibility mode to ensure consistent rendering across different PDF viewers, and generate underlayers for special media printing like fabric, glass, or DTF transfers.
 
@@ -220,6 +220,30 @@ class Example implements EditorPlugin {
           },
           {
             id: 'ly.img.action.navigationBar',
+            key: 'export-cancel',
+            label: 'Cancellable',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Abort a running export. Wire `controller.abort()` to your own
+              // Cancel button; the timeout here only keeps the example short.
+              const controller = new AbortController();
+              setTimeout(() => controller.abort(), 500);
+              try {
+                const pdfBlob = await engine.block.export(scene, {
+                  mimeType: 'application/pdf',
+                  abortSignal: controller.signal
+                });
+                await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+              } catch (error) {
+                // A cancelled export produces no file.
+                console.log('Export cancelled', error);
+              }
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
             key: 'export-action',
             label: 'Export',
             icon: '@imgly/Download',
@@ -272,6 +296,29 @@ const pdfBlob = await engine.block.export(scene, {
 ```
 
 The callback fires once after each page is serialized into the document, receiving the number of pages exported so far and the total page count. It is PDF-specific: raster exports like PNG or JPEG never invoke it. When you export through the editor's built-in export flow, the export dialog already uses this callback to show a per-page progress bar for PDF exports.
+
+## Cancel a Running Export
+
+Pass an `abortSignal` to stop an export that the user no longer waits for. The promise rejects, and no file is produced.
+
+```typescript highlight=highlight-cancel
+// Abort a running export. Wire `controller.abort()` to your own
+// Cancel button; the timeout here only keeps the example short.
+const controller = new AbortController();
+setTimeout(() => controller.abort(), 500);
+try {
+  const pdfBlob = await engine.block.export(scene, {
+    mimeType: 'application/pdf',
+    abortSignal: controller.signal
+  });
+  await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+} catch (error) {
+  // A cancelled export produces no file.
+  console.log('Export cancelled', error);
+}
+```
+
+For a multi-page PDF the engine stops at the next page boundary, so the pages that are still queued are never rendered. Every other export finishes its current work before the result is dropped, because there is no boundary to stop at. Reuse of a controller is not possible: an `AbortController` signals only once, so create a new one for each export.
 
 ## Export Large Documents
 
@@ -430,7 +477,8 @@ Pass the blob and MIME type to prompt the user to save the file locally.
 | `targetWidth` | Target output width in pixels. Must be used with `targetHeight`. |
 | `targetHeight` | Target output height in pixels. Must be used with `targetWidth`. |
 | `onProgress` | Callback invoked once per page during PDF export with `(exportedPages, totalPages)`. Only called for PDF exports. |
-| `abortSignal` | Signal to cancel the export operation. |
+| `pdfChunkSize` | Upper bound in bytes for a single chunk the PDF encoder hands to the export. Tunes the memory the export holds while it runs; it does not change the returned document. Defaults to an engine-chosen 512 KiB. Other values are clamped to 4 KiB to 64 MiB. |
+| `abortSignal` | Signal that cancels the export. A multi-page PDF export stops at the next page boundary. |
 
 ## API Reference
 

@@ -19,7 +19,7 @@ block system for rich multimedia experiences.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-audio-add-music-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260824/examples/guides-create-audio-add-music-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260825/examples/guides-create-audio-add-music-browser/index.html)
 
 Audio blocks are standalone time-based blocks that play alongside video content, independent of video fills. You can add music from the built-in asset library or from custom URLs, position tracks in the composition, configure volume levels, and layer multiple audio tracks for complex soundscapes.
 
