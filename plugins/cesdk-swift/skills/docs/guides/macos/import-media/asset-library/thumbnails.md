@@ -25,7 +25,7 @@ private final class StockPhotoSource: NSObject, AssetSource {
     nil
   }
 
-  private let host = "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.0-rc.1/assets"
+  private let host = "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.1-rc.0/assets"
 
   func findAssets(queryData: AssetQueryData) async throws -> AssetQueryResult {
     let asset = AssetResult(
@@ -53,7 +53,7 @@ private final class StockPhotoSource: NSObject, AssetSource {
 @MainActor
 func thumbnails(engine: Engine) async throws {
   // Base path the example asset URIs are built from. Replace with your own host.
-  let baseURL = "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.0-rc.1/assets"
+  let baseURL = "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.1-rc.0/assets"
 
   try engine.asset.addLocalSource(sourceID: "my-images")
 
@@ -105,7 +105,7 @@ preview metadata for local and custom asset sources with the Swift Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-rc.1/engine-guides-thumbnails)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/engine-guides-thumbnails)
 
 <EngineReferenceNote {...props} />
 
@@ -195,7 +195,7 @@ private final class StockPhotoSource: NSObject, AssetSource {
     nil
   }
 
-  private let host = "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.0-rc.1/assets"
+  private let host = "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.1-rc.0/assets"
 
   func findAssets(queryData: AssetQueryData) async throws -> AssetQueryResult {
     let asset = AssetResult(

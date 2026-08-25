@@ -184,7 +184,7 @@ locking them in CE.SDK for Android.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-rc.1/engine-guides-video-transform)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/engine-guides-video-transform)
 
 <EngineReferenceNote {...props} />
 

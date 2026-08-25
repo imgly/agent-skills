@@ -202,7 +202,7 @@ Build compositions entirely through code using the CE.SDK Engine for automation,
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-rc.1/engine-guides-create-composition-programmatic)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/engine-guides-create-composition-programmatic)
 
 CE.SDK provides a complete Engine API for building designs through code. Instead of relying on user interactions through an editor UI, you can create scenes, add blocks like text, images, and shapes, and position them programmatically. This approach enables automation workflows, batch processing, server-side rendering, and integration with custom interfaces.
 

@@ -18,7 +18,7 @@ Transform your existing InDesign templates for use in the CE.SDK with our Import
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-indesign-template-import-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-rc.1/examples/starterkit-indesign-template-import/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1-rc.0/examples/starterkit-indesign-template-import/index.html)
 
 ***
 

@@ -129,7 +129,7 @@ Add AI-powered image generation to your editor so users can create visuals from 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-rc.1/editor-guides-ai-image-generation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/editor-guides-ai-image-generation)
 
 The `AIImageGenerationPlugin` adds two integration points to the editor: a dock button for text-to-image generation and an inspector bar button for image-to-image replacement. Both actions connect to the [IMG.LY Gateway](https://img.ly/dashboard) through `AIGatewayConfig`.
 
@@ -147,7 +147,7 @@ Add the AI image generation plugin package to the module that hosts CE.SDK. The 
 
 ```groovy
 dependencies {
-    implementation("ly.img:plugin-ai-image-generation:1.81.0-rc.1")
+    implementation("ly.img:plugin-ai-image-generation:1.81.1-rc.0")
 }
 ```
 

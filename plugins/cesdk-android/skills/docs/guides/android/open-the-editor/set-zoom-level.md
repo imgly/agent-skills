@@ -187,7 +187,7 @@ the camera, and react to zoom changes through the Engine `scene` API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-rc.1/engine-guides-set-zoom-level)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/engine-guides-set-zoom-level)
 
 <EngineReferenceNote {...props} />
 

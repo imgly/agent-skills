@@ -16,7 +16,7 @@ import classes from './FileSelection.module.css';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.0-rc.1/starterkit-indesign-template-import';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.1-rc.0/starterkit-indesign-template-import';
 
 const EXAMPLE_FILES: ExampleFile[] = [
   {

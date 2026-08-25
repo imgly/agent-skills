@@ -196,7 +196,7 @@ your own actions from the CE.SDK editor.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-rc.1/editor-guides-ui-extensions-add-button)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/editor-guides-ui-extensions-add-button)
 
 ## Overview
 

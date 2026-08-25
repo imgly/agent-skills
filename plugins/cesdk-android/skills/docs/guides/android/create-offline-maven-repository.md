@@ -15,7 +15,7 @@ configure Gradle to resolve them from a local Maven repository.
 >
 > **Resources:**
 >
-> - [Download examples](https://img.ly/release/v1.81.0-rc.1/apps/documentation/downloads/download-maven-version.sh)
+> - [Download examples](https://img.ly/release/v1.81.1-rc.0/apps/documentation/downloads/download-maven-version.sh)
 
 The download script uses the public IMG.LY Maven repository and preserves its directory structure. It does not require Artifactory access or credentials.
 
@@ -45,7 +45,7 @@ chmod +x download-maven-version.sh
 You can inspect the matching files without downloading them:
 
 ```bash
-./download-maven-version.sh --dry-run 1.81.0-rc.1
+./download-maven-version.sh --dry-run 1.81.1-rc.0
 ```
 
 ## Download IMG.LY Artifacts
@@ -53,10 +53,10 @@ You can inspect the matching files without downloading them:
 Run the script with the CE.SDK version and the output directory:
 
 ```bash
-./download-maven-version.sh 1.81.0-rc.1 ./maven-offline
+./download-maven-version.sh 1.81.1-rc.0 ./maven-offline
 ```
 
-The script downloads every file in an exact `1.81.0-rc.1` version directory and keeps the Maven layout. The generated local repository starts at `maven-offline/maven` and contains paths such as `ly/img/editor-core/1.81.0-rc.1/`.
+The script downloads every file in an exact `1.81.1-rc.0` version directory and keeps the Maven layout. The generated local repository starts at `maven-offline/maven` and contains paths such as `ly/img/editor-core/1.81.1-rc.0/`.
 
 ## Transfer the Repository
 

@@ -150,7 +150,7 @@ Add AI-powered image generation to your editor so users can create visuals from 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-rc.1/editor-guides-ai-image-generation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/editor-guides-ai-image-generation)
 
 The `AIImageGenerationPlugin` adds two integration points to the editor: a **dock button** for text-to-image generation (creates new image blocks) and an **inspector bar button** for image-to-image enhancement (transforms selected images). Both connect to the [IMG.LY Gateway](https://img.ly/dashboard) for AI model access.
 

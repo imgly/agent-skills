@@ -88,7 +88,7 @@ Create a new scene from scratch to build designs with complete control over canv
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-rc.1/engine-guides-open-the-editor-blank-canvas)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/engine-guides-open-the-editor-blank-canvas)
 
 <EngineReferenceNote {...props} />
 

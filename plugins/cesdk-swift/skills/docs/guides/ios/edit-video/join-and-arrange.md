@@ -112,7 +112,7 @@ Combine multiple video clips into a sequence and organize them in the compositio
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-rc.1/engine-guides-join-and-arrange-video)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/engine-guides-join-and-arrange-video)
 
 <EngineReferenceNote {...props} />
 

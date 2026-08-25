@@ -97,7 +97,7 @@ suspend fun Engine.populateAssetSource(id: String, jsonUri: Uri, replaceBaseUri:
 ```
 > **Deprecated:** Will be removed in a future version. Use Engine.asset.addLocalSourceFromJSON(contentUri) instead. Replace with `asset.addLocalSourceFromJSON(jsonUri)`.
 
-Creates and adds a new local asset source with id. A describing content json file is fetched from jsonUri and containing assets are added to the local asset source. Note: Check "https://cdn.img.ly/packages/imgly/cesdk-android/1.81.0-rc.1/assets/ly.img.sticker/content.json" for the structure of the json file.
+Creates and adds a new local asset source with id. A describing content json file is fetched from jsonUri and containing assets are added to the local asset source. Note: Check "https://cdn.img.ly/packages/imgly/cesdk-android/1.81.1-rc.0/assets/ly.img.sticker/content.json" for the structure of the json file.
 
 ### setMoveHandleVisibility
 

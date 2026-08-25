@@ -18,7 +18,7 @@ Rotate video elements to any angle using radians or degrees, with precise progra
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-transform-rotate-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0-rc.1/examples/guides-create-video-transform-rotate-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1-rc.0/examples/guides-create-video-transform-rotate-browser/index.html)
 
 Rotation in CE.SDK occurs around the block's center point. All rotation values use radians, where `Math.PI` equals 180 degrees. Positive values rotate counterclockwise, negative values rotate clockwise.
 

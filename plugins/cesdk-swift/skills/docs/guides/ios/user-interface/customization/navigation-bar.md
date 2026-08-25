@@ -238,7 +238,7 @@ Customize the editor's top navigation bar by replacing its items for strict cont
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0-rc.1/editor-guides-configuration-navigation-bar)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/editor-guides-configuration-navigation-bar)
 
 ## Navigation Bar Architecture
 
@@ -260,7 +260,7 @@ Configure the navigation bar inside the editor's `EditorConfiguration` builder. 
 | **Replacement** | `navigationBar.items` | Exact control over items and order, version-safe |
 | **Modification** | `navigationBar.modify` | Extending or adjusting the existing items |
 
-These examples build on `GuideEditorConfiguration`, a small helper class the iOS guides repository [ships as a minimal baseline](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.0-rc.1/editor-guides-quickstart/GuideEditorConfiguration.swift) — it sets a navigation bar with a close, undo, and redo button and nothing else. Substitute your own `EditorConfiguration`; the `navigationBar(_:)` builder is available on every configuration.
+These examples build on `GuideEditorConfiguration`, a small helper class the iOS guides repository [ships as a minimal baseline](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.1-rc.0/editor-guides-quickstart/GuideEditorConfiguration.swift) — it sets a navigation bar with a close, undo, and redo button and nothing else. Substitute your own `EditorConfiguration`; the `navigationBar(_:)` builder is available on every configuration.
 
 The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 

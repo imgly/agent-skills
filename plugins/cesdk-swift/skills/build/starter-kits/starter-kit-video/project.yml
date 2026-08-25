@@ -27,4 +27,4 @@ targets:
 packages:
   IMGLYUI:
     url: https://github.com/imgly/IMGLYUI-swift.git
-    exactVersion: "1.81.0-rc.1"
+    exactVersion: "1.81.1-rc.0"

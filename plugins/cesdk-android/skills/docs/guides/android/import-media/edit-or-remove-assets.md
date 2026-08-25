@@ -219,7 +219,7 @@ Manage assets in Android local asset sources by updating metadata, removing indi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-rc.1/engine-guides-import-media-edit-or-remove-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/engine-guides-import-media-edit-or-remove-assets)
 
 <EngineReferenceNote {...props} />
 

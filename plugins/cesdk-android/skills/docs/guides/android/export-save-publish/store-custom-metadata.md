@@ -93,7 +93,7 @@ storing application state, or linking blocks to external systems.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0-rc.1/engine-guides-store-metadata)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/engine-guides-store-metadata)
 
 <EngineReferenceNote {...props} />
 

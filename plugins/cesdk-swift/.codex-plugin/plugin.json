@@ -37,5 +37,5 @@
   "name": "cesdk-swift",
   "repository": "https://github.com/imgly/agent-skills",
   "skills": "./skills/",
-  "version": "1.81.0-rc.1"
+  "version": "1.81.1-rc.0"
 }
