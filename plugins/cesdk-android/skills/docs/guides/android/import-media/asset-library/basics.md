@@ -128,7 +128,7 @@ Learn how asset sources, asset library categories, and dock buttons work togethe
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/editor-guides-import-media-asset-library-basics)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/editor-guides-import-media-asset-library-basics)
 
 <EngineReferenceNote {...props} />
 

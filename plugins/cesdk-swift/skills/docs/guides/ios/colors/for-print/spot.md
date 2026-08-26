@@ -117,7 +117,7 @@ Define, apply, and manage spot colors in CE.SDK for professional print workflows
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0/engine-guides-spot-colors)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1/engine-guides-spot-colors)
 
 Spot colors are named colors reproduced using premixed inks in print production, providing exact color matching that CMYK process colors cannot guarantee. CE.SDK maintains a registry of spot color definitions on the editor instance, where each entry has a name and screen approximations (RGB and/or CMYK) for display. The premixed ink is selected at print time based on the spot color name.
 

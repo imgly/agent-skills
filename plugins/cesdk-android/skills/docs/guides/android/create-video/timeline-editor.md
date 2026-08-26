@@ -160,7 +160,7 @@ Build Android video timelines with CE.SDK by arranging tracks, clips, trim range
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-timeline-editor)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-timeline-editor)
 
 <EngineReferenceNote {...props} />
 

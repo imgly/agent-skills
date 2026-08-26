@@ -119,7 +119,7 @@ Customize the page format presets that appear in the CE.SDK editor UI so your us
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/editor-guides-configuration-page-format)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/editor-guides-configuration-page-format)
 
 <EngineReferenceNote {...props} />
 

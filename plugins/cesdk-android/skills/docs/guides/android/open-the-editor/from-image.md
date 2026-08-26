@@ -96,7 +96,7 @@ units, ready for immediate editing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-create-scene-from-image-url)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-create-scene-from-image-url)
 
 <EngineReferenceNote {...props} />
 
@@ -132,7 +132,7 @@ val imageFillType = engine.block.getType(pageFill)
 
 ## Create a Scene From Image Bytes
 
-When the image arrives as raw bytes from a file picker, network response, or other app storage, write those bytes to a file that remains available to the engine. The complete [image-bytes example](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-create-scene-from-image-blob) fetches the bytes from a URL to stand in for data your app already holds.
+When the image arrives as raw bytes from a file picker, network response, or other app storage, write those bytes to a file that remains available to the engine. The complete [image-bytes example](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-create-scene-from-image-blob) fetches the bytes from a URL to stand in for data your app already holds.
 
 ```kotlin highlight-android-fetch-image-bytes
 val blobUrl = URL("https://img.ly/static/ubq_samples/sample_4.jpg")

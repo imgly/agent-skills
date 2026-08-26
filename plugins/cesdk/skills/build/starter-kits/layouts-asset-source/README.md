@@ -144,7 +144,7 @@ requirements, or remove the CDN dependency for production — eject them
 
 ```bash
 # Download this starter kit's demo assets
-curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.0/starterkit-layouts-asset-source/demo-assets.zip
+curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.1/starterkit-layouts-asset-source/demo-assets.zip
 unzip demo-assets.zip -d demo-assets
 rm demo-assets.zip
 ```

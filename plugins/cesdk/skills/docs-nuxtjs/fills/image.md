@@ -19,7 +19,7 @@ uploads, or asset libraries using CE.SDK's versatile image fill system.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-fills-image-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0/examples/guides-fills-image-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1/examples/guides-fills-image-browser/index.html)
 
 Image fills paint design blocks with raster or vector image content, supporting various formats including PNG, JPEG, WebP, and SVG. You can load images from remote URLs, local files, data URIs, and asset libraries, with built-in support for responsive images through source sets and multiple content fill modes for flexible positioning.
 

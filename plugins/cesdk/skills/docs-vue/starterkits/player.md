@@ -18,7 +18,7 @@ Lightweight video playback for your Vue app—play, pause, and navigate video co
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-player-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0/examples/starterkit-video-player/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1/examples/starterkit-video-player/index.html)
 
 ***
 

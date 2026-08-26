@@ -226,7 +226,7 @@ Build compositions entirely through code using the CE.SDK Engine for automation,
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-create-composition-programmatic)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-create-composition-programmatic)
 
 <EngineReferenceNote {...props} />
 

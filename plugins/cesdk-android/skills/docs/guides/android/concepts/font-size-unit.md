@@ -76,7 +76,7 @@ only changes how values are interpreted at the API boundary.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-concepts-font-size-unit)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-concepts-font-size-unit)
 
 <EngineReferenceNote {...props} />
 

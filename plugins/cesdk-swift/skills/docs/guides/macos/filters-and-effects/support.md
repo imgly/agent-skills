@@ -68,7 +68,7 @@ if a block supports them.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0/engine-guides-supported-filters-and-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1/engine-guides-supported-filters-and-effects)
 
 <EngineReferenceNote {...props} />
 

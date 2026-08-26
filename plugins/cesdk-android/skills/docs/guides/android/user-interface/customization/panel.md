@@ -134,7 +134,7 @@ Use sheets to show built-in editor panels or your own Compose content in the edi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/editor-guides-configuration-panel)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/editor-guides-configuration-panel)
 
 In Android integrations, panels are implemented as editor sheets. You open a concrete `SheetType` through `EditorEvent.Sheet.Open`, and you close the currently displayed sheet with `EditorEvent.Sheet.Close`.
 

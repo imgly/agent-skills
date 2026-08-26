@@ -12,7 +12,7 @@ Apply sRGB colors to design elements for screen-based output using RGBA values w
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0/engine-guides-colors-for-screen-srgb)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1/engine-guides-colors-for-screen-srgb)
 
 sRGB is the standard color space for screen displays. CE.SDK represents sRGB colors with the `Color.rgba` case, where each component uses floating-point values between `0.0` and `1.0` — not the traditional `0`–`255` integer range used in many design tools.
 

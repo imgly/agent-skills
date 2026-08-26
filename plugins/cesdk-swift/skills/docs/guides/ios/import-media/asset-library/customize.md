@@ -199,13 +199,13 @@ Decide which categories (tabs) appear in the asset library, adjust the editor's 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0/editor-guides-configuration-asset-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1/editor-guides-configuration-asset-library)
 
 This guide picks up where the [Asset Library Basics](./basics.md) guide leaves off. Basics registers a source, surfaces one category, and adds a dock button; this guide covers tab ordering, mixing custom and default categories, modifying the defaults, building a fully custom library view, and opening an ad-hoc, button-specific library. It does not re-teach source registration or the source → library → dock layering.
 
 You configure the asset library on the same `EditorConfiguration` builder where you configure the dock, navigation bar, inspector bar, and canvas menu. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 
-The examples wrap the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.0/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `assetLibrary` builder is available on every configuration, so the rest of the calls stay the same.
+The examples wrap the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.1/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `assetLibrary` builder is available on every configuration, so the rest of the calls stay the same.
 
 ## Configuration
 

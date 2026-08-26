@@ -12,7 +12,7 @@ struct BasicEditorSolution: View {
   let settings = EngineSettings(
     license: secrets.licenseKey,
     userID: "<your unique user id>",
-    baseURL: URL(string: "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.0/assets")!,
+    baseURL: URL(string: "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.1/assets")!,
   )
 
   var editor: some View {
@@ -45,7 +45,7 @@ Configure CE.SDK during initialization with a license key, an asset base URL, an
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0/editor-guides-configuration-basics)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1/editor-guides-configuration-basics)
 
 ## EngineSettings
 
@@ -72,7 +72,7 @@ userID: "<your unique user id>",
 The engine resolves relative asset paths (typefaces, stickers, video templates, etc.) against `baseURL`. The default points at the versioned IMG.LY CDN — fine for evaluation, but for production, self-host the `assets` directory and point `baseURL` at your own location.
 
 ```swift highlight-configurationBasics-baseURL
-baseURL: URL(string: "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.0/assets")!,
+baseURL: URL(string: "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.1/assets")!,
 ```
 
 ## Apply the Configuration
@@ -84,7 +84,7 @@ Editor(settings)
   .imgly.configuration { GuideEditorConfiguration() }
 ```
 
-The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.0/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `.imgly.configuration(_:)` modifier accepts any `EditorConfiguration` subclass, so the rest of the call stays the same.
+The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.1/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `.imgly.configuration(_:)` modifier accepts any `EditorConfiguration` subclass, so the rest of the call stays the same.
 
 ## API Reference
 

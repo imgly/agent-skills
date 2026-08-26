@@ -18,7 +18,7 @@ Customize crop presets to provide users with aspect ratio options tailored to yo
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-crop-presets-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.0/examples/guides-crop-presets-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1/examples/guides-crop-presets-browser/index.html)
 
 Crop presets define the aspect ratios and dimensions users can select when cropping images or pages. CE.SDK includes a default set of common ratios (1:1, 16:9, 4:3, etc.), and you can replace or extend these with custom presets through asset sources.
 

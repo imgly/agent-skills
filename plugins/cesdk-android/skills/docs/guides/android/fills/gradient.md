@@ -378,7 +378,7 @@ conical gradient fills.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-gradient-fills)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-gradient-fills)
 
 <EngineReferenceNote {...props} />
 

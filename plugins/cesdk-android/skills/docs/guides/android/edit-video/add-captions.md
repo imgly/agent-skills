@@ -130,7 +130,7 @@ Add synchronized captions to video scenes with CE.SDK's caption tracks, caption 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-captions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-captions)
 
 <EngineReferenceNote {...props} />
 

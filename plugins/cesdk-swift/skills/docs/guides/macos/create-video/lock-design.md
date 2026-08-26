@@ -130,7 +130,7 @@ Protect video clips, overlays, and placeholders from unwanted edits using CE.SDK
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0/engine-guides-lock-video-design)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1/engine-guides-lock-video-design)
 
 <EngineReferenceNote {...props} />
 

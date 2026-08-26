@@ -88,7 +88,7 @@ Automatically generate personalized designs from a template by merging external 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0/engine-guides-data-merge)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1/engine-guides-data-merge)
 
 Data merge populates a template with external data using the headless Creative Engine, producing personalized outputs like certificates, badges, or team cards without opening the editor. The template itself is authored on the web; on mobile you consume it and merge in per-record data.
 

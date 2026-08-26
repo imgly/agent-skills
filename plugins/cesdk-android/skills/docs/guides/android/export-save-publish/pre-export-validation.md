@@ -496,7 +496,7 @@ protruding content, obscured text, and unfilled placeholders.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-pre-export-validation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-pre-export-validation)
 
 <EngineReferenceNote {...props} />
 

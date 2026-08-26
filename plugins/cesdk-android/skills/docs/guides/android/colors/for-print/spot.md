@@ -207,7 +207,7 @@ Define, apply, and manage spot colors in CE.SDK for professional print workflows
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-spot-colors)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-spot-colors)
 
 <EngineReferenceNote {...props} />
 

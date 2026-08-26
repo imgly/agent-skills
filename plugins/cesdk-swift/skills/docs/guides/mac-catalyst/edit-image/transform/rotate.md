@@ -168,7 +168,7 @@ The preceding code subscribes to updates from a single block. Whenever that bloc
 
 ## Next Steps
 
-Explore a minimal but complete code sample on [GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0/engine-guides-image-rotate).
+Explore a minimal but complete code sample on [GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1/engine-guides-image-rotate).
 
 Continue shaping your transform workflow with these related guides:
 

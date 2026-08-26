@@ -380,7 +380,7 @@ serializing it, and publishing a caption preset content.json manifest.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-update-caption-presets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-update-caption-presets)
 
 Caption presets are serialized text or caption blocks plus metadata that points
 to a thumbnail and optional customizable properties. Android can create the

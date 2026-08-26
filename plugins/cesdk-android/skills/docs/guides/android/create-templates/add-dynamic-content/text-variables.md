@@ -105,7 +105,7 @@ Create reusable Android templates whose text content is populated from data at r
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.0/engine-guides-text-variables)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1/engine-guides-text-variables)
 
 <EngineReferenceNote {...props} />
 

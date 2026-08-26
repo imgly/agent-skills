@@ -15,7 +15,7 @@ import type { Product } from './ProductSelector/ProductSelector';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.0/starterkit-3d-product-preview';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.1/starterkit-3d-product-preview';
 
 // ============================================================================
 // Render Defaults

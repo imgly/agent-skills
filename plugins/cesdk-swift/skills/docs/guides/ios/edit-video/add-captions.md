@@ -57,7 +57,7 @@ struct AddCaptionsSolution: View {
   /// The video the demo opens with, so the canvas shows footage behind the captions sheet.
   private static let sampleVideoURL: URL = {
     let baseURL = secrets.baseURL
-      ?? URL(string: "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.0/assets")!
+      ?? URL(string: "https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.1/assets")!
     return baseURL.appendingPathComponent("ly.img.video/videos/pexels-kampus-production-8154913.mp4")
   }()
 
@@ -91,11 +91,11 @@ appears as a clip on a dedicated timeline lane.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.0/editor-guides-create-video-add-captions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1/editor-guides-create-video-add-captions)
 
 Captions are an editor UI feature provided by `IMGLYEditor` for video scenes. One dock button and two inspector bar buttons make up the surface, and the editor supplies the caption sheets, the timeline caption lane, and preset styling.
 
-The [Video Editor Starter Kit](../starterkits/video-editor.md)'s [`VideoEditorConfiguration`](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.0/starter-kits/starter-kit-video/StarterKit/VideoEditorConfiguration.swift) — a configuration class the iOS guides repository ships as a complete video editor baseline — registers all three for you, so captions work out of the box. The sections below show how to register them in your own editor configuration; the `dock` and `inspectorBar` builders are exposed on every configuration. The [Configuration](../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
+The [Video Editor Starter Kit](../starterkits/video-editor.md)'s [`VideoEditorConfiguration`](https://github.com/imgly/cesdk-swift-examples/blob/v1.81.1/starter-kits/starter-kit-video/StarterKit/VideoEditorConfiguration.swift) — a configuration class the iOS guides repository ships as a complete video editor baseline — registers all three for you, so captions work out of the box. The sections below show how to register them in your own editor configuration; the `dock` and `inspectorBar` builders are exposed on every configuration. The [Configuration](../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 
 ## Understanding Caption Structure
 
