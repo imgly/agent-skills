@@ -16,7 +16,7 @@ Photo UI is equipped with advanced photo editing options while remaining easy an
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-photo-ui-react-web)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260825/examples/starterkit-photo-ui/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260826/examples/starterkit-photo-ui/index.html)
 
 ***
 

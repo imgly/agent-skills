@@ -19,7 +19,7 @@ layout APIs and snapping system.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-position-and-align-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260825/examples/guides-create-composition-position-and-align-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260826/examples/guides-create-composition-position-and-align-browser/index.html)
 
 CE.SDK positions blocks relative to their parent container with the origin at the top left. You can set positions using absolute values (design units) or as percentages of the parent's dimensions. For multi-element layouts, alignment and distribution APIs arrange blocks precisely without manual calculations. In the browser, snapping guides provide visual feedback when dragging elements.
 

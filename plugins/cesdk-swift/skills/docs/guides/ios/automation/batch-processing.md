@@ -12,7 +12,7 @@ This guide shows you how to do that in Swift for iOS, macOS, and Catalyst. Youâ€
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/engine-guides-automation-batch)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-automation-batch)
 
 ## What Youâ€™ll Learn
 

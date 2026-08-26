@@ -151,7 +151,7 @@ size modes, or resizing grouped blocks together.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-edit-image-transform-resize)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-edit-image-transform-resize)
 
 <EngineReferenceNote {...props} />
 

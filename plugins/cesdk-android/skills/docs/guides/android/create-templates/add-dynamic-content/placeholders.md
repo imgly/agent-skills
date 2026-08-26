@@ -147,7 +147,7 @@ surrounding template layout under your control.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-placeholders)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-placeholders)
 
 <EngineReferenceNote {...props} />
 

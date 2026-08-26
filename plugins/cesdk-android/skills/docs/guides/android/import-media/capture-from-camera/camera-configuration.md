@@ -99,7 +99,7 @@ Apply a `CameraConfiguration` to the IMG.LY Camera to choose what it captures, t
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/camera-guides-configuration)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/camera-guides-configuration)
 
 This guide builds on the [Integrate Camera](./integrate.md) guide and customizes the camera from the `ly.img.camera.core` module. You configure it through the three inputs you pass to `CaptureMedia.Input`: `EngineConfiguration` initializes the underlying engine, an optional `CameraConfiguration` controls what the camera captures and how it looks, and `cameraMode` selects the capture mode.
 
@@ -197,7 +197,7 @@ The camera captures from the device camera and microphone. The `ly.img:camera` m
 
 The IMG.LY camera ships with English and German on Android, and exposes its strings through Android string resources so you can override existing values or add new languages.
 
-All camera keys live in [https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260825/sources/camera-core/src/main/res/values/strings.xml](https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260825/sources/camera-core/src/main/res/values/strings.xml) and follow a strict naming convention that makes locating them self-explanatory. For example, `ly_img_camera_timer_option_off` is the timer-off button, and `ly_img_camera_dialog_delete_last_recording_title` is the title of the alert shown when deleting the last recording.
+All camera keys live in [https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260826/sources/camera-core/src/main/res/values/strings.xml](https://github.com/imgly/cesdk-android/blob/v1.82.0-nightly.20260826/sources/camera-core/src/main/res/values/strings.xml) and follow a strict naming convention that makes locating them self-explanatory. For example, `ly_img_camera_timer_option_off` is the timer-off button, and `ly_img_camera_dialog_delete_last_recording_title` is the title of the alert shown when deleting the last recording.
 
 ### Replacing Existing Keys
 

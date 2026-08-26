@@ -99,7 +99,7 @@ Add visual depth and interest to text blocks using drop shadows and stroke outli
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/engine-guides-text-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-text-effects)
 
 <EngineReferenceNote {...props} />
 

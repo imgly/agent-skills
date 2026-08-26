@@ -16,7 +16,7 @@ Lock design elements to prevent unwanted modifications using CE.SDK's scope-base
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-rules-lock-content-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260825/examples/guides-rules-lock-content-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260826/examples/guides-rules-lock-content-browser/index.html)
 
 ![Lock Content Hero](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 

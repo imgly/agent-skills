@@ -337,7 +337,7 @@ integrate third-party moderation services to detect inappropriate content.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/engine-guides-moderate-content)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-moderate-content)
 
 <EngineReferenceNote {...props} />
 

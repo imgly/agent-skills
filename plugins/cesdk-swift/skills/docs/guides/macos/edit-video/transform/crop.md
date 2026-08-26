@@ -13,7 +13,7 @@ programmatic crop transforms.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/engine-guides-create-video-transform-crop)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-create-video-transform-crop)
 
 Video cropping in CreativeEditor SDK (CE.SDK) lets you re-frame clips and remove unwanted edges by moving the content inside the block. Unlike resizing or scaling which affects the entire frame uniformly, cropping selects a specific region of the source video to display inside the block's existing dimensions.
 

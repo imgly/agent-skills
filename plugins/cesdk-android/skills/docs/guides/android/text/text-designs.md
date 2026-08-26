@@ -213,7 +213,7 @@ Create and customize text designs that users can insert from the CE.SDK asset li
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-text-text-designs)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-text-text-designs)
 
 <EngineReferenceNote {...props} />
 

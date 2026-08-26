@@ -215,11 +215,11 @@ Use variable fonts to offer a full range of font weights and styles from a singl
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/editor-guides-variable-fonts)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/editor-guides-variable-fonts)
 
 Variable fonts are OpenType fonts that pack multiple variations of a font family into a single file. Instead of loading one file per weight, you register a single file and CE.SDK renders each variant by applying variation axis values. This reduces network requests and simplifies font management, especially for typefaces with many weights.
 
-This guide builds on `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260825/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline; substitute your own editor configuration class — the `onCreate` hook used here is available on every configuration. The [Configuration](../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
+This guide builds on `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260826/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline; substitute your own editor configuration class — the `onCreate` hook used here is available on every configuration. The [Configuration](../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 
 ## How CE.SDK Handles Variable Fonts
 

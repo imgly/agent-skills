@@ -10,7 +10,7 @@ The CE.SDK editor surfaces in English (`en`) and German (`de`) out of the box, w
 
 ## Default Languages and Lookup Order
 
-CE.SDK ships translations for English and German in `IMGLYEditor.xcstrings`, bundled inside the `IMGLYCoreUI` module of [`IMGLYUI-swift`](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260825/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings). When the editor renders a label, CE.SDK's `LocalizedStringResource` extension resolves each key against three (bundle, table) pairs in order:
+CE.SDK ships translations for English and German in `IMGLYEditor.xcstrings`, bundled inside the `IMGLYCoreUI` module of [`IMGLYUI-swift`](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260826/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings). When the editor renders a label, CE.SDK's `LocalizedStringResource` extension resolves each key against three (bundle, table) pairs in order:
 
 1. `Localizable.xcstrings` (or `Localizable.strings`) in your app's main bundle.
 2. `IMGLYEditor.xcstrings` in your app's main bundle, if you ship one.
@@ -22,7 +22,7 @@ The active locale is selected by the system based on the user's iOS language set
 
 ## Finding the Key You Want to Override
 
-Every editor string has a stable key with the form `ly_img_editor_<surface>_<element>_<name>`. Browse the canonical list in the [SDK's `IMGLYEditor.xcstrings`](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260825/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) and search for the visible text you want to change. A few examples:
+Every editor string has a stable key with the form `ly_img_editor_<surface>_<element>_<name>`. Browse the canonical list in the [SDK's `IMGLYEditor.xcstrings`](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260826/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) and search for the visible text you want to change. A few examples:
 
 | Visible UI element | Key |
 | --- | --- |
@@ -83,7 +83,7 @@ If you prefer to keep editor overrides separate from your app's own strings, shi
 
 The same override mechanism doubles as a white-labeling tool. To rebrand the editor — say, replace "Photo Roll" with your product's name across both languages — keep the rest of the keys in the SDK's catalog untouched and only ship the specific keys you want to customize. Your `Localizable.xcstrings` ends up holding a focused list of brand-specific overrides; English / German fallbacks come from the SDK for everything else.
 
-If your brand applies across many keys (custom button names, sheet titles, alert copy, asset library section names), centralize the overrides in your app's `Localizable.xcstrings`, or copy the SDK's `IMGLYEditor.xcstrings` into your bundle if you'd rather keep editor strings separate from your app's own. Those are the only two catalogs the lookup chain inspects — a catalog under any other name (`MyBrand.xcstrings`, for example) will not be picked up. Compare against the [SDK's current `IMGLYEditor.xcstrings`](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260825/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) when upgrading versions to catch any new strings that may warrant a branded translation.
+If your brand applies across many keys (custom button names, sheet titles, alert copy, asset library section names), centralize the overrides in your app's `Localizable.xcstrings`, or copy the SDK's `IMGLYEditor.xcstrings` into your bundle if you'd rather keep editor strings separate from your app's own. Those are the only two catalogs the lookup chain inspects — a catalog under any other name (`MyBrand.xcstrings`, for example) will not be picked up. Compare against the [SDK's current `IMGLYEditor.xcstrings`](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260826/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) when upgrading versions to catch any new strings that may warrant a branded translation.
 
 ## Adding Support for a New Language
 
@@ -135,7 +135,7 @@ Once a key exists in your app's `Localizable.xcstrings`, CE.SDK's lookup commits
 | Concern | Where |
 | --- | --- |
 | Key naming convention | `ly_img_editor_<surface>_<element>_<name>` |
-| Canonical key list | [`IMGLYEditor.xcstrings` in IMGLYUI-swift](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260825/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) |
+| Canonical key list | [`IMGLYEditor.xcstrings` in IMGLYUI-swift](https://github.com/imgly/IMGLYUI-swift/blob/1.82.0-nightly.20260826/Sources/IMGLYCoreUI/IMGLYEditor.xcstrings) |
 | Override catalog (recommended) | `Localizable.xcstrings` in your main bundle |
 | Override catalog (alternative) | `IMGLYEditor.xcstrings` in your main bundle |
 | Lookup order | App `Localizable` → App `IMGLYEditor` → SDK `IMGLYEditor` |

@@ -85,7 +85,7 @@ changes how values are interpreted at the API boundary.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/engine-guides-font-size-unit)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-font-size-unit)
 
 A scene's `fontSizeUnit` is the unit `setTextFontSize` and `getTextFontSizes` use to interpret values on text blocks. CE.SDK supports two values: `.pt` (the typographic default) and `.px` (matches Pixel-based design coordinates). The engine still stores font sizes in points internally; the unit only controls the API boundary.
 

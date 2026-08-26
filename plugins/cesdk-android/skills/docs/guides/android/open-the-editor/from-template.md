@@ -89,7 +89,7 @@ Load pre-designed templates to give users a professional starting point instead 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-from-template)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-from-template)
 
 <EngineReferenceNote {...props} />
 

@@ -18,7 +18,7 @@ Automatically generate size variations of your design and easily scale your mark
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-automated-resizing-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260825/examples/starterkit-automated-resizing/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260826/examples/starterkit-automated-resizing/index.html)
 
 ***
 

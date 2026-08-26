@@ -141,7 +141,7 @@ Generate small preview images from CE.SDK scenes and pages for galleries, file b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-create-thumbnail)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-create-thumbnail)
 
 <EngineReferenceNote {...props} />
 

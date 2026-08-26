@@ -367,6 +367,22 @@ Exports a design block element as a file of the given mime type. Performs an int
 
 Exports multiple design block elements as files of the given mime type. Performs an internal update to resolve the final layout for the blocks. This method is more memory efficient than calling `export` repeatedly for multiple blocks as it reuses a single worker engine for all exports. `ids`
 
+### export(_:mimeType:options:onPreExport:uriResolver:onProgress:onData:)
+
+```swift
+@MainActor func export(_ id: DesignBlockID, mimeType: MIMEType = .pdf, options: ExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil, onProgress: (@MainActor @Sendable (Int, Int) -> Void)? = nil, onData: @escaping @Sendable (Data) throws -> Void) async throws
+```
+
+Exports a design block as a PDF whose bytes are delivered incrementally in chunks instead of one final blob, so the document is never held in memory as a whole. Use this when the destination is not a plain file, for example when uploading the document while it is being encoded. To write to a file use the `export` overload that takes a URL. Performs an internal update to resolve the final layout for the blocks. `id`
+
+### export(_:to:mimeType:options:onPreExport:uriResolver:onProgress:)
+
+```swift
+@MainActor func export(_ id: DesignBlockID, to url: URL, mimeType: MIMEType = .pdf, options: ExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil, onProgress: (@MainActor @Sendable (Int, Int) -> Void)? = nil) async throws
+```
+
+Exports a design block as a PDF, writing its bytes into a file as they are produced instead of building the whole document in memory first. Prefer this over `export` for large multi-page documents such as photo books and magazines: peak memory is bounded by the working set of a single page rather than by the size of the finished document. Performs an internal update to resolve the final layout for the blocks. `id`
+
 ### exportAudio(_:mimeType:options:)-5xr9k
 
 ```swift

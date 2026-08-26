@@ -444,7 +444,7 @@ royalty-free stock photos without leaving the editor.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-import-from-pexels)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-import-from-pexels)
 
 <EngineReferenceNote {...props} />
 

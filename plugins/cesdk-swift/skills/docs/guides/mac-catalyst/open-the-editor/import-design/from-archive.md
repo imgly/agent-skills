@@ -40,7 +40,7 @@ Import archived CE.SDK scenes that bundle the design structure together with all
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/engine-guides-import-design-from-archive)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-import-design-from-archive)
 
 <EngineReferenceNote {...props} />
 

@@ -135,7 +135,7 @@ Organize design elements in CE.SDK using a hierarchical layer stack to control s
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260825/engine-guides-layer-management)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-layer-management)
 
 Design elements in CE.SDK are organized in a hierarchical parent-child structure. Children of a block are rendered in order, with the last child appearing on top. This layer stack model gives you precise control over how elements overlap and interact visually.
 

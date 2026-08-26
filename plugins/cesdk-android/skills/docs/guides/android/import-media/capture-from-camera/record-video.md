@@ -36,13 +36,13 @@ android {
 }
 
 dependencies {
-    implementation "ly.img:engine-camera:1.80.0"
+    implementation "ly.img:engine-camera:1.81.0"
     implementation "androidx.camera:camera-core:1.5.0-alpha04"
     implementation "androidx.camera:camera-camera2:1.5.0-alpha04"
     implementation "androidx.camera:camera-view:1.5.0-alpha04"
     implementation "androidx.camera:camera-lifecycle:1.5.0-alpha04"
     implementation "androidx.camera:camera-video:1.5.0-alpha04"
-    implementation "ly.img:engine:1.80.0"
+    implementation "ly.img:engine:1.81.0"
     implementation "androidx.activity:activity:1.7.0"
     implementation "androidx.appcompat:appcompat:1.6.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
@@ -232,7 +232,7 @@ finishes, swap the fill for a `VideoFill` to play the captured file back.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260825/engine-guides-using-camera)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-using-camera)
 
 <EngineReferenceNote {...props} />
 
@@ -316,13 +316,13 @@ preview and recording. Keep `engine` and `engine-camera` on the same CE.SDK
 version.
 
 ```groovy highlight-android-dependencies
-implementation "ly.img:engine-camera:1.80.0"
+implementation "ly.img:engine-camera:1.81.0"
 implementation "androidx.camera:camera-core:1.5.0-alpha04"
 implementation "androidx.camera:camera-camera2:1.5.0-alpha04"
 implementation "androidx.camera:camera-view:1.5.0-alpha04"
 implementation "androidx.camera:camera-lifecycle:1.5.0-alpha04"
 implementation "androidx.camera:camera-video:1.5.0-alpha04"
-implementation "ly.img:engine:1.80.0"
+implementation "ly.img:engine:1.81.0"
 implementation "androidx.activity:activity:1.7.0"
 implementation "androidx.appcompat:appcompat:1.6.0"
 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
