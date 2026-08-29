@@ -201,7 +201,7 @@ comprehensive color fill system with support for multiple color spaces.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-fills-color)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/engine-guides-fills-color)
 
 Color fills are one of the fundamental fill types in CE.SDK, allowing you to paint design blocks with solid, uniform colors. Unlike gradient fills that transition between colors or image fills that display photo content, color fills apply a single color across the entire block. The color fill system supports multiple color spaces including RGB for screen display, CMYK for print workflows, and Spot Colors for brand consistency.
 

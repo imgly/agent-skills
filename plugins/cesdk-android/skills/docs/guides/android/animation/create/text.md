@@ -172,7 +172,7 @@ by word, or character by character with control over timing and overlap.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-text-animations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260829/engine-guides-text-animations)
 
 <EngineReferenceNote {...props} />
 

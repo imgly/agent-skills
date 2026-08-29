@@ -18,7 +18,7 @@ Understand how CE.SDK positions and renders text by exploring font metrics—asc
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-text-rendering-internals-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260826/examples/guides-text-rendering-internals-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260829/examples/guides-text-rendering-internals-browser/index.html)
 
 Every font defines metrics that determine how text is positioned vertically. Understanding these metrics helps you debug text layout issues, align text precisely with other design elements, and comprehend why fonts at the "same size" can appear different heights.
 

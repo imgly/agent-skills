@@ -147,7 +147,7 @@ Configure emoji rendering in CE.SDK text blocks with a dedicated emoji font for 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-text-with-emojis)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260829/engine-guides-text-with-emojis)
 
 <EngineReferenceNote {...props} />
 

@@ -25,7 +25,7 @@ data class FromTemplate(
 
 suspend fun fromTemplate(engine: Engine): FromTemplate {
     val templateUri = Uri.parse(
-        "https://cdn.img.ly/packages/imgly/cesdk-android/1.81.0/assets/ly.img.templates/templates/cesdk_business_card_1.scene",
+        "https://cdn.img.ly/packages/imgly/cesdk-android/1.82.0/assets/ly.img.templates/templates/cesdk_business_card_1.scene",
     )
     val scene = engine.scene.load(sceneUri = templateUri, waitForResources = true)
 
@@ -35,7 +35,7 @@ suspend fun fromTemplate(engine: Engine): FromTemplate {
     engine.scene.load(scene = templateString, waitForResources = true)
 
     val replacementTemplateUri = Uri.parse(
-        "https://cdn.img.ly/packages/imgly/cesdk-android/1.81.0/assets/ly.img.templates/templates/cesdk_business_card_1.scene",
+        "https://cdn.img.ly/packages/imgly/cesdk-android/1.82.0/assets/ly.img.templates/templates/cesdk_business_card_1.scene",
     )
     engine.scene.applyTemplate(templateUri = replacementTemplateUri)
 
@@ -89,7 +89,7 @@ Load pre-designed templates to give users a professional starting point instead 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-from-template)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260829/engine-guides-from-template)
 
 <EngineReferenceNote {...props} />
 
@@ -101,7 +101,7 @@ The most common approach is loading a template from a `.scene` file URI. Pass th
 
 ```kotlin highlight-android-load-from-url
 val templateUri = Uri.parse(
-    "https://cdn.img.ly/packages/imgly/cesdk-android/1.81.0/assets/ly.img.templates/templates/cesdk_business_card_1.scene",
+    "https://cdn.img.ly/packages/imgly/cesdk-android/1.82.0/assets/ly.img.templates/templates/cesdk_business_card_1.scene",
 )
 val scene = engine.scene.load(sceneUri = templateUri, waitForResources = true)
 ```
@@ -125,7 +125,7 @@ To populate an existing scene with template content while keeping its current pa
 
 ```kotlin highlight-android-apply-template
 val replacementTemplateUri = Uri.parse(
-    "https://cdn.img.ly/packages/imgly/cesdk-android/1.81.0/assets/ly.img.templates/templates/cesdk_business_card_1.scene",
+    "https://cdn.img.ly/packages/imgly/cesdk-android/1.82.0/assets/ly.img.templates/templates/cesdk_business_card_1.scene",
 )
 engine.scene.applyTemplate(templateUri = replacementTemplateUri)
 ```

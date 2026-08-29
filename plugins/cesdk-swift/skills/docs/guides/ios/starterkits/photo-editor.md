@@ -105,7 +105,12 @@ public extension PhotoEditorConfiguration {
 
   /// Creates a scene from the default photo image.
   static let defaultCreateScene: OnCreate.Callback = { engine in
-    let imageURL = Bundle(for: PhotoEditorConfiguration.self).url(forResource: "photo-ui-empty", withExtension: "png")!
+    #if SWIFT_PACKAGE
+      let bundle = Bundle.module
+    #else
+      let bundle = Bundle(for: PhotoEditorConfiguration.self)
+    #endif
+    let imageURL = bundle.url(forResource: "photo-ui-empty", withExtension: "png")!
     try await engine.scene.create(fromImage: imageURL)
   }
 
@@ -233,9 +238,9 @@ Professional photo editing for your iOS app—crop, filter, adjust, and remove b
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-photo-editor-ios/archive/refs/heads/v1.82.0-nightly.20260826.zip)
+> - [Download examples](https://github.com/imgly/starterkit-photo-editor-ios/archive/refs/heads/v1.83.0-nightly.20260829.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-photo-editor-ios/tree/v1.82.0-nightly.20260826)
+> - [View source on GitHub](https://github.com/imgly/starterkit-photo-editor-ios/tree/v1.83.0-nightly.20260829)
 
 ***
 
@@ -256,7 +261,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
     ### Step 1: Clone the Repository
 
     ```bash
-    git clone -b v1.82.0-nightly.20260826 https://github.com/imgly/starterkit-photo-editor-ios.git
+    git clone -b v1.83.0-nightly.20260829 https://github.com/imgly/starterkit-photo-editor-ios.git
     cd starterkit-photo-editor-ios
     ```
 
@@ -294,7 +299,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
        ```
        https://github.com/imgly/IMGLYUI-swift
        ```
-    3. Select version `1.82.0-nightly.20260826` and add the `IMGLYEditor` product to your target
+    3. Select version `1.83.0-nightly.20260829` and add the `IMGLYEditor` product to your target
 
     ### Step 2: Copy the Starter Kit Files
 
@@ -302,7 +307,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
 
     ```bash
     repo="starterkit-photo-editor-ios"
-    version="1.82.0-nightly.20260826"
+    version="1.83.0-nightly.20260829"
     curl -L "https://codeload.github.com/imgly/${repo}/tar.gz/refs/heads/v${version}" | tar -xz --strip-components=1 "${repo}-v${version}/starter-kit"
     ```
 
@@ -361,9 +366,16 @@ You can configure the editor based on your business logic — for example, loadi
 The scene setup logic is located in `OnCreate+Photo.swift` as part of the `defaultCreateScene` callback:
 
 ```swift highlight-starter-kit-on-create-scene
-let imageURL = Bundle(for: PhotoEditorConfiguration.self).url(forResource: "photo-ui-empty", withExtension: "png")!
+#if SWIFT_PACKAGE
+  let bundle = Bundle.module
+#else
+  let bundle = Bundle(for: PhotoEditorConfiguration.self)
+#endif
+let imageURL = bundle.url(forResource: "photo-ui-empty", withExtension: "png")!
 try await engine.scene.create(fromImage: imageURL)
 ```
+
+The `#if SWIFT_PACKAGE` conditional picks the bundle that contains the starter kit's resources: the `Bundle(for:)` branch applies when you add the starter kit to an app target as described in this guide, while `Bundle.module` applies when the kit compiles inside a Swift package.
 
 CE.SDK offers multiple ways to load a scene into the editor — from an image URL, a template archive, a blank canvas, or a `.scene` file.
 
@@ -435,7 +447,7 @@ For production deployments, self-hosting assets is required—the IMG.LY CDN is 
 
 ## Self-Host Assets for Production
 
-The starter kit loads assets from the `baseURL` you set on `EngineSettings`, which defaults to the IMG.LY CDN (`https://cdn.img.ly/packages/imgly/cesdk-swift/1.82.0-nightly.20260826/assets`). To self-host assets, download the [asset zip file](https://cdn.img.ly/packages/imgly/cesdk-swift/1.82.0-nightly.20260826/imgly-assets.zip) and pass a custom `baseURL` to your `EngineSettings`.
+The starter kit loads assets from the `baseURL` you set on `EngineSettings`, which defaults to the IMG.LY CDN (`https://cdn.img.ly/packages/imgly/cesdk-swift/1.83.0-nightly.20260829/assets`). To self-host assets, download the [asset zip file](https://cdn.img.ly/packages/imgly/cesdk-swift/1.83.0-nightly.20260829/imgly-assets.zip) and pass a custom `baseURL` to your `EngineSettings`.
 
 ## Customize Export Functionality
 

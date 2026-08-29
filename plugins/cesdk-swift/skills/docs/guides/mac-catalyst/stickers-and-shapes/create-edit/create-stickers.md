@@ -81,7 +81,7 @@ Create stickers from images for use in your designs, perfect for adding icons, l
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-create-stickers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/engine-guides-create-stickers)
 
 <EngineReferenceNote {...props} />
 

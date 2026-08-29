@@ -20,7 +20,7 @@ and engine settings to customize the video timeline.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260826/examples/guides-user-interface-customization-video-timeline-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260829/examples/guides-user-interface-customization-video-timeline-browser/index.html)
 
 CE.SDK allows you to customize the timeline at runtime: toggle the visibility of the timeline and its buttons, customize the controls bar and its height behavior, and more. The Overview below lists each customization point.
 
@@ -158,9 +158,10 @@ class Example implements EditorPlugin {
       'always'
     );
 
-    // Give the timeline a fixed 320px height. Pass 'auto' to restore the
-    // content-hugging default.
-    cesdk.actions.run('timeline.setHeight', 320);
+    // Give the timeline a fixed 320px height. Pass { height: 'auto' } to
+    // restore the content-hugging default, or add maxHeight to cap how tall
+    // the auto-growing timeline may get.
+    cesdk.actions.run('timeline.setHeight', { height: 320 });
 
     // Register a custom Rewind button that jumps playback back to the start.
     cesdk.ui.registerComponent(
@@ -216,7 +217,7 @@ The timeline is customized through four APIs, each covered in its own section be
 
 - **Enable / Disable** — enable or disable the timeline and its individual buttons through the Feature API using `ly.img.video.timeline.*` keys.
 - **Order Component APIs** — order, add, and remove the timeline buttons through the Component Order API on the `ly.img.video.timeline.controls.bar` area.
-- **Customization Actions** — set a fixed height or restore the content-hugging default through the `timeline.setHeight` action.
+- **Customization Actions** — set a fixed height, cap the maximum height or restore the content-hugging default through the `timeline.setHeight` action.
 - **Engine Settings** — control track and transition visibility through the `timeline/trackVisibility` and `timeline/transitionControlVisibility` settings.
 
 ## Enable / Disable
@@ -333,15 +334,16 @@ Use a custom action to open your own source, an upload flow, or a dialog instead
 
 ## Customization Actions
 
-The timeline's height is set through the `timeline.setHeight` action. It accepts a height in pixels, or `'auto'`.
+The timeline's height is set through the `timeline.setHeight` action. It accepts a settings object with a `height` (a value in pixels or `'auto'`) and a `maxHeight` in pixels.
 
 ```typescript highlight=highlight-set-height
-// Give the timeline a fixed 320px height. Pass 'auto' to restore the
-// content-hugging default.
-cesdk.actions.run('timeline.setHeight', 320);
+// Give the timeline a fixed 320px height. Pass { height: 'auto' } to
+// restore the content-hugging default, or add maxHeight to cap how tall
+// the auto-growing timeline may get.
+cesdk.actions.run('timeline.setHeight', { height: 320 });
 ```
 
-By default the timeline grows and shrinks to hug its content. Passing a number fixes the timeline at that height. Passing `'auto'` restores the default content-hugging behavior, which starts at 30% of the editor viewport height. In both modes the drag-to-resize handle stays available — dragging sets a manual height, and double-clicking the handle resets it.
+By default the timeline grows and shrinks to hug its content. Passing a number as `height` fixes the timeline at that height, while `'auto'` restores the default content-hugging behavior, which starts at 30% of the editor viewport height. Passing a number as `maxHeight` caps how tall the timeline may get — both when it grows with its content and when it is resized by hand — replacing the built-in limit, so a larger value also allows a taller timeline. In both modes the drag-to-resize handle stays available — dragging sets a manual height, and double-clicking the handle resets it.
 
 ## Engine Settings
 
@@ -384,7 +386,7 @@ The control still hides on "tight" seams where there is no room to draw it. Our 
 | `cesdk.feature.enable('ly.img.video.timeline.*')`                                 | Enable the timeline and its buttons                      |
 | `cesdk.engine.editor.setSetting('timeline/trackVisibility', v)`                   | Show all tracks (`'all'`) or the active one (`'active'`) |
 | `cesdk.engine.editor.setSetting('timeline/transitionControlVisibility', v)`       | Show transition controls on `'hover'` or `'always'`      |
-| `cesdk.actions.run('timeline.setHeight', height)`                                 | Set a fixed timeline height, or `'auto'` to hug content  |
+| `cesdk.actions.run('timeline.setHeight', settings)`                               | Set a fixed timeline `height` and/or a `maxHeight` cap   |
 | `cesdk.ui.registerComponent(ids, renderComponent)`                                | Register a custom controls bar component                 |
 | `cesdk.ui.setComponentOrder({ in: 'ly.img.video.timeline.controls.bar' }, order)` | Set the controls bar order                               |
 | `cesdk.ui.getComponentOrder({ in: 'ly.img.video.timeline.controls.bar' })`        | Read the current controls bar order                      |

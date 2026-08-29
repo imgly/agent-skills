@@ -189,7 +189,7 @@ layout APIs and snapping system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-position-and-align)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260829/engine-guides-position-and-align)
 
 <EngineReferenceNote {...props} />
 

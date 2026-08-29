@@ -21,6 +21,7 @@
 - [Transform Videos](./edit-video/transform.md) - Learn how Android video transforms use block geometry, crop transforms, groups, animations, and transform permissions.
 - [Apply Transitions](./create-video/apply-transitions.md) - Blend adjacent video clips with clip-to-clip transitions such as cross-fades, pushes, and wipes using CE.SDK's transitions API.
 - [Add Captions](./edit-video/add-captions.md) - Add synchronized captions to Android video scenes with CE.SDK.
+- [Edit Captions](./edit-video/edit-captions.md) - Let users create, import, edit, and style synchronized captions in the CE.SDK Android video editor using the captions dock button, the captions sheet, and style presets.
 - [Update Caption Presets](./create-video/update-caption-presets.md) - Extend video captions with custom caption preset files and asset source manifests on Android.
 - [Add Watermark](./edit-video/add-watermark.md) - Add text and image watermarks to videos with timeline duration, positioning, opacity, and visibility controls in Android.
 - [Annotation](./edit-video/annotation.md) - Add timed text, shapes, and highlights to video scenes on Android.

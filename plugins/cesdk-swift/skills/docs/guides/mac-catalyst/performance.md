@@ -100,7 +100,7 @@ This guide covers source sets for large assets, memory monitoring with the edito
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-performance)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/engine-guides-performance)
 
 <EngineReferenceNote {...props} />
 

@@ -164,13 +164,13 @@ reaction clips into an editable picture-in-picture video scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/editor-guides-record-reaction)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/editor-guides-record-reaction)
 
 Reaction mode is a camera workflow. Before launching it, integrate `IMGLYCamera` into your app as shown in [Integrate Mobile Camera](../import-media/capture-from-camera/integrate.md).
 
 CE.SDK returns the base video and the recorded reaction segments wrapped in `CameraResult.reaction(video:reaction:)`. Pass that result to the editor and use the `IMGLYCamera` extension on `Engine` to compose the picture-in-picture scene in one call.
 
-The example also uses two small helpers the iOS guides repository ships: [`ModalEditor.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260826/editor-guides-quickstart/ModalEditor.swift) — a wrapper around `fullScreenCover` — and [`Secrets.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.0-nightly.20260826/secrets/Secrets.swift), which supplies `secrets.licenseKey`. Substitute your own presentation and license-key plumbing — neither is part of the CE.SDK shipped to customers.
+The example also uses two small helpers the iOS guides repository ships: [`ModalEditor.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260829/editor-guides-quickstart/ModalEditor.swift) — a wrapper around `fullScreenCover` — and [`Secrets.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260829/secrets/Secrets.swift), which supplies `secrets.licenseKey`. Substitute your own presentation and license-key plumbing — neither is part of the CE.SDK shipped to customers.
 
 | Swift type | Purpose |
 | --- | --- |

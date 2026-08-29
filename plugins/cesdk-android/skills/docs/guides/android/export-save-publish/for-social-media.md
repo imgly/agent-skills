@@ -133,7 +133,7 @@ dimensions, format, and quality settings.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-export-for-social-media)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260829/engine-guides-export-for-social-media)
 
 <EngineReferenceNote {...props} />
 

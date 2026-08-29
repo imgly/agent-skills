@@ -254,36 +254,36 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // ============================================================================
 
     // #region Placeholder Features
-    'ly.img.placeholder' /* Enables all children below */,
-    // 'ly.img.placeholder.general', /* General section (opacity, blend, etc.) */
-    // 'ly.img.placeholder.general.opacity', /* Opacity option */
-    // 'ly.img.placeholder.general.blendMode', /* Blend Mode option */
-    // 'ly.img.placeholder.general.duplicate', /* Duplicate option */
-    // 'ly.img.placeholder.general.delete', /* Delete option */
-    // 'ly.img.placeholder.arrange', /* Arrange section */
-    // 'ly.img.placeholder.arrange.move', /* Move option */
-    // 'ly.img.placeholder.arrange.resize', /* Resize option */
-    // 'ly.img.placeholder.arrange.rotate', /* Rotate option */
-    // 'ly.img.placeholder.arrange.flip', /* Flip option */
-    // 'ly.img.placeholder.fill', /* Fill section */
-    // 'ly.img.placeholder.fill.change', /* Change Fill option */
-    // 'ly.img.placeholder.fill.changeType', /* Change Fill Type option */
-    // 'ly.img.placeholder.fill.actAsPlaceholder', /* Act as Placeholder option */
-    // 'ly.img.placeholder.fill.crop', /* Crop option */
-    // 'ly.img.placeholder.shape', /* Shape section */
-    // 'ly.img.placeholder.shape.change', /* Change Shape option */
-    // 'ly.img.placeholder.stroke', /* Stroke section */
-    // 'ly.img.placeholder.stroke.change', /* Change Stroke option */
-    // 'ly.img.placeholder.text', /* Text section */
-    // 'ly.img.placeholder.text.edit', /* Edit Text option */
-    // 'ly.img.placeholder.text.actAsPlaceholder', /* Act as Placeholder option */
-    // 'ly.img.placeholder.text.character', /* Character option */
+    // 'ly.img.placeholder', /* Enables all children below */
+    'ly.img.placeholder.general' /* General section (opacity, blend, etc.) */,
+    'ly.img.placeholder.general.opacity' /* Opacity option */,
+    'ly.img.placeholder.general.blendMode' /* Blend Mode option */,
+    'ly.img.placeholder.general.duplicate' /* Duplicate option */,
+    'ly.img.placeholder.general.delete' /* Delete option */,
+    'ly.img.placeholder.arrange' /* Arrange section */,
+    'ly.img.placeholder.arrange.move' /* Move option */,
+    'ly.img.placeholder.arrange.resize' /* Resize option */,
+    'ly.img.placeholder.arrange.rotate' /* Rotate option */,
+    'ly.img.placeholder.arrange.flip' /* Flip option */,
+    'ly.img.placeholder.fill' /* Fill section */,
+    'ly.img.placeholder.fill.change' /* Change Fill option */,
+    'ly.img.placeholder.fill.changeType' /* Change Fill Type option */,
+    'ly.img.placeholder.fill.actAsPlaceholder' /* Act as Placeholder option */,
+    'ly.img.placeholder.fill.crop' /* Crop option */,
+    'ly.img.placeholder.shape' /* Shape section */,
+    'ly.img.placeholder.shape.change' /* Change Shape option */,
+    'ly.img.placeholder.stroke' /* Stroke section */,
+    'ly.img.placeholder.stroke.change' /* Change Stroke option */,
+    'ly.img.placeholder.text' /* Text section */,
+    'ly.img.placeholder.text.edit' /* Edit Text option */,
+    'ly.img.placeholder.text.actAsPlaceholder' /* Act as Placeholder option */,
+    'ly.img.placeholder.text.character' /* Character option */,
     // 'ly.img.placeholder.appearance', /* Appearance section */
-    // 'ly.img.placeholder.appearance.adjustments', /* Adjustments option */
-    // 'ly.img.placeholder.appearance.filter', /* Filter option */
-    // 'ly.img.placeholder.appearance.effect', /* Effect option */
-    // 'ly.img.placeholder.appearance.blur', /* Blur option */
-    // 'ly.img.placeholder.appearance.shadow', /* Shadow option */
+    'ly.img.placeholder.appearance.adjustments' /* Adjustments option */,
+    'ly.img.placeholder.appearance.filter' /* Filter option */,
+    'ly.img.placeholder.appearance.effect' /* Effect option */,
+    'ly.img.placeholder.appearance.blur' /* Blur option */,
+    'ly.img.placeholder.appearance.shadow' /* Shadow option */,
     // 'ly.img.placeholder.appearance.animations', /* Animations option */
     // 'ly.img.preview', /* Preview button (Creator role only) */
     // #endregion

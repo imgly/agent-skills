@@ -142,7 +142,7 @@
 | [TextToggleUnderlineAction](./api/cesdk-js/type-aliases/texttoggleunderlineaction.md) | Action function for toggling underline on selected text. |
 | [TimelineCollapseAction](./api/cesdk-js/type-aliases/timelinecollapseaction.md) | Action function for collapsing the video timeline. |
 | [TimelineExpandAction](./api/cesdk-js/type-aliases/timelineexpandaction.md) | Action function for expanding the video timeline. |
-| [TimelineSetHeightAction](./api/cesdk-js/type-aliases/timelinesetheightaction.md) | Action function for setting the video timeline's height. |
+| [TimelineSetHeightAction](./api/cesdk-js/type-aliases/timelinesetheightaction.md) | Action function for setting the video timeline's height behaviour. |
 | [TimelineZoomInAction](./api/cesdk-js/type-aliases/timelinezoominaction.md) | Action function for zooming in the video timeline by one step. |
 | [TimelineZoomOutAction](./api/cesdk-js/type-aliases/timelinezoomoutaction.md) | Action function for zooming out the video timeline by one step. |
 | [TimelineZoomResetAction](./api/cesdk-js/type-aliases/timelinezoomresetaction.md) | Action function for resetting the video timeline zoom to default level (1.0). |
@@ -239,6 +239,7 @@
 | [TextAreaOptions](./api/cesdk-js/interfaces/textareaoptions.md) | Represents options for a text area. |
 | [TextInputOptions](./api/cesdk-js/interfaces/textinputoptions.md) | Represents options for a text input. |
 | [TextOptions](./api/cesdk-js/interfaces/textoptions.md) | Represents options for text. |
+| [TimelineHeightSettings](./api/cesdk-js/interfaces/timelineheightsettings.md) | Height settings for the video timeline. |
 | [Translations](./api/cesdk-js/interfaces/translations.md) | Complete translation type that includes both built-in and custom translations. |
 | [UILocationOptions](./api/cesdk-js/interfaces/uilocationoptions.md) | Location options for non-positional UI areas. |
 | [UpdateResult](./api/cesdk-js/interfaces/updateresult.md) | Result of an update operation on a single area. |

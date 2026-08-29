@@ -759,7 +759,7 @@ Export blocks to various formats like images, videos, and audio.
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `handle` | `number` | The design block element to export. Currently, only page blocks are supported. |
-  | `mimeType?` | [`VideoMimeType`](./api/engine/type-aliases/videomimetype.md) | The MIME type of the output video file. |
+  | `mimeType?` | `"video/mp4"` | The MIME type of the output video file. |
   | `progressCallback?` | (`numberOfRenderedFrames`, `numberOfEncodedFrames`, `totalNumberOfFrames`) => `void` | A callback which reports on the progress of the export. |
   | `options?` | `Omit`\<[`VideoExportOptions`](./api/engine/type-aliases/videoexportoptions.md), `"mimeType"` | `"onProgress"`> | The options for exporting the video, including h264 profile, level, bitrate, time offset, duration, framerate, target width and height. |
 
@@ -797,7 +797,7 @@ Export blocks to various formats like images, videos, and audio.
   ```
 
   ```typescript
-  exportVideo(handle: number, mimeType?: VideoMimeType, progressCallback?: (numberOfRenderedFrames: number, numberOfEncodedFrames: number, totalNumberOfFrames: number) => void, options?: Omit<VideoExportOptions, "mimeType" | "onProgress">): Promise<Blob>
+  exportVideo(handle: number, mimeType?: "video/mp4", progressCallback?: (numberOfRenderedFrames: number, numberOfEncodedFrames: number, totalNumberOfFrames: number) => void, options?: Omit<VideoExportOptions, "mimeType" | "onProgress">): Promise<Blob>
   ```
 
   ***

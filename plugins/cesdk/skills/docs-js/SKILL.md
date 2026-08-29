@@ -25,7 +25,7 @@ argument-hint: "[search-topic]"
 
 ## Version Notice
 
-> CE.SDK `1.82.0-nightly.20260826` · generated `2026-08-25` · plugin `cesdk`
+> CE.SDK `1.83.0-nightly.20260829` · generated `2026-08-28` · plugin `cesdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow

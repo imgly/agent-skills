@@ -3,19 +3,16 @@
 ---
 
 ```ts
-type TimelineSetHeightAction = (height) => void;
+type TimelineSetHeightAction = (settings) => void;
 ```
 
-Action function for setting the video timeline's height.
-
-A number fixes the timeline to that height in pixels. `'auto'` restores the
-default behaviour: the timeline grows and shrinks to hug its content.
+Action function for setting the video timeline's height behaviour.
 
 ## Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `height` | `number` | `"auto"` | The height in pixels, or `'auto'`. |
+| `settings` | [`TimelineHeightSettings`](./api/cesdk-js/interfaces/timelineheightsettings.md) | The height settings to apply. |
 
 ## Returns
 
@@ -25,9 +22,9 @@ default behaviour: the timeline grows and shrinks to hug its content.
 
 ```typescript
 // Fixed 320px timeline that does not grow with content.
-cesdk.actions.run('timeline.setHeight', 320);
-// Back to the default content-hugging behaviour.
-cesdk.actions.run('timeline.setHeight', 'auto');
+cesdk.actions.run('timeline.setHeight', { height: 320 });
+// Content-hugging behaviour, but never taller than 400px.
+cesdk.actions.run('timeline.setHeight', { height: 'auto', maxHeight: 400 });
 ```
 
 

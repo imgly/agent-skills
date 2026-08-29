@@ -136,7 +136,7 @@ and rebuilding its content as editable blocks with the Scene and Block APIs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-create-custom-importer)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/engine-guides-create-custom-importer)
 
 <EngineReferenceNote {...props} />
 

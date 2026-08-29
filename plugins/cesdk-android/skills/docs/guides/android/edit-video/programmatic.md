@@ -143,7 +143,7 @@ custom controls, or template-driven video output.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-nightly.20260826/engine-guides-create-video-edit-programmatic)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260829/engine-guides-create-video-edit-programmatic)
 
 <EngineReferenceNote {...props} />
 

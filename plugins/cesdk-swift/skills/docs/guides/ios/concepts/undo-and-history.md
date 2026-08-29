@@ -73,7 +73,7 @@ Manage undo and redo operations in CE.SDK programmatically, subscribe to history
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-undo-and-history)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/engine-guides-undo-and-history)
 
 CE.SDK automatically tracks editing operations, enabling users to undo and redo changes. The engine creates undo steps for most operations automatically. You can also create multiple independent history stacks to isolate editing contexts — for example, separate histories for a main canvas and an overlay editor.
 

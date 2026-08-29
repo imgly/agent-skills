@@ -140,7 +140,7 @@ editing permissions through the scopes mechanism.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-nightly.20260826/engine-guides-rules-overview)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/engine-guides-rules-overview)
 
 <EngineReferenceNote {...props} />
 

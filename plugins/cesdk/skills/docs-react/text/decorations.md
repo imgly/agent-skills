@@ -18,7 +18,7 @@ Add underline, strikethrough, and overline decorations to text blocks with confi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-decorations-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260826/examples/guides-text-decorations-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260829/examples/guides-text-decorations-browser/index.html)
 
 CE.SDK supports three types of text decorations: underline, strikethrough, and overline. We can toggle decorations on and off, customize them with different line styles, and apply them to specific character ranges. All active decoration lines share the same style and thickness settings.
 

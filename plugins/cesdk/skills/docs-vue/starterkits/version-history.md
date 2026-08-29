@@ -18,7 +18,7 @@ With Version History, you can monitor changes made to each design and easily res
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-version-history-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-nightly.20260826/examples/starterkit-version-history/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260829/examples/starterkit-version-history/index.html)
 
 ***
 
