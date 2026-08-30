@@ -36,5 +36,5 @@
   "name": "cesdk-android",
   "repository": "https://github.com/imgly/agent-skills",
   "skills": "./skills/",
-  "version": "1.83.0-nightly.20260829"
+  "version": "1.83.0-nightly.20260830"
 }

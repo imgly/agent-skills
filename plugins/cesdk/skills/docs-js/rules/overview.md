@@ -18,7 +18,7 @@ Learn how CE.SDK's rules system enforces design constraints and controls editing
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-rules-overview-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260829/examples/guides-rules-overview-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260830/examples/guides-rules-overview-browser/index.html)
 
 In CE.SDK, "rules" refer to design constraints and guardrails that control what editing operations are permitted. The primary mechanism for enforcing rules is the **scopes system**—permission flags that enable you to create guided editing experiences maintaining brand consistency, ensuring design quality, and preventing unauthorized modifications.
 

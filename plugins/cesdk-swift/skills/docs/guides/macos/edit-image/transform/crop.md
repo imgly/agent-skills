@@ -80,7 +80,7 @@ CE.SDK has built-in crop presets as part of the default asset sources. You can a
 ```swift
 let engine = Engine()
 let cropPresetsURL = URL(
-  string: "https://cdn.img.ly/packages/imgly/cesdk-swift/1.83.0-nightly.20260829/assets/ly.img.crop.presets/content.json"
+  string: "https://cdn.img.ly/packages/imgly/cesdk-swift/1.83.0-nightly.20260830/assets/ly.img.crop.presets/content.json"
 )!
 try await engine.asset.addLocalAssetSourceFromJSON(cropPresetsURL)
 ```

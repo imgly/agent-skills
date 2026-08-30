@@ -186,7 +186,7 @@ colors reusable as engine assets.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260829/editor-guides-configuration-color-palette)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260830/editor-guides-configuration-color-palette)
 
 <EngineReferenceNote {...props} />
 

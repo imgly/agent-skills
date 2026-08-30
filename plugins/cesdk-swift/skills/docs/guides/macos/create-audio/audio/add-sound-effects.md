@@ -10,7 +10,7 @@ Generate sound effects programmatically using buffers with arbitrary audio data.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/engine-guides-create-audio-add-sound-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830/engine-guides-create-audio-add-sound-effects)
 
 CE.SDK lets you create audio from code using buffers. This approach generates sound effects dynamically without external files — useful for notification tones, procedural audio, or any scenario where you need to synthesize audio at runtime.
 

@@ -10,7 +10,7 @@ Build completely custom UIs by driving CE.SDK's Swift engine directly from Swift
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/engine-guides-user-interface-build-your-own-ui)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830/engine-guides-user-interface-build-your-own-ui)
 
 When you need complete control over the editing experience, the headless engine lets you build entirely custom interfaces. You initialize the engine directly and pair it with your own controls, panels, and workflows that match your application's design system.
 

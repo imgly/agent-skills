@@ -55,7 +55,7 @@ editable scenes directly from images and videos.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/engine-guides-import-design)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830/engine-guides-import-design)
 
 <EngineReferenceNote {...props} />
 

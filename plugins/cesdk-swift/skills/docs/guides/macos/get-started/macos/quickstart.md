@@ -151,7 +151,7 @@ This guide walks you through integrating the CE.SDK Engine into a brand-new macO
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830)
 
 ## Requirements
 
@@ -338,7 +338,7 @@ The engine renders into a Metal view. Initialize the engine with `try await Engi
   </TabItem>
 </Tabs>
 
-The example reads the license from a small `secrets` helper the guides repository ships ([source](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260829/secrets/Secrets.swift)); replace `secrets.licenseKey` with your own CE.SDK license key string, or pass `nil` for evaluation mode with a watermark. Because `Engine` is `@MainActor`-isolated, the compiler enforces that every engine call runs on the main thread.
+The example reads the license from a small `secrets` helper the guides repository ships ([source](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260830/secrets/Secrets.swift)); replace `secrets.licenseKey` with your own CE.SDK license key string, or pass `nil` for evaluation mode with a watermark. Because `Engine` is `@MainActor`-isolated, the compiler enforces that every engine call runs on the main thread.
 
 Now Build and Run. The engine renders your page with the "Hello, CE.SDK!" text on the canvas.
 

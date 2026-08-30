@@ -128,7 +128,7 @@ Customize the editor’s icons by passing Compose `ImageVector` values to editor
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260829/editor-guides-appearance-icons)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260830/editor-guides-appearance-icons)
 
 The Android editor UI renders icons through Jetpack Compose. Use built-in `IconPack` vectors for common editor actions, or convert your own SVGs into `ImageVector` properties and pass them to component builders.
 

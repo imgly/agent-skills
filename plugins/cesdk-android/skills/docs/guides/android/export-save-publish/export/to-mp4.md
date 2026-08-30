@@ -254,7 +254,7 @@ and configurable bitrate and resolution.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260829/engine-guides-export-to-mp4)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260830/engine-guides-export-to-mp4)
 
 <EngineReferenceNote {...props} />
 

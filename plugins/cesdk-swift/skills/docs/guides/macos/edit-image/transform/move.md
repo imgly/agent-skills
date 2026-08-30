@@ -109,7 +109,7 @@ Position images on the canvas using absolute pixel coordinates or percentage-bas
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260829/engine-guides-edit-image-transform-move)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830/engine-guides-edit-image-transform-move)
 
 <EngineReferenceNote {...props} />
 
