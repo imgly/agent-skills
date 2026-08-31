@@ -18,7 +18,7 @@ Control which editor features are available to users using the Feature API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260830/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260831/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
 
 The Feature API provides global control over feature visibility throughout the editor. Use it to hide delete buttons from certain users, disable crop controls based on context, or conditionally enable features based on user roles or selection state. Unlike the Component Order API which targets specific components in specific areas, the Feature API affects features everywhere in the editor at once.
 

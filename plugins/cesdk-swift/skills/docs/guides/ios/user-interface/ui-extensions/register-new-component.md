@@ -114,11 +114,11 @@ Build a custom UI component once and add it to the editor's dock, inspector bar,
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830/editor-guides-ui-extensions-register-new-component)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/editor-guides-ui-extensions-register-new-component)
 
 Custom components are typed values you add to the editor's UI areas on the `EditorConfiguration` builder. You instantiate a component (a predefined button, a customized button, a new `Dock.Button`, or a fully custom item) inside the area's builder closure. This guide teaches the component model and how to reuse one component across more than one area. For the full item lists and built-in buttons of each area, see the [Dock](../customization/dock.md), [Inspector Bar](../customization/inspector-bar.md), [Navigation Bar](../customization/navigation-bar.md), and [Canvas Menu](../customization/canvas-menu.md) guides.
 
-The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260830/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the area builders are available on every configuration. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
+The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260831/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the area builders are available on every configuration. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 
 ## The Component Model
 

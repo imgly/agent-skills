@@ -143,7 +143,7 @@ using CreativeEngine block APIs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260830/engine-guides-programmatic-animations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260831/engine-guides-programmatic-animations)
 
 <EngineReferenceNote {...props} />
 

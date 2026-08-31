@@ -10,7 +10,7 @@ Save and serialize designs in CE.SDK for later retrieval, sharing, or storage us
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830/engine-guides-save-designs)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/engine-guides-save-designs)
 
 CE.SDK provides two formats for persisting designs. Choose the format based on your storage and portability requirements.
 

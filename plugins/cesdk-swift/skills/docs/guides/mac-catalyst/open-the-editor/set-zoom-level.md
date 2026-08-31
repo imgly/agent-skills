@@ -103,7 +103,7 @@ the camera, and react to zoom changes — all through the Engine `scene` API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830/engine-guides-set-zoom-level)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/engine-guides-set-zoom-level)
 
 <EngineReferenceNote {...props} />
 

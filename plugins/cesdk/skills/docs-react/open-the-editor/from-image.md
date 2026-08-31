@@ -19,7 +19,7 @@ dimensions matching the source image for seamless image editing workflows.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-from-image-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260830/examples/guides-open-the-editor-from-image-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260831/examples/guides-open-the-editor-from-image-browser/index.html)
 
 Starting from an existing image allows you to use the editor for customizing individual assets. The `engine.scene.createFromImage()` method fetches the image, creates a scene with matching dimensions, and sets up pixel-based design units. This differs from loading a saved scene file, as you're creating new editable content from raw image data.
 

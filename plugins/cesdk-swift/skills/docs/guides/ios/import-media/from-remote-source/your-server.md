@@ -251,7 +251,7 @@ integrate a CMS, DAM, or custom asset management system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830/engine-guides-import-media-from-remote-source-your-server)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/engine-guides-import-media-from-remote-source-your-server)
 
 <EngineReferenceNote {...props} />
 

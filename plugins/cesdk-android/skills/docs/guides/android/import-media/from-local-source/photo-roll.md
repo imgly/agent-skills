@@ -114,7 +114,7 @@ with the system photo picker or in-app device gallery browsing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260830/editor-guides-import-media-from-local-source-photo-roll)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260831/editor-guides-import-media-from-local-source-photo-roll)
 
 <EngineReferenceNote {...props} />
 

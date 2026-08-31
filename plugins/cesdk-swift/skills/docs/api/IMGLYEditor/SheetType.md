@@ -187,6 +187,14 @@ static func textOnPath(style: SheetStyle = .only(detent: .imgly.tiny)) -> Self
 
 Creates a [`SheetType`](../sheettype.md) that is used to control placing text along an SVG baseline path. `style`
 
+### transition(style:id:)
+
+```swift
+static func transition(style: SheetStyle = .only(detent: .imgly.small), id: DesignBlockID) -> Self
+```
+
+Creates a sheet for configuring the outgoing transition of `id`.
+
 ### voiceover(style:)
 
 ```swift

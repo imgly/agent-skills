@@ -111,7 +111,9 @@ struct CustomPanelSolution: View {
 }
 ```
 
-A panel is a UI layer that displays above the canvas and lets the user perform a scoped task such as picking an asset, adjusting a filter, or running a custom action.
+A panel is a UI layer that displays above the canvas and lets the user perform
+a scoped task such as picking an asset, adjusting a filter, or running a
+custom action.
 
 ![Panel on iOS](https://img.ly/docs/cesdk/ios/user-interface/customization/panel-7ce1ee/assets/ios.hero.webp)
 
@@ -119,7 +121,7 @@ A panel is a UI layer that displays above the canvas and lets the user perform a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830/editor-guides-configuration-panel)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/editor-guides-configuration-panel)
 
 In CE.SDK on iOS, panels are implemented as sheets — non-modal overlays presented above the canvas. The editor ships with a set of built-in sheet types that cover the most common editing tasks, and you can also present your own SwiftUI content as a custom sheet. The same calls apply regardless of the editor configuration your app extends.
 
@@ -166,11 +168,11 @@ context.eventHandler.send(.openSheet(
 
 The `style` parameter accepts a `SheetStyle`. These are the parameters available on the `.default(isFloating:detent:detents:)` factory and what they change:
 
-| Parameter    | Default Value                   | Description                                                                                                                                                                                                                                       |
-| ------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `isFloating` | `false`                         | Whether the sheet floats over the canvas. When `true` the sheet covers the editor's canvas and its content; when `false` the canvas zooms to adjust for the sheet so that its content is not covered.                                             |
-| `detent`     | `.imgly.medium`                 | The initial detent of the sheet. The value must match one of the detents provided to `detents`.                                                                                                                                                   |
-| `detents`    | `[.imgly.medium, .imgly.large]` | The set of supported detents. If you provide more than one detent, users can drag the sheet to resize it between them.                                                                                                                            |
+| Parameter    | Default Value                   | Description                                                                                                                                                                                           |
+| ------------ | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isFloating` | `false`                         | Whether the sheet floats over the canvas. When `true` the sheet covers the editor's canvas and its content; when `false` the canvas zooms to adjust for the sheet so that its content is not covered. |
+| `detent`     | `.imgly.medium`                 | The initial detent of the sheet. The value must match one of the detents provided to `detents`.                                                                                                       |
+| `detents`    | `[.imgly.medium, .imgly.large]` | The set of supported detents. If you provide more than one detent, users can drag the sheet to resize it between them.                                                                                |
 
 `SheetStyle` also exposes `.only(isFloating:detent:)` for a single fixed height and `.addAsset(detent:detents:)` for the floating asset-library style.
 
@@ -178,26 +180,27 @@ The `style` parameter accepts a `SheetStyle`. These are the parameters available
 
 The editor provides several built-in sheet types for common editing tasks:
 
-| Sheet Type Call             | Required Parameters             | Description                                                                 |
-| --------------------------- | ------------------------------- | --------------------------------------------------------------------------- |
-| `.libraryAdd(content:)`     | `content` (`() -> any View`)    | Add assets from the configured asset library; pass any SwiftUI view as content |
-| `.libraryReplace(content:)` | `content` (`() -> any View`)    | Replace assets from the configured asset library; pass any SwiftUI view as content |
-| `.voiceover()`              | —                               | Record voiceover audio                                                      |
-| `.reorder()`                | —                               | Reorder videos on the background track                                      |
-| `.adjustments(id:)`         | `id` (DesignBlockID)            | Make adjustments to design blocks with image and video fills                |
-| `.filter(id:)`              | `id` (DesignBlockID)            | Set filters on design blocks with image and video fills                     |
-| `.effect(id:)`              | `id` (DesignBlockID)            | Set effects on design blocks with image and video fills                     |
-| `.blur(id:)`                | `id` (DesignBlockID)            | Set blurs on design blocks with image and video fills                       |
-| `.crop(id:)`                | `id` (DesignBlockID)            | Crop design blocks with image and video fills                               |
-| `.resize()`                 | —                               | Resize pages                                                                |
-| `.layer()`                  | —                               | Control the layering of design blocks                                       |
-| `.formatText()`             | —                               | Control formatting of text blocks                                           |
-| `.shape()`                  | —                               | Control the shape of various blocks                                         |
-| `.fillStroke()`             | —                               | Control the fill and/or stroke of various blocks                            |
-| `.volume()`                 | —                               | Control the volume of audio and video                                       |
-| `.clipSpeed()`              | —                               | Control playback speed of clips                                             |
-| `.textBackground()`         | —                               | Control text background properties                                          |
-| `.animation()`              | —                               | Configure in, out, and loop animations on design blocks                     |
+| Sheet Type Call             | Required Parameters          | Description                                                                        |
+| --------------------------- | ---------------------------- | ---------------------------------------------------------------------------------- |
+| `.libraryAdd(content:)`     | `content` (`() -> any View`) | Add assets from the configured asset library; pass any SwiftUI view as content     |
+| `.libraryReplace(content:)` | `content` (`() -> any View`) | Replace assets from the configured asset library; pass any SwiftUI view as content |
+| `.voiceover()`              | —                            | Record voiceover audio                                                             |
+| `.reorder()`                | —                            | Reorder videos on the background track                                             |
+| `.adjustments(id:)`         | `id` (DesignBlockID)         | Make adjustments to design blocks with image and video fills                       |
+| `.filter(id:)`              | `id` (DesignBlockID)         | Set filters on design blocks with image and video fills                            |
+| `.effect(id:)`              | `id` (DesignBlockID)         | Set effects on design blocks with image and video fills                            |
+| `.blur(id:)`                | `id` (DesignBlockID)         | Set blurs on design blocks with image and video fills                              |
+| `.crop(id:)`                | `id` (DesignBlockID)         | Crop design blocks with image and video fills                                      |
+| `.resize()`                 | —                            | Resize pages                                                                       |
+| `.layer()`                  | —                            | Control the layering of design blocks                                              |
+| `.formatText()`             | —                            | Control formatting of text blocks                                                  |
+| `.shape()`                  | —                            | Control the shape of various blocks                                                |
+| `.fillStroke()`             | —                            | Control the fill and/or stroke of various blocks                                   |
+| `.volume()`                 | —                            | Control the volume of audio and video                                              |
+| `.clipSpeed()`              | —                            | Control playback speed of clips                                                    |
+| `.textBackground()`         | —                            | Control text background properties                                                 |
+| `.animation()`              | —                            | Configure in, out, and loop animations on design blocks                            |
+| `.transition(id:)`          | `id` (`DesignBlockID`)       | Configure the transition from an outgoing clip to its next eligible clip           |
 
 ## Full source code
 
@@ -320,9 +323,12 @@ struct CustomPanelSolution: View {
 
 ## Next Steps
 
-- [Inspector Bar](./inspector-bar.md) — Customize the inspector bar for editing properties.
-- [Create a Custom Panel](../ui-extensions/create-custom-panel.md) — Build a property editor panel with native SwiftUI controls.
-- [Asset Library](../../import-media/asset-library.md) — Configure which assets appear in library panels
+- [Inspector Bar](./inspector-bar.md) — Customize the inspector bar for editing
+  properties.
+- [Create a Custom Panel](../ui-extensions/create-custom-panel.md) — Build a property editor panel
+  with native SwiftUI controls.
+- [Asset Library](../../import-media/asset-library.md) — Configure which assets appear in library
+  panels
 
 
 

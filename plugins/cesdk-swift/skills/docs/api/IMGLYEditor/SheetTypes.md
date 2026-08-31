@@ -171,6 +171,14 @@ struct TextOnPath
 
 A sheet that is used to control placing text along an SVG baseline path.
 
+### SheetTypes.Transition
+
+```swift
+struct Transition
+```
+
+A sheet that is used to configure a transition owned by an outgoing clip.
+
 ### SheetTypes.Voiceover
 
 ```swift
@@ -332,6 +340,14 @@ let style: SheetStyle
 The style of the sheet.
 
 ### TextOnPath.style
+
+```swift
+let style: SheetStyle
+```
+
+The style of the sheet.
+
+### Transition.style
 
 ```swift
 let style: SheetStyle

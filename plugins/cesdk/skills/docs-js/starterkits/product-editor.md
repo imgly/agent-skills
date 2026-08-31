@@ -18,7 +18,7 @@ Product Editor for customizing any product with print-ready designs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/starterkit-product-editor-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260830/examples/starterkit-product-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260831/examples/starterkit-product-editor/index.html)
 
 ***
 

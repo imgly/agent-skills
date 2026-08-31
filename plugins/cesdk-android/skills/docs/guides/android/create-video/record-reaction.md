@@ -180,11 +180,11 @@ reaction clips into an editable picture-in-picture video scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260830/editor-guides-record-reaction)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260831/editor-guides-record-reaction)
 
 <EngineReferenceNote {...props} />
 
-Reaction mode is a camera workflow. Before launching it, add the `implementation "ly.img:camera:1.83.0-nightly.20260830"` dependency to your application module and complete [Integrate Mobile Camera](../import-media/capture-from-camera/integrate.md).
+Reaction mode is a camera workflow. Before launching it, add the `implementation "ly.img:camera:1.83.0-nightly.20260831"` dependency to your application module and complete [Integrate Mobile Camera](../import-media/capture-from-camera/integrate.md).
 
 CE.SDK returns the original video and the recorded reaction segments; your app then places those assets in the video editor.
 

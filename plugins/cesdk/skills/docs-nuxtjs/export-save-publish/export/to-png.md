@@ -18,7 +18,7 @@ Export your designs as PNG images with full transparency support and configurabl
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-png-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260830/examples/guides-export-save-publish-export-to-png-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260831/examples/guides-export-save-publish-export-to-png-browser/index.html)
 
 PNG (Portable Network Graphics) provides lossless compression with full alpha channel support. It's ideal for web graphics, UI elements, and content requiring crisp edges or transparency.
 

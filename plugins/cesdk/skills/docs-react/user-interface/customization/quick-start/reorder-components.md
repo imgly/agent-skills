@@ -18,7 +18,7 @@ Rearrange UI components using `getComponentOrder()` to inspect the current layou
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-quick-start-reorder-components-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260830/examples/guides-user-interface-customization-quick-start-reorder-components-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260831/examples/guides-user-interface-customization-quick-start-reorder-components-browser/index.html)
 
 The Component Order API lets you customize the layout of all five UI areas by getting and setting the component order array. Each area maintains an ordered list of components that determines their visual arrangement.
 

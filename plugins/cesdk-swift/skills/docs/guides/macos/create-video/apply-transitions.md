@@ -141,7 +141,7 @@ Blend adjacent video clips into each other with clip-to-clip transitions such as
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260830/engine-guides-apply-transitions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/engine-guides-apply-transitions)
 
 <EngineReferenceNote {...props} />
 
@@ -324,7 +324,6 @@ Removing from a clip without an assigned transition is a no-op.
 - **Fades**: `.fade`, `.fadeToBlack`, `.fadeToWhite`, `.gradientFade`
 - **Wipes**: `.wipe`, `.lineWipe`, `.clockWipe`, `.colorWipe`
 - **Patterns**: `.chop`, `.twoStripes`
-- **None**: `.none`
 
 ## Troubleshooting
 
