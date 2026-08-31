@@ -287,7 +287,7 @@ The canvas menu is the floating toolbar that appears next to a selected design b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/editor-guides-configuration-canvas-menu)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-rc.0/editor-guides-configuration-canvas-menu)
 
 ## Canvas Menu Architecture
 
@@ -528,9 +528,9 @@ The predefined buttons live in the `CanvasMenu.Button` namespace. Most predefine
 
 | Button | ID constant | Default behavior |
 | --- | --- | --- |
-| `CanvasMenu.Button.rememberBringForward()` | `CanvasMenu.Button.Id.bringForward` | Brings the selected block forward when layer movement is possible. |
-| `CanvasMenu.Button.rememberSendBackward()` | `CanvasMenu.Button.Id.sendBackward` | Sends the selected block backward when layer movement is possible. |
-| `CanvasMenu.Button.rememberDuplicate()` | `CanvasMenu.Button.Id.duplicate` | Duplicates the selected block when its `lifecycle/duplicate` scope is allowed. |
+| `CanvasMenu.Button.rememberBringForward()` | `CanvasMenu.Button.Id.bringForward` | Brings the selected block forward when layer movement is possible. Captions always render above the page, so layer movement is never possible for one. |
+| `CanvasMenu.Button.rememberSendBackward()` | `CanvasMenu.Button.Id.sendBackward` | Sends the selected block backward when layer movement is possible. Captions always render above the page, so layer movement is never possible for one. |
+| `CanvasMenu.Button.rememberDuplicate()` | `CanvasMenu.Button.Id.duplicate` | Duplicates the selected block when its `lifecycle/duplicate` scope is allowed. Hidden for a caption, whose copy would land outside the caption track. |
 | `CanvasMenu.Button.rememberDelete()` | `CanvasMenu.Button.Id.delete` | Deletes the selected block when its `lifecycle/destroy` scope is allowed. |
 | `CanvasMenu.Button.rememberSelectGroup()` | `CanvasMenu.Button.Id.selectGroup` | Selects the group that contains the selected block. |
 

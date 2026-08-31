@@ -55,7 +55,7 @@ Record the user while a video plays with the IMGLY Mobile Camera in reaction mod
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/camera-guides-record-reaction)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-rc.0/camera-guides-record-reaction)
 
 This guide uses the IMGLY Mobile Camera in reaction mode. For adding the camera to your app, presenting it, and the `Info.plist` permission keys it requires, see [Integrate Mobile Camera](./integrate.md); for the full set of camera options, see [Mobile Camera Configuration](./camera-configuration.md). To compose the returned recordings into an editable picture-in-picture video scene, continue with [Record Reaction](../../create-video/record-reaction.md) in the video-creation guides.
 

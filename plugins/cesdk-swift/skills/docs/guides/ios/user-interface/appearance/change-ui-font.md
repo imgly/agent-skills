@@ -97,7 +97,7 @@ Switch the editor's UI font design to match your application's visual style.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/editor-guides-change-ui-font)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-rc.0/editor-guides-change-ui-font)
 
 ## Overview
 

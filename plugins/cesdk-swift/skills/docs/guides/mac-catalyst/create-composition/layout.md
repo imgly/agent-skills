@@ -132,7 +132,7 @@ Create structured compositions using stack layouts that automatically arrange pa
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/engine-guides-layout)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-rc.0/engine-guides-layout)
 
 Stack layouts arrange pages automatically with consistent spacing. Vertical stacks arrange pages top-to-bottom, while horizontal stacks arrange them left-to-right. This eliminates manual positioning for compositions like photo collages, product catalogs, or social media carousels.
 
@@ -174,6 +174,10 @@ Vertical stacks arrange pages from top to bottom. Create a scene with `.vertical
 ```
 
 When you create a scene with `.verticalStack`, CE.SDK automatically adds a stack container. Pages appended to this container position themselves with the configured spacing. The `stack/spacingInScreenspace` property keeps spacing visually consistent at any zoom level.
+
+The distinction applies to the canvas preview only. Exports always interpret the spacing in design units, whatever the property is set to.
+
+Switching the property never converts the number. A spacing of `40` stays `40` and is reinterpreted in the other space, which changes how far apart the pages appear.
 
 ## Add Blocks to Pages
 

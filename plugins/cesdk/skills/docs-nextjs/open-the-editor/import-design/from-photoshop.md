@@ -16,7 +16,7 @@ Import Adobe Photoshop (PSD) files into CE.SDK, converting them into editable sc
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-import-design-from-photoshop-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1-rc.0/examples/guides-open-the-editor-import-design-from-photoshop-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-rc.0/examples/guides-open-the-editor-import-design-from-photoshop-browser/index.html)
 
 ![Import from Photoshop](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 

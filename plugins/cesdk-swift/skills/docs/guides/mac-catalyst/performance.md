@@ -77,6 +77,15 @@ func performance(engine: Engine) async throws {
   )
   let blob = try await engine.block.export(page, mimeType: .jpeg, options: options)
   _ = blob
+
+  // Stream a multi-page PDF into a file instead of building it in memory. Peak
+  // memory then tracks a single page rather than the size of the document.
+  guard let scene = try engine.scene.get() else { return }
+  try await engine.block.export(
+    scene,
+    to: FileManager.default.temporaryDirectory.appendingPathComponent("design.pdf"),
+    mimeType: .pdf,
+  )
 }
 ```
 
@@ -91,7 +100,7 @@ This guide covers source sets for large assets, memory monitoring with the edito
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/engine-guides-performance)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-rc.0/engine-guides-performance)
 
 <EngineReferenceNote {...props} />
 
@@ -179,6 +188,23 @@ let blob = try await engine.block.export(page, mimeType: .jpeg, options: options
 | `pngCompressionLevel` | `Int` | PNG compression `0–9`. Higher values produce smaller files but take longer to encode. Defaults to `5`. |
 | `webpQuality` | `Float` | WebP quality in the range `(0, 1]`. Defaults to `1.0`. |
 
+### Stream Large PDF Exports
+
+`engine.block.export(_:mimeType:options:)` builds the entire document in memory and returns it as a `Blob`. For a large multi-page PDF such as a photo book or a magazine, that buffer becomes the peak allocation and is a common source of out-of-memory crashes on mid-range devices. The `engine.block.export(_:to:mimeType:options:onProgress:)` overload writes the bytes into a file as they are encoded, so peak memory tracks the working set of a single page instead of the page count.
+
+```swift highlight-performance-streamedPdf
+// Stream a multi-page PDF into a file instead of building it in memory. Peak
+// memory then tracks a single page rather than the size of the document.
+guard let scene = try engine.scene.get() else { return }
+try await engine.block.export(
+  scene,
+  to: FileManager.default.temporaryDirectory.appendingPathComponent("design.pdf"),
+  mimeType: .pdf,
+)
+```
+
+Streamed export only supports `MIMEType.pdf`. The chunks are handed over synchronously while the encoder runs, so a slow destination throttles the encoder rather than letting chunks accumulate in memory. The bytes go into a staging file and replace the destination only once the document is complete, so a failed or cancelled export leaves a file that is already at that location untouched. See [Export to PDF](./export-save-publish/export/to-pdf.md) for the full API, including the overload that hands the chunks to a closure instead of a file.
+
 ### Export Size Limits
 
 Different devices support different maximum export sizes. Call `getMaxExportSize()` to read the device's upper bound in pixels and validate page dimensions before kicking off a large export.
@@ -229,7 +255,7 @@ Monitor memory with `getUsedMemory()` and `getAvailableMemory()` and react when 
 
 ### Export hangs or fails
 
-Validate page dimensions against `getMaxExportSize()` before exporting and lower `targetWidth` / `targetHeight` for large designs. For persistent failures, reduce `maxImageSize` so newly loaded textures stay within memory budgets.
+Validate page dimensions against `getMaxExportSize()` before exporting and lower `targetWidth` / `targetHeight` for large designs. For persistent failures, reduce `maxImageSize` so newly loaded textures stay within memory budgets. When a multi-page PDF export runs out of memory, switch to the `export(_:to:mimeType:options:onProgress:)` overload so the document is written out as it is encoded rather than buffered in full.
 
 ### Slow asset loading
 
@@ -246,6 +272,7 @@ Use a CDN-hosted `basePath` or pre-cache asset files alongside your app bundle. 
 | `engine.editor.getMaxExportSize()` | Get the maximum export edge length in pixels |
 | `engine.block.setSourceSet(_:property:sourceSet:)` | Provide multiple resolutions of an image or video |
 | `engine.block.export(_:mimeType:options:)` | Export a block with configurable size and quality |
+| `engine.block.export(_:to:mimeType:options:onProgress:)` | Export a PDF into a file as it is encoded, bounding peak memory for large multi-page documents |
 
 ## Next Steps
 

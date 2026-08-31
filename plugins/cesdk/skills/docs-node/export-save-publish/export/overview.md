@@ -4,7 +4,7 @@
 
 ---
 
-Export your designs to multiple formats including PNG, JPEG, WebP, SVG, and PDF.
+Export your designs to multiple formats including PNG, JPEG, WebP, SVG, PDF and — with the native Node.js package — MP4 video.
 CE.SDK handles all export processing entirely on the server side, giving you
 fine-grained control over format-specific options like compression, quality,
 and target dimensions.
@@ -209,6 +209,7 @@ CE.SDK supports exporting scenes, pages, groups, or individual blocks in these f
 | TGA    | `image/x-tga`              | Yes            | Image pipelines that require TGA files            |
 | PDF    | `application/pdf`          | Partial        | Print, documents                                  |
 | Binary | `application/octet-stream` | Yes            | Raw data processing                               |
+| MP4    | `video/mp4`                | No             | Video export (native `@cesdk/node-native` package only, via `exportVideo()`) |
 
 Each format serves different purposes. PNG preserves transparency and works well for graphics with sharp edges or text. JPEG compresses photographs efficiently but drops transparency. WebP provides excellent compression with optional lossless mode. SVG produces scalable vector output ideal for web embedding and post-processing with standard SVG tooling. PDF preserves vector information for print workflows.
 

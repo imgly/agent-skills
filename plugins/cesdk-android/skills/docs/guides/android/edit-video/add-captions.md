@@ -130,13 +130,13 @@ Add synchronized captions to video scenes with CE.SDK's caption tracks, caption 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/engine-guides-captions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-rc.0/engine-guides-captions)
 
 <EngineReferenceNote {...props} />
 
 Captions in CE.SDK use the same block hierarchy as other video content: a page contains a video track and a caption track, and the caption track contains caption blocks. Each caption block stores text, a time offset, a duration, and styling properties.
 
-This guide focuses on the Android Engine APIs. The sample adds a video clip, overlays captions, and exports the page. If your Android app needs caption-specific controls, wire your own UI to these APIs and keep the scene hierarchy shown below.
+This guide focuses on the Android Engine APIs. The sample adds a video clip, overlays captions, and exports the page. To let users author captions in the editor UI instead — a dock button, the captions sheet, style presets, and a timeline caption lane — see [Edit Captions](./edit-captions.md).
 
 ## Creating a Video Scene
 
@@ -378,6 +378,7 @@ The export callback reports render and encode progress. Changes made after expor
 
 ## Next Steps
 
+- [Edit Captions](./edit-captions.md) — Let users create, import, edit, and style captions in the editor UI
 - [Trim](./trim.md) — Documentation for Trim
 - [Join and Arrange Video Clips](./join-and-arrange.md) - Combine multiple video clips into sequences and organize them on the timeline using tracks and time offsets in CE.SDK.
 - [Video Timeline Overview](../create-video/timeline-editor.md) - Use the timeline editor to arrange and edit video clips, audio, and animations frame by frame.

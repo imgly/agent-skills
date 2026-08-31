@@ -7,7 +7,7 @@
 Optimize CE.SDK integration for faster startup, efficient memory usage, and
 reliable performance in Node.js server environments.
 
-The `@cesdk/node` package provides full CreativeEngine functionality for server-side processing. Optimizing how you load, use, and dispose of the engine improves throughput and resource efficiency in production environments.
+The `@cesdk/node` (WASM) and `@cesdk/node-native` (native) packages provide full CreativeEngine functionality for server-side processing. Optimizing how you load, use, and dispose of the engine improves throughput and resource efficiency in production environments.
 
 This guide covers code splitting for serverless environments, memory monitoring for long-running processes, export timeout configuration, and proper lifecycle management patterns.
 
@@ -239,6 +239,12 @@ process.on('SIGTERM', async () => {
 ```
 
 ## Serverless Considerations
+
+> **Note:** This section applies to the WASM-based `@cesdk/node` package. The native
+> `@cesdk/node-native` package does not support AWS Lambda or other serverless
+> runtimes with an older glibc (it needs glibc 2.39 or later) — run it on a
+> regular server or container instead. Its main performance knob is the
+> `device` (`'auto' | 'gpu' | 'cpu'`) configuration option.
 
 Serverless environments have specific constraints that affect CE.SDK performance:
 

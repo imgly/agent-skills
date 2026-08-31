@@ -19,7 +19,7 @@ backgrounds with videos using CE.SDK's video fill system.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-fills-video-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1-rc.0/examples/guides-fills-video-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-rc.0/examples/guides-fills-video-browser/index.html)
 
 Understanding the distinction between **video fills** and **video blocks** is essential. Video fills are fill objects that can be applied to blocks supporting fills, such as graphic shapes and pages, to paint them with video content. Video blocks, created with `addVideo()`, are dedicated time-based blocks with full editing capabilities like trimming and duration control. Video fills focus on applying video as a visual treatment, while video blocks provide complete video editing functionality.
 
@@ -619,7 +619,7 @@ Limit the number of simultaneously playing videos, especially on mobile devices.
 | `isFillEnabled(block)`                    | Check if fill is enabled         |
 | `supportsFill(block)`                     | Check if block supports fills    |
 | `forceLoadAVResource(fill)`               | Force load video metadata        |
-| `getVideoFillThumbnail(fill, height)`     | Get single thumbnail frame       |
+| `generateVideoThumbnailSequence(fill, height, timeBegin, timeEnd, numberOfFrames, onFrame)` | Stream preview frames from the fill (see [Thumbnail Previews](./export-save-publish/thumbnail-previews.md)) |
 | `adjustCropToFillFrame(block, fillIndex)` | Adjust crop to fill frame        |
 
 ### Video Fill Properties

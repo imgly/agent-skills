@@ -18,7 +18,7 @@ Register custom UI components using CE.SDK's builder system and place them in di
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-register-new-component-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1-rc.0/examples/guides-user-interface-ui-extensions-register-new-component-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-rc.0/examples/guides-user-interface-ui-extensions-register-new-component-browser/index.html)
 
 The builder system provides a declarative API for creating UI components that integrate with CE.SDK. Components registered via `cesdk.ui.registerComponent()` receive a render function that is automatically re-invoked when relevant engine state changes, enabling reactive UIs without manual subscription management. You can create buttons, dropdowns, inputs, and other UI elements that react to engine state changes.
 
@@ -362,9 +362,10 @@ Not every location supports every builder component yet. The following table sho
 | `builder.Checkbox`    | Toggle checkbox control. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **inputLabel**: Checkbox label.<br /> **truncateLabel**: Truncate the label with an ellipsis when it overflows (default: `false`). |
 | `builder.Select`      | Dropdown select with options. | **value**: Current selection object.<br /> **setValue**: Change handler.<br /> **values**: Array of option objects with `id`, `label`, and optional `icon`.<br /> **searchable**: When `true`, adds a search input that filters the dropdown options by label.<br /> **searchPlaceholder**: Placeholder text for the search input. |
 | `builder.TextInput`   | Text input field. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **placeholder**: Placeholder text. |
-| `builder.NumberInput` | Numeric input field. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **min/max**: Range limits. |
+| `builder.NumberInput` | Numeric input field. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **min/max/step**: Range configuration.<br /> **showStepper**: Adds decrement and increment buttons inside the field that move the value by `step` and repeat while held (default: `false`). |
 | `builder.Slider`      | Numeric range slider. | **value**: Current value.<br /> **setValue**: Change handler.<br /> **min/max/step**: Range configuration. |
-| `builder.Spinner`     | Indeterminate loading spinner. Only supported in registered panels. | **label**: Optional caption rendered beneath the spinner (supports i18n keys). |
+| `builder.Spinner`     | Indeterminate loading spinner. Only supported in panels, and in a component a panel renders through `builder.Component()`. | **label**: Optional caption rendered beneath the spinner (supports i18n keys). |
+| `builder.Tabs`        | A tab bar that switches between alternating views. Only supported in panels, and in a component a panel renders through `builder.Component()`. | **tabs**: Array of tab objects. Each takes a required `id` plus an optional `label`, `icon`, `tooltip`, `isDisabled`, `isActive` (draws an indicator below the icon) and `children` (only the selected tab renders its content).<br /> **value**: The `id` of the selected tab.<br /> **setValue**: Change handler.<br /> **inputLabel**: Names the tab bar on screen and for assistive technology.<br /> **isDisabled**: Disables the whole bar. |
 | `builder.Section`     | Container for grouping related controls. | **children**: Function to render section contents. |
 
 ## Managing Component State
@@ -514,6 +515,7 @@ Check that the location parameter in `setComponentOrder()` matches the UI area. 
 | `builder.NumberInput()` | Builder | Create a numeric input field |
 | `builder.Slider()` | Builder | Create a numeric slider control |
 | `builder.Spinner()` | Builder | Create an indeterminate loading spinner (panels only) |
+| `builder.Tabs()` | Builder | Create a tab bar that switches between alternating views (panels only) |
 | `builder.Section()` | Builder | Create a container for grouping controls |
 | `builder.Separator()` | Builder | Create a visual divider |
 | `builder.Heading()` | Builder | Create a heading text element |

@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 260 generated API digests.
+Complete catalog of 261 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -148,6 +148,7 @@ Complete catalog of 260 generated API digests.
 - [EngineException](<../engine/ly.img.engine/-engine-exception.md>) — `ly.img.engine`
 - [EventApi](<../engine/ly.img.engine/-event-api.md>) — `ly.img.engine`
 - [ExportOptions](<../engine/ly.img.engine/-export-options.md>) — `ly.img.engine`
+- [ExportPdfProgress](<../engine/ly.img.engine/-export-pdf-progress.md>) — `ly.img.engine`
 - [ExportVideoOptions](<../engine/ly.img.engine/-export-video-options.md>) — `ly.img.engine`
 - [ExportVideoOptions.Companion](<../engine/ly.img.engine/-export-video-options/-companion.md>) — `ly.img.engine`
 - [ExportVideoProgress](<../engine/ly.img.engine/-export-video-progress.md>) — `ly.img.engine`

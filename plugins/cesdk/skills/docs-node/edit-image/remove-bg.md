@@ -144,6 +144,8 @@ Install the background removal library alongside the CE.SDK Node engine:
 npm install @cesdk/node@$UBQ_VERSION$ @imgly/background-removal-node
 ```
 
+Using the native Node.js package? Install `@cesdk/node-native@$UBQ_VERSION$` instead of `@cesdk/node` — the engine API is identical.
+
 Import the `removeBackground` function and `Config` type:
 
 ```typescript highlight-import

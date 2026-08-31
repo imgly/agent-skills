@@ -335,6 +335,8 @@ npm install @imgly/idml-importer @cesdk/node@$UBQ_VERSION$ jsdom
 npm install --save-dev @types/jsdom
 ```
 
+Using the native Node.js package? Install `@cesdk/node-native@$UBQ_VERSION$` instead of `@cesdk/node` — the engine API is identical.
+
 The `jsdom` package provides the XML parsing functionality that `DOMParser` provides in browsers.
 
 ### Optional: Embedded PDF / Adobe Illustrator support

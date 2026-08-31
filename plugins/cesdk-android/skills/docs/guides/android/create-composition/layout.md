@@ -138,7 +138,7 @@ Create structured compositions using stack layouts that automatically arrange pa
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/engine-guides-layout)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-rc.0/engine-guides-layout)
 
 <EngineReferenceNote {...props} />
 
@@ -181,6 +181,10 @@ Vertical stacks arrange pages from top to bottom. Create a scene with `SceneLayo
 ```
 
 When you create a scene with `SceneLayout.VERTICAL_STACK`, CE.SDK automatically adds a stack container. Pages appended to this container position themselves with the configured spacing. The `stack/spacingInScreenspace` property keeps spacing visually consistent at any zoom level.
+
+The distinction applies to the canvas preview only. Exports always interpret the spacing in design units, whatever the property is set to.
+
+Switching the property never converts the number. A spacing of `40` stays `40` and is reinterpreted in the other space, which changes how far apart the pages appear.
 
 ## Add Blocks to Pages
 

@@ -16,7 +16,7 @@ Custom, mobile apparel UI for creating print-ready design.
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-apparel-ui-react-web)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1-rc.0/examples/starterkit-apparel-ui/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-rc.0/examples/starterkit-apparel-ui/index.html)
 
 ***
 

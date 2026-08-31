@@ -83,7 +83,7 @@ Load previously saved scenes to resume editing or modify existing designs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/find/v1.81.1-rc.0?q=engine-guides-load-scene)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/find/v1.82.0-rc.0?q=engine-guides-load-scene)
 
 <EngineReferenceNote {...props} />
 

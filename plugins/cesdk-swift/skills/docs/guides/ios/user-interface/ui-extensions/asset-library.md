@@ -117,7 +117,7 @@ Extend the asset library by registering custom asset sources and surfacing them 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/editor-guides-ui-extensions-asset-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-rc.0/editor-guides-ui-extensions-asset-library)
 
 The asset library is the panel the editor opens when users add or replace media. It is defined through the editor configuration, so you can add your own asset sources to it and decide which sections appear, in which tabs, and in what order. The [Configuration](../../configuration.md) guide covers how the editor configuration and `EngineSettings` set up the editor as a whole; this guide focuses on wiring custom sources into the panel. For deeper customization — fully custom tabs, replace sheets, and layouts — see [Customize Asset Library](../../import-media/asset-library/customize.md).
 

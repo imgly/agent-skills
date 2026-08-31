@@ -292,7 +292,7 @@ After configuring audio looping, we save the scene for later use or rendering. T
   console.log('Exported to output/audio-looping.imgly');
 ```
 
-The exported `.scene` file contains all audio blocks with their looping configurations, ready for rendering with CE.SDK Renderer or further editing.
+The exported `.scene` file contains all audio blocks with their looping configurations, ready for further editing or for server-side rendering — directly via `engine.block.exportVideo()` with the native `@cesdk/node-native` package, or with the CE.SDK Renderer. Note: with `@cesdk/node-native` on Linux and Windows, export of scenes with standalone audio blocks does not finish yet — see the [video limitations guide](./create-video/limitations.md).
 
 ## Troubleshooting
 

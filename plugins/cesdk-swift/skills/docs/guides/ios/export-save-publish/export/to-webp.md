@@ -10,7 +10,7 @@ Export CE.SDK designs to WebP format for compact image files that preserve trans
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.81.1-rc.0/engine-guides-export-to-webp)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.0-rc.0/engine-guides-export-to-webp)
 
 WebP delivers smaller files than PNG while preserving transparency, and smaller files than JPEG at comparable quality. Use it when bandwidth or storage matters and the output stays inside a WebP-aware viewer.
 

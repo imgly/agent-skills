@@ -4,7 +4,7 @@
 
 ---
 
-The CE.SDK allows you to convert JPEG, PNG, WebP, BMP and SVG images into PDFs directly in the browser—no server-side processing required. You can perform this conversion programmatically or through the user interface.
+The CE.SDK allows you to convert JPEG, PNG, WebP, BMP and SVG images into PDFs directly in your Node.js process—no external service required. You can perform this conversion programmatically with the engine API.
 
 The CE.SDK supports converting single or multiple images to PDF while allowing transformations such as cropping, rotating, and adding text before exporting. You can also customize PDF output settings, including resolution, compatibility and underlayer.
 

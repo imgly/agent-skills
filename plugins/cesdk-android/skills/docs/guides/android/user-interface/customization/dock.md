@@ -320,7 +320,7 @@ replace, and remove individual entries.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/editor-guides-configuration-dock)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-rc.0/editor-guides-configuration-dock)
 
 ## Dock Architecture
 
@@ -609,6 +609,7 @@ Predefined buttons are composable factory functions in the `Dock.Button` namespa
 | `Dock.Button.rememberStickersAndShapesLibrary()` | `Dock.Button.Id.stickersAndShapesLibrary` | Opens the combined stickers and shapes library. |
 | `Dock.Button.rememberAudiosLibrary()` | `Dock.Button.Id.audiosLibrary` | Opens the audio library. |
 | `Dock.Button.rememberVoiceoverRecord()` | `Dock.Button.Id.voiceoverRecord` | Opens the voiceover recording sheet. |
+| `Dock.Button.rememberCaptions()` | `Dock.Button.Id.captions` | Opens the captions sheet. It carries no visibility condition of its own, so add it only to the docks where captions apply; the Video Editor Starter Kit already includes it. See [Edit Captions](../../edit-video/edit-captions.md). |
 | `Dock.Button.rememberSystemGallery()` | `Dock.Button.Id.systemGallery` | Opens system gallery content through the configured asset library. |
 | `Dock.Button.rememberSystemCamera()` | `Dock.Button.Id.systemCamera` | Captures media with the system camera. |
 | `Dock.Button.rememberImglyCamera()` | `Dock.Button.Id.imglyCamera` | Captures media with the IMG.LY camera integration. Add the camera dependency with the same version as the editor before using it. |

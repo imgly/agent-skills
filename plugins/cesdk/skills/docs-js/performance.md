@@ -89,20 +89,24 @@ Optimize export performance through worker configuration and export settings.
 
 ### Use Export Workers
 
-CE.SDK uses Web Workers to offload export rendering to background threads, keeping the main thread responsive during exports. Workers are enabled by default for both image and video exports.
+CE.SDK can offload export rendering to a Web Worker, keeping the main thread responsive during exports. Video and audio exports use a worker by default. Image and other static exports, such as PDF, run on the main thread unless you opt in.
 
-For video exports, the `exportWorker` configuration option controls worker usage:
+The `exportWorker` feature flag controls worker usage for all export types:
 
 ```ts
 const config = {
   license: 'YOUR_CESDK_LICENSE_KEY',
-  callbacks: {
-    exportWorker: true // Enabled by default
+  featureFlags: {
+    exportWorker: true // Opt image exports in; video and audio already use a worker
   }
 };
 
 const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);
 ```
+
+Setting the flag to `false` disables the worker for every export type, including video and audio.
+
+Enabling the worker for image exports runs the export in a second engine instance in the background, which increases memory usage while the export runs.
 
 ### Optimize Export Settings
 
@@ -120,6 +124,14 @@ const blob = await engine.block.export(page, 'image/jpeg', {
   jpegQuality: 0.8
 });
 ```
+
+### Large PDF Exports Are Staged on Disk
+
+`engine.block.export()` writes a PDF into a temporary file (origin private file system) while the export runs, and returns a `Blob` backed by that file, so the finished document never sits in memory as a whole. Browsers without that support assemble the `Blob` in memory instead, where a large multi-page document such as a photo book or a magazine becomes the peak allocation.
+
+The temporary file backs the returned `Blob`, so it stays on disk after the export. CE.SDK collects the staging files of earlier page loads for you.
+
+See [Export to PDF](./export-save-publish/export/to-pdf.md) for the full API.
 
 ### Export Size Limits
 
@@ -185,7 +197,7 @@ Implement code splitting to defer engine loading until needed. Use dynamic impor
 
 ### Slow Export Performance
 
-Enable export workers (default) and reduce export resolution or quality settings. For complex scenes, consider exporting at a lower resolution and scaling up if needed.
+Enable export workers with the `exportWorker` feature flag and reduce export resolution or quality settings. For complex scenes, consider exporting at a lower resolution and scaling up if needed.
 
 ### Memory Leaks
 

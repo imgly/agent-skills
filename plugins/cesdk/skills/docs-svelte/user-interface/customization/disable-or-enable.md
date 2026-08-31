@@ -18,7 +18,7 @@ Control which editor features are available to users using the Feature API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1-rc.0/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-rc.0/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
 
 The Feature API provides global control over feature visibility throughout the editor. Use it to hide delete buttons from certain users, disable crop controls based on context, or conditionally enable features based on user roles or selection state. Unlike the Component Order API which targets specific components in specific areas, the Feature API affects features everywhere in the editor at once.
 
@@ -275,14 +275,14 @@ This guide covers how to enable and disable features with simple toggles, create
 
 The following table summarizes the main Feature API methods and when to use each:
 
-| Method | Use Case |
-|--------|----------|
-| `cesdk.feature.enable()` | Enable features with their default predicates |
-| `cesdk.feature.disable()` | Disable features (hide from UI) |
-| `cesdk.feature.set()` | Set features with custom predicates or boolean values |
-| `cesdk.feature.isEnabled()` | Check if a feature is currently enabled |
-| `cesdk.feature.list()` | Discover registered feature IDs |
-| `cesdk.feature.get()` | Get predicate chain for debugging |
+| Method                      | Use Case                                              |
+| --------------------------- | ----------------------------------------------------- |
+| `cesdk.feature.enable()`    | Enable features with their default predicates         |
+| `cesdk.feature.disable()`   | Disable features (hide from UI)                       |
+| `cesdk.feature.set()`       | Set features with custom predicates or boolean values |
+| `cesdk.feature.isEnabled()` | Check if a feature is currently enabled               |
+| `cesdk.feature.list()`      | Discover registered feature IDs                       |
+| `cesdk.feature.get()`       | Get predicate chain for debugging                     |
 
 ## Enable Features
 
@@ -343,7 +343,9 @@ Passing `true` or `false` creates a terminal predicate that overrides any `enabl
 cesdk.feature.set('ly.img.fill', true);
 ```
 
-> **Note:** Boolean predicates are terminal. Once you use `set()` with a boolean, subsequent `enable()` or `disable()` calls won't affect that feature because the boolean predicate evaluates first.
+> **Note:** Boolean predicates are terminal. Once you use `set()` with a boolean,
+> subsequent `enable()` or `disable()` calls won't affect that feature because
+> the boolean predicate evaluates first.
 
 ### Function Predicates
 
@@ -449,213 +451,216 @@ CE.SDK includes many built-in features organized by category:
 
 ### Navigation Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.navigation` | Parent key: enables all navigation child features |
-| `ly.img.navigation.bar` | Controls visibility of the Navigation Bar |
-| `ly.img.navigation.back` | Controls visibility of the "Back" button |
-| `ly.img.navigation.close` | Controls visibility of the "Close" button |
-| `ly.img.navigation.undoRedo` | Controls visibility of "Undo" and "Redo" buttons |
-| `ly.img.navigation.zoom` | Controls visibility of zoom controls |
-| `ly.img.navigation.actions` | Controls visibility of navigation actions |
+| Feature ID                           | Description                                         |
+| ------------------------------------ | --------------------------------------------------- |
+| `ly.img.navigation`                  | Parent key: enables all navigation child features   |
+| `ly.img.navigation.bar`              | Controls visibility of the Navigation Bar           |
+| `ly.img.navigation.back`             | Controls visibility of the "Back" button            |
+| `ly.img.navigation.close`            | Controls visibility of the "Close" button           |
+| `ly.img.navigation.undoRedo`         | Controls visibility of "Undo" and "Redo" buttons    |
+| `ly.img.navigation.zoom`             | Controls visibility of zoom controls                |
+| `ly.img.navigation.actions`          | Controls visibility of navigation actions           |
 | `ly.img.navigation.documentSettings` | Controls visibility of the document settings button |
 
 ### Inspector Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.inspector.bar` | Controls visibility of the Inspector Bar |
-| `ly.img.inspector.panel` | Controls visibility of the Advanced Inspector |
+| Feature ID                | Description                                      |
+| ------------------------- | ------------------------------------------------ |
+| `ly.img.inspector.bar`    | Controls visibility of the Inspector Bar         |
+| `ly.img.inspector.panel`  | Controls visibility of the Advanced Inspector    |
 | `ly.img.inspector.toggle` | Controls presence of the Inspector Toggle button |
 
 ### Canvas Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.canvas` | Parent key: enables all canvas child features |
-| `ly.img.canvas.bar` | Controls visibility of the Canvas Bar |
-| `ly.img.canvas.menu` | Controls visibility of the Canvas Menu |
+| Feature ID           | Description                                   |
+| -------------------- | --------------------------------------------- |
+| `ly.img.canvas`      | Parent key: enables all canvas child features |
+| `ly.img.canvas.bar`  | Controls visibility of the Canvas Bar         |
+| `ly.img.canvas.menu` | Controls visibility of the Canvas Menu        |
 
 ### Editing Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.delete` | Controls ability to delete blocks |
-| `ly.img.duplicate` | Controls ability to duplicate blocks |
-| `ly.img.replace` | Controls presence of the Replace button (parent flag for all replace sub-features) |
-| `ly.img.replace.fill` | Controls replacing image/video fill content |
-| `ly.img.replace.shape` | Controls replacing block shape |
-| `ly.img.replace.audio` | Controls replacing audio block content |
-| `ly.img.group` | Controls grouping functionality |
-| `ly.img.group.create` | Controls grouping multiple selected blocks |
-| `ly.img.group.ungroup` | Controls dissolving a group |
-| `ly.img.group.enter` | Controls entering a group for editing |
-| `ly.img.group.select` | Controls selecting the parent group |
-| `ly.img.combine` | Controls boolean/combine operations |
-| `ly.img.combine.union` | Controls the Union boolean operation |
-| `ly.img.combine.subtract` | Controls the Subtract boolean operation |
-| `ly.img.combine.intersect` | Controls the Intersect boolean operation |
-| `ly.img.combine.exclude` | Controls the Exclude (XOR) boolean operation |
-| `ly.img.position` | Controls the position/arrange/align panel |
-| `ly.img.position.arrange` | Controls bring forward/backward/front/back and pin |
-| `ly.img.position.align` | Controls alignment (left, right, center, top, bottom) |
-| `ly.img.position.distribute` | Controls distribute vertically/horizontally |
-| `ly.img.placeholder` | Controls Placeholder toggle visibility in Inspector |
+| Feature ID                   | Description                                                                        |
+| ---------------------------- | ---------------------------------------------------------------------------------- |
+| `ly.img.delete`              | Controls ability to delete blocks                                                  |
+| `ly.img.duplicate`           | Controls ability to duplicate blocks                                               |
+| `ly.img.replace`             | Controls presence of the Replace button (parent flag for all replace sub-features) |
+| `ly.img.replace.fill`        | Controls replacing image/video fill content                                        |
+| `ly.img.replace.shape`       | Controls replacing block shape                                                     |
+| `ly.img.replace.audio`       | Controls replacing audio block content                                             |
+| `ly.img.group`               | Controls grouping functionality                                                    |
+| `ly.img.group.create`        | Controls grouping multiple selected blocks                                         |
+| `ly.img.group.ungroup`       | Controls dissolving a group                                                        |
+| `ly.img.group.enter`         | Controls entering a group for editing                                              |
+| `ly.img.group.select`        | Controls selecting the parent group                                                |
+| `ly.img.combine`             | Controls boolean/combine operations                                                |
+| `ly.img.combine.union`       | Controls the Union boolean operation                                               |
+| `ly.img.combine.subtract`    | Controls the Subtract boolean operation                                            |
+| `ly.img.combine.intersect`   | Controls the Intersect boolean operation                                           |
+| `ly.img.combine.exclude`     | Controls the Exclude (XOR) boolean operation                                       |
+| `ly.img.position`            | Controls the position/arrange/align panel                                          |
+| `ly.img.position.arrange`    | Controls bring forward/backward/front/back and pin                                 |
+| `ly.img.position.align`      | Controls alignment (left, right, center, top, bottom)                              |
+| `ly.img.position.distribute` | Controls distribute vertically/horizontally                                        |
+| `ly.img.placeholder`         | Controls Placeholder toggle visibility in Inspector                                |
 
 ### Video Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.video` | Parent key: enables all video child features |
-| `ly.img.video.timeline` | Controls visibility of the Video Timeline |
-| `ly.img.video.timeline.clips` | Controls visibility of video clips track |
-| `ly.img.video.timeline.overlays` | Controls visibility of overlays track |
-| `ly.img.video.timeline.audio` | Controls visibility of audio track |
-| `ly.img.video.timeline.addClip` | Controls ability to add clips |
-| `ly.img.video.timeline.controls` | Controls base video control UI |
-| `ly.img.video.timeline.controls.toggle` | Controls timeline collapse/expand toggle |
-| `ly.img.video.timeline.controls.background` | Controls background color controls |
-| `ly.img.video.timeline.controls.playback` | Controls play/pause and timestamp |
-| `ly.img.video.timeline.controls.loop` | Controls loop toggle |
-| `ly.img.video.timeline.controls.split` | Controls split clip control |
-| `ly.img.video.timeline.controls.timelineZoom` | Controls timeline zoom controls |
-| `ly.img.video.caption` | Controls video captions |
-| `ly.img.animations` | Controls the Animations button (video mode) |
-| `ly.img.transitions` | Controls the clip-to-clip Transitions UI on the timeline and in the inspector (video mode) |
+| Feature ID                                    | Description                                                                                |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `ly.img.video`                                | Parent key: enables all video child features                                               |
+| `ly.img.video.timeline`                       | Controls visibility of the Video Timeline                                                  |
+| `ly.img.video.timeline.clips`                 | Controls visibility of video clips track                                                   |
+| `ly.img.video.timeline.overlays`              | Controls visibility of overlays track                                                      |
+| `ly.img.video.timeline.audio`                 | Controls visibility of audio track                                                         |
+| `ly.img.video.timeline.addClip`               | Controls ability to add clips                                                              |
+| `ly.img.video.timeline.clip.menu`             | Controls the clip ellipsis ("more options") button on timeline clips                       |
+| `ly.img.video.timeline.controls`              | Controls base video control UI                                                             |
+| `ly.img.video.timeline.controls.bar`          | Controls visibility of the timeline controls bar area                                      |
+| `ly.img.video.timeline.controls.toggle`       | Controls timeline collapse/expand toggle                                                   |
+| `ly.img.video.timeline.controls.background`   | Controls background color controls                                                         |
+| `ly.img.video.timeline.controls.playback`     | Controls play/pause and timestamp                                                          |
+| `ly.img.video.timeline.controls.loop`         | Controls loop toggle                                                                       |
+| `ly.img.video.timeline.controls.split`        | Controls split clip control                                                                |
+| `ly.img.video.timeline.controls.timelineZoom` | Controls timeline zoom controls                                                            |
+| `ly.img.video.caption`                        | Controls video captions                                                                    |
+| `ly.img.animations`                           | Controls the Animations button (video mode)                                                |
+| `ly.img.transitions`                          | Controls the clip-to-clip Transitions UI on the timeline and in the inspector (video mode) |
 
 ### Text Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.text` | Parent key: enables all text child features |
-| `ly.img.text.edit` | Controls presence of the Edit button. The text color panel's sub-controls are gated via the fill sub-keys (`ly.img.fill.color.*`). |
-| `ly.img.text.typeface` | Controls the typeface selection that opens the typeface library |
-| `ly.img.text.fontSize` | Controls font size input |
-| `ly.img.text.fontStyle` | Controls bold/italic toggles |
-| `ly.img.text.decoration` | Controls underline/strikethrough toggles |
-| `ly.img.text.alignment` | Controls text alignment |
-| `ly.img.text.list` | Parent key: enables all list style child features |
-| `ly.img.text.list.unordered` | Controls bulleted list |
-| `ly.img.text.list.ordered` | Controls numbered list |
-| `ly.img.text.advanced` | Controls advanced text options |
-| `ly.img.text.path` | Parent key: enables all text-on-path child features |
-| `ly.img.text.path.curve` | Controls the curve picker for placing text on a path or circle |
-| `ly.img.text.path.position` | Controls the text position relative to the path |
-| `ly.img.text.path.direction` | Controls the text direction along the path |
-| `ly.img.text.path.offset` | Controls the text offset along the path |
-| `ly.img.text.path.edit` | Controls the Edit Path button that enters path editing |
-| `ly.img.text.background` | Controls text background |
-| `ly.img.text.background.picker` | Controls the color picker inside the text background color panel |
-| `ly.img.text.background.picker.opacity` | Controls the alpha/opacity slider inside the text background color panel |
-| `ly.img.text.background.library` | Controls the swatch library inside the text background color panel |
-| `ly.img.text.styles` | Controls the Styles button that applies a style preset to a text or caption block |
+| Feature ID                              | Description                                                                                                                        |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `ly.img.text`                           | Parent key: enables all text child features                                                                                        |
+| `ly.img.text.edit`                      | Controls presence of the Edit button. The text color panel's sub-controls are gated via the fill sub-keys (`ly.img.fill.color.*`). |
+| `ly.img.text.typeface`                  | Controls the typeface selection that opens the typeface library                                                                    |
+| `ly.img.text.fontSize`                  | Controls font size input                                                                                                           |
+| `ly.img.text.fontStyle`                 | Controls bold/italic toggles                                                                                                       |
+| `ly.img.text.decoration`                | Controls underline/strikethrough toggles                                                                                           |
+| `ly.img.text.alignment`                 | Controls text alignment                                                                                                            |
+| `ly.img.text.list`                      | Parent key: enables all list style child features                                                                                  |
+| `ly.img.text.list.unordered`            | Controls bulleted list                                                                                                             |
+| `ly.img.text.list.ordered`              | Controls numbered list                                                                                                             |
+| `ly.img.text.advanced`                  | Controls advanced text options                                                                                                     |
+| `ly.img.text.path`                      | Parent key: enables all text-on-path child features                                                                                |
+| `ly.img.text.path.curve`                | Controls the curve picker for placing text on a path or circle                                                                     |
+| `ly.img.text.path.position`             | Controls the text position relative to the path                                                                                    |
+| `ly.img.text.path.direction`            | Controls the text direction along the path                                                                                         |
+| `ly.img.text.path.offset`               | Controls the text offset along the path                                                                                            |
+| `ly.img.text.path.edit`                 | Controls the Edit Path button that enters path editing                                                                             |
+| `ly.img.text.background`                | Controls text background                                                                                                           |
+| `ly.img.text.background.picker`         | Controls the color picker inside the text background color panel                                                                   |
+| `ly.img.text.background.picker.opacity` | Controls the alpha/opacity slider inside the text background color panel                                                           |
+| `ly.img.text.background.library`        | Controls the swatch library inside the text background color panel                                                                 |
+| `ly.img.text.styles`                    | Controls the Styles button that applies a style preset to a text or caption block                                                  |
 
 ### Effects Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.fill` | Controls Fill button and Fill Panel |
-| `ly.img.fill.color` | Controls solid and gradient fill controls |
-| `ly.img.fill.color.picker` | Controls the color picker inside the fill color panel |
-| `ly.img.fill.color.picker.gradient` | Controls the gradient mode selector and stops editor inside the fill color panel |
-| `ly.img.fill.color.picker.opacity` | Controls the alpha/opacity slider inside the fill color panel |
-| `ly.img.fill.color.library` | Controls the swatch library inside the fill color panel |
-| `ly.img.fill.image` | Controls image fill controls and crop |
-| `ly.img.fill.video` | Controls video fill, trim, volume, speed |
-| `ly.img.stroke` | Controls Stroke controls |
-| `ly.img.stroke.color` | Controls stroke color picker |
-| `ly.img.stroke.color.picker` | Controls the color picker inside the stroke color panel |
-| `ly.img.stroke.color.picker.opacity` | Controls the alpha/opacity slider inside the stroke color panel |
-| `ly.img.stroke.color.library` | Controls the swatch library inside the stroke color panel |
-| `ly.img.stroke.width` | Controls stroke width input |
-| `ly.img.stroke.style` | Controls stroke style (dash) selector |
-| `ly.img.stroke.position` | Controls stroke position (inner/center/outer) |
-| `ly.img.stroke.cornerGeometry` | Controls stroke corner join geometry |
-| `ly.img.adjustment` | Controls Adjustments button |
-| `ly.img.filter` | Controls Filter button |
-| `ly.img.effect` | Controls Effect button |
-| `ly.img.blur` | Controls Blur button |
-| `ly.img.shadow` | Controls Shadow button |
-| `ly.img.shadow.color` | Controls shadow color picker |
-| `ly.img.shadow.color.picker` | Controls the color picker inside the shadow color panel |
-| `ly.img.shadow.color.picker.opacity` | Controls the alpha/opacity slider inside the shadow color panel |
-| `ly.img.shadow.color.library` | Controls the swatch library inside the shadow color panel |
-| `ly.img.shadow.offset` | Controls shadow angle and distance |
-| `ly.img.shadow.blur` | Controls shadow blur radius |
-| `ly.img.crop` | Controls Crop button |
+| Feature ID                           | Description                                                                      |
+| ------------------------------------ | -------------------------------------------------------------------------------- |
+| `ly.img.fill`                        | Controls Fill button and Fill Panel                                              |
+| `ly.img.fill.color`                  | Controls solid and gradient fill controls                                        |
+| `ly.img.fill.color.picker`           | Controls the color picker inside the fill color panel                            |
+| `ly.img.fill.color.picker.gradient`  | Controls the gradient mode selector and stops editor inside the fill color panel |
+| `ly.img.fill.color.picker.opacity`   | Controls the alpha/opacity slider inside the fill color panel                    |
+| `ly.img.fill.color.library`          | Controls the swatch library inside the fill color panel                          |
+| `ly.img.fill.image`                  | Controls image fill controls and crop                                            |
+| `ly.img.fill.video`                  | Controls video fill, trim, volume, speed                                         |
+| `ly.img.stroke`                      | Controls Stroke controls                                                         |
+| `ly.img.stroke.color`                | Controls stroke color picker                                                     |
+| `ly.img.stroke.color.picker`         | Controls the color picker inside the stroke color panel                          |
+| `ly.img.stroke.color.picker.opacity` | Controls the alpha/opacity slider inside the stroke color panel                  |
+| `ly.img.stroke.color.library`        | Controls the swatch library inside the stroke color panel                        |
+| `ly.img.stroke.width`                | Controls stroke width input                                                      |
+| `ly.img.stroke.style`                | Controls stroke style (dash) selector                                            |
+| `ly.img.stroke.position`             | Controls stroke position (inner/center/outer)                                    |
+| `ly.img.stroke.cornerGeometry`       | Controls stroke corner join geometry                                             |
+| `ly.img.adjustment`                  | Controls Adjustments button                                                      |
+| `ly.img.filter`                      | Controls Filter button                                                           |
+| `ly.img.effect`                      | Controls Effect button                                                           |
+| `ly.img.blur`                        | Controls Blur button                                                             |
+| `ly.img.shadow`                      | Controls Shadow button                                                           |
+| `ly.img.shadow.color`                | Controls shadow color picker                                                     |
+| `ly.img.shadow.color.picker`         | Controls the color picker inside the shadow color panel                          |
+| `ly.img.shadow.color.picker.opacity` | Controls the alpha/opacity slider inside the shadow color panel                  |
+| `ly.img.shadow.color.library`        | Controls the swatch library inside the shadow color panel                        |
+| `ly.img.shadow.offset`               | Controls shadow angle and distance                                               |
+| `ly.img.shadow.blur`                 | Controls shadow blur radius                                                      |
+| `ly.img.crop`                        | Controls Crop button                                                             |
 
 ### Shape Options Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.shape.options` | Controls the shape-specific options panel |
-| `ly.img.shape.edit` | Controls the Edit Path button for vector path editing |
-| `ly.img.shape.options.cornerRadius` | Controls corner radius (rect/polygon shapes) |
-| `ly.img.shape.options.points` | Controls star point count |
-| `ly.img.shape.options.innerDiameter` | Controls star inner diameter |
-| `ly.img.shape.options.sides` | Controls polygon side count |
-| `ly.img.shape.options.lineWidth` | Controls the stroke-width input for line graphics (line thickness is sourced from stroke width) |
+| Feature ID                           | Description                                                                                     |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| `ly.img.shape.options`               | Controls the shape-specific options panel                                                       |
+| `ly.img.shape.edit`                  | Controls the Edit Path button for vector path editing                                           |
+| `ly.img.shape.options.cornerRadius`  | Controls corner radius (rect/polygon shapes)                                                    |
+| `ly.img.shape.options.points`        | Controls star point count                                                                       |
+| `ly.img.shape.options.innerDiameter` | Controls star inner diameter                                                                    |
+| `ly.img.shape.options.sides`         | Controls polygon side count                                                                     |
+| `ly.img.shape.options.lineWidth`     | Controls the stroke-width input for line graphics (line thickness is sourced from stroke width) |
 
 ### Vector Edit Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.vectorEdit` | Parent key: enables all vector edit child features |
-| `ly.img.vectorEdit.moveMode` | Controls the move/select mode toggle |
-| `ly.img.vectorEdit.addMode` | Controls the add node mode toggle |
-| `ly.img.vectorEdit.deleteMode` | Controls the delete node mode toggle |
-| `ly.img.vectorEdit.bendMode` | Controls the bend mode toggle |
-| `ly.img.vectorEdit.mirrorMode` | Controls the handle mirror mode dropdown |
-| `ly.img.vectorEdit.done` | Controls the exit vector edit button |
+| Feature ID                     | Description                                        |
+| ------------------------------ | -------------------------------------------------- |
+| `ly.img.vectorEdit`            | Parent key: enables all vector edit child features |
+| `ly.img.vectorEdit.moveMode`   | Controls the move/select mode toggle               |
+| `ly.img.vectorEdit.addMode`    | Controls the add node mode toggle                  |
+| `ly.img.vectorEdit.deleteMode` | Controls the delete node mode toggle               |
+| `ly.img.vectorEdit.bendMode`   | Controls the bend mode toggle                      |
+| `ly.img.vectorEdit.mirrorMode` | Controls the handle mirror mode dropdown           |
+| `ly.img.vectorEdit.done`       | Controls the exit vector edit button               |
 
 ### Transform Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.transform` | Parent key: enables all transform child features |
-| `ly.img.transform.position` | Controls X/Y position controls |
-| `ly.img.transform.size` | Controls width/height controls |
-| `ly.img.transform.rotation` | Controls rotation controls |
-| `ly.img.transform.flip` | Controls flip controls |
+| Feature ID                  | Description                                      |
+| --------------------------- | ------------------------------------------------ |
+| `ly.img.transform`          | Parent key: enables all transform child features |
+| `ly.img.transform.position` | Controls X/Y position controls                   |
+| `ly.img.transform.size`     | Controls width/height controls                   |
+| `ly.img.transform.rotation` | Controls rotation controls                       |
+| `ly.img.transform.flip`     | Controls flip controls                           |
 
 ### Page Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.page` | Parent key: enables all page child features |
-| `ly.img.page.add` | Controls Add Page button |
-| `ly.img.page.move` | Controls page move buttons |
-| `ly.img.page.resize` | Controls Resize button |
-| `ly.img.page.settings` | Controls read-only page dimensions, unit and resolution display |
-| `ly.img.page.bleedMargin` | Controls bleed margin settings |
-| `ly.img.page.clipContent` | Controls clip content on/off toggle |
+| Feature ID                | Description                                                     |
+| ------------------------- | --------------------------------------------------------------- |
+| `ly.img.page`             | Parent key: enables all page child features                     |
+| `ly.img.page.add`         | Controls Add Page button                                        |
+| `ly.img.page.move`        | Controls page move buttons                                      |
+| `ly.img.page.resize`      | Controls Resize button                                          |
+| `ly.img.page.settings`    | Controls read-only page dimensions, unit and resolution display |
+| `ly.img.page.bleedMargin` | Controls bleed margin settings                                  |
+| `ly.img.page.clipContent` | Controls clip content on/off toggle                             |
 
 ### Scene Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.scene.layout` | Parent key: enables all scene layout child features |
-| `ly.img.scene.layout.horizontal` | Controls horizontal layout toggle |
-| `ly.img.scene.layout.vertical` | Controls vertical layout toggle |
-| `ly.img.scene.layout.free` | Controls free layout toggle |
-| `ly.img.scene.fontSizeUnit` | Controls visibility of the per-scene font-size unit selector in the page resize panel |
+| Feature ID                       | Description                                                                                                                                                                                                                                    |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ly.img.scene.layout`            | Parent key: enables all scene layout child features                                                                                                                                                                                            |
+| `ly.img.scene.layout.horizontal` | Controls horizontal layout toggle                                                                                                                                                                                                              |
+| `ly.img.scene.layout.vertical`   | Controls vertical layout toggle                                                                                                                                                                                                                |
+| `ly.img.scene.layout.free`       | Controls free layout toggle                                                                                                                                                                                                                    |
+| `ly.img.scene.layout.spacing`    | Controls the `Gap` input and the `Gap Unit` selector for horizontal and vertical stack layouts. `Gap Unit` chooses between `Screen Pixels` and `Design Units` and affects the canvas preview only; exports always read the gap in design units |
+| `ly.img.scene.fontSizeUnit`      | Controls visibility of the per-scene font-size unit selector in the page resize panel                                                                                                                                                          |
 
 ### Keyboard Shortcut Features
 
-| Feature ID | Description |
-|------------|-------------|
+| Feature ID                  | Description                                          |
+| --------------------------- | ---------------------------------------------------- |
 | `ly.img.keyboard.shortcuts` | Controls whether registered keyboard shortcuts fire. |
 
 ### Other Features
 
-| Feature ID | Description |
-|------------|-------------|
-| `ly.img.dock` | Controls visibility of the Dock |
-| `ly.img.library.panel` | Controls Asset Library panel |
-| `ly.img.preview` | Controls Preview button |
-| `ly.img.notifications` | Controls notification toasts |
-| `ly.img.notifications.undo` | Controls undo notifications |
-| `ly.img.notifications.redo` | Controls redo notifications |
+| Feature ID                  | Description                     |
+| --------------------------- | ------------------------------- |
+| `ly.img.dock`               | Controls visibility of the Dock |
+| `ly.img.library.panel`      | Controls Asset Library panel    |
+| `ly.img.preview`            | Controls Preview button         |
+| `ly.img.notifications`      | Controls notification toasts    |
+| `ly.img.notifications.undo` | Controls undo notifications     |
+| `ly.img.notifications.redo` | Controls redo notifications     |
 
 ## Troubleshooting
 
@@ -684,18 +689,19 @@ If a glob pattern doesn't affect expected features:
 
 ## API Reference
 
-| Method | Signature | Purpose |
-|--------|-----------|---------|
-| `cesdk.feature.enable()` | `enable(featureId: FeatureId \| FeatureId[]): void` | Enable features with default predicates |
-| `cesdk.feature.disable()` | `disable(featureId: FeatureId \| FeatureId[]): void` | Disable features |
-| `cesdk.feature.set()` | `set(featureId: FeatureId, enabled: boolean \| FeaturePredicate): void` | Set feature state with custom predicates |
-| `cesdk.feature.isEnabled()` | `isEnabled(featureId: FeatureId, context?: FeatureContext): boolean` | Check if feature is enabled |
-| `cesdk.feature.list()` | `list(options?: { matcher?: string }): FeatureId[]` | List registered feature IDs |
-| `cesdk.feature.get()` | `get(featureId: FeatureId): FeaturePredicate[] \| undefined` | Get predicate chain for debugging |
+| Method                      | Signature                                                               | Purpose                                  |
+| --------------------------- | ----------------------------------------------------------------------- | ---------------------------------------- |
+| `cesdk.feature.enable()`    | `enable(featureId: FeatureId \| FeatureId[]): void`                     | Enable features with default predicates  |
+| `cesdk.feature.disable()`   | `disable(featureId: FeatureId \| FeatureId[]): void`                    | Disable features                         |
+| `cesdk.feature.set()`       | `set(featureId: FeatureId, enabled: boolean \| FeaturePredicate): void` | Set feature state with custom predicates |
+| `cesdk.feature.isEnabled()` | `isEnabled(featureId: FeatureId, context?: FeatureContext): boolean`    | Check if feature is enabled              |
+| `cesdk.feature.list()`      | `list(options?: { matcher?: string }): FeatureId[]`                     | List registered feature IDs              |
+| `cesdk.feature.get()`       | `get(featureId: FeatureId): FeaturePredicate[] \| undefined`            | Get predicate chain for debugging        |
 
 ## Next Steps
 
-- [Show/Hide Components](./user-interface/customization/quick-start/show-hide-components.md) - Hide UI elements without disabling functionality
+- [Show/Hide Components](./user-interface/customization/quick-start/show-hide-components.md) - Hide UI elements without
+  disabling functionality
 - [Navigation Bar](./user-interface/customization/navigation-bar.md) - Customize navigation bar buttons
 - [Canvas Menu](./user-interface/customization/canvas-menu.md) - Customize the canvas context menu
 - [Inspector Bar](./user-interface/customization/inspector-bar.md) - Customize the inspector bar

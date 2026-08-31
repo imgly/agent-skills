@@ -3,7 +3,7 @@
 ---
 
 ```ts
-type VideoMimeType = Extract<MimeType, "video/mp4" | "video/quicktime">;
+type VideoMimeType = Extract<MimeType, "video/mp4">;
 ```
 
 Represents the video MIME types used in the editor.

@@ -299,7 +299,7 @@ existing list builder, and creating app-specific controls.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/editor-guides-configuration-inspector-bar)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-rc.0/editor-guides-configuration-inspector-bar)
 
 ## Inspector Bar Architecture
 
@@ -568,15 +568,18 @@ This table highlights the commonly used public composable helpers on `InspectorB
 | --- | --- | --- | --- |
 | `InspectorBar.Button.rememberReplace` | `InspectorBar.Button.Id.replace` | Opens the asset library sheet with `EditorEvent.Sheet.Open`. The selected asset replaces the content of the selected design block. | Page image/video backgrounds, non-sticker image/video graphics, and non-voiceover audio |
 | `InspectorBar.Button.rememberEditText` | `InspectorBar.Button.Id.editText` | Enters text editing mode for the selected text block. | Text blocks with `text/edit` scope |
-| `InspectorBar.Button.rememberFormatText` | `InspectorBar.Button.Id.formatText` | Opens the text formatting sheet with `EditorEvent.Sheet.Open`. | Text blocks with `text/character` scope |
+| `InspectorBar.Button.rememberFormatText` | `InspectorBar.Button.Id.formatText` | Opens the text formatting sheet with `EditorEvent.Sheet.Open`. | Text and caption blocks with `text/character` scope |
 | `InspectorBar.Button.rememberFillStroke` | `InspectorBar.Button.Id.fillStroke` | Opens the fill and stroke sheet with `EditorEvent.Sheet.Open`. | Non-sticker selections with fill or stroke controls |
-| `InspectorBar.Button.rememberTextBackground` | `InspectorBar.Button.Id.textBackground` | Opens the text background sheet with `EditorEvent.Sheet.Open`. | Text blocks with `text/character` scope |
+| `InspectorBar.Button.rememberTextBackground` | `InspectorBar.Button.Id.textBackground` | Opens the text background sheet with `EditorEvent.Sheet.Open`. | Text and caption blocks with `text/character` scope |
 | `InspectorBar.Button.rememberTextPresets` | `InspectorBar.Button.Id.textPresets` | Opens a restyle picker with `EditorEvent.Sheet.Open`. The picker offers three buckets — Plain, Styles and Curved — that apply a new look to the selected text block in place. | Text blocks with `text/character` scope when the `ly.img.text.styles` source is registered |
 | `InspectorBar.Button.rememberTextOnPath` | `InspectorBar.Button.Id.textOnPath` | Opens the text-on-path sheet with `EditorEvent.Sheet.Open`. Reads curve presets from the `ly.img.text.curves` source. | Text blocks with `text/character` scope |
+| `InspectorBar.Button.rememberEditCaptions` | `InspectorBar.Button.Id.editCaptions` | Opens the captions sheet with `EditorEvent.Sheet.Open`, scrolled to the selected caption. | Caption selections with `text/edit` scope |
+| `InspectorBar.Button.rememberCaptionStyle` | `InspectorBar.Button.Id.captionStyle` | Opens the caption style preset sheet with `EditorEvent.Sheet.Open`. Reads presets from the `ly.img.caption.presets` source. | Caption selections while the `ly.img.caption.presets` source is registered |
 | `InspectorBar.Button.rememberVolume` | `InspectorBar.Button.Id.volume` | Opens the volume sheet with `EditorEvent.Sheet.Open`. | Audio selections and video-fill selections with `fill/change` scope |
 | `InspectorBar.Button.rememberClipSpeed` | `InspectorBar.Button.Id.clipSpeed` | Opens the clip speed sheet with `EditorEvent.Sheet.Open`. | Audio or video-playback selections with `fill/change` scope |
 | `InspectorBar.Button.rememberCrop` | `InspectorBar.Button.Id.crop` | Opens the crop sheet with `EditorEvent.Sheet.Open`. Pages open page crop mode; other selections open element crop mode. | Page or non-sticker image/video fills that support crop and `layer/crop` scope |
-| `InspectorBar.Button.rememberAnimations` | `InspectorBar.Button.Id.animations` | Opens the animation sheet with `EditorEvent.Sheet.Open`. | Non-page, non-audio selections |
+| `InspectorBar.Button.rememberAnimations` | `InspectorBar.Button.Id.animations` | Opens the animation sheet with `EditorEvent.Sheet.Open`. | Non-page, non-audio, non-caption selections |
+| `InspectorBar.Button.rememberTransition` | `InspectorBar.Button.Id.transition` | Opens the transition sheet with `EditorEvent.Sheet.Open`, for the transition between the selected clip and the one after it. | Selections followed by another clip on the same track, where both support transitions and the next clip starts no later than the selected one ends |
 | `InspectorBar.Button.rememberAdjustments` | `InspectorBar.Button.Id.adjustments` | Opens the adjustments sheet with `EditorEvent.Sheet.Open`. | Non-sticker image/video fills with `appearance/adjustments` scope |
 | `InspectorBar.Button.rememberFilter` | `InspectorBar.Button.Id.filter` | Opens the filter sheet with `EditorEvent.Sheet.Open`. | Non-sticker image/video fills with `appearance/filter` scope |
 | `InspectorBar.Button.rememberEffect` | `InspectorBar.Button.Id.effect` | Opens the effect sheet with `EditorEvent.Sheet.Open`. | Non-sticker image/video fills with `appearance/effect` scope |
@@ -584,12 +587,12 @@ This table highlights the commonly used public composable helpers on `InspectorB
 | `InspectorBar.Button.rememberShape` | `InspectorBar.Button.Id.shape` | Opens the shape sheet with `EditorEvent.Sheet.Open`. | Non-sticker blocks with Star, Polygon, or Rect shapes and `shape/change` scope |
 | `InspectorBar.Button.rememberSelectGroup` | `InspectorBar.Button.Id.selectGroup` | Selects the group that contains the current selection. | Selections whose parent block is a group |
 | `InspectorBar.Button.rememberEnterGroup` | `InspectorBar.Button.Id.enterGroup` | Changes selection from the selected group to a design block inside that group. | Group selections |
-| `InspectorBar.Button.rememberLayer` | `InspectorBar.Button.Id.layer` | Opens the layer sheet with `EditorEvent.Sheet.Open`. | Non-page, non-audio selections with layer, lifecycle, or move scope |
-| `InspectorBar.Button.rememberSplit` | `InspectorBar.Button.Id.split` | Splits the selected block in a video scene. | Selections with `lifecycle/duplicate` scope |
-| `InspectorBar.Button.rememberMoveAsClip` | `InspectorBar.Button.Id.moveAsClip` | Moves the selected block into the background track as a clip. | Non-audio selections outside the background track |
+| `InspectorBar.Button.rememberLayer` | `InspectorBar.Button.Id.layer` | Opens the layer sheet with `EditorEvent.Sheet.Open`. | Non-page, non-audio, non-caption selections with layer, lifecycle, or move scope |
+| `InspectorBar.Button.rememberSplit` | `InspectorBar.Button.Id.split` | Splits the selected block in a video scene. A caption split divides its time at the playhead and its text at the nearest word gap, so the button disables itself unless the playhead sits at least 0.1 seconds away from both the caption's start and its end and the caption holds at least two characters. | Selections with `lifecycle/duplicate` scope |
+| `InspectorBar.Button.rememberMoveAsClip` | `InspectorBar.Button.Id.moveAsClip` | Moves the selected block into the background track as a clip. | Non-audio, non-caption selections outside the background track |
 | `InspectorBar.Button.rememberMoveAsOverlay` | `InspectorBar.Button.Id.moveAsOverlay` | Moves the selected block from the background track to an overlay. | Non-audio selections in the background track |
 | `InspectorBar.Button.rememberReorder` | `InspectorBar.Button.Id.reorder` | Opens the reorder sheet with `EditorEvent.Sheet.Open`. | Selections in a background track with at least two children |
-| `InspectorBar.Button.rememberDuplicate` | `InspectorBar.Button.Id.duplicate` | Duplicates the selected design block. | Non-page selections with `lifecycle/duplicate` scope |
+| `InspectorBar.Button.rememberDuplicate` | `InspectorBar.Button.Id.duplicate` | Duplicates the selected design block. | Non-page, non-caption selections with `lifecycle/duplicate` scope |
 | `InspectorBar.Button.rememberDelete` | `InspectorBar.Button.Id.delete` | Deletes the selected design block. | Non-page selections with `lifecycle/destroy` scope |
 
 ## Troubleshooting

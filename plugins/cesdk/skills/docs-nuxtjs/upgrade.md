@@ -18,6 +18,7 @@
 - [To v1.69+](./to-v1-69.md) - Learn how to migrate to CE.SDK v1.69+ with Starter Kits, new asset source plugins, and updated naming conventions.
 - [To v1.72](./to-v1-72.md) - Learn how to migrate to CE.SDK v1.72, which deprecates scene mode in favor of a single scene type with all capabilities.
 - [To v1.77](./to-v1-77.md) - Learn what changed in v1.77 for web — branch on stable engine error codes, update your setup for the reorganized text and caption presets, and adopt the new public keyboard shortcuts registry and its starter kit catalogs.
+- [To v1.82](./to-v1-82.md) - Learn what changed in v1.82 for web — the video timeline controls bar is now driven by the Component Order API and ships without a built-in order, and the clip ellipsis button gained its own feature flag.
 
 
 ---

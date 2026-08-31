@@ -4,9 +4,9 @@
 
 ---
 
-Pull the most prominent colors out of a block on the server. The CE.SDK Node.js engine returns the same palette as the browser, which makes it a good fit for batch color analysis, tagging, and metadata pipelines.
+Pull the most prominent colors out of a block on the server. The CE.SDK Node.js packages return the same palette as the browser, which makes it a good fit for batch color analysis, tagging, and metadata pipelines.
 
-`engine.block.getDominantColors()` analyzes the rendered appearance of a block and returns its most prominent colors, sorted from most to least dominant. It runs headlessly with CPU rendering, so no browser or GPU is required.
+`engine.block.getDominantColors()` analyzes the rendered appearance of a block and returns its most prominent colors, sorted from most to least dominant. It runs headlessly, so no browser is required — the WASM-based `@cesdk/node` package renders on the CPU, while `@cesdk/node-native` uses the GPU when available.
 
 ## Extracting Dominant Colors
 

@@ -18,7 +18,7 @@ Create structured compositions using stack layouts that automatically arrange pa
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-layout-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1-rc.0/examples/guides-create-composition-layout-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-rc.0/examples/guides-create-composition-layout-browser/index.html)
 
 Stack layouts arrange pages automatically with consistent spacing. Vertical stacks arrange pages top-to-bottom, while horizontal stacks arrange them left-to-right. This eliminates manual positioning for compositions like photo collages, product catalogs, or social media carousels.
 
@@ -178,6 +178,11 @@ class Example implements EditorPlugin {
     const updatedSpacing = engine.block.getFloat(stack, 'stack/spacing');
     console.log('Updated spacing:', updatedSpacing);
 
+    // Choose what the value means. When true, the spacing is a screen-pixel
+    // distance that stays constant as the user zooms. When false, it is a
+    // distance in design units. Exports always read design units.
+    engine.block.setBool(stack, 'stack/spacingInScreenspace', false);
+
     // Zoom to show all pages in the stack
     await engine.scene.zoomToBlock(stack, { padding: 50 });
   }
@@ -335,9 +340,34 @@ Adjust spacing between pages using the `stack/spacing` property on the stack blo
     // Verify the spacing value
     const updatedSpacing = engine.block.getFloat(stack, 'stack/spacing');
     console.log('Updated spacing:', updatedSpacing);
+
+    // Choose what the value means. When true, the spacing is a screen-pixel
+    // distance that stays constant as the user zooms. When false, it is a
+    // distance in design units. Exports always read design units.
+    engine.block.setBool(stack, 'stack/spacingInScreenspace', false);
 ```
 
 Spacing updates immediately and pages reposition automatically. Use `getFloat()` to verify the current spacing value.
+
+A second property, `stack/spacingInScreenspace`, decides what that number means:
+
+| Value | Meaning |
+| --- | --- |
+| `true` (default) | The gap is a screen-pixel distance. It stays visually constant as the user zooms, so pages keep the same on-screen separation at any zoom level. |
+| `false` | The gap is a distance in design units, so it scales with the rest of the document. |
+
+The distinction applies to the canvas preview only. Exports always interpret the gap in design units, whatever the property is set to.
+
+Switching the property never converts the number. A gap of `40` stays `40` and is reinterpreted in the other space, which changes how far apart the pages appear.
+
+### Adjust the gap from the editor UI
+
+Users can reach both properties without writing code. Deselect everything to open the Document inspector, then set the scene to a horizontal or vertical layout. Two rows appear below the layout switch:
+
+- **Gap** writes `stack/spacing`. Its unit label follows the row below, showing `px` for screen pixels and the scene's design unit otherwise.
+- **Gap Unit** writes `stack/spacingInScreenspace`, offering **Screen Pixels** and **Design Units**.
+
+Both rows are hidden in free layout, which has no stack to space, and in depth-stacked layouts, where pages overlap. To hide them from your users, disable the `ly.img.scene.layout.spacing` feature — see [Disable or Enable Features](./user-interface/customization/disable-or-enable.md).
 
 ## Switch to Free Layout
 
@@ -380,6 +410,7 @@ Free layout gives full control over page positions. Use this when you need preci
 | `engine.block.findByType('stack')` | Find the stack container block |
 | `engine.block.setFloat(id, 'stack/spacing', value)` | Set spacing between stacked pages |
 | `engine.block.getFloat(id, 'stack/spacing')` | Get current spacing value |
+| `engine.block.setBool(id, 'stack/spacingInScreenspace', value)` | Set whether spacing is in screen pixels |
 | `engine.block.appendChild(parent, child)` | Add a page to the stack |
 | `engine.block.insertChild(parent, child, index)` | Insert a page at a specific position |
 | `engine.block.getChildren(id)` | Get child blocks in order |

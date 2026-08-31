@@ -26,6 +26,14 @@ val Audio: AssetSourceType
 
 The default source type for audios.
 
+### CaptionPresets
+
+```kotlin
+val CaptionPresets: AssetSourceType
+```
+
+Caption style presets. Assets carry an opaque payload.stylePreset that the engine applies to one caption and syncs across its track.
+
 ### GalleryAllVisuals
 
 ```kotlin

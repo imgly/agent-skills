@@ -103,7 +103,7 @@ Apply crop presets programmatically to enforce specific aspect ratios or dimensi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/editor-guides-configuration-force-crop)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-rc.0/editor-guides-configuration-force-crop)
 
 The Android force crop flow uses `EditorEvent.ApplyForceCrop` with a `ForceCropConfiguration`. The event targets a page or any other croppable block, resolves the configured preset candidates from asset sources, selects the best match for the block's current dimensions, and applies it according to the selected mode.
 

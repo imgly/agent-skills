@@ -6,7 +6,7 @@
 
 The CreativeEditor SDK (CE.SDK) offers powerful image editing capabilities designed for seamless integration into your application. You can give your users full control through an intuitive user interface or implement fully automated workflows via the SDK’s programmatic API.
 
-Image editing with CE.SDK is fully client-side, ensuring fast performance, data privacy, and offline compatibility. Whether you're building a photo editor, design tool, or automation workflow, CE.SDK provides everything you need—plus the flexibility to integrate AI tools for tasks like adding or removing objects, swapping backgrounds, or creating variants.
+Image editing with CE.SDK runs fully in-process on your server, ensuring fast performance, data privacy, and offline compatibility. Whether you're building a photo editor, design tool, or automation workflow, CE.SDK provides everything you need—plus the flexibility to integrate AI tools for tasks like adding or removing objects, swapping backgrounds, or creating variants.
 
 [Launch Web Demo](https://img.ly/showcases/cesdk)
 

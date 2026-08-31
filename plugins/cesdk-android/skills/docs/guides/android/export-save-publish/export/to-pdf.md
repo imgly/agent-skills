@@ -4,8 +4,11 @@
 
 ---
 
-```kotlin file=@cesdk_android_examples/engine-guides-underlayer/Underlayer.kt reference-only
+```kotlin file=@cesdk_android_examples/engine-guides-export-to-pdf/ExportToPdf.kt reference-only
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ly.img.engine.Color
 import ly.img.engine.DesignBlockType
@@ -17,7 +20,7 @@ import ly.img.engine.ShapeType
 import java.io.File
 import java.nio.ByteBuffer
 
-suspend fun underlayer(engine: Engine): List<File> {
+suspend fun exportToPdf(engine: Engine): List<File> {
     // Demo scaffolding: create renderable content for the export snippets. In
     // an app, start from the scene already loaded in the editor.
     val scene = engine.scene.create()
@@ -44,6 +47,32 @@ suspend fun underlayer(engine: Engine): List<File> {
         mimeType = MimeType.PDF,
     )
     val defaultPdf = writePdfExport(fileName = "design-pages.pdf", buffer = pdfData)
+
+    // Report per-page progress as the PDF is written. The callback runs once
+    // per page; only PDF exports invoke it.
+    val progressData = engine.block.export(
+        block = scene,
+        mimeType = MimeType.PDF,
+        progressCallback = { progress ->
+            println("Exported ${progress.exportedPages} of ${progress.totalPages} pages")
+        },
+    )
+    val progressPdf = writePdfExport(fileName = "design-with-progress.pdf", buffer = progressData)
+
+    // Cancelling the coroutine that runs the export stops the export itself.
+    // Keep the job in your view model and cancel it from your Cancel button.
+    coroutineScope {
+        val exportJob = launch {
+            try {
+                engine.block.export(block = scene, mimeType = MimeType.PDF)
+            } catch (cancellation: CancellationException) {
+                // A cancelled export produces no data.
+                println("Export cancelled")
+                throw cancellation
+            }
+        }
+        exportJob.cancel()
+    }
 
     val highCompatibilityOptions = ExportOptions(exportPdfWithHighCompatibility = true)
     val highCompatibilityData = engine.block.export(
@@ -82,7 +111,7 @@ suspend fun underlayer(engine: Engine): List<File> {
     )
     val a4Pdf = writePdfExport(fileName = "design-a4.pdf", buffer = a4Data)
 
-    return listOf(defaultPdf, highCompatibilityPdf, underlayerPdf, a4Pdf)
+    return listOf(defaultPdf, progressPdf, highCompatibilityPdf, underlayerPdf, a4Pdf)
 }
 
 private suspend fun writePdfExport(
@@ -111,7 +140,7 @@ underlayer support for special media printing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.81.1-rc.0/engine-guides-underlayer)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-rc.0/engine-guides-export-to-pdf)
 
 <EngineReferenceNote {...props} />
 
@@ -150,6 +179,48 @@ private suspend fun writePdfExport(
     }
 }
 ```
+
+## Track Export Progress
+
+Large multi-page PDFs take time to write. Pass a `progressCallback` to `engine.block.export()` to report how far the export has advanced.
+
+```kotlin highlight-android-progress
+// Report per-page progress as the PDF is written. The callback runs once
+// per page; only PDF exports invoke it.
+val progressData = engine.block.export(
+    block = scene,
+    mimeType = MimeType.PDF,
+    progressCallback = { progress ->
+        println("Exported ${progress.exportedPages} of ${progress.totalPages} pages")
+    },
+)
+val progressPdf = writePdfExport(fileName = "design-with-progress.pdf", buffer = progressData)
+```
+
+The callback runs once after each page is serialized into the document. It receives an `ExportPdfProgress` with `exportedPages` and `totalPages`. It is PDF-specific: raster exports like PNG or JPEG never invoke it. The callback runs on the engine's thread, so dispatch to the main thread before updating UI.
+
+## Cancel a Running Export
+
+`export` is a suspending function and follows coroutine cancellation. Cancel the job that runs it, and the export stops. The call throws a `CancellationException` and returns no data.
+
+```kotlin highlight-android-cancel
+// Cancelling the coroutine that runs the export stops the export itself.
+// Keep the job in your view model and cancel it from your Cancel button.
+coroutineScope {
+    val exportJob = launch {
+        try {
+            engine.block.export(block = scene, mimeType = MimeType.PDF)
+        } catch (cancellation: CancellationException) {
+            // A cancelled export produces no data.
+            println("Export cancelled")
+            throw cancellation
+        }
+    }
+    exportJob.cancel()
+}
+```
+
+Keep the job in your view model rather than discarding it, because cancelling it is the only way to stop the export. For a multi-page PDF the engine stops at the next page boundary, so the pages that are still queued are never rendered. Every other export finishes its current work before the result is dropped, because there is no boundary to stop at.
 
 ## Configure High Compatibility Mode
 
@@ -273,13 +344,13 @@ For print output, calculate the target dimensions from your desired DPI:
 
 ## API Reference
 
-| Method                                                                         | Description                                                  |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------ |
-| `engine.block.export(block=_, mimeType=MimeType.PDF, options=_)`               | Export a block as PDF with format and compatibility options. |
-| `engine.editor.setSpotColor(name=_, color=Color.fromRGBA(r=_, g=_, b=_, a=_))` | Define or update the RGB approximation of a spot color.      |
-| `Color.fromRGBA(r=_, g=_, b=_, a=_)`                                           | Create the RGB preview color for the underlayer spot color.  |
-| `engine.scene.get()`                                                           | Get the scene block for a multi-page PDF export.             |
-| `engine.scene.getCurrentPage()`                                                | Get the current page for a single-page PDF export.           |
+| Method                                                                               | Description                                                                                                                     |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| `engine.block.export(block=_, mimeType=MimeType.PDF, options=_, progressCallback=_)` | Export a block as PDF with format and compatibility options, optionally reporting per-page progress through `progressCallback`. |
+| `engine.editor.setSpotColor(name=_, color=Color.fromRGBA(r=_, g=_, b=_, a=_))`       | Define or update the RGB approximation of a spot color.                                                                         |
+| `Color.fromRGBA(r=_, g=_, b=_, a=_)`                                                 | Create the RGB preview color for the underlayer spot color.                                                                     |
+| `engine.scene.get()`                                                                 | Get the scene block for a multi-page PDF export.                                                                                |
+| `engine.scene.getCurrentPage()`                                                      | Get the current page for a single-page PDF export.                                                                              |
 
 ## Next Steps
 

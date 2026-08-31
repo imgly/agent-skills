@@ -105,10 +105,12 @@ public extension DesignEditorConfiguration {
 
   /// Loads the built-in empty design scene.
   static let defaultCreateScene: OnCreate.Callback = { engine in
-    let sceneURL = Bundle(for: DesignEditorConfiguration.self).url(
-      forResource: "design-ui-empty",
-      withExtension: "scene",
-    )!
+    #if SWIFT_PACKAGE
+      let bundle = Bundle.module
+    #else
+      let bundle = Bundle(for: DesignEditorConfiguration.self)
+    #endif
+    let sceneURL = bundle.url(forResource: "design-ui-empty", withExtension: "scene")!
     try await engine.scene.load(from: sceneURL)
   }
 
@@ -195,9 +197,9 @@ Embed a ready-to-use design editor that lets users personalize templates while r
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-design-editor-ios/archive/refs/heads/v1.81.1-rc.0.zip)
+> - [Download examples](https://github.com/imgly/starterkit-design-editor-ios/archive/refs/heads/v1.82.0-rc.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-design-editor-ios/tree/v1.81.1-rc.0)
+> - [View source on GitHub](https://github.com/imgly/starterkit-design-editor-ios/tree/v1.82.0-rc.0)
 
 ***
 
@@ -218,7 +220,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
     ### Step 1: Clone the Repository
 
     ```bash
-    git clone -b v1.81.1-rc.0 https://github.com/imgly/starterkit-design-editor-ios.git
+    git clone -b v1.82.0-rc.0 https://github.com/imgly/starterkit-design-editor-ios.git
     cd starterkit-design-editor-ios
     ```
 
@@ -256,7 +258,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
        ```
        https://github.com/imgly/IMGLYUI-swift
        ```
-    3. Select version `1.81.1-rc.0` and add the `IMGLYEditor` product to your target
+    3. Select version `1.82.0-rc.0` and add the `IMGLYEditor` product to your target
 
     ### Step 2: Copy the Starter Kit Files
 
@@ -264,7 +266,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
 
     ```bash
     repo="starterkit-design-editor-ios"
-    version="1.81.1-rc.0"
+    version="1.82.0-rc.0"
     curl -L "https://codeload.github.com/imgly/${repo}/tar.gz/refs/heads/v${version}" | tar -xz --strip-components=1 "${repo}-v${version}/starter-kit"
     ```
 
@@ -321,12 +323,16 @@ You can configure the editor based on your business logic — for example, loadi
 The scene setup logic is located in `OnCreate+Design.swift` as part of the `defaultCreateScene` callback:
 
 ```swift highlight-starter-kit-on-create-scene
-let sceneURL = Bundle(for: DesignEditorConfiguration.self).url(
-  forResource: "design-ui-empty",
-  withExtension: "scene",
-)!
+#if SWIFT_PACKAGE
+  let bundle = Bundle.module
+#else
+  let bundle = Bundle(for: DesignEditorConfiguration.self)
+#endif
+let sceneURL = bundle.url(forResource: "design-ui-empty", withExtension: "scene")!
 try await engine.scene.load(from: sceneURL)
 ```
+
+The `#if SWIFT_PACKAGE` conditional picks the bundle that contains the starter kit's resources: the `Bundle(for:)` branch applies when you add the starter kit to an app target as described in this guide, while `Bundle.module` applies when the kit compiles inside a Swift package.
 
 CE.SDK offers multiple ways to load a scene into the editor — from a template archive, a blank canvas, or a `.scene` file.
 
@@ -370,7 +376,7 @@ For production deployments, self-hosting assets is required—the IMG.LY CDN is 
 
 ## Self-Host Assets for Production
 
-The starter kit loads assets from the `baseURL` you set on `EngineSettings`, which defaults to the IMG.LY CDN (`https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.1-rc.0/assets`). To self-host assets, download the [asset zip file](https://cdn.img.ly/packages/imgly/cesdk-swift/1.81.1-rc.0/imgly-assets.zip) and pass a custom `baseURL` to your `EngineSettings`.
+The starter kit loads assets from the `baseURL` you set on `EngineSettings`, which defaults to the IMG.LY CDN (`https://cdn.img.ly/packages/imgly/cesdk-swift/1.82.0-rc.0/assets`). To self-host assets, download the [asset zip file](https://cdn.img.ly/packages/imgly/cesdk-swift/1.82.0-rc.0/imgly-assets.zip) and pass a custom `baseURL` to your `EngineSettings`.
 
 ## Customize Export Functionality
 

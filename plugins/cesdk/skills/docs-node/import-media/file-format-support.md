@@ -4,7 +4,7 @@
 
 ---
 
-When building server-side creative applications with CE.SDK in Node.js, understanding which file formats you can import is essential for processing user content at scale. CE.SDK's Node.js package supports the same comprehensive range of modern media formats as the browser version.
+When building server-side creative applications with CE.SDK in Node.js, understanding which file formats you can import is essential for processing user content at scale. CE.SDK's Node.js packages (`@cesdk/node` and `@cesdk/node-native`) support the same comprehensive range of modern media formats as the browser version, with one exception: WebM import requires the WASM-based `@cesdk/node`.
 
 This guide provides a complete reference of supported file formats for importing media, templates, and fonts into CE.SDK on Node.js.
 
@@ -15,7 +15,7 @@ CE.SDK for Node.js supports importing the following media types:
 | Category        | Supported Formats                                                                       |
 | --------------- | --------------------------------------------------------------------------------------- |
 | **Images**      | `.png`, `.apng`, `.jpeg`, `.jpg`, `.gif`, `.webp`, `.svg`, `.bmp`                       |
-| **Video**       | `.mp4` (H.264/AVC, H.265/HEVC), `.mov` (H.264/AVC, H.265/HEVC), `.webm` (VP8, VP9, AV1) |
+| **Video**       | `.mp4` (H.264/AVC, H.265/HEVC), `.mov` (H.264/AVC, H.265/HEVC), `.webm` (VP8, VP9, AV1 — not supported by the native `@cesdk/node-native` package) |
 | **Audio**       | `.mp3`, `.m4a`, `.mp4` (AAC or MP3), `.mov` (AAC or MP3)                               |
 | **Animation**   | `.json` (Lottie)                                                                        |
 | **Templates**   | `.idml` (InDesign), `.psd` (Photoshop), `.scene` (CE.SDK Native)                       |
@@ -33,7 +33,7 @@ While container formats (`.mp4`, `.mov`, `.webm`) define how media is packaged, 
 
 - **H.264 / AVC** (in `.mp4` or `.mov`) – Universally supported with software decoding
 - **H.265 / HEVC** (in `.mp4` or `.mov`) – Requires platform-specific support; availability varies by system libraries
-- **VP8, VP9, AV1** (in `.webm`) – Modern codecs supported through system media libraries
+- **VP8, VP9, AV1** (in `.webm`) – Modern codecs supported through system media libraries (`@cesdk/node` only — the native `@cesdk/node-native` package cannot import WebM)
 
 ### Audio Codecs
 
@@ -55,7 +55,7 @@ CE.SDK for Node.js processes media using the system's available resources. Serve
 | **Input Resolution**  | Maximum input resolution is **4096×4096 pixels** by default. Images from external sources are resized to this size before rendering. You can modify this value using the `maxImageSize` setting.  |
 | **Output Resolution** | There is no enforced output resolution limit. The editor theoretically supports output sizes up to **16,384×16,384 pixels**. Practical limits depend on available system memory and CPU resources. |
 
-All image processing in CE.SDK for Node.js is handled server-side using CPU-based rendering (no GPU required). The default limit of 4096×4096 ensures reasonable processing times and memory usage. Higher resolutions will work but may require more memory and longer processing times.
+All image processing in CE.SDK for Node.js is handled server-side. The WASM-based `@cesdk/node` package renders on the CPU (no GPU required); the native `@cesdk/node-native` package renders on the GPU when one is available and falls back to CPU rendering. The default limit of 4096×4096 ensures reasonable processing times and memory usage. Higher resolutions will work but may require more memory and longer processing times.
 
 > **Note:** For server deployments, monitor memory usage when processing high-resolution
 > images. Consider implementing request queuing or resource pooling for
@@ -65,11 +65,11 @@ All image processing in CE.SDK for Node.js is handled server-side using CPU-base
 
 | Constraint     | Recommendation / Limit                                                                                                                                                                                                                                                                                                         |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Resolution** | Up to **4K UHD** is supported for processing, depending on available system resources. Maximum video size is bounded by the **32-bit address space of WebAssembly (wasm32)** and **available system memory**. |
+| **Resolution** | Up to **4K UHD** is supported for processing, depending on available system resources. Maximum video size is bounded by available system memory; with the WASM-based `@cesdk/node` package it is additionally bounded by the **32-bit address space of WebAssembly (wasm32)**. |
 | **Frame Rate** | 30 FPS at 1080p is recommended; 60 FPS works but increases processing time                                                                                                                                           |
 | **Duration**   | Stories and reels of up to **2 minutes** process efficiently. Longer videos up to **10 minutes** are supported, with processing time scaling proportionally with duration.                                       |
 
-> **Warning:** Server-side video processing is CPU-intensive. For production deployments,
+> **Warning:** Server-side video processing is resource-intensive (the native `@cesdk/node-native` package uses GPU acceleration where available). For production deployments,
 > consider implementing job queues, progress tracking, and timeout handling for
 > long-running video operations.
 
@@ -167,7 +167,7 @@ Always validate file formats before processing on the server:
 
 For production Node.js deployments, implement proper resource management:
 
-- **Memory limits**: Monitor and limit memory per process (use Node.js `--max-old-space-size` flag)
+- **Memory limits**: Monitor and limit memory per process (note that `--max-old-space-size` caps only the V8 heap, not the engine's own allocations)
 - **Concurrency control**: Limit concurrent processing jobs to prevent resource exhaustion
 - **Cleanup**: Always dispose of resources after processing (call `dispose()` on engine instances)
 - **Queue systems**: Use job queues (Bull, BullMQ) for long-running video processing tasks

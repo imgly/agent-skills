@@ -18,7 +18,7 @@ Export your designs as PDF documents with high compatibility mode and underlayer
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.81.1-rc.0/examples/guides-export-save-publish-export-to-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0-rc.0/examples/guides-export-save-publish-export-to-pdf-browser/index.html)
 
 PDF provides a universal document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page documents, and include options for print compatibility. You can configure high compatibility mode to ensure consistent rendering across different PDF viewers, and generate underlayers for special media printing like fabric, glass, or DTF transfers.
 
@@ -199,6 +199,51 @@ class Example implements EditorPlugin {
           },
           {
             id: 'ly.img.action.navigationBar',
+            key: 'export-progress',
+            label: 'With Progress',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Report per-page progress as the PDF is written.
+              // The callback runs once per page; only PDF exports invoke it.
+              const pdfBlob = await engine.block.export(scene, {
+                mimeType: 'application/pdf',
+                onProgress: (exportedPages, totalPages) => {
+                  console.log(
+                    `Exported ${exportedPages} of ${totalPages} pages`
+                  );
+                }
+              });
+              await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-cancel',
+            label: 'Cancellable',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Abort a running export. Wire `controller.abort()` to your own
+              // Cancel button; the timeout here only keeps the example short.
+              const controller = new AbortController();
+              setTimeout(() => controller.abort(), 500);
+              try {
+                const pdfBlob = await engine.block.export(scene, {
+                  mimeType: 'application/pdf',
+                  abortSignal: controller.signal
+                });
+                await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+              } catch (error) {
+                // A cancelled export produces no file.
+                console.log('Export cancelled', error);
+              }
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
             key: 'export-action',
             label: 'Export',
             icon: '@imgly/Download',
@@ -232,6 +277,58 @@ const pdfBlob = await engine.block.export(scene, {
 ```
 
 Pass the scene ID from `engine.scene.get()` to export all pages as a multi-page PDF. You can also pass a single page ID from `engine.scene.getCurrentPage()` if you only need to export one page.
+
+## Track Export Progress
+
+Large multi-page PDFs take time to write. Pass an `onProgress` callback to report how far the export has advanced, so you can drive a progress bar instead of an indeterminate spinner.
+
+```typescript highlight=highlight-progress
+// Report per-page progress as the PDF is written.
+// The callback runs once per page; only PDF exports invoke it.
+const pdfBlob = await engine.block.export(scene, {
+  mimeType: 'application/pdf',
+  onProgress: (exportedPages, totalPages) => {
+    console.log(
+      `Exported ${exportedPages} of ${totalPages} pages`
+    );
+  }
+});
+```
+
+The callback fires once after each page is serialized into the document, receiving the number of pages exported so far and the total page count. It is PDF-specific: raster exports like PNG or JPEG never invoke it. When you export through the editor's built-in export flow, the export dialog already uses this callback to show a per-page progress bar for PDF exports.
+
+## Cancel a Running Export
+
+Pass an `abortSignal` to stop an export that the user no longer waits for. The promise rejects, and no file is produced.
+
+```typescript highlight=highlight-cancel
+// Abort a running export. Wire `controller.abort()` to your own
+// Cancel button; the timeout here only keeps the example short.
+const controller = new AbortController();
+setTimeout(() => controller.abort(), 500);
+try {
+  const pdfBlob = await engine.block.export(scene, {
+    mimeType: 'application/pdf',
+    abortSignal: controller.signal
+  });
+  await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+} catch (error) {
+  // A cancelled export produces no file.
+  console.log('Export cancelled', error);
+}
+```
+
+For a multi-page PDF the engine stops at the next page boundary, so the pages that are still queued are never rendered. Every other export finishes its current work before the result is dropped, because there is no boundary to stop at. Reuse of a controller is not possible: an `AbortController` signals only once, so create a new one for each export.
+
+## Export Large Documents
+
+PDF exports are streamed internally: the engine writes the document in small chunks, so it never holds the finished file in its memory. Where the browser supports the origin private file system, `engine.block.export()` also stages those chunks in a temporary file on disk and resolves with a `Blob` backed by that file. Memory usage then stays flat at chunk size for the whole export, no matter how large the document gets. Where it does not, the `Blob` is assembled in memory instead. This all happens automatically, and the resolved `Blob` has the same content and type either way.
+
+Check `engine.editor.isCapabilitySupported('tempFileStorage')` to see which path the current browser takes.
+
+The temporary file has to outlive the `Blob` that it backs, so it is not deleted when the export finishes. CE.SDK collects the staging files of earlier page loads for you. Until then they count towards the storage quota of the origin.
+
+A failed staged export reports the `ENCODE.PDF_STAGING_WRITE_FAILED` code rather than returning a truncated file, for example when the device has no space left for the temporary file.
 
 ## Configure High Compatibility Mode
 
@@ -379,7 +476,9 @@ Pass the blob and MIME type to prompt the user to save the file locally.
 | `underlayerOffset` | Size adjustment in design units. Negative values shrink the underlayer inward. |
 | `targetWidth` | Target output width in pixels. Must be used with `targetHeight`. |
 | `targetHeight` | Target output height in pixels. Must be used with `targetWidth`. |
-| `abortSignal` | Signal to cancel the export operation. |
+| `onProgress` | Callback invoked once per page during PDF export with `(exportedPages, totalPages)`. Only called for PDF exports. |
+| `pdfChunkSize` | Upper bound in bytes for a single chunk the PDF encoder hands to the export. Tunes the memory the export holds while it runs; it does not change the returned document. Defaults to an engine-chosen 512 KiB. Other values are clamped to 4 KiB to 64 MiB. |
+| `abortSignal` | Signal that cancels the export. A multi-page PDF export stops at the next page boundary. |
 
 ## API Reference
 

@@ -659,7 +659,7 @@ Image and video encoding/export.
 | `ENCODE.AUDIO_TIME_RANGE_INVALID_AFTER_TRIM` | Invalid time range after applying trim settings and options. | After applying trim/clip parameters the selected range is empty. Adjust start/end times. |  |
 | `ENCODE.AUDIO_TRACK_INDEX_OUT_OF_BOUNDS` | Audio track index \{index} is out of bounds. Valid range: 0-\{max} | Pass an audio track index within \[0, \{max}]. |  |
 | `ENCODE.AUDIO_UNSUPPORTED_EXPORT_FORMAT` | Unsupported audio export format. | Use audio/wav or audio/mp4 as the export target. |  |
-| `ENCODE.BLOCK_MUST_BE_PAGE` | The block to export must be a page. | Audio export targets a page block. Pass a page or call api.scene.getPages() to obtain one. |  |
+| `ENCODE.BLOCK_MUST_BE_PAGE` | The block to export must be a page. | Video export targets a single page block. Pass a page or call api.scene.getPages() to obtain one. Scenes with multiple pages must be exported one page at a time. |  |
 | `ENCODE.BLOCK_SIZE_ZERO` | Block to export has size 0. | Set a positive width and height on the block, or pick a different block, before exporting. |  |
 | `ENCODE.CANCELLED_BY_BLOCK_ERROR` | The export was cancelled due to block \{block} having an error: \{reason} | Block \{block} entered an error state during export (\{reason}). Resolve the block's underlying issue and retry. |  |
 | `ENCODE.COLOR_MASK_DATA_FAILED` | Color masking data could not be generated. | The renderer failed to produce the color-mask buffer. Retry, or simplify the scene if it has very high resolution. |  |
@@ -669,6 +669,7 @@ Image and video encoding/export.
 | `ENCODE.DIRECT_EXTRACTION_UNSUPPORTED` | Direct extraction not supported for this block/mime type combination. | The requested block kind cannot be extracted directly to this mime type. Use a transcoding path instead. |  |
 | `ENCODE.ENTITY_INVALID` | Entity is invalid. | The block id no longer references a live block. Re-resolve before exporting. |  |
 | `ENCODE.ENTITY_NOT_PART_OF_PAGE` | Entity is not part of a valid page. | Audio export requires the block to be inside a page. Add the block to a page before exporting. |  |
+| `ENCODE.EXPORT_CANCELLED` | The export was cancelled by the receiver. | The chunk callback or the progress callback returned false. No further data will be delivered. Start a new export if the result is still needed. |  |
 | `ENCODE.EXPORT_FAILED` | Export failed. | A non-specific export error was produced. Check earlier log lines for the root cause and retry. |  |
 | `ENCODE.EXPORT_OPTIONS_NOT_OBJECT` | Export options must be a valid JSON object. | Pass the export options as a JSON object string, e.g. \{"pngCompressionLevel": 6}. |  |
 | `ENCODE.EXPORT_OPTIONS_PARSE_FAILED` | Failed to parse export options: \{reason} | The export options string is not valid JSON (\{reason}). Fix the JSON syntax and retry. |  |
@@ -701,12 +702,15 @@ Image and video encoding/export.
 | `ENCODE.PDF_CREATE_FAILED` | Failed to create a PDF document. | The PDF writer rejected the document. Check available memory and retry with a smaller scene if needed. |  |
 | `ENCODE.PDF_CREATE_FAILED_RESOURCES` | Failed to create PDF document. Not enough resources available on device. Try exporting at a lower resolution. | Reduce the page size or DPI and retry. Very large scenes can exceed device memory limits. |  |
 | `ENCODE.PDF_RENDER_SIZE_EXCEEDS_MAX` | The effective rendering size of \{width}x\{height} px (at \{dpi} DPI) for the PDF export exceeds the maximum supported texture size \{maxSize} of the device. Try reducing the scene DPI or the size of the exported block. | Reduce the scene DPI or the export size so the rendered dimensions stay at or below \{maxSize} px. |  |
+| `ENCODE.PDF_STAGING_WRITE_FAILED` | Failed to write the PDF export to temporary storage. | The document could not be staged on disk, so the export was stopped instead of returning a truncated file. Free up storage space and retry. |  |
 | `ENCODE.PIXEL_BUFFER_UNEXPECTED_SIZE` | Unexpected pixel buffer size for color analysis. | The pixel buffer dimensions don't match the expected analysis layout. Re-read the buffer or verify the source surface. |  |
 | `ENCODE.PIXEL_STREAM_NO_DATA` | Failed to encode pixel stream: no data was produced. | Inspect the pixel stream pipeline. The exporter produced an empty result for the requested options. |  |
 | `ENCODE.RELATIVE_URLS_NOT_SUPPORTED` | Relative URLs are not supported. | Resolve all relative URLs to absolute ones before invoking the operation. |  |
 | `ENCODE.RESOURCE_DATA_EMPTY` | Empty resource data: \{uri} | The resource at '\{uri}' loaded but returned empty bytes. Re-source the file. |  |
 | `ENCODE.RESOURCE_LOAD_FAILED_WITH_REASON` | Failed to load resource '\{uri}': \{reason} | The resource at '\{uri}' failed to load (\{reason}). Confirm reachability and supported format. |  |
 | `ENCODE.RESULT_BUFFER_FAILED` | Could not acquire result buffer. Please try again. | The renderer transiently failed to allocate a result buffer. Retry the export after a short delay. |  |
+| `ENCODE.STREAM_EXPORT_MIME_TYPE_INVALID` | Streamed export only supports "application/pdf". | Pass application/pdf as the mime type or use exportToBuffer for other formats. |  |
+| `ENCODE.STREAM_EXPORT_MISSING_RECEIVER` | Streamed export was started without a data receiver. | Pass a chunk callback to the streamed export. There is nothing to deliver the data to. |  |
 | `ENCODE.SVG_CANVAS_CREATE_FAILED` | Failed to create SVG canvas. | The SVG canvas could not be allocated. Check available memory and retry. |  |
 | `ENCODE.SVG_COLOR_MASK_UNSUPPORTED` | Color masking is not supported for SVG export. | SVG output cannot carry a color mask. Disable color masking or export as PNG/PDF instead. |  |
 | `ENCODE.SVG_MEMORY_ALLOC_FAILED` | Could not allocate memory for SVG export. | Reduce the scene complexity or available pixel count, then retry the SVG export. |  |
@@ -759,6 +763,9 @@ License unlock, API-key handling, entitlement checks.
 | --- | --- | --- | --- |
 | `LICENSE.ALREADY_UNLOCKED` | License is already unlocked. | The license has already been unlocked successfully. Skip the redundant unlock call. |  |
 | `LICENSE.API_SERVICE_UNAVAILABLE` | API service is unavailable. Please contact support. | The license API endpoint did not respond. Check network connectivity; if the problem persists, contact support. |  |
+| `LICENSE.AV_CONCURRENCY_LIMIT_REACHED` | Codec license concurrency limit reached: \{activeCount} of \{concurrencyLimit} licensed instances are already in use. | Wait for another engine instance to finish its video or audio work and retry, or raise the concurrency limit of your license. |  |
+| `LICENSE.AV_SESSION_ACQUISITION_FAILED` | Could not reserve a video codec license from the license server. | Check network connectivity to the IMG.LY license service and retry the operation. |  |
+| `LICENSE.AV_SESSION_REQUIRES_API_KEY` | Video codec licensing requires unlocking the engine with an API key. | Initialize the engine with the API key from your dashboard instead of an offline license file. |  |
 | `LICENSE.CANNOT_DEACTIVATE_OFFLINE` | Cannot deactivate offline license. | Offline licenses cannot be deactivated remotely. Switch to an online license if dynamic activation is required. |  |
 | `LICENSE.DEACTIVATION_TIMEOUT` | Deactivation timed out. | The license server did not acknowledge the deactivation in time. Retry, or contact support if the issue persists. |  |
 | `LICENSE.ENGINE_VERSION_INVALID` | The License Key (API Key) you are using requires a newer version of the IMG.LY SDK. Please update to the latest version. | Upgrade the CE.SDK engine to a version compatible with this license. |  |

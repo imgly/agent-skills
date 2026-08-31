@@ -27,7 +27,7 @@ import { getImageSize } from '../../imgly/engine-utils';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.1-rc.0/starterkit-photo-ui';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0-rc.0/starterkit-photo-ui';
 
 const INITIAL_PORTRAIT_IMAGE_PATH = `${DEMO_ASSETS_BASE_URL}/images/mountains.jpg`;
 const INITIAL_LANDSCAPE_IMAGE_PATH = `${DEMO_ASSETS_BASE_URL}/images/woman.jpg`;

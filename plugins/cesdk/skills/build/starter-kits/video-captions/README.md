@@ -49,7 +49,7 @@ Load content into the editor using one of these methods:
 
 ```typescript
 // Create a blank video scene
-await cesdk.createVideoScene();
+await cesdk.actions.run('scene.create');
 
 // Load from a template archive
 await cesdk.load('https://example.com/video-template.zip');
@@ -144,7 +144,7 @@ requirements, or remove the CDN dependency for production — eject them
 
 ```bash
 # Download this starter kit's demo assets
-curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.1-rc.0/starterkit-video-captions/demo-assets.zip
+curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0-rc.0/starterkit-video-captions/demo-assets.zip
 unzip demo-assets.zip -d demo-assets
 rm demo-assets.zip
 ```

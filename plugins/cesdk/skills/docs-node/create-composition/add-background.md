@@ -153,18 +153,21 @@ try {
   }
   engine.block.appendChild(page, logoBlock);
 
-  // Check feature support on different blocks
+  // Pages and graphic blocks support fills; text blocks do not
   const pageSupportsFill = engine.block.supportsFill(page);
-  const textSupportsBackground =
-    engine.block.supportsBackgroundColor(featuredText);
   const imageSupportsFill = engine.block.supportsFill(imageBlock);
 
   // eslint-disable-next-line no-console
   console.log('Page supports fill:', pageSupportsFill);
   // eslint-disable-next-line no-console
-  console.log('Text supports backgroundColor:', textSupportsBackground);
-  // eslint-disable-next-line no-console
   console.log('Image supports fill:', imageSupportsFill);
+
+  // Only text blocks support background colors
+  const textSupportsBackground =
+    engine.block.supportsBackgroundColor(featuredText);
+
+  // eslint-disable-next-line no-console
+  console.log('Text supports backgroundColor:', textSupportsBackground);
 
   // Export the result to PNG
   const outputDir = './output';
@@ -204,17 +207,13 @@ Fills are visual content applied to pages and graphic blocks. Supported fill typ
 
 Before applying a fill, verify the block supports it with `supportsFill()`. Pages and graphic blocks typically support fills, while text blocks handle their content differently.
 
-```typescript highlight=highlight-check-support
-  // Check feature support on different blocks
+```typescript highlight=highlight-check-fill-support
+  // Pages and graphic blocks support fills; text blocks do not
   const pageSupportsFill = engine.block.supportsFill(page);
-  const textSupportsBackground =
-    engine.block.supportsBackgroundColor(featuredText);
   const imageSupportsFill = engine.block.supportsFill(imageBlock);
 
   // eslint-disable-next-line no-console
   console.log('Page supports fill:', pageSupportsFill);
-  // eslint-disable-next-line no-console
-  console.log('Text supports backgroundColor:', textSupportsBackground);
   // eslint-disable-next-line no-console
   console.log('Image supports fill:', imageSupportsFill);
 ```
@@ -264,19 +263,13 @@ Background color is a dedicated property available specifically on text blocks. 
 
 Use `supportsBackgroundColor()` to verify a block supports this feature. Currently, only text blocks support background colors.
 
-```typescript highlight=highlight-check-support
-  // Check feature support on different blocks
-  const pageSupportsFill = engine.block.supportsFill(page);
+```typescript highlight=highlight-check-background-color-support
+  // Only text blocks support background colors
   const textSupportsBackground =
     engine.block.supportsBackgroundColor(featuredText);
-  const imageSupportsFill = engine.block.supportsFill(imageBlock);
 
   // eslint-disable-next-line no-console
-  console.log('Page supports fill:', pageSupportsFill);
-  // eslint-disable-next-line no-console
   console.log('Text supports backgroundColor:', textSupportsBackground);
-  // eslint-disable-next-line no-console
-  console.log('Image supports fill:', imageSupportsFill);
 ```
 
 ### Apply Background Color

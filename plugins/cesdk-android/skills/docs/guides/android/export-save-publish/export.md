@@ -26,6 +26,7 @@
 - [Partial Export](./export/partial-export.md) - Export individual blocks, grouped elements, or specific pages from a CE.SDK scene in Android instead of exporting the whole scene.
 - [Size Limits](./export/size-limits.md) - Configure and understand CE.SDK's image and video size limits in Android to balance quality and performance across devices.
 - [Create Thumbnail](./create-thumbnail.md) - Generate thumbnail preview images from CE.SDK scenes and pages with Android export options.
+- [Thumbnail Previews](./thumbnail-previews.md) - Stream timeline filmstrips, page storyboards, and audio waveforms on Android with the CE.SDK thumbnail sequence APIs.
 - [Export for Printing](./for-printing.md) - Export designs from CE.SDK as print-ready PDFs with professional output options including high compatibility mode, underlayers for special media, and scene DPI configuration.
 
 

@@ -377,7 +377,7 @@ Common issues include:
 
 - **Network failures**: Check connectivity and URL accessibility
 - **Invalid JSON**: Verify manifest structure matches the expected format
-- **CORS errors**: Configure server headers to allow cross-origin requests
+- **Unreachable asset URLs**: Verify the asset host is reachable from your server environment
 - **404 errors**: Check URL accessibility and ensure the JSON file exists
 
 ## API Reference

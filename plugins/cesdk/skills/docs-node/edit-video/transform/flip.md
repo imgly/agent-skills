@@ -4,15 +4,15 @@
 
 ---
 
-Run **CE.SDK** in **Node.js server mode** to mirror video blocks programmatically—no client editor required. Flip clips before handing scenes to a browser runtime, enforcing template rules, or running automation jobs that prepare footage for downstream pipelines.
+Run **CE.SDK** in **Node.js server mode** to mirror video blocks programmatically—no client editor required. Flip clips before exporting the final video, enforcing template rules, or running automation jobs that prepare footage for downstream pipelines.
 
-> **Note:** CE.SDK for Node.js runs **headless**. To preview or export H.264/MP4, send the prepared scene to a browser runtime such as CE.SDK Web or Playwright (WebCodecs support) and encode the video there, or render frames into your encoder of choice.
+> **Note:** CE.SDK for Node.js runs **headless**. The native `@cesdk/node-native` package exports H.264/MP4 directly on the server via `engine.block.exportVideo()`. With the WASM-based `@cesdk/node` package, use the separate CE.SDK Renderer to encode the video.
 
 ## Requirements
 
-- CE.SDK server package: `npm install @cesdk/node@$UBQ_VERSION$`
+- A CE.SDK server package: `npm install @cesdk/node@$UBQ_VERSION$` (WASM) or `npm install @cesdk/node-native@$UBQ_VERSION$` (native) — the engine API is identical
 - **Node.js 22** or newer
-- CE.SDK license key and `baseURL` to the CE.SDK asset bundle
+- A CE.SDK license key. Set `baseURL` when serving the CE.SDK asset bundle from your own location (both Node.js packages bundle their engine assets, so `baseURL` is optional)
 
 ## What You’ll Learn
 
@@ -78,7 +78,7 @@ engine.block.setFlipHorizontal(videoBlock, true); // Mirror left/right
 engine.block.setFlipVertical(videoBlock, true);   // Mirror top/bottom
 ```
 
-The flip applies immediately in memory. Save or export the scene after you finish updates so the change appears once you open the scene in a browser runtime.
+The flip applies immediately in memory. Save the scene — or export it — after you finish updates so the change is preserved for the next editing or rendering step.
 
 <Picture src={flipVideo} style={{ width: '85%' }} alt="Video flipped horizontally" formats={['webp']} />
 
