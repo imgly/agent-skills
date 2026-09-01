@@ -197,9 +197,9 @@ Embed a ready-to-use design editor that lets users personalize templates while r
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-design-editor-ios/archive/refs/heads/v1.83.0-nightly.20260831.zip)
+> - [Download examples](https://github.com/imgly/starterkit-design-editor-ios/archive/refs/heads/v1.83.0-nightly.20260901.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-design-editor-ios/tree/v1.83.0-nightly.20260831)
+> - [View source on GitHub](https://github.com/imgly/starterkit-design-editor-ios/tree/v1.83.0-nightly.20260901)
 
 ***
 
@@ -220,7 +220,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
     ### Step 1: Clone the Repository
 
     ```bash
-    git clone -b v1.83.0-nightly.20260831 https://github.com/imgly/starterkit-design-editor-ios.git
+    git clone -b v1.83.0-nightly.20260901 https://github.com/imgly/starterkit-design-editor-ios.git
     cd starterkit-design-editor-ios
     ```
 
@@ -258,7 +258,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
        ```
        https://github.com/imgly/IMGLYUI-swift
        ```
-    3. Select version `1.83.0-nightly.20260831` and add the `IMGLYEditor` product to your target
+    3. Select version `1.83.0-nightly.20260901` and add the `IMGLYEditor` product to your target
 
     ### Step 2: Copy the Starter Kit Files
 
@@ -266,7 +266,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
 
     ```bash
     repo="starterkit-design-editor-ios"
-    version="1.83.0-nightly.20260831"
+    version="1.83.0-nightly.20260901"
     curl -L "https://codeload.github.com/imgly/${repo}/tar.gz/refs/heads/v${version}" | tar -xz --strip-components=1 "${repo}-v${version}/starter-kit"
     ```
 
@@ -376,7 +376,7 @@ For production deployments, self-hosting assets is required—the IMG.LY CDN is 
 
 ## Self-Host Assets for Production
 
-The starter kit loads assets from the `baseURL` you set on `EngineSettings`, which defaults to the IMG.LY CDN (`https://cdn.img.ly/packages/imgly/cesdk-swift/1.83.0-nightly.20260831/assets`). To self-host assets, download the [asset zip file](https://cdn.img.ly/packages/imgly/cesdk-swift/1.83.0-nightly.20260831/imgly-assets.zip) and pass a custom `baseURL` to your `EngineSettings`.
+The starter kit loads assets from the `baseURL` you set on `EngineSettings`, which defaults to the IMG.LY CDN (`https://cdn.img.ly/packages/imgly/cesdk-swift/1.83.0-nightly.20260901/assets`). To self-host assets, download the [asset zip file](https://cdn.img.ly/packages/imgly/cesdk-swift/1.83.0-nightly.20260901/imgly-assets.zip) and pass a custom `baseURL` to your `EngineSettings`.
 
 ## Customize Export Functionality
 

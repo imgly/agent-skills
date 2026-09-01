@@ -237,11 +237,11 @@ Serve images from a custom asset source and keep the asset library in step with 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/editor-guides-import-media-asset-library-refresh-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/editor-guides-import-media-asset-library-refresh-assets)
 
 This guide registers a custom asset source backed by an external store, surfaces it in the asset library, and refreshes the library live when the store changes. It builds on the asset source, asset library, and dock setup introduced in the [Asset Library Basics](./basics.md) guide, on top of the editor configuration covered by the [Configuration](../../configuration.md) guide.
 
-The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260831/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class—the `onCreate`, `navigationBar`, `assetLibrary`, and `dock` builders are available on every configuration, so the rest of the calls stay the same.
+The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260901/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class—the `onCreate`, `navigationBar`, `assetLibrary`, and `dock` builders are available on every configuration, so the rest of the calls stay the same.
 
 ## When to Use Asset Refresh
 

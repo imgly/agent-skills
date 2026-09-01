@@ -18,7 +18,7 @@ Modify existing templates and manage template lifecycle in your asset library us
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-edit-or-remove-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260831/examples/guides-create-templates-edit-or-remove-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-create-templates-edit-or-remove-browser/index.html)
 
 Templates evolve as designs change. You might need to update branding, fix content errors, or remove outdated templates from your library. CE.SDK provides APIs for adding, editing, and removing templates from asset sources.
 

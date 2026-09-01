@@ -389,9 +389,9 @@ Professional photo editing for your Android app—crop, filter, adjust, and remo
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-photo-editor-android/archive/refs/heads/v1.83.0-nightly.20260831.zip)
+> - [Download examples](https://github.com/imgly/starterkit-photo-editor-android/archive/refs/heads/v1.83.0-nightly.20260901.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-photo-editor-android/tree/v1.83.0-nightly.20260831)
+> - [View source on GitHub](https://github.com/imgly/starterkit-photo-editor-android/tree/v1.83.0-nightly.20260901)
 
 ***
 
@@ -413,7 +413,7 @@ This guide assumes basic familiarity with Android and Kotlin. You will need:
     ### Step 1: Clone the Repository
 
     ```bash
-    git clone -b v1.83.0-nightly.20260831 https://github.com/imgly/starterkit-photo-editor-android.git
+    git clone -b v1.83.0-nightly.20260901 https://github.com/imgly/starterkit-photo-editor-android.git
     cd starterkit-photo-editor-android
     ```
 
@@ -479,7 +479,7 @@ This guide assumes basic familiarity with Android and Kotlin. You will need:
 
     ```bash
     repo="starterkit-photo-editor-android"
-    version="1.83.0-nightly.20260831"
+    version="1.83.0-nightly.20260901"
     curl -0 "https://codeload.github.com/imgly/${repo}/tar.gz/refs/heads/v${version}" | tar -xz --strip-components=1 "${repo}-${version}/starter-kit"
     ```
 
@@ -890,7 +890,7 @@ suspend fun PhotoConfigurationBuilder.onPostExport(byteBuffer: ByteBuffer) {
 
 ### Base Uri
 
-The starter kit does not make any `baseUri` configuration, which means it points to `https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0-nightly.20260831/assets`. If you want to store them in your own CDN or locally, assets can be accessed via [zip file](https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0-nightly.20260831/imgly-assets.zip). For example, if you want to store them locally, unzip the content and place at `starter-kit/src/main/assets`:
+The starter kit does not make any `baseUri` configuration, which means it points to `https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0-nightly.20260901/assets`. If you want to store them in your own CDN or locally, assets can be accessed via [zip file](https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0-nightly.20260901/imgly-assets.zip). For example, if you want to store them locally, unzip the content and place at `starter-kit/src/main/assets`:
 
 ```kotlin highlight-starter-kit-base-uri
 import androidx.compose.runtime.Composable

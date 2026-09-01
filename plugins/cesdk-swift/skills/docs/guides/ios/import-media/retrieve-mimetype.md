@@ -85,7 +85,7 @@ Detect the MIME type of resources the engine can access and relocate embedded me
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/engine-guides-retrieve-mimetype)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/engine-guides-retrieve-mimetype)
 
 <EngineReferenceNote {...props} />
 

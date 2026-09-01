@@ -18,7 +18,7 @@ CE.SDK lets you load complete design templates from scene files to start project
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-import-from-scene-file-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260831/examples/guides-create-templates-import-from-scene-file-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-create-templates-import-from-scene-file-browser/index.html)
 
 Scene files are portable design templates that preserve the entire design structure including blocks, assets, styles, and layout.
 

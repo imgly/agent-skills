@@ -139,7 +139,7 @@ while adopters customize only the areas you allow.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260831/engine-guides-lock-template)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260901/engine-guides-lock-template)
 
 <EngineReferenceNote {...props} />
 

@@ -84,7 +84,7 @@ Access the photos, videos, and reactions the IMGLY Mobile Camera returns when it
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/camera-guides-recordings)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/camera-guides-recordings)
 
 This guide reads the results of a standalone camera session — Standard, Dual Camera, or Reaction. For adding the camera to your app and presenting it, see [Integrate Mobile Camera](./integrate.md); for the full set of camera options, see [Mobile Camera Configuration](./camera-configuration.md).
 

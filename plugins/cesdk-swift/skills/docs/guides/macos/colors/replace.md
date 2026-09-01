@@ -10,7 +10,7 @@ Selectively replace specific colors in images using CE.SDK's Recolor and Green S
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/engine-guides-colors-replace)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/engine-guides-colors-replace)
 
 CE.SDK provides two effects for selective color modification: the **Recolor** effect swaps pixels matching a source color for a target color, while the **Green Screen** effect removes pixels matching a specified color to create transparency. Both effects use configurable tolerance parameters to control which pixels are affected, enabling use cases from product color variations to background removal.
 

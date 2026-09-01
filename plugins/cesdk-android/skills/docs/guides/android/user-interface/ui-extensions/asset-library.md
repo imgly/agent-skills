@@ -372,7 +372,7 @@ exposing upload sources, and choosing which sections appear in the editor UI.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260831/editor-guides-user-interface-ui-extensions-asset-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260901/editor-guides-user-interface-ui-extensions-asset-library)
 
 The Android editor renders the asset library from an `AssetLibrary` configuration. Each visible section points to one or more `AssetSourceType` values, and those source types must match sources that you register with the CreativeEngine.
 For a complete editor surface that includes the asset library, see the [Design Editor Starter Kit](../../starterkits/design-editor.md). This guide focuses on the asset library configuration that you can add to your own editor setup.

@@ -18,7 +18,7 @@ Configure text blocks to automatically adapt their dimensions or font size for d
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-auto-size-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260831/examples/guides-text-auto-size-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-text-auto-size-browser/index.html)
 
 CE.SDK provides two approaches for handling dynamic text content. **Auto size modes** let text blocks resize to fit their content, while **automatic font sizing** scales the font to fit within fixed boundaries. These techniques ensure text displays correctly regardless of content length, which is essential for templates and automation workflows.
 

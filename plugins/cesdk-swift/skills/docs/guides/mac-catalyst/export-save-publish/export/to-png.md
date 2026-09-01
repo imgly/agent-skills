@@ -10,7 +10,7 @@ Export CE.SDK designs to PNG format with full alpha support and lossless compres
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/engine-guides-export-to-png)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/engine-guides-export-to-png)
 
 PNG uses lossless compression and preserves transparency through an alpha channel. The encoder lets you trade encoding speed for file size without affecting image quality.
 

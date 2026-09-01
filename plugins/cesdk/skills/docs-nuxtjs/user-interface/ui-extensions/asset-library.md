@@ -18,7 +18,7 @@ Extend the asset library by adding custom asset sources, enabling user uploads, 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-asset-library-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260831/examples/guides-user-interface-ui-extensions-asset-library-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-user-interface-ui-extensions-asset-library-browser/index.html)
 
 CE.SDK's asset library lets users browse and add media to designs. You can extend this system by registering custom asset sources that fetch content from your own APIs, DAM systems, or third-party services like Unsplash.
 

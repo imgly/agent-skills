@@ -18,7 +18,7 @@ Build custom color palettes that appear in the CE.SDK color picker using sRGB, C
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-create-color-palette-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260831/examples/guides-colors-create-color-palette-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-colors-create-color-palette-browser/index.html)
 
 Color libraries in CE.SDK are implemented as asset sources containing individual colors as assets. Each library has a unique source ID and can include sRGB colors for screen display, CMYK colors for print workflows, and Spot colors for specialized printing applications. You configure which libraries appear in the color picker through the `'ly.img.colors'` asset library entry.
 

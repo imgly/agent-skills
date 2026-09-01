@@ -349,7 +349,7 @@ Create a collage in Swift by loading a layout page and transferring existing ima
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/engine-guides-collage)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/engine-guides-collage)
 
 Layouts are predefined page structures that arrange images and text in a composition. Unlike templates, which usually replace the whole scene, this workflow keeps the user's content and maps it into a new layout.
 

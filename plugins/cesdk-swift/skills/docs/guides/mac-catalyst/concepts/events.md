@@ -85,7 +85,7 @@ update, and destruction events in your CE.SDK scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/engine-guides-events)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/engine-guides-events)
 
 Events enable real-time monitoring of block changes in CE.SDK. When blocks are created, modified, or destroyed, the engine delivers these changes through subscriptions at the end of each update cycle. In Swift, the event API uses `AsyncStream` for seamless integration with Swift concurrency.
 

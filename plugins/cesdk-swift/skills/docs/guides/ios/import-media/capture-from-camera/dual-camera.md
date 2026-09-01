@@ -124,11 +124,11 @@ Dual Camera mode records the front and back cameras at the same time into two sy
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/editor-guides-dual-camera)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/editor-guides-dual-camera)
 
 Dual Camera mode is a camera workflow. For adding the camera to your app, presenting it, and the `Info.plist` permission keys it requires, see [Integrate Mobile Camera](./integrate.md); for the full set of camera options, see [Mobile Camera Configuration](./camera-configuration.md).
 
-The example also uses two small helpers the iOS guides repository ships: [`ModalEditor.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260831/editor-guides-quickstart/ModalEditor.swift) — a wrapper around `fullScreenCover` — and [`Secrets.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260831/secrets/Secrets.swift), which supplies `secrets.licenseKey`. Substitute your own presentation and license-key plumbing — neither is part of the CE.SDK shipped to customers.
+The example also uses two small helpers the iOS guides repository ships: [`ModalEditor.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260901/editor-guides-quickstart/ModalEditor.swift) — a wrapper around `fullScreenCover` — and [`Secrets.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260901/secrets/Secrets.swift), which supplies `secrets.licenseKey`. Substitute your own presentation and license-key plumbing — neither is part of the CE.SDK shipped to customers.
 
 ## When to Use It
 

@@ -133,7 +133,7 @@ video fill, and configuring its source, trim range, size, and position.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260831/engine-guides-insert-media-videos)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260901/engine-guides-insert-media-videos)
 
 <EngineReferenceNote {...props} />
 

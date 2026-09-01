@@ -194,7 +194,7 @@ Customize crop presets to provide users with aspect ratio options tailored to yo
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260831/editor-guides-crop-presets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/editor-guides-crop-presets)
 
 Crop presets define the aspect ratios and dimensions users select when cropping images or pages. CE.SDK ships with a default set of common ratios (1:1, 16:9, 4:3, and others), and you control which presets appear by shaping the `ly.img.crop.presets` asset source the crop UI reads from.
 
