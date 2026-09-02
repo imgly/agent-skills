@@ -34,7 +34,7 @@ The CE.SDK Engine is the C++-powered core behind every creative operation. The E
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/engine-guides-engine-interface)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260902/engine-guides-engine-interface)
 
 CE.SDK is built on a layered architecture: a cross-platform C++ engine handles rendering, scene management, and creative operations, and Swift bindings expose that surface to your app through `IMGLYEngine`. On iOS, the prebuilt editor UI calls the same bindings under the hood. Whether you reach for the editor or the engine directly, you get identical capabilities.
 

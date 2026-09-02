@@ -1,5 +1,7 @@
 > This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
+**Navigation:** [Guides](./guides.md) > [Create and Edit Compositions](./create-composition.md) > [Grid & Rulers](./grid-and-rulers.md)
+
 ---
 
 Enable and configure grid overlays, snap-to-grid behavior, and canvas rulers so users can position and align elements with precision in your CE.SDK editor.
@@ -14,7 +16,7 @@ Enable and configure grid overlays, snap-to-grid behavior, and canvas rulers so 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-grid-and-rulers-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-grid-and-rulers-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-grid-and-rulers-browser/index.html)
 
 CE.SDK provides a configurable grid overlay and canvas rulers to help users align design elements. The grid renders evenly spaced lines across the page, and snap-to-grid constrains element movement to grid intersections. Rulers display along the top and left edges of the canvas showing measurement units.
 
@@ -110,10 +112,11 @@ class Example implements EditorPlugin {
       a: 0.3
     });
 
-    // Rulers are controlled through the editor's UI store.
-    // The AdvancedEditorConfig plugin enables the 'ly.img.rulers'
-    // feature flag, which makes rulers available in the UI.
-    // Rulers are visible by default when the feature flag is enabled.
+    // Make the rulers control available. AdvancedEditorConfig already
+    // enables this feature; other editor configs ship with it disabled.
+    cesdk.feature.enable('ly.img.rulers');
+    // Rulers stay hidden until the user checks "Show Rulers" in the
+    // Document Inspector.
 
     // Add a sample block so the grid and rulers are visible in context
     const page = engine.block.findByType('page')[0];
@@ -153,7 +156,7 @@ Snap-to-grid constrains element movement so blocks align to grid lines. Enable i
 engine.editor.setSettingBool('grid/snapEnabled', true);
 ```
 
-When snap-to-grid is active, dragging or resizing a block snaps its edges to the nearest grid line. This works independently of the grid overlay visibility, so you can snap to an invisible grid if needed.
+When snap-to-grid is active, dragging or resizing a block snaps its edges to the nearest grid line. Snapping requires the grid to be enabled: elements snap only when the page's effective grid and snap values are both on — the `grid/enabled` and `grid/snapEnabled` settings for pages in `Document` mode, or the page's own `page/guides/gridEnabled` and `page/guides/gridSnapEnabled` for pages in `Custom` mode.
 
 ## Configure Grid Spacing
 
@@ -183,29 +186,33 @@ engine.editor.setSettingColor('grid/color', {
 
 ## Enable Rulers
 
-Rulers are managed through the `ly.img.rulers` feature flag and the editor's UI store. The Advanced Editor and Video Editor plugins enable rulers by default.
+Ruler availability is controlled by the `ly.img.rulers` feature flag. When the flag is enabled, the ruler overlay becomes available and the Document Inspector shows a "Show Rulers" toggle. The same flag also gates the per-page Grid section in the Page Inspector.
+
+Enabling the feature does not turn rulers on. Rulers appear only after the user checks "Show Rulers" in the Document Inspector. Ruler visibility is session-only UI state: there is no public API to toggle it programmatically, and it is not saved with the scene.
+
+The feature is enabled by default in the Advanced Design Editor (`AdvancedEditorConfig`) and the Advanced Video Editor (`AdvancedVideoEditorConfig`). All other editor configs ship with it disabled. To enable it there, call `cesdk.feature.enable('ly.img.rulers')` after you add the editor config plugin, because editor configs reset the feature set when they initialize.
 
 ```typescript highlight=highlight-enable-rulers
-// Rulers are controlled through the editor's UI store.
-// The AdvancedEditorConfig plugin enables the 'ly.img.rulers'
-// feature flag, which makes rulers available in the UI.
-// Rulers are visible by default when the feature flag is enabled.
+// Make the rulers control available. AdvancedEditorConfig already
+// enables this feature; other editor configs ship with it disabled.
+cesdk.feature.enable('ly.img.rulers');
+// Rulers stay hidden until the user checks "Show Rulers" in the
+// Document Inspector.
 ```
 
 Rulers display along the top and left edges of the canvas. They show tick marks and labels in the scene's design unit, and they update as the user pans and zooms.
 
 ## Editor Plugin Defaults
 
-Different editor plugins configure grid and rulers with different defaults:
+Editor configs differ in whether they make the rulers control available:
 
-| Plugin | Grid Visible | Snap-to-Grid | Rulers |
-|--------|-------------|--------------|--------|
-| Advanced Editor | Yes | Yes | Yes |
-| Video Editor | Yes | Yes | Yes |
-| Design Editor | No | No | No |
-| Photo Editor | No | No | No |
+| Editor config | Grid visible | Snap-to-grid | Rulers control available |
+|---------------|--------------|--------------|--------------------------|
+| Advanced Design Editor (`AdvancedEditorConfig`) | No | No | Yes |
+| Advanced Video Editor (`AdvancedVideoEditorConfig`) | No | No | Yes |
+| Design, Photo, Video, Player, Viewer editors | No | No | No |
 
-To add grid and ruler support to an editor that doesn't enable them by default, set the settings and feature flag manually as shown in the examples above.
+The grid overlay and snap-to-grid are off by default in every editor config — turn them on with the `grid/*` settings shown above. Where the rulers control is available, rulers stay hidden until users turn on "Show Rulers" in the Document Inspector.
 
 ## Per-Page Grid Overrides
 
@@ -242,7 +249,7 @@ In the default Advanced Editor UI, grid controls live only in the Page Inspector
 | `grid/snapEnabled` | Bool | `false` | Enable snapping to grid lines |
 | `grid/spacingX` | Float | `32` | Horizontal spacing between grid lines (design units) |
 | `grid/spacingY` | Float | `32` | Vertical spacing between grid lines (design units) |
-| `grid/color` | Color | `{ r: 0, g: 0, b: 0, a: 0.12 }` | Grid line color with alpha |
+| `grid/color` | Color | neutral gray (`{ r: 0.52, g: 0.52, b: 0.52, a: 0.3 }`) | Grid line color with alpha |
 | `page/guides/source` | Enum (`'Document'` / `'Custom'`) | `'Document'` | Per-page resolution source; `Document` falls back to the `grid/*` settings |
 | `page/guides/gridEnabled` | Bool | `false` | Per-page override of `grid/enabled` (applied when source is `Custom`) |
 | `page/guides/gridSnapEnabled` | Bool | `false` | Per-page override of `grid/snapEnabled` |

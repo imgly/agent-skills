@@ -18,7 +18,7 @@ Add scannable QR codes to designs programmatically using image fills.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-stickers-and-shapes-insert-qr-code-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-stickers-and-shapes-insert-qr-code-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-stickers-and-shapes-insert-qr-code-browser/index.html)
 
 QR codes encode URLs that mobile devices can scan, making them useful for marketing materials, business cards, event posters, and product packaging. This guide shows how to generate QR codes as images and add them to CE.SDK designs.
 

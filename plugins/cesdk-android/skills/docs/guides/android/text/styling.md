@@ -152,7 +152,7 @@ Style text blocks programmatically with colors, backgrounds, typefaces, and form
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260901/engine-guides-text-properties)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260902/engine-guides-text-properties)
 
 <EngineReferenceNote {...props} />
 

@@ -496,9 +496,9 @@ looks, layers in audio, and exports an MP4—entirely on the device with no serv
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-memories-editor-android/archive/refs/heads/v1.83.0-nightly.20260901.zip)
+> - [Download examples](https://github.com/imgly/starterkit-memories-editor-android/archive/refs/heads/v1.83.0-nightly.20260902.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-memories-editor-android/tree/v1.83.0-nightly.20260901)
+> - [View source on GitHub](https://github.com/imgly/starterkit-memories-editor-android/tree/v1.83.0-nightly.20260902)
 
 ***
 
@@ -520,7 +520,7 @@ This guide assumes basic familiarity with Android and Kotlin. You will need:
     ### Step 1: Clone the Repository
 
     ```bash
-    git clone -b v1.83.0-nightly.20260901 https://github.com/imgly/starterkit-memories-editor-android.git
+    git clone -b v1.83.0-nightly.20260902 https://github.com/imgly/starterkit-memories-editor-android.git
     cd starterkit-memories-editor-android
     ```
 
@@ -548,7 +548,7 @@ This guide assumes basic familiarity with Android and Kotlin. You will need:
 
     ```bash
     repo="starterkit-memories-editor-android"
-    version="1.83.0-nightly.20260901"
+    version="1.83.0-nightly.20260902"
     curl -0 "https://codeload.github.com/imgly/${repo}/tar.gz/refs/heads/v${version}" | tar -xz --strip-components=1 "${repo}-${version}/starter-kit" "${repo}-${version}/starter-kit-dependencies.gradle"
     ```
 

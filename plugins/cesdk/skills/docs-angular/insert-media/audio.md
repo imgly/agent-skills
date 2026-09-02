@@ -19,7 +19,7 @@ background music, sound effects, and voiceovers.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-insert-media-audio-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-insert-media-audio-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-insert-media-audio-browser/index.html)
 
 Audio blocks are time-based blocks that play sound alongside video content. Unlike video fills that attach to graphic blocks, audio blocks exist independently in the composition with their own duration, position, and volume controls.
 

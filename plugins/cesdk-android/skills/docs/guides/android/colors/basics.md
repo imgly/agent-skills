@@ -148,7 +148,7 @@ Understand the three color spaces in CE.SDK and when to use each for screen or p
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260901/engine-guides-colors-basics)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260902/engine-guides-colors-basics)
 
 <EngineReferenceNote {...props} />
 

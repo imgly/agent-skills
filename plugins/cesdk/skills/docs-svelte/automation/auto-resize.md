@@ -18,7 +18,7 @@ Configure blocks to dynamically adjust their dimensions using three sizing modes
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-automation-auto-resize-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-automation-auto-resize-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-automation-auto-resize-browser/index.html)
 
 CE.SDK provides three sizing modes for controlling block dimensions. Absolute mode uses fixed pixel values. Percent mode sizes blocks relative to their parent container. Auto mode automatically expands blocks to fit their content. You can set width and height modes independently, allowing flexible combinations like fixed width with auto height for text that wraps.
 

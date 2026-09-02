@@ -45,7 +45,7 @@ Export design blocks to binary `Data` (aliased as `Blob`) for saving to disk, up
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/engine-guides-to-blob)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260902/engine-guides-to-blob)
 
 <EngineReferenceNote {...props} />
 

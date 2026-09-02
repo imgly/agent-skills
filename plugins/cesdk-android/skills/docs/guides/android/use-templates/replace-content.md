@@ -220,7 +220,7 @@ and swap image sources programmatically.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260901/engine-guides-replace-content)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260902/engine-guides-replace-content)
 
 <EngineReferenceNote {...props} />
 

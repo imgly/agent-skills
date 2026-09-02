@@ -23,7 +23,7 @@ where you need to manipulate individual pixels programmatically.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-export-save-publish-export-to-raw-data-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-export-save-publish-export-to-raw-data-browser/index.html)
 
 ```typescript file=@cesdk_web_examples/guides-export-save-publish-export-to-raw-data-browser/src/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';

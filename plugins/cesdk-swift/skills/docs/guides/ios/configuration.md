@@ -45,7 +45,7 @@ Configure CE.SDK during initialization with a license key, an asset base URL, an
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/editor-guides-configuration-basics)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260902/editor-guides-configuration-basics)
 
 ## EngineSettings
 
@@ -84,7 +84,7 @@ Editor(settings)
   .imgly.configuration { GuideEditorConfiguration() }
 ```
 
-The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260901/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `.imgly.configuration(_:)` modifier accepts any `EditorConfiguration` subclass, so the rest of the call stays the same.
+The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260902/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `.imgly.configuration(_:)` modifier accepts any `EditorConfiguration` subclass, so the rest of the call stays the same.
 
 ## API Reference
 

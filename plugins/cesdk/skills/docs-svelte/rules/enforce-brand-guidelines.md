@@ -18,7 +18,7 @@ Learn how to restrict users to approved brand assets—specific colors, fonts, a
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-rules-enforce-brand-guidelines-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260901/examples/guides-rules-enforce-brand-guidelines-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-rules-enforce-brand-guidelines-browser/index.html)
 
 Brand guidelines enforcement in CE.SDK combines two complementary approaches: restricting which assets users can access (colors, fonts, images) and controlling what editing operations are permitted on brand elements. Asset restrictions work through custom asset sources that replace default libraries, while editing constraints use the scopes system to lock specific elements.
 

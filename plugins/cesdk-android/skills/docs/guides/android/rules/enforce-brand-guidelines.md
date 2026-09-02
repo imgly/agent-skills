@@ -178,7 +178,7 @@ elements like logos and legal text, while keeping selected content editable.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260901/engine-guides-enforce-brand-guidelines)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260902/engine-guides-enforce-brand-guidelines)
 
 <EngineReferenceNote {...props} />
 

@@ -88,7 +88,7 @@ documents with millimeter or inch units and configurable DPI for export quality.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260901/engine-guides-design-units)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260902/engine-guides-design-units)
 
 <EngineReferenceNote {...props} />
 

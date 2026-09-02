@@ -115,7 +115,7 @@ custom controls, or template-driven video output.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260901/engine-guides-create-video-edit-programmatic)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260902/engine-guides-create-video-edit-programmatic)
 
 <EngineReferenceNote {...props} />
 

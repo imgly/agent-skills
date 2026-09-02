@@ -41,7 +41,7 @@ Android app, then continue editing the imported design.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260901/engine-guides-open-the-editor-import-design-from-photoshop)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260902/engine-guides-open-the-editor-import-design-from-photoshop)
 
 <EngineReferenceNote {...props} />
 

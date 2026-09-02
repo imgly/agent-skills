@@ -16,6 +16,7 @@
 - [Design a Layout](./create-composition/layout.md) - Create structured compositions using scene layouts, positioning systems, and hierarchical block organization for collages, magazines, and multi-page documents.
 - [Add a Background](./create-composition/add-background.md) - Add backgrounds to designs using fills for pages and shapes, and the background color property for text blocks.
 - [Positioning and Alignment](./create-composition/position-and-align.md) - Precisely position, align, and distribute objects using guides, snapping, and alignment tools.
+- [Grid & Rulers](./grid-and-rulers.md) - Configure grid overlay, snap-to-grid, and canvas rulers for precise alignment in CE.SDK.
 - [Group and Ungroup Objects](./create-composition/group-and-ungroup.md) - Group multiple design elements together so they move, scale, and transform as a single unit; ungroup to edit them individually.
 - [Layer Management](./create-composition/layer-management.md) - Organize design elements using a layer stack for precise control over stacking and visibility.
 - [Lock Design](./create-composition/lock-design.md) - Protect design elements from unwanted modifications using CE.SDK's scope-based permission system. Control which properties users can edit at both global and block levels.

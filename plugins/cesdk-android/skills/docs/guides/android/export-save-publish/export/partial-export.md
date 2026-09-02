@@ -235,7 +235,7 @@ scene instead of exporting everything at once using CE.SDK's export API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260901/engine-guides-partial-export)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260902/engine-guides-partial-export)
 
 Partial export gives you fine-grained control over what leaves the scene. Instead
 of rendering the entire composition, you can target a single graphic, a logical group

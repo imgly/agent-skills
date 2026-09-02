@@ -1,7 +1,7 @@
 {
   "metadata": {
     "description": "CE.SDK agent skills for Web, Swift, and Android platforms.",
-    "version": "1.83.0-nightly.20260901"
+    "version": "1.83.0-nightly.20260902"
   },
   "name": "imgly",
   "owner": {
@@ -46,7 +46,7 @@
         "creative-editor",
         "Web"
       ],
-      "version": "1.83.0-nightly.20260901"
+      "version": "1.83.0-nightly.20260902"
     },
     {
       "author": {
@@ -77,7 +77,7 @@
         "macOS",
         "Mac Catalyst"
       ],
-      "version": "1.83.0-nightly.20260901"
+      "version": "1.83.0-nightly.20260902"
     },
     {
       "author": {
@@ -106,7 +106,7 @@
         "Kotlin",
         "Jetpack Compose"
       ],
-      "version": "1.83.0-nightly.20260901"
+      "version": "1.83.0-nightly.20260902"
     }
   ]
 }
