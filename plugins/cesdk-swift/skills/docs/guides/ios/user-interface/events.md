@@ -91,7 +91,7 @@ Dispatch built-in editor events with `EditorEventHandler.send(_:)` and observe e
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260902/editor-guides-configuration-ui-events)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/editor-guides-configuration-ui-events)
 
 This guide walks through both APIs. The examples build on `GuideEditorConfiguration`, a minimal baseline that ships only a navigation bar (close, undo, redo). See the [Configuration](../configuration.md) guide for how `EditorConfiguration` and `EngineSettings` set up the editor as a whole. If you need CreativeEngine block lifecycle changes (created, updated, or destroyed blocks) instead, use [Events](../concepts/events.md) — that guide uses `engine.event.subscribe()` and is separate from both editor APIs covered here.
 

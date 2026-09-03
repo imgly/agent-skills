@@ -18,7 +18,7 @@ Automatically generate ready-to-use designs from a set of input parameters.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-automatic-design-generation-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/starterkit-automatic-design-generation/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260903/examples/starterkit-automatic-design-generation/index.html)
 
 ***
 

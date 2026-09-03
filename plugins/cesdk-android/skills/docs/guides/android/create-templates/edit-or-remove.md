@@ -360,7 +360,7 @@ with CE.SDK Engine.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260902/engine-guides-create-templates-edit-or-remove)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/engine-guides-create-templates-edit-or-remove)
 
 Templates evolve as designs change. You might need to update brand copy, fix content errors, remove outdated entries, or replace one stored version with another.
 

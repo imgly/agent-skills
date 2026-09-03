@@ -18,7 +18,7 @@ Control letter spacing, line height, and paragraph spacing in text blocks using 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-adjust-spacing-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-text-adjust-spacing-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260903/examples/guides-text-adjust-spacing-browser/index.html)
 
 CE.SDK provides three text spacing properties: `text/letterSpacing`, `text/lineHeight`, and `text/paragraphSpacing`. All are float properties controlled via `engine.block.setFloat()` and `engine.block.getFloat()`. In addition, `engine.block.setTextLineHeight()` and `engine.block.getTextLineHeight()` let you override line height for individual paragraphs. Text spacing adjustments are programmatic-only; there is no built-in UI for these properties.
 

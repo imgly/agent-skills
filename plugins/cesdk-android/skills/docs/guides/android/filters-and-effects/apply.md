@@ -279,7 +279,7 @@ treatments to design elements with CE.SDK's effect system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260902/engine-guides-filters-and-effects-apply)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/engine-guides-filters-and-effects-apply)
 
 CE.SDK uses one effect stack for both filters and effects. **Filters** apply color transformations such as LUT filters and duotone, while **effects** apply visual modifications such as pixelize, vignette, Extrude Blur, and image adjustments. You create both with `createEffect()`, attach them to a compatible block, and then configure their properties with the same typed property APIs used for design blocks.
 

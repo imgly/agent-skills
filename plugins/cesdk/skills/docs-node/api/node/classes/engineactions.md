@@ -14,7 +14,7 @@ have not overridden are reachable only via [run](./api/node/classes/engineaction
 
 ## Remarks
 
-Main-thread only. [get](./api/node/classes/engineactions.md) is web-only; use run/has/list cross-platform.
+Main-thread only.
 
 ## Constructors
 
@@ -113,7 +113,7 @@ Main-thread only. [get](./api/node/classes/engineactions.md) is web-only; use ru
 
   ##### Remarks
 
-  Web-only.
+  Available on the web bindings and on `@cesdk/node-native`.
 
   #### Call Signature
 
@@ -139,7 +139,7 @@ Main-thread only. [get](./api/node/classes/engineactions.md) is web-only; use ru
 
   ##### Remarks
 
-  Web-only.
+  Available on the web bindings and on `@cesdk/node-native`.
 
   #### Signatures
 

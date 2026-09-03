@@ -6,7 +6,7 @@
 
 Blend adjacent video clips into each other with clip-to-clip transitions such as cross-fades, pushes, and wipes using CE.SDK's transitions API.
 
-![Apply Transitions example showing two video clips blending in a cross-fade](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
+![Apply Transitions example with the Transition panel open and Cross Fade applied to the first of four clips](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
 > **Reading time:** 10 minutes
 >
@@ -18,7 +18,7 @@ Blend adjacent video clips into each other with clip-to-clip transitions such as
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-apply-transitions-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-create-video-apply-transitions-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260903/examples/guides-create-video-apply-transitions-browser/index.html)
 
 A transition belongs to the **outgoing clip** and blends it into the following clip on the same track. When you assign one, the engine overlaps the two clips for the transition duration: the incoming clip—and every clip after it—moves earlier on the timeline, and audio cross-fades linearly over the same window.
 
@@ -215,10 +215,14 @@ class Example implements EditorPlugin {
       engine.block.getTimeOffset(lastClip) + engine.block.getDuration(lastClip)
     );
 
-    // Park the playhead inside the first overlap window so the
-    // cross-fade blend is visible on load
-    engine.block.setPlaybackTime(page, 3.5);
+    // Park the playhead just before the first blend starts. The cross-fade
+    // overlaps the last second of clip A, which ends at 4s.
+    engine.block.setPlaybackTime(page, 2.9);
+
+    // Select the first seam's outgoing clip: the transitions panel reads the
+    // selection to find the seam it edits.
     engine.block.select(clipA);
+    cesdk.ui.openPanel('//ly.img.panel/inspector/transition');
 
     // eslint-disable-next-line no-console
     console.log(

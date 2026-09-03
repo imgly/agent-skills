@@ -18,7 +18,7 @@ Generate sound effects programmatically using buffers with arbitrary audio data.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-audio-add-sound-effects-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-create-audio-add-sound-effects-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260903/examples/guides-create-audio-add-sound-effects-browser/index.html)
 
 CE.SDK lets you create audio from code using buffers. This approach generates sound effects dynamically without external files—useful for notification tones, procedural audio, or any scenario where you need to synthesize audio at runtime.
 

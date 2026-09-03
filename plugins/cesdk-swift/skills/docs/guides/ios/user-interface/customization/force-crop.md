@@ -90,7 +90,7 @@ Enforce specific aspect ratios or fixed dimensions on design blocks using the fo
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260902/editor-guides-force-crop)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/editor-guides-force-crop)
 
 ## Overview
 
@@ -99,7 +99,7 @@ Force cropping ensures that a page or any croppable block uses a specific aspect
 | Type | Purpose |
 | ---- | ------- |
 | `ForceCropPreset` | Identifies a crop preset by source ID and preset ID |
-| `ForceCropMode` | Controls crop UI behavior: `.silent`, `.always`, or `.ifNeeded` |
+| `ForceCropMode` | Controls crop UI behavior: `.silent`, `.always`, or `.ifNeeded(threshold:)` |
 
 When multiple candidates are provided, the system automatically selects the best match based on the block's current dimensions.
 
@@ -151,7 +151,13 @@ The `ForceCropMode` parameter controls how the editor responds after applying a 
 | ---- | -------- |
 | `.silent` | Applies the crop without opening the crop UI. |
 | `.always` | Applies the crop and opens the crop sheet immediately. |
-| `.ifNeeded` | Compares the preset with the current frame dimensions. The crop is applied and the sheet opens only if the ratio/size differs materially. |
+| `.ifNeeded(threshold:)` | Compares the preset with the current frame dimensions. The crop is applied and the sheet opens only when the difference exceeds `threshold`. |
+
+### Setting the Threshold
+
+A fixed aspect ratio preset compares the ratios, where the ratio is the height divided by the width. A fixed size preset compares both edges in the design unit of the preset. Writing `.ifNeeded` uses `ForceCropMode.defaultIfNeededThreshold`, which is `0.0001`. Pass `.ifNeeded(threshold: 0.01)` to widen the tolerance.
+
+To accept a range of aspect ratios instead of a single one, use the midpoint of the range as the preset ratio and half of the range as the threshold. A preset ratio of `1.05` with a threshold of `0.05` accepts every block whose ratio falls between `1.0` and `1.1`.
 
 ## Isolating Presets
 

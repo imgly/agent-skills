@@ -155,7 +155,7 @@ personalization, and automated design production.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260902/engine-guides-use-templates-generate)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/engine-guides-use-templates-generate)
 
 <EngineReferenceNote {...props} />
 

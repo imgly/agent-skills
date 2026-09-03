@@ -19,7 +19,7 @@ formatting, and querying text.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-edit-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-text-edit-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260903/examples/guides-text-edit-browser/index.html)
 
 CE.SDK provides text editing through two approaches: interactive canvas editing where users type directly into text blocks, and programmatic editing through range-based APIs. This guide focuses on the programmatic approach, covering how to replace text, apply formatting to specific ranges, and query text properties.
 

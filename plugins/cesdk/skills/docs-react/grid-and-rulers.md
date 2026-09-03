@@ -16,7 +16,7 @@ Enable and configure grid overlays, snap-to-grid behavior, and canvas rulers so 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-grid-and-rulers-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-grid-and-rulers-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260903/examples/guides-grid-and-rulers-browser/index.html)
 
 CE.SDK provides a configurable grid overlay and canvas rulers to help users align design elements. The grid renders evenly spaced lines across the page, and snap-to-grid constrains element movement to grid intersections. Rulers display along the top and left edges of the canvas showing measurement units.
 
@@ -112,11 +112,9 @@ class Example implements EditorPlugin {
       a: 0.3
     });
 
-    // Make the rulers control available. AdvancedEditorConfig already
-    // enables this feature; other editor configs ship with it disabled.
+    // Make the rulers control available in the panel.
+    // Rulers stay hidden until the user checks "Show Rulers".
     cesdk.feature.enable('ly.img.rulers');
-    // Rulers stay hidden until the user checks "Show Rulers" in the
-    // Document Inspector.
 
     // Add a sample block so the grid and rulers are visible in context
     const page = engine.block.findByType('page')[0];
@@ -145,7 +143,7 @@ Toggle the grid overlay using the `grid/enabled` setting. When enabled, the engi
 engine.editor.setSettingBool('grid/enabled', true);
 ```
 
-The grid is a visual aid rendered at the engine level. It does not affect the scene content or export output.
+The grid is a visual aid rendered at the engine level. It does not affect the scene content or export output. No starter kit turns the grid on, so it stays hidden until you set `grid/enabled` yourself.
 
 ## Enable Snap-to-Grid
 
@@ -156,7 +154,7 @@ Snap-to-grid constrains element movement so blocks align to grid lines. Enable i
 engine.editor.setSettingBool('grid/snapEnabled', true);
 ```
 
-When snap-to-grid is active, dragging or resizing a block snaps its edges to the nearest grid line. Snapping requires the grid to be enabled: elements snap only when the page's effective grid and snap values are both on — the `grid/enabled` and `grid/snapEnabled` settings for pages in `Document` mode, or the page's own `page/guides/gridEnabled` and `page/guides/gridSnapEnabled` for pages in `Custom` mode.
+When snap-to-grid is active, dragging or resizing a block snaps its edges to the nearest grid line. Snapping requires the grid to be enabled: elements snap only when the page's effective grid and snap values are both on — the `grid/enabled` and `grid/snapEnabled` settings for pages in `Document` mode, or the page's own `page/guides/gridEnabled` and `page/guides/gridSnapEnabled` for pages in `Custom` mode. Like the grid, no starter kit turns snapping on.
 
 ## Configure Grid Spacing
 
@@ -190,29 +188,15 @@ Ruler availability is controlled by the `ly.img.rulers` feature flag. When the f
 
 Enabling the feature does not turn rulers on. Rulers appear only after the user checks "Show Rulers" in the Document Inspector. Ruler visibility is session-only UI state: there is no public API to toggle it programmatically, and it is not saved with the scene.
 
-The feature is enabled by default in the Advanced Design Editor (`AdvancedEditorConfig`) and the Advanced Video Editor (`AdvancedVideoEditorConfig`). All other editor configs ship with it disabled. To enable it there, call `cesdk.feature.enable('ly.img.rulers')` after you add the editor config plugin, because editor configs reset the feature set when they initialize.
+CE.SDK enables the flag by default. [Starter kits](./starterkits.md) reset every feature when they initialize and then re-enable their own set, so only the [Design Editor (Advanced)](./starterkits/advanced-editor.md) and [Video Editor (Advanced)](./starterkits/advanced-video-editor.md) starter kits keep the rulers control. In every other starter kit, call `cesdk.feature.enable('ly.img.rulers')` after you add the starter kit plugin.
 
 ```typescript highlight=highlight-enable-rulers
-// Make the rulers control available. AdvancedEditorConfig already
-// enables this feature; other editor configs ship with it disabled.
+// Make the rulers control available in the panel.
+// Rulers stay hidden until the user checks "Show Rulers".
 cesdk.feature.enable('ly.img.rulers');
-// Rulers stay hidden until the user checks "Show Rulers" in the
-// Document Inspector.
 ```
 
 Rulers display along the top and left edges of the canvas. They show tick marks and labels in the scene's design unit, and they update as the user pans and zooms.
-
-## Editor Plugin Defaults
-
-Editor configs differ in whether they make the rulers control available:
-
-| Editor config | Grid visible | Snap-to-grid | Rulers control available |
-|---------------|--------------|--------------|--------------------------|
-| Advanced Design Editor (`AdvancedEditorConfig`) | No | No | Yes |
-| Advanced Video Editor (`AdvancedVideoEditorConfig`) | No | No | Yes |
-| Design, Photo, Video, Player, Viewer editors | No | No | No |
-
-The grid overlay and snap-to-grid are off by default in every editor config — turn them on with the `grid/*` settings shown above. Where the rulers control is available, rulers stay hidden until users turn on "Show Rulers" in the Document Inspector.
 
 ## Per-Page Grid Overrides
 
@@ -239,7 +223,7 @@ engine.block.setBool(pageId, 'page/guides/gridSnapEnabled', true);
 engine.block.setEnum(pageId, 'page/guides/source', 'Document');
 ```
 
-In the default Advanced Editor UI, grid controls live only in the Page Inspector — selecting a page shows a "Grid" section that writes to that page's `page/guides/*` properties. The Document Inspector exposes only the "Show Rulers" toggle; the global `grid/*` settings are still used as the fallback for pages in `Document` mode, but have no UI of their own. When users add a new page, the editor seeds its grid from the immediately previous page when that page is in `Custom` mode, so the grid they were just working with carries over without re-entry. If the previous page is in `Document` mode, the new page also uses `Document` — new pages never revive older per-page overrides.
+In the Design Editor (Advanced) and Video Editor (Advanced) starter kits, grid controls live only in the Page Inspector — selecting a page shows a "Grid" section that writes to that page's `page/guides/*` properties. The Document Inspector exposes only the "Show Rulers" toggle; the global `grid/*` settings are still used as the fallback for pages in `Document` mode, but have no UI of their own. When users add a new page, the editor seeds its grid from the immediately previous page when that page is in `Custom` mode, so the grid they were just working with carries over without re-entry. If the previous page is in `Document` mode, the new page also uses `Document` — new pages never revive older per-page overrides.
 
 ## API Reference
 

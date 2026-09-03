@@ -204,7 +204,7 @@ Manage how CE.SDK stores and resolves asset URLs in saved designs, keeping desig
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260902/engine-guides-asset-versioning)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/engine-guides-asset-versioning)
 
 <EngineReferenceNote {...props} />
 

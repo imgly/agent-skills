@@ -10,7 +10,7 @@ Export your video compositions as MP4 files with H.264 encoding, progress events
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260902/engine-guides-export-to-mp4)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/engine-guides-export-to-mp4)
 
 MP4 is the most widely supported video format, using H.264 encoding for efficient compression. CE.SDK renders frames, encodes them with H.264, and muxes audio into an MP4 container. The export runs on the engine's background worker so the main thread stays responsive.
 

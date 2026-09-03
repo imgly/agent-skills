@@ -22,7 +22,7 @@ personalization workflows.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-dynamic-content-text-variables-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260902/examples/guides-create-templates-dynamic-content-text-variables-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260903/examples/guides-create-templates-dynamic-content-text-variables-browser/index.html)
 
 ```typescript file=@cesdk_web_examples/guides-create-templates-dynamic-content-text-variables-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';

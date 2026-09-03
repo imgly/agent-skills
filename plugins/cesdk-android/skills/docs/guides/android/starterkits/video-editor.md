@@ -505,9 +505,9 @@ Professional video editing for your Android app—edit clips, add effects, trim 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-video-editor-android/archive/refs/heads/v1.83.0-nightly.20260902.zip)
+> - [Download examples](https://github.com/imgly/starterkit-video-editor-android/archive/refs/heads/v1.83.0-nightly.20260903.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-video-editor-android/tree/v1.83.0-nightly.20260902)
+> - [View source on GitHub](https://github.com/imgly/starterkit-video-editor-android/tree/v1.83.0-nightly.20260903)
 
 ***
 
@@ -529,7 +529,7 @@ This guide assumes basic familiarity with Android and Kotlin. You will need:
     ### Step 1: Clone the Repository
 
     ```bash
-    git clone -b v1.83.0-nightly.20260902 https://github.com/imgly/starterkit-video-editor-android.git
+    git clone -b v1.83.0-nightly.20260903 https://github.com/imgly/starterkit-video-editor-android.git
     cd starterkit-video-editor-android
     ```
 
@@ -595,7 +595,7 @@ This guide assumes basic familiarity with Android and Kotlin. You will need:
 
     ```bash
     repo="starterkit-video-editor-android"
-    version="1.83.0-nightly.20260902"
+    version="1.83.0-nightly.20260903"
     curl -0 "https://codeload.github.com/imgly/${repo}/tar.gz/refs/heads/v${version}" | tar -xz --strip-components=1 "${repo}-${version}/starter-kit"
     ```
 
@@ -941,7 +941,7 @@ Dock.ListBuilder.remember {
 In addition, IMG.LY camera dependency should be added:
 
 ```kotlin title = "starter-kit/build.gradle.kts"
-implementation "ly.img:camera:1.83.0-nightly.20260902"
+implementation "ly.img:camera:1.83.0-nightly.20260903"
 ```
 
 > **IMG.LY Camera Version:** Note that the version of the camera dependency must match with the editor version in order to avoid interoperability issues.
@@ -1081,7 +1081,7 @@ suspend fun VideoConfigurationBuilder.onPostExport(byteBuffer: ByteBuffer) {
 
 ### Base Uri
 
-The starter kit does not make any `baseUri` configuration, which means it points to `https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0-nightly.20260902/assets`. If you want to store them in your own CDN or locally, assets can be accessed via [zip file](https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0-nightly.20260902/imgly-assets.zip). For example, if you want to store them locally, unzip the content and place at `starter-kit/src/main/assets`:
+The starter kit does not make any `baseUri` configuration, which means it points to `https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0-nightly.20260903/assets`. If you want to store them in your own CDN or locally, assets can be accessed via [zip file](https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0-nightly.20260903/imgly-assets.zip). For example, if you want to store them locally, unzip the content and place at `starter-kit/src/main/assets`:
 
 ```kotlin highlight-starter-kit-base-uri
 import androidx.compose.runtime.Composable
