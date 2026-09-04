@@ -135,7 +135,7 @@ Modify existing templates and manage template lifecycle in your asset library us
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/engine-guides-edit-or-remove-templates)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/engine-guides-edit-or-remove-templates)
 
 <EngineReferenceNote {...props} />
 

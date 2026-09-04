@@ -18,7 +18,7 @@ Convert raster images into scalable vector graphics that resize without quality 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-image-vectorize-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260903/examples/guides-edit-image-vectorize-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260904/examples/guides-edit-image-vectorize-browser/index.html)
 
 Vectorization transforms pixel-based images into vector paths that can be scaled to any size without losing quality. The `@imgly/plugin-vectorizer-web` plugin provides one-click UI conversion directly in the canvas menu. Common use cases include converting logos for scalable branding, creating cutout outlines from photographs, and extracting editable paths from illustrations.
 

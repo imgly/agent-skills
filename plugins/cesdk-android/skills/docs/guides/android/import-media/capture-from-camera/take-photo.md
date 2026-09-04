@@ -106,7 +106,7 @@ Capture a still photo with the IMGLY Mobile Camera. Configure the camera for pho
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/camera-guides-take-photo)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/camera-guides-take-photo)
 
 This guide uses the IMGLY Mobile Camera in photo mode. For adding the camera to your app, see [Integrate Mobile Camera](./integrate.md); for the full set of camera options, see [Mobile Camera Configuration](./camera-configuration.md).
 

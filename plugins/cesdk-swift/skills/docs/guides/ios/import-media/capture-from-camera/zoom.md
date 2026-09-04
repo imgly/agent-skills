@@ -51,7 +51,7 @@ The IMGLY Camera supports pinch-to-zoom out of the box. While the camera is open
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/camera-guides-quickstart)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/camera-guides-quickstart)
 
 ## What You’ll Learn
 
@@ -83,7 +83,7 @@ Camera(.init(license: secrets.licenseKey, // pass nil for evaluation mode with w
              userID: "<your unique user id>")) { result in
 ```
 
-`secrets.licenseKey` comes from a small [`Secrets.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260903/secrets/Secrets.swift) shim the iOS guides repository ships — substitute your own license key. See [Integrate Mobile Camera](./integrate.md) for the full launch and result handling.
+`secrets.licenseKey` comes from a small [`Secrets.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260904/secrets/Secrets.swift) shim the iOS guides repository ships — substitute your own license key. See [Integrate Mobile Camera](./integrate.md) for the full launch and result handling.
 
 Once the camera is open, your users:
 

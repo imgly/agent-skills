@@ -85,7 +85,7 @@ Reorder buttons across the navigation bar, canvas menu, dock, and inspector bar 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/editor-guides-customization-rearrange-buttons)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/editor-guides-customization-rearrange-buttons)
 
 ## Overview
 

@@ -168,7 +168,7 @@ Generate personalized designs at scale using CE.SDK's headless Android engine to
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/engine-guides-data-merge)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/engine-guides-data-merge)
 
 <EngineReferenceNote {...props} />
 

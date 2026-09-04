@@ -1035,7 +1035,7 @@ Get the name of the spot color assigned to a cutout type.
 abstract fun getState(block: DesignBlock): BlockState
 ```
 
-Get the current state of a block. Note If this block is in error state or this block has a Shape block, Fill block or Effect block(s), that is in error state, the returned state will be BlockState.Error. Else, if this block is in pending state or this block has a Shape block, Fill block or Effect block(s), that is in pending state, the returned state will be BlockState.Pending. Else, the returned state will be BlockState.Ready.
+Get the current state of a block. Note If this block is in error state or this block has a Shape block, Fill block or Effect block(s), that is in error state, the returned state will be BlockState.Error. Else, if this block is in pending state or this block has a Shape block, Fill block or Effect block(s), that is in pending state, the returned state will be BlockState.Pending. Else, the returned state will be BlockState.Ready. Note: Runs an engine update when the block names a resource that nothing asked for yet. A font set just before this call is then reported as pending.
 
 ### getString
 

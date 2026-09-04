@@ -169,11 +169,11 @@ Let users add images from their device into the editor. Register an upload-capab
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/editor-guides-import-media-user-upload)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/editor-guides-import-media-user-upload)
 
 User uploads flow through the editor's asset library. An `.imageUpload` (or `.videoUpload` / `.audioUpload`) section shows an "+ Add" button that opens the system picker, camera, or Files app. When the user selects a file, the editor creates an `AssetDefinition` for it, passes it to your `onUpload` handler, and adds the returned asset to the section's source.
 
-This guide builds on `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260903/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class—the `onCreate`, `assetLibrary`, `dock`, and `onUpload` builders are available on every configuration. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole, and the [Asset Library Basics](../asset-library/basics.md) guide covers the source–library–dock layering this guide extends.
+This guide builds on `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260904/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class—the `onCreate`, `assetLibrary`, `dock`, and `onUpload` builders are available on every configuration. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole, and the [Asset Library Basics](../asset-library/basics.md) guide covers the source–library–dock layering this guide extends.
 
 > **Note:** This guide focuses on images. Register video or audio uploads with `.videoUpload` or `.audioUpload` sections and the matching MIME types.
 

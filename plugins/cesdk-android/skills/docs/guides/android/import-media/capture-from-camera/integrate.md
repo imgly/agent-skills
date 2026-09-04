@@ -80,7 +80,7 @@ Activity Result API, and handle captured photo or video results.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/camera-guides-quickstart/)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/camera-guides-quickstart/)
 
 The mobile camera is provided by the `ly.img:camera` package. It opens a camera Activity, requests the required runtime permissions, and returns captured media to your app as a `CameraResult`.
 
@@ -101,7 +101,7 @@ maven {
 Then add the camera dependency to your app module:
 
 ```groovy
-implementation "ly.img:camera:1.83.0-nightly.20260903"
+implementation "ly.img:camera:1.83.0-nightly.20260904"
 ```
 
 Use the same CE.SDK version for the camera package and any other `ly.img` packages in your app. If your project already uses Jetpack Compose dependencies, keep the Compose BOM at `2023.05.01` or newer.

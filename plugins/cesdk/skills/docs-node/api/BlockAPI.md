@@ -245,7 +245,9 @@ forceLoadResources(ids: DesignBlockId[]): Promise<void>
 - `ids` - The blocks whose resources should be loaded. Pass an empty array to load resources for every
   block currently known to the engine.
 
-**Returns:** A Promise that resolves once all resources have finished loading.
+**Returns:** A Promise that resolves once every resource has finished loading. The state of a block
+then reports the result of its fetch. A file that arrives but that the engine cannot decode
+keeps it pending.
 
 ## Block Fills
 
@@ -1646,6 +1648,8 @@ isVisibleAtCurrentPlaybackTime(id: DesignBlockId): boolean
 
 Gets the current state of a block.
 A block's state is determined by its own state and that of its shape, fill, and effects.
+Runs an engine update when the block names a resource that nothing asked for yet.
+A font set just before this call is then reported as pending.
 ```javascript
 const state = engine.block.getState(block);
 ```

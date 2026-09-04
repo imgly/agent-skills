@@ -80,7 +80,7 @@ Play, pause, seek, and preview audio and video content programmatically using CE
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/engine-guides-control-av)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/engine-guides-control-av)
 
 <EngineReferenceNote {...props} />
 

@@ -134,7 +134,7 @@ Pages define the format of your designs. Every graphic block, text element, and 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/engine-guides-concepts-pages)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/engine-guides-concepts-pages)
 
 <EngineReferenceNote {...props} />
 

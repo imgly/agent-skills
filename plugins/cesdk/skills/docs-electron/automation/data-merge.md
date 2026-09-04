@@ -18,7 +18,7 @@ Generate personalized designs from a single template by merging external data in
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-automation-data-merge-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260903/examples/guides-automation-data-merge-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260904/examples/guides-automation-data-merge-browser/index.html)
 
 Data merge generates multiple personalized designs from a single template by replacing variable content with external data. Use it for certificates, badges, team cards, or any design requiring consistent layout with varying content.
 

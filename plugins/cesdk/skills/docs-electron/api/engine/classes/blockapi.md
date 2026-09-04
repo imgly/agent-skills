@@ -350,7 +350,9 @@ Manage the complete lifecycle: create, find, duplicate, destroy, and serialize b
 
   `Promise`\<`void`>
 
-  A Promise that resolves once all resources have finished loading.
+  A Promise that resolves once every resource has finished loading. The state of a block
+  then reports the result of its fetch. A file that arrives but that the engine cannot decode
+  keeps it pending.
 
   #### Signature
 
@@ -8067,6 +8069,8 @@ Query the intrinsic state or identity of a block, such as its name, UUID, or loc
   </summary>
 
   A block's state is determined by its own state and that of its shape, fill, and effects.
+  Runs an engine update when the block names a resource that nothing asked for yet.
+  A font set just before this call is then reported as pending.
 
   ```javascript
   const state = engine.block.getState(block);

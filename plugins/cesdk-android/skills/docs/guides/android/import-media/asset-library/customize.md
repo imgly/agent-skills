@@ -353,7 +353,7 @@ and replacement sheets that fit your app.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/editor-guides-configuration-asset-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/editor-guides-configuration-asset-library)
 
 The asset library displays assets from registered asset sources. Sources provide the data, while `AssetLibrary`, `LibraryCategory`, and `LibraryContent` define how the CE.SDK editor UI presents those sources.
 

@@ -147,7 +147,7 @@ Learn how to restrict the available fonts to brand typefaces and lock brand elem
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/engine-guides-enforce-brand-guidelines)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/engine-guides-enforce-brand-guidelines)
 
 <EngineReferenceNote {...props} />
 

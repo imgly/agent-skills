@@ -82,7 +82,7 @@ and other documents requiring multiple pages within a single scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/engine-guides-multi-page)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/engine-guides-multi-page)
 
 Multi-page layouts allow you to create documents with multiple artboards within a single scene. Each page operates as an independent canvas that can contain different content while sharing the same scene context. CE.SDK provides scene layout modes that automatically arrange pages vertically, horizontally, or in a free-form canvas.
 

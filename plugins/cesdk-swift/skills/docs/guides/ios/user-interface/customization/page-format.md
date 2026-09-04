@@ -114,7 +114,7 @@ Customize which page formats appear in the iOS editor's resize sheet by appendin
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/editor-guides-customization-page-format)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/editor-guides-customization-page-format)
 
 The iOS editor ships with a resize sheet that lets users pick a page format from the `ly.img.page.presets` asset source. Append your own `AssetDefinition` entries to that source to surface formats tailored to your product — social posts, print sizes, brand templates, or anything else. This guide builds on `GuideEditorConfiguration`, a small helper class the iOS guides repository ships as a minimal baseline; substitute your own editor configuration class with the same `onCreate` and `dock` hooks. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 

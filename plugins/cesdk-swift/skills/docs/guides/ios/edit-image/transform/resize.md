@@ -119,7 +119,7 @@ Change image dimensions by setting exact width and height values, switching size
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/engine-guides-edit-image-transform-resize)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/engine-guides-edit-image-transform-resize)
 
 <EngineReferenceNote {...props} />
 

@@ -117,7 +117,7 @@ Android asset source.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/engine-guides-import-media-imgly-premium-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/engine-guides-import-media-imgly-premium-assets)
 
 <EngineReferenceNote {...props} />
 

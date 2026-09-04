@@ -130,7 +130,7 @@ durations, and export the result as an MP4 file.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/engine-guides-create-video-programmatic)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/engine-guides-create-video-programmatic)
 
 <EngineReferenceNote {...props} />
 

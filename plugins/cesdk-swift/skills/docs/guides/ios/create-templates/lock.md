@@ -79,7 +79,7 @@ Set up a two-surface integration where template creators have full editing acces
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/engine-guides-lock-template)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/engine-guides-lock-template)
 
 <EngineReferenceNote {...props} />
 

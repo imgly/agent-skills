@@ -320,7 +320,7 @@ replace, and remove individual entries.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/editor-guides-configuration-dock)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/editor-guides-configuration-dock)
 
 ## Dock Architecture
 

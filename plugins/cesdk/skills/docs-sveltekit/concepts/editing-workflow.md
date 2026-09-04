@@ -18,7 +18,7 @@ CE.SDK controls editing access through roles and scopes, enabling template workf
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260903/examples/guides-concepts-editing-workflow-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260904/examples/guides-concepts-editing-workflow-browser/index.html)
 
 CE.SDK uses a two-tier permission system: **roles** define user types with preset permissions, while **scopes** control specific capabilities. This enables workflows where templates can be prepared by designers and safely customized by end-users.
 

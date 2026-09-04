@@ -215,7 +215,7 @@ Generate captions automatically from spoken audio in video and audio blocks usin
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260903/editor-guides-auto-captions-plugin)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/editor-guides-auto-captions-plugin)
 
 The Auto Captions plugin transcribes the scene's audible content and creates styled, time-synced caption blocks from the result. It ships with a built-in provider that runs the ElevenLabs Scribe v2 speech-to-text model through the IMG.LY AI Gateway, and you can plug in any speech-to-text service by implementing the `TranscriptionProvider` interface. For creating and editing captions by hand, see [Edit Captions](../../edit-video/edit-captions.md).
 
@@ -235,7 +235,7 @@ Add the plugin to the module that hosts CE.SDK. It follows CE.SDK's unified vers
 
 ```groovy
 dependencies {
-    implementation("ly.img:plugin-auto-captions:1.83.0-nightly.20260903")
+    implementation("ly.img:plugin-auto-captions:1.83.0-nightly.20260904")
 }
 ```
 

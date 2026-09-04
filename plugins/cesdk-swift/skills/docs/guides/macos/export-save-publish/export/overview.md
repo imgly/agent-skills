@@ -13,7 +13,7 @@ and target dimensions.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260903/engine-guides-export-overview)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/engine-guides-export-overview)
 
 Whether you're building a design tool, photo editor, or batch rendering pipeline, understanding export options helps you deliver the right output for each use case. This guide covers the supported formats, their options, and how to export programmatically.
 
