@@ -11,6 +11,10 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initHtml5ExporterEditor } from './imgly';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 // ============================================================================
 // Configuration
 // ============================================================================
@@ -52,6 +56,9 @@ async function initializeEditor(): Promise<void> {
   try {
     // Create new CE.SDK instance
     const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('created');
+    // END_HIDDEN_BLOCK
 
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
@@ -69,7 +76,13 @@ async function initializeEditor(): Promise<void> {
       `${DEMO_ASSETS_BASE_URL}/assets/html5-banner.zip`
     );
     // highlight-load-scene
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('ready');
+    // END_HIDDEN_BLOCK
   } catch (error) {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('failed');
+    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   }

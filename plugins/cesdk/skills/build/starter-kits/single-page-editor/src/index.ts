@@ -11,6 +11,10 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initSinglePageEditor } from './imgly';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 /**
  * Demo assets for this example (scene archives, …) are loaded from the
  * IMG.LY CDN by default. To host them yourself, copy this kit's asset
@@ -53,6 +57,9 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('created');
+    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
 
@@ -65,12 +72,16 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // Load a multi-page social media template to demonstrate single-page mode
     // This 4-page Instagram post template showcases page navigation in single-page mode
     // Alternatively, create a blank scene via: await cesdk.actions.run('scene.create');
-    await cesdk.load(
-      `${DEMO_ASSETS_BASE_URL}/assets/ig-post.archive`
-    );
+    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/ig-post/scene.scene`);
     // highlight-scene-loading
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('ready');
+    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('failed');
+    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

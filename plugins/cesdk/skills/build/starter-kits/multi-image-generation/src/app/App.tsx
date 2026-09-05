@@ -39,6 +39,13 @@ function createInitialAssets(): GeneratedAsset[] {
 
 import type { Configuration } from '@cesdk/cesdk-js';
 
+// START_HIDDEN_BLOCK
+import { useEffect } from 'react';
+// END_HIDDEN_BLOCK
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 interface AppProps {
   /** Initialized headless engine for batch image generation */
   engine: CreativeEngine;
@@ -47,6 +54,13 @@ interface AppProps {
 }
 
 export default function App({ engine, editorBaseConfig }: AppProps) {
+  // START_HIDDEN_BLOCK
+  // The editor mounts only after the visitor acts, so the shell
+  // being on screen is the end of this demo's automatic load.
+  useEffect(() => {
+    reportDemoPhase('shell');
+  }, []);
+  // END_HIDDEN_BLOCK
   const [selectedRestaurant, setSelectedRestaurant] =
     useState<Restaurant | null>(null);
   const [assets, setAssets] = useState<GeneratedAsset[]>(createInitialAssets);

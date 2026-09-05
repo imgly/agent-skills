@@ -1,6 +1,10 @@
 import CreativeEngine, { Configuration } from '@cesdk/engine';
 import { createContext, useContext, useEffect, useState } from 'react';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 interface EngineContextType {
   engine: CreativeEngine;
   isLoaded: boolean;
@@ -32,6 +36,9 @@ export const EngineProvider = ({
         config.baseURL = import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL;
       //END_HIDDEN_BLOCK
       localEngine = await CreativeEngine.init(config);
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('created');
+      // END_HIDDEN_BLOCK
       if (!mounted) {
         localEngine.dispose();
         return;

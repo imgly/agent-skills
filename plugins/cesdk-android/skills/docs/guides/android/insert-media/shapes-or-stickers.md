@@ -373,7 +373,7 @@ materialize stickers from an asset source.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/engine-guides-insert-media-shapes-or-stickers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260905/engine-guides-insert-media-shapes-or-stickers)
 
 <EngineReferenceNote {...props} />
 

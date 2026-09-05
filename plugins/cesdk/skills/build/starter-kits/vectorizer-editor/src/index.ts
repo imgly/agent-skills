@@ -11,6 +11,10 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initVectorizerEditor } from './imgly';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 /**
  * Demo assets for this example (scene archives, …) are loaded from the
  * IMG.LY CDN by default. To host them yourself, copy this kit's asset
@@ -44,6 +48,9 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('created');
+    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
 
@@ -55,17 +62,21 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // Load the vectorizer demo scene from the public showcases URL
     // This scene contains an image optimized for demonstrating vectorization
-    await cesdk.load(
-      `${DEMO_ASSETS_BASE_URL}/assets/scene.archive`
-    );
+    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/scene/scene.scene`);
 
     // Select the image block for immediate vectorization demonstration
     const imageBlock = cesdk.engine.block.findByName('SelectedImage')[0];
     if (imageBlock) {
       cesdk.engine.block.select(imageBlock);
     }
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('ready');
+    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('failed');
+    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

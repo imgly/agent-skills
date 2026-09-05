@@ -22,7 +22,7 @@ description: |
 
 ## Version Notice
 
-> CE.SDK `1.83.0-nightly.20260904` · generated `2026-09-03` · plugin `cesdk-android`
+> CE.SDK `1.83.0-nightly.20260905` · generated `2026-09-04` · plugin `cesdk-android`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow

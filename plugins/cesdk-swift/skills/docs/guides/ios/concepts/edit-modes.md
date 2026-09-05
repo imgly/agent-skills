@@ -102,7 +102,7 @@ Control how users interact with content on the canvas by switching between edit 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/engine-guides-editor-state)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/engine-guides-editor-state)
 
 Edit modes define what type of content users can currently modify on the canvas. Each mode enables different interaction behaviors — Transform mode for moving and resizing, Crop mode for adjusting content within frames, Text mode for inline text editing, and so on. The engine maintains the current edit mode as part of its state and notifies subscribers when it changes.
 

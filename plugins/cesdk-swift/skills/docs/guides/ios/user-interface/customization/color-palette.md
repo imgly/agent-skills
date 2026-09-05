@@ -99,11 +99,11 @@ Pin every CE.SDK color picker to a set of brand-approved swatches so fills, stro
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/editor-guides-configuration-color-palette)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/editor-guides-configuration-color-palette)
 
 The editor's color palette is one of several knobs you can configure on `EditorConfiguration.Builder` — alongside the dock, inspector bar, navigation bar, and theme. Setting a custom palette gives users a curated list of brand colors everywhere CE.SDK surfaces a color picker, instead of the generic seven defaults.
 
-The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260904/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `colorPalette(_:)` builder method is exposed on every configuration, so the rest of the call stays the same.
+The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260905/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `colorPalette(_:)` builder method is exposed on every configuration, so the rest of the call stays the same.
 
 ## Defining the Brand Palette
 

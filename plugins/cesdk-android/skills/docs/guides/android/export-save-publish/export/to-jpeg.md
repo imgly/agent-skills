@@ -171,7 +171,7 @@ transparency.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/engine-guides-export-to-jpeg)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260905/engine-guides-export-to-jpeg)
 
 JPEG uses lossy compression, which makes it a good fit for photographs, social media images, and web delivery. It does not preserve transparency, so transparent areas become opaque in the exported image.
 

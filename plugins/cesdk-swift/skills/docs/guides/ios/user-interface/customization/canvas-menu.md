@@ -261,7 +261,7 @@ The canvas menu is the floating toolbar that appears next to a selected design b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/editor-guides-configuration-canvas-menu)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/editor-guides-configuration-canvas-menu)
 
 ## Canvas Menu Architecture
 
@@ -283,7 +283,7 @@ The canvas menu is part of the editor configuration. Enter it through `builder.c
 | **Replacement** | `canvasMenu.items` | Declaring the exact set of items and their order — version-safe |
 | **Modification** | `canvasMenu.modify` | Adding to, replacing, or removing entries from a list you already declared |
 
-The example builds on `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260904/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration — the `canvasMenu` builder is exposed on every configuration, so the rest of the call stays the same. Because this baseline starts with an empty canvas menu, `canvasMenu.items` is the primary path; `canvasMenu.modify` then adjusts the list that `items` established.
+The example builds on `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260905/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration — the `canvasMenu` builder is exposed on every configuration, so the rest of the call stays the same. Because this baseline starts with an empty canvas menu, `canvasMenu.items` is the primary path; `canvasMenu.modify` then adjusts the list that `items` established.
 
 The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole; this guide focuses on the canvas menu surface within it.
 

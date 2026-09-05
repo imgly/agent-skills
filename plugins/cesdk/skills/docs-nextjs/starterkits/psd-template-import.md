@@ -18,7 +18,7 @@ Transform your existing Photoshop templates for use in the CE.SDK with our Impor
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-psd-template-import-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260904/examples/starterkit-psd-template-import/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260905/examples/starterkit-psd-template-import/index.html)
 
 ***
 

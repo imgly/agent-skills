@@ -163,13 +163,13 @@ Build a functional custom panel — a property editor that opens from an inspect
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/editor-guides-ui-extensions-create-custom-panel)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/editor-guides-ui-extensions-create-custom-panel)
 
 ## Overview
 
 Custom panels on iOS are editor sheets whose content you build with native SwiftUI. You present your own view and wire it to the engine directly — there is no panel registration step and no component catalog. This guide builds a property editor: a button in the inspector bar opens a sheet that edits the selected block's name and opacity.
 
-The example builds on `GuideEditorConfiguration`, a small helper the [iOS examples repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260904/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal editor baseline (close, undo, and redo). Substitute your own editor configuration — the `inspectorBar` builder is exposed on every configuration. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole, and the [Panel](../customization/panel.md) guide covers the sheet mechanism — sheet types, presentation styles, and the built-in sheets — that this guide builds on.
+The example builds on `GuideEditorConfiguration`, a small helper the [iOS examples repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260905/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal editor baseline (close, undo, and redo). Substitute your own editor configuration — the `inspectorBar` builder is exposed on every configuration. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole, and the [Panel](../customization/panel.md) guide covers the sheet mechanism — sheet types, presentation styles, and the built-in sheets — that this guide builds on.
 
 ## Opening the Panel from the Inspector Bar
 

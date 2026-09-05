@@ -159,7 +159,7 @@ preview, upload, persist, or hand them to an editing workflow.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/camera-guides-recordings)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260905/camera-guides-recordings)
 
 This guide starts after you have integrated the standalone camera with the Android Activity Result APIs. If you still need the camera dependency, permissions, or base launcher setup, complete [Integrate Mobile Camera](./integrate.md) first.
 

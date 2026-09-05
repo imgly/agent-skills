@@ -17,6 +17,10 @@ import CreativeEditorSDK, { Configuration } from '@cesdk/cesdk-js';
 
 import { initFormBasedTemplateAdoption } from './imgly';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 /**
  * Demo assets for this example (scene archives, …) are loaded from the
  * IMG.LY CDN by default. To host them yourself, copy this kit's asset
@@ -33,7 +37,7 @@ export const DEMO_ASSETS_BASE_URL: string =
 // ============================================================================
 
 // highlight-scene-url
-const SCENE_ARCHIVE_URL = `${DEMO_ASSETS_BASE_URL}/cases/form-based-template-adoption/scene.archive`;
+const SCENE_URL = `${DEMO_ASSETS_BASE_URL}/cases/form-based-template-adoption/scene/scene.scene`;
 // highlight-scene-url
 
 // ============================================================================
@@ -61,6 +65,9 @@ const config: Configuration = {
 // highlight-init
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('created');
+    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
 
@@ -68,9 +75,15 @@ CreativeEditorSDK.create('#cesdk_container', config)
     await initFormBasedTemplateAdoption(cesdk);
 
     // Load the template scene
-    await cesdk.engine.scene.load(SCENE_ARCHIVE_URL);
+    await cesdk.engine.scene.load(SCENE_URL);
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('ready');
+    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('failed');
+    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

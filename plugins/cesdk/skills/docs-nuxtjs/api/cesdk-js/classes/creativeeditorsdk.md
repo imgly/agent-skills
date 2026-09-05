@@ -273,6 +273,83 @@ Methods for configuring SDK behavior, translations, and runtime settings.
 
 <details>
   <summary>
+    ### setEditorCompatibilityVersion()
+
+    <br /><p>Declares which CE.SDK generation this editor configuration was written
+    for, so upgrading CE.SDK does not change how an unchanged configuration
+    behaves.</p>
+  </summary>
+
+  Behaviour changes that would alter an existing configuration ship behind
+  a compatibility flag carrying the release it activates in. A
+  configuration only gets a change once it declares that release or newer,
+  so raising this value is how you adopt new behaviour — deliberately, and
+  separately from upgrading the package.
+
+  Configuration plugins call this right after `resetEditor()`, which clears
+  any previously declared generation along with the rest of the
+  configuration it replaces. The CE.SDK editor configurations do it for
+  you; declare it yourself only when you configure the editor without one
+  of them.
+
+  Only a declaration restores older behaviour. A configuration that does
+  not declare gets the current release's behaviour, so a kit written before
+  this API existed adopts it by declaring the release it was taken from.
+  Each call stores the version and runs its backfills, so call it once,
+  before your own setup: a later call runs them again over what you set in
+  between.
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `version` | `string` | A CE.SDK release such as `'1.81'` or `'1.81.0'`. |
+
+  #### Returns
+
+  `void`
+
+  #### Example
+
+  ```typescript
+  cesdk.setEditorCompatibilityVersion('1.81');
+  ```
+
+  #### Signature
+
+  ```typescript
+  setEditorCompatibilityVersion(version: string): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getEditorCompatibilityVersion()
+
+    <br /><p>Returns the CE.SDK generation the active editor configuration declared
+    via [CreativeEditorSDK.setEditorCompatibilityVersion](./api/cesdk-js/classes/creativeeditorsdk.md), or <code>undefined</code> when
+    no configuration declared one.</p>
+  </summary>
+
+  #### Returns
+
+  `string`
+
+  The declared version, or `undefined`.
+
+  #### Signature
+
+  ```typescript
+  getEditorCompatibilityVersion(): string
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### ~~reapplyLegacyUserConfiguration()~~
 
     <br /><p>Re-applies the user's initial deprecated configuration that was passed to

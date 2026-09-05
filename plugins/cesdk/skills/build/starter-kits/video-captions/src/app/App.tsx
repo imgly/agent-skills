@@ -4,7 +4,7 @@
  * Provides mode selection and editor integration for video captioning.
  */
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import CreativeEditor from '@cesdk/cesdk-js/react';
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import type { Configuration } from '@cesdk/cesdk-js';
@@ -18,6 +18,13 @@ import {
 } from '../imgly';
 
 import styles from './App.module.css';
+
+// START_HIDDEN_BLOCK
+import {
+  reportDemoPhase,
+  reportDemoLoadingState
+} from '../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
 
 /**
  * Demo assets for this example (images, scene archives, …) are loaded from the
@@ -68,12 +75,22 @@ const CAPTION_MODES: Array<{
 ];
 
 export function App({ editorConfig }: AppProps) {
+  // START_HIDDEN_BLOCK
+  // The editor mounts only after the visitor acts, so the shell
+  // being on screen is the end of this demo's automatic load.
+  useEffect(() => {
+    reportDemoPhase('shell');
+  }, []);
+  // END_HIDDEN_BLOCK
   const [editorMode, setEditorMode] = useState<CaptionMode | null>(null);
   const closeEditorRef = useRef<() => void>(() => setEditorMode(null));
   closeEditorRef.current = () => setEditorMode(null);
 
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('created');
+      // END_HIDDEN_BLOCK
       (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
 
       switch (editorMode) {
@@ -81,7 +98,7 @@ export function App({ editorConfig }: AppProps) {
           await initVideoCaptionsAutocaptionEditor(cesdk);
 
           await cesdk.load(
-            `${DEMO_ASSETS_BASE_URL}/assets/autocaption.archive.zip`
+            `${DEMO_ASSETS_BASE_URL}/assets/autocaption/scene.scene`
           );
 
           const autocaptionPage = cesdk.engine.scene.getCurrentPage();
@@ -136,7 +153,7 @@ export function App({ editorConfig }: AppProps) {
           await initVideoCaptionsImportEditor(cesdk);
 
           await cesdk.load(
-            `${DEMO_ASSETS_BASE_URL}/assets/captions.archive`
+            `${DEMO_ASSETS_BASE_URL}/assets/captions/scene.scene`
           );
 
           const importPage = cesdk.engine.scene.getCurrentPage();
@@ -164,7 +181,7 @@ export function App({ editorConfig }: AppProps) {
           await initVideoCaptionsPreCaptionedEditor(cesdk);
 
           await cesdk.load(
-            `${DEMO_ASSETS_BASE_URL}/assets/captions-pre-captioned.archive`
+            `${DEMO_ASSETS_BASE_URL}/assets/captions-pre-captioned/scene.scene`
           );
 
           const preCaptionedPage = cesdk.engine.scene.getCurrentPage();
@@ -200,6 +217,9 @@ export function App({ editorConfig }: AppProps) {
           break;
         }
       }
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('ready');
+      // END_HIDDEN_BLOCK
     },
     [editorMode]
   );
@@ -271,6 +291,9 @@ export function App({ editorConfig }: AppProps) {
               key={editorMode}
               className={styles.editorContainer}
               config={editorConfig}
+              // START_HIDDEN_BLOCK
+              onLoadingStateChange={reportDemoLoadingState}
+              // END_HIDDEN_BLOCK
               init={handleInit}
             />
           </div>

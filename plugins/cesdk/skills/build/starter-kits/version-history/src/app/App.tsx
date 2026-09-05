@@ -20,6 +20,13 @@ import {
 import './App.css';
 import './HistoryPanel/HistoryPanel.css';
 
+// START_HIDDEN_BLOCK
+import {
+  reportDemoPhase,
+  reportDemoLoadingState
+} from '../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 interface AppProps {
   editorConfig: Configuration;
 }
@@ -43,6 +50,9 @@ export default function App({ editorConfig }: AppProps) {
   // Memoized init callback to prevent editor re-initialization on state changes
   // Uses refs for dynamic data (snapshotsRef) to avoid dependencies
   const handleInit = useCallback(async (cesdk: CreativeEditorSDK) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('created');
+    // END_HIDDEN_BLOCK
     // Store ref for snapshot loading
     cesdkRef.current = cesdk;
 
@@ -81,6 +91,9 @@ export default function App({ editorConfig }: AppProps) {
       // Add to snapshots (newest first)
       setSnapshots([newSnapshot, ...snapshotsRef.current]);
     });
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('ready');
+    // END_HIDDEN_BLOCK
   }, []);
   // highlight-onSave
 
@@ -95,6 +108,9 @@ export default function App({ editorConfig }: AppProps) {
       <div className="cesdk-wrapper">
         <CreativeEditor
           config={editorConfig}
+          // START_HIDDEN_BLOCK
+          onLoadingStateChange={reportDemoLoadingState}
+          // END_HIDDEN_BLOCK
           init={handleInit}
           onError={handleError}
           width="100%"

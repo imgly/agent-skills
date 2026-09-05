@@ -6,6 +6,10 @@ import { useSinglePageFocus } from '../hooks/UseSinglePageFocus';
 import { caseAssetPath } from '../../imgly/utils';
 import { SelectionProvider } from '../hooks/UseSelection';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 interface SelectedBlock {
   id: number;
   type: string;
@@ -109,6 +113,9 @@ export const EditorProvider = ({
       };
 
       const engine = await CreativeEngine.init(config);
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('created');
+      // END_HIDDEN_BLOCK
       if (!mounted) {
         engine.dispose();
         return;
@@ -164,6 +171,9 @@ export const EditorProvider = ({
       setFocusEngine(engine);
       setFocusEnabled(true);
       setEngine(engine);
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('ready');
+      // END_HIDDEN_BLOCK
       setEngineIsLoaded(true);
     };
     loadEditor();

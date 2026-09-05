@@ -64,54 +64,56 @@ export async function initPlaceholdersCreatorEditor(cesdk: CreativeEditorSDK) {
   // Asset Source Plugins
   // ============================================================================
 
-  await cesdk.addPlugin(new BlurAssetSource());
-  await cesdk.addPlugin(new ImageColorsAssetSource());
-  await cesdk.addPlugin(new ColorPaletteAssetSource());
-  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await Promise.all([
+    cesdk.addPlugin(new BlurAssetSource()),
+    cesdk.addPlugin(new ImageColorsAssetSource()),
+    cesdk.addPlugin(new ColorPaletteAssetSource()),
+    cesdk.addPlugin(new CropPresetsAssetSource()),
 
-  await cesdk.addPlugin(
-    new UploadAssetSources({
-      include: ['ly.img.image.upload']
-    })
-  );
+    cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload']
+      })
+    ),
 
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      include: ['ly.img.image.*']
-    })
-  );
+    cesdk.addPlugin(
+      new DemoAssetSources({
+        include: ['ly.img.image.*']
+      })
+    ),
 
-  await cesdk.addPlugin(new EffectsAssetSource());
-  await cesdk.addPlugin(new FiltersAssetSource());
+    cesdk.addPlugin(new EffectsAssetSource()),
+    cesdk.addPlugin(new FiltersAssetSource()),
 
-  await cesdk.addPlugin(
-    new PagePresetsAssetSource({
-      include: [
-        'ly.img.page.presets.instagram.*',
-        'ly.img.page.presets.facebook.*',
-        'ly.img.page.presets.x.*',
-        'ly.img.page.presets.linkedin.*',
-        'ly.img.page.presets.pinterest.*',
-        'ly.img.page.presets.tiktok.*',
-        'ly.img.page.presets.youtube.*',
-        'ly.img.page.presets.din.*',
-        'ly.img.page.presets.us.*'
-      ]
-    })
-  );
+    cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.din.*',
+          'ly.img.page.presets.us.*'
+        ]
+      })
+    ),
 
-  await cesdk.addPlugin(new StickerAssetSource());
-  await cesdk.addPlugin(new TextAssetSource());
-  await cesdk.addPlugin(new TextComponentAssetSource());
-  await cesdk.addPlugin(new TypefaceAssetSource());
-  await cesdk.addPlugin(new VectorShapeAssetSource());
+    cesdk.addPlugin(new StickerAssetSource()),
+    cesdk.addPlugin(new TextAssetSource()),
+    cesdk.addPlugin(new TextComponentAssetSource()),
+    cesdk.addPlugin(new TypefaceAssetSource()),
+    cesdk.addPlugin(new VectorShapeAssetSource()),
 
-  // Premium templates
-  await cesdk.addPlugin(
-    new PremiumTemplatesAssetSource({
-      include: ['ly.img.templates.premium.*']
-    })
-  );
+    // Premium templates
+    cesdk.addPlugin(
+      new PremiumTemplatesAssetSource({
+        include: ['ly.img.templates.premium.*']
+      })
+    )
+  ]);
 
   cesdk.engine.editor.setRole('Creator');
 }
@@ -147,54 +149,56 @@ export async function initPlaceholdersAdopterEditor(cesdk: CreativeEditorSDK) {
   // Asset Source Plugins
   // ============================================================================
 
-  await cesdk.addPlugin(new BlurAssetSource());
-  await cesdk.addPlugin(new ImageColorsAssetSource());
-  await cesdk.addPlugin(new ColorPaletteAssetSource());
-  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await Promise.all([
+    cesdk.addPlugin(new BlurAssetSource()),
+    cesdk.addPlugin(new ImageColorsAssetSource()),
+    cesdk.addPlugin(new ColorPaletteAssetSource()),
+    cesdk.addPlugin(new CropPresetsAssetSource()),
 
-  await cesdk.addPlugin(
-    new UploadAssetSources({
-      include: ['ly.img.image.upload']
-    })
-  );
+    cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload']
+      })
+    ),
 
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      include: ['ly.img.image.*']
-    })
-  );
+    cesdk.addPlugin(
+      new DemoAssetSources({
+        include: ['ly.img.image.*']
+      })
+    ),
 
-  await cesdk.addPlugin(new EffectsAssetSource());
-  await cesdk.addPlugin(new FiltersAssetSource());
+    cesdk.addPlugin(new EffectsAssetSource()),
+    cesdk.addPlugin(new FiltersAssetSource()),
 
-  await cesdk.addPlugin(
-    new PagePresetsAssetSource({
-      include: [
-        'ly.img.page.presets.instagram.*',
-        'ly.img.page.presets.facebook.*',
-        'ly.img.page.presets.x.*',
-        'ly.img.page.presets.linkedin.*',
-        'ly.img.page.presets.pinterest.*',
-        'ly.img.page.presets.tiktok.*',
-        'ly.img.page.presets.youtube.*',
-        'ly.img.page.presets.din.*',
-        'ly.img.page.presets.us.*'
-      ]
-    })
-  );
+    cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.din.*',
+          'ly.img.page.presets.us.*'
+        ]
+      })
+    ),
 
-  await cesdk.addPlugin(new StickerAssetSource());
-  await cesdk.addPlugin(new TextAssetSource());
-  await cesdk.addPlugin(new TextComponentAssetSource());
-  await cesdk.addPlugin(new TypefaceAssetSource());
-  await cesdk.addPlugin(new VectorShapeAssetSource());
+    cesdk.addPlugin(new StickerAssetSource()),
+    cesdk.addPlugin(new TextAssetSource()),
+    cesdk.addPlugin(new TextComponentAssetSource()),
+    cesdk.addPlugin(new TypefaceAssetSource()),
+    cesdk.addPlugin(new VectorShapeAssetSource()),
 
-  // Premium templates
-  await cesdk.addPlugin(
-    new PremiumTemplatesAssetSource({
-      include: ['ly.img.templates.premium.*']
-    })
-  );
+    // Premium templates
+    cesdk.addPlugin(
+      new PremiumTemplatesAssetSource({
+        include: ['ly.img.templates.premium.*']
+      })
+    )
+  ]);
 
   cesdk.engine.editor.setRole('Adopter');
 }

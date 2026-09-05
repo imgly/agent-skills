@@ -10,11 +10,25 @@ import { EditorModal } from './EditorModal/EditorModal';
 
 import styles from './App.module.css';
 
+// START_HIDDEN_BLOCK
+import { useEffect } from 'react';
+// END_HIDDEN_BLOCK
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 interface AppProps {
   config: Partial<Configuration>;
 }
 
 export default function App({ config }: AppProps) {
+  // START_HIDDEN_BLOCK
+  // The editor mounts only after the visitor acts, so the shell
+  // being on screen is the end of this demo's automatic load.
+  useEffect(() => {
+    reportDemoPhase('shell');
+  }, []);
+  // END_HIDDEN_BLOCK
   // State hooks
   const { engine, isReady } = useEngine(config);
   const templates = useTemplates();

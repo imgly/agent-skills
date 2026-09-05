@@ -14,6 +14,10 @@ import { ThemingSidebar } from './ThemingSidebar';
 
 import styles from './App.module.css';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 interface AppProps {
   editorConfig: Configuration;
 }
@@ -22,6 +26,9 @@ export function App({ editorConfig }: AppProps) {
   const [cesdk, setCesdk] = useState<CreativeEditorSDK | null>(null);
 
   const handleEditorInit = useCallback(async (instance: CreativeEditorSDK) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('created');
+    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = instance;
 
@@ -35,6 +42,9 @@ export function App({ editorConfig }: AppProps) {
     await instance.load(resolveAssetPath('/assets/example-1.scene'));
 
     setCesdk(instance);
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('ready');
+    // END_HIDDEN_BLOCK
   }, []);
 
   return (

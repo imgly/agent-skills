@@ -213,7 +213,7 @@ appropriate resolution for editing previews and exports.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/engine-guides-source-sets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260905/engine-guides-source-sets)
 
 Source sets let you provide multiple versions of the same media asset at
 different pixel dimensions. The engine can load a smaller source for preview

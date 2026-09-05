@@ -11,6 +11,10 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { initExportUsingRenderer } from './imgly';
 import { resolveAssetPath } from './imgly/resolveAssetPath';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 // ============================================================================
 // Configuration
 // ============================================================================
@@ -35,6 +39,9 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('created');
+    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
 
@@ -50,8 +57,14 @@ CreativeEditorSDK.create('#cesdk_container', config)
       resolveAssetPath('/assets/example-video-motion.scene')
     );
     // highlight-scene-loading
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('ready');
+    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('failed');
+    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

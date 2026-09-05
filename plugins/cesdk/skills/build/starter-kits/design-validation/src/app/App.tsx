@@ -15,6 +15,13 @@ import { Sidebar } from './Sidebar/Sidebar';
 
 import classes from './App.module.css';
 
+// START_HIDDEN_BLOCK
+import {
+  reportDemoPhase,
+  reportDemoLoadingState
+} from '../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 interface AppProps {
   editorConfig: Configuration;
 }
@@ -24,6 +31,9 @@ export function App({ editorConfig }: AppProps) {
   const cesdkRef = useRef<CreativeEditorSDK | null>(null);
 
   const handleInit = useCallback(async (instance: CreativeEditorSDK) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('created');
+    // END_HIDDEN_BLOCK
     cesdkRef.current = instance;
 
     // Debug access (remove in production)
@@ -36,6 +46,9 @@ export function App({ editorConfig }: AppProps) {
     await instance.load(resolveAssetPath('/assets/example.scene'));
 
     setCesdk(instance);
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('ready');
+    // END_HIDDEN_BLOCK
   }, []);
 
   const handleError = useCallback(
@@ -51,6 +64,9 @@ export function App({ editorConfig }: AppProps) {
       <div className={classes.editorWrapper}>
         <CreativeEditor
           config={editorConfig}
+          // START_HIDDEN_BLOCK
+          onLoadingStateChange={reportDemoLoadingState}
+          // END_HIDDEN_BLOCK
           init={handleInit}
           onError={handleError}
           className={classes.editor}

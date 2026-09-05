@@ -101,16 +101,18 @@ export async function initAiDesignEditor(
     cesdk.addPlugin(new PagePresetsAssetSource()),
     cesdk.addPlugin(new CropPresetsAssetSource())
   ]);
-  await cesdk.addPlugin(
-    new UploadAssetSources({
-      include: ['ly.img.image.upload']
-    })
-  );
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      include: ['ly.img.image.*']
-    })
-  );
+  await Promise.all([
+    cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload']
+      })
+    ),
+    cesdk.addPlugin(
+      new DemoAssetSources({
+        include: ['ly.img.image.*']
+      })
+    )
+  ]);
 
   await cesdk.addPlugin(new AiAppsConfig(providers, 'Design'));
 }
@@ -152,16 +154,18 @@ export async function initAiPhotoEditor(
     cesdk.addPlugin(new PagePresetsAssetSource()),
     cesdk.addPlugin(new CropPresetsAssetSource())
   ]);
-  await cesdk.addPlugin(
-    new UploadAssetSources({
-      include: ['ly.img.image.upload']
-    })
-  );
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      include: ['ly.img.image.*']
-    })
-  );
+  await Promise.all([
+    cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload']
+      })
+    ),
+    cesdk.addPlugin(
+      new DemoAssetSources({
+        include: ['ly.img.image.*']
+      })
+    )
+  ]);
 
   await cesdk.addPlugin(new AiPhotoEditConfig(providers));
 }
@@ -203,25 +207,27 @@ export async function initAiVideoEditor(
     cesdk.addPlugin(new PagePresetsAssetSource()),
     cesdk.addPlugin(new CropPresetsAssetSource())
   ]);
-  await cesdk.addPlugin(
-    new UploadAssetSources({
-      include: [
-        'ly.img.image.upload',
-        'ly.img.video.upload',
-        'ly.img.audio.upload'
-      ]
-    })
-  );
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      include: [
-        'ly.img.templates.video.*',
-        'ly.img.image.*',
-        'ly.img.video.*',
-        'ly.img.audio.*'
-      ]
-    })
-  );
+  await Promise.all([
+    cesdk.addPlugin(
+      new UploadAssetSources({
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
+      })
+    ),
+    cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.video.*',
+          'ly.img.audio.*'
+        ]
+      })
+    )
+  ]);
 
   await cesdk.addPlugin(new AiAppsConfig(providers, 'Video'));
 }

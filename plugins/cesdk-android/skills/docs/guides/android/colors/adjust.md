@@ -163,7 +163,7 @@ Fine-tune image-backed graphic blocks on Android by applying CE.SDK adjustment e
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260904/engine-guides-colors-adjust)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260905/engine-guides-colors-adjust)
 
 Color adjustments modify the visual appearance of image-backed graphic blocks by changing properties like brightness, contrast, saturation, and color temperature. CE.SDK represents these changes as an `EffectType.Adjustments` block that you attach to a compatible design block.
 

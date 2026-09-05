@@ -19,7 +19,7 @@ CE.SDK for integration with CMS, DAM, or custom asset management systems.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-from-remote-source-your-server-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260904/examples/guides-import-media-from-remote-source-your-server-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260905/examples/guides-import-media-from-remote-source-your-server-browser/index.html)
 
 CE.SDK provides multiple ways to load assets from your servers. Static libraries like stickers and icons use JSON manifests hosted on a CDN. Dynamic libraries like user photos and DAM content require API endpoints backed by databases.
 

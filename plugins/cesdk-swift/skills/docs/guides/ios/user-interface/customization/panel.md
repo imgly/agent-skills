@@ -121,7 +121,7 @@ custom action.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260904/editor-guides-configuration-panel)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/editor-guides-configuration-panel)
 
 In CE.SDK on iOS, panels are implemented as sheets — non-modal overlays presented above the canvas. The editor ships with a set of built-in sheet types that cover the most common editing tasks, and you can also present your own SwiftUI content as a custom sheet. The same calls apply regardless of the editor configuration your app extends.
 
