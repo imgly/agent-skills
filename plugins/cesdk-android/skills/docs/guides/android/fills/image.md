@@ -170,7 +170,7 @@ responsive source sets using CE.SDK's image fill system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260905/engine-guides-fills-image)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260906/engine-guides-fills-image)
 
 Image fills render design blocks with raster or vector image content, supporting common formats such as PNG, JPEG, WebP, and SVG. You can load images from remote URLs or app-owned Android URIs, provide responsive source sets, and choose how the image scales inside its block.
 

@@ -20,7 +20,7 @@ and engine settings to customize the video timeline.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260905/examples/guides-user-interface-customization-video-timeline-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260906/examples/guides-user-interface-customization-video-timeline-browser/index.html)
 
 CE.SDK allows you to customize the timeline at runtime: toggle the visibility of the timeline and its buttons, customize the controls bar and its height behavior, and more. The Overview below lists each customization point.
 

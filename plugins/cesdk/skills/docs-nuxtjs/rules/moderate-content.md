@@ -16,7 +16,7 @@ Use CE.SDK's engine APIs to extract images and text from designs, then integrate
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-rules-moderate-content-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260905/examples/guides-rules-moderate-content-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260906/examples/guides-rules-moderate-content-browser/index.html)
 
 ![Content moderation example showing a design with validation results panel displaying moderation checks for images and text](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 

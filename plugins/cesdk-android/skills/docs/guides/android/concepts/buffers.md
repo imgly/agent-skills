@@ -125,7 +125,7 @@ Store and manage temporary binary data directly in memory using CE.SDK's buffer 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260905/engine-guides-buffers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260906/engine-guides-buffers)
 
 <EngineReferenceNote {...props} />
 

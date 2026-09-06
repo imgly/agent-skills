@@ -67,7 +67,7 @@ decals, and custom-shaped prints programmatically.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/engine-guides-cutouts)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260906/engine-guides-cutouts)
 
 <EngineReferenceNote {...props} />
 

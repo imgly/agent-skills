@@ -67,7 +67,7 @@ Understand how CE.SDK is structured around the CreativeEngine and its six interc
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/engine-guides-concepts-architecture)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260906/engine-guides-concepts-architecture)
 
 CE.SDK is built around the **CreativeEngine**—a single-threaded core runtime that manages state, rendering, and coordination between six specialized APIs. Understanding how these pieces connect helps you navigate the SDK effectively.
 

@@ -18,7 +18,7 @@ Stream timeline filmstrips, page storyboards, and audio waveforms out of CE.SDK 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-thumbnail-previews-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260905/examples/guides-export-save-publish-thumbnail-previews-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260906/examples/guides-export-save-publish-thumbnail-previews-browser/index.html)
 
 Two methods on `engine.block` produce sequences of previews and hand them back one piece at a time, as soon as each piece is ready:
 

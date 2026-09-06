@@ -130,7 +130,7 @@ caption editing and style presets, and every caption appears as a clip on a dedi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260905/editor-guides-create-video-edit-captions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260906/editor-guides-create-video-edit-captions)
 
 Captions are an editor UI feature for video scenes. Three registrations turn the surface on — a dock button, an asset source, and two inspector bar buttons — and the editor supplies the captions sheet, the timeline caption lane, and preset styling. To build captions programmatically instead, see [Add Captions](./add-captions.md).
 

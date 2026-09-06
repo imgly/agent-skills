@@ -166,7 +166,7 @@ A quick action is a one-tap button that edits the selected block immediately, wi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260905/editor-guides-quick-actions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260906/editor-guides-quick-actions)
 
 ## Overview
 

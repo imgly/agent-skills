@@ -49,7 +49,7 @@ Capture a still photo with the IMGLY Mobile Camera. Configure the camera for pho
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/camera-guides-take-photo)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260906/camera-guides-take-photo)
 
 This guide uses the IMGLY Mobile Camera in photo mode. For adding the camera to your app and presenting it, see [Integrate Mobile Camera](./integrate.md); for the full set of camera options, see [Mobile Camera Configuration](./camera-configuration.md).
 

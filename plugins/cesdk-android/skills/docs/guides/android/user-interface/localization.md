@@ -15,8 +15,8 @@ There is no runtime `setLocale()` or translation dictionary API for the Android 
 
 CE.SDK ships editor resources for English and German:
 
-- English defaults live in [`sources/editor-core/src/main/res/values/strings.xml`](https://github.com/imgly/cesdk-android/blob/v1.83.0-nightly.20260905/sources/editor-core/src/main/res/values/strings.xml).
-- German defaults live in [`sources/editor-core/src/main/res/values-de/strings.xml`](https://github.com/imgly/cesdk-android/blob/v1.83.0-nightly.20260905/sources/editor-core/src/main/res/values-de/strings.xml).
+- English defaults live in [`sources/editor-core/src/main/res/values/strings.xml`](https://github.com/imgly/cesdk-android/blob/v1.83.0-nightly.20260906/sources/editor-core/src/main/res/values/strings.xml).
+- German defaults live in [`sources/editor-core/src/main/res/values-de/strings.xml`](https://github.com/imgly/cesdk-android/blob/v1.83.0-nightly.20260906/sources/editor-core/src/main/res/values-de/strings.xml).
 
 Android merges resources from your app module and its library dependencies when it builds the APK or AAB. If your app declares a string resource with the same name as a CE.SDK editor resource, your app's value takes precedence for that resource configuration.
 
@@ -110,8 +110,8 @@ Preserve Android format placeholders when you override strings that contain valu
 | Concern | Android resource location |
 | --- | --- |
 | Key naming convention | `ly_img_editor_<surface>_<element>_<name>` |
-| English editor strings | [`res/values/strings.xml`](https://github.com/imgly/cesdk-android/blob/v1.83.0-nightly.20260905/sources/editor-core/src/main/res/values/strings.xml) |
-| German editor strings | [`res/values-de/strings.xml`](https://github.com/imgly/cesdk-android/blob/v1.83.0-nightly.20260905/sources/editor-core/src/main/res/values-de/strings.xml) |
+| English editor strings | [`res/values/strings.xml`](https://github.com/imgly/cesdk-android/blob/v1.83.0-nightly.20260906/sources/editor-core/src/main/res/values/strings.xml) |
+| German editor strings | [`res/values-de/strings.xml`](https://github.com/imgly/cesdk-android/blob/v1.83.0-nightly.20260906/sources/editor-core/src/main/res/values-de/strings.xml) |
 | Override location | Your app module's `res/values/strings.xml` |
 | Locale-specific override | Your app module's `res/values-<locale>/strings.xml` |
 | Locale selection | Android app or device locale and resource qualifiers |

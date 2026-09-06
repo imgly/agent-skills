@@ -213,11 +213,11 @@ The dock is the horizontal toolbar along the bottom of the editor. Declare its b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/editor-guides-configuration-dock)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260906/editor-guides-configuration-dock)
 
 The dock gives users quick access to content libraries (images, text, shapes, stickers) and editing tools (resize, crop, adjustments). You configure it on the `EditorConfiguration` builder's `dock` property — the same place you configure the navigation bar, inspector bar, and canvas menu. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 
-The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260905/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `dock` builder is available on every configuration, so the rest of the call stays the same.
+The example wraps the editor in `GuideEditorConfiguration`, a small helper class the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260906/editor-guides-quickstart/GuideEditorConfiguration.swift) ships as a minimal baseline. Substitute your own editor configuration class — the `dock` builder is available on every configuration, so the rest of the call stays the same.
 
 ## Dock Architecture
 

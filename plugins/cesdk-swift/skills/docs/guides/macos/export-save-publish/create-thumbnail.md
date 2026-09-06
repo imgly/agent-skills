@@ -147,7 +147,7 @@ Generate small preview images from CE.SDK scenes for galleries, file browsers, a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/engine-guides-create-thumbnail)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260906/engine-guides-create-thumbnail)
 
 <EngineReferenceNote {...props} />
 

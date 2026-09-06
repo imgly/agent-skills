@@ -129,7 +129,7 @@ Add on-device background removal to your editor with a single plugin registratio
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/editor-guides-background-removal-plugin)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260906/editor-guides-background-removal-plugin)
 
 The `BackgroundRemovalPlugin` adds a "Remove Background" button to the editor dock. When tapped, it extracts the current page's image, runs segmentation on-device, and replaces the image with the cut-out result. By default it uses IMG.LY's IS-Net foreground segmentation model — the same model used by the web background-removal plugin — accelerated on the Apple Neural Engine. An alternative Apple Vision backend ships in the same package for portrait-heavy apps that want zero model download.
 

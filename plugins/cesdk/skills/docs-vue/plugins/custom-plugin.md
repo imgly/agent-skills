@@ -19,7 +19,7 @@ to any CE.SDK instance with `cesdk.addPlugin()`.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/plugins-custom-plugin-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260905/examples/plugins-custom-plugin-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260906/examples/plugins-custom-plugin-browser/index.html)
 
 A custom plugin groups callbacks, UI component changes, settings, and options into one unit that travels between projects. On the Web, a plugin implements the `EditorPlugin` interface and receives the CE.SDK instance and engine when it's applied — the same mechanism official `@imgly/plugin-*` packages and the editor configs use.
 

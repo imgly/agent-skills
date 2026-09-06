@@ -182,7 +182,7 @@ Transform images by swapping specific colors with the Recolor effect or by remov
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260905/engine-guides-colors-replace)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260906/engine-guides-colors-replace)
 
 CE.SDK offers two color replacement effects. The Recolor effect swaps one color for another while preserving image details. The Green Screen effect removes matching colors so the background can become transparent.
 

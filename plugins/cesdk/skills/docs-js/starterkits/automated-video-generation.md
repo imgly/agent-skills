@@ -18,7 +18,7 @@ Streamline asset production with video placeholders.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-placeholders-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260905/examples/starterkit-video-placeholders/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260906/examples/starterkit-video-placeholders/index.html)
 
 ***
 

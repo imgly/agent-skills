@@ -162,7 +162,7 @@ Generate captions automatically from spoken audio in video and audio blocks usin
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260905/editor-guides-auto-captions-plugin)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260906/editor-guides-auto-captions-plugin)
 
 The Auto Captions plugin transcribes the scene's audible content and creates styled, time-synced caption blocks from the result. It ships with a built-in provider that runs the ElevenLabs Scribe v2 speech-to-text model through the IMG.LY AI Gateway, and you can plug in any speech-to-text service by implementing the `TranscriptionProvider` protocol. For manually creating and editing captions, see [Add Captions](../../edit-video/add-captions.md).
 
