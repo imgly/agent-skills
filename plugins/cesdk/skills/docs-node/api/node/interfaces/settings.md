@@ -72,6 +72,7 @@ The settings are organized by type:
 |  `page/title/fontFileUri` | `string` | The font file URI for page titles. |
 |  `page/title/separator` | `string` | The separator between page number and page name in titles. |
 |  `fallbackFontUri` | `string` | The URI for the fallback font used when glyphs are missing. |
+|  `fallbackCMYKProfileUri` | `string` | The URI of the ICC profile that previews CMYK colors when the document defines no CMYK profile. Empty means the bundled default profile. |
 |  `upload/supportedMimeTypes` | `string` | The supported MIME types for file uploads. |
 |  `web/fetchCredentials` | `"omit"` | `"same-origin"` | `"include"` | Web-only: Credentials mode for cross-origin fetch requests. - "omit": Never send cookies - "same-origin": Send cookies only for same-origin requests (default) - "include": Always send cookies, even for cross-origin requests Note: Only affects web platform. Ignored on native platforms. |
 |  `controlGizmo/blockScaleDownLimit` | `number` | Scale-down limit for blocks in screen pixels when scaling with gizmos or touch gestures. |

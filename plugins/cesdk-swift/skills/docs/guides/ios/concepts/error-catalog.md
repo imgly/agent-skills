@@ -491,6 +491,17 @@ Audio/video codec capability and decoding.
 | `CODEC.WEBCODECS_NOT_AVAILABLE_NODE` | WebCodecs API is not available in Node.js. | Run in a browser environment, or use a different codec backend on Node. |  |
 | `CODEC.WEBCODECS_NOT_SUPPORTED` | WebCodecs API is not supported. | The current browser does not expose the WebCodecs API. Upgrade to a supported version. |  |
 
+## COLOR
+
+ICC color profiles, document CMYK profiles, and color management.
+
+| Code | Message | Hint | Docs |
+| --- | --- | --- | --- |
+| `COLOR.PROFILE_INVALID` | The ICC profile data could not be read. Size: \{byteCount} bytes. | The bytes are not a valid ICC profile. Check that the file is complete and was not truncated by the download. |  |
+| `COLOR.PROFILE_MISSING` | The color profile at \{uri} could not be loaded. | Check that the URI is reachable and returns valid ICC profile data. Colors of that space fall back to the next profile the engine can load, and are previewed unmanaged when there is none. |  |
+| `COLOR.PROFILE_SPACE_MISMATCH` | The color profile at \{uri} describes \{space}, but \{expected} is required here. | Point the profile at a file whose color space matches the one it is used for. A document profile and the \`fallbackCMYKProfileUri\` setting both have to name a CMYK profile. |  |
+| `COLOR.PROFILE_UNSUPPORTED_SPACE` | The ICC profile uses the color space \{space}, which is not supported. | Use an RGB, CMYK or Gray profile. Other color spaces cannot be opened. |  |
+
 ## COMPUTE
 
 Compute contexts (Metal, GL, CPU) and capability negotiation.
@@ -826,6 +837,7 @@ Scene-level operations (load, save, archive, structural validation).
 | --- | --- | --- | --- |
 | `SCENE.ARCHIVAL_REQUEST_FAILED` | Archival request failed: \{reason} | An async archival operation (save/load) was completed in error state. The underlying reason is: \{reason} | [Scenes](./scenes.md) |
 | `SCENE.ARCHIVE_ADD_RESOURCE_FAILED` | Could not add the resource '\{resource}' to the archive. Adding data failed. | The engine could not fetch or write the bytes for \{resource}. Verify the resource is reachable and not larger than the archive can hold. | [Scenes](./scenes.md) |
+| `SCENE.ARCHIVE_BUFFER_DATA_MISSING` | Could not add the resource '\{resource}' to the archive. Its buffer holds no data. | A buffer URL names data that only this engine holds, so the archive must carry the bytes. The buffer is empty or was destroyed. Write the data again with setBufferData, or clear the reference on the block, then save. | [Scenes](./scenes.md) |
 | `SCENE.ARCHIVE_CHUNK_READ_FAILED` | Failed to read chunk data from data provider. | The data provider returned no bytes for an available range. The underlying source may have disconnected or returned a partial response. | [Scenes](./scenes.md) |
 | `SCENE.ARCHIVE_CORRUPTED_EMPTY_RESOURCE` | Corrupted archive. Some elements in the scene are referencing empty data, e.g., '\{resource}'. | The archive is internally inconsistent. Regenerate it from the original scene and verify the source has no missing assets. | [Scenes](./scenes.md) |
 | `SCENE.ARCHIVE_CREATE_FAILED` | Could not create archive. | Final archive assembly failed for an unspecified reason. Inspect prior log lines for the underlying failure. | [Scenes](./scenes.md) |

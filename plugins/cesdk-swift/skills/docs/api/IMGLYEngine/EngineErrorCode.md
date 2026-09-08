@@ -2687,6 +2687,30 @@ case codecWebcodecsNotAvailableNode
 case codecWebcodecsNotSupported
 ```
 
+### EngineErrorCode.colorProfileInvalid
+
+```swift
+case colorProfileInvalid
+```
+
+### EngineErrorCode.colorProfileMissing
+
+```swift
+case colorProfileMissing
+```
+
+### EngineErrorCode.colorProfileSpaceMismatch
+
+```swift
+case colorProfileSpaceMismatch
+```
+
+### EngineErrorCode.colorProfileUnsupportedSpace
+
+```swift
+case colorProfileUnsupportedSpace
+```
+
 ### EngineErrorCode.computeColorSpaceBitDepthUnsupported
 
 ```swift
@@ -4365,6 +4389,12 @@ case sceneArchivalRequestFailed
 
 ```swift
 case sceneArchiveAddResourceFailed
+```
+
+### EngineErrorCode.sceneArchiveBufferDataMissing
+
+```swift
+case sceneArchiveBufferDataMissing
 ```
 
 ### EngineErrorCode.sceneArchiveChunkReadFailed
