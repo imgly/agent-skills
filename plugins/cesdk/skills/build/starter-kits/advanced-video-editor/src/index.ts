@@ -10,6 +10,10 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initAdvancedVideoEditor } from './imgly';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 /**
  * Demo assets for this example (scene archives, …) are loaded from the
  * IMG.LY CDN by default. To host them yourself, copy this kit's asset
@@ -19,7 +23,7 @@ import { initAdvancedVideoEditor } from './imgly';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0-rc.0/starterkit-advanced-video-editor';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0-rc.2/starterkit-advanced-video-editor';
 
 // ============================================================================
 // Configuration
@@ -45,6 +49,9 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('created');
+    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
 
@@ -55,11 +62,17 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     await cesdk.load(
-      `${DEMO_ASSETS_BASE_URL}/assets/templates/lunar-video-default.imgly`
+      `${DEMO_ASSETS_BASE_URL}/assets/templates/lunar-video-default/scene.scene`
     );
     // highlight-scene-loading
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('ready');
+    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
+    // START_HIDDEN_BLOCK
+    reportDemoPhase('failed');
+    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

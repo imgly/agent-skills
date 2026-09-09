@@ -325,7 +325,6 @@ Removing from a clip without an assigned transition is a no-op.
 - **Fades**: `Fade`, `FadeToBlack`, `FadeToWhite`, `GradientFade`
 - **Wipes**: `Wipe`, `LineWipe`, `ClockWipe`, `ColorWipe`
 - **Patterns**: `Chop`, `TwoStripes`
-- **None**: `None`
 
 ## Troubleshooting
 

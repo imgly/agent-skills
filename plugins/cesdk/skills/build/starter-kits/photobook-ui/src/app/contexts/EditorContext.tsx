@@ -10,6 +10,10 @@ import { useEngine } from './EngineContext';
 import { useSinglePageMode } from './SinglePageModeContext';
 import { usePagePreview } from './PagePreviewContext';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 /**
  * Demo assets for this example (images, scenes, fonts, …) are loaded from
  * the IMG.LY CDN by default. To host them yourself, copy this kit's asset
@@ -19,7 +23,7 @@ import { usePagePreview } from './PagePreviewContext';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0-rc.0/starterkit-photobook-ui';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0-rc.2/starterkit-photobook-ui';
 
 const template = {
   name: 'Example Photobook',
@@ -98,6 +102,9 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         // Wait for zoom to finish
         await new Promise((resolve) => setTimeout(resolve, 100));
         setSceneIsLoaded(true);
+        // START_HIDDEN_BLOCK
+        reportDemoPhase('ready');
+        // END_HIDDEN_BLOCK
       }
     };
 

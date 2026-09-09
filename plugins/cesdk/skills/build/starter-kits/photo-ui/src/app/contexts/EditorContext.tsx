@@ -18,6 +18,10 @@ import {
 import { useSinglePageFocus } from '../../imgly/hooks/useSinglePageFocus';
 import { getImageSize } from '../../imgly/engine-utils';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 /**
  * Demo assets for this example (images, …) are loaded from
  * the IMG.LY CDN by default. To host them yourself, copy this kit's asset
@@ -27,7 +31,7 @@ import { getImageSize } from '../../imgly/engine-utils';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0-rc.0/starterkit-photo-ui';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0-rc.2/starterkit-photo-ui';
 
 const INITIAL_PORTRAIT_IMAGE_PATH = `${DEMO_ASSETS_BASE_URL}/images/mountains.jpg`;
 const INITIAL_LANDSCAPE_IMAGE_PATH = `${DEMO_ASSETS_BASE_URL}/images/woman.jpg`;
@@ -132,6 +136,9 @@ export function EditorProvider({
     const loadEditor = async () => {
       // Initialize engine with eager import (no dynamic import delay)
       engineInstance = await CreativeEngine.init(engineConfig);
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('created');
+      // END_HIDDEN_BLOCK
       if (!mounted) {
         engineInstance.dispose();
         return;
@@ -172,6 +179,9 @@ export function EditorProvider({
 
       // Update state
       setEngine(engineInstance);
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('ready');
+      // END_HIDDEN_BLOCK
       setEngineIsLoaded(true);
       setSceneIsLoaded(true);
     };

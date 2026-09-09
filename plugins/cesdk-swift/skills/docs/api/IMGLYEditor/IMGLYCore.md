@@ -427,6 +427,14 @@ static let tiny: PresentationDetent
 
 A tiny presentation detent.
 
+### IMGLY.transition
+
+```swift
+static let transition: Image
+```
+
+An icon image for transitions.
+
 ### IMGLY.undo
 
 ```swift

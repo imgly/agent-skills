@@ -71,52 +71,54 @@ export async function initVersionHistoryEditor(
   // ============================================================================
 
   // Color palettes for design
-  await cesdk.addPlugin(new ImageColorsAssetSource());
-  await cesdk.addPlugin(new ColorPaletteAssetSource());
+  await Promise.all([
+    cesdk.addPlugin(new ImageColorsAssetSource()),
+    cesdk.addPlugin(new ColorPaletteAssetSource()),
 
-  // Typeface/font assets
-  await cesdk.addPlugin(new TypefaceAssetSource());
+    // Typeface/font assets
+    cesdk.addPlugin(new TypefaceAssetSource()),
 
-  // Text presets
-  await cesdk.addPlugin(new TextAssetSource());
+    // Text presets
+    cesdk.addPlugin(new TextAssetSource()),
 
-  // Text components
-  await cesdk.addPlugin(new TextComponentAssetSource());
+    // Text components
+    cesdk.addPlugin(new TextComponentAssetSource()),
 
-  // Vector shapes
-  await cesdk.addPlugin(new VectorShapeAssetSource());
+    // Vector shapes
+    cesdk.addPlugin(new VectorShapeAssetSource()),
 
-  // Sticker assets
-  await cesdk.addPlugin(new StickerAssetSource());
+    // Sticker assets
+    cesdk.addPlugin(new StickerAssetSource()),
 
-  // Visual effects
-  await cesdk.addPlugin(new EffectsAssetSource());
+    // Visual effects
+    cesdk.addPlugin(new EffectsAssetSource()),
 
-  // Photo filters
-  await cesdk.addPlugin(new FiltersAssetSource());
+    // Photo filters
+    cesdk.addPlugin(new FiltersAssetSource()),
 
-  // Blur presets
-  await cesdk.addPlugin(new BlurAssetSource());
+    // Blur presets
+    cesdk.addPlugin(new BlurAssetSource()),
 
-  // Page format presets
-  await cesdk.addPlugin(new PagePresetsAssetSource());
+    // Page format presets
+    cesdk.addPlugin(new PagePresetsAssetSource()),
 
-  // Crop presets
-  await cesdk.addPlugin(new CropPresetsAssetSource());
+    // Crop presets
+    cesdk.addPlugin(new CropPresetsAssetSource()),
 
-  // Local upload sources
-  await cesdk.addPlugin(
-    new UploadAssetSources({
-      include: ['ly.img.image.upload']
-    })
-  );
+    // Local upload sources
+    cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload']
+      })
+    ),
 
-  // Demo assets
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      include: ['ly.img.image.*']
-    })
-  );
+    // Demo assets
+    cesdk.addPlugin(
+      new DemoAssetSources({
+        include: ['ly.img.image.*']
+      })
+    )
+  ]);
 }
 
 // ============================================================================

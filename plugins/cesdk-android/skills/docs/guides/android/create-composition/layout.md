@@ -138,7 +138,7 @@ Create structured compositions using stack layouts that automatically arrange pa
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-rc.0/engine-guides-layout)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.0-rc.2/engine-guides-layout)
 
 <EngineReferenceNote {...props} />
 
