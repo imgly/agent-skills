@@ -22,7 +22,7 @@
 - [Movement Constraints](./user-interface/customization/movement-constraints.md) - Restrict how far blocks can be dragged outside the page in the CE.SDK web editor.
 - [Color Palette](./user-interface/customization/color-palette.md) - Customize the color palette available to users for consistent branding and styling.
 - [Disable or Enable Features](./user-interface/customization/disable-or-enable.md) - Control which editor features are available to users by enabling, disabling, or conditionally toggling them using the Feature API.
-- [Navigation Bar](./user-interface/customization/navigation-bar.md) - Show, hide, or customize the editor’s top navigation bar to match your app layout.
+- [Navigation Bar](./user-interface/customization/navigation-bar.md) - Show, hide, position, or customize the editor’s navigation bar to match your app layout.
 - [Dock](./user-interface/customization/dock.md) - Configure the dock area to show or hide tools, panels, or quick access actions.
 - [Panel Customization](./user-interface/customization/panel.md) - Control CE.SDK's UI panels programmatically to create custom editor layouts and workflows.
 - [Inspector Bar](./user-interface/customization/inspector-bar.md) - Customize the inspector bar for editing properties like position, color, and size.

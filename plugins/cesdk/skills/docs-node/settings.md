@@ -27,8 +27,10 @@ Most settings can be changed at any time and take effect immediately:
 - **Interaction behavior**: `doubleClickToCropEnabled`, `doubleClickSelectionMode`, `touch/*`, `mouse/*`
 - **Control gizmos**: `controlGizmo/resizeHandlesVisibility`, `controlGizmo/rotateHandlesVisibility`
 - **Page display**: `page/title/show`, `page/dimOutOfPageAreas`, `page/title/separator`
-- **Feature toggles**: `blockAnimations/enabled`, `useSystemFontFallback`, `forceSystemEmojis`
+- **Feature toggles**: `blockAnimations/enabled`, `useSystemFontFallback`, `forceSystemEmojis`, `features/equalDistanceSnappingEnabled`
 - **Snapping thresholds**: `positionSnappingThreshold`, `rotationSnappingThreshold`
+
+Most `features/*` flags are off by default. For example, `features/equalDistanceSnappingEnabled` snaps a dragged block to equal spacing with its siblings and shows the size of each gap. See [Equal-Distance Snapping](#broken-link-e9d15a).
 
 These runtime settings are commonly used to adapt the editor UI to different modes, user preferences, or workflow states.
 

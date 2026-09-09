@@ -1150,6 +1150,14 @@ abstract fun getStrokeWidth(block: DesignBlock): Float
 
 Get the stroke width of the given design block.
 
+### getTextBackgroundColors
+
+```kotlin
+abstract fun getTextBackgroundColors(block: DesignBlock, from: Int = -1, to: Int = -1): List<Color>
+```
+
+Returns the ordered unique list of background colors of the text in the selected range. Text without a background color is reported as a fully transparent color.
+
 ### getTextCases
 
 ```kotlin
@@ -2869,6 +2877,14 @@ abstract fun setStrokeWidth(block: DesignBlock, width: Float)
 ```
 
 Set the stroke width of the given design block. Required scope: "stroke/change"
+
+### setTextBackgroundColor
+
+```kotlin
+abstract fun setTextBackgroundColor(block: DesignBlock, color: Color, from: Int = -1, to: Int = -1)
+```
+
+Changes the background color of the text in the selected range to the given color. The background is drawn as a rectangle behind each affected text run, or as a band along the curve for text on a path. A fully transparent color removes the background from the range. The run background is independent of the block-level background color ("backgroundColor/color"); it is drawn on top of the block-level background. Required scope: "fill/change"
 
 ### setTextCase
 

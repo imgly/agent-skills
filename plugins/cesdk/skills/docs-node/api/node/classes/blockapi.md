@@ -4307,6 +4307,79 @@ Create, edit, and style text content.
 
 <details>
   <summary>
+    ### setTextBackgroundColor()
+
+    <br /><p>Sets the background color for a range of text.
+    The background is drawn as a rectangle behind each affected text run, or as a band along the curve for text
+    on a path.
+    A fully transparent color removes the background from the range.
+    The run background is independent of the block-level background color
+    ('backgroundColor/color'); it is drawn on top of the block-level background.</p>
+  </summary>
+
+  ```javascript
+  engine.block.setTextBackgroundColor(text, { r: 1.0, g: 1.0, b: 0.0, a: 1.0 }, 1, 4);
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block whose background color should be changed. |
+  | `color` | [`Color`](./api/node/type-aliases/color.md) | The new background color of the selected text range. |
+  | `from?` | `number` | The start index of the UTF-16 range to change. Defaults to the start of the current selection or text. |
+  | `to?` | `number` | The end index of the UTF-16 range to change. Defaults to the end of the current selection or text. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setTextBackgroundColor(id: number, color: Color, from?: number, to?: number): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getTextBackgroundColors()
+
+    <br /><p>Gets the unique background colors within a range of text.
+    Text without a background color is reported as a fully transparent color.</p>
+  </summary>
+
+  ```javascript
+  const backgroundColorsInRange = engine.block.getTextBackgroundColors(text, 2, 5);
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block whose background colors should be returned. |
+  | `from?` | `number` | The start index of the UTF-16 range. Defaults to the start of the current selection or text. |
+  | `to?` | `number` | The end index of the UTF-16 range. Defaults to the end of the current selection or text. |
+
+  #### Returns
+
+  [`Color`](./api/node/type-aliases/color.md)\[]
+
+  The ordered unique list of background colors.
+
+  #### Signature
+
+  ```typescript
+  getTextBackgroundColors(id: number, from?: number, to?: number): Color[]
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### setTextFontWeight()
 
     <br /><p>Sets the font weight for a range of text.</p>

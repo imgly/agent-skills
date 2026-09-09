@@ -305,7 +305,7 @@ Create and configure text blocks in CE.SDK with custom fonts, rich text styling,
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260908/engine-guides-text-add)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260909/engine-guides-text-add)
 
 <EngineReferenceNote {...props} />
 

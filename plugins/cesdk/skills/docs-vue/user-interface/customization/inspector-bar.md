@@ -4,7 +4,7 @@
 
 ---
 
-The inspector bar is the contextual toolbar that appears above the canvas when a block is selected. This guide covers inspector bar-specific features like view modes, edit mode contexts, and how the bar adapts to different block types.
+The inspector bar is the contextual toolbar that appears over the canvas when a block is selected. This guide covers inspector bar-specific features like view modes, edit mode contexts, and how the bar adapts to different block types.
 
 ![Inspector bar customization showing view modes and edit mode-specific controls](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -18,7 +18,7 @@ The inspector bar is the contextual toolbar that appears above the canvas when a
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260908/examples/guides-user-interface-customization-inspector-bar-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260909/examples/guides-user-interface-customization-inspector-bar-browser/index.html)
 
 For general component manipulation (reordering, inserting, removing), see the [Component Order API Reference](./user-interface/customization/reference/component-order-api.md).
 
@@ -209,9 +209,24 @@ cesdk.feature.disable('ly.img.inspector.toggle');
 
 For more on the Feature API, see [Show/Hide Components](./user-interface/customization/quick-start/show-hide-components.md).
 
+## Bar Position
+
+By default the inspector bar floats over the top of the canvas. Move it to the bottom with `setInspectorBarPosition`:
+
+```typescript
+cesdk.ui.setInspectorBarPosition('bottom');
+
+// Read the current position
+cesdk.ui.getInspectorBarPosition(); // 'top' | 'bottom'
+```
+
+The inspector bar floats over the canvas, so it draws above the canvas bar on the same edge. Keep that edge's canvas bar empty, or move one of the two, when both hold controls. At the bottom the inspector bar sits above the video timeline when the timeline is shown.
+
+Call this after adding your editor configuration plugin. `resetEditor()` restores the default placement, and every editor configuration calls it while initializing.
+
 ## View Modes
 
-CE.SDK offers two view modes that control how the inspector displays. The `'default'` view shows a compact inspector bar above the canvas, while `'advanced'` shows a full inspector panel to the side. Use `cesdk.ui.setView()` to switch between them.
+CE.SDK offers two view modes that control how the inspector displays. The `'default'` view shows a compact inspector bar over the canvas, while `'advanced'` shows a full inspector panel to the side. Use `cesdk.ui.setView()` to switch between them.
 
 ```typescript highlight=highlight-view-modes
 // Switch between default and advanced view modes
@@ -222,7 +237,7 @@ cesdk.ui.setView('default');
 
 | View Mode | Behavior |
 |-----------|----------|
-| `'default'` | Compact inspector bar above the canvas |
+| `'default'` | Compact inspector bar over the canvas |
 | `'advanced'` | Full inspector panel to the side of the canvas |
 
 The `ly.img.inspectorToggle.inspectorBar` component provides a button that lets users switch to the advanced view. Include it in your component order to give users access to both views.

@@ -18,7 +18,7 @@ Curve a text block so its characters follow an SVG path — an arch, a full circ
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-text-on-path-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260908/examples/guides-text-text-on-path-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260909/examples/guides-text-text-on-path-browser/index.html)
 
 Text on a path makes a text block's baseline follow an SVG curve instead of a straight line — useful for badges, circular seals, and arched headlines. It works both through the editor's Path inspector and the engine API, applies to text blocks only, and disables word wrapping (line breaks collapse to spaces) while a path is active. Setting a path resizes the block to match the path's aspect ratio.
 
@@ -266,6 +266,7 @@ The **Horizontal Alignment** control isn't part of this group — it follows the
 - **The path has multiple subpaths** (`BLOCK.TEXT_ON_PATH_MULTIPLE_SUBPATHS`): supply a single continuous contour with one leading `M`.
 - **The path has no measurable length** (`BLOCK.TEXT_ON_PATH_NO_MEASURABLE_CONTOUR`): a lone `M` has zero length — give the path drawable length.
 - **Text runs off the end of the path**: the block isn't grown to fit the text, so text longer than the path overflows. Shorten the text or enlarge the block.
+- **The block background disappears**: a text block on a path draws no block background, because the rectangle does not follow the curve. The setting stays, and the background draws again when the path is removed. Use the background color of the text runs instead.
 - **The Path button doesn't appear**: the selection isn't a single text block, or `ly.img.text.path` is disabled.
 - **Edit Path is missing**: vector editing (`ly.img.vectorEdit`) isn't enabled in this editor.
 

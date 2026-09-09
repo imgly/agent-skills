@@ -4,7 +4,7 @@
 
 ---
 
-The navigation bar is the horizontal toolbar at the top of the editor containing buttons for back navigation, undo/redo, zoom controls, and action buttons. This guide covers navigation bar-specific features like the actions dropdown, back/close buttons, and callback integration.
+The navigation bar is the horizontal toolbar above or below the editor containing buttons for back navigation, undo/redo, zoom controls, and action buttons. This guide covers navigation bar-specific features like the actions dropdown, back/close buttons, and callback integration.
 
 ![Navigation Bar Hero](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -18,7 +18,7 @@ The navigation bar is the horizontal toolbar at the top of the editor containing
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260908/examples/guides-user-interface-customization-navigation-bar-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260909/examples/guides-user-interface-customization-navigation-bar-browser/index.html)
 
 Actions that affect browser navigation (e.g., going back or closing the editor), have global effects on the scene (e.g., undo/redo and zoom), or process the scene in some way (e.g., saving and exporting) belong in the navigation bar.
 
@@ -268,6 +268,7 @@ export default Example;
 
 This guide covers:
 
+- Placing the navigation bar above or below the editor
 - Showing or hiding the navigation bar and sub-components
 - Configuring the actions dropdown with grouped actions
 - Adding back and close buttons with handlers
@@ -294,6 +295,21 @@ The following feature keys control navigation bar sub-components:
 | `ly.img.navigation.documentSettings` | Document settings button |
 
 For more visibility control options, see [Show/Hide Components](./user-interface/customization/quick-start/show-hide-components.md).
+
+## Bar Position
+
+The navigation bar sits above the editor by default. Move it below with `setNavigationBarPosition`:
+
+```typescript
+cesdk.ui.setNavigationBarPosition('bottom');
+
+// Read the current position
+cesdk.ui.getNavigationBarPosition(); // 'top' | 'bottom'
+```
+
+Call this after adding your editor configuration plugin. `resetEditor()` restores the default placement, and every editor configuration calls it while initializing.
+
+This replaces the deprecated `ui.elements.navigation.position` configuration option.
 
 ## Add Back and Close Buttons
 

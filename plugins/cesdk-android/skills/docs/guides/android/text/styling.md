@@ -56,6 +56,20 @@ suspend fun textProperties(engine: Engine) {
     val allColors = engine.block.getTextColors(text)
     val colorsInRange = engine.block.getTextColors(text, from = 2, to = 5)
 
+    engine.block.setTextBackgroundColor(text, color = yellow, from = 1, to = 4)
+    // A fully transparent color removes the background again:
+    // engine.block.setTextBackgroundColor(text, color = Color.fromRGBA(r = 0, g = 0, b = 0, a = 0), from = 1, to = 4)
+
+    val allBackgroundColors = engine.block.getTextBackgroundColors(text)
+    val backgroundColorsInRange = engine.block.getTextBackgroundColors(text, from = 2, to = 5)
+
+    // Grow the background around the text and round its corners
+    engine.block.setFloat(text, "text/backgroundPadding/left", 4F)
+    engine.block.setFloat(text, "text/backgroundPadding/right", 4F)
+    engine.block.setFloat(text, "text/backgroundPadding/top", 2F)
+    engine.block.setFloat(text, "text/backgroundPadding/bottom", 2F)
+    engine.block.setFloat(text, "text/backgroundCornerRadius", 4F)
+
     if (engine.block.supportsBackgroundColor(text)) {
         engine.block.setBackgroundColorEnabled(text, enabled = true)
         val backgroundColorEnabled = engine.block.isBackgroundColorEnabled(text)
@@ -152,7 +166,7 @@ Style text blocks programmatically with colors, backgrounds, typefaces, and form
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260908/engine-guides-text-properties)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260909/engine-guides-text-properties)
 
 <EngineReferenceNote {...props} />
 
@@ -193,6 +207,30 @@ Use `engine.block.setTextColor()` to color the whole text block or a specific ra
 ```
 
 The example first applies yellow to the complete string, then changes the middle range to black. Querying the range from `2` to `5` returns black first because that color appears first inside the requested range.
+
+## Text Run Backgrounds
+
+Use `engine.block.setTextBackgroundColor()` to draw a background color behind the whole text block or a specific range. `engine.block.getTextBackgroundColors()` returns the unique background colors in the order they appear in the requested text range. Text without a background color is reported as a fully transparent color.
+
+```kotlin highlight-android-text-run-background
+    engine.block.setTextBackgroundColor(text, color = yellow, from = 1, to = 4)
+    // A fully transparent color removes the background again:
+    // engine.block.setTextBackgroundColor(text, color = Color.fromRGBA(r = 0, g = 0, b = 0, a = 0), from = 1, to = 4)
+
+    val allBackgroundColors = engine.block.getTextBackgroundColors(text)
+    val backgroundColorsInRange = engine.block.getTextBackgroundColors(text, from = 2, to = 5)
+
+    // Grow the background around the text and round its corners
+    engine.block.setFloat(text, "text/backgroundPadding/left", 4F)
+    engine.block.setFloat(text, "text/backgroundPadding/right", 4F)
+    engine.block.setFloat(text, "text/backgroundPadding/top", 2F)
+    engine.block.setFloat(text, "text/backgroundPadding/bottom", 2F)
+    engine.block.setFloat(text, "text/backgroundCornerRadius", 4F)
+```
+
+A fully transparent color removes the background from a range. The run background is independent of the block-level background color and is drawn on top of the block-level background.
+
+The `text/backgroundPadding/*` properties grow the background around the text. The `text/backgroundCornerRadius` property rounds its corners. Both apply to every text run of the block. Caption blocks get the same properties under `caption/`, and a caption track keeps them in sync.
 
 ## Text Backgrounds
 
@@ -324,6 +362,8 @@ For direct formatting, `engine.block.setTextFontWeight()` and `engine.block.setT
 | `engine.block.removeText(block=_, from=_, to=_)` | Remove text at UTF-16 offsets |
 | `engine.block.setTextColor(block=_, color=_, from=_, to=_)` | Set the text color for all text or a range |
 | `engine.block.getTextColors(block=_, from=_, to=_)` | Get ordered unique text colors for a range |
+| `engine.block.setTextBackgroundColor(block=_, color=_, from=_, to=_)` | Set the text background color for all text or a range |
+| `engine.block.getTextBackgroundColors(block=_, from=_, to=_)` | Get ordered unique text background colors for a range |
 | `engine.block.supportsBackgroundColor(block=_)` | Check whether a block supports background color properties |
 | `engine.block.setBackgroundColorEnabled(block=_, enabled=_)` | Enable or disable the text background |
 | `engine.block.isBackgroundColorEnabled(block=_)` | Check whether the text background is enabled |
@@ -359,7 +399,7 @@ For direct formatting, `engine.block.setTextFontWeight()` and `engine.block.setT
 
 **Font toggles do nothing**: Check that the active typeface contains the weight and style variant you want to toggle to.
 
-**The text background is not visible**: Make sure `setBackgroundColorEnabled()` is called with `enabled = true`.
+**The text background is not visible**: Make sure `setBackgroundColorEnabled()` is called with `enabled = true`. This switch belongs to the block background. A run background needs no switch, and text on a path hides only the block background.
 
 **Text case looks different from the string value**: Text case transformations affect rendering only. They do not rewrite the text string.
 

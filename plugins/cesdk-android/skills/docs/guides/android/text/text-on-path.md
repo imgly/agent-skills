@@ -100,7 +100,7 @@ Curve a text block so its characters follow an SVG path — an arch, a full circ
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260908/engine-guides-text-text-on-path)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260909/engine-guides-text-text-on-path)
 
 <EngineReferenceNote {...props} />
 
@@ -205,6 +205,7 @@ Hiding the button doesn't affect the other surfaces that list the same `ly.img.t
 - **The path has no measurable length** (`BLOCK.TEXT_ON_PATH_NO_MEASURABLE_CONTOUR`): a lone `M` has zero length — give the path drawable length.
 - **Text runs off the end of the path**: the block isn't grown to fit the text, so text longer than the path overflows. Shorten the text or enlarge the block.
 - **The Text on Path button doesn't appear**: the selection isn't a text block, the block's `"text/character"` scope isn't allowed, or the button was removed from the inspector bar.
+- **The block background disappears**: a text block on a path draws no block background, because the rectangle does not follow the curve. The setting stays, and the background draws again when the path is removed. Use the background color of the text runs instead.
 
 ## API Reference
 

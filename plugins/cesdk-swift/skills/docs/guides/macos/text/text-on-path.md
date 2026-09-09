@@ -72,7 +72,7 @@ Curve a text block so its characters follow an SVG path — an arch, a full circ
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260908/engine-guides-text-on-path)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260909/engine-guides-text-on-path)
 
 <EngineReferenceNote {...props} />
 
@@ -169,6 +169,7 @@ On iOS, the Path sheet is gated as a whole through its inspector-bar button — 
 - **The path has multiple subpaths**: throws with `catalogCode` `EngineErrorCode.blockTextOnPathMultipleSubpaths` — supply a single continuous contour with one leading `M`.
 - **The path has no measurable length**: throws with `catalogCode` `EngineErrorCode.blockTextOnPathNoMeasurableContour` — a lone `M` has zero length; give the path drawable length.
 - **Text runs off the end of the path**: the block isn't grown to fit the text, so text longer than the path overflows. Shorten the text or enlarge the block.
+- **The block background disappears**: a text block on a path draws no block background, because the rectangle does not follow the curve. The setting stays, and the background draws again when the path is removed. Use the background color of the text runs instead.
 - **The Path button doesn't appear**: on iOS, the selection isn't a text block, or its `text/character` scope isn't allowed (all scopes are allowed under the default Creator role).
 
 ## API Reference

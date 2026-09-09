@@ -19,7 +19,7 @@
 
 | Enumeration | Description |
 | ------ | ------ |
-| [NavigationPosition](./api/cesdk-js/documentation/namespaces/userinterfaceelements/enumerations/navigationposition.md) | This enum is used to specify the position of the navigation bar within the user interface. |
+| [~~NavigationPosition~~](./api/cesdk-js/documentation/namespaces/userinterfaceelements/enumerations/navigationposition.md) | This enum is used to specify the position of the navigation bar within the user interface. |
 
 ## Interfaces
 

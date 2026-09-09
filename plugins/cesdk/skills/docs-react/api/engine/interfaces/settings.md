@@ -31,6 +31,7 @@ The settings are organized by type:
 |  `features/pageCarouselEnabled` | `boolean` | Enable the page carousel for navigating between pages. |
 |  `features/transformEditsRetainCoverMode` | `boolean` | Whether transform edits should retain the cover mode of the content. |
 |  `features/clampTextBlockWidthToPageDimensionsDuringEditing` | `boolean` | Whether auto-sized text blocks should be clamped to page boundaries during editing. |
+|  `features/equalDistanceSnappingEnabled` | `boolean` | Whether a dragged block snaps to equal spacing with its siblings and shows the size of each gap. Defaults to `false`. |
 |  `mouse/enableScroll` | `boolean` | Whether the engine processes mouse scroll events. |
 |  `mouse/enableZoom` | `boolean` | Whether the engine processes mouse zoom events. |
 |  `page/allowCropInteraction` | `boolean` | Whether crop interaction (by handles and gestures) should be possible. |

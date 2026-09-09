@@ -12,7 +12,7 @@ size from code.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260908/engine-guides-insert-media-videos)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260909/engine-guides-insert-media-videos)
 
 <EngineReferenceNote {...props} />
 

@@ -46,6 +46,18 @@ func textProperties(engine: Engine) async throws {
   let colorsInRange = try engine.block.getTextColors(text, in: "CE.SDK!".range(of: "E.SDK!")!)
   print("Colors in \"E.SDK!\": \(colorsInRange)")
 
+  try engine.block.setTextBackgroundColor(text, color: .rgba(r: 1, g: 0.9, b: 0.3), in: "CE.SDK".range(of: "CE")!)
+  // A fully transparent color removes the background again:
+  // try engine.block.setTextBackgroundColor(text, color: .rgba(r: 0, g: 0, b: 0, a: 0), in: "CE.SDK".range(of: "CE")!)
+  let allBackgroundColors = try engine.block.getTextBackgroundColors(text)
+  print("All unique background colors: \(allBackgroundColors)")
+
+  try engine.block.setFloat(text, property: "text/backgroundPadding/left", value: 4)
+  try engine.block.setFloat(text, property: "text/backgroundPadding/right", value: 4)
+  try engine.block.setFloat(text, property: "text/backgroundPadding/top", value: 2)
+  try engine.block.setFloat(text, property: "text/backgroundPadding/bottom", value: 2)
+  try engine.block.setFloat(text, property: "text/backgroundCornerRadius", value: 4)
+
   try engine.block.setBackgroundColorEnabled(text, enabled: true)
 
   let currentBackgroundColor = try engine.block.getBackgroundColor(text)
@@ -152,7 +164,7 @@ Style text blocks programmatically with colors, backgrounds, typefaces, and form
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260908/engine-guides-text-properties)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260909/engine-guides-text-properties)
 
 <EngineReferenceNote {...props} />
 
@@ -220,6 +232,27 @@ Querying the `"E.SDK!"` range returns `[black, yellow]` — the range starts in 
 let colorsInRange = try engine.block.getTextColors(text, in: "CE.SDK!".range(of: "E.SDK!")!)
 print("Colors in \"E.SDK!\": \(colorsInRange)")
 ```
+
+## Text Run Backgrounds
+
+Apply a background color behind a specific range with `engine.block.setTextBackgroundColor(_:color:in:)`. The background is drawn as a rectangle behind each affected text run:
+
+```swift highlight-setTextBackgroundColor
+try engine.block.setTextBackgroundColor(text, color: .rgba(r: 1, g: 0.9, b: 0.3), in: "CE.SDK".range(of: "CE")!)
+// A fully transparent color removes the background again:
+// try engine.block.setTextBackgroundColor(text, color: .rgba(r: 0, g: 0, b: 0, a: 0), in: "CE.SDK".range(of: "CE")!)
+```
+
+`engine.block.getTextBackgroundColors(_:in:)` returns the ordered list of unique background colors in the requested range. Text without a background color is reported as a fully transparent color:
+
+```swift highlight-getTextBackgroundColors
+let allBackgroundColors = try engine.block.getTextBackgroundColors(text)
+print("All unique background colors: \(allBackgroundColors)")
+```
+
+A fully transparent color removes the background from a range. The run background is independent of the block-level background color and is drawn on top of the block-level background.
+
+The `text/backgroundPadding/*` properties grow the background around the text. The `text/backgroundCornerRadius` property rounds its corners. Both apply to every text run of the block. Caption blocks get the same properties under `caption/`, and a caption track keeps them in sync.
 
 ## Text Backgrounds
 
@@ -408,6 +441,8 @@ print("Font styles: \(fontStyles)")
 | `engine.block.removeText(_:from:)` | Remove text at a Swift string range |
 | `engine.block.setTextColor(_:color:in:)` | Set the text color for the whole block or a range |
 | `engine.block.getTextColors(_:in:)` | Get the ordered unique text colors for a range |
+| `engine.block.setTextBackgroundColor(_:color:in:)` | Set the text background color for the whole block or a range |
+| `engine.block.getTextBackgroundColors(_:in:)` | Get the ordered unique text background colors for a range |
 | `engine.block.setBackgroundColorEnabled(_:enabled:)` | Enable or disable the text background |
 | `engine.block.setBackgroundColor(_:r:g:b:a:)` | Set the text background color |
 | `engine.block.getBackgroundColor(_:)` | Read the text background color |
@@ -448,7 +483,7 @@ print("Font styles: \(fontStyles)")
 
 **Bold or italic toggle does nothing** — Confirm the active `Typeface` includes a `Font` definition matching the requested `weight` and `style` combination.
 
-**Text background is not visible** — Call `setBackgroundColorEnabled(_:enabled:)` with `enabled: true` before changing colors, padding, or corner radius.
+**Text background is not visible** — Call `setBackgroundColorEnabled(_:enabled:)` with `enabled: true` before changing the block background color, padding, or corner radius. This switch belongs to the block background. A run background needs no switch, and text on a path hides only the block background.
 
 **Text case looks different from the string value** — Text case transformations affect rendering only. The stored string value is unchanged; reading it back with the engine still returns the original characters.
 

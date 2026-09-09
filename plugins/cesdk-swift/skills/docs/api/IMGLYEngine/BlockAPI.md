@@ -1345,6 +1345,14 @@ Get the stroke style of the given design block. `id`
 
 Get the stroke width of the given design block. `id`
 
+### getTextBackgroundColors(_:in:)
+
+```swift
+@MainActor func getTextBackgroundColors(_ id: DesignBlockID, in subrange: Range<String.Index>? = nil) throws -> [Color]
+```
+
+Returns the ordered unique list of background colors of the text in the selected range. Text without a background color is reported as a fully transparent color. `id`
+
 ### getTextCases(_:in:)
 
 ```swift
@@ -3118,6 +3126,14 @@ Set the stroke style of the given design block. Required scope: “stroke/change
 ```
 
 Set the stroke width of the given design block. Required scope: “stroke/change” `id`
+
+### setTextBackgroundColor(_:color:in:)
+
+```swift
+@MainActor func setTextBackgroundColor(_ id: DesignBlockID, color: Color, in subrange: Range<String.Index>? = nil) throws
+```
+
+Changes the background color of the text in the selected range to the given color. The background is drawn as a rectangle behind each affected text run, or as a band along the curve for text on a path. A fully transparent color removes the background from the range. The run background is independent of the block-level background color (“backgroundColor/color”); it is drawn on top of the block-level background. Required scope: “fill/change” `id`
 
 ### setTextCase(_:textCase:in:)
 

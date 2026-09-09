@@ -5020,6 +5020,47 @@ getTextColors(id: DesignBlockId, from?: number, to?: number): Array<Color>
 
 **Returns:** The ordered unique list of colors.
 
+### setTextBackgroundColor()
+
+Sets the background color for a range of text.
+The background is drawn as a rectangle behind each affected text run, or as a band along the curve for text
+on a path.
+A fully transparent color removes the background from the range.
+The run background is independent of the block-level background color
+('backgroundColor/color'); it is drawn on top of the block-level background.
+```javascript
+engine.block.setTextBackgroundColor(text, { r: 1.0, g: 1.0, b: 0.0, a: 1.0 }, 1, 4);
+```
+
+```typescript
+setTextBackgroundColor(id: DesignBlockId, color: Color, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block whose background color should be changed.
+- `color` - The new background color of the selected text range.
+- `from` - The start index of the UTF-16 range to change. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range to change. Defaults to the end of the current selection or text.
+
+### getTextBackgroundColors()
+
+Gets the unique background colors within a range of text.
+Text without a background color is reported as a fully transparent color.
+```javascript
+const backgroundColorsInRange = engine.block.getTextBackgroundColors(text, 2, 5);
+```
+
+```typescript
+getTextBackgroundColors(id: DesignBlockId, from?: number, to?: number): Array<Color>
+```
+
+**Parameters:**
+- `id` - The text block whose background colors should be returned.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+**Returns:** The ordered unique list of background colors.
+
 ### setTextFontWeight()
 
 Sets the font weight for a range of text.

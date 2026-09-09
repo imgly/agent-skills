@@ -17,7 +17,7 @@ Interface representing the navigation in the user interface.
 | Property | Type | Description | Inherited from |
 | ------ | ------ | ------ | ------ |
 |  `show?` | `boolean` | - | [`UserInterfaceElement`](./api/cesdk-js/documentation/namespaces/userinterfaceelements/interfaces/userinterfaceelement.md).[`show`](./api/cesdk-js/documentation/namespaces/userinterfaceelements/interfaces/userinterfaceelement.md) |
-|  `position?` | [`NavigationPosition`](./api/cesdk-js/documentation/namespaces/userinterfaceelements/enumerations/navigationposition.md) | - | - |
+|  ~~`position?`~~ | [`NavigationPosition`](./api/cesdk-js/documentation/namespaces/userinterfaceelements/enumerations/navigationposition.md) | **Deprecated** Use `cesdk.ui.setNavigationBarPosition('bottom')` instead. | - |
 |  `title?` | `string` | - | - |
 |  ~~`action?`~~ | `object` | **Deprecated** Use the Order API to configure the actions instead. | - |
 | `action.close?` | | `boolean` | [`UserInterfaceElement`](./api/cesdk-js/documentation/namespaces/userinterfaceelements/interfaces/userinterfaceelement.md) | **Deprecated** Use the Order API to configure the actions instead. | - |
