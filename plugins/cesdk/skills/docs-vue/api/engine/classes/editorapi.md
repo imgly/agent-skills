@@ -2475,7 +2475,9 @@
   </summary>
 
   This function can be called more than once. Subsequent calls will overwrite previous calls.
-  To remove a previously set resolver, pass the value `null`.
+  To remove a previously set resolver, pass `null` or `undefined`.
+  `setURIResolver` and `setURIResolverAsync` share one resolver slot, so a
+  call to either one replaces the resolver set by the other.
   The given function must return an absolute path with a scheme and cannot be asynchronous. The input is allowed to be an invalid URI, e.g., due to placeholders.
 
   ```javascript
@@ -2493,7 +2495,7 @@
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `resolver` | [`SyncURIResolver`](./api/engine/type-aliases/syncuriresolver.md) | Custom resolution function. The resolution function should not reference variables outside of its scope. It receives the default URI resolver as its second argument |
+  | `resolver?` | [`SyncURIResolver`](./api/engine/type-aliases/syncuriresolver.md) | Custom resolution function. The resolution function should not reference variables outside of its scope. It receives the default URI resolver as its second argument |
 
   #### Returns
 
@@ -2502,7 +2504,7 @@
   #### Signature
 
   ```typescript
-  setURIResolver(resolver: SyncURIResolver): void
+  setURIResolver(resolver?: SyncURIResolver): void
   ```
 
   ***
@@ -2516,7 +2518,9 @@
   </summary>
 
   This function can be called more than once. Subsequent calls will overwrite previous calls.
-  To remove a previously set resolver, pass the value `null`.
+  To remove a previously set resolver, pass `null` or `undefined`.
+  `setURIResolver` and `setURIResolverAsync` share one resolver slot, so a
+  call to either one replaces the resolver set by the other.
   The given function must return an absolute path with a scheme. The input is allowed to be invalid URI, e.g., due
   to placeholders.
 
@@ -2524,7 +2528,7 @@
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `resolver` | [`AsyncURIResolver`](./api/engine/type-aliases/asyncuriresolver.md) | Custom async resolution function. |
+  | `resolver?` | [`AsyncURIResolver`](./api/engine/type-aliases/asyncuriresolver.md) | Custom async resolution function. |
 
   #### Returns
 
@@ -2533,7 +2537,7 @@
   #### Signature
 
   ```typescript
-  setURIResolverAsync(resolver: AsyncURIResolver): void
+  setURIResolverAsync(resolver?: AsyncURIResolver): void
   ```
 
   ***

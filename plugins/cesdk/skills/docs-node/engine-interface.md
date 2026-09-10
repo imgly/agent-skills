@@ -6,7 +6,7 @@
 
 Access CE.SDK's cross-platform C++ engine programmatically for server-side automation, batch processing, and high-resolution exports in Node.js.
 
-The `@cesdk/node` package provides the same Engine API compiled for Node.js. The API is identical to `@cesdk/engine` in the browser, so you can share code between client and server.
+The `@cesdk/node` (WASM) and `@cesdk/node-native` (native) packages provide the same Engine API for Node.js. The API is identical to `@cesdk/engine` in the browser, so you can share code between client and server.
 
 ## Engine API Namespaces
 

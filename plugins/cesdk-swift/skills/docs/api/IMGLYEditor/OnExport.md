@@ -19,6 +19,14 @@ enum OnExport
 
 A utility that calls `BlockAPI.export`. `engine`
 
+### exportToFile(_:mimeType:to:)
+
+```swift
+@MainActor static func exportToFile(_ engine: Engine, mimeType: MIMEType? = nil, to url: URL? = nil) async throws -> (URL, UTType)
+```
+
+A utility that calls the streamed `BlockAPI.export` overload. This fuses `export` and writing the result to a file into a single streamed pass: the document is written out chunk by chunk while it is being encoded, so it is never held in memory as a whole. Prefer it over `export` followed by `Data.write(to:)` for large multi-page documents such as photo books and magazines, where the intermediate `Data` is the peak allocation. `engine`
+
 ### exportVideo(_:_:mimeType:duration:)
 
 ```swift

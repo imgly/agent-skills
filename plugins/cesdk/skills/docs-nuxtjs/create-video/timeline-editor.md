@@ -521,6 +521,15 @@ Restrict or allow editing actions by hiding or displaying the editing controls:
     ```
   </TabItem>
 
+  <TabItem label="Clip options button">
+    **Hide** the clip ellipsis ("more options") button on timeline clips with:
+
+    ```ts
+    cesdk.feature.disable('ly.img.video.timeline.clip.menu');
+
+    ```
+  </TabItem>
+
   <TabItem label="Background button">
     **Hide** the background button with:
 
@@ -576,6 +585,7 @@ cesdk.feature.set('ly.img.video.timeline.controls.split', ({ engine }) => {
 | `ly.img.video.timeline.overlays` | Show or hide the overlay track |
 | `ly.img.video.timeline.audio` | Show or hide the audio track |
 | `ly.img.video.timeline.addClip` | Enable or disable adding new clips |
+| `ly.img.video.timeline.clip.menu` | Show or hide the clip ellipsis ("more options") button |
 | `ly.img.video.timeline.controls` | Base feature for all video controls |
 | `ly.img.video.timeline.controls.toggle` | Show or hide timeline collapse/expand button |
 | `ly.img.video.timeline.controls.playback` | Show or hide play/pause and timestamp |
@@ -583,6 +593,34 @@ cesdk.feature.set('ly.img.video.timeline.controls.split', ({ engine }) => {
 | `ly.img.video.timeline.controls.split` | Show or hide split clip control |
 | `ly.img.video.timeline.controls.background` | Show or hide background color controls |
 | `ly.img.video.timeline.controls.timelineZoom` | Show or hide zoom controls |
+
+## Generate and Display Video Thumbnails
+
+The timeline's built-in clip strips are drawn for you. When you build your own timeline UI, generate
+the filmstrip yourself with `engine.block.generateVideoThumbnailSequence()`. It streams one frame per
+callback and returns a function that cancels the request.
+
+```ts
+const videoFill = engine.block.getFill(clipId);
+const duration = engine.block.getDuration(clipId);
+
+const cancel = engine.block.generateVideoThumbnailSequence(
+  videoFill,
+  72, // Thumbnail height in pixels; width follows the source aspect ratio
+  0,
+  duration,
+  8, // numberOfFrames
+  (frameIndex, result) => {
+    if (result instanceof Error) return; // Terminal for the whole sequence
+    context.putImageData(result, frameIndex * frameWidth, 0);
+  },
+);
+```
+
+Cancel before starting a new request for the same clip — only one request per block runs at a time.
+The companion `engine.block.generateAudioThumbnailSequence()` produces waveform data for audio lanes.
+See [Thumbnail Previews](./export-save-publish/thumbnail-previews.md) for the complete workflow, including page storyboards,
+waveform rendering, and cancellation on mobile.
 
 ## Troubleshooting
 

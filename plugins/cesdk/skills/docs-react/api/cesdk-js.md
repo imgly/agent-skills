@@ -142,6 +142,7 @@
 | [TextToggleUnderlineAction](./api/cesdk-js/type-aliases/texttoggleunderlineaction.md) | Action function for toggling underline on selected text. |
 | [TimelineCollapseAction](./api/cesdk-js/type-aliases/timelinecollapseaction.md) | Action function for collapsing the video timeline. |
 | [TimelineExpandAction](./api/cesdk-js/type-aliases/timelineexpandaction.md) | Action function for expanding the video timeline. |
+| [TimelineSetHeightAction](./api/cesdk-js/type-aliases/timelinesetheightaction.md) | Action function for setting the video timeline's height behaviour. |
 | [TimelineZoomInAction](./api/cesdk-js/type-aliases/timelinezoominaction.md) | Action function for zooming in the video timeline by one step. |
 | [TimelineZoomOutAction](./api/cesdk-js/type-aliases/timelinezoomoutaction.md) | Action function for zooming out the video timeline by one step. |
 | [TimelineZoomResetAction](./api/cesdk-js/type-aliases/timelinezoomresetaction.md) | Action function for resetting the video timeline zoom to default level (1.0). |
@@ -162,6 +163,7 @@
 | [VideoEncodeCheckSupportAction](./api/cesdk-js/type-aliases/videoencodechecksupportaction.md) | Action function for checking video encoding/export support. Returns true if H.264 video encoding and AAC audio encoding are supported. Shows a warning dialog if not supported (unless dialog is disabled). |
 | [VideoPlayPauseAction](./api/cesdk-js/type-aliases/videoplaypauseaction.md) | Action function for toggling play/pause on the current page. |
 | [VideoSupportDialogOptions](./api/cesdk-js/type-aliases/videosupportdialogoptions.md) | Dialog display options for video support check actions. Allows configuring whether and how the dialog is displayed. |
+| [VideoTimelineControlsBarComponentId](./api/cesdk-js/type-aliases/videotimelinecontrolsbarcomponentid.md) | Represents the ID of a video timeline controls bar component. |
 | [ViewStyle](./api/cesdk-js/type-aliases/viewstyle.md) | Represents the view style options in the Creative Editor SDK. This type defines the possible view styles, which are 'advanced' and 'default'. |
 | [ZoomInAction](./api/cesdk-js/type-aliases/zoominaction.md) | Action function for zooming in by one step |
 | [ZoomOutAction](./api/cesdk-js/type-aliases/zoomoutaction.md) | Action function for zooming out by one step |
@@ -232,9 +234,12 @@
 | [SelectValue](./api/cesdk-js/interfaces/selectvalue.md) | Represents a value for a select input. |
 | [SliderOptions](./api/cesdk-js/interfaces/slideroptions.md) | Represents options for a slider. |
 | [SpinnerOptions](./api/cesdk-js/interfaces/spinneroptions.md) | Represents options for a loading spinner. |
+| [TabOptions](./api/cesdk-js/interfaces/taboptions.md) | Represents a single tab of a tab bar. |
+| [TabsOptions](./api/cesdk-js/interfaces/tabsoptions.md) | Represents options for a tab bar. |
 | [TextAreaOptions](./api/cesdk-js/interfaces/textareaoptions.md) | Represents options for a text area. |
 | [TextInputOptions](./api/cesdk-js/interfaces/textinputoptions.md) | Represents options for a text input. |
 | [TextOptions](./api/cesdk-js/interfaces/textoptions.md) | Represents options for text. |
+| [TimelineHeightSettings](./api/cesdk-js/interfaces/timelineheightsettings.md) | Height settings for the video timeline. |
 | [Translations](./api/cesdk-js/interfaces/translations.md) | Complete translation type that includes both built-in and custom translations. |
 | [UILocationOptions](./api/cesdk-js/interfaces/uilocationoptions.md) | Location options for non-positional UI areas. |
 | [UpdateResult](./api/cesdk-js/interfaces/updateresult.md) | Result of an update operation on a single area. |

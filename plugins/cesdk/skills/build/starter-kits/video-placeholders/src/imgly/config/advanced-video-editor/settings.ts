@@ -32,6 +32,10 @@ export function setupSettings(engine: CreativeEngine): void {
 
   // Show all timeline tracks (clips, overlays, audio) for full multi-track editing
   engine.editor.setSetting('timeline/trackVisibility', 'all');
+
+  // Always show the clip transition control (default reveals it on hover):
+  // engine.editor.setSetting('timeline/transitionControlVisibility', 'always');
+
   // #endregion
 
   // ============================================================================

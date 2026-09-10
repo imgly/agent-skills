@@ -150,6 +150,10 @@ engine.block.setBool(stack, 'stack/spacingInScreenspace', true);
 
 Setting `stack/spacingInScreenspace` to `true` means the spacing value is interpreted as screen pixels, maintaining consistent visual spacing regardless of zoom level.
 
+The distinction applies to the canvas preview only. Exports always interpret the spacing in design units, whatever the property is set to.
+
+Switching the property never converts the number. A spacing of `40` stays `40` and is reinterpreted in the other space, which changes how far apart the pages appear.
+
 ### Adding More Pages
 
 To add additional pages, we create new page blocks, set their dimensions, and append them to the stack container.

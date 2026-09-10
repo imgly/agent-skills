@@ -121,6 +121,12 @@ val IconPack.Blur: ImageVector
 val IconPack.BringForward: ImageVector
 ```
 
+### Captions
+
+```kotlin
+val IconPack.Captions: ImageVector
+```
+
 ### Close
 
 ```kotlin
@@ -250,6 +256,12 @@ val IconPack.Libraryelements: ImageVector
 val IconPack.Libraryelementsoutline: ImageVector
 ```
 > **Deprecated:** Use IconPack.LibraryElementsOutline instead. Replace with `IconPack.LibraryElementsOutline`.
+
+### Merge
+
+```kotlin
+val IconPack.Merge: ImageVector
+```
 
 ### Minus
 

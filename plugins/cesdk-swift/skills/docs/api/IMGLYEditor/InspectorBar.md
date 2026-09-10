@@ -986,6 +986,28 @@ The id of the [`textPresets(action:title:icon:isEnabled:isVisible:)`](../textpre
 
 Creates an [`InspectorBar.Button`](../button.md) that opens the text style presets sheet. `action`
 
+### Buttons.ID.transition
+
+```swift
+static var transition: EditorComponentID { get }
+```
+
+The id of the transition button.
+
+### Buttons.transition(action:title:icon:isEnabled:isVisible:)
+
+```swift
+@MainActor static func transition(action: @escaping InspectorBar.Context.To<Void> = {
+      $0.eventHandler.send(.openSheet(type: .transition(id: $0.selection.block)))
+    }, @ViewBuilder title: @escaping InspectorBar.Context.To<some View> = { _ in
+      Text(.imgly.localized("ly_img_editor_inspector_bar_button_transition"))
+    }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.transition }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = { context in
+      transitionIncomingClip(engine: context.engine, outgoing: context.selection.block) != nil
+    }) -> some InspectorBar.Item
+```
+
+Creates an inspector-bar button that opens the transition sheet for an eligible outgoing clip.
+
 ### Context.Selection-swift.struct.type
 
 ```swift

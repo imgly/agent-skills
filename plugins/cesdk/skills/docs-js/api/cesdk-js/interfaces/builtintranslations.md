@@ -266,6 +266,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `common.unit.description` | `string` |
 |  `common.unlock` | `string` |
 |  `common.video` | `string` |
+|  `common.view` | `string` |
 |  `common.width` | `string` |
 |  `common.width.inUnit` | `string` |
 |  `component.alignAndArrange` | `string` |
@@ -301,6 +302,9 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.canvas.openLibrary` | `string` |
 |  `component.canvas.state.error` | `string` |
 |  `component.canvas.state.unsupported` | `string` |
+|  `component.canvasBar.bottom` | `string` |
+|  `component.canvasBar.top` | `string` |
+|  `component.canvasMenu` | `string` |
 |  `component.caption` | `string` |
 |  `component.caption.more` | `string` |
 |  `component.colorPicker.colorItem` | `string` |
@@ -325,6 +329,9 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.contentFill.options.description` | `string` |
 |  `component.contentFill.video` | `string` |
 |  `component.cutout` | `string` |
+|  `component.dock.bottom` | `string` |
+|  `component.dock.left` | `string` |
+|  `component.dock.right` | `string` |
 |  `component.dockIconSizeSelect` | `string` |
 |  `component.dockIconSizeSelect.large` | `string` |
 |  `component.dockIconSizeSelect.large.description` | `string` |
@@ -376,6 +383,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.librarySettings.templateLibrary` | `string` |
 |  `component.librarySettings.textLibrary` | `string` |
 |  `component.librarySettings.uploadLibrary` | `string` |
+|  `component.navigationBar` | `string` |
 |  `component.pageResize.label` | `string` |
 |  `component.pageResizePanel.apply` | `string` |
 |  `component.pageResizePanel.label` | `string` |
@@ -466,6 +474,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.themeSelect.system` | `string` |
 |  `component.themeSelect.system.description` | `string` |
 |  `component.timeline.audio.options.description` | `string` |
+|  `component.timeline.clip.options` | `string` |
 |  `component.timeline.collapse` | `string` |
 |  `component.timeline.expand` | `string` |
 |  `component.timeline.label` | `string` |
@@ -673,6 +682,12 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `input.shape.options` | `string` |
 |  `input.showInExport` | `string` |
 |  `input.sliderInput.toggleNumberInput` | `string` |
+|  `input.spacingSpace.tooltip` | `string` |
+|  `input.stepper.change` | `string` |
+|  `input.stepper.decrease` | `string` |
+|  `input.stepper.decreaseValue` | `string` |
+|  `input.stepper.increase` | `string` |
+|  `input.stepper.increaseValue` | `string` |
 |  `input.stroke` | `string` |
 |  `input.styles.caption.label` | `string` |
 |  `input.styles.label` | `string` |
@@ -697,10 +712,13 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `input.video` | `string` |
 |  `input.video.duration.description` | `string` |
 |  `input.video.duration.reset` | `string` |
+|  `libraries.ly.img.animations.in` | `string` |
+|  `libraries.ly.img.animations.loop` | `string` |
 |  `libraries.ly.img.animations.ly.img.animations.in.label` | `string` |
 |  `libraries.ly.img.animations.ly.img.animations.label` | `string` |
 |  `libraries.ly.img.animations.ly.img.animations.loop.label` | `string` |
 |  `libraries.ly.img.animations.ly.img.animations.out.label` | `string` |
+|  `libraries.ly.img.animations.out` | `string` |
 |  `libraries.ly.img.transitions.label` | `string` |
 |  `libraries.ly.img.transitions.none` | `string` |
 |  `libraries.ly.img.transitions.cross-fade` | `string` |
@@ -1186,6 +1204,11 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `property.layout` | `string` |
 |  `property.layout.free` | `string` |
 |  `property.layout.horizontal` | `string` |
+|  `property.layout.spacing` | `string` |
+|  `property.layout.spacingSpace` | `string` |
+|  `property.layout.spacingSpace.description` | `string` |
+|  `property.layout.spacingSpace.designUnits` | `string` |
+|  `property.layout.spacingSpace.screenSpace` | `string` |
 |  `property.layout.vertical` | `string` |
 |  `property.letterSpacing` | `string` |
 |  `property.lineHeight` | `string` |
@@ -1379,12 +1402,10 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `property.textBackground.cornerRadius` | `string` |
 |  `property.textBackground.description` | `string` |
 |  `property.textBackground.horizontalPadding` | `string` |
-|  `property.textBackground.horizontalPadding.description` | `string` |
 |  `property.textBackground.options.description` | `string` |
 |  `property.textBackground.padding` | `string` |
 |  `property.textBackground.padding.description` | `string` |
 |  `property.textBackground.verticalPadding` | `string` |
-|  `property.textBackground.verticalPadding.description` | `string` |
 |  `property.textCase` | `string` |
 |  `property.textCase.lowercase` | `string` |
 |  `property.textCase.normal` | `string` |
@@ -1591,6 +1612,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `settings.feature.scene.layout` | `string` |
 |  `settings.feature.scene.layout.free` | `string` |
 |  `settings.feature.scene.layout.horizontal` | `string` |
+|  `settings.feature.scene.layout.spacing` | `string` |
 |  `settings.feature.scene.layout.vertical` | `string` |
 |  `settings.feature.shadow` | `string` |
 |  `settings.feature.shadow.blur` | `string` |

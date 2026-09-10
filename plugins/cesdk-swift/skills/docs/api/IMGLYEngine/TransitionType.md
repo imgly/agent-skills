@@ -99,12 +99,6 @@ case gradientFade
 case lineWipe
 ```
 
-### TransitionType.none
-
-```swift
-case none
-```
-
 ### TransitionType.push
 
 ```swift

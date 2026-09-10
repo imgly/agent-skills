@@ -18,6 +18,10 @@ import { TemplateSelector } from './TemplateSelector/TemplateSelector';
 
 import styles from './App.module.css';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 /** Template variable names - must match the CE.SDK template */
 const VAR_NAMES = {
   FIRST_NAME: 'FirstName',
@@ -42,6 +46,13 @@ type ModalState =
   | { type: 'instance'; teamImage: TeamImage };
 
 export default function App({ config }: AppProps) {
+  // START_HIDDEN_BLOCK
+  // The editor mounts only after the visitor acts, so the shell
+  // being on screen is the end of this demo's automatic load.
+  useEffect(() => {
+    reportDemoPhase('shell');
+  }, []);
+  // END_HIDDEN_BLOCK
   const [templates, setTemplates] = useState<Record<string, Template> | null>(
     null
   );

@@ -93,7 +93,7 @@ try {
 
 ## Initialize the Engine
 
-Start by initializing the CE.SDK engine in headless mode. The Node.js package (`@cesdk/node`) provides the same API as the browser version but runs without a visual interface.
+Start by initializing the CE.SDK engine in headless mode. The Node.js packages (`@cesdk/node` and `@cesdk/node-native`) provide the same API as the browser version but run without a visual interface.
 
 ```typescript highlight-setup
 // Initialize CE.SDK engine in headless mode

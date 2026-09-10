@@ -6,7 +6,7 @@
 
 In CreativeEditor SDK (CE.SDK), a *composition* is an arrangement of multiple design elements—such as images, text, shapes, graphics, and effects—combined into a single, cohesive visual layout. Unlike working with isolated elements, compositions allow you to design complex, multi-element visuals that tell a richer story or support more advanced use cases.
 
-All composition processing is handled entirely on the client side, ensuring fast, secure, and efficient editing without requiring server infrastructure.
+All composition processing is handled entirely by the engine in your Node.js process, ensuring fast, secure, and efficient editing without any external service.
 
 You can use compositions to create a wide variety of projects, including social media posts, marketing materials, collages, and multi-page exports like PDFs.
 

@@ -16,21 +16,21 @@
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.1/starterkit-ai-editor';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/starterkit-ai-editor';
 
 // ============================================================================
 // Scene URLs
 // ============================================================================
 
 /**
- * Scene archive URLs for Design and Video modes.
+ * Scene URLs for Design and Video modes.
  * These are sample scenes that demonstrate the AI editor capabilities.
  */
 export const SCENE_URLS = {
-  /** Design mode scene archive URL */
-  Design: `${DEMO_ASSETS_BASE_URL}/assets/ai_editor_design_v3.archive`,
-  /** Video mode scene archive URL */
-  Video: `${DEMO_ASSETS_BASE_URL}/assets/ai_editor_video.archive`
+  /** Design mode scene URL */
+  Design: `${DEMO_ASSETS_BASE_URL}/assets/ai_editor_design_v3/scene.scene`,
+  /** Video mode scene URL */
+  Video: `${DEMO_ASSETS_BASE_URL}/assets/ai_editor_video/scene.scene`
 } as const;
 
 // ============================================================================

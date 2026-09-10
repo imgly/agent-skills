@@ -368,8 +368,8 @@ for (const record of dataRecords) {
   engine.variable.setString('title', record.title);
 
   const page = engine.block.findByType('page')[0];
-  const buffer = await engine.block.export(page, 'image/png');
-  writeFileSync(`output-${record.id}.png`, Buffer.from(buffer));
+  const blob = await engine.block.export(page, { mimeType: 'image/png' });
+  writeFileSync(`output-${record.id}.png`, Buffer.from(await blob.arrayBuffer()));
 }
 ```
 

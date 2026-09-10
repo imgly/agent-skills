@@ -136,6 +136,8 @@ try {
 
 This guide covers exporting thumbnails at specific dimensions, choosing formats, optimizing quality and file size, and saving thumbnails to the file system.
 
+To generate audio waveforms from a scene's audio, see [Thumbnail Previews](./export-save-publish/thumbnail-previews.md), which covers the streaming preview APIs.
+
 ## Export a Thumbnail
 
 Call `engine.block.export()` with target dimensions to create a scaled thumbnail. Both `targetWidth` and `targetHeight` must be set together for scaling to work.

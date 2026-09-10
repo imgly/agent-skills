@@ -329,7 +329,7 @@ This guide covers creating shapes and stickers programmatically using the block 
 
 ### Initialize CE.SDK
 
-Set up CE.SDK in headless mode using `@cesdk/node`. Create a scene with a page to hold your shapes.
+Set up CE.SDK in headless mode using `@cesdk/node` or `@cesdk/node-native`. Create a scene with a page to hold your shapes.
 
 ```typescript highlight-setup
   // Initialize the headless Creative Engine

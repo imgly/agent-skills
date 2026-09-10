@@ -19,7 +19,8 @@ adding underlayers.
   | `"pdfImageQuality"`
   | `"exportPdfWithUnderlayer"`
   | `"underlayerSpotColorName"`
-  | `"underlayerOffset"`>
+  | `"underlayerOffset"`
+  | `"onProgress"`>
 
 ## Properties
 
@@ -33,6 +34,7 @@ adding underlayers.
 |  `exportPdfWithUnderlayer` | `EngineExportOptions` | - | `Pick.exportPdfWithUnderlayer` |
 |  `underlayerSpotColorName` | `EngineExportOptions` | - | `Pick.underlayerSpotColorName` |
 |  `underlayerOffset` | `EngineExportOptions` | - | `Pick.underlayerOffset` |
+|  `onProgress` | `EngineExportOptions` | - | `Pick.onProgress` |
 |  `mimeType` | `MimeType_2` | The mime type of the exported blob | - |
 |  `pages?` | `number`\[] | The pages to export with the selected page as the default | - |
 

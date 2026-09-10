@@ -23,6 +23,10 @@ import { SAMPLE_IMAGES } from './sample-images';
 
 import styles from './App.module.css';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 // ============================================================================
 // Types
 // ============================================================================
@@ -36,6 +40,13 @@ interface AppProps {
 // ============================================================================
 
 export default function App({ config }: AppProps) {
+  // START_HIDDEN_BLOCK
+  // The editor mounts only after the visitor acts, so the shell
+  // being on screen is the end of this demo's automatic load.
+  useEffect(() => {
+    reportDemoPhase('shell');
+  }, []);
+  // END_HIDDEN_BLOCK
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [isEditorMounted, setIsEditorMounted] = useState(false);
   const [selectedImage, setSelectedImage] = useState<ImageConfig>(
@@ -77,6 +88,9 @@ export default function App({ config }: AppProps) {
    */
   const handleEditorInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('created');
+      // END_HIDDEN_BLOCK
       // Expose cesdk instance globally for automated testing
       (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
 
@@ -95,6 +109,9 @@ export default function App({ config }: AppProps) {
           onClick: () => handleClose()
         }
       );
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('ready');
+      // END_HIDDEN_BLOCK
     },
     [selectedPreset, selectedMode, selectedImage]
   );

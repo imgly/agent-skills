@@ -389,7 +389,7 @@ Before converting a color, you may need to identify its current color space. CE.
     }
 ```
 
-Import the type guards from `@cesdk/node`:
+Import the type guards from `@cesdk/node` (or `@cesdk/node-native` — both expose the same API):
 
 - `isRGBAColor()` - Returns true if the color is an sRGB color
 - `isCMYKColor()` - Returns true if the color is a CMYK color

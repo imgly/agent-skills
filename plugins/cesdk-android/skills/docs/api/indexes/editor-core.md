@@ -1,6 +1,6 @@
 # ly.img:editor-core Android API Catalog
 
-Complete catalog of 238 generated API digests.
+Complete catalog of 240 generated API digests.
 
 - [AbstractButtonBuilder](<../editor-core/ly.img.editor.core.component/-abstract-button-builder.md>) — `ly.img.editor.core.component`
 - [AbstractCanvasMenuBuilder](<../editor-core/ly.img.editor.core.component/-abstract-canvas-menu-builder.md>) — `ly.img.editor.core.component`
@@ -176,6 +176,8 @@ Complete catalog of 238 generated API digests.
 - [SheetType.Adjustments](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-adjustments.md>) — `ly.img.editor.core.sheet`
 - [SheetType.Animation](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-animation.md>) — `ly.img.editor.core.sheet`
 - [SheetType.Blur](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-blur.md>) — `ly.img.editor.core.sheet`
+- [SheetType.CaptionStyle](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-caption-style.md>) — `ly.img.editor.core.sheet`
+- [SheetType.Captions](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-captions.md>) — `ly.img.editor.core.sheet`
 - [SheetType.Colors](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-colors.md>) — `ly.img.editor.core.sheet`
 - [SheetType.Crop](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-crop.md>) — `ly.img.editor.core.sheet`
 - [SheetType.Crop.Mode](<../editor-core/ly.img.editor.core.sheet/-sheet-type/-crop/-mode.md>) — `ly.img.editor.core.sheet`

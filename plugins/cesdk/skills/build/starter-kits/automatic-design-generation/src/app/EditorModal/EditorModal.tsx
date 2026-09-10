@@ -20,6 +20,13 @@ import {
 
 import styles from './EditorModal.module.css';
 
+// START_HIDDEN_BLOCK
+import {
+  reportDemoPhase,
+  reportDemoLoadingState
+} from '../../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 interface EditorModalProps {
   asset: GeneratedAsset;
   config: Configuration;
@@ -39,6 +46,9 @@ export function EditorModal({
   // Init callback that initializes the editor
   const init = useCallback(
     async (cesdk: CreativeEditorSDK) => {
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('created');
+      // END_HIDDEN_BLOCK
       // Skip if no scene to load
       if (!asset.sceneString) return;
 
@@ -99,6 +109,9 @@ export function EditorModal({
           onClick: () => onClose()
         }
       );
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('ready');
+      // END_HIDDEN_BLOCK
     },
     [asset, isDesign, onClose, onSave]
   );
@@ -117,6 +130,9 @@ export function EditorModal({
     <div className={styles.editorView}>
       <CreativeEditor
         config={config}
+        // START_HIDDEN_BLOCK
+        onLoadingStateChange={reportDemoLoadingState}
+        // END_HIDDEN_BLOCK
         init={init}
         className={styles.cesdkContainer}
       />

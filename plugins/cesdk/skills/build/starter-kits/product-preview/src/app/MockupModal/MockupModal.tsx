@@ -12,6 +12,13 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import { initProductPreviewSceneEditor } from '../../imgly';
 import styles from './MockupModal.module.css';
 
+// START_HIDDEN_BLOCK
+import {
+  reportDemoPhase,
+  reportDemoLoadingState
+} from '../../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 // ============================================================================
 // Types
 // ============================================================================
@@ -77,6 +84,9 @@ export function MockupModal({
    */
   const handleEditorInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('created');
+      // END_HIDDEN_BLOCK
       cesdkRef.current = cesdk;
 
       // Initialize mockup scene editor (Adopter role)
@@ -115,6 +125,9 @@ export function MockupModal({
 
       // Zoom to fit the page
       await cesdk.actions.run('zoom.toPage', { autoFit: true });
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('ready');
+      // END_HIDDEN_BLOCK
     },
     [title, sceneString, sceneUrl, handleBack, handleSave]
   );
@@ -134,6 +147,9 @@ export function MockupModal({
         <CreativeEditor
           className={styles.editor}
           config={config}
+          // START_HIDDEN_BLOCK
+          onLoadingStateChange={reportDemoLoadingState}
+          // END_HIDDEN_BLOCK
           init={handleEditorInit}
         />
       </div>

@@ -370,7 +370,7 @@ We set the same duration and time offset as the text watermark so both appear th
 
 ## Saving the Watermarked Scene
 
-After adding watermarks, we save the scene for later rendering. Since video export is not supported in Node.js, we serialize the scene to a file.
+After adding watermarks, we save the scene for later rendering by serializing it to a file. With the native `@cesdk/node-native` package you can also export the video directly via `engine.block.exportVideo()`; with the WASM-based `@cesdk/node` package, use the separate CE.SDK Renderer for video export.
 
 ```typescript highlight-save-scene
   // Save the watermarked scene

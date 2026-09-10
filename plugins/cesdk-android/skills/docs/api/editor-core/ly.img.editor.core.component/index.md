@@ -126,6 +126,22 @@ val CanvasMenu.Button.Id.bringForward: EditorComponentId
 
 The id of the canvas menu button returned by CanvasMenu.Button.rememberBringForward.
 
+### captionStyle
+
+```kotlin
+val InspectorBar.Button.Id.captionStyle: EditorComponentId
+```
+
+The id of the inspector bar button returned by InspectorBar.Button.rememberCaptionStyle.
+
+### captions
+
+```kotlin
+val Dock.Button.Id.captions: EditorComponentId
+```
+
+The id of the dock button returned by Dock.Button.rememberCaptions.
+
 ### clipSpeed
 
 ```kotlin
@@ -177,6 +193,14 @@ val InspectorBar.Button.Id.duplicate: EditorComponentId
 ```
 
 The id of the canvas menu button returned by CanvasMenu.Button.rememberDuplicate. The id of the inspector bar button returned by InspectorBar.Button.rememberDuplicate.
+
+### editCaptions
+
+```kotlin
+val InspectorBar.Button.Id.editCaptions: EditorComponentId
+```
+
+The id of the inspector bar button returned by InspectorBar.Button.rememberEditCaptions.
 
 ### editText
 
@@ -419,6 +443,24 @@ fun CanvasMenu.Button.rememberBringForward(builder: CanvasMenu.ButtonBuilder.() 
 
 A composable helper function that creates and remembers an Button that brings forward currently selected design block via EditorEvent.Selection.BringForward. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
+### rememberCaptionStyle
+
+```kotlin
+@Composable
+fun InspectorBar.Button.rememberCaptionStyle(builder: InspectorBar.ButtonBuilder.() -> Unit = {}): Button<InspectorBar.ItemScope>
+```
+
+A composable helper function that creates and remembers an Button that opens the caption style preset grid via EditorEvent.Sheet.Open. A preset is applied to the selected caption and the engine syncs the style across every caption on its track. Hidden when AssetSourceType.CaptionPresets is not registered. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
+
+### rememberCaptions
+
+```kotlin
+@Composable
+fun Dock.Button.rememberCaptions(builder: Dock.ButtonBuilder.() -> Unit = {}): Button<Dock.ItemScope>
+```
+
+A composable helper function that creates and remembers a Dock.Button that opens the captions sheet via EditorEvent.Sheet.Open. The video starter kit's dock carries this button. It has no visibility condition of its own, and it is the only entry point that works before a caption exists — InspectorBar.Button.rememberEditCaptions opens the same sheet, but needs a caption selected. A dock built without this button leaves an empty scene with no way to add captions.
+
 ### rememberClipSpeed
 
 ```kotlin
@@ -492,6 +534,15 @@ fun InspectorBar.Button.rememberDuplicate(builder: InspectorBar.ButtonBuilder.()
 ```
 
 A composable helper function that creates and remembers an Button that duplicates currently selected design block via EditorEvent.Selection.Duplicate. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
+
+### rememberEditCaptions
+
+```kotlin
+@Composable
+fun InspectorBar.Button.rememberEditCaptions(builder: InspectorBar.ButtonBuilder.() -> Unit = {}): Button<InspectorBar.ItemScope>
+```
+
+A composable helper function that creates and remembers an Button that opens the captions sheet via EditorEvent.Sheet.Open, with the selected caption revealed in the list. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
 ### rememberEditText
 
@@ -736,7 +787,7 @@ A composable helper function that creates and remembers a Dock.Button that opens
 fun InspectorBar.Button.rememberSplit(builder: InspectorBar.ButtonBuilder.() -> Unit = {}): Button<InspectorBar.ItemScope>
 ```
 
-A composable helper function that creates and remembers an Button that splits currently selected design block via EditorEvent.Selection.Split in a video scene. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
+A composable helper function that creates and remembers an Button that splits currently selected design block via EditorEvent.Selection.Split in a video scene. A caption is only enabled while the playhead sits inside it, since a caption divides where the playhead is. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
 ### rememberStickersAndShapesLibrary
 

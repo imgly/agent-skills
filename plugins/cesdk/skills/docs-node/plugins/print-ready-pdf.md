@@ -36,12 +36,14 @@ Add CE.SDK Engine and the Print Ready PDF plugin to your Node.js project:
 npm install @cesdk/node@$UBQ_VERSION$ @imgly/plugin-print-ready-pdfs-web@1.0.0
 ```
 
+Using the native Node.js package? Install `@cesdk/node-native@$UBQ_VERSION$` instead of `@cesdk/node` — the engine API is identical.
+
 **Package details:**
 
 - `@cesdk/node`: CE.SDK Node.js package for server-side rendering (requires Node.js >=22)
 - `@imgly/plugin-print-ready-pdfs-web`: Print-ready PDF conversion (works in Node.js despite the name)
 
-The plugin works in Node.js because it's built on WebAssembly, which Node.js supports.
+The plugin works in Node.js because its PDF processing runs on WebAssembly, which Node.js supports. It works with both `@cesdk/node` and the native `@cesdk/node-native` engine package.
 
 **Try it yourself:**
 
@@ -69,7 +71,7 @@ console.log('Engine initialized:', engine.isInitialized());
 
 - **`CreativeEngine.init()`**: Initializes the engine in headless mode (no browser required)
 - **`license`**: Activates CE.SDK features including PDF export
-- **`baseURL`**: Points to the required assets for the engine to function
+- **`baseURL`**: Points to the engine assets. Optional for both Node.js packages, which bundle their engine assets; set it when self-hosting assets at your own location
 - **Headless mode**: Runs without UI for automated workflows
 
 **Verify initialization:**

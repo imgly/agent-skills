@@ -146,7 +146,7 @@ This guide covers understanding the default emoji font, configuring a custom emo
 
 ## Default Emoji Font
 
-CE.SDK uses Noto Color Emoji (~9.9 MB, PNG-based) from `https://cdn.img.ly/assets/v5/emoji/NotoColorEmoji.ttf` by default. This ensures identical emoji rendering across all platforms—documents generated on different servers produce the same visual output. No configuration is needed; emoji rendering works out of the box.
+CE.SDK's Node.js packages bundle Noto Color Emoji (~9.9 MB, PNG-based) inside their npm packages and use it by default — no download from the IMG.LY CDN is needed. This ensures identical emoji rendering across all platforms—documents generated on different servers produce the same visual output. No configuration is needed; emoji rendering works out of the box.
 
 We retrieve the current emoji font URI using `engine.editor.getSetting()`:
 
@@ -252,9 +252,9 @@ CE.SDK has a `forceSystemEmojis` setting (default: `true`). In server environmen
 
 **Missing emojis**: The emoji font may not support all Unicode emoji characters. Ensure your custom emoji font has comprehensive Unicode coverage.
 
-**Large initial download**: The default Noto Color Emoji font is ~9.9 MB. In server environments, consider caching this font locally to avoid repeated downloads.
+**Font size**: The default Noto Color Emoji font is ~9.9 MB and ships inside the npm package, so no download occurs at runtime. If you configure a custom remote emoji font, consider caching it locally.
 
-**Export without emojis**: Verify the emoji font URI is accessible from your server environment. Network restrictions may block external font downloads.
+**Export without emojis**: If you configured a custom emoji font URI, verify it is accessible from your server environment — network restrictions may block external font downloads.
 
 ## API Reference
 

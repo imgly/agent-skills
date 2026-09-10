@@ -25,6 +25,10 @@ import {
 import { Sidebar } from './Sidebar/Sidebar';
 import styles from './App.module.css';
 
+// START_HIDDEN_BLOCK
+import { reportDemoPhase } from '../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 // ============================================================================
 // Types
 // ============================================================================
@@ -69,6 +73,9 @@ export default function App({ cesdk, children }: AppProps) {
       setProductId(defaultProduct.id);
       setColor(defaultColor);
       setIsInitialized(true);
+      // START_HIDDEN_BLOCK
+      reportDemoPhase('ready');
+      // END_HIDDEN_BLOCK
     };
 
     initializeProduct();

@@ -190,7 +190,7 @@ This guide covers how to configure the `maxImageSize` setting for headless workf
 
 ## Understanding Size Limits
 
-CE.SDK manages size limits at two stages: **input** (when loading images) and **output** (when exporting). The `maxImageSize` setting controls input resolution, automatically downscaling images that exceed the configured limit (default: 4096×4096px). This prevents memory issues in serverless functions and containerized environments. Export resolution has no artificial limits—the theoretical maximum is 16,384×16,384 pixels, constrained by server GPU/CPU capabilities, available RAM, and deployment environment (serverless memory limits, container quotas, VM allocations). Headless environments use software rendering with conservative limits for universal compatibility.
+CE.SDK manages size limits at two stages: **input** (when loading images) and **output** (when exporting). The `maxImageSize` setting controls input resolution, automatically downscaling images that exceed the configured limit (default: 4096×4096px). This prevents memory issues in serverless functions and containerized environments. Export resolution has no artificial limits—the theoretical maximum is 16,384×16,384 pixels, constrained by server GPU/CPU capabilities, available RAM, and deployment environment (serverless memory limits, container quotas, VM allocations). With the WASM-based `@cesdk/node` package, headless environments use software rendering with conservative limits; the native `@cesdk/node-native` package renders on the GPU where available.
 
 ## Resolution & Duration Limits
 
@@ -245,9 +245,9 @@ This callback fires whenever any setting changes through the Settings API. You c
 
 ## GPU Capability Detection
 
-In server environments, rendering capabilities depend on the available hardware rather than browser-based WebGL. CE.SDK automatically detects and uses the best available rendering backend for your server configuration.
+In server environments, rendering capabilities depend on the available hardware rather than browser-based WebGL. The native `@cesdk/node-native` package automatically selects the best available rendering backend (GPU via Metal or EGL, with CPU fallback), configurable via its `device` option.
 
-When CE.SDK runs in headless Node.js environments, it uses software rendering with conservative limits that provide universal compatibility. On servers with GPU access (such as cloud instances with GPU support), CE.SDK can leverage hardware acceleration for faster processing and larger export dimensions.
+When CE.SDK runs headless with the WASM-based `@cesdk/node` package, it uses software rendering with conservative limits that provide universal compatibility. The native `@cesdk/node-native` package leverages hardware acceleration on servers with GPU access for faster processing and larger export dimensions.
 
 You can use this information to:
 

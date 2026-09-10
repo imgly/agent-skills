@@ -322,6 +322,10 @@ Vertical stack layouts arrange pages from top to bottom. When you add pages to t
 
 Pages added with `appendChild` appear at the bottom of the stack. The `stack/spacing` property controls the gap between pages, and `stack/spacingInScreenspace` determines whether spacing is in screen pixels or design units.
 
+The distinction applies to the canvas preview only. Exports always interpret the spacing in design units, whatever the property is set to.
+
+Switching the property never converts the number. A spacing of `40` stays `40` and is reinterpreted in the other space, which changes how far apart the pages appear.
+
 ## Create a Horizontal Stack Layout
 
 Horizontal stack layouts arrange pages from left to right. Switch between layout types using `engine.scene.setLayout()`.

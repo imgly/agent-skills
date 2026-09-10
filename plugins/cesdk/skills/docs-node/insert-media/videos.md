@@ -319,6 +319,7 @@ For maximum compatibility, use MP4 with H.264 encoding.
 | `block.setTrimOffset(fill, seconds)` | Set trim start point |
 | `block.setTrimLength(fill, seconds)` | Set trim duration |
 | `block.export(block, options)` | Export block to image blob |
+| `block.exportVideo(block, options)` | Export a block (typically a page) as MP4 video (native `@cesdk/node-native` package) |
 | `scene.create()` | Create a scene |
 | `scene.getCurrentPage()` | Get current scene page |
 | `engine.dispose()` | Dispose engine and free resources |

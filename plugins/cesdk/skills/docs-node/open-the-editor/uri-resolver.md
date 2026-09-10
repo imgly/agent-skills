@@ -115,10 +115,8 @@ try {
   // Section 3: Removing a Custom Resolver
   // ========================================
 
-  // Remove the custom resolver to restore default behavior
-  engine.editor.setURIResolver((uri, defaultURIResolver) =>
-    defaultURIResolver(uri)
-  );
+  // Pass null to remove the custom resolver and restore default behavior
+  engine.editor.setURIResolver(null);
   console.log('\n✓ Removed custom resolver - back to default behavior');
 
   console.log('\n✓ URI Resolver guide completed successfully!');
@@ -222,13 +220,11 @@ Your server validates the token and redirects to the actual asset (e.g., pre-sig
 
 ## Removing a Resolver
 
-Restore default behavior by setting a resolver that delegates to `defaultURIResolver`:
+Pass `null` (or `undefined`) to remove the custom resolver and restore default behavior. `setURIResolver` and `setURIResolverAsync` share one resolver slot, so either call clears whichever one is active:
 
 ```typescript highlight=highlight-remove-resolver
-// Remove the custom resolver to restore default behavior
-engine.editor.setURIResolver((uri, defaultURIResolver) =>
-  defaultURIResolver(uri)
-);
+// Pass null to remove the custom resolver and restore default behavior
+engine.editor.setURIResolver(null);
 console.log('\n✓ Removed custom resolver - back to default behavior');
 ```
 

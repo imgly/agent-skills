@@ -164,7 +164,7 @@ Register CE.SDK's default asset sources from your self-hosted asset library to p
 
 CE.SDK provides built-in asset sources for shapes, stickers, filters, effects, fonts, and sample media. This guide demonstrates registering all available asset sources from your self-hosted asset library and applying them to create a scene with a star shape, a sticker, and an image, then exporting to PNG.
 
-> **Offline-first:** `@cesdk/node` is offline-first and resolves assets from the local package or a location you host — it does not fetch the content library from the IMG.LY CDN. Download the asset library once and extract it, then point `baseURL` at it. See the [Serve Assets](./serve-assets.md) guide for instructions.
+> **Offline-first:** The Node.js packages (`@cesdk/node` and `@cesdk/node-native`) are offline-first and resolve assets from the local package or a location you host — they do not fetch the content library from the IMG.LY CDN. Download the asset library once and extract it, then point `baseURL` at it. See the [Serve Assets](./serve-assets.md) guide for instructions.
 
 ## What Are Default and Demo Assets?
 
@@ -199,7 +199,7 @@ CE.SDK ships two categories of asset sources you self-host and register with the
 
 ## Loading Assets from URL
 
-Use `addLocalAssetSourceFromJSONURI()` to register an asset source from its `content.json`. `@cesdk/node` is offline-first: it resolves assets relative to the engine's `baseURL` (your self-hosted assets), so no IMG.LY CDN is used at runtime.
+Use `addLocalAssetSourceFromJSONURI()` to register an asset source from its `content.json`. The Node.js packages are offline-first: they resolve assets relative to the engine's `baseURL` (your self-hosted assets), so no IMG.LY CDN is used at runtime.
 
 ```typescript
 const baseURL = engine.getBaseURL();
@@ -221,7 +221,7 @@ const engine = await CreativeEngine.init({
 
 ## Point at Your Self-Hosted Assets
 
-`@cesdk/node` resolves asset sources relative to the engine's `baseURL`. Self-host the asset library (extract `imgly-assets.zip`) and set `baseURL` on init — there is no IMG.LY CDN in the production path. See the [Serve Assets](./serve-assets.md) guide for the download and setup steps.
+The Node.js packages resolve asset sources relative to the engine's `baseURL`. Self-host the asset library (extract `imgly-assets.zip`) and set `baseURL` on init — there is no IMG.LY CDN in the production path. See the [Serve Assets](./serve-assets.md) guide for the download and setup steps.
 
 ```typescript highlight-asset-urls
 // Resolve asset sources from the engine's self-hosted baseURL.
@@ -231,7 +231,7 @@ const DEMO_ASSETS_URL = engine.getBaseURL();
 
 ## Loading Default Asset Sources
 
-Load a default asset source from the CDN. Repeat this pattern for each source you need:
+Load a default asset source from your configured `baseURL`. Repeat this pattern for each source you need:
 
 ```typescript highlight-load-default-assets
 // Load default asset sources (core editor components)
@@ -242,7 +242,7 @@ await engine.asset.addLocalAssetSourceFromJSONURI(
 
 ## Loading Demo Asset Sources
 
-Load a demo asset source from the CDN. Repeat this pattern for each source you need:
+Load a demo asset source from your configured `baseURL`. Repeat this pattern for each source you need:
 
 ```typescript highlight-load-demo-assets
 // Load demo asset sources (sample content for testing)

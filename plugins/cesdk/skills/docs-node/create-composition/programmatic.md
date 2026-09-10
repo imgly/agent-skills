@@ -259,7 +259,7 @@ This guide covers how to create a scene structure with social media dimensions, 
 
 ## Initialize the Engine
 
-We start by initializing the CE.SDK engine in headless mode using `@cesdk/node`:
+We start by initializing the CE.SDK engine in headless mode using `@cesdk/node` (or the API-identical `@cesdk/node-native`):
 
 ```typescript highlight=highlight-setup
 // Initialize CE.SDK engine in headless mode

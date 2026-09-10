@@ -3635,6 +3635,12 @@ case encodeEntityInvalid
 case encodeEntityNotPartOfPage
 ```
 
+### EngineErrorCode.encodeExportCancelled
+
+```swift
+case encodeExportCancelled
+```
+
 ### EngineErrorCode.encodeExportFailed
 
 ```swift
@@ -3827,6 +3833,12 @@ case encodePdfCreateFailedResources
 case encodePdfRenderSizeExceedsMax
 ```
 
+### EngineErrorCode.encodePdfStagingWriteFailed
+
+```swift
+case encodePdfStagingWriteFailed
+```
+
 ### EngineErrorCode.encodePixelBufferUnexpectedSize
 
 ```swift
@@ -3861,6 +3873,18 @@ case encodeResourceLoadFailedWithReason
 
 ```swift
 case encodeResultBufferFailed
+```
+
+### EngineErrorCode.encodeStreamExportMimeTypeInvalid
+
+```swift
+case encodeStreamExportMimeTypeInvalid
+```
+
+### EngineErrorCode.encodeStreamExportMissingReceiver
+
+```swift
+case encodeStreamExportMissingReceiver
 ```
 
 ### EngineErrorCode.encodeSvgCanvasCreateFailed
@@ -4047,6 +4071,24 @@ case licenseAlreadyUnlocked
 
 ```swift
 case licenseApiServiceUnavailable
+```
+
+### EngineErrorCode.licenseAvConcurrencyLimitReached
+
+```swift
+case licenseAvConcurrencyLimitReached
+```
+
+### EngineErrorCode.licenseAvSessionAcquisitionFailed
+
+```swift
+case licenseAvSessionAcquisitionFailed
+```
+
+### EngineErrorCode.licenseAvSessionRequiresApiKey
+
+```swift
+case licenseAvSessionRequiresApiKey
 ```
 
 ### EngineErrorCode.licenseCannotDeactivateOffline

@@ -33,6 +33,7 @@ Each property corresponds to a specific UI action or event that can be customize
 |  `timeline.zoom.reset` | [`TimelineZoomResetAction`](./api/cesdk-js/type-aliases/timelinezoomresetaction.md) | Action for resetting the video timeline zoom to default |
 |  `timeline.expand` | [`TimelineExpandAction`](./api/cesdk-js/type-aliases/timelineexpandaction.md) | Action for expanding the video timeline |
 |  `timeline.collapse` | [`TimelineCollapseAction`](./api/cesdk-js/type-aliases/timelinecollapseaction.md) | Action for collapsing the video timeline |
+|  `timeline.setHeight` | [`TimelineSetHeightAction`](./api/cesdk-js/type-aliases/timelinesetheightaction.md) | Action for configuring the video timeline's height behaviour |
 |  `copy` | [`CopyAction`](./api/cesdk-js/type-aliases/copyaction.md) | Action for copying selected blocks to the clipboard |
 |  `paste` | [`PasteAction`](./api/cesdk-js/type-aliases/pasteaction.md) | Action for pasting blocks from the clipboard |
 |  `selection.split` | [`SelectionSplitAction`](./api/cesdk-js/type-aliases/selectionsplitaction.md) | Action for splitting the first selected clip at the playhead |

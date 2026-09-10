@@ -8,6 +8,13 @@ import CreativeEditorComponent from '@cesdk/cesdk-js/react';
 import { initInDesignTemplateImportEditor } from '../../imgly';
 import classes from './CreativeEditor.module.css';
 
+// START_HIDDEN_BLOCK
+import {
+  reportDemoPhase,
+  reportDemoLoadingState
+} from '../../../../shared/demo-preview/lifecycle';
+// END_HIDDEN_BLOCK
+
 interface CreativeEditorProps {
   sceneArchiveUrl: string;
   editorConfig: Configuration;
@@ -24,7 +31,13 @@ export function CreativeEditor({
       <div className={classes.cesdkContainer}>
         <CreativeEditorComponent
           config={editorConfig}
+          // START_HIDDEN_BLOCK
+          onLoadingStateChange={reportDemoLoadingState}
+          // END_HIDDEN_BLOCK
           init={async (cesdk: CreativeEditorSDK) => {
+            // START_HIDDEN_BLOCK
+            reportDemoPhase('created');
+            // END_HIDDEN_BLOCK
             // Debug access (remove in production)
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (window as any).cesdk = cesdk;
@@ -43,6 +56,9 @@ export function CreativeEditor({
 
             // Zoom auto-fit to page
             cesdk.actions.run('zoom.toPage', { autoFit: true });
+            // START_HIDDEN_BLOCK
+            reportDemoPhase('ready');
+            // END_HIDDEN_BLOCK
           }}
           onError={(error) => {
             // eslint-disable-next-line no-console

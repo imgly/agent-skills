@@ -651,7 +651,7 @@ engine.dispose();
 
 **Archive creation fails**: Ensure the block has valid dimensions and is part of the scene hierarchy before calling `saveToArchive()`.
 
-**Engine initialization fails**: Verify Node.js version compatibility and ensure `@cesdk/node` is properly installed.
+**Engine initialization fails**: Verify Node.js version compatibility (v22 or later) and ensure `@cesdk/node` (or `@cesdk/node-native`) is properly installed.
 
 **Thumbnail export fails**: Ensure the block has valid dimensions and is part of the scene hierarchy.
 

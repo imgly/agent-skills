@@ -177,7 +177,7 @@ This guide covers headless rendering of RTL text, font configuration for differe
 
 ## Initialize Headless Engine
 
-We initialize CE.SDK in headless mode for server-side text processing. The engine provides the same text rendering capabilities as the browser version but optimized for programmatic usage and image export.
+We initialize CE.SDK in headless mode for server-side text processing. The engine provides the same text rendering capabilities as the browser version, optimized for programmatic usage and export.
 
 ```typescript highlight-setup
 // Initialize CE.SDK engine in headless mode
@@ -344,7 +344,7 @@ Defining typefaces as constants provides several benefits:
 - **Type safety** - TypeScript can infer and validate typeface structure
 - **Clarity** - Clear semantic names indicate which script each font supports
 
-> **Note:** CE.SDK uses system fonts with Unicode support by default. Custom typefaces
+> **Note:** CE.SDK uses its bundled fallback fonts with Unicode support by default. Custom typefaces
 > are useful when you need specific brand fonts or enhanced coverage for
 > particular scripts.
 
@@ -494,7 +494,7 @@ The engine resolves bidirectional layout automatically without requiring Unicode
 
 ## Exporting Multilingual Designs
 
-We export scenes to various formats using `engine.block.export()`. The headless engine supports PNG, JPEG, PDF, and other formats for programmatic image generation.
+We export scenes to various formats using `engine.block.export()`. The headless engine supports PNG, JPEG, PDF, and other formats for programmatic image generation — plus MP4 video with the native `@cesdk/node-native` package.
 
 ```typescript highlight-export
   // Export the scene to PNG

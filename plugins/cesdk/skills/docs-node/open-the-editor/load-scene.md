@@ -98,7 +98,7 @@ const sceneUrl =
 await engine.scene.load(sceneUrl);
 ```
 
-The URL should point to a valid scene file hosted on a server with appropriate CORS headers. Scene files use the `.imgly` extension; `.scene` and `.zip` files also load. `engine.scene.load()` detects the file kind automatically from its content, so the same call opens plain scenes and archives alike. This method is ideal for loading scenes from a CDN or your backend API.
+The URL should point to a valid scene file reachable from your server. Scene files use the `.imgly` extension; `.scene` and `.zip` files also load. `engine.scene.load()` detects the file kind automatically from its content, so the same call opens plain scenes and archives alike. This method is ideal for loading scenes from a CDN or your backend API.
 
 ## Load a Scene from String
 
@@ -116,7 +116,9 @@ This approach is useful for restoring saved user designs, loading scenes from yo
 For file uploads or blob storage, convert the blob to a string first, then load with `engine.scene.load()`. Use the blob's `text()` method to extract the scene content.
 
 ```typescript
-const sceneBlob = fileInput.files[0];
+import { readFile } from 'fs/promises';
+
+const sceneBlob = new Blob([await readFile('./my-design.imgly')]);
 const sceneContent = await sceneBlob.text();
 await engine.scene.load(sceneContent);
 ```
@@ -144,7 +146,7 @@ Plain scene files are lightweight and store only references to assets. If asset 
 ### Scene Fails to Load
 
 - Verify the URL is accessible and returns a valid scene file
-- Check CORS headers allow fetching from the scene source
+- Check the scene URL is reachable from your server
 - Ensure the scene format is compatible with your CE.SDK version
 
 ### Assets Not Displaying After Load

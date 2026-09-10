@@ -12,7 +12,7 @@ Server-side automation provides complete control over content generation without
 
 ### Client-Side vs. Backend-Supported Workflows
 
-Many automation workflows can run fully in the browser thanks to CE.SDK’s client-side architecture. However, a backend may be required for use cases involving:
+Many automation workflows can run fully inside your Node.js process thanks to CE.SDK’s self-contained engine. However, a backend may be required for use cases involving:
 
 - Secure access to private assets
 - Large dataset lookups

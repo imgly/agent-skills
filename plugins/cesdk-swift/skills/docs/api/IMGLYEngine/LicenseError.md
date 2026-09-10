@@ -35,9 +35,13 @@ case invalid
 
 ### LicenseError.missing
 
+> **Deprecated:** An empty license key activates evaluation mode, so this error is never thrown.
+
 ```swift
 case missing
 ```
+
+An empty license key activates evaluation mode instead of failing, so this case is no longer thrown.
 
 ### LicenseError.serverError
 

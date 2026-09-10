@@ -317,7 +317,7 @@ Always destroy blocks that are no longer needed to prevent memory leaks, especia
 
 ## Exporting Results
 
-Save the scene configuration for later use or rendering. In headless mode, export the scene as a `.scene` file that can be loaded and rendered using the CE.SDK Renderer.
+Save the scene configuration for later use or rendering. In headless mode, export the scene as a `.scene` file that can be loaded and rendered later.
 
 ```typescript highlight=highlight-export
   // Export the scene to a file
@@ -336,7 +336,7 @@ Save the scene configuration for later use or rendering. In headless mode, expor
   );
 ```
 
-The exported scene contains all audio configuration including source URIs, time positions, durations, and volume levels. Use the CE.SDK Renderer for server-side video rendering with audio.
+The exported scene contains all audio configuration including source URIs, time positions, durations, and volume levels. To produce the final video with audio on the server, export MP4 directly with the native `@cesdk/node-native` package or use the CE.SDK Renderer. Note: with `@cesdk/node-native` on Linux and Windows, export of scenes with standalone audio blocks does not finish yet — see the [video limitations guide](./create-video/limitations.md).
 
 ## Troubleshooting
 

@@ -18,7 +18,7 @@ The *Engine* manages:
 - **Six API namespaces** for different domains of functionality
 - **Event dispatching** for reactive state management
 - **Resource loading** and caching
-- **Rendering** to a canvas element (browser) or headless export (server)
+- **Rendering** to a canvas element (browser) or headless rendering and export (server)
 
 ## Content Hierarchy
 
@@ -85,7 +85,7 @@ The scene configuration determines which *Block API* properties and *Editor API*
 CE.SDK runs in two contexts:
 
 - **Browser**: The engine renders to a canvas element. Append `engine.element` to your DOM. Use with the built-in UI or build your own.
-- **Headless**: No rendering, just processing. Use for server-side exports, automation, and batch operations. See [Headless Mode](./concepts/headless-mode.md).
+- **Headless**: Rendering without a visible canvas — the WASM package renders in software, the native package on the GPU where available. Use for server-side exports, automation, and batch operations. See [Headless Mode](./concepts/headless-mode.md).
 
 Both contexts use the same six APIs—only rendering differs.
 

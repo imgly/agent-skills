@@ -73,15 +73,25 @@ try {
 
   console.log('⏳ Exporting...\n');
 
+  // Report per-page progress as the PDF is written. The callback runs once per
+  // page; only PDF exports invoke it. On the server this is a natural place to
+  // update a job status or log line for long multi-page exports.
+  const onProgress = (exportedPages: number, totalPages: number) => {
+    console.log(`  Exported ${exportedPages} of ${totalPages} pages`);
+  };
+
   if (choice === '1' || choice === '5') {
     // Export scene as PDF (includes all pages)
     const blob = await engine.block.export(scene, {
-      mimeType: 'application/pdf'
+      mimeType: 'application/pdf',
+      onProgress
     });
     const buffer = Buffer.from(await blob.arrayBuffer());
     writeFileSync(`${outputDir}/design.pdf`, buffer);
     console.log(
-      `✓ Default PDF: ${outputDir}/design.pdf (${(blob.size / 1024).toFixed(1)} KB)`
+      `✓ Default PDF: ${outputDir}/design.pdf (${(blob.size / 1024).toFixed(
+        1
+      )} KB)`
     );
   }
 
@@ -89,12 +99,15 @@ try {
     // Enable high compatibility mode for consistent rendering across PDF viewers
     const blob = await engine.block.export(scene, {
       mimeType: 'application/pdf',
-      exportPdfWithHighCompatibility: true
+      exportPdfWithHighCompatibility: true,
+      onProgress
     });
     const buffer = Buffer.from(await blob.arrayBuffer());
     writeFileSync(`${outputDir}/design-high-compatibility.pdf`, buffer);
     console.log(
-      `✓ High Compatibility PDF: ${outputDir}/design-high-compatibility.pdf (${(blob.size / 1024).toFixed(1)} KB)`
+      `✓ High Compatibility PDF: ${outputDir}/design-high-compatibility.pdf (${(
+        blob.size / 1024
+      ).toFixed(1)} KB)`
     );
   }
 
@@ -107,12 +120,15 @@ try {
       exportPdfWithHighCompatibility: true,
       exportPdfWithUnderlayer: true,
       underlayerSpotColorName: 'RDG_WHITE',
-      underlayerOffset: -2.0
+      underlayerOffset: -2.0,
+      onProgress
     });
     const buffer = Buffer.from(await blob.arrayBuffer());
     writeFileSync(`${outputDir}/design-with-underlayer.pdf`, buffer);
     console.log(
-      `✓ PDF with Underlayer: ${outputDir}/design-with-underlayer.pdf (${(blob.size / 1024).toFixed(1)} KB)`
+      `✓ PDF with Underlayer: ${outputDir}/design-with-underlayer.pdf (${(
+        blob.size / 1024
+      ).toFixed(1)} KB)`
     );
   }
 
@@ -121,12 +137,15 @@ try {
     const blob = await engine.block.export(scene, {
       mimeType: 'application/pdf',
       targetWidth: 2480,
-      targetHeight: 3508
+      targetHeight: 3508,
+      onProgress
     });
     const buffer = Buffer.from(await blob.arrayBuffer());
     writeFileSync(`${outputDir}/design-a4.pdf`, buffer);
     console.log(
-      `✓ A4 PDF: ${outputDir}/design-a4.pdf (${(blob.size / 1024).toFixed(1)} KB)`
+      `✓ A4 PDF: ${outputDir}/design-a4.pdf (${(blob.size / 1024).toFixed(
+        1
+      )} KB)`
     );
   }
 
@@ -145,11 +164,54 @@ Call `engine.block.export()` with `mimeType: 'application/pdf'` to export any bl
 ```typescript highlight=highlight-export-pdf
 // Export scene as PDF (includes all pages)
 const blob = await engine.block.export(scene, {
-  mimeType: 'application/pdf'
+  mimeType: 'application/pdf',
+  onProgress
 });
 ```
 
 Pass the scene ID from `engine.scene.get()` to export all pages as a multi-page PDF. You can also pass a single page ID from `engine.scene.getCurrentPage()` if you only need to export one page.
+
+## Track Export Progress
+
+Server-side exports of large multi-page documents can run for a while. Pass an `onProgress` callback to report how far the export has advanced, which is a natural hook for a job-status update or a log line.
+
+```typescript highlight=highlight-progress
+// Report per-page progress as the PDF is written. The callback runs once per
+// page; only PDF exports invoke it. On the server this is a natural place to
+// update a job status or log line for long multi-page exports.
+const onProgress = (exportedPages: number, totalPages: number) => {
+  console.log(`  Exported ${exportedPages} of ${totalPages} pages`);
+};
+```
+
+The callback fires once after each page is serialized into the document, receiving the number of pages exported so far and the total page count. It is PDF-specific: raster exports like PNG or JPEG never invoke it.
+
+Define it once and pass it to every export, as this example does. There is no reason to leave a server-side export unreported: the callback costs nothing when a document turns out to be a single page, and it is the only way to tell a stalled job from a slow one.
+
+## Cancel a Running Export
+
+Pass an `abortSignal` to stop an export whose result nobody waits for any more, for example when the client of a job has gone away or a deadline has passed. The promise rejects and no file is produced.
+
+```typescript
+const controller = new AbortController();
+// Stop the export after 30 seconds, or call abort() from your own job handler.
+const deadline = setTimeout(() => controller.abort(), 30_000);
+
+try {
+  const blob = await engine.block.export(scene, {
+    mimeType: 'application/pdf',
+    abortSignal: controller.signal,
+    onProgress
+  });
+  writeFileSync(`${outputDir}/design.pdf`, Buffer.from(await blob.arrayBuffer()));
+} catch (error) {
+  console.log('Export cancelled', error);
+} finally {
+  clearTimeout(deadline);
+}
+```
+
+For a multi-page PDF the engine stops at the next page boundary, so the pages that are still queued are never rendered and the worker is free for the next job. Every other export finishes its current work before the result is dropped, because there is no boundary to stop at.
 
 ## Configure High Compatibility Mode
 
@@ -159,7 +221,8 @@ Enable `exportPdfWithHighCompatibility` to rasterize complex elements like gradi
 // Enable high compatibility mode for consistent rendering across PDF viewers
 const blob = await engine.block.export(scene, {
   mimeType: 'application/pdf',
-  exportPdfWithHighCompatibility: true
+  exportPdfWithHighCompatibility: true,
+  onProgress
 });
 ```
 
@@ -211,7 +274,8 @@ const blob = await engine.block.export(scene, {
   exportPdfWithHighCompatibility: true,
   exportPdfWithUnderlayer: true,
   underlayerSpotColorName: 'RDG_WHITE',
-  underlayerOffset: -2.0
+  underlayerOffset: -2.0,
+  onProgress
 });
 ```
 
@@ -226,7 +290,8 @@ Use `targetWidth` and `targetHeight` to control the exported PDF dimensions in p
 const blob = await engine.block.export(scene, {
   mimeType: 'application/pdf',
   targetWidth: 2480,
-  targetHeight: 3508
+  targetHeight: 3508,
+  onProgress
 });
 ```
 
@@ -247,7 +312,9 @@ For print output, calculate the target dimensions based on your desired DPI:
 | `underlayerOffset` | Size adjustment in design units. Negative values shrink the underlayer inward. |
 | `targetWidth` | Target output width in pixels. Must be used with `targetHeight`. |
 | `targetHeight` | Target output height in pixels. Must be used with `targetWidth`. |
-| `abortSignal` | Signal to cancel the export operation. |
+| `onProgress` | Callback invoked once per page during PDF export with `(exportedPages, totalPages)`. Only called for PDF exports. |
+| `pdfChunkSize` | Upper bound in bytes for a single chunk the PDF encoder hands to the export. Tunes the memory the export holds while it runs; it does not change the returned document. Defaults to an engine-chosen 512 KiB. Other values are clamped to 4 KiB to 64 MiB. |
+| `abortSignal` | Signal that cancels the export. A multi-page PDF export stops at the next page boundary. |
 
 ## API Reference
 

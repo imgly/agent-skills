@@ -603,7 +603,7 @@ After applying trim settings, export the processed content to a file. In headles
   console.log('Exported to output/trimmed-video.imgly');
 ```
 
-The export operation renders all video blocks at their current trim positions and saves the result to the file system. For full video encoding and export, use the browser SDK with video export capabilities. Always dispose of the engine instance when processing is complete to free resources.
+The export operation renders all video blocks at their current trim positions and saves the result to the file system. For full video encoding and export, use `engine.block.exportVideo()` with the native `@cesdk/node-native` package; with the WASM-based `@cesdk/node`, use the separate CE.SDK Renderer. Always dispose of the engine instance when processing is complete to free resources.
 
 ## Trim vs Duration Interaction
 
