@@ -18,7 +18,7 @@ The canvas bar is the floating toolbar that appears above or below the canvas. T
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260909/examples/guides-user-interface-customization-canvas-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260910/examples/guides-user-interface-customization-canvas-browser/index.html)
 
 For general component manipulation (reordering, inserting, removing), see the [Component Order API Reference](./user-interface/customization/reference/component-order-api.md).
 
@@ -89,6 +89,9 @@ class Example implements EditorPlugin {
       }
     });
 
+    // Enable the settings feature so the settings button can be displayed.
+    cesdk.feature.enable('ly.img.settings');
+
     // Hide the canvas bar
     cesdk.feature.disable('ly.img.canvas.bar');
 
@@ -108,15 +111,10 @@ class Example implements EditorPlugin {
       'ly.img.page.add.canvasBar'
     ]);
 
-    // Set a text formatting toolbar for Text edit mode at the top position
+    // Show only the settings button at the bottom while editing text.
     cesdk.ui.setComponentOrder(
-      { in: 'ly.img.canvas.bar', at: 'top', when: { editMode: 'Text' } },
-      [
-        'ly.img.text.bold.canvasBar',
-        'ly.img.text.italic.canvasBar',
-        'ly.img.separator',
-        'ly.img.settings.canvasBar'
-      ]
+      { in: 'ly.img.canvas.bar', at: 'bottom', when: { editMode: 'Text' } },
+      ['ly.img.settings.canvasBar']
     );
 
     // Use spacers and separators to control layout
@@ -188,15 +186,10 @@ Each position maintains its own component order. Changes to the top position do 
 The canvas bar supports different component orders for different edit modes. Use the `when` option combined with `at` to define layouts that activate only in a specific mode.
 
 ```typescript highlight=highlight-edit-mode-context
-// Set a text formatting toolbar for Text edit mode at the top position
+// Show only the settings button at the bottom while editing text.
 cesdk.ui.setComponentOrder(
-  { in: 'ly.img.canvas.bar', at: 'top', when: { editMode: 'Text' } },
-  [
-    'ly.img.text.bold.canvasBar',
-    'ly.img.text.italic.canvasBar',
-    'ly.img.separator',
-    'ly.img.settings.canvasBar'
-  ]
+  { in: 'ly.img.canvas.bar', at: 'bottom', when: { editMode: 'Text' } },
+  ['ly.img.settings.canvasBar']
 );
 ```
 
@@ -255,13 +248,6 @@ The top position is empty by default.
 | `ly.img.spacer` | Flexible space |
 | `ly.img.page.add.canvasBar` | Adds new page |
 | `ly.img.spacer` | Flexible space |
-
-### Text Edit Mode Components
-
-| Component ID | Description |
-|--------------|-------------|
-| `ly.img.text.bold.canvasBar` | Toggle bold |
-| `ly.img.text.italic.canvasBar` | Toggle italic |
 
 ## Troubleshooting
 

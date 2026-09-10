@@ -61,7 +61,7 @@ system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260909/engine-guides-set-editing-constraints)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260910/engine-guides-set-editing-constraints)
 
 <EngineReferenceNote {...props} />
 

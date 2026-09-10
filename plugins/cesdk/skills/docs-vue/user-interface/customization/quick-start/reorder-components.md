@@ -18,7 +18,7 @@ Rearrange UI components using `getComponentOrder()` to inspect the current layou
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-quick-start-reorder-components-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260909/examples/guides-user-interface-customization-quick-start-reorder-components-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260910/examples/guides-user-interface-customization-quick-start-reorder-components-browser/index.html)
 
 The Component Order API lets you customize the layout of all five UI areas by getting and setting the component order array. Each area maintains an ordered list of components that determines their visual arrangement.
 
@@ -99,7 +99,7 @@ class Example implements EditorPlugin {
     cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
       'ly.img.back.navigationBar',
       'ly.img.spacer',
-      'ly.img.title.navigationBar',
+      { id: 'ly.img.title.navigationBar', title: 'Reorder Demo' },
       'ly.img.spacer',
       'ly.img.undoRedo.navigationBar',
       'ly.img.actions.navigationBar'
@@ -113,11 +113,13 @@ class Example implements EditorPlugin {
     });
     console.log('Canvas bar (top) order:', canvasBarOrder);
 
+    // Enable the settings feature so the settings button can be displayed.
+    cesdk.feature.enable('ly.img.settings');
     // Set a custom canvas bar order
     cesdk.ui.setComponentOrder({ in: 'ly.img.canvas.bar', at: 'top' }, [
       'ly.img.page.add.canvasBar',
       'ly.img.spacer',
-      'ly.img.zoom.canvasBar'
+      'ly.img.settings.canvasBar'
     ]);
 
     // Use component objects for inline configuration
@@ -205,7 +207,7 @@ Use `setComponentOrder()` to define a new component arrangement. Pass an array o
 cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
   'ly.img.back.navigationBar',
   'ly.img.spacer',
-  'ly.img.title.navigationBar',
+  { id: 'ly.img.title.navigationBar', title: 'Reorder Demo' },
   'ly.img.spacer',
   'ly.img.undoRedo.navigationBar',
   'ly.img.actions.navigationBar'
@@ -227,11 +229,13 @@ The canvas bar is unique in requiring a position parameter. Use `at: 'top'` or `
     });
     console.log('Canvas bar (top) order:', canvasBarOrder);
 
+    // Enable the settings feature so the settings button can be displayed.
+    cesdk.feature.enable('ly.img.settings');
     // Set a custom canvas bar order
     cesdk.ui.setComponentOrder({ in: 'ly.img.canvas.bar', at: 'top' }, [
       'ly.img.page.add.canvasBar',
       'ly.img.spacer',
-      'ly.img.zoom.canvasBar'
+      'ly.img.settings.canvasBar'
     ]);
 ```
 

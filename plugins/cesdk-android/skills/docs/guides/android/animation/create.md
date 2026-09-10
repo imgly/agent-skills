@@ -171,7 +171,7 @@ using CE.SDK's animation system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260909/engine-guides-create-animations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260910/engine-guides-create-animations)
 
 <EngineReferenceNote {...props} />
 

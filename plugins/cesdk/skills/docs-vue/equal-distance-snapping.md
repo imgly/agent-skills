@@ -14,7 +14,7 @@ Turn on equal-distance snapping so a dragged block lands at an equal distance fr
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-equal-distance-snapping-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260909/examples/guides-equal-distance-snapping-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260910/examples/guides-equal-distance-snapping-browser/index.html)
 
 While the user drags a block, the engine looks for sibling blocks that already sit at an equal distance from each other. When the dragged block comes close to a position that continues or splits that spacing, the engine pulls the block onto it. It then draws a line across each gap, a tick at both ends of the line, and a badge with the size of the gap.
 

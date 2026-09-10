@@ -23,7 +23,7 @@ description: |
 
 ## Version Notice
 
-> CE.SDK `1.83.0-nightly.20260909` · generated `2026-09-08` · plugin `cesdk-swift`
+> CE.SDK `1.83.0-nightly.20260910` · generated `2026-09-09` · plugin `cesdk-swift`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
