@@ -7,7 +7,8 @@
 
 import type CreativeEngine from '@cesdk/engine';
 
-import type { Restaurant, Template, GeneratedAsset, RgbaColor } from './types';
+import type { Restaurant, Template, GeneratedAsset } from '../app/types';
+import type { RgbaColor } from './types';
 import { hexToRgba, replaceImageByName, exportSceneAsImage } from './utils';
 
 /**
@@ -45,7 +46,7 @@ export async function fillTemplate(
   if (!sceneString) {
     throw new Error(`Scene not found: ${sceneKey}`);
   }
-  await engine.scene.load(sceneString);
+  await engine.scene.loadFromString(sceneString);
 
   // Replace restaurant images
   replaceImageByName(engine, 'RestaurantPhoto', restaurant.photoPath);
@@ -194,7 +195,7 @@ export async function renderSceneToImage(
   mimeType: 'image/png' | 'image/jpeg' = 'image/jpeg'
 ): Promise<string | null> {
   try {
-    await engine.scene.load(sceneString);
+    await engine.scene.loadFromString(sceneString);
     return exportSceneAsImage(engine, mimeType);
   } catch (error) {
     // eslint-disable-next-line no-console

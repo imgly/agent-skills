@@ -17,7 +17,7 @@ environments for server-side video processing workflows.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-from-video-server-js)
 
-Starting from an existing video allows you to create editable scenes on the server. The `engine.scene.createFromVideo()` method fetches the video, creates a scene with matching dimensions, and sets up pixel-based design units. This is useful for server-side video processing pipelines — whether you render the result on the server or prepare scenes for later editing in browser environments.
+Starting from an existing video allows you to create editable scenes on the server. The `engine.scene.createFromVideo()` method fetches the video, creates a scene with matching dimensions, and sets up pixel-based design units. This is useful for server-side video processing pipelines where you need to prepare scenes for later editing in browser environments.
 
 <NodejsVideoExportNotice {...props} />
 
@@ -99,14 +99,14 @@ try {
   // ========================================
   // Save the scene to a string for storage or transfer
   const sceneString = await engine.scene.saveToString();
-  writeFileSync('output/video-scene.imgly', sceneString);
-  console.log('📄 Saved scene to: output/video-scene.imgly');
+  writeFileSync('output/video-scene.scene', sceneString);
+  console.log('📄 Saved scene to: output/video-scene.scene');
 
   // Or save as an archive with embedded assets
   const archiveBlob = await engine.scene.saveToArchive();
   const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
-  writeFileSync('output/video-scene-archive.imgly', archiveBuffer);
-  console.log('📦 Saved archive to: output/video-scene-archive.imgly');
+  writeFileSync('output/video-scene.zip', archiveBuffer);
+  console.log('📦 Saved archive to: output/video-scene.zip');
 
   console.log('\n✓ Create From Video guide completed successfully!');
   console.log(
@@ -124,7 +124,7 @@ This guide covers how to create scenes from video files, work with video blocks,
 
 ## Initialize the Engine
 
-Start by initializing the CE.SDK engine in headless mode. The Node.js packages (`@cesdk/node` and `@cesdk/node-native`) provide the same API as the browser version but run without a visual interface.
+Start by initializing the CE.SDK engine in headless mode. The Node.js package (`@cesdk/node`) provides the same API as the browser version but runs without a visual interface.
 
 ```typescript highlight-setup
 // Initialize CE.SDK engine in headless mode
@@ -190,19 +190,19 @@ You can modify properties like opacity, position, or apply effects using the Blo
 
 ## Save Scene for Later Use
 
-Save the scene to a file for storage, further processing, or transfer to a browser environment. You can save as a plain string or as an archive with embedded assets.
+Save the scene to a file for storage or transfer to a browser environment for further processing. You can save as a plain string or as an archive with embedded assets.
 
 ```typescript highlight-save-scene
   // Save the scene to a string for storage or transfer
   const sceneString = await engine.scene.saveToString();
-  writeFileSync('output/video-scene.imgly', sceneString);
-  console.log('📄 Saved scene to: output/video-scene.imgly');
+  writeFileSync('output/video-scene.scene', sceneString);
+  console.log('📄 Saved scene to: output/video-scene.scene');
 
   // Or save as an archive with embedded assets
   const archiveBlob = await engine.scene.saveToArchive();
   const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
-  writeFileSync('output/video-scene-archive.imgly', archiveBuffer);
-  console.log('📦 Saved archive to: output/video-scene-archive.imgly');
+  writeFileSync('output/video-scene.zip', archiveBuffer);
+  console.log('📦 Saved archive to: output/video-scene.zip');
 ```
 
 ## Clean Up Resources
@@ -231,7 +231,7 @@ engine.dispose();
 
 - Process videos in batches to manage memory usage
 - Dispose of the engine between batch operations
-- With the WASM-based `@cesdk/node` package, consider extracting specific frames rather than full video processing; the native `@cesdk/node-native` package can render full videos
+- Consider extracting specific frames rather than full video processing
 
 **Export failures**
 

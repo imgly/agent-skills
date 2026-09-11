@@ -18,7 +18,8 @@ import { renderSceneToImage, generateAssets } from '../imgly';
 import { RESTAURANTS } from './restaurant-catalog';
 import { TEMPLATES } from './template-catalog';
 import SCENES from './scenes.json';
-import type { Restaurant, Template, GeneratedAsset } from '../imgly';
+import type { Restaurant, Template, GeneratedAsset } from './types';
+import { resolveAssetPath } from './resolveAssetPath';
 
 import RestaurantSelector from './RestaurantSelector/RestaurantSelector';
 import AssetGrid from './AssetGrid/AssetGrid';
@@ -39,13 +40,6 @@ function createInitialAssets(): GeneratedAsset[] {
 
 import type { Configuration } from '@cesdk/cesdk-js';
 
-// START_HIDDEN_BLOCK
-import { useEffect } from 'react';
-// END_HIDDEN_BLOCK
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
-
 interface AppProps {
   /** Initialized headless engine for batch image generation */
   engine: CreativeEngine;
@@ -54,13 +48,6 @@ interface AppProps {
 }
 
 export default function App({ engine, editorBaseConfig }: AppProps) {
-  // START_HIDDEN_BLOCK
-  // The editor mounts only after the visitor acts, so the shell
-  // being on screen is the end of this demo's automatic load.
-  useEffect(() => {
-    reportDemoPhase('shell');
-  }, []);
-  // END_HIDDEN_BLOCK
   const [selectedRestaurant, setSelectedRestaurant] =
     useState<Restaurant | null>(null);
   const [assets, setAssets] = useState<GeneratedAsset[]>(createInitialAssets);
@@ -88,12 +75,20 @@ export default function App({ engine, editorBaseConfig }: AppProps) {
         prevAssets.map((asset) => ({ ...asset, isLoading: true }))
       );
 
+      // Resolve asset paths for the current deployment context
+      const restaurantWithResolvedPaths: Restaurant = {
+        ...restaurant,
+        photoPath: resolveAssetPath(restaurant.photoPath),
+        logoPath: resolveAssetPath(restaurant.logoPath),
+        cardPath: resolveAssetPath(restaurant.cardPath)
+      };
+
       // Generate assets
       await generateAssets(
         engine,
         SCENES,
         templates,
-        restaurant,
+        restaurantWithResolvedPaths,
         (index, generatedAsset) => {
           setAssets((prevAssets) => {
             const nextAssets = [...prevAssets];

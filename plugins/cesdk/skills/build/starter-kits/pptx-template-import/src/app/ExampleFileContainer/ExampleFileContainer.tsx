@@ -1,7 +1,7 @@
 /**
  * ExampleFileContainer - Example PPTX files grid
  */
-import { DEMO_ASSETS_BASE_URL } from '../FileSelection/FileSelection';
+import { resolveAssetPath } from '../resolveAssetPath';
 import type { ExampleFile } from '../types';
 import classes from './ExampleFileContainer.module.css';
 
@@ -30,7 +30,7 @@ export function ExampleFileContainer({
               alt={file.alt}
             />
             <img
-              src={`${DEMO_ASSETS_BASE_URL}/icons/pptx-file.svg`}
+              src={resolveAssetPath('/icons/pptx-file.svg')}
               alt="PowerPoint"
               className={classes.fileTypeIcon}
             />

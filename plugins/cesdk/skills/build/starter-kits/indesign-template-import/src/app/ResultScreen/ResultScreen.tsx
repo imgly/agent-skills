@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useFileProcessing } from '../FileProcessingContext/FileProcessingContext';
 import { CreativeEditor } from '../CreativeEditor/CreativeEditor';
 import { InfoButton } from '../InfoButton/InfoButton';
-import { DEMO_ASSETS_BASE_URL } from '../FileSelection/FileSelection';
+import { resolveAssetPath } from '../resolveAssetPath';
 import classes from './ResultScreen.module.css';
 
 export function ResultScreen() {
@@ -25,7 +25,7 @@ export function ResultScreen() {
   const handleDownloadArchive = () => {
     const link = document.createElement('a');
     link.href = result.sceneArchiveUrl;
-    link.download = `${result.fileName.replace(/\.idml$/i, '')}.imgly`;
+    link.download = `${result.fileName.replace(/\.idml$/i, '')}.archive.zip`;
     link.click();
   };
 
@@ -36,7 +36,7 @@ export function ResultScreen() {
           <div className={classes.resultHeader}>
             <button className="btn btn-plain" onClick={() => resetState()}>
               <img
-                src={`${DEMO_ASSETS_BASE_URL}/icons/chevron-left.svg`}
+                src={resolveAssetPath('/icons/chevron-left.svg')}
                 alt="Back"
               />
               <span>New File</span>
@@ -67,7 +67,7 @@ export function ResultScreen() {
               ) : (
                 <div className={classes.noPreview}>
                   <img
-                    src={`${DEMO_ASSETS_BASE_URL}/icons/indesign-file.svg`}
+                    src={resolveAssetPath('/icons/indesign-file.svg')}
                     alt="InDesign"
                   />
                   <p>
@@ -99,10 +99,7 @@ export function ResultScreen() {
                 className="btn btn-primary btn-small"
                 onClick={() => setEditorOpen(true)}
               >
-                <img
-                  src={`${DEMO_ASSETS_BASE_URL}/icons/edit.svg`}
-                  alt="Edit"
-                />
+                <img src={resolveAssetPath('/icons/edit.svg')} alt="Edit" />
                 <span>Edit</span>
               </button>
               <button
@@ -110,7 +107,7 @@ export function ResultScreen() {
                 onClick={handleDownloadArchive}
               >
                 <img
-                  src={`${DEMO_ASSETS_BASE_URL}/icons/download.svg`}
+                  src={resolveAssetPath('/icons/download.svg')}
                   alt="Download"
                 />
                 <span>Download CE.SDK Archive</span>

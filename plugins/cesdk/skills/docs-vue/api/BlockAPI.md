@@ -1293,34 +1293,6 @@ getVolume(id: DesignBlockId): number
 
 **Returns:** The volume, ranging from 0.0 to 1.0.
 
-### setAudioFadeIn()
-
-Sets an audio fade-in for a block. The audio ramps up from silence to the
-block's volume over the given duration at the start of the block.
-
-```typescript
-setAudioFadeIn(id: DesignBlockId, duration: number, easing?: AnimationEasing): void
-```
-
-**Parameters:**
-- `id` - The audio block or video fill to update.
-- `duration` - The fade-in duration in seconds. A value of 0 disables the fade-in and negative values are clamped to 0.
-- `easing` - The easing curve of the fade. Defaults to 'Linear'.
-
-### setAudioFadeOut()
-
-Sets an audio fade-out for a block. The audio ramps down from the block's
-volume to silence over the given duration at the end of the block.
-
-```typescript
-setAudioFadeOut(id: DesignBlockId, duration: number, easing?: AnimationEasing): void
-```
-
-**Parameters:**
-- `id` - The audio block or video fill to update.
-- `duration` - The fade-out duration in seconds. A value of 0 disables the fade-out and negative values are clamped to 0.
-- `easing` - The easing curve of the fade. Defaults to 'Linear'.
-
 ### setPlaybackSpeed()
 
 Sets the playback speed multiplier of a block that supports playback control.
@@ -1418,11 +1390,8 @@ getVideoHeight(id: DesignBlockId): number
 ### generateVideoThumbnailSequence()
 
 Generate a sequence of thumbnails for the given video fill or design block.
-Note: Only one request per block runs at a time. A second request for the same block waits
-for the first to finish instead of failing.
-Note: For a video fill, cancelling has no effect once the first frame has been scheduled —
-the remaining frames are still delivered. Cancel before the first frame arrives, or ignore
-results from a request you have abandoned. Design block sequences cancel at any time.
+Note: There can only be one thumbnail generation request in progress for a given block.
+Note: During playback, the thumbnail generation will be paused.
 
 ```typescript
 generateVideoThumbnailSequence(id: DesignBlockId, thumbnailHeight: number, timeBegin: number, timeEnd: number, numberOfFrames: number, onFrame: (frameIndex: number, result: ImageData | Error) => void): () => void
@@ -1443,10 +1412,7 @@ generateVideoThumbnailSequence(id: DesignBlockId, thumbnailHeight: number, timeB
 Generate a thumbnail sequence for the given audio block or video fill.
 A thumbnail in this case is a chunk of samples in the range of 0 to 1.
 In case stereo data is requested, the samples are interleaved, starting with the left channel.
-Note: `numberOfSamples` counts samples per channel. The callback fires
-`ceil(numberOfSamples / samplesPerChunk)` times and the last chunk may be shorter.
-Note: The `Float32Array` is a view into engine memory that is only valid for the duration of
-the callback. Copy it before storing it.
+Note: During playback, the thumbnail generation will be paused.
 
 ```typescript
 generateAudioThumbnailSequence(id: DesignBlockId, samplesPerChunk: number, timeBegin: number, timeEnd: number, numberOfSamples: number, numberOfChannels: number, onChunk: (chunkIndex: number, result: Float32Array | Error) => void): () => void
@@ -5617,25 +5583,6 @@ getTypefaces(id: DesignBlockId, from?: number, to?: number): Typeface[]
 
 **Returns:** The unique typefaces in the range.
 
-### getTextRuns()
-
-Gets all text runs within a range of text.
-Each run represents a contiguous span of text with uniform formatting.
-```javascript
-const runs = engine.block.getTextRuns(text);
-```
-
-```typescript
-getTextRuns(id: DesignBlockId, from?: number, to?: number): TextRunInfo[]
-```
-
-**Parameters:**
-- `id` - The text block to query.
-- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
-- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
-
-**Returns:** The ordered list of text runs covering the requested range.
-
 ### getTextCursorRange()
 
 Gets the current text cursor or selection range.
@@ -5743,83 +5690,6 @@ getTextEffectiveHorizontalAlignment(id: DesignBlockId): 'Left' | 'Right' | 'Cent
 - `id` - The text block whose effective alignment should be returned.
 
 **Returns:** The effective alignment ('Left', 'Right', or 'Center').
-
-### setTextOnPath()
-
-Sets the SVG path that the text baseline follows.
-Pass `null` to restore normal straight-line text layout.
-
-```typescript
-setTextOnPath(id: DesignBlockId, svgPath: string | null): void
-```
-
-**Parameters:**
-- `id` - The text block to modify.
-- `svgPath` - An SVG path string in the block's local coordinate space, or `null` to clear.
-
-### getTextOnPath()
-
-Gets the SVG path currently used as the text baseline.
-
-```typescript
-getTextOnPath(id: DesignBlockId): string | null
-```
-
-**Parameters:**
-- `id` - The text block to query.
-
-**Returns:** The SVG path string, or `null` if no path is set.
-
-### setTextOnPathOffset()
-
-Sets the start offset along the baseline path as a proportion of the path length.
-Values are clamped to `[-1, 1]`; `1` and `-1` wrap back to the path start.
-
-```typescript
-setTextOnPathOffset(id: DesignBlockId, offset: number): void
-```
-
-**Parameters:**
-- `id` - The text block to modify.
-- `offset` - The proportional offset. Positive values move the text forward along the path.
-
-### getTextOnPathOffset()
-
-Gets the start offset along the baseline path as a proportion of the path length.
-
-```typescript
-getTextOnPathOffset(id: DesignBlockId): number
-```
-
-**Parameters:**
-- `id` - The text block to query.
-
-**Returns:** The proportional offset in `[-1, 1]`.
-
-### setTextOnPathFlipped()
-
-Sets whether text is placed on the opposite side of the baseline path.
-
-```typescript
-setTextOnPathFlipped(id: DesignBlockId, flipped: boolean): void
-```
-
-**Parameters:**
-- `id` - The text block to modify.
-- `flipped` - When `true`, text sits on the underside of the curve and reads in the reverse direction.
-
-### getTextOnPathFlipped()
-
-Gets whether the text-on-path rendering is flipped.
-
-```typescript
-getTextOnPathFlipped(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The text block to query.
-
-**Returns:** `true` when text is on the underside of the curve.
 
 ## Block Placeholder
 
@@ -6257,83 +6127,6 @@ getOutAnimation(id: DesignBlockId): DesignBlockId
 - `id` - The block whose "out" animation should be queried.
 
 **Returns:** The "out" animation of the block.
-
-## Block Transitions
-
-### createTransition()
-
-Creates a new transition block.
-The created block is standalone until assigned to a clip with `setTransition`.
-Once assigned, it is owned by that clip: it is destroyed together with the
-clip, and the engine also destroys it automatically when the two clips stop
-being timeline-adjacent on the track (e.g. after a manual gap is introduced).
-
-```typescript
-createTransition(type: TransitionType): DesignBlockId
-```
-
-**Parameters:**
-- `type` - The type of transition to create.
-
-**Returns:** The handle of the new transition instance.
-
-### supportsTransition()
-
-Checks whether a clip can own an outgoing clip-to-clip transition.
-Only leaf clips inside a video track qualify. Audio, group, caption, and
-cutout blocks — as well as blocks outside a video track — report `false`.
-
-```typescript
-supportsTransition(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The clip block to check.
-
-**Returns:** Whether the block can own an outgoing transition.
-
-### setTransition()
-
-Assigns the outgoing transition of a clip.
-A previously assigned transition block is detached but not destroyed
-automatically. Throws an error if the given transition block is invalid or
-already assigned to another clip. Both the clip and its following clip on
-the track must support transitions, see `supportsTransition`. To clear a
-clip's transition, use `removeTransition` instead.
-
-```typescript
-setTransition(id: DesignBlockId, transition: DesignBlockId): void
-```
-
-**Parameters:**
-- `id` - The outgoing clip that owns the transition relation.
-- `transition` - The transition block to assign.
-
-### removeTransition()
-
-Removes the outgoing transition of a clip.
-The removed transition block is detached but not destroyed automatically.
-Removing from a clip without an assigned transition is a no-op.
-
-```typescript
-removeTransition(id: DesignBlockId): void
-```
-
-**Parameters:**
-- `id` - The outgoing clip whose transition relation should be cleared.
-
-### getTransition()
-
-Gets the outgoing transition assigned to a clip.
-
-```typescript
-getTransition(id: DesignBlockId): DesignBlockId
-```
-
-**Parameters:**
-- `id` - The outgoing clip whose transition relation should be queried.
-
-**Returns:** The assigned transition block, or an invalid block if unset.
 
 ---
 

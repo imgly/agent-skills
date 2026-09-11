@@ -33,7 +33,7 @@ This guide is for developers who:
 
 Before getting started, ensure you have:
 
-- **Node.js v22 or later** installed. ([Download Node.js](https://nodejs.org/)).
+- **Node.js v20 or later** installed. ([Download Node.js](https://nodejs.org/)).
 - A valid **CE.SDK license key** - Required for engine initialization. [Start a free trial](https://img.ly/forms/free-trial) to get your license key.
 
 ## Step 1: Set Up Your Project
@@ -89,6 +89,7 @@ import CreativeEngine from '@cesdk/node';
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your CE.SDK license key
+  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
 };
 
 try {
@@ -98,7 +99,7 @@ try {
 
   try {
     // Load a scene from a URL
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene',
     );
 
@@ -138,6 +139,7 @@ const { MimeType } = CreativeEngine;
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your CE.SDK license key
+  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
 };
 
 // Initialize CE.SDK Engine
@@ -147,7 +149,7 @@ CreativeEngine.init(config)
 
     try {
       // Load a scene from a URL
-      await engine.scene.load(
+      await engine.scene.loadFromURL(
         'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene',
       );
 
@@ -189,7 +191,7 @@ This code processes the scene and generates an image file named **`example-outpu
 
 **❌ Error: `fetch is not defined`**
 
-- If using **Node.js v16 or lower**, this error can occur. We only support Node.js v22 and above.
+- If using **Node.js v16 or lower**, this error can occur. We only support Node.js v20 and above, as those are the officially maintained versions.
 
 **❌ Error: `Invalid license key`**
 

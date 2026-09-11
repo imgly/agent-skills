@@ -12,7 +12,7 @@ Types: MimeType, ImageMimeType, AudioMimeType, VideoMimeType, ApplicationMimeTyp
 
 ## asset
 
-Types: Locale, Groups, SortingOrder, Source, AssetMetaData, AssetRGBColor, AssetCMYKColor, AssetSpotColor, AssetColor, AssetFixedAspectRatio, AssetFreeAspectRatio, AssetContentAspectRatio, AssetFixedSize, AssetTransformPreset, AssetStringProperty, AssetNumberProperty, AssetBooleanProperty, AssetEnumProperty, AssetColorProperty, AssetProperty, AssetStylePresetAnimationProperties, AssetStylePresetAnimation, AssetStylePresetPropertyValue, AssetStylePresetProperties, AssetStylePresetScalableProperty, AssetStylePreset, AssetPayload, Asset, AssetDefinition, AssetResult, CompleteAssetResult, AssetQueryData, AssetsQueryResult, AssetSource
+Types: Locale, Groups, SortingOrder, Source, AssetMetaData, AssetRGBColor, AssetCMYKColor, AssetSpotColor, AssetColor, AssetFixedAspectRatio, AssetFreeAspectRatio, AssetContentAspectRatio, AssetFixedSize, AssetTransformPreset, AssetStringProperty, AssetNumberProperty, AssetBooleanProperty, AssetEnumProperty, AssetColorProperty, AssetProperty, AssetPayload, Asset, AssetDefinition, AssetResult, CompleteAssetResult, AssetQueryData, AssetsQueryResult, AssetSource
 
 ## audioTrackInfo
 
@@ -20,15 +20,11 @@ Types: AudioTrackInfo
 
 ## blockTypes
 
-Types: DesignBlockTypeShorthand, DesignBlockTypeLonghand, DesignBlockType, ShapeTypeShorthand, ShapeTypeLonghand, ShapeType, FillTypeShorthand, FillTypeLonghand, FillType, EffectTypeShorthand, EffectTypeLonghand, EffectType, BlurTypeShorthand, BlurTypeLonghand, BlurType, AnimationTypeShorthand, AnimationTypeLonghand, AnimationType, TransitionTypeShorthand, TransitionTypeLonghand, TransitionType, ObjectTypeShorthand, ObjectTypeLonghand, ObjectType
+Types: DesignBlockTypeShorthand, DesignBlockTypeLonghand, DesignBlockType, ShapeTypeShorthand, ShapeTypeLonghand, ShapeType, FillTypeShorthand, FillTypeLonghand, FillType, EffectTypeShorthand, EffectTypeLonghand, EffectType, BlurTypeShorthand, BlurTypeLonghand, BlurType, AnimationTypeShorthand, AnimationTypeLonghand, AnimationType, ObjectTypeShorthand, ObjectTypeLonghand, ObjectType
 
 ## canvas
 
 Types: OffscreenCanvas, Canvas
-
-## capabilities
-
-Types: EngineCapability
 
 ## color
 
@@ -48,7 +44,7 @@ Types: FontMetrics
 
 ## propertyTypes
 
-Types: BoolPropertyName, EnumPropertyName, FloatPropertyName, StringPropertyName, DoublePropertyName, ColorPropertyName, IntPropertyName, SourceSetPropertyName, BlendMode, HorizontalContentFillAlignment, ContentFillMode, VerticalContentFillAlignment, HeightMode, PositionXMode, PositionYMode, SceneDesignUnit, SceneFontSizeUnit, SceneLayout, SceneMode, WidthMode, PageGuidesSource, StrokeCap, StrokeCornerGeometry, StrokeDashEndCap, StrokeDashStartCap, StrokeEndCap, StrokePosition, StrokeStartCap, StrokeStyle, PlaybackFadeInEasing, PlaybackFadeOutEasing, TextHorizontalAlignment, TextVerticalAlignment, CutoutType, CaptionHorizontalAlignment, CaptionVerticalAlignment, AnimationEasing, TextAnimationWritingStyle, AnimationGrowDirection, AnimationWipeDirection, AnimationBaselineDirection, AnimationSpinDirection, AnimationSpinLoopDirection, AnimationJumpLoopDirection, AnimationTypewriterTextWritingStyle, AnimationBlockSwipeTextDirection, AnimationMergeTextDirection, AnimationKenBurnsDirection, FillPixelStreamOrientation, ShapeVectorPathFillRule, EnumValues, BlockEnumType
+Types: BoolPropertyName, EnumPropertyName, FloatPropertyName, StringPropertyName, DoublePropertyName, ColorPropertyName, IntPropertyName, PageGuidesSource, SourceSetPropertyName, BlendMode, ContentFillMode, HorizontalContentFillAlignment, VerticalContentFillAlignment, HeightMode, PositionXMode, PositionYMode, SceneDesignUnit, SceneFontSizeUnit, SceneLayout, SceneMode, WidthMode, StrokeCornerGeometry, StrokePosition, StrokeStyle, StrokeCap, TextHorizontalAlignment, TextVerticalAlignment, CutoutType, CaptionHorizontalAlignment, CaptionVerticalAlignment, AnimationEasing, TextAnimationWritingStyle, AnimationGrowDirection, AnimationScaleLoopDirection, AnimationWipeDirection, AnimationBaselineDirection, AnimationSpinDirection, AnimationSpinLoopDirection, AnimationJumpLoopDirection, AnimationTypewriterTextWritingStyle, AnimationBlockSwipeTextDirection, AnimationMergeTextDirection, AnimationKenBurnsDirection, FillPixelStreamOrientation, ShapeVectorPathFillRule, EnumValues, BlockEnumType
 
 ## role
 
@@ -60,7 +56,7 @@ Types: Scope
 
 ## settingTypes
 
-Types: SettingStringPropertyName, SettingColorPropertyName, SettingFloatPropertyName, SettingBoolPropertyName, SettingEnumPropertyName, SettingIntPropertyName, TouchPinchAction, TouchRotateAction, CameraClampingOvershootMode, ControlGizmoMoveHandleVisibility, ControlGizmoResizeHandlesVisibility, ControlGizmoScaleHandlesVisibility, ControlGizmoRotateHandlesVisibility, DoubleClickSelectionMode, ColorPickerColorMode, TimelineTrackVisibility, SettingEnumValues, SettingEnumType
+Types: SettingStringPropertyName, SettingColorPropertyName, SettingBoolPropertyName, SettingFloatPropertyName, SettingEnumPropertyName, SettingIntPropertyName, TouchPinchAction, TouchRotateAction, CameraClampingOvershootMode, DoubleClickSelectionMode, ColorPickerColorMode, TimelineTrackVisibility, SettingEnumValues, SettingEnumType
 
 ## settings
 

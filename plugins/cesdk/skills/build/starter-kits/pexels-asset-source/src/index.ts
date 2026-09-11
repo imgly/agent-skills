@@ -22,7 +22,7 @@
  * });
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
+ * @see https://img.ly/docs/cesdk/js/getting-started/
  * @see https://www.pexels.com/api/documentation/
  */
 
@@ -30,10 +30,6 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initPexelsImageEditor } from './imgly';
 import { resolveAssetPath } from './imgly/resolveAssetPath';
-
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Configuration
@@ -76,9 +72,6 @@ const pexelsConfig = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
 
@@ -92,17 +85,11 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // highlight-scene-loading
     // Load the Pexels demo scene from CDN
     // This scene showcases images that can be replaced with photos from Pexels
-    await cesdk.load(resolveAssetPath('/assets/pexels.scene'));
+    await cesdk.loadFromURL(resolveAssetPath('/assets/pexels.scene'));
     // highlight-scene-loading
     // highlight-init
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

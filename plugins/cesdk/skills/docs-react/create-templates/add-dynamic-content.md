@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Dynamic Content](./create-templates/add-dynamic-content.md)
+**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Insert Dynamic Content](./create-templates/add-dynamic-content.md)
 
 ---
 
@@ -18,7 +18,7 @@ Dynamic content transforms static designs into flexible, data-driven templates. 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-add-dynamic-content-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-create-templates-add-dynamic-content-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-add-dynamic-content-browser/)
 
 ```typescript file=@cesdk_web_examples/guides-create-templates-add-dynamic-content-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -303,7 +303,6 @@ The `setScopeEnabled()` method controls individual properties. Setting `'editor/
 - [Text Variables](./create-templates/add-dynamic-content/text-variables.md) - Define dynamic text elements that can be populated with custom values during design generation.
 - [Placeholders](./create-templates/add-dynamic-content/placeholders.md) - Use placeholders to mark editable image, video, or text areas within a locked template layout.
 - [Set Editing Constraints](./create-templates/add-dynamic-content/set-editing-constraints.md) - Learn how to control editing capabilities in CE.SDK templates using the Scope system to lock positions, prevent transformations, and create guided editing experiences
-- [Form-Based Editing](./create-templates/add-dynamic-content/form-based-editing.md) - Documentation for Form-Based Editing
 
 
 ---

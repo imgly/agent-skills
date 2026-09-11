@@ -5,7 +5,7 @@
  * in the CE.SDK design editor. Users can switch between English and German
  * locales using the i18n runtime API.
  *
- * @see https://img.ly/docs/cesdk/js/user-interface/localization-508e20/
+ * @see https://img.ly/docs/cesdk/web/ui-styling/localization/
  */
 
 import { useCallback, useRef, useState } from 'react';
@@ -18,10 +18,6 @@ import { resolveAssetPath } from '../imgly/resolveAssetPath';
 
 import { LocaleSwitcher, type Locale } from './LocaleSwitcher';
 import styles from './App.module.css';
-
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 interface AppProps {
   editorConfig: Configuration;
@@ -67,9 +63,6 @@ export function App({ editorConfig }: AppProps) {
   // ============================================================================
 
   const handleEditorInit = useCallback(async (cesdk: CreativeEditorSDK) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
     // Store reference for locale switching
     cesdkRef.current = cesdk;
 
@@ -89,11 +82,8 @@ export function App({ editorConfig }: AppProps) {
     // ============================================================================
 
     // highlight-scene-loading
-    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
+    await cesdk.loadFromURL(resolveAssetPath('/assets/example-1.scene'));
     // highlight-scene-loading
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   }, []);
 
   // ============================================================================

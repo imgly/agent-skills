@@ -38,7 +38,7 @@
  *   - Returns: Promise<string> - Blob URL that can be used with engine
  *
  * @see https://img.ly/docs/cesdk/js/actions-6ch24x
- * @see https://img.ly/docs/cesdk/js/export-save-publish/export/overview-9ed3a8/
+ * @see https://img.ly/docs/cesdk/js/export/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
@@ -90,21 +90,30 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // #endregion
 
   // #region Import Scene Action
-  // A single Import action. The engine inspects the file's content to tell a
-  // scene from an archive, so one picker handles .imgly files as well as the
-  // legacy .scene and .zip formats.
-  cesdk.actions.register('importScene', async () => {
-    const blobURL = await cesdk.utils.loadFile({
-      accept: '.imgly,.scene,.zip',
-      returnType: 'objectURL'
-    });
-    try {
-      await cesdk.engine.scene.load(blobURL);
-    } finally {
-      URL.revokeObjectURL(blobURL);
+  // Load a previously saved scene file
+  // Supports both .scene (JSON) and .zip (archive) formats
+  cesdk.actions.register('importScene', async ({ format = 'scene' }) => {
+    if (format === 'scene') {
+      // Load from .scene JSON file
+      const scene = await cesdk.utils.loadFile({
+        accept: '.scene',
+        returnType: 'text'
+      });
+      await cesdk.engine.scene.loadFromString(scene);
+    } else {
+      // Load from .zip archive file
+      const blobURL = await cesdk.utils.loadFile({
+        accept: '.zip',
+        returnType: 'objectURL'
+      });
+      try {
+        await cesdk.engine.scene.loadFromArchiveURL(blobURL);
+      } finally {
+        URL.revokeObjectURL(blobURL);
+      }
     }
 
-    // Reset zoom to show the first page after import
+    // Zoom to fit the first page after loading
     await cesdk.actions.run('zoom.toPage', { page: 'first' });
   });
   // #endregion
@@ -128,14 +137,11 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // ============================================================================
 
   // #region Export Video Action
-  // Export the timeline as an MP4 video file.
-  // videoBitrate: 'Auto' derives a bounded bitrate from the resolution/framerate.
-  // It is recommended over the default 'System' mode. Pass a number (bits/sec)
-  // instead for an explicit bitrate.
+  // Export the timeline as an MP4 video file
+  // Uses default export settings (30fps, 0.85 quality)
   cesdk.actions.register('exportVideo', async () => {
     const { blobs, options } = await cesdk.utils.export({
-      mimeType: 'video/mp4',
-      videoBitrate: 'Auto'
+      mimeType: 'video/mp4'
     });
     await cesdk.utils.downloadFile(blobs[0], options.mimeType);
   });
@@ -145,10 +151,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // Generic export action supporting multiple formats
   // Used by the UI for exporting with custom options
   cesdk.actions.register('exportDesign', async (exportOptions) => {
-    const { blobs, options } = await cesdk.utils.export({
-      videoBitrate: 'Auto',
-      ...exportOptions
-    });
+    const { blobs, options } = await cesdk.utils.export(exportOptions);
     await cesdk.utils.downloadFile(blobs[0], options.mimeType);
   });
   // #endregion
@@ -188,7 +191,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // #region Share Action
   // Share video using the Web Share API or fallback to download
   // cesdk.actions.register('share', async () => {
-  //   const { blobs } = await cesdk.utils.export({ mimeType: 'video/mp4', videoBitrate: 'Auto' });
+  //   const { blobs } = await cesdk.utils.export({ mimeType: 'video/mp4' });
   //   const file = new File([blobs[0]], 'video.mp4', { type: 'video/mp4' });
   //
   //   if (navigator.share && navigator.canShare({ files: [file] })) {

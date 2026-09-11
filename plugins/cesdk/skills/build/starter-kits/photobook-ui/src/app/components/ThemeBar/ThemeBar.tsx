@@ -1,5 +1,5 @@
 import AdjustmentsBar from '../../ui/AdjustmentsBar/AdjustmentsBar';
-import { DEMO_ASSETS_BASE_URL } from '../../contexts/EditorContext';
+import { caseAssetPath } from '../../util';
 import classes from './ThemeBar.module.css';
 
 export const ALL_THEMES = [
@@ -27,15 +27,12 @@ export const ALL_THEMES = [
   id,
   label: `${id} Theme`,
   asset: {
-    light: `${DEMO_ASSETS_BASE_URL}/themes/${id}-bg-light.svg`,
-    dark: `${DEMO_ASSETS_BASE_URL}/themes/${id}-bg-dark.svg`,
+    light: caseAssetPath(`/themes/${id}-bg-light.svg`),
+    dark: caseAssetPath(`/themes/${id}-bg-dark.svg`),
     ...rest
   },
   Thumb: (
-    <img
-      src={`${DEMO_ASSETS_BASE_URL}/themes/${id}-preview.png`}
-      alt={`${id} Theme`}
-    />
+    <img src={caseAssetPath(`/themes/${id}-preview.png`)} alt={`${id} Theme`} />
   )
 }));
 

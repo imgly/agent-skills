@@ -10,16 +10,6 @@
  * npm install @imgly/idml-importer
  * ```
  *
- * To import embedded PDF and Adobe Illustrator (`.ai`) content inside IDML
- * files as editable CE.SDK blocks, also install `@imgly/pdf-importer` and
- * pass `createPdfEmbeddedImporter(PDFParser)` in `embeddedImporters`
- * (see the `importIdmlFile` implementation below). Without the adapter,
- * embedded PDFs are replaced with placeholder images.
- *
- * ```bash
- * npm install @imgly/pdf-importer
- * ```
- *
  * ## Usage
  *
  * ```typescript
@@ -31,24 +21,19 @@
  * });
  *
  * // Load into editor
- * await cesdk.load(result.sceneArchiveUrl);
+ * await cesdk.loadFromArchiveURL(result.sceneArchiveUrl);
  *
  * // Clean up when done (at app level)
  * URL.revokeObjectURL(result.imageUrl);
  * URL.revokeObjectURL(result.sceneArchiveUrl);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/open-the-editor/import-design/from-indesign-ba3988/
+ * @see https://img.ly/docs/cesdk/js/features/import-indesign/
  */
 
 import CreativeEngine from '@cesdk/engine';
-import {
-  IDMLParser,
-  addGfontsAssetLibrary,
-  createPdfEmbeddedImporter
-} from '@imgly/idml-importer';
+import { IDMLParser, addGfontsAssetLibrary } from '@imgly/idml-importer';
 import type { LogMessage } from '@imgly/idml-importer';
-import { PDFParser } from '@imgly/pdf-importer';
 
 /**
  * Configuration options for IDML import.
@@ -134,17 +119,12 @@ export async function importIdmlFile(
       return domParser.parseFromString(xmlString, 'text/xml');
     };
 
-    // Parse the IDML file. Registering the PDF embedded-importer adapter
-    // makes any <PDF> / .ai content inside the IDML import as editable
-    // CE.SDK blocks via @imgly/pdf-importer.
+    // Parse the IDML file
     const parser = await IDMLParser.fromFile(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       engine as any,
       file,
-      xmlParser,
-      {
-        embeddedImporters: [createPdfEmbeddedImporter(PDFParser)]
-      }
+      xmlParser
     );
 
     const parseResult = await parser.parse();

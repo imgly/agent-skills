@@ -18,7 +18,7 @@ Add synchronized captions to video projects using CE.SDK's caption system, with 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-add-captions-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-create-video-add-captions-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-add-captions-browser/)
 
 Captions in CE.SDK follow a hierarchy: **Page → CaptionTrack → Caption blocks**. Each caption has text, timing (time offset and duration), and styling properties. Captions appear and disappear based on their timing, synchronized with video playback.
 
@@ -172,7 +172,7 @@ class Example implements EditorPlugin {
     // Apply a caption preset for consistent styling
     // Caption presets provide pre-configured styles (fonts, colors, backgrounds)
     const captionPresetsSourceId = 'ly.img.caption.presets';
-    const comicPresetId = 'ly.img.caption.presets.comic';
+    const comicPresetId = '//ly.img.caption.presets/comic';
 
     // Fetch the preset asset
     const comicPreset = await engine.asset.fetchAsset(
@@ -380,7 +380,7 @@ The fastest way to style captions is using presets. Presets provide pre-configur
     // Apply a caption preset for consistent styling
     // Caption presets provide pre-configured styles (fonts, colors, backgrounds)
     const captionPresetsSourceId = 'ly.img.caption.presets';
-    const comicPresetId = 'ly.img.caption.presets.comic';
+    const comicPresetId = '//ly.img.caption.presets/comic';
 
     // Fetch the preset asset
     const comicPreset = await engine.asset.fetchAsset(

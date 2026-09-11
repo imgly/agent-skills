@@ -18,7 +18,7 @@ Professional photo editing for your web app—crop, filter, adjust, and remove b
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-photo-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/starterkit-photo-editor/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-photo-editor/)
 
 ***
 
@@ -26,7 +26,7 @@ Professional photo editing for your web app—crop, filter, adjust, and remove b
 
 This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v22+** with npm – [Download](https://nodejs.org/)
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list
 
@@ -364,13 +364,13 @@ CE.SDK offers multiple ways to load content into the editor. Choose the method t
 await cesdk.createFromImage('https://example.com/photo.jpg');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.load('https://example.com/template.zip');
+await cesdk.loadFromArchiveURL('https://example.com/template.zip');
 
 // Create a blank canvas - starts with an empty design scene
 await cesdk.actions.run('scene.create');
 
 // Load from a scene file - restores a scene from JSON
-await cesdk.load('https://example.com/scene.json');
+await cesdk.loadFromURL('https://example.com/scene.json');
 ```
 
 The `createFromImage()` method is ideal for photo editing workflows, as it automatically creates a scene sized to the image dimensions.
@@ -412,8 +412,8 @@ Actions are functions that handle user interactions like exporting designs, savi
 
 - `exportDesign` – Export the current design to PNG, JPEG, PDF, or other formats
 - `saveScene` – Save the scene as a JSON string for later editing
-- `importScene` – Import a previously saved scene (`.imgly` or `.scene`)
-- `exportScene` – Export the scene as an `.imgly` file, either the scene alone or an archive with all assets
+- `importScene` – Import a previously saved scene (supports `.scene` and `.cesdk` formats)
+- `exportScene` – Export the scene as a JSON file or `.cesdk` archive with all assets
 - `uploadFile` – Handle file uploads with progress tracking
 
 Use `cesdk.actions.run()` to execute any action:

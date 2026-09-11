@@ -3,7 +3,7 @@
  */
 import classNames from 'classnames';
 import { useState } from 'react';
-import { DEMO_ASSETS_BASE_URL } from '../FileSelection/FileSelection';
+import { resolveAssetPath } from '../resolveAssetPath';
 import classes from './UploadZone.module.css';
 
 interface UploadZoneProps {
@@ -78,7 +78,7 @@ export function UploadZone({
       onDrop={handleDrop}
     >
       <img
-        src={`${DEMO_ASSETS_BASE_URL}/icons/upload.svg`}
+        src={resolveAssetPath('/icons/upload.svg')}
         alt="Upload"
         className={classes.uploadIcon}
       />

@@ -18,7 +18,7 @@ Rotate video elements to any angle using radians or degrees, with precise progra
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-transform-rotate-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-create-video-transform-rotate-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-video-transform-rotate-browser/)
 
 Rotation in CE.SDK occurs around the block's center point. All rotation values use radians, where `Math.PI` equals 180 degrees. Positive values rotate counterclockwise, negative values rotate clockwise.
 
@@ -291,7 +291,7 @@ Verify the block exists in the scene and is not a page block. Check if rotation 
 
 ### Rotation Handle Missing
 
-Check if rotation handles are hidden globally via `controlGizmo/rotateHandlesVisibility` setting. Verify the `'layer/rotate'` scope is enabled for the block.
+Check if rotation handles are hidden globally via `controlGizmo/showRotateHandles` setting. Verify the `'layer/rotate'` scope is enabled for the block.
 
 ### Unexpected Rotation Direction
 

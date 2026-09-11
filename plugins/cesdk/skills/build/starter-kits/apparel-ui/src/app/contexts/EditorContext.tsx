@@ -11,10 +11,6 @@ import { hexToRgba } from '../../imgly/ColorUtilities';
 import { resolveAssetPath } from '../../imgly/resolveAssetPath';
 import { useSinglePageMode } from './SinglePageModeContext';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
-
 export const ALL_STEPS = ['edit', 'preview'] as const;
 type Step = (typeof ALL_STEPS)[number];
 interface EditorContextType {
@@ -41,16 +37,13 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       if (engineIsLoaded) {
         setEnabled(false);
         setSceneIsLoaded(false);
-        await engine.scene.load(resolveAssetPath('/kiosk.scene'));
+        await engine.scene.loadFromURL(resolveAssetPath('/kiosk.scene'));
         const pages = engine.scene.getPages();
         setCurrentPageBlockId(pages[0]);
         setEnabled(true);
         // Wait for zoom to finish
         await new Promise((resolve) => setTimeout(resolve, 100));
         setSceneIsLoaded(true);
-        // START_HIDDEN_BLOCK
-        reportDemoPhase('ready');
-        // END_HIDDEN_BLOCK
       }
     };
     loadTemplate();

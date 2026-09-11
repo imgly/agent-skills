@@ -90,7 +90,7 @@ src/
 
 ## Prerequisites
 
-- **Node.js v22+** with npm - [Download](https://nodejs.org/)
+- **Node.js v20+** with npm - [Download](https://nodejs.org/)
 - **Supported browsers** - Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 
 ## Troubleshooting
@@ -104,7 +104,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Background Removal Plugin Documentation](https://img.ly/docs/cesdk/js/edit-image/remove-bg-9dfcf7/).
+For complete integration guides and API reference, visit the [Background Removal Plugin Documentation](https://img.ly/docs/cesdk/js/plugins/background-removal/).
 
 ## License
 

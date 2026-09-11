@@ -8,8 +8,8 @@ Use the CE.SDK headless Server Mode to resize and scale design blocks without re
 
 ## Requirements
 
-- **Node.js 22** or newer
-- A CE.SDK server package: `npm install @cesdk/node@$UBQ_VERSION$` (WASM) or `npm install @cesdk/node-native@$UBQ_VERSION$` (native) — the engine API is identical
+- **Node.js 18** or newer
+- CE.SDK server package: `npm install @cesdk/node@$UBQ_VERSION$`
 
 ## What You’ll Learn
 
@@ -41,10 +41,11 @@ A value of `2.0`, for example, makes the block twice as large.
 <details>
   <summary>Test a sample file</summary>
 
-  1. Run `npm install @cesdk/node@$UBQ_VERSION$` (or `npm install @cesdk/node-native@$UBQ_VERSION$` for the native package) at the root of your project.
+  1. Run `npm install @cesdk/node@$UBQ_VERSION$` at the root of your project.
   2. Add credentials to `.env`:
      ```bash
      LICENSE_KEY="<your_license_key>"
+     CESDK_BASE_URL="https://cdn.img.ly/packages/imgly/cesdk-node/1.60.0/assets"
      ```
 
   ````
@@ -58,7 +59,8 @@ A value of `2.0`, for example, makes the block twice as large.
 
   async function run() {
     const engine = await CreativeEngine.init({
-      license: process.env.LICENSE_KEY
+      license: process.env.LICENSE_KEY,
+      baseURL: process.env.CESDK_BASE_URL
     });
 
     try {

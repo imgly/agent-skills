@@ -200,8 +200,8 @@ try {
   }
 
   // Save scene to .scene file
-  writeFileSync('output/scale-videos.imgly', sceneString);
-  console.log('✓ Scene saved to output/scale-videos.imgly');
+  writeFileSync('output/scale-videos.scene', sceneString);
+  console.log('✓ Scene saved to output/scale-videos.scene');
 
   // Log scale information to verify
   console.log('\n📊 Video scaling results:');
@@ -405,7 +405,7 @@ console.log('layer/resize scope enabled?', canResize);
 
 ## Save Scene
 
-Save the scene to a file. The scene can later be loaded again for further editing, or rendered to an MP4 video — the native `@cesdk/node-native` package exports video directly via `engine.block.exportVideo()`, while the WASM-based `@cesdk/node` package requires the CE.SDK Renderer for video export:
+Save the scene to a file. The scene can later be loaded in a browser environment or rendered with the CE.SDK Renderer for full video export:
 
 ```typescript highlight-export
   // Save the scene to preserve the scaled videos
@@ -422,8 +422,8 @@ Save the scene to a file. The scene can later be loaded again for further editin
   }
 
   // Save scene to .scene file
-  writeFileSync('output/scale-videos.imgly', sceneString);
-  console.log('✓ Scene saved to output/scale-videos.imgly');
+  writeFileSync('output/scale-videos.scene', sceneString);
+  console.log('✓ Scene saved to output/scale-videos.scene');
 
   // Log scale information to verify
   console.log('\n📊 Video scaling results:');

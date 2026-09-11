@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Node.js documentation. For a complete overview, see the [Node.js Documentation Index](https://img.ly/docs/cesdk/node.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Dynamic Content](./create-templates/add-dynamic-content.md) > [Set Editing Constraints](./create-templates/add-dynamic-content/set-editing-constraints.md)
+**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Insert Dynamic Content](./create-templates/add-dynamic-content.md) > [Set Editing Constraints](./create-templates/add-dynamic-content/set-editing-constraints.md)
 
 ---
 
@@ -329,10 +329,10 @@ try {
 
   // Save scene to file
   const sceneData = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/constrained-scene.imgly`, sceneData);
+  writeFileSync(`${outputDir}/constrained-scene.scene`, sceneData);
 
   // eslint-disable-next-line no-console
-  console.log('✓ Scene saved to output/constrained-scene.imgly');
+  console.log('✓ Scene saved to output/constrained-scene.scene');
   // eslint-disable-next-line no-console
   console.log('  All scope constraints are preserved in the scene file');
 
@@ -362,7 +362,7 @@ Bottom row:
 Note: Global scopes are set to 'Defer' to respect block-level settings.
 
 Files created:
-- output/constrained-scene.imgly (scene with constraints)
+- output/constrained-scene.scene (scene with constraints)
 - output/editing-constraints-result.png (visual result)
   `);
 } finally {
@@ -660,10 +660,10 @@ Scope constraints are preserved when saving scenes:
 
   // Save scene to file
   const sceneData = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/constrained-scene.imgly`, sceneData);
+  writeFileSync(`${outputDir}/constrained-scene.scene`, sceneData);
 
   // eslint-disable-next-line no-console
-  console.log('✓ Scene saved to output/constrained-scene.imgly');
+  console.log('✓ Scene saved to output/constrained-scene.scene');
   // eslint-disable-next-line no-console
   console.log('  All scope constraints are preserved in the scene file');
 ```

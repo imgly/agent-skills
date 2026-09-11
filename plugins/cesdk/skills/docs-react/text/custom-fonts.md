@@ -6,7 +6,7 @@
 
 Load and configure custom fonts in CE.SDK to match brand guidelines or provide users with a curated font selection.
 
-![Custom Fonts example showing the typeface library panel with custom typefaces](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
+![Custom Fonts example showing the font dropdown with custom typefaces](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
 > **Reading time:** 10 minutes
 >
@@ -18,7 +18,7 @@ Load and configure custom fonts in CE.SDK to match brand guidelines or provide u
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-fonts-typefaces-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-fonts-typefaces-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-fonts-typefaces-browser/)
 
 CE.SDK includes a set of default typefaces, but you can customize the available fonts by creating custom asset sources with your own typeface definitions. Fonts are managed through the asset system and displayed in the editor UI via the typeface library.
 
@@ -91,19 +91,13 @@ class CustomFontsExample implements EditorPlugin {
 
     await engine.asset.addAssetToSource(sourceId, {
       id: 'orbitron',
-      meta: { languages: 'latin' },
       payload: {
         typeface: orbitronTypeface
       }
     });
 
-    // Give the custom source a readable name in the typeface library's source filter
-    cesdk.i18n.setTranslations({
-      en: { 'libraries.my-custom-typefaces.label': 'Custom Fonts' }
-    });
-
     cesdk.ui.updateAssetLibraryEntry('ly.img.typefaces', {
-      sourceIds: ['ly.img.typeface', 'my-custom-typefaces']
+      sourceIds: ['my-custom-typefaces']
     });
 
     await cesdk.actions.run('scene.create', {
@@ -175,7 +169,7 @@ interface Typeface {
  * Builds a full URL for a font file served from the public directory
  */
 function buildFontUri(filename: string): string {
-  return `${window.location.origin}${import.meta.env.BASE_URL}${filename}`;
+  return `${window.location.protocol}//${window.location.host}/${filename}`;
 }
 
 /**
@@ -270,14 +264,13 @@ We first create the source with `engine.asset.addLocalSource()`, then add typefa
 
     await engine.asset.addAssetToSource(sourceId, {
       id: 'orbitron',
-      meta: { languages: 'latin' },
       payload: {
         typeface: orbitronTypeface
       }
     });
 ```
 
-The `name` property defines how the typeface appears in the typeface library:
+The `name` property defines how the typeface appears in the font dropdown:
 
 ```typescript highlight=highlight-typeface-name
 name: 'Orbitron',
@@ -304,42 +297,25 @@ fonts: [
 
 ## Update the Typeface Library
 
-After creating the custom typeface source, we update the typeface library entry to control which fonts appear in the editor's typeface library. Use `cesdk.ui.updateAssetLibraryEntry()` with the `ly.img.typefaces` entry ID.
+After creating the custom typeface source, we update the typeface library entry to control which fonts appear in the editor's font dropdown. Use `cesdk.ui.updateAssetLibraryEntry()` with the `ly.img.typefaces` entry ID.
 
-To show your custom fonts alongside the default typefaces, include both source IDs:
+To replace the default typefaces entirely with your custom fonts:
 
 ```typescript highlight=highlight-update-library
-cesdk.ui.updateAssetLibraryEntry('ly.img.typefaces', {
-  sourceIds: ['ly.img.typeface', 'my-custom-typefaces']
-});
-```
-
-Keeping the default `ly.img.typeface` source next to your own shows both in the panel and is what surfaces the library's source and language filters.
-
-To replace the default typefaces entirely with only your custom fonts, list just your source:
-
-```typescript
 cesdk.ui.updateAssetLibraryEntry('ly.img.typefaces', {
   sourceIds: ['my-custom-typefaces']
 });
 ```
 
-The order in `sourceIds` determines the display order in the UI.
-
-## Group Typefaces by Language
-
-Each typeface asset declares the subsets it covers with a `meta.languages` string—a comma-separated list of subset names. The Orbitron asset created earlier uses `'latin'`. The typeface library reads `meta.languages` to populate its **language filter**, letting users narrow the list to the subset they need.
-
-Built-in subsets such as `latin`, `cyrillic`, `greek`, and `hebrew` show localized labels in the filter, and other tokens appear as written. A typeface without `meta.languages` still appears by default. It only drops out once a user selects a specific subset in the filter, so set `meta.languages` on your custom fonts to keep them discoverable.
-
-By default each source renders as a flat, filterable list. To show a grouped overview with one section per subset instead, enable `showGroupOverview` on the entry:
+To extend the default typefaces (keeping them alongside your custom fonts), include both source IDs:
 
 ```typescript
 cesdk.ui.updateAssetLibraryEntry('ly.img.typefaces', {
-  sourceIds: ['ly.img.typeface', 'my-custom-typefaces'],
-  showGroupOverview: true
+  sourceIds: ['ly.img.typeface', 'my-custom-typefaces']
 });
 ```
+
+The order in `sourceIds` determines the display order in the UI.
 
 ## Apply Fonts Programmatically
 
@@ -414,7 +390,7 @@ Here's a complete example that creates a text block and applies a custom font:
 | ------ | ------- |
 | `engine.asset.addLocalSource(sourceId)` | Create a local asset source for custom typefaces |
 | `engine.asset.addAssetToSource(sourceId, asset)` | Add a typeface asset to the source |
-| `cesdk.ui.updateAssetLibraryEntry(entryId, options)` | Update which sources appear in the typeface library |
+| `cesdk.ui.updateAssetLibraryEntry(entryId, options)` | Update which sources appear in the font dropdown |
 | `engine.block.setFont(block, fontUri, typeface)` | Set font for entire text block, resets formatting |
 | `engine.block.setTypeface(block, typeface, from, to)` | Apply typeface to text range, preserves formatting |
 | `engine.block.getTypeface(block)` | Get the base typeface of a text block |

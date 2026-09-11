@@ -3,7 +3,7 @@
  * via CSS mask-image technique.
  */
 
-import { DEMO_ASSETS_BASE_URL } from '../constants';
+import { resolveAssetPath } from '../resolveAssetPath';
 import styles from './Icon.module.css';
 
 interface IconProps {
@@ -12,7 +12,7 @@ interface IconProps {
 }
 
 export function Icon({ name, className = '' }: IconProps) {
-  const iconUrl = `${DEMO_ASSETS_BASE_URL}/icons/${name}.svg`;
+  const iconUrl = resolveAssetPath(`/icons/${name}.svg`);
 
   return (
     <span

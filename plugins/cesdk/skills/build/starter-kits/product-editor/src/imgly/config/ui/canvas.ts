@@ -65,7 +65,6 @@ export function setupCanvas(cesdk: CreativeEditorSDK): void {
       // Content Editing
       // ============================
       'ly.img.text.edit.canvasMenu',
-      'ly.img.text.styles.canvasMenu',
       'ly.img.replace.canvasMenu',
       'ly.img.separator',
 

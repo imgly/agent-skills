@@ -49,14 +49,11 @@ The key feature of this starterkit is the custom HTML5 export panel that provide
 
 ```typescript
 // The export panel is registered as a custom panel
-cesdk.ui.registerPanel(
-  '//ly.img.panel/html5-export',
-  ({ builder, engine, state }) => {
-    // Format selection (Embedded single HTML vs External with separate assets)
-    // Text rendering mode (HTML text vs Vectorized)
-    // Page index selection for multi-page scenes
-  }
-);
+cesdk.ui.registerPanel('//ly.img.panel/html5-export', ({ builder, engine, state }) => {
+  // Format selection (Embedded single HTML vs External with separate assets)
+  // Text rendering mode (HTML text vs Vectorized)
+  // Page index selection for multi-page scenes
+});
 
 // Navigation bar button to open the export panel
 cesdk.ui.registerComponent(
@@ -88,7 +85,7 @@ The export panel supports two HTML5 output formats:
 cesdk.ui.setTheme('dark'); // 'light' | 'dark' | 'system'
 ```
 
-See [Theming](https://img.ly/docs/cesdk/js/user-interface/appearance/theming-4b0938/) for custom color schemes and styling.
+See [Theming](https://img.ly/docs/cesdk/web/ui-styling/theming/) for custom color schemes and styling.
 
 ### Localization
 
@@ -99,7 +96,7 @@ cesdk.i18n.setTranslations({
 cesdk.i18n.setLocale('de');
 ```
 
-See [Localization](https://img.ly/docs/cesdk/js/user-interface/localization-508e20/) for supported languages and translation keys.
+See [Localization](https://img.ly/docs/cesdk/web/ui-styling/localization/) for supported languages and translation keys.
 
 ## Architecture
 
@@ -138,51 +135,22 @@ src/
 
 ## Prerequisites
 
-- **Node.js v22+** with npm - [Download](https://nodejs.org/)
+- **Node.js v20+** with npm - [Download](https://nodejs.org/)
 - **Supported browsers** - Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 
 ## Troubleshooting
 
-| Issue                | Solution                                        |
-| -------------------- | ----------------------------------------------- |
-| Editor doesn't load  | Verify assets are accessible at `baseURL`       |
-| Assets don't appear  | Check `public/assets/` directory exists         |
-| Watermark appears    | Add your license key                            |
-| Export fails         | Check browser console for CORS or memory errors |
-| Preview doesn't open | Ensure pop-ups are not blocked by your browser  |
+| Issue | Solution |
+|-------|----------|
+| Editor doesn't load | Verify assets are accessible at `baseURL` |
+| Assets don't appear | Check `public/assets/` directory exists |
+| Watermark appears | Add your license key |
+| Export fails | Check browser console for CORS or memory errors |
+| Preview doesn't open | Ensure pop-ups are not blocked by your browser |
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [HTML5 Export Documentation](https://img.ly/docs/cesdk/js/export-save-publish/export/to-html5-76d2ab/).
-
-## Demo Assets
-
-The demo assets for this starter kit load from the IMG.LY CDN by default —
-nothing to configure. If you want to own them — edit them, meet compliance
-requirements, or remove the CDN dependency for production — eject them
-(the archive contains only this kit's files):
-
-```bash
-# Download this starter kit's demo assets
-curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/starterkit-html5-ads-exporter/demo-assets.zip
-unzip demo-assets.zip -d demo-assets
-rm demo-assets.zip
-```
-
-Upload the extracted files to your own server or CDN, then point the app
-at them via `.env`:
-
-```bash
-VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
-```
-
-The default URL is the `DEMO_ASSETS_BASE_URL` constant in `src/index.ts` if you
-prefer changing it in code.
-
-The demo assets are intended for development and prototyping — replace
-them with your own content or licensed stock assets before shipping to
-production (see `DEMO-ASSETS-NOTICE.txt` in the download). This applies in
-particular to media such as music tracks and stock imagery.
+For complete integration guides and API reference, visit the [HTML5 Export Documentation](https://img.ly/docs/cesdk/js/export/to-html5/).
 
 ## License
 

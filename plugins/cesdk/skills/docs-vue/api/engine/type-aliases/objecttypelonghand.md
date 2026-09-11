@@ -9,8 +9,7 @@ type ObjectTypeLonghand =
   | FillTypeLonghand
   | EffectTypeLonghand
   | BlurTypeLonghand
-  | AnimationTypeLonghand
-  | TransitionTypeLonghand;
+  | AnimationTypeLonghand;
 ```
 
 The longhand block type IDs for all blocks types in the Creative Engine. Those are the Types returned by the

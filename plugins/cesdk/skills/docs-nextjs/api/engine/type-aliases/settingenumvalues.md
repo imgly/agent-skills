@@ -7,10 +7,6 @@ type SettingEnumValues =
   | TouchPinchAction
   | TouchRotateAction
   | CameraClampingOvershootMode
-  | ControlGizmoMoveHandleVisibility
-  | ControlGizmoResizeHandlesVisibility
-  | ControlGizmoScaleHandlesVisibility
-  | ControlGizmoRotateHandlesVisibility
   | DoubleClickSelectionMode
   | ColorPickerColorMode
   | TimelineTrackVisibility

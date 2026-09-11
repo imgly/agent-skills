@@ -141,9 +141,9 @@ try {
 
   // Save the scene as a .scene file for later use or rendering
   const sceneString = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/scene-with-audio.imgly`, sceneString);
+  writeFileSync(`${outputDir}/scene-with-audio.scene`, sceneString);
 
-  console.log('\nScene saved to output/scene-with-audio.imgly');
+  console.log('\nScene saved to output/scene-with-audio.scene');
   console.log(
     'The scene contains audio configuration that can be rendered using the CE.SDK Renderer.'
   );
@@ -317,7 +317,7 @@ Always destroy blocks that are no longer needed to prevent memory leaks, especia
 
 ## Exporting Results
 
-Save the scene configuration for later use or rendering. In headless mode, export the scene as a `.scene` file that can be loaded and rendered later.
+Save the scene configuration for later use or rendering. In headless mode, export the scene as a `.scene` file that can be loaded and rendered using the CE.SDK Renderer.
 
 ```typescript highlight=highlight-export
   // Export the scene to a file
@@ -328,15 +328,15 @@ Save the scene configuration for later use or rendering. In headless mode, expor
 
   // Save the scene as a .scene file for later use or rendering
   const sceneString = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/scene-with-audio.imgly`, sceneString);
+  writeFileSync(`${outputDir}/scene-with-audio.scene`, sceneString);
 
-  console.log('\nScene saved to output/scene-with-audio.imgly');
+  console.log('\nScene saved to output/scene-with-audio.scene');
   console.log(
     'The scene contains audio configuration that can be rendered using the CE.SDK Renderer.'
   );
 ```
 
-The exported scene contains all audio configuration including source URIs, time positions, durations, and volume levels. To produce the final video with audio on the server, export MP4 directly with the native `@cesdk/node-native` package or use the CE.SDK Renderer. Note: with `@cesdk/node-native` on Linux and Windows, export of scenes with standalone audio blocks does not finish yet — see the [video limitations guide](./create-video/limitations.md).
+The exported scene contains all audio configuration including source URIs, time positions, durations, and volume levels. Use the CE.SDK Renderer for server-side video rendering with audio.
 
 ## Troubleshooting
 
@@ -350,20 +350,20 @@ The exported scene contains all audio configuration including source URIs, time 
 
 ## API Reference
 
-| Method                                      | Description                    |
-| ------------------------------------------- | ------------------------------ |
-| `block.create('audio')`                     | Create a new audio block       |
-| `block.setString(id, 'audio/fileURI', uri)` | Set the audio source file      |
-| `block.appendChild(parent, child)`          | Append audio to page           |
-| `block.setTimeOffset(id, seconds)`          | Set when audio starts playing  |
-| `block.setDuration(id, seconds)`            | Set audio playback duration    |
-| `block.setVolume(id, volume)`               | Set volume (0.0 to 1.0)        |
-| `block.getVolume(id)`                       | Get current volume level       |
-| `block.getAVResourceTotalDuration(id)`      | Get total audio file duration  |
-| `block.forceLoadAVResource(id)`             | Force load audio resource      |
-| `block.findByType('audio')`                 | Find all audio blocks in scene |
-| `block.destroy(id)`                         | Remove audio block             |
-| `scene.saveToString()`                      | Export scene as .scene file    |
+| Method                                      | Description                       |
+| ------------------------------------------- | --------------------------------- |
+| `block.create('audio')`                     | Create a new audio block          |
+| `block.setString(id, 'audio/fileURI', uri)` | Set the audio source file         |
+| `block.appendChild(parent, child)`          | Append audio to page              |
+| `block.setTimeOffset(id, seconds)`          | Set when audio starts playing |
+| `block.setDuration(id, seconds)`            | Set audio playback duration       |
+| `block.setVolume(id, volume)`               | Set volume (0.0 to 1.0)           |
+| `block.getVolume(id)`                       | Get current volume level          |
+| `block.getAVResourceTotalDuration(id)`      | Get total audio file duration     |
+| `block.forceLoadAVResource(id)`             | Force load audio resource         |
+| `block.findByType('audio')`                 | Find all audio blocks in scene    |
+| `block.destroy(id)`                         | Remove audio block                |
+| `scene.saveToString()`                      | Export scene as .scene file       |
 
 ## Audio Type
 
@@ -371,29 +371,23 @@ A block for playing audio content.
 
 This section describes the properties available for the **Audio Type** (`//ly.img.ubq/audio`) block type.
 
-| Property                          | Type     | Default    | Description                                                                                                                                                                                                                                                                                                                          |
-| --------------------------------- | -------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `audio/fileURI`                   | `String` | `""`       | A URI referencing an audio file.                                                                                                                                                                                                                                                                                                     |
-| `audio/totalDuration`             | `Double` | `"-"`      | The total duration of the audio file., *(read-only)*                                                                                                                                                                                                                                                                                 |
-| `contentFill/horizontalAlignment` | `Enum`   | `"Center"` | The horizontal alignment of the content fill inside the block. Only affects `Contain` and `Cover` fill modes; has no visible effect in `Crop` mode., Possible values: `"Left"`, `"Center"`, `"Right"`                                                                                                                                |
-| `contentFill/mode`                | `Enum`   | `"Cover"`  | Defines how content should be resized to fit its container., Possible values: `"Crop"`, `"Cover"`, `"Contain"`                                                                                                                                                                                                                       |
-| `contentFill/verticalAlignment`   | `Enum`   | `"Center"` | The vertical alignment of the content fill inside the block. Only affects `Contain` and `Cover` fill modes; has no visible effect in `Crop` mode., Possible values: `"Top"`, `"Center"`, `"Bottom"`                                                                                                                                  |
-| `playback/duration`               | `Double` | `null`     | The duration in seconds for which this block should be visible.                                                                                                                                                                                                                                                                      |
-| `playback/fadeIn/duration`        | `Double` | `0`        | Audio fade-in duration in seconds at the start of the block. 0 disables the fade-in.                                                                                                                                                                                                                                                 |
-| `playback/fadeIn/easing`          | `Enum`   | `"Linear"` | Easing curve of the audio fade-in., Possible values: `"Linear"`, `"EaseIn"`, `"EaseOut"`, `"EaseInOut"`, `"EaseInQuart"`, `"EaseOutQuart"`, `"EaseInOutQuart"`, `"EaseInQuint"`, `"EaseOutQuint"`, `"EaseInOutQuint"`, `"EaseInBack"`, `"EaseOutBack"`, `"EaseInOutBack"`, `"EaseInSpring"`, `"EaseOutSpring"`, `"EaseInOutSpring"`  |
-| `playback/fadeOut/duration`       | `Double` | `0`        | Audio fade-out duration in seconds at the end of the block. 0 disables the fade-out.                                                                                                                                                                                                                                                 |
-| `playback/fadeOut/easing`         | `Enum`   | `"Linear"` | Easing curve of the audio fade-out., Possible values: `"Linear"`, `"EaseIn"`, `"EaseOut"`, `"EaseInOut"`, `"EaseInQuart"`, `"EaseOutQuart"`, `"EaseInOutQuart"`, `"EaseInQuint"`, `"EaseOutQuint"`, `"EaseInOutQuint"`, `"EaseInBack"`, `"EaseOutBack"`, `"EaseInOutBack"`, `"EaseInSpring"`, `"EaseOutSpring"`, `"EaseInOutSpring"` |
-| `playback/looping`                | `Bool`   | `false`    | Whether the medium should start from the beginning again or should stop.                                                                                                                                                                                                                                                             |
-| `playback/muted`                  | `Bool`   | `false`    | Whether the audio is muted.                                                                                                                                                                                                                                                                                                          |
-| `playback/playing`                | `Bool`   | `false`    | A tag that can be set on elements for their playback time to be progressed.                                                                                                                                                                                                                                                          |
-| `playback/soloPlaybackEnabled`    | `Bool`   | `false`    | A tag for blocks where playback should progress while the scene is paused.                                                                                                                                                                                                                                                           |
-| `playback/speed`                  | `Float`  | `1`        | The playback speed multiplier.                                                                                                                                                                                                                                                                                                       |
-| `playback/time`                   | `Double` | `0`        | The current playback time of the block contents in seconds.                                                                                                                                                                                                                                                                          |
-| `playback/timeOffset`             | `Double` | `0`        | The time in seconds relative to its parent at which this block should first appear.                                                                                                                                                                                                                                                  |
-| `playback/trimLength`             | `Double` | `"-"`      | The relative duration of the clip for playback.                                                                                                                                                                                                                                                                                      |
-| `playback/trimOffset`             | `Double` | `"-"`      | The time within the clip at which playback should begin, in seconds.                                                                                                                                                                                                                                                                 |
-| `playback/volume`                 | `Float`  | `1`        | Audio volume with a range of \[0, 1].                                                                                                                                                                                                                                                                                                 |
-| `selected`                        | `Bool`   | `false`    | Indicates if the block is currently selected.                                                                                                                                                                                                                                                                                        |
+| Property                       | Type     | Default   | Description                                                                                                                                 |
+| ------------------------------ | -------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `audio/fileURI`                | `String` | `""`      | A URI referencing an audio file.                                                                                                            |
+| `audio/totalDuration`          | `Double` | `"-"`     | The total duration of the audio file., *(read-only)*                                                                                        |
+| `contentFill/mode`             | `Enum`   | `"Cover"` | Defines how content should be resized to fit its container (e.g., Crop, Cover, Contain)., Possible values: `"Crop"`, `"Cover"`, `"Contain"` |
+| `playback/duration`            | `Double` | `null`    | The duration in seconds for which this block should be visible.                                                                             |
+| `playback/looping`             | `Bool`   | `false`   | Whether the medium should start from the beginning again or should stop.                                                                    |
+| `playback/muted`               | `Bool`   | `false`   | Whether the audio is muted.                                                                                                                 |
+| `playback/playing`             | `Bool`   | `false`   | A tag that can be set on elements for their playback time to be progressed.                                                                 |
+| `playback/soloPlaybackEnabled` | `Bool`   | `false`   | A tag for blocks where playback should progress while the scene is paused.                                                                  |
+| `playback/speed`               | `Float`  | `1`       | The playback speed multiplier.                                                                                                              |
+| `playback/time`                | `Double` | `0`       | The current playback time of the block contents in seconds.                                                                                 |
+| `playback/timeOffset`          | `Double` | `0`       | The time in seconds relative to its parent at which this block should first appear.                                                         |
+| `playback/trimLength`          | `Double` | `"-"`     | The relative duration of the clip for playback.                                                                                             |
+| `playback/trimOffset`          | `Double` | `"-"`     | The time within the clip at which playback should begin, in seconds.                                                                        |
+| `playback/volume`              | `Float`  | `1`       | Audio volume with a range of \[0, 1].                                                                                                        |
+| `selected`                     | `Bool`   | `false`   | Indicates if the block is currently selected.                                                                                               |
 
 
 

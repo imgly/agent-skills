@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { zoomToSelectedText } from '../../imgly/CreativeEngineUtils';
 import { useEngine } from './EngineContext';
-import { useEditMode } from '../hooks/UseEditMode';
+import { useEditMode } from '../../imgly/UseEditMode';
 
 interface SinglePageModeContextType {
   // The sorted page ids of the scene.

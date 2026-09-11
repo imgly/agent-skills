@@ -5,7 +5,7 @@
  * content-aware resizing algorithm to intelligently adapt designs to
  * different aspect ratios and dimensions.
  *
- * @see https://img.ly/docs/cesdk/js/automation/auto-resize-4c2d58/
+ * @see https://img.ly/docs/cesdk/js/block-layout/content-aware-resize-2eb7ee/
  */
 
 import type { VariantBlob, ResizeOptions } from './types';
@@ -49,7 +49,7 @@ export async function resize(options: ResizeOptions): Promise<VariantBlob[]> {
     let index = 0;
     for (const size of sizes) {
       // Load source scene fresh for each variant
-      await engine.scene.load(scene);
+      await engine.scene.loadFromString(scene);
 
       // Apply content-aware resizing
       const pages = engine.scene.getPages();
@@ -74,6 +74,6 @@ export async function resize(options: ResizeOptions): Promise<VariantBlob[]> {
     return variants;
   } finally {
     // Restore original scene
-    await engine.scene.load(originalScene);
+    await engine.scene.loadFromString(originalScene);
   }
 }

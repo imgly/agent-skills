@@ -16,7 +16,7 @@ Apply template content to an existing scene while preserving your canvas dimensi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-apply-template-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-use-templates-apply-template-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-use-templates-apply-template-browser/)
 
 ![Apply a Template](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -67,9 +67,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(
-      new UploadAssetSources({ include: ['ly.img.image.upload'] })
-    );
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -90,9 +88,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    await cesdk.actions.run('scene.create', {
-      page: { width: 1080, height: 1920, unit: 'Pixel' }
-    });
+    await cesdk.actions.run('scene.create', { page: { width: 1080, height: 1920, unit: 'Pixel' } });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
@@ -147,7 +143,7 @@ Use `applyTemplateFromURL()` or `applyTemplateFromString()` when you want to:
 - **Standardize output dimensions**: Generate content with fixed sizes (e.g., social media formats, print sizes)
 - **Batch process with templates**: Apply various templates to a pre-configured scene without dimension drift
 
-Use `engine.scene.load()` when you need the template's original dimensions.
+Use `loadFromString()` or `loadFromURL()` when you need the template's original dimensions.
 
 **Key distinction**: Loading replaces everything; applying preserves dimensions and merges content.
 
@@ -163,9 +159,7 @@ We first create a scene with specific dimensions. These dimensions will be prese
     await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(
-      new UploadAssetSources({ include: ['ly.img.image.upload'] })
-    );
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -186,9 +180,7 @@ We first create a scene with specific dimensions. These dimensions will be prese
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    await cesdk.actions.run('scene.create', {
-      page: { width: 1080, height: 1920, unit: 'Pixel' }
-    });
+    await cesdk.actions.run('scene.create', { page: { width: 1080, height: 1920, unit: 'Pixel' } });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];

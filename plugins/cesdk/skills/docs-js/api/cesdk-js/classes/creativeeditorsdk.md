@@ -97,16 +97,6 @@ Instance members that allow access to the underlying engine, user interface, and
 
 <details>
   <summary>
-    ### shortcuts
-
-    <br /><p>Register, list, and remove keyboard shortcuts.</p>
-  </summary>
-
-  ***
-</details>
-
-<details>
-  <summary>
     ### version
 
     <br /><p>The version of the Creative Editor SDK</p>
@@ -266,83 +256,6 @@ Methods for configuring SDK behavior, translations, and runtime settings.
 
   ```typescript
   resetEditor(): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### setEditorCompatibilityVersion()
-
-    <br /><p>Declares which CE.SDK generation this editor configuration was written
-    for, so upgrading CE.SDK does not change how an unchanged configuration
-    behaves.</p>
-  </summary>
-
-  Behaviour changes that would alter an existing configuration ship behind
-  a compatibility flag carrying the release it activates in. A
-  configuration only gets a change once it declares that release or newer,
-  so raising this value is how you adopt new behaviour — deliberately, and
-  separately from upgrading the package.
-
-  Configuration plugins call this right after `resetEditor()`, which clears
-  any previously declared generation along with the rest of the
-  configuration it replaces. The CE.SDK editor configurations do it for
-  you; declare it yourself only when you configure the editor without one
-  of them.
-
-  Only a declaration restores older behaviour. A configuration that does
-  not declare gets the current release's behaviour, so a kit written before
-  this API existed adopts it by declaring the release it was taken from.
-  Each call stores the version and runs its backfills, so call it once,
-  before your own setup: a later call runs them again over what you set in
-  between.
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `version` | `string` | A CE.SDK release such as `'1.81'` or `'1.81.0'`. |
-
-  #### Returns
-
-  `void`
-
-  #### Example
-
-  ```typescript
-  cesdk.setEditorCompatibilityVersion('1.81');
-  ```
-
-  #### Signature
-
-  ```typescript
-  setEditorCompatibilityVersion(version: string): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### getEditorCompatibilityVersion()
-
-    <br /><p>Returns the CE.SDK generation the active editor configuration declared
-    via [CreativeEditorSDK.setEditorCompatibilityVersion](./api/cesdk-js/classes/creativeeditorsdk.md), or <code>undefined</code> when
-    no configuration declared one.</p>
-  </summary>
-
-  #### Returns
-
-  `string`
-
-  The declared version, or `undefined`.
-
-  #### Signature
-
-  ```typescript
-  getEditorCompatibilityVersion(): string
   ```
 
   ***
@@ -666,33 +579,24 @@ and encoded scene data.
 
 <details>
   <summary>
-    ### load()
+    ### ~~load()~~
 
-    <br /><p>Load a scene from a scene string or from a URL to a scene or archive file.</p>
+    <br /><p>Load an encoded scene from the provided string.</p>
   </summary>
-
-  The input kind is detected automatically: serialized scene content is loaded directly, while a
-  URL is fetched and loaded as an archive or as a scene file depending on its content. This loads
-  `.imgly` files as well as the legacy `.scene` and `.zip` formats.
 
   #### Parameters
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `sceneOrURL` | `string` | A scene string previously created by `save`, or the URL of a scene or archive file. |
-  | `overrideEditorConfig?` | `boolean` | Whether to override editor configuration with settings and data from the scene file. Defaults to false. |
+  | `scene` | `string` | A string starting with UBQ1 and containing the encoded scene. |
 
   #### Returns
 
   `Promise`\<`number`>
 
-  a promise which resolves if the scene was successfully loaded.
+  #### Deprecated
 
-  #### Signature
-
-  ```typescript
-  load(sceneOrURL: string, overrideEditorConfig?: boolean): Promise<number>
-  ```
+  Use `loadFromString` instead.
 
   ***
 </details>
@@ -708,7 +612,7 @@ and encoded scene data.
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `scene` | `string` | An encoded scene string, as returned by `saveToString`. Treat it as opaque: the prefix is `UBQ1` when uncompressed and `UBQ2` when compressed. |
+  | `scene` | `string` | A string starting with UBQ1 and containing the encoded scene. |
   | `overrideEditorConfig?` | `boolean` | Whether to override editor configuration with settings and data from the scene file. Defaults to false. |
 
   #### Returns

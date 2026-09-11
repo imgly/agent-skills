@@ -81,6 +81,7 @@ const { MimeType } = CreativeEngine as any;
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your CE.SDK license key
+  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
 };
 
 // Initialize CE.SDK Engine
@@ -89,7 +90,7 @@ CreativeEngine.init(config).then(async engine => {
 
   try {
     // Load a scene from a URL
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene',
     );
 
@@ -140,6 +141,7 @@ const { MimeType } = CreativeEngine as any;
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your CE.SDK license key
+  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
 };
 
 // Initialize CE.SDK Engine
@@ -148,7 +150,7 @@ CreativeEngine.init(config).then(async engine => {
 
   try {
     // Load a scene from a URL
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene',
     );
 

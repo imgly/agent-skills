@@ -25,9 +25,11 @@ async function main(): Promise<void> {
   });
 
   try {
-    // Resolve asset sources from the engine's self-hosted baseURL.
-    const DEFAULT_ASSETS_URL = engine.getBaseURL();
-    const DEMO_ASSETS_URL = engine.getBaseURL();
+    // Versioned CDN URLs using the SDK package (recommended)
+    // For production, self-host these assets - see the Serve Assets guide
+    const PACKAGE_BASE = `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`;
+    const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/v4/`;
+    const DEMO_ASSETS_URL = `${PACKAGE_BASE}/demo/v3/`;
 
     // Load default asset sources (core editor components)
     await engine.asset.addLocalAssetSourceFromJSONURI(
@@ -150,7 +152,7 @@ async function main(): Promise<void> {
 main().catch(console.error);
 ```
 
-Register CE.SDK's default asset sources from your self-hosted asset library to populate the engine with shapes, stickers, filters, effects, fonts, images, and other media for server-side rendering.
+Load all asset sources from IMG.LY's CDN to populate your CE.SDK engine with shapes, stickers, filters, effects, fonts, images, and other media for server-side rendering.
 
 > **Reading time:** 5 minutes
 >
@@ -162,21 +164,21 @@ Register CE.SDK's default asset sources from your self-hosted asset library to p
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-default-assets-server-js)
 
-CE.SDK provides built-in asset sources for shapes, stickers, filters, effects, fonts, and sample media. This guide demonstrates registering all available asset sources from your self-hosted asset library and applying them to create a scene with a star shape, a sticker, and an image, then exporting to PNG.
+CE.SDK provides built-in asset sources for shapes, stickers, filters, effects, fonts, and sample media. This guide demonstrates loading all available asset sources from IMG.LY's CDN and applying them to create a scene with a star shape, a sticker, and an image, then exporting to PNG.
 
-> **Offline-first:** The Node.js packages (`@cesdk/node` and `@cesdk/node-native`) are offline-first and resolve assets from the local package or a location you host — they do not fetch the content library from the IMG.LY CDN. Download the asset library once and extract it, then point `baseURL` at it. See the [Serve Assets](./serve-assets.md) guide for instructions.
+> **Production Deployment:** The IMG.LY CDN is for development and prototyping only. For production, download and self-host assets from your own server. See the [Serve Assets](./serve-assets.md) guide for instructions.
 
 ## What Are Default and Demo Assets?
 
-CE.SDK ships two categories of asset sources you self-host and register with the engine:
+IMG.LY provides two categories of asset sources hosted on the IMG.LY CDN for development and prototyping:
 
 **Default Assets** are core editor components:
 
 | Source ID | Description |
 |-----------|-------------|
 | `ly.img.sticker` | Emojis, emoticons, decorations |
-| `ly.img.vector.shape` | Shapes: stars, arrows, polygons |
-| `ly.img.color.palette` | Default color palette |
+| `ly.img.vectorpath` | Shapes: stars, arrows, polygons |
+| `ly.img.colors.defaultPalette` | Default color palette |
 | `ly.img.filter.lut` | LUT-based color filters |
 | `ly.img.filter.duotone` | Duotone color effects |
 | `ly.img.effect` | Visual effects |
@@ -195,16 +197,16 @@ CE.SDK ships two categories of asset sources you self-host and register with the
 | `ly.img.audio` | Sample audio tracks |
 | `ly.img.template` | Design templates |
 | `ly.img.video.template` | Video templates |
-| `ly.img.text.components` | Text component presets |
+| `ly.img.textComponents` | Text component presets |
 
 ## Loading Assets from URL
 
-Use `addLocalAssetSourceFromJSONURI()` to register an asset source from its `content.json`. The Node.js packages are offline-first: they resolve assets relative to the engine's `baseURL` (your self-hosted assets), so no IMG.LY CDN is used at runtime.
+Use `addLocalAssetSourceFromJSONURI()` to load an asset source directly from a JSON URL:
 
 ```typescript
-const baseURL = engine.getBaseURL();
+const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets/v4/`;
 await engine.asset.addLocalAssetSourceFromJSONURI(
-  `${baseURL}ly.img.vector.shape/content.json`
+  `${baseURL}ly.img.vectorpath/content.json`
 );
 ```
 
@@ -219,19 +221,21 @@ const engine = await CreativeEngine.init({
 });
 ```
 
-## Point at Your Self-Hosted Assets
+## Versioned CDN URLs
 
-The Node.js packages resolve asset sources relative to the engine's `baseURL`. Self-host the asset library (extract `imgly-assets.zip`) and set `baseURL` on init — there is no IMG.LY CDN in the production path. See the [Serve Assets](./serve-assets.md) guide for the download and setup steps.
+Use the SDK version to construct versioned CDN URLs. This ensures assets are compatible with your SDK version. For production deployments, see the [Serve Assets](./serve-assets.md) guide to self-host assets.
 
-```typescript highlight-asset-urls
-// Resolve asset sources from the engine's self-hosted baseURL.
-const DEFAULT_ASSETS_URL = engine.getBaseURL();
-const DEMO_ASSETS_URL = engine.getBaseURL();
+```typescript highlight-cdn-urls
+// Versioned CDN URLs using the SDK package (recommended)
+// For production, self-host these assets - see the Serve Assets guide
+const PACKAGE_BASE = `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`;
+const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/v4/`;
+const DEMO_ASSETS_URL = `${PACKAGE_BASE}/demo/v3/`;
 ```
 
 ## Loading Default Asset Sources
 
-Load a default asset source from your configured `baseURL`. Repeat this pattern for each source you need:
+Load a default asset source from the CDN. Repeat this pattern for each source you need:
 
 ```typescript highlight-load-default-assets
 // Load default asset sources (core editor components)
@@ -242,7 +246,7 @@ await engine.asset.addLocalAssetSourceFromJSONURI(
 
 ## Loading Demo Asset Sources
 
-Load a demo asset source from your configured `baseURL`. Repeat this pattern for each source you need:
+Load a demo asset source from the CDN. Repeat this pattern for each source you need:
 
 ```typescript highlight-load-demo-assets
 // Load demo asset sources (sample content for testing)
@@ -278,11 +282,11 @@ engine.dispose();
 Use the `matcher` option to load only specific assets from a source:
 
 ```typescript
-const baseURL = engine.getBaseURL();
+const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets/v4/`;
 
 // Load only star and arrow shapes
 await engine.asset.addLocalAssetSourceFromJSONURI(
-  `${baseURL}ly.img.vector.shape/content.json`,
+  `${baseURL}ly.img.vectorpath/content.json`,
   { matcher: ['*star*', '*arrow*'] }
 );
 

@@ -8,7 +8,7 @@
  * The force crop feature allows you to enforce specific aspect ratios on images,
  * such as Instagram Portrait (4:5), LinkedIn Profile (1:1), or Facebook Shared (1.91:1).
  *
- * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
+ * @see https://img.ly/docs/cesdk/js/getting-started/
  * @see https://img.ly/docs/cesdk/js/user-interface/customization/force-crop-c2854e/
  */
 
@@ -121,16 +121,14 @@ export async function initForceCropEditor(
 
   // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
-  await Promise.all([
-    cesdk.addPlugin(new BlurAssetSource()),
-    cesdk.addPlugin(new ImageColorsAssetSource()),
-    cesdk.addPlugin(new ColorPaletteAssetSource()),
-    cesdk.addPlugin(new EffectsAssetSource()),
-    cesdk.addPlugin(new FiltersAssetSource()),
-    cesdk.addPlugin(new TextComponentAssetSource()),
-    cesdk.addPlugin(new TypefaceAssetSource()),
-    cesdk.addPlugin(new VectorShapeAssetSource())
-  ]);
+  await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
+  await cesdk.addPlugin(new EffectsAssetSource());
+  await cesdk.addPlugin(new FiltersAssetSource());
+  await cesdk.addPlugin(new TextComponentAssetSource());
+  await cesdk.addPlugin(new TypefaceAssetSource());
+  await cesdk.addPlugin(new VectorShapeAssetSource());
   // highlight-asset-sources
 
   // ============================================================================

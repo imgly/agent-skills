@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Dynamic Content](./create-templates/add-dynamic-content.md) > [Text Variables](./create-templates/add-dynamic-content/text-variables.md)
+**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Insert Dynamic Content](./create-templates/add-dynamic-content.md) > [Text Variables](./create-templates/add-dynamic-content/text-variables.md)
 
 ---
 
@@ -22,7 +22,7 @@ personalization workflows.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-dynamic-content-text-variables-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-create-templates-dynamic-content-text-variables-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-dynamic-content-text-variables-browser/)
 
 ```typescript file=@cesdk_web_examples/guides-create-templates-dynamic-content-text-variables-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';

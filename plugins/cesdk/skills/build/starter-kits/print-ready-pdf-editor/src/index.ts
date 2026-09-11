@@ -1,20 +1,16 @@
 /**
  * CE.SDK Print-Ready PDF Editor Starterkit - Main Entry Point
  *
- * A professional design editor with PDF/X-4 and PDF/X-3 export compliance, CMYK color profiles,
+ * A professional design editor with PDF/X-3 export compliance, CMYK color profiles,
  * and bleed margin support for print-ready production.
  *
- * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
+ * @see https://img.ly/docs/cesdk/js/getting-started/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initPrintReadyPdfEditor } from './imgly';
 import { resolveAssetPath } from './imgly/resolveAssetPath';
-
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Configuration
@@ -40,9 +36,6 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
 
@@ -54,16 +47,10 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     // Load the example scene for print-ready PDF export
-    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
+    await cesdk.loadFromURL(resolveAssetPath('/assets/example-1.scene'));
     // highlight-scene-loading
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

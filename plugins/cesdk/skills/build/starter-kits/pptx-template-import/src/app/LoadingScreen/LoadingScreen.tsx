@@ -2,7 +2,7 @@
  * LoadingScreen - Processing indicator component
  */
 import { useEffect, useState } from 'react';
-import { DEMO_ASSETS_BASE_URL } from '../FileSelection/FileSelection';
+import { resolveAssetPath } from '../resolveAssetPath';
 import classes from './LoadingScreen.module.css';
 
 interface LoadingScreenProps {
@@ -27,7 +27,7 @@ export function LoadingScreen({ text, lastInferenceTime }: LoadingScreenProps) {
     <div className={classes.cardBlock}>
       <div className={classes.loadingScreen}>
         <img
-          src={`${DEMO_ASSETS_BASE_URL}/icons/spinner.svg`}
+          src={resolveAssetPath('/icons/spinner.svg')}
           alt="Loading"
           className={classes.spinner}
         />

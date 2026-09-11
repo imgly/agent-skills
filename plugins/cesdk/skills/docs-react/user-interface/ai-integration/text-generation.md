@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK React documentation. For a complete overview, see the [React Documentation Index](https://img.ly/docs/cesdk/react.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Text Generation](./user-interface/ai-integration/text-generation.md)
+**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Text Generation](./user-interface/ai-integration/text-generation.md) > [Plugins](./plugins.md) > [AI: Text Generation](./user-interface/ai-integration/text-generation.md)
 
 ---
 
@@ -18,7 +18,7 @@ We add AI-powered text generation to CE.SDK applications for creating headlines,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-text-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-user-interface-ai-integration-text-generation-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ai-integration-text-generation-browser/)
 
 The text generation plugin provides quick actions for improving writing, fixing spelling and grammar, shortening or lengthening text, changing tone, and translating to different languages.
 
@@ -293,7 +293,7 @@ We prepend `ly.img.ai.text.canvasMenu` to the existing canvas menu order, making
 
 ## Proxy Server
 
-A proxy server protects your API keys by forwarding requests server-side. See the [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) guide for implementation details and examples.
+A proxy server protects your API keys by forwarding requests server-side. See the [Proxy Server](./user-interface/ai-integration/proxy-server.md) guide for implementation details and examples.
 
 ## Generation Parameters
 
@@ -475,8 +475,8 @@ Common issues when configuring the plugin:
 
 ## Next Steps
 
-- [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
-- [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
+- [Proxy Server](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
+- [Custom Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
 - [Integrate AI Features](./user-interface/ai-integration/integrate.md) — Overview of AI integration
 - [Audio Generation](./user-interface/ai-integration/audio-generation.md) — AI-powered audio generation
 - [Image Generation](./user-interface/ai-integration/image-generation.md) — AI-powered image generation

@@ -5,7 +5,7 @@
  * Import and call `initBackgroundRemovalEditor()` to configure a CE.SDK instance
  * with background removal functionality prominently featured.
  *
- * @see https://img.ly/docs/cesdk/js/edit-image/remove-bg-9dfcf7/
+ * @see https://img.ly/docs/cesdk/js/plugins/background-removal/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
@@ -28,13 +28,15 @@ import {
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 
-import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
-
 // Configuration plugin
 import { DesignEditorConfig } from './config/plugin';
 
+// Background removal plugin
+import { setupBackgroundRemovalPlugin } from './plugins/background-removal';
+
 // Re-export for external use
 export { DesignEditorConfig } from './config/plugin';
+export { setupBackgroundRemovalPlugin } from './plugins/background-removal';
 
 /**
  * Initialize the CE.SDK Background Removal Editor with a complete configuration.
@@ -72,72 +74,66 @@ export async function initBackgroundRemovalEditor(cesdk: CreativeEditorSDK) {
   // ============================================================================
 
   // Color palettes for design
-  await Promise.all([
-    cesdk.addPlugin(new ImageColorsAssetSource()),
-    cesdk.addPlugin(new ColorPaletteAssetSource()),
+  await cesdk.addPlugin(new ImageColorsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
 
-    // Typeface/font assets
-    cesdk.addPlugin(new TypefaceAssetSource()),
+  // Typeface/font assets
+  await cesdk.addPlugin(new TypefaceAssetSource());
 
-    // Text presets (headlines, body text styles)
-    cesdk.addPlugin(new TextAssetSource()),
+  // Text presets (headlines, body text styles)
+  await cesdk.addPlugin(new TextAssetSource());
 
-    // Text components (pre-designed text layouts)
-    cesdk.addPlugin(new TextComponentAssetSource()),
+  // Text components (pre-designed text layouts)
+  await cesdk.addPlugin(new TextComponentAssetSource());
 
-    // Vector shapes (rectangles, circles, arrows, etc.)
-    cesdk.addPlugin(new VectorShapeAssetSource()),
+  // Vector shapes (rectangles, circles, arrows, etc.)
+  await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    // Sticker assets
-    cesdk.addPlugin(new StickerAssetSource()),
+  // Sticker assets
+  await cesdk.addPlugin(new StickerAssetSource());
 
-    // Visual effects (adjustments, vignette, etc.)
-    cesdk.addPlugin(new EffectsAssetSource()),
+  // Visual effects (adjustments, vignette, etc.)
+  await cesdk.addPlugin(new EffectsAssetSource());
 
-    // Photo filters (LUT, duotone)
-    cesdk.addPlugin(new FiltersAssetSource()),
+  // Photo filters (LUT, duotone)
+  await cesdk.addPlugin(new FiltersAssetSource());
 
-    // Blur presets for blur effects
-    cesdk.addPlugin(new BlurAssetSource()),
+  // Blur presets for blur effects
+  await cesdk.addPlugin(new BlurAssetSource());
 
-    // Page format presets (A4, Letter, social media sizes)
-    cesdk.addPlugin(new PagePresetsAssetSource()),
+  // Page format presets (A4, Letter, social media sizes)
+  await cesdk.addPlugin(new PagePresetsAssetSource());
 
-    // Crop presets (aspect ratios)
-    cesdk.addPlugin(new CropPresetsAssetSource()),
+  // Crop presets (aspect ratios)
+  await cesdk.addPlugin(new CropPresetsAssetSource());
 
-    // Local upload sources (images) - replaces config.callbacks.onUpload
-    cesdk.addPlugin(
-      new UploadAssetSources({
-        include: ['ly.img.image.upload']
-      })
-    ),
+  // Local upload sources (images) - replaces config.callbacks.onUpload
+  await cesdk.addPlugin(
+    new UploadAssetSources({
+      include: ['ly.img.image.upload']
+    })
+  );
 
-    // Demo assets (templates, images)
-    cesdk.addPlugin(
-      new DemoAssetSources({
-        include: ['ly.img.image.*']
-      })
-    ),
+  // Demo assets (templates, images)
+  await cesdk.addPlugin(
+    new DemoAssetSources({
+      include: ['ly.img.image.*']
+    })
+  );
 
-    // Premium templates
-    cesdk.addPlugin(
-      new PremiumTemplatesAssetSource({
-        include: ['ly.img.templates.premium.*']
-      })
-    )
-  ]);
+  // Premium templates
+  await cesdk.addPlugin(
+    new PremiumTemplatesAssetSource({
+      include: ['ly.img.templates.premium.*']
+    })
+  );
 
   // ============================================================================
   // Background Removal Plugin
   // ============================================================================
 
-  await cesdk.addPlugin(
-    BackgroundRemovalPlugin({
-      ui: { locations: ['canvasMenu'] },
-      provider: {
-        type: '@imgly/background-removal'
-      }
-    })
-  );
+  // Setup background removal with both canvas menu and Apps dock entry
+  // - Canvas menu: Uses official @imgly/plugin-background-removal-web
+  // - Apps dock: Custom implementation with "Remove Background" action
+  await setupBackgroundRemovalPlugin(cesdk);
 }

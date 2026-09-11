@@ -5,17 +5,13 @@
  * (JPEG, PNG, PDF), quality settings, resolution control, and page range
  * selection for multi-page documents.
  *
- * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
+ * @see https://img.ly/docs/cesdk/js/getting-started/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initExportOptionsEditor } from './imgly';
 import { resolveAssetPath } from './imgly/resolveAssetPath';
-
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Configuration
@@ -47,9 +43,6 @@ async function initializeEditor(): Promise<void> {
   try {
     // Create new CE.SDK instance
     const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
 
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
@@ -63,15 +56,9 @@ async function initializeEditor(): Promise<void> {
 
     // highlight-load-scene
     // Load the demo scene
-    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
+    await cesdk.loadFromURL(resolveAssetPath('/assets/example-1.scene'));
     // highlight-load-scene
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   } catch (error) {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   }

@@ -4,27 +4,13 @@
  * A design editor with image vectorization prominently featured.
  * Click on an image to see the "Vectorize" option in the canvas menu.
  *
- * @see https://img.ly/docs/cesdk/js/edit-image/vectorize-2b4c7f/
+ * @see https://img.ly/docs/cesdk/js/plugins/vectorizer/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initVectorizerEditor } from './imgly';
-
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
-
-/**
- * Demo assets for this example (scene archives, …) are loaded from the
- * IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/starterkit-vectorizer-editor';
+import { resolveAssetPath } from './imgly/resolveAssetPath';
 
 // ============================================================================
 // Configuration
@@ -48,9 +34,6 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
 
@@ -62,21 +45,15 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // Load the vectorizer demo scene from the public showcases URL
     // This scene contains an image optimized for demonstrating vectorization
-    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/scene/scene.scene`);
+    await cesdk.loadFromArchiveURL(resolveAssetPath('/assets/scene.archive'));
 
     // Select the image block for immediate vectorization demonstration
     const imageBlock = cesdk.engine.block.findByName('SelectedImage')[0];
     if (imageBlock) {
       cesdk.engine.block.select(imageBlock);
     }
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

@@ -351,8 +351,6 @@ Defines a font family with multiple font files for different weights and styles.
 
 Each font entry in the `fonts` array represents a single font file. When a user applies bold formatting, CE.SDK automatically selects the font entry with `weight: "bold"`. Include all weight and style combinations you want to support.
 
-Set `meta.languages` on a typeface (for example `"meta": { "languages": "latin, cyrillic" }`) to declare the subsets it covers. The typeface library's language filter reads `meta.languages`, and the bundled `ly.img.typeface` source sets it automatically.
-
 **Typeface Properties:**
 
 | Property | Type | Required | Description |

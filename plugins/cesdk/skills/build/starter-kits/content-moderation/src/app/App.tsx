@@ -15,13 +15,6 @@ import { resolveAssetPath } from '../imgly/resolveAssetPath';
 import { Sidebar } from './components/Sidebar';
 import './App.css';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
-
 interface AppProps {
   config: Configuration;
 }
@@ -30,19 +23,13 @@ export default function App({ config }: AppProps) {
   const [cesdk, setCesdk] = useState<CreativeEditorSDK | null>(null);
 
   const handleInit = useCallback(async (instance: CreativeEditorSDK) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
     (window as any).cesdk = instance;
     await initContentModerationEditor(instance);
 
     // Load the scene
-    await instance.load(resolveAssetPath('/assets/example.scene'));
+    await instance.loadFromURL(resolveAssetPath('/assets/example.scene'));
 
     setCesdk(instance);
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   }, []);
 
   return (
@@ -50,9 +37,6 @@ export default function App({ config }: AppProps) {
       <CreativeEditor
         className="cesdk-wrapper"
         config={config}
-        // START_HIDDEN_BLOCK
-        onLoadingStateChange={reportDemoLoadingState}
-        // END_HIDDEN_BLOCK
         init={handleInit}
       />
       <Sidebar cesdk={cesdk} />

@@ -156,11 +156,11 @@ try {
   }
 
   const sceneString = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/watermarked-video.imgly`, sceneString);
+  writeFileSync(`${outputDir}/watermarked-video.scene`, sceneString);
 
   console.log('');
   console.log(
-    'Watermarked video scene saved to output/watermarked-video.imgly'
+    'Watermarked video scene saved to output/watermarked-video.scene'
   );
   console.log('');
   console.log('Scene contains:');
@@ -370,7 +370,7 @@ We set the same duration and time offset as the text watermark so both appear th
 
 ## Saving the Watermarked Scene
 
-After adding watermarks, we save the scene for later rendering by serializing it to a file. With the native `@cesdk/node-native` package you can also export the video directly via `engine.block.exportVideo()`; with the WASM-based `@cesdk/node` package, use the separate CE.SDK Renderer for video export.
+After adding watermarks, we save the scene for later rendering. Since video export is not supported in Node.js, we serialize the scene to a file.
 
 ```typescript highlight-save-scene
   // Save the watermarked scene
@@ -382,11 +382,11 @@ After adding watermarks, we save the scene for later rendering by serializing it
   }
 
   const sceneString = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/watermarked-video.imgly`, sceneString);
+  writeFileSync(`${outputDir}/watermarked-video.scene`, sceneString);
 
   console.log('');
   console.log(
-    'Watermarked video scene saved to output/watermarked-video.imgly'
+    'Watermarked video scene saved to output/watermarked-video.scene'
   );
   console.log('');
   console.log('Scene contains:');

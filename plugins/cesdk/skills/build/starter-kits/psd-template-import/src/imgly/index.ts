@@ -3,7 +3,7 @@
  *
  * Exports only the init function for the PSD template import editor.
  *
- * @see https://img.ly/docs/cesdk/js/key-capabilities-dbb5b1/
+ * @see https://img.ly/docs/cesdk/js/features/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
@@ -42,29 +42,27 @@ export async function initPsdTemplateImportEditor(cesdk: CreativeEditorSDK) {
   await cesdk.addPlugin(new AdvancedEditorConfig());
 
   // Add asset source plugins
-  await Promise.all([
-    cesdk.addPlugin(new BlurAssetSource()),
-    cesdk.addPlugin(new ImageColorsAssetSource()),
-    cesdk.addPlugin(new ColorPaletteAssetSource()),
-    cesdk.addPlugin(new CropPresetsAssetSource()),
-    cesdk.addPlugin(
-      new UploadAssetSources({ include: ['ly.img.image.upload'] })
-    ),
-    cesdk.addPlugin(new DemoAssetSources({ include: ['ly.img.image.*'] })),
-    cesdk.addPlugin(new EffectsAssetSource()),
-    cesdk.addPlugin(new FiltersAssetSource()),
-    cesdk.addPlugin(new PagePresetsAssetSource()),
-    cesdk.addPlugin(new StickerAssetSource()),
-    cesdk.addPlugin(new TextAssetSource()),
-    cesdk.addPlugin(new TextComponentAssetSource()),
-    cesdk.addPlugin(new TypefaceAssetSource()),
-    cesdk.addPlugin(new VectorShapeAssetSource()),
+  await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
+  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await cesdk.addPlugin(
+    new UploadAssetSources({ include: ['ly.img.image.upload'] })
+  );
+  await cesdk.addPlugin(new DemoAssetSources({ include: ['ly.img.image.*'] }));
+  await cesdk.addPlugin(new EffectsAssetSource());
+  await cesdk.addPlugin(new FiltersAssetSource());
+  await cesdk.addPlugin(new PagePresetsAssetSource());
+  await cesdk.addPlugin(new StickerAssetSource());
+  await cesdk.addPlugin(new TextAssetSource());
+  await cesdk.addPlugin(new TextComponentAssetSource());
+  await cesdk.addPlugin(new TypefaceAssetSource());
+  await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    // Premium templates
-    cesdk.addPlugin(
-      new PremiumTemplatesAssetSource({
-        include: ['ly.img.templates.premium.*']
-      })
-    )
-  ]);
+  // Premium templates
+  await cesdk.addPlugin(
+    new PremiumTemplatesAssetSource({
+      include: ['ly.img.templates.premium.*']
+    })
+  );
 }

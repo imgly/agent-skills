@@ -57,7 +57,7 @@ export interface Template {
   sceneString?: string;
   /** URL to load the scene from */
   sceneUrl: string;
-  /** Preview image URL */
+  /** Preview image path */
   previewImagePath: string;
 }
 

@@ -20,7 +20,7 @@ final output quality.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-pre-export-validation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-export-save-publish-export-pre-export-validation-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-export-pre-export-validation-browser/)
 
 Pre-export validation catches layout and quality issues before export, preventing problems like cropped content, hidden text, and elements missing from the final output. Production-quality designs require elements to be properly positioned within the page boundaries.
 
@@ -85,9 +85,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(
-      new UploadAssetSources({ include: ['ly.img.image.upload'] })
-    );
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -108,9 +106,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    await cesdk.actions.run('scene.create', {
-      page: { width: 800, height: 600, unit: 'Pixel' }
-    });
+    await cesdk.actions.run('scene.create', { page: { width: 800, height: 600, unit: 'Pixel' } });
 
     const engine = cesdk.engine;
 
@@ -435,10 +431,7 @@ class Example implements EditorPlugin {
 
     // Check image fill - empty URI means unfilled placeholder
     if (fillType === '//ly.img.ubq/fill/image') {
-      const imageUri = engine.block.getString(
-        fillId,
-        'fill/image/imageFileURI'
-      );
+      const imageUri = engine.block.getString(fillId, 'fill/image/imageFileURI');
       return imageUri !== '' && imageUri !== undefined;
     }
 
@@ -471,13 +464,10 @@ class Example implements EditorPlugin {
     cesdk: CreativeEditorSDK,
     engine: CreativeEngine
   ): void {
-    cesdk.ui.insertOrderComponent(
-      { in: 'ly.img.navigation.bar', position: 'end' },
-      {
-        id: 'ly.img.actions.navigationBar',
-        children: ['ly.img.exportImage.navigationBar']
-      }
-    );
+    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
+      id: 'ly.img.actions.navigationBar',
+      children: ['ly.img.exportImage.navigationBar']
+    });
 
     const exportDesign = cesdk.actions.get('exportDesign');
 
@@ -618,10 +608,7 @@ Then inspect each placeholder's fill to determine if content has been added. Get
 
     // Check image fill - empty URI means unfilled placeholder
     if (fillType === '//ly.img.ubq/fill/image') {
-      const imageUri = engine.block.getString(
-        fillId,
-        'fill/image/imageFileURI'
-      );
+      const imageUri = engine.block.getString(fillId, 'fill/image/imageFileURI');
       return imageUri !== '' && imageUri !== undefined;
     }
 ```

@@ -16,17 +16,10 @@ import {
   initMultiImageGenerationAdvancedDesignEditor,
   applyRestaurantColors
 } from '../../imgly';
-import type { Restaurant, Template } from '../../imgly';
+import type { Restaurant, Template } from '../types';
 import SCENES from '../scenes.json';
 
 import styles from './EditorModal.module.css';
-
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 interface EditorModalProps {
   isOpen: boolean;
@@ -91,13 +84,7 @@ export default function EditorModal({
         <CreativeEditor
           className={styles.container}
           config={editorBaseConfig}
-          // START_HIDDEN_BLOCK
-          onLoadingStateChange={reportDemoLoadingState}
-          // END_HIDDEN_BLOCK
           init={async (cesdk) => {
-            // START_HIDDEN_BLOCK
-            reportDemoPhase('created');
-            // END_HIDDEN_BLOCK
             // Initialize appropriate editor configuration based on mode
             if (selectedRestaurant) {
               await initMultiImageGenerationDesignEditor(cesdk);
@@ -126,7 +113,7 @@ export default function EditorModal({
             });
 
             // Load scene
-            await cesdk.load(sceneToLoad);
+            await cesdk.loadFromString(sceneToLoad);
 
             // Apply restaurant variables and colors if restaurant is selected.
             // Variables are not persisted in the scene string and must be set
@@ -137,9 +124,6 @@ export default function EditorModal({
 
             // Fit scene to view
             cesdk.actions.run('zoom.toPage', { autoFit: true });
-            // START_HIDDEN_BLOCK
-            reportDemoPhase('ready');
-            // END_HIDDEN_BLOCK
           }}
           onError={(error) => {
             // eslint-disable-next-line no-console

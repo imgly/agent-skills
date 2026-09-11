@@ -30,9 +30,9 @@ For enterprise customers who prefer more accurate tracking, integrators can prov
 
 ### Data Storage & Encryption
 
-**We do not collect or store user data beyond the device identifiers and export counts mentioned above.** Since CE.SDK operates entirely on the device or server running the engine:
+**We do not collect or store user data beyond the device identifiers and export counts mentioned above.** Since CE.SDK operates entirely client-side:
 
-- All content processing happens on the device or server running the engine
+- All content processing happens on the user's device
 - No images, designs, or user content is transmitted to IMG.LY servers
 - No content data is stored on IMG.LY infrastructure
 
@@ -125,7 +125,7 @@ API keys for CE.SDK are handled securely:
 
 IMG.LY complies with the General Data Protection Regulation (GDPR) in all our operations, including CE.SDK. Our Privacy Policy is publicly available at [https://img.ly/privacy-policy](https://img.ly/privacy-policy).
 
-Our local approach to content processing significantly reduces privacy and compliance concerns, as user content never leaves the environment running the engine.
+Our client-side approach to content processing significantly reduces privacy and compliance concerns, as user content never leaves their device environment for processing.
 
 ## FAQ
 
@@ -161,7 +161,7 @@ At IMG.LY, we prioritize your data privacy and ensure that apart from a minimal 
 
 ### **Data Processing**
 
-All data processed by CE.SDK remains strictly on the device or server running the engine. We do not transfer your data to our servers for processing. This means that operations such as rendering, editing, and other in-app functionalities happen entirely locally, ensuring that sensitive project or personal data stays with you.
+All data processed by CE.SDK remains strictly on your device. We do not transfer your data to our servers for processing. This means that operations such as rendering, editing, and other in-app functionalities happen entirely locally, ensuring that sensitive project or personal data stays with you.
 
 ### **Data Retention**
 
@@ -176,9 +176,9 @@ CE.SDK performs a license validation check with our servers once upon initializa
 While CE.SDK does not track user actions other than the exceptions listed below through telemetry or analytics by default, there are specific events tracked to manage customer usage, particularly for API key usage tracking. We gather the following information during these events:
 
 - **When the engine loads:** App identifier, platform, engine version, user ID (provided by the client), device ID (mobile only), and session ID.
-- **When a photo or video is exported:** User ID, device ID, session ID, media type (photo/video), format, resolution (width and height), page count (photo only), FPS (video only), and duration (video only).
+- **When a photo or video is exported:** User ID, device ID, session ID, media type (photo/video), resolution (width and height), FPS (video only), and duration (video only).
 
-This tracking is solely for ensuring accurate usage calculation and managing monthly active user billing. Enterprise clients can opt out of this tracking under specific agreements. For a precise definition of which operations count as an export and when export events are recorded, see [Export Counting](./export-counting.md).
+This tracking is solely for ensuring accurate usage calculation and managing monthly active user billing. Enterprise clients can opt out of this tracking under specific agreements.
 
 ### **Personal Identifiable Information (PII)**
 

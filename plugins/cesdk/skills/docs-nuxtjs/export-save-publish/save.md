@@ -18,7 +18,7 @@ Save and serialize designs in CE.SDK for later retrieval, sharing, or storage us
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-export-save-publish-save-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-save-browser/)
 
 CE.SDK provides two formats for persisting designs. Choose the format based on your storage and portability requirements.
 
@@ -92,7 +92,7 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -114,11 +114,9 @@ class Example implements EditorPlugin {
       const sceneBlob = new Blob([sceneString], {
         type: 'application/octet-stream'
       });
-      await cesdk.utils.downloadFile(sceneBlob, 'text/plain;charset=UTF-8');
+      await cesdk.utils.downloadFile(sceneBlob, 'application/octet-stream');
       cesdk.ui.showNotification({
-        message: `Scene downloaded (${(sceneString.length / 1024).toFixed(
-          1
-        )} KB)`,
+        message: `Scene downloaded (${(sceneString.length / 1024).toFixed(1)} KB)`,
         type: 'success'
       });
     };
@@ -128,9 +126,7 @@ class Example implements EditorPlugin {
       const archiveBlob = await engine.scene.saveToArchive();
       await cesdk.utils.downloadFile(archiveBlob, 'application/zip');
       cesdk.ui.showNotification({
-        message: `Archive downloaded (${(archiveBlob.size / 1024).toFixed(
-          1
-        )} KB)`,
+        message: `Archive downloaded (${(archiveBlob.size / 1024).toFixed(1)} KB)`,
         type: 'success'
       });
     };
@@ -200,8 +196,6 @@ export default Example;
 
 **Archive format** creates a self-contained ZIP with all assets embedded. Use this for portable designs that work offline.
 
-Both formats are saved as `.imgly` files — use this extension when persisting them. Either kind loads back through the same `engine.scene.load()` call, which detects the format automatically; `.scene` and `.zip` files also load.
-
 ## Save to String
 
 Serialize the current scene to a Base64-encoded string suitable for database storage.
@@ -224,44 +218,30 @@ The archive includes all pages, elements, and asset data in a single portable fi
 
 ## Compression Options
 
-Saved scenes are compressed with Zstd by default, which makes them much smaller and
-speeds up both saving and loading. Pass a format explicitly to change the level, or to turn
-compression off.
+CE.SDK supports optional compression for saved scenes to reduce file size. Compression is particularly useful for large scenes or when storage space is limited.
 
 ```typescript
-import { CompressionFormat, CompressionLevel } from '@cesdk/cesdk-js';
-
-// Save a scene string with Zstd compression
+// Save with Zstd compression (recommended)
 const compressed = await cesdk.engine.scene.saveToString({
   compression: {
-    format: CompressionFormat.Zstd,
-    level: CompressionLevel.Default
-  }
-});
-
-// Save an archive whose scene is compressed
-const archive = await cesdk.engine.scene.saveToArchive({
-  compression: {
-    format: CompressionFormat.Zstd,
-    level: CompressionLevel.Default
+    format: 'Zstd',
+    level: 'Default'
   }
 });
 ```
 
 **Compression Formats:**
 
-- `CompressionFormat.Zstd` - Zstandard compression (default)
-- `CompressionFormat.None` - No compression
+- `'None'` - No compression (default)
+- `'Zstd'` - Zstandard compression (recommended for best performance)
 
 **Compression Levels:**
 
-- `CompressionLevel.Fastest` - Fastest compression, larger output
-- `CompressionLevel.Default` - Balanced speed and size (recommended)
-- `CompressionLevel.Best` - Best compression, noticeably slower
+- `'Fastest'` - Fastest compression, larger output
+- `'Default'` - Balanced speed and size (recommended)
+- `'Best'` - Best compression, slower
 
-A compressed scene string stays a plain string, so you can still store it in a text column or send it as JSON. It carries a `UBQ2` prefix instead of `UBQ1`; `load` accepts both.
-
-In an archive, compression applies to the scene only. Bundled images, video and fonts are stored as they are, because they already are compressed formats — so the saving depends on how much of your archive is scene rather than media.
+**Performance:** Compression adds minimal overhead (\<50ms) while reducing scene size by approximately 64%. The Default level provides the best balance of speed and compression ratio.
 
 ## Download to User Device
 
@@ -273,7 +253,7 @@ For scene strings, convert to a Blob first:
 const sceneBlob = new Blob([sceneString], {
   type: 'application/octet-stream'
 });
-await cesdk.utils.downloadFile(sceneBlob, 'text/plain;charset=UTF-8');
+await cesdk.utils.downloadFile(sceneBlob, 'application/octet-stream');
 ```
 
 For archive blobs, pass directly to the download utility:
@@ -286,7 +266,7 @@ This utility handles creating and revoking object URLs automatically.
 
 ## Load Scene from File
 
-Use the built-in `importScene` action to open a file picker for scene files (`.imgly` or `.scene`). This restores a previously saved design from its serialized string format.
+Use the built-in `importScene` action to open a file picker for `.scene` files. This restores a previously saved design from its serialized string format.
 
 ```typescript highlight=highlight-load-scene
 const handleLoadScene = async () => {
@@ -298,7 +278,7 @@ Scene files are lightweight but require the original asset URLs to remain access
 
 ## Load Archive from File
 
-Load a self-contained `.imgly` archive (the `.zip` extension also works) that includes all embedded assets.
+Load a self-contained `.zip` archive that includes all embedded assets.
 
 ```typescript highlight=highlight-load-archive
 const handleLoadArchive = async () => {
@@ -319,7 +299,7 @@ Trigger the default save behavior programmatically using `actions.run()`:
 await cesdk.actions.run('saveScene');
 ```
 
-This executes the registered handler for `saveScene`, which by default downloads the scene file named with the `.imgly` extension.
+This executes the registered handler for `saveScene`, which by default downloads the scene file.
 
 ### Customizing an Action
 
@@ -341,7 +321,9 @@ The registered handler runs when the built-in save button is clicked or when the
 | ------ | ----------- |
 | `engine.scene.saveToString()` | Serialize scene to Base64 string |
 | `engine.scene.saveToArchive()` | Save scene with assets as ZIP blob |
-| `engine.scene.load()` | Load scene or archive from URL or string |
+| `engine.scene.loadFromString()` | Load scene from serialized string |
+| `engine.scene.loadFromURL()` | Load scene from remote URL |
+| `engine.scene.loadFromArchiveURL()` | Load scene from URL (file://, http://, https://, or object URL) |
 | `cesdk.utils.downloadFile()` | Download blob or string to user device |
 | `cesdk.actions.run()` | Execute a registered action with parameters |
 | `cesdk.actions.register()` | Register or override an action handler |

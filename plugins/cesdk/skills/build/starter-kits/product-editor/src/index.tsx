@@ -14,13 +14,6 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import App from './app/App';
 import styles from './app/App.module.css';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
-
 // ============================================================================
 // Configuration
 // ============================================================================
@@ -47,9 +40,6 @@ function ProductEditor() {
   const [cesdk, setCesdk] = useState<CreativeEditorSDK | null>(null);
 
   const handleInit = useCallback((sdk: CreativeEditorSDK) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as any).cesdk = sdk;
     setCesdk(sdk);
@@ -60,9 +50,6 @@ function ProductEditor() {
       <CreativeEditor
         className={styles.editor}
         config={config}
-        // START_HIDDEN_BLOCK
-        onLoadingStateChange={reportDemoLoadingState}
-        // END_HIDDEN_BLOCK
         init={handleInit}
       />
     </App>

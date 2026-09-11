@@ -18,7 +18,7 @@ Export your designs to multiple formats including PNG, JPEG, WebP, SVG, PDF, and
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-export-save-publish-export-overview-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-export-overview-browser/)
 
 Whether you're building a design tool, photo editor, or content automation workflow, understanding export options helps you deliver the right output for each use case. This guide covers supported formats, their options, and how to export programmatically or via the UI.
 
@@ -94,7 +94,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load a template scene from a remote URL
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -279,15 +279,11 @@ CE.SDK supports exporting scenes, pages, groups, or individual blocks in these f
 | JPEG | `image/jpeg` | No | Photographs, web images |
 | WebP | `image/webp` | Yes (lossless) | Web delivery, smaller files |
 | SVG | `image/svg+xml` | Yes | Scalable graphics, web embedding, post-processing |
-| TGA | `image/x-tga` | Yes | Image pipelines that require TGA files |
 | PDF | `application/pdf` | Partial | Print, documents |
 | MP4 | `video/mp4` | No | Video content |
-| WAV | `audio/wav` | — | Lossless audio |
 | Binary | `application/octet-stream` | Yes | Raw data processing |
 
 Each format serves different purposes. PNG preserves transparency and works well for graphics with sharp edges or text. JPEG compresses photographs efficiently but drops transparency. WebP provides excellent compression with optional lossless mode. SVG produces scalable vector output ideal for web embedding and post-processing with standard SVG tooling. PDF preserves vector information for print workflows. MP4 exports animated content as video.
-
-For the complete format compatibility matrix, including codecs and size limits, see [File Format Support](./file-format-support.md).
 
 ## Export Images
 
@@ -371,7 +367,7 @@ const pdfBlob = await engine.block.export(page, {
 });
 ```
 
-When `exportPdfWithHighCompatibility` is `true` (the default), images and effects are rasterized according to the scene's DPI setting. Set it to `false` for faster exports, though gradients with transparency may not render correctly in Safari or macOS Preview. With high compatibility disabled, CE.SDK embeds unmodified JPEG images with their original data, which keeps photo-heavy exports small. Use `pdfImageQuality` to encode the images that CE.SDK still has to rasterize as lossy JPEG.
+When `exportPdfWithHighCompatibility` is `true` (the default), images and effects are rasterized according to the scene's DPI setting. Set it to `false` for faster exports, though gradients with transparency may not render correctly in Safari or macOS Preview.
 
 The underlayer options are useful for print workflows where you need a solid base layer (often white ink) beneath the design elements. The `underlayerSpotColorName` should match a spot color defined in your print workflow.
 
@@ -381,7 +377,6 @@ The underlayer options are useful for print workflows where you need a solid bas
 | ------ | ---- | ------- | ----------- |
 | `mimeType` | `string` | - | Must be `'application/pdf'` |
 | `exportPdfWithHighCompatibility` | `boolean` | `true` | Rasterize images and effects (like gradients) according to the scene's DPI setting for broader viewer support |
-| `pdfImageQuality` | `number` | `1.0` | Encoding quality for images that have to be rasterized; values below `1.0` encode them as lossy JPEG |
 | `exportPdfWithUnderlayer` | `boolean` | `false` | Add an underlayer behind existing elements matching the shape of page content |
 | `underlayerSpotColorName` | `string` | `''` | Spot color name for the underlayer fill (used with print workflows) |
 | `underlayerOffset` | `number` | `0` | Size adjustment for the underlayer shape in design units |
@@ -450,10 +445,10 @@ Configure video encoding with these options:
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
-| `mimeType` | `'video/mp4'` | `'video/mp4'` | Output video format |
+| `mimeType` | `'video/mp4'` | `'video/quicktime'` | `'video/mp4'` | Output video format |
 | `h264Profile` | `number` | `77` (Main) | H.264 profile: 66=Baseline, 77=Main, 100=High |
 | `h264Level` | `number` | `52` | Encoding level (multiply desired level by 10, e.g., 52 = level 5.2) |
-| `videoBitrate` | `number` | `'System'` | `'Auto'` | `'System'` | Video bitrate in bits/second, or a named automatic mode. `'System'` (the default, also selected by `0`) lets the browser encoder choose, which can produce a very large, near-lossless file that may fail with an out-of-memory error. `'Auto'` picks a bounded, resolution-aware bitrate and is recommended in the browser. A positive number sets an explicit bitrate (maximum determined by profile and level) |
+| `videoBitrate` | `number` | `0` (auto) | Video bitrate in bits/second. Maximum determined by profile and level |
 | `audioBitrate` | `number` | `0` (auto) | Audio bitrate in bits/second. Default auto-selects 128kbps for stereo AAC |
 | `framerate` | `number` | `30` | Target framerate in Hz |
 | `targetWidth` | `number` | - | Output width in pixels |
@@ -468,11 +463,6 @@ The `h264Profile` determines encoder quality and compatibility:
 - **Baseline (66)**: Broadest device compatibility, lowest quality
 - **Main (77)**: Good balance of quality and compatibility (default)
 - **High (100)**: Best quality, may not play on older devices
-
-The `videoBitrate` option accepts a positive number (explicit bits per second) or one of two named automatic modes:
-
-- **`'System'`** (default): the browser's `VideoEncoder` chooses the bitrate. It may pick a very high, near-lossless rate (Safari has reached ~300 Mbps), so large or long exports can fail with an out-of-memory error.
-- **`'Auto'`**: a bounded bitrate derived from the output resolution and framerate (for example 5 Mbps at 720p30, 8 Mbps at 1080p30, 12 Mbps at 1080p60, 40 Mbps at 4K30). Recommended in the browser to avoid out-of-memory failures.
 
 > **Caution:** H.264 does not support transparency. Transparent areas render with a black background.
 

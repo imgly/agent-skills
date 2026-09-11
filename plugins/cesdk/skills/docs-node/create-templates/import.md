@@ -23,8 +23,8 @@ Templates are pre-designed scenes that provide starting points for user projects
  * CE.SDK Node.js Example: Import Templates
  *
  * Demonstrates loading templates from different sources:
- * - Archive URLs (.imgly files with bundled assets; legacy .zip still loads)
- * - Scene URLs (.imgly files; legacy .scene still loads)
+ * - Archive URLs (.zip files with bundled assets)
+ * - Scene URLs (.scene files)
  * - Serialized strings (file content)
  */
 
@@ -43,7 +43,7 @@ const fashionAdArchiveUrl =
 const postcardSceneUrl =
   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
-// For loading from a string: read the scene file content
+// For loadFromString: read the scene file content
 const businessCardSceneString = readFileSync(
   './assets/business-card.scene',
   'utf-8'
@@ -97,19 +97,19 @@ async function main() {
 
     if (method === 'archive') {
       // Load template from archive URL (bundled assets)
-      await engine.scene.load(fashionAdArchiveUrl);
+      await engine.scene.loadFromArchiveURL(fashionAdArchiveUrl);
       templateName = 'fashion-ad';
     }
 
     if (method === 'url') {
       // Load template from a scene URL
-      await engine.scene.load(postcardSceneUrl);
+      await engine.scene.loadFromURL(postcardSceneUrl);
       templateName = 'postcard';
     }
 
     if (method === 'string') {
       // Load template from serialized string
-      await engine.scene.load(businessCardSceneString);
+      await engine.scene.loadFromString(businessCardSceneString);
       templateName = 'business-card';
     }
 
@@ -155,29 +155,29 @@ This guide covers how to load templates from archives, URLs, and strings, and ex
 
 ## Load from Archive
 
-Load a template from an archive URL using `engine.scene.load()`. Archives are `.imgly` files (the `.zip` extension also works) that bundle the scene with all its assets, making them portable and self-contained. The engine detects the file kind automatically from its content.
+Load a template from an archive URL using `loadFromArchiveURL()`. Archives are `.zip` files that bundle the scene with all its assets, making them portable and self-contained.
 
 ```typescript highlight=highlight-load-from-archive
 // Load template from archive URL (bundled assets)
-await engine.scene.load(fashionAdArchiveUrl);
+await engine.scene.loadFromArchiveURL(fashionAdArchiveUrl);
 ```
 
 ## Load from URL
 
-Load a template from a remote scene file URL using `engine.scene.load()`. The scene file (`.imgly` or `.scene`) is a JSON-based format that references assets via URLs.
+Load a template from a remote `.scene` file URL using `loadFromURL()`. The scene file is a JSON-based format that references assets via URLs.
 
 ```typescript highlight=highlight-load-from-url
 // Load template from a scene URL
-await engine.scene.load(postcardSceneUrl);
+await engine.scene.loadFromURL(postcardSceneUrl);
 ```
 
 ## Load from String
 
-For templates stored in databases or files, load from a serialized string using `engine.scene.load()`.
+For templates stored in databases or files, load from a serialized string using `loadFromString()`.
 
 ```typescript highlight=highlight-load-from-string
 // Load template from serialized string
-await engine.scene.load(businessCardSceneString);
+await engine.scene.loadFromString(businessCardSceneString);
 ```
 
 This method works with content previously saved using `engine.scene.saveToString()`.

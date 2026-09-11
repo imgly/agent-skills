@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { DEMO_ASSETS_BASE_URL, useEditor } from '../contexts/EditorContext';
+import { useEditor } from '../contexts/EditorContext';
+import { caseAssetPath } from '../util';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import FilterButton from '../FilterButton/FilterButton';
 import FILTER_MANIFEST from './FilterManifest.json';
@@ -53,7 +54,7 @@ const FilterSecondary = () => {
           key={'none'}
           id="none"
           label="None"
-          thumbUrl={`${DEMO_ASSETS_BASE_URL}/images/none-filter-thumb.png`}
+          thumbUrl={caseAssetPath('/images/none-filter-thumb.png')}
           onClick={() => {
             const effects = engine.block.getEffects(currentPageBlockId);
             const adjustmentEffect = effects.find(

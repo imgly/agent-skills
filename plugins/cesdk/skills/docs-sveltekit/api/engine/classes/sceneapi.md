@@ -164,45 +164,6 @@ Load scenes from various sources including strings, URLs, and archives.
 
 <details>
   <summary>
-    ### load()
-
-    <br /><p>Load a scene from a scene string or from a URL to a scene or archive file.</p>
-  </summary>
-
-  The input kind is detected automatically: serialized scene content is loaded directly, while a
-  URL is fetched and loaded as an archive or as a scene file depending on its content. This loads
-  `.imgly` files as well as the legacy `.scene` and `.zip` formats. Any existing scene is replaced
-  by the new one.
-
-  ```javascript
-  await creativeEngine.scene.load('https://example.com/my-scene.imgly');
-  ```
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `source` | `string` | `URL` | A scene string previously created by `saveToString`, or the URL of a scene or archive file. Pass a `URL` instance to load a URL unambiguously; strings are detected by their content. |
-  | `overrideEditorConfig?` | `boolean` | Whether to override editor configuration with settings and data from the scene file. Defaults to false. |
-  | `waitForResources?` | `boolean` | Whether to wait for all resources to finish loading before resolving. Defaults to false. |
-
-  #### Returns
-
-  `Promise`\<`number`>
-
-  A handle to the loaded scene.
-
-  #### Signature
-
-  ```typescript
-  load(source: string | URL, overrideEditorConfig?: boolean, waitForResources?: boolean): Promise<number>
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
     ### loadFromString()
 
     <br /><p>Load the contents of a scene file.</p>
@@ -342,13 +303,12 @@ Save and export scenes to different formats.
   ```
 
   Serializes the current scene into a string. Selection is discarded.
-  When persisting the result as a file, use the `.imgly` extension.
 
   ##### Parameters
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `options?` | \{ `allowedResourceSchemes?`: `string`\[]; `onDisallowedResourceScheme?`: (`url`, `dataHash`) => `Promise`\<`string`>; `compression?`: \{ `format?`: [`CompressionFormat`](./api/engine/enumerations/compressionformat.md); `level?`: [`CompressionLevel`](./api/engine/enumerations/compressionlevel.md); }; } | Save options containing: - allowedResourceSchemes: The resource schemes to allow in the saved string. Defaults to \['blob', 'bundle', 'file', 'http', 'https', 'opfs']. - onDisallowedResourceScheme: An optional callback that is called for each resource URL that has a scheme absent from `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the resource's data. The callback should return a new URL for the resource, which will be used in the serialized scene. The callback is expected to return the original URL if no persistence is needed. - compression: Optional compression settings containing: - format: Compression format (None or Zstd). Defaults to Zstd. - level: Compression level (Fastest, Default, or Best). Defaults to Default. |
+  | `options?` | \{ `allowedResourceSchemes?`: `string`\[]; `onDisallowedResourceScheme?`: (`url`, `dataHash`) => `Promise`\<`string`>; `compression?`: \{ `format?`: [`CompressionFormat`](./api/engine/enumerations/compressionformat.md); `level?`: [`CompressionLevel`](./api/engine/enumerations/compressionlevel.md); }; } | Save options containing: - allowedResourceSchemes: The resource schemes to allow in the saved string. Defaults to \['blob', 'bundle', 'file', 'http', 'https', 'opfs']. - onDisallowedResourceScheme: An optional callback that is called for each resource URL that has a scheme absent from `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the resource's data. The callback should return a new URL for the resource, which will be used in the serialized scene. The callback is expected to return the original URL if no persistence is needed. - compression: Optional compression settings containing: - format: Compression format (None or Zstd). Defaults to None. - level: Compression level (Fastest, Default, or Best). Defaults to Default. |
   | `options.allowedResourceSchemes?` | `string`\[] | - |
   | `options.onDisallowedResourceScheme?` | (`url`, `dataHash`) => `Promise`\<`string`> | - |
   | `options.compression?` | \{ `format?`: [`CompressionFormat`](./api/engine/enumerations/compressionformat.md); `level?`: [`CompressionLevel`](./api/engine/enumerations/compressionlevel.md); } | - |
@@ -383,14 +343,7 @@ Save and export scenes to different formats.
 
   The archive contains all assets, that were accessible when this function was called.
   Blocks in the archived scene reference assets relative from to the location of the scene
-  file. These references are resolved when loading such a scene via `load`.
-  When persisting the result as a file, use the `.imgly` extension.
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `options?` | [`SaveToArchiveOptions`](./api/engine/interfaces/savetoarchiveoptions.md) | Optional settings: - compression: Compression applied to the scene inside the archive, containing: - format: Compression format (None or Zstd). Defaults to Zstd. - level: Compression level (Fastest, Default, or Best). Defaults to Default. Bundled media is always stored uncompressed, because it already is in compressed formats. |
+  file. These references are resolved when loading such a scene via `loadSceneFromURL`.
 
   #### Returns
 
@@ -401,7 +354,7 @@ Save and export scenes to different formats.
   #### Signature
 
   ```typescript
-  saveToArchive(options?: SaveToArchiveOptions): Promise<Blob>
+  saveToArchive(): Promise<Blob>
   ```
 </details>
 
@@ -1030,7 +983,7 @@ Apply templates to existing scenes.
   the new dimensions.
 
   ```javascript
-  engine.scene.applyTemplateFromString(await engine.scene.saveToString());
+  engine.scene.applyTemplateFromString("UBQ1ewoiZm9ybWF0Ij...");
   ```
 
   #### Parameters

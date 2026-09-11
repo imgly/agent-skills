@@ -35,13 +35,6 @@ import { Sidebar } from './Sidebar/Sidebar';
 import { Topbar } from './Topbar/Topbar';
 import styles from './App.module.css';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
-
 // ============================================================================
 // Editor Mode Type
 // ============================================================================
@@ -181,9 +174,6 @@ export default function App({ config }: AppProps) {
    */
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
       // Debug access (remove in production)
       (window as any).cesdk = cesdk;
 
@@ -200,7 +190,7 @@ export default function App({ config }: AppProps) {
       switch (currentMode) {
         case 'Design':
           await initAiDesignEditor(cesdk, providerMap);
-          await cesdk.load(SCENE_URLS.Design);
+          await cesdk.loadFromArchiveURL(SCENE_URLS.Design);
           break;
         case 'Photo':
           await initAiPhotoEditor(cesdk, providerMap);
@@ -208,15 +198,12 @@ export default function App({ config }: AppProps) {
           break;
         case 'Video':
           await initAiVideoEditor(cesdk, providerMap);
-          await cesdk.load(SCENE_URLS.Video);
+          await cesdk.loadFromArchiveURL(SCENE_URLS.Video);
           break;
         default:
           await initAiDesignEditor(cesdk, providerMap);
-          await cesdk.load(SCENE_URLS.Design);
+          await cesdk.loadFromArchiveURL(SCENE_URLS.Design);
       }
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('ready');
-      // END_HIDDEN_BLOCK
     },
     [boot, currentMode]
   );
@@ -269,9 +256,6 @@ export default function App({ config }: AppProps) {
               key={editorKey}
               className={styles.editor}
               config={config}
-              // START_HIDDEN_BLOCK
-              onLoadingStateChange={reportDemoLoadingState}
-              // END_HIDDEN_BLOCK
               init={handleInit}
             />
             <Sidebar

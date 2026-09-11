@@ -253,32 +253,6 @@ Methods for initializing, configuring, and managing the engine lifecycle.
 
     <br /><p>Manage variables in the engine, allowing for dynamic data handling and manipulation.</p>
   </summary>
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### actions
-
-    <br /><p>Register, run, and look up named actions. Use these for app-provided commands like export or
-    upload, alongside built-in ones such as <code>ly.img.undo</code>, <code>redo</code>, and <code>nudge</code>.</p>
-  </summary>
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### shortcuts
-
-    <br /><p>Keyboard shortcuts mapped to actions. Comes with arrow-key nudge and
-    Enter/Shift+Enter for entering/leaving groups. Change any via
-    <code>engine.shortcuts.set</code> / <code>engine.shortcuts.remove</code>.</p>
-  </summary>
-
-  Web-only: keyboard shortcuts belong to the web build, not headless
-  `@cesdk/node`, so this field lives on the `@cesdk/engine` `CreativeEngine`.
 </details>
 
 ## Asset Sources
@@ -321,18 +295,7 @@ Methods for adding default and demo asset sources to the engine.
   #### Deprecated
 
   This method uses legacy v4 asset source IDs and will be removed in a future version.
-  Please migrate to v5 asset sources by registering each source you need
-  directly from its `content.json`:
-
-  #### Example
-
-  ```ts
-  // baseURL is your assets location (the IMG.LY CDN or your own host).
-  const baseURL = engine.getBaseURL();
-  for (const id of ['ly.img.sticker', 'ly.img.vector.shape', 'ly.img.typeface']) {
-    await engine.asset.addLocalAssetSourceFromJSONURI(`${baseURL}${id}/content.json`);
-  }
-  ```
+  Please migrate to v5 asset sources using engine.asset.addLocalAssetSourceFromJSONURI().
 
   ***
 </details>
@@ -374,15 +337,7 @@ Methods for adding default and demo asset sources to the engine.
   #### Deprecated
 
   This method uses legacy v3 demo asset source IDs and will be removed in a future version.
-  These are demonstration assets. For production, host your own content and
-  register each source from its `content.json`:
-
-  #### Example
-
-  ```ts
-  const baseURL = engine.getBaseURL(); // or your own content host
-  await engine.asset.addLocalAssetSourceFromJSONURI(`${baseURL}ly.img.image/content.json`);
-  ```
+  Please migrate to v4 asset sources using engine.asset.addLocalAssetSourceFromJSONURI().
 </details>
 
 ## Experimental Features

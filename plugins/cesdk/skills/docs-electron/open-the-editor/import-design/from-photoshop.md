@@ -16,7 +16,7 @@ Import Adobe Photoshop (PSD) files into CE.SDK, converting them into editable sc
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-import-design-from-photoshop-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-open-the-editor-import-design-from-photoshop-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-import-design-from-photoshop-browser/)
 
 ![Import from Photoshop](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -289,7 +289,7 @@ class Example implements EditorPlugin {
       );
 
       // Load the archived scene into the editor
-      await cesdk.engine.scene.load(archiveUrl);
+      await cesdk.engine.scene.loadFromArchiveURL(archiveUrl);
 
       // Verify scene loaded correctly
       const pages = engine.scene.getPages();
@@ -425,19 +425,19 @@ class Example implements EditorPlugin {
         } else if (format === 'scene') {
           // Handle standard .scene files
           const scene = await cesdk.utils.loadFile({
-            accept: '.imgly,.scene',
+            accept: '.scene',
             returnType: 'text'
           });
-          await cesdk.engine.scene.load(scene);
+          await cesdk.engine.scene.loadFromString(scene);
           await cesdk.actions.run('zoom.toPage', { page: 'first' });
         } else {
           // Handle archive files (.zip)
           const blobURL = await cesdk.utils.loadFile({
-            accept: '.imgly,.zip',
+            accept: '.zip',
             returnType: 'objectURL'
           });
           try {
-            await cesdk.engine.scene.load(blobURL);
+            await cesdk.engine.scene.loadFromArchiveURL(blobURL);
           } finally {
             URL.revokeObjectURL(blobURL);
           }
@@ -643,7 +643,7 @@ const sceneArchive = await engine.scene.saveToArchive();
 const archiveUrl = URL.createObjectURL(sceneArchive);
 ```
 
-Archives can be stored, shared, or loaded later using `load()`.
+Archives can be stored, shared, or loaded later using `loadFromArchiveURL()`.
 
 ## Saving Scenes with Stable URLs
 
@@ -705,7 +705,7 @@ Load the archived scene into the CE.SDK editor for user editing:
 
 ```typescript highlight=highlight-load-editor
       // Load the archived scene into the editor
-      await cesdk.engine.scene.load(archiveUrl);
+      await cesdk.engine.scene.loadFromArchiveURL(archiveUrl);
 
       // Verify scene loaded correctly
       const pages = engine.scene.getPages();
@@ -846,10 +846,8 @@ The PSD importer has the following limitations:
 - **Text** - No multiple font sizes or families within a single text layer; no text justification
 - **Images** - Image cropping not supported
 - **Fills** - Gradient fills not supported (solid colors only)
-- **Blend modes** - Some Photoshop blend modes are not supported (for example PassThrough, Dissolve and Subtract)
-- **Advanced text** - Advanced text styling such as kerning, ligatures and baseline shift is not fully supported
-
-These are the highlights only—the [`@imgly/psd-importer`](https://www.npmjs.com/package/@imgly/psd-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
+- **Blend modes** - PassThrough, Dissolve, LinearBurn, DarkerColor, LinearDodge, LighterColor, VividLight, LinearLight, PinLight, HardMix, Subtract, Divide not supported
+- **Advanced text** - Kerning, ligatures, strikethrough, underline, baseline shift not fully supported
 
 ## Troubleshooting
 

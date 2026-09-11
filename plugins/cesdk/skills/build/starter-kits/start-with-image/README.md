@@ -69,13 +69,13 @@ You can also load content using other methods:
 await cesdk.createDesignScene();
 
 // Load from a template archive
-await cesdk.load('https://example.com/template.zip');
+await cesdk.loadFromArchiveURL('https://example.com/template.zip');
 
 // Load from a scene file
-await cesdk.load('https://example.com/scene.json');
+await cesdk.loadFromURL('https://example.com/scene.json');
 ```
 
-See [Open the Editor](https://img.ly/docs/cesdk/js/open-the-editor/load-scene-478833/) for all loading methods.
+See [Open the Editor](https://img.ly/docs/cesdk/web/guides/open-editor/) for all loading methods.
 
 ### Theming
 
@@ -83,7 +83,7 @@ See [Open the Editor](https://img.ly/docs/cesdk/js/open-the-editor/load-scene-47
 cesdk.ui.setTheme('dark'); // 'light' | 'dark' | 'system'
 ```
 
-See [Theming](https://img.ly/docs/cesdk/js/user-interface/appearance/theming-4b0938/) for custom color schemes and styling.
+See [Theming](https://img.ly/docs/cesdk/web/ui-styling/theming/) for custom color schemes and styling.
 
 ### Localization
 
@@ -94,7 +94,7 @@ cesdk.i18n.setTranslations({
 cesdk.i18n.setLocale('de');
 ```
 
-See [Localization](https://img.ly/docs/cesdk/js/user-interface/localization-508e20/) for supported languages and translation keys.
+See [Localization](https://img.ly/docs/cesdk/web/ui-styling/localization/) for supported languages and translation keys.
 
 ## Architecture
 
@@ -152,7 +152,7 @@ Customize the `SAMPLE_IMAGES` array in `src/index.ts` with your own images.
 
 ## Prerequisites
 
-- **Node.js v22+** with npm – [Download](https://nodejs.org/)
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 
 ## Troubleshooting
@@ -166,7 +166,7 @@ Customize the `SAMPLE_IMAGES` array in `src/index.ts` with your own images.
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Start With Image Documentation](https://img.ly/docs/cesdk/js/starterkits/start-with-image-stwim1/).
+For complete integration guides and API reference, visit the [Start With Image Documentation](https://img.ly/docs/cesdk/starterkits/start-with-image/).
 
 ## License
 

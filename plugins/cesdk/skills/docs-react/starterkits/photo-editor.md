@@ -19,7 +19,7 @@ backgrounds. Runs entirely in the browser with no server dependencies.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-photo-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/starterkit-photo-editor/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-photo-editor/)
 
 ***
 
@@ -27,7 +27,7 @@ backgrounds. Runs entirely in the browser with no server dependencies.
 
 Before you begin, make sure you have the following:
 
-- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list.
 
@@ -45,19 +45,16 @@ Before you begin, make sure you have the following:
       <TerminalTab label="npm">
         npm create vite@latest your-project-name -- --template react-ts
         cd your-project-name
-        npm install
       </TerminalTab>
 
       <TerminalTab label="pnpm">
         pnpm create vite your-project-name --template react-ts
         cd your-project-name
-        pnpm install
       </TerminalTab>
 
       <TerminalTab label="yarn">
         yarn create vite your-project-name --template react-ts
         cd your-project-name
-        yarn install
       </TerminalTab>
     </TerminalTabs>
 
@@ -132,11 +129,11 @@ Before you begin, make sure you have the following:
 
     ## Step 5: Create the Editor Component
 
-    In your project's `src/` folder, create a new file at `src/components/PhotoEditor.tsx` using the official CE.SDK React wrapper. The Vite `react-ts` template does not include a `components/` directory, so create it if it does not already exist:
+    Create a React component using the official CE.SDK React wrapper (e.g., `PhotoEditor.tsx`):
 
-    ```tsx title="src/components/PhotoEditor.tsx"
+    ```tsx
     import CreativeEditor from '@cesdk/cesdk-js/react';
-    import { initPhotoEditor } from '../imgly';
+    import { initPhotoEditor } from './imgly';
 
     export default function PhotoEditor() {
       return (
@@ -154,7 +151,7 @@ Before you begin, make sure you have the following:
 
     Use the component in your app:
 
-    ```tsx title="src/App.tsx"
+    ```tsx
     import PhotoEditor from './components/PhotoEditor';
 
     function App() {
@@ -306,11 +303,11 @@ Before you begin, make sure you have the following:
 
     ## Step 4: Create the Editor Component
 
-    In your project's `src/` folder, create a new file at `src/components/PhotoEditor.tsx` that uses the `CreativeEditor` wrapper with the `initPhotoEditor` function from the starter kit. Create the `src/components/` directory if it does not already exist:
+    Create a React component that uses the `CreativeEditor` wrapper with the `initPhotoEditor` function from the starterkit:
 
-    ```tsx title="src/components/PhotoEditor.tsx"
+    ```tsx
     import CreativeEditor from '@cesdk/cesdk-js/react';
-    import { initPhotoEditor } from '../imgly';
+    import { initPhotoEditor } from './imgly';
 
     export default function PhotoEditor() {
       return (
@@ -330,7 +327,7 @@ Before you begin, make sure you have the following:
 
     Render the component in your app:
 
-    ```tsx title="src/App.tsx"
+    ```tsx
     import PhotoEditor from './components/PhotoEditor';
 
     export default function App() {
@@ -387,13 +384,13 @@ CE.SDK offers multiple ways to load content into the editor. Choose the method t
 await cesdk.createFromImage('https://example.com/photo.jpg');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.load('https://example.com/template.zip');
+await cesdk.loadFromArchiveURL('https://example.com/template.zip');
 
 // Create a blank canvas - starts with an empty design scene
 await cesdk.actions.run('scene.create');
 
 // Load from a scene file - restores a scene from JSON
-await cesdk.load('https://example.com/scene.json');
+await cesdk.loadFromURL('https://example.com/scene.json');
 ```
 
 The `createFromImage()` method is ideal for photo editing workflows, as it automatically creates a scene sized to the image dimensions.
@@ -437,8 +434,8 @@ Actions are functions that handle user interactions like exporting designs, savi
 
 - `exportDesign` – Export the current design to PNG, JPEG, PDF, or other formats
 - `saveScene` – Save the scene as a JSON string for later editing
-- `importScene` – Import a previously saved scene (`.imgly` or `.scene`)
-- `exportScene` – Export the scene as an `.imgly` file, either the scene alone or an archive with all assets
+- `importScene` – Import a previously saved scene (supports `.scene` and `.cesdk` formats)
+- `exportScene` – Export the scene as a JSON file or `.cesdk` archive with all assets
 - `uploadFile` – Handle file uploads with progress tracking
 
 Use `cesdk.actions.run()` to execute any action:

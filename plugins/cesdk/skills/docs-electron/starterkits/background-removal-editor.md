@@ -18,7 +18,7 @@ Effortlessly remove background from images directly in the browser with no addit
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-background-removal-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/starterkit-background-removal-editor/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-background-removal-editor/)
 
 ***
 
@@ -26,7 +26,7 @@ Effortlessly remove background from images directly in the browser with no addit
 
 Before you begin, make sure you have the following:
 
-- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list.
 
@@ -275,11 +275,19 @@ Before you begin, make sure you have the following:
 
 ## Using Background Removal
 
-To remove a background:
+The editor provides two ways to remove backgrounds:
+
+### Via Canvas Menu
 
 1. Select an image in the editor
 2. The canvas menu appears with a "BG Removal" button
 3. Click the button to AI-remove the background
+
+### Via Apps Panel
+
+1. Click the "Apps" button in the dock (left sidebar)
+2. The Apps panel opens showing "Remove Background"
+3. Select an image, then click "Remove Background" in the panel
 
 > **First Use:** The first time you use background removal, it downloads the AI models (~30MB).
 > Subsequent uses are instant as the models are cached by the browser.
@@ -293,13 +301,13 @@ CE.SDK offers multiple ways to load content into the editor. Choose the method t
 await cesdk.actions.run('scene.create');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.load('https://example.com/template.zip');
+await cesdk.loadFromArchiveURL('https://example.com/template.zip');
 
 // Load from an image URL - creates a new scene with the image
 await cesdk.createFromImage('https://example.com/image.jpg');
 
 // Load from a scene file - restores a scene from JSON
-await cesdk.load('https://example.com/scene.json');
+await cesdk.loadFromURL('https://example.com/scene.json');
 ```
 
 The `createDesignScene()` method is ideal for design workflows, as it creates a blank canvas ready for content.

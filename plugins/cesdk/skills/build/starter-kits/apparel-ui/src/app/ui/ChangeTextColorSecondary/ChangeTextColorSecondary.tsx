@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useEditor } from '../../contexts/EditorContext';
-import { useSelectedProperty } from '../../hooks/UseSelectedProperty';
+import { useSelectedProperty } from '../../../imgly/UseSelectedProperty';
 import ColorSelect from '../ColorSelect/ColorSelect';
 
 const ChangeTextColorSecondary = () => {

@@ -2,6 +2,7 @@ import classNames from 'classnames';
 
 import type { Template } from '../../imgly';
 import { EditOverlay } from '../EditOverlay/EditOverlay';
+import { resolveAssetPath } from '../utils';
 
 import styles from './TemplateCard.module.css';
 
@@ -34,7 +35,7 @@ export function TemplateCard({
       onClick={handleClick}
     >
       <img
-        src={template.previewImagePath}
+        src={resolveAssetPath(template.previewImagePath)}
         alt={`Template ${index + 1}`}
         className={styles.preview}
       />

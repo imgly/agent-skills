@@ -10,8 +10,7 @@ type UIArea =
   | "ly.img.navigation.bar"
   | "ly.img.canvas.bar"
   | "ly.img.caption.panel"
-  | "ly.img.video.clip.menu"
-  | "ly.img.video.timeline.controls.bar";
+  | "ly.img.video.clip.menu";
 ```
 
 Represents a UI area where components can be ordered.

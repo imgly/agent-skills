@@ -233,8 +233,8 @@ async function main(): Promise<void> {
     // Save the scene to a .scene file
     mkdirSync('output', { recursive: true });
     const sceneString = await engine.scene.saveToString();
-    writeFileSync('output/animated-scene.imgly', sceneString);
-    console.log('Scene saved to output/animated-scene.imgly');
+    writeFileSync('output/animated-scene.scene', sceneString);
+    console.log('Scene saved to output/animated-scene.scene');
 
   } finally {
     // Always dispose of the engine to free resources
@@ -451,11 +451,11 @@ After creating animations, we save the scene to a `.scene` file for later use or
 // Save the scene to a .scene file
 mkdirSync('output', { recursive: true });
 const sceneString = await engine.scene.saveToString();
-writeFileSync('output/animated-scene.imgly', sceneString);
-console.log('Scene saved to output/animated-scene.imgly');
+writeFileSync('output/animated-scene.scene', sceneString);
+console.log('Scene saved to output/animated-scene.scene');
 ```
 
-The saved `.scene` file can be loaded later using `engine.scene.load()`. With the native `@cesdk/node-native` package you can also render the animation to an MP4 video via `engine.block.exportVideo()`.
+The saved `.scene` file can be loaded later using `engine.scene.loadFromString()` or `engine.scene.loadFromURL()`.
 
 ## Troubleshooting
 
@@ -510,7 +510,7 @@ If entrance and exit animations seem to overlap incorrectly, CE.SDK automaticall
 
 ## Related Pages
 
-- [Base Animations](./animation/create/base.md) - Apply entrance, exit, and loop animation presets with duration, easing, and type-specific properties.
+- [Base Animations](./animation/create/base.md) - Apply movement, scaling, rotation, or opacity changes to elements using time-based keyframes.
 - [Text Animations](./animation/create/text.md) - Animate text elements with effects like fade, typewriter, and bounce for dynamic visual presentation.
 
 

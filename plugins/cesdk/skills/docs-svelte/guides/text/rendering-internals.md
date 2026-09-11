@@ -18,7 +18,7 @@ Understand how CE.SDK positions and renders text by exploring font metrics—asc
 >
 > - [Open in StackBlitz](https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-text-rendering-internals-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-text-rendering-internals-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-rendering-internals-browser/)
 
 Every font defines metrics that determine how text is positioned vertically. Understanding these metrics helps you debug text layout issues, align text precisely with other design elements, and comprehend why fonts at the "same size" can appear different heights.
 
@@ -65,7 +65,7 @@ const COLORS: Record<string, RGBAColor> = {
 interface LineMetrics {
   ascenderHeight: number; // Design units above baseline
   descenderHeight: number; // Design units below baseline
-  lineHeight: number; // Total line height (ascender + descender + line gap)
+  lineHeight: number; // Total line height (ascender + descender)
   baselineOffset: number; // Distance from line top to baseline (= ascenderHeight)
 }
 
@@ -111,9 +111,7 @@ export function getDesignUnitsPerPoint(designUnit: DesignUnit): number {
 
 /**
  * Calculate single-line metrics from font metrics and font size.
- * lineHeight = fontSize × (ascender + |descender| + lineGap) / unitsPerEm × designUnitsPerPoint
- * The font's line gap is distributed as half-leading above and below the line,
- * matching the engine's default behavior ('features/fontLineGapEnabled' = true).
+ * lineHeight = fontSize × (ascender + |descender|) / unitsPerEm × designUnitsPerPoint
  */
 export function calculateLineMetrics(
   fontMetrics: FontMetrics,
@@ -122,15 +120,11 @@ export function calculateLineMetrics(
 ): LineMetrics {
   const designUnitsPerPoint = getDesignUnitsPerPoint(designUnit);
 
-  const halfLineGap = fontMetrics.lineGap / 2;
   const totalTypographicUnits =
-    fontMetrics.ascender +
-    Math.abs(fontMetrics.descender) +
-    fontMetrics.lineGap;
-  const ascenderRatio =
-    (fontMetrics.ascender + halfLineGap) / totalTypographicUnits;
+    fontMetrics.ascender + Math.abs(fontMetrics.descender);
+  const ascenderRatio = fontMetrics.ascender / totalTypographicUnits;
   const descenderRatio =
-    (Math.abs(fontMetrics.descender) + halfLineGap) / totalTypographicUnits;
+    Math.abs(fontMetrics.descender) / totalTypographicUnits;
 
   const lineHeightInPoints =
     (fontSize * totalTypographicUnits) / fontMetrics.unitsPerEm;
@@ -683,20 +677,13 @@ Typography positions text relative to the **baseline**—the invisible line char
 
 - **Ascender**: Distance above the baseline to the top of tall characters (b, d, h, l)
 - **Descender**: Distance below the baseline where characters like g, p, y extend
-- **Line Gap**: Extra leading the font recommends between consecutive lines (many fonts set this to 0)
 - **EM Square**: The design space containing all glyphs, typically 1000 or 2048 units
-- **Line Height**: Total vertical space allocated for a line, calculated from ascender + descender + line gap
+- **Line Height**: Total vertical space allocated for a line, calculated from ascender + descender
 
 These values are stored in **font units** relative to the EM square. When you set a font size of 36pt, CE.SDK scales these proportionally:
 
 ```
-lineHeight = fontSize × (ascender + |descender| + lineGap) / unitsPerEm × designUnitsPerPoint
-```
-
-CE.SDK distributes the font's line gap as **half-leading**: half is added above the ascender and half below the descender. This behavior is controlled by the `features/fontLineGapEnabled` setting, which defaults to `true`. Set it to `false` to restore the pre-1.73 text layout that ignored the font's line gap metric, for scenes or templates authored against the older layout:
-
-```typescript
-engine.editor.setSettingBool('features/fontLineGapEnabled', false);
+lineHeight = fontSize × (ascender + |descender|) / unitsPerEm × designUnitsPerPoint
 ```
 
 ## Design Units and Point Conversion
@@ -792,8 +779,7 @@ Different fonts allocate the EM square differently. A serif font like Playfair D
 
 | Method | Purpose |
 |--------|---------|
-| `engine.editor.getFontMetrics(fontUri)` | Get font metrics (ascender, descender, lineGap, unitsPerEm) in font design units |
-| `engine.editor.setSettingBool('features/fontLineGapEnabled', value)` | Include (default) or ignore the font's line gap metric in text layout |
+| `engine.editor.getFontMetrics(fontUri)` | Get font metrics (ascender, descender, unitsPerEm) in font design units |
 | `engine.scene.getDesignUnit()` | Get current design unit (Millimeter, Inch, or Pixel) |
 | `engine.block.getTextFontSizes(id)` | Get current font sizes |
 | `engine.block.getFloat(id, 'text/lineHeight')` | Get line height multiplier |

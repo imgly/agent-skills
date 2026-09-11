@@ -120,7 +120,7 @@ to build and manipulate designs programmatically, or in a browser to create inte
 
 <details>
   <summary>
-    ### ~~addDefaultAssetSources()~~
+    ### addDefaultAssetSources()
 
     <br /><p>Register a set of asset sources containing default assets.</p>
   </summary>
@@ -133,9 +133,7 @@ to build and manipulate designs programmatically, or in a browser to create inte
   - `'ly.img.filter.duotone'` - Color effects of various kinds
 
   These assets are parsed at \{\{base\_url}}/\<id>/content.json, where
-  `base_url` defaults to the engine's configured baseURL. For `@cesdk/node`
-  that is the local package (`file://<pkg>/assets/`), which does not bundle
-  these sources, so pass a `baseURL` to load them.
+  `base_url` defaults to the IMG.LY CDN.
   Each source is created via `addLocalSource` and populated with the parsed assets. To modify the available
   assets, you may either exclude certain IDs via `excludeAssetSourceIds` or alter the sources after creation.
 
@@ -144,7 +142,7 @@ to build and manipulate designs programmatically, or in a browser to create inte
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `options?` | \{ `baseURL?`: `string`; `excludeAssetSourceIds?`: [`DefaultAssetSourceId`](./api/node/type-aliases/defaultassetsourceid.md)\[]; } | Configuration options for loading default asset sources. |
-  | `options.baseURL?` | `string` | The source of the asset definitions, must be absolute. Defaults to the engine's configured baseURL. |
+  | `options.baseURL?` | `string` | The source of the asset definitions, must be absolute. Defaults to IMG.LY CDN. |
   | `options.excludeAssetSourceIds?` | [`DefaultAssetSourceId`](./api/node/type-aliases/defaultassetsourceid.md)\[] | A list of IDs, that will be ignored during load. |
 
   #### Returns
@@ -153,17 +151,18 @@ to build and manipulate designs programmatically, or in a browser to create inte
 
   A promise that resolves when all asset sources are loaded.
 
-  #### Deprecated
+  #### Signature
 
-  This method uses legacy v4 asset source IDs and will be removed in a future version.
-  Please migrate to v5 asset sources using engine.asset.addLocalAssetSourceFromJSONURI().
+  ```typescript
+  addDefaultAssetSources(options?: object): Promise<void>
+  ```
 
   ***
 </details>
 
 <details>
   <summary>
-    ### ~~addDemoAssetSources()~~
+    ### addDemoAssetSources()
 
     <br /><p>Register a set of demo asset sources containing example assets.</p>
   </summary>
@@ -184,7 +183,7 @@ to build and manipulate designs programmatically, or in a browser to create inte
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `options?` | \{ `baseURL?`: `string`; `excludeAssetSourceIds?`: [`DemoAssetSourceId`](./api/node/type-aliases/demoassetsourceid.md)\[]; `sceneMode?`: `"Design"` | `"Video"`; `withUploadAssetSources?`: `boolean`; } | Configuration options for loading demo asset sources. |
-  | `options.baseURL?` | `string` | The source of the demo asset definitions, must be absolute. Defaults to the engine's configured baseURL. |
+  | `options.baseURL?` | `string` | The source of the demo asset definitions, must be absolute. Defaults to IMG.LY CDN. |
   | `options.excludeAssetSourceIds?` | [`DemoAssetSourceId`](./api/node/type-aliases/demoassetsourceid.md)\[] | A list of IDs, that will be ignored during load |
   | `options.sceneMode?` | `"Design"` | `"Video"` | If 'Video' video specific demo asset sources will be loaded as well (default 'Design') |
   | `options.withUploadAssetSources?` | `boolean` | If 'true' asset sources for uploads are added (default false) |
@@ -195,10 +194,11 @@ to build and manipulate designs programmatically, or in a browser to create inte
 
   A promise that resolves when all demo asset sources are loaded.
 
-  #### Deprecated
+  #### Signature
 
-  This method uses legacy v3 demo asset source IDs and will be removed in a future version.
-  Please migrate to v4 asset sources using engine.asset.addLocalAssetSourceFromJSONURI().
+  ```typescript
+  addDemoAssetSources(options?: object): Promise<void>
+  ```
 </details>
 
 ## Other
@@ -281,18 +281,6 @@ to build and manipulate designs programmatically, or in a browser to create inte
   ```ts
   variable: VariableAPI;
   ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### actions
-
-    <br /><p>Register, run, and discover named, overridable actions. On headless Node the registry
-    starts with only the engine-default <code>ly.img.\*</code> actions (no host UI), but the API is
-    identical to the browser engine.</p>
-  </summary>
 
   ***
 </details>

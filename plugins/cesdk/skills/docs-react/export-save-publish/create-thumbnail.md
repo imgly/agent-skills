@@ -18,7 +18,7 @@ Generate thumbnail preview images from CE.SDK scenes by exporting with target di
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-create-thumbnail-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-export-save-publish-create-thumbnail-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-create-thumbnail-browser/)
 
 Thumbnails provide visual previews of designs without loading the full editor. Use `engine.block.export()` with `targetWidth` and `targetHeight` options to scale content while maintaining aspect ratio. Supported formats include PNG, JPEG, and WebP.
 
@@ -85,7 +85,7 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
     const page = engine.scene.getCurrentPage();
@@ -194,8 +194,6 @@ export default Example;
 ```
 
 This guide covers exporting thumbnails at specific dimensions, choosing formats, optimizing quality and file size, and generating multiple thumbnail sizes.
-
-Looking for timeline filmstrips, page storyboards, or audio waveforms? Those use a separate streaming API — see [Thumbnail Previews](./export-save-publish/thumbnail-previews.md).
 
 ## Export a Thumbnail
 

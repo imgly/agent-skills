@@ -56,7 +56,7 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  await engine.scene.load(
+  await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
@@ -179,7 +179,6 @@ All image exports support these compression-related options:
 | `pngCompressionLevel` | `number` | `5` | PNG compression level 0-9. Higher values produce smaller files but take longer. Quality is unaffected. |
 | `jpegQuality` | `number` | `0.9` | JPEG quality from >0 to 1. Higher values preserve more detail. |
 | `webpQuality` | `number` | `1.0` | WebP quality from >0 to 1. Value of 1.0 enables lossless mode. |
-| `pdfImageQuality` | `number` | `1.0` | Quality from >0 to 1 for images that have to be rasterized during PDF export. Value of 1.0 keeps lossless encoding, lower values use lossy JPEG. |
 | `targetWidth` | `number` | — | Target output width in pixels. Must be used with `targetHeight`. |
 | `targetHeight` | `number` | — | Target output height in pixels. Must be used with `targetWidth`. |
 | `abortSignal` | `AbortSignal` | — | Signal to cancel the export operation. |
@@ -220,7 +219,7 @@ Create the output directory if it doesn't exist before writing files.
 | ------ | ----------- |
 | `engine.block.export(blockId, options)` | Export a block with compression and format options |
 | `engine.block.findByType('page')` | Find all pages in the current scene |
-| `engine.scene.load(url)` | Load a scene from a remote URL |
+| `engine.scene.loadFromURL(url)` | Load a scene from a remote URL |
 | `engine.dispose()` | Clean up engine resources when done |
 
 ## Next Steps

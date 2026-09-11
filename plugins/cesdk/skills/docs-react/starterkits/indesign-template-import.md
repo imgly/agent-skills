@@ -18,7 +18,7 @@ Transform your existing InDesign templates for use in the CE.SDK with our Import
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-indesign-template-import-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/starterkit-indesign-template-import/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-indesign-template-import/)
 
 ***
 
@@ -26,7 +26,7 @@ Transform your existing InDesign templates for use in the CE.SDK with our Import
 
 Before you begin, make sure you have the following:
 
-- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list.
 
@@ -231,22 +231,6 @@ Before you begin, make sure you have the following:
       </TerminalTab>
     </TerminalTabs>
 
-    To import embedded PDF and Adobe Illustrator (`.ai`) content inside IDML files as editable CE.SDK blocks, also install `@imgly/pdf-importer` and register its adapter via the `embeddedImporters` option on `IDMLParser.fromFile` (see the parsing step below). Without the adapter, embedded PDFs fall through to a placeholder image:
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm install @imgly/pdf-importer
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm add @imgly/pdf-importer
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn add @imgly/pdf-importer
-      </TerminalTab>
-    </TerminalTabs>
-
     ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. For React projects, place these in your `public/` directory which is served automatically.
@@ -339,21 +323,17 @@ result.messages.forEach((msg) => {
 
 ## Set Up a Scene
 
-CE.SDK offers multiple ways to load content into the editor. For InDesign import, convert the IDML file with the bundled importer plugin, then load the result:
+CE.SDK offers multiple ways to load content into the editor. For InDesign import, you can load IDML files directly:
 
 ```typescript title="src/index.ts"
-import { importIdmlFile } from './imgly/plugins/idml-importer';
-
-// Import an InDesign file with the bundled importer plugin
-const idmlBlob = await fetch('https://example.com/template.idml').then(res => res.blob());
-const result = await importIdmlFile(idmlBlob, 'template.idml');
-await cesdk.load(result.sceneArchiveUrl);
+// Import an InDesign file from URL
+await cesdk.loadFromURL('https://example.com/template.idml');
 
 // Create a blank design canvas - starts with an empty design scene
 await cesdk.actions.run('scene.create');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.load('https://example.com/template.zip');
+await cesdk.loadFromArchiveURL('https://example.com/template.zip');
 ```
 
 > **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading methods.
@@ -395,8 +375,8 @@ Actions are functions that handle user interactions like exporting designs, savi
 
 - `exportDesign` – Export the current design to PNG, JPEG, PDF, or other formats
 - `saveScene` – Save the scene as a JSON string for later editing
-- `importScene` – Import a previously saved scene (`.imgly` or `.scene`)
-- `exportScene` – Export the scene as an `.imgly` file, either the scene alone or an archive with all assets
+- `importScene` – Import a previously saved scene (supports `.scene` and `.cesdk` formats)
+- `exportScene` – Export the scene as a JSON file or `.cesdk` archive with all assets
 - `uploadFile` – Handle file uploads with progress tracking
 
 Use `cesdk.actions.run()` to execute any action:
@@ -409,16 +389,13 @@ await cesdk.actions.run('exportDesign', { mimeType: 'image/png' });
 #### Import from File Picker
 
 ```typescript title="src/imgly/config/actions.ts"
-import { importIdmlFile } from '../plugins/idml-importer';
-
 // Let users open InDesign files from their device
 cesdk.actions.register('importImage', async () => {
-  const idmlBlob = await cesdk.utils.loadFile({
+  const blobURL = await cesdk.utils.loadFile({
     accept: '.idml',
-    returnType: 'blob'
+    returnType: 'objectURL'
   });
-  const result = await importIdmlFile(idmlBlob, 'design.idml');
-  await cesdk.load(result.sceneArchiveUrl);
+  await cesdk.loadFromURL(blobURL);
 });
 ```
 

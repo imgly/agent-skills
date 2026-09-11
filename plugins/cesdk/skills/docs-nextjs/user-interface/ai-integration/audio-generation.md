@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Audio Generation](./user-interface/ai-integration/audio-generation.md)
+**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Audio Generation](./user-interface/ai-integration/audio-generation.md) > [Plugins](./plugins.md) > [AI: Audio Generation](./user-interface/ai-integration/audio-generation.md)
 
 ---
 
@@ -19,7 +19,7 @@ CE.SDK application using the Audio Generation plugin powered by ElevenLabs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-audio-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-user-interface-ai-integration-audio-generation-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ai-integration-audio-generation-browser/)
 
 The Audio Generation plugin provides two main capabilities: text-to-speech with multiple voice options and sound effect generation from text descriptions. The plugin adds a built-in UI to CE.SDK that allows end users to generate audio content, while also providing programmatic control for automation workflows.
 
@@ -254,7 +254,7 @@ The `proxyUrl` parameter is required and should point to your proxy server that 
 
 ## Setting Up a Proxy Server
 
-A proxy server protects your API keys by forwarding requests server-side. See the [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) guide for implementation details and examples.
+A proxy server protects your API keys by forwarding requests server-side. See the [Proxy Server](./user-interface/ai-integration/proxy-server.md) guide for implementation details and examples.
 
 ## Customizing Voice Parameters
 
@@ -414,11 +414,11 @@ Common issues when configuring the Audio Generation plugin:
 
 ## Next Steps
 
-- [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
-- [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
+- [Proxy Server](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
+- [Custom Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
 - [Integrate AI Features](./user-interface/ai-integration/integrate.md) — Overview of AI integration
-- [Asset Library Basics](./import-media/asset-library/basics.md) — Work with generated assets
-- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure asset sources
+- [Asset Library Basics](./import-media/asset-panel/basics.md) — Work with generated assets
+- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset sources
 
 
 

@@ -43,7 +43,7 @@ const engine = await CreativeEngine.init({
 
 try {
   // Load a template scene from a remote URL
-  await engine.scene.load(
+  await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
@@ -83,7 +83,7 @@ try {
 
 This guide covers loading a template scene, exporting with specific dimensions and quality settings, and saving the result to the file system.
 
-> **Video Export:** The WASM-based `@cesdk/node` package supports image exports only. For video exports on the server, use the native `@cesdk/node-native` package — it exports MP4 directly via `engine.block.exportVideo()` — or the [CE.SDK Renderer](#broken-link-7f3e9a), a native Linux binary with hardware-accelerated video encoding.
+> **Video Export:** The `@cesdk/node` package supports image exports only. For video exports on the server, use [CE.SDK Renderer](#broken-link-7f3e9a)—a native Linux binary with hardware-accelerated video encoding for MP4 output.
 
 ## Loading a Scene
 
@@ -97,7 +97,7 @@ const engine = await CreativeEngine.init({
 
 try {
   // Load a template scene from a remote URL
-  await engine.scene.load(
+  await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
@@ -154,7 +154,7 @@ The output directory is created if it doesn't exist. The console output confirms
 |--------|---------|
 | `engine.block.export()` | Export block as image (PNG, JPEG, WebP, PDF) |
 | `engine.block.findByType()` | Find blocks by type (page, text, image, etc.) |
-| `engine.scene.load()` | Load a scene from a remote URL |
+| `engine.scene.loadFromURL()` | Load a scene from a remote URL |
 
 ### Export Options (Images)
 

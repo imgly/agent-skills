@@ -19,16 +19,12 @@ your designs using CE.SDK's comprehensive text rendering capabilities.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-language-support-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-text-language-support-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-text-language-support-browser/)
 
 CE.SDK provides built-in support for creating designs that work seamlessly across different languages and writing systems. The engine automatically handles text shaping, bidirectional layout, and script-specific rendering - supporting all Unicode characters, complex script ligatures, and mixed LTR/RTL content without additional configuration.
 
 ```typescript file=@cesdk_web_examples/guides-text-language-support-browser/browser.ts reference-only
-import type {
-  EditorPlugin,
-  EditorPluginContext,
-  CreativeEngine
-} from '@cesdk/cesdk-js';
+import type { EditorPlugin, EditorPluginContext, CreativeEngine } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
@@ -40,6 +36,7 @@ import {
   FiltersAssetSource,
   PagePresetsAssetSource,
   StickerAssetSource,
+  TextAssetSource,
   TextComponentAssetSource,
   TypefaceAssetSource,
   UploadAssetSources,
@@ -65,9 +62,7 @@ const NOTO_NASKH_ARABIC = {
   name: 'Noto Naskh Arabic',
   fonts: [
     {
-      uri: `${window.location.origin}${
-        import.meta.env.BASE_URL
-      }NotoNaskhArabic-Regular.ttf`,
+      uri: `${window.location.origin}${import.meta.env.BASE_URL}NotoNaskhArabic-Regular.ttf`,
       subFamily: 'Regular',
       weight: 'normal' as const,
       style: 'normal' as const
@@ -79,9 +74,7 @@ const NOTO_SANS_KR = {
   name: 'Noto Sans KR',
   fonts: [
     {
-      uri: `${window.location.origin}${
-        import.meta.env.BASE_URL
-      }NotoSansKR-VariableFont_wght.ttf`,
+      uri: `${window.location.origin}${import.meta.env.BASE_URL}NotoSansKR-VariableFont_wght.ttf`,
       subFamily: 'Regular',
       weight: 'normal' as const,
       style: 'normal' as const
@@ -159,9 +152,7 @@ class Example implements EditorPlugin {
           name: 'Noto Naskh Arabic',
           fonts: [
             {
-              uri: `${window.location.origin}${
-                import.meta.env.BASE_URL
-              }NotoNaskhArabic-Regular.ttf`,
+              uri: `${window.location.origin}${import.meta.env.BASE_URL}NotoNaskhArabic-Regular.ttf`,
               subFamily: 'Regular',
               weight: 'normal',
               style: 'normal'
@@ -179,9 +170,7 @@ class Example implements EditorPlugin {
           name: 'Noto Sans KR',
           fonts: [
             {
-              uri: `${window.location.origin}${
-                import.meta.env.BASE_URL
-              }NotoSansKR-VariableFont_wght.ttf`,
+              uri: `${window.location.origin}${import.meta.env.BASE_URL}NotoSansKR-VariableFont_wght.ttf`,
               subFamily: 'Regular',
               weight: 'normal',
               style: 'normal'
@@ -279,9 +268,7 @@ const NOTO_NASKH_ARABIC = {
   name: 'Noto Naskh Arabic',
   fonts: [
     {
-      uri: `${window.location.origin}${
-        import.meta.env.BASE_URL
-      }NotoNaskhArabic-Regular.ttf`,
+      uri: `${window.location.origin}${import.meta.env.BASE_URL}NotoNaskhArabic-Regular.ttf`,
       subFamily: 'Regular',
       weight: 'normal' as const,
       style: 'normal' as const
@@ -293,9 +280,7 @@ const NOTO_SANS_KR = {
   name: 'Noto Sans KR',
   fonts: [
     {
-      uri: `${window.location.origin}${
-        import.meta.env.BASE_URL
-      }NotoSansKR-VariableFont_wght.ttf`,
+      uri: `${window.location.origin}${import.meta.env.BASE_URL}NotoSansKR-VariableFont_wght.ttf`,
       subFamily: 'Regular',
       weight: 'normal' as const,
       style: 'normal' as const

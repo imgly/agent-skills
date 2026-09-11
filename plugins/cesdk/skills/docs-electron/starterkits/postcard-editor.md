@@ -16,7 +16,7 @@ Built to facilitate optimal post- and greeting-card design, from changing accent
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-postcard-ui-react-web)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/starterkit-postcard-ui/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-postcard-ui/)
 
 ***
 
@@ -24,7 +24,7 @@ Built to facilitate optimal post- and greeting-card design, from changing accent
 
 This guide assumes basic familiarity with React and TypeScript.
 
-- **Node.js v22+** with npm – [Download](https://nodejs.org/)
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list
 

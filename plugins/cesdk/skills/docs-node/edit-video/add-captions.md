@@ -183,7 +183,7 @@ try {
   const outputDir = join(process.cwd(), 'output');
   await mkdir(outputDir, { recursive: true });
 
-  const outputPath = join(outputDir, 'video-with-captions.imgly');
+  const outputPath = join(outputDir, 'video-with-captions.scene');
   await writeFile(outputPath, sceneString);
 
   console.log(`Scene saved: ${outputPath}`);
@@ -431,7 +431,7 @@ Set loop animations with `setLoopAnimation` for continuous effects, or exit anim
 
 ## Saving the Scene
 
-After adding captions, save the scene to a `.scene` file for later use or rendering.
+After adding captions, save the scene to a `.scene` file for later use or rendering with the CE.SDK Renderer service.
 
 ```typescript highlight-save-scene
   // Save scene to file for later rendering
@@ -442,13 +442,13 @@ After adding captions, save the scene to a `.scene` file for later use or render
   const outputDir = join(process.cwd(), 'output');
   await mkdir(outputDir, { recursive: true });
 
-  const outputPath = join(outputDir, 'video-with-captions.imgly');
+  const outputPath = join(outputDir, 'video-with-captions.scene');
   await writeFile(outputPath, sceneString);
 
   console.log(`Scene saved: ${outputPath}`);
 ```
 
-The scene file preserves all caption data including text, timing, styling, and animations. You can load this scene later for further editing, export it as MP4 directly with the native `@cesdk/node-native` package, or send it to the CE.SDK Renderer for video export.
+The scene file preserves all caption data including text, timing, styling, and animations. You can load this scene later for further editing or send it to the CE.SDK Renderer for video export.
 
 ## Resource Cleanup
 

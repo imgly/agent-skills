@@ -20,6 +20,7 @@
 
 import CreativeEngine from '@cesdk/engine';
 
+import { DEFAULT_EXPORT_MIME_TYPE, WHITE_1PX_DATA_URI } from '../constants';
 import type {
   HeadlessEngineConfig,
   Placeholders,
@@ -33,11 +34,9 @@ import type {
 // ============================================================================
 
 /**
- * 1x1 white pixel image for clearing unused placeholder slots in mockup
- * scenes. Using a data URI avoids external network requests.
+ * Transparent 1x1 pixel image for clearing placeholder slots.
  */
-export const CLEAR_IMAGE =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==';
+export const CLEAR_IMAGE = WHITE_1PX_DATA_URI;
 
 // ============================================================================
 // Internal State
@@ -76,13 +75,13 @@ export async function renderMockup(
     });
   }
 
-  const { exportMimeType = 'image/jpeg' } = options ?? {};
+  const { exportMimeType = DEFAULT_EXPORT_MIME_TYPE } = options ?? {};
 
   // Load scene
   if (typeof sceneSource === 'string') {
-    await cachedEngine.scene.load(sceneSource);
+    await cachedEngine.scene.loadFromURL(sceneSource);
   } else {
-    await cachedEngine.scene.load(sceneSource.sceneString);
+    await cachedEngine.scene.loadFromString(sceneSource.sceneString);
   }
 
   // Track blob URLs we create

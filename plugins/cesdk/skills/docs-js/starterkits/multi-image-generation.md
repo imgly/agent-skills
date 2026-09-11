@@ -18,7 +18,7 @@ Generate multiple image variants for a single data point.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-multi-image-generation-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/starterkit-multi-image-generation/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-multi-image-generation/)
 
 ***
 
@@ -26,7 +26,7 @@ Generate multiple image variants for a single data point.
 
 This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v22+** with npm – [Download](https://nodejs.org/)
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list
 
@@ -380,7 +380,7 @@ const config = {
   config={config}
   init={async (cesdk) => {
     await initMultiImageGenerationDesignEditor(cesdk);
-    await cesdk.engine.scene.load(sceneString);
+    await cesdk.engine.scene.loadFromString(sceneString);
   }}
 />
 
@@ -404,7 +404,7 @@ import {
   fillTemplate,
   generateAssets
 } from './imgly';
-import type { Restaurant, Template, GeneratedAsset } from './imgly';
+import type { Restaurant, Template, GeneratedAsset } from './app/types';
 
 // Initialize headless engine (no UI)
 const engine = await initMultiImageGenerationHeadlessEngine();
@@ -440,13 +440,13 @@ CE.SDK offers multiple ways to load content into the editor. Choose the method t
 await cesdk.actions.run('scene.create');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.load('https://example.com/template.zip');
+await cesdk.loadFromArchiveURL('https://example.com/template.zip');
 
 // Load from an image URL - creates a new scene with the image
 await cesdk.createFromImage('https://example.com/image.jpg');
 
 // Load from a scene file - restores a scene from JSON
-await cesdk.load('https://example.com/scene.json');
+await cesdk.loadFromURL('https://example.com/scene.json');
 ```
 
 > **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading methods.

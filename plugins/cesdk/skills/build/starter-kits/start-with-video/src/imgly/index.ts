@@ -4,7 +4,7 @@
  * This module provides the main entry point for initializing the video editor
  * with a scene created from a video file.
  *
- * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
+ * @see https://img.ly/docs/cesdk/js/getting-started/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
@@ -32,6 +32,8 @@ import { VideoEditorConfig } from './config/plugin';
 
 // Re-export for external use
 export { VideoEditorConfig } from './config/plugin';
+export { VIDEO_CATALOG } from '../app/video-catalog';
+export type { VideoAsset } from '../app/video-catalog';
 
 /**
  * Initialize the CE.SDK Video Editor with a video file.
@@ -64,79 +66,77 @@ export async function initStartWithVideoEditor(
   // ============================================================================
 
   // Blur presets for blur effects
-  await Promise.all([
-    cesdk.addPlugin(new BlurAssetSource()),
+  await cesdk.addPlugin(new BlurAssetSource());
 
-    // Caption presets for video captions
-    cesdk.addPlugin(new CaptionPresetsAssetSource()),
+  // Caption presets for video captions
+  await cesdk.addPlugin(new CaptionPresetsAssetSource());
 
-    // Color palettes for design
-    cesdk.addPlugin(new ImageColorsAssetSource()),
-    cesdk.addPlugin(new ColorPaletteAssetSource()),
+  // Color palettes for design
+  await cesdk.addPlugin(new ImageColorsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
 
-    // Crop presets (aspect ratios)
-    cesdk.addPlugin(new CropPresetsAssetSource()),
+  // Crop presets (aspect ratios)
+  await cesdk.addPlugin(new CropPresetsAssetSource());
 
-    // Local upload sources (images, videos, audio)
-    cesdk.addPlugin(
-      new UploadAssetSources({
-        include: [
-          'ly.img.image.upload',
-          'ly.img.video.upload',
-          'ly.img.audio.upload'
-        ]
-      })
-    ),
+  // Local upload sources (images, videos, audio)
+  await cesdk.addPlugin(
+    new UploadAssetSources({
+      include: [
+        'ly.img.image.upload',
+        'ly.img.video.upload',
+        'ly.img.audio.upload'
+      ]
+    })
+  );
 
-    // Demo assets (images, videos, audio, stickers, templates)
-    cesdk.addPlugin(
-      new DemoAssetSources({
-        include: [
-          'ly.img.templates.video.*',
-          'ly.img.image.*',
-          'ly.img.audio.*',
-          'ly.img.video.*'
-        ]
-      })
-    ),
+  // Demo assets (images, videos, audio, stickers, templates)
+  await cesdk.addPlugin(
+    new DemoAssetSources({
+      include: [
+        'ly.img.templates.video.*',
+        'ly.img.image.*',
+        'ly.img.audio.*',
+        'ly.img.video.*'
+      ]
+    })
+  );
 
-    // Visual effects (adjustments, vignette, etc.)
-    cesdk.addPlugin(new EffectsAssetSource()),
+  // Visual effects (adjustments, vignette, etc.)
+  await cesdk.addPlugin(new EffectsAssetSource());
 
-    // Photo filters (LUT, duotone)
-    cesdk.addPlugin(new FiltersAssetSource()),
+  // Photo filters (LUT, duotone)
+  await cesdk.addPlugin(new FiltersAssetSource());
 
-    // Page format presets (social media video sizes)
-    cesdk.addPlugin(
-      new PagePresetsAssetSource({
-        include: [
-          'ly.img.page.presets.instagram.*',
-          'ly.img.page.presets.facebook.*',
-          'ly.img.page.presets.x.*',
-          'ly.img.page.presets.linkedin.*',
-          'ly.img.page.presets.pinterest.*',
-          'ly.img.page.presets.tiktok.*',
-          'ly.img.page.presets.youtube.*',
-          'ly.img.page.presets.video.*'
-        ]
-      })
-    ),
+  // Page format presets (social media video sizes)
+  await cesdk.addPlugin(
+    new PagePresetsAssetSource({
+      include: [
+        'ly.img.page.presets.instagram.*',
+        'ly.img.page.presets.facebook.*',
+        'ly.img.page.presets.x.*',
+        'ly.img.page.presets.linkedin.*',
+        'ly.img.page.presets.pinterest.*',
+        'ly.img.page.presets.tiktok.*',
+        'ly.img.page.presets.youtube.*',
+        'ly.img.page.presets.video.*'
+      ]
+    })
+  );
 
-    // Sticker assets
-    cesdk.addPlugin(new StickerAssetSource()),
+  // Sticker assets
+  await cesdk.addPlugin(new StickerAssetSource());
 
-    // Text presets (headlines, body text styles)
-    cesdk.addPlugin(new TextAssetSource()),
+  // Text presets (headlines, body text styles)
+  await cesdk.addPlugin(new TextAssetSource());
 
-    // Text components (pre-designed text layouts)
-    cesdk.addPlugin(new TextComponentAssetSource()),
+  // Text components (pre-designed text layouts)
+  await cesdk.addPlugin(new TextComponentAssetSource());
 
-    // Typeface/font assets
-    cesdk.addPlugin(new TypefaceAssetSource()),
+  // Typeface/font assets
+  await cesdk.addPlugin(new TypefaceAssetSource());
 
-    // Vector shapes (rectangles, circles, arrows, etc.)
-    cesdk.addPlugin(new VectorShapeAssetSource())
-  ]);
+  // Vector shapes (rectangles, circles, arrows, etc.)
+  await cesdk.addPlugin(new VectorShapeAssetSource());
 
   // ============================================================================
   // Scene Loading - Create from Video

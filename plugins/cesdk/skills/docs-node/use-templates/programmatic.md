@@ -125,8 +125,8 @@ async function run() {
 
     // Save the template for reuse
     const templateString = await engine.scene.saveToString();
-    writeFileSync('template.imgly', templateString);
-    console.log('✓ Template saved to template.imgly');
+    writeFileSync('template.scene', templateString);
+    console.log('✓ Template saved to template.scene');
 
     // Demonstrate batch processing: populate template with multiple data records
     const recipients = [
@@ -300,8 +300,8 @@ Templates can be serialized for storage and reuse. We use `engine.scene.saveToSt
 ```typescript highlight=highlight-save-template
 // Save the template for reuse
 const templateString = await engine.scene.saveToString();
-writeFileSync('template.imgly', templateString);
-console.log('✓ Template saved to template.imgly');
+writeFileSync('template.scene', templateString);
+console.log('✓ Template saved to template.scene');
 ```
 
 The `saveToString()` method returns a base64-encoded string containing the complete scene. This string can be stored in databases or file systems for later use in batch processing workflows.
@@ -363,13 +363,13 @@ Batch processing combines template creation, data population, and export operati
 const templateString = await engine.scene.saveToString();
 
 for (const record of dataRecords) {
-  await engine.scene.load(templateString);
+  await engine.scene.loadFromString(templateString);
   engine.variable.setString('name', record.name);
   engine.variable.setString('title', record.title);
 
   const page = engine.block.findByType('page')[0];
-  const blob = await engine.block.export(page, { mimeType: 'image/png' });
-  writeFileSync(`output-${record.id}.png`, Buffer.from(await blob.arrayBuffer()));
+  const buffer = await engine.block.export(page, 'image/png');
+  writeFileSync(`output-${record.id}.png`, Buffer.from(buffer));
 }
 ```
 
@@ -377,15 +377,15 @@ This pattern works for generating personalized certificates, greeting cards, soc
 
 ## Loading Existing Templates
 
-Templates can be loaded from various sources. Use `engine.scene.load()` to fetch remote templates:
+Templates can be loaded from various sources. Use `engine.scene.loadFromURL()` to fetch remote templates:
 
 ```typescript
-await engine.scene.load(
+await engine.scene.loadFromURL(
   'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
 );
 ```
 
-For templates with embedded assets, `engine.scene.load()` loads the complete package including all resources.
+For templates with embedded assets, `engine.scene.loadFromArchiveURL()` loads the complete package including all resources.
 
 The `engine.scene.applyTemplateFromString()` and `engine.scene.applyTemplateFromURL()` methods merge template content into existing scenes without replacing everything—useful for adding template sections to ongoing designs.
 
@@ -423,7 +423,8 @@ Remove variables with `engine.variable.remove()` when they're no longer needed. 
 | `engine.variable.findAll()` | Get array of all variable keys in the scene |
 | `engine.variable.remove()` | Delete a variable from the scene |
 | `engine.scene.saveToString()` | Serialize scene to portable string |
-| `engine.scene.load()` | Load a scene from a remote URL or a serialized string |
+| `engine.scene.loadFromString()` | Load scene from serialized string |
+| `engine.scene.loadFromURL()` | Load scene from remote URL |
 | `engine.block.export()` | Export block to image blob |
 
 ## Troubleshooting

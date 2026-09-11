@@ -146,8 +146,8 @@ try {
   }
 
   // Save scene to .scene file (standard CE.SDK scene format)
-  writeFileSync('output/resize-videos-scene.imgly', sceneString);
-  console.log('✓ Saved to output/resize-videos-scene.imgly');
+  writeFileSync('output/resize-videos-scene.scene', sceneString);
+  console.log('✓ Saved to output/resize-videos-scene.scene');
 
   // Log final dimensions to verify
   console.log('\nVideo dimensions:');
@@ -288,7 +288,7 @@ This deactivates all transform actions, resize included.
 
 ## Save Scene
 
-Save the scene to a file. The scene can later be loaded again for further editing, or rendered to an MP4 video — the native `@cesdk/node-native` package exports video directly via `engine.block.exportVideo()`, while the WASM-based `@cesdk/node` package requires the CE.SDK Renderer for video export:
+Save the scene to a file. The scene can later be loaded in a browser environment or rendered with the CE.SDK Renderer for full video export:
 
 ```typescript highlight-export
   // Save the scene to preserve the resized videos
@@ -305,8 +305,8 @@ Save the scene to a file. The scene can later be loaded again for further editin
   }
 
   // Save scene to .scene file (standard CE.SDK scene format)
-  writeFileSync('output/resize-videos-scene.imgly', sceneString);
-  console.log('✓ Saved to output/resize-videos-scene.imgly');
+  writeFileSync('output/resize-videos-scene.scene', sceneString);
+  console.log('✓ Saved to output/resize-videos-scene.scene');
 
   // Log final dimensions to verify
   console.log('\nVideo dimensions:');

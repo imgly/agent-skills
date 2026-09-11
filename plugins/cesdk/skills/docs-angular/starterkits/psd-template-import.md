@@ -18,7 +18,7 @@ Transform your existing Photoshop templates for use in the CE.SDK with our Impor
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-psd-template-import-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/starterkit-psd-template-import/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-psd-template-import/)
 
 ***
 
@@ -26,7 +26,7 @@ Transform your existing Photoshop templates for use in the CE.SDK with our Impor
 
 Before you begin, make sure you have the following:
 
-- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list.
 
@@ -321,10 +321,6 @@ The PSD importer parses Adobe Photoshop files and converts them to editable CE.S
 - **Smart Objects**: Handles embedded smart objects as image blocks
 - **Blend Modes**: Preserves common blend modes and opacity settings
 
-### Limitations
-
-The PSD importer doesn't yet support every Photoshop feature, which can cause rendering differences between the original PSD and the imported scene. For the current list of limitations, see the [`@imgly/psd-importer` package documentation](https://www.npmjs.com/package/@imgly/psd-importer).
-
 ### Import Result Structure
 
 ```typescript
@@ -355,21 +351,17 @@ result.messages.forEach((msg) => {
 
 ## Set Up a Scene
 
-CE.SDK offers multiple ways to load content into the editor. For Photoshop import, convert the PSD file with the bundled importer plugin, then load the result:
+CE.SDK offers multiple ways to load content into the editor. For Photoshop import, you can load PSD files directly:
 
 ```typescript title="src/index.ts"
-import { importPsdFile } from './imgly/plugins/psd-importer';
-
-// Import a Photoshop file with the bundled importer plugin
-const psdBlob = await fetch('https://example.com/template.psd').then(res => res.blob());
-const result = await importPsdFile(psdBlob, 'template.psd');
-await cesdk.load(result.sceneArchiveUrl);
+// Import a Photoshop file from URL
+await cesdk.loadFromURL('https://example.com/template.psd');
 
 // Create a blank design canvas - starts with an empty design scene
 await cesdk.actions.run('scene.create');
 
 // Load from a template archive - restores a previously saved project
-await cesdk.load('https://example.com/template.zip');
+await cesdk.loadFromArchiveURL('https://example.com/template.zip');
 ```
 
 > **More Loading Options:** See [Open the Editor](./open-the-editor.md) for all available loading methods.
@@ -411,8 +403,8 @@ Actions are functions that handle user interactions like exporting designs, savi
 
 - `exportDesign` – Export the current design to PNG, JPEG, PDF, or other formats
 - `saveScene` – Save the scene as a JSON string for later editing
-- `importScene` – Import a previously saved scene (`.imgly` or `.scene`)
-- `exportScene` – Export the scene as an `.imgly` file, either the scene alone or an archive with all assets
+- `importScene` – Import a previously saved scene (supports `.scene` and `.cesdk` formats)
+- `exportScene` – Export the scene as a JSON file or `.cesdk` archive with all assets
 - `uploadFile` – Handle file uploads with progress tracking
 
 Use `cesdk.actions.run()` to execute any action:
@@ -425,16 +417,13 @@ await cesdk.actions.run('exportDesign', { mimeType: 'image/png' });
 #### Import from File Picker
 
 ```typescript title="src/app/imgly/config/actions.ts"
-import { importPsdFile } from '../plugins/psd-importer';
-
 // Let users open Photoshop files from their device
 cesdk.actions.register('importImage', async () => {
-  const psdBlob = await cesdk.utils.loadFile({
+  const blobURL = await cesdk.utils.loadFile({
     accept: '.psd,image/*',
-    returnType: 'blob'
+    returnType: 'objectURL'
   });
-  const result = await importPsdFile(psdBlob, 'design.psd');
-  await cesdk.load(result.sceneArchiveUrl);
+  await cesdk.loadFromURL(blobURL);
 });
 ```
 

@@ -90,7 +90,7 @@ import { setupUnsplashAssetSource } from './imgly/plugins/unsplash';
 cesdk.ui.setTheme('dark'); // 'light' | 'dark' | 'system'
 ```
 
-See [Theming](https://img.ly/docs/cesdk/js/user-interface/appearance/theming-4b0938/) for custom color schemes and styling.
+See [Theming](https://img.ly/docs/cesdk/web/ui-styling/theming/) for custom color schemes and styling.
 
 ### Localization
 
@@ -101,7 +101,7 @@ cesdk.i18n.setTranslations({
 cesdk.i18n.setLocale('de');
 ```
 
-See [Localization](https://img.ly/docs/cesdk/js/user-interface/localization-508e20/) for supported languages and translation keys.
+See [Localization](https://img.ly/docs/cesdk/web/ui-styling/localization/) for supported languages and translation keys.
 
 ## Architecture
 
@@ -140,7 +140,7 @@ The starter kit handles all attribution requirements automatically.
 
 ## Prerequisites
 
-- **Node.js v22+** with npm - [Download](https://nodejs.org/)
+- **Node.js v20+** with npm - [Download](https://nodejs.org/)
 - **Supported browsers** - Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 
 ## Troubleshooting
@@ -154,7 +154,7 @@ The starter kit handles all attribution requirements automatically.
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Unsplash Editor Documentation](https://img.ly/docs/cesdk/js/starterkits/unsplash-editor-u5sp1h/).
+For complete integration guides and API reference, visit the [Unsplash Editor Documentation](https://img.ly/docs/cesdk/starterkits/unsplash-editor/).
 
 ## License
 

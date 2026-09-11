@@ -92,6 +92,7 @@ CE.SDK supports out-of-the-box integrations with:
 - **Getty Images**
 - **Unsplash**
 - **Pexels**
+- **Airtable**
 - **Soundstripe**
 
 Want to connect your own asset sources? Register a custom provider using our API.

@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Electron documentation. For a complete overview, see the [Electron Documentation Index](https://img.ly/docs/cesdk/electron.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Dynamic Content](./create-templates/add-dynamic-content.md) > [Set Editing Constraints](./create-templates/add-dynamic-content/set-editing-constraints.md)
+**Navigation:** [Guides](./guides.md) > [Create and Use Templates](./create-templates.md) > [Insert Dynamic Content](./create-templates/add-dynamic-content.md) > [Set Editing Constraints](./create-templates/add-dynamic-content/set-editing-constraints.md)
 
 ---
 
@@ -18,7 +18,7 @@ Control what users can edit in templates by setting fine-grained permissions on 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-dynamic-content-set-editing-constraints-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-create-templates-dynamic-content-set-editing-constraints-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-dynamic-content-set-editing-constraints-browser/)
 
 Editing constraints in CE.SDK allow you to lock specific properties of design elements while keeping others editable. The Scope system provides granular control over 20+ editing capabilities including movement, resizing, rotation, fill changes, text editing, and lifecycle operations.
 

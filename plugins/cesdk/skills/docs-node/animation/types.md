@@ -189,8 +189,8 @@ async function main() {
 
     // Save as scene file - preserves all animation data
     const sceneData = await engine.scene.saveToString();
-    writeFileSync(`${outputDir}/animation-types.imgly`, sceneData);
-    console.log('Exported to output/animation-types.imgly');
+    writeFileSync(`${outputDir}/animation-types.scene`, sceneData);
+    console.log('Exported to output/animation-types.scene');
 
     console.log('Animation Types example completed successfully');
   } finally {
@@ -201,7 +201,7 @@ async function main() {
 main().catch(console.error);
 ```
 
-The example creates a scene with multiple blocks, each demonstrating different animation types. The scene is exported to a `.scene` file that preserves all animation data for later playback or rendering.
+The example creates a scene with multiple blocks, each demonstrating different animation types. The scene is exported to a `.scene` file that preserves all animation data for later playback.
 
 ## Setting Up the Scene
 
@@ -368,7 +368,7 @@ Common configurable properties include:
 
 ## Exporting the Scene
 
-After creating animations, we export the scene to a `.scene` file. This format preserves all animation data. It can be loaded in a browser environment for playback, or rendered to an MP4 video on the server with the native `@cesdk/node-native` package.
+After creating animations, we export the scene to a `.scene` file. This format preserves all animation data and can be loaded in a browser environment for playback.
 
 ```typescript highlight-export
     // Export the scene to a .scene file
@@ -379,8 +379,8 @@ After creating animations, we export the scene to a `.scene` file. This format p
 
     // Save as scene file - preserves all animation data
     const sceneData = await engine.scene.saveToString();
-    writeFileSync(`${outputDir}/animation-types.imgly`, sceneData);
-    console.log('Exported to output/animation-types.imgly');
+    writeFileSync(`${outputDir}/animation-types.scene`, sceneData);
+    console.log('Exported to output/animation-types.scene');
 ```
 
 The `.scene` format stores the complete scene state including:
@@ -390,7 +390,7 @@ The `.scene` format stores the complete scene state including:
 - Time-based settings
 - Asset references
 
-When the scene is played back or rendered, these animations run exactly as configured.
+When loaded in a browser, these animations will play back exactly as configured.
 
 ## API Reference
 

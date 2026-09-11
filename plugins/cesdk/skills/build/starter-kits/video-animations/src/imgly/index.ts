@@ -7,7 +7,7 @@
  * - Animation panel auto-open
  * - Template switching via URL parameter
  *
- * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
+ * @see https://img.ly/docs/cesdk/js/getting-started/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
@@ -34,20 +34,10 @@ import type { AssetDefinition, AssetResult } from '@cesdk/cesdk-js';
 
 // Configuration and plugins
 import { VideoEditorConfig } from './config/plugin';
+import { resolveAssetPath } from './resolveAssetPath';
 
 // Re-export for external use
 export { VideoEditorConfig } from './config/plugin';
-
-/**
- * Demo assets for this example (scenes, audio, icons, …) are loaded from the
- * IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/starterkit-video-animations';
 
 // ============================================================================
 // Types
@@ -64,7 +54,7 @@ interface ContentJSON {
 // ============================================================================
 
 // Remote CDN base URL for initial scene loading
-const SCENES_CDN_URL = `${DEMO_ASSETS_BASE_URL}/assets/templates`;
+const SCENES_CDN_URL = resolveAssetPath('/assets/templates');
 
 // highlight-video-scene-assets
 const VIDEO_SCENES_ASSETS: ContentJSON = {
@@ -241,55 +231,49 @@ export async function initVideoAnimationsEditor(cesdk: CreativeEditorSDK) {
   // Asset Source Plugins
   // ============================================================================
 
-  await Promise.all([
-    cesdk.addPlugin(new BlurAssetSource()),
-    cesdk.addPlugin(new CaptionPresetsAssetSource()),
-    cesdk.addPlugin(new ImageColorsAssetSource()),
-    cesdk.addPlugin(new ColorPaletteAssetSource()),
-    cesdk.addPlugin(new CropPresetsAssetSource()),
-    cesdk.addPlugin(
-      new UploadAssetSources({
-        include: [
-          'ly.img.image.upload',
-          'ly.img.video.upload',
-          'ly.img.audio.upload'
-        ]
-      })
-    ),
+  await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new CaptionPresetsAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
+  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await cesdk.addPlugin(
+    new UploadAssetSources({
+      include: [
+        'ly.img.image.upload',
+        'ly.img.video.upload',
+        'ly.img.audio.upload'
+      ]
+    })
+  );
 
-    // Demo assets (without audio - we use custom audio)
-    cesdk.addPlugin(
-      new DemoAssetSources({
-        include: [
-          'ly.img.templates.video.*',
-          'ly.img.image.*',
-          'ly.img.video.*'
-        ]
-      })
-    ),
+  // Demo assets (without audio - we use custom audio)
+  await cesdk.addPlugin(
+    new DemoAssetSources({
+      include: ['ly.img.templates.video.*', 'ly.img.image.*', 'ly.img.video.*']
+    })
+  );
 
-    cesdk.addPlugin(new EffectsAssetSource()),
-    cesdk.addPlugin(new FiltersAssetSource()),
-    cesdk.addPlugin(
-      new PagePresetsAssetSource({
-        include: [
-          'ly.img.page.presets.instagram.*',
-          'ly.img.page.presets.facebook.*',
-          'ly.img.page.presets.x.*',
-          'ly.img.page.presets.linkedin.*',
-          'ly.img.page.presets.pinterest.*',
-          'ly.img.page.presets.tiktok.*',
-          'ly.img.page.presets.youtube.*',
-          'ly.img.page.presets.video.*'
-        ]
-      })
-    ),
-    cesdk.addPlugin(new StickerAssetSource()),
-    cesdk.addPlugin(new TextAssetSource()),
-    cesdk.addPlugin(new TextComponentAssetSource()),
-    cesdk.addPlugin(new TypefaceAssetSource()),
-    cesdk.addPlugin(new VectorShapeAssetSource())
-  ]);
+  await cesdk.addPlugin(new EffectsAssetSource());
+  await cesdk.addPlugin(new FiltersAssetSource());
+  await cesdk.addPlugin(
+    new PagePresetsAssetSource({
+      include: [
+        'ly.img.page.presets.instagram.*',
+        'ly.img.page.presets.facebook.*',
+        'ly.img.page.presets.x.*',
+        'ly.img.page.presets.linkedin.*',
+        'ly.img.page.presets.pinterest.*',
+        'ly.img.page.presets.tiktok.*',
+        'ly.img.page.presets.youtube.*',
+        'ly.img.page.presets.video.*'
+      ]
+    })
+  );
+  await cesdk.addPlugin(new StickerAssetSource());
+  await cesdk.addPlugin(new TextAssetSource());
+  await cesdk.addPlugin(new TextComponentAssetSource());
+  await cesdk.addPlugin(new TypefaceAssetSource());
+  await cesdk.addPlugin(new VectorShapeAssetSource());
 
   // ============================================================================
   // Custom Asset Sources
@@ -309,7 +293,7 @@ export async function initVideoAnimationsEditor(cesdk: CreativeEditorSDK) {
       if (!asset.meta || !asset.meta.uri) {
         throw new Error('Asset does not have a uri');
       }
-      await engine.scene.load(asset.meta.uri as string);
+      await engine.scene.loadFromURL(asset.meta.uri as string);
       // Zoom auto-fit to page
       cesdk.actions.run('zoom.toPage', {
         autoFit: true
@@ -338,7 +322,7 @@ export async function initVideoAnimationsEditor(cesdk: CreativeEditorSDK) {
   // Load custom audio assets using built-in JSON loader
   await engine.asset.addLocalAssetSourceFromJSONString(
     JSON.stringify(AUDIO_ASSETS),
-    `${DEMO_ASSETS_BASE_URL}/assets/audio`
+    resolveAssetPath('/assets/audio')
   );
   // highlight-custom-assets
 }

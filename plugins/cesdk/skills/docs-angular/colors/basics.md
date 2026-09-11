@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [Color Basics](./colors/basics.md)
+**Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [Basics](./colors/basics.md)
 
 ---
 
@@ -18,7 +18,7 @@ Understand the three color spaces in CE.SDK and when to use each for screen or p
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-basics-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-colors-basics-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-colors-basics-browser/)
 
 CE.SDK supports three color spaces: **sRGB** for screen display, **CMYK** for print workflows, and **Spot Color** for specialized printing. Each color space serves different output types and has its own object format for the `setColor()` API.
 

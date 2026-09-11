@@ -18,7 +18,7 @@ The inspector bar is the contextual toolbar that appears above the canvas when a
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-user-interface-customization-inspector-bar-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-customization-inspector-bar-browser/)
 
 For general component manipulation (reordering, inserting, removing), see the [Component Order API Reference](./user-interface/customization/reference/component-order-api.md).
 
@@ -345,8 +345,6 @@ console.log('Current inspector bar order:', currentOrder);
 | `ly.img.text.bold.inspectorBar` | Bold toggle |
 | `ly.img.text.italic.inspectorBar` | Italic toggle |
 | `ly.img.text.alignHorizontal.inspectorBar` | Horizontal alignment |
-| `ly.img.text.advanced.inspectorBar` | Advanced text options |
-| `ly.img.text.path.inspectorBar` | Text on a path or circle |
 
 ### Layout
 

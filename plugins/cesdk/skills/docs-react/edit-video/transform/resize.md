@@ -18,7 +18,7 @@ The **CreativeEditor SDK (CE.SDK)** provides a video resizing feature. This guid
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-edit-video-transform-resize-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-edit-video-transform-resize-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-edit-video-transform-resize-browser/)
 
 ```typescript file=@cesdk_web_examples/guides-edit-video-transform-resize-browser/browser.ts reference-only
 import CreativeEditorSDK, {
@@ -368,12 +368,12 @@ Any embedded audio remains synchronous, because resizing affects only the block'
 To prevent manual resizing in the UI, **hide the resize edge handles** using the **EditorAPI**:
 
 1. Call the `setSetting` function.
-2. Include the `"controlGizmo/resizeHandlesVisibility"` key.
-3. Set the value to `"never"`.
+2. Include the `"controlGizmo/showResizeHandles"` key.
+3. Set the value to `false`.
 
 ```ts
 // Hide resize handles if you want to prevent manual resizing
-engine.editor.setSetting("controlGizmo/resizeHandlesVisibility", "never");
+engine.editor.setSetting("controlGizmo/showResizeHandles", false);
 ```
 
 > **Note:** This setting still **displays the corner handles** and helps avoid editing operations that change the size independently in the UI.

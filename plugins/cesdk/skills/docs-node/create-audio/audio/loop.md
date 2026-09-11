@@ -132,8 +132,8 @@ try {
   }
 
   // Save to file
-  writeFileSync('output/audio-looping.imgly', sceneString);
-  console.log('Exported to output/audio-looping.imgly');
+  writeFileSync('output/audio-looping.scene', sceneString);
+  console.log('Exported to output/audio-looping.scene');
 
   console.log('\nAudio looping example complete');
 } finally {
@@ -288,11 +288,11 @@ After configuring audio looping, we save the scene for later use or rendering. T
   }
 
   // Save to file
-  writeFileSync('output/audio-looping.imgly', sceneString);
-  console.log('Exported to output/audio-looping.imgly');
+  writeFileSync('output/audio-looping.scene', sceneString);
+  console.log('Exported to output/audio-looping.scene');
 ```
 
-The exported `.scene` file contains all audio blocks with their looping configurations, ready for further editing or for server-side rendering — directly via `engine.block.exportVideo()` with the native `@cesdk/node-native` package, or with the CE.SDK Renderer. Note: with `@cesdk/node-native` on Linux and Windows, export of scenes with standalone audio blocks does not finish yet — see the [video limitations guide](./create-video/limitations.md).
+The exported `.scene` file contains all audio blocks with their looping configurations, ready for rendering with CE.SDK Renderer or further editing.
 
 ## Troubleshooting
 

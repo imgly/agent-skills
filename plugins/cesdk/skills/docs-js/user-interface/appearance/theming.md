@@ -20,7 +20,7 @@ or application design.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-user-interface-appearance-theming-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-appearance-theming-browser/)
 
 CE.SDK provides comprehensive theming capabilities at two levels: built-in themes for immediate use, and a complete CSS theming API for detailed brand-specific styling. This guide demonstrates how to use each approach to customize the editor's appearance.
 
@@ -490,7 +490,6 @@ Complete reference of all available CSS custom properties for theming:
 - `--ubq-foreground-active`: Active state foreground color
 - `--ubq-foreground-accent`: Accent foreground color
 - `--ubq-foreground-danger-default`: Danger state foreground color
-- `--ubq-foreground-danger-muted`: Muted danger state foreground color
 - `--ubq-foreground-notice-default`: Notice foreground color
 
 **Interactive Elements**
@@ -499,7 +498,6 @@ Complete reference of all available CSS custom properties for theming:
 - `--ubq-interactive-hover`: Hover state background
 - `--ubq-interactive-pressed`: Pressed state background
 - `--ubq-interactive-selected`: Selected state background
-- `--ubq-interactive-input-hover`: Hover state background for elements sitting on an input background
 - `--ubq-interactive-active-default`: Active element default state
 - `--ubq-interactive-active-hover`: Active element hover state
 - `--ubq-interactive-active-pressed`: Active element pressed state
@@ -509,9 +507,6 @@ Complete reference of all available CSS custom properties for theming:
 - `--ubq-interactive-danger-default`: Danger interactive default state
 - `--ubq-interactive-danger-hover`: Danger interactive hover state
 - `--ubq-interactive-danger-pressed`: Danger interactive pressed state
-- `--ubq-interactive-danger-muted-default`: Muted danger interactive default state
-- `--ubq-interactive-danger-muted-hover`: Muted danger interactive hover state
-- `--ubq-interactive-danger-muted-pressed`: Muted danger interactive pressed state
 - `--ubq-interactive-group-default`: Group interactive default state
 - `--ubq-interactive-group-hover`: Group interactive hover state
 - `--ubq-interactive-group-active-default`: Active group default state
@@ -556,7 +551,6 @@ Complete reference of all available CSS custom properties for theming:
 
 - `--ubq-effect-shadow`: Box shadow effect for elevation
 - `--ubq-effect-focus`: Focus state shadow effect
-- `--ubq-effect-contrast`: Contrast shadow effect for overlay controls
 
 **Static Colors** (theme-independent)
 

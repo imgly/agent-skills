@@ -259,7 +259,7 @@ This guide covers how to create a scene structure with social media dimensions, 
 
 ## Initialize the Engine
 
-We start by initializing the CE.SDK engine in headless mode using `@cesdk/node` (or the API-identical `@cesdk/node-native`):
+We start by initializing the CE.SDK engine in headless mode using `@cesdk/node`:
 
 ```typescript highlight=highlight-setup
 // Initialize CE.SDK engine in headless mode
@@ -520,7 +520,7 @@ Using a `try/finally` block ensures the engine is disposed even if an error occu
 ## Next Steps
 
 - [Layer Management](./create-composition/layer-management.md) - Control block stacking and organization
-- [Positioning and Alignment](./create-composition/position-and-align.md) - Precise block placement
+- [Positioning and Alignment](./insert-media/position-and-align.md) - Precise block placement
 - [Group and Ungroup](./create-composition/group-and-ungroup.md) - Group blocks for unified transforms
 - [Blend Modes](./create-composition/blend-modes.md) - Control how blocks interact visually
 - [Export](./export-save-publish/export.md) - Export options and formats

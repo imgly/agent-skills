@@ -3,7 +3,7 @@
 ---
 
 ```ts
-const AnimationGrowDirectionValues: readonly ["Horizontal", "Vertical", "All", "TopLeft", "TopRight", "BottomLeft", "BottomRight"];
+const AnimationGrowDirectionValues: readonly ["Horizontal", "Vertical", "TopLeft", "TopRight", "BottomLeft", "BottomRight", "All"];
 ```
 
 

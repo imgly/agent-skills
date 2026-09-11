@@ -329,7 +329,7 @@ This guide covers creating shapes and stickers programmatically using the block 
 
 ### Initialize CE.SDK
 
-Set up CE.SDK in headless mode using `@cesdk/node` or `@cesdk/node-native`. Create a scene with a page to hold your shapes.
+Set up CE.SDK in headless mode using `@cesdk/node`. Create a scene with a page to hold your shapes.
 
 ```typescript highlight-setup
   // Initialize the headless Creative Engine
@@ -769,7 +769,7 @@ If `createShape()` throws an error:
 
 - [Colors](./colors.md) - Work with colors, fills, and gradients
 - [Filters and Effects](./filters-and-effects.md) - Apply visual effects to design elements
-- [Position and Align](./create-composition/position-and-align.md) - Position elements precisely on the canvas
+- [Position and Align](./insert-media/position-and-align.md) - Position elements precisely on the canvas
 
 
 

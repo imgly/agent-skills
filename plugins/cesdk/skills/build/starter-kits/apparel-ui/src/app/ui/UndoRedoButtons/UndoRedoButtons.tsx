@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import RedoIcon from '../../icons/Redo.svg';
 import UndoIcon from '../../icons/Undo.svg';
 import { useEngine } from '../../contexts/EngineContext';
-import { useHistory } from '../../hooks/UseHistory';
+import { useHistory } from '../../../imgly/UseHistory';
 import classes from './UndoRedoButtons.module.css';
 
 const UndoRedoButtons = () => {

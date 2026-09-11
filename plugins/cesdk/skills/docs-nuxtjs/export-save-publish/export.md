@@ -15,7 +15,7 @@
 - [Options](./export-save-publish/export/overview.md) - Explore export options, supported formats, and configuration features for sharing or rendering output.
 - [Export for Social Media](./export-save-publish/for-social-media.md) - Export vertical videos with the correct dimensions, formats, and quality settings for Instagram Reels, TikTok, and YouTube Shorts.
 - [To MP4](./export-save-publish/export/to-mp4.md) - Export video compositions as MP4 files with configurable encoding options, progress tracking, and resolution control.
-- [For Audio Processing](./export-save-publish/export/audio.md) - Learn how to export audio in WAV or MP4 format from any block type in CE.SDK.
+- [For Audio Processing](./guides/export-save-publish/export/audio.md) - Learn how to export audio in WAV or MP4 format from any block type in CE.SDK.
 - [To PDF](./export-save-publish/export/to-pdf.md) - Export your designs as PDF documents with options for print compatibility, underlayer generation, and output control.
 - [To JPEG](./export-save-publish/export/to-jpeg.md) - Export CE.SDK designs to JPEG format with configurable quality settings for photographs, web images, and social media content.
 - [To PNG](./export-save-publish/export/to-png.md) - Export your designs as PNG images with transparency support and configurable compression for web graphics, UI elements, and content requiring crisp edges.
@@ -28,7 +28,6 @@
 - [Partial Export](./export-save-publish/export/partial-export.md) - Documentation for Partial Export
 - [Size Limits](./export-save-publish/export/size-limits.md) - Configure and understand CE.SDK's image and video size limits for both input and export to optimize performance and memory usage.
 - [Create Thumbnail](./export-save-publish/create-thumbnail.md) - Generate thumbnail preview images from CE.SDK scenes by exporting with target dimensions for galleries, file browsers, and design management interfaces.
-- [Thumbnail Previews](./export-save-publish/thumbnail-previews.md) - Generate timeline filmstrips, page storyboards, and audio waveforms with the CE.SDK thumbnail sequence APIs, which stream each frame and sample chunk as it becomes ready.
 - [Export for Printing](./export-save-publish/for-printing.md) - Export designs from CE.SDK as print-ready PDFs with professional output options including high compatibility mode, underlayers for special media, and scene DPI configuration.
 
 

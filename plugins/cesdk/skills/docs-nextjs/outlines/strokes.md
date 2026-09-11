@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Next.js documentation. For a complete overview, see the [Next.js Documentation Index](https://img.ly/docs/cesdk/nextjs.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Outlines](./outlines.md) > [Using Strokes](./outlines/strokes.md)
+**Navigation:** [Guides](./guides.md) > [Outlines](./outlines.md) > [Stroke (Outline)](./outlines/strokes.md)
 
 ---
 
@@ -18,7 +18,7 @@ Add outlines around shapes, text, and graphics to enhance visual definition and 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-outlines-stroke-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-outlines-stroke-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-outlines-stroke-browser/)
 
 Strokes add visual outlines that define block boundaries. You can customize their color, width, line style (solid, dashed, dotted), position relative to the block edge, and corner treatment. CE.SDK provides both built-in UI controls and programmatic APIs for stroke management.
 

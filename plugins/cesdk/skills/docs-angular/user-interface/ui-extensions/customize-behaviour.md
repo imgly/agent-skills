@@ -18,7 +18,7 @@ Control CE.SDK's interface programmatically at runtime through event subscriptio
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-customize-behaviour-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-user-interface-ui-extensions-customize-behaviour-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ui-extensions-customize-behaviour-browser/)
 
 UI behavior customization enables responsive, context-aware editing experiences. You can listen for user interactions, manipulate UI state dynamically based on application logic, integrate CE.SDK with external workflows, and build custom behavior that responds to editing events.
 
@@ -88,7 +88,7 @@ export default class CustomizeBehaviorExample implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     // Load a simple scene for demonstration
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 

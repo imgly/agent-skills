@@ -21,12 +21,7 @@ The `@imgly/idml-importer` package converts InDesign IDML files into CE.SDK scen
 ```typescript file=@cesdk_web_examples/guides-open-the-editor-import-design-from-indesign-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';
 import type { TypefaceResolver } from '@imgly/idml-importer';
-import {
-  IDMLParser,
-  addGfontsAssetLibrary,
-  createPdfEmbeddedImporter
-} from '@imgly/idml-importer';
-import { PDFParser } from '@imgly/pdf-importer';
+import { IDMLParser, addGfontsAssetLibrary } from '@imgly/idml-importer';
 import { JSDOM } from 'jsdom';
 import { config } from 'dotenv';
 import { promises as fs } from 'fs';
@@ -98,12 +93,10 @@ async function convertIdml(
   // Read the IDML file
   const idmlBuffer = await fs.readFile(idmlPath);
 
-  // Parse the IDML file using JSDOM for XML parsing.
-  // Server-side import requires JSDOM since DOMParser is browser-only.
-  // The addGfontsAssetLibrary() call enables automatic font matching.
-  // Register the PDF embedded-importer adapter explicitly so any
-  // <PDF>/.ai content inside the IDML imports as editable CE.SDK blocks
-  // via @imgly/pdf-importer (rather than a placeholder image).
+  // Parse the IDML file using JSDOM for XML parsing
+  // Server-side import requires JSDOM since DOMParser is browser-only
+  // The addGfontsAssetLibrary() call enables automatic font matching
+  // For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const parser = await IDMLParser.fromFile(
     engine as any,
@@ -114,10 +107,7 @@ async function convertIdml(
         storageQuota: 10000000,
         url: 'http://localhost'
       }).window.document,
-    {
-      fontResolver: customFontResolver,
-      embeddedImporters: [createPdfEmbeddedImporter(PDFParser)]
-    }
+    customFontResolver
   );
   await parser.parse();
 
@@ -130,7 +120,7 @@ async function convertIdml(
 
   // Generate output filename from input filename
   const inputName = basename(idmlPath, '.idml');
-  const archivePath = join(outputDir, `${inputName}.imgly`);
+  const archivePath = join(outputDir, `${inputName}.cesdk`);
 
   // Save as scene archive
   const archive = await engine.scene.saveToArchive();
@@ -162,7 +152,7 @@ async function convertIdml(
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
+  const sceneStringPath = join(outputDir, `${inputName}.scene`);
   await fs.writeFile(sceneStringPath, sceneString);
 
   return { archivePath, sceneStringPath, pageCount: pages.length };
@@ -243,7 +233,7 @@ export async function validateArchive(archivePath: string): Promise<{
     const archiveBlob = new Blob([archiveBuffer]);
     const archiveUrl = URL.createObjectURL(archiveBlob);
 
-    await engine.scene.load(archiveUrl);
+    await engine.scene.loadFromArchiveURL(archiveUrl);
 
     // Get scene information
     const pages = engine.block.findByType('page');
@@ -309,9 +299,9 @@ async function main(): Promise<void> {
     await fs.mkdir('./output', { recursive: true });
     const archive = await engine.scene.saveToArchive();
     const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-    await fs.writeFile('./output/sample.imgly', archiveBuffer);
+    await fs.writeFile('./output/sample.cesdk', archiveBuffer);
 
-    console.log('Sample archive created: ./output/sample.imgly');
+    console.log('Sample archive created: ./output/sample.cesdk');
     console.log('\nTo convert actual IDML files:');
     console.log('1. Place IDML files in an input directory');
     console.log('2. Call: await processDirectory("./input", "./output")');
@@ -335,19 +325,7 @@ npm install @imgly/idml-importer @cesdk/node@$UBQ_VERSION$ jsdom
 npm install --save-dev @types/jsdom
 ```
 
-Using the native Node.js package? Install `@cesdk/node-native@$UBQ_VERSION$` instead of `@cesdk/node` — the engine API is identical.
-
 The `jsdom` package provides the XML parsing functionality that `DOMParser` provides in browsers.
-
-### Optional: Embedded PDF / Adobe Illustrator support
-
-IDML files exported from InDesign can carry embedded PDF or Adobe Illustrator (`.ai`) content. To import these as editable CE.SDK blocks rather than placeholder images, also install `@imgly/pdf-importer` and register its adapter via the `embeddedImporters` option on `IDMLParser.fromFile`:
-
-```bash
-npm install @imgly/pdf-importer
-```
-
-The IDML importer does not import `@imgly/pdf-importer` itself — registering the adapter is opt-in, so consumers who don't need embedded-PDF support pay no install cost.
 
 ## Supported Elements
 
@@ -368,12 +346,7 @@ Text elements in IDML files reference fonts that may not be available in CE.SDK.
 ```typescript highlight=highlight-setup
 import CreativeEngine from '@cesdk/node';
 import type { TypefaceResolver } from '@imgly/idml-importer';
-import {
-  IDMLParser,
-  addGfontsAssetLibrary,
-  createPdfEmbeddedImporter
-} from '@imgly/idml-importer';
-import { PDFParser } from '@imgly/pdf-importer';
+import { IDMLParser, addGfontsAssetLibrary } from '@imgly/idml-importer';
 import { JSDOM } from 'jsdom';
 import { config } from 'dotenv';
 import { promises as fs } from 'fs';
@@ -390,12 +363,10 @@ Call this function on the engine before parsing IDML files. The importer attempt
 Use `IDMLParser.fromFile()` with `jsdom` for XML parsing. Unlike the browser's native `DOMParser`, server-side parsing requires explicit JSDOM configuration:
 
 ```typescript highlight=highlight-parse-idml
-// Parse the IDML file using JSDOM for XML parsing.
-// Server-side import requires JSDOM since DOMParser is browser-only.
-// The addGfontsAssetLibrary() call enables automatic font matching.
-// Register the PDF embedded-importer adapter explicitly so any
-// <PDF>/.ai content inside the IDML imports as editable CE.SDK blocks
-// via @imgly/pdf-importer (rather than a placeholder image).
+// Parse the IDML file using JSDOM for XML parsing
+// Server-side import requires JSDOM since DOMParser is browser-only
+// The addGfontsAssetLibrary() call enables automatic font matching
+// For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const parser = await IDMLParser.fromFile(
   engine as any,
@@ -406,10 +377,7 @@ const parser = await IDMLParser.fromFile(
       storageQuota: 10000000,
       url: 'http://localhost'
     }).window.document,
-  {
-    fontResolver: customFontResolver,
-    embeddedImporters: [createPdfEmbeddedImporter(PDFParser)]
-  }
+  customFontResolver
 );
 await parser.parse();
 ```
@@ -456,12 +424,10 @@ async function convertIdml(
   // Read the IDML file
   const idmlBuffer = await fs.readFile(idmlPath);
 
-  // Parse the IDML file using JSDOM for XML parsing.
-  // Server-side import requires JSDOM since DOMParser is browser-only.
-  // The addGfontsAssetLibrary() call enables automatic font matching.
-  // Register the PDF embedded-importer adapter explicitly so any
-  // <PDF>/.ai content inside the IDML imports as editable CE.SDK blocks
-  // via @imgly/pdf-importer (rather than a placeholder image).
+  // Parse the IDML file using JSDOM for XML parsing
+  // Server-side import requires JSDOM since DOMParser is browser-only
+  // The addGfontsAssetLibrary() call enables automatic font matching
+  // For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const parser = await IDMLParser.fromFile(
     engine as any,
@@ -472,10 +438,7 @@ async function convertIdml(
         storageQuota: 10000000,
         url: 'http://localhost'
       }).window.document,
-    {
-      fontResolver: customFontResolver,
-      embeddedImporters: [createPdfEmbeddedImporter(PDFParser)]
-    }
+    customFontResolver
   );
   await parser.parse();
 
@@ -488,7 +451,7 @@ async function convertIdml(
 
   // Generate output filename from input filename
   const inputName = basename(idmlPath, '.idml');
-  const archivePath = join(outputDir, `${inputName}.imgly`);
+  const archivePath = join(outputDir, `${inputName}.cesdk`);
 
   // Save as scene archive
   const archive = await engine.scene.saveToArchive();
@@ -520,7 +483,7 @@ async function convertIdml(
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
+  const sceneStringPath = join(outputDir, `${inputName}.scene`);
   await fs.writeFile(sceneStringPath, sceneString);
 
   return { archivePath, sceneStringPath, pageCount: pages.length };
@@ -533,7 +496,7 @@ The `convertIdmlToArchive` function:
 2. Creates a parser instance with JSDOM for XML parsing
 3. Parses the IDML, creating a scene in the engine
 4. Verifies pages were imported successfully
-5. Saves the scene as an `.imgly` archive file
+5. Saves the scene as a `.cesdk` archive file
 
 ## Saving as Archive
 
@@ -546,7 +509,7 @@ const archiveBuffer = Buffer.from(await archive.arrayBuffer());
 await fs.writeFile(archivePath, archiveBuffer);
 ```
 
-Write the archive to the filesystem as an `.imgly` file for later use with `load()`.
+Write the archive to the filesystem as a `.cesdk` file for later use with `loadFromArchiveURL()`.
 
 ## Saving Scenes with Stable URLs
 
@@ -589,7 +552,7 @@ After parsing the IDML file, use CE.SDK's native APIs to find and relocate all t
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
+  const sceneStringPath = join(outputDir, `${inputName}.scene`);
   await fs.writeFile(sceneStringPath, sceneString);
 ```
 
@@ -727,7 +690,7 @@ export async function validateArchive(archivePath: string): Promise<{
     const archiveBlob = new Blob([archiveBuffer]);
     const archiveUrl = URL.createObjectURL(archiveBlob);
 
-    await engine.scene.load(archiveUrl);
+    await engine.scene.loadFromArchiveURL(archiveUrl);
 
     // Get scene information
     const pages = engine.block.findByType('page');
@@ -784,9 +747,9 @@ async function main(): Promise<void> {
     await fs.mkdir('./output', { recursive: true });
     const archive = await engine.scene.saveToArchive();
     const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-    await fs.writeFile('./output/sample.imgly', archiveBuffer);
+    await fs.writeFile('./output/sample.cesdk', archiveBuffer);
 
-    console.log('Sample archive created: ./output/sample.imgly');
+    console.log('Sample archive created: ./output/sample.cesdk');
     console.log('\nTo convert actual IDML files:');
     console.log('1. Place IDML files in an input directory');
     console.log('2. Call: await processDirectory("./input", "./output")');
@@ -806,17 +769,16 @@ For production use, modify the script to accept input/output directories as argu
 
 ## Saving and Loading Archives
 
-Scene archives (`.imgly` files) contain the complete scene with all embedded assets:
+Scene archives (`.cesdk` files) contain the complete scene with all embedded assets:
 
 ```typescript
 // Save scene as archive
 const archive = await engine.scene.saveToArchive();
 const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-await fs.writeFile('output.imgly', archiveBuffer);
+await fs.writeFile('output.cesdk', archiveBuffer);
 
-// Load the archive back from a blob URL
-const archiveUrl = URL.createObjectURL(new Blob([archiveBuffer]));
-await engine.scene.load(archiveUrl);
+// Load archive in browser or server
+await engine.scene.loadFromArchiveURL(archiveUrl);
 ```
 
 Archives are portable - convert on server, load in browser or another server instance.
@@ -838,10 +800,9 @@ The `@imgly/idml-importer` package exports the following key APIs:
 
 | API | Description |
 |-----|-------------|
-| `IDMLParser.fromFile(engine, buffer, xmlParser, options?)` | Creates a parser instance from an IDML file buffer. The `xmlParser` function converts XML strings to DOM documents. `options` accepts `fontResolver` and `embeddedImporters`. |
+| `IDMLParser.fromFile(engine, buffer, xmlParser)` | Creates a parser instance from an IDML file buffer. The `xmlParser` function converts XML strings to DOM documents. |
 | `parser.parse()` | Parses the IDML file and creates a CE.SDK scene. Returns when parsing is complete. |
 | `addGfontsAssetLibrary(engine)` | Registers Google Fonts as a font source for text element matching. Call before parsing. |
-| `createPdfEmbeddedImporter(PDFParser)` | Adapter for the `embeddedImporters` array. Imports embedded PDF / `.ai` content as editable CE.SDK blocks via `@imgly/pdf-importer`. Requires the package to be installed; pass its `PDFParser` class as the only argument. |
 
 ## Limitations
 
@@ -850,10 +811,9 @@ The IDML importer has the following limitations:
 - **Linked images** - Only embedded images are supported. Linked images become placeholders. Embed all images in InDesign before exporting to IDML.
 - **Text flow** - Text that flows between multiple text frames is not supported and may appear duplicated.
 - **Image fitting** - Images shrunk inside their frames may not render as expected.
-- **Embedded PDF / `.ai`** - Imports as editable blocks when `@imgly/pdf-importer` is installed and `createPdfEmbeddedImporter(PDFParser)` is registered in `embeddedImporters`. Without the adapter, embeds fall through to a placeholder image. Non-rectangular frame clipping and per-embed PDF crop attributes are not yet applied.
+- **PDF content** - Embedded PDF content is replaced with placeholders.
+- **Page sizes** - Different page sizes within the same document are not supported. All pages use the first page's dimensions.
 - **Advanced text** - Complex text formatting beyond bold/italic may not be preserved.
-
-These are the highlights only—the [`@imgly/idml-importer`](https://www.npmjs.com/package/@imgly/idml-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
 
 ## Pre-Import Checklist
 
@@ -874,7 +834,7 @@ Before exporting from InDesign:
 
 **Text is duplicated:** This can happen when text flows between multiple frames. The IDML importer doesn't support linked text frames.
 
-**Embedded PDFs show as placeholders:** Install `@imgly/pdf-importer` and pass `createPdfEmbeddedImporter(PDFParser)` in the `embeddedImporters` option to `IDMLParser.fromFile`. Without the adapter, `<PDF>` and `.ai` embeds fall through to a placeholder image.
+**Pages have wrong size:** All pages use the first page's dimensions. Ensure consistent page sizes in the InDesign document.
 
 
 

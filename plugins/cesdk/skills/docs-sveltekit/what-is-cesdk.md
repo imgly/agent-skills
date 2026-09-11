@@ -149,7 +149,7 @@ Scenes**:
 
 ```javascript
 engine.scene.create();
-engine.scene.load(url);
+engine.scene.loadFromURL(url);
 ```
 
 - **Zoom Control**:

@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Customize Connection](./user-interface/ai-integration/customize-connection.md) > [Custom Model Provider](./user-interface/ai-integration/custom-provider.md)
+**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Custom AI Provider](./user-interface/ai-integration/custom-provider.md)
 
 ---
 
@@ -18,7 +18,7 @@ Build a custom AI-powered image generation provider for CE.SDK using the `@imgly
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-user-interface-ai-integration-custom-provider-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ai-integration-custom-provider-browser/)
 
 This guide walks you through creating an image generation provider that connects to your own AI service. You'll learn about the provider interface, OpenAPI schema-based input configuration, quick actions, middleware patterns, and CE.SDK integration.
 

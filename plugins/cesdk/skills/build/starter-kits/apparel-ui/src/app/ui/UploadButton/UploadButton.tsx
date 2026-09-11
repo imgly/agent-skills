@@ -1,7 +1,7 @@
 import { CompleteAssetResult } from '@cesdk/engine';
 import classNames from 'classnames';
 import UploadIcon from '../../icons/Upload.svg';
-import { useImageUpload } from '../../hooks/UseImageUpload';
+import { useImageUpload } from '../../../imgly/UseImageUpload';
 import classes from './UploadButton.module.css';
 
 interface UploadButtonProps {

@@ -11,7 +11,7 @@
  * - Color editing across all elements
  * - Hidden dock/inspector for simplified UI
  *
- * @see https://img.ly/docs/cesdk/js/plugins-693c48/
+ * @see https://img.ly/docs/cesdk/js/plugins/
  */
 
 import { EditorPlugin } from '@cesdk/cesdk-js';

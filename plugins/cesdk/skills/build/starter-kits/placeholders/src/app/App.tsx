@@ -16,13 +16,6 @@ import {
 import RoleSwitcher from './RoleSwitcher/RoleSwitcher';
 import styles from './App.module.css';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
-
 // ============================================================================
 // Types
 // ============================================================================
@@ -51,9 +44,6 @@ export default function App({ config, sceneUrl }: AppProps) {
   // highlight-create-editor
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
       cesdkRef.current = cesdk;
 
       // Debug access (remove in production)
@@ -73,20 +63,17 @@ export default function App({ config, sceneUrl }: AppProps) {
       const savedScene = savedSceneStringRef.current;
       if (savedScene) {
         try {
-          await cesdk.engine.scene.load(savedScene);
+          await cesdk.engine.scene.loadFromString(savedScene);
         } catch {
-          await cesdk.load(sceneUrl);
+          await cesdk.loadFromURL(sceneUrl);
         }
         savedSceneStringRef.current = null;
       } else {
-        await cesdk.load(sceneUrl);
+        await cesdk.loadFromURL(sceneUrl);
       }
 
       // Zoom auto-fit to page
       cesdk.actions.run('zoom.toPage', { autoFit: true });
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('ready');
-      // END_HIDDEN_BLOCK
     },
     [role, sceneUrl]
   );
@@ -117,9 +104,6 @@ export default function App({ config, sceneUrl }: AppProps) {
           key={editorKey}
           className={styles.editor}
           config={config}
-          // START_HIDDEN_BLOCK
-          onLoadingStateChange={reportDemoLoadingState}
-          // END_HIDDEN_BLOCK
           init={handleInit}
         />
       </div>

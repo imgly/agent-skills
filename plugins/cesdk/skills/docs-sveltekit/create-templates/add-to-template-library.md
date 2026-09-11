@@ -18,7 +18,7 @@ Create a template library where users can browse, preview, and apply templates f
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-templates-add-to-template-library-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-create-templates-add-to-template-library-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-create-templates-add-to-template-library-browser/)
 
 Templates in CE.SDK are stored and accessed through the asset system. A template library is a local asset source configured to hold and serve template assets, allowing users to browse thumbnails and apply templates to their designs.
 
@@ -121,7 +121,7 @@ class Example implements EditorPlugin {
     ]);
 
     // Load the first template
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 

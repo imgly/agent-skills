@@ -18,9 +18,9 @@ Load archived CE.SDK scenes that bundle design structure with all fonts, images,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-import-design-from-archive-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-open-the-editor-import-design-from-archive-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-open-the-editor-import-design-from-archive-browser/)
 
-Archives solve the portability problem inherent in scene files. While scene files reference assets by URL, archives package everything together in a single `.imgly` file (the `.zip` extension also works). If asset URLs become unavailable, scene files fail to load properly. Archives avoid this issue by bundling all fonts, images, videos, and other resources directly within the archive, making them self-contained and reliable across different environments.
+Archives solve the portability problem inherent in scene files. While scene files reference assets by URL, archives package everything together in a single `.zip` file. If asset URLs become unavailable, scene files fail to load properly. Archives avoid this issue by bundling all fonts, images, videos, and other resources directly within the archive, making them self-contained and reliable across different environments.
 
 ```typescript file=@cesdk_web_examples/guides-open-the-editor-import-design-from-archive-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -90,15 +90,14 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // ===== Method 1: Load Archive from URL =====
-    // Archives are self-contained `.imgly` files (zip archives) containing
-    // both the scene structure and all referenced assets
-    // (images, fonts, videos, etc.)
+    // Archives are self-contained ZIP files containing both the scene
+    // structure and all referenced assets (images, fonts, videos, etc.)
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _archiveUrl = 'https://example.com/designs/project-bundle.imgly';
+    const _archiveUrl = 'https://example.com/designs/project-bundle.zip';
 
-    // Load the archive using engine.scene.load
-    // await engine.scene.load(_archiveUrl);
+    // Load the archive using loadFromArchiveURL
+    // await engine.scene.loadFromArchiveURL(_archiveUrl);
 
     // The scene is now loaded with all bundled assets
 
@@ -110,7 +109,7 @@ class Example implements EditorPlugin {
       const userArchiveUrl = URL.createObjectURL(file);
 
       try {
-        await engine.scene.load(userArchiveUrl);
+        await engine.scene.loadFromArchiveURL(userArchiveUrl);
         console.log('User archive loaded successfully');
       } catch (error) {
         console.error('Failed to load user archive:', error);
@@ -123,7 +122,7 @@ class Example implements EditorPlugin {
     // In production, attach this to your UI button
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
-    fileInput.accept = '.imgly,.zip';
+    fileInput.accept = '.zip';
     fileInput.onchange = async (event) => {
       const file = (event.target as HTMLInputElement).files?.[0];
       if (file) {
@@ -140,7 +139,7 @@ class Example implements EditorPlugin {
       const blobUrl = URL.createObjectURL(archiveBlob);
 
       try {
-        await engine.scene.load(blobUrl);
+        await engine.scene.loadFromArchiveURL(blobUrl);
         console.log('Archive loaded from blob successfully');
       } catch (error) {
         console.error('Failed to load archive from blob:', error);
@@ -250,7 +249,7 @@ This guide covers how to load archived scenes from URLs, handle user-uploaded ar
 
 ## Understanding CE.SDK Archives
 
-CE.SDK archives are zip-compressed files created with `engine.scene.saveToArchive()` that contain both the scene structure and all referenced assets. Save them with the `.imgly` extension; the `.zip` extension also works. The scene file uses relative paths to reference bundled assets, eliminating the need for external URLs to remain accessible.
+CE.SDK archives are `.zip` files created with `engine.scene.saveToArchive()` that contain both the scene structure and all referenced assets. The scene file uses relative paths to reference bundled assets, eliminating the need for external URLs to remain accessible.
 
 Archives contain a predictable directory structure:
 
@@ -264,18 +263,17 @@ The scene file references these assets with relative URIs like `./images/photo-a
 
 ## Load Archive from URL
 
-Use `engine.scene.load()` to load a CE.SDK archive from a remote or local URL. The engine fetches the file, detects that it's an archive from its content, extracts it, and loads the scene with all bundled assets. The same call also opens plain scene files.
+Use `engine.scene.loadFromArchiveURL()` to load a CE.SDK archive from a remote or local URL. The engine fetches the archive, extracts its contents, and loads the scene with all bundled assets.
 
 ```typescript highlight-load-from-archive-url
-    // Archives are self-contained `.imgly` files (zip archives) containing
-    // both the scene structure and all referenced assets
-    // (images, fonts, videos, etc.)
+    // Archives are self-contained ZIP files containing both the scene
+    // structure and all referenced assets (images, fonts, videos, etc.)
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _archiveUrl = 'https://example.com/designs/project-bundle.imgly';
+    const _archiveUrl = 'https://example.com/designs/project-bundle.zip';
 
-    // Load the archive using engine.scene.load
-    // await engine.scene.load(_archiveUrl);
+    // Load the archive using loadFromArchiveURL
+    // await engine.scene.loadFromArchiveURL(_archiveUrl);
 
     // The scene is now loaded with all bundled assets
 ```
@@ -286,11 +284,11 @@ Always wrap archive loading in try-catch blocks to handle potential failures gra
 
 For production usage, archive URLs typically point to cloud storage or CDN locations where archives are permanently stored. The example above demonstrates loading after creating a demo archive, but in real applications you would use existing archive URLs directly from your storage system.
 
-> **Note:** **Unified API**: Both browser and Node.js environments use `engine.scene.load(url)` to load archives. In browsers, use HTTP/HTTPS URLs or object URLs created from Blobs. In Node.js, convert local file paths to `file://` URLs.
+> **Note:** **Unified API**: Both browser and Node.js environments use `engine.scene.loadFromArchiveURL(url)` to load archives. In browsers, use HTTP/HTTPS URLs or object URLs created from Blobs. In Node.js, convert local file paths to `file://` URLs.
 
 ## Load User-Uploaded Archives
 
-For user-uploaded archive files, create an object URL from the File blob and load it using `engine.scene.load()`. This pattern works for file inputs, drag-and-drop uploads, or any scenario where users provide archive files.
+For user-uploaded archive files, create an object URL from the File blob and load it using `loadFromArchiveURL()`. This pattern works for file inputs, drag-and-drop uploads, or any scenario where users provide archive files.
 
 ```typescript highlight-load-from-user-upload
     // For user-uploaded archive files, create an object URL from the File
@@ -300,7 +298,7 @@ For user-uploaded archive files, create an object URL from the File blob and loa
       const userArchiveUrl = URL.createObjectURL(file);
 
       try {
-        await engine.scene.load(userArchiveUrl);
+        await engine.scene.loadFromArchiveURL(userArchiveUrl);
         console.log('User archive loaded successfully');
       } catch (error) {
         console.error('Failed to load user archive:', error);
@@ -313,7 +311,7 @@ For user-uploaded archive files, create an object URL from the File blob and loa
     // In production, attach this to your UI button
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
-    fileInput.accept = '.imgly,.zip';
+    fileInput.accept = '.zip';
     fileInput.onchange = async (event) => {
       const file = (event.target as HTMLInputElement).files?.[0];
       if (file) {
@@ -337,7 +335,7 @@ When you have an archive as a Blob from API responses, fetch operations, or data
       const blobUrl = URL.createObjectURL(archiveBlob);
 
       try {
-        await engine.scene.load(blobUrl);
+        await engine.scene.loadFromArchiveURL(blobUrl);
         console.log('Archive loaded from blob successfully');
       } catch (error) {
         console.error('Failed to load archive from blob:', error);
@@ -405,9 +403,9 @@ The relative URI pattern (`./images/photo-123.jpg`) ensures assets are resolved 
 
 ## Archives vs Scene Files
 
-CE.SDK provides two save formats that handle assets differently. Both are saved with the `.imgly` extension and open through the same `engine.scene.load()` call, which detects the kind automatically from the file content; the `.scene` and `.zip` extensions also work.
+CE.SDK provides two save formats that handle assets differently:
 
-**Scene Files** are lightweight JSON-based files that store design structure, layout, and properties. When you save a scene, it stores the design structure, all block properties, and URL references to images, fonts, and other resources. Assets are referenced by their original URLs.
+**Scene Files** (`.scene`) are lightweight JSON-based files that store design structure, layout, and properties. When you save a scene, it stores the design structure, all block properties, and URL references to images, fonts, and other resources. Assets are referenced by their original URLs.
 
 Use scene files when:
 
@@ -416,7 +414,7 @@ Use scene files when:
 - Assets are managed separately (CDN, asset management system)
 - You're working in a stable environment with reliable asset URLs
 
-**Archives** bundle the scene file with all referenced assets into a single zip-compressed package. When you create an archive, CE.SDK packages the scene structure along with all images, fonts, videos, and other resources. Assets in archived scenes use relative paths (like `./images/photo-123.jpg`) instead of external URLs, making them portable across different environments.
+**Archives** (`.zip`) bundle the scene file with all referenced assets into a single package. When you create an archive, CE.SDK packages the scene structure along with all images, fonts, videos, and other resources. Assets in archived scenes use relative paths (like `./images/photo-123.jpg`) instead of external URLs, making them portable across different environments.
 
 Use archives when:
 
@@ -441,7 +439,7 @@ This creates several challenges:
 - **Network dependencies** - Scene files require network access to fetch assets
 - **Long-term storage** - Asset URLs may become unavailable over time
 
-Archives solve these problems by bundling assets inside the archive file with relative references. This makes them:
+Archives solve these problems by bundling assets inside the `.zip` file with relative references. This makes them:
 
 - **Environment-independent** - Work identically in development, staging, and production
 - **Offline-capable** - Load without network connectivity
@@ -454,7 +452,7 @@ Archives solve these problems by bundling assets inside the archive file with re
 
 ### Archive Fails to Load
 
-If `engine.scene.load()` throws an error or fails silently:
+If `loadFromArchiveURL()` throws an error or fails silently:
 
 - **Verify the archive was created with `scene.saveToArchive()`** - CE.SDK archives use a specific internal structure that standard ZIP files don't have
 - **Check the file is a valid ZIP** - Corrupted archives or renamed files will fail validation
@@ -476,7 +474,7 @@ If the scene loads but images, fonts, or other assets don't appear:
 
 If object URLs cause problems:
 
-- **Don't revoke URLs too early** - Wait for `engine.scene.load()` to complete before revoking
+- **Don't revoke URLs too early** - Wait for `loadFromArchiveURL()` to complete before revoking
 - **Handle async properly** - Use `await` to ensure loading finishes before cleanup
 - **Check memory usage** - Create and revoke object URLs promptly to avoid memory leaks
 
@@ -493,8 +491,9 @@ For archives over 50-100MB:
 
 | Method                              | Purpose                                           |
 | ----------------------------------- | ------------------------------------------------- |
-| `engine.scene.load()`               | Load a scene or archive from a URL or string      |
+| `engine.scene.loadFromArchiveURL()` | Load archived scene with bundled assets from URL  |
 | `engine.scene.saveToArchive()`      | Create archive blob bundling scene with assets    |
+| `engine.scene.loadFromURL()`        | Load scene file (without bundled assets)          |
 | `engine.block.findByType()`         | Find blocks by type in loaded scene               |
 | `engine.editor.undo()`              | Revert scene load operation                       |
 | `URL.createObjectURL()`             | Create URL for local blob                         |

@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Angular documentation. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Video Generation](./user-interface/ai-integration/video-generation.md)
+**Navigation:** [Guides](./guides.md) > [AI Integration](./user-interface/ai-integration.md) > [Video Generation](./user-interface/ai-integration/video-generation.md) > [Plugins](./plugins.md) > [AI: Video Generation](./user-interface/ai-integration/video-generation.md)
 
 ---
 
@@ -19,7 +19,7 @@ videos from text or animating static images.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-video-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-user-interface-ai-integration-video-generation-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-user-interface-ai-integration-video-generation-browser/)
 
 The video generation plugin creates videos from text descriptions (text-to-video) or animates static images (image-to-video). Use models like Minimax Video, Pixverse, Kling Video, and ByteDance Seedance.
 
@@ -255,7 +255,7 @@ We configure MinimaxVideo01Live for text-to-video and MinimaxVideo01LiveImageToV
 
 ## Proxy Server
 
-A proxy server protects your API keys by forwarding requests server-side. See the [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) guide for implementation details and examples.
+A proxy server protects your API keys by forwarding requests server-side. See the [Proxy Server](./user-interface/ai-integration/proxy-server.md) guide for implementation details and examples.
 
 ## Text-to-Video Generation
 
@@ -479,11 +479,11 @@ Common issues when configuring the plugin:
 
 ## Next Steps
 
-- [Self-Hosted Model Proxy](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
-- [Custom Model Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
+- [Proxy Server](./user-interface/ai-integration/proxy-server.md) — Set up secure API communication
+- [Custom Provider](./user-interface/ai-integration/custom-provider.md) — Create custom AI providers
 - [Integrate AI Features](./user-interface/ai-integration/integrate.md) — Overview of AI integration
-- [Asset Library Basics](./import-media/asset-library/basics.md) — Work with generated assets
-- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure asset sources
+- [Asset Library Basics](./import-media/asset-panel/basics.md) — Work with generated assets
+- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure asset sources
 
 
 

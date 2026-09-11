@@ -69,7 +69,7 @@ Each feature is related to an example further down the page.
 | **Time Management**      | Offset                      | `setTimeOffset`                       | To move the playback starting point in the scene. |
 |                          | Duration                    | `setDuration`                         | Total length (seconds). |
 |                          | Trim length                 | `setTrimLength`                       | Cuts content to a defined length. |
-| **Replace Audio Source** | Reload edited scene         | `scene.load`                | Used when replacing audio at runtime. |
+| **Replace Audio Source** | Reload edited scene         | `scene.loadFromString`                | Used when replacing audio at runtime. |
 | **Waveforms**            | Generate thumbnails         | `generateAudioThumbnailSequence`      | Produces waveform sample data for UI. |
 | **Export Audio**         | Export WAV                  | `exportAudio`                         | MIME type: `audio/wav`. |
 |                          | Export MP4                  | `exportAudio`                         | MIME type: `audio/mp4`. |
@@ -263,42 +263,37 @@ Find in the following list of examples different API calls listed in the precedi
 
     ```
 
-    `numberOfSamples` is the total number of samples to produce **per channel**, and `samplesPerChunk`
-    is how many of them arrive in each callback. The engine emits
-    `ceil(numberOfSamples / samplesPerChunk)` chunks, and the last one may be shorter than the rest.
+    This example generates 1 audio sample that:
 
-    The example below covers seconds 8 through 18 of the audio, producing 512 samples per channel in
-    stereo, delivered as 8 chunks of 64 samples. Because the data is interleaved, each chunk carries
-    `64 × 2 = 128` floats, starting with the left channel.
+    - Produces 3 chunks of this sample.
+    - Start at second 8.
+    - End at second 18.
+    - Is stereo audio (1 for mono, 2 for stereo)
 
     > **Note:** `audioBlockId` must refer to an existing block.
 
     ```ts
-    const cancelAudioThumbnail = engine.block.generateAudioThumbnailSequence(
+    const audioThumbnail = engine.block.generateAudioThumbnailSequence(
       audioBlockId,
-      64, // samplesPerChunk
-      8, // timeBegin
-      18, // timeEnd
-      512, // numberOfSamples (per channel)
-      2, // numberOfChannels (1 for mono, 2 for stereo)
+      3,   // samplesPerChunk
+      8,   // timeBegin
+      18,  // timeEnd
+      1,   // numberOfSamples
+      2,   // numberOfChannels
+      // Return the result 
       (chunkIndex, result) => {
         if (result instanceof Error) {
-          // An error ends the whole sequence — no further chunks arrive.
-          console.error('Thumbnail chunk failed', result);
-          return;
+        console.error('Thumbnail chunk failed', result);
+        audioThumbnail();
+        return;
         }
-        // The Float32Array is a view into engine memory. Copy it before storing it.
-        const samples = new Float32Array(result);
-        console.log(`Chunk ${chunkIndex}`, samples);
+        console.log(`Chunk ${chunkIndex}`, result);
       }
     );
+
     ```
 
-    Call `cancelAudioThumbnail()` to stop generation early, for example when the user navigates away.
-
-    The values are a normalized amplitude envelope in the range `0` to `1`, not raw PCM, so you can draw
-    them directly by mirroring each value around a centerline. For the full waveform and filmstrip
-    workflow, see [Thumbnail Previews](./export-save-publish/thumbnail-previews.md).
+    Once generated, integrate the waveform into your UI.
   </TabItem>
 </Tabs>
 
@@ -317,9 +312,8 @@ For each feature’s detailed instructions and options:
 
 - [Add Sound Effects](./create-audio/audio/add-sound-effects.md) - Learn how to use buffers with arbitrary data to generate sound effects programmatically
 - [Add Music](./create-audio/audio/add-music.md) - Add background music and audio tracks to video projects using CE.SDK's audio block system.
-- [Adjust Audio Volume](./create-audio/audio/adjust-volume.md) - Learn how to adjust audio volume in CE.SDK to control playback levels, mute audio, and balance multiple audio sources in video projects.
-- [Fade Audio In and Out](./create-audio/audio/fade.md) - Learn how to fade audio in and out in CE.SDK, choose an easing curve, and read fade settings back from audio blocks and video fills.
-- [Adjust Audio Playback Speed](./create-audio/audio/adjust-speed.md) - Learn how to adjust audio playback speed in CE.SDK to create slow-motion, time-stretched, and fast-forward audio effects.
+- [Adjust Audio Volume](./create-video/audio/adjust-volume.md) - Learn how to adjust audio volume in CE.SDK to control playback levels, mute audio, and balance multiple audio sources in video projects.
+- [Adjust Audio Playback Speed](./create-video/audio/adjust-speed.md) - Learn how to adjust audio playback speed in CE.SDK to create slow-motion, time-stretched, and fast-forward audio effects.
 - [Loop Audio](./create-audio/audio/loop.md) - Create seamless repeating audio playback for background music and sound effects using CE.SDK's audio looping system.
 
 

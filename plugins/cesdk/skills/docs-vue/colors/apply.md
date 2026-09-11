@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [Apply Colors](./colors/apply.md)
+**Navigation:** [Guides](./guides.md) > [Colors](./colors.md) > [Apply Color](./colors/apply.md)
 
 ---
 
@@ -18,7 +18,7 @@ Apply solid colors to design elements like shapes, text, and backgrounds using C
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-apply-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-colors-apply-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-colors-apply-browser/)
 
 Colors in CE.SDK are applied to block properties like fill, stroke, and shadow using `engine.block.setColor()`. The engine supports three color spaces: sRGB for screen display, CMYK for print production, and spot colors for specialized printing requirements.
 

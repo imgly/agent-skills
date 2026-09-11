@@ -10,8 +10,8 @@
  * generation request. See `createAIProviders` in `./plugins/ai-providers`
  * for the full rationale and the three common credential flows.
  *
- * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
- * @see https://img.ly/docs/cesdk/js/user-interface/ai-integration/integrate-8e906c/
+ * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/plugins/ai-generation/
  * @see https://img.ly/docs/cesdk/js/user-interface/ai-integration/gateway-provider-06df22/
  */
 
@@ -74,7 +74,7 @@ export { VideoEditorConfig } from './config/video-editor/plugin';
  * Sets up CE.SDK with the design editor configuration, standard asset
  * sources, and the AI Apps plugin wired to the given provider map. The
  * caller is responsible for loading scene content (e.g. via
- * `cesdk.load(url)`) after this function resolves.
+ * `cesdk.loadFromArchiveURL(url)`) after this function resolves.
  *
  * @param cesdk     - The CreativeEditorSDK instance
  * @param providers - Provider map for `AiApps({ providers: … })`; use
@@ -101,18 +101,16 @@ export async function initAiDesignEditor(
     cesdk.addPlugin(new PagePresetsAssetSource()),
     cesdk.addPlugin(new CropPresetsAssetSource())
   ]);
-  await Promise.all([
-    cesdk.addPlugin(
-      new UploadAssetSources({
-        include: ['ly.img.image.upload']
-      })
-    ),
-    cesdk.addPlugin(
-      new DemoAssetSources({
-        include: ['ly.img.image.*']
-      })
-    )
-  ]);
+  await cesdk.addPlugin(
+    new UploadAssetSources({
+      include: ['ly.img.image.upload']
+    })
+  );
+  await cesdk.addPlugin(
+    new DemoAssetSources({
+      include: ['ly.img.image.*']
+    })
+  );
 
   await cesdk.addPlugin(new AiAppsConfig(providers, 'Design'));
 }
@@ -154,18 +152,16 @@ export async function initAiPhotoEditor(
     cesdk.addPlugin(new PagePresetsAssetSource()),
     cesdk.addPlugin(new CropPresetsAssetSource())
   ]);
-  await Promise.all([
-    cesdk.addPlugin(
-      new UploadAssetSources({
-        include: ['ly.img.image.upload']
-      })
-    ),
-    cesdk.addPlugin(
-      new DemoAssetSources({
-        include: ['ly.img.image.*']
-      })
-    )
-  ]);
+  await cesdk.addPlugin(
+    new UploadAssetSources({
+      include: ['ly.img.image.upload']
+    })
+  );
+  await cesdk.addPlugin(
+    new DemoAssetSources({
+      include: ['ly.img.image.*']
+    })
+  );
 
   await cesdk.addPlugin(new AiPhotoEditConfig(providers));
 }
@@ -180,7 +176,7 @@ export async function initAiPhotoEditor(
  * Sets up CE.SDK with the video editor configuration, video/audio asset
  * sources, and the AI Apps plugin wired to the given provider map. The
  * caller is responsible for loading scene content (e.g. via
- * `cesdk.load(url)`) after this function resolves.
+ * `cesdk.loadFromArchiveURL(url)`) after this function resolves.
  *
  * @param cesdk     - The CreativeEditorSDK instance
  * @param providers - Provider map for `AiApps({ providers: … })`; use
@@ -207,27 +203,25 @@ export async function initAiVideoEditor(
     cesdk.addPlugin(new PagePresetsAssetSource()),
     cesdk.addPlugin(new CropPresetsAssetSource())
   ]);
-  await Promise.all([
-    cesdk.addPlugin(
-      new UploadAssetSources({
-        include: [
-          'ly.img.image.upload',
-          'ly.img.video.upload',
-          'ly.img.audio.upload'
-        ]
-      })
-    ),
-    cesdk.addPlugin(
-      new DemoAssetSources({
-        include: [
-          'ly.img.templates.video.*',
-          'ly.img.image.*',
-          'ly.img.video.*',
-          'ly.img.audio.*'
-        ]
-      })
-    )
-  ]);
+  await cesdk.addPlugin(
+    new UploadAssetSources({
+      include: [
+        'ly.img.image.upload',
+        'ly.img.video.upload',
+        'ly.img.audio.upload'
+      ]
+    })
+  );
+  await cesdk.addPlugin(
+    new DemoAssetSources({
+      include: [
+        'ly.img.templates.video.*',
+        'ly.img.image.*',
+        'ly.img.video.*',
+        'ly.img.audio.*'
+      ]
+    })
+  );
 
   await cesdk.addPlugin(new AiAppsConfig(providers, 'Video'));
 }

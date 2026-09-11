@@ -34,7 +34,7 @@
  *   - Returns: Promise<string> - Blob URL that can be used with engine
  *
  * @see https://img.ly/docs/cesdk/js/actions-6ch24x
- * @see https://img.ly/docs/cesdk/js/export-save-publish/export/overview-9ed3a8/
+ * @see https://img.ly/docs/cesdk/js/export/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
@@ -84,18 +84,27 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // #endregion
 
   // #region Import Scene Action
-  // A single Import action. The engine inspects the file's content to tell a
-  // scene from an archive, so one picker handles .imgly files as well as the
-  // legacy .scene and .zip formats.
-  cesdk.actions.register('importScene', async () => {
-    const blobURL = await cesdk.utils.loadFile({
-      accept: '.imgly,.scene,.zip',
-      returnType: 'objectURL'
-    });
-    try {
-      await cesdk.engine.scene.load(blobURL);
-    } finally {
-      URL.revokeObjectURL(blobURL);
+  // Import a scene from a .scene JSON file or .cesdk archive
+  // Supports both formats and resets the zoom to the first page
+  cesdk.actions.register('importScene', async ({ format = 'scene' }) => {
+    if (format === 'scene') {
+      // Import from .scene JSON file
+      const scene = await cesdk.utils.loadFile({
+        accept: '.scene',
+        returnType: 'text'
+      });
+      await cesdk.engine.scene.loadFromString(scene);
+    } else {
+      // Import from .cesdk archive (includes embedded assets)
+      const blobURL = await cesdk.utils.loadFile({
+        accept: '.zip',
+        returnType: 'objectURL'
+      });
+      try {
+        await cesdk.engine.scene.loadFromArchiveURL(blobURL);
+      } finally {
+        URL.revokeObjectURL(blobURL);
+      }
     }
 
     // Reset zoom to show the first page after import

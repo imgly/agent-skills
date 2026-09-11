@@ -6,7 +6,7 @@
 
 Access CE.SDK's cross-platform C++ engine programmatically for server-side automation, batch processing, and high-resolution exports in Node.js.
 
-The `@cesdk/node` (WASM) and `@cesdk/node-native` (native) packages provide the same Engine API for Node.js. The API is identical to `@cesdk/engine` in the browser, so you can share code between client and server.
+The `@cesdk/node` package provides the same Engine API compiled for Node.js. The API is identical to `@cesdk/engine` in the browser, so you can share code between client and server.
 
 ## Engine API Namespaces
 
@@ -29,7 +29,7 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  await engine.scene.load('https://example.com/template.imgly');
+  await engine.scene.loadFromURL('https://example.com/template.scene');
   const page = engine.scene.getPages()[0];
   const blob = await engine.block.export(page, 'image/png', {
     targetWidth: 3840,
@@ -61,7 +61,7 @@ const sceneData = await cesdk.engine.scene.saveToString();
 // Server: Load and export at high resolution
 const engine = await CreativeEngine.init({ license: process.env.CESDK_LICENSE });
 try {
-  await engine.scene.load(sceneData);
+  await engine.scene.loadFromString(sceneData);
   const blob = await engine.block.export(engine.scene.getPages()[0], 'image/png', {
     targetWidth: 3840,
     targetHeight: 2160,

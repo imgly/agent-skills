@@ -42,7 +42,7 @@ async function main(): Promise<void> {
 
   try {
     // Load a template scene - this will be our print design
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -145,7 +145,7 @@ Before exporting, configure your scene with appropriate print settings. Set the 
 
 ```typescript highlight=highlight-setup
     // Load a template scene - this will be our print design
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -199,10 +199,6 @@ const standardPdf = await engine.block.export(page, {
   exportPdfWithHighCompatibility: false
 });
 ```
-
-In this mode CE.SDK embeds unmodified JPEG images with their original data instead of rasterizing them, which strongly reduces export time and file size for photo-heavy documents such as photo books.
-
-Print jobs usually keep the default `pdfImageQuality` of `1.0`, which encodes the images that still have to be rasterized losslessly. Lower the value only when a smaller file matters more than print fidelity.
 
 ## Underlayers for Special Media
 
@@ -305,7 +301,6 @@ Increase the negative `underlayerOffset` value to shrink the underlayer further 
 | `targetWidth` | Target width for exported PDF in pixels |
 | `targetHeight` | Target height for exported PDF in pixels |
 | `exportPdfWithHighCompatibility` | Rasterize bitmap images and gradients at scene DPI (default: `true`) |
-| `pdfImageQuality` | Encoding quality for rasterized images; values below `1.0` use lossy JPEG (default: `1.0`) |
 | `exportPdfWithUnderlayer` | Generate underlayer from contours (default: `false`) |
 | `underlayerSpotColorName` | Spot color name for underlayer ink |
 | `underlayerOffset` | Size adjustment in design units (negative shrinks) |

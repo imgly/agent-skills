@@ -19,7 +19,7 @@ CE.SDK designs.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-blocks-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-concepts-blocks-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-concepts-blocks-browser/)
 
 Every visual element in CE.SDK—images, text, shapes, and audio—is represented as a block. Blocks are organized in a tree structure within scenes and pages, where parent-child relationships determine rendering order and visibility. Each block has properties you can read and modify, a `Type` that defines its core behavior, and an optional `Kind` for custom categorization.
 
@@ -486,7 +486,7 @@ Graphic blocks display content through fills. We create a fill, attach it to a b
     engine.block.setEnum(graphic, 'contentFill/mode', 'Cover');
 ```
 
-CE.SDK supports several fill types including image, video, color, and gradient fills. See the [Fills guide](./fills/gradient.md) for details on available fill types.
+CE.SDK supports several fill types including image, video, color, and gradient fills. See the [Fills guide](./filters-and-effects/gradients.md) for details on available fill types.
 
 ## Creating Text Blocks
 

@@ -131,7 +131,7 @@ async function convertPsd(
 
   // Generate output filename from input filename
   const inputName = basename(psdPath, '.psd');
-  const archivePath = join(outputDir, `${inputName}.imgly`);
+  const archivePath = join(outputDir, `${inputName}.cesdk`);
 
   // Save as scene archive
   const archive = await engine.scene.saveToArchive();
@@ -163,7 +163,7 @@ async function convertPsd(
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
+  const sceneStringPath = join(outputDir, `${inputName}.scene`);
   await fs.writeFile(sceneStringPath, sceneString);
 
   return { archivePath, sceneStringPath, warnings, errors };
@@ -251,7 +251,7 @@ export async function validateArchive(archivePath: string): Promise<{
     const archiveBlob = new Blob([archiveBuffer]);
     const archiveUrl = URL.createObjectURL(archiveBlob);
 
-    await engine.scene.load(archiveUrl);
+    await engine.scene.loadFromArchiveURL(archiveUrl);
 
     // Get scene information
     const pages = engine.block.findByType('page');
@@ -317,9 +317,9 @@ async function main(): Promise<void> {
     await fs.mkdir('./output', { recursive: true });
     const archive = await engine.scene.saveToArchive();
     const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-    await fs.writeFile('./output/sample.imgly', archiveBuffer);
+    await fs.writeFile('./output/sample.cesdk', archiveBuffer);
 
-    console.log('Sample archive created: ./output/sample.imgly');
+    console.log('Sample archive created: ./output/sample.cesdk');
     console.log('\nTo convert actual PSD files:');
     console.log('1. Place PSD files in an input directory');
     console.log('2. Call: await processDirectory("./input", "./output")');
@@ -339,8 +339,6 @@ Install the `@imgly/psd-importer` package alongside the CE.SDK Node.js engine an
 ```bash
 npm install @imgly/psd-importer @cesdk/node@$UBQ_VERSION$ pngjs
 ```
-
-Using the native Node.js package? Install `@cesdk/node-native@$UBQ_VERSION$` instead of `@cesdk/node` — the engine API is identical.
 
 The server environment requires `pngjs` because Node.js doesn't have native browser APIs for PNG encoding. The `createPNGJSEncodeBufferToPNG(PNG)` function provides this capability.
 
@@ -368,7 +366,7 @@ await parser.parse();
 
 // Save as a portable archive
 const archive = await engine.scene.saveToArchive();
-await fs.writeFile('./design.imgly', Buffer.from(await archive.arrayBuffer()));
+await fs.writeFile('./design.cesdk', Buffer.from(await archive.arrayBuffer()));
 
 // Clean up
 engine.dispose();
@@ -465,7 +463,7 @@ async function convertPsd(
 
   // Generate output filename from input filename
   const inputName = basename(psdPath, '.psd');
-  const archivePath = join(outputDir, `${inputName}.imgly`);
+  const archivePath = join(outputDir, `${inputName}.cesdk`);
 
   // Save as scene archive
   const archive = await engine.scene.saveToArchive();
@@ -497,7 +495,7 @@ async function convertPsd(
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
+  const sceneStringPath = join(outputDir, `${inputName}.scene`);
   await fs.writeFile(sceneStringPath, sceneString);
 
   return { archivePath, sceneStringPath, warnings, errors };
@@ -510,7 +508,7 @@ The `convertPSDToArchive` function:
 2. Creates a parser instance with the Node.js PNG encoder
 3. Parses the PSD, creating a scene in the engine
 4. Extracts warnings and errors from the logger
-5. Saves the scene as an `.imgly` archive file
+5. Saves the scene as a `.cesdk` archive file
 
 ## Batch Converting Multiple PSD Files
 
@@ -641,7 +639,7 @@ export async function validateArchive(archivePath: string): Promise<{
     const archiveBlob = new Blob([archiveBuffer]);
     const archiveUrl = URL.createObjectURL(archiveBlob);
 
-    await engine.scene.load(archiveUrl);
+    await engine.scene.loadFromArchiveURL(archiveUrl);
 
     // Get scene information
     const pages = engine.block.findByType('page');
@@ -698,9 +696,9 @@ async function main(): Promise<void> {
     await fs.mkdir('./output', { recursive: true });
     const archive = await engine.scene.saveToArchive();
     const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-    await fs.writeFile('./output/sample.imgly', archiveBuffer);
+    await fs.writeFile('./output/sample.cesdk', archiveBuffer);
 
-    console.log('Sample archive created: ./output/sample.imgly');
+    console.log('Sample archive created: ./output/sample.cesdk');
     console.log('\nTo convert actual PSD files:');
     console.log('1. Place PSD files in an input directory');
     console.log('2. Call: await processDirectory("./input", "./output")');
@@ -720,17 +718,16 @@ For production use, modify the script to accept input/output directories as argu
 
 ## Saving and Loading Archives
 
-Scene archives (`.imgly` files) contain the complete scene with all embedded assets:
+Scene archives (`.cesdk` files) contain the complete scene with all embedded assets:
 
 ```typescript
 // Save scene as archive
 const archive = await engine.scene.saveToArchive();
 const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-await fs.writeFile('output.imgly', archiveBuffer);
+await fs.writeFile('output.cesdk', archiveBuffer);
 
-// Load the archive back from a blob URL
-const archiveUrl = URL.createObjectURL(new Blob([archiveBuffer]));
-await engine.scene.load(archiveUrl);
+// Load archive in browser or server
+await engine.scene.loadFromArchiveURL(archiveUrl);
 ```
 
 Archives are portable - convert on server, load in browser or another server instance.
@@ -776,7 +773,7 @@ After parsing the PSD file, use CE.SDK's native APIs to find and relocate all tr
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
+  const sceneStringPath = join(outputDir, `${inputName}.scene`);
   await fs.writeFile(sceneStringPath, sceneString);
 ```
 
@@ -805,7 +802,7 @@ The `@imgly/psd-importer` package exports the following key APIs:
 | `options.fontResolver` | `TypefaceResolver` - Custom function to resolve fonts from the PSD to available typefaces. |
 | `result.logger.getMessages()` | Returns an array of import messages with `type` ('warning' or 'error') and `message` properties. |
 
-**Type Casting Note:** The `@imgly/psd-importer` types expect the browser engine. When using `@cesdk/node` or `@cesdk/node-native`, cast the engine: `PSDParser.fromFile(engine as any, ...)`.
+**Type Casting Note:** The `@imgly/psd-importer` types expect the browser engine. When using `@cesdk/node`, cast the engine: `PSDParser.fromFile(engine as any, ...)`.
 
 ## Limitations
 
@@ -815,10 +812,8 @@ The PSD importer has the following limitations:
 - **Text** - No multiple font sizes or families within a single text layer; no text justification
 - **Images** - Image cropping not supported
 - **Fills** - Gradient fills not supported (solid colors only)
-- **Blend modes** - Some Photoshop blend modes are not supported (for example PassThrough, Dissolve and Subtract)
-- **Advanced text** - Advanced text styling such as kerning, ligatures and baseline shift is not fully supported
-
-These are the highlights only—the [`@imgly/psd-importer`](https://www.npmjs.com/package/@imgly/psd-importer) page on npm maintains the complete, up-to-date list of supported features and limitations.
+- **Blend modes** - PassThrough, Dissolve, LinearBurn, DarkerColor, LinearDodge, LighterColor, VividLight, LinearLight, PinLight, HardMix, Subtract, Divide not supported
+- **Advanced text** - Kerning, ligatures, strikethrough, underline, baseline shift not fully supported
 
 ## Troubleshooting
 
@@ -826,9 +821,9 @@ These are the highlights only—the [`@imgly/psd-importer`](https://www.npmjs.co
 
 **Text appears with wrong font:** Ensure `addGfontsAssetLibrary()` is called before parsing. The importer attempts to match fonts with Google Fonts and uses a fallback for unavailable fonts.
 
-**Memory issues with large files:** Very large files may encounter memory constraints, especially with the WASM-based `@cesdk/node` package and its WebAssembly memory ceiling — the native `@cesdk/node-native` package can use the full process memory. The importer gracefully skips problematic elements. `--max-old-space-size` raises only the V8 heap limit, not the engine's own memory.
+**Memory issues with large files:** Files over 900MB may encounter memory constraints. The importer gracefully skips problematic elements. Consider increasing Node.js memory with `--max-old-space-size`.
 
-**Type errors with engine parameter:** The `@imgly/psd-importer` types expect the browser engine. Cast to `any` when using `@cesdk/node` or `@cesdk/node-native`: `PSDParser.fromFile(engine as any, ...)`.
+**Type errors with engine parameter:** The `@imgly/psd-importer` types expect the browser engine. Cast to `any` when using `@cesdk/node`: `PSDParser.fromFile(engine as any, ...)`.
 
 
 

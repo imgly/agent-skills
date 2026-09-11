@@ -49,7 +49,7 @@ cp .env.example .env
 VITE_AI_API_KEY=sk_your_api_key_here
 ```
 
-> **Heads up.** The key is passed to the gateway via `{ dangerouslyExposeApiKey }` and ends up in the browser. That's fine for local development. For production, swap this out for a short-lived token minted by your backend — see [Gateway Token Action](https://img.ly/docs/cesdk/js/user-interface/ai-integration/integrate-8e906c/) for the pattern used by the `ly.img.ai.getToken` action.
+> **Heads up.** The key is passed to the gateway via `{ dangerouslyExposeApiKey }` and ends up in the browser. That's fine for local development. For production, swap this out for a short-lived token minted by your backend — see [Gateway Token Action](https://img.ly/docs/cesdk/js/plugins/ai-generation/) for the pattern used by the `ly.img.ai.getToken` action.
 
 When the starterkit is embedded inside the IMG.LY showcases demo, the hosting page provides a session token via `postMessage` and `VITE_AI_API_KEY` is ignored — no extra setup needed.
 
@@ -72,16 +72,16 @@ Load content into the editor using one of these methods:
 await cesdk.createDesignScene();
 
 // Load from a template archive
-await cesdk.load('https://example.com/template.zip');
+await cesdk.loadFromArchiveURL('https://example.com/template.zip');
 
 // Load from a scene file
-await cesdk.load('https://example.com/scene.json');
+await cesdk.loadFromURL('https://example.com/scene.json');
 
 // Load from an image
 await cesdk.createFromImage('https://example.com/image.jpg');
 ```
 
-See [Open the Editor](https://img.ly/docs/cesdk/js/open-the-editor/load-scene-478833/) for all loading methods.
+See [Open the Editor](https://img.ly/docs/cesdk/web/guides/open-editor/) for all loading methods.
 
 ### Theming
 
@@ -89,7 +89,7 @@ See [Open the Editor](https://img.ly/docs/cesdk/js/open-the-editor/load-scene-47
 cesdk.ui.setTheme('dark'); // 'light' | 'dark' | 'system'
 ```
 
-See [Theming](https://img.ly/docs/cesdk/js/user-interface/appearance/theming-4b0938/) for custom color schemes and styling.
+See [Theming](https://img.ly/docs/cesdk/web/ui-styling/theming/) for custom color schemes and styling.
 
 ### Localization
 
@@ -100,7 +100,7 @@ cesdk.i18n.setTranslations({
 cesdk.i18n.setLocale('de');
 ```
 
-See [Localization](https://img.ly/docs/cesdk/js/user-interface/localization-508e20/) for supported languages and translation keys.
+See [Localization](https://img.ly/docs/cesdk/web/ui-styling/localization/) for supported languages and translation keys.
 
 ### AI Providers
 
@@ -112,7 +112,8 @@ text2image.providers.push({
   name: 'My Custom Model',
   label: 'Custom',
   selected: true,
-  provider: () => ImageGatewayProvider('fal-ai/my-custom-model', gatewayConfig)
+  provider: () =>
+    ImageGatewayProvider('fal-ai/my-custom-model', gatewayConfig)
 });
 ```
 
@@ -164,52 +165,23 @@ src/
 
 ## Prerequisites
 
-- **Node.js v22+** with npm – [Download](https://nodejs.org/)
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
 - **IMG.LY API key** – Get one from the [IMG.LY dashboard](https://img.ly/dashboard)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 
 ## Troubleshooting
 
-| Issue                                        | Solution                                                                                          |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Editor doesn't load                          | Verify assets are accessible at `baseURL`                                                         |
-| Assets don't appear                          | Check `public/assets/` directory exists                                                           |
-| Watermark appears                            | Add your license key                                                                              |
+| Issue | Solution |
+|-------|----------|
+| Editor doesn't load | Verify assets are accessible at `baseURL` |
+| Assets don't appear | Check `public/assets/` directory exists |
+| Watermark appears | Add your license key |
 | "AI features are disabled" dialog on startup | Set `VITE_AI_API_KEY` in `.env` using a key from the [IMG.LY dashboard](https://img.ly/dashboard) |
-| AI requests fail with an auth error          | The key is missing, expired, or lacks access to the requested model                               |
+| AI requests fail with an auth error | The key is missing, expired, or lacks access to the requested model |
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [AI Editor Documentation](https://img.ly/docs/cesdk/js/starterkits/ai-editor-4z6j9l/).
-
-## Demo Assets
-
-The demo assets for this starter kit load from the IMG.LY CDN by default —
-nothing to configure. If you want to own them — edit them, meet compliance
-requirements, or remove the CDN dependency for production — eject them
-(the archive contains only this kit's files):
-
-```bash
-# Download this starter kit's demo assets
-curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/starterkit-ai-editor/demo-assets.zip
-unzip demo-assets.zip -d demo-assets
-rm demo-assets.zip
-```
-
-Upload the extracted files to your own server or CDN, then point the app
-at them via `.env`:
-
-```bash
-VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
-```
-
-The default URL is the `DEMO_ASSETS_BASE_URL` constant in `src/app/constants.ts` if you
-prefer changing it in code.
-
-The demo assets are intended for development and prototyping — replace
-them with your own content or licensed stock assets before shipping to
-production (see `DEMO-ASSETS-NOTICE.txt` in the download). This applies in
-particular to media such as music tracks and stock imagery.
+For complete integration guides and API reference, visit the [AI Editor Documentation](https://img.ly/docs/cesdk/starterkits/ai-editor/).
 
 ## License
 

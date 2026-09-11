@@ -4,7 +4,7 @@
 
 ---
 
-This guide provides the complete list of all built-in component IDs for each of the six customizable UI areas in CE.SDK. Use this reference when you need to find the exact ID for a component to show, hide, reorder, or modify using the Component Order API.
+This guide provides the complete list of all built-in component IDs for each of the five customizable UI areas in CE.SDK. Use this reference when you need to find the exact ID for a component to show, hide, reorder, or modify using the Component Order API.
 
 Component IDs in CE.SDK follow the pattern `ly.img.[feature].[area]` (for example, `ly.img.undoRedo.navigationBar`). Custom components you create can use any ID pattern.
 
@@ -114,7 +114,6 @@ Components available in `'ly.img.inspector.bar'`. The inspector bar supports edi
 | `ly.img.effect.inspectorBar` | Visual effects |
 | `ly.img.blur.inspectorBar` | Blur effects |
 | `ly.img.animations.inspectorBar` | Animation controls |
-| `ly.img.transitions.inspectorBar` | Transition controls |
 
 ### Text Controls
 
@@ -129,7 +128,6 @@ Components available in `'ly.img.inspector.bar'`. The inspector bar supports edi
 | `ly.img.text.alignHorizontal.inspectorBar` | Text alignment (left, center, right, justify) |
 | `ly.img.text.style.inspectorBar` | Text style presets |
 | `ly.img.text.advanced.inspectorBar` | Advanced text options (line height, letter spacing, etc.) |
-| `ly.img.text.path.inspectorBar` | Text on a path or circle |
 | `ly.img.text.background.inspectorBar` | Text background highlight |
 
 ### Media Controls
@@ -214,7 +212,6 @@ Components available in `'ly.img.canvas.menu'`. The canvas menu appears on right
 | ID | Description |
 |----|-------------|
 | `ly.img.text.edit.canvasMenu` | Enter text edit mode |
-| `ly.img.text.styles.canvasMenu` | Apply a style preset |
 | `ly.img.text.color.canvasMenu` | Quick text color change |
 | `ly.img.text.bold.canvasMenu` | Toggle bold (in Text edit mode) |
 | `ly.img.text.italic.canvasMenu` | Toggle italic (in Text edit mode) |
@@ -253,47 +250,6 @@ const bottomBar = cesdk.ui.getComponentOrder({
   at: 'bottom'
 });
 ```
-
-## Video Timeline Controls Bar Components
-
-Components available in `'ly.img.video.timeline.controls.bar'` — the controls bar above the video timeline in the Video Editor.
-
-| ID | Description |
-|----|-------------|
-| `ly.img.video.timeline.background` | Page background color control |
-| `ly.img.video.timeline.split` | Split the selected clip at the playhead |
-| `ly.img.video.timeline.playbackInfo` | Current playback time / total duration |
-| `ly.img.video.timeline.playPause` | Play/pause button |
-| `ly.img.video.timeline.loop` | Loop playback toggle |
-| `ly.img.video.timeline.zoom` | Timeline zoom controls (zoom in/out, fit) |
-| `ly.img.video.timeline.toggle` | Expand/collapse the timeline |
-
-This area has **no built-in default order** — without a configured order the bar is not rendered. Set it explicitly during initialization, using `ly.img.spacer` components to separate the left, center, and right groups:
-
-```javascript
-cesdk.ui.setComponentOrder({ in: 'ly.img.video.timeline.controls.bar' }, [
-  'ly.img.video.timeline.background',
-  'ly.img.video.timeline.split',
-  'ly.img.spacer',
-  'ly.img.video.timeline.playbackInfo',
-  'ly.img.video.timeline.playPause',
-  'ly.img.video.timeline.loop',
-  'ly.img.spacer',
-  'ly.img.video.timeline.zoom',
-  'ly.img.video.timeline.toggle'
-]);
-
-// Add a custom button next to play/pause
-cesdk.ui.insertOrderComponent(
-  {
-    in: 'ly.img.video.timeline.controls.bar',
-    before: 'ly.img.video.timeline.playPause'
-  },
-  'my.custom.button' // registered via cesdk.ui.registerComponent(...)
-);
-```
-
-Built-in components in this bar respect the corresponding `ly.img.video.timeline.controls.*` Feature API keys — a component that is present in the order but disabled via `cesdk.feature.disable(...)` is not rendered.
 
 ## Component Configuration Options
 

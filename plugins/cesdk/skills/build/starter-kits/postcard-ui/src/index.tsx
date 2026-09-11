@@ -33,7 +33,9 @@ function main(): void {
     throw new Error('Root container not found');
   }
 
-  createRoot(container).render(<App engineConfig={engineConfig} />);
+  createRoot(container).render(
+    <App engineConfig={engineConfig} />
+  );
 }
 
 main();

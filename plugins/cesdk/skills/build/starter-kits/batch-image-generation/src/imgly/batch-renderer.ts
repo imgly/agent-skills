@@ -73,7 +73,7 @@ export async function batchRender(
     const mimeType = options.mimeType ?? 'image/png';
 
     for (const item of items) {
-      await engine.scene.load(sceneString);
+      await engine.scene.loadFromString(sceneString);
 
       // Apply images
       if (item.images) {

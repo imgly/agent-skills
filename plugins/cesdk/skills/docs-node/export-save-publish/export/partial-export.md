@@ -358,7 +358,7 @@ Control output dimensions using `targetWidth` and `targetHeight`. The engine mai
 
 ### Checking Export Constraints
 
-Server environments may have memory limits or maximum texture size constraints. Query these limits before attempting large exports. `getMaxExportSize()` returns maximum dimension in pixels (exceeding causes errors). `getAvailableMemory()` returns available memory in bytes for estimating large export viability. This is critical for memory-constrained deployments, such as serverless functions with the WASM package (AWS Lambda allows 128 MB to 10 GB), to prevent termination. Note that Lambda is not supported by `@cesdk/node-native`.
+Server environments may have memory limits or maximum texture size constraints. Query these limits before attempting large exports. `getMaxExportSize()` returns maximum dimension in pixels (exceeding causes errors). `getAvailableMemory()` returns available memory in bytes for estimating large export viability. Critical for serverless functions (AWS Lambda: 128 MB to 10 GB limits) to prevent termination.
 
 ## Exporting Pages
 
@@ -429,7 +429,7 @@ Generate social media assets from templates by loading a template, modifying tex
 
 ```typescript
 const engine = await CreativeEngine.init(config);
-await engine.scene.load('https://example.com/template.scene');
+await engine.scene.loadFromURL('https://example.com/template.scene');
 
 // Customize content
 const textBlocks = engine.block.findByType('//ly.img.ubq/text');

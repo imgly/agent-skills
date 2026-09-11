@@ -46,7 +46,7 @@ async function main() {
     // Templates are scenes containing variable tokens and placeholder blocks
     const templateUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.load(templateUrl);
+    await engine.scene.loadFromURL(templateUrl);
 
     // Discover what variables this template expects
     // Variables are named slots that can be populated with data
@@ -103,14 +103,14 @@ Templates separate **design** (created once by designers) from **content** (popu
 
 ## Loading Templates
 
-Load a template from a URL using `engine.scene.load()`. This replaces the current scene with the template's structure, including any pages, blocks, variables, and placeholders.
+Load a template from a URL using `engine.scene.loadFromURL()`. This replaces the current scene with the template's structure, including any pages, blocks, variables, and placeholders.
 
 ```typescript highlight-load-template
 // Load a postcard template from URL
 // Templates are scenes containing variable tokens and placeholder blocks
 const templateUrl =
   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-await engine.scene.load(templateUrl);
+await engine.scene.loadFromURL(templateUrl);
 ```
 
 Templates are standard CE.SDK scene files. You can load them from your own servers, CDNs, or cloud storage.
@@ -214,7 +214,7 @@ After populating variables, export the personalized design:
     console.log('Exported to output/templating-personalized.png');
 ```
 
-Use `engine.block.export()` to render pages to PNG, JPEG, or PDF format — the native `@cesdk/node-native` package can additionally export MP4 video via `engine.block.exportVideo()`. The exported blob can be saved to the file system or uploaded to cloud storage.
+Use `engine.block.export()` to render pages to PNG, JPEG, or PDF format. The exported blob can be saved to the file system or uploaded to cloud storage.
 
 ## Engine Cleanup
 

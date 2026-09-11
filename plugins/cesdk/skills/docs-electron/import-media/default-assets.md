@@ -31,8 +31,8 @@ class Example implements EditorPlugin {
     // Versioned CDN URLs using the SDK package (recommended)
     // For production, self-host these assets - see the Serve Assets guide
     const PACKAGE_BASE = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets`;
-    const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/`;
-    const DEMO_ASSETS_URL = `${PACKAGE_BASE}/`;
+    const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/v4/`;
+    const DEMO_ASSETS_URL = `${PACKAGE_BASE}/demo/v3/`;
 
     // Load default asset sources (core editor components)
     await engine.asset.addLocalAssetSourceFromJSONURI(
@@ -240,7 +240,7 @@ Load all asset sources from IMG.LY's CDN to populate your CE.SDK editor with sha
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-default-assets-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-import-media-default-assets-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-import-media-default-assets-browser/)
 
 CE.SDK provides built-in asset sources for shapes, stickers, filters, effects, fonts, and sample media. This guide demonstrates loading all available asset sources from IMG.LY's CDN and applying them to create a scene with a star shape, a sticker, and an image.
 
@@ -279,7 +279,7 @@ IMG.LY provides two categories of asset sources hosted on the IMG.LY CDN for dev
 Use `addLocalAssetSourceFromJSONURI()` to load an asset source directly from a JSON URL:
 
 ```typescript
-const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets/`;
+const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets/v4/`;
 await engine.asset.addLocalAssetSourceFromJSONURI(
   `${baseURL}ly.img.vector.shape/content.json`
 );
@@ -293,8 +293,8 @@ Use the SDK version to construct versioned CDN URLs. This ensures assets are com
 // Versioned CDN URLs using the SDK package (recommended)
 // For production, self-host these assets - see the Serve Assets guide
 const PACKAGE_BASE = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets`;
-const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/`;
-const DEMO_ASSETS_URL = `${PACKAGE_BASE}/`;
+const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/v4/`;
+const DEMO_ASSETS_URL = `${PACKAGE_BASE}/demo/v3/`;
 ```
 
 ## Loading Default Asset Sources
@@ -337,7 +337,7 @@ cesdk.ui.updateAssetLibraryEntry('ly.img.sticker', {
 Use the `matcher` option to load only specific assets from a source:
 
 ```typescript
-const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets/`;
+const baseURL = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets/v4/`;
 
 // Load only star and arrow shapes
 await engine.asset.addLocalAssetSourceFromJSONURI(
@@ -372,8 +372,8 @@ An asset is included if it matches ANY pattern in the array. Patterns support `*
 ## Next Steps
 
 - [Serve Assets](./serve-assets.md) — Self-host assets for production deployments
-- [Customize Asset Library](./import-media/asset-library/customize.md) — Configure the asset library UI and entries
-- [Asset Library Basics](./import-media/asset-library/basics.md) — Understand asset library structure and concepts
+- [Customize Asset Library](./import-media/asset-panel/customize.md) — Configure the asset library UI and entries
+- [Asset Library Basics](./import-media/asset-panel/basics.md) — Understand asset library structure and concepts
 - [Import From Remote Source](./import-media/from-remote-source.md) — Load assets from external URLs
 
 

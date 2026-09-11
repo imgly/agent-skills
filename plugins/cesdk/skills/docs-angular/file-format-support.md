@@ -12,9 +12,6 @@
 
 ## Importing Templates
 
-See [Import and Export](./concepts/import-export.md) for
-how these import and export workflows fit together.
-
 ## Font Formats
 
 ## Video & Audio Codecs

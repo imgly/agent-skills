@@ -4,10 +4,11 @@
  * This module provides functionality to export scenes using a CE.SDK Renderer API server.
  * The renderer performs server-side video encoding for faster exports.
  *
- * @see https://img.ly/docs/cesdk/js/starterkits/export-using-renderer-exprnd/
+ * @see https://img.ly/docs/cesdk/renderer/overview/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
+
 
 /**
  * Gets the renderer proxy URL from environment or returns the default.
@@ -172,6 +173,7 @@ export function setupRendererExport(cesdk: CreativeEditorSDK): void {
           icon: '@imgly/Video',
           onClick: () => cesdk.actions.run('exportUsingRenderer')
         },
+        'ly.img.importArchive.navigationBar',
         'ly.img.importScene.navigationBar',
         'ly.img.exportScene.navigationBar',
         'ly.img.exportArchive.navigationBar'

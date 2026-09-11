@@ -185,7 +185,7 @@ export default function App() {
 
 ## Prerequisites
 
-- **Node.js v22+** with npm – [Download](https://nodejs.org/)
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 
 ## Troubleshooting
@@ -199,36 +199,7 @@ export default function App() {
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [Automated Resizing Documentation](https://img.ly/docs/cesdk/js/starterkits/auto-resize-t2jxae/).
-
-## Demo Assets
-
-The demo assets for this starter kit load from the IMG.LY CDN by default —
-nothing to configure. If you want to own them — edit them, meet compliance
-requirements, or remove the CDN dependency for production — eject them
-(the archive contains only this kit's files):
-
-```bash
-# Download this starter kit's demo assets
-curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/starterkit-automated-resizing/demo-assets.zip
-unzip demo-assets.zip -d demo-assets
-rm demo-assets.zip
-```
-
-Upload the extracted files to your own server or CDN, then point the app
-at them via `.env`:
-
-```bash
-VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
-```
-
-The default URL is the `DEMO_ASSETS_BASE_URL` constant in `src/app/constants.ts` if you
-prefer changing it in code.
-
-The demo assets are intended for development and prototyping — replace
-them with your own content or licensed stock assets before shipping to
-production (see `DEMO-ASSETS-NOTICE.txt` in the download). This applies in
-particular to media such as music tracks and stock imagery.
+For complete integration guides and API reference, visit the [Automated Resizing Documentation](https://img.ly/docs/cesdk/starterkits/auto-resize/).
 
 ## License
 

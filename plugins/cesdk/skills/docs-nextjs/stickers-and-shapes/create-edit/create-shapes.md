@@ -20,7 +20,7 @@ combined with fills.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-stickers-and-shapes-create-shapes-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-stickers-and-shapes-create-shapes-browser/)
 
 ```typescript file=@cesdk_web_examples/guides-stickers-and-shapes-create-shapes-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -772,11 +772,10 @@ A shape block representing a star.
 
 This section describes the properties available for the **Star Type** (`//ly.img.ubq/shape/star`) block type.
 
-| Property                   | Type    | Default | Description                                       |
-| -------------------------- | ------- | ------- | ------------------------------------------------- |
-| `shape/star/cornerRadius`  | `Float` | `0`     | The radius for rounding the corners of the shape. |
-| `shape/star/innerDiameter` | `Float` | `0.5`   | The inner diameter of the star.                   |
-| `shape/star/points`        | `Int`   | `5`     | The number of tips the star is supposed to have.  |
+| Property                   | Type    | Default | Description                                      |
+| -------------------------- | ------- | ------- | ------------------------------------------------ |
+| `shape/star/innerDiameter` | `Float` | `0.5`   | The inner diameter of the star.                  |
+| `shape/star/points`        | `Int`   | `5`     | The number of tips the star is supposed to have. |
 
 ## Vector Path Type
 
@@ -784,13 +783,12 @@ A shape block representing a custom vector path.
 
 This section describes the properties available for the **Vector Path Type** (`//ly.img.ubq/shape/vector_path`) block type.
 
-| Property                         | Type     | Default     | Description                                                                                                                      |
-| -------------------------------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `shape/vector_path/cornerRadius` | `Float`  | `0`         | The radius for rounding the corners of the shape.                                                                                |
-| `shape/vector_path/fillRule`     | `Enum`   | `"EvenOdd"` | Fill rule for resolving self-intersecting or overlapping subpaths of the path string., Possible values: `"EvenOdd"`, `"NonZero"` |
-| `shape/vector_path/height`       | `Float`  | `100`       | The coordinate bounds in y direction.                                                                                            |
-| `shape/vector_path/path`         | `String` | `""`        | The path string, accepts a subset of svg path strings.                                                                           |
-| `shape/vector_path/width`        | `Float`  | `100`       | The coordinate bounds in x direction.                                                                                            |
+| Property                     | Type     | Default     | Description                                                                                                                      |
+| ---------------------------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `shape/vector_path/fillRule` | `Enum`   | `"EvenOdd"` | Fill rule for resolving self-intersecting or overlapping subpaths of the path string., Possible values: `"EvenOdd"`, `"NonZero"` |
+| `shape/vector_path/height`   | `Float`  | `100`       | The coordinate bounds in y direction.                                                                                            |
+| `shape/vector_path/path`     | `String` | `""`        | The path string, accepts a subset of svg path strings.                                                                           |
+| `shape/vector_path/width`    | `Float`  | `100`       | The coordinate bounds in x direction.                                                                                            |
 
 
 

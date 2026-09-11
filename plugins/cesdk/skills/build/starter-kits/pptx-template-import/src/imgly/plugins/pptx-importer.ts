@@ -21,14 +21,14 @@
  * });
  *
  * // Load into editor
- * await cesdk.load(result.sceneArchiveUrl);
+ * await cesdk.loadFromArchiveURL(result.sceneArchiveUrl);
  *
  * // Clean up when done (at app level)
  * URL.revokeObjectURL(result.imageUrl);
  * URL.revokeObjectURL(result.sceneArchiveUrl);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/starterkits/pptx-template-import-pptx01/
+ * @see https://img.ly/docs/cesdk/js/features/import-pptx/
  */
 
 import CreativeEngine from '@cesdk/engine';

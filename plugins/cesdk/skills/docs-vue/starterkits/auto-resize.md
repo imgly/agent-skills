@@ -18,7 +18,7 @@ Automatically generate size variations of your design and easily scale your mark
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-automated-resizing-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/starterkit-automated-resizing/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-automated-resizing/)
 
 ***
 
@@ -26,7 +26,7 @@ Automatically generate size variations of your design and easily scale your mark
 
 This guide assumes basic familiarity with React and TypeScript.
 
-- **Node.js v22+** with npm – [Download](https://nodejs.org/)
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
 - **React 18+** – The starterkit uses React for component architecture
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list

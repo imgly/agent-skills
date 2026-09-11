@@ -4,17 +4,13 @@
  * A video editor with custom export options panel for selecting
  * resolution (SD, HD, FHD, 2K, 4K, Custom) and FPS (24, 30, 60, 120).
  *
- * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
+ * @see https://img.ly/docs/cesdk/js/getting-started/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initVideoExportOptionsEditor } from './imgly';
 import { resolveAssetPath } from './resolveAssetPath';
-
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Configuration
@@ -37,9 +33,6 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
     // Debug access (remove in production)
     (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
 
@@ -49,21 +42,15 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // ============================================================================
 
     // highlight-scene-loading
-    await cesdk.load(
+    await cesdk.loadFromURL(
       resolveAssetPath('/assets/example-video-motion.scene')
     );
     // highlight-scene-loading
 
     // Open panel
     cesdk.ui.openPanel('//ly.img.panel/video-export');
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

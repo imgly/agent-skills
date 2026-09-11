@@ -13,20 +13,19 @@ Methods for working with queries for finding assets.
 
 ## Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-|  `perPage` | `number` | - |
-|  `page` | `number` | - |
-|  `query` | `string` | - |
-|  `tags` | `string`\[] | - |
-|  `groups` | `string`\[] | - |
-|  `excludeGroups` | `string`\[] | - |
-|  `locale` | `string` | - |
-|  `sortingOrder` | [`SortingOrder`](./api/engine/type-aliases/sortingorder.md) | - |
-|  `sortKey` | `string` | - |
-|  `sortActiveFirst` | `boolean` | - |
-|  `filter` | [`AssetFilter`](./api/engine/type-aliases/assetfilter.md)\[] | - |
-|  `facets` | [`AssetFacetPath`](./api/engine/type-aliases/assetfacetpath.md)\[] | Facet paths crossing the binding boundary as plain path strings. |
+| Property | Type |
+| ------ | ------ |
+|  `perPage` | `number` |
+|  `page` | `number` |
+|  `query` | `string` |
+|  `tags` | `string`\[] |
+|  `groups` | `string`\[] |
+|  `excludeGroups` | `string`\[] |
+|  `locale` | `string` |
+|  `sortingOrder` | [`SortingOrder`](./api/engine/type-aliases/sortingorder.md) |
+|  `sortKey` | `string` |
+|  `sortActiveFirst` | `boolean` |
+|  `filter` | [`AssetFilter`](./api/engine/type-aliases/assetfilter.md)\[] |
 
 
 ---

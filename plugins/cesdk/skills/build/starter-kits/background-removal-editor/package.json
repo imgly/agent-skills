@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@cesdk/cesdk-js": "workspace:*",
+    "@imgly/background-removal": "1.7.0",
     "@imgly/plugin-background-removal-web": "workspace:*",
     "onnxruntime-web": "1.21.0",
     "@cesdk/engine": "workspace:*"
@@ -42,6 +43,6 @@
     "sharp": "^0.34.4",
     "typescript": "^5.0.0",
     "vite": "^6.0.3",
-    "@types/node": "^22.0.0"
+    "@types/node": "^20.0.0"
   }
 }

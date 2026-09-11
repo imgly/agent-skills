@@ -7,7 +7,8 @@ type AssetPropertyPath = "label" | "tags" | "id" | "groups" | `meta.${string}`;
 ```
 
 Dot-path against the resolved asset that a property predicate targets:
-`label`, `id`, `tags`, `groups`, or `meta.<key>` (one segment).
+`label`, `id`, `tags`, `groups`, or `meta.<key>` (one segment — meta
+values in the engine are flat strings).
 
 The template literal accepts `'meta.'` (empty key) because TypeScript's
 `${string}` includes the empty string; the engine rejects this at

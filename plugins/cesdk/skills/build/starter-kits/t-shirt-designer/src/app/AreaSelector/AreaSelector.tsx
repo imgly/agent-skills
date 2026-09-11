@@ -21,12 +21,6 @@ export function AreaSelector({
   colorId,
   onSelect
 }: AreaSelectorProps) {
-  const selectedArea = areas.find((area) => area.id === selectedAreaId);
-  const previewSrc = selectedArea?.mockup?.images?.[0]?.uri.replace(
-    '{{color}}',
-    colorId
-  );
-
   return (
     <section className={styles.section}>
       <div className={styles.title}>Decorations</div>
@@ -51,7 +45,7 @@ export function AreaSelector({
       <div className={styles.details}>
         <img
           className={styles.preview}
-          src={previewSrc}
+          src={`assets/products/tshirt/${colorId}_${selectedAreaId}.png`}
           alt={`${colorId} t-shirt ${selectedAreaId}`}
         />
         <div className={styles.info}>

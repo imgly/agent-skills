@@ -10,13 +10,6 @@ import {
 
 import styles from './EditorModal.module.css';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
-
 type EditorMode = 'design' | 'advanced';
 
 interface EditorModalProps {
@@ -38,9 +31,6 @@ export function EditorModal({
 }: EditorModalProps) {
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
       // Select the appropriate editor based on mode
       if (mode === 'design') {
         await initAutomatedResizingDesignEditor(cesdk);
@@ -62,10 +52,7 @@ export function EditorModal({
       );
 
       // Load scene
-      await cesdk.load(scene);
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('ready');
-      // END_HIDDEN_BLOCK
+      await cesdk.loadFromString(scene);
     },
     [scene, mode, onClose, onSave]
   );
@@ -99,9 +86,6 @@ export function EditorModal({
         <CreativeEditor
           className={styles.editor}
           config={config}
-          // START_HIDDEN_BLOCK
-          onLoadingStateChange={reportDemoLoadingState}
-          // END_HIDDEN_BLOCK
           init={handleInit}
         />
       </div>

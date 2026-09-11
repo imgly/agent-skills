@@ -5,28 +5,19 @@
 ```ts
 type EnumValues = 
   | BlendMode
-  | HorizontalContentFillAlignment
   | ContentFillMode
-  | VerticalContentFillAlignment
   | HeightMode
+  | PageGuidesSource
   | PositionXMode
   | PositionYMode
   | DesignUnit
-  | SceneFontSizeUnit
   | SceneLayout
   | SceneMode
   | WidthMode
-  | PageGuidesSource
   | StrokeCap
   | StrokeCornerGeometry
-  | StrokeDashEndCap
-  | StrokeDashStartCap
-  | StrokeEndCap
   | StrokePosition
-  | StrokeStartCap
   | StrokeStyle
-  | PlaybackFadeInEasing
-  | PlaybackFadeOutEasing
   | HorizontalTextAlignment
   | TextVerticalAlignment
   | CutoutType
@@ -44,6 +35,7 @@ type EnumValues =
   | AnimationBlockSwipeTextDirection
   | AnimationMergeTextDirection
   | AnimationKenBurnsDirection
+  | AnimationScaleLoopDirection
   | FillPixelStreamOrientation
   | ShapeVectorPathFillRule
   | string & object;

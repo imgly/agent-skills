@@ -18,7 +18,7 @@ Initialize the editor with a video matching the page size.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-start-with-video-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/starterkit-start-with-video/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-start-with-video/)
 
 ***
 
@@ -26,7 +26,7 @@ Initialize the editor with a video matching the page size.
 
 This guide assumes basic familiarity with JavaScript or TypeScript.
 
-- **Node.js v22+** with npm – [Download](https://nodejs.org/)
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list
 
@@ -293,8 +293,8 @@ Actions are functions that handle user interactions like exporting videos, savin
 
 - `exportDesign` – Export the current video to MP4 format
 - `saveScene` – Save the scene as a JSON string for later editing
-- `importScene` – Import a previously saved scene (`.imgly` or `.scene`)
-- `exportScene` – Export the scene as an `.imgly` file, either the scene alone or an archive with all assets
+- `importScene` – Import a previously saved scene (supports `.scene` and `.cesdk` formats)
+- `exportScene` – Export the scene as a JSON file or `.cesdk` archive with all assets
 - `uploadFile` – Handle file uploads with progress tracking
 
 Use `cesdk.actions.run()` to execute any action:

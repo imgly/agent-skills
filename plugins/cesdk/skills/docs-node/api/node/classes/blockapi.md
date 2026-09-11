@@ -759,7 +759,7 @@ Export blocks to various formats like images, videos, and audio.
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `handle` | `number` | The design block element to export. Currently, only page blocks are supported. |
-  | `mimeType?` | `"video/mp4"` | The MIME type of the output video file. |
+  | `mimeType?` | [`VideoMimeType`](./api/node/type-aliases/videomimetype.md) | The MIME type of the output video file. |
   | `progressCallback?` | (`numberOfRenderedFrames`, `numberOfEncodedFrames`, `totalNumberOfFrames`) => `void` | A callback which reports on the progress of the export. |
   | `options?` | `Omit`\<[`VideoExportOptions`](./api/node/type-aliases/videoexportoptions.md), `"mimeType"` | `"onProgress"`> | The options for exporting the video, including h264 profile, level, bitrate, time offset, duration, framerate, target width and height. |
 
@@ -797,7 +797,7 @@ Export blocks to various formats like images, videos, and audio.
   ```
 
   ```typescript
-  exportVideo(handle: number, mimeType?: "video/mp4", progressCallback?: (numberOfRenderedFrames: number, numberOfEncodedFrames: number, totalNumberOfFrames: number) => void, options?: Omit<VideoExportOptions, "mimeType" | "onProgress">): Promise<Blob>
+  exportVideo(handle: number, mimeType?: VideoMimeType, progressCallback?: (numberOfRenderedFrames: number, numberOfEncodedFrames: number, totalNumberOfFrames: number) => void, options?: Omit<VideoExportOptions, "mimeType" | "onProgress">): Promise<Blob>
   ```
 
   ***
@@ -5516,42 +5516,6 @@ Create, edit, and style text content.
 
 <details>
   <summary>
-    ### getTextRuns()
-
-    <br /><p>Gets all text runs within a range of text.</p>
-  </summary>
-
-  Each run represents a contiguous span of text with uniform formatting.
-
-  ```javascript
-  const runs = engine.block.getTextRuns(text);
-  ```
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The text block to query. |
-  | `from?` | `number` | The start index of the UTF-16 range. Defaults to the start of the current selection or text. |
-  | `to?` | `number` | The end index of the UTF-16 range. Defaults to the end of the current selection or text. |
-
-  #### Returns
-
-  [`TextRunInfo`](./api/node/interfaces/textruninfo.md)\[]
-
-  The ordered list of text runs covering the requested range.
-
-  #### Signature
-
-  ```typescript
-  getTextRuns(id: number, from?: number, to?: number): TextRunInfo[]
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
     ### getTextCursorRange()
 
     <br /><p>Gets the current text cursor or selection range.</p>
@@ -5764,173 +5728,6 @@ Create, edit, and style text content.
 
   ```typescript
   getTextEffectiveHorizontalAlignment(id: number): "Right" | "Left" | "Center"
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### setTextOnPath()
-
-    <br /><p>Sets the SVG path that the text baseline follows.
-    Pass <code>null</code> to restore normal straight-line text layout.</p>
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The text block to modify. |
-  | `svgPath` | `string` | An SVG path string in the block's local coordinate space, or `null` to clear. |
-
-  #### Returns
-
-  `void`
-
-  #### Signature
-
-  ```typescript
-  setTextOnPath(id: number, svgPath: string): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### getTextOnPath()
-
-    <br /><p>Gets the SVG path currently used as the text baseline.</p>
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The text block to query. |
-
-  #### Returns
-
-  `string`
-
-  The SVG path string, or `null` if no path is set.
-
-  #### Signature
-
-  ```typescript
-  getTextOnPath(id: number): string
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### setTextOnPathOffset()
-
-    <br /><p>Sets the start offset along the baseline path as a proportion of the path length.
-    Values are clamped to <code>\[-1, 1]</code>; <code>1</code> and <code>-1</code> wrap back to the path start.</p>
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The text block to modify. |
-  | `offset` | `number` | The proportional offset. Positive values move the text forward along the path. |
-
-  #### Returns
-
-  `void`
-
-  #### Signature
-
-  ```typescript
-  setTextOnPathOffset(id: number, offset: number): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### getTextOnPathOffset()
-
-    <br /><p>Gets the start offset along the baseline path as a proportion of the path length.</p>
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The text block to query. |
-
-  #### Returns
-
-  `number`
-
-  The proportional offset in `[-1, 1]`.
-
-  #### Signature
-
-  ```typescript
-  getTextOnPathOffset(id: number): number
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### setTextOnPathFlipped()
-
-    <br /><p>Sets whether text is placed on the opposite side of the baseline path.</p>
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The text block to modify. |
-  | `flipped` | `boolean` | When `true`, text sits on the underside of the curve and reads in the reverse direction. |
-
-  #### Returns
-
-  `void`
-
-  #### Signature
-
-  ```typescript
-  setTextOnPathFlipped(id: number, flipped: boolean): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### getTextOnPathFlipped()
-
-    <br /><p>Gets whether the text-on-path rendering is flipped.</p>
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The text block to query. |
-
-  #### Returns
-
-  `boolean`
-
-  `true` when text is on the underside of the curve.
-
-  #### Signature
-
-  ```typescript
-  getTextOnPathFlipped(id: number): boolean
   ```
 </details>
 
@@ -6974,64 +6771,6 @@ Manage time-based media like video and audio, including playback, timing, and co
 
 <details>
   <summary>
-    ### setAudioFadeIn()
-
-    <br /><p>Sets an audio fade-in for a block. The audio ramps up from silence to the
-    block's volume over the given duration at the start of the block.</p>
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The audio block or video fill to update. |
-  | `duration` | `number` | The fade-in duration in seconds. A value of 0 disables the fade-in and negative values are clamped to 0. |
-  | `easing?` | | `"Linear"` | `"EaseIn"` | `"EaseOut"` | `"EaseInOut"` | `"EaseInQuart"` | `"EaseOutQuart"` | `"EaseInOutQuart"` | `"EaseInQuint"` | `"EaseOutQuint"` | `"EaseInOutQuint"` | `"EaseInBack"` | `"EaseOutBack"` | `"EaseInOutBack"` | `"EaseInSpring"` | `"EaseOutSpring"` | `"EaseInOutSpring"` | The easing curve of the fade. Defaults to 'Linear'. |
-
-  #### Returns
-
-  `void`
-
-  #### Signature
-
-  ```typescript
-  setAudioFadeIn(id: number, duration: number, easing?: "Linear" | "EaseIn" | "EaseOut" | "EaseInOut" | "EaseInQuart" | "EaseOutQuart" | "EaseInOutQuart" | "EaseInQuint" | "EaseOutQuint" | "EaseInOutQuint" | "EaseInBack" | "EaseOutBack" | "EaseInOutBack" | "EaseInSpring" | "EaseOutSpring" | "EaseInOutSpring"): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### setAudioFadeOut()
-
-    <br /><p>Sets an audio fade-out for a block. The audio ramps down from the block's
-    volume to silence over the given duration at the end of the block.</p>
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The audio block or video fill to update. |
-  | `duration` | `number` | The fade-out duration in seconds. A value of 0 disables the fade-out and negative values are clamped to 0. |
-  | `easing?` | | `"Linear"` | `"EaseIn"` | `"EaseOut"` | `"EaseInOut"` | `"EaseInQuart"` | `"EaseOutQuart"` | `"EaseInOutQuart"` | `"EaseInQuint"` | `"EaseOutQuint"` | `"EaseInOutQuint"` | `"EaseInBack"` | `"EaseOutBack"` | `"EaseInOutBack"` | `"EaseInSpring"` | `"EaseOutSpring"` | `"EaseInOutSpring"` | The easing curve of the fade. Defaults to 'Linear'. |
-
-  #### Returns
-
-  `void`
-
-  #### Signature
-
-  ```typescript
-  setAudioFadeOut(id: number, duration: number, easing?: "Linear" | "EaseIn" | "EaseOut" | "EaseInOut" | "EaseInQuart" | "EaseOutQuart" | "EaseInOutQuart" | "EaseInQuint" | "EaseOutQuint" | "EaseInOutQuint" | "EaseInBack" | "EaseOutBack" | "EaseInOutBack" | "EaseInSpring" | "EaseOutSpring" | "EaseInOutSpring"): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
     ### setPlaybackSpeed()
 
     <br /><p>Sets the playback speed multiplier of a block that supports playback control.
@@ -7231,11 +6970,8 @@ Manage time-based media like video and audio, including playback, timing, and co
     <br /><p>Generate a sequence of thumbnails for the given video fill or design block.</p>
   </summary>
 
-  Note: Only one request per block runs at a time. A second request for the same block waits
-  for the first to finish instead of failing.
-  Note: For a video fill, cancelling has no effect once the first frame has been scheduled —
-  the remaining frames are still delivered. Cancel before the first frame arrives, or ignore
-  results from a request you have abandoned. Design block sequences cancel at any time.
+  Note: There can only be one thumbnail generation request in progress for a given block.
+  Note: During playback, the thumbnail generation will be paused.
 
   #### Parameters
 
@@ -7272,10 +7008,7 @@ Manage time-based media like video and audio, including playback, timing, and co
 
   A thumbnail in this case is a chunk of samples in the range of 0 to 1.
   In case stereo data is requested, the samples are interleaved, starting with the left channel.
-  Note: `numberOfSamples` counts samples per channel. The callback fires
-  `ceil(numberOfSamples / samplesPerChunk)` times and the last chunk may be shorter.
-  Note: The `Float32Array` is a view into engine memory that is only valid for the duration of
-  the callback. Copy it before storing it.
+  Note: During playback, the thumbnail generation will be paused.
 
   #### Parameters
 
@@ -12741,160 +12474,6 @@ Create cutout operations and path-based modifications.
 
   ```typescript
   removeMetadata(id: number, key: string): void
-  ```
-</details>
-
-## Block Transitions
-
-<details>
-  <summary>
-    ### createTransition()
-
-    <br /><p>Creates a new transition block.</p>
-  </summary>
-
-  The created block is standalone until assigned to a clip with `setTransition`.
-  Once assigned, it is owned by that clip: it is destroyed together with the
-  clip, and the engine also destroys it automatically when the two clips stop
-  being timeline-adjacent on the track (e.g. after a manual gap is introduced).
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `type` | [`TransitionType`](./api/node/type-aliases/transitiontype.md) | The type of transition to create. |
-
-  #### Returns
-
-  `number`
-
-  The handle of the new transition instance.
-
-  #### Signature
-
-  ```typescript
-  createTransition(type: TransitionType): number
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### supportsTransition()
-
-    <br /><p>Checks whether a clip can own an outgoing clip-to-clip transition.</p>
-  </summary>
-
-  Only leaf clips inside a video track qualify. Audio, group, caption, and
-  cutout blocks — as well as blocks outside a video track — report `false`.
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The clip block to check. |
-
-  #### Returns
-
-  `boolean`
-
-  Whether the block can own an outgoing transition.
-
-  #### Signature
-
-  ```typescript
-  supportsTransition(id: number): boolean
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### setTransition()
-
-    <br /><p>Assigns the outgoing transition of a clip.</p>
-  </summary>
-
-  A previously assigned transition block is detached but not destroyed
-  automatically. Throws an error if the given transition block is invalid or
-  already assigned to another clip. Both the clip and its following clip on
-  the track must support transitions, see `supportsTransition`. To clear a
-  clip's transition, use `removeTransition` instead.
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The outgoing clip that owns the transition relation. |
-  | `transition` | `number` | The transition block to assign. |
-
-  #### Returns
-
-  `void`
-
-  #### Signature
-
-  ```typescript
-  setTransition(id: number, transition: number): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### removeTransition()
-
-    <br /><p>Removes the outgoing transition of a clip.</p>
-  </summary>
-
-  The removed transition block is detached but not destroyed automatically.
-  Removing from a clip without an assigned transition is a no-op.
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The outgoing clip whose transition relation should be cleared. |
-
-  #### Returns
-
-  `void`
-
-  #### Signature
-
-  ```typescript
-  removeTransition(id: number): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### getTransition()
-
-    <br /><p>Gets the outgoing transition assigned to a clip.</p>
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The outgoing clip whose transition relation should be queried. |
-
-  #### Returns
-
-  `number`
-
-  The assigned transition block, or an invalid block if unset.
-
-  #### Signature
-
-  ```typescript
-  getTransition(id: number): number
   ```
 </details>
 

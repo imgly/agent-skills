@@ -3,12 +3,11 @@ import classNames from 'classnames';
 import type { VariantImage } from '../../imgly';
 import { EditOverlay } from '../EditOverlay/EditOverlay';
 import { Spinner } from '../Spinner/Spinner';
-import { DEMO_ASSETS_BASE_URL } from '../constants';
-import { getPlatformIconFilename } from '../utils';
+import { getPlatformIconFilename, resolveAssetPath } from '../utils';
 
 import styles from './VariantCard.module.css';
 
-const DOWNLOAD_ICON_PATH = `${DEMO_ASSETS_BASE_URL}/icons/download.svg`;
+const DOWNLOAD_ICON_PATH = resolveAssetPath('icons/download.svg');
 
 interface VariantCardProps {
   variant: VariantImage;
@@ -26,7 +25,7 @@ export function VariantCard({ variant, onEdit, onDownload }: VariantCardProps) {
       {/* Header */}
       <div className={styles.header}>
         <img
-          src={`${DEMO_ASSETS_BASE_URL}/${getPlatformIconFilename(size.platform)}`}
+          src={resolveAssetPath(getPlatformIconFilename(size.platform))}
           alt={size.label}
           className={styles.platformIcon}
         />

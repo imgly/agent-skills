@@ -20,7 +20,7 @@ resolution.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-for-printing-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/guides-export-save-publish-for-printing-browser/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/guides-export-save-publish-for-printing-browser/)
 
 CE.SDK exports designs as PDFs, but professional print workflows require specific configurations beyond standard export. This guide covers PDF export options for print, including high compatibility mode for complex designs, underlayers for printing on special media, and output resolution settings.
 
@@ -96,7 +96,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load a template scene - this will be our print design
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -135,9 +135,7 @@ class Example implements EditorPlugin {
 
       downloadBlob(pdfBlob, 'print-high-compatibility.pdf');
       cesdk.ui.showNotification({
-        message: `PDF exported with high compatibility (${(
-          pdfBlob.size / 1024
-        ).toFixed(1)} KB)`,
+        message: `PDF exported with high compatibility (${(pdfBlob.size / 1024).toFixed(1)} KB)`,
         type: 'success'
       });
     };
@@ -153,9 +151,7 @@ class Example implements EditorPlugin {
 
       downloadBlob(pdfBlob, 'print-standard.pdf');
       cesdk.ui.showNotification({
-        message: `Standard PDF exported (${(pdfBlob.size / 1024).toFixed(
-          1
-        )} KB)`,
+        message: `Standard PDF exported (${(pdfBlob.size / 1024).toFixed(1)} KB)`,
         type: 'success'
       });
     };
@@ -180,9 +176,7 @@ class Example implements EditorPlugin {
 
       downloadBlob(pdfBlob, 'print-with-underlayer.pdf');
       cesdk.ui.showNotification({
-        message: `PDF exported with underlayer (${(pdfBlob.size / 1024).toFixed(
-          1
-        )} KB)`,
+        message: `PDF exported with underlayer (${(pdfBlob.size / 1024).toFixed(1)} KB)`,
         type: 'success'
       });
     };
@@ -268,7 +262,7 @@ Before exporting, configure your scene with appropriate print settings. Set the 
 
 ```typescript highlight-setup
     // Load a template scene - this will be our print design
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -322,10 +316,6 @@ const pdfBlob = await engine.block.export(page, {
   exportPdfWithHighCompatibility: false
 });
 ```
-
-In this mode CE.SDK embeds unmodified JPEG images with their original data instead of rasterizing them, which strongly reduces export time and file size for photo-heavy documents such as photo books.
-
-Print jobs usually keep the default `pdfImageQuality` of `1.0`, which encodes the images that still have to be rasterized losslessly. Lower the value only when a smaller file matters more than print fidelity.
 
 ## Underlayers for Special Media
 
@@ -415,7 +405,6 @@ Increase the negative `underlayerOffset` value to shrink the underlayer further 
 | `targetWidth` | Target width for exported PDF in pixels |
 | `targetHeight` | Target height for exported PDF in pixels |
 | `exportPdfWithHighCompatibility` | Rasterize bitmap images and gradients at scene DPI (default: `true`) |
-| `pdfImageQuality` | Encoding quality for rasterized images; values below `1.0` use lossy JPEG (default: `1.0`) |
 | `exportPdfWithUnderlayer` | Generate underlayer from contours (default: `false`) |
 | `underlayerSpotColorName` | Spot color name for underlayer ink |
 | `underlayerOffset` | Size adjustment in design units (negative shrinks) |

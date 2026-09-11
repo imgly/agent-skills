@@ -2,6 +2,12 @@
 
 ---
 
+Control the design editor's behavior and settings.
+
+The EditorAPI provides access to edit modes, history management, editor settings, color management,
+resource handling, and global scope controls. It serves as the central configuration and control interface
+for the design editor engine.
+
 ## Constructors
 
 <details>
@@ -13,6 +19,8 @@
 </details>
 
 ## Role & Scope Management
+
+Manage user roles and global scope permissions.
 
 <details>
   <summary>
@@ -140,6 +148,8 @@
 </details>
 
 ## Event Subscriptions
+
+Subscribe to editor state changes, history updates, and role changes.
 
 <details>
   <summary>
@@ -274,6 +284,8 @@
 </details>
 
 ## Edit Mode Management
+
+Control the editor's current editing mode and interaction state.
 
 <details>
   <summary>
@@ -427,6 +439,8 @@
 </details>
 
 ## History Management
+
+Create, manage, and operate on undo/redo history stacks.
 
 <details>
   <summary>
@@ -709,6 +723,8 @@
 </details>
 
 ## Color Management
+
+Handle spot colors, color conversion, and color space operations.
 
 <details>
   <summary>
@@ -1011,6 +1027,8 @@
 </details>
 
 ## Resource Management
+
+Manage buffers, URIs, and resource data handling.
 
 <details>
   <summary>
@@ -1394,6 +1412,8 @@
 </details>
 
 ## Editor Settings
+
+Configure editor behavior through typed settings for different data types.
 
 <details>
   <summary>
@@ -2475,9 +2495,7 @@
   </summary>
 
   This function can be called more than once. Subsequent calls will overwrite previous calls.
-  To remove a previously set resolver, pass `null` or `undefined`.
-  `setURIResolver` and `setURIResolverAsync` share one resolver slot, so a
-  call to either one replaces the resolver set by the other.
+  To remove a previously set resolver, pass the value `null`.
   The given function must return an absolute path with a scheme and cannot be asynchronous. The input is allowed to be an invalid URI, e.g., due to placeholders.
 
   ```javascript
@@ -2495,7 +2513,7 @@
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `resolver?` | [`SyncURIResolver`](./api/engine/type-aliases/syncuriresolver.md) | Custom resolution function. The resolution function should not reference variables outside of its scope. It receives the default URI resolver as its second argument |
+  | `resolver` | [`SyncURIResolver`](./api/engine/type-aliases/syncuriresolver.md) | Custom resolution function. The resolution function should not reference variables outside of its scope. It receives the default URI resolver as its second argument |
 
   #### Returns
 
@@ -2504,7 +2522,7 @@
   #### Signature
 
   ```typescript
-  setURIResolver(resolver?: SyncURIResolver): void
+  setURIResolver(resolver: SyncURIResolver): void
   ```
 
   ***
@@ -2518,9 +2536,7 @@
   </summary>
 
   This function can be called more than once. Subsequent calls will overwrite previous calls.
-  To remove a previously set resolver, pass `null` or `undefined`.
-  `setURIResolver` and `setURIResolverAsync` share one resolver slot, so a
-  call to either one replaces the resolver set by the other.
+  To remove a previously set resolver, pass the value `null`.
   The given function must return an absolute path with a scheme. The input is allowed to be invalid URI, e.g., due
   to placeholders.
 
@@ -2528,7 +2544,7 @@
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `resolver?` | [`AsyncURIResolver`](./api/engine/type-aliases/asyncuriresolver.md) | Custom async resolution function. |
+  | `resolver` | [`AsyncURIResolver`](./api/engine/type-aliases/asyncuriresolver.md) | Custom async resolution function. |
 
   #### Returns
 
@@ -2537,7 +2553,7 @@
   #### Signature
 
   ```typescript
-  setURIResolverAsync(resolver?: AsyncURIResolver): void
+  setURIResolverAsync(resolver: AsyncURIResolver): void
   ```
 
   ***
@@ -2611,6 +2627,8 @@
 </details>
 
 ## System Information
+
+Access memory usage, export limits, and system capabilities.
 
 <details>
   <summary>
@@ -2699,61 +2717,6 @@
 </details>
 
 ## Other
-
-<details>
-  <summary>
-    ### isCapabilitySupported()
-
-    <br /><p>Whether the current platform supports a capability, measured once with behavioral
-    probes during engine initialization.</p>
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `capability` | [`EngineCapability`](./api/engine/type-aliases/enginecapability.md) | The capability to query. |
-
-  #### Returns
-
-  `boolean`
-
-  Whether the capability is supported.
-
-  #### Throws
-
-  For unknown capability names.
-
-  #### Signature
-
-  ```typescript
-  isCapabilitySupported(capability: EngineCapability): boolean
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### checkCapabilities()
-
-    <br /><p>Runs the platform's capability detection; awaited during engine initialization.</p>
-  </summary>
-
-  #### Returns
-
-  `Promise`\<`void`>
-
-  Resolves once every capability has been measured.
-
-  #### Signature
-
-  ```typescript
-  checkCapabilities(): Promise<void>
-  ```
-
-  ***
-</details>
 
 <details>
   <summary>

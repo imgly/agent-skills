@@ -58,7 +58,7 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  await engine.scene.load(
+  await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
@@ -135,8 +135,6 @@ try {
 ```
 
 This guide covers exporting thumbnails at specific dimensions, choosing formats, optimizing quality and file size, and saving thumbnails to the file system.
-
-To generate audio waveforms from a scene's audio, see [Thumbnail Previews](./export-save-publish/thumbnail-previews.md), which covers the streaming preview APIs.
 
 ## Export a Thumbnail
 

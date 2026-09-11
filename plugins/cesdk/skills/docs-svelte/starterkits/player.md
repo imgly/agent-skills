@@ -19,7 +19,7 @@ content. Runs entirely in the browser with no server dependencies.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-player-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.0/examples/starterkit-video-player/index.html)
+> - [Live demo](https://img.ly/docs/cesdk/examples/starterkit-video-player/)
 
 ***
 
@@ -27,7 +27,7 @@ content. Runs entirely in the browser with no server dependencies.
 
 Before you begin, make sure you have the following:
 
-- **Node.js v22+** and npm installed locally – [Download Node.js](https://nodejs.org/)
+- **Node.js v20+** and npm installed locally – [Download Node.js](https://nodejs.org/)
 - A **supported browser** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+<br />
   See [Browser Support](./browser-support.md) for the full list.
 
@@ -259,10 +259,10 @@ CE.SDK offers multiple ways to load content into the player. Choose the method t
 
 ```typescript title="src/imgly/index.ts"
 // Load from a template archive - loads a previously saved project
-await cesdk.load('https://example.com/video.zip');
+await cesdk.loadFromArchiveURL('https://example.com/video.zip');
 
 // Load from a scene file - restores a scene from JSON
-await cesdk.load('https://example.com/scene.json');
+await cesdk.loadFromURL('https://example.com/scene.json');
 
 // Zoom to fit the content
 await cesdk.actions.run('zoom.toPage', {

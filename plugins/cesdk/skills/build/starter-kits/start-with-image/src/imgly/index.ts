@@ -5,7 +5,7 @@
  * with an image as the starting point. Import and call `initStartWithImageEditor()`
  * to configure a CE.SDK instance for image-first design editing.
  *
- * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
+ * @see https://img.ly/docs/cesdk/js/getting-started/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
@@ -31,13 +31,13 @@ import {
 // Configuration and plugins
 import { PhotoEditorConfig } from './config/plugin';
 
-import { resolveAssetPath } from './resolveAssetPath';
+// Image catalog for sample images
+import { IMAGE_CATALOG } from '../app/image-catalog';
 
 // Re-export for external use
 export { PhotoEditorConfig } from './config/plugin';
-
-/** Sample image used when no image URL is provided. */
-const DEFAULT_IMAGE_URL = resolveAssetPath('/assets/images/mountain-1200.jpg');
+export { IMAGE_CATALOG } from '../app/image-catalog';
+export type { ImageAsset } from '../app/image-catalog';
 
 /**
  * Initialize the CE.SDK Start With Image Editor with a complete configuration.
@@ -80,61 +80,59 @@ export async function initStartWithImageEditor(
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
-  await Promise.all([
-    cesdk.addPlugin(new BlurAssetSource()),
+  await cesdk.addPlugin(new BlurAssetSource());
 
-    // Color palettes for design
-    cesdk.addPlugin(new ImageColorsAssetSource()),
-    cesdk.addPlugin(new ColorPaletteAssetSource()),
+  // Color palettes for design
+  await cesdk.addPlugin(new ImageColorsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
 
-    // Crop presets (aspect ratios)
-    cesdk.addPlugin(new CropPresetsAssetSource()),
+  // Crop presets (aspect ratios)
+  await cesdk.addPlugin(new CropPresetsAssetSource());
 
-    // Local upload sources (images)
-    cesdk.addPlugin(
-      new UploadAssetSources({
-        include: ['ly.img.image.upload']
-      })
-    ),
+  // Local upload sources (images)
+  await cesdk.addPlugin(
+    new UploadAssetSources({
+      include: ['ly.img.image.upload']
+    })
+  );
 
-    // Demo assets (images only for image-first workflow)
-    cesdk.addPlugin(
-      new DemoAssetSources({
-        include: ['ly.img.image.*']
-      })
-    ),
+  // Demo assets (images only for image-first workflow)
+  await cesdk.addPlugin(
+    new DemoAssetSources({
+      include: ['ly.img.image.*']
+    })
+  );
 
-    // Visual effects (adjustments, vignette, etc.)
-    cesdk.addPlugin(new EffectsAssetSource()),
+  // Visual effects (adjustments, vignette, etc.)
+  await cesdk.addPlugin(new EffectsAssetSource());
 
-    // Photo filters (LUT, duotone)
-    cesdk.addPlugin(new FiltersAssetSource()),
+  // Photo filters (LUT, duotone)
+  await cesdk.addPlugin(new FiltersAssetSource());
 
-    // Page format presets (A4, Letter, social media sizes)
-    cesdk.addPlugin(new PagePresetsAssetSource()),
+  // Page format presets (A4, Letter, social media sizes)
+  await cesdk.addPlugin(new PagePresetsAssetSource());
 
-    // Sticker assets
-    cesdk.addPlugin(new StickerAssetSource()),
+  // Sticker assets
+  await cesdk.addPlugin(new StickerAssetSource());
 
-    // Text presets (headlines, body text styles)
-    cesdk.addPlugin(new TextAssetSource()),
+  // Text presets (headlines, body text styles)
+  await cesdk.addPlugin(new TextAssetSource());
 
-    // Text components (pre-designed text layouts)
-    cesdk.addPlugin(new TextComponentAssetSource()),
+  // Text components (pre-designed text layouts)
+  await cesdk.addPlugin(new TextComponentAssetSource());
 
-    // Typeface/font assets
-    cesdk.addPlugin(new TypefaceAssetSource()),
+  // Typeface/font assets
+  await cesdk.addPlugin(new TypefaceAssetSource());
 
-    // Vector shapes (rectangles, circles, arrows, etc.)
-    cesdk.addPlugin(new VectorShapeAssetSource()),
+  // Vector shapes (rectangles, circles, arrows, etc.)
+  await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    // Premium templates
-    cesdk.addPlugin(
-      new PremiumTemplatesAssetSource({
-        include: ['ly.img.templates.premium.*']
-      })
-    )
-  ]);
+  // Premium templates
+  await cesdk.addPlugin(
+    new PremiumTemplatesAssetSource({
+      include: ['ly.img.templates.premium.*']
+    })
+  );
   // highlight-asset-sources
 
   // ============================================================================
@@ -144,7 +142,7 @@ export async function initStartWithImageEditor(
   // highlight-create-from-image
   // Create a design scene from the provided image URL
   // This is the key feature of the start-with-image workflow
-  const imageToLoad = imageUrl || DEFAULT_IMAGE_URL;
+  const imageToLoad = imageUrl || IMAGE_CATALOG[0].full;
   await cesdk.createFromImage(imageToLoad);
 
   // Select the image block for immediate editing

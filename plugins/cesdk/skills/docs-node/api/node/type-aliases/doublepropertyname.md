@@ -8,11 +8,12 @@ type DoublePropertyName =
   | "playback/duration"
   | "playback/timeOffset"
   | "audio/totalDuration"
-  | "playback/fadeIn/duration"
-  | "playback/fadeOut/duration"
   | "playback/trimLength"
   | "playback/trimOffset"
   | "fill/video/totalDuration"
+  | "animation/scale_loop/startDelay"
+  | "animation/scale_loop/holdDuration"
+  | "animation/scale_loop/easingDuration"
   | string & object;
 ```
 

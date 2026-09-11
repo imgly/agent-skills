@@ -6,7 +6,7 @@
  * - Apply layouts to existing pages while preserving content
  * - Swap between different layouts dynamically
  *
- * @see https://img.ly/docs/cesdk/js/import-media/asset-panel/customize-c9a4de/
+ * @see https://img.ly/docs/cesdk/js/custom-asset-sources/
  */
 
 import type {
@@ -19,6 +19,8 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 // Import the layouts JSON content
 import LAYOUT_ASSETS from './CustomLayouts.json';
+
+import { resolveAssetPath } from '../../resolveAssetPath';
 
 // ============================================================================
 // Types
@@ -45,19 +47,8 @@ export interface LayoutsAssetSourcePluginOptions {
 // Constants
 // ============================================================================
 
-/**
- * Demo assets for this example (scenes, icons, …) are loaded from the
- * IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/starterkit-layouts-asset-source';
-
 const LAYOUTS_SOURCE_ID = 'ly.img.layouts';
-const DEFAULT_BASE_URL = `${DEMO_ASSETS_BASE_URL}/assets`;
+const DEFAULT_BASE_URL = resolveAssetPath('/assets');
 
 // ============================================================================
 // Layout Application Logic
@@ -366,8 +357,8 @@ export class LayoutsAssetSourcePlugin implements EditorPlugin {
         label: 'libraries.ly.img.layouts.label',
         icon: ({ iconSize }) =>
           iconSize === 'normal'
-            ? `${DEMO_ASSETS_BASE_URL}/assets/collage-small.svg`
-            : `${DEMO_ASSETS_BASE_URL}/assets/collage-large.svg`,
+            ? resolveAssetPath('/assets/collage-small.svg')
+            : resolveAssetPath('/assets/collage-large.svg'),
         entries: [LAYOUTS_SOURCE_ID]
       },
       'ly.img.separator',

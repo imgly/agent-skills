@@ -68,6 +68,7 @@ const { MimeType } = CreativeEngine as any;
 // CE.SDK configuration
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY', // Enter your CE.SDK license key
+  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`,
 };
 
 try {
@@ -75,7 +76,7 @@ try {
   console.log('CE.SDK Engine initialized (Deno)');
 
   try {
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene',
     );
 

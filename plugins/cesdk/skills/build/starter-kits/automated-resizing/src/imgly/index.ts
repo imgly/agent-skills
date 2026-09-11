@@ -32,7 +32,7 @@ type CreativeEditorSDK = InstanceType<typeof CreativeEditorSDK>;
  * await initAutomatedResizingAdvancedEditor(cesdk);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/automation/auto-resize-4c2d58/
+ * @see https://img.ly/docs/cesdk/js/block-layout/content-aware-resize-2eb7ee/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
@@ -60,12 +60,18 @@ import { DesignEditorConfig } from './design-editor-config/plugin';
 // Re-exports
 // ============================================================================
 
+// Types
+// Utilities (consolidated in app layer)
+export {
+  getPlatformIconFilename,
+  getSizeById,
+  getSizesByPlatform
+} from '../app/utils';
 // Configuration plugins (for advanced use cases)
 export { AdvancedEditorConfig } from './advanced-editor-config/plugin';
 export { DesignEditorConfig } from './design-editor-config/plugin';
 // Resizing functions
 export { resize } from './resizing';
-export { DEFAULT_SIZES } from './sizes';
 export type {
   AppConfig,
   ResizeOptions,
@@ -97,30 +103,28 @@ export async function initAutomatedResizingDesignEditor(
   cesdk.ui.setTheme('light');
 
   // Add asset source plugins
-  await Promise.all([
-    cesdk.addPlugin(new ImageColorsAssetSource()),
-    cesdk.addPlugin(new ColorPaletteAssetSource()),
-    cesdk.addPlugin(new TypefaceAssetSource()),
-    cesdk.addPlugin(new TextAssetSource()),
-    cesdk.addPlugin(new TextComponentAssetSource()),
-    cesdk.addPlugin(new VectorShapeAssetSource()),
-    cesdk.addPlugin(new StickerAssetSource()),
-    cesdk.addPlugin(new EffectsAssetSource()),
-    cesdk.addPlugin(new FiltersAssetSource()),
-    cesdk.addPlugin(new BlurAssetSource()),
-    cesdk.addPlugin(new PagePresetsAssetSource()),
-    cesdk.addPlugin(new CropPresetsAssetSource()),
-    cesdk.addPlugin(
-      new UploadAssetSources({
-        include: ['ly.img.image.upload']
-      })
-    ),
-    cesdk.addPlugin(
-      new DemoAssetSources({
-        include: ['ly.img.image.*']
-      })
-    )
-  ]);
+  await cesdk.addPlugin(new ImageColorsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
+  await cesdk.addPlugin(new TypefaceAssetSource());
+  await cesdk.addPlugin(new TextAssetSource());
+  await cesdk.addPlugin(new TextComponentAssetSource());
+  await cesdk.addPlugin(new VectorShapeAssetSource());
+  await cesdk.addPlugin(new StickerAssetSource());
+  await cesdk.addPlugin(new EffectsAssetSource());
+  await cesdk.addPlugin(new FiltersAssetSource());
+  await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new PagePresetsAssetSource());
+  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await cesdk.addPlugin(
+    new UploadAssetSources({
+      include: ['ly.img.image.upload']
+    })
+  );
+  await cesdk.addPlugin(
+    new DemoAssetSources({
+      include: ['ly.img.image.*']
+    })
+  );
 }
 
 /**
@@ -141,28 +145,26 @@ export async function initAutomatedResizingAdvancedEditor(
   cesdk.ui.setTheme('dark');
 
   // Add asset source plugins
-  await Promise.all([
-    cesdk.addPlugin(new ImageColorsAssetSource()),
-    cesdk.addPlugin(new ColorPaletteAssetSource()),
-    cesdk.addPlugin(new TypefaceAssetSource()),
-    cesdk.addPlugin(new TextAssetSource()),
-    cesdk.addPlugin(new TextComponentAssetSource()),
-    cesdk.addPlugin(new VectorShapeAssetSource()),
-    cesdk.addPlugin(new StickerAssetSource()),
-    cesdk.addPlugin(new EffectsAssetSource()),
-    cesdk.addPlugin(new FiltersAssetSource()),
-    cesdk.addPlugin(new BlurAssetSource()),
-    cesdk.addPlugin(new PagePresetsAssetSource()),
-    cesdk.addPlugin(new CropPresetsAssetSource()),
-    cesdk.addPlugin(
-      new UploadAssetSources({
-        include: ['ly.img.image.upload']
-      })
-    ),
-    cesdk.addPlugin(
-      new DemoAssetSources({
-        include: ['ly.img.image.*']
-      })
-    )
-  ]);
+  await cesdk.addPlugin(new ImageColorsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
+  await cesdk.addPlugin(new TypefaceAssetSource());
+  await cesdk.addPlugin(new TextAssetSource());
+  await cesdk.addPlugin(new TextComponentAssetSource());
+  await cesdk.addPlugin(new VectorShapeAssetSource());
+  await cesdk.addPlugin(new StickerAssetSource());
+  await cesdk.addPlugin(new EffectsAssetSource());
+  await cesdk.addPlugin(new FiltersAssetSource());
+  await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new PagePresetsAssetSource());
+  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await cesdk.addPlugin(
+    new UploadAssetSources({
+      include: ['ly.img.image.upload']
+    })
+  );
+  await cesdk.addPlugin(
+    new DemoAssetSources({
+      include: ['ly.img.image.*']
+    })
+  );
 }

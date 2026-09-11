@@ -46,7 +46,7 @@ The following examples show both approaches when running a batch export in the b
     const engine = await CreativeEngine.init({ license: LICENSE_KEY });
 
     for (const record of records) {
-      await engine.scene.load(record.scene);
+      await engine.scene.loadFromString(record.scene);
       const blob = await engine.block.export(engine.scene.getPages()[0], 'image/png');
       await downloadBlob(blob, `${record.id}.png`);
     }
@@ -169,7 +169,7 @@ The export feature allows you to automate thumbnails generation by tweaking the 
 const thumbnailEngine = await CreativeEngine.init({ container: null });
 
 async function generateThumbnail(sceneData) {
-  await thumbnailEngine.scene.load(sceneData);
+  await thumbnailEngine.scene.loadFromString(sceneData);
   const page = thumbnailEngine.scene.getPages()[0];
 
   // Generate small preview
@@ -197,7 +197,7 @@ Extract representative frames from videos efficiently, and automate this action 
 | Load video source | `engine.scene.createFromVideo()` | [Create from Video](./create-video/control.md) |
 | Seek to timestamp | `engine.block.setPlaybackTime()` | [Control Audio and Video](./create-video/control.md) |
 | Export single frame | `engine.block.export(block, options)` | [To PNG](./export-save-publish/export/to-png.md) <br />[Text Designs](./text/text-designs.md) |
-| Generate sequence thumbnails | `engine.block.generateVideoThumbnailSequence()` | [Thumbnail Previews](./export-save-publish/thumbnail-previews.md) |
+| Generate sequence thumbnails | `engine.block.generateVideoThumbnailSequence()` | [Trim Video Clips](./edit-video/trim.md) |
 | Size thumbnails consistently | `targetWidth / targetHeight` export options | [To PNG](./export-save-publish/export/to-png.md) |
 
 The following code shows how to **generate thumbnails from a video**:
@@ -206,7 +206,7 @@ The following code shows how to **generate thumbnails from a video**:
 import CreativeEngine from '@cesdk/engine';
 
 const engine = await CreativeEngine.init({ license: LICENSE_KEY });
-await engine.scene.load('/assets/video-scene.imgly');
+await engine.scene.loadFromURL('/assets/video-scene.scene');
 
 const [page] = engine.scene.getPages();
 const videoBlock = engine.block
@@ -291,7 +291,7 @@ import CreativeEngine from '@cesdk/engine';
 let engine;
 try {
   engine = await CreativeEngine.init({ license: LICENSE_KEY });
-  await engine.scene.load('/assets/video-scene.imgly');
+  await engine.scene.loadFromURL('/assets/video-scene.scene');
 
   const [page] = engine.scene.getPages();
   if (!page) throw new Error('Scene has no pages.');
@@ -361,7 +361,7 @@ The following table contains some checks **examples**:
 | --- | --- |
 | Check input data structure | `if (!isValidRecord(record)) throw new Error('Invalid payload');` |
 | Check file existence and accessibility | `await fs.promises.access(filePath, fs.constants.R_OK);` |
-| Verify templates load correctly | `await engine.scene.load(templateUrl);` |
+| Verify templates load correctly | `await engine.scene.loadFromURL(templateUrl);` |
 | Use dry-run mode for testing | `if (options.dryRun) return simulate(record);` |
 
 For example, the following **data validation function** checks:

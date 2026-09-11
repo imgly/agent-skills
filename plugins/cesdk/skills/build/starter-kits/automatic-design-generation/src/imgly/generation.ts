@@ -67,7 +67,7 @@ export async function generateAsset(
   } = options;
 
   // Load template
-  await engine.scene.load(templateUrl);
+  await engine.scene.loadFromURL(templateUrl);
 
   // Get page
   const [page] = engine.block.findByKind('page');
@@ -91,8 +91,6 @@ export async function generateAsset(
   } else {
     blob = await engine.block.exportVideo(page, {
       mimeType: 'video/mp4',
-      // 'Auto' derives a bounded bitrate from the resolution/framerate
-      videoBitrate: 'Auto',
       targetWidth: width,
       targetHeight: height
     });
