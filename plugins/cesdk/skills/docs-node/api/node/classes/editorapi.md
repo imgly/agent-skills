@@ -175,59 +175,24 @@ Subscribe to editor state changes, history updates, and role changes.
 
 <details>
   <summary>
-    ### ~~onHistoryUpdated~~
+    ### onHistoryUpdated
 
     <br /><p>Subscribe to undo/redo history changes.</p>
   </summary>
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `callback` | () => `void` | Function called when the undo/redo history changes. |
-
-  #### Returns
-
-  A method to unsubscribe from the event.
-
-  () => `void`
-
-  #### Deprecated
-
-  Use [onHistoryUpdatedWithKind](./api/node/classes/editorapi.md) instead, which additionally reports a [HistoryUpdate](./api/node/type-aliases/historyupdate.md)
-  describing the kind of update.
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### onHistoryUpdatedWithKind
-
-    <br /><p>Subscribe to undo/redo history changes.</p>
-  </summary>
-
-  The callback receives a [HistoryUpdate](./api/node/type-aliases/historyupdate.md) describing what kind of update happened so consumers can
-  distinguish a real change to the active history's snapshots (e.g. an edit, undo, or redo) from a pure activation
-  via `setActiveHistory`.
 
   ```javascript
-  const unsubscribe = engine.editor.onHistoryUpdatedWithKind((kind) => {
-    if (kind === 'Activated') {
-      // The active history was switched; no scene change happened on this event.
-      return;
-    }
+  const unsubscribe = engine.editor.onHistoryUpdated(() => {
     const canUndo = engine.editor.canUndo();
     const canRedo = engine.editor.canRedo();
-    console.log('History updated', { canUndo, canRedo });
-  });
+    console.log("History updated", {canUndo, canRedo});
+  })
   ```
 
   #### Parameters
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
-  | `callback` | (`kind`) => `void` | Function called when the undo/redo history changes. The argument describes the kind of update. |
+  | `callback` | () => `void` | Function called when the undo/redo history changes. |
 
   #### Returns
 

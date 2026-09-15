@@ -14,7 +14,7 @@ async function captureHero() {
   try {
     // Start the dev server
     console.log('Starting dev server...');
-    serverProcess = spawn('npm', ['run', 'dev'], {
+    serverProcess = spawn('npm', ['run', 'dev:local'], {
       stdio: 'pipe',
       shell: true
     });

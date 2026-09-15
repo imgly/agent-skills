@@ -15,8 +15,10 @@ type FontWeight =
   | "heavy";
 ```
 
-Allowed font weights. Mirrors the `@cesdk/engine` (WASM) `FontWeight`
-union so a single `Font` is interchangeable across bindings.
+Represents the weight of a font.
+
+The FontWeight type defines the possible weights of a font within the Creative Editor SDK.
+Each weight corresponds to a different thickness, allowing for flexibility in how fonts are styled.
 
 
 ---

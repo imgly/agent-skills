@@ -10,7 +10,6 @@ type SettingBoolPropertyName =
   | "placeholderControls/showButton"
   | "placeholderControls/showOverlay"
   | "blockAnimations/enabled"
-  | "playback/showAllBlocks"
   | "renderTextCursorAndSelectionInEngine"
   | "touch/dragStartCanSelect"
   | "touch/singlePointPanning"

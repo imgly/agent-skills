@@ -1,4 +1,4 @@
-# PowerPoint Template Import Starter Kit
+# Design Editor Starter Kit
 
 Transform PowerPoint slides into editable CE.SDK designs. All formatting preserved. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
 
@@ -6,7 +6,7 @@ Transform PowerPoint slides into editable CE.SDK designs. All formatting preserv
   <a href="https://img.ly/docs/cesdk/js/starterkits/pptx-template-import-pptx01/">Documentation</a>
 </p>
 
-![PowerPoint Template Import starter kit showing the upload interface](./hero.webp)
+![Design Editor starter kit showing a graphic design interface](./hero.webp)
 
 ## Getting Started
 
@@ -132,7 +132,7 @@ src/
 
 ## Documentation
 
-For complete integration guides and API reference, visit the [PowerPoint Template Import Documentation](https://img.ly/docs/cesdk/starterkits/pptx-template-import/).
+For complete integration guides and API reference, visit the [Design Editor Documentation](https://img.ly/docs/cesdk/starterkits/design-editor/).
 
 ## License
 
@@ -140,4 +140,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-pptx-template-import">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-pptx-template-import">IMG.LY</a></p>
+<p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=starterkit-design-editor">IMG.LY</a></p>
