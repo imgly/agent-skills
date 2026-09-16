@@ -1,16 +1,18 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
 plugins {
-    kotlin("android")
     id("com.android.library")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
     namespace = "ly.img.editor.configuration"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
 
         ndk {
             abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64", "x86")
@@ -22,17 +24,21 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
     buildFeatures {
         compose = true
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_1_8
+        languageVersion = KotlinVersion.KOTLIN_1_9
+        apiVersion = KotlinVersion.KOTLIN_1_9
+    }
+}
+
 dependencies {
-    api("ly.img:editor:1.83.0-nightly.20260910")
+    api("ly.img:editor:1.83.0-nightly.20260916")
     // Required for enableEdgeToEdge
     implementation("androidx.activity:activity-ktx:1.9.0")
 }

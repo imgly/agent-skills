@@ -81,6 +81,12 @@ case text
 case track
 ```
 
+### DesignBlockType.zone
+
+```swift
+case zone
+```
+
 ### init(rawValue:)
 
 ```swift

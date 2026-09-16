@@ -18,7 +18,7 @@ Group multiple blocks to move, scale, and transform them as a single unit; ungro
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-grouping-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260910/examples/guides-create-composition-grouping-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260916/examples/guides-create-composition-grouping-browser/index.html)
 
 Groups let you treat multiple blocks as a cohesive unit. Grouped blocks move, scale, and rotate together while maintaining their relative positions. Groups can contain other groups, enabling hierarchical compositions.
 
@@ -225,7 +225,7 @@ Groups are blocks with type `'group'` that contain child blocks as members. Tran
 Groups can be nested, meaning a group can contain other groups. This enables complex hierarchical structures where multiple logical units can be combined and manipulated together.
 
 > **Note:** **What cannot be grouped*** Scene blocks cannot be grouped
-> * Blocks already part of a group cannot be grouped again until ungrouped
+> * A block cannot be grouped with a group it sits inside, which would make that group a child of itself
 
 ## Create the Blocks
 
@@ -343,7 +343,7 @@ Use `engine.block.ungroup()` to dissolve a group and release its children back t
 If `engine.block.isGroupable()` returns `false`:
 
 - Check if any of the blocks is a scene block (scenes cannot be grouped)
-- Check if any block is already part of a group (use `engine.block.getParent()` to verify)
+- Check that no block is being grouped with a group it sits inside (walk up with `engine.block.getParent()`)
 - Ensure all block IDs are valid
 
 ### Enter Group Has No Effect

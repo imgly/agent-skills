@@ -125,7 +125,7 @@ Export your designs as PDF documents with high compatibility mode and underlayer
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260910/engine-guides-export-to-pdf)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260916/engine-guides-export-to-pdf)
 
 PDF provides a universal document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page documents, and include options for print compatibility. You can configure high compatibility mode to ensure consistent rendering across different PDF viewers, and generate underlayers for special media printing like fabric, glass, or DTF transfers.
 
@@ -300,6 +300,27 @@ try underlayerBlob.write(to: exportsDirectory.appendingPathComponent("design-wit
 
 The underlayer is generated automatically from the contours of all design elements on the page. Elements with transparency will have proportionally reduced underlayer opacity.
 
+## Add Printer's Marks
+
+A print shop needs to see where to cut, and a press operator needs a target to align the plates against. Enable `exportPdfWithCropMarks` for the four pairs of corner lines that mark the cut, and `exportPdfWithRegistrationMarks` for a bullseye at the middle of each page edge. Both default to `false`, so an export that does not ask for marks is unchanged.
+
+```swift
+let printMarkOptions = ExportOptions(
+  exportPdfWithCropMarks: true,
+  exportPdfWithRegistrationMarks: true,
+  printMarkOffset: 3.0,
+  cropMarkLength: 5.0,
+  printMarkWidth: 0.25,
+)
+let pdfBlob = try await engine.block.export(page, mimeType: .pdf, options: printMarkOptions)
+```
+
+Both mark types are painted in the PDF registration colorant `All`, so they appear on every separation, and each is knocked out in white underneath so it stays legible over dark artwork.
+
+`printMarkOffset` and `cropMarkLength` are in design units, so the offset is directly comparable with the page bleed and the sheet grows by the sum of the two. `printMarkWidth` is in points, the unit a print shop states a stroke weight in. A negative offset falls back to the 6 pt default, and `0` places a mark on the trim edge.
+
+The offset is measured from the trim, so a small offset places a mark inside the bleed, which the knife removes anyway. Marks grow the exported page by the offset plus the equivalent of 15 points on each side, or by the offset plus `cropMarkLength` when that is longer. The artwork does not move, and the TrimBox and BleedBox keep describing the same physical rectangles. A page whose trim is not a rectangle gets no marks and no larger page.
+
 ## Export at Target Dimensions
 
 Use `targetWidth` and `targetHeight` on `ExportOptions` to control the exported PDF dimensions in pixels. The block renders large enough to fill the target size while maintaining aspect ratio.
@@ -327,6 +348,11 @@ For print output, calculate the target dimensions from your desired DPI:
 | `exportPdfWithUnderlayer` | Generate an underlayer from design contours. Defaults to `false`. |
 | `underlayerSpotColorName` | Spot color name for the underlayer ink. Required when `exportPdfWithUnderlayer` is `true`. |
 | `underlayerOffset` | Size adjustment in design units. Negative values shrink the underlayer inward. |
+| `exportPdfWithCropMarks` | Draw the four pairs of corner lines that show a print shop where to cut. Defaults to `false`. |
+| `exportPdfWithRegistrationMarks` | Draw a bullseye target at the middle of each page edge, which a press operator aligns the plates by. Defaults to `false`. |
+| `printMarkOffset` | Distance in design units from the trim to the nearest edge of any mark, so it is comparable with the page bleed. Shared by both mark types. Defaults to 6 pt. |
+| `printMarkWidth` | Stroke weight in points of any mark, the unit a print shop states a weight in. Shared by both mark types. Defaults to `0.25`. |
+| `cropMarkLength` | Length in design units of one crop mark line, the same unit as `printMarkOffset`. Defaults to 15 pt. |
 | `targetWidth` | Target output width in pixels. Must be used with `targetHeight`. |
 | `targetHeight` | Target output height in pixels. Must be used with `targetWidth`. |
 | `pdfChunkSize` | Upper bound in bytes for a single chunk of a streamed PDF export. Defaults to `0`, which uses the engine bound of 512 KiB. Other values are clamped to 4 KiB to 64 MiB. |

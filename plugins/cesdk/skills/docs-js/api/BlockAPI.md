@@ -689,6 +689,29 @@ setFill(id: DesignBlockId, fill: DesignBlockId): void
 - `id` - The block whose fill should be changed.
 - `fill` - The new fill block.
 
+### swapFills()
+
+Exchanges the fills of two blocks in one step.
+Both blocks keep their own transform, size and appearance. Only the fills trade places.
+The same rules apply as when calling {@link setFill} on each block, including the fill type
+restrictions for text blocks. Afterwards each block's crop is reset. The incoming fill is
+fitted like a fill content replace from the asset library. When any part of the exchange
+is not permitted, no block is modified. Swapping a block with itself does nothing. The
+exchange adds no undo step.
+Required scopes on both blocks: 'fill/change' ('fill/changeType' when the fill types differ)
+```javascript
+engine.block.swapFills(firstImageBlock, secondImageBlock);
+engine.editor.addUndoStep();
+```
+
+```typescript
+swapFills(first: DesignBlockId, second: DesignBlockId): void
+```
+
+**Parameters:**
+- `first` - The block whose fill should be exchanged with `second`'s fill.
+- `second` - The block whose fill should be exchanged with `first`'s fill.
+
 ### setFillSolidColor()
 
 Sets the solid fill color of a block.
@@ -1845,7 +1868,10 @@ Create and manage groups of blocks.
 ### isGroupable()
 
 Checks if a set of blocks can be grouped.
-A scene block or a block that is already part of a group cannot be grouped.
+A scene block or a page cannot be grouped, and neither can a block together
+with a group it sits inside, which would make that group a child of itself.
+Blocks that already belong to a group can be grouped again, which is how a
+group inside a group is made.
 ```javascript
 const groupable = engine.block.isGroupable([block1, block2])
 ```
@@ -2945,6 +2971,32 @@ getScreenSpaceBoundingBoxXYWH(ids: DesignBlockId[]): XYWH
 - `ids` - The block to query.
 
 **Returns:** The position and size of the bounding box.
+
+### findAllBlocksAtScreenSpacePosition()
+
+Finds all blocks whose visible geometry contains the given screen-space position, ordered
+front to back.
+The position is expected in the same screen space that {@link getScreenSpaceBoundingBoxXYWH}
+reports. The query uses the geometry rules of selection by click or touch. It respects a
+block's shape path and stroke, and it includes a hit page. A hit on only the bounding box,
+or on a transparent area of an image fill, sorts after all conclusive hits. Hidden blocks
+are never returned.
+Use this to resolve drop targets under a pointer, for example for drag & drop of assets
+onto blocks or between blocks.
+```javascript
+const [topMost] = engine.block.findAllBlocksAtScreenSpacePosition(event.offsetX, event.offsetY);
+```
+
+```typescript
+findAllBlocksAtScreenSpacePosition(x: number, y: number): DesignBlockId[]
+```
+
+**Parameters:**
+- `x` - The x coordinate of the position in screen space.
+- `y` - The y coordinate of the position in screen space.
+
+**Returns:** The blocks at the given position, front-most first. Empty when no scene is loaded
+or nothing is hit.
 
 ### alignHorizontally()
 
@@ -5353,7 +5405,7 @@ or the block-level alignment.
 ```javascript
 const alignment = engine.block.getTextHorizontalAlignment(text, 0);
 const blockAlignment = engine.block.getTextHorizontalAlignment(text); // paragraphIndex defaults to -1
-// e.g. 'Left' | 'Center' | 'Right' | 'Auto' | undefined
+// e.g. 'Left' | 'Right' | 'Center' | 'Justify' | 'Auto' | undefined
 ```
 
 ```typescript
@@ -5375,6 +5427,7 @@ Sets the paragraph-level horizontal alignment override for one or all paragraphs
 engine.block.setTextHorizontalAlignment(text, 'Center', 0);
 engine.block.setTextHorizontalAlignment(text, undefined, 0); // clear override
 engine.block.setTextHorizontalAlignment(text, 'Right'); // apply to all
+engine.block.setTextHorizontalAlignment(text, 'Justify'); // stretch every line but each paragraph's last
 ```
 
 ```typescript
@@ -5384,6 +5437,8 @@ setTextHorizontalAlignment(id: DesignBlockId, alignment: TextHorizontalAlignment
 **Parameters:**
 - `id` - The text block to modify.
 - `alignment` - The alignment to apply, or `undefined` to clear the paragraph override.
+`'Justify'` stretches every line of a paragraph except the last.
+The last line keeps its natural width and follows the text direction, like `'Auto'`.
 - `paragraphIndex` - The 0-based index of the paragraph.
 Negative values clear all paragraph-level alignment overrides and, when `alignment` is provided,
 apply that alignment to the whole text block.
@@ -5781,13 +5836,15 @@ If the alignment is set to Auto, this returns the resolved alignment (Left or Ri
 based on the text direction of the first logical run. This never returns 'Auto'.
 
 ```typescript
-getTextEffectiveHorizontalAlignment(id: DesignBlockId): 'Left' | 'Right' | 'Center'
+getTextEffectiveHorizontalAlignment(id: DesignBlockId): 'Left' | 'Right' | 'Center' | 'Justify'
 ```
 
 **Parameters:**
 - `id` - The text block whose effective alignment should be returned.
 
-**Returns:** The effective alignment ('Left', 'Right', or 'Center').
+**Returns:** The effective alignment ('Left', 'Right', 'Center', or 'Justify').
+Only `'Auto'` is resolved — `'Justify'` is itself an effective alignment and is
+returned verbatim.
 
 ### setTextOnPath()
 

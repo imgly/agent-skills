@@ -42,6 +42,14 @@ abstract fun canUndo(): Boolean
 
 If an undo step is available.
 
+### cancelDragToSwapFills
+
+```kotlin
+abstract fun cancelDragToSwapFills()
+```
+
+Cancels the drag-to-swap-fills gesture without changing the scene, for example when the host maps a back gesture or a system interruption to the gesture. Does nothing while no gesture is in progress.
+
 ### checkP3Support
 
 ```kotlin
@@ -199,6 +207,14 @@ abstract fun getBufferLength(uri: Uri): Int
 ```
 
 Get the length of a buffer.
+
+### getDragToSwapFillsSource
+
+```kotlin
+abstract fun getDragToSwapFillsSource(): DesignBlock
+```
+
+The source block of the drag-to-swap-fills gesture while its fill is lifted. The dragToSwapFills/enabled setting turns the gesture on. A press and hold on an eligible image-fill block lifts its fill. A release over another eligible block exchanges the two fills. Use this to draw a drag preview at the pointer while the lift is active.
 
 ### getEditMode
 

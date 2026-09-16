@@ -35,10 +35,18 @@ func addFirst(@ArrayBuilder<Element> _ elements: () -> [Element])
 
 Prepends an array of `elements`. `elements`
 
-### addFirst(placement:_:)
+### addFirst(placement:_:)-3u0jg
 
 ```swift
 func addFirst(placement: NavigationBar.ItemPlacement, @ArrayBuilder<any NavigationBar.Item> _ elements: () -> [Element])
+```
+
+Prepends an array of `elements` to a placement group. `placement`
+
+### addFirst(placement:_:)-5ro2s
+
+```swift
+func addFirst(placement: Timeline.ItemPlacement, @ArrayBuilder<any Timeline.Item> _ elements: () -> [Element])
 ```
 
 Prepends an array of `elements` to a placement group. `placement`
@@ -51,7 +59,15 @@ func addLast(@ArrayBuilder<Element> _ elements: () -> [Element])
 
 Appends an array of `elements`. `elements`
 
-### addLast(placement:_:)
+### addLast(placement:_:)-3xb46
+
+```swift
+func addLast(placement: Timeline.ItemPlacement, @ArrayBuilder<any Timeline.Item> _ elements: () -> [Element])
+```
+
+Appends an array of `elements` to a placement group. `placement`
+
+### addLast(placement:_:)-7jdgz
 
 ```swift
 func addLast(placement: NavigationBar.ItemPlacement, @ArrayBuilder<any NavigationBar.Item> _ elements: () -> [Element])

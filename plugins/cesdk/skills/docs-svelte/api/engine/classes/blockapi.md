@@ -2139,6 +2139,56 @@ Structure designs by positioning, sizing, layering, aligning, and distributing b
 
 <details>
   <summary>
+    ### findAllBlocksAtScreenSpacePosition()
+
+    <br /><p>Finds all blocks whose visible geometry contains the given screen-space position, ordered
+    front to back.</p>
+  </summary>
+
+  The position is expected in the same screen space that [getScreenSpaceBoundingBoxXYWH](./api/engine/classes/blockapi.md)
+  reports. The query uses the geometry rules of selection by click or touch. It respects a
+  block's shape path and stroke, and it includes a hit page. A hit on only the bounding box,
+  or on a transparent area of an image fill, sorts after all conclusive hits. Hidden blocks
+  are never returned.
+
+  Use this to resolve drop targets under a pointer, for example for drag & drop of assets
+  onto blocks or between blocks.
+
+  ```javascript
+  const [topMost] = engine.block.findAllBlocksAtScreenSpacePosition(event.offsetX, event.offsetY);
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `x` | `number` | The x coordinate of the position in screen space. |
+  | `y` | `number` | The y coordinate of the position in screen space. |
+
+  #### Returns
+
+  `number`\[]
+
+  The blocks at the given position, front-most first. Empty when no scene is loaded
+  or nothing is hit.
+
+  #### Remarks
+
+  Do not call this inside reactive selectors or `withEngine` render bodies. It is a
+  tracked getter, so the selector would re-execute on every engine tick. Call it from event
+  handlers, for example on pointer move.
+
+  #### Signature
+
+  ```typescript
+  findAllBlocksAtScreenSpacePosition(x: number, y: number): number[]
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### alignHorizontally()
 
     <br /><p>Aligns blocks horizontally.</p>
@@ -2151,7 +2201,7 @@ Structure designs by positioning, sizing, layering, aligning, and distributing b
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `ids` | `number`\[] | A non-empty array of block ids. |
-  | `horizontalBlockAlignment` | `"Auto"` | `"Right"` | `"Left"` | `"Center"` | How they should be aligned: 'Left', 'Right', or 'Center'. |
+  | `horizontalBlockAlignment` | `"Auto"` | `"Right"` | `"Left"` | `"Center"` | `"Justify"` | How they should be aligned: 'Left', 'Right', or 'Center'. |
 
   #### Returns
 
@@ -2160,7 +2210,7 @@ Structure designs by positioning, sizing, layering, aligning, and distributing b
   #### Signature
 
   ```typescript
-  alignHorizontally(ids: number[], horizontalBlockAlignment: "Auto" | "Right" | "Left" | "Center"): void
+  alignHorizontally(ids: number[], horizontalBlockAlignment: "Auto" | "Right" | "Left" | "Center" | "Justify"): void
   ```
 
   ***
@@ -3966,6 +4016,47 @@ Create, configure, and manage block fills, including solid colors, gradients, an
 
 <details>
   <summary>
+    ### swapFills()
+
+    <br /><p>Exchanges the fills of two blocks in one step.</p>
+  </summary>
+
+  Both blocks keep their own transform, size and appearance. Only the fills trade places.
+  The same rules apply as when calling [setFill](./api/engine/classes/blockapi.md) on each block, including the fill type
+  restrictions for text blocks. Afterwards each block's crop is reset. The incoming fill is
+  fitted like a fill content replace from the asset library. When any part of the exchange
+  is not permitted, no block is modified. Swapping a block with itself does nothing. The
+  exchange adds no undo step.
+
+  Required scopes on both blocks: 'fill/change' ('fill/changeType' when the fill types differ)
+
+  ```javascript
+  engine.block.swapFills(firstImageBlock, secondImageBlock);
+  engine.editor.addUndoStep();
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `first` | `number` | The block whose fill should be exchanged with `second`'s fill. |
+  | `second` | `number` | The block whose fill should be exchanged with `first`'s fill. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  swapFills(first: number, second: number): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### setFillSolidColor()
 
     <br /><p>Sets the solid fill color of a block.</p>
@@ -5007,7 +5098,7 @@ Create, edit, and style text content.
   ```javascript
   const alignment = engine.block.getTextHorizontalAlignment(text, 0);
   const blockAlignment = engine.block.getTextHorizontalAlignment(text); // paragraphIndex defaults to -1
-  // e.g. 'Left' | 'Center' | 'Right' | 'Auto' | undefined
+  // e.g. 'Left' | 'Right' | 'Center' | 'Justify' | 'Auto' | undefined
   ```
 
   #### Parameters
@@ -5019,7 +5110,7 @@ Create, edit, and style text content.
 
   #### Returns
 
-  `"Auto"` | `"Right"` | `"Left"` | `"Center"`
+  `"Auto"` | `"Right"` | `"Left"` | `"Center"` | `"Justify"`
 
   The paragraph override, `undefined` if no override is set,
   or the block-level alignment when `paragraphIndex < 0`.
@@ -5027,7 +5118,7 @@ Create, edit, and style text content.
   #### Signature
 
   ```typescript
-  getTextHorizontalAlignment(id: number, paragraphIndex?: number): "Auto" | "Right" | "Left" | "Center"
+  getTextHorizontalAlignment(id: number, paragraphIndex?: number): "Auto" | "Right" | "Left" | "Center" | "Justify"
   ```
 
   ***
@@ -5044,6 +5135,7 @@ Create, edit, and style text content.
   engine.block.setTextHorizontalAlignment(text, 'Center', 0);
   engine.block.setTextHorizontalAlignment(text, undefined, 0); // clear override
   engine.block.setTextHorizontalAlignment(text, 'Right'); // apply to all
+  engine.block.setTextHorizontalAlignment(text, 'Justify'); // stretch every line but each paragraph's last
   ```
 
   #### Parameters
@@ -5051,7 +5143,7 @@ Create, edit, and style text content.
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `number` | The text block to modify. |
-  | `alignment` | `"Auto"` | `"Right"` | `"Left"` | `"Center"` | The alignment to apply, or `undefined` to clear the paragraph override. |
+  | `alignment` | `"Auto"` | `"Right"` | `"Left"` | `"Center"` | `"Justify"` | The alignment to apply, or `undefined` to clear the paragraph override. `'Justify'` stretches every line of a paragraph except the last. The last line keeps its natural width and follows the text direction, like `'Auto'`. |
   | `paragraphIndex?` | `number` | The 0-based index of the paragraph. Negative values clear all paragraph-level alignment overrides and, when `alignment` is provided, apply that alignment to the whole text block. |
 
   #### Returns
@@ -5061,7 +5153,7 @@ Create, edit, and style text content.
   #### Signature
 
   ```typescript
-  setTextHorizontalAlignment(id: number, alignment: "Auto" | "Right" | "Left" | "Center", paragraphIndex?: number): void
+  setTextHorizontalAlignment(id: number, alignment: "Auto" | "Right" | "Left" | "Center" | "Justify", paragraphIndex?: number): void
   ```
 
   ***
@@ -5831,14 +5923,16 @@ Create, edit, and style text content.
 
   #### Returns
 
-  `"Right"` | `"Left"` | `"Center"`
+  `"Right"` | `"Left"` | `"Center"` | `"Justify"`
 
-  The effective alignment ('Left', 'Right', or 'Center').
+  The effective alignment ('Left', 'Right', 'Center', or 'Justify').
+  Only `'Auto'` is resolved — `'Justify'` is itself an effective alignment and is
+  returned verbatim.
 
   #### Signature
 
   ```typescript
-  getTextEffectiveHorizontalAlignment(id: number): "Right" | "Left" | "Center"
+  getTextEffectiveHorizontalAlignment(id: number): "Right" | "Left" | "Center" | "Justify"
   ```
 
   ***
@@ -7723,7 +7817,10 @@ Create and manage groups of blocks.
     <br /><p>Checks if a set of blocks can be grouped.</p>
   </summary>
 
-  A scene block or a block that is already part of a group cannot be grouped.
+  A scene block or a page cannot be grouped, and neither can a block together
+  with a group it sits inside, which would make that group a child of itself.
+  Blocks that already belong to a group can be grouped again, which is how a
+  group inside a group is made.
 
   ```javascript
   const groupable = engine.block.isGroupable([block1, block2])

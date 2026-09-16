@@ -289,7 +289,7 @@ Android designs using CE.SDK text rendering and font APIs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260910/engine-guides-text-language-support)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260916/engine-guides-text-language-support)
 
 <EngineReferenceNote {...props} />
 
@@ -509,9 +509,9 @@ engine.block.forceLoadResources(listOf(rtlBlock))
 val effectiveRtlAlignment = engine.block.getTextEffectiveHorizontalAlignment(rtlBlock)
 ```
 
-`getTextEffectiveHorizontalAlignment(...)` returns `Left`, `Right`, or `Center`.
-It never returns `Auto`, because the Engine resolves `Auto` against the text
-content before reporting the effective value.
+`getTextEffectiveHorizontalAlignment(...)` returns the alignment the Engine lays the
+block out with. Only `Auto` is resolved — against the text content — so the getter
+never returns `Auto`. Every other value, `Justify` included, comes back verbatim.
 
 ### Apply a Typeface to a Text Range
 
@@ -688,7 +688,7 @@ placeholder key in the text block matches the key passed to `engine.variable`.
 | `engine.block.forceLoadResources(blocks=_)` | Load referenced font resources before deterministic offscreen readback. |
 | `engine.block.setTextHorizontalAlignment(block=_, alignment=_, paragraphIndex=_)` | Set block-level or paragraph-level horizontal alignment; pass `null` to clear a paragraph override. |
 | `engine.block.getTextHorizontalAlignment(block=_, paragraphIndex=_)` | Read the block-level value or a paragraph override. |
-| `engine.block.getTextEffectiveHorizontalAlignment(block=_)` | Resolve `Auto` to the effective left, right, or center alignment. |
+| `engine.block.getTextEffectiveHorizontalAlignment(block=_)` | Read the alignment used for layout: explicit values, including `Justify`, come back unchanged; `Auto` resolves to `Left` or `Right` from the text direction. |
 | `engine.block.getTextParagraphIndices(block=_, from=_, to=_)` | Find paragraph indices that overlap a text range. |
 | `engine.variable.set(key=_, value=_)` | Set a text variable value. |
 | `engine.variable.get(key=_)` | Read a text variable value. |

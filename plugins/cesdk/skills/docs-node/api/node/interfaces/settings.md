@@ -26,6 +26,7 @@ The settings are organized by type:
 |  ~~`controlGizmo/showRotateHandles`~~ | `boolean` | **Deprecated** Use `controlGizmo/rotateHandlesVisibility`. `false` hides the rotation handle. |
 |  ~~`controlGizmo/showScaleHandles`~~ | `boolean` | **Deprecated** Use `controlGizmo/scaleHandlesVisibility`. `false` hides the corner (scale) handles. |
 |  `doubleClickToCropEnabled` | `boolean` | Enable double-click to enter crop mode. |
+|  `dragToSwapFills/enabled` | `boolean` | Whether pressing and holding an image element lifts its image into a drag. Releasing it over another image element exchanges the two images. |
 |  `features/singlePageModeEnabled` | `boolean` | Enable single page mode where only one page is shown at a time. |
 |  `features/fileSystemUsageEnabled` | `boolean` | Enable file system usage, that allows the engine to use the file system to store files for local uploads. |
 |  `features/pageCarouselEnabled` | `boolean` | Enable the page carousel for navigating between pages. |
@@ -82,6 +83,7 @@ The settings are organized by type:
 |  `rotationSnappingThreshold` | `number` | The threshold angle in degrees for rotation snapping. |
 |  `grid/spacingX` | `number` | Horizontal spacing between vertical grid lines in design units. |
 |  `grid/spacingY` | `number` | Vertical spacing between horizontal grid lines in design units. |
+|  `dragToSwapFills/longPressDurationMs` | `number` | How long the pointer must stay pressed and still before the image lifts, in milliseconds. 0 lifts on the first update, so every drag swaps instead of moves. |
 |  `maxImageSize` | `number` | The maximum size (width or height) in pixels for images. |
 |  `maxPreviewResolution` | `number` | The maximum dimension (width or height) in physical pixels for preview rendering. When greater than 0, the scene is rendered at reduced resolution and upscaled for improved performance. Does not affect exports. Set to -1 to disable (default). |
 |  `borderOutlineColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the border outline for selected elements. |
@@ -90,10 +92,14 @@ The settings are organized by type:
 |  `cropOverlayColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the crop overlay. |
 |  `errorStateColor` | [`Color`](./api/node/type-aliases/color.md) | The color indicating an error state. |
 |  `highlightColor` | [`Color`](./api/node/type-aliases/color.md) | The highlight color for selected or active elements. |
+|  `page/forbiddenZoneFillColor` | [`Color`](./api/node/type-aliases/color.md) | The color washed over a forbidden zone. |
+|  `page/forbiddenZoneFrameColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the frame around a forbidden zone. |
 |  `page/innerBorderColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the inner frame around the page. |
 |  `page/marginFillColor` | [`Color`](./api/node/type-aliases/color.md) | The color filled into the bleed margins of pages. |
 |  `page/marginFrameColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the frame around the bleed margin area. |
 |  `page/outerBorderColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the outer frame around the page. |
+|  `page/safetyFillColor` | [`Color`](./api/node/type-aliases/color.md) | The color filled into the safety area band of pages. |
+|  `page/safetyFrameColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the frame around the safety area of the pages. |
 |  `page/title/color` | [`Color`](./api/node/type-aliases/color.md) | The color of page titles visible in preview mode. |
 |  `pageHighlightColor` | [`Color`](./api/node/type-aliases/color.md) | Color of the outline of each page |
 |  `placeholderHighlightColor` | [`Color`](./api/node/type-aliases/color.md) | The highlight color for placeholder elements. |
@@ -116,6 +122,7 @@ The settings are organized by type:
 |  `colorPicker/colorMode` | `"CMYK"` | `"RGB"` | `"Any"` | Controls the color mode of the color picker. When set to 'RGB' or 'CMYK', only colors matching this mode are fully editable. Defaults to 'Any'. |
 |  `timeline/trackVisibility` | `"all"` | `"active"` | Controls which timeline tracks are visible. 'all' shows all tracks, 'active' shows only the track containing the active block. Defaults to 'all'. |
 |  `timeline/transitionControlVisibility` | `"always"` | `"hover"` | Controls the clip transition control on the timeline. 'always' keeps it shown, 'hover' reveals it on hover/focus. Defaults to 'hover'. |
+|  `features/automaticSourceSetsEnabled` | `boolean` | Whether the engine makes the smaller source set entries of an image fill by itself. Off by default; the entries use the `buffer` scheme, so a save needs a persistence callback. |
 
 
 ---

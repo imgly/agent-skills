@@ -7,7 +7,7 @@ Scope of the Timeline component.
 
 ```kotlin
 @Stable
-open class Scope(parentScope: EditorScope) : EditorScope
+open class Scope(parentScope: EditorScope, expandedState: MutableState<Boolean>) : EditorScope
 ```
 
 
@@ -16,5 +16,13 @@ open class Scope(parentScope: EditorScope) : EditorScope
 ### Scope
 
 ```kotlin
-constructor(parentScope: EditorScope)
+constructor(parentScope: EditorScope, expandedState: MutableState<Boolean>)
 ```
+
+### expandedState
+
+```kotlin
+val EditorContext.expandedState: MutableState<Boolean>
+```
+
+Current selection of the editor.

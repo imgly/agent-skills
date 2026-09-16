@@ -17,6 +17,7 @@ type SettingBoolPropertyName =
   | "touch/singlePointPanning"
   | "mouse/enableZoom"
   | "mouse/enableScroll"
+  | "dragToSwapFills/enabled"
   | "controlGizmo/showCropHandles"
   | "controlGizmo/showMoveHandles"
   | "controlGizmo/dynamicMoveHandleVisibility"

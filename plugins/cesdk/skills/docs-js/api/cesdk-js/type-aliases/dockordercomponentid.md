@@ -7,6 +7,7 @@ type DockOrderComponentId =
   | "ly.img.separator"
   | "ly.img.spacer"
   | "ly.img.assetLibrary.dock"
+  | "ly.img.layerList.dock"
   | string & object;
 ```
 

@@ -95,7 +95,7 @@ ungroup to edit them individually.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260910/engine-guides-grouping)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260916/engine-guides-grouping)
 
 <EngineReferenceNote {...props} />
 
@@ -107,7 +107,7 @@ This guide covers how to check if blocks can be grouped, create and dissolve gro
 
 Groups are blocks with type `DesignBlockType.Group`, and their child blocks are the group members. Android exposes groups through the same block APIs used for other containers, so you can inspect a group's type and children after creation.
 
-Use nested groups only after each candidate selection passes `engine.block.isGroupable(...)`; blocks that already belong to another group need to be ungrouped first.
+Use nested groups only after each candidate selection passes `engine.block.isGroupable(...)`. Blocks that already belong to a group can be grouped again, which is how a group inside a group is made; a block cannot be grouped with a group it sits inside.
 
 ## Create the Blocks
 

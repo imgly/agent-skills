@@ -1027,7 +1027,7 @@ The Actions API provides four methods:
     - `text.toggleBold` - Toggle bold on the selected text
     - `text.toggleItalic` - Toggle italic on the selected text
     - `text.fontSize` - Set the font size
-    - `text.align` - Set the text alignment (left/center/right)
+    - `text.align` - Set the text alignment (left/center/right/justify)
     - `text.case` - Set the text case (normal/upper/lower/title)
     - `text.color` - Set the text color
     - `text.lineHeight` - Set the line height
@@ -1187,7 +1187,7 @@ The Actions API provides four methods:
     - `text.toggleBold` - Toggle bold on the selected text
     - `text.toggleItalic` - Toggle italic on the selected text
     - `text.fontSize` - Set the font size
-    - `text.align` - Set the text alignment (left/center/right)
+    - `text.align` - Set the text alignment (left/center/right/justify)
     - `text.case` - Set the text case (normal/upper/lower/title)
     - `text.color` - Set the text color
     - `text.lineHeight` - Set the line height

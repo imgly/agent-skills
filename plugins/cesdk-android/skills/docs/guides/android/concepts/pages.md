@@ -134,7 +134,7 @@ Pages define the format of your designs. Every graphic block, text element, and 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260910/engine-guides-concepts-pages)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260916/engine-guides-concepts-pages)
 
 <EngineReferenceNote {...props} />
 
@@ -280,6 +280,24 @@ engine.block.setFloat(block = firstPage, property = "page/margin/right", value =
 ```
 
 Set `page/marginEnabled` to `true`, then adjust `page/margin/top`, `page/margin/bottom`, `page/margin/left`, and `page/margin/right` in design units.
+
+### Safety Area
+
+The safety area is the inward inset from the page edge that content must stay inside. It is the counterpart of the bleed margin, which extends outward. Print shops cut with a tolerance, so text and logos placed too close to the edge can be trimmed off.
+
+Set `page/safetyEnabled` to `true`, then use `page/safety/top`, `page/safety/bottom`, `page/safety/left`, and `page/safety/right` to configure each side. Every inset defaults to `0`, so set a value as well as enabling the area.
+
+The safety area is authoring state. The engine shades the band between the page edge and the safety line, and draws a line on the safety line itself, but neither reaches an export. A dragged block snaps to the safety line while the line is visible. Set the guide colors with the `page/safetyFillColor` and `page/safetyFrameColor` settings; a fully transparent `page/safetyFrameColor` hides the line and turns its snapping off.
+
+### Forbidden Zone
+
+A forbidden zone marks a region of a page that content must stay out of: a window on an envelope, a spine on a book cover, a glue flap on a box, an address panel on a mailer. Where the safety area is one inset per page, a page can carry any number of zones, each with its own position, size and rotation.
+
+Create one with the `//ly.img.ubq/zone` block type and append it to a page. A zone is a graphic, so it takes a shape, a fill, a stroke and the ordinary transform, and you can put the artwork of the obstruction into it. A new zone is a rectangle with no fill and shows a striped pattern, so it is visible at once. Assign a fill to replace the stripes.
+
+A zone is authoring state. The engine washes it in `page/forbiddenZoneFillColor` and frames it in `page/forbiddenZoneFrameColor`, neither of which reaches an export, and a fully transparent `page/forbiddenZoneFrameColor` hides the frame. A zone is left out of an export as well: set `includedInExport` to `true` on the zone to put its artwork in the file.
+
+Set `zone/punchOut` to `true` to cut the zone out of an export instead. The page and everything on it get a hole where the zone is, so a die cut window in the design becomes a window in the file. It is off by default, and the canvas keeps showing the content either way.
 
 ### Title Template
 

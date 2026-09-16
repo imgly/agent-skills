@@ -85,6 +85,8 @@
 | [KeyboardKey](./api/cesdk-js/type-aliases/keyboardkey.md) | W3C standard keyboard key values Reference: https://www.w3.org/TR/uievents-key/ |
 | [KeyboardSequence](./api/cesdk-js/type-aliases/keyboardsequence.md) | Type alias for keyboard sequences (for backward compatibility) |
 | [KeyboardShortcutContext](./api/cesdk-js/type-aliases/keyboardshortcutcontext.md) | Context passed to a shortcut's `run` and `when` callbacks. |
+| [LayersMenuComponentId](./api/cesdk-js/type-aliases/layersmenucomponentid.md) | Represents the ID of a layer list row menu component. |
+| [LayersMenuRowKind](./api/cesdk-js/type-aliases/layersmenurowkind.md) | Which kind of row a layer list menu was opened from. - `'page'` — a page row, which answers to the page commands - `'layer'` — any other row, which answers to the arrange and group commands |
 | [LoadingComponent](./api/cesdk-js/type-aliases/loadingcomponent.md) | Represents a loading indicator component. |
 | [LoadingOrder](./api/cesdk-js/type-aliases/loadingorder.md) | Order type for loading indicator components. |
 | [LocaleKey](./api/cesdk-js/type-aliases/localekey.md) | Represents the supported locale keys for the Creative Editor SDK. |
@@ -127,6 +129,7 @@
 | [ScrollToBlockAction](./api/cesdk-js/type-aliases/scrolltoblockaction.md) | Action function for scrolling to a specific block |
 | [ScrollToPageAction](./api/cesdk-js/type-aliases/scrolltopageaction.md) | Action function for scrolling to a specific page |
 | [SelectionAllAction](./api/cesdk-js/type-aliases/selectionallaction.md) | Action function for selecting all blocks on the current page. |
+| [SelectionArrangeAction](./api/cesdk-js/type-aliases/selectionarrangeaction.md) | Action function for moving the selection one step through its parent's stacking order, or all the way to either end of it. |
 | [SelectionDeleteAction](./api/cesdk-js/type-aliases/selectiondeleteaction.md) | Action function for deleting every selected block. |
 | [SelectionDuplicateAction](./api/cesdk-js/type-aliases/selectionduplicateaction.md) | Action function for duplicating every selected block. |
 | [SelectionGroupAction](./api/cesdk-js/type-aliases/selectiongroupaction.md) | Action function for grouping selected blocks. |
@@ -214,6 +217,7 @@
 | [InsertBeforeOptions](./api/cesdk-js/interfaces/insertbeforeoptions.md) | Insert before a matched component. |
 | [InsertResult](./api/cesdk-js/interfaces/insertresult.md) | Result of an insert operation. |
 | [KeyboardShortcut](./api/cesdk-js/interfaces/keyboardshortcut.md) | Unified keyboard shortcut definition |
+| [LayersMenuOrderContext](./api/cesdk-js/interfaces/layersmenuordercontext.md) | Context for the layer list row menu, which adds row kind filtering. |
 | [LibraryOptions](./api/cesdk-js/interfaces/libraryoptions.md) | Represents options for a library. |
 | [MediaPreviewOptions](./api/cesdk-js/interfaces/mediapreviewoptions.md) | Represents options for a media preview. |
 | [NavigationBarActionButton](./api/cesdk-js/interfaces/navigationbaractionbutton.md) | Base interface for action buttons in the navigation bar. Contains common properties shared across all action button types. |

@@ -6,12 +6,16 @@
 
 ```kotlin file=@cesdk_android_examples/editor-guides-record-voiceover/RecordVoiceoverSolution.kt reference-only
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import ly.img.editor.Editor
 import ly.img.editor.core.component.Dock
 import ly.img.editor.core.component.InspectorBar
 import ly.img.editor.core.component.Timeline
 import ly.img.editor.core.component.remember
 import ly.img.editor.core.component.rememberDelete
+import ly.img.editor.core.component.rememberPlayPause
+import ly.img.editor.core.component.rememberTimecode
+import ly.img.editor.core.component.rememberToggleExpanded
 import ly.img.editor.core.component.rememberVoiceover
 import ly.img.editor.core.component.rememberVoiceoverRecord
 import ly.img.editor.core.component.rememberVolume
@@ -28,13 +32,31 @@ fun RecordVoiceoverSolution(
         license = license, // pass null or empty for evaluation mode with watermark
         configuration = {
             EditorConfiguration.remember {
-                bottomPanel = { Timeline.remember() }
+                bottomPanel = { rememberVoiceoverTimeline() }
                 dock = { rememberVoiceoverDock() }
                 inspectorBar = { rememberVoiceoverInspectorBar() }
             }
         },
         onClose = onClose,
     )
+}
+
+// The timeline renders tracks alone by default, so the playback controls are declared here.
+@Composable
+private fun rememberVoiceoverTimeline() = Timeline.remember {
+    headerListBuilder = {
+        Timeline.HeaderListBuilder.remember {
+            aligned(alignment = Alignment.Start) {
+                add { Timeline.Label.rememberTimecode() }
+            }
+            aligned(alignment = Alignment.CenterHorizontally) {
+                add { Timeline.Button.rememberPlayPause() }
+            }
+            aligned(alignment = Alignment.End) {
+                add { Timeline.Button.rememberToggleExpanded() }
+            }
+        }
+    }
 }
 
 @Composable
@@ -65,7 +87,7 @@ narrate clips without leaving the editor UI.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260910/editor-guides-record-voiceover)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260916/editor-guides-record-voiceover)
 
 Voiceover recording is an editor UI feature. The example uses the base
 `Editor` with a timeline bottom panel so recorded takes are visible after the
@@ -87,7 +109,7 @@ Editor(
     license = license, // pass null or empty for evaluation mode with watermark
     configuration = {
         EditorConfiguration.remember {
-            bottomPanel = { Timeline.remember() }
+            bottomPanel = { rememberVoiceoverTimeline() }
             dock = { rememberVoiceoverDock() }
             inspectorBar = { rememberVoiceoverInspectorBar() }
         }

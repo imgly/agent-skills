@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 261 generated API digests.
+Complete catalog of 262 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -114,6 +114,7 @@ Complete catalog of 261 generated API digests.
 - [DesignBlockType.Stack](<../engine/ly.img.engine/-design-block-type/-stack.md>) — `ly.img.engine`
 - [DesignBlockType.Text](<../engine/ly.img.engine/-design-block-type/-text.md>) — `ly.img.engine`
 - [DesignBlockType.Track](<../engine/ly.img.engine/-design-block-type/-track.md>) — `ly.img.engine`
+- [DesignBlockType.Zone](<../engine/ly.img.engine/-design-block-type/-zone.md>) — `ly.img.engine`
 - [DesignUnit](<../engine/ly.img.engine/-design-unit.md>) — `ly.img.engine`
 - [DominantColor](<../engine/ly.img.engine/-dominant-color.md>) — `ly.img.engine`
 - [DominantColorsOptions](<../engine/ly.img.engine/-dominant-colors-options.md>) — `ly.img.engine`

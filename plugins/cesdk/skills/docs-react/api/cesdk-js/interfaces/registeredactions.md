@@ -48,6 +48,10 @@ Each property corresponds to a specific UI action or event that can be customize
 |  `selection.duplicate` | [`SelectionDuplicateAction`](./api/cesdk-js/type-aliases/selectionduplicateaction.md) | Duplicate the selected blocks. |
 |  `selection.group` | [`SelectionGroupAction`](./api/cesdk-js/type-aliases/selectiongroupaction.md) | Group the selected blocks. |
 |  `selection.ungroup` | [`SelectionUngroupAction`](./api/cesdk-js/type-aliases/selectionungroupaction.md) | Ungroup any selected group block. |
+|  `selection.bringForward` | [`SelectionArrangeAction`](./api/cesdk-js/type-aliases/selectionarrangeaction.md) | Move the selected blocks one step towards the front of their parent. |
+|  `selection.sendBackward` | [`SelectionArrangeAction`](./api/cesdk-js/type-aliases/selectionarrangeaction.md) | Move the selected blocks one step towards the back of their parent. |
+|  `selection.bringToFront` | [`SelectionArrangeAction`](./api/cesdk-js/type-aliases/selectionarrangeaction.md) | Move the selected blocks in front of every sibling. |
+|  `selection.sendToBack` | [`SelectionArrangeAction`](./api/cesdk-js/type-aliases/selectionarrangeaction.md) | Move the selected blocks behind every sibling. |
 |  `text.toggleBold` | [`TextToggleBoldAction`](./api/cesdk-js/type-aliases/texttoggleboldaction.md) | Toggle bold on the selected text. |
 |  `text.toggleItalic` | [`TextToggleItalicAction`](./api/cesdk-js/type-aliases/texttoggleitalicaction.md) | Toggle italic on the selected text. |
 |  `text.toggleUnderline` | [`TextToggleUnderlineAction`](./api/cesdk-js/type-aliases/texttoggleunderlineaction.md) | Toggle underline on the selected text. |

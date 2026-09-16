@@ -344,6 +344,14 @@ abstract fun fillParent(block: DesignBlock)
 
 Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block's fill is unknown, the content fill mode is changed from Crop to Cover to prevent invalid crop values. Required scope: "layer/move" - "layer/resize"
 
+### findAllBlocksAtScreenSpacePosition
+
+```kotlin
+abstract fun findAllBlocksAtScreenSpacePosition(x: Float, y: Float): List<DesignBlock>
+```
+
+Find all blocks whose visible geometry contains the given screen space position, ordered front to back. The position is expected in the same screen space that getScreenSpaceBoundingBoxRect reports. The query uses the geometry rules of selection by click or touch. It respects a block's shape path and stroke, and it includes a hit page. A hit on only the bounding box, or on a transparent area of an image fill, sorts after all conclusive hits. Hidden blocks are never returned. Returns an empty list when no scene is loaded or nothing is hit.
+
 ### findAllMetadata
 
 ```kotlin
@@ -3269,6 +3277,14 @@ abstract fun supportsTrim(block: DesignBlock): Boolean
 ```
 
 Returns whether the block has trim properties.
+
+### swapFills
+
+```kotlin
+abstract fun swapFills(first: DesignBlock, second: DesignBlock)
+```
+
+Exchange the fills of the two given design blocks in one step. Both blocks keep their own transform, size and appearance. Only the fills trade places. The same rules apply as when calling setFill on each block, including the fill type restrictions for text blocks. Afterwards each block's crop is reset. The incoming fill is fitted like a fill content replace from the asset library. When any part of the exchange is not permitted, no block is modified. Swapping a block with itself does nothing. The exchange adds no undo step.
 
 ### toggleBoldFont
 

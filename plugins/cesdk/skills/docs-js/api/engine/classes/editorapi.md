@@ -2757,6 +2757,53 @@
 
 <details>
   <summary>
+    ### getDragToSwapFillsSource()
+
+    <br /><p>The source block of the drag-to-swap-fills gesture while its fill is lifted.</p>
+  </summary>
+
+  The `dragToSwapFills/enabled` setting turns the gesture on. A press and hold on an eligible
+  image-fill block lifts its fill. A release over another eligible block exchanges the two
+  fills. Use this to draw a drag preview at the pointer while the lift is active.
+
+  #### Returns
+
+  `number`
+
+  The lifted source block, or an invalid block id while no lift is active.
+
+  #### Signature
+
+  ```typescript
+  getDragToSwapFillsSource(): number
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### cancelDragToSwapFills()
+
+    <br /><p>Cancels the drag-to-swap-fills gesture without changing the scene, for example to map the
+    Escape key to the gesture. Does nothing while no gesture is in progress.</p>
+  </summary>
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  cancelDragToSwapFills(): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### ~~setSettingColorRGBA()~~
 
     <br /><p>Set a color setting.</p>
