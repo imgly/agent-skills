@@ -19,3 +19,7 @@ release/src/app/
 release/src/imgly/
 release/node_modules/
 release/dist/
+
+# Test output
+test-results/
+playwright-report/

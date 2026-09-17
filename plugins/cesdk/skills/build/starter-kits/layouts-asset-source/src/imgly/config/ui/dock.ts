@@ -51,22 +51,9 @@ export function setupDock(cesdk: CreativeEditorSDK): void {
   // ============================================================================
 
   // #region Dock Order
+  // The Layouts plugin adds its own entry and a separator at the front of this
+  // list, so the dock starts with Layouts rather than with a template library.
   cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
-    // ============================
-    // Templates
-    // ============================
-    {
-      id: 'ly.img.assetLibrary.dock',
-      key: 'ly.img.templates',
-      icon: '@imgly/Template',
-      label: 'libraries.ly.img.templates.label',
-      entries: ['ly.img.templates']
-    },
-    {
-      id: 'ly.img.separator',
-      key: 'ly.img.separator'
-    },
-
     // ============================
     // Combined Elements
     // ============================
@@ -124,6 +111,37 @@ export function setupDock(cesdk: CreativeEditorSDK): void {
       icon: '@imgly/Sticker',
       label: 'libraries.ly.img.sticker.label',
       entries: ['ly.img.sticker']
+    },
+
+    // ============================
+    // Layers & Pages
+    // ============================
+    // The spacer takes the leftover room, so this entry sits at the bottom of
+    // the dock. It is the last one the config declares, so anything added
+    // afterwards -- a plugin's own dock button -- lands below it unless that
+    // caller says where it goes: `insertOrderComponent` takes a `before`.
+    {
+      id: 'ly.img.spacer',
+      key: 'ly.img.spacer'
+    },
+    {
+      id: 'ly.img.separator',
+      key: 'ly.img.separator.layers'
+    },
+    {
+      id: 'ly.img.assetLibrary.dock',
+      key: 'ly.img.layerList',
+      icon: '@imgly/Layers',
+      label: 'component.layerList',
+      entries: [],
+      isSelected: () => cesdk.ui.isPanelOpen('//ly.img.panel/layers'),
+      onClick: () => {
+        if (cesdk.ui.isPanelOpen('//ly.img.panel/layers')) {
+          cesdk.ui.closePanel('//ly.img.panel/layers');
+        } else {
+          cesdk.ui.openPanel('//ly.img.panel/layers');
+        }
+      }
     }
   ]);
   // #endregion

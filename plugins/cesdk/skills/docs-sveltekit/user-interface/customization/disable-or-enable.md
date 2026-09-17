@@ -18,7 +18,7 @@ Control which editor features are available to users using the Feature API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260916/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260917/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
 
 The Feature API provides global control over feature visibility throughout the editor. Use it to hide delete buttons from certain users, disable crop controls based on context, or conditionally enable features based on user roles or selection state. Unlike the Component Order API which targets specific components in specific areas, the Feature API affects features everywhere in the editor at once.
 
@@ -633,6 +633,22 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.page.settings`    | Controls read-only page dimensions, unit and resolution display |
 | `ly.img.page.bleedMargin` | Controls bleed margin settings                                  |
 | `ly.img.page.clipContent` | Controls clip content on/off toggle                             |
+
+### Layer & Page List Features
+
+| Feature ID                      | Description                                                              |
+| ------------------------------- | ------------------------------------------------------------------------ |
+| `ly.img.layerList`              | Parent key: enables all layer and page list child features               |
+| `ly.img.layerList.panel`        | Controls the list panel                                                  |
+| `ly.img.layerList.pages`        | Controls the pages section of the list                                   |
+| `ly.img.layerList.layers`       | Controls the layers section of the list                                  |
+| `ly.img.layerList.combined`     | Shows every page with its layers as one tree instead of the two sections |
+| `ly.img.layerList.canvasFollow` | Scrolls the canvas to the block a row picks                              |
+| `ly.img.layerList.visibility`   | Controls the hide/show toggle on a row                                   |
+| `ly.img.layerList.lock`         | Controls the lock toggle on a row                                        |
+| `ly.img.layerList.reorder`      | Controls dragging a row to reorder it                                    |
+| `ly.img.layerList.rename`       | Controls renaming a row in place                                         |
+| `ly.img.layerList.menu`         | Controls the menu on a row                                               |
 
 ### Scene Features
 

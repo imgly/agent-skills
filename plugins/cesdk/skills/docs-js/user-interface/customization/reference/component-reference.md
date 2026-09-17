@@ -72,9 +72,9 @@ cesdk.ui.insertOrderComponent(
 
 Components available in `'ly.img.dock'`:
 
-| ID | Description |
-|----|-------------|
-| `ly.img.assetLibrary.dock` | Asset library button with configurable entries |
+| ID                         | Description                                          |
+| -------------------------- | ---------------------------------------------------- |
+| `ly.img.assetLibrary.dock` | Asset library button with configurable entries       |
 
 The dock is primarily configured through the `ly.img.assetLibrary.dock` component. Use the `entries` array to specify which asset library panels appear:
 

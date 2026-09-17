@@ -17,6 +17,7 @@ different component than a button in the topbar or a panel.
 |  `MediaPreview` | (`id`, `options`) => `void` |
 |  `Section` | (`id`, `options`) => `void` |
 |  `Separator` | (`id`) => `void` |
+|  `PromptInput` | (`id`, `options`) => `void` |
 |  `Spinner` | (`id`, `options?`) => `void` |
 |  `Tabs` | (`id`, `options`) => `void` |
 |  `TextArea` | (`id`, `options`) => `void` |

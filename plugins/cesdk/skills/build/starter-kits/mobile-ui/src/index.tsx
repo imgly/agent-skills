@@ -22,9 +22,6 @@ const engineConfig = {
   featureFlags: {
     preventScrolling: true
   }
-  //START_HIDDEN_BLOCK
-
-  //END_HIDDEN_BLOCK
 };
 
 // ============================================================================
@@ -47,9 +44,10 @@ main().catch((error) => {
   console.error('Failed to initialize application:', error);
 });
 
-// Debug access in development (optional)
+//START_HIDDEN_BLOCK
 declare global {
   interface Window {
-    engine?: CreativeEngine;
+    cesdk?: CreativeEngine;
   }
 }
+//END_HIDDEN_BLOCK

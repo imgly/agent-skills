@@ -58,7 +58,7 @@ import { resize, DEFAULT_SIZES } from './imgly';
 const results = await resize({
   engine: cesdk.engine,
   sizes: DEFAULT_SIZES,
-  sceneUrl: templateUrl,
+  scene: templateSceneString,
   onProgress: (completed, total, variant) => {
     console.log(`Generated ${completed}/${total}: ${variant.size.label}`);
   }
@@ -70,23 +70,16 @@ const results = await resize({
 // - sceneString: Scene JSON for further editing
 ```
 
-### Supported Sizes
+### Default Sizes
 
-| Platform    | Format    | Dimensions  |
-| ----------- | --------- | ----------- |
-| Instagram   | Story     | 1080 × 1920 |
-| Instagram   | Post 4:5  | 1080 × 1350 |
-| Instagram   | Square    | 1080 × 1080 |
-| Instagram   | Landscape | 1080 × 566  |
-| X (Twitter) | Post      | 1200 × 675  |
-| X (Twitter) | Header    | 1500 × 500  |
-| Facebook    | Post      | 1200 × 630  |
-| Facebook    | Cover     | 820 × 312   |
-| Facebook    | Story     | 1080 × 1920 |
-| LinkedIn    | Post      | 1200 × 627  |
-| LinkedIn    | Cover     | 1584 × 396  |
-| YouTube     | Thumbnail | 1280 × 720  |
-| YouTube     | Banner    | 2560 × 1440 |
+`DEFAULT_SIZES` ships these four presets. Add your own with `SizePreset`, below.
+
+| Platform    | Format   | Dimensions  | Id              |
+| ----------- | -------- | ----------- | --------------- |
+| Instagram   | Story    | 1080 × 1920 | `ig-story`      |
+| Instagram   | Post 4:5 | 1080 × 1350 | `ig-post-4-5`   |
+| X (Twitter) | Post     | 1200 × 675  | `x-post`        |
+| Facebook    | Post     | 1200 × 630  | `facebook-post` |
 
 ### Custom Sizes
 
@@ -107,7 +100,7 @@ const customSizes: SizePreset[] = [
 const results = await resize({
   engine: cesdk.engine,
   sizes: customSizes,
-  sceneUrl: templateUrl
+  scene: templateSceneString
 });
 ```
 
@@ -117,7 +110,7 @@ const results = await resize({
 src/
 ├── app/                          # Demo application
 ├── imgly/
-│   ├── advanced-editor-config/
+│   ├── config/advanced-editor/
 │   │   ├── actions.ts                # Export/import actions
 │   │   ├── features.ts               # Feature toggles
 │   │   ├── i18n.ts                   # Translations
@@ -131,7 +124,7 @@ src/
 │   │       ├── inspectorBar.ts           # Inspector bar layout
 │   │       ├── navigationBar.ts          # Navigation bar layout
 │   │       └── panel.ts                  # Panel configuration
-│   ├── design-editor-config/
+│   ├── config/design-editor/
 │   │   ├── actions.ts                # Export/import actions
 │   │   ├── features.ts               # Feature toggles
 │   │   ├── i18n.ts                   # Translations
@@ -203,27 +196,14 @@ For complete integration guides and API reference, visit the [Automated Resizing
 
 ## Demo Assets
 
-The demo assets for this starter kit load from the IMG.LY CDN by default —
-nothing to configure. If you want to own them — edit them, meet compliance
-requirements, or remove the CDN dependency for production — eject them
-(the archive contains only this kit's files):
-
-```bash
-# Download this starter kit's demo assets
-curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/starterkit-automated-resizing/demo-assets.zip
-unzip demo-assets.zip -d demo-assets
-rm demo-assets.zip
-```
-
-Upload the extracted files to your own server or CDN, then point the app
-at them via `.env`:
+The demo assets for this starter kit load from the IMG.LY CDN by default, and
+`.env.example` links a zip with them. To host them yourself, upload the
+extracted files to your own server or CDN and set `VITE_DEMO_ASSETS_BASE_URL`
+in `.env`:
 
 ```bash
 VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
 ```
-
-The default URL is the `DEMO_ASSETS_BASE_URL` constant in `src/app/constants.ts` if you
-prefer changing it in code.
 
 The demo assets are intended for development and prototyping — replace
 them with your own content or licensed stock assets before shipping to

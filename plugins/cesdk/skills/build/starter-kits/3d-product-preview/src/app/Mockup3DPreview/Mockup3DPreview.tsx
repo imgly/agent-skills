@@ -23,6 +23,8 @@ interface Mockup3DPreviewProps {
   cameraOrbit: string;
   baseColorTextureIndex: number;
   isLoading: boolean;
+  /** Message of the last failed render, or `null` when the last one worked. */
+  renderError: string | null;
   isFullscreen: boolean;
   onToggleFullscreen: () => void;
 }
@@ -37,6 +39,7 @@ export function Mockup3DPreview({
   cameraOrbit,
   baseColorTextureIndex,
   isLoading,
+  renderError,
   isFullscreen,
   onToggleFullscreen
 }: Mockup3DPreviewProps) {
@@ -76,11 +79,17 @@ export function Mockup3DPreview({
     }
   }, [mockupImageUrl, applyTexture]);
 
-  // Handle model load event
-  const handleModelLoad = useCallback(() => {
-    if (mockupImageUrl) {
-      applyTexture();
-    }
+  // Apply the texture again once the model itself has loaded. React does not
+  // wire an `onLoad` prop on a custom element, so the listener is added here.
+  useEffect(() => {
+    const modelViewer = modelViewerRef.current as ModelViewerElement;
+    const handleModelLoad = () => {
+      if (mockupImageUrl) {
+        applyTexture();
+      }
+    };
+    modelViewer.addEventListener('load', handleModelLoad);
+    return () => modelViewer.removeEventListener('load', handleModelLoad);
   }, [mockupImageUrl, applyTexture]);
 
   // Update camera orbit when it changes
@@ -116,6 +125,13 @@ export function Mockup3DPreview({
         </div>
       )}
 
+      {/* Render Error */}
+      {renderError && !isLoading && (
+        <p className={styles.error} role="alert">
+          The texture could not be rendered. {renderError}
+        </p>
+      )}
+
       {/* 3D Model Viewer */}
       <model-viewer
         ref={modelViewerRef as React.RefObject<HTMLElement>}
@@ -124,7 +140,6 @@ export function Mockup3DPreview({
         camera-orbit={cameraOrbit}
         shadow-intensity="1"
         style={{ width: '100%', height: '100%' }}
-        onLoad={handleModelLoad}
       />
 
       {/* Preview Controls */}

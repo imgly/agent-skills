@@ -25,6 +25,7 @@
 - [Navigation Bar](./user-interface/customization/navigation-bar.md) - Show, hide, position, or customize the editor’s navigation bar to match your app layout.
 - [Dock](./user-interface/customization/dock.md) - Configure the dock area to show or hide tools, panels, or quick access actions.
 - [Panel Customization](./user-interface/customization/panel.md) - Control CE.SDK's UI panels programmatically to create custom editor layouts and workflows.
+- [Layer & Page List](./user-interface/customization/layer-list.md) - Configure the layer and page list — its feature keys, dock button, sections, canvas follow, and the menu on each row.
 - [Inspector Bar](./user-interface/customization/inspector-bar.md) - Customize the inspector bar for editing properties like position, color, and size.
 - [Canvas Menu](./user-interface/customization/canvas-menu.md) - Control visibility and options in the canvas context menu.
 - [Customize the Clip Context Menu](./vue.md) - Control which actions appear in the video timeline clip context menu, reorder built-in actions, and add custom entries per clip type.

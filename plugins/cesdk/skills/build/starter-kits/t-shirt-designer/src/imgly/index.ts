@@ -33,7 +33,7 @@ export { ProductEditorConfig } from './config/plugin';
 export { ProductBackdrop } from './plugins/product-backdrop';
 
 // Export types
-export type { ProductMetadata, DesignUnit, Source } from './types';
+export type { ProductMetadata, SceneDesignUnit, Source } from './types';
 
 /**
  * Initialize the CE.SDK T-Shirt Designer with a complete configuration.

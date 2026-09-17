@@ -46,7 +46,7 @@ type BoolPropertyName =
   | "text/useDiscretionaryLigatures"
   | "text/useKerning"
   | "text/useLigatures"
-  | "zone/punchOut"
+  | "exclusionArea/punchOut"
   | "track/automaticallyManageBlockOffsets"
   | "caption/automaticFontSizeEnabled"
   | "caption/clipLinesOutsideOfFrame"

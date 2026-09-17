@@ -56,8 +56,9 @@ export default function App({ config, sceneUrl }: AppProps) {
       // END_HIDDEN_BLOCK
       cesdkRef.current = cesdk;
 
-      // Debug access (remove in production)
+      // START_HIDDEN_BLOCK
       (window as any).cesdk = cesdk;
+      // END_HIDDEN_BLOCK
 
       // highlight-init-by-role
       // Initialize with role-specific configuration

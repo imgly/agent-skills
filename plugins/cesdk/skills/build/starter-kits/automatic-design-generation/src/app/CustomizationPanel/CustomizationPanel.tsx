@@ -13,11 +13,11 @@ import type { OutputType } from '../../imgly';
 import { SIZES } from '../api/transformer';
 
 import { PRESET_COLORS } from '../constants';
-import { resolveAssetPath } from '../resolveAssetPath';
 
 import { CaretBottom } from './CaretBottom';
 import styles from './CustomizationPanel.module.css';
 import { useOnClickOutside } from './useOnClickOutside';
+import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
 interface CustomizationPanelProps {
   message: string;
@@ -185,7 +185,7 @@ export function CustomizationPanel({
           <div className={styles.warningText}>
             <span>
               <img
-                src={resolveAssetPath('/icons/alert.svg')}
+                src={`${DEMO_ASSETS_BASE_URL}/icons/alert.svg`}
                 alt=""
                 width={16}
                 height={16}

@@ -5,17 +5,8 @@
  */
 
 import type { Product } from './ProductSelector/ProductSelector';
-
-/**
- * Demo assets for this example (scenes, textures, icons, …) are loaded from
- * the IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/starterkit-3d-product-preview';
+import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
+export { DEMO_ASSETS_BASE_URL };
 
 // ============================================================================
 // Render Defaults

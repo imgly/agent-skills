@@ -18,7 +18,7 @@ Organize design elements in CE.SDK using a hierarchical layer stack to control s
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-composition-layer-management-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260916/examples/guides-create-composition-layer-management-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260917/examples/guides-create-composition-layer-management-browser/index.html)
 
 Design elements in CE.SDK are organized in a hierarchical parent-child structure. Children of a block are rendered in order, with the last child appearing on top. This layer stack model gives you precise control over how elements overlap and interact visually.
 
@@ -241,6 +241,43 @@ export default Example;
 
 This guide covers how to navigate the block hierarchy, reorder elements in the layer stack, toggle visibility, and manage block lifecycles through duplication and deletion.
 
+## Using the Built-in Layer Panel UI
+
+The editor ships a layer and page list, opened from the Layers button at the bottom of the dock. It shows the document's pages above the layers of the page being worked on, with one row per block. The top row is the block that renders in front of the rest, and rows nest under their parent. A row with children opens to reveal them, and a row a user opened is still open the next time the list is opened.
+
+Each row carries the block's name. A block with no name of its own shows the same fallback the inspector header gives it, so pages read "Page 1", "Page 2", and a text block reads "Text".
+
+### Selecting from the List
+
+Clicking a row selects the block it stands for, and clicking a page row makes that page the one the Layers section shows. Modifier and range clicks build a multi-selection from the rows of one page. A selection cannot mix a page row with a layer row, or reach onto a second page — a click that would do either selects only the row that was clicked.
+
+The list and the canvas hold one selection, so selecting on the canvas scrolls the matching row into view and opens the groups and pages it sits inside.
+
+### Row Controls
+
+Each row carries the controls for its block:
+
+- **Eye** — hides the block from the canvas and the export. Rows nested under it stop rendering while keeping their own state.
+- **Padlock** — locks the block against being moved, resized and rotated. It writes the same lock the engine saves with the scene, and it holds everything nested under the block.
+- **Name** — double-click to rename in place. Enter or leaving the field commits, Escape reverts.
+- **Menu** — the commands that apply to that row. A layer row offers rename, duplicate, delete, group, ungroup and the four arrange commands; a page row offers rename, duplicate, delete, and adding a page above or below.
+
+Holding Alt while clicking an eye or a padlock isolates that row, giving every sibling the opposite state.
+
+### Reordering by Dragging
+
+Dropping a row at the boundary between two rows puts the block at that position among its new parent's children. Dropping it onto a group or a page nests it inside, and resting on a closed group opens it. A drag started from a selected row carries the whole selection, even across parents. A drag refuses a drop that would put a block inside itself or its own contents, and a locked row or a clip inside a video track does not travel — the timeline owns clip order.
+
+### Keyboard
+
+The list is reachable with Tab and operated with the arrow keys: up and down move between rows, Shift extends the selection, and left and right close and open a container row. Enter or F2 starts a rename, Shift+F10 opens a row's menu, and `Cmd/Ctrl+A` selects every row of the same kind. The arrange shortcuts move the selected block through the stacking order while the list holds focus.
+
+> **Note:** A block pinned to the front or the back renders above or below every sibling
+> whatever its row position, so its row can sit in the middle of the list while
+> its content stays on top.
+
+To configure the list — its feature keys, dock button, sections, canvas follow, and row menu — see [Layer & Page List](./user-interface/customization/layer-list.md).
+
 ## Creating Visual Blocks
 
 To demonstrate layer ordering, we create colored rectangles that overlap on the canvas. Each block is created using `engine.block.create()` and configured with a shape, fill color, dimensions, and position.
@@ -290,6 +327,8 @@ console.log('Page children (in render order):', children);
 ```
 
 This method is useful for iterating through all elements on a page or within a group.
+
+The layer list shows this order reversed: its top row is the last child, the one that renders in front. Pages, stacks and video tracks are the exception — their children sit in document and time order rather than a stacking order, so the list leaves them as `getChildren()` returns them.
 
 ## Adding and Positioning Blocks
 

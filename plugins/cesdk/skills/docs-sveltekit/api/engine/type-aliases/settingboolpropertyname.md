@@ -30,6 +30,7 @@ type SettingBoolPropertyName =
   | "page/title/appendPageName"
   | "page/title/showOnSinglePage"
   | "page/title/canEdit"
+  | "page/safetyRevealOnDrag"
   | "page/dimOutOfPageAreas"
   | "page/allowCropInteraction"
   | "page/allowResizeInteraction"

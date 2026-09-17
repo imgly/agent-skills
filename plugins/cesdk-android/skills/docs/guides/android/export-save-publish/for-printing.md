@@ -197,7 +197,7 @@ resolution.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260916/engine-guides-export-for-printing)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260917/engine-guides-export-for-printing)
 
 <EngineReferenceNote {...props} />
 
@@ -222,13 +222,13 @@ engine.block.setFloat(scene, property = "scene/dpi", value = 300F)
 
 Set the DPI on the scene block, not on the page. Every export from that scene then uses this resolution as the rasterization target.
 
-## Forbidden Zones in a Print Export
+## Exclusion Areas in a Print Export
 
-A forbidden zone marks a region of a page that content must stay out of, such as an envelope window or a book spine. A zone is authoring geometry, so it is left out of an export and its guide colors never reach the file.
+An exclusion area marks a region of a page that content must stay out of, such as an envelope window or a book spine. An exclusion area is authoring geometry, so it is left out of an export and its guide colors never reach the file.
 
-Set `zone/punchOut` to `true` on a zone to cut it out of the export instead. The page and everything on it get a hole where the zone is, so a die cut window in the design becomes a window in the exported PDF. The hole is transparent, which a print workflow reads as an absence of ink rather than as white. It is off by default.
+Set `exclusionArea/punchOut` to `true` on an exclusion area to cut it out of the export instead. The page and everything on it get a hole where the exclusion area is, so a die cut window in the design becomes a window in the exported PDF. The hole is transparent, which a print workflow reads as an absence of ink rather than as white. It is off by default.
 
-See [Forbidden Zones](../concepts/forbidden-zones.md) for how to create and place a zone.
+See [Exclusion Areas](../concepts/exclusion-areas.md) for how to create and place an exclusion area.
 
 ## PDF Export Options for Print
 

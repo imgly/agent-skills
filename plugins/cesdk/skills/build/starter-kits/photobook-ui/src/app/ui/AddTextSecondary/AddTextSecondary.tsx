@@ -1,5 +1,5 @@
 import { Font, Typeface } from '@cesdk/engine';
-import { autoPlaceBlockOnPage } from '../../../imgly/utils/engine-utils';
+import { autoPlaceBlockOnPage } from '../../../imgly/engine-utils';
 import { useEngine } from '../../contexts/EngineContext';
 import { useSinglePageMode } from '../../contexts/SinglePageModeContext';
 import FontSelect from '../FontSelect/FontSelect';

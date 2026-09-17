@@ -12,14 +12,16 @@
  * (Left/Right shown as disabled demo) and 10 color options.
  */
 
-import type { DesignUnit, Source } from '@cesdk/cesdk-js';
+import type { SceneDesignUnit } from '@cesdk/engine';
+import type { Source } from '@cesdk/cesdk-js';
+import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
 
 // ─── Product Types ────────────────────────────────────────────────────────────
 
 export interface ProductConfig {
   id: string;
   label: string;
-  designUnit: DesignUnit;
+  designUnit: SceneDesignUnit;
   areas: ProductAreaConfig[];
   colors: ProductColor[];
   /** Optional unit price for display purposes */
@@ -65,16 +67,6 @@ export interface ProductSize {
   label?: string;
   value?: string;
 }
-
-/**
- * Demo assets for this example (product mockups, …) are loaded from the
- * IMG.LY CDN by default. To host them yourself, copy the folder below to
- * your own CDN or server and change this constant. Must resolve to full
- * URLs to avoid CE.SDK baseURL resolution. No trailing slash.
- */
-const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/starterkit-t-shirt-designer';
 
 const ASSETS_BASE = `${DEMO_ASSETS_BASE_URL}/assets/products`;
 
@@ -149,8 +141,8 @@ export const PRODUCT_SAMPLES: ProductConfig[] = [
             }
           ],
           printableAreaPx: {
-            x: 815 / 2 - 360 / 2,
-            y: 948 / 2 - 360 / 2 - 100,
+            x: TSHIRT.printX,
+            y: TSHIRT.printY,
             width: TSHIRT.printWidth,
             height: TSHIRT.printHeight
           }
@@ -169,8 +161,8 @@ export const PRODUCT_SAMPLES: ProductConfig[] = [
             }
           ],
           printableAreaPx: {
-            x: 815 / 2 - 360 / 2,
-            y: 948 / 2 - 360 / 2 - 100,
+            x: TSHIRT.printX,
+            y: TSHIRT.printY,
             width: TSHIRT.printWidth,
             height: TSHIRT.printHeight
           }

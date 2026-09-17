@@ -6,11 +6,11 @@ import {
   hexToRgba,
   isColorEqual,
   rgbaToHex
-} from '../../../imgly/ColorUtilities';
+} from '../../../imgly/color-utilities';
 import useDebounceCallback from '../UseDebounceCallback';
 import { useEditor } from '../../contexts/EditorContext';
 
-const ALL_COLORS = [
+export const ALL_COLORS = [
   '#ffffff',
   '#000000',
   '#ff3333',
@@ -43,6 +43,7 @@ const ColorSelect = ({
         {ALL_COLORS.map((color) => (
           <button
             key={rgbaToHex(color)}
+            aria-label={rgbaToHex(color)}
             onClick={() => handleChange(color)}
             style={{ backgroundColor: rgbaToHex(color) }}
             className={classNames(classes.colorButton, {

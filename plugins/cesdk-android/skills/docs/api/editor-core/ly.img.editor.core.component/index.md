@@ -923,7 +923,7 @@ A composable helper function that creates and remembers a Dock.Button that opens
 fun InspectorBar.Button.rememberSplit(builder: InspectorBar.ButtonBuilder.() -> Unit = {}): Button<InspectorBar.ItemScope>
 ```
 
-A composable helper function that creates and remembers an Button that splits currently selected design block via EditorEvent.Selection.Split in a video scene. A caption is only enabled while the playhead sits inside it, since a caption divides where the playhead is. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
+A composable helper function that creates and remembers an Button that splits currently selected design block via EditorEvent.Selection.Split. The button is visible when the "lifecycle/duplicate" scope of the selected design block is allowed. A caption is only enabled while the playhead sits inside it, since a caption divides where the playhead is. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
 ### rememberStickersAndShapesLibrary
 
@@ -1442,7 +1442,7 @@ The id of the dock button returned by Dock.Button.rememberVoiceoverRecord.
 ### voiceover
 
 ```kotlin
-val Button.Id.Companion.voiceover: EditorComponentId
+val InspectorBar.Button.Id.voiceover: EditorComponentId
 ```
 
 ```kotlin

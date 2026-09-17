@@ -10,7 +10,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initPrintReadyPdfEditor } from './imgly';
-import { resolveAssetPath } from './imgly/resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
@@ -43,8 +43,9 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // Debug access (remove in production)
+    // START_HIDDEN_BLOCK
     (window as any).cesdk = cesdk;
+    // END_HIDDEN_BLOCK
 
     await initPrintReadyPdfEditor(cesdk);
 
@@ -54,7 +55,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     // Load the example scene for print-ready PDF export
-    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
+    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/example-1.scene`);
     // highlight-scene-loading
     // START_HIDDEN_BLOCK
     reportDemoPhase('ready');

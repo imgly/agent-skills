@@ -66,6 +66,7 @@ const TopBar = () => {
       <div>
         <IconButton
           disabled={!buttonsEnabled}
+          aria-label="Canvas size"
           onClick={() => setSizeModalOpen(true)}
           icon={<SurfaceIcon />}
         ></IconButton>
@@ -77,6 +78,7 @@ const TopBar = () => {
             refocus();
           }}
           disabled={!canUndo || !buttonsEnabled}
+          aria-label="Undo"
           icon={<UndoIcon />}
         ></IconButton>
         <IconButton
@@ -85,6 +87,7 @@ const TopBar = () => {
             refocus();
           }}
           disabled={!canRedo || !buttonsEnabled}
+          aria-label="Redo"
           icon={<RedoIcon />}
         ></IconButton>
       </div>

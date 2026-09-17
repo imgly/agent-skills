@@ -12,6 +12,7 @@ function UndoRedoButtons() {
   return (
     <div className={classes.container}>
       <button
+        aria-label="Undo"
         onClick={() => engine.editor.undo()}
         className={classNames(classes.button, {
           [classes['button--disabled']]: !canUndo
@@ -21,6 +22,7 @@ function UndoRedoButtons() {
         <UndoIcon />
       </button>
       <button
+        aria-label="Redo"
         onClick={() => engine.editor.redo()}
         className={classNames(classes.button, {
           [classes['button--disabled']]: !canRedo

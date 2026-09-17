@@ -27,7 +27,6 @@ export function useImageUpload({
     );
     Promise.allSettled(
       uploadedAssets.map(async (asset) =>
-        // @ts-ignore
         onUpload({ ...asset, context: { sourceId }, active: false })
       )
     );
@@ -78,11 +77,15 @@ type UploadOptions = {
 };
 
 const uploadFile = (() => {
-  const element: HTMLInputElement = document.createElement('input');
-  element.setAttribute('type', 'file');
-  element.style.display = 'none';
-  document.body.appendChild(element);
+  let element: HTMLInputElement | undefined;
   return ({ supportedMimeTypes, multiple = true }: UploadOptions) => {
+    // Built on first use, so importing this module adds nothing to the page.
+    if (element == null) {
+      element = document.createElement('input');
+      element.setAttribute('type', 'file');
+      element.style.display = 'none';
+      document.body.appendChild(element);
+    }
     const accept = supportedMimeTypes.join(',');
 
     return new Promise<File[]>((resolve, reject) => {

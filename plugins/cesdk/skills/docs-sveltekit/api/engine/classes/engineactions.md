@@ -181,7 +181,8 @@ Main-thread only.
 
   `Promise`\<[`EngineActionsRegistry`](./api/engine/interfaces/engineactionsregistry.md)\[`K`] *extends* (...`args`) => `R` ? `Awaited`\<`R`> : `unknown`>
 
-  The action's result, or a rejection if the id is unknown or it threw.
+  The action's result, or a rejection if the id is unknown, it threw, or
+  the engine was disposed while the run was still in flight.
 
   #### Call Signature
 
@@ -211,7 +212,8 @@ Main-thread only.
 
   `Promise`\<`R`>
 
-  The action's result, or a rejection if the id is unknown or it threw.
+  The action's result, or a rejection if the id is unknown, it threw, or
+  the engine was disposed while the run was still in flight.
 
   #### Signatures
 

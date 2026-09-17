@@ -110,7 +110,7 @@ Pages define the format of your designs — every graphic block, text element, a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260916/engine-guides-concepts-pages)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260917/engine-guides-concepts-pages)
 
 Pages provide the canvas and frame for your designs. Whether you're building a multi-page document, a social media carousel, or a video composition, understanding how pages work helps you structure content correctly.
 
@@ -248,23 +248,27 @@ try engine.block.setFloat(firstPage, property: "page/margin/right", value: 10)
 
 Set `page/marginEnabled` to `true` to enable margins, then use `page/margin/top`, `page/margin/bottom`, `page/margin/left`, and `page/margin/right` to configure each side.
 
-### Safety Area
+### Safety Inset
 
-The safety area is the inward inset from the page edge that content must stay inside. It is the counterpart of the bleed margin, which extends outward. Print shops cut with a tolerance, so text and logos placed too close to the edge can be trimmed off.
+The safety inset is the inward inset from the page edge that content must stay inside. It is the counterpart of the bleed margin, which extends outward. Print shops cut with a tolerance, so text and logos placed too close to the edge can be trimmed off.
 
-Set `page/safetyEnabled` to `true`, then use `page/safety/top`, `page/safety/bottom`, `page/safety/left`, and `page/safety/right` to configure each side. Every inset defaults to `0`, so set a value as well as enabling the area.
+Set `page/safetyEnabled` to `true`, then use `page/safetyInset/top`, `page/safetyInset/bottom`, `page/safetyInset/left`, and `page/safetyInset/right` to configure each side. Every inset defaults to `0`, so set a value as well as enabling the area.
 
-The safety area is authoring state. The engine shades the band between the page edge and the safety line, and draws a line on the safety line itself, but neither reaches an export. A dragged block snaps to the safety line while the line is visible. Set the guide colors with the `page/safetyFillColor` and `page/safetyFrameColor` settings; a fully transparent `page/safetyFrameColor` hides the line and turns its snapping off.
+The safety inset is authoring state, and nothing it draws reaches an export.
 
-### Forbidden Zone
+The guide appears while a drag comes near the safety line, and goes away when the drag ends. The engine shades the band between the page edge and the line, draws the line itself, and lets the dragged block snap to it. Set `page/safetyRevealOnDrag` to `false` to draw the guide on every page all the time instead.
 
-A forbidden zone marks a region of a page that content must stay out of: a window on an envelope, a spine on a book cover, a glue flap on a box, an address panel on a mailer. Where the safety area is one inset per page, a page can carry any number of zones, each with its own position, size and rotation.
+Set the guide colors with the `page/safetyFillColor` and `page/safetyFrameColor` settings; a fully transparent `page/safetyFrameColor` hides the line and turns its snapping off.
 
-Create one with the `//ly.img.ubq/zone` block type and append it to a page. A zone is a graphic, so it takes a shape, a fill, a stroke and the ordinary transform, and you can put the artwork of the obstruction into it. A new zone is a rectangle with no fill and shows a striped pattern, so it is visible at once. Assign a fill to replace the stripes.
+### Exclusion Area
 
-A zone is authoring state. The engine washes it in `page/forbiddenZoneFillColor` and frames it in `page/forbiddenZoneFrameColor`, neither of which reaches an export, and a fully transparent `page/forbiddenZoneFrameColor` hides the frame. A zone is left out of an export as well: set `includedInExport` to `true` on the zone to put its artwork in the file.
+An exclusion area marks a region of a page that content must stay out of: a window on an envelope, a spine on a book cover, a glue flap on a box, an address panel on a mailer. Where the safety inset is one inset per page, a page can carry any number of exclusion areas, each with its own position, size and rotation.
 
-Set `zone/punchOut` to `true` to cut the zone out of an export instead. The page and everything on it get a hole where the zone is, so a die cut window in the design becomes a window in the file. It is off by default, and the canvas keeps showing the content either way.
+Create one with the `//ly.img.ubq/exclusionArea` block type and append it to a page. An exclusion area is a graphic, so it takes a shape, a fill, a stroke and the ordinary transform, and you can put the artwork of the obstruction into it. A new exclusion area is a rectangle with no fill and shows a striped pattern, so it is visible at once. Assign a fill to replace the stripes.
+
+An exclusion area is authoring state. The engine washes it in `page/exclusionAreaFillColor` and frames it in `page/exclusionAreaFrameColor`, neither of which reaches an export, and a fully transparent `page/exclusionAreaFrameColor` hides the frame. An exclusion area is left out of an export as well: set `includedInExport` to `true` on the exclusion area to put its artwork in the file.
+
+Set `exclusionArea/punchOut` to `true` to cut the exclusion area out of an export instead. The page and everything on it get a hole where the exclusion area is, so a die cut window in the design becomes a window in the file. It is off by default, and the canvas keeps showing the content either way.
 
 ### Title Template
 

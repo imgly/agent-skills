@@ -93,6 +93,18 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
 
     'ly.img.keyboard.shortcuts' /* Enable keyboard shortcuts */,
 
+    // 'ly.img.layerList', /* Enables all children below */
+    'ly.img.layerList.canvasFollow' /* Picking a row scrolls the canvas to it */,
+    // 'ly.img.layerList.combined', /* One tree of every page and its layers */
+    'ly.img.layerList.layers' /* Layers section */,
+    'ly.img.layerList.lock' /* Lock toggle on a row */,
+    'ly.img.layerList.menu' /* Ellipsis menu on a row */,
+    'ly.img.layerList.pages' /* Pages section */,
+    'ly.img.layerList.panel' /* Layer & Page List panel and its dock button */,
+    'ly.img.layerList.rename' /* Inline rename on a row */,
+    'ly.img.layerList.reorder' /* Drag a row to reorder */,
+    'ly.img.layerList.visibility' /* Hide/show toggle on a layer row */,
+
     'ly.img.library.panel' /* Asset Library panel */,
 
     // 'ly.img.navigation', /* Enables all children below */
@@ -262,7 +274,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     'ly.img.video.timeline.controls.timelineZoom' /* Timeline zoom controls */,
     'ly.img.video.timeline.controls.toggle' /* Timeline collapse/expand toggle */,
     'ly.img.video.timeline.overlays' /* Overlays track in timeline */,
-    'ly.img.video.timeline.ruler' /* Timeline ruler/time scale */,
+    // 'ly.img.video.timeline.ruler', /* Timeline ruler/time scale */
 
     'ly.img.volume' /* Volume control */
   ]);

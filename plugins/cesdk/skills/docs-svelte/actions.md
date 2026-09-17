@@ -992,6 +992,8 @@ The Actions API provides four methods:
     - `sendToBack` - Send the selection to the back
     - `reorder.moveToIndex` - Move the selection to a specific layer index
     - `reparent` - Move the selection under a new parent
+    - `selection.bringForward` / `selection.sendBackward` - Move every selected block one step towards the front / back
+    - `selection.bringToFront` / `selection.sendToBack` - Move every selected block in front of / behind every sibling
 
     ### Appearance
 

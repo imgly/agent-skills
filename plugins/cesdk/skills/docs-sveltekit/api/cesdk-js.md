@@ -231,6 +231,9 @@
 | [PositionalInsertAppendOptions](./api/cesdk-js/interfaces/positionalinsertappendoptions.md) | Append to end (positional areas). |
 | [PositionalInsertAtPositionOptions](./api/cesdk-js/interfaces/positionalinsertatpositionoptions.md) | Insert at a specific position (positional areas). |
 | [PositionalInsertBeforeOptions](./api/cesdk-js/interfaces/positionalinsertbeforeoptions.md) | Insert before a matched component (positional areas). |
+| [PromptInputAttachmentOptions](./api/cesdk-js/interfaces/promptinputattachmentoptions.md) | Represents one attachment a prompt refers to. |
+| [PromptInputAttachmentsOptions](./api/cesdk-js/interfaces/promptinputattachmentsoptions.md) | Represents options for the attachments of a prompt input. |
+| [PromptInputOptions](./api/cesdk-js/interfaces/promptinputoptions.md) | Represents options for a prompt input. |
 | [RegisteredActions](./api/cesdk-js/interfaces/registeredactions.md) | Represents a collection of action functions used throughout the application. Each property corresponds to a specific UI action or event that can be customized. |
 | [RemoveResult](./api/cesdk-js/interfaces/removeresult.md) | Result of a remove operation on a single area. |
 | [ReplaceAssetLibraryEntriesContext](./api/cesdk-js/interfaces/replaceassetlibraryentriescontext.md) | Provides context for replacing asset library entries, including the selected blocks and the default entries (each may carry per-entry source exclusions). |

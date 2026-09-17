@@ -7,6 +7,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
+import type { CreativeEngine } from '@cesdk/cesdk-js';
 
 import { type BlockValidationResult } from '../../imgly/types';
 import {
@@ -15,10 +16,10 @@ import {
   validatePartiallyHiddenTexts,
   validateLowResolution
 } from '../../imgly/validation';
-import { resolveAssetPath } from '../resolveAssetPath';
 import { ResultItem } from '../ResultItem/ResultItem';
 
 import classes from './Sidebar.module.css';
+import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
 // ============================================================================
 // Types
@@ -37,7 +38,7 @@ interface ValidationConfig {
   name: string;
   description: string;
   validate: (
-    cesdk: CreativeEditorSDK
+    engine: CreativeEngine
   ) => BlockValidationResult[] | Promise<BlockValidationResult[]>;
 }
 
@@ -70,12 +71,18 @@ const VALIDATIONS: ValidationConfig[] = [
  * Runs all validation checks and returns results with presentation metadata.
  */
 async function runValidationChecks(
-  cesdk: CreativeEditorSDK
+  engine: CreativeEngine
 ): Promise<ValidationResult[]> {
   const allResults: ValidationResult[] = [];
 
+  // Bounding boxes are only final once every image and font has loaded.
+  const scene = engine.scene.get();
+  if (scene != null) {
+    await engine.block.forceLoadResources([scene]);
+  }
+
   for (const validation of VALIDATIONS) {
-    const checkResults = await validation.validate(cesdk);
+    const checkResults = await validation.validate(engine);
     for (const result of checkResults) {
       allResults.push({
         ...result,
@@ -141,7 +148,7 @@ export function Sidebar({ cesdk }: SidebarProps) {
 
   const runValidation = useCallback(async () => {
     if (!cesdk) return;
-    const newResults = await runValidationChecks(cesdk);
+    const newResults = await runValidationChecks(cesdk.engine);
     setResults(newResults);
     setIsReady(true);
   }, [cesdk]);
@@ -153,7 +160,7 @@ export function Sidebar({ cesdk }: SidebarProps) {
     runValidation();
 
     // Subscribe to history updates to auto-revalidate
-    const unsubscribe = cesdk.engine.editor.onHistoryUpdated(() => {
+    const unsubscribe = cesdk.engine.editor.onHistoryUpdatedWithKind(() => {
       runValidation();
     });
 
@@ -186,7 +193,7 @@ export function Sidebar({ cesdk }: SidebarProps) {
           <span>{isReady ? 'Check performed' : 'Check pending'}</span>
           {isReady && (
             <img
-              src={resolveAssetPath('/assets/icons/check-complete.svg')}
+              src={`${DEMO_ASSETS_BASE_URL}/assets/icons/check-complete.svg`}
               alt=""
               className={classes.checkIcon}
               width={16}

@@ -18,7 +18,7 @@ Use a form-based custom panel in CE.SDK to enable users to easily customize temp
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-form-based-template-adoption-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260916/examples/starterkit-form-based-template-adoption/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260917/examples/starterkit-form-based-template-adoption/index.html)
 
 ***
 
@@ -71,7 +71,8 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     │   │       └── panel.ts                  # Panel configuration
     │   ├── index.ts                  # Editor initialization function
     │   └── plugins/
-    │       └── form-based-template-adoption.ts
+    │       ├── form-based-template-adoption.ts
+    │       └── template-properties.ts
     └── index.ts
     ```
 
@@ -186,7 +187,8 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     │       └── panel.ts                  # Panel configuration
     ├── index.ts                  # Editor initialization function
     └── plugins/
-        └── form-based-template-adoption.ts
+        ├── form-based-template-adoption.ts
+        └── template-properties.ts
     ```
 
     ## Step 2: Install Dependencies

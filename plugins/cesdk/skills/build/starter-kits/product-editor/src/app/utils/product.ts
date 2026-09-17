@@ -3,9 +3,19 @@
  * with the `product.*` actions registered by the ProductBackdrop plugin.
  */
 
-import type CreativeEditorSDK from '@cesdk/cesdk-js';
+import type { CreativeEngine } from '@cesdk/cesdk-js';
 
 import type { ProductConfig, ProductColor } from '../product-catalog';
+
+/** One printable PDF and one thumbnail per area, plus the scene archive. */
+export interface ProductAssets {
+  pdfs: Record<string, Blob>;
+  thumbnails: Record<string, Blob>;
+  archive: Blob;
+}
+
+/** Pixel size of the thumbnail exported next to each area's PDF. */
+const THUMBNAIL_SIZE = 200;
 
 /**
  * Map a product + color to the narrow payload the
@@ -31,14 +41,14 @@ export function setupSceneOptions(product: ProductConfig, color: ProductColor) {
  * `handleColorChange`.
  */
 export function storeProductMetadata(
-  cesdk: CreativeEditorSDK,
+  engine: CreativeEngine,
   product: ProductConfig,
   color: ProductColor
 ): void {
-  const scene = cesdk.engine.scene.get();
+  const scene = engine.scene.get();
   if (scene == null) return;
-  cesdk.engine.block.setMetadata(scene, 'product', JSON.stringify(product));
-  cesdk.engine.block.setMetadata(scene, 'color', JSON.stringify(color));
+  engine.block.setMetadata(scene, 'product', JSON.stringify(product));
+  engine.block.setMetadata(scene, 'color', JSON.stringify(color));
 }
 
 /**
@@ -46,25 +56,29 @@ export function storeProductMetadata(
  * Returns null when no scene or no product metadata exists.
  */
 export function readProductFromMetadata(
-  cesdk: CreativeEditorSDK
+  engine: CreativeEngine
 ): ProductConfig | null {
-  const scene = cesdk.engine.scene.get();
+  const scene = engine.scene.get();
   if (scene == null) return null;
-  const productData = cesdk.engine.block.getMetadata(scene, 'product');
+  const productData = engine.block.getMetadata(scene, 'product');
   return productData ? (JSON.parse(productData) as ProductConfig) : null;
 }
 
 /**
- * Export every product area as a printable PDF and a 200×200 PNG thumbnail,
- * and trigger one browser download per file plus the scene archive.
- * Mirrors the behaviour of the `product-editor-ui` showcase.
+ * Export every enabled area of the current product as a printable PDF and a
+ * 200x200 PNG thumbnail, and save the whole scene as an archive.
+ *
+ * Only pages named after an enabled area are exported, so pages left behind by
+ * a previously selected product are skipped.
+ *
+ * @param engine - The engine holding the product scene
+ * @returns The PDFs and thumbnails keyed by area id, plus the scene archive
  */
-export async function downloadProductAssets(
-  cesdk: CreativeEditorSDK
-): Promise<void> {
-  const engine = cesdk.engine;
+export async function exportProductAssets(
+  engine: CreativeEngine
+): Promise<ProductAssets> {
   const archive = await engine.scene.saveToArchive();
-  const product = readProductFromMetadata(cesdk);
+  const product = readProductFromMetadata(engine);
   const enabledAreaIds = new Set(
     (product?.areas ?? [])
       .filter((area) => !area.disabled)
@@ -80,16 +94,31 @@ export async function downloadProductAssets(
     const areaId = engine.block.getName(page);
     // Temporarily disable page stroke so it doesn't appear in the export
     engine.block.setStrokeEnabled(page, false);
-    pdfs[areaId] = await engine.block.export(page, {
-      mimeType: 'application/pdf'
-    });
-    thumbnails[areaId] = await engine.block.export(page, {
-      mimeType: 'image/png',
-      targetWidth: 200,
-      targetHeight: 200
-    });
-    engine.block.setStrokeEnabled(page, true);
+    try {
+      pdfs[areaId] = await engine.block.export(page, {
+        mimeType: 'application/pdf'
+      });
+      thumbnails[areaId] = await engine.block.export(page, {
+        mimeType: 'image/png',
+        targetWidth: THUMBNAIL_SIZE,
+        targetHeight: THUMBNAIL_SIZE
+      });
+    } finally {
+      engine.block.setStrokeEnabled(page, true);
+    }
   }
+
+  return { pdfs, thumbnails, archive };
+}
+
+/**
+ * Export every product area and trigger one browser download per file plus
+ * the scene archive.
+ */
+export async function downloadProductAssets(
+  engine: CreativeEngine
+): Promise<void> {
+  const { pdfs, thumbnails, archive } = await exportProductAssets(engine);
 
   const timestamp = new Date().toISOString();
   for (const [areaId, pdf] of Object.entries(pdfs)) {

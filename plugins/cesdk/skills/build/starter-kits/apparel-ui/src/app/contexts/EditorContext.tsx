@@ -7,9 +7,9 @@ import {
   useState
 } from 'react';
 import { useEngine } from './EngineContext';
-import { hexToRgba } from '../../imgly/ColorUtilities';
-import { resolveAssetPath } from '../../imgly/resolveAssetPath';
+import { hexToRgba } from '../../imgly/color-utilities';
 import { useSinglePageMode } from './SinglePageModeContext';
+import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
@@ -41,7 +41,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       if (engineIsLoaded) {
         setEnabled(false);
         setSceneIsLoaded(false);
-        await engine.scene.load(resolveAssetPath('/kiosk.scene'));
+        await engine.scene.load(`${DEMO_ASSETS_BASE_URL}/kiosk.scene`);
         const pages = engine.scene.getPages();
         setCurrentPageBlockId(pages[0]);
         setEnabled(true);
@@ -121,7 +121,9 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       }
       engine.element!.style.pointerEvents = 'none';
       // Zoom to the backdrop image
-      engine.scene.zoomToBlock(backdropImageBlock, 0, 60, 0, 20);
+      engine.scene.zoomToBlock(backdropImageBlock, {
+        padding: { left: 0, top: 60, right: 0, bottom: 20 }
+      });
       engine.editor.setEditMode('Transform');
       engine.block.findAllSelected().forEach((block) => {
         engine.block.setSelected(block, false);

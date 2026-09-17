@@ -158,7 +158,8 @@ export async function importIdmlFile(
     }
 
     // Export preview image
-    const imageBlob = await engine.block.export(firstPage, 'image/png', {
+    const imageBlob = await engine.block.export(firstPage, {
+      mimeType: 'image/png',
       targetWidth: previewWidth,
       targetHeight: previewHeight
     });

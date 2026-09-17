@@ -48,13 +48,22 @@ const ChangeCropSecondary = () => {
 
   return (
     <>
-      <SlideUpPanelHeader headline="Crop" closeComponent={<>Done</>}>
-        <IconButton icon={<ResetIcon />} onClick={() => resetCurrentCrop()} />
+      <SlideUpPanelHeader
+        headline="Crop"
+        closeComponent={<>Done</>}
+        closeLabel="Done"
+      >
+        <IconButton
+          aria-label="Reset"
+          icon={<ResetIcon />}
+          onClick={() => resetCurrentCrop()}
+        />
       </SlideUpPanelHeader>
       <SlideUpPanelBody>
         <div className={classes.inputWrapper}>
           <SliderLabel label={'Scale'}>
             <Slider
+              ariaLabel="Scale"
               min={100}
               value={cropScaleRatio * 100}
               trackStartValue={100}
@@ -64,6 +73,7 @@ const ChangeCropSecondary = () => {
           </SliderLabel>
           <SliderLabel label={'Straighten'}>
             <Slider
+              ariaLabel="Straighten"
               min={-45}
               value={currentCropRotationDegrees}
               trackStartValue={0}

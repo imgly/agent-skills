@@ -50,6 +50,7 @@ The settings are organized by type:
 |  `page/title/show` | `boolean` | Whether to show titles above each page. |
 |  `page/title/showOnSinglePage` | `boolean` | Whether to hide the page title when only a single page exists. |
 |  `page/title/showPageTitleTemplate` | `boolean` | Whether to include the default page title from page.titleTemplate. |
+|  `page/safetyRevealOnDrag` | `boolean` | Whether the safety inset appears only while a drag comes near it. |
 |  `placeholderControls/showButton` | `boolean` | Whether to show the placeholder button. |
 |  `placeholderControls/showOverlay` | `boolean` | Whether to show the overlay pattern for placeholders. |
 |  `blockAnimations/enabled` | `boolean` | Whether animations should be enabled or not. |
@@ -92,14 +93,14 @@ The settings are organized by type:
 |  `cropOverlayColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the crop overlay. |
 |  `errorStateColor` | [`Color`](./api/node/type-aliases/color.md) | The color indicating an error state. |
 |  `highlightColor` | [`Color`](./api/node/type-aliases/color.md) | The highlight color for selected or active elements. |
-|  `page/forbiddenZoneFillColor` | [`Color`](./api/node/type-aliases/color.md) | The color washed over a forbidden zone. |
-|  `page/forbiddenZoneFrameColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the frame around a forbidden zone. |
+|  `page/exclusionAreaFillColor` | [`Color`](./api/node/type-aliases/color.md) | The color washed over an exclusion area. |
+|  `page/exclusionAreaFrameColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the frame around an exclusion area. |
 |  `page/innerBorderColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the inner frame around the page. |
 |  `page/marginFillColor` | [`Color`](./api/node/type-aliases/color.md) | The color filled into the bleed margins of pages. |
 |  `page/marginFrameColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the frame around the bleed margin area. |
 |  `page/outerBorderColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the outer frame around the page. |
-|  `page/safetyFillColor` | [`Color`](./api/node/type-aliases/color.md) | The color filled into the safety area band of pages. |
-|  `page/safetyFrameColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the frame around the safety area of the pages. |
+|  `page/safetyFillColor` | [`Color`](./api/node/type-aliases/color.md) | The color filled into the safety inset band of pages. |
+|  `page/safetyFrameColor` | [`Color`](./api/node/type-aliases/color.md) | The color of the frame around the safety inset of the pages. |
 |  `page/title/color` | [`Color`](./api/node/type-aliases/color.md) | The color of page titles visible in preview mode. |
 |  `pageHighlightColor` | [`Color`](./api/node/type-aliases/color.md) | Color of the outline of each page |
 |  `placeholderHighlightColor` | [`Color`](./api/node/type-aliases/color.md) | The highlight color for placeholder elements. |

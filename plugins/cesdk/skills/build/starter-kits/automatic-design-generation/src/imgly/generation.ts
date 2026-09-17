@@ -28,6 +28,12 @@ export interface GeneratedAsset {
   src: string | null;
   type: OutputType;
   sceneString: string | null;
+  /**
+   * The text variables the design was rendered with. A scene string carries
+   * only the `{{Name}}` references, so an editor opened on this asset has to
+   * set them again.
+   */
+  variables: Record<string, string>;
 }
 
 export interface GenerateAssetOptions {
@@ -111,6 +117,16 @@ export async function generateAsset(
     height,
     src: URL.createObjectURL(blob),
     type: outputType,
-    sceneString
+    sceneString,
+    variables: readVariables(engine)
   };
+}
+
+/** The engine's whole variable store, as plain data an asset can carry. */
+export function readVariables(engine: CreativeEngine): Record<string, string> {
+  return Object.fromEntries(
+    engine.variable
+      .findAll()
+      .map((name) => [name, engine.variable.getString(name)])
+  );
 }

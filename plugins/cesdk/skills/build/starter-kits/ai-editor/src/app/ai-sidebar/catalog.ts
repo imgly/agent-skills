@@ -252,3 +252,44 @@ export function getSelectedProviders(
 
   return result;
 }
+
+// ============================================================================
+// Per-Mode State
+// ============================================================================
+
+/**
+ * Sidebar state for a mode: the curated defaults for that mode, merged with
+ * the gateway catalog, with the user's selection carried over from
+ * `previous`. Switching modes therefore keeps a model the user ticked or
+ * unticked, and only the capabilities the new mode does not support drop out.
+ */
+export function providersForMode(
+  mode: EditorMode,
+  catalog: unknown,
+  previous: AIProviders | undefined,
+  gatewayUrl?: string
+): AIProviders {
+  const next = mergeCatalogIntoState(
+    buildInitialSidebarState(mode, gatewayUrl),
+    catalog,
+    mode,
+    gatewayUrl
+  );
+  if (previous == null) return next;
+
+  const selectedBefore = new Map<string, boolean>();
+  for (const [capability, category] of Object.entries(previous)) {
+    category?.providers.forEach((provider) =>
+      selectedBefore.set(`${capability}/${provider.modelId}`, provider.selected)
+    );
+  }
+
+  for (const [capability, category] of Object.entries(next)) {
+    category?.providers.forEach((provider) => {
+      const before = selectedBefore.get(`${capability}/${provider.modelId}`);
+      if (before != null) provider.selected = before;
+    });
+  }
+
+  return next;
+}

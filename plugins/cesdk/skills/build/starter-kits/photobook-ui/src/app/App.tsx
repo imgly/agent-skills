@@ -11,19 +11,13 @@ import type { Configuration } from '@cesdk/engine';
 import { EngineProvider } from './contexts/EngineContext';
 import { SinglePageModeProvider } from './contexts/SinglePageModeContext';
 import { PagePreviewProvider } from './contexts/PagePreviewContext';
-import { DEMO_ASSETS_BASE_URL, EditorProvider } from './contexts/EditorContext';
+import { EditorProvider } from './contexts/EditorContext';
+import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
 import { SelectionProvider } from './contexts/UseSelection';
 
 import PhotoBookUI from './components/PhotoBookUI/PhotoBookUI';
 
-import {
-  PHOTOBOOK_LAYOUTS,
-  PHOTOBOOK_STICKERS,
-  createUnsplashSource,
-  loadAssetSourceFromContentJSON
-} from '../imgly';
-import { createApplyLayoutAsset } from '../imgly/utils/apply-layout';
-import { createImageColorsSource } from '../imgly/utils/imageColorsSource';
+import { initPhotobookEditor } from '../imgly';
 
 import styles from './App.module.css';
 
@@ -71,80 +65,7 @@ export default function App({ engineConfig }: AppProps) {
             config={config}
             configure={async (engine) => {
               setEngine(engine);
-              engine.editor.setSetting('page/title/show', false);
-              engine.editor.setRole('Adopter');
-
-              // Add default asset sources via the engine-native asset API.
-              // The engine resolves each `content.json` relative to `baseURL`.
-              const baseURL = engine.getBaseURL();
-
-              // Image colors: virtual source built from the scene's images.
-              engine.asset.addSource(createImageColorsSource(engine));
-
-              // Content sources loaded from bundled `content.json` files.
-              await Promise.all(
-                [
-                  { id: 'ly.img.color.palette' },
-                  { id: 'ly.img.typeface' },
-                  // Text style presets live in three engine-side sources.
-                  { id: 'ly.img.text' },
-                  { id: 'ly.img.text.styles' },
-                  { id: 'ly.img.text.curves' },
-                  { id: 'ly.img.text.components' },
-                  {
-                    id: 'ly.img.vector.shape',
-                    matcher: ['ly.img.vector.shape.filled.*']
-                  }
-                ].map(({ id, matcher }) =>
-                  engine.asset.addLocalAssetSourceFromJSONURI(
-                    `${baseURL}${id}/content.json`,
-                    { matcher }
-                  )
-                )
-              );
-
-              // Local upload sources for images, videos, and audio.
-              engine.asset.addLocalSource('ly.img.image.upload', [
-                'image/jpeg',
-                'image/png',
-                'image/webp',
-                'image/svg+xml',
-                'image/bmp',
-                'image/gif',
-                'image/apng'
-              ]);
-              engine.asset.addLocalSource('ly.img.video.upload', [
-                'application/json',
-                'video/mp4',
-                'video/quicktime',
-                'video/webm',
-                'video/matroska',
-                'image/gif',
-                'image/apng'
-              ]);
-              engine.asset.addLocalSource('ly.img.audio.upload', [
-                'audio/mpeg',
-                'audio/mp3',
-                'audio/x-m4a',
-                'audio/wav'
-              ]);
-
-              // Load custom assets
-              loadAssetSourceFromContentJSON(
-                engine,
-                PHOTOBOOK_STICKERS,
-                DEMO_ASSETS_BASE_URL
-              );
-              loadAssetSourceFromContentJSON(
-                engine,
-                PHOTOBOOK_LAYOUTS,
-                DEMO_ASSETS_BASE_URL,
-                createApplyLayoutAsset(engine)
-              );
-
-              engine.editor.setGlobalScope('lifecycle/destroy', 'Defer');
-
-              engine.asset.addSource(createUnsplashSource(engine));
+              await initPhotobookEditor(engine, DEMO_ASSETS_BASE_URL);
             }}
           >
             <SinglePageModeProvider

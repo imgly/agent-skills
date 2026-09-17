@@ -38,8 +38,9 @@ export function useEngine(config: Configuration): UseEngineReturn {
       }
 
       engineRef.current = engine;
-      // Debug access (remove in production)
+      // START_HIDDEN_BLOCK
       (window as any).engine = engine;
+      // END_HIDDEN_BLOCK
 
       setIsReady(true);
     };

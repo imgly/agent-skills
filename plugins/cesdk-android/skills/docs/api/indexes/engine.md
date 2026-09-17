@@ -107,6 +107,7 @@ Complete catalog of 262 generated API digests.
 - [DesignBlockType.CaptionTrack](<../engine/ly.img.engine/-design-block-type/-caption-track.md>) — `ly.img.engine`
 - [DesignBlockType.Companion](<../engine/ly.img.engine/-design-block-type/-companion.md>) — `ly.img.engine`
 - [DesignBlockType.Cutout](<../engine/ly.img.engine/-design-block-type/-cutout.md>) — `ly.img.engine`
+- [DesignBlockType.ExclusionArea](<../engine/ly.img.engine/-design-block-type/-exclusion-area.md>) — `ly.img.engine`
 - [DesignBlockType.Graphic](<../engine/ly.img.engine/-design-block-type/-graphic.md>) — `ly.img.engine`
 - [DesignBlockType.Group](<../engine/ly.img.engine/-design-block-type/-group.md>) — `ly.img.engine`
 - [DesignBlockType.Page](<../engine/ly.img.engine/-design-block-type/-page.md>) — `ly.img.engine`
@@ -114,7 +115,6 @@ Complete catalog of 262 generated API digests.
 - [DesignBlockType.Stack](<../engine/ly.img.engine/-design-block-type/-stack.md>) — `ly.img.engine`
 - [DesignBlockType.Text](<../engine/ly.img.engine/-design-block-type/-text.md>) — `ly.img.engine`
 - [DesignBlockType.Track](<../engine/ly.img.engine/-design-block-type/-track.md>) — `ly.img.engine`
-- [DesignBlockType.Zone](<../engine/ly.img.engine/-design-block-type/-zone.md>) — `ly.img.engine`
 - [DesignUnit](<../engine/ly.img.engine/-design-unit.md>) — `ly.img.engine`
 - [DominantColor](<../engine/ly.img.engine/-dominant-color.md>) — `ly.img.engine`
 - [DominantColorsOptions](<../engine/ly.img.engine/-dominant-colors-options.md>) — `ly.img.engine`

@@ -18,7 +18,7 @@ Professional photo editing for your Nuxt app—crop, filter, adjust, and remove 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-photo-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260916/examples/starterkit-photo-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260917/examples/starterkit-photo-editor/index.html)
 
 ***
 
@@ -78,22 +78,20 @@ Before you begin, make sure you have the following:
     ```
     imgly/
     ├── index.ts                  # Editor initialization function
-    ├── config/
-    │   ├── plugin.ts             # Main configuration plugin
-    │   ├── actions.ts            # Export/import actions
-    │   ├── features.ts           # Feature toggles
-    │   ├── i18n.ts               # Translations
-    │   ├── settings.ts           # Engine settings
-    │   └── ui/                   # UI customization
-    │       ├── index.ts          # Combines UI customization exports
-    │       ├── canvas.ts         # Canvas configuration
-    │       ├── components.ts     # Custom component registration
-    │       ├── dock.ts           # Dock layout configuration
-    │       ├── inspectorBar.ts   # Inspector bar layout
-    │       ├── navigationBar.ts  # Navigation bar layout
-    │       └── panel.ts          # Panel configuration
-    └── plugins/
-        └── background-removal.ts # Background removal plugin
+    └── config/
+        ├── plugin.ts             # Main configuration plugin
+        ├── actions.ts            # Export/import actions
+        ├── features.ts           # Feature toggles
+        ├── i18n.ts               # Translations
+        ├── settings.ts           # Engine settings
+        └── ui/                   # UI customization
+            ├── index.ts          # Combines UI customization exports
+            ├── canvas.ts         # Canvas configuration
+            ├── components.ts     # Custom component registration
+            ├── dock.ts           # Dock layout configuration
+            ├── inspectorBar.ts   # Inspector bar layout
+            ├── navigationBar.ts  # Navigation bar layout
+            └── panel.ts          # Panel configuration
     ```
 
     ## Step 3: Install Dependencies

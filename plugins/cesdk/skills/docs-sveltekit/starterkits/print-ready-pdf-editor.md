@@ -18,7 +18,7 @@ Deliver print-ready CMYK PDF/X-4 and PDF/X-3 files straight from your web app. P
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-print-ready-pdf-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260916/examples/starterkit-print-ready-pdf-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260917/examples/starterkit-print-ready-pdf-editor/index.html)
 
 ***
 
@@ -384,7 +384,7 @@ Click the "Export PDF" button in the navigation bar to open the export panel. Th
  * @see https://img.ly/docs/cesdk/js/export-save-publish/export/overview-9ed3a8/
  */
 
-import { type CreativeEngine, EditorPlugin } from '@cesdk/cesdk-js';
+import type { CreativeEngine, EditorPlugin } from '@cesdk/cesdk-js';
 
 // #region Color Profiles
 type ColorProfile = 'fogra39' | 'gracol' | 'srgb';
@@ -422,6 +422,15 @@ type SelectValue = { id: string; label: string | string[] };
 
 // #region Bleed Margin Defaults
 const DEFAULT_BLEED_MARGIN = 3; // mm
+
+const MILLIMETRES_PER_INCH = 25.4;
+
+const MARGIN_PROPERTIES = [
+  'page/margin/top',
+  'page/margin/bottom',
+  'page/margin/left',
+  'page/margin/right'
+];
 // #endregion
 
 /**
@@ -609,19 +618,26 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
               onClick: async () => {
                 loadingState.setValue(true);
                 try {
-                  await exportPrintReadyPDF(
-                    engine,
-                    rangeInputState.value,
-                    colorProfileState.value.id as ColorProfile,
-                    standardState.value.id as PDFXStandard,
-                    bleedEnabledState.value,
-                    bleedMarginState.value
-                  );
+                  const printReadyPDF = await exportPrintReadyPDF(engine, {
+                    pageRange:
+                      pagesState.value === PageAmountType.CUSTOM
+                        ? rangeInputState.value
+                        : '',
+                    colorProfile: colorProfileState.value.id as ColorProfile,
+                    outputStandard: standardState.value.id as PDFXStandard,
+                    bleedEnabled: bleedEnabledState.value,
+                    bleedMargin: bleedMarginState.value
+                  });
+                  await localDownload(printReadyPDF, 'my-design-print-ready');
                 } catch (error: unknown) {
-                  // Surface the failure instead of leaving the button spinning
-                  // forever if export or PDF/X conversion throws.
-                  // eslint-disable-next-line no-console
-                  console.error('Print-ready PDF export failed:', error);
+                  cesdk.ui.showNotification({
+                    type: 'error',
+                    message:
+                      error instanceof Error
+                        ? error.message
+                        : 'Print-ready PDF export failed.',
+                    duration: 'medium'
+                  });
                 } finally {
                   loadingState.setValue(false);
                 }
@@ -645,80 +661,133 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
 
 // #region Export Function
 /**
- * Export the scene as a print-ready PDF/X-4 or PDF/X-3
+ * Millimetres expressed in the scene's own design unit.
  *
- * @param engine - The Creative Engine instance
- * @param pageRange - Page range string (e.g., "1,2-5")
- * @param colorProfile - Color profile to use (fogra39, gracol, srgb)
- * @param outputStandard - PDF/X standard to produce ('PDF/X-4' or 'PDF/X-3')
- * @param bleedEnabled - Whether to include bleed margins
- * @param bleedMargin - Bleed margin size in mm
+ * `page/margin/*` is read in design units, so a millimetre value has to be
+ * converted or the printed bleed is not the one the user asked for.
  */
-const exportPrintReadyPDF = async (
+const millimetresInDesignUnit = (
   engine: CreativeEngine,
-  pageRange: string,
-  colorProfile: ColorProfile,
-  outputStandard: PDFXStandard,
-  bleedEnabled: boolean,
-  bleedMargin: number
-) => {
+  millimetres: number
+): number => {
   const scene = engine.scene.get();
   if (scene == null) {
-    return;
+    return millimetres;
+  }
+  const inches = millimetres / MILLIMETRES_PER_INCH;
+  switch (engine.scene.getDesignUnit()) {
+    case 'Millimeter':
+      return millimetres;
+    case 'Inch':
+      return inches;
+    default:
+      return inches * engine.block.getFloat(scene, 'scene/dpi');
+  }
+};
+
+interface PageMargins {
+  enabled: boolean;
+  margins: number[];
+}
+
+const readMargins = (engine: CreativeEngine, pageId: number): PageMargins => ({
+  enabled: engine.block.getBool(pageId, 'page/marginEnabled'),
+  margins: MARGIN_PROPERTIES.map((property) =>
+    engine.block.getFloat(pageId, property)
+  )
+});
+
+const writeMargins = (
+  engine: CreativeEngine,
+  pageId: number,
+  { enabled, margins }: PageMargins
+): void => {
+  MARGIN_PROPERTIES.forEach((property, index) => {
+    engine.block.setFloat(pageId, property, margins[index]);
+  });
+  engine.block.setBool(pageId, 'page/marginEnabled', enabled);
+};
+
+export interface PrintReadyPDFOptions {
+  /** Page range such as `1,3-5`. Empty exports every page. */
+  pageRange: string;
+  colorProfile: ColorProfile;
+  outputStandard: PDFXStandard;
+  bleedEnabled: boolean;
+  /** Bleed margin in millimetres. */
+  bleedMargin: number;
+}
+
+/**
+ * Export the scene as a print-ready PDF/X-4 or PDF/X-3.
+ *
+ * The scene is left exactly as it was found: the bleed margins and the page
+ * visibility this function changes are restored before it returns.
+ *
+ * @param engine - The Creative Engine instance
+ * @param options - Page range, colour profile, PDF/X standard and bleed
+ * @returns The converted PDF/X document
+ */
+export const exportPrintReadyPDF = async (
+  engine: CreativeEngine,
+  options: PrintReadyPDFOptions
+): Promise<Blob> => {
+  const { pageRange, colorProfile, outputStandard, bleedEnabled, bleedMargin } =
+    options;
+
+  const scene = engine.scene.get();
+  if (scene == null) {
+    throw new Error('No scene to export');
   }
 
   const pages = engine.scene.getPages();
-  let filteredPages: number[] = pages;
-  try {
-    filteredPages = getPagesFromRange(pages, pageRange);
-  } catch {
-    return;
-  }
-
+  const filteredPages = getPagesFromRange(pages, pageRange);
   const hiddenPages = pages.filter((id: number) => !filteredPages.includes(id));
 
-  // Apply bleed margins if enabled
-  if (bleedEnabled && bleedMargin > 0) {
-    // Convert mm to design units (assuming 1 unit = 1 point, 1 mm ≈ 2.83465 points)
-    const bleedInPoints = bleedMargin * 2.83465;
-    filteredPages.forEach((pageId: number) => {
-      engine.block.setFloat(pageId, 'page/margin/top', bleedInPoints);
-      engine.block.setFloat(pageId, 'page/margin/bottom', bleedInPoints);
-      engine.block.setFloat(pageId, 'page/margin/left', bleedInPoints);
-      engine.block.setFloat(pageId, 'page/margin/right', bleedInPoints);
-      engine.block.setBool(pageId, 'page/marginEnabled', true);
+  const previousMargins = new Map(
+    pages.map((id: number) => [id, readMargins(engine, id)])
+  );
+
+  try {
+    if (bleedEnabled && bleedMargin > 0) {
+      const bleed = millimetresInDesignUnit(engine, bleedMargin);
+      filteredPages.forEach((pageId: number) => {
+        writeMargins(engine, pageId, {
+          enabled: true,
+          margins: MARGIN_PROPERTIES.map(() => bleed)
+        });
+      });
+    }
+
+    hiddenPages.forEach((id: number) => {
+      engine.block.setVisible(id, false);
+    });
+
+    const pdfBlob = await engine.block.export(scene, {
+      mimeType: 'application/pdf'
+    });
+
+    // Lazily load the print-ready PDF plugin so its Ghostscript WASM payload is
+    // only fetched when the user actually exports. Resolves to the installed
+    // @imgly/plugin-print-ready-pdfs-web package (bundled as its own chunk), not
+    // a runtime CDN URL.
+    const { convertToPDFX } =
+      await import('@imgly/plugin-print-ready-pdfs-web');
+
+    // Convert to the selected print-ready PDF/X standard (defaults to PDF/X-4)
+    return await convertToPDFX(pdfBlob, {
+      outputProfile: colorProfile,
+      outputStandard,
+      title: 'Print-Ready Export'
+    });
+  } finally {
+    hiddenPages.forEach((id: number) => {
+      engine.block.setVisible(id, true);
+    });
+    previousMargins.forEach((margins, id) => {
+      writeMargins(engine, id, margins);
     });
   }
-
-  // Hide pages from export that are not specified in the range
-  hiddenPages.forEach((id: number) => {
-    engine.block.setVisible(id, false);
-  });
-
-  // Export as standard PDF first
-  const pdfBlob = await engine.block.export(scene, {
-    mimeType: 'application/pdf'
-  });
-
-  // Restore hidden pages
-  hiddenPages.forEach((id: number) => {
-    engine.block.setVisible(id, true);
-  });
-
-  // Lazily load the print-ready PDF plugin so its Ghostscript WASM payload is
-  // only fetched when the user actually exports. Resolves to the installed
-  // @imgly/plugin-print-ready-pdfs-web package (bundled as its own chunk), not
-  // a runtime CDN URL.
-  const { convertToPDFX } = await import('@imgly/plugin-print-ready-pdfs-web');
-
-  // Convert to the selected print-ready PDF/X standard (defaults to PDF/X-4)
-  const printReadyPDF = await convertToPDFX(pdfBlob, {
-    outputProfile: colorProfile,
-    outputStandard,
-    title: 'Print-Ready Export'
-  });
-
-  await localDownload(printReadyPDF, 'my-design-print-ready');
 };
 // #endregion
 
@@ -726,7 +795,7 @@ const exportPrintReadyPDF = async (
 /**
  * Parse page range string and return array of page IDs
  */
-const getPagesFromRange = (
+export const getPagesFromRange = (
   scenePages: number[],
   pageRange: string
 ): number[] => {
@@ -737,7 +806,7 @@ const getPagesFromRange = (
   const regexPattern = /^(\d+-\d+|\d+)(,(\d+-\d+|\d+))*$/;
 
   // Test the input page range against the regex pattern
-  if (!regexPattern.test(pageRange.replace(/\s/, ''))) {
+  if (!regexPattern.test(pageRange.replace(/\s/g, ''))) {
     throw new Error('Invalid page range');
   }
 

@@ -11,8 +11,8 @@
 import { useState } from 'react';
 
 import type { ModerationResult } from '../../types';
-import { resolveAssetPath } from '../../resolveAssetPath';
 import { Tooltip } from './Tooltip';
+import { DEMO_ASSETS_BASE_URL } from '../../../imgly/demo-assets';
 
 interface ResultItemProps {
   result: ModerationResult;
@@ -38,7 +38,7 @@ export function ResultItem({ result, onSelect }: ResultItemProps) {
           onMouseLeave={() => setShowTooltip(false)}
         >
           <img
-            src={resolveAssetPath('/assets/icons/info.svg')}
+            src={`${DEMO_ASSETS_BASE_URL}/assets/icons/info.svg`}
             alt="Info"
             width="16"
             height="16"

@@ -121,7 +121,7 @@ The built-in *Type* defines a *Block's* core behavior and available properties. 
 - `//ly.img.ubq/group` — Group container for organizing blocks
 - `//ly.img.ubq/camera` — Camera for scene viewing
 - `//ly.img.ubq/cutout` — Cutout or mask block
-- `//ly.img.ubq/zone` — Forbidden zone, an editor-only region content must stay out of
+- `//ly.img.ubq/exclusionArea` — An editor-only region content must stay out of
 - `//ly.img.ubq/caption` — Caption or subtitle block
 - `//ly.img.ubq/captionTrack` — Track for captions
 
