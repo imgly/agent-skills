@@ -48,7 +48,7 @@ canvas size.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.1-rc.1/engine-guides-apply-template)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.0/engine-guides-apply-template)
 
 <EngineReferenceNote {...props} />
 

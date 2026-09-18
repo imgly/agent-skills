@@ -128,7 +128,7 @@ Replace the icons used throughout the CE.SDK editor with SF Symbols, asset catal
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.1-rc.1/editor-guides-customization-icons)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.0/editor-guides-customization-icons)
 
 ## How Icons Work
 

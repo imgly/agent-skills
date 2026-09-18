@@ -317,7 +317,7 @@ group.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.1-rc.1/engine-guides-edit-shapes)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.0/engine-guides-edit-shapes)
 
 <EngineReferenceNote {...props} />
 
@@ -644,7 +644,7 @@ Effects — blurs, shadows, filters, extrusions — attach to graphic blocks. Cr
 
 ## Grouping and Ungrouping
 
-`group(_:)` consumes an array of blocks and returns a new group container that transforms them together. `ungroup(_:)` dissolves the container and re-parents the children back to the group's parent. Check whether blocks are eligible to be grouped with `isGroupable(_:)` — all blocks must be on the same page (or none of them on any page), none of them can already be inside another group, and pages and scenes cannot be grouped.
+`group(_:)` consumes an array of blocks and returns a new group container that transforms them together. `ungroup(_:)` dissolves the container and re-parents the children back to the group's parent. Check whether blocks are eligible to be grouped with `isGroupable(_:)` — all blocks must be on the same page (or none of them on any page), none of them can be grouped with a group it sits inside, and pages and scenes cannot be grouped.
 
 ```swift highlight-editShapes-group
   let groupChildA = try engine.block.create(.graphic)

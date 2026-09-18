@@ -16,7 +16,7 @@ Custom, mobile apparel UI for creating print-ready design.
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-apparel-ui-react-web)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.1-rc.1/examples/starterkit-apparel-ui/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/starterkit-apparel-ui/index.html)
 
 ***
 
@@ -54,9 +54,9 @@ The `src/` folder contains the editor code:
 src/
 ├── app/                          # Demo application
 ├── imgly/
-│   ├── ColorUtilities.ts
-│   ├── CreativeEngineUtils.ts
-│   ├── UnsplashSource.ts
+│   ├── color-utilities.ts
+│   ├── creative-engine-utils.ts
+│   ├── unsplash-source.ts
 │   ├── UseEditMode.ts
 │   ├── UseHistory.ts
 │   ├── UseImageUpload.ts

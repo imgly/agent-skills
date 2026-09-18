@@ -6,8 +6,8 @@
 
 import type { Source } from '@cesdk/cesdk-js';
 
-// Export DesignUnit for convenience
-export type { DesignUnit, Source } from '@cesdk/cesdk-js';
+export type { SceneDesignUnit } from '@cesdk/engine';
+export type { Source } from '@cesdk/cesdk-js';
 
 /**
  * Configuration for a backdrop image behind the design area.

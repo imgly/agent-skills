@@ -53,16 +53,16 @@ import {
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 
-import { AdvancedEditorConfig } from './advanced-editor-config/plugin';
-import { DesignEditorConfig } from './design-editor-config/plugin';
+import { AdvancedEditorConfig } from './config/advanced-editor/plugin';
+import { DesignEditorConfig } from './config/design-editor/plugin';
 
 // ============================================================================
 // Re-exports
 // ============================================================================
 
 // Configuration plugins (for advanced use cases)
-export { AdvancedEditorConfig } from './advanced-editor-config/plugin';
-export { DesignEditorConfig } from './design-editor-config/plugin';
+export { AdvancedEditorConfig } from './config/advanced-editor/plugin';
+export { DesignEditorConfig } from './config/design-editor/plugin';
 // Resizing functions
 export { resize } from './resizing';
 export { DEFAULT_SIZES } from './sizes';

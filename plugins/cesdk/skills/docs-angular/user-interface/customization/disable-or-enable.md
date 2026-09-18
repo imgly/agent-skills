@@ -18,7 +18,7 @@ Control which editor features are available to users using the Feature API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.1-rc.1/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
 
 The Feature API provides global control over feature visibility throughout the editor. Use it to hide delete buttons from certain users, disable crop controls based on context, or conditionally enable features based on user roles or selection state. Unlike the Component Order API which targets specific components in specific areas, the Feature API affects features everywhere in the editor at once.
 
@@ -488,6 +488,8 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.replace.fill`        | Controls replacing image/video fill content                                        |
 | `ly.img.replace.shape`       | Controls replacing block shape                                                     |
 | `ly.img.replace.audio`       | Controls replacing audio block content                                             |
+| `ly.img.dragAndDrop`         | Parent key: enables all drag & drop child features                                 |
+| `ly.img.dragAndDrop.asset`   | Controls dragging a library asset onto a block or page                             |
 | `ly.img.group`               | Controls grouping functionality                                                    |
 | `ly.img.group.create`        | Controls grouping multiple selected blocks                                         |
 | `ly.img.group.ungroup`       | Controls dissolving a group                                                        |
@@ -624,15 +626,40 @@ CE.SDK includes many built-in features organized by category:
 
 ### Page Features
 
-| Feature ID                | Description                                                     |
-| ------------------------- | --------------------------------------------------------------- |
-| `ly.img.page`             | Parent key: enables all page child features                     |
-| `ly.img.page.add`         | Controls Add Page button                                        |
-| `ly.img.page.move`        | Controls page move buttons                                      |
-| `ly.img.page.resize`      | Controls Resize button                                          |
-| `ly.img.page.settings`    | Controls read-only page dimensions, unit and resolution display |
-| `ly.img.page.bleedMargin` | Controls bleed margin settings                                  |
-| `ly.img.page.clipContent` | Controls clip content on/off toggle                             |
+| Feature ID                             | Description                                                             |
+| -------------------------------------- | ----------------------------------------------------------------------- |
+| `ly.img.page`                          | Parent key: enables all page child features                             |
+| `ly.img.page.add`                      | Controls Add Page button                                                |
+| `ly.img.page.move`                     | Parent key: controls both page move buttons                             |
+| `ly.img.page.move.up`                  | Controls the page move up/left button                                   |
+| `ly.img.page.move.down`                | Controls the page move down/right button                                |
+| `ly.img.page.resize`                   | Controls Resize button                                                  |
+| `ly.img.page.settings`                 | Controls read-only page dimensions, unit and resolution display         |
+| `ly.img.page.bleedMargin`              | Controls the bleed in the Print Setup panel                             |
+| `ly.img.page.bleedColor`               | Controls the bleed band color row                                       |
+| `ly.img.page.clipContent`              | Controls clip content on/off toggle                                     |
+| `ly.img.page.printMarks`               | Parent key: enables all print mark child features                       |
+| `ly.img.page.printMarks.crop`          | Controls the crop marks                                                 |
+| `ly.img.page.printMarks.exclusionArea` | Controls the exclusion area settings panel and its inspector bar button |
+| `ly.img.page.printMarks.registration`  | Controls the registration marks                                         |
+| `ly.img.page.printMarks.safetyMargin`  | Controls the safety margin section in the Grids & Guides panel          |
+
+### Layer & Page List Features
+
+| Feature ID                      | Description                                                              |
+| ------------------------------- | ------------------------------------------------------------------------ |
+| `ly.img.layerList`              | Parent key: enables all layer and page list child features               |
+| `ly.img.layerList.panel`        | Controls the list panel                                                  |
+| `ly.img.layerList.pages`        | Controls the pages section of the list                                   |
+| `ly.img.layerList.layers`       | Controls the layers section of the list                                  |
+| `ly.img.layerList.combined`     | Shows every page with its layers as one tree instead of the two sections |
+| `ly.img.layerList.canvasFollow` | Scrolls the canvas to the block a row picks                              |
+| `ly.img.layerList.visibility`   | Controls the hide/show toggle on a row                                   |
+| `ly.img.layerList.lock`         | Controls the lock toggle on a row                                        |
+| `ly.img.layerList.reorder`      | Controls dragging a row to reorder it                                    |
+| `ly.img.layerList.rename`       | Controls renaming a row in place                                         |
+| `ly.img.layerList.menu`         | Controls the menu on a row                                               |
+| `ly.img.layerList.thumbnails`   | Controls the thumbnail on every row                                      |
 
 ### Scene Features
 
@@ -700,8 +727,8 @@ If a glob pattern doesn't affect expected features:
 
 ## Next Steps
 
-- [Show/Hide Components](./user-interface/customization/quick-start/show-hide-components.md) - Hide UI elements without
-  disabling functionality
+- [Show/Hide Components](./user-interface/customization/quick-start/show-hide-components.md) - Hide UI elements without disabling
+  functionality
 - [Navigation Bar](./user-interface/customization/navigation-bar.md) - Customize navigation bar buttons
 - [Canvas Menu](./user-interface/customization/canvas-menu.md) - Customize the canvas context menu
 - [Inspector Bar](./user-interface/customization/inspector-bar.md) - Customize the inspector bar

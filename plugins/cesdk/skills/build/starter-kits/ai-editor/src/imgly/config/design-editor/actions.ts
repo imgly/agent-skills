@@ -125,19 +125,6 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   });
   // #endregion
 
-  // #region Export Image Action
-  // Export the current design as a PNG image at 1080x1080 resolution
-  // Customize targetWidth/targetHeight for different output sizes
-  cesdk.actions.register('exportImage', async () => {
-    const { blobs, options } = await cesdk.utils.export({
-      mimeType: 'image/png',
-      targetWidth: 1080,
-      targetHeight: 1080
-    });
-    await cesdk.utils.downloadFile(blobs[0], options.mimeType);
-  });
-  // #endregion
-
   // ============================================================================
   // CUSTOM ACTIONS
   // Register your own actions for custom functionality

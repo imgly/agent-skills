@@ -35,12 +35,7 @@ export function setupCanvas(cesdk: CreativeEditorSDK): void {
   // #region Canvas Bar
   cesdk.ui.setComponentOrder(
     { in: 'ly.img.canvas.bar', at: 'bottom' /* Position: 'top' | 'bottom' */ },
-    [
-      'ly.img.settings.canvasBar',
-      'ly.img.spacer',
-      'ly.img.page.add.canvasBar',
-      'ly.img.spacer'
-    ]
+    ['ly.img.settings.canvasBar', 'ly.img.spacer']
   );
   // #endregion
 

@@ -299,7 +299,7 @@ existing list builder, and creating app-specific controls.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.1-rc.1/editor-guides-configuration-inspector-bar)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.0/editor-guides-configuration-inspector-bar)
 
 ## Inspector Bar Architecture
 
@@ -588,9 +588,10 @@ This table highlights the commonly used public composable helpers on `InspectorB
 | `InspectorBar.Button.rememberSelectGroup` | `InspectorBar.Button.Id.selectGroup` | Selects the group that contains the current selection. | Selections whose parent block is a group |
 | `InspectorBar.Button.rememberEnterGroup` | `InspectorBar.Button.Id.enterGroup` | Changes selection from the selected group to a design block inside that group. | Group selections |
 | `InspectorBar.Button.rememberLayer` | `InspectorBar.Button.Id.layer` | Opens the layer sheet with `EditorEvent.Sheet.Open`. | Non-page, non-audio, non-caption selections with layer, lifecycle, or move scope |
-| `InspectorBar.Button.rememberSplit` | `InspectorBar.Button.Id.split` | Splits the selected block in a video scene. A caption split divides its time at the playhead and its text at the nearest word gap, so the button disables itself unless the playhead sits at least 0.1 seconds away from both the caption's start and its end and the caption holds at least two characters. | Selections with `lifecycle/duplicate` scope |
+| `InspectorBar.Button.rememberSplit` | `InspectorBar.Button.Id.split` | Splits the selected block at the playhead. A caption split divides its time at the playhead and its text at the nearest word gap, so the button disables itself unless the playhead sits at least 0.1 seconds away from both the caption's start and its end and the caption holds at least two characters. | Selections with `lifecycle/duplicate` scope |
 | `InspectorBar.Button.rememberMoveAsClip` | `InspectorBar.Button.Id.moveAsClip` | Moves the selected block into the background track as a clip. | Non-audio, non-caption selections outside the background track |
 | `InspectorBar.Button.rememberMoveAsOverlay` | `InspectorBar.Button.Id.moveAsOverlay` | Moves the selected block from the background track to an overlay. | Non-audio selections in the background track |
+| `InspectorBar.Button.rememberVoiceover` | `InspectorBar.Button.Id.voiceover` | Opens the voiceover recording sheet with `EditorEvent.Sheet.Open` for another take. | Audio selections of kind `voiceover` whose recording is saved |
 | `InspectorBar.Button.rememberReorder` | `InspectorBar.Button.Id.reorder` | Opens the reorder sheet with `EditorEvent.Sheet.Open`. | Selections in a background track with at least two children |
 | `InspectorBar.Button.rememberDuplicate` | `InspectorBar.Button.Id.duplicate` | Duplicates the selected design block. | Non-page, non-caption selections with `lifecycle/duplicate` scope |
 | `InspectorBar.Button.rememberDelete` | `InspectorBar.Button.Id.delete` | Deletes the selected design block. | Non-page selections with `lifecycle/destroy` scope |

@@ -58,6 +58,9 @@ export function EditorModal({
     document.body.classList.add('no-scroll');
     return () => {
       document.body.classList.remove('no-scroll');
+      // START_HIDDEN_BLOCK
+      delete (window as any).cesdk;
+      // END_HIDDEN_BLOCK
     };
   }, []);
 
@@ -67,6 +70,10 @@ export function EditorModal({
       reportDemoPhase('created');
       // END_HIDDEN_BLOCK
       cesdkRef.current = cesdk;
+
+      // START_HIDDEN_BLOCK
+      (window as any).cesdk = cesdk;
+      // END_HIDDEN_BLOCK
 
       // Initialize editor based on type
       if (type === 'template') {
@@ -87,7 +94,7 @@ export function EditorModal({
           in: 'ly.img.navigation.bar',
           match: { id: 'ly.img.title.navigationBar' }
         },
-        { payload: { title } }
+        { title }
       );
 
       // Register save action (app-layer)

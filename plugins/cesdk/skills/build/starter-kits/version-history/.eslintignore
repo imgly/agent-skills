@@ -1,6 +1,0 @@
-dist/
-build/
-release/
-node_modules/
-*.min.js
-tests/

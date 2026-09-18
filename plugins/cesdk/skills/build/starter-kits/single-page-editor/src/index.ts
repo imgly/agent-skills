@@ -10,21 +10,12 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initSinglePageEditor } from './imgly';
+import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
+export { DEMO_ASSETS_BASE_URL };
 // END_HIDDEN_BLOCK
-
-/**
- * Demo assets for this example (scene archives, …) are loaded from the
- * IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1-rc.1/starterkit-single-page-editor';
 
 // ============================================================================
 // Configuration
@@ -60,8 +51,9 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // Debug access (remove in production)
+    // START_HIDDEN_BLOCK
     (window as any).cesdk = cesdk;
+    // END_HIDDEN_BLOCK
 
     await initSinglePageEditor(cesdk);
     // ============================================================================

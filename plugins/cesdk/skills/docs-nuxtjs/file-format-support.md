@@ -10,6 +10,10 @@
 
 ## Exporting Media
 
+You can also export scenes to HTML — static designs and animated video
+timelines — with the separate `@imgly/html-exporter` package, which runs in the
+browser and in Node.js.
+
 ## Importing Templates
 
 See [Import and Export](./concepts/import-export.md) for

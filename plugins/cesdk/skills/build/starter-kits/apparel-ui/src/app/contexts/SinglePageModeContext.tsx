@@ -6,7 +6,7 @@ import {
   useEffect,
   useState
 } from 'react';
-import { zoomToSelectedText } from '../../imgly/CreativeEngineUtils';
+import { zoomToSelectedText } from '../../imgly/creative-engine-utils';
 import { useEngine } from './EngineContext';
 import { useEditMode } from '../hooks/UseEditMode';
 
@@ -196,13 +196,14 @@ export const SinglePageModeProvider = ({
     const isValid =
       currentPageBlockId && engine.block.isValid(currentPageBlockId);
     if (isValid) {
-      return engine.scene.zoomToBlock(
-        currentPageBlockId,
-        paddingLeft,
-        paddingTop,
-        paddingRight,
-        paddingBottom
-      );
+      return engine.scene.zoomToBlock(currentPageBlockId, {
+        padding: {
+          left: paddingLeft,
+          top: paddingTop,
+          right: paddingRight,
+          bottom: paddingBottom
+        }
+      });
     }
   }, [
     enabled,
@@ -221,13 +222,14 @@ export const SinglePageModeProvider = ({
     const selectedBlock = engine.block.findAllSelected()[0];
     const isValid = selectedBlock && engine.block.isValid(selectedBlock);
     if (isValid) {
-      return engine.scene.zoomToBlock(
-        selectedBlock,
-        paddingLeft,
-        paddingTop,
-        paddingRight,
-        paddingBottom
-      );
+      return engine.scene.zoomToBlock(selectedBlock, {
+        padding: {
+          left: paddingLeft,
+          top: paddingTop,
+          right: paddingRight,
+          bottom: paddingBottom
+        }
+      });
     }
   }, [enabled, engine, paddingLeft, paddingTop, paddingRight, paddingBottom]);
 

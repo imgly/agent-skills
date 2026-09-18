@@ -320,6 +320,105 @@ and custom interface elements within the editor.
   ```
 </details>
 
+## Bar Positioning
+
+<details>
+  <summary>
+    ### setNavigationBarPosition
+
+    <br /><p>Sets whether the navigation bar renders above or below the canvas.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `position` | [`BarPosition`](./api/cesdk-js/type-aliases/barposition.md) | `'top'` or `'bottom'`. Defaults to `'top'`. |
+
+  #### Returns
+
+  `void`
+
+  #### Example
+
+  ```javascript
+  cesdk.ui.setNavigationBarPosition('bottom');
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getNavigationBarPosition()
+
+    <br /><p>Gets the current position of the navigation bar.</p>
+  </summary>
+
+  #### Returns
+
+  [`BarPosition`](./api/cesdk-js/type-aliases/barposition.md)
+
+  `'top'` or `'bottom'`.
+
+  #### Signature
+
+  ```typescript
+  getNavigationBarPosition(): BarPosition
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setInspectorBarPosition
+
+    <br /><p>Sets whether the inspector bar floats over the top or the bottom edge of the canvas.</p>
+  </summary>
+
+  At `'bottom'` the bar stacks above the bottom canvas bar and above the video
+  timeline.
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `position` | [`BarPosition`](./api/cesdk-js/type-aliases/barposition.md) | `'top'` or `'bottom'`. Defaults to `'top'`. |
+
+  #### Returns
+
+  `void`
+
+  #### Example
+
+  ```javascript
+  cesdk.ui.setInspectorBarPosition('bottom');
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getInspectorBarPosition()
+
+    <br /><p>Gets the current position of the inspector bar.</p>
+  </summary>
+
+  #### Returns
+
+  [`BarPosition`](./api/cesdk-js/type-aliases/barposition.md)
+
+  `'top'` or `'bottom'`.
+
+  #### Signature
+
+  ```typescript
+  getInspectorBarPosition(): BarPosition
+  ```
+</details>
+
 ## Component Registration
 
 <details>

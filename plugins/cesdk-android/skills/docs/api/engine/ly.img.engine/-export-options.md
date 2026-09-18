@@ -6,7 +6,7 @@
 The export options.
 
 ```kotlin
-data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val allowTextOverhang: Boolean = false, val pdfImageQuality: Float = 1.0f)
+data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f)
 ```
 
 
@@ -15,7 +15,7 @@ data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Floa
 ### ExportOptions
 
 ```kotlin
-constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, allowTextOverhang: Boolean = false, pdfImageQuality: Float = 1.0f)
+constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f)
 ```
 
 ### allowTextOverhang
@@ -26,6 +26,22 @@ val allowTextOverhang: Boolean = false
 
 If true, the export will include text bounding boxes that account for glyph overhangs. When enabled, text blocks with glyphs that extend beyond their frame (e.g., decorative fonts with swashes) will be exported with the full glyph bounds visible, preventing text clipping. The default value is false.
 
+### cropMarkLength
+
+```kotlin
+val cropMarkLength: Float = 0.0f
+```
+
+Length of one crop mark line, in design units. It shares the unit of printMarkOffset, because the exported sheet grows by the sum of the two. Values <= 0 fall back to the equivalent of 15 pt. Only used when exportPdfWithCropMarks is true.
+
+### exportPdfWithCropMarks
+
+```kotlin
+val exportPdfWithCropMarks: Boolean = false
+```
+
+Draw crop marks outside the bleed on every exported PDF page. Crop marks are the four pairs of corner lines that show a print shop where to cut. They are painted in the PDF registration colorant All, so they appear on every separation. This grows the PDF MediaBox to the trim plus printMarkOffset + cropMarkLength on each side, because the marks live outside the bleed. The page content, the TrimBox and the BleedBox keep describing the same physical rectangles. A page whose trim is not a rectangle, so a page with page/marginScale above 1, gets no marks and no larger page. The default value is false.
+
 ### exportPdfWithHighCompatibility
 
 ```kotlin
@@ -33,6 +49,14 @@ val exportPdfWithHighCompatibility: Boolean = true
 ```
 
 Export the PDF document with a higher compatibility to different PDF viewers. Bitmap images and some effects like gradients will be rasterized with the DPI setting instead of embedding them directly. The default value is true.
+
+### exportPdfWithRegistrationMarks
+
+```kotlin
+val exportPdfWithRegistrationMarks: Boolean = false
+```
+
+Draw registration marks outside the bleed on every exported PDF page. A registration mark is the bullseye target a press operator aligns the plates by. One sits at the middle of each page edge, and each is painted in the PDF registration colorant All, so they appear on every separation. This grows the PDF MediaBox on the same terms as exportPdfWithCropMarks, and a page whose trim is not a rectangle gets no marks either. A registration mark has one fixed size, so there is no knob for it. The default value is false.
 
 ### exportPdfWithUnderlayer
 
@@ -65,6 +89,22 @@ val pngCompressionLevel: Int = 5
 ```
 
 The PNG compression level to use, when exporting to PNG. Valid values are 0 to 9, higher means smaller, but slower. Quality is not affected. Ignored for other encodings. The default value is 5.
+
+### printMarkOffset
+
+```kotlin
+val printMarkOffset: Float
+```
+
+Distance from the trim to the nearest edge of any printer's mark, in design units. Every mark type shares it, so it is comparable with the page bleed without converting. A negative value falls back to the equivalent of 6 pt. Zero is a real offset that places a mark on the trim edge. A mark may reach into the bleed, which the knife removes anyway, and every mark carries a white knockout underneath so it stays legible over artwork. Only used when exportPdfWithCropMarks or exportPdfWithRegistrationMarks is true.
+
+### printMarkWidth
+
+```kotlin
+val printMarkWidth: Float = 0.25f
+```
+
+Stroke width of any printer's mark, in points. Every mark type shares it, and a print shop calls it the weight. Points, not design units, because a weight is a print measure that never meets the page geometry. Must be 0. Values <= 0 fall back to 0.25, a hairline. Only used when exportPdfWithCropMarks or exportPdfWithRegistrationMarks is true.
 
 ### targetHeight
 

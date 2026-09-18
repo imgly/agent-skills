@@ -20,6 +20,7 @@ export function UploadZone({
   filetypeNotice = 'Supports .idml Format'
 }: UploadZoneProps) {
   const [isDragging, setIsDragging] = useState(false);
+  const [rejection, setRejection] = useState<string | null>(null);
 
   const handleDragEnter = (e: React.DragEvent) => {
     e.preventDefault();
@@ -50,8 +51,12 @@ export function UploadZone({
 
     const fileExtension = file.name.split('.').pop()?.toLowerCase();
     if (!fileExtension) return;
-    if (!accept.includes(`.${fileExtension}`)) return;
+    if (!accept.includes(`.${fileExtension}`)) {
+      setRejection(`Only ${accept.join(', ')} files can be imported.`);
+      return;
+    }
 
+    setRejection(null);
     onUpload(file);
   };
 
@@ -60,10 +65,15 @@ export function UploadZone({
     if (!files || files.length === 0) return;
 
     const [file] = Array.from(files);
-    if (!file) return;
-
-    onUpload(file);
     event.target.value = '';
+    const fileExtension = file.name.split('.').pop()?.toLowerCase();
+    if (!fileExtension || !accept.includes(`.${fileExtension}`)) {
+      setRejection(`Only ${accept.join(', ')} files can be imported.`);
+      return;
+    }
+
+    setRejection(null);
+    onUpload(file);
   };
 
   return (
@@ -91,6 +101,11 @@ export function UploadZone({
         accept={accept.join(',')}
       />
       <small className={classes.filetypeNotice}>{filetypeNotice}</small>
+      {rejection != null && (
+        <small role="alert" className={classes.rejection}>
+          {rejection}
+        </small>
+      )}
     </label>
   );
 }

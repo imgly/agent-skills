@@ -7,8 +7,14 @@ import {
 } from '../contexts/EditorContext';
 import FlipHorizontalIcon from '../icons/FlipHorizontal.svg';
 import RotateCCWIcon from '../icons/RotateCCW.svg';
-import { useProperty } from '../../imgly/hooks/useSelectedProperty';
-import { getImageSize } from '../../imgly/engine-utils';
+import { useProperty } from '../hooks/useSelectedProperty';
+import {
+  cropScaleRatioToZoomPercentage,
+  degreesToRadians,
+  getImageSize,
+  radiansToDegree,
+  zoomPercentageToCropScaleRatio
+} from '../../imgly';
 import AdjustmentButton from '../AdjustmentButton/AdjustmentButton';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import ResetButton from '../ResetButton/ResetButton';
@@ -113,7 +119,6 @@ const CropModeSecondary = () => {
       engine.editor?.setGlobalScope('design/arrange' as any, 'Deny');
       engine.editor?.setEditMode('Transform');
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -236,24 +241,3 @@ const CropModeSecondary = () => {
   );
 };
 export default CropModeSecondary;
-
-/**
- * Transforms a cropScaleRatio into a percentage based zoom value
- * @param cropScaleRatio The CropScaleRatio of an image
- * @returns Percentage of the current zoom. 0% equals when no zoom applied. 100% when 'fully' zoomed in.
- */
-function cropScaleRatioToZoomPercentage(cropScaleRatio: number): number {
-  return Math.round((1 - 1 / cropScaleRatio) * 100);
-}
-
-function zoomPercentageToCropScaleRatio(zoomPercentage: number): number {
-  return -(100 / (Math.min(99.9, zoomPercentage) - 100));
-}
-
-function radiansToDegree(radians: number): number {
-  return Math.round(radians * (180 / Math.PI));
-}
-
-function degreesToRadians(degrees: number): number {
-  return (degrees * Math.PI) / 180;
-}

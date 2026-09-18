@@ -992,6 +992,8 @@ The Actions API provides four methods:
     - `sendToBack` - Send the selection to the back
     - `reorder.moveToIndex` - Move the selection to a specific layer index
     - `reparent` - Move the selection under a new parent
+    - `selection.bringForward` / `selection.sendBackward` - Move every selected block one step towards the front / back
+    - `selection.bringToFront` / `selection.sendToBack` - Move every selected block in front of / behind every sibling
 
     ### Appearance
 
@@ -1027,7 +1029,7 @@ The Actions API provides four methods:
     - `text.toggleBold` - Toggle bold on the selected text
     - `text.toggleItalic` - Toggle italic on the selected text
     - `text.fontSize` - Set the font size
-    - `text.align` - Set the text alignment (left/center/right)
+    - `text.align` - Set the text alignment (left/center/right/justify)
     - `text.case` - Set the text case (normal/upper/lower/title)
     - `text.color` - Set the text color
     - `text.lineHeight` - Set the line height
@@ -1077,6 +1079,7 @@ The Actions API provides four methods:
     - `drag.begin` - Begin a drag gesture on blocks
     - `drag.end` - End a drag gesture on blocks
     - `secondaryAction` - The secondary (context) action at a position
+    - `asset.drop` - An asset dropped on the canvas, with the block and page below the drop
   </TabItem>
 
   <TabItem label="Headless Actions">
@@ -1187,7 +1190,7 @@ The Actions API provides four methods:
     - `text.toggleBold` - Toggle bold on the selected text
     - `text.toggleItalic` - Toggle italic on the selected text
     - `text.fontSize` - Set the font size
-    - `text.align` - Set the text alignment (left/center/right)
+    - `text.align` - Set the text alignment (left/center/right/justify)
     - `text.case` - Set the text case (normal/upper/lower/title)
     - `text.color` - Set the text color
     - `text.lineHeight` - Set the line height
@@ -1237,6 +1240,7 @@ The Actions API provides four methods:
     - `drag.begin` - Begin a drag gesture on blocks
     - `drag.end` - End a drag gesture on blocks
     - `secondaryAction` - The secondary (context) action at a position
+    - `asset.drop` - An asset dropped on the canvas, with the block and page below the drop
 
     ## Overriding Engine Defaults Safely
 

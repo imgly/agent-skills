@@ -33,7 +33,22 @@ struct RecordVoiceoverSolution: View {
           }
           builder.bottomPanel { bottomPanel in
             bottomPanel.content { context in
-              DefaultTimelineComponent(context: context)
+              Timeline(context: context, configuration: .init { builder in
+                // The timeline renders tracks alone by default, so declare the playback controls.
+                builder.header { _ in
+                  Timeline.ItemGroup(placement: .leading) {
+                    Timeline.Labels.timecode()
+                    Timeline.Spacer()
+                  }
+                  Timeline.ItemGroup(placement: .center) {
+                    Timeline.Buttons.playPause()
+                  }
+                  Timeline.ItemGroup(placement: .trailing) {
+                    Timeline.Spacer()
+                    Timeline.Buttons.toggleExpanded()
+                  }
+                }
+              })
             }
           }
           builder.dock { dock in
@@ -87,11 +102,11 @@ playback controls.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.1-rc.1/editor-guides-create-audio-audio-record-voiceover)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.0/editor-guides-create-audio-audio-record-voiceover)
 
 Voiceover recording is an editor UI feature provided by `IMGLYEditor`. Recordings are stored as audio blocks with the kind `"voiceover"` so they can be styled and managed separately from regular audio tracks.
 
-The example builds on `GuideEditorConfiguration` — a small helper class the iOS guides repository ships at [`editor-guides-quickstart/GuideEditorConfiguration.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.82.1-rc.1/editor-guides-quickstart/GuideEditorConfiguration.swift). Substitute your own editor configuration class — the builders shown below are exposed on every configuration.
+The example builds on `GuideEditorConfiguration` — a small helper class the iOS guides repository ships at [`editor-guides-quickstart/GuideEditorConfiguration.swift`](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-rc.0/editor-guides-quickstart/GuideEditorConfiguration.swift). Substitute your own editor configuration class — the builders shown below are exposed on every configuration.
 
 ## Microphone Permission
 
@@ -121,12 +136,27 @@ builder.onCreate { engine, _ in
 
 The page's `duration` (in seconds) sets the playback range the timeline ruler scrubs through. Width and height are in design units — 1080×1080 produces a square canvas.
 
-Then mount `DefaultTimelineComponent` from `IMGLYEditor` as the editor's bottom-panel content. It renders the play/pause button, the time ruler, and a row per recorded voiceover or audio clip.
+Then mount `Timeline` from `IMGLYEditor` as the editor's bottom-panel content. It renders the play/pause button, the time ruler, and a row per recorded voiceover or audio clip.
 
 ```swift highlight-recordVoiceover-bottomPanel
 builder.bottomPanel { bottomPanel in
   bottomPanel.content { context in
-    DefaultTimelineComponent(context: context)
+    Timeline(context: context, configuration: .init { builder in
+      // The timeline renders tracks alone by default, so declare the playback controls.
+      builder.header { _ in
+        Timeline.ItemGroup(placement: .leading) {
+          Timeline.Labels.timecode()
+          Timeline.Spacer()
+        }
+        Timeline.ItemGroup(placement: .center) {
+          Timeline.Buttons.playPause()
+        }
+        Timeline.ItemGroup(placement: .trailing) {
+          Timeline.Spacer()
+          Timeline.Buttons.toggleExpanded()
+        }
+      }
+    })
   }
 }
 ```
@@ -182,7 +212,7 @@ The helper is marked `@MainActor` because all engine calls must run on the main 
 | --- | --- |
 | `engine.scene.create()` | Create a new scene |
 | `engine.block.setDuration(_:duration:)` | Set the page's playback duration in seconds |
-| `DefaultTimelineComponent(context:)` | Bottom-panel view that renders the timeline and playback controls |
+| `Timeline(context:)` | Bottom-panel view that renders the timeline and playback controls |
 | `Dock.Buttons.voiceover(action:title:icon:isEnabled:isVisible:)` | Dock button that opens the voiceover recording sheet |
 | `InspectorBar.Buttons.addVoiceoverRecording(action:title:icon:isEnabled:isVisible:)` | Inspector bar button that records another take as a new voiceover block |
 | `engine.block.getType(_:)` | Returns a block's type — audio blocks return `DesignBlockType.audio.rawValue` |

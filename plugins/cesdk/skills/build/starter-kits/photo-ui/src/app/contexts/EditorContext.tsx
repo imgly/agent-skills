@@ -15,31 +15,17 @@ import {
   useState,
   type ReactNode
 } from 'react';
-import { useSinglePageFocus } from '../../imgly/hooks/useSinglePageFocus';
-import { getImageSize } from '../../imgly/engine-utils';
+import { useSinglePageFocus } from '../hooks/useSinglePageFocus';
+import {
+  initPhotoEditor,
+  pickInitialImagePath,
+  setImageSource,
+  setupPhotoScene
+} from '../../imgly';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
 // END_HIDDEN_BLOCK
-
-/**
- * Demo assets for this example (images, …) are loaded from
- * the IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1-rc.1/starterkit-photo-ui';
-
-const INITIAL_PORTRAIT_IMAGE_PATH = `${DEMO_ASSETS_BASE_URL}/images/mountains.jpg`;
-const INITIAL_LANDSCAPE_IMAGE_PATH = `${DEMO_ASSETS_BASE_URL}/images/woman.jpg`;
-// For demonstration purposes we initially use either a portrait or a landscape image
-const INITIAL_IMAGE_PATH =
-  window.innerWidth / window.innerHeight > 1
-    ? INITIAL_PORTRAIT_IMAGE_PATH
-    : INITIAL_LANDSCAPE_IMAGE_PATH;
 
 const ENABLE_AUTO_RECENTER = true;
 export const CANVAS_COLOR = { r: 236, g: 236, b: 238 };
@@ -82,7 +68,9 @@ export function EditorProvider({
   const [engine, setEngine] = useState<CreativeEngine | null>(null);
   const [canRecenter, setCanRecenter] = useState(false);
   const [editMode, setEditMode] = useState('Transform');
-  const [selectedImageUrl, setSelectedImageUrl] = useState(INITIAL_IMAGE_PATH);
+  const [selectedImageUrl, setSelectedImageUrl] = useState(() =>
+    pickInitialImagePath(window.innerWidth, window.innerHeight)
+  );
 
   const {
     setEnabled: setFocusEnabled,
@@ -144,24 +132,20 @@ export function EditorProvider({
         return;
       }
 
-      // Configure engine settings
-      engineInstance.editor.setSetting('mouse/enableScroll', false);
-      engineInstance.editor.setSetting('mouse/enableZoom', false);
-      engineInstance.editor.setSetting('page/title/show', false);
-
-      // Debug access (remove in production)
-      if (typeof window !== 'undefined') {
-        (window as Window & { cesdk?: CreativeEngine }).cesdk = engineInstance;
-      }
+      //START_HIDDEN_BLOCK
+      (window as Window & { cesdk?: CreativeEngine }).cesdk = engineInstance;
+      //END_HIDDEN_BLOCK
 
       // Set up state change listener
       engineInstance.editor.onStateChanged(() =>
         editorUpdateCallbackRef.current()
       );
 
-      // Set up the photo scene immediately after engine init
-      const initialImageUrl = INITIAL_IMAGE_PATH;
-      await setupPhotoScene(engineInstance, initialImageUrl);
+      // Configure the engine and set up the photo scene
+      await initPhotoEditor(
+        engineInstance,
+        pickInitialImagePath(window.innerWidth, window.innerHeight)
+      );
 
       if (!mounted) {
         engineInstance.dispose();
@@ -193,7 +177,6 @@ export function EditorProvider({
       engineInstance?.dispose();
       setEngineIsLoaded(false);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const value: EditorContextValue = {
@@ -223,54 +206,4 @@ export function useEditor(): EditorContextValue {
     throw new Error('useEditor must be used within an EditorProvider');
   }
   return context;
-}
-
-/**
- * Setup a photo editing scene with a single page containing an image fill.
- */
-async function setupPhotoScene(
-  engine: CreativeEngine,
-  src: string
-): Promise<void> {
-  engine.editor.setSetting('page/dimOutOfPageAreas', false);
-  engine.editor.setSetting('highlightColor', { r: 1, g: 1, b: 1, a: 1 });
-  engine.editor.setSetting('cropOverlayColor', { r: 1, g: 1, b: 1, a: 0.55 });
-  engine.editor.setGlobalScope('design/arrange' as any, 'Allow');
-
-  // We recreate the scene to discard all changes
-  const existingScene = engine.scene.get();
-  if (existingScene) await engine.block.destroy(existingScene);
-
-  const scene = await engine.scene.create();
-  engine.block.setEnum(scene, 'scene/designUnit', 'Pixel');
-
-  const page = await engine.block.create('page');
-  engine.block.setVisible(page, false);
-  engine.block.setBool(page, 'page/marginEnabled', false);
-
-  const fill = await engine.block.createFill('image');
-  await engine.block.appendChild(scene, page);
-  await engine.block.setFill(page, fill);
-
-  await setImageSource(engine, page, src);
-  await engine.block.setClipped(page, false);
-}
-
-/**
- * Set the image source on a page block.
- */
-async function setImageSource(
-  engine: CreativeEngine,
-  pageBlock: number,
-  imageSrc: string
-): Promise<void> {
-  engine.editor.setGlobalScope('design/arrange' as any, 'Allow');
-  const imageFill = engine.block.getFill(pageBlock);
-  const { height, width } = await getImageSize(imageSrc);
-  engine.block.setWidth(pageBlock, width);
-  engine.block.setHeight(pageBlock, height);
-  await engine.block.setString(imageFill, 'fill/image/imageFileURI', imageSrc);
-  engine.block.resetCrop(pageBlock);
-  engine.editor.setGlobalScope('design/arrange' as any, 'Deny');
-  engine.editor.setSetting('doubleClickToCropEnabled', false);
 }

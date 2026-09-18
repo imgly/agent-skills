@@ -41,6 +41,10 @@ export function EditorModal({
       // START_HIDDEN_BLOCK
       reportDemoPhase('created');
       // END_HIDDEN_BLOCK
+      // START_HIDDEN_BLOCK
+      (window as any).cesdk = cesdk;
+      // END_HIDDEN_BLOCK
+
       // Select the appropriate editor based on mode
       if (mode === 'design') {
         await initAutomatedResizingDesignEditor(cesdk);
@@ -73,6 +77,16 @@ export function EditorModal({
   const handleBackdropClick = useCallback(() => {
     onClose();
   }, [onClose]);
+
+  // The debug handle only describes the editor that is currently open.
+  useEffect(() => {
+    if (!isOpen) return;
+    return () => {
+      // START_HIDDEN_BLOCK
+      delete (window as any).cesdk;
+      // END_HIDDEN_BLOCK
+    };
+  }, [isOpen]);
 
   // Handle escape key
   useEffect(() => {

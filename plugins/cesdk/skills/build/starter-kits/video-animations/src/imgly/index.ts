@@ -34,20 +34,12 @@ import type { AssetDefinition, AssetResult } from '@cesdk/cesdk-js';
 
 // Configuration and plugins
 import { VideoEditorConfig } from './config/plugin';
+import { DEMO_ASSETS_BASE_URL } from './demo-assets';
+export { DEMO_ASSETS_BASE_URL };
 
 // Re-export for external use
 export { VideoEditorConfig } from './config/plugin';
-
-/**
- * Demo assets for this example (scenes, audio, icons, …) are loaded from the
- * IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1-rc.1/starterkit-video-animations';
+export { openAnimationPanel } from './animation-panel';
 
 // ============================================================================
 // Types
@@ -191,29 +183,6 @@ function persistSelectedTemplateToURL(templateName: string) {
   const url = new URL(window.location.href);
   url.searchParams.set('template', templateName);
   window.history.pushState({}, '', url);
-}
-
-// ============================================================================
-// Animation Panel Helper
-// ============================================================================
-
-export async function openAnimationPanel(instance: CreativeEditorSDK) {
-  const engine = instance.engine;
-  for (const block of engine.block.findAll()) {
-    // Get background clips
-    if (engine.block.isAlwaysOnBottom(block)) {
-      for (const child of engine.block.getChildren(block)) {
-        // Select the first one that is visible
-        if (engine.block.isVisibleAtCurrentPlaybackTime(child)) {
-          engine.block.select(child);
-          await new Promise((resolve) => setTimeout(resolve, 100));
-          instance.ui.openPanel('//ly.img.panel/inspector/animation');
-          break;
-        }
-      }
-      break;
-    }
-  }
 }
 
 /**

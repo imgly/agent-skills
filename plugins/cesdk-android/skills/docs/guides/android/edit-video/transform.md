@@ -184,7 +184,7 @@ locking them in CE.SDK for Android.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.1-rc.1/engine-guides-video-transform)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.0/engine-guides-video-transform)
 
 <EngineReferenceNote {...props} />
 
@@ -307,7 +307,7 @@ For templates, disable individual transform scopes and use the transform lock fo
         val cropAllowed = engine.block.isAllowedByScope(lockedVideo, key = "layer/crop")
 ```
 
-Use individual scopes when one operation should remain available, such as allowing crop but preventing movement. Disable `layer/crop` when crop or content reframing must stay fixed. `setTransformLocked()` protects block-frame geometry such as moving, rotating, flipping, scaling, and resizing; crop setters use the `layer/crop` permission path instead. `isScopeEnabled()` reads only the block-level flag, while `isAllowedByScope()` combines the global and block-level scope state. Android API calls enforce scope checks only when `debug/enforceScopesInAPIs` is enabled.
+Use individual scopes when one operation should remain available, such as allowing crop but preventing movement. Disable `layer/crop` when crop or content reframing must stay fixed. `setTransformLocked()` protects block-frame geometry such as moving, rotating, flipping, scaling, and resizing; crop setters use the `layer/crop` permission path instead. A lock applies down the hierarchy, so a child of a locked group cannot be transformed either. Each block keeps its own flag, so unlocking the group leaves a child that was locked on its own still locked. A page is the exception: locking a page holds the page and not what sits on it. `isScopeEnabled()` reads only the block-level flag, while `isAllowedByScope()` combines the global and block-level scope state. Android API calls enforce scope checks only when `debug/enforceScopesInAPIs` is enabled.
 
 ## Troubleshooting
 

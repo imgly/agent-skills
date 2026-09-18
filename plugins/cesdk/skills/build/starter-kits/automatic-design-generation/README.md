@@ -83,7 +83,7 @@ See [Localization](https://img.ly/docs/cesdk/js/user-interface/localization-508e
 src/
 ├── app/                          # Demo application
 ├── imgly/
-│   ├── design/
+│   ├── config/design/
 │   │   ├── actions.ts                # Export/import actions
 │   │   ├── features.ts               # Feature toggles
 │   │   ├── i18n.ts                   # Translations
@@ -99,7 +99,7 @@ src/
 │   │       └── panel.ts                  # Panel configuration
 │   ├── generation.ts             # Design generation logic
 │   ├── index.ts                  # Editor initialization function
-│   └── video/
+│   └── config/video/
 │       ├── actions.ts                # Export/import actions
 │       ├── features.ts               # Feature toggles
 │       ├── i18n.ts                   # Translations

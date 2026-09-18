@@ -18,7 +18,7 @@ Convert colors between sRGB, CMYK, and spot color spaces programmatically in CE.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-conversion-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.1-rc.1/examples/guides-colors-conversion-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/guides-colors-conversion-browser/index.html)
 
 CE.SDK supports three color spaces: sRGB, CMYK, and SpotColor. When building color interfaces or preparing designs for export, you may need to convert colors between these spaces. The engine handles the mathematical conversion automatically through the `convertColorToColorSpace()` API.
 
@@ -222,6 +222,10 @@ class Example implements EditorPlugin {
     const cmykColor = engine.block.getColor(cmykFill, 'fill/color/value');
     const spotColor = engine.block.getColor(spotFill, 'fill/color/value');
 
+    // A CMYK conversion reads the document CMYK profile, which is a resource. Load it once so
+    // the conversions below do not have to handle COLOR.PROFILE_NOT_LOADED.
+    await engine.editor.loadCMYKProfile();
+
     // Convert CMYK to sRGB
     const cmykToRgba = engine.editor.convertColorToColorSpace(
       cmykColor,
@@ -376,6 +380,10 @@ Use `engine.editor.convertColorToColorSpace(color, 'sRGB')` to convert any color
     const srgbColor = engine.block.getColor(srgbFill, 'fill/color/value');
     const cmykColor = engine.block.getColor(cmykFill, 'fill/color/value');
     const spotColor = engine.block.getColor(spotFill, 'fill/color/value');
+
+    // A CMYK conversion reads the document CMYK profile, which is a resource. Load it once so
+    // the conversions below do not have to handle COLOR.PROFILE_NOT_LOADED.
+    await engine.editor.loadCMYKProfile();
 
     // Convert CMYK to sRGB
     const cmykToRgba = engine.editor.convertColorToColorSpace(

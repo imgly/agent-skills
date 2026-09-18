@@ -2687,6 +2687,36 @@ case codecWebcodecsNotAvailableNode
 case codecWebcodecsNotSupported
 ```
 
+### EngineErrorCode.colorProfileInvalid
+
+```swift
+case colorProfileInvalid
+```
+
+### EngineErrorCode.colorProfileMissing
+
+```swift
+case colorProfileMissing
+```
+
+### EngineErrorCode.colorProfileNotLoaded
+
+```swift
+case colorProfileNotLoaded
+```
+
+### EngineErrorCode.colorProfileSpaceMismatch
+
+```swift
+case colorProfileSpaceMismatch
+```
+
+### EngineErrorCode.colorProfileUnsupportedSpace
+
+```swift
+case colorProfileUnsupportedSpace
+```
+
 ### EngineErrorCode.computeColorSpaceBitDepthUnsupported
 
 ```swift
@@ -4097,6 +4127,12 @@ case licenseAvSessionRequiresApiKey
 case licenseCannotDeactivateOffline
 ```
 
+### EngineErrorCode.licenseClaimInvalid
+
+```swift
+case licenseClaimInvalid
+```
+
 ### EngineErrorCode.licenseDeactivationTimeout
 
 ```swift
@@ -4365,6 +4401,12 @@ case sceneArchivalRequestFailed
 
 ```swift
 case sceneArchiveAddResourceFailed
+```
+
+### EngineErrorCode.sceneArchiveBufferDataMissing
+
+```swift
+case sceneArchiveBufferDataMissing
 ```
 
 ### EngineErrorCode.sceneArchiveChunkReadFailed

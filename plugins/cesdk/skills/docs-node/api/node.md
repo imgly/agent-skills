@@ -141,6 +141,7 @@
 | [PropertyType](./api/node/type-aliases/propertytype.md) | Represents the various types of properties that can be associated with design blocks. Each type corresponds to a different kind of data that can be used to define the properties of a design block within the system. |
 | [RGBA](./api/node/type-aliases/rgba.md) | Represents a color in the RGBA color space. |
 | [RoleString](./api/node/type-aliases/rolestring.md) | Represents a role string. |
+| [SceneColorConversionMode](./api/node/type-aliases/scenecolorconversionmode.md) | - |
 | [DesignUnit](./api/node/type-aliases/designunit.md) | - |
 | [SceneFontSizeUnit](./api/node/type-aliases/scenefontsizeunit.md) | - |
 | [SceneLayout](./api/node/type-aliases/scenelayout.md) | - |
@@ -231,6 +232,7 @@
 | [AssetFreeAspectRatio](./api/node/interfaces/assetfreeaspectratio.md) | Asset transform preset payload free aspect ratio |
 | [AssetNumberProperty](./api/node/interfaces/assetnumberproperty.md) | Asset number property definition |
 | [AssetPayload](./api/node/interfaces/assetpayload.md) | Asset payload |
+| [AssetPlacement](./api/node/interfaces/assetplacement.md) | Where the block created from an asset is placed. |
 | [AssetQueryData](./api/node/interfaces/assetquerydata.md) | Defines a request for querying assets |
 | [AssetResult](./api/node/interfaces/assetresult.md) | Single asset result of a query from the engine. |
 | [AssetRGBColor](./api/node/interfaces/assetrgbcolor.md) | Asset Color payload RGB representation |
@@ -251,6 +253,7 @@
 | [CompleteAssetResult](./api/node/interfaces/completeassetresult.md) | Asset results that are returned from the engine. |
 | [CompressionOptions](./api/node/interfaces/compressionoptions.md) | Compression settings for a serialized scene. |
 | [Configuration](./api/node/interfaces/configuration.md) | Specifies the configuration for the Creative Editor SDK. |
+| [DefaultApplyAssetOptions](./api/node/interfaces/defaultapplyassetoptions.md) | Options for `asset.defaultApplyAsset`. |
 | [DominantColor](./api/node/interfaces/dominantcolor.md) | A single color extracted from the rendered appearance of a block. |
 | [DominantColorsOptions](./api/node/interfaces/dominantcolorsoptions.md) | Options for `BlockAPI.getDominantColors`. |
 | [EngineActionInfo](./api/node/interfaces/engineactioninfo.md) | Info about a registered action, from [EngineActions.list](./api/node/classes/engineactions.md). |
@@ -319,6 +322,7 @@
 | [PlaybackFadeOutEasingValues](./api/node/variables/playbackfadeouteasingvalues.md) | - |
 | [PositionXModeValues](./api/node/variables/positionxmodevalues.md) | - |
 | [PositionYModeValues](./api/node/variables/positionymodevalues.md) | - |
+| [SceneColorConversionModeValues](./api/node/variables/scenecolorconversionmodevalues.md) | - |
 | [SceneDesignUnitValues](./api/node/variables/scenedesignunitvalues.md) | - |
 | [SceneFontSizeUnitValues](./api/node/variables/scenefontsizeunitvalues.md) | - |
 | [SceneLayoutValues](./api/node/variables/scenelayoutvalues.md) | - |

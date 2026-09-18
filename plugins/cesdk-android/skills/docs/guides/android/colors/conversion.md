@@ -29,6 +29,10 @@ suspend fun colorConversion(engine: Engine): ColorConversionResult = withContext
         externalReference = "",
     )
 
+    // A CMYK conversion reads the document CMYK profile, which is a resource. Load it once so the
+    // conversions below do not have to handle COLOR.PROFILE_NOT_LOADED.
+    engine.editor.loadCMYKProfile()
+
     val cmykToSrgb = engine.editor.convertColorToColorSpace(
         color = cmykColor,
         colorSpace = ColorSpace.SRGB,
@@ -152,7 +156,7 @@ Convert colors between sRGB, CMYK, and spot color spaces programmatically in CE.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.1-rc.1/engine-guides-colors-conversion)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.0/engine-guides-colors-conversion)
 
 <EngineReferenceNote {...props} />
 

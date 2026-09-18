@@ -30,14 +30,13 @@ import {
 
 // Configuration and plugins
 import { PhotoEditorConfig } from './config/plugin';
-
-import { resolveAssetPath } from './resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from './demo-assets';
 
 // Re-export for external use
 export { PhotoEditorConfig } from './config/plugin';
 
 /** Sample image used when no image URL is provided. */
-const DEFAULT_IMAGE_URL = resolveAssetPath('/assets/images/mountain-1200.jpg');
+const DEFAULT_IMAGE_URL = `${DEMO_ASSETS_BASE_URL}/assets/images/mountain-1200.jpg`;
 
 /**
  * Initialize the CE.SDK Start With Image Editor with a complete configuration.
@@ -147,10 +146,11 @@ export async function initStartWithImageEditor(
   const imageToLoad = imageUrl || DEFAULT_IMAGE_URL;
   await cesdk.createFromImage(imageToLoad);
 
-  // Select the image block for immediate editing
-  const imageBlocks = cesdk.engine.block.findByKind('image');
-  if (imageBlocks.length > 0) {
-    cesdk.engine.block.setSelected(imageBlocks[0], true);
+  // Select the page, which carries the image as its fill, so the inspector
+  // opens on it right away
+  const page = cesdk.engine.scene.getCurrentPage();
+  if (page != null) {
+    cesdk.engine.block.setSelected(page, true);
   }
   // highlight-create-from-image
 }

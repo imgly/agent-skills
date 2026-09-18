@@ -90,12 +90,20 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // #endregion
 
   // #region Import Scene Action
-  // A single Import action. The engine inspects the file's content to tell a
-  // scene from an archive, so one picker handles .imgly files as well as the
-  // legacy .scene and .zip formats.
-  cesdk.actions.register('importScene', async () => {
+  // Import a scene or archive .imgly file (legacy .scene and .zip keep working);
+  // without a format the file's content decides how it is loaded
+  cesdk.actions.register('importScene', async ({ format } = {}) => {
+    // The engine detects scenes vs archives from the file content, so the file
+    // is always handed over as an object URL. `format` only narrows the picker.
+    let accept = '.imgly,.scene,.zip';
+    if (format === 'scene') {
+      accept = '.imgly,.scene';
+    } else if (format === 'archive') {
+      accept = '.imgly,.zip';
+    }
+
     const blobURL = await cesdk.utils.loadFile({
-      accept: '.imgly,.scene,.zip',
+      accept,
       returnType: 'objectURL'
     });
     try {
@@ -104,7 +112,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
       URL.revokeObjectURL(blobURL);
     }
 
-    // Reset zoom to show the first page after import
+    // Zoom to fit the first page after loading
     await cesdk.actions.run('zoom.toPage', { page: 'first' });
   });
   // #endregion

@@ -3,8 +3,8 @@
  * via CSS mask-image technique.
  */
 
-import { resolveAssetPath } from '../resolveAssetPath';
 import styles from './Icon.module.css';
+import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
 interface IconProps {
   name: 'fullscreen' | 'fullscreen-leave' | 'edit' | 'download';
@@ -12,7 +12,7 @@ interface IconProps {
 }
 
 export function Icon({ name, className = '' }: IconProps) {
-  const iconUrl = resolveAssetPath(`/icons/${name}.svg`);
+  const iconUrl = `${DEMO_ASSETS_BASE_URL}/icons/${name}.svg`;
 
   return (
     <span

@@ -21,3 +21,7 @@ release/*
 !release/src/
 release/src/*
 !release/src/index.tsx
+
+# Test output
+test-results/
+playwright-report/

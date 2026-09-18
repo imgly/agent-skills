@@ -14,6 +14,8 @@ import {
   findImageAssets as findImageAssetsQuery,
   hexToRgba
 } from '@/imgly/utils';
+import { DEMO_ASSETS_BASE_URL } from '@/imgly/demo-assets';
+export { DEMO_ASSETS_BASE_URL };
 
 export const ALL_STEPS = ['Style', 'Design', 'Write'] as const;
 type Step = (typeof ALL_STEPS)[number];
@@ -32,17 +34,6 @@ interface EditorContextType {
 }
 
 const EditorContext = createContext<EditorContextType | undefined>(undefined);
-
-/**
- * Demo assets for this example (images, scenes, …) are loaded from
- * the IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1-rc.1/starterkit-postcard-ui';
 
 export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const { engine, isLoaded: engineIsLoaded } = useEngine();
@@ -71,7 +62,6 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
 
     const pages = engine.scene.getPages();
     setCurrentPageBlockId(currentStep === 'Write' ? pages[1] : pages[0]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engineIsLoaded, setCurrentPageBlockId, currentStep]);
 
   useEffect(() => {
@@ -98,7 +88,6 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       }
     };
     loadPostcardTemplate();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engineIsLoaded, engine, postcardTemplate]);
 
   const findImageAssets = useCallback(

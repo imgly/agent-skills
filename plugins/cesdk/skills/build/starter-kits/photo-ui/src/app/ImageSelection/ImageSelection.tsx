@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import { DEMO_ASSETS_BASE_URL, useEditor } from '../contexts/EditorContext';
+import { useEditor } from '../contexts/EditorContext';
+import { DEMO_ASSETS_BASE_URL } from '../../imgly';
 import classes from './ImageSelection.module.css';
 
 interface ImageSelectionProps {

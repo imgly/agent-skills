@@ -5,19 +5,21 @@
 ---
 
 ```groovy file=@cesdk_android_examples/engine-guides-using-camera/build.gradle reference-only
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
 }
 
 android {
     namespace "ly.img.editor.camera"
-    compileSdk 36
+    compileSdk 37
 
     defaultConfig {
         applicationId "ly.img.editor.camera"
         minSdk 24
-        targetSdk 36
+        targetSdk 37
         versionCode 1
         versionName "1.0"
         ndk {
@@ -30,19 +32,24 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_1_8
+        languageVersion = KotlinVersion.KOTLIN_1_9
+        apiVersion = KotlinVersion.KOTLIN_1_9
     }
 }
 
 dependencies {
-    implementation "ly.img:engine-camera:1.82.1-rc.1"
+    implementation "ly.img:engine-camera:1.83.0-rc.0"
     implementation "androidx.camera:camera-core:1.5.0-alpha04"
     implementation "androidx.camera:camera-camera2:1.5.0-alpha04"
     implementation "androidx.camera:camera-view:1.5.0-alpha04"
     implementation "androidx.camera:camera-lifecycle:1.5.0-alpha04"
     implementation "androidx.camera:camera-video:1.5.0-alpha04"
-    implementation "ly.img:engine:1.82.1-rc.1"
+    implementation "ly.img:engine:1.83.0-rc.0"
     implementation "androidx.activity:activity:1.7.0"
     implementation "androidx.appcompat:appcompat:1.6.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
@@ -232,7 +239,7 @@ finishes, swap the fill for a `VideoFill` to play the captured file back.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.1-rc.1/engine-guides-using-camera)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.0/engine-guides-using-camera)
 
 <EngineReferenceNote {...props} />
 
@@ -316,13 +323,13 @@ preview and recording. Keep `engine` and `engine-camera` on the same CE.SDK
 version.
 
 ```groovy highlight-android-dependencies
-implementation "ly.img:engine-camera:1.82.1-rc.1"
+implementation "ly.img:engine-camera:1.83.0-rc.0"
 implementation "androidx.camera:camera-core:1.5.0-alpha04"
 implementation "androidx.camera:camera-camera2:1.5.0-alpha04"
 implementation "androidx.camera:camera-view:1.5.0-alpha04"
 implementation "androidx.camera:camera-lifecycle:1.5.0-alpha04"
 implementation "androidx.camera:camera-video:1.5.0-alpha04"
-implementation "ly.img:engine:1.82.1-rc.1"
+implementation "ly.img:engine:1.83.0-rc.0"
 implementation "androidx.activity:activity:1.7.0"
 implementation "androidx.appcompat:appcompat:1.6.0"
 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"

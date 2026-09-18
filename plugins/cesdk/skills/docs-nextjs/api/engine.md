@@ -166,6 +166,7 @@
 | [PropertyType](./api/engine/type-aliases/propertytype.md) | Represents the various types of properties that can be associated with design blocks. Each type corresponds to a different kind of data that can be used to define the properties of a design block within the system. |
 | [RGBA](./api/engine/type-aliases/rgba.md) | Represents a color in the RGBA color space. |
 | [RoleString](./api/engine/type-aliases/rolestring.md) | Represents a role string. |
+| [SceneColorConversionMode](./api/engine/type-aliases/scenecolorconversionmode.md) | - |
 | [DesignUnit](./api/engine/type-aliases/designunit.md) | - |
 | [SceneFontSizeUnit](./api/engine/type-aliases/scenefontsizeunit.md) | - |
 | [SceneLayout](./api/engine/type-aliases/scenelayout.md) | - |
@@ -261,6 +262,7 @@
 | [AssetFreeAspectRatio](./api/engine/interfaces/assetfreeaspectratio.md) | Asset transform preset payload free aspect ratio |
 | [AssetNumberProperty](./api/engine/interfaces/assetnumberproperty.md) | Asset number property definition |
 | [AssetPayload](./api/engine/interfaces/assetpayload.md) | Asset payload |
+| [AssetPlacement](./api/engine/interfaces/assetplacement.md) | Where the block created from an asset is placed. |
 | [AssetQueryData](./api/engine/interfaces/assetquerydata.md) | Defines a request for querying assets |
 | [AssetResult](./api/engine/interfaces/assetresult.md) | Single asset result of a query from the engine. |
 | [\_AssetResultCredits](./api/engine/interfaces/assetresultcredits.md) | Represents the credits for an asset result. |
@@ -285,6 +287,7 @@
 | [CompressionOptions](./api/engine/interfaces/compressionoptions.md) | Compression settings for a serialized scene. |
 | [Configuration](./api/engine/interfaces/configuration.md) | Specifies the configuration for the Creative Editor SDK. |
 | [CursorEvent](./api/engine/interfaces/cursorevent.md) | Dispatched on the engine canvas when the text input has been blurred. Call `preventDefault()` to disallow this and refocus the engine text input. |
+| [DefaultApplyAssetOptions](./api/engine/interfaces/defaultapplyassetoptions.md) | Options for `asset.defaultApplyAsset`. |
 | [DominantColor](./api/engine/interfaces/dominantcolor.md) | A single color extracted from the rendered appearance of a block. |
 | [DominantColorsOptions](./api/engine/interfaces/dominantcolorsoptions.md) | Options for `BlockAPI.getDominantColors`. |
 | [EngineActionInfo](./api/engine/interfaces/engineactioninfo.md) | Info about a registered action, from [EngineActions.list](./api/engine/classes/engineactions.md). |
@@ -370,6 +373,7 @@
 | [PlaybackFadeOutEasingValues](./api/engine/variables/playbackfadeouteasingvalues.md) | - |
 | [PositionXModeValues](./api/engine/variables/positionxmodevalues.md) | - |
 | [PositionYModeValues](./api/engine/variables/positionymodevalues.md) | - |
+| [SceneColorConversionModeValues](./api/engine/variables/scenecolorconversionmodevalues.md) | - |
 | [SceneDesignUnitValues](./api/engine/variables/scenedesignunitvalues.md) | - |
 | [SceneFontSizeUnitValues](./api/engine/variables/scenefontsizeunitvalues.md) | - |
 | [SceneLayoutValues](./api/engine/variables/scenelayoutvalues.md) | - |

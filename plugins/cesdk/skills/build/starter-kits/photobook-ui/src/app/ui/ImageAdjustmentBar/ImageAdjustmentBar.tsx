@@ -33,7 +33,6 @@ function ImageAdjustmentBar() {
   );
 
   const selectedAdjustment = useMemo(
-    // @ts-ignore
     () => ALL_ADJUSTMENTS[calculatedAdjustmentId],
     [calculatedAdjustmentId]
   );
@@ -76,8 +75,7 @@ function ImageAdjustmentBar() {
           <IconButton
             key="crop"
             // Disable cropping on placeholders
-            // @ts-ignore
-            disabled={showsPlaceholderOverlay}
+            disabled={showsPlaceholderOverlay === true}
             onClick={() => {
               if (calculatedAdjustmentId === 'crop') {
                 engine.editor.setEditMode('Transform');

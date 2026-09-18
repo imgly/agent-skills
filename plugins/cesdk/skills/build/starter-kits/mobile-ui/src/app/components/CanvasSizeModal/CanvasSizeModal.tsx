@@ -2,7 +2,7 @@ import { useEditor } from '../../contexts/EditorContext';
 import Modal from '../Modal/Modal';
 import classes from './CanvasSizeModal.module.css';
 
-const ALL_SIZES = [
+export const ALL_SIZES = [
   {
     name: 'IG Post',
     width: 1200,
@@ -20,7 +20,7 @@ const ALL_SIZES = [
   },
   {
     name: '4K',
-    width: 3140,
+    width: 3840,
     height: 2160
   }
 ];

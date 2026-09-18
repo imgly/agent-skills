@@ -1,8 +1,11 @@
 > This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
+**Navigation:** [Guides](./guides.md) > [Create and Edit Compositions](./create-composition.md) > [Grid & Rulers](./grid-and-rulers.md)
+
 ---
 
-Enable and configure grid overlays, snap-to-grid behavior, and canvas rulers so users can position and align elements with precision in your CE.SDK editor.
+Enable and configure grid overlays, snap-to-grid behavior, and canvas rulers
+so users can position and align elements with precision in your CE.SDK editor.
 
 > **Reading time:** 5 minutes
 >
@@ -14,7 +17,7 @@ Enable and configure grid overlays, snap-to-grid behavior, and canvas rulers so 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-grid-and-rulers-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.1-rc.1/examples/guides-grid-and-rulers-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/guides-grid-and-rulers-browser/index.html)
 
 CE.SDK provides a configurable grid overlay and canvas rulers to help users align design elements. The grid renders evenly spaced lines across the page, and snap-to-grid constrains element movement to grid intersections. Rulers display along the top and left edges of the canvas showing measurement units.
 
@@ -110,10 +113,9 @@ class Example implements EditorPlugin {
       a: 0.3
     });
 
-    // Rulers are controlled through the editor's UI store.
-    // The AdvancedEditorConfig plugin enables the 'ly.img.rulers'
-    // feature flag, which makes rulers available in the UI.
-    // Rulers are visible by default when the feature flag is enabled.
+    // Make the rulers control available in the panel.
+    // Rulers stay hidden until the user checks "Show Rulers".
+    cesdk.feature.enable('ly.img.rulers');
 
     // Add a sample block so the grid and rulers are visible in context
     const page = engine.block.findByType('page')[0];
@@ -142,7 +144,7 @@ Toggle the grid overlay using the `grid/enabled` setting. When enabled, the engi
 engine.editor.setSettingBool('grid/enabled', true);
 ```
 
-The grid is a visual aid rendered at the engine level. It does not affect the scene content or export output.
+The grid is a visual aid rendered at the engine level. It does not affect the scene content or export output. No starter kit turns the grid on, so it stays hidden until you set `grid/enabled` yourself.
 
 ## Enable Snap-to-Grid
 
@@ -153,7 +155,7 @@ Snap-to-grid constrains element movement so blocks align to grid lines. Enable i
 engine.editor.setSettingBool('grid/snapEnabled', true);
 ```
 
-When snap-to-grid is active, dragging or resizing a block snaps its edges to the nearest grid line. This works independently of the grid overlay visibility, so you can snap to an invisible grid if needed.
+When snap-to-grid is active, dragging or resizing a block snaps its edges to the nearest grid line. Snapping requires the grid to be enabled: elements snap only when the page's effective grid and snap values are both on — the `grid/enabled` and `grid/snapEnabled` settings for pages in `Document` mode, or the page's own `page/guides/gridEnabled` and `page/guides/gridSnapEnabled` for pages in `Custom` mode. Like the grid, no starter kit turns snapping on.
 
 ## Configure Grid Spacing
 
@@ -183,29 +185,19 @@ engine.editor.setSettingColor('grid/color', {
 
 ## Enable Rulers
 
-Rulers are managed through the `ly.img.rulers` feature flag and the editor's UI store. The Advanced Editor and Video Editor plugins enable rulers by default.
+Ruler availability is controlled by the `ly.img.rulers` feature flag. When the flag is enabled, the ruler overlay becomes available and the Document Inspector shows a "Show Rulers" toggle. The same flag also gates the per-page Grid section in the Page Inspector.
+
+Enabling the feature does not turn rulers on. Rulers appear only after the user checks "Show Rulers" in the Document Inspector. Ruler visibility is session-only UI state: there is no public API to toggle it programmatically, and it is not saved with the scene.
+
+CE.SDK enables the flag by default. [Starter kits](./starterkits.md) reset every feature when they initialize and then re-enable their own set, so only the [Design Editor (Advanced)](./starterkits/advanced-editor.md) and [Video Editor (Advanced)](./starterkits/advanced-video-editor.md) starter kits keep the rulers control. In every other starter kit, call `cesdk.feature.enable('ly.img.rulers')` after you add the starter kit plugin.
 
 ```typescript highlight=highlight-enable-rulers
-// Rulers are controlled through the editor's UI store.
-// The AdvancedEditorConfig plugin enables the 'ly.img.rulers'
-// feature flag, which makes rulers available in the UI.
-// Rulers are visible by default when the feature flag is enabled.
+// Make the rulers control available in the panel.
+// Rulers stay hidden until the user checks "Show Rulers".
+cesdk.feature.enable('ly.img.rulers');
 ```
 
 Rulers display along the top and left edges of the canvas. They show tick marks and labels in the scene's design unit, and they update as the user pans and zooms.
-
-## Editor Plugin Defaults
-
-Different editor plugins configure grid and rulers with different defaults:
-
-| Plugin | Grid Visible | Snap-to-Grid | Rulers |
-|--------|-------------|--------------|--------|
-| Advanced Editor | Yes | Yes | Yes |
-| Video Editor | Yes | Yes | Yes |
-| Design Editor | No | No | No |
-| Photo Editor | No | No | No |
-
-To add grid and ruler support to an editor that doesn't enable them by default, set the settings and feature flag manually as shown in the examples above.
 
 ## Per-Page Grid Overrides
 
@@ -232,23 +224,48 @@ engine.block.setBool(pageId, 'page/guides/gridSnapEnabled', true);
 engine.block.setEnum(pageId, 'page/guides/source', 'Document');
 ```
 
-In the default Advanced Editor UI, grid controls live only in the Page Inspector — selecting a page shows a "Grid" section that writes to that page's `page/guides/*` properties. The Document Inspector exposes only the "Show Rulers" toggle; the global `grid/*` settings are still used as the fallback for pages in `Document` mode, but have no UI of their own. When users add a new page, the editor seeds its grid from the immediately previous page when that page is in `Custom` mode, so the grid they were just working with carries over without re-entry. If the previous page is in `Document` mode, the new page also uses `Document` — new pages never revive older per-page overrides.
+In the Design Editor (Advanced) and Video Editor (Advanced) starter kits, grid controls live in the Grids & Guides panel, opened from a row in the Document and Page Inspector — selecting a page shows a "Grid" section that writes to that page's `page/guides/*` properties. The Document Inspector exposes only the "Show Rulers" toggle; the global `grid/*` settings are still used as the fallback for pages in `Document` mode, but have no UI of their own. When users add a new page, the editor seeds its grid from the immediately previous page when that page is in `Custom` mode, so the grid they were just working with carries over without re-entry. If the previous page is in `Document` mode, the new page also uses `Document` — new pages never revive older per-page overrides.
+
+## Safety Margin
+
+The safety margin is an inward inset drawn on each page, marking the area a print process may trim. Each page carries its own values in `page/safetyInset/*`, with `page/safetyEnabled` turning it on.
+
+```typescript
+// Turn the safety margin on for a page and set an inset per side.
+engine.block.setBool(pageId, 'page/safetyEnabled', true);
+engine.block.setFloat(pageId, 'page/safetyInset/top', 10);
+engine.block.setFloat(pageId, 'page/safetyInset/bottom', 10);
+engine.block.setFloat(pageId, 'page/safetyInset/left', 10);
+engine.block.setFloat(pageId, 'page/safetyInset/right', 10);
+```
+
+Set `page/safetyRevealDuringTransform` to show the margin only while a block is moved or resized near it, instead of drawing it on every page all the time.
+
+```typescript
+// Draw the safety margin only when a block comes close.
+engine.editor.setSetting('page/safetyRevealDuringTransform', true);
+```
+
+The `ly.img.page.printMarks.safetyMargin` feature key controls the section in the panel. See [Disable or Enable Features](./user-interface/customization/disable-or-enable.md).
 
 ## API Reference
 
-| API | Type | Default | Description |
-|-----|------|---------|-------------|
-| `grid/enabled` | Bool | `false` | Show or hide the grid overlay |
-| `grid/snapEnabled` | Bool | `false` | Enable snapping to grid lines |
-| `grid/spacingX` | Float | `32` | Horizontal spacing between grid lines (design units) |
-| `grid/spacingY` | Float | `32` | Vertical spacing between grid lines (design units) |
-| `grid/color` | Color | `{ r: 0, g: 0, b: 0, a: 0.12 }` | Grid line color with alpha |
-| `page/guides/source` | Enum (`'Document'` / `'Custom'`) | `'Document'` | Per-page resolution source; `Document` falls back to the `grid/*` settings |
-| `page/guides/gridEnabled` | Bool | `false` | Per-page override of `grid/enabled` (applied when source is `Custom`) |
-| `page/guides/gridSnapEnabled` | Bool | `false` | Per-page override of `grid/snapEnabled` |
-| `page/guides/gridSpacingX` | Float | `10` | Per-page override of `grid/spacingX` |
-| `page/guides/gridSpacingY` | Float | `10` | Per-page override of `grid/spacingY` |
-| `page/guides/gridColor` | Color | neutral gray | Per-page override of `grid/color` |
+| API                                                  | Type                             | Default                                                | Description                                                                |
+| ---------------------------------------------------- | -------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------- |
+| `grid/enabled`                                       | Bool                             | `false`                                                | Show or hide the grid overlay                                              |
+| `grid/snapEnabled`                                   | Bool                             | `false`                                                | Enable snapping to grid lines                                              |
+| `grid/spacingX`                                      | Float                            | `32`                                                   | Horizontal spacing between grid lines (design units)                       |
+| `grid/spacingY`                                      | Float                            | `32`                                                   | Vertical spacing between grid lines (design units)                         |
+| `grid/color`                                         | Color                            | neutral gray (`{ r: 0.52, g: 0.52, b: 0.52, a: 0.3 }`) | Grid line color with alpha                                                 |
+| `page/safetyEnabled`                                 | Bool                             | `false`                                                | Show or hide the safety margin on a page                                   |
+| `page/safetyInset/top`, `/bottom`, `/left`, `/right` | Float                            | `0`                                                    | Inward inset per side (design units)                                       |
+| `page/safetyRevealDuringTransform`                            | Bool                             | `true`                                                 | Draw the safety margin only while a block is moved or resized near it      |
+| `page/guides/source`                                 | Enum (`'Document'` / `'Custom'`) | `'Document'`                                           | Per-page resolution source; `Document` falls back to the `grid/*` settings |
+| `page/guides/gridEnabled`                            | Bool                             | `false`                                                | Per-page override of `grid/enabled` (applied when source is `Custom`)      |
+| `page/guides/gridSnapEnabled`                        | Bool                             | `false`                                                | Per-page override of `grid/snapEnabled`                                    |
+| `page/guides/gridSpacingX`                           | Float                            | `10`                                                   | Per-page override of `grid/spacingX`                                       |
+| `page/guides/gridSpacingY`                           | Float                            | `10`                                                   | Per-page override of `grid/spacingY`                                       |
+| `page/guides/gridColor`                              | Color                            | neutral gray                                           | Per-page override of `grid/color`                                          |
 
 
 

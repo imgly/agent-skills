@@ -39,6 +39,12 @@ case captionTrack
 case cutout
 ```
 
+### DesignBlockType.exclusionArea
+
+```swift
+case exclusionArea
+```
+
 ### DesignBlockType.graphic
 
 ```swift

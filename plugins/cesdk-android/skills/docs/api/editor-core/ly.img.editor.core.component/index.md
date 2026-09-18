@@ -54,6 +54,22 @@ fun <Scope : EditorScope> RowScope.EditorComponent(component: EditorComponent<Sc
 
 The content of the component. The content of the component when rendered in a ColumnScope. Prefer using this overload over without ColumnScope when the component is being rendered in a column.
 
+### addAudio
+
+```kotlin
+val Timeline.Button.Id.addAudio: EditorComponentId
+```
+
+The id of the timeline button returned by Timeline.Button.rememberAddAudio.
+
+### addClip
+
+```kotlin
+val Timeline.Button.Id.addClip: EditorComponentId
+```
+
+The id of the timeline button returned by Timeline.Button.rememberAddClip.
+
 ### adjustments
 
 ```kotlin
@@ -125,6 +141,14 @@ val CanvasMenu.Button.Id.bringForward: EditorComponentId
 ```
 
 The id of the canvas menu button returned by CanvasMenu.Button.rememberBringForward.
+
+### camera
+
+```kotlin
+val Timeline.AddClipOption.Id.camera: EditorComponentId
+```
+
+The id of the option returned by Timeline.AddClipOption.Companion.rememberCamera.
 
 ### captionStyle
 
@@ -282,6 +306,14 @@ val InspectorBar.Button.Id.formatText: EditorComponentId
 
 The id of the inspector bar button returned by InspectorBar.Button.rememberFormatText.
 
+### gallery
+
+```kotlin
+val Timeline.AddClipOption.Id.gallery: EditorComponentId
+```
+
+The id of the option returned by Timeline.AddClipOption.Companion.rememberGallery.
+
 ### imagesLibrary
 
 ```kotlin
@@ -305,6 +337,22 @@ val InspectorBar.Button.Id.layer: EditorComponentId
 ```
 
 The id of the inspector bar button returned by InspectorBar.Button.rememberLayer.
+
+### library
+
+```kotlin
+val Timeline.AddClipOption.Id.library: EditorComponentId
+```
+
+The id of the option returned by Timeline.AddClipOption.Companion.rememberLibrary.
+
+### loop
+
+```kotlin
+val Timeline.Button.Id.loop: EditorComponentId
+```
+
+The id of the timeline button returned by Timeline.Button.rememberLoop.
 
 ### modify
 
@@ -330,6 +378,14 @@ val InspectorBar.Button.Id.moveAsOverlay: EditorComponentId
 ```
 
 The id of the inspector bar button returned by InspectorBar.Button.rememberMoveAsOverlay.
+
+### music
+
+```kotlin
+val Timeline.AddAudioOption.Id.music: EditorComponentId
+```
+
+The id of the option returned by Timeline.AddAudioOption.Companion.rememberMusic.
 
 ### nextPage
 
@@ -363,6 +419,14 @@ val Dock.Button.Id.overlaysLibrary: EditorComponentId
 
 The id of the dock button returned by Dock.Button.rememberOverlaysLibrary.
 
+### playPause
+
+```kotlin
+val Timeline.Button.Id.playPause: EditorComponentId
+```
+
+The id of the timeline button returned by Timeline.Button.rememberPlayPause.
+
 ### previousPage
 
 ```kotlin
@@ -378,6 +442,24 @@ val NavigationBar.Button.Id.redo: EditorComponentId
 ```
 
 The id of the navigation bar button returned by NavigationBar.Button.rememberRedo.
+
+### rememberAddAudio
+
+```kotlin
+@Composable
+fun Timeline.Button.rememberAddAudio(builder: Timeline.AddAudioButtonBuilder.() -> Unit = {}): Timeline.AddAudioButton
+```
+
+A composable helper function that creates and remembers the built-in "Add Audio" button of the Timeline. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
+
+### rememberAddClip
+
+```kotlin
+@Composable
+fun Timeline.Button.rememberAddClip(builder: Timeline.AddClipButtonBuilder.() -> Unit = {}): Timeline.AddClipButton
+```
+
+A composable helper function that creates and remembers the built-in "Add Clip" button of the Timeline. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
 ### rememberAdjustments
 
@@ -442,6 +524,15 @@ fun CanvasMenu.Button.rememberBringForward(builder: CanvasMenu.ButtonBuilder.() 
 ```
 
 A composable helper function that creates and remembers an Button that brings forward currently selected design block via EditorEvent.Selection.BringForward. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
+
+### rememberCamera
+
+```kotlin
+@Composable
+fun Timeline.AddClipOption.Companion.rememberCamera(builder: Timeline.AddClipOptionBuilder.() -> Unit = {}): Timeline.AddClipOption
+```
+
+A composable helper function that creates and remembers the "Add Clip" entry that records a clip with the camera and appends it to the background track. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions.
 
 ### rememberCaptionStyle
 
@@ -626,6 +717,15 @@ fun InspectorBar.Button.rememberFormatText(builder: InspectorBar.ButtonBuilder.(
 
 A composable helper function that creates and remembers an Button that opens text formatting sheet via EditorEvent.Sheet.Open. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
+### rememberGallery
+
+```kotlin
+@Composable
+fun Timeline.AddClipOption.Companion.rememberGallery(builder: Timeline.AddClipOptionBuilder.() -> Unit = {}): Timeline.AddClipOption
+```
+
+A composable helper function that creates and remembers the "Add Clip" entry that opens the system gallery and appends the selection to the background track. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions.
+
 ### rememberImagesLibrary
 
 ```kotlin
@@ -653,6 +753,24 @@ fun InspectorBar.Button.rememberLayer(builder: InspectorBar.ButtonBuilder.() -> 
 
 A composable helper function that creates and remembers an Button that opens layer sheet via EditorEvent.Sheet.Open. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
+### rememberLibrary
+
+```kotlin
+@Composable
+fun Timeline.AddClipOption.Companion.rememberLibrary(builder: Timeline.AddClipOptionBuilder.() -> Unit = {}): Timeline.AddClipOption
+```
+
+A composable helper function that creates and remembers the "Add Clip" entry that opens the asset library and appends the selection to the background track. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions.
+
+### rememberLoop
+
+```kotlin
+@Composable
+fun Timeline.Button.rememberLoop(builder: Timeline.ButtonBuilder.() -> Unit = {}): Button<Timeline.ItemScope>
+```
+
+A composable helper function that creates and remembers a Timeline header button that toggles looping playback. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions.
+
 ### rememberMoveAsClip
 
 ```kotlin
@@ -671,6 +789,15 @@ fun InspectorBar.Button.rememberMoveAsOverlay(builder: InspectorBar.ButtonBuilde
 
 A composable helper function that creates and remembers an Button that moves currently selected design block from the background track to an overlay via EditorEvent.Selection.MoveAsOverlay. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
+### rememberMusic
+
+```kotlin
+@Composable
+fun Timeline.AddAudioOption.Companion.rememberMusic(builder: Timeline.AddAudioOptionBuilder.() -> Unit = {}): Timeline.AddAudioOption
+```
+
+A composable helper function that creates and remembers the "Add Audio" entry that opens the asset library's audio category. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions.
+
 ### rememberNextPage
 
 ```kotlin
@@ -688,6 +815,15 @@ fun Dock.Button.rememberOverlaysLibrary(builder: Dock.ButtonBuilder.() -> Unit =
 ```
 
 A composable helper function that creates and remembers a Dock.Button that opens a library sheet with overlays via EditorEvent.Sheet.Open. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
+
+### rememberPlayPause
+
+```kotlin
+@Composable
+fun Timeline.Button.rememberPlayPause(builder: Timeline.ButtonBuilder.() -> Unit = {}): Button<Timeline.ItemScope>
+```
+
+A composable helper function that creates and remembers a Timeline header button that starts and pauses playback. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions.
 
 ### rememberPreviousPage
 
@@ -787,7 +923,7 @@ A composable helper function that creates and remembers a Dock.Button that opens
 fun InspectorBar.Button.rememberSplit(builder: InspectorBar.ButtonBuilder.() -> Unit = {}): Button<InspectorBar.ItemScope>
 ```
 
-A composable helper function that creates and remembers an Button that splits currently selected design block via EditorEvent.Selection.Split in a video scene. A caption is only enabled while the playhead sits inside it, since a caption divides where the playhead is. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
+A composable helper function that creates and remembers an Button that splits currently selected design block via EditorEvent.Selection.Split. The button is visible when the "lifecycle/duplicate" scope of the selected design block is allowed. A caption is only enabled while the playhead sits inside it, since a caption divides where the playhead is. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
 ### rememberStickersAndShapesLibrary
 
@@ -861,6 +997,24 @@ fun InspectorBar.Button.rememberTextPresets(builder: InspectorBar.ButtonBuilder.
 
 A composable helper function that creates and remembers an Button that opens the text style presets library sheet via EditorEvent.Sheet.Open. Selected preset is applied to the currently selected text block via the engine asset replace path. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
+### rememberTimecode
+
+```kotlin
+@Composable
+fun Timeline.Label.rememberTimecode(builder: Timeline.ItemBuilder.() -> Unit = {}): EditorComponent<Timeline.ItemScope>
+```
+
+A composable helper function that creates and remembers the Timeline header timecode, displaying the current playhead position and the total duration. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions.
+
+### rememberToggleExpanded
+
+```kotlin
+@Composable
+fun Timeline.Button.rememberToggleExpanded(builder: Timeline.ItemBuilder.() -> Unit = {}): EditorComponent<Timeline.ItemScope>
+```
+
+A composable helper function that creates and remembers a Timeline header button that expands and collapses the timeline. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions.
+
 ### rememberTogglePagesMode
 
 ```kotlin
@@ -911,6 +1065,11 @@ A composable helper function that creates and remembers a Dock.Button that opens
 ```kotlin
 @Composable
 fun InspectorBar.Button.rememberVoiceover(builder: InspectorBar.ButtonBuilder.() -> Unit = {}): Button<InspectorBar.ItemScope>
+```
+
+```kotlin
+@Composable
+fun Timeline.AddAudioOption.Companion.rememberVoiceover(builder: Timeline.AddAudioOptionBuilder.() -> Unit = {}): Timeline.AddAudioOption
 ```
 
 A helper function that returns an InspectorBar.Button that opens the voiceover recording sheet via EditorEvent.Sheet.Open.
@@ -1061,6 +1220,31 @@ fun Timeline.Companion.remember(builder: TimelineBuilder.() -> Unit = {}): Timel
 fun <Builder : TimelineBuilder> Timeline.Companion.remember(builderFactory: () -> Builder, builder: TimelineBuilder.() -> Unit = {}): Timeline
 ```
 
+```kotlin
+@Composable
+fun <Builder : Timeline.AddClipOptionBuilder> Timeline.AddClipOption.Companion.remember(builderFactory: () -> Builder, builder: Builder.() -> Unit = {}): Timeline.AddClipOption
+```
+
+```kotlin
+@Composable
+fun <Builder : Timeline.AddAudioOptionBuilder> Timeline.AddAudioOption.Companion.remember(builderFactory: () -> Builder, builder: Builder.() -> Unit = {}): Timeline.AddAudioOption
+```
+
+```kotlin
+@Composable
+fun Timeline.AddClipOption.Companion.remember(builder: Timeline.AddClipOptionBuilder.() -> Unit = {}): Timeline.AddClipOption
+```
+
+```kotlin
+@Composable
+fun Timeline.AddAudioOption.Companion.remember(builder: Timeline.AddAudioOptionBuilder.() -> Unit = {}): Timeline.AddAudioOption
+```
+
+```kotlin
+@Composable
+fun Timeline.HeaderListBuilder.remember(builder: HorizontalListBuilderScope<EditorComponent<*>>.() -> Unit): HorizontalListBuilder<EditorComponent<*>>
+```
+
 A composable function that creates and remembers an Button instance. Note that both builderFactory and builder lambdas run only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
 ### reorder
@@ -1199,6 +1383,22 @@ val InspectorBar.Button.Id.textPresets: EditorComponentId
 
 The id of the inspector bar button returned by InspectorBar.Button.rememberTextPresets.
 
+### timecode
+
+```kotlin
+val Timeline.Label.Id.timecode: EditorComponentId
+```
+
+The id of the timeline label returned by Timeline.Label.rememberTimecode.
+
+### toggleExpanded
+
+```kotlin
+val Timeline.Button.Id.toggleExpanded: EditorComponentId
+```
+
+The id of the timeline button returned by Timeline.Button.rememberToggleExpanded.
+
 ### togglePagesMode
 
 ```kotlin
@@ -1242,10 +1442,14 @@ The id of the dock button returned by Dock.Button.rememberVoiceoverRecord.
 ### voiceover
 
 ```kotlin
-val Button.Id.Companion.voiceover: EditorComponentId
+val InspectorBar.Button.Id.voiceover: EditorComponentId
 ```
 
-The id of the inspector bar button returned by InspectorBar.Button.rememberVoiceover.
+```kotlin
+val Timeline.AddAudioOption.Id.voiceover: EditorComponentId
+```
+
+The id of the inspector bar button returned by InspectorBar.Button.rememberVoiceover. The id of the option returned by Timeline.AddAudioOption.Companion.rememberVoiceover.
 
 ### volume
 

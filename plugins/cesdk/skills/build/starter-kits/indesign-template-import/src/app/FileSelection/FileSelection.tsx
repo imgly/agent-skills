@@ -6,17 +6,8 @@ import { ExampleFileContainer } from '../ExampleFileContainer/ExampleFileContain
 import { UploadZone } from '../UploadZone/UploadZone';
 import type { ExampleFile } from '../types';
 import classes from './FileSelection.module.css';
-
-/**
- * Demo assets for this example (IDML files, previews, icons, …) are loaded
- * from the IMG.LY CDN by default. To host them yourself, copy this kit's
- * asset folder to your own CDN or server and change this constant — or set
- * it to `''` and place the files in this app's `public/` directory. No
- * trailing slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1-rc.1/starterkit-indesign-template-import';
+import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
+export { DEMO_ASSETS_BASE_URL };
 
 const EXAMPLE_FILES: ExampleFile[] = [
   {

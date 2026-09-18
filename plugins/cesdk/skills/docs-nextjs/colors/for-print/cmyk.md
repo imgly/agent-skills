@@ -18,7 +18,7 @@ Work with CMYK colors in CE.SDK for professional print production workflows with
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-for-print-cmyk-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.1-rc.1/examples/guides-colors-for-print-cmyk-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/guides-colors-for-print-cmyk-browser/index.html)
 
 CMYK (Cyan, Magenta, Yellow, Key/Black) is the standard color model for print production. Unlike RGB which is additive and designed for screens, CMYK uses subtractive color mixing to represent how inks combine on paper. CE.SDK supports CMYK colors natively, allowing you to prepare designs for professional print output while maintaining accurate color representation.
 
@@ -270,6 +270,10 @@ class Example implements EditorPlugin {
       );
     }
 
+    // Converting CMYK to sRGB reads the document CMYK profile, which is a resource. Load it
+    // once first, so the conversion does not have to handle COLOR.PROFILE_NOT_LOADED.
+    await engine.editor.loadCMYKProfile();
+
     // Example 9: Convert RGB to CMYK
     const rgbBlue: RGBAColor = { r: 0.2, g: 0.4, b: 0.9, a: 1.0 };
     const convertedCmyk = engine.editor.convertColorToColorSpace(
@@ -497,6 +501,10 @@ The `isCMYKColor()` type guard checks if a color has the CMYK properties (`c`, `
 Use `engine.editor.convertColorToColorSpace()` to convert colors between 'sRGB' and 'CMYK':
 
 ```typescript highlight-convert
+    // Converting CMYK to sRGB reads the document CMYK profile, which is a resource. Load it
+    // once first, so the conversion does not have to handle COLOR.PROFILE_NOT_LOADED.
+    await engine.editor.loadCMYKProfile();
+
     // Example 9: Convert RGB to CMYK
     const rgbBlue: RGBAColor = { r: 0.2, g: 0.4, b: 0.9, a: 1.0 };
     const convertedCmyk = engine.editor.convertColorToColorSpace(

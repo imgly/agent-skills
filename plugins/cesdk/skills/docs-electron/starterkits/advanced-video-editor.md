@@ -20,7 +20,7 @@ with no server dependencies.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-video-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.1-rc.1/examples/starterkit-advanced-video-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/starterkit-advanced-video-editor/index.html)
 
 ***
 
@@ -85,22 +85,20 @@ Before you begin, make sure you have the following:
     ```
     src/imgly/
     ├── index.ts                  # Editor initialization function
-    ├── config/
-    │   ├── plugin.ts             # Main configuration plugin
-    │   ├── actions.ts            # Export/import actions
-    │   ├── features.ts           # Feature toggles
-    │   ├── i18n.ts               # Translations
-    │   ├── settings.ts           # Engine settings
-    │   └── ui/                   # UI customization
-    │       ├── index.ts          # Combines UI customization exports
-    │       ├── canvas.ts         # Canvas configuration
-    │       ├── components.ts     # Custom component registration
-    │       ├── dock.ts           # Dock layout configuration
-    │       ├── inspectorBar.ts   # Inspector bar layout
-    │       ├── navigationBar.ts  # Navigation bar layout
-    │       └── panel.ts          # Panel configuration
-    └── plugins/
-        └── background-removal.ts # Background removal plugin
+    └── config/
+        ├── plugin.ts             # Main configuration plugin
+        ├── actions.ts            # Export/import actions
+        ├── features.ts           # Feature toggles
+        ├── i18n.ts               # Translations
+        ├── settings.ts           # Engine settings
+        └── ui/                   # UI customization
+            ├── index.ts          # Combines UI customization exports
+            ├── canvas.ts         # Canvas configuration
+            ├── components.ts     # Custom component registration
+            ├── dock.ts           # Dock layout configuration
+            ├── inspectorBar.ts   # Inspector bar layout
+            ├── navigationBar.ts  # Navigation bar layout
+            └── panel.ts          # Panel configuration
     ```
 
     ## Step 3: Install Dependencies

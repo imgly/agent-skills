@@ -248,6 +248,10 @@ Load scenes from various sources including strings, URLs, and archives.
 
   The scene file will be fetched asynchronously by the engine and loaded into the engine once it is available. Any existing scene is replaced by the new one.
 
+  This requires continuous `render` calls on this engine instance, as `loadFromArchiveURL` does.
+  The engine advances the fetch while it renders, so without a render loop the returned promise
+  never settles — it neither resolves nor rejects, even for a URL that cannot be reached.
+
   ```javascript
   const sceneURL = 'https://example.com/my-scene.json';
   creativeEngine.scene.loadFromURL(sceneURL);

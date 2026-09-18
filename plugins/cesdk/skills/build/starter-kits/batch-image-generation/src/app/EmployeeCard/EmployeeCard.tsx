@@ -6,7 +6,6 @@
 
 import classNames from 'classnames';
 
-import { resolveAssetPath } from '../resolveAssetPath';
 import type { TeamImage } from '../types';
 
 import styles from './EmployeeCard.module.css';
@@ -44,12 +43,7 @@ export function EmployeeCard({
               className={styles.editButton}
               onClick={() => onEdit(teamImage)}
             >
-              <img
-                src={resolveAssetPath('./icons/edit.svg')}
-                alt=""
-                width={16}
-                height={16}
-              />
+              <img src={'./icons/edit.svg'} alt="" width={16} height={16} />
               <span>Edit</span>
             </button>
           </div>

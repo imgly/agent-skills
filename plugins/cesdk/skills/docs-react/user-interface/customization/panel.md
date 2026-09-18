@@ -18,7 +18,7 @@ This guide shows you how to control CE.SDK's UI panels programmatically, allowin
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.1-rc.1/examples/guides-user-interface-customization-panel-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/guides-user-interface-customization-panel-browser/index.html)
 
 ```typescript file=@cesdk_web_examples/guides-user-interface-customization-panel-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -242,6 +242,7 @@ CE.SDK provides several built-in panels:
 - **`//ly.img.panel/assetLibrary`** - Main asset library panel for inserting new content into your design
 - **`//ly.img.panel/assetLibrary.replace`** - Replacement library for swapping the content of the selected block
 - **`//ly.img.panel/settings`** - Settings panel for customizing the editor during runtime
+- **`//ly.img.panel/layers`** - Layer and page list, opened from the dock's Layers button
 
 These panels must be enabled through the Feature API before they can be used:
 
@@ -498,6 +499,9 @@ cesdk.feature.enable('ly.img.library.panel', () => true);
 
 // Enable settings feature
 cesdk.feature.enable('ly.img.settings', () => true);
+
+// Enable the layer and page list
+cesdk.feature.enable('ly.img.layerList.panel', () => true);
 
 // Check if a feature is enabled
 const isInspectorEnabled = cesdk.feature.isEnabled('ly.img.inspector', {

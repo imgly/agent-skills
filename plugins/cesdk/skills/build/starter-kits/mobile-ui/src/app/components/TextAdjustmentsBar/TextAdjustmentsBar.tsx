@@ -22,17 +22,20 @@ const ALL_ADJUSTMENTS: Adjustment[] = [
   {
     Body: ChangeFontSecondary,
     Icon: TextFontIcon,
-    id: 'font'
+    id: 'font',
+    label: 'Font'
   },
   {
     Body: ChangeTextAlignmentSecondary,
     Icon: TextAlignmentIcon,
-    id: 'align'
+    id: 'align',
+    label: 'Alignment'
   },
   {
     Body: ChangeTextColorSecondary,
     Icon: TextColorIcon,
-    id: 'color'
+    id: 'color',
+    label: 'Color'
   }
 ];
 

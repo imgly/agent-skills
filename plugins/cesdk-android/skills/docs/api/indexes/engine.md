@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 261 generated API digests.
+Complete catalog of 264 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -55,6 +55,7 @@ Complete catalog of 261 generated API digests.
 - [AssetIntProperty](<../engine/ly.img.engine/-asset-int-property.md>) — `ly.img.engine`
 - [AssetLicense](<../engine/ly.img.engine/-asset-license.md>) — `ly.img.engine`
 - [AssetPayload](<../engine/ly.img.engine/-asset-payload.md>) — `ly.img.engine`
+- [AssetPlacement](<../engine/ly.img.engine/-asset-placement.md>) — `ly.img.engine`
 - [AssetProperty](<../engine/ly.img.engine/-asset-property.md>) — `ly.img.engine`
 - [AssetSource](<../engine/ly.img.engine/-asset-source.md>) — `ly.img.engine`
 - [AssetSource.Companion](<../engine/ly.img.engine/-asset-source/-companion.md>) — `ly.img.engine`
@@ -107,6 +108,7 @@ Complete catalog of 261 generated API digests.
 - [DesignBlockType.CaptionTrack](<../engine/ly.img.engine/-design-block-type/-caption-track.md>) — `ly.img.engine`
 - [DesignBlockType.Companion](<../engine/ly.img.engine/-design-block-type/-companion.md>) — `ly.img.engine`
 - [DesignBlockType.Cutout](<../engine/ly.img.engine/-design-block-type/-cutout.md>) — `ly.img.engine`
+- [DesignBlockType.ExclusionArea](<../engine/ly.img.engine/-design-block-type/-exclusion-area.md>) — `ly.img.engine`
 - [DesignBlockType.Graphic](<../engine/ly.img.engine/-design-block-type/-graphic.md>) — `ly.img.engine`
 - [DesignBlockType.Group](<../engine/ly.img.engine/-design-block-type/-group.md>) — `ly.img.engine`
 - [DesignBlockType.Page](<../engine/ly.img.engine/-design-block-type/-page.md>) — `ly.img.engine`
@@ -162,6 +164,7 @@ Complete catalog of 261 generated API digests.
 - [FillType.LinearGradient](<../engine/ly.img.engine/-fill-type/-linear-gradient.md>) — `ly.img.engine`
 - [FillType.PixelStream](<../engine/ly.img.engine/-fill-type/-pixel-stream.md>) — `ly.img.engine`
 - [FillType.RadialGradient](<../engine/ly.img.engine/-fill-type/-radial-gradient.md>) — `ly.img.engine`
+- [FillType.Stripe](<../engine/ly.img.engine/-fill-type/-stripe.md>) — `ly.img.engine`
 - [FillType.Video](<../engine/ly.img.engine/-fill-type/-video.md>) — `ly.img.engine`
 - [FindAssetsQuery](<../engine/ly.img.engine/-find-assets-query.md>) — `ly.img.engine`
 - [FindAssetsResult](<../engine/ly.img.engine/-find-assets-result.md>) — `ly.img.engine`

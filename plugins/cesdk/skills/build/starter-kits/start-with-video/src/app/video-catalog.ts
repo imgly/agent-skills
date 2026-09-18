@@ -1,19 +1,11 @@
+import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
+export { DEMO_ASSETS_BASE_URL };
+
 /**
  * CE.SDK Start with Video - Video Catalog
  *
  * Sample videos from Pexels.com (licensed for free use)
  */
-
-/**
- * Demo assets for this example (videos, thumbnails, …) are loaded from the
- * IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1-rc.1/starterkit-start-with-video';
 
 // ============================================================================
 // Types

@@ -20,7 +20,7 @@ resolution.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-for-printing-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.1-rc.1/examples/guides-export-save-publish-for-printing-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/guides-export-save-publish-for-printing-browser/index.html)
 
 CE.SDK exports designs as PDFs, but professional print workflows require specific configurations beyond standard export. This guide covers PDF export options for print, including high compatibility mode for complex designs, underlayers for printing on special media, and output resolution settings.
 
@@ -113,6 +113,14 @@ class Example implements EditorPlugin {
     // Set print resolution (DPI) on the scene
     // 300 DPI is standard for high-quality print output
     engine.block.setFloat(scene, 'scene/dpi', 300);
+
+    // The bleed is four values, one per side, in the scene's design unit. A cut that
+    // drifts still lands on artwork rather than on paper.
+    engine.block.setFloat(page, 'page/margin/top', 3);
+    engine.block.setFloat(page, 'page/margin/right', 3);
+    engine.block.setFloat(page, 'page/margin/bottom', 3);
+    engine.block.setFloat(page, 'page/margin/left', 3);
+    engine.block.setBool(page, 'page/marginEnabled', true);
 
     // Helper function to download blob
     const downloadBlob = (blob: Blob, filename: string) => {
@@ -286,6 +294,47 @@ Before exporting, configure your scene with appropriate print settings. Set the 
     // 300 DPI is standard for high-quality print output
     engine.block.setFloat(scene, 'scene/dpi', 300);
 ```
+
+## Exclusion Areas in a Print Export
+
+An exclusion area marks a region of a page that content must stay out of, such as an envelope window or a book spine. An exclusion area is authoring geometry, so it is left out of an export and its guide colors never reach the file.
+
+Set `exclusionArea/punchOut` to `true` on an exclusion area to cut it out of the export instead. The page and everything on it get a hole where the exclusion area is, so a die cut window in the design becomes a window in the exported PDF. The hole is transparent, which a print workflow reads as an absence of ink rather than as white. It is off by default.
+
+See [Exclusion Areas](./concepts/exclusion-areas.md) for how to create and place an exclusion area.
+
+## Set the Bleed
+
+A print shop cuts a trimmed job slightly inside the sheet, and the knife drifts. Bleed is the band of artwork that runs past the cut line so a drifting knife still lands on artwork rather than on bare paper. Three millimeters is the common house standard.
+
+The bleed is four values, one per side, in the scene's design unit. Write them on the page and switch `page/marginEnabled` on:
+
+```typescript highlight-bleed
+// The bleed is four values, one per side, in the scene's design unit. A cut that
+// drifts still lands on artwork rather than on paper.
+engine.block.setFloat(page, 'page/margin/top', 3);
+engine.block.setFloat(page, 'page/margin/right', 3);
+engine.block.setFloat(page, 'page/margin/bottom', 3);
+engine.block.setFloat(page, 'page/margin/left', 3);
+engine.block.setBool(page, 'page/marginEnabled', true);
+```
+
+The bleed also anchors the printer's marks: `printMarkOffset` is measured from the same trim edge and in the same unit, so the two are directly comparable. See [Export to PDF](./export-save-publish/export/to-pdf.md) for the mark options and how they grow the exported sheet.
+
+## Using the Built-in Print Setup UI
+
+In the editor, users set the bleed and choose the printer's marks in the Print Setup panel, opened from the Print section of the document inspector. Enable the features to show it:
+
+```typescript
+cesdk.feature.enable('ly.img.page.bleedMargin');
+cesdk.feature.enable('ly.img.page.bleedColor');
+cesdk.feature.enable('ly.img.page.printMarks.crop');
+cesdk.feature.enable('ly.img.page.printMarks.registration');
+```
+
+The panel edits the document. By default it is offered only while nothing is selected. A document-level change writes the bleed to every page.
+
+A PDF export started from the editor's export button, or through `cesdk.utils.export()`, carries the panel's marks. The choice is editor state: it is not saved with the scene.
 
 ## PDF Export Options for Print
 

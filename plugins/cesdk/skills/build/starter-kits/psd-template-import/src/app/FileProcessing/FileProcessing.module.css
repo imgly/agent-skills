@@ -12,3 +12,18 @@
   min-height: calc(100vh - 12px);
   gap: 24px;
 }
+
+.error {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px;
+  text-align: center;
+}
+
+.errorText {
+  color: #b3261e;
+}
