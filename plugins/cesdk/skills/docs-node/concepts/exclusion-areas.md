@@ -41,6 +41,8 @@ Set `includedInExport` to `true` on the exclusion area to put its artwork in the
 engine.block.setIncludedInExport(exclusionArea, true);
 ```
 
+An exclusion area is created with a stripe fill (`//ly.img.ubq/fill/stripe`), so an exclusion area that still has that fill brings its stripes into the file. Assign the artwork of the obstruction to the exclusion area to export that in place of the stripes.
+
 Set `exclusionArea/punchOut` to `true` to cut the exclusion area out of an export instead. The page and everything on it get a hole where the exclusion area is, so a die cut window in the design becomes a window in the exported file:
 
 ```js
@@ -51,9 +53,25 @@ The hole is transparent, so export to a format that carries an alpha channel —
 
 An exclusion area never changes the size of an export. An exclusion area that hangs over the edge of a page cannot grow the exported page, and an exclusion area parented to the scene does not grow an exported scene unless you opt it into the export.
 
+## Holding Content Out
+
+An exclusion area marks a region, and on its own it moves nothing. Set `exclusionArea/constrains` to `true` for a region the engine must hold content out of, such as an envelope window or a die cut:
+
+```js
+engine.block.setBool(exclusion area, 'exclusion area/constrains', true);
+```
+
+The exclusion area is then a wall while the user drags or resizes a block. The block stops against the exclusion area's own shape and slides along its edge, and the user drags around the exclusion area to reach the other side. An exclusion area shaped as a ring keeps blocks out of the ring and leaves the hole free, which is how a forbidden outer edge of a page is expressed. The exclusion area the block is up against draws a border on the canvas, so the user sees what stopped them. An exclusion area that marks without constraining draws that border too.
+
+The engine never moves a block on its own, so a block that already overlaps an exclusion area stays where it is, and a call through the API is never constrained. Ask which blocks overlap an exclusion area with:
+
+```js
+const offending = engine.block.findAllInExclusionAreas();
+```
+
 ## Limitations
 
-An exclusion area marks a region. It does not yet stop a block from being placed in one, so a server-side validation pass still has to compare block bounds against exclusion area bounds itself.
+There is no user to constrain on a server, so `exclusionArea/constrains` changes nothing here. `findAllInExclusionAreas` is the part that matters: run it after `engine.scene.applyTemplate` or a variable pass to find the blocks a template put in the way.
 
 ## Next Steps
 

@@ -84,6 +84,9 @@ func cmykColors(engine: Engine) async throws {
 
   // Convert between sRGB and CMYK using the editor API. Conversions are not
   // perfectly reversible because the color gamuts differ.
+  // Converting CMYK to sRGB reads the document CMYK profile, which is a resource. Load it once
+  // first, so the conversion does not have to handle COLOR.PROFILE_NOT_LOADED.
+  try await engine.editor.loadCMYKProfile()
   let rgbBlue = Color.rgba(r: 0.2, g: 0.4, b: 0.9, a: 1.0)
   let convertedCmyk = try engine.editor.convertColorToColorSpace(color: rgbBlue, colorSpace: .cmyk)
   print("RGB to CMYK conversion: \(convertedCmyk)")
@@ -120,7 +123,7 @@ Work with CMYK colors in CE.SDK for professional print production workflows with
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260917/engine-guides-colors-for-print-cmyk)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260918/engine-guides-colors-for-print-cmyk)
 
 CMYK (Cyan, Magenta, Yellow, Key/Black) is the standard color model for print production. Unlike sRGB, which is additive and designed for screens, CMYK uses subtractive color mixing to represent how inks combine on paper. CE.SDK represents CMYK as a case of the `Color` enum, so the same `setColor` and `getColor` APIs work across all color spaces.
 
@@ -254,6 +257,9 @@ Use `engine.editor.convertColorToColorSpace(color:colorSpace:)` with `ColorSpace
 ```swift highlight-cmykColors-convert
   // Convert between sRGB and CMYK using the editor API. Conversions are not
   // perfectly reversible because the color gamuts differ.
+  // Converting CMYK to sRGB reads the document CMYK profile, which is a resource. Load it once
+  // first, so the conversion does not have to handle COLOR.PROFILE_NOT_LOADED.
+  try await engine.editor.loadCMYKProfile()
   let rgbBlue = Color.rgba(r: 0.2, g: 0.4, b: 0.9, a: 1.0)
   let convertedCmyk = try engine.editor.convertColorToColorSpace(color: rgbBlue, colorSpace: .cmyk)
   print("RGB to CMYK conversion: \(convertedCmyk)")

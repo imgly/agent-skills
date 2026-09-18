@@ -134,7 +134,7 @@ Pages define the format of your designs. Every graphic block, text element, and 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260917/engine-guides-concepts-pages)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260918/engine-guides-concepts-pages)
 
 <EngineReferenceNote {...props} />
 
@@ -289,7 +289,7 @@ Set `page/safetyEnabled` to `true`, then use `page/safetyInset/top`, `page/safet
 
 The safety inset is authoring state, and nothing it draws reaches an export.
 
-The guide appears while a drag comes near the safety line, and goes away when the drag ends. The engine shades the band between the page edge and the line, draws the line itself, and lets the dragged block snap to it. Set `page/safetyRevealOnDrag` to `false` to draw the guide on every page all the time instead.
+The guide appears while a drag is in the safety inset or comes near the safety line, and goes away when the drag ends. The engine shades the band between the page edge and the line, draws the line itself, and lets the dragged block snap to it. Set `page/safetyRevealOnDrag` to `false` to draw the guide on every page all the time instead.
 
 Set the guide colors with the `page/safetyFillColor` and `page/safetyFrameColor` settings; a fully transparent `page/safetyFrameColor` hides the line and turns its snapping off.
 

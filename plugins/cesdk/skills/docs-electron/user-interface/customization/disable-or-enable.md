@@ -18,7 +18,7 @@ Control which editor features are available to users using the Feature API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260917/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260918/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
 
 The Feature API provides global control over feature visibility throughout the editor. Use it to hide delete buttons from certain users, disable crop controls based on context, or conditionally enable features based on user roles or selection state. Unlike the Component Order API which targets specific components in specific areas, the Feature API affects features everywhere in the editor at once.
 
@@ -649,6 +649,7 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.layerList.reorder`      | Controls dragging a row to reorder it                                    |
 | `ly.img.layerList.rename`       | Controls renaming a row in place                                         |
 | `ly.img.layerList.menu`         | Controls the menu on a row                                               |
+| `ly.img.layerList.thumbnails`   | Controls the thumbnail on every row                                      |
 
 ### Scene Features
 

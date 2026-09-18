@@ -17,6 +17,7 @@ type BlockEnumType = object;
 |  `height/mode` | [`HeightMode`](./api/engine/type-aliases/heightmode.md) |
 |  `position/x/mode` | [`PositionXMode`](./api/engine/type-aliases/positionxmode.md) |
 |  `position/y/mode` | [`PositionYMode`](./api/engine/type-aliases/positionymode.md) |
+|  `scene/colorConversionMode` | [`SceneColorConversionMode`](./api/engine/type-aliases/scenecolorconversionmode.md) |
 |  `scene/designUnit` | [`DesignUnit`](./api/engine/type-aliases/designunit.md) |
 |  `scene/fontSizeUnit` | [`SceneFontSizeUnit`](./api/engine/type-aliases/scenefontsizeunit.md) |
 |  `scene/layout` | [`SceneLayout`](./api/engine/type-aliases/scenelayout.md) |

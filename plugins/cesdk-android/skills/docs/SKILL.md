@@ -22,7 +22,7 @@ description: |
 
 ## Version Notice
 
-> CE.SDK `1.83.0-nightly.20260917` · generated `2026-09-16` · plugin `cesdk-android`
+> CE.SDK `1.83.0-nightly.20260918` · generated `2026-09-17` · plugin `cesdk-android`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
@@ -81,7 +81,7 @@ ly.img:camera:[catalog](api/indexes/camera.md)|digests:2|platforms:{android}
 ly.img:camera-core:[catalog](api/indexes/camera-core.md)|digests:33|platforms:{android}
 ly.img:editor:[catalog](api/indexes/editor.md)|digests:7|platforms:{android}
 ly.img:editor-core:[catalog](api/indexes/editor-core.md)|digests:273|platforms:{android}
-ly.img:engine:[catalog](api/indexes/engine.md)|digests:262|platforms:{android}
+ly.img:engine:[catalog](api/indexes/engine.md)|digests:263|platforms:{android}
 ly.img:engine-camera:[catalog](api/indexes/engine-camera.md)|digests:1|platforms:{android}
 ly.img:plugin-ai-core:[catalog](api/indexes/plugin-ai-core.md)|digests:10|platforms:{android}
 ly.img:plugin-ai-image-generation:[catalog](api/indexes/plugin-ai-image-generation.md)|digests:4|platforms:{android}

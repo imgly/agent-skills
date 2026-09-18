@@ -90,7 +90,7 @@ Templates transform static designs into dynamic, data-driven content. They combi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260917/editor-guides-concepts-templating)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260918/editor-guides-concepts-templating)
 
 <EngineReferenceNote {...props} />
 

@@ -352,6 +352,14 @@ abstract fun findAllBlocksAtScreenSpacePosition(x: Float, y: Float): List<Design
 
 Find all blocks whose visible geometry contains the given screen space position, ordered front to back. The position is expected in the same screen space that getScreenSpaceBoundingBoxRect reports. The query uses the geometry rules of selection by click or touch. It respects a block's shape path and stroke, and it includes a hit page. A hit on only the bounding box, or on a transparent area of an image fill, sorts after all conclusive hits. Hidden blocks are never returned. Returns an empty list when no scene is loaded or nothing is hit.
 
+### findAllInExclusionAreas
+
+```kotlin
+abstract fun findAllInExclusionAreas(): List<DesignBlock>
+```
+
+Returns all blocks that overlap an exclusion area on their page. The engine never moves a block to satisfy an exclusion area. A scene loaded from a file, or laid out through the API, can legitimately overlap one, and silently repositioning it would lose the author's layout. Use this to warn or to highlight instead.
+
 ### findAllMetadata
 
 ```kotlin
@@ -1043,7 +1051,7 @@ Get the name of the spot color assigned to a cutout type.
 abstract fun getState(block: DesignBlock): BlockState
 ```
 
-Get the current state of a block. Note If this block is in error state or this block has a Shape block, Fill block or Effect block(s), that is in error state, the returned state will be BlockState.Error. Else, if this block is in pending state or this block has a Shape block, Fill block or Effect block(s), that is in pending state, the returned state will be BlockState.Pending. Else, the returned state will be BlockState.Ready. Note: Runs an engine update when the block names a resource that nothing asked for yet. A font set just before this call is then reported as pending.
+Get the current state of a block. Note If this block is in error state or this block has a Shape block, Fill block or Effect block(s), that is in error state, the returned state will be BlockState.Error. Else, if this block is in pending state or this block has a Shape block, Fill block or Effect block(s), that is in pending state, the returned state will be BlockState.Pending. Else, the returned state will be BlockState.Ready. Note: A block whose CMYK or spot color needs the document CMYK profile is BlockState.Pending while that profile loads. Note: Runs an engine update when the block names a resource that nothing asked for yet. A font set just before this call is then reported as pending.
 
 ### getString
 

@@ -12,7 +12,7 @@ Apply sRGB colors to design elements for screen-based output using RGBA values w
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260917/engine-guides-colors-for-screen-srgb)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260918/engine-guides-colors-for-screen-srgb)
 
 sRGB is the standard color space for screen displays. CE.SDK represents sRGB colors with the `Color.rgba` case, where each component uses floating-point values between `0.0` and `1.0` — not the traditional `0`–`255` integer range used in many design tools.
 
@@ -67,6 +67,8 @@ func srgbColors(engine: Engine) async throws {
     print("sRGB color - r: \(r), g: \(g), b: \(b), a: \(a)")
   }
 
+  // Converting CMYK reads the document CMYK profile, which is a resource. Load it once first.
+  try await engine.editor.loadCMYKProfile()
   let cmykOrange = Color.cmyk(c: 0.0, m: 0.5, y: 1.0, k: 0.0, tint: 1.0)
   let convertedToSrgb = try engine.editor.convertColorToColorSpace(color: cmykOrange, colorSpace: .sRGB)
   print("CMYK converted to sRGB: \(convertedToSrgb)")
@@ -156,6 +158,8 @@ if case let .rgba(r, g, b, a) = currentColor {
 Use `engine.editor.convertColorToColorSpace` to convert CMYK or spot colors to sRGB for screen display.
 
 ```swift highlight-srgbColors-convertToSrgb
+// Converting CMYK reads the document CMYK profile, which is a resource. Load it once first.
+try await engine.editor.loadCMYKProfile()
 let cmykOrange = Color.cmyk(c: 0.0, m: 0.5, y: 1.0, k: 0.0, tint: 1.0)
 let convertedToSrgb = try engine.editor.convertColorToColorSpace(color: cmykOrange, colorSpace: .sRGB)
 print("CMYK converted to sRGB: \(convertedToSrgb)")

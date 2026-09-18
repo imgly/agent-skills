@@ -50,7 +50,7 @@ The settings are organized by type:
 |  `page/title/show` | `boolean` | Whether to show titles above each page. |
 |  `page/title/showOnSinglePage` | `boolean` | Whether to hide the page title when only a single page exists. |
 |  `page/title/showPageTitleTemplate` | `boolean` | Whether to include the default page title from page.titleTemplate. |
-|  `page/safetyRevealOnDrag` | `boolean` | Whether the safety inset appears only while a drag comes near it. |
+|  `page/safetyRevealOnDrag` | `boolean` | Whether the safety inset appears only while a drag is in it or comes near it. |
 |  `placeholderControls/showButton` | `boolean` | Whether to show the placeholder button. |
 |  `placeholderControls/showOverlay` | `boolean` | Whether to show the overlay pattern for placeholders. |
 |  `blockAnimations/enabled` | `boolean` | Whether animations should be enabled or not. |

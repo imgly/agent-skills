@@ -519,6 +519,14 @@ Checks wether the block has selection and hover highlighting enabled or disabled
 
 Checks whether the block can currently be selected. `id`
 
+### loadCMYKProfile()
+
+```swift
+@MainActor func loadCMYKProfile() async throws
+```
+
+Loads the CMYK profile that this document previews and converts CMYK colors with. The profile is a resource, and a resource takes several update cycles to arrive, so a CMYK conversion made right after the engine starts fails. Await this once and every later [`convertColorToColorSpace(color:colorSpace:)`](./convertcolortocolorspace(color:colorspace:).md) answers without handling `COLOR.PROFILE_NOT_LOADED`.
+
 ### onHistoryUpdated
 
 > **Deprecated:** Use 'onHistoryUpdatedWithKind' instead.

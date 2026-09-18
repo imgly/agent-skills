@@ -2700,6 +2700,12 @@ const val COLOR_PROFILE_INVALID: String
 const val COLOR_PROFILE_MISSING: String
 ```
 
+### COLOR_PROFILE_NOT_LOADED
+
+```kotlin
+const val COLOR_PROFILE_NOT_LOADED: String
+```
+
 ### COLOR_PROFILE_SPACE_MISMATCH
 
 ```kotlin
@@ -4120,6 +4126,12 @@ const val LICENSE_AV_SESSION_REQUIRES_API_KEY: String
 
 ```kotlin
 const val LICENSE_CANNOT_DEACTIVATE_OFFLINE: String
+```
+
+### LICENSE_CLAIM_INVALID
+
+```kotlin
+const val LICENSE_CLAIM_INVALID: String
 ```
 
 ### LICENSE_DEACTIVATION_TIMEOUT

@@ -126,6 +126,7 @@ describe('VAN-U7 features', () => {
     'ly.img.layerList.panel',
     'ly.img.layerList.rename',
     'ly.img.layerList.reorder',
+    // 'ly.img.layerList.thumbnails', /* Thumbnail on every row */
     'ly.img.layerList.visibility',
     'ly.img.video.caption',
     'ly.img.video.timeline.clips',

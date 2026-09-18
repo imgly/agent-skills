@@ -141,6 +141,7 @@
 | [PropertyType](./api/node/type-aliases/propertytype.md) | Represents the various types of properties that can be associated with design blocks. Each type corresponds to a different kind of data that can be used to define the properties of a design block within the system. |
 | [RGBA](./api/node/type-aliases/rgba.md) | Represents a color in the RGBA color space. |
 | [RoleString](./api/node/type-aliases/rolestring.md) | Represents a role string. |
+| [SceneColorConversionMode](./api/node/type-aliases/scenecolorconversionmode.md) | - |
 | [DesignUnit](./api/node/type-aliases/designunit.md) | - |
 | [SceneFontSizeUnit](./api/node/type-aliases/scenefontsizeunit.md) | - |
 | [SceneLayout](./api/node/type-aliases/scenelayout.md) | - |
@@ -319,6 +320,7 @@
 | [PlaybackFadeOutEasingValues](./api/node/variables/playbackfadeouteasingvalues.md) | - |
 | [PositionXModeValues](./api/node/variables/positionxmodevalues.md) | - |
 | [PositionYModeValues](./api/node/variables/positionymodevalues.md) | - |
+| [SceneColorConversionModeValues](./api/node/variables/scenecolorconversionmodevalues.md) | - |
 | [SceneDesignUnitValues](./api/node/variables/scenedesignunitvalues.md) | - |
 | [SceneFontSizeUnitValues](./api/node/variables/scenefontsizeunitvalues.md) | - |
 | [SceneLayoutValues](./api/node/variables/scenelayoutvalues.md) | - |

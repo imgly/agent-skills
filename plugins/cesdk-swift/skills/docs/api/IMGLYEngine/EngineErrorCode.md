@@ -2699,6 +2699,12 @@ case colorProfileInvalid
 case colorProfileMissing
 ```
 
+### EngineErrorCode.colorProfileNotLoaded
+
+```swift
+case colorProfileNotLoaded
+```
+
 ### EngineErrorCode.colorProfileSpaceMismatch
 
 ```swift
@@ -4119,6 +4125,12 @@ case licenseAvSessionRequiresApiKey
 
 ```swift
 case licenseCannotDeactivateOffline
+```
+
+### EngineErrorCode.licenseClaimInvalid
+
+```swift
+case licenseClaimInvalid
 ```
 
 ### EngineErrorCode.licenseDeactivationTimeout

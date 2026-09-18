@@ -1671,6 +1671,8 @@ isVisibleAtCurrentPlaybackTime(id: DesignBlockId): boolean
 
 Gets the current state of a block.
 A block's state is determined by its own state and that of its shape, fill, and effects.
+A block whose CMYK or spot color needs the document CMYK profile is pending while that
+profile loads.
 Runs an engine update when the block names a resource that nothing asked for yet.
 A font set just before this call is then reported as pending.
 ```javascript
@@ -2063,6 +2065,22 @@ findAllUnused(): DesignBlockId[]
 ```
 
 **Returns:** A list of block ids that are not attached to any scene.
+
+### findAllInExclusionAreas()
+
+Get all blocks that overlap an exclusion area on their page.
+The engine never moves a block to satisfy an exclusion area. A scene loaded from a file, or laid out
+through the API, can legitimately overlap one, and silently repositioning it would lose the
+author's layout. Use this to warn or to highlight instead.
+An exclusion area that is hidden, or that is not on a page, reports nothing. `exclusionArea/constrains` is not
+read: an advisory exclusion area has no push, so a warning is the only thing it has. A group that
+straddles an exclusion area is reported instead of the blocks inside it.
+
+```typescript
+findAllInExclusionAreas(): DesignBlockId[]
+```
+
+**Returns:** A list of block ids that overlap an exclusion area, sorted ascending.
 
 ## Block Shapes
 

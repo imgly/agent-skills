@@ -26,7 +26,7 @@ data class CMYKColors(
     val gradientStops: List<GradientColorStop>,
 )
 
-fun cmykColors(engine: Engine): CMYKColors {
+suspend fun cmykColors(engine: Engine): CMYKColors {
     // CMYK components (c, m, y, k) and tint all range from 0F to 1F.
     val cmykCyan = Color.fromCMYK(c = 1F, m = 0F, y = 0F, k = 0F, tint = 1F)
     val cmykMagenta = Color.fromCMYK(c = 0F, m = 1F, y = 0F, k = 0F, tint = 1F)
@@ -88,6 +88,9 @@ fun cmykColors(engine: Engine): CMYKColors {
             "Y: ${retrievedCmyk.y}, K: ${retrievedCmyk.k}, Tint: ${retrievedCmyk.tint}",
     )
 
+    // Converting CMYK to sRGB reads the document CMYK profile, which is a resource. Load it once
+    // first, so the conversion does not have to handle COLOR.PROFILE_NOT_LOADED.
+    engine.editor.loadCMYKProfile()
     val rgbBlue = Color.fromRGBA(r = 0.2F, g = 0.4F, b = 0.9F, a = 1F)
     val convertedCmyk = engine.editor.convertColorToColorSpace(
         color = rgbBlue,
@@ -140,7 +143,7 @@ Work with CMYK colors in CE.SDK for professional print production workflows with
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260917/engine-guides-colors-for-print-cmyk)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260918/engine-guides-colors-for-print-cmyk)
 
 <EngineReferenceNote {...props} />
 
@@ -271,6 +274,9 @@ Enable the drop shadow, configure its offset and blur radius, then assign a CMYK
 Use `engine.editor.convertColorToColorSpace()` with `ColorSpace.CMYK` or `ColorSpace.SRGB` to convert between color spaces.
 
 ```kotlin highlight-android-convert
+    // Converting CMYK to sRGB reads the document CMYK profile, which is a resource. Load it once
+    // first, so the conversion does not have to handle COLOR.PROFILE_NOT_LOADED.
+    engine.editor.loadCMYKProfile()
     val rgbBlue = Color.fromRGBA(r = 0.2F, g = 0.4F, b = 0.9F, a = 1F)
     val convertedCmyk = engine.editor.convertColorToColorSpace(
         color = rgbBlue,

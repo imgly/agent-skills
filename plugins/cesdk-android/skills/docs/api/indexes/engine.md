@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 262 generated API digests.
+Complete catalog of 263 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -163,6 +163,7 @@ Complete catalog of 262 generated API digests.
 - [FillType.LinearGradient](<../engine/ly.img.engine/-fill-type/-linear-gradient.md>) — `ly.img.engine`
 - [FillType.PixelStream](<../engine/ly.img.engine/-fill-type/-pixel-stream.md>) — `ly.img.engine`
 - [FillType.RadialGradient](<../engine/ly.img.engine/-fill-type/-radial-gradient.md>) — `ly.img.engine`
+- [FillType.Stripe](<../engine/ly.img.engine/-fill-type/-stripe.md>) — `ly.img.engine`
 - [FillType.Video](<../engine/ly.img.engine/-fill-type/-video.md>) — `ly.img.engine`
 - [FindAssetsQuery](<../engine/ly.img.engine/-find-assets-query.md>) — `ly.img.engine`
 - [FindAssetsResult](<../engine/ly.img.engine/-find-assets-result.md>) — `ly.img.engine`

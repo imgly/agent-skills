@@ -90,6 +90,7 @@ describe('PH-U2 the feature difference between the two roles (Qase 4685)', () =>
       'ly.img.layerList.panel',
       'ly.img.layerList.rename',
       'ly.img.layerList.reorder',
+      // 'ly.img.layerList.thumbnails', /* Thumbnail on every row */
       'ly.img.layerList.visibility',
       'ly.img.library.panel',
       'ly.img.navigation.actions',

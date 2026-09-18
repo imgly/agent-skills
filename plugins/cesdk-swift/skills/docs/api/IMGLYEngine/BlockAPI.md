@@ -555,6 +555,14 @@ Return all blocks currently known to the engine. A list of block ids.
 
 Find all blocks whose visible geometry contains the given screen space position, ordered front to back. `position`
 
+### findAllInExclusionAreas()
+
+```swift
+@MainActor func findAllInExclusionAreas() -> [DesignBlockID]
+```
+
+Returns all blocks that overlap an exclusion area on their page. A list of block ids that overlap an exclusion area, sorted ascending.
+
 ### findAllMetadata(_:)
 
 ```swift

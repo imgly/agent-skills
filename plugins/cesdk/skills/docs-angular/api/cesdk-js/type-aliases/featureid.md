@@ -205,6 +205,7 @@ type FeatureId =
   | "ly.img.layerList.reorder"
   | "ly.img.layerList.rename"
   | "ly.img.layerList.menu"
+  | "ly.img.layerList.thumbnails"
   | "ly.img.notifications"
   | "ly.img.notifications.undo"
   | "ly.img.notifications.redo"

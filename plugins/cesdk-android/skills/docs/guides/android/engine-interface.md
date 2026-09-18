@@ -123,7 +123,7 @@ The Android Engine is the programmatic entry point behind CE.SDK. You can use it
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260917/engine-guides-setup)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260918/engine-guides-setup)
 
 ## Choose the Integration Mode
 

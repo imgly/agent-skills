@@ -272,7 +272,7 @@ Customize the video timeline — the playback and arrangement surface below the 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260917/editor-guides-configuration-video-timeline)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260918/editor-guides-configuration-video-timeline)
 
 ## Timeline Architecture
 
@@ -293,7 +293,7 @@ The item, option, and visibility closures are evaluated per render, so what the 
 
 ## Configuration
 
-Mount the timeline as the editor's bottom-panel content and hand it a configuration. These examples build on `GuideEditorConfiguration`, a minimal baseline the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260917/editor-guides-quickstart/GuideEditorConfiguration.swift) ships, which sets only a navigation bar. Substitute your own configuration class — `builder.bottomPanel { … }` is available on every `EditorConfiguration`. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
+Mount the timeline as the editor's bottom-panel content and hand it a configuration. These examples build on `GuideEditorConfiguration`, a minimal baseline the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0-nightly.20260918/editor-guides-quickstart/GuideEditorConfiguration.swift) ships, which sets only a navigation bar. Substitute your own configuration class — `builder.bottomPanel { … }` is available on every `EditorConfiguration`. The [Configuration](../../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 
 ```swift highlight-videoTimeline-bottomPanel
 builder.bottomPanel { bottomPanel in

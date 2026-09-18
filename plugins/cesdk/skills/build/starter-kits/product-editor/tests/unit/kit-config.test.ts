@@ -34,6 +34,7 @@ describe('PE-U5 setupFeatures', () => {
     'ly.img.layerList.panel',
     'ly.img.layerList.rename',
     'ly.img.layerList.reorder',
+    // 'ly.img.layerList.thumbnails', /* Thumbnail on every row */
     'ly.img.layerList.visibility',
     'ly.img.navigation.bar',
     'ly.img.navigation.undoRedo',

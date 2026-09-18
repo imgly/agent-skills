@@ -465,6 +465,14 @@ abstract fun isSelectionEnabled(block: DesignBlock): Boolean
 
 Checks whether the block can currently be selected.
 
+### loadCMYKProfile
+
+```kotlin
+abstract suspend fun loadCMYKProfile()
+```
+
+Loads the CMYK profile that this document previews and converts CMYK colors with. The profile is a resource, and a resource takes several update cycles to arrive, so a CMYK conversion made right after the engine starts fails. Await this once and every later convertColorToColorSpace answers without handling COLOR.PROFILE_NOT_LOADED.
+
 ### onCarouselPageChanged
 
 ```kotlin

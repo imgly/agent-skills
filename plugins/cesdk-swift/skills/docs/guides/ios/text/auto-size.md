@@ -140,7 +140,7 @@ Configure text blocks to automatically adapt their dimensions or font size for d
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260917/engine-guides-text-auto-size)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260918/engine-guides-text-auto-size)
 
 <EngineReferenceNote {...props} />
 

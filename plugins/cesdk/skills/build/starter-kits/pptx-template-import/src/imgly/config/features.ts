@@ -104,6 +104,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     'ly.img.layerList.panel' /* Layer & Page List panel and its dock button */,
     'ly.img.layerList.rename' /* Inline rename on a row */,
     'ly.img.layerList.reorder' /* Drag a row to reorder */,
+    // 'ly.img.layerList.thumbnails', /* Thumbnail on every row */
     'ly.img.layerList.visibility' /* Hide/show toggle on a layer row */,
 
     'ly.img.library.panel' /* Asset Library panel */,
