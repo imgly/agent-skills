@@ -29,6 +29,7 @@
 | [ActionFunction](./api/cesdk-js/type-aliases/actionfunction.md) | Type helper for retrieving the correct action function type based on the action ID. Returns the strongly-typed action for known actions, or a custom action type for unknown IDs. |
 | [ActionId](./api/cesdk-js/type-aliases/actionid.md) | Available action event types that can be registered with the ActionsAPI. These correspond to different UI actions that can be customized. Supports both predefined action types from the Actions interface and custom string identifiers. |
 | [AnyUILocationOptions](./api/cesdk-js/type-aliases/anyuilocationoptions.md) | Union type for location options. Resolves to the appropriate options type based on area-specific requirements. |
+| [AssetDropAction](./api/cesdk-js/type-aliases/assetdropaction.md) | Action function for an asset dropped on the canvas. |
 | [AssetEntryId](./api/cesdk-js/type-aliases/assetentryid.md) | Asset library entry IDs that can be used with asset library APIs. Includes built-in entry IDs registered by the SDK, and allows custom entry IDs. |
 | [AssetLibraryDockComponent](./api/cesdk-js/type-aliases/assetlibrarydockcomponent.md) | Represents an asset library dock component. |
 | [AssetLibraryEntryInput](./api/cesdk-js/type-aliases/assetlibraryentryinput.md) | A reference to an asset library entry to display. Either an entry ID, or an object that names the entry plus source IDs to hide for this display only — for example a replace panel that shows a library with a non-applicable source hidden (the text "Styles" panel shows `ly.img.text` but hides its text-combinations source). This per-display `excludeSourceIds` is distinct from the entry's own `includeGroups`/`excludeGroups`, which apply wherever the entry is shown. |
@@ -123,6 +124,7 @@
 | [PreviewType](./api/cesdk-js/type-aliases/previewtype.md) | Represents a preview, which can be either an image or a color. |
 | [PreviewTypeColor](./api/cesdk-js/type-aliases/previewtypecolor.md) | Represents a color preview. |
 | [PreviewTypeImage](./api/cesdk-js/type-aliases/previewtypeimage.md) | Represents an image preview. |
+| [PrintMarkExportOptions](./api/cesdk-js/type-aliases/printmarkexportoptions.md) | The printer's mark options of an export, as `engine.block.export` takes them. |
 | [SaveSceneAction](./api/cesdk-js/type-aliases/savesceneaction.md) | Action function for handling scene saving operations. |
 | [SceneCreateAction](./api/cesdk-js/type-aliases/scenecreateaction.md) | Action for creating a new scene with configurable mode and page sizes. Returns the scene block ID. |
 | [SceneCreateOptions](./api/cesdk-js/type-aliases/scenecreateoptions.md) | Options for creating a new scene. |
@@ -181,6 +183,7 @@
 
 | Interface | Description |
 | ------ | ------ |
+| [AssetDropPayload](./api/cesdk-js/interfaces/assetdroppayload.md) | Where a dragged asset was released on the canvas. |
 | [AssetLibraryEntry](./api/cesdk-js/interfaces/assetlibraryentry.md) | Represents an entry in the asset library, combining data and view configurations. |
 | [BaseInsertOptions](./api/cesdk-js/interfaces/baseinsertoptions.md) | Options for inserting components into a UI area. |
 | [BasePositionalInsertOptions](./api/cesdk-js/interfaces/basepositionalinsertoptions.md) | Options for inserting components into a positional UI area (e.g., canvas bar). |

@@ -121,11 +121,12 @@ engine.asset.addSource({
 ```
 
 ```typescript
-defaultApplyAsset(assetResult: AssetResult): Promise<DesignBlockId | undefined>
+defaultApplyAsset(assetResult: AssetResult, options?: DefaultApplyAssetOptions): Promise<DesignBlockId | undefined>
 ```
 
 **Parameters:**
 - `assetResult` - A single asset result from a `findAssets` query.
+- `options` - Optional configuration for asset application.
 
 **Returns:** Promise resolving to the created block ID, or undefined if no block was created.
 

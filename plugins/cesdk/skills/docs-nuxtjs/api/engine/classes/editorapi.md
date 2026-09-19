@@ -2723,7 +2723,8 @@
 
   Check if a user interaction is currently happening.
 
-  Detects active interactions like resize edits with drag handles or touch gestures.
+  Detects active interactions like resize edits with drag handles, touch gestures, and content
+  dragged over the canvas.
 
   #### Returns
 
@@ -2785,53 +2786,6 @@
 
   ```typescript
   checkCapabilities(): Promise<void>
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### getDragToSwapFillsSource()
-
-    <br /><p>The source block of the drag-to-swap-fills gesture while its fill is lifted.</p>
-  </summary>
-
-  The `dragToSwapFills/enabled` setting turns the gesture on. A press and hold on an eligible
-  image-fill block lifts its fill. A release over another eligible block exchanges the two
-  fills. Use this to draw a drag preview at the pointer while the lift is active.
-
-  #### Returns
-
-  `number`
-
-  The lifted source block, or an invalid block id while no lift is active.
-
-  #### Signature
-
-  ```typescript
-  getDragToSwapFillsSource(): number
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### cancelDragToSwapFills()
-
-    <br /><p>Cancels the drag-to-swap-fills gesture without changing the scene, for example to map the
-    Escape key to the gesture. Does nothing while no gesture is in progress.</p>
-  </summary>
-
-  #### Returns
-
-  `void`
-
-  #### Signature
-
-  ```typescript
-  cancelDragToSwapFills(): void
   ```
 
   ***
@@ -3022,7 +2976,7 @@
     ### setMovementConstraint()
 
     <br /><p>Set one or more rules that limit how far blocks can be positioned outside their
-    parent page during user interactions (drag, resize, touch gestures, crop).
+    parent page during user interactions (drag, resize, touch gestures, crop, nudge).
     Programmatic API calls are not affected.</p>
   </summary>
 

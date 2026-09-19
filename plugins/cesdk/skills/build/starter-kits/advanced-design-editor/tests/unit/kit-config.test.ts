@@ -68,7 +68,7 @@ describe('initAdvancedEditor', () => {
   it('ADE-U1 adds the advanced editor configuration first and background removal last', () => {
     expect(added[0]).toBeInstanceOf(AdvancedEditorConfig);
     expect(added.at(-1)?.name).toBe('background-removal');
-    expect(added).toHaveLength(17);
+    expect(added).toHaveLength(18);
   });
 
   it('ADE-U1 adds the fifteen documented asset source plugins', () => {
@@ -107,12 +107,12 @@ describe('initAdvancedEditor', () => {
     await vi.waitFor(() => expect(addPlugin).toHaveBeenCalledTimes(1));
 
     pending.shift()!();
-    await vi.waitFor(() => expect(addPlugin).toHaveBeenCalledTimes(16));
+    await vi.waitFor(() => expect(addPlugin).toHaveBeenCalledTimes(17));
 
     while (pending.length > 0) {
       pending.shift()!();
     }
-    await vi.waitFor(() => expect(addPlugin).toHaveBeenCalledTimes(17));
+    await vi.waitFor(() => expect(addPlugin).toHaveBeenCalledTimes(18));
     pending.shift()!();
     await done;
   });

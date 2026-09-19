@@ -40,7 +40,7 @@ Types: CutoutOperation
 
 ## engine
 
-Types: Vector, DesignBlockId, HistoryId, HistoryUpdate, NumberRange, Vec2, Vec3, Size2, Range, ClampArgs, ClampCameraCommandResult, EmscriptenClassHandle, UBQError, UBQResult, MouseButtonEvent, MouseMoveEvent, MouseWheelEvent, KeyboardKeyEvent, ZoomAutoFitAxis, EngineTouchEvent, TouchRotateEvent, TouchPanEvent, TouchPinchEvent, TrackingMetadata, EditMode
+Types: Vector, HistoryId, HistoryUpdate, NumberRange, Vec2, Vec3, Size2, Range, ClampArgs, ClampCameraCommandResult, EmscriptenClassHandle, UBQError, UBQResult, MouseButtonEvent, MouseMoveEvent, DragInputEvent, MouseWheelEvent, KeyboardKeyEvent, ZoomAutoFitAxis, EngineTouchEvent, TouchRotateEvent, TouchPanEvent, TouchPinchEvent, TrackingMetadata, EditMode
 
 ## fontMetrics
 

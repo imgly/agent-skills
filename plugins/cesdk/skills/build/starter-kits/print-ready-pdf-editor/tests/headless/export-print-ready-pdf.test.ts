@@ -230,6 +230,25 @@ describe('page range', () => {
 
 // PRP-H5
 describe('conversion options', () => {
+  it('hands the chosen printer marks to the PDF export', async () => {
+    const exportSpy = vi.spyOn(engine.block, 'export');
+
+    await exportPrintReadyPDF(engine, {
+      ...DEFAULTS,
+      printMarks: { exportPdfWithCropMarks: true, printMarkOffset: 2 }
+    });
+
+    expect(exportSpy).toHaveBeenCalledWith(
+      expect.any(Number),
+      expect.objectContaining({
+        mimeType: 'application/pdf',
+        exportPdfWithCropMarks: true,
+        printMarkOffset: 2
+      })
+    );
+    exportSpy.mockRestore();
+  });
+
   it.each(['fogra39', 'gracol', 'srgb'] as const)(
     'hands %s to the conversion',
     async (colorProfile) => {

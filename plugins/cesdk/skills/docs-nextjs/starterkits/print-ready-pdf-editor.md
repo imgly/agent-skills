@@ -18,7 +18,7 @@ Deliver print-ready CMYK PDF/X-4 and PDF/X-3 files straight from your web app. P
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-print-ready-pdf-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260918/examples/starterkit-print-ready-pdf-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260919/examples/starterkit-print-ready-pdf-editor/index.html)
 
 ***
 
@@ -354,7 +354,11 @@ Click the "Export PDF" button in the navigation bar to open the export panel. Th
  * @see https://img.ly/docs/cesdk/js/export-save-publish/export/overview-9ed3a8/
  */
 
-import type { CreativeEngine, EditorPlugin } from '@cesdk/cesdk-js';
+import type {
+  CreativeEngine,
+  EditorPlugin,
+  PrintMarkExportOptions
+} from '@cesdk/cesdk-js';
 
 // #region Color Profiles
 type ColorProfile = 'fogra39' | 'gracol' | 'srgb';
@@ -589,6 +593,7 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
                 loadingState.setValue(true);
                 try {
                   const printReadyPDF = await exportPrintReadyPDF(engine, {
+                    printMarks: cesdk.utils.getPrintMarkExportOptions(),
                     pageRange:
                       pagesState.value === PageAmountType.CUSTOM
                         ? rangeInputState.value
@@ -686,6 +691,11 @@ export interface PrintReadyPDFOptions {
   bleedEnabled: boolean;
   /** Bleed margin in millimetres. */
   bleedMargin: number;
+  /**
+   * Printer's marks for the PDF the conversion runs on. The panel passes what the user chose in
+   * the Print Setup panel; without it the PDF carries no marks.
+   */
+  printMarks?: PrintMarkExportOptions;
 }
 
 /**
@@ -702,8 +712,14 @@ export const exportPrintReadyPDF = async (
   engine: CreativeEngine,
   options: PrintReadyPDFOptions
 ): Promise<Blob> => {
-  const { pageRange, colorProfile, outputStandard, bleedEnabled, bleedMargin } =
-    options;
+  const {
+    pageRange,
+    colorProfile,
+    outputStandard,
+    bleedEnabled,
+    bleedMargin,
+    printMarks
+  } = options;
 
   const scene = engine.scene.get();
   if (scene == null) {
@@ -734,7 +750,8 @@ export const exportPrintReadyPDF = async (
     });
 
     const pdfBlob = await engine.block.export(scene, {
-      mimeType: 'application/pdf'
+      mimeType: 'application/pdf',
+      ...printMarks
     });
 
     // Lazily load the print-ready PDF plugin so its Ghostscript WASM payload is

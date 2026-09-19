@@ -71,6 +71,7 @@ describe('PP-U6 setupFeatures', () => {
       'ly.img.cutout',
       'ly.img.delete',
       'ly.img.dock',
+      'ly.img.dragAndDrop.asset',
       'ly.img.duplicate',
       'ly.img.effect',
       'ly.img.fill.color.library',

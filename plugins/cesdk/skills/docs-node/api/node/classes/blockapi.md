@@ -2169,56 +2169,6 @@ Structure designs by positioning, sizing, layering, aligning, and distributing b
 
 <details>
   <summary>
-    ### findAllBlocksAtScreenSpacePosition()
-
-    <br /><p>Finds all blocks whose visible geometry contains the given screen-space position, ordered
-    front to back.</p>
-  </summary>
-
-  The position is expected in the same screen space that [getScreenSpaceBoundingBoxXYWH](./api/node/classes/blockapi.md)
-  reports. The query uses the geometry rules of selection by click or touch. It respects a
-  block's shape path and stroke, and it includes a hit page. A hit on only the bounding box,
-  or on a transparent area of an image fill, sorts after all conclusive hits. Hidden blocks
-  are never returned.
-
-  Use this to resolve drop targets under a pointer, for example for drag & drop of assets
-  onto blocks or between blocks.
-
-  ```javascript
-  const [topMost] = engine.block.findAllBlocksAtScreenSpacePosition(event.offsetX, event.offsetY);
-  ```
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `x` | `number` | The x coordinate of the position in screen space. |
-  | `y` | `number` | The y coordinate of the position in screen space. |
-
-  #### Returns
-
-  `number`\[]
-
-  The blocks at the given position, front-most first. Empty when no scene is loaded
-  or nothing is hit.
-
-  #### Remarks
-
-  Do not call this inside reactive selectors or `withEngine` render bodies. It is a
-  tracked getter, so the selector would re-execute on every engine tick. Call it from event
-  handlers, for example on pointer move.
-
-  #### Signature
-
-  ```typescript
-  findAllBlocksAtScreenSpacePosition(x: number, y: number): number[]
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
     ### alignHorizontally()
 
     <br /><p>Aligns blocks horizontally.</p>
@@ -4039,47 +3989,6 @@ Create, configure, and manage block fills, including solid colors, gradients, an
 
   ```typescript
   setFill(id: number, fill: number): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### swapFills()
-
-    <br /><p>Exchanges the fills of two blocks in one step.</p>
-  </summary>
-
-  Both blocks keep their own transform, size and appearance. Only the fills trade places.
-  The same rules apply as when calling [setFill](./api/node/classes/blockapi.md) on each block, including the fill type
-  restrictions for text blocks. Afterwards each block's crop is reset. The incoming fill is
-  fitted like a fill content replace from the asset library. When any part of the exchange
-  is not permitted, no block is modified. Swapping a block with itself does nothing. The
-  exchange adds no undo step.
-
-  Required scopes on both blocks: 'fill/change' ('fill/changeType' when the fill types differ)
-
-  ```javascript
-  engine.block.swapFills(firstImageBlock, secondImageBlock);
-  engine.editor.addUndoStep();
-  ```
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `first` | `number` | The block whose fill should be exchanged with `second`'s fill. |
-  | `second` | `number` | The block whose fill should be exchanged with `first`'s fill. |
-
-  #### Returns
-
-  `void`
-
-  #### Signature
-
-  ```typescript
-  swapFills(first: number, second: number): void
   ```
 
   ***

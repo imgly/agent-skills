@@ -1079,6 +1079,7 @@ The Actions API provides four methods:
     - `drag.begin` - Begin a drag gesture on blocks
     - `drag.end` - End a drag gesture on blocks
     - `secondaryAction` - The secondary (context) action at a position
+    - `asset.drop` - An asset dropped on the canvas, with the block and page below the drop
   </TabItem>
 
   <TabItem label="Headless Actions">
@@ -1239,6 +1240,7 @@ The Actions API provides four methods:
     - `drag.begin` - Begin a drag gesture on blocks
     - `drag.end` - End a drag gesture on blocks
     - `secondaryAction` - The secondary (context) action at a position
+    - `asset.drop` - An asset dropped on the canvas, with the block and page below the drop
 
     ## Overriding Engine Defaults Safely
 

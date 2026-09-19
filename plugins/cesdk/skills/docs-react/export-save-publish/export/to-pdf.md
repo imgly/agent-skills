@@ -18,7 +18,7 @@ Export your designs as PDF documents with high compatibility mode and underlayer
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-to-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260918/examples/guides-export-save-publish-export-to-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260919/examples/guides-export-save-publish-export-to-pdf-browser/index.html)
 
 PDF provides a universal document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page documents, and include options for print compatibility. You can configure high compatibility mode to ensure consistent rendering across different PDF viewers, and generate underlayers for special media printing like fabric, glass, or DTF transfers.
 
@@ -422,6 +422,10 @@ Both mark types are painted in the PDF registration colorant `All`, so they appe
 The offset is measured from the trim, so a small offset places a mark inside the bleed, which the knife removes anyway. A negative offset falls back to the 6 pt default, and `0` places a mark on the trim edge.
 
 Marks grow the exported page by the offset plus the equivalent of 15 points on each side, or by the offset plus `cropMarkLength` when that is longer. The artwork does not move, and the TrimBox and BleedBox keep describing the same physical rectangles. A page whose trim is not a rectangle gets no marks and no larger page.
+
+### Marks From the Print Setup Panel
+
+In the editor, users choose the marks in the Print Setup panel, opened from the Print section of the document inspector. The section appears when either `ly.img.page.bleedMargin` or `ly.img.page.printMarks` is enabled.
 
 ## Export at Target Dimensions
 

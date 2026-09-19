@@ -25,14 +25,6 @@ Adds a new history state to the stack, if undoable changes were made.
 
 Add a new vertex by splitting the segment after the currently selected vector node.
 
-### cancelDragToSwapFills()
-
-```swift
-@MainActor func cancelDragToSwapFills()
-```
-
-Cancels the drag-to-swap-fills gesture without changing the scene, for example when the host maps a system interruption to the gesture. Does nothing while no gesture is in progress.
-
 ### canRedo()
 
 ```swift
@@ -216,14 +208,6 @@ Get the rotation with which to render the mouse cursor. The angle in radians.
 ```
 
 Get the type of cursor that should be displayed by the application. The cursor type.
-
-### getDragToSwapFillsSource()
-
-```swift
-@MainActor func getDragToSwapFillsSource() -> DesignBlockID
-```
-
-The source block of the drag-to-swap-fills gesture while its fill is lifted. The lifted source block, or an invalid block while no lift is active.
 
 ### getEditMode()
 
@@ -737,7 +721,7 @@ Set multiple movement constraint rules at once. See [`setMovementConstraint(_:)`
 @MainActor func setMovementConstraint(_ rule: MovementConstraintRule) throws
 ```
 
-Set one or more rules that limit how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop). Programmatic API calls are not affected. `rule`
+Set one or more rules that limit how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop, nudge). Programmatic API calls are not affected. `rule`
 
 ### setResizeHandlesVisibility(_:)
 

@@ -903,6 +903,7 @@ Apply assets to scenes, blocks, or specific properties with customizable behavio
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `assetResult` | [`AssetResult`](./api/node/interfaces/assetresult.md) | A single asset result from a `findAssets` query. |
+  | `options?` | [`DefaultApplyAssetOptions`](./api/node/interfaces/defaultapplyassetoptions.md) | Optional configuration for asset application. |
 
   #### Returns
 
@@ -913,7 +914,7 @@ Apply assets to scenes, blocks, or specific properties with customizable behavio
   #### Signature
 
   ```typescript
-  defaultApplyAsset(assetResult: AssetResult): Promise<number>
+  defaultApplyAsset(assetResult: AssetResult, options?: DefaultApplyAssetOptions): Promise<number>
   ```
 
   ***

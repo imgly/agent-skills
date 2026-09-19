@@ -159,7 +159,8 @@ getTextCursorPositionInScreenSpaceY(): number
 ### unstable_isInteractionHappening()
 
 Check if a user interaction is currently happening.
-Detects active interactions like resize edits with drag handles or touch gestures.
+Detects active interactions like resize edits with drag handles, touch gestures, and content
+dragged over the canvas.
 
 ```typescript
 unstable_isInteractionHappening(): boolean

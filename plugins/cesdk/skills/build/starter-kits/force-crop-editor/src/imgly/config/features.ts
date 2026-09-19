@@ -67,6 +67,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
 
     'ly.img.dock' /* Dock visibility */,
 
+    // 'ly.img.dragAndDrop', /* Enables all children below */
+    'ly.img.dragAndDrop.asset' /* Drag assets from the library onto blocks/pages */,
+
     'ly.img.duplicate' /* Duplicate button and copy/paste */,
 
     'ly.img.effect' /* Effect button */,
@@ -127,8 +130,16 @@ export function setupFeatures(cesdk: CreativeEditorSDK) {
     // 'ly.img.page', /* Enables all page children below */
     // 'ly.img.page.add', /* Add Page button in Canvas Bar */
     // 'ly.img.page.bleedMargin', /* Bleed margin controls */
+    // 'ly.img.page.bleedColor', /* Bleed band color */
     // 'ly.img.page.clipContent', /* Clip content on/off toggle */
+    // 'ly.img.page.printMarks.exclusionArea', /* Exclusion area controls */
+    // 'ly.img.page.printMarks.safetyMargin', /* Safety margin controls */
     // 'ly.img.page.move', /* Move Up/Down/Left/Right buttons */
+    // 'ly.img.page.move.down', /* Move Down/Right button */
+    // 'ly.img.page.move.up', /* Move Up/Left button */
+    // 'ly.img.page.printMarks', /* Enables all children below */
+    // 'ly.img.page.printMarks.crop', /* Crop marks */
+    // 'ly.img.page.printMarks.registration', /* Registration marks */
     // 'ly.img.page.resize', /* Resize button and page formats */
     'ly.img.page.settings' /* Read-only page dimensions, unit, and resolution */,
 

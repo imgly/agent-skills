@@ -61,6 +61,7 @@ describe('PGS-U2 setupSettings', () => {
   it.each([
     ['doubleClickToCropEnabled', true],
     ['doubleClickSelectionMode', 'Hierarchical'],
+    ['dragToSwapFills/enabled', true],
     ['page/allowCropInteraction', true],
     ['page/dimOutOfPageAreas', true],
     ['page/moveChildrenWhenCroppingFill', false],
@@ -79,7 +80,7 @@ describe('PGS-U2 setupSettings', () => {
   });
 
   it('writes nothing else', () => {
-    expect(written).toHaveLength(15);
+    expect(written).toHaveLength(16);
   });
 });
 

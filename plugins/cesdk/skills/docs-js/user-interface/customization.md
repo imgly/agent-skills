@@ -32,6 +32,7 @@
 - [Video Timeline](./user-interface/customization/video-timeline.md) - Customize the video timeline's track visibility, transition controls, height, and controls bar.
 - [Canvas Bar](./user-interface/customization/canvas.md) - Edit or hide the floating bar above the canvas to streamline user interactions.
 - [Loading Indicator](./js.md) - Customize the loading screen that appears while the CE.SDK editor initializes by adding headings, body text, or removing the spinner.
+- [Exclusion Areas](./user-interface/customization/exclusion-areas.md) - Put the exclusion area controls in your editor — the feature key, the asset source and the dock button.
 - [Component Order API](./user-interface/customization/reference/component-order-api.md) - Complete reference for the unified Component Order API that controls layout and composition of all CE.SDK UI areas.
 - [Component Reference](./user-interface/customization/reference/component-reference.md) - Complete list of all built-in component IDs for each CE.SDK UI area including navigation bar, dock, inspector bar, canvas menu, and canvas bar.
 

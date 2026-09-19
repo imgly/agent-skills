@@ -547,14 +547,6 @@ Finds all blocks with the given type. `type`
 
 Return all blocks currently known to the engine. A list of block ids.
 
-### findAllBlocks(at:)
-
-```swift
-@MainActor func findAllBlocks(at position: CGPoint) throws -> [DesignBlockID]
-```
-
-Find all blocks whose visible geometry contains the given screen space position, ordered front to back. `position`
-
 ### findAllInExclusionAreas()
 
 ```swift
@@ -3534,14 +3526,6 @@ Checks whether a clip can own an outgoing clip-to-clip transition. `id`
 ```
 
 Returns whether the block has trim properties. `id`
-
-### swapFills(_:_:)
-
-```swift
-@MainActor func swapFills(_ first: DesignBlockID, _ second: DesignBlockID) throws
-```
-
-Exchange the fills of the two given design blocks in one step. `first`
 
 ### toggleBoldFont(_:in:)
 

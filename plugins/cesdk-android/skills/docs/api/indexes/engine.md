@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 263 generated API digests.
+Complete catalog of 264 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -55,6 +55,7 @@ Complete catalog of 263 generated API digests.
 - [AssetIntProperty](<../engine/ly.img.engine/-asset-int-property.md>) — `ly.img.engine`
 - [AssetLicense](<../engine/ly.img.engine/-asset-license.md>) — `ly.img.engine`
 - [AssetPayload](<../engine/ly.img.engine/-asset-payload.md>) — `ly.img.engine`
+- [AssetPlacement](<../engine/ly.img.engine/-asset-placement.md>) — `ly.img.engine`
 - [AssetProperty](<../engine/ly.img.engine/-asset-property.md>) — `ly.img.engine`
 - [AssetSource](<../engine/ly.img.engine/-asset-source.md>) — `ly.img.engine`
 - [AssetSource.Companion](<../engine/ly.img.engine/-asset-source/-companion.md>) — `ly.img.engine`

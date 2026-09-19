@@ -12,6 +12,7 @@ type InspectorBarComponentId =
   | "ly.img.cutout.type.inspectorBar"
   | "ly.img.cutout.offset.inspectorBar"
   | "ly.img.cutout.smoothing.inspectorBar"
+  | "ly.img.exclusionArea.inspectorBar"
   | "ly.img.group.create.inspectorBar"
   | "ly.img.group.ungroup.inspectorBar"
   | "ly.img.audio.replace.inspectorBar"

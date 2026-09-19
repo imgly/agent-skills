@@ -7,7 +7,11 @@
  * @see https://img.ly/docs/cesdk/js/export-save-publish/export/overview-9ed3a8/
  */
 
-import type { CreativeEngine, EditorPlugin } from '@cesdk/cesdk-js';
+import type {
+  CreativeEngine,
+  EditorPlugin,
+  PrintMarkExportOptions
+} from '@cesdk/cesdk-js';
 
 // #region Color Profiles
 type ColorProfile = 'fogra39' | 'gracol' | 'srgb';
@@ -251,6 +255,7 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
                 loadingState.setValue(true);
                 try {
                   const printReadyPDF = await exportPrintReadyPDF(engine, {
+                    printMarks: cesdk.utils.getPrintMarkExportOptions(),
                     pageRange:
                       pagesState.value === PageAmountType.CUSTOM
                         ? rangeInputState.value
@@ -349,6 +354,11 @@ export interface PrintReadyPDFOptions {
   bleedEnabled: boolean;
   /** Bleed margin in millimetres. */
   bleedMargin: number;
+  /**
+   * Printer's marks for the PDF the conversion runs on. The panel passes what the user chose in
+   * the Print Setup panel; without it the PDF carries no marks.
+   */
+  printMarks?: PrintMarkExportOptions;
 }
 
 /**
@@ -366,8 +376,14 @@ export const exportPrintReadyPDF = async (
   engine: CreativeEngine,
   options: PrintReadyPDFOptions
 ): Promise<Blob> => {
-  const { pageRange, colorProfile, outputStandard, bleedEnabled, bleedMargin } =
-    options;
+  const {
+    pageRange,
+    colorProfile,
+    outputStandard,
+    bleedEnabled,
+    bleedMargin,
+    printMarks
+  } = options;
 
   const scene = engine.scene.get();
   if (scene == null) {
@@ -398,7 +414,8 @@ export const exportPrintReadyPDF = async (
     });
 
     const pdfBlob = await engine.block.export(scene, {
-      mimeType: 'application/pdf'
+      mimeType: 'application/pdf',
+      ...printMarks
     });
 
     // Lazily load the print-ready PDF plugin so its Ghostscript WASM payload is

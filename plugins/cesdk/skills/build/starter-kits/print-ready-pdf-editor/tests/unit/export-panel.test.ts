@@ -90,6 +90,12 @@ beforeAll(async () => {
       setTranslations: vi.fn((next: Record<string, unknown>) => {
         translations = next;
       })
+    },
+    utils: {
+      export: vi.fn(async () => ({
+        blobs: [new Blob(['pdf'], { type: 'application/pdf' })]
+      })),
+      getPrintMarkExportOptions: vi.fn(() => ({}))
     }
   };
   await ExportPrintReadyPDFPanelPlugin().initialize!({

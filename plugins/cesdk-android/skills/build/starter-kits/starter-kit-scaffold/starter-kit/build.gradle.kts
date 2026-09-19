@@ -38,7 +38,7 @@ kotlin {
 }
 
 dependencies {
-    api("ly.img:editor:1.83.0-nightly.20260918")
+    api("ly.img:editor:1.84.0-nightly.20260919")
     // Required for enableEdgeToEdge
     implementation("androidx.activity:activity-ktx:1.9.0")
 }

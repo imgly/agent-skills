@@ -125,6 +125,13 @@ export function setupDock(cesdk: CreativeEditorSDK): void {
       label: 'libraries.ly.img.sticker.label',
       entries: ['ly.img.sticker']
     },
+    {
+      id: 'ly.img.assetLibrary.dock',
+      key: 'ly.img.exclusionArea',
+      icon: '@imgly/ForbiddenZone',
+      label: 'libraries.ly.img.exclusionArea.label',
+      entries: ['ly.img.exclusionArea']
+    },
 
     // ============================
     // Layers & Pages

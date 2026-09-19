@@ -4,7 +4,8 @@
 
 ---
 
-Enable and configure grid overlays, snap-to-grid behavior, and canvas rulers so users can position and align elements with precision in your CE.SDK editor.
+Enable and configure grid overlays, snap-to-grid behavior, and canvas rulers
+so users can position and align elements with precision in your CE.SDK editor.
 
 > **Reading time:** 5 minutes
 >
@@ -16,7 +17,7 @@ Enable and configure grid overlays, snap-to-grid behavior, and canvas rulers so 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-grid-and-rulers-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260918/examples/guides-grid-and-rulers-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260919/examples/guides-grid-and-rulers-browser/index.html)
 
 CE.SDK provides a configurable grid overlay and canvas rulers to help users align design elements. The grid renders evenly spaced lines across the page, and snap-to-grid constrains element movement to grid intersections. Rulers display along the top and left edges of the canvas showing measurement units.
 
@@ -223,23 +224,48 @@ engine.block.setBool(pageId, 'page/guides/gridSnapEnabled', true);
 engine.block.setEnum(pageId, 'page/guides/source', 'Document');
 ```
 
-In the Design Editor (Advanced) and Video Editor (Advanced) starter kits, grid controls live only in the Page Inspector — selecting a page shows a "Grid" section that writes to that page's `page/guides/*` properties. The Document Inspector exposes only the "Show Rulers" toggle; the global `grid/*` settings are still used as the fallback for pages in `Document` mode, but have no UI of their own. When users add a new page, the editor seeds its grid from the immediately previous page when that page is in `Custom` mode, so the grid they were just working with carries over without re-entry. If the previous page is in `Document` mode, the new page also uses `Document` — new pages never revive older per-page overrides.
+In the Design Editor (Advanced) and Video Editor (Advanced) starter kits, grid controls live in the Grids & Guides panel, opened from a row in the Document and Page Inspector — selecting a page shows a "Grid" section that writes to that page's `page/guides/*` properties. The Document Inspector exposes only the "Show Rulers" toggle; the global `grid/*` settings are still used as the fallback for pages in `Document` mode, but have no UI of their own. When users add a new page, the editor seeds its grid from the immediately previous page when that page is in `Custom` mode, so the grid they were just working with carries over without re-entry. If the previous page is in `Document` mode, the new page also uses `Document` — new pages never revive older per-page overrides.
+
+## Safety Margin
+
+The safety margin is an inward inset drawn on each page, marking the area a print process may trim. Each page carries its own values in `page/safetyInset/*`, with `page/safetyEnabled` turning it on.
+
+```typescript
+// Turn the safety margin on for a page and set an inset per side.
+engine.block.setBool(pageId, 'page/safetyEnabled', true);
+engine.block.setFloat(pageId, 'page/safetyInset/top', 10);
+engine.block.setFloat(pageId, 'page/safetyInset/bottom', 10);
+engine.block.setFloat(pageId, 'page/safetyInset/left', 10);
+engine.block.setFloat(pageId, 'page/safetyInset/right', 10);
+```
+
+Set `page/safetyRevealDuringTransform` to show the margin only while a block is moved or resized near it, instead of drawing it on every page all the time.
+
+```typescript
+// Draw the safety margin only when a block comes close.
+engine.editor.setSetting('page/safetyRevealDuringTransform', true);
+```
+
+The `ly.img.page.printMarks.safetyMargin` feature key controls the section in the panel. See [Disable or Enable Features](./user-interface/customization/disable-or-enable.md).
 
 ## API Reference
 
-| API | Type | Default | Description |
-|-----|------|---------|-------------|
-| `grid/enabled` | Bool | `false` | Show or hide the grid overlay |
-| `grid/snapEnabled` | Bool | `false` | Enable snapping to grid lines |
-| `grid/spacingX` | Float | `32` | Horizontal spacing between grid lines (design units) |
-| `grid/spacingY` | Float | `32` | Vertical spacing between grid lines (design units) |
-| `grid/color` | Color | neutral gray (`{ r: 0.52, g: 0.52, b: 0.52, a: 0.3 }`) | Grid line color with alpha |
-| `page/guides/source` | Enum (`'Document'` / `'Custom'`) | `'Document'` | Per-page resolution source; `Document` falls back to the `grid/*` settings |
-| `page/guides/gridEnabled` | Bool | `false` | Per-page override of `grid/enabled` (applied when source is `Custom`) |
-| `page/guides/gridSnapEnabled` | Bool | `false` | Per-page override of `grid/snapEnabled` |
-| `page/guides/gridSpacingX` | Float | `10` | Per-page override of `grid/spacingX` |
-| `page/guides/gridSpacingY` | Float | `10` | Per-page override of `grid/spacingY` |
-| `page/guides/gridColor` | Color | neutral gray | Per-page override of `grid/color` |
+| API                                                  | Type                             | Default                                                | Description                                                                |
+| ---------------------------------------------------- | -------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------- |
+| `grid/enabled`                                       | Bool                             | `false`                                                | Show or hide the grid overlay                                              |
+| `grid/snapEnabled`                                   | Bool                             | `false`                                                | Enable snapping to grid lines                                              |
+| `grid/spacingX`                                      | Float                            | `32`                                                   | Horizontal spacing between grid lines (design units)                       |
+| `grid/spacingY`                                      | Float                            | `32`                                                   | Vertical spacing between grid lines (design units)                         |
+| `grid/color`                                         | Color                            | neutral gray (`{ r: 0.52, g: 0.52, b: 0.52, a: 0.3 }`) | Grid line color with alpha                                                 |
+| `page/safetyEnabled`                                 | Bool                             | `false`                                                | Show or hide the safety margin on a page                                   |
+| `page/safetyInset/top`, `/bottom`, `/left`, `/right` | Float                            | `0`                                                    | Inward inset per side (design units)                                       |
+| `page/safetyRevealDuringTransform`                            | Bool                             | `true`                                                 | Draw the safety margin only while a block is moved or resized near it      |
+| `page/guides/source`                                 | Enum (`'Document'` / `'Custom'`) | `'Document'`                                           | Per-page resolution source; `Document` falls back to the `grid/*` settings |
+| `page/guides/gridEnabled`                            | Bool                             | `false`                                                | Per-page override of `grid/enabled` (applied when source is `Custom`)      |
+| `page/guides/gridSnapEnabled`                        | Bool                             | `false`                                                | Per-page override of `grid/snapEnabled`                                    |
+| `page/guides/gridSpacingX`                           | Float                            | `10`                                                   | Per-page override of `grid/spacingX`                                       |
+| `page/guides/gridSpacingY`                           | Float                            | `10`                                                   | Per-page override of `grid/spacingY`                                       |
+| `page/guides/gridColor`                              | Color                            | neutral gray                                           | Per-page override of `grid/color`                                          |
 
 
 

@@ -109,7 +109,7 @@ An exclusion area marks a region, and on its own it moves nothing. Set `exclusio
 engine.block.setBool(exclusion area, 'exclusion area/constrains', true);
 ```
 
-The exclusion area is then a wall while the user drags or resizes a block. The block stops against the exclusion area's own shape and slides along its edge, and the user drags around the exclusion area to reach the other side. An exclusion area shaped as a ring keeps blocks out of the ring and leaves the hole free, which is how a forbidden outer edge of a page is expressed. The exclusion area the block is up against draws a border on the canvas, so the user sees what stopped them. An exclusion area that marks without constraining draws that border too.
+The exclusion area is then a wall while the user drags, nudges or resizes a block. The block stops against the exclusion area's own shape and slides along its edge, and the user drags around the exclusion area to reach the other side. An exclusion area shaped as a ring keeps blocks out of the ring and leaves the hole free, which is how a forbidden outer edge of a page is expressed. The exclusion area the block is up against draws a border on the canvas, so the user sees what stopped them. An exclusion area that marks without constraining draws that border too.
 
 The engine never moves a block on its own, so a block that already overlaps an exclusion area stays where it is, and a call through the API is never constrained. Ask which blocks overlap an exclusion area with:
 

@@ -1,0 +1,28 @@
+{
+  "version": "8.0.0",
+  "id": "ly.img.exclusionArea",
+  "assets": [
+    {
+      "id": "ly.img.exclusionArea.rectangle",
+      "meta": {
+        "thumbUri": "{{base_url}}/ly.img.exclusionArea/thumbnails/exclusion-area-rectangle.png",
+        "blockType": "//ly.img.ubq/exclusionArea",
+        "shapeType": "//ly.img.ubq/shape/vector_path",
+        "vectorPath": "M0 0 H50 V50 H0 Z",
+        "width": 50,
+        "height": 50
+      }
+    },
+    {
+      "id": "ly.img.exclusionArea.circle",
+      "meta": {
+        "thumbUri": "{{base_url}}/ly.img.exclusionArea/thumbnails/exclusion-area-circle.png",
+        "blockType": "//ly.img.ubq/exclusionArea",
+        "shapeType": "//ly.img.ubq/shape/vector_path",
+        "vectorPath": "M 0,25 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0 Z",
+        "width": 50,
+        "height": 50
+      }
+    }
+  ]
+}

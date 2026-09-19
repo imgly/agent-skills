@@ -105,7 +105,7 @@ Open existing designs in CE.SDK for Android by loading saved scenes, restoring a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-nightly.20260918/engine-guides-import-design)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260919/engine-guides-import-design)
 
 <EngineReferenceNote {...props} />
 

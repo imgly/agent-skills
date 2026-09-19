@@ -72,7 +72,7 @@ Convert CE.SDK exports to Base64-encoded strings for embedding in HTML, storing 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-nightly.20260918/engine-guides-conversion-to-base64)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260919/engine-guides-conversion-to-base64)
 
 <EngineReferenceNote {...props} />
 

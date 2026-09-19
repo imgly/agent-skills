@@ -42,6 +42,7 @@ Each property corresponds to a specific UI action or event that can be customize
 |  `editor.checkBrowserSupport` | [`EditorCheckBrowserSupportAction`](./api/cesdk-js/type-aliases/editorcheckbrowsersupportaction.md) | Action for checking browser capabilities at editor startup |
 |  `scene.create` | [`SceneCreateAction`](./api/cesdk-js/type-aliases/scenecreateaction.md) | Action for creating a new scene with configurable mode and page sizes |
 |  `asset.delete` | [`DeleteAssetAction`](./api/cesdk-js/type-aliases/deleteassetaction.md) | Action invoked when the user deletes an asset from an asset source via the asset library card. |
+|  `asset.drop` | [`AssetDropAction`](./api/cesdk-js/type-aliases/assetdropaction.md) | Action invoked when the user drops a dragged asset on the canvas. |
 |  `selection.all` | [`SelectionAllAction`](./api/cesdk-js/type-aliases/selectionallaction.md) | Select every block on the current page. |
 |  `selection.delete` | [`SelectionDeleteAction`](./api/cesdk-js/type-aliases/selectiondeleteaction.md) | Delete the selected blocks. |
 |  `vectorPath.deleteNodeOrPoint` | [`VectorPathDeleteNodeOrPointAction`](./api/cesdk-js/type-aliases/vectorpathdeletenodeorpointaction.md) | Delete the selected vector node or control point. |

@@ -42,14 +42,6 @@ abstract fun canUndo(): Boolean
 
 If an undo step is available.
 
-### cancelDragToSwapFills
-
-```kotlin
-abstract fun cancelDragToSwapFills()
-```
-
-Cancels the drag-to-swap-fills gesture without changing the scene, for example when the host maps a back gesture or a system interruption to the gesture. Does nothing while no gesture is in progress.
-
 ### checkP3Support
 
 ```kotlin
@@ -207,14 +199,6 @@ abstract fun getBufferLength(uri: Uri): Int
 ```
 
 Get the length of a buffer.
-
-### getDragToSwapFillsSource
-
-```kotlin
-abstract fun getDragToSwapFillsSource(): DesignBlock
-```
-
-The source block of the drag-to-swap-fills gesture while its fill is lifted. The dragToSwapFills/enabled setting turns the gesture on. A press and hold on an eligible image-fill block lifts its fill. A release over another eligible block exchanges the two fills. Use this to draw a drag preview at the pointer while the lift is active.
 
 ### getEditMode
 
@@ -640,7 +624,7 @@ abstract fun setMovementConstraint(rule: MovementConstraintRule)
 abstract fun setMovementConstraint(rules: List<MovementConstraintRule>)
 ```
 
-Set a rule that limits how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop). Programmatic API calls are not affected. MovementConstraintRule.overshoot is a non-negative fraction of the moved block's own size: 0f pins blocks fully inside the page, 0.3f allows 30% to extend past the page bounds. The rule's MovementConstraintRule.scope determines which blocks it applies to.
+Set a rule that limits how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop, nudge). Programmatic API calls are not affected. MovementConstraintRule.overshoot is a non-negative fraction of the moved block's own size: 0f pins blocks fully inside the page, 0.3f allows 30% to extend past the page bounds. The rule's MovementConstraintRule.scope determines which blocks it applies to.
 
 ### setRole
 

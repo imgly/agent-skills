@@ -1,3 +1,4 @@
+import type { Request } from '@playwright/test';
 import { download, expect, test } from '@imgly/kit-test-harness';
 import {
   RENDERER_ROUTE,
@@ -10,21 +11,22 @@ test.describe('Renderer export', () => {
     kit
   }) => {
     const nav = new RendererNavigationBar(kit.page);
-    const request = kit.page.waitForRequest(RENDERER_ROUTE);
-    await kit.page.route(RENDERER_ROUTE, (route) =>
-      route.fulfill({
+    let posted: Request | undefined;
+    await kit.page.route(RENDERER_ROUTE, (route) => {
+      posted = route.request();
+      return route.fulfill({
         status: 200,
         contentType: 'video/mp4',
         body: renderedVideo()
-      })
-    );
+      });
+    });
 
     await nav.exportButton.click();
     await expect(nav.notification).toBeVisible();
 
-    const posted = await request;
-    expect(posted.method()).toBe('POST');
-    const body = posted.postDataBuffer()!;
+    await expect.poll(() => posted).toBeDefined();
+    expect(posted!.method()).toBe('POST');
+    const body = posted!.postDataBuffer()!;
     expect(body.subarray(0, 400).toString('latin1')).toContain('name="scene"');
     // The scene part is the archive, which is a ZIP.
     expect(body.toString('latin1')).toContain('PK');

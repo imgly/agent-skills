@@ -18,7 +18,7 @@ Pages define the format of your designs—every graphic block, text element, and
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-nightly.20260918/examples/guides-concepts-pages-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260919/examples/guides-concepts-pages-browser/index.html)
 
 Pages provide the canvas and frame for your designs. Whether you're building a multi-page document, a social media carousel, or a video composition, understanding how pages work will help you with structuring your content correctly.
 
@@ -331,7 +331,7 @@ Set `page/safetyEnabled` to `true`, then use `page/safetyInset/top`, `page/safet
 
 The safety inset is authoring state, and nothing it draws reaches an export.
 
-The guide appears while a drag is in the safety inset or comes near the safety line, and goes away when the drag ends. The engine shades the band between the page edge and the line, draws the line itself, and lets the dragged block snap to it. Set `page/safetyRevealOnDrag` to `false` to draw the guide on every page all the time instead.
+The guide appears while a drag is in the safety inset or comes near the safety line, and goes away when the drag ends. A move or resize with the arrow keys shows it the same way for 1.6 seconds, without snapping. The engine shades the band between the page edge and the line, draws the line itself, and lets the dragged block snap to it. Set `page/safetyRevealDuringTransform` to `false` to draw the guide on every page all the time instead.
 
 Set the guide colors with the `page/safetyFillColor` and `page/safetyFrameColor` settings; a fully transparent `page/safetyFrameColor` hides the line and turns its snapping off.
 

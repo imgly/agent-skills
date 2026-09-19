@@ -689,29 +689,6 @@ setFill(id: DesignBlockId, fill: DesignBlockId): void
 - `id` - The block whose fill should be changed.
 - `fill` - The new fill block.
 
-### swapFills()
-
-Exchanges the fills of two blocks in one step.
-Both blocks keep their own transform, size and appearance. Only the fills trade places.
-The same rules apply as when calling {@link setFill} on each block, including the fill type
-restrictions for text blocks. Afterwards each block's crop is reset. The incoming fill is
-fitted like a fill content replace from the asset library. When any part of the exchange
-is not permitted, no block is modified. Swapping a block with itself does nothing. The
-exchange adds no undo step.
-Required scopes on both blocks: 'fill/change' ('fill/changeType' when the fill types differ)
-```javascript
-engine.block.swapFills(firstImageBlock, secondImageBlock);
-engine.editor.addUndoStep();
-```
-
-```typescript
-swapFills(first: DesignBlockId, second: DesignBlockId): void
-```
-
-**Parameters:**
-- `first` - The block whose fill should be exchanged with `second`'s fill.
-- `second` - The block whose fill should be exchanged with `first`'s fill.
-
 ### setFillSolidColor()
 
 Sets the solid fill color of a block.
@@ -2989,32 +2966,6 @@ getScreenSpaceBoundingBoxXYWH(ids: DesignBlockId[]): XYWH
 - `ids` - The block to query.
 
 **Returns:** The position and size of the bounding box.
-
-### findAllBlocksAtScreenSpacePosition()
-
-Finds all blocks whose visible geometry contains the given screen-space position, ordered
-front to back.
-The position is expected in the same screen space that {@link getScreenSpaceBoundingBoxXYWH}
-reports. The query uses the geometry rules of selection by click or touch. It respects a
-block's shape path and stroke, and it includes a hit page. A hit on only the bounding box,
-or on a transparent area of an image fill, sorts after all conclusive hits. Hidden blocks
-are never returned.
-Use this to resolve drop targets under a pointer, for example for drag & drop of assets
-onto blocks or between blocks.
-```javascript
-const [topMost] = engine.block.findAllBlocksAtScreenSpacePosition(event.offsetX, event.offsetY);
-```
-
-```typescript
-findAllBlocksAtScreenSpacePosition(x: number, y: number): DesignBlockId[]
-```
-
-**Parameters:**
-- `x` - The x coordinate of the position in screen space.
-- `y` - The y coordinate of the position in screen space.
-
-**Returns:** The blocks at the given position, front-most first. Empty when no scene is loaded
-or nothing is hit.
 
 ### alignHorizontally()
 
