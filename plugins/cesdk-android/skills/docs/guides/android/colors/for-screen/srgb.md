@@ -111,7 +111,7 @@ with red, green, blue, and alpha components.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260919/engine-guides-colors-for-screen-srgb)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260920/engine-guides-colors-for-screen-srgb)
 
 <EngineReferenceNote {...props} />
 

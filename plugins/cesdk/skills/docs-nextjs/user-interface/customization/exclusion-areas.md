@@ -22,7 +22,7 @@ pick areas from, and the dock button that opens it.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260919/examples/guides-user-interface-customization-exclusion-areas-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260920/examples/guides-user-interface-customization-exclusion-areas-browser/index.html)
 
 This guide focuses on the editor UI around exclusion areas. If you'd like to know more about what one is and how it behaves at export, have a look at the [Exclusion Areas](./concepts/exclusion-areas.md) concept guide.
 

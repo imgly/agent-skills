@@ -18,7 +18,7 @@ CE.SDK treats all insertable content as assets—images, videos, audio, stickers
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-import-media-asset-library-basics-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260919/examples/guides-import-media-asset-library-basics-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260920/examples/guides-import-media-asset-library-basics-browser/index.html)
 
 The asset library connects the engine to the user interface through three layers:
 
@@ -153,9 +153,7 @@ class Example implements EditorPlugin {
         total: 3,
         currentPage: 1,
         nextPage: undefined
-      }),
-      applyAsset: async (assetResult) =>
-        cesdk.engine.asset.defaultApplyAsset(assetResult)
+      })
     });
 
     // Layer 2: Asset Library Entry - connects sources to display settings
@@ -206,7 +204,7 @@ This guide covers:
 
 ## Layer 1: Asset Source
 
-Asset sources provide data through `findAssets` and handle insertion through `applyAsset`. Register them with `engine.asset.addSource()`.
+Asset sources provide data through `findAssets`. Without an `applyAsset` function of their own, the engine inserts the asset, at the release point when the user drags it onto the canvas. Register them with `engine.asset.addSource()`.
 
 ```typescript highlight=highlight-asset-source
 // Layer 1: Asset Source - provides assets to the UI
@@ -245,9 +243,7 @@ cesdk.engine.asset.addSource({
     total: 3,
     currentPage: 1,
     nextPage: undefined
-  }),
-  applyAsset: async (assetResult) =>
-    cesdk.engine.asset.defaultApplyAsset(assetResult)
+  })
 });
 ```
 

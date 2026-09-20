@@ -16,7 +16,7 @@ does, for example to handle assets from your own drag source.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `payload` | [`AssetDropPayload`](./api/cesdk-js/interfaces/assetdroppayload.md) | Where the asset was released |
+| `payload` | [`AddImageOptions`](./api/cesdk-js/variables/addimageoptions.md) | Where the asset was released |
 
 ## Returns
 

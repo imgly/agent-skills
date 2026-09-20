@@ -2,18 +2,25 @@
 
 ---
 
-Where a dragged asset was released on the canvas.
+```ts
+type AssetDragAction = (payload) => void;
+```
 
-## Properties
+Action function that starts a drag of an asset onto the canvas.
 
-| Property | Type | Description |
+Run it in a `dragstart` handler. It writes the drag data that names the asset, so a drop on
+the canvas runs `asset.drop` for it. A browser accepts drag data only inside `dragstart`, so a
+custom implementation must write it synchronously.
+
+## Parameters
+
+| Parameter | Type | Description |
 | ------ | ------ | ------ |
-|  `sourceId` | `string` | The asset source of the dropped asset. |
-|  `assetId` | `string` | The dropped asset. |
-|  `target` | `any` | The block below the drop that can take the asset, or `null`. |
-|  `page` | `any` | The page below the drop, or `null`. |
-|  `pageX` | `number` | The drop point in the coordinates of `page`, in design units. `0` when `page` is `null`. |
-|  `pageY` | `number` | The drop point in the coordinates of `page`, in design units. `0` when `page` is `null`. |
+| `payload` | [`AddImageOptions`](./api/cesdk-js/variables/addimageoptions.md) | The `dragstart` event and the dragged asset |
+
+## Returns
+
+`void`
 
 
 ---

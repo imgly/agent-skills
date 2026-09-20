@@ -183,7 +183,7 @@ Optimize CE.SDK integration for faster loading, lower memory pressure, and relia
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260919/engine-guides-performance)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260920/engine-guides-performance)
 
 ![Exported Android performance sample](https://img.ly/docs/cesdk/android/performance-3c12eb/assets/android.export.webp)
 

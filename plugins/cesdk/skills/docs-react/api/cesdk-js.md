@@ -29,6 +29,7 @@
 | [ActionFunction](./api/cesdk-js/type-aliases/actionfunction.md) | Type helper for retrieving the correct action function type based on the action ID. Returns the strongly-typed action for known actions, or a custom action type for unknown IDs. |
 | [ActionId](./api/cesdk-js/type-aliases/actionid.md) | Available action event types that can be registered with the ActionsAPI. These correspond to different UI actions that can be customized. Supports both predefined action types from the Actions interface and custom string identifiers. |
 | [AnyUILocationOptions](./api/cesdk-js/type-aliases/anyuilocationoptions.md) | Union type for location options. Resolves to the appropriate options type based on area-specific requirements. |
+| [AssetDragAction](./api/cesdk-js/type-aliases/assetdragaction.md) | Action function that starts a drag of an asset onto the canvas. |
 | [AssetDropAction](./api/cesdk-js/type-aliases/assetdropaction.md) | Action function for an asset dropped on the canvas. |
 | [AssetEntryId](./api/cesdk-js/type-aliases/assetentryid.md) | Asset library entry IDs that can be used with asset library APIs. Includes built-in entry IDs registered by the SDK, and allows custom entry IDs. |
 | [AssetLibraryDockComponent](./api/cesdk-js/type-aliases/assetlibrarydockcomponent.md) | Represents an asset library dock component. |
@@ -183,7 +184,6 @@
 
 | Interface | Description |
 | ------ | ------ |
-| [AssetDropPayload](./api/cesdk-js/interfaces/assetdroppayload.md) | Where a dragged asset was released on the canvas. |
 | [AssetLibraryEntry](./api/cesdk-js/interfaces/assetlibraryentry.md) | Represents an entry in the asset library, combining data and view configurations. |
 | [BaseInsertOptions](./api/cesdk-js/interfaces/baseinsertoptions.md) | Options for inserting components into a UI area. |
 | [BasePositionalInsertOptions](./api/cesdk-js/interfaces/basepositionalinsertoptions.md) | Options for inserting components into a positional UI area (e.g., canvas bar). |

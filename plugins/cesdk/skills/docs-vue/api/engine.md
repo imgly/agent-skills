@@ -255,6 +255,8 @@
 | [AssetColorProperty](./api/engine/interfaces/assetcolorproperty.md) | Asset color property definition |
 | [AssetContentAspectRatio](./api/engine/interfaces/assetcontentaspectratio.md) | Asset transform preset payload that snaps a block's frame to the intrinsic aspect ratio of the block's content (e.g. the underlying image or video). |
 | [AssetDefinition](./api/engine/interfaces/assetdefinition.md) | Definition of an asset used if an asset is added to an asset source. |
+| [AssetDragPayload](./api/engine/interfaces/assetdragpayload.md) | The payload of the `asset.drag` action: the `dragstart` event and the dragged asset. |
+| [AssetDropPayload](./api/engine/interfaces/assetdroppayload.md) | Where a dragged asset was released on the canvas. The payload of the `asset.drop` action. |
 | [AssetEnumProperty](./api/engine/interfaces/assetenumproperty.md) | Asset enum property definition |
 | [AssetFacetValue](./api/engine/interfaces/assetfacetvalue.md) | One bucket of a facet distribution. |
 | [AssetFixedAspectRatio](./api/engine/interfaces/assetfixedaspectratio.md) | Asset transform preset payload fixed aspect ratio |
@@ -291,7 +293,7 @@
 | [DominantColor](./api/engine/interfaces/dominantcolor.md) | A single color extracted from the rendered appearance of a block. |
 | [DominantColorsOptions](./api/engine/interfaces/dominantcolorsoptions.md) | Options for `BlockAPI.getDominantColors`. |
 | [EngineActionInfo](./api/engine/interfaces/engineactioninfo.md) | Info about a registered action, from [EngineActions.list](./api/engine/classes/engineactions.md). |
-| [EngineActionsRegistry](./api/engine/interfaces/engineactionsregistry.md) | Hook for hosts to add strongly-typed action ids. Augment via `declare module '@cesdk/engine'` to get autocomplete on register/run while still allowing custom string ids. |
+| [EngineActionsRegistry](./api/engine/interfaces/engineactionsregistry.md) | The typed action ids. The engine types the actions it implements here. Augment via `declare module '@cesdk/engine'` to type your own ids and get autocomplete on register/run, while custom string ids stay allowed. |
 | [EnginePlugin](./api/engine/interfaces/engineplugin.md) | Represents an engine plugin. |
 | [\_FindAssetsQuery](./api/engine/interfaces/findassetsquery.md) | Represents a query for finding assets. |
 | [\_Flip](./api/engine/interfaces/flip.md) | Specifies the horizontal and vertical flip states of a design block. |

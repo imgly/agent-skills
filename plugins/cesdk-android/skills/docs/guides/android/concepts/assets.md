@@ -247,7 +247,7 @@ those assets into blocks in a scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260919/engine-guides-concepts-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260920/engine-guides-concepts-assets)
 
 <EngineReferenceNote {...props} />
 

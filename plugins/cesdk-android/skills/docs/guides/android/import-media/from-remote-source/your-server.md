@@ -610,7 +610,7 @@ asset sources.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260919/engine-guides-import-media-from-remote-source-your-server)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260920/engine-guides-import-media-from-remote-source-your-server)
 
 <EngineReferenceNote {...props} />
 

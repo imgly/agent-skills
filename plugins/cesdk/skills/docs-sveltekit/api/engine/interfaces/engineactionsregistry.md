@@ -2,9 +2,15 @@
 
 ---
 
-Hook for hosts to add strongly-typed action ids. Augment via
-`declare module '@cesdk/engine'` to get autocomplete on register/run while
-still allowing custom string ids.
+The typed action ids. The engine types the actions it implements here. Augment via
+`declare module '@cesdk/engine'` to type your own ids and get autocomplete on register/run,
+while custom string ids stay allowed.
+
+## Properties
+
+| Property | Type | Description |
+| ------ | ------ | ------ |
+|  `asset.drop` | (`payload`) => `void` | `Promise`\<`void`> | Runs when a dragged asset is released on the canvas. The default replaces the content of `target`, or adds the asset to `page` centered on the drop point. |
 
 
 ---

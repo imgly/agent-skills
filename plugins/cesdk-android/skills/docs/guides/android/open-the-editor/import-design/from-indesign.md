@@ -41,7 +41,7 @@ Android app, then continue editing the imported design.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260919/engine-guides-open-the-editor-import-design-from-indesign)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260920/engine-guides-open-the-editor-import-design-from-indesign)
 
 <EngineReferenceNote {...props} />
 

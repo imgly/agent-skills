@@ -19,7 +19,7 @@ opens, what it shows, and which commands each row offers.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-layer-list-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260919/examples/guides-user-interface-customization-layer-list-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260920/examples/guides-user-interface-customization-layer-list-browser/index.html)
 
 The layer and page list is the panel the dock's Layers button opens. It shows the document's pages above the layers of the page being worked on, one row per block, and each row selects, renames, hides, locks and reorders the block it stands for.
 

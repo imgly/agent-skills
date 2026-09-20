@@ -16,13 +16,19 @@ have not overridden are reachable only via [run](./api/node/classes/engineaction
 
 Main-thread only.
 
+## Type Parameters
+
+| Type Parameter | Default type |
+| ------ | ------ |
+| `Registry` *extends* `object` | [`EngineActionsRegistry`](./api/node/interfaces/engineactionsregistry.md) |
+
 ## Constructors
 
 <details>
   <summary>
     ### Constructor
 
-    <br /><p><code>EngineActions</code></p>
+    <br /><p><code>EngineActions\<Registry</code>></p>
   </summary>
 </details>
 
@@ -39,14 +45,14 @@ Main-thread only.
 
   | Type Parameter |
   | ------ |
-  | `K` *extends* `never` |
+  | `K` *extends* `string` |
 
   ##### Parameters
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `K` | The action id (e.g. `undo`). Reusing an engine default's id overrides it. |
-  | `fn` | [`EngineActionsRegistry`](./api/node/interfaces/engineactionsregistry.md)\[`K`] *extends* (...`args`) => `any` ? `any`\[`any`] : [`EngineCustomActionFunction`](./api/node/type-aliases/enginecustomactionfunction.md) | The action body (sync or async). On the web it runs directly with any JS values. Across the FFI args/results are JSON, so only serializable payloads work there. |
+  | `fn` | `Registry`\[`K`] *extends* (...`args`) => `any` ? `any`\[`any`] : [`EngineCustomActionFunction`](./api/node/type-aliases/enginecustomactionfunction.md) | The action body (sync or async). On the web it runs directly with any JS values. Across the FFI args/results are JSON, so only serializable payloads work there. |
 
   ##### Returns
 
@@ -74,7 +80,7 @@ Main-thread only.
   #### Signatures
 
   ```typescript
-  register(id: K, fn: EngineActionsRegistry[K] extends (args: any[]) => any ? any[any] : EngineCustomActionFunction): void
+  register(id: K, fn: Registry[K] extends (args: any[]) => any ? any[any] : EngineCustomActionFunction): void
   ```
 
   ```typescript
@@ -99,7 +105,7 @@ Main-thread only.
 
   | Type Parameter |
   | ------ |
-  | `K` *extends* `never` |
+  | `K` *extends* `string` |
 
   ##### Parameters
 
@@ -109,7 +115,7 @@ Main-thread only.
 
   ##### Returns
 
-  [`EngineActionsRegistry`](./api/node/interfaces/engineactionsregistry.md)\[`K`]
+  `Registry`\[`K`]
 
   ##### Remarks
 
@@ -144,7 +150,7 @@ Main-thread only.
   #### Signatures
 
   ```typescript
-  get(id: K): EngineActionsRegistry[K]
+  get(id: K): Registry[K]
   ```
 
   ```typescript
@@ -168,18 +174,18 @@ Main-thread only.
 
   | Type Parameter |
   | ------ |
-  | `K` *extends* `never` |
+  | `K` *extends* `string` |
 
   ##### Parameters
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `K` | The action id. |
-  | ...`args` | [`EngineActionsRegistry`](./api/node/interfaces/engineactionsregistry.md)\[`K`] *extends* (...`args`) => `any` ? `A` : `unknown`\[] | Arguments forwarded to the action. |
+  | ...`args` | `Registry`\[`K`] *extends* (...`args`) => `any` ? `A` : `unknown`\[] | Arguments forwarded to the action. |
 
   ##### Returns
 
-  `Promise`\<[`EngineActionsRegistry`](./api/node/interfaces/engineactionsregistry.md)\[`K`] *extends* (...`args`) => `R` ? `Awaited`\<`R`> : `unknown`>
+  `Promise`\<`Registry`\[`K`] *extends* (...`args`) => `R` ? `Awaited`\<`R`> : `unknown`>
 
   The action's result, or a rejection if the id is unknown, it threw, or
   the engine was disposed while the run was still in flight.
@@ -218,7 +224,7 @@ Main-thread only.
   #### Signatures
 
   ```typescript
-  run(id: K, args: EngineActionsRegistry[K] extends (args: A) => any ? A : unknown[]): Promise<EngineActionsRegistry[K] extends (args: any[]) => R ? Awaited<R> : unknown>
+  run(id: K, args: Registry[K] extends (args: A) => any ? A : unknown[]): Promise<Registry[K] extends (args: any[]) => R ? Awaited<R> : unknown>
   ```
 
   ```typescript

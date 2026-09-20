@@ -205,7 +205,7 @@ directly to your designs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260919/engine-guides-import-from-pexels)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260920/engine-guides-import-from-pexels)
 
 <EngineReferenceNote {...props} />
 

@@ -225,6 +225,7 @@
 | [AssetColorProperty](./api/node/interfaces/assetcolorproperty.md) | Asset color property definition |
 | [AssetContentAspectRatio](./api/node/interfaces/assetcontentaspectratio.md) | Asset transform preset payload that snaps a block's frame to the intrinsic aspect ratio of the block's content (e.g. the underlying image or video). |
 | [AssetDefinition](./api/node/interfaces/assetdefinition.md) | Definition of an asset used if an asset is added to an asset source. |
+| [AssetDropPayload](./api/node/interfaces/assetdroppayload.md) | Where a dragged asset was released on the canvas. The payload of the `asset.drop` action. |
 | [AssetEnumProperty](./api/node/interfaces/assetenumproperty.md) | Asset enum property definition |
 | [AssetFacetValue](./api/node/interfaces/assetfacetvalue.md) | One bucket of a facet distribution. |
 | [AssetFixedAspectRatio](./api/node/interfaces/assetfixedaspectratio.md) | Asset transform preset payload fixed aspect ratio |
@@ -257,7 +258,7 @@
 | [DominantColor](./api/node/interfaces/dominantcolor.md) | A single color extracted from the rendered appearance of a block. |
 | [DominantColorsOptions](./api/node/interfaces/dominantcolorsoptions.md) | Options for `BlockAPI.getDominantColors`. |
 | [EngineActionInfo](./api/node/interfaces/engineactioninfo.md) | Info about a registered action, from [EngineActions.list](./api/node/classes/engineactions.md). |
-| [EngineActionsRegistry](./api/node/interfaces/engineactionsregistry.md) | Hook for hosts to add strongly-typed action ids. Augment via `declare module '@cesdk/engine'` to get autocomplete on register/run while still allowing custom string ids. |
+| [EngineActionsRegistry](./api/node/interfaces/engineactionsregistry.md) | The typed action ids. The engine types the actions it implements here. Augment via `declare module '@cesdk/engine'` to type your own ids and get autocomplete on register/run, while custom string ids stay allowed. |
 | [EnginePlugin](./api/node/interfaces/engineplugin.md) | Represents an engine plugin. |
 | [Font](./api/node/interfaces/font.md) | Individual font within a typeface. Field optionality matches `@cesdk/engine` (WASM) — fields not present in the engine response are simply omitted rather than empty strings. |
 | [FontMetrics](./api/node/interfaces/fontmetrics.md) | Font metrics extracted from a font file. Values are in the font's design units coordinate space. |
