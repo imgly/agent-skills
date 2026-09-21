@@ -150,7 +150,7 @@ formatting, and querying text.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260920/engine-guides-text-edit)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260921/engine-guides-text-edit)
 
 <EngineReferenceNote {...props} />
 

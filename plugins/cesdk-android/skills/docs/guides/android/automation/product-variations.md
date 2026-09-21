@@ -190,7 +190,7 @@ Generate multiple product variants — different colors, sizes or copy — from 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260920/engine-guides-product-variations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260921/engine-guides-product-variations)
 
 <EngineReferenceNote {...props} />
 

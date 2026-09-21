@@ -210,7 +210,7 @@ asset system with an Android `AssetSource`.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260920/engine-guides-custom-asset-source)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260921/engine-guides-custom-asset-source)
 
 <EngineReferenceNote {...props} />
 

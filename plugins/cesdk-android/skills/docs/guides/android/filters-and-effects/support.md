@@ -108,7 +108,7 @@ property keys.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260920/engine-guides-supported-filters-and-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260921/engine-guides-supported-filters-and-effects)
 
 <EngineReferenceNote {...props} />
 

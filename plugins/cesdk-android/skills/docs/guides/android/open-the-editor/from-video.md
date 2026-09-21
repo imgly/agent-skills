@@ -44,7 +44,7 @@ content.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260920/engine-guides-create-scene-from-video-url)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260921/engine-guides-create-scene-from-video-url)
 
 <EngineReferenceNote {...props} />
 

@@ -60,7 +60,7 @@ text content that includes emojis with the Swift Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260920/engine-guides-text-with-emojis)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260921/engine-guides-text-with-emojis)
 
 <EngineReferenceNote {...props} />
 

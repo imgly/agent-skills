@@ -77,7 +77,7 @@ Convert images and multi-page designs to PDF programmatically. Load one or more 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260920/engine-guides-conversion-to-pdf)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260921/engine-guides-conversion-to-pdf)
 
 <EngineReferenceNote {...props} />
 

@@ -14,7 +14,7 @@ type-specific properties like corner radius and star points.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260920/engine-guides-insert-media-shapes-or-stickers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260921/engine-guides-insert-media-shapes-or-stickers)
 
 <EngineReferenceNote {...props} />
 
