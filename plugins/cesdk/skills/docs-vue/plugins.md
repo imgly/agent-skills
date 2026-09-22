@@ -14,6 +14,11 @@ Learn how to extend CE.SDK functionality with plugins to add custom features, ef
 
 ## Related Pages
 
+- [AI Image Generation](./user-interface/ai-integration/image-generation.md) - Create visuals from text prompts or transform existing images using leading AI providers like fal.ai (RecraftV3, Recraft20b, IdeogramV3, GeminiFlash) and OpenAI (GPT Image) with support for both raster and vector outputs.
+- [AI Video Generation](./user-interface/ai-integration/video-generation.md) - Create dynamic videos from text descriptions or animate static images using leading AI providers like fal.ai with Minimax Video, Pixverse, Kling Video, and ByteDance Seedance models.
+- [AI Audio Generation](./user-interface/ai-integration/audio-generation.md) - Integrate AI-powered audio generation into CE.SDK with text-to-speech and sound effects using the Audio Generation plugin.
+- [AI Text Generation](./user-interface/ai-integration/text-generation.md) - Generate creative content for headlines, descriptions, captions, and marketing copy using Claude or GPT with both a built-in UI and programmatic control.
+- [Auto Captions](./user-interface/ai-integration/auto-captions.md) - Integrate automatic caption generation into your CE.SDK application using the Auto Caption plugin with pluggable speech-to-text providers.
 - [Asset Source Plugins](./plugins/asset-sources.md) - Reference documentation for CE.SDK asset source plugins - pre-built asset libraries for images, stickers, filters, effects, fonts, and more
 - [How to Export Print-Ready PDFs with CE.SDK](./plugins/print-ready-pdf.md) - Learn to convert CE.SDK's PDF exports into PDF/X compliant, CMYK print-ready files for professional commercial printing
 - [Custom Feature Plugin](./plugins/custom-plugin.md) - Build a reusable Web editor plugin that wraps options, actions, and UI component configuration.

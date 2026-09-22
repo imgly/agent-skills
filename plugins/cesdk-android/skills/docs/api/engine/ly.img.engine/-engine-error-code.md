@@ -2688,6 +2688,18 @@ const val CODEC_WEBCODECS_NOT_AVAILABLE_NODE: String
 const val CODEC_WEBCODECS_NOT_SUPPORTED: String
 ```
 
+### COLOR_IMAGE_DECODE_FAILED
+
+```kotlin
+const val COLOR_IMAGE_DECODE_FAILED: String
+```
+
+### COLOR_IMAGE_TRANSFORM_FAILED
+
+```kotlin
+const val COLOR_IMAGE_TRANSFORM_FAILED: String
+```
+
 ### COLOR_PROFILE_INVALID
 
 ```kotlin

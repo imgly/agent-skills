@@ -32,7 +32,7 @@ export function setupTranslations(cesdk: CreativeEditorSDK): void {
   // Example:
   // cesdk.i18n.setTranslations({
   //   en: {
-  //     'component.fileOperation.export': 'Download Design',
+  //     'component.fileOperation.exportImage': 'Download Design',
   //     'common.done': 'Done'
   //   }
   // });

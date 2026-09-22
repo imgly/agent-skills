@@ -90,7 +90,7 @@ Enforce specific aspect ratios or fixed dimensions on design blocks using the fo
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260921/editor-guides-force-crop)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260922/editor-guides-force-crop)
 
 ## Overview
 

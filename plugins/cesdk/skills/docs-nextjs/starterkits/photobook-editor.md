@@ -16,7 +16,7 @@ A complete photobook editor with a layouts library, photo auto-fill, live design
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-photobook-editor-react-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260921/examples/starterkit-photobook-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260922/examples/starterkit-photobook-editor/index.html)
 
 ***
 

@@ -21,7 +21,7 @@ export { DEMO_ASSETS_BASE_URL };
  */
 export const SCENE_URLS = {
   /** Design mode scene URL */
-  Design: `${DEMO_ASSETS_BASE_URL}/assets/ai_editor_design_v3/scene.scene`,
+  Design: `${DEMO_ASSETS_BASE_URL}/assets/ai_editor_design_v4/scene.scene`,
   /** Video mode scene URL */
   Video: `${DEMO_ASSETS_BASE_URL}/assets/ai_editor_video/scene.scene`
 } as const;

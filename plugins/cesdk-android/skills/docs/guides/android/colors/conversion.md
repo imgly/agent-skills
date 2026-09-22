@@ -156,7 +156,7 @@ Convert colors between sRGB, CMYK, and spot color spaces programmatically in CE.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260921/engine-guides-colors-conversion)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260922/engine-guides-colors-conversion)
 
 <EngineReferenceNote {...props} />
 

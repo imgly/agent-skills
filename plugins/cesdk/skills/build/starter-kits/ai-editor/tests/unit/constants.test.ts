@@ -16,7 +16,7 @@ describe('AIE-U13 constants', () => {
 
     expect(DEMO_ASSETS_BASE_URL).toBe('https://assets.example/ai');
     expect(SCENE_URLS.Design).toBe(
-      'https://assets.example/ai/assets/ai_editor_design_v3/scene.scene'
+      'https://assets.example/ai/assets/ai_editor_design_v4/scene.scene'
     );
     expect(SCENE_URLS.Video).toBe(
       'https://assets.example/ai/assets/ai_editor_video/scene.scene'

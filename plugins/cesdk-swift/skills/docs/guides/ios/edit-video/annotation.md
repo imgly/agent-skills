@@ -196,7 +196,7 @@ Annotations are timed visual overlays such as text labels, shapes, highlights, s
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260921/engine-guides-annotation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260922/engine-guides-annotation)
 
 <EngineReferenceNote {...props} />
 

@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Image Generation](./user-interface/ai-integration/image-generation.md)
+**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Image Generation](./user-interface/ai-integration/image-generation.md) > [Plugins](./plugins.md) > [AI Image Generation](./user-interface/ai-integration/image-generation.md)
 
 ---
 
@@ -18,7 +18,7 @@ We add AI image generation to CE.SDK applications for creating visuals from text
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-image-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260921/examples/guides-user-interface-ai-integration-image-generation-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260922/examples/guides-user-interface-ai-integration-image-generation-browser/index.html)
 
 The image generation plugin creates visuals from text descriptions (text-to-image) or transforms existing images (image-to-image). Use models like RecraftV3, Recraft20b, IdeogramV3, GeminiFlash25, and GPT Image with output in raster or vector format.
 

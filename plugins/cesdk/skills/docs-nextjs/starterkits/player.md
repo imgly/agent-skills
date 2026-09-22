@@ -18,7 +18,7 @@ Lightweight video playback for your Next.js app—play, pause, and navigate vide
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-player-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260921/examples/starterkit-video-player/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260922/examples/starterkit-video-player/index.html)
 
 ***
 

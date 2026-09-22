@@ -18,7 +18,7 @@ Transform your pixel-based images into scalable vector graphics with Vectorizer 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-vectorizer-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260921/examples/starterkit-vectorizer-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260922/examples/starterkit-vectorizer-editor/index.html)
 
 ***
 

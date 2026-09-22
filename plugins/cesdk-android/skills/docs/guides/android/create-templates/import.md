@@ -140,7 +140,7 @@ serialized strings in Android apps.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260921/engine-guides-import-templates)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260922/engine-guides-import-templates)
 
 <EngineReferenceNote {...props} />
 

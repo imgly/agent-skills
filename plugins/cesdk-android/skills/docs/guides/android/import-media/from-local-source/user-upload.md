@@ -251,7 +251,7 @@ the assets appear in the editor.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260921/editor-guides-import-media-from-local-source-user-upload)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260922/editor-guides-import-media-from-local-source-user-upload)
 
 Android user uploads are handled by upload asset sources in the CE.SDK editor
 UI. The editor opens the system picker or camera intent, creates an

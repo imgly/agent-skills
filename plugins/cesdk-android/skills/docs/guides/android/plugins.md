@@ -15,6 +15,7 @@ Use plugins when you want to expose a reusable feature, configure where it appea
 ## Related Pages
 
 - [AI Image Generation](./plugins/ai-image-generation.md) - Add AI image generation to CE.SDK for Android with prompt-based creation and image replacement through the IMG.LY Gateway.
+- [Auto Captions](./user-interface/ai-integration/auto-captions.md) - Integrate automatic caption generation into your CE.SDK application using the Auto Caption plugin with pluggable speech-to-text providers.
 - [Custom Feature Plugin](./plugins/custom-plugin.md) - Build a reusable Android editor plugin that wraps callbacks, state, and UI component configuration.
 - [Background Removal](./edit-image/remove-bg.md) - Add a background removal action to the CE.SDK Android editor.
 - [Create Cutout](./stickers-and-shapes/create-cutout.md) - Create cutout paths for cutting printers to produce die-cut stickers, iron-on decals, and custom-shaped prints.

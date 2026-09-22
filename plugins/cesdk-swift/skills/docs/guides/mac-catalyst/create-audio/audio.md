@@ -134,7 +134,7 @@ timeline placement, generate waveform samples, and export audio data.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260921/engine-guides-create-audio-audio)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260922/engine-guides-create-audio-audio)
 
 <EngineReferenceNote {...props} />
 

@@ -2687,6 +2687,18 @@ case codecWebcodecsNotAvailableNode
 case codecWebcodecsNotSupported
 ```
 
+### EngineErrorCode.colorImageDecodeFailed
+
+```swift
+case colorImageDecodeFailed
+```
+
+### EngineErrorCode.colorImageTransformFailed
+
+```swift
+case colorImageTransformFailed
+```
+
 ### EngineErrorCode.colorProfileInvalid
 
 ```swift

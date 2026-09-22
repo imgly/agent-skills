@@ -287,7 +287,7 @@ The canvas menu is the floating toolbar that appears next to a selected design b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260921/editor-guides-configuration-canvas-menu)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260922/editor-guides-configuration-canvas-menu)
 
 ## Canvas Menu Architecture
 

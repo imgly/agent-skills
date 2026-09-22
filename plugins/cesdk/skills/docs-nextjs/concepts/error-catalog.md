@@ -497,6 +497,8 @@ ICC color profiles, document CMYK profiles, and color management.
 
 | Code | Message | Hint | Docs |
 | --- | --- | --- | --- |
+| `COLOR.IMAGE_DECODE_FAILED` | The CMYK image data could not be decoded. Size: \{byteCount} bytes. | The CMYK or YCCK samples of the image could not be read. The image loads without color management instead, so its colors can be wrong. |  |
+| `COLOR.IMAGE_TRANSFORM_FAILED` | The color profile of the image at \{uri} could not be applied. | The profile could be read, but the engine could not convert colors with it. The image loads without color management, so its colors can be wrong. |  |
 | `COLOR.PROFILE_INVALID` | The ICC profile data could not be read. Size: \{byteCount} bytes. | The bytes are not a valid ICC profile. Check that the file is complete and was not truncated by the download. |  |
 | `COLOR.PROFILE_MISSING` | The color profile at \{uri} could not be loaded. | Check that the URI is reachable and returns valid ICC profile data. Colors of that space fall back to the next profile the engine can load, and are previewed unmanaged when there is none. |  |
 | `COLOR.PROFILE_NOT_LOADED` | The CMYK color profile is not loaded yet, so the color cannot be converted. | The call started the load. Run \`update()\` and convert again. Converting without the profile would return a different color than the engine renders. |  |

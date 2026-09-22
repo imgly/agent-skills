@@ -15,6 +15,7 @@ Learn how to extend CE.SDK functionality with plugins to add custom features, ef
 ## Related Pages
 
 - [AI Image Generation](./plugins/ai-image-generation.md) - Add AI image generation to CE.SDK for iOS. Create visuals from text prompts or transform existing images using the IMG.LY Gateway with models like FLUX.2 and GPT Image 2.
+- [Auto Captions](./user-interface/ai-integration/auto-captions.md) - Integrate automatic caption generation into your CE.SDK application using the Auto Caption plugin with pluggable speech-to-text providers.
 - [Custom Feature Plugin](./plugins/custom-plugin.md) - Build a reusable iOS editor plugin that wraps callbacks, options, and UI component configuration.
 - [Background Removal](./edit-image/remove-bg.md) - Add one-tap, on-device background removal to the CE.SDK iOS editor with the BackgroundRemovalPlugin.
 - [Create Cutout](./stickers-and-shapes/create-cutout.md) - Create cutouts from images or shapes by masking or removing specific areas.

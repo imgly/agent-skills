@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Vanilla JS/TS documentation. For a complete overview, see the [Vanilla JS/TS Documentation Index](https://img.ly/docs/cesdk/js.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
-**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Text Generation](./user-interface/ai-integration/text-generation.md)
+**Navigation:** [Guides](./guides.md) > [AI Features](./user-interface/ai-integration.md) > [Text Generation](./user-interface/ai-integration/text-generation.md) > [Plugins](./plugins.md) > [AI Text Generation](./user-interface/ai-integration/text-generation.md)
 
 ---
 
@@ -18,7 +18,7 @@ We add AI-powered text generation to CE.SDK applications for creating headlines,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-text-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260921/examples/guides-user-interface-ai-integration-text-generation-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260922/examples/guides-user-interface-ai-integration-text-generation-browser/index.html)
 
 The text generation plugin provides quick actions for improving writing, fixing spelling and grammar, shortening or lengthening text, changing tone, and translating to different languages.
 

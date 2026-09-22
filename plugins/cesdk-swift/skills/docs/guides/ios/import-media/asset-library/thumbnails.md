@@ -105,7 +105,7 @@ preview metadata for local and custom asset sources with the Swift Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260921/engine-guides-thumbnails)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260922/engine-guides-thumbnails)
 
 <EngineReferenceNote {...props} />
 

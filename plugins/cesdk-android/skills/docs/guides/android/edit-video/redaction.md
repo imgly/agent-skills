@@ -246,7 +246,7 @@ Redact sensitive video content using blur, pixelization, or solid overlays for p
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260921/engine-guides-redaction)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260922/engine-guides-redaction)
 
 <EngineReferenceNote {...props} />
 

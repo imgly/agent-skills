@@ -70,7 +70,7 @@ Register a local asset source, describe files that already live on the device as
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260921/engine-guides-import-media-local-asset)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260922/engine-guides-import-media-local-asset)
 
 <EngineReferenceNote {...props} />
 
