@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1400" width="1200" height="1400">
+  <defs>
+    <clipPath id="sun"><circle cx="600" cy="620" r="360"/></clipPath>
+    <path id="arcTop" d="M 155 620 A 445 445 0 0 1 1045 620"/>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFD166"/>
+      <stop offset="0.55" stop-color="#F78C6B"/>
+      <stop offset="1" stop-color="#EF476F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- retro sun badge -->
+  <circle cx="600" cy="620" r="380" fill="none" stroke="#1D2D44" stroke-width="14"/>
+  <circle cx="600" cy="620" r="360" fill="url(#sky)"/>
+  <g clip-path="url(#sun)" fill="#1D2D44">
+    <rect x="200" y="760" width="800" height="14"/>
+    <rect x="200" y="800" width="800" height="20"/>
+    <rect x="200" y="848" width="800" height="28"/>
+    <rect x="200" y="906" width="800" height="400"/>
+  </g>
+
+  <!-- dog (corgi) -->
+  <g stroke="#1D2D44" stroke-width="12" stroke-linejoin="round" stroke-linecap="round">
+    <!-- ears -->
+    <path d="M 405 560 L 400 300 Q 405 280 425 290 L 560 430 Z" fill="#E07A2F"/>
+    <path d="M 795 560 L 800 300 Q 795 280 775 290 L 640 430 Z" fill="#E07A2F"/>
+    <path d="M 430 520 L 428 345 L 520 445 Z" fill="#F4A6A6" stroke="none"/>
+    <path d="M 770 520 L 772 345 L 680 445 Z" fill="#F4A6A6" stroke="none"/>
+    <!-- head -->
+    <path d="M 600 400 C 760 400 850 500 850 640 C 850 790 740 880 600 880 C 460 880 350 790 350 640 C 350 500 440 400 600 400 Z" fill="#E07A2F"/>
+    <!-- white blaze + muzzle -->
+    <path d="M 600 430 C 575 430 565 520 560 600 C 470 640 430 720 470 800 C 510 860 690 860 730 800 C 770 720 730 640 640 600 C 635 520 625 430 600 430 Z" fill="#FFF8EC" stroke="none"/>
+    <!-- head outline redraw on top -->
+    <path d="M 600 400 C 760 400 850 500 850 640 C 850 790 740 880 600 880 C 460 880 350 790 350 640 C 350 500 440 400 600 400 Z" fill="none"/>
+  </g>
+  <!-- cheeks -->
+  <ellipse cx="455" cy="720" rx="34" ry="20" fill="#EF476F" opacity="0.45"/>
+  <ellipse cx="745" cy="720" rx="34" ry="20" fill="#EF476F" opacity="0.45"/>
+  <!-- eyes -->
+  <g fill="#1D2D44">
+    <ellipse cx="505" cy="625" rx="30" ry="36"/>
+    <ellipse cx="695" cy="625" rx="30" ry="36"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="515" cy="612" r="11"/>
+    <circle cx="705" cy="612" r="11"/>
+  </g>
+  <!-- eyebrows -->
+  <g stroke="#1D2D44" stroke-width="10" stroke-linecap="round" fill="none">
+    <path d="M 475 560 Q 500 545 530 555"/>
+    <path d="M 670 555 Q 700 545 725 560"/>
+  </g>
+  <!-- tongue -->
+  <path d="M 565 765 L 565 815 Q 600 860 635 815 L 635 765 Z" fill="#EF476F" stroke="#1D2D44" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M 600 775 L 600 820" stroke="#B8284E" stroke-width="6" stroke-linecap="round"/>
+  <!-- mouth -->
+  <path d="M 600 720 L 600 750 M 540 745 Q 570 780 600 750 Q 630 780 660 745" fill="none" stroke="#1D2D44" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- nose -->
+  <path d="M 560 690 Q 600 670 640 690 Q 640 725 600 735 Q 560 725 560 690 Z" fill="#1D2D44"/>
+  <ellipse cx="588" cy="690" rx="12" ry="6" fill="#FFFFFF" opacity="0.7"/>
+
+  <!-- sparkles -->
+  <g fill="#FFD166" stroke="#1D2D44" stroke-width="6" stroke-linejoin="round">
+    <path d="M 140 640 L 155 675 L 190 690 L 155 705 L 140 740 L 125 705 L 90 690 L 125 675 Z"/>
+    <path d="M 1040 860 L 1052 888 L 1080 900 L 1052 912 L 1040 940 L 1028 912 L 1000 900 L 1028 888 Z"/>
+    <path d="M 1070 560 L 1078 578 L 1096 586 L 1078 594 L 1070 612 L 1062 594 L 1044 586 L 1062 578 Z"/>
+  </g>
+
+  <!-- text -->
+  <text font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="62" letter-spacing="6" fill="#1D2D44">
+    <textPath href="#arcTop" startOffset="50%" text-anchor="middle">LIFE IS BETTER WITH A</textPath>
+  </text>
+  <g text-anchor="middle" font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900">
+    <text x="612" y="1172" font-size="220" fill="#1D2D44" letter-spacing="14">DOG</text>
+    <text x="600" y="1160" font-size="220" fill="#EF476F" stroke="#1D2D44" stroke-width="8" paint-order="stroke" letter-spacing="14">DOG</text>
+    <text x="600" y="1250" font-size="40" fill="#1D2D44" letter-spacing="8">GOOD BOY CLUB · EST. 2026</text>
+  </g>
+</svg>
