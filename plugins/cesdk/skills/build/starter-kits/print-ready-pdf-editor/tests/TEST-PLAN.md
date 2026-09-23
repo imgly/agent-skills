@@ -1,6 +1,6 @@
 # Test plan: starterkit-print-ready-pdf-editor
 
-Version 5, 5 Sep 2026. Status: implemented. 84 Vitest cases (unit and headless) and 11 browser cases run in `KIT_TEST_COVERAGE=1 npm run ci`. Merged coverage is lines 100 %, branches 98.96 %, functions 100 %.
+Version 6, 21 Sep 2026. Status: implemented. 104 Vitest cases (unit and headless) and 11 browser cases run in `KIT_TEST_COVERAGE=1 npm run ci`. Merged coverage is lines 100 %, branches 100 %, functions 100 %.
 
 ## 1. Purpose
 
@@ -115,6 +115,12 @@ The entry creates the editor with the kit's user id, initialises the print-ready
 **PRP-U21 · unit · `initPrintReadyPdfEditor`**
 The entry adds the design editor configuration plugin and then the export panel plugin, adds the asset sources after them, and limits uploads and demo assets to images. A double that answers every `addPlugin` with a promise the test settles by hand proves every asset source is in flight before any of them settles.
 
+**PRP-U22 · unit · The navigation bar export button**
+The registered navigation bar component builds one accent `common.export` button. Pressing it opens `//ly.img.panel/export-print-ready-pdf` while the panel is closed and closes it while it is open, and never does both.
+
+**PRP-U23 · unit · The exclusion area plugin**
+Run `ExclusionAreaAssetSource.initialize` against recording stubs. It registers `exclusion-areas.json` with the base path `${DEMO_ASSETS_BASE_URL}/assets`, enables only `ly.img.page.printMarks.exclusionArea`, adds the `ly.img.exclusionArea` library entry and puts its dock button before `ly.img.spacer.layers`. When the source is already registered it does nothing, and without an editor it registers the source and nothing else.
+
 **PRP-U20 · removed.** `resolveAssetPath` is gone; `src/imgly/demo-assets.ts` derives the URL from `VITE_DEMO_ASSETS_BASE_URL` or the kit's own URL.
 
 ### 5.4 Headless cases (`@cesdk/node`, no browser)
@@ -187,7 +193,7 @@ Confirm each with a test before fixing.
 
 ### Coverage residue
 
-One branch of `src/**` is left: the `error instanceof Error ? … : 'Invalid range'` fallback in the page-range input (`src/imgly/plugins/export-print-ready-pdf.ts:227`). Unreachable by construction — `getPagesFromRange` throws `Error` objects only.
+None. The page-range input's `'Invalid range'` fallback was unreachable, because `getPagesFromRange` throws only `Error('Invalid page range')`, so the input now sets that message directly.
 
 ## 8. Open questions
 

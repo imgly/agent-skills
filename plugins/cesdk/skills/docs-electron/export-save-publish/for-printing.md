@@ -20,7 +20,7 @@ resolution.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-for-printing-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/guides-export-save-publish-for-printing-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.1/examples/guides-export-save-publish-for-printing-browser/index.html)
 
 CE.SDK exports designs as PDFs, but professional print workflows require specific configurations beyond standard export. This guide covers PDF export options for print, including high compatibility mode for complex designs, underlayers for printing on special media, and output resolution settings.
 
@@ -332,7 +332,7 @@ cesdk.feature.enable('ly.img.page.printMarks.crop');
 cesdk.feature.enable('ly.img.page.printMarks.registration');
 ```
 
-The panel edits the document. By default it is offered only while nothing is selected. A document-level change writes the bleed to every page.
+The panel stays available whatever is selected. The bleed applies to the whole document, so an edit writes it to every page.
 
 A PDF export started from the editor's export button, or through `cesdk.utils.export()`, carries the panel's marks. The choice is editor state: it is not saved with the scene.
 

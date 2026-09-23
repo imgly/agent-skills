@@ -318,6 +318,10 @@ Falls back to the first font the typeface ships.
 **AP-C50 · component · an image the browser cannot decode**
 The upload is dropped instead of adding a sizeless asset.
 
+**AP-C51 · component · the editor closing while its scene loads**
+The template load stops at its next await instead of reading pages and setting
+state on an editor that is gone.
+
 ### 5.4 Unit (no browser, no engine)
 
 **AP-U1 · unit · `hexToRgba`**

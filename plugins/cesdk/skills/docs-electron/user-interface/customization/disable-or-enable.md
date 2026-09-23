@@ -18,7 +18,7 @@ Control which editor features are available to users using the Feature API.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.1/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
 
 The Feature API provides global control over feature visibility throughout the editor. Use it to hide delete buttons from certain users, disable crop controls based on context, or conditionally enable features based on user roles or selection state. Unlike the Component Order API which targets specific components in specific areas, the Feature API affects features everywhere in the editor at once.
 
@@ -630,9 +630,7 @@ CE.SDK includes many built-in features organized by category:
 | -------------------------------------- | ----------------------------------------------------------------------- |
 | `ly.img.page`                          | Parent key: enables all page child features                             |
 | `ly.img.page.add`                      | Controls Add Page button                                                |
-| `ly.img.page.move`                     | Parent key: controls both page move buttons                             |
-| `ly.img.page.move.up`                  | Controls the page move up/left button                                   |
-| `ly.img.page.move.down`                | Controls the page move down/right button                                |
+| `ly.img.page.move`                     | Controls both page move buttons                                         |
 | `ly.img.page.resize`                   | Controls Resize button                                                  |
 | `ly.img.page.settings`                 | Controls read-only page dimensions, unit and resolution display         |
 | `ly.img.page.bleedMargin`              | Controls the bleed in the Print Setup panel                             |
@@ -640,7 +638,7 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.page.clipContent`              | Controls clip content on/off toggle                                     |
 | `ly.img.page.printMarks`               | Parent key: enables all print mark child features                       |
 | `ly.img.page.printMarks.crop`          | Controls the crop marks                                                 |
-| `ly.img.page.printMarks.exclusionArea` | Controls the exclusion area settings panel and its inspector bar button |
+| `ly.img.page.printMarks.exclusionArea` | Controls the Exclusion Area Settings panel |
 | `ly.img.page.printMarks.registration`  | Controls the registration marks                                         |
 | `ly.img.page.printMarks.safetyMargin`  | Controls the safety margin section in the Grids & Guides panel          |
 

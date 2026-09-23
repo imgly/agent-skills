@@ -313,6 +313,72 @@ describe('a successful export', () => {
   });
 });
 
+// PRP-U22
+describe('the navigation bar button', () => {
+  /** Runs the registered navigation bar component with the panel open or shut. */
+  async function pressExport(panelOpen: boolean) {
+    let renderer: (context: Record<string, unknown>) => void = () => {};
+    const openPanel = vi.fn();
+    const closePanel = vi.fn();
+    const cesdk = {
+      ui: {
+        registerComponent: vi.fn((id: string, next: never) => {
+          if (id === 'ly.img.export-print-ready-pdf.navigationBar') {
+            renderer = next;
+          }
+        }),
+        registerPanel: vi.fn(),
+        setPanelPosition: vi.fn(),
+        isPanelOpen: vi.fn(() => panelOpen),
+        openPanel,
+        closePanel,
+        showNotification: vi.fn()
+      },
+      i18n: { setTranslations: vi.fn() },
+      utils: { getPrintMarkExportOptions: vi.fn(() => ({})) }
+    };
+    await ExportPrintReadyPDFPanelPlugin().initialize!({
+      cesdk: cesdk as unknown as CreativeEditorSDK
+    } as never);
+
+    const buttons: Control[] = [];
+    renderer({
+      builder: {
+        Button: (id: string, options: Record<string, unknown>) =>
+          buttons.push({ id, options })
+      }
+    });
+    const button = buttons.find((entry) => entry.id === 'export-button')!;
+    (button.options.onClick as () => void)();
+
+    return { button, openPanel, closePanel };
+  }
+
+  it('is an accent button labelled with the shared export wording', async () => {
+    const { button } = await pressExport(false);
+
+    expect(button.options).toMatchObject({
+      color: 'accent',
+      variant: 'regular',
+      label: 'common.export'
+    });
+  });
+
+  it('opens the export panel while it is closed', async () => {
+    const { openPanel, closePanel } = await pressExport(false);
+
+    expect(openPanel).toHaveBeenCalledWith(PANEL_ID);
+    expect(closePanel).not.toHaveBeenCalled();
+  });
+
+  it('closes the export panel while it is open', async () => {
+    const { openPanel, closePanel } = await pressExport(true);
+
+    expect(closePanel).toHaveBeenCalledWith(PANEL_ID);
+    expect(openPanel).not.toHaveBeenCalled();
+  });
+});
+
 // PRP-U11
 describe('the plugin outside an editor, and a failure that is not an Error', () => {
   it('registers nothing when the host runs the engine alone', async () => {

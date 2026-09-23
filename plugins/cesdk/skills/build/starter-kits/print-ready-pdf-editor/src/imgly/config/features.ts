@@ -134,8 +134,6 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     'ly.img.page.printMarks.exclusionArea' /* Exclusion area controls */,
     'ly.img.page.printMarks.safetyMargin' /* Safety margin controls */,
     'ly.img.page.move' /* Move Up/Down/Left/Right buttons */,
-    // 'ly.img.page.move.down', /* Move Down/Right button */
-    // 'ly.img.page.move.up', /* Move Up/Left button */
     // 'ly.img.page.printMarks', /* Enables all children below */
     'ly.img.page.printMarks.crop' /* Crop marks */,
     'ly.img.page.printMarks.registration' /* Registration marks */,

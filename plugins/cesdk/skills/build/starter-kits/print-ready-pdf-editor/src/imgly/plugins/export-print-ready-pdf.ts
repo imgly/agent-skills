@@ -226,10 +226,9 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
                   try {
                     rangePageState.setValue(getPagesFromRange([], newValue));
                     rangeInputErrorState.setValue(undefined);
-                  } catch (error: unknown) {
-                    rangeInputErrorState.setValue(
-                      error instanceof Error ? error.message : 'Invalid range'
-                    );
+                  } catch {
+                    // `getPagesFromRange` rejects only the range syntax.
+                    rangeInputErrorState.setValue('Invalid page range');
                   }
                 }
               });

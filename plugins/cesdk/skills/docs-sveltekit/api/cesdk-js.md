@@ -106,9 +106,12 @@
 | [OrderComponentFor](./api/cesdk-js/type-aliases/ordercomponentfor.md) | Maps UI areas to their order component types. |
 | [OrderComponentMatcher](./api/cesdk-js/type-aliases/ordercomponentmatcher.md) | Represents a matcher for order components. |
 | [OrderContextFor](./api/cesdk-js/type-aliases/ordercontextfor.md) | Maps a UI area to its appropriate order context type for public API usage. - Caption panel uses CaptionPanelOrderContext (adds view property) - Video clip menu uses VideoClipMenuOrderContext (adds clipType) - All other areas use OrderContext (editMode only) |
+| [PageAddAction](./api/cesdk-js/type-aliases/pageaddaction.md) | Action function for adding a page |
 | [PageAssetReference](./api/cesdk-js/type-aliases/pageassetreference.md) | Reference to a page preset from an asset source. |
 | [PageDimensions](./api/cesdk-js/type-aliases/pagedimensions.md) | Direct page dimensions specification. |
 | [PageFormatDefinition](./api/cesdk-js/type-aliases/pageformatdefinition.md) | Represents the definition of a page format in the Creative Editor SDK. This interface defines the width, height, unit, and optional fixed orientation for a page format. |
+| [PageMoveDownAction](./api/cesdk-js/type-aliases/pagemovedownaction.md) | Action function for moving the selected page one position down. |
+| [PageMoveUpAction](./api/cesdk-js/type-aliases/pagemoveupaction.md) | Action function for moving the selected page one position up. |
 | [PageResizePanelPayload](./api/cesdk-js/type-aliases/pageresizepanelpayload.md) | Represents the payload for the page resize panel in the Creative Editor SDK. |
 | [PageSelectNextAction](./api/cesdk-js/type-aliases/pageselectnextaction.md) | Action function for selecting the next page. |
 | [PageSelectPreviousAction](./api/cesdk-js/type-aliases/pageselectpreviousaction.md) | Action function for selecting the previous page. |

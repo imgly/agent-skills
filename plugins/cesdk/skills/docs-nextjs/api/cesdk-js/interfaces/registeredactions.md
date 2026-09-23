@@ -70,6 +70,9 @@ Each property corresponds to a specific UI action or event that can be customize
 |  `selection.nudgeRightExtended` | [`NudgeAction`](./api/cesdk-js/type-aliases/nudgeaction.md) | Nudge the selection right by one extended step. |
 |  `group.enterOrExit` | [`GroupEnterOrExitAction`](./api/cesdk-js/type-aliases/groupenterorexitaction.md) | Enter the selected group, or exit the current group when no group is selected. |
 |  `selection.parentOrDeselect` | [`SelectionParentOrDeselectAction`](./api/cesdk-js/type-aliases/selectionparentordeselectaction.md) | Select the parent group of the current selection, or deselect when none. |
+|  `page.add` | [`PageAddAction`](./api/cesdk-js/type-aliases/pageaddaction.md) | Add a page. |
+|  `page.moveUp` | [`PageMoveUpAction`](./api/cesdk-js/type-aliases/pagemoveupaction.md) | Move the selected page one position up. |
+|  `page.moveDown` | [`PageMoveDownAction`](./api/cesdk-js/type-aliases/pagemovedownaction.md) | Move the selected page one position down. |
 |  `page.selectNext` | [`PageSelectNextAction`](./api/cesdk-js/type-aliases/pageselectnextaction.md) | Select the next page. |
 |  `page.selectPrevious` | [`PageSelectPreviousAction`](./api/cesdk-js/type-aliases/pageselectpreviousaction.md) | Select the previous page. |
 |  `toggleUserInterfaceVisibility` | [`ToggleUserInterfaceVisibilityAction`](./api/cesdk-js/type-aliases/toggleuserinterfacevisibilityaction.md) | Toggle the editor's user interface visibility. |

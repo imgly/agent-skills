@@ -40,7 +40,11 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
   const { setEnabled: setPagePreviewsEnabled } = usePagePreview();
 
   useEffect(() => {
+    // Loading a scene takes several awaits. Stop at each one if this component
+    // went away in the meantime, so nothing touches an editor that is gone.
     let cancelled = false;
+    let zoomTimer: ReturnType<typeof setTimeout> | undefined;
+
     const loadTemplate = async () => {
       if (engineIsLoaded) {
         setEnabled(false);
@@ -48,6 +52,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
 
         // Load the photobook scene
         await engine.scene.load(`${DEMO_ASSETS_BASE_URL}${template.scene}`);
+        if (cancelled) return;
 
         // Simulate that a user has replaced the placeholder images
         engine.block
@@ -65,7 +70,9 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         setEnabled(true);
 
         // Wait for zoom to finish
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => {
+          zoomTimer = setTimeout(resolve, 100);
+        });
         if (cancelled) return;
         setSceneIsLoaded(true);
         // START_HIDDEN_BLOCK
@@ -77,6 +84,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     loadTemplate();
     return () => {
       cancelled = true;
+      clearTimeout(zoomTimer);
     };
   }, [engineIsLoaded, engine]);
 

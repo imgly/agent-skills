@@ -266,6 +266,10 @@ The provider stack reports `created` once the engine exists and `ready` once the
 **PB-C70 to PB-C87 · the defensive paths**
 The engine provider takes the local asset base URL when the kit runs against a local build and disposes an engine whose provider unmounted first. The picker renders its own trigger, label and presets. The preview loop releases a deleted page's object URL, rethrows an export failure for a page that is still there and swallows one for a page that has gone. The selection correction re-selects, deselects and narrows to one block. The guards that skip a missing canvas element, a bar with no element, a destroyed page and an empty selection are all exercised.
 
+**PB-C88 · component · the editor closing while its scene loads**
+The template load stops at its next await instead of editing blocks and setting
+state on an editor that is gone.
+
 ### 5.4 Unit (no browser, no engine)
 
 **PB-U1 to PB-U4** — the two catalogues, the colour helpers and `isEqual`. Unchanged from version 3.

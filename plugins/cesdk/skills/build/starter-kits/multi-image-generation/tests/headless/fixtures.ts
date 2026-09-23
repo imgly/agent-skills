@@ -18,6 +18,8 @@ const DEMO_DATA_DIR = join(
 
 const LFS_POINTER_PREFIX = 'version https://git-lfs.github.com/spec/v1';
 
+const CDN_ASSETS_PREFIX = 'https://cdn.img.ly/assets/v3/';
+
 /**
  * A `file://` URL for one of the kit's demo images.
  *
@@ -82,6 +84,14 @@ export async function createKitEngine(): Promise<CreativeEngine> {
     }
   });
   sharedEngine = engine as unknown as CreativeEngine;
+  // The scenes name their fonts by absolute cdn.img.ly URL, so an export needs
+  // the network. Serve them from the repository's own `assets/v3` tree.
+  const localAssets = `${pathToFileURL(join(repoRoot, 'assets/v3')).href}/`;
+  sharedEngine.editor.setURIResolver((uri) =>
+    uri.startsWith(CDN_ASSETS_PREFIX)
+      ? `${localAssets}${uri.slice(CDN_ASSETS_PREFIX.length)}`
+      : sharedEngine!.editor.defaultURIResolver(uri)
+  );
   return sharedEngine;
 }
 

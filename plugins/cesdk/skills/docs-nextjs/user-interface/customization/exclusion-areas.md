@@ -10,7 +10,7 @@ This guide covers building an exclusion area from code, then putting its
 controls in your editor — the feature key, the asset source your customers
 pick areas from, and the dock button that opens it.
 
-![A striped exclusion area selected on a page, with an Exclusion Area button in the inspector bar and an Exclusion Areas button in the dock](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
+![A striped exclusion area selected on a page, with an Exclusion Areas button in the dock](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
 > **Reading time:** 8 minutes
 >
@@ -22,7 +22,7 @@ pick areas from, and the dock button that opens it.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/guides-user-interface-customization-exclusion-areas-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.1/examples/guides-user-interface-customization-exclusion-areas-browser/index.html)
 
 This guide focuses on the editor UI around exclusion areas. If you'd like to know more about what one is and how it behaves at export, have a look at the [Exclusion Areas](./concepts/exclusion-areas.md) concept guide.
 
@@ -251,7 +251,7 @@ const offending = engine.block.findAllInExclusionAreas();
 
 ## Enable the Controls
 
-To give your customers the Exclusion Area Settings panel and its inspector bar button, enable this feature key in your application. The panel has two controls: whether the area holds other blocks out of itself, and whether it cuts its region out of the export.
+To give your customers the Exclusion Area Settings panel, enable this feature key in your application. The panel has two controls: whether the area holds other blocks out of itself, and whether it cuts its region out of the export.
 
 ```typescript highlight-enable-feature
 // The zone controls sit behind this key. Enabling `ly.img.page` switches on
@@ -347,7 +347,7 @@ cesdk.i18n.setTranslations({
 
 | API                                    | Description                                                                                                 |
 | -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `ly.img.page.printMarks.exclusionArea` | Feature key gating the Exclusion Area Settings panel and its inspector bar button                           |
+| `ly.img.page.printMarks.exclusionArea` | Feature key gating the Exclusion Area Settings panel                                                       |
 | `exclusionArea/constrains`             | Block property. `true` holds other blocks out of the zone while they are dragged or resized. Off by default |
 | `exclusionArea/punchOut`               | Block property. `true` cuts the zone's region out of an export. Off by default                              |
 | `includedInExport`                     | Block property, via `setIncludedInExport`. `false` for a new zone, so a zone stays out of the file          |

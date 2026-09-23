@@ -37,16 +37,25 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
     useSinglePageMode();
 
   useEffect(() => {
+    // Loading a scene takes several awaits. Stop at each one if this component
+    // went away in the meantime, so nothing touches an editor that is gone.
+    let cancelled = false;
+    let zoomTimer: ReturnType<typeof setTimeout> | undefined;
+
     const loadTemplate = async () => {
       if (engineIsLoaded) {
         setEnabled(false);
         setSceneIsLoaded(false);
         await engine.scene.load(`${DEMO_ASSETS_BASE_URL}/kiosk.scene`);
+        if (cancelled) return;
         const pages = engine.scene.getPages();
         setCurrentPageBlockId(pages[0]);
         setEnabled(true);
         // Wait for zoom to finish
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => {
+          zoomTimer = setTimeout(resolve, 100);
+        });
+        if (cancelled) return;
         setSceneIsLoaded(true);
         // START_HIDDEN_BLOCK
         reportDemoPhase('ready');
@@ -54,6 +63,11 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       }
     };
     loadTemplate();
+
+    return () => {
+      cancelled = true;
+      clearTimeout(zoomTimer);
+    };
   }, [engineIsLoaded, engine, setEnabled, setCurrentPageBlockId]);
 
   const findImageAssets = useCallback(async () => {

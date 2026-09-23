@@ -546,7 +546,6 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.viewSelect.default` | `string` |
 |  `component.viewSelect.default.description` | `string` |
 |  `component.welcome.text` | `string` |
-|  `component.exclusionArea` | `string` |
 |  `component.exclusionArea.settings` | `string` |
 |  `component.zoom.autoFit` | `string` |
 |  `component.zoom.fitPage` | `string` |
@@ -897,7 +896,6 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `panel.printSetup` | `string` |
 |  `panel.printSetup.allPages` | `string` |
 |  `panel.printSetup.open` | `string` |
-|  `panel.printSetup.page` | `string` |
 |  `preset.document.american-legal` | `string` |
 |  `preset.document.american-letter` | `string` |
 |  `preset.document.business-card` | `string` |

@@ -364,3 +364,27 @@ describe('PB-C75 zooming with nothing valid to zoom to', () => {
     expect(handle.blocks.has(PAGE_B)).toBe(true);
   });
 });
+
+describe('PB-C88 the editor closing while its scene loads', () => {
+  it('stops the template load instead of driving a gone editor', async () => {
+    let finishLoad: () => void = () => {};
+    const handle = await renderWithProviders(<span>probe</span>, {
+      configure: ({ engine }) => {
+        engine.scene.load = vi.fn(
+          async () =>
+            await new Promise<void>((resolve) => {
+              finishLoad = resolve;
+            })
+        ) as never;
+      }
+    });
+    handle.spy('block.findByKind').mockClear();
+
+    handle.rendered.unmount();
+    await act(async () => {
+      finishLoad();
+    });
+
+    expect(handle.spy('block.findByKind')).not.toHaveBeenCalled();
+  });
+});

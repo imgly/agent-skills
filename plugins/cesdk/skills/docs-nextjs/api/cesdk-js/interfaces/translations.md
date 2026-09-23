@@ -555,7 +555,6 @@ Complete translation type that includes both built-in and custom translations.
 |  `component.viewSelect.default` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.viewSelect.default`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.viewSelect.default.description` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.viewSelect.default.description`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.welcome.text` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.welcome.text`](./api/cesdk-js/interfaces/builtintranslations.md) |
-|  `component.exclusionArea` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.exclusionArea`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.exclusionArea.settings` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.exclusionArea.settings`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.zoom.autoFit` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.zoom.autoFit`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `component.zoom.fitPage` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`component.zoom.fitPage`](./api/cesdk-js/interfaces/builtintranslations.md) |
@@ -906,7 +905,6 @@ Complete translation type that includes both built-in and custom translations.
 |  `panel.printSetup` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`panel.printSetup`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `panel.printSetup.allPages` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`panel.printSetup.allPages`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `panel.printSetup.open` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`panel.printSetup.open`](./api/cesdk-js/interfaces/builtintranslations.md) |
-|  `panel.printSetup.page` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`panel.printSetup.page`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `preset.document.american-legal` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`preset.document.american-legal`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `preset.document.american-letter` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`preset.document.american-letter`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `preset.document.business-card` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`preset.document.business-card`](./api/cesdk-js/interfaces/builtintranslations.md) |

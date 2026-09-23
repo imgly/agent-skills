@@ -1,6 +1,6 @@
 # Test plan: starterkit-advanced-design-editor
 
-Version 4, 7 Sep 2026. Status: implemented. 11 unit and headless tests, 3 browser tests, `npm run ci` green. Merged coverage: lines 100 %, branches 100 %, functions 100 %.
+Version 5, 21 Sep 2026. Status: implemented. 22 unit tests, 3 browser tests, `npm run ci` green. Merged coverage: lines 100 %, branches 100 %, functions 100 %.
 
 ## 1. Purpose
 
@@ -78,6 +78,10 @@ Expected: `insertOrderComponent` is called with `{ in: 'ly.img.navigation.bar', 
 Expected: `ui.locations` is `['canvasMenu']` and `provider.type` is `@imgly/background-removal`.
 
 ADE-U5 was dropped: `src/imgly/resolveAssetPath.ts` was dead code (known issue 3) and reading the Vite `BASE_URL` env value is forbidden for a kit that resolves assets through `packages/cesdk-web-examples-data`, so the module was deleted.
+
+**ADE-U6 · unit · The exclusion area plugin**
+Run `ExclusionAreaAssetSource.initialize` against recording stubs.
+Expected: it registers `exclusion-areas.json` with the base path `${DEMO_ASSETS_BASE_URL}/assets`, enables only `ly.img.page.printMarks.exclusionArea`, adds the `ly.img.exclusionArea` library entry and puts its dock button before `ly.img.spacer.layers`. When the source is already registered it does nothing, and without an editor it registers the source and nothing else.
 
 ## 6. Entry and exit criteria
 

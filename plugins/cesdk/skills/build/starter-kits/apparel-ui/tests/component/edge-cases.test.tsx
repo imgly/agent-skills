@@ -576,3 +576,27 @@ describe('AP-C50 an image the browser cannot decode', () => {
     vi.unstubAllGlobals();
   });
 });
+
+describe('AP-C51 the editor closing while its scene loads', () => {
+  it('stops the template load instead of driving a gone editor', async () => {
+    let finishLoad: () => void = () => {};
+    const handle = await renderWithProviders(<span>probe</span>, {
+      configure: ({ engine }) => {
+        engine.scene.load = vi.fn(
+          async () =>
+            await new Promise<void>((resolve) => {
+              finishLoad = resolve;
+            })
+        ) as never;
+      }
+    });
+    handle.spy('scene.getPages').mockClear();
+
+    handle.rendered.unmount();
+    await act(async () => {
+      finishLoad();
+    });
+
+    expect(handle.spy('scene.getPages')).not.toHaveBeenCalled();
+  });
+});

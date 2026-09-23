@@ -1,6 +1,6 @@
 # Test plan: starterkit-automatic-design-generation
 
-Version 5, 5 Sep 2026. Status: implemented and green. 15 browser, 14 headless and 130 unit and component tests run in `npm run ci` (exit 0). Merged coverage: **lines 100 %, branches 100 %, functions 100 %**, reproduced on two consecutive runs. `tests/coverage-thresholds.json` gates the Vitest run at lines 71.37, statements 71.37, functions 100, branches 100 — the line figure is low because `src/app/**` is covered by the browser lane, which the Vitest gate cannot see. `tests/coverage-thresholds.merged.json` gates the merged report at 100 / 100 / 100. No expected failures remain, and nothing of `src/**` is left uncovered.
+Version 6, 21 Sep 2026. Status: implemented and green. 15 browser, 14 headless and 146 unit and component tests run in `npm run ci` (exit 0). Merged coverage: **lines 100 %, branches 100 %, functions 100 %**, also on a browser without an H.264 encoder. `tests/coverage-thresholds.json` gates the Vitest run at lines 89.56, statements 89.56, functions 100, branches 100 — the line figure is low because `src/app/**` is covered by the browser lane, which the Vitest gate cannot see. `tests/coverage-thresholds.merged.json` gates the merged report at 100 / 100 / 100. No expected failures remain, and nothing of `src/**` is left uncovered.
 
 ## 1. Purpose
 
@@ -190,6 +190,21 @@ The app mounts into the `#root` container the page ships, and the entry fails lo
 **ADG-U16, ADG-U17 · unit · `getMainColor`**
 The colour is read out of a one-pixel draw of the artwork, and a piece of artwork that cannot be loaded falls back to the brand purple.
 
+### 5.6 Video output without a browser encoder
+
+The CI browser has no H.264 encoder, so ADG-07 and ADG-10 skip there and the video path went unmeasured: the merged gate failed every nightly from 17 Sep. These cases cover the path in Vitest, so the merged number no longer depends on the browser.
+
+**ADG-C17 · component · The preview of a generated asset**
+Video output renders a muted, looping, autoplaying `video`; image output renders an `img` labelled with the asset. Either one gets an empty source until the asset has one, and neither renders while the asset is loading.
+
+**ADG-C18 · component · Switching the output type**
+`useGenerationWorkflow`'s `onTypeChange` stores the new type and regenerates every selected size in it. Before the engine is up it stores the type and generates nothing.
+
+**ADG-U18 · unit · `downloadAsset`**
+An image downloads as `<label>.png` and a video as `<label>.mp4`, with the label lower-cased and its spaces turned into dashes. An asset without a source downloads nothing.
+
+`App` passed the type change on through a wrapper that only called the hook, so the wrapper was removed and `onTypeChange` goes to the panel directly.
+
 ## 7. Known issues
 
 Confirmed by reading the code, then by the run. Numbering follows version 1.
@@ -220,7 +235,7 @@ Confirmed by reading the code, then by the run. Numbering follows version 1.
 
 ## 8b. Coverage residue
 
-None. `npm run ci` reports **lines 100 %, branches 100 %, functions 100 %** of `src/**`.
+None. `npm run ci` reports **lines 100 %, branches 100 %, functions 100 %** of `src/**`, with or without video support in the browser (section 5.6).
 
 The six entries this section carried in version 4 are all closed. Four of them were closed by tests, not by a re-measure: `useEngine`'s unmount paths and `usePodcastSearch`'s error path by driving the hooks with `renderHook` over a mocked `@cesdk/engine` and a mocked podcast API (ADG-C13, ADG-C14); `EditorModal`'s `saveScene` closure, including the video half, by registering the action against a stand-in editor and calling it (ADG-C15); `getMainColor`'s image handlers by faking the 2D context jsdom does not ship (ADG-U16, ADG-U17); and the trusted-click branch by capturing the listener the hook registers, since jsdom refuses to redefine `isTrusted` (ADG-C11, ADG-C12). `src/index.tsx`'s missing-root `throw` is covered by ADG-C16, which mocks `./app/App` so the entry can be imported without booting an editor.
 

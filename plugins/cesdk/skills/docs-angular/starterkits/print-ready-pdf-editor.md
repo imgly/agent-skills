@@ -18,7 +18,7 @@ Deliver print-ready CMYK PDF/X-4 and PDF/X-3 files straight from your web app. P
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-print-ready-pdf-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.0/examples/starterkit-print-ready-pdf-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.1/examples/starterkit-print-ready-pdf-editor/index.html)
 
 ***
 
@@ -581,10 +581,9 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
                   try {
                     rangePageState.setValue(getPagesFromRange([], newValue));
                     rangeInputErrorState.setValue(undefined);
-                  } catch (error: unknown) {
-                    rangeInputErrorState.setValue(
-                      error instanceof Error ? error.message : 'Invalid range'
-                    );
+                  } catch {
+                    // `getPagesFromRange` rejects only the range syntax.
+                    rangeInputErrorState.setValue('Invalid page range');
                   }
                 }
               });
@@ -942,10 +941,9 @@ The pages section exports all pages or a custom range:
                   try {
                     rangePageState.setValue(getPagesFromRange([], newValue));
                     rangeInputErrorState.setValue(undefined);
-                  } catch (error: unknown) {
-                    rangeInputErrorState.setValue(
-                      error instanceof Error ? error.message : 'Invalid range'
-                    );
+                  } catch {
+                    // `getPagesFromRange` rejects only the range syntax.
+                    rangeInputErrorState.setValue('Invalid page range');
                   }
                 }
               });

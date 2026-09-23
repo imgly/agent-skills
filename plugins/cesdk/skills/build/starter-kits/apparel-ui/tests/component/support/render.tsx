@@ -1,13 +1,43 @@
 import { render, screen, waitFor } from '@imgly/kit-test-harness/component';
 import { Component, type ReactNode } from 'react';
-import { expect } from 'vitest';
+import { afterEach, expect } from 'vitest';
 
-import { EditorProvider } from '../../../src/app/contexts/EditorContext';
+import {
+  EditorProvider,
+  useEditor
+} from '../../../src/app/contexts/EditorContext';
 import { EngineProvider } from '../../../src/app/contexts/EngineContext';
 import { SinglePageModeProvider } from '../../../src/app/contexts/SinglePageModeContext';
 import { SelectionProvider } from '../../../src/app/contexts/UseSelection';
 import { fakeEngine, installFakeEngine } from './engine-mock';
 import type { FakeEngine, FakeEngineOptions } from './fake-engine';
+
+// `EditorProvider` sets `sceneIsLoaded` 100ms after the mount, so the file's
+// last test can end first, and React then writes state after jsdom is gone and
+// throws `window is not defined`. A mount whose scene load never settles never
+// sets the flag, so the wait is capped.
+const PENDING_SCENE_LOADS = new Set<Promise<void>>();
+const SCENE_LOAD_SETTLE_MS = 400;
+
+afterEach(async () => {
+  const pending = [...PENDING_SCENE_LOADS];
+  PENDING_SCENE_LOADS.clear();
+  await Promise.all(pending);
+});
+
+function sceneLoadSettled(isLoaded: () => boolean): Promise<void> {
+  return new Promise((resolve) => {
+    const deadline = Date.now() + SCENE_LOAD_SETTLE_MS;
+    const poll = () => {
+      if (isLoaded() || Date.now() >= deadline) {
+        resolve();
+        return;
+      }
+      setTimeout(poll, 20);
+    };
+    poll();
+  });
+}
 
 const resizeCallbacks = new Set<() => void>();
 
@@ -83,6 +113,11 @@ class ErrorBoundary extends Component<
   }
 }
 
+function SceneLoadProbe({ onRead }: { onRead: (loaded: boolean) => void }) {
+  onRead(useEditor().sceneIsLoaded);
+  return null;
+}
+
 export interface RenderWithProvidersOptions extends FakeEngineOptions {
   /** Padding the provider hands the canvas; the kit's own values by default. */
   paddingBottom?: number;
@@ -109,6 +144,7 @@ export async function renderWithProviders(
   const installed = installFakeEngine(engineOptions);
   configure?.(installed);
   const errors: Error[] = [];
+  let sceneIsLoaded = false;
 
   const rendered = render(
     <ErrorBoundary onError={(error) => errors.push(error)}>
@@ -127,6 +163,11 @@ export async function renderWithProviders(
           defaultTextScrollBottomPadding={null}
         >
           <EditorProvider>
+            <SceneLoadProbe
+              onRead={(loaded) => {
+                sceneIsLoaded = loaded;
+              }}
+            />
             <SelectionProvider engine={fakeEngine().engine}>
               {ui}
             </SelectionProvider>
@@ -139,6 +180,7 @@ export async function renderWithProviders(
   await waitFor(() => {
     expect(screen.queryByTestId('engine-loading')).toBeNull();
   });
+  PENDING_SCENE_LOADS.add(sceneLoadSettled(() => sceneIsLoaded));
 
   return { ...installed, rendered, errors };
 }
