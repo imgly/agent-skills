@@ -28,7 +28,7 @@ Out of scope
 - Browser: Chrome, headless, 1400 × 900. Requests to `cdn.img.ly` fail the test. Requests to the moderation proxy are answered by `page.route`.
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: `public/assets/example.scene`. One page with text, a line and **four** image blocks, so a flagged category produces four rows, not one. The browser cases derive their expected counts from `block.findByKind('image')` rather than hard-coding it.
-- The scene stores absolute `cdn.img.ly` URIs for its Rasa and Roboto fonts, so that path is on the kit's `cdnAllowlist`.
+- No `cdnAllowlist`. The scene's Rasa and Roboto font URIs are relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default.
 - Downloads: captured by Playwright and checked by file type and PDF page count
 
 ## 4. Approach

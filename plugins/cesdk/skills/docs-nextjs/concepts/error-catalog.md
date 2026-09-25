@@ -497,11 +497,16 @@ ICC color profiles, document CMYK profiles, and color management.
 
 | Code | Message | Hint | Docs |
 | --- | --- | --- | --- |
+| `COLOR.IMAGE_DECODE_FAILED` | The CMYK image data could not be decoded. Size: \{byteCount} bytes. | The CMYK or YCCK samples of the image could not be read. The image loads without color management instead, so its colors can be wrong. |  |
+| `COLOR.IMAGE_TRANSFORM_FAILED` | The color profile of the image at \{uri} could not be applied. | The profile could be read, but the engine could not convert colors with it. The image loads without color management, so its colors can be wrong. |  |
+| `COLOR.PROFILE_ASSIGNMENT_SUPERSEDED` | The color profile at \{uri} was not assigned, because a later change replaced the request. | Another profile assignment, a profile removal or a scene load happened while this profile was loading. The later change is in effect. Set the profile again if you still want it. |  |
+| `COLOR.PROFILE_DATA_SPACE_MISMATCH` | The color profile data describes \{space}, but \{expected} is required here. | Pass the bytes of a profile whose color space matches the one it is used for. The document CMYK profile has to be a CMYK profile. The previous profile stays in use. |  |
 | `COLOR.PROFILE_INVALID` | The ICC profile data could not be read. Size: \{byteCount} bytes. | The bytes are not a valid ICC profile. Check that the file is complete and was not truncated by the download. |  |
-| `COLOR.PROFILE_MISSING` | The color profile at \{uri} could not be loaded. | Check that the URI is reachable and returns valid ICC profile data. Colors of that space fall back to the next profile the engine can load, and are previewed unmanaged when there is none. |  |
+| `COLOR.PROFILE_MISSING` | The color profile at \{uri} could not be loaded. | Check that the URI is reachable and returns valid ICC profile data. A setter keeps the previous profile. A profile named by the scene or the setting is skipped: colors of that space use the next profile the engine can load, and are previewed unmanaged when there is none. |  |
 | `COLOR.PROFILE_NOT_LOADED` | The CMYK color profile is not loaded yet, so the color cannot be converted. | The call started the load. Run \`update()\` and convert again. Converting without the profile would return a different color than the engine renders. |  |
-| `COLOR.PROFILE_SPACE_MISMATCH` | The color profile at \{uri} describes \{space}, but \{expected} is required here. | Point the profile at a file whose color space matches the one it is used for. A document profile and the \`fallbackCMYKProfileUri\` setting both have to name a CMYK profile. |  |
+| `COLOR.PROFILE_SPACE_MISMATCH` | The color profile at \{uri} describes \{space}, but \{expected} is required here. | Point the profile at a file whose color space matches the one it is used for. A document profile and the \`fallbackCMYKProfileUri\` setting both have to name a CMYK profile. A setter keeps the previous profile. A profile named by the scene or the setting is skipped, and colors use the next profile. |  |
 | `COLOR.PROFILE_UNSUPPORTED_SPACE` | The ICC profile uses the color space \{space}, which is not supported. | Use an RGB, CMYK or Gray profile. Other color spaces cannot be opened. |  |
+| `COLOR.RENDERING_INTENT_INVALID` | The rendering intent value \{value} is not valid. | Use 0 (Perceptual), 1 (RelativeColorimetric), 2 (Saturation) or 3 (AbsoluteColorimetric). The previous rendering intent stays in use. |  |
 
 ## COMPUTE
 

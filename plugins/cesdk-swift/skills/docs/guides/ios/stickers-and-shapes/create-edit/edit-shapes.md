@@ -317,7 +317,7 @@ group.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.1/engine-guides-edit-shapes)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.2/engine-guides-edit-shapes)
 
 <EngineReferenceNote {...props} />
 

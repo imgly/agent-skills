@@ -968,7 +968,7 @@ A composable helper function that creates and remembers a Dock.Button that opens
 fun InspectorBar.Button.rememberTextBackground(builder: AbstractButtonBuilder<TextBackgroundItemScope>.() -> Unit = {}): Button<TextBackgroundItemScope>
 ```
 
-A composable helper function that creates and remembers an Button that opens text background options sheet via EditorEvent.Sheet.Open. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
+A composable helper function that creates and remembers an Button that opens text background options sheet via EditorEvent.Sheet.Open. The button is disabled for a text on a path, because the engine draws no background for it. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
 ### rememberTextLibrary
 

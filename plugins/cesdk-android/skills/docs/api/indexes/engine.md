@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 264 generated API digests.
+Complete catalog of 266 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -86,9 +86,11 @@ Complete catalog of 264 generated API digests.
 - [BlurType.Uniform](<../engine/ly.img.engine/-blur-type/-uniform.md>) — `ly.img.engine`
 - [BooleanOperation](<../engine/ly.img.engine/-boolean-operation.md>) — `ly.img.engine`
 - [CMYKColor](<../engine/ly.img.engine/-c-m-y-k-color.md>) — `ly.img.engine`
+- [CMYKProfileInfo](<../engine/ly.img.engine/-c-m-y-k-profile-info.md>) — `ly.img.engine`
 - [CharacterInkBox](<../engine/ly.img.engine/-character-ink-box.md>) — `ly.img.engine`
 - [Color](<../engine/ly.img.engine/-color.md>) — `ly.img.engine`
 - [Color.Companion](<../engine/ly.img.engine/-color/-companion.md>) — `ly.img.engine`
+- [ColorRenderingIntent](<../engine/ly.img.engine/-color-rendering-intent.md>) — `ly.img.engine`
 - [ColorSpace](<../engine/ly.img.engine/-color-space.md>) — `ly.img.engine`
 - [CompressionFormat](<../engine/ly.img.engine/-compression-format.md>) — `ly.img.engine`
 - [CompressionLevel](<../engine/ly.img.engine/-compression-level.md>) — `ly.img.engine`

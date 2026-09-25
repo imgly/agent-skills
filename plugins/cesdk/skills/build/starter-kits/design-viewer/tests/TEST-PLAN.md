@@ -92,7 +92,7 @@ Open:
 2. The README Architecture section shows a `src/imgly/config/` tree with `plugin.ts`, `actions.ts`, `features.ts`, `settings.ts`, `i18n.ts` and `ui/`. None of those files exist in this kit. The whole configuration comes from `@cesdk/core-configs-web/viewer-editor`.
 3. The kit calls `cesdk.actions.run('zoom.toPage', …)` without awaiting it, after an awaited `cesdk.load`. If the action becomes asynchronous, the fit would race the load.
 4. `src/index.ts` sets `window.cesdk` and the comment says to remove it in production, as in every kit. The harness depends on it.
-5. The mirrored scene still names `cdn.img.ly/assets/v4/…` in the variant lists of the typefaces it does not use and in the `defaultEmojiFontFileUri` setting. Those URIs are metadata: a boot fetches none of them.
+5. **Fixed.** The mirrored scene no longer names `cdn.img.ly` anywhere. Every font URI is relative to the engine's `baseURL`, and `defaultEmojiFontFileUri` is empty.
 
 ## 8. Open questions
 

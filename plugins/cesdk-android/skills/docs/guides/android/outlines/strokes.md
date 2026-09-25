@@ -105,7 +105,7 @@ or decorative effects.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.1/engine-guides-outlines-stroke)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.2/engine-guides-outlines-stroke)
 
 <EngineReferenceNote {...props} />
 

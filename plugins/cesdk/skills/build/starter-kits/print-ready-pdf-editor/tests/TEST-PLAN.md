@@ -26,7 +26,7 @@ Out of scope
 ## 3. Test environment
 
 - Browser: Chrome, headless, 1400 × 900
-- Engine and editor: built from this repo, served locally. Requests to `cdn.img.ly` fail the test, except the seven Manrope font URIs the demo scene stores absolutely — the same allowlist the pilot carries for the same scene file (the two kits ship a byte-identical `example-1.scene`).
+- Engine and editor: built from this repo, served locally. Requests to `cdn.img.ly` fail the test. No `cdnAllowlist`. The demo scene's seven Manrope font URIs are relative to the engine's `baseURL`, the same as the pilot's copy of the same scene file (the two kits ship a byte-identical `example-1.scene`).
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: the kit's own `public/assets/example-1.scene`. 2 pages, `instagram-photo` format, 1080 × 1080 px at 300 dpi, design unit Pixel. Page titles are shown (the kit sets `page/title/show` true).
 - Headless: `@cesdk/node` with the same scene, aliased in the Vitest config. The conversion module is mocked: what Ghostscript produces is the plugin's decision and is covered by its own suite, so the headless cases assert the options handed to it. The one real conversion is PRP-05 in the browser.

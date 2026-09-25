@@ -184,6 +184,9 @@ describe('DV-H4 partially hidden text', () => {
       .getChildren(page)
       .filter((id) => engine.block.getType(id) === '//ly.img.ubq/text');
     expect(text).toBeDefined();
+    // Intersecting a text block needs its font, and each case reloads the
+    // scene, so the font is not warm from an earlier one.
+    await engine.block.forceLoadResources([text]);
   });
 
   function coverText(): number {

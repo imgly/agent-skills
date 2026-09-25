@@ -137,6 +137,22 @@ Finds all blocks with the given type sorted by distance to viewport center. `typ
 
 Return the currently active scene. The scene or nil, if none was created yet.
 
+### getCMYKProfileInfo()
+
+```swift
+@MainActor func getCMYKProfileInfo() -> CMYKProfileInfo?
+```
+
+What the document stores about its CMYK profile. The info, or `nil` when the document names no CMYK profile.
+
+### getColorRenderingIntent()
+
+```swift
+@MainActor func getColorRenderingIntent() -> ColorRenderingIntent
+```
+
+How a color that the destination cannot reproduce is mapped into it. The rendering intent of the document. `.relativeColorimetric` unless it was changed.
+
 ### getCurrentPage()
 
 ```swift
@@ -200,6 +216,14 @@ Query a camera zoom level of the active scene. Returns the current zoom level of
 ```
 
 Sets the zoom and focus to show a block. Without padding, this results in a tight view on the block. Assums layout has been done. You can force the layout with explicit update call that will update the layout. `id`
+
+### isBlackPointCompensationEnabled()
+
+```swift
+@MainActor func isBlackPointCompensationEnabled() -> Bool
+```
+
+Whether conversion maps the black point of the source onto the destination. `true` when black point compensation is on, which is the default.
 
 ### isZoomAutoFitEnabled(_:)
 
@@ -301,6 +325,14 @@ Subscribe to changes to the zoom level.
 
 Subscribe to changes to the zoom level.
 
+### removeCMYKProfile()
+
+```swift
+@MainActor func removeCMYKProfile()
+```
+
+Removes the CMYK profile from the document. CMYK conversion then uses the `fallbackCMYKProfileUri` setting, or the bundled profile when that setting is unset. Color management stays on. A [`setCMYKProfile(from:)`](./setcmykprofile(from:)-3inol.md) request that is still loading is cancelled.
+
 ### saveToArchive(options:)
 
 ```swift
@@ -324,6 +356,38 @@ Serializes the current scene into a string. Selection is discarded. `allowedReso
 ```
 
 Serializes the current scene into a string with optional compression. Selection is discarded. `options`
+
+### setBlackPointCompensationEnabled(_:)
+
+```swift
+@MainActor func setBlackPointCompensationEnabled(_ enabled: Bool)
+```
+
+Turns black point compensation of the document on or off. `enabled`
+
+### setCMYKProfile(from:)-3inol
+
+```swift
+@MainActor func setCMYKProfile(from url: URL) async throws
+```
+
+Loads the ICC profile at a URL and makes it the CMYK profile of the document. `url`
+
+### setCMYKProfile(from:)-5xy8v
+
+```swift
+@MainActor func setCMYKProfile(from data: Data) throws
+```
+
+Makes the ICC profile in the given bytes the CMYK profile of the document. `data`
+
+### setColorRenderingIntent(_:)
+
+```swift
+@MainActor func setColorRenderingIntent(_ intent: ColorRenderingIntent) throws
+```
+
+Sets how a color that the destination cannot reproduce is mapped into it. `intent`
 
 ### setDesignUnit(_:)
 

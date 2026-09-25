@@ -26,7 +26,7 @@ Out of scope
 - Engine and editor: built from this repo, served locally. Requests to `cdn.img.ly` fail the test.
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: `${DEMO_ASSETS_BASE_URL}` on `staticimgly.com`, which the network guard allows: the `lunar-video-default/scene.scene` start-up template, the two example scenes, their thumbnails, the dock icon SVG and the seven MP3s
-- `cdnAllowlist`: `cdn.img.ly/assets/v3/ly.img.typeface/fonts/(Caveat|Manrope)/`. The two demo scenes store absolute font URIs; the scenes are not mirrored into this repository, so the guard is widened for those four files only.
+- No `cdnAllowlist`. The two demo scenes' Caveat and Manrope font URIs are relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default.
 - The headless engine runs no render loop, so `isVisibleAtCurrentPlaybackTime` keeps its initial value until an update happens. VAN-H1 drives one with an 8 x 8 export.
 - Unit cases stub `@cesdk/cesdk-js/plugins` with classes that capture their constructor config and drive `initVideoAnimationsEditor` and the `setup*` functions with a `createApiSpy()`. No DOM, no engine.
 - The headless case builds its own video scene in `@cesdk/node`; it does not download the demo template.

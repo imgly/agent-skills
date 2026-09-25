@@ -133,13 +133,13 @@ Exit: every case passes locally and in CI. `npm run ci` passes. The published ki
 
 Confirm each with a test before fixing.
 
-Fixed: 1 (the unreachable `exportImage` action was deleted), 6 (the panel calls now use `//ly.img.panel/assetLibrary`, the editor's real asset library panel id).
+Fixed: 1 (the unreachable `exportImage` action was deleted), 4 (the archive's font URIs are relative to the engine's `baseURL`), 6 (the panel calls now use `//ly.img.panel/assetLibrary`, the editor's real asset library panel id).
 
 Open:
 
 2. The dock's Templates entry lists the `ly.img.templates` library, but `DemoAssetSources` is included with `ly.img.image.*` only. The only source feeding that library is `PremiumTemplatesAssetSource`, so the Templates library holds premium templates only. The README promises "Social Media Templates".
 3. Export PDF gives the user one page, not the design. `exportDesign` passes the whole scene, but single-page mode has hidden the other three pages and a PDF export leaves hidden pages out, so a four-page template exports as a single page with no warning. The README lists "Export - PNG, JPEG, PDF with quality controls" and says nothing about it. The engine side is covered by `ExportToBuffer_PDF_SceneSkipsHiddenPages`; see section 10, gap 1.
-4. The demo archive carries 19 absolute `cdn.img.ly/assets/v3/…` font URIs in the BarlowCondensed variant list. The used files are bundled in the archive and relocated, so loading is CDN-free, but changing the weight or style of that text block would fetch from `cdn.img.ly` and trip the network guard. No case does that.
+4. **Fixed.** The demo archive's BarlowCondensed variant list no longer names `cdn.img.ly`. Every font URI is relative to the engine's `baseURL`.
 5. `switchAndSelectPage` calls `cesdk.unstable_switchPage`, an experimental API. If it is renamed the kit breaks silently at run time; the type check catches it only while `@cesdk/cesdk-js` types are built.
 
 ## 8. Open questions

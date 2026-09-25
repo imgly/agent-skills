@@ -26,9 +26,9 @@ Out of scope
 - Browser: Chrome, headless, 1400 × 900
 - Engine and editor: built from this repo, served locally. Requests to `cdn.img.ly` for engine assets fail the test.
 - License: the shared test license (valid on hostname `localhost` only)
-- Data: the kit loads its scene, layout scenes, thumbnails and dock icons from `VITE_DEMO_ASSETS_BASE_URL`, default `https://staticimgly.com/imgly/cesdk-web-examples-data/1.83.0-rc.1/starterkit-layouts-asset-source`. The kit has no `public/` folder.
+- Data: the kit loads its scene, layout scenes, thumbnails and dock icons from `VITE_DEMO_ASSETS_BASE_URL`, default `https://staticimgly.com/imgly/cesdk-web-examples-data/1.83.0-rc.2/starterkit-layouts-asset-source`. The kit has no `public/` folder.
 - In dev mode the `cesdk-js-dev` local CDN daemon on port 5199 answers those URLs from the in-repo `packages/cesdk-web-examples-data/`, so the browser cases need no network. In static mode they would reach the real host, which the guard allows.
-- The demo scene and the layout scenes store absolute `cdn.img.ly` font URIs from the CE.SDK version they were authored with, so the kit's `tests/playwright.config.ts` allows exactly `cdn.img.ly/packages/imgly/cesdk-js/<version>/assets/ly.img.typeface/fonts/`.
+- No `cdnAllowlist`. The demo scene and the layout scenes' font URIs are relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default.
 - Downloads: captured by Playwright and checked by file type and PDF page count
 - Headless: Vitest with `@cesdk/node`, no browser. Needs the extraction in open question 1.
 

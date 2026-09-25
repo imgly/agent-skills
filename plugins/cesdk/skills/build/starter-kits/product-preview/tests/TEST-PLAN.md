@@ -30,7 +30,7 @@ Out of scope
 - Data: the kit's own `public/` — five design scenes and five mockup scenes, plus `icons/`. Nothing is fetched from a CDN, so this kit needs no demo-data redirect.
 - Hook: `App.handleEditorInit` sets `window.cesdk` to the **design** editor. The mockup modal creates a second CE.SDK instance that the hook never points at; it is driven through the DOM only.
 - Two engines: the design editor plus the headless mockup renderer, and a third while the modal is open. Browser cases allow the extra WASM instances.
-- Guard allowlist, environmental rather than kit behaviour. `cdnAllowlist`: the committed demo scenes store absolute font URIs under `cdn.img.ly/packages/imgly/cesdk-js/…/assets/ly.img.typeface/fonts/` (pinned to 1.68.0); nothing else in the kit reaches the CDN. Those faces load cleanly in dev and static mode now, so no console line is tolerated.
+- No `cdnAllowlist`. The committed demo scenes' font URIs are relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default and no console line is tolerated.
 - Headless: Vitest + `@cesdk/node` (`@cesdk/engine` aliased to it). `renderMockup` is exercised with **string** placeholders pointing at `file://` fixtures. The `Blob` branch creates `blob:` URLs the Node engine cannot fetch, and `block.export` on a block whose resource never loads does not reject, it waits — so a Blob placeholder would hang the run to its timeout. The Blob path is covered in the browser instead.
 - Downloads: captured by Playwright and checked by file type, pixel size and PDF page count.
 

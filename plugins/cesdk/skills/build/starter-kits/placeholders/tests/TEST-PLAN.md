@@ -28,7 +28,7 @@ Out of scope
 - Browser: Chrome, headless, 1400 × 900. Requests to `cdn.img.ly` fail the test.
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: `public/example.scene`. One page **named** `Background` holding `Image 1`, an unnamed shape, an unnamed text block, `Image 2` and `Image 3`. (Corrected on the first run: `Background` is the page itself, not a child block.)
-- The template stores absolute `cdn.img.ly` URIs for the Notable typeface and the emoji font, so those two paths are on the kit's `cdnAllowlist`.
+- No `cdnAllowlist`. The template's Notable typeface and emoji font URIs are relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default.
 - Downloads: captured by Playwright and checked by file type and PDF page count
 
 ## 4. Approach

@@ -49,7 +49,7 @@ Common precondition for all browser cases: the kit is open in the browser and th
 
 **VPY-01 · browser · Player loads the demo scene**
 Steps: open the kit.
-Expected: `engine.scene.getMode()` is `Video`. One page on the canvas with video content. No console errors. No `cdn.img.ly` request other than the allowlisted scene URL.
+Expected: `engine.scene.getMode()` is `Video`. One page on the canvas with video content. No console errors. No request to `cdn.img.ly`.
 
 **VPY-02 · browser · The scene is fitted to the viewport**
 Steps: read the zoom level after start-up, set it to 2, run the kit's own `zoom.toPage` call again, read it again.

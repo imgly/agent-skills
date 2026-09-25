@@ -27,7 +27,7 @@ Out of scope
 - Engine and editor: built from this repo, served locally. Requests to `cdn.img.ly` for engine assets fail the test.
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: the kit's own `public/assets/page-sizes.scene`, 1 page of 1080 × 1350 px, and `public/assets/page-sizes-large.svg` for the dock icon
-- The demo scene stores absolute `cdn.img.ly` font and emoji URIs from the CE.SDK version it was authored with, so `tests/playwright.config.ts` allows exactly `cdn.img.ly/packages/imgly/cesdk-js/<version>/assets/ly.img.typeface/fonts/` and `cdn.img.ly/assets/v<n>/emoji/`.
+- No `cdnAllowlist`. The demo scene's font and emoji URIs are relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default.
 - Downloads: captured by Playwright and checked by file type, pixel size, and PDF page count
 
 ## 4. Approach

@@ -30,7 +30,7 @@ content.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.1/engine-guides-create-scene-from-video-url)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.2/engine-guides-create-scene-from-video-url)
 
 <EngineReferenceNote {...props} />
 

@@ -41,7 +41,7 @@ This kit has no `mobile-app` Qase cases.
 - **No live Unsplash traffic.** The image bar is uploads plus an Unsplash query fixed to `Disneyland`, and applying a photo calls the tracked-download endpoint. Every browser case mocks `https://api.img.ly/unsplashProxy/**` from a fixture.
 - Headless: `@cesdk/node` through the shared harness engine helper. Node, no DOM. `createApplyLayoutAsset` fetches the layout scene, so headless cases stub `globalThis.fetch` to read the template file from the in-repo demo data.
 - Component: Vitest with `// @vitest-environment jsdom`, React Testing Library, the kit's own Vite plugins.
-- Requests to `cdn.img.ly` fail the test, with one allowlist entry: `photobook.scene` and the theme typefaces store absolute `cdn.img.ly/assets/v3/ly.img.typeface/fonts/` URIs for the four faces the book uses. The scene's photos come from `firebasestorage` and `images.unsplash.com`, which the guard does not cover.
+- No `cdnAllowlist`. `photobook.scene` and the theme typefaces' font URIs are relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default. The scene's photos come from `firebasestorage` and `images.unsplash.com`, which the guard does not cover.
 - Downloads: captured by Playwright and checked by file type and PDF page count
 
 ## 4. Approach

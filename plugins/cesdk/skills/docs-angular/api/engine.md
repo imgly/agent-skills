@@ -240,6 +240,7 @@
 
 | Enumeration | Description |
 | ------ | ------ |
+| [ColorRenderingIntent](./api/engine/enumerations/colorrenderingintent.md) | How a color that the destination cannot reproduce is mapped into it. |
 | [CompressionFormat](./api/engine/enumerations/compressionformat.md) | Compression format for scene serialization. |
 | [CompressionLevel](./api/engine/enumerations/compressionlevel.md) | Compression level for scene serialization. |
 
@@ -283,6 +284,7 @@
 | [Buffer](./api/engine/interfaces/buffer.md) | Represents a buffer of data. |
 | [CharacterInkBox](./api/engine/interfaces/characterinkbox.md) | Tight ink-paint bounding box of a single grapheme, in global scene coordinates. Returned by `block.getTextCharacterInkBoxes`. The baseline Y is reported separately because it does not equal `y + height` (the box is the tight ink rect; the baseline anchors glyph descenders). |
 | [CMYKColor](./api/engine/interfaces/cmykcolor.md) | Represents a CMYK color value. |
+| [CMYKProfileInfo](./api/engine/interfaces/cmykprofileinfo.md) | What the document stores about a CMYK profile that was assigned to it. |
 | [CompleteAssetResult](./api/engine/interfaces/completeassetresult.md) | Asset results that are returned from the engine. |
 | [CompressionOptions](./api/engine/interfaces/compressionoptions.md) | Compression settings for a serialized scene. |
 | [Configuration](./api/engine/interfaces/configuration.md) | Specifies the configuration for the Creative Editor SDK. |

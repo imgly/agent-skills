@@ -95,7 +95,7 @@ Open:
 
 3. `public/assets/remove-bg.png` is never referenced.
 4. The README lists `cesdk.createFromImage` and `cesdk.load` as loading options but the kit ships only `cesdk.load`. No defect, only an untested claim.
-5. The mirrored scene still names `cdn.img.ly/assets/v4/…` in the variant lists of four typefaces it does not use (Archivo, Barlow Condensed, Elsie Swash Caps, Palanquin Dark) and in the `defaultEmojiFontFileUri` setting. Those URIs are metadata: a boot fetches none of them, and no case changes a font weight or types an emoji. Mirroring them would add about 10 MB of fonts per kit.
+5. **Fixed.** The mirrored scene no longer names `cdn.img.ly` anywhere. Every font URI is relative to the engine's `baseURL`, and `defaultEmojiFontFileUri` is empty.
 
 ## 8. Open questions
 

@@ -26,7 +26,7 @@ Out of scope
 ## 3. Test environment
 
 - Headless: `@cesdk/node` through the shared harness engine helper. Node, no DOM. Templates load from `public/` over `file://`.
-- Browser: Chrome, headless, 1400 × 900. Requests to `cdn.img.ly` fail the test, except the Manrope typeface: the shipped templates store absolute `cdn.img.ly/assets/v3/ly.img.typeface/fonts/Manrope/` URIs, so that one prefix is allowlisted in `tests/playwright.config.ts`.
+- Browser: Chrome, headless, 1400 × 900. Requests to `cdn.img.ly` fail the test. No `cdnAllowlist`. The shipped templates' Manrope URIs are relative to the engine's `baseURL`.
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: the six scenes in `public/`. The image templates carry the blocks `PodcastCover`, `PodcastBadge` and `Message & Name` and the variables `Message` and `PodcastName`.
 - Network: the iTunes Search API and the podcast artwork host are stubbed with `page.route` in every browser case. No test calls iTunes for real.

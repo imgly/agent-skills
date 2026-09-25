@@ -31,7 +31,7 @@ Out of scope
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: the kit's own `public/assets/scene.scene`. 1 page, DIN A6, 148 × 105 mm, one graphic with an image fill plus text.
 - Network: `@imgly/background-removal@1.7.0` downloads its ONNX models from `staticimgly.com/@imgly/background-removal-data/`, which the guard allows. Measured: a removal takes 16 to 22 s including the download, so the three cases that run one keep a 180 s timeout and every other case asserts wiring only.
-- Network: the demo scene stores an absolute `cdn.img.ly` URI for its Manrope font (known issue 6), so `tests/playwright.config.ts` allows `cdn.img.ly/packages/imgly/cesdk-js/<version>/assets/ly.img.typeface/fonts/`. Nothing else reaches the CDN.
+- No `cdnAllowlist`. The demo scene's Manrope font URI is relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default.
 - Downloads: captured by Playwright and checked by file type, pixel size, and PDF page count
 
 ## 4. Approach
@@ -53,7 +53,7 @@ Common precondition for all browser cases: the kit is open in the browser and th
 
 **BGR-01 · browser · Editor loads with the demo scene**
 Steps: open the kit.
-Expected: one page on the canvas, 148 × 105 mm. The dock lists Templates, Elements, Uploads, Images, Text, Shapes, Stickers. No console errors. No request to `cdn.img.ly` beyond the allowed font.
+Expected: one page on the canvas, 148 × 105 mm. The dock lists Templates, Elements, Uploads, Images, Text, Shapes, Stickers. No console errors. No request to `cdn.img.ly`.
 Note: `engine.editor.getSetting('dock/hideLabels')` is not reflected for reading, so the label and icon-size settings are asserted in BGR-U2 instead.
 
 **BGR-02 · browser · Qase 1493 · Add a pre-loaded image to the canvas**
@@ -157,9 +157,9 @@ Confirm each with a test before fixing.
 3. `src/index.ts` carries a commented-out `baseURL` line that repeats the live value verbatim, so the "IMG.LY CDN (for quick testing only)" hint points at the local assets URL.
 4. `config/i18n.ts` is an empty `void cesdk;` stub while the README documents localization.
 5. The README's Architecture tree omits `config/keyboard/`, which the kit ships and `config/plugin.ts` calls.
-6. The demo scene stores absolute `cdn.img.ly` URIs: `packages/imgly/cesdk-js/…/assets/ly.img.typeface/fonts/Manrope/Manrope-Medium.ttf` (pinned to 1.68.0) is fetched on every load, and `assets/v2/ly.img.filter.lut/…` plus `assets/v4/emoji/NotoColorEmoji.ttf` are stored but not fetched. The Manrope URL is allowlisted in the Playwright config; a customer running the kit still hits the production CDN for it.
+6. **Fixed.** The Manrope font and the LUT filter are relative to the engine's `baseURL`, and the `defaultEmojiFontFileUri` setting is empty. The demo scene no longer names `cdn.img.ly` anywhere.
 
-Fixed: 2 (the lint gate).
+Fixed: 2 (the lint gate). 6 (the font, filter and emoji URIs are relative to the engine's `baseURL`).
 
 ### Coverage residue
 

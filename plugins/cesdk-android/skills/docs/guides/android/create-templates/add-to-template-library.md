@@ -164,7 +164,7 @@ Android asset source.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.1/engine-guides-create-templates-add-to-template-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.2/engine-guides-create-templates-add-to-template-library)
 
 <EngineReferenceNote {...props} />
 

@@ -137,13 +137,14 @@ suspend fun cmykColors(engine: Engine): CMYKColors {
 }
 ```
 
-Work with CMYK colors in CE.SDK for professional print production workflows with support for color space conversion and tint control.
+Work with CMYK colors in CE.SDK for professional print production workflows
+with support for color space conversion and tint control.
 
 > **Reading time:** 8 minutes
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.1/engine-guides-colors-for-print-cmyk)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.2/engine-guides-colors-for-print-cmyk)
 
 <EngineReferenceNote {...props} />
 
@@ -316,6 +317,48 @@ CMYK colors work in gradient color stops. Create a linear gradient fill and pass
     )
 ```
 
+## Setting the Document CMYK Profile
+
+CE.SDK previews CMYK colors through an ICC profile. The bundled default profile models a US press condition. For another print condition, for example European coated paper, set the CMYK profile of the document to the profile your printer supplies.
+
+The engine picks the CMYK profile in this order:
+
+1. A CMYK image with its own embedded ICC profile uses that profile, for that image only.
+2. The CMYK profile of the document, when you set one.
+3. The profile at the `fallbackCMYKProfileUri` setting.
+4. The bundled default profile, when that setting is empty.
+
+The document profile and its conversion settings belong to `engine.scene`. They are saved with the scene and bundled into scene archives. Undo and redo do not change these properties. The `fallbackCMYKProfileUri` editor setting belongs to the current editor environment.
+
+Raster exports use the document profile for CMYK-to-RGB conversion. A scene whose `scene/colorConversionMode` is `Legacy` keeps its previous conversion until you set the property to `Managed`.
+
+```kotlin
+// Load the profile from a URI. The call returns once the profile is in effect.
+engine.scene.setCMYKProfile(uri = Uri.parse("https://example.com/profiles/PSOcoated_v3.icc"))
+
+// Or pass the profile bytes directly, in a direct ByteBuffer.
+val bytes = context.assets.open("PSOcoated_v3.icc").use { it.readBytes() }
+val buffer = ByteBuffer.allocateDirect(bytes.size).apply {
+    put(bytes)
+    rewind()
+}
+engine.scene.setCMYKProfileFromData(data = buffer)
+
+// Read what the document names, and go back to the fallback profile.
+val info = engine.scene.getCMYKProfileInfo() // CMYKProfileInfo or null
+engine.scene.removeCMYKProfile()
+
+// Configure the conversion.
+engine.scene.setColorRenderingIntent(intent = ColorRenderingIntent.PERCEPTUAL)
+engine.scene.setBlackPointCompensationEnabled(enabled = false)
+```
+
+An assignment is atomic. While a profile loads, the previous profile stays in effect. When the profile cannot be loaded, is not a valid ICC profile, or is not a CMYK profile, the call fails and the previous profile stays in effect. `engine.scene.getCMYKProfileInfo()` returns the content hash of the profile the document names, or `null` when the document names no CMYK profile. `engine.scene.removeCMYKProfile()` goes back to the fallback profile.
+
+A profile set from bytes is saved as a `buffer://` URI when you save the scene to a string, and only the same engine can read that URI. Save the scene to an archive to keep the profile bytes with the scene.
+
+You can also set how colors outside the destination gamut are mapped, with the rendering intent, and whether black point compensation is on. The defaults are relative colorimetric intent with black point compensation.
+
 ## Troubleshooting
 
 ### Colors Look Different on Screen vs. Print
@@ -328,28 +371,36 @@ The `tint` value must be between `0F` and `1F`. On Android, values below `1F` do
 
 ## API Reference
 
-| Method | Description |
-|--------|-------------|
-| `Color.fromCMYK(c=_, m=_, y=_, k=_, tint=_)` | Create a CMYK color with normalized components and tint. |
-| `engine.block.setColor(block=_, property="fill/color/value", value=_)` | Set a color property on a fill. Accepts any `Color` type. |
-| `engine.block.getColor(block=_, property="fill/color/value")` | Get the current color value from a property. Returns `Color`. |
-| `engine.editor.convertColorToColorSpace(color=_, colorSpace=_)` | Convert a color between `ColorSpace.SRGB` and `ColorSpace.CMYK`. |
-| `engine.block.createFill(fillType=_)` | Create a fill. Use `FillType.Color` for solid fills or `FillType.LinearGradient`, `FillType.RadialGradient`, or `FillType.ConicalGradient` for gradients. |
-| `engine.block.setFill(block=_, fill=_)` | Assign a fill to a block. |
-| `engine.block.setStrokeColor(block=_, color=_)` | Set the stroke color on a block. |
-| `engine.block.setDropShadowColor(block=_, color=_)` | Set the drop shadow color on a block. |
-| `engine.block.setGradientColorStops(block=_, property="fill/gradient/colors", colorStops=_)` | Set color stops on a gradient fill. |
+| Method                                                                                       | Description                                                                                                                                               |
+| -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Color.fromCMYK(c=_, m=_, y=_, k=_, tint=_)`                                                 | Create a CMYK color with normalized components and tint.                                                                                                  |
+| `engine.block.setColor(block=_, property="fill/color/value", value=_)`                       | Set a color property on a fill. Accepts any `Color` type.                                                                                                 |
+| `engine.block.getColor(block=_, property="fill/color/value")`                                | Get the current color value from a property. Returns `Color`.                                                                                             |
+| `engine.editor.convertColorToColorSpace(color=_, colorSpace=_)`                              | Convert a color between `ColorSpace.SRGB` and `ColorSpace.CMYK`.                                                                                          |
+| `engine.block.createFill(fillType=_)`                                                        | Create a fill. Use `FillType.Color` for solid fills or `FillType.LinearGradient`, `FillType.RadialGradient`, or `FillType.ConicalGradient` for gradients. |
+| `engine.block.setFill(block=_, fill=_)`                                                      | Assign a fill to a block.                                                                                                                                 |
+| `engine.block.setStrokeColor(block=_, color=_)`                                              | Set the stroke color on a block.                                                                                                                          |
+| `engine.block.setDropShadowColor(block=_, color=_)`                                          | Set the drop shadow color on a block.                                                                                                                     |
+| `engine.block.setGradientColorStops(block=_, property="fill/gradient/colors", colorStops=_)` | Set color stops on a gradient fill.                                                                                                                       |
+| `engine.scene.setCMYKProfile(uri=_)`                                                         | Load a CMYK ICC profile from a URI and make it the document profile                                                                                       |
+| `engine.scene.setCMYKProfileFromData(data=_)`                                                | Make the CMYK ICC profile in a direct `ByteBuffer` the document profile                                                                                   |
+| `engine.scene.getCMYKProfileInfo()`                                                          | Get the content hash of the document CMYK profile, or `null`                                                                                              |
+| `engine.scene.removeCMYKProfile()`                                                           | Remove the document CMYK profile and use the fallback profile                                                                                             |
+| `engine.scene.setColorRenderingIntent(intent=_)`                                             | Set the rendering intent of CMYK conversion                                                                                                               |
+| `engine.scene.setBlackPointCompensationEnabled(enabled=_)`                                   | Turn black point compensation on or off                                                                                                                   |
 
-| Type | Description |
-|------|-------------|
-| `CMYKColor` | CMYK color for print workflows. Components and tint range from `0F` to `1F`. |
-| `ColorSpace.CMYK` / `ColorSpace.SRGB` | Target color space for `convertColorToColorSpace()`. |
-| `GradientColorStop` | Gradient stop with a `color: Color` and a `stop: Float` position. |
+| Type                                  | Description                                                                  |
+| ------------------------------------- | ---------------------------------------------------------------------------- |
+| `CMYKColor`                           | CMYK color for print workflows. Components and tint range from `0F` to `1F`. |
+| `ColorSpace.CMYK` / `ColorSpace.SRGB` | Target color space for `convertColorToColorSpace()`.                         |
+| `GradientColorStop`                   | Gradient stop with a `color: Color` and a `stop: Float` position.            |
 
 ## Next Steps
 
-- [Spot Colors](./spot.md) - Work with named spot colors for brand consistency and specialized printing
-- [Color Conversion](../conversion.md) - Convert colors between sRGB, CMYK, and spot color spaces
+- [Spot Colors](./spot.md) - Work with named spot colors for brand consistency
+  and specialized printing
+- [Color Conversion](../conversion.md) - Convert colors between sRGB, CMYK,
+  and spot color spaces
 - [Apply Colors](../apply.md) - Apply colors to design elements programmatically
 
 

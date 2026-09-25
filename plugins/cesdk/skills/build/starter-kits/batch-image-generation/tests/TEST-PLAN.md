@@ -28,7 +28,7 @@ Out of scope
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: `public/scenes.json`, which holds the portrait and landscape scene strings. The portrait template carries the blocks `Photo`, `FirstName`, `LastName`, `Department`, `Background`, `LogoSmall` and the variables `FirstName`, `LastName`, `Department`. Photos come from `public/images/`.
 - Downloads: captured by Playwright and checked by file name and size
-- CDN guard: both shipped scenes store absolute `cdn.img.ly/assets/v3/ly.img.typeface/fonts/SpaceGrotesk/` font URIs, so that one prefix is allowlisted in `tests/playwright.config.ts`. Nothing else may reach the CDN.
+- No `cdnAllowlist`. Both shipped scenes' Space Grotesk font URIs are relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default.
 
 ## 4. Approach
 
@@ -51,7 +51,7 @@ Common precondition: the kit is open and the six cards have finished their first
 
 **BIG-01 · Qase 1360, 1361 · Default state**
 Steps: open the kit.
-Expected: two template buttons, Portrait selected and the only one offering Edit. Six card images, one per employee, each labelled with that employee's first and last name. Seven Edit buttons in total. The loading overlay is gone. No console errors. No CDN request outside the allowlisted Space Grotesk fonts.
+Expected: two template buttons, Portrait selected and the only one offering Edit. Six card images, one per employee, each labelled with that employee's first and last name. Seven Edit buttons in total. The loading overlay is gone. No console errors. No request to `cdn.img.ly`.
 Note: the department appears only inside the rendered picture, not in the DOM, so it is asserted headless instead.
 
 **BIG-02 · Switch template**

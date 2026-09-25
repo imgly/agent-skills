@@ -2687,6 +2687,30 @@ case codecWebcodecsNotAvailableNode
 case codecWebcodecsNotSupported
 ```
 
+### EngineErrorCode.colorImageDecodeFailed
+
+```swift
+case colorImageDecodeFailed
+```
+
+### EngineErrorCode.colorImageTransformFailed
+
+```swift
+case colorImageTransformFailed
+```
+
+### EngineErrorCode.colorProfileAssignmentSuperseded
+
+```swift
+case colorProfileAssignmentSuperseded
+```
+
+### EngineErrorCode.colorProfileDataSpaceMismatch
+
+```swift
+case colorProfileDataSpaceMismatch
+```
+
 ### EngineErrorCode.colorProfileInvalid
 
 ```swift
@@ -2715,6 +2739,12 @@ case colorProfileSpaceMismatch
 
 ```swift
 case colorProfileUnsupportedSpace
+```
+
+### EngineErrorCode.colorRenderingIntentInvalid
+
+```swift
+case colorRenderingIntentInvalid
 ```
 
 ### EngineErrorCode.computeColorSpaceBitDepthUnsupported

@@ -98,7 +98,7 @@ Open:
 2. The README says the kit has a layers panel. `AdvancedEditorConfig` registers none, and neither does the kit. The only advanced traits in the config are the right-side inspector, unlabelled normal-size dock icons and the visible page title.
 3. `public/assets/remove-bg.png` is never referenced.
 4. `src/imgly/index.ts` is a copy of the design editor kit's file with the configuration class swapped. Only that one line differs in behaviour.
-5. The mirrored scene still names `cdn.img.ly/assets/v4/…` in the variant lists of the typefaces it does not use and in the `defaultEmojiFontFileUri` setting. Those URIs are metadata: a boot fetches none of them.
+5. **Fixed.** The mirrored scene no longer names `cdn.img.ly` anywhere. Every font URI is relative to the engine's `baseURL`, and `defaultEmojiFontFileUri` is empty.
 
 ## 8. Open questions
 

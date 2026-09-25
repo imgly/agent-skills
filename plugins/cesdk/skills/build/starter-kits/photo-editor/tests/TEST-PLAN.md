@@ -110,7 +110,7 @@ Confirm each with a test before fixing.
 
 ## 8. Open questions
 
-1. **Resolved: mirrored.** The scene lives in the data package and the kit reads it through `DEMO_ASSETS_BASE_URL`. Like the P2 mirrors, the scene still names `cdn.img.ly/assets/v4/…` in the Roboto variant list and in `defaultEmojiFontFileUri`; neither is fetched on a boot.
+1. **Resolved: mirrored.** The scene lives in the data package and the kit reads it through `DEMO_ASSETS_BASE_URL`. The scene no longer names `cdn.img.ly` anywhere; every font URI is relative to the engine's `baseURL`, and `defaultEmojiFontFileUri` is empty.
 2. Issue 5: the three Apps Qase cases no longer describe this kit. Options: retitle them against the BG Removal dock entry, or retire them. Recommendation: Elia decides; PE-02, PE-03 and PE-04 cover what the kit does today either way.
 3. **Resolved:** the README's Architecture section is rewritten.
 

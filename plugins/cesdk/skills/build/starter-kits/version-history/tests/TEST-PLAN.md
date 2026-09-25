@@ -29,7 +29,7 @@ Out of scope
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: `public/assets/snapshots/{1,2,3}/scene.scene` and their thumbnails. Snapshot 1 is loaded at start-up.
 - Time: unit tests that touch `formatDate` set `process.env.TZ = 'UTC'` in `beforeAll` (see known issue 3).
-- The seeded scenes reference Poppins, SourceSerifPro and the emoji font on `cdn.img.ly`, so those two paths are on the kit's `cdnAllowlist`.
+- No `cdnAllowlist`. The seeded scenes' Poppins, SourceSerifPro and emoji font URIs are relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default.
 
 ## 4. Approach
 

@@ -28,7 +28,7 @@ Out of scope
 - Browser: Chrome, headless, 1400 × 900. Requests to `cdn.img.ly` fail the test.
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: `public/assets/example.scene`. One page holding a background graphic, three text blocks and a `TrashHand` image; three findings.
-- The scene stores an absolute `cdn.img.ly` URI for the TrashHand font, so that path is on the kit's `cdnAllowlist`.
+- No `cdnAllowlist`. The scene's TrashHand font URI is relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default.
 - Downloads: captured by Playwright and checked by file type and PDF page count
 
 ## 4. Approach

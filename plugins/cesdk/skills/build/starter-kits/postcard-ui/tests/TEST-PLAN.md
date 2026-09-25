@@ -27,7 +27,7 @@ Out of scope
 ## 3. Test environment
 
 - Browser: Chrome, headless, 1400 × 900
-- Engine: `@cesdk/engine` built from this repo, served locally. Requests to `cdn.img.ly` fail the test, except the two the templates need: the typeface fonts under `cdn.img.ly/packages/imgly/cesdk-js/<version>/assets/ly.img.typeface/fonts/` (the scenes store absolute URIs for Caveat, Courier Prime, Lobster Two and Nixie One) and `cdn.img.ly/assets/v4/emoji/` (the fallback font PC-18, PC-23 and PC-30 need). Both are narrow regexes in `tests/playwright.config.ts`.
+- Engine: `@cesdk/engine` built from this repo, served locally. Requests to `cdn.img.ly` fail the test.
 - No allowlist of any kind. Known issue 17 is fixed: the four templates now name the bundled `.woff2` faces by a root-relative path, so every font and the emoji fallback come from the local asset host.
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: the kit ships no `public/` directory. Templates and previews come from `DEMO_ASSETS_BASE_URL`; the in-repo copy is `packages/cesdk-web-examples-data/data/starterkit-postcard-ui/` — four `.scene` files, four `.png` previews and `ColorPicker.png`. The dev server injects `VITE_DEMO_ASSETS_BASE_URL` for it automatically. The files are git-LFS and fetch-excluded, so a fresh checkout needs `git lfs pull -X '' -I 'packages/cesdk-web-examples-data/data/starterkit-postcard-ui/**'`; the headless suite fails loudly with that command when they are missing.
@@ -434,7 +434,7 @@ Fails loudly instead of mounting nothing.
 
 Entry: the engine and its asset library built (`nx run @cesdk/engine:build:assets`); the demo data materialised (`git lfs pull -X '' -I 'packages/cesdk-web-examples-data/data/starterkit-postcard-ui/**'`); test license available; the shared harness's component wiring and its `{ kind, engine, cesdk }` editor handle in place.
 
-Exit: **met.** `npm run ci` exits 0. No test contacts Unsplash or any host other than the kit's dev server, the local asset CDN and the two allowlisted font paths. The published kit contains no test files.
+Exit: **met.** `npm run ci` exits 0. No test contacts Unsplash or any host other than the kit's dev server and the local asset CDN. The published kit contains no test files.
 Open: browser coverage is not merged into the kit's number — `merge-coverage.mjs` cannot map a `…svg?import` module, so `test:all` runs the browser step with `KIT_TEST_COVERAGE=0`. Recorded for the harness owner. **Trap while that stands:** a bare `npm run test:e2e` or `npx playwright test` still writes dumps to `apps/cesdk_web_examples/.test-output/<kit>/coverage/playwright/`, nothing clears them, and the next `npm run ci` then dies in the merge step. Delete that directory after running the browser tests by hand.
 
 ## 7. Known issues found while writing this plan

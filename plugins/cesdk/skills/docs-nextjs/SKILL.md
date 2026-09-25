@@ -25,7 +25,7 @@ argument-hint: "[search-topic]"
 
 ## Version Notice
 
-> CE.SDK `1.83.0-rc.1` · generated `2026-09-23` · plugin `cesdk`
+> CE.SDK `1.83.0-rc.2` · generated `2026-09-25` · plugin `cesdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
@@ -46,7 +46,7 @@ argument-hint: "[search-topic]"
 CreativeEngine:{asset,block,editor,event,scene,variable,actions,shortcuts,reactor,version,addPlugin,unstable_setVideoExportInactivityTimeout,unstable_setExportInactivityTimeout,addPostUpdateCallback,addPreUpdateCallback},... (+7)
 BlockAPI:{export,getDominantColors,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo},... (+407)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
-SceneAPI:{load,loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create,createVideo,createFromImage,createFromVideo,get,applyTemplateFromString,applyTemplateFromURL,getMode,setMode},... (+25)
+SceneAPI:{setCMYKProfile,setCMYKProfileFromData,getCMYKProfileInfo,removeCMYKProfile,getColorRenderingIntent,setColorRenderingIntent,isBlackPointCompensationEnabled,setBlackPointCompensationEnabled,load,loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create},... (+33)
 EditorAPI:{unlockWithLicense,isCapabilitySupported,checkCapabilities,startTracking,setTrackingMetadata,getTrackingMetadata,trackEvent,getActiveLicense,getEngineVersion,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,hasSelectedVectorNode,addVectorNode},... (+100)
 EventAPI:{subscribe}
 VariableAPI:{findAll,setString,getString,remove}

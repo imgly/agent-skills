@@ -85,15 +85,17 @@ describe('AP-C11 the edit and preview steps', () => {
     handle.select([IMAGE_BLOCK]);
     await userEvent.click(screen.getByRole('button', { name: 'Preview' }));
 
+    // One effect writes all four, so waiting on zoomToBlock alone can observe
+    // the selection before the same pass clears it.
     await waitFor(() => {
       expect(handle.spy('scene.zoomToBlock')).toHaveBeenCalledWith(
         SCENE + 1,
         expect.objectContaining({ padding: expect.anything() })
       );
+      expect(handle.engine.element!.style.pointerEvents).toBe('none');
+      expect(handle.engine.block.setClipped).toHaveBeenCalledWith(PAGE_A, true);
+      expect(handle.engine.block.findAllSelected()).toEqual([]);
     });
-    expect(handle.engine.element!.style.pointerEvents).toBe('none');
-    expect(handle.engine.block.setClipped).toHaveBeenCalledWith(PAGE_A, true);
-    expect(handle.engine.block.findAllSelected()).toEqual([]);
   });
 
   it('hides the bottom controls in the preview step', async () => {

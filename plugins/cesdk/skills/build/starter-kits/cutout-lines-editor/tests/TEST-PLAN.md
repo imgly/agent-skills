@@ -30,7 +30,7 @@ Out of scope
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: the kit's own `public/assets/example.scene`. 1 page, DIN A6, 148 × 105 mm, containing graphics, text, a group and two `//ly.img.ubq/cutout` blocks — the "sample cutouts" the Qase cases refer to.
 - Network: the plugin's asset base defaults to `https://staticimgly.com/imgly/plugin-cutout-library-web/<version>/dist/assets`, which the guard allows. The kit passes no `assetBaseUri`.
-- Network: the demo scene stores absolute `cdn.img.ly` URIs for three fonts and one emoji sticker (known issue 7), so `tests/playwright.config.ts` allows `cdn.img.ly/packages/imgly/cesdk-js/<version>/assets/ly.img.typeface/fonts/` and `cdn.img.ly/assets/v1/ly.img.sticker/`. Nothing else reaches the CDN.
+- No `cdnAllowlist`. The demo scene's three font URIs and the emoji sticker URI are relative to the engine's `baseURL` (known issue 7), so the suite runs with the CDN guard at its default.
 - Timing: the plugin registers `ly.img.cutout` from an unawaited fetch inside its `initialize` (known issue 1), so the source is absent for a moment after the editor is ready. Every case that touches the Cutout panel waits for `engine.asset.findAllSources()` to list it first.
 - Downloads: captured by Playwright and checked by file type and PDF page count
 
@@ -53,7 +53,7 @@ Common precondition for all browser cases: the kit is open in the browser and th
 
 **CL-01 · browser · Editor loads with Cutout first in the dock**
 Steps: open the kit.
-Expected: one page on the canvas, 148 × 105 mm. The dock starts with a Cutout entry, then a separator, then Elements, Uploads, Images, Text, Shapes, Stickers. There is no Templates entry. No console errors. No request to `cdn.img.ly` beyond the allowed fonts and sticker.
+Expected: one page on the canvas, 148 × 105 mm. The dock starts with a Cutout entry, then a separator, then Elements, Uploads, Images, Text, Shapes, Stickers. There is no Templates entry. No console errors. No request to `cdn.img.ly`.
 
 **CL-02 · browser · Qase 683, 684 · The Cutout panel adds a rectangle and a circle**
 Steps: click Cutout in the dock. Click the Cutout Rectangle asset. Re-open the panel and click the Cutout Circle asset.
@@ -138,7 +138,7 @@ Confirm each with a test before fixing.
 4. Removing the Templates dock entry left a separator as the first item of `config/ui/dock.ts`, so without the plugin's prepend the dock would open with a divider.
 5. `config/i18n.ts` is an empty `void cesdk;` stub while the README documents localization.
 6. The README's Architecture tree omits `config/keyboard/` and `plugins/cutout-library.ts`.
-7. The demo scene stores absolute `cdn.img.ly` URIs: three fonts under `packages/imgly/cesdk-js/…/assets/ly.img.typeface/fonts/` (pinned to 1.68.0) (Manrope-Bold, Roboto-Light, imgly_font_nixie_one) and `assets/v1/ly.img.sticker/images/emoji/emoji_beer.svg`, all fetched on every load, plus `assets/v4/emoji/NotoColorEmoji.ttf` which is not. All four fetched URLs are allowlisted in the Playwright config; a customer running the kit still hits the production CDN for them.
+7. **Fixed.** The three fonts (Manrope-Bold, Roboto-Light, imgly_font_nixie_one), the emoji sticker and `defaultEmojiFontFileUri` are now relative to the engine's `baseURL`. The demo scene no longer names `cdn.img.ly` anywhere.
 8. The plugin registers its cutout asset source from an unawaited `fetch` inside a synchronous `initialize`, so opening the Cutout dock entry before that lands renders "No Elements" and never recovers. Reproduced by clicking the entry immediately after the editor is ready. The plugin owns this; recorded as a core gap in section 10.
 
 ### Coverage residue

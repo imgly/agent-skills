@@ -182,7 +182,7 @@ Confirm each with a test before fixing.
 7. The response type is cast to `'video/mp4'` whatever the server sends. RND-U4 pins that the header wins when there is one.
 8. The shipped demo scene named two Archivo fonts by their `.ttf` path, which the bundled asset library no longer ships — only `.woff2`. Every boot logged two failed font fetches, their CORS reports and three engine `errorStateChanged` errors, and the text rendered with a fallback.
    **Fixed**: the two URIs in `public/assets/example-video-motion.scene` now point at the `.woff2` files. RND-01 proves the boot is clean.
-9. The same scene still names `https://cdn.img.ly/assets/v4/emoji/NotoColorEmoji.ttf` as its emoji font. Nothing fetches it on a plain boot, so the CDN guard stays green, but a customer typing an emoji reaches IMG.LY's CDN.
+9. **Fixed.** The scene's `defaultEmojiFontFileUri` is now empty, so the engine uses its bundled emoji font instead of naming `cdn.img.ly`.
 
 10. Chromium can deliver the first response progress event before the upload's `loadend`, so a server that answers at once (the mocked one on CI, every run) produced "server render took -0.3 seconds".
     **Fixed**: a response closes the upload timestamp too; each timestamp is set once, at the first event that proves it. RND-U6 pins the order.

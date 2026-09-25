@@ -2,12 +2,10 @@ import {
   createTestEngine,
   disposeTestEngine,
   loadScene,
-  repoRoot,
   type TestEngine
 } from '@imgly/kit-test-harness/node';
 import type { CreativeEngine } from '@cesdk/cesdk-js';
-import { join } from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 import {
   afterAll,
   beforeAll,
@@ -23,8 +21,6 @@ import { exportPrintReadyPDF } from '../../src/imgly/plugins/export-print-ready-
 const SCENE = fileURLToPath(
   new URL('../../public/assets/example-1.scene', import.meta.url)
 );
-
-const CDN_ASSETS_PREFIX = 'https://cdn.img.ly/assets/v3/';
 
 const MARGINS = [
   'page/margin/top',
@@ -101,14 +97,6 @@ async function duringExport<T>(
 beforeAll(async () => {
   raw = await createTestEngine();
   engine = raw as unknown as CreativeEngine;
-  // The scene names its fonts by absolute cdn.img.ly URL, so an export needs
-  // the network. Serve them from the repository's own `assets/v3` tree.
-  const localAssets = `${pathToFileURL(join(repoRoot, 'assets/v3')).href}/`;
-  engine.editor.setURIResolver((uri) =>
-    uri.startsWith(CDN_ASSETS_PREFIX)
-      ? `${localAssets}${uri.slice(CDN_ASSETS_PREFIX.length)}`
-      : engine.editor.defaultURIResolver(uri)
-  );
 });
 
 afterAll(() => {

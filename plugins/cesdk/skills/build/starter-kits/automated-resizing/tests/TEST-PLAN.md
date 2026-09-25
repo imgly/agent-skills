@@ -29,7 +29,7 @@ Out of scope
 - License: the shared test license (valid on hostname `localhost` only)
 - Data: the kit ships no scene of its own — every template loads from `staticimgly.com`. The same files are in the repo at `packages/cesdk-web-examples-data/data/starterkit-automated-resizing/` (`example-1.scene` to `example-3.scene`, the previews and the platform icons). Headless cases build their own 1080 × 1080 scene in the engine; AR-H7 loads `example-1.scene` from that directory. In dev mode `cesdk-js-dev` injects `VITE_DEMO_ASSETS_BASE_URL` automatically, pointing at the local CDN daemon that serves that directory, so no test reaches a CDN for demo assets and the guard stays meaningful. The files are git-LFS; materialize them with `git lfs pull -X '' -I 'packages/cesdk-web-examples-data/data/starterkit-automated-resizing/**'` or the headless fixture fails with that hint.
 - Downloads: captured by Playwright and checked by file name and decoded pixel size
-- CDN allowlist: the demo templates store absolute `cdn.img.ly/packages/imgly/cesdk-js/…/assets/ly.img.typeface/fonts/…` (pinned to 1.68.0) URIs for their Barlow Condensed and Manrope fonts, so the editor fetches those from the CDN when a template opens. `tests/playwright.config.ts` allows that one prefix; every other `cdn.img.ly` request still fails the test.
+- No `cdnAllowlist`. The demo templates' Barlow Condensed and Manrope font URIs are relative to the engine's `baseURL`, so the suite runs with the CDN guard at its default.
 - Engine-ready signal: the kit shows none, so `open()` waits for the response that carries `example-1.scene`, which the headless engine fetches on boot. Without it `Generate` is a silent no-op (known issue 4).
 
 ## 4. Approach
