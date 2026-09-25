@@ -9,15 +9,16 @@
  * @see https://img.ly/docs/cesdk/js/import-media/asset-panel/customize-c9a4de/
  */
 
-import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+import type {
+  AssetResult,
+  CreativeEngine,
+  EditorPlugin,
+  EditorPluginContext
+} from '@cesdk/cesdk-js';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
-import { applyLayoutToPage } from './applyLayout';
-
 // Import the layouts JSON content
-import LAYOUT_ASSETS from './custom-layouts.json';
-import { DEMO_ASSETS_BASE_URL } from '../../demo-assets';
-export { DEMO_ASSETS_BASE_URL };
+import LAYOUT_ASSETS from './CustomLayouts.json';
 
 // ============================================================================
 // Types
@@ -44,8 +45,219 @@ export interface LayoutsAssetSourcePluginOptions {
 // Constants
 // ============================================================================
 
+/**
+ * Demo assets for this example (scenes, icons, …) are loaded from the
+ * IMG.LY CDN by default. To host them yourself, copy this kit's asset
+ * folder to your own CDN or server and change this constant — or set it to
+ * `''` and place the files in this app's `public/` directory. No trailing
+ * slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.2-rc.0/starterkit-layouts-asset-source';
+
 const LAYOUTS_SOURCE_ID = 'ly.img.layouts';
 const DEFAULT_BASE_URL = `${DEMO_ASSETS_BASE_URL}/assets`;
+
+// ============================================================================
+// Layout Application Logic
+// ============================================================================
+
+/**
+ * Applies a layout asset to the current page, preserving existing content.
+ *
+ * This function:
+ * 1. Loads the layout scene from the asset URI
+ * 2. Replaces the current page's structure with the layout
+ * 3. Copies text and image content from the old page to the new layout
+ */
+// highlight-apply-layout
+async function applyLayoutToPage(
+  engine: CreativeEngine,
+  asset: AssetResult,
+  addUndoStep: boolean
+): Promise<number> {
+  const scopeBefore = engine.editor.getGlobalScope('lifecycle/destroy');
+  engine.editor.setGlobalScope('lifecycle/destroy', 'Allow');
+
+  const page = engine.scene.getCurrentPage();
+  if (!page) {
+    throw new Error('No current page found');
+  }
+
+  // Deselect all blocks
+  engine.block
+    .findAllSelected()
+    .forEach((block) => engine.block.setSelected(block, false));
+
+  // Load the layout scene
+  const sceneString = await fetch(asset.meta.uri as string).then((response) =>
+    response.text()
+  );
+  const blocks = await engine.block.loadFromString(sceneString);
+  const layoutPage = blocks[0];
+  const oldPage = engine.block.duplicate(page);
+
+  // Delete all children from the current page
+  engine.block.getChildren(page).forEach((child) => {
+    engine.block.destroy(child);
+  });
+
+  // Copy all children from layout page to current page
+  engine.block.getChildren(layoutPage).forEach((child) => {
+    engine.block.insertChild(
+      page,
+      child,
+      engine.block.getChildren(page).length
+    );
+  });
+
+  // Copy content (images/text) from old page to new layout
+  copyAssets(engine, oldPage, page);
+
+  // Cleanup
+  engine.block.destroy(oldPage);
+  engine.block.destroy(layoutPage);
+  engine.editor.setGlobalScope('lifecycle/destroy', scopeBefore);
+
+  if (addUndoStep) {
+    engine.editor.addUndoStep();
+  }
+
+  return page;
+}
+// highlight-apply-layout
+
+/**
+ * Copies image files and text block contents from one page to another.
+ */
+function copyAssets(
+  engine: CreativeEngine,
+  fromPageId: number,
+  toPageId: number
+): void {
+  const fromChildren = visuallySortBlocks(
+    engine,
+    getChildrenTree(engine, fromPageId).flat()
+  );
+  const textsOnFromPage = fromChildren.filter((childId) =>
+    engine.block.getType(childId).includes('text')
+  );
+  const imagesOnFromPage = fromChildren.filter(
+    (childId) => engine.block.getKind(childId) === 'image'
+  );
+
+  const toChildren = visuallySortBlocks(
+    engine,
+    getChildrenTree(engine, toPageId).flat()
+  );
+  const textsOnToPage = toChildren.filter((childId) =>
+    engine.block.getType(childId).includes('text')
+  );
+  const imagesOnToPage = toChildren.filter(
+    (childId) => engine.block.getKind(childId) === 'image'
+  );
+
+  // Copy text content
+  for (
+    let index = 0;
+    index < textsOnToPage.length && index < textsOnFromPage.length;
+    index++
+  ) {
+    const fromBlock = textsOnFromPage[index];
+    const toBlock = textsOnToPage[index];
+    const fromText = engine.block.getString(fromBlock, 'text/text');
+    const fromFontFileUri = engine.block.getString(
+      fromBlock,
+      'text/fontFileUri'
+    );
+
+    try {
+      const fromTypeface = engine.block.getTypeface(fromBlock);
+      engine.block.setFont(toBlock, fromFontFileUri, fromTypeface);
+    } catch {
+      // Ignore font errors
+    }
+
+    const fromTextFillColor = engine.block.getColor(
+      fromBlock,
+      'fill/solid/color'
+    );
+    engine.block.setString(toBlock, 'text/text', fromText);
+    engine.block.setColor(toBlock, 'fill/solid/color', fromTextFillColor);
+  }
+
+  // Copy image content
+  for (
+    let index = 0;
+    index < imagesOnToPage.length && index < imagesOnFromPage.length;
+    index++
+  ) {
+    const fromBlock = imagesOnFromPage[index];
+    const toBlock = imagesOnToPage[index];
+    const fromImageFill = engine.block.getFill(fromBlock);
+    const toImageFill = engine.block.getFill(toBlock);
+    const fromImageFileUri = engine.block.getString(
+      fromImageFill,
+      'fill/image/imageFileURI'
+    );
+    engine.block.setString(
+      toImageFill,
+      'fill/image/imageFileURI',
+      fromImageFileUri
+    );
+
+    // Copy image source sets
+    const fromImageSourceSets = engine.block.getSourceSet(
+      fromImageFill,
+      'fill/image/sourceSet'
+    );
+    engine.block.setSourceSet(
+      toImageFill,
+      'fill/image/sourceSet',
+      fromImageSourceSets
+    );
+
+    if (engine.block.supportsPlaceholderBehavior(fromBlock)) {
+      engine.block.setPlaceholderBehaviorEnabled(
+        toBlock,
+        engine.block.isPlaceholderBehaviorEnabled(fromBlock)
+      );
+    }
+
+    engine.block.resetCrop(toBlock);
+  }
+}
+
+function getChildrenTree(engine: CreativeEngine, block: number): number[] {
+  const children = engine.block.getChildren(block);
+  return [
+    ...children,
+    ...children.map((childBlock) => getChildrenTree(engine, childBlock)).flat()
+  ];
+}
+
+/**
+ * Sorts blocks from top to bottom, left to right based on coordinates.
+ */
+function visuallySortBlocks(
+  engine: CreativeEngine,
+  blocks: number[]
+): number[] {
+  const blocksWithCoordinates = blocks
+    .map((block) => ({
+      block,
+      coordinates: [
+        Math.round(engine.block.getPositionX(block)),
+        Math.round(engine.block.getPositionY(block))
+      ] as [number, number]
+    }))
+    .sort(({ coordinates: [X1, Y1] }, { coordinates: [X2, Y2] }) => {
+      if (Y1 === Y2) return X1 - X2;
+      return Y1 - Y2;
+    });
+  return blocksWithCoordinates.map(({ block }) => block);
+}
 
 // ============================================================================
 // Plugin Class
@@ -147,7 +359,7 @@ export class LayoutsAssetSourcePlugin implements EditorPlugin {
     });
 
     // Configure dock order with Layouts as the first entry
-    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+    cesdk.ui.setDockOrder([
       {
         id: 'ly.img.assetLibrary.dock',
         key: LAYOUTS_SOURCE_ID,
@@ -159,7 +371,9 @@ export class LayoutsAssetSourcePlugin implements EditorPlugin {
         entries: [LAYOUTS_SOURCE_ID]
       },
       'ly.img.separator',
-      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })
+      ...cesdk.ui
+        .getDockOrder()
+        .filter(({ key }) => !['ly.img.template'].includes(key as string))
     ]);
   }
 

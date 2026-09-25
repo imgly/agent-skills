@@ -1,6 +1,6 @@
 # ly.img:editor-core Android API Catalog
 
-Complete catalog of 273 generated API digests.
+Complete catalog of 240 generated API digests.
 
 - [AbstractButtonBuilder](<../editor-core/ly.img.editor.core.component/-abstract-button-builder.md>) — `ly.img.editor.core.component`
 - [AbstractCanvasMenuBuilder](<../editor-core/ly.img.editor.core.component/-abstract-canvas-menu-builder.md>) — `ly.img.editor.core.component`
@@ -220,46 +220,13 @@ Complete catalog of 273 generated API digests.
 - [TextBackgroundButtonBuilder](<../editor-core/ly.img.editor.core.component/-text-background-button-builder.md>) — `ly.img.editor.core.component`
 - [TextBackgroundItemScope](<../editor-core/ly.img.editor.core.component/-text-background-item-scope.md>) — `ly.img.editor.core.component`
 - [Timeline](<../editor-core/ly.img.editor.core.component/-timeline.md>) — `ly.img.editor.core.component`
-- [Timeline.AbstractAddButtonBuilder](<../editor-core/ly.img.editor.core.component/-timeline/-abstract-add-button-builder.md>) — `ly.img.editor.core.component`
-- [Timeline.AbstractOptionBuilder](<../editor-core/ly.img.editor.core.component/-timeline/-abstract-option-builder.md>) — `ly.img.editor.core.component`
-- [Timeline.AddAudioButton](<../editor-core/ly.img.editor.core.component/-timeline/-add-audio-button.md>) — `ly.img.editor.core.component`
-- [Timeline.AddAudioButton.Companion](<../editor-core/ly.img.editor.core.component/-timeline/-add-audio-button/-companion.md>) — `ly.img.editor.core.component`
-- [Timeline.AddAudioButtonBuilder](<../editor-core/ly.img.editor.core.component/-timeline/-add-audio-button-builder.md>) — `ly.img.editor.core.component`
-- [Timeline.AddAudioOption](<../editor-core/ly.img.editor.core.component/-timeline/-add-audio-option.md>) — `ly.img.editor.core.component`
-- [Timeline.AddAudioOption.Companion](<../editor-core/ly.img.editor.core.component/-timeline/-add-audio-option/-companion.md>) — `ly.img.editor.core.component`
-- [Timeline.AddAudioOption.Id](<../editor-core/ly.img.editor.core.component/-timeline/-add-audio-option/-id.md>) — `ly.img.editor.core.component`
-- [Timeline.AddAudioOptionBuilder](<../editor-core/ly.img.editor.core.component/-timeline/-add-audio-option-builder.md>) — `ly.img.editor.core.component`
-- [Timeline.AddClipButton](<../editor-core/ly.img.editor.core.component/-timeline/-add-clip-button.md>) — `ly.img.editor.core.component`
-- [Timeline.AddClipButton.Companion](<../editor-core/ly.img.editor.core.component/-timeline/-add-clip-button/-companion.md>) — `ly.img.editor.core.component`
-- [Timeline.AddClipButtonBuilder](<../editor-core/ly.img.editor.core.component/-timeline/-add-clip-button-builder.md>) — `ly.img.editor.core.component`
-- [Timeline.AddClipOption](<../editor-core/ly.img.editor.core.component/-timeline/-add-clip-option.md>) — `ly.img.editor.core.component`
-- [Timeline.AddClipOption.Companion](<../editor-core/ly.img.editor.core.component/-timeline/-add-clip-option/-companion.md>) — `ly.img.editor.core.component`
-- [Timeline.AddClipOption.Id](<../editor-core/ly.img.editor.core.component/-timeline/-add-clip-option/-id.md>) — `ly.img.editor.core.component`
-- [Timeline.AddClipOptionBuilder](<../editor-core/ly.img.editor.core.component/-timeline/-add-clip-option-builder.md>) — `ly.img.editor.core.component`
-- [Timeline.Button](<../editor-core/ly.img.editor.core.component/-timeline/-button.md>) — `ly.img.editor.core.component`
-- [Timeline.Button.Id](<../editor-core/ly.img.editor.core.component/-timeline/-button/-id.md>) — `ly.img.editor.core.component`
-- [Timeline.ButtonBuilder](<../editor-core/ly.img.editor.core.component/-timeline/-button-builder.md>) — `ly.img.editor.core.component`
 - [Timeline.Companion](<../editor-core/ly.img.editor.core.component/-timeline/-companion.md>) — `ly.img.editor.core.component`
-- [Timeline.HeaderListBuilder](<../editor-core/ly.img.editor.core.component/-timeline/-header-list-builder.md>) — `ly.img.editor.core.component`
-- [Timeline.ItemBuilder](<../editor-core/ly.img.editor.core.component/-timeline/-item-builder.md>) — `ly.img.editor.core.component`
-- [Timeline.ItemScope](<../editor-core/ly.img.editor.core.component/-timeline/-item-scope.md>) — `ly.img.editor.core.component`
-- [Timeline.Label](<../editor-core/ly.img.editor.core.component/-timeline/-label.md>) — `ly.img.editor.core.component`
-- [Timeline.Label.Id](<../editor-core/ly.img.editor.core.component/-timeline/-label/-id.md>) — `ly.img.editor.core.component`
 - [Timeline.Scope](<../editor-core/ly.img.editor.core.component/-timeline/-scope.md>) — `ly.img.editor.core.component`
 - [TimelineBuilder](<../editor-core/ly.img.editor.core.component/-timeline-builder.md>) — `ly.img.editor.core.component`
-- [TimelineHeight](<../editor-core/ly.img.editor.core.component.data/-timeline-height.md>) — `ly.img.editor.core.component.data`
-- [TimelineHeight.Dynamic](<../editor-core/ly.img.editor.core.component.data/-timeline-height/-dynamic.md>) — `ly.img.editor.core.component.data`
-- [TimelineHeight.Fixed](<../editor-core/ly.img.editor.core.component.data/-timeline-height/-fixed.md>) — `ly.img.editor.core.component.data`
 - [TimelineOwner](<../editor-core/ly.img.editor.core.component/-timeline-owner.md>) — `ly.img.editor.core.component`
 - [TypefaceProvider](<../editor-core/ly.img.editor.core.library.data/-typeface-provider.md>) — `ly.img.editor.core.library.data`
-- [UnalignedListBuilder](<../editor-core/ly.img.editor.core.component/-unaligned-list-builder.md>) — `ly.img.editor.core.component`
-- [UnalignedListBuilderModify](<../editor-core/ly.img.editor.core.component/-unaligned-list-builder-modify.md>) — `ly.img.editor.core.component`
-- [UnalignedListBuilderScope](<../editor-core/ly.img.editor.core.component/-unaligned-list-builder-scope.md>) — `ly.img.editor.core.component`
 - [UnstableEditorApi](<../editor-core/ly.img.editor.core/-unstable-editor-api.md>) — `ly.img.editor.core`
 - [UploadAssetSourceType](<../editor-core/ly.img.editor.core.library.data/-upload-asset-source-type.md>) — `ly.img.editor.core.library.data`
-- [VerticalListBuilder](<../editor-core/ly.img.editor.core.component/-vertical-list-builder.md>) — `ly.img.editor.core.component`
-- [VerticalListBuilderModify](<../editor-core/ly.img.editor.core.component/-vertical-list-builder-modify.md>) — `ly.img.editor.core.component`
-- [VerticalListBuilderScope](<../editor-core/ly.img.editor.core.component/-vertical-list-builder-scope.md>) — `ly.img.editor.core.component`
 - [ly.img.editor.core.*](<../editor-core/ly.img.editor.core/index.md>) — `ly.img.editor.core`
 - [ly.img.editor.core.component.*](<../editor-core/ly.img.editor.core.component/index.md>) — `ly.img.editor.core.component`
 - [ly.img.editor.core.component.data.*](<../editor-core/ly.img.editor.core.component.data/index.md>) — `ly.img.editor.core.component.data`

@@ -10,7 +10,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initPageSizesAssetSource } from './imgly';
-import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
+import { resolveAssetPath } from './imgly/resolveAssetPath';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
@@ -43,9 +43,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
+    // Debug access (remove in production)
     (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initPageSizesAssetSource(cesdk);
     // ============================================================================
@@ -54,7 +53,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     // Load the page sizes scene with pre-designed content
-    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/page-sizes.scene`);
+    await cesdk.load(resolveAssetPath('/assets/page-sizes.scene'));
     // highlight-scene-loading
 
     cesdk.ui.openPanel('//ly.img.panel/inspector/pageResize');

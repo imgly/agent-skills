@@ -8,7 +8,6 @@ Contains editMode which is used by most UI areas.
 ## Extended by
 
 - [`CaptionPanelOrderContext`](./api/cesdk-js/interfaces/captionpanelordercontext.md)
-- [`LayersMenuOrderContext`](./api/cesdk-js/interfaces/layersmenuordercontext.md)
 - [`VideoClipMenuOrderContext`](./api/cesdk-js/interfaces/videoclipmenuordercontext.md)
 
 ## Properties

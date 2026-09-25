@@ -120,8 +120,10 @@ export function FileProcessingContextProvider({
         const response = await fetch(file.pdfUrl);
         const blob = await response.blob();
         await processPDFBlob(blob, file.name);
-      } catch {
-        // The error state is already set; the screen offers a way back.
+      } catch (err) {
+        // Error already handled in processPDFBlob; return to file selection
+        setCurrentFile(null);
+        setStatus('idle');
       }
     },
     [processPDFBlob]
@@ -142,8 +144,10 @@ export function FileProcessingContextProvider({
 
       try {
         await processPDFBlob(file, file.name);
-      } catch {
-        // The error state is already set; the screen offers a way back.
+      } catch (err) {
+        // Error already handled in processPDFBlob; return to file selection
+        setCurrentFile(null);
+        setStatus('idle');
       }
     },
     [processPDFBlob]

@@ -7,9 +7,9 @@ import {
   useState
 } from 'react';
 import { useEngine } from './EngineContext';
-import { hexToRgba } from '../../imgly/color-utilities';
+import { hexToRgba } from '../../imgly/ColorUtilities';
+import { resolveAssetPath } from '../../imgly/resolveAssetPath';
 import { useSinglePageMode } from './SinglePageModeContext';
-import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
@@ -37,25 +37,16 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
     useSinglePageMode();
 
   useEffect(() => {
-    // Loading a scene takes several awaits. Stop at each one if this component
-    // went away in the meantime, so nothing touches an editor that is gone.
-    let cancelled = false;
-    let zoomTimer: ReturnType<typeof setTimeout> | undefined;
-
     const loadTemplate = async () => {
       if (engineIsLoaded) {
         setEnabled(false);
         setSceneIsLoaded(false);
-        await engine.scene.load(`${DEMO_ASSETS_BASE_URL}/kiosk.scene`);
-        if (cancelled) return;
+        await engine.scene.load(resolveAssetPath('/kiosk.scene'));
         const pages = engine.scene.getPages();
         setCurrentPageBlockId(pages[0]);
         setEnabled(true);
         // Wait for zoom to finish
-        await new Promise((resolve) => {
-          zoomTimer = setTimeout(resolve, 100);
-        });
-        if (cancelled) return;
+        await new Promise((resolve) => setTimeout(resolve, 100));
         setSceneIsLoaded(true);
         // START_HIDDEN_BLOCK
         reportDemoPhase('ready');
@@ -63,11 +54,6 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       }
     };
     loadTemplate();
-
-    return () => {
-      cancelled = true;
-      clearTimeout(zoomTimer);
-    };
   }, [engineIsLoaded, engine, setEnabled, setCurrentPageBlockId]);
 
   const findImageAssets = useCallback(async () => {
@@ -135,9 +121,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       }
       engine.element!.style.pointerEvents = 'none';
       // Zoom to the backdrop image
-      engine.scene.zoomToBlock(backdropImageBlock, {
-        padding: { left: 0, top: 60, right: 0, bottom: 20 }
-      });
+      engine.scene.zoomToBlock(backdropImageBlock, 0, 60, 0, 20);
       engine.editor.setEditMode('Transform');
       engine.block.findAllSelected().forEach((block) => {
         engine.block.setSelected(block, false);

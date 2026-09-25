@@ -32,5 +32,3 @@ abstract fun EditorScope.buildLocal(): Map<Alignment?, EditorComponent.ListBuild
 @Composable
 fun build(scope: EditorScope): Map<Alignment?, EditorComponent.ListBuilder.AlignmentData<Item, Arrangement>>
 ```
-
-Returns mapping between Alignment and list of items. Note that null key in that map corresponds to no Alignment (items that were added outside aligned { ... }.

@@ -18,7 +18,7 @@ Allow users to select different layouts without changing page content.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-layouts-asset-source-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/starterkit-layouts-asset-source/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/starterkit-layouts-asset-source/index.html)
 
 ***
 
@@ -196,7 +196,7 @@ Before you begin, make sure you have the following:
     ├── index.ts                  # Editor initialization function
     └── plugins/
         └── layouts/
-            ├── custom-layouts.json
+            ├── CustomLayouts.json
             └── layout.ts
     ```
 
@@ -278,7 +278,7 @@ The Layouts Editor includes a custom layouts plugin that allows users to choose 
 
 ### Loading Layout Assets
 
-The plugin loads layout templates from a JSON file (`custom-layouts.json`) using the engine's asset source API:
+The plugin loads layout templates from a JSON file (`CustomLayouts.json`) using the engine's asset source API:
 
 ```typescript title="src/imgly/plugins/layouts/layout.ts"
 // Load the layouts asset source using the engine API
@@ -321,7 +321,7 @@ This approach allows users to switch between layouts without losing their conten
 
 ### Adding Custom Layouts
 
-To add your own layouts, modify the `custom-layouts.json` file. Each layout entry requires:
+To add your own layouts, modify the `CustomLayouts.json` file. Each layout entry requires:
 
 - `id`: Unique identifier for the layout
 - `meta.uri`: Path to the layout's `.scene` file (uses `{{base_url}}` placeholder)

@@ -7,7 +7,7 @@ A component for rendering the timeline. Use Timeline.Companion.remember composab
 
 ```kotlin
 @Stable
-data class Timeline(val scope: Timeline.Scope, val id: EditorComponentId, val modifier: Modifier, val visible: Boolean, val enterTransition: EnterTransition, val exitTransition: ExitTransition, val decoration: ScopedDecoration<Timeline.Scope>, val addClipButton: EditorComponent<*>?, val addAudioButton: EditorComponent<*>?, val headerListBuilder: HorizontalListBuilder<EditorComponent<*>>, val height: TimelineHeight) : EditorComponent<Timeline.Scope>
+data class Timeline(val scope: Timeline.Scope, val id: EditorComponentId, val modifier: Modifier, val visible: Boolean, val enterTransition: EnterTransition, val exitTransition: ExitTransition, val decoration: ScopedDecoration<Timeline.Scope>) : EditorComponent<Timeline.Scope>
 ```
 
 
@@ -16,19 +16,7 @@ data class Timeline(val scope: Timeline.Scope, val id: EditorComponentId, val mo
 ### Timeline
 
 ```kotlin
-constructor(scope: Timeline.Scope, id: EditorComponentId, modifier: Modifier, visible: Boolean, enterTransition: EnterTransition, exitTransition: ExitTransition, decoration: ScopedDecoration<Timeline.Scope>, addClipButton: EditorComponent<*>?, addAudioButton: EditorComponent<*>?, headerListBuilder: HorizontalListBuilder<EditorComponent<*>>, height: TimelineHeight)
-```
-
-### addAudioButton
-
-```kotlin
-val addAudioButton: EditorComponent<*>?
-```
-
-### addClipButton
-
-```kotlin
-val addClipButton: EditorComponent<*>?
+constructor(scope: Timeline.Scope, id: EditorComponentId, modifier: Modifier, visible: Boolean, enterTransition: EnterTransition, exitTransition: ExitTransition, decoration: ScopedDecoration<Timeline.Scope>)
 ```
 
 ### decoration
@@ -47,18 +35,6 @@ open override val enterTransition: EnterTransition
 
 ```kotlin
 open override val exitTransition: ExitTransition
-```
-
-### headerListBuilder
-
-```kotlin
-val headerListBuilder: HorizontalListBuilder<EditorComponent<*>>
-```
-
-### height
-
-```kotlin
-val height: TimelineHeight
 ```
 
 ### id

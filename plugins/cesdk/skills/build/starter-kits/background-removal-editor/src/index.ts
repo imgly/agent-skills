@@ -10,7 +10,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initBackgroundRemovalEditor } from './imgly';
-import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
+import { resolveAssetPath } from './imgly/resolveAssetPath';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
@@ -41,9 +41,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
+    // Debug access (remove in production)
     (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initBackgroundRemovalEditor(cesdk);
 
@@ -54,7 +53,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // Load the background removal demo scene
     // This scene contains an image optimized for demonstrating background removal
     //
-    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/scene.scene`);
+    await cesdk.load(resolveAssetPath('/assets/scene.scene'));
     // START_HIDDEN_BLOCK
     reportDemoPhase('ready');
     // END_HIDDEN_BLOCK

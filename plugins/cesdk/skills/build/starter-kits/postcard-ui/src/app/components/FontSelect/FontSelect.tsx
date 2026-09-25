@@ -22,14 +22,18 @@ const FontSelect = ({ onSelect, activeTypeface }: FontSelectProps) => {
   const typefacesWithRef = useMemo<
     {
       typeface: Typeface;
-      ref: React.RefObject<HTMLButtonElement>;
+      ref: React.RefObject<HTMLButtonElement | null>;
       isActive: boolean;
     }[]
   >(
     () =>
       typefaces.map((typeface) => ({
         typeface,
-        ref: createRef<HTMLButtonElement>(),
+        ref: createRef<
+          HTMLButtonElement & {
+            scrollIntoView: (options?: boolean | ScrollIntoViewOptions) => void;
+          }
+        >(),
         isActive: activeTypeface?.name === typeface.name
       })),
     [activeTypeface, typefaces]
@@ -50,6 +54,7 @@ const FontSelect = ({ onSelect, activeTypeface }: FontSelectProps) => {
     });
 
     // Only scroll into view when opening, not when changing the active font
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typefaces]);
 
   return (

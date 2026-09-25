@@ -38,10 +38,9 @@ export function CreativeEditor({
             // START_HIDDEN_BLOCK
             reportDemoPhase('created');
             // END_HIDDEN_BLOCK
+            // Debug access (remove in production)
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            // START_HIDDEN_BLOCK
             (window as any).cesdk = cesdk;
-            // END_HIDDEN_BLOCK
 
             // Initialize the editor with PDF template import configuration
             await initPdfTemplateImportEditor(cesdk);

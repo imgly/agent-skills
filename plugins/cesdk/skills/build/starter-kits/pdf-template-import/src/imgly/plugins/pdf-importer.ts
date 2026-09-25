@@ -33,18 +33,7 @@
 
 import CreativeEngine from '@cesdk/engine';
 import { PDFParser, addGfontsAssetLibrary } from '@imgly/pdf-importer';
-
-/**
- * A message the parser reports about content it could not import faithfully.
- */
-export interface ImportMessage {
-  /** Stable identifier of the message */
-  code: string;
-  /** Severity of the message */
-  type: 'error' | 'warning' | 'info';
-  /** Human-readable text */
-  message: string;
-}
+import type { LogMessage } from '@imgly/pdf-importer';
 
 /**
  * Configuration options for PDF import.
@@ -69,7 +58,7 @@ export interface PdfImportResult {
   /** Object URL for the scene archive */
   sceneArchiveUrl: string;
   /** Messages from the PDF parser (warnings, errors) */
-  messages: ImportMessage[];
+  messages: LogMessage[];
   /** Original file name */
   fileName: string;
 }
@@ -115,7 +104,6 @@ export async function importPdfFile(
   try {
     // Initialize headless engine for processing
     engine = await CreativeEngine.init({
-      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       ...(license && { license }),
       ...(baseURL && { baseURL })
     });

@@ -7,7 +7,7 @@ export const useHistory = ({ engine }: { engine: CreativeEngine }) => {
 
   useEffect(
     function syncHistory() {
-      const unsubscribe = engine.editor.onHistoryUpdatedWithKind(() => {
+      const unsubscribe = engine.editor.onHistoryUpdated(() => {
         setCanUndo(engine.editor.canUndo());
         setCanRedo(engine.editor.canRedo());
       });

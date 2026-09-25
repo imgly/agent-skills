@@ -55,37 +55,6 @@ This API includes utilities for:
 
 <details>
   <summary>
-    ### getPrintMarkExportOptions()
-
-    <br /><p>Returns the print mark export options the editor currently holds.</p>
-  </summary>
-
-  #### Returns
-
-  [`PrintMarkExportOptions`](./api/cesdk-js/type-aliases/printmarkexportoptions.md)
-
-  The `PrintMarkExportOptions` of the current document. Empty while the marks are off.
-
-  #### Example
-
-  ```typescript
-  const pdf = await engine.block.export(scene, {
-    mimeType: 'application/pdf',
-    ...cesdk.utils.getPrintMarkExportOptions()
-  });
-  ```
-
-  #### Signature
-
-  ```typescript
-  getPrintMarkExportOptions(): PrintMarkExportOptions
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
     ### showLoadingDialog()
 
     <br /><p>Shows and manages a loading dialog with progress tracking</p>
@@ -157,10 +126,6 @@ This API includes utilities for:
     <br /><p>Exports content with a loading dialog and progress tracking.
     Automatically handles both static exports (images, PDFs) and video exports based on MIME type.</p>
   </summary>
-
-  A PDF export carries the printer's marks chosen in the Print Setup panel
-  (`exportPdfWithCropMarks`, `exportPdfWithRegistrationMarks`, `printMarkOffset`,
-  `cropMarkLength`, `printMarkWidth`). Each of these a caller passes replaces that one option.
 
   #### Type Parameters
 

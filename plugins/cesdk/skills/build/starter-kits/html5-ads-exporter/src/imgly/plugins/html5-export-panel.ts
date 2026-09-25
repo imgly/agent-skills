@@ -221,8 +221,7 @@ export class Html5ExportPanelPlugin implements EditorPlugin {
               onClick: async () => {
                 loadingPreviewState.setValue(true);
                 try {
-                  // The preview is a single blob tab, so it can only show a
-                  // self-contained document. Format applies to the download.
+                  // Export as embedded HTML for preview
                   const result = await exportHtml(engine, {
                     format: 'embedded',
                     pageIndex: pageIndexState.value,
@@ -270,8 +269,9 @@ export class Html5ExportPanelPlugin implements EditorPlugin {
               onClick: async () => {
                 loadingZipState.setValue(true);
                 try {
+                  // Export with external format for ZIP
                   const result = await exportHtml(engine, {
-                    format: formatState.value,
+                    format: 'external',
                     pageIndex: pageIndexState.value,
                     textMode: textModeState.value,
                     animated: true

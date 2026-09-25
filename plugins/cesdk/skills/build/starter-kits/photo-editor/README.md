@@ -85,20 +85,24 @@ See [Localization](https://img.ly/docs/cesdk/js/user-interface/localization-508e
 ## Architecture
 
 ```
-starterkit-photo-editor/
+starterkit-photo-editor-ts-web/
 ├── src/
-│   ├── index.ts              # Application entry point and scene loading
+│   ├── index.ts              # Application entry point
 │   └── imgly/
-│       └── index.ts          # Editor initialization
+│       ├── index.ts          # Editor initialization
+│       ├── config/
+│       │   ├── plugin.ts         # Main plugin orchestration
+│       │   ├── actions.ts        # Load, Save, Export actions
+│       │   ├── features.ts       # Feature toggles
+│       │   ├── settings.ts       # Engine behavior
+│       │   ├── i18n.ts           # Internationalization
+│       │   └── ui/               # UI layout configuration
+│       └── plugins/
+│           └── background-removal.ts
 ├── public/                   # Static assets
 ├── package.json
 └── vite.config.ts
 ```
-
-The photo editor UI — dock, features, engine settings, inspector and default
-actions — comes from `@cesdk/core-configs-web/photo-editor`. `src/imgly/index.ts`
-registers it, adds the asset sources, the Export Image button and background
-removal.
 
 ## Key Capabilities
 
@@ -116,31 +120,15 @@ removal.
 
 ## Troubleshooting
 
-| Issue               | Solution                                  |
-| ------------------- | ----------------------------------------- |
+| Issue | Solution |
+|-------|----------|
 | Editor doesn't load | Verify assets are accessible at `baseURL` |
-| Assets don't appear | Check `public/assets/` directory exists   |
-| Watermark appears   | Add your license key                      |
+| Assets don't appear | Check `public/assets/` directory exists |
+| Watermark appears | Add your license key |
 
 ## Documentation
 
 For complete integration guides and API reference, visit the [Photo Editor Documentation](https://img.ly/docs/cesdk/js/starterkits/photo-editor-r6kq0u/).
-
-## Demo Assets
-
-The demo assets for this starter kit load from the IMG.LY CDN by default, and
-`.env.example` links a zip with them. To host them yourself, upload the
-extracted files to your own server or CDN and set `VITE_DEMO_ASSETS_BASE_URL`
-in `.env`:
-
-```bash
-VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
-```
-
-The demo assets are intended for development and prototyping — replace
-them with your own content or licensed stock assets before shipping to
-production (see `DEMO-ASSETS-NOTICE.txt` in the download). This applies in
-particular to media such as music tracks and stock imagery.
 
 ## License
 

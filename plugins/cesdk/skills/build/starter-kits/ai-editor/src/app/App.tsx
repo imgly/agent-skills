@@ -5,7 +5,7 @@
  * Supports Design, Photo, and Video editing modes with configurable AI providers.
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import CreativeEditor from '@cesdk/cesdk-js/react';
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import type { Configuration } from '@cesdk/cesdk-js';
@@ -24,8 +24,9 @@ import {
   type AiCredentialProbe
 } from './ai-credentials';
 import {
+  buildInitialSidebarState,
   getSelectedProviders,
-  providersForMode,
+  mergeCatalogIntoState,
   type AIProviders
 } from './ai-sidebar';
 import { DEFAULT_PHOTO_URL, SCENE_URLS } from './constants';
@@ -99,7 +100,7 @@ type BootState =
       reason: 'missing' | 'invalid';
       mode: AiCredentialMode;
     }
-  | { phase: 'ready'; catalog: unknown; providers: AIProviders };
+  | { phase: 'ready'; providers: AIProviders };
 
 export default function App({ config }: AppProps) {
   const [currentMode, setCurrentMode] = useState<EditorMode>(getInitialMode);
@@ -111,13 +112,8 @@ export default function App({ config }: AppProps) {
   // Track initialization key to force re-mount of CreativeEditor.
   const [editorKey, setEditorKey] = useState(0);
 
-  // The probe runs once, so read the mode through a ref: the user may switch
-  // modes while it is still in flight.
-  const modeRef = useRef(currentMode);
-  modeRef.current = currentMode;
-
   // ------------------------------------------------------------------
-  // Credential preflight — runs BEFORE CE.SDK mounts, once per page load.
+  // Credential preflight — runs BEFORE CE.SDK mounts.
   //
   // We talk to `/v1/models?groupBy=capability` once, up front. That single
   // round-trip tells us:
@@ -128,11 +124,10 @@ export default function App({ config }: AppProps) {
   //
   // Only when the probe comes back `ok` do we commit to mounting the
   // heavy CE.SDK bundle — no "mount then tear down" when creds are bad.
-  // The catalog is kept so a mode switch rebuilds the sidebar from it
-  // instead of probing again.
   // ------------------------------------------------------------------
   useEffect(() => {
     let cancelled = false;
+    setBoot({ phase: 'probing' });
 
     probeAiCredentials().then((result: AiCredentialProbe) => {
       if (cancelled) return;
@@ -153,28 +148,30 @@ export default function App({ config }: AppProps) {
         });
         return;
       }
+
+      const gatewayUrl = getGatewayUrl();
+      const initial = buildInitialSidebarState(currentMode, gatewayUrl);
+      const providers =
+        result.status === 'ok'
+          ? mergeCatalogIntoState(
+              initial,
+              result.modelsByCapability,
+              currentMode,
+              gatewayUrl
+            )
+          : initial;
+
       if (result.status === 'unreachable') {
         console.warn('[ai-editor] gateway unreachable:', result.message);
       }
 
-      const catalog =
-        result.status === 'ok' ? result.modelsByCapability : undefined;
-      setBoot({
-        phase: 'ready',
-        catalog,
-        providers: providersForMode(
-          modeRef.current,
-          catalog,
-          undefined,
-          getGatewayUrl()
-        )
-      });
+      setBoot({ phase: 'ready', providers });
     });
 
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [currentMode]);
 
   /**
    * Initialize CE.SDK via the CreativeEditor component's init callback.
@@ -187,9 +184,8 @@ export default function App({ config }: AppProps) {
       // START_HIDDEN_BLOCK
       reportDemoPhase('created');
       // END_HIDDEN_BLOCK
-      // START_HIDDEN_BLOCK
+      // Debug access (remove in production)
       (window as any).cesdk = cesdk;
-      // END_HIDDEN_BLOCK
 
       // Register the credential action so gateway providers can call it
       // for every generation request.
@@ -198,12 +194,7 @@ export default function App({ config }: AppProps) {
       const providers =
         boot.phase === 'ready'
           ? boot.providers
-          : providersForMode(
-              currentMode,
-              undefined,
-              undefined,
-              getGatewayUrl()
-            );
+          : buildInitialSidebarState(currentMode, getGatewayUrl());
       const providerMap = getSelectedProviders(providers);
 
       switch (currentMode) {
@@ -233,25 +224,11 @@ export default function App({ config }: AppProps) {
   /**
    * Handle mode change from the topbar selector.
    *
-   * Rebuilds the sidebar for the new mode from the catalog the preflight
-   * already fetched, carrying the current selection over, and remounts the
-   * editor with the resulting provider map.
+   * Kicks the preflight effect to re-run (via `currentMode` dep) and
+   * remounts the editor once providers resolve.
    */
   const handleModeChange = useCallback((newMode: EditorMode) => {
     setCurrentMode(newMode);
-    setBoot((current) =>
-      current.phase === 'ready'
-        ? {
-            ...current,
-            providers: providersForMode(
-              newMode,
-              current.catalog,
-              current.providers,
-              getGatewayUrl()
-            )
-          }
-        : current
-    );
 
     const url = new URL(window.location.href);
     url.searchParams.set('mode', newMode);

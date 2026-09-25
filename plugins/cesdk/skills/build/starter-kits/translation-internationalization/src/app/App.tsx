@@ -14,7 +14,7 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import type { Configuration } from '@cesdk/cesdk-js';
 
 import { initTranslationInternationalizationEditor } from '../imgly';
-import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
+import { resolveAssetPath } from '../imgly/resolveAssetPath';
 
 import { LocaleSwitcher, type Locale } from './LocaleSwitcher';
 import styles from './App.module.css';
@@ -73,24 +73,23 @@ export function App({ editorConfig }: AppProps) {
     // Store reference for locale switching
     cesdkRef.current = cesdk;
 
-    // START_HIDDEN_BLOCK
+    // Debug access (remove in production)
     (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
+
+    // highlight-locale
+    // Set the initial locale using the i18n API
+    cesdk.i18n.setLocale(initialLocaleRef.current);
+    // highlight-locale
 
     // Initialize the translation & internationalization editor
     await initTranslationInternationalizationEditor(cesdk);
-
-    // highlight-locale
-    // Start in the browser's language; the editor setup above defaults to English
-    cesdk.i18n.setLocale(initialLocaleRef.current);
-    // highlight-locale
 
     // ============================================================================
     // Scene Loading
     // ============================================================================
 
     // highlight-scene-loading
-    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/example-1.scene`);
+    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
     // highlight-scene-loading
     // START_HIDDEN_BLOCK
     reportDemoPhase('ready');

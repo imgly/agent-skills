@@ -195,14 +195,13 @@ export function SinglePageModeProvider({
     const isValid =
       currentPageBlockId && engine.block.isValid(currentPageBlockId);
     if (isValid) {
-      return engine.scene.zoomToBlock(currentPageBlockId, {
-        padding: {
-          left: paddingLeft,
-          top: paddingTop,
-          right: paddingRight,
-          bottom: paddingBottom
-        }
-      });
+      return engine.scene.zoomToBlock(
+        currentPageBlockId,
+        paddingLeft,
+        paddingTop,
+        paddingRight,
+        paddingBottom
+      );
     }
   }, [
     enabled,
@@ -221,14 +220,13 @@ export function SinglePageModeProvider({
     const selectedBlock = engine.block.findAllSelected()[0];
     const isValid = selectedBlock && engine.block.isValid(selectedBlock);
     if (isValid) {
-      return engine.scene.zoomToBlock(selectedBlock, {
-        padding: {
-          left: paddingLeft,
-          top: paddingTop,
-          right: paddingRight,
-          bottom: paddingBottom
-        }
-      });
+      return engine.scene.zoomToBlock(
+        selectedBlock,
+        paddingLeft,
+        paddingTop,
+        paddingRight,
+        paddingBottom
+      );
     }
   }, [enabled, engine, paddingLeft, paddingTop, paddingRight, paddingBottom]);
 

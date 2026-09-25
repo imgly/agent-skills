@@ -59,6 +59,7 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  *
  * // Run custom actions
  * await cesdk.actions.run('share');
+ * await cesdk.actions.run('exportImage', { targetWidth: 1920 });
  * ```
  *
  * @example Integrating with backend
@@ -95,6 +96,25 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
     // Trigger browser download
     await cesdk.utils.downloadFile(blobs[0], options.mimeType);
   });
+  // #endregion
+
+  // #region Export Image Action (Custom Sizes)
+  // // Export photo with custom dimensions for common social media sizes
+  // cesdk.actions.register('exportImage', async ({ width = 1080, height = 1080 } = {}) => {
+  //   // Export at specified dimensions
+  //   const { blobs, options } = await cesdk.utils.export({
+  //     mimeType: 'image/png',
+  //     targetWidth: width,
+  //     targetHeight: height
+  //   });
+  //
+  //   // Download with descriptive filename
+  //   await cesdk.utils.downloadFile(
+  //     blobs[0],
+  //     options.mimeType,
+  //     `photo-${width}x${height}.png`
+  //   );
+  // });
   // #endregion
 
   // ============================================================================

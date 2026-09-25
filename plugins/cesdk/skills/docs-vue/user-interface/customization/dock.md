@@ -21,7 +21,7 @@ settings, edit mode contexts, and the asset source relationship.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/guides-user-interface-customization-dock-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/guides-user-interface-customization-dock-browser/index.html)
 
 For adding and configuring dock buttons, see [Add Dock Buttons](./user-interface/customization/quick-start/add-dock-buttons.md). For general component manipulation (reordering, inserting, removing), see the [Component Order API Reference](./user-interface/customization/reference/component-order-api.md).
 
@@ -369,10 +369,6 @@ console.log('Current dock order:', currentOrder);
 | Component ID               | Description                                                                |
 | -------------------------- | -------------------------------------------------------------------------- |
 | `ly.img.assetLibrary.dock` | Asset library button (configurable with `key`, `label`, `icon`, `entries`) |
-
-### The Layers Button
-
-The design and advanced editor configurations end their dock order with a spacer, a separator and an `ly.img.assetLibrary.dock` entry keyed `ly.img.layerList`, whose click handler opens and closes the layer and page list. The spacer takes the leftover room, so a button appended with `position: 'end'` lands *below* it. Pass `before: 'ly.img.spacer'` to keep your button up with the asset libraries. See [Layer & Page List](./user-interface/customization/layer-list.md) for the entry.
 
 ### Layout
 

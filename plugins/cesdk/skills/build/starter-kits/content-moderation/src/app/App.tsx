@@ -11,9 +11,9 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import type { Configuration } from '@cesdk/cesdk-js';
 
 import { initContentModerationEditor } from '../imgly';
+import { resolveAssetPath } from '../imgly/resolveAssetPath';
 import { Sidebar } from './components/Sidebar';
 import './App.css';
-import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
 
 // START_HIDDEN_BLOCK
 import {
@@ -33,13 +33,11 @@ export default function App({ config }: AppProps) {
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
     (window as any).cesdk = instance;
-    // END_HIDDEN_BLOCK
     await initContentModerationEditor(instance);
 
     // Load the scene
-    await instance.load(`${DEMO_ASSETS_BASE_URL}/assets/example.scene`);
+    await instance.load(resolveAssetPath('/assets/example.scene'));
 
     setCesdk(instance);
     // START_HIDDEN_BLOCK

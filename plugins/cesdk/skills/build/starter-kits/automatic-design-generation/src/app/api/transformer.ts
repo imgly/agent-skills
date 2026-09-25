@@ -10,8 +10,7 @@ import type { RGBAColor } from '@cesdk/engine';
 
 import type { GenerateAssetOptions, OutputType } from '../../imgly';
 
-import { DEFAULT_MESSAGE } from '../constants';
-import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
+import { resolveAssetPath } from '../resolveAssetPath';
 
 // ============================================================================
 // Types
@@ -96,40 +95,24 @@ function getTheme(rgba: RGBAColor): 'light' | 'dark' {
 }
 
 /**
- * Resolves an asset path to a URL. Defaults to the browser resolver; pass a
- * different one to run the generation outside a browser.
- */
-export type ResolveAssetPath = (path: string) => string;
-
-const resolveDemoAsset: ResolveAssetPath = (path) =>
-  `${DEMO_ASSETS_BASE_URL}${path}`;
-
-/**
  * Get the template URL for a given size and output type
  */
-function getTemplateUrl(
-  size: Size,
-  outputType: OutputType,
-  resolve: ResolveAssetPath
-): string {
+function getTemplateUrl(size: Size, outputType: OutputType): string {
   const templateType = outputType === 'image' ? 'static' : 'video';
   const sizePart = size.label
     .replace('/', '')
     .replace('  ', '-')
     .replace(' ', '-')
     .toLowerCase();
-  return resolve(`/${templateType}-${sizePart}-template.scene`);
+  return resolveAssetPath(`/${templateType}-${sizePart}-template.scene`);
 }
 
 /**
  * Get the preview template URL for a given output type
  */
-function getPreviewTemplateUrl(
-  outputType: OutputType,
-  resolve: ResolveAssetPath
-): string {
+function getPreviewTemplateUrl(outputType: OutputType): string {
   const templateType = outputType === 'image' ? 'static' : 'video';
-  return resolve(`/${templateType}-instagram-post-template.scene`);
+  return resolveAssetPath(`/${templateType}-instagram-post-template.scene`);
 }
 
 /**
@@ -138,8 +121,7 @@ function getPreviewTemplateUrl(
 function createFillCallback(
   podcast: Podcast | null,
   backgroundColor: string,
-  message: string,
-  resolve: ResolveAssetPath
+  message: string
 ): (engine: CreativeEngine, page: number) => void {
   return (engine, page) => {
     const rgba = hexToRgba(backgroundColor);
@@ -166,8 +148,8 @@ function createFillCallback(
     if (badgeBlock) {
       const badgeUrl =
         theme === 'light'
-          ? resolve('/podcast-badge-black.png')
-          : resolve('/podcast-badge-white.png');
+          ? resolveAssetPath('/podcast-badge-black.png')
+          : resolveAssetPath('/podcast-badge-white.png');
       engine.block.setString(
         engine.block.getFill(badgeBlock),
         'fill/image/imageFileURI',
@@ -176,7 +158,7 @@ function createFillCallback(
     }
 
     // Set text variables
-    engine.variable.setString('Message', message || DEFAULT_MESSAGE);
+    engine.variable.setString('Message', message || '');
     engine.variable.setString('PodcastName', podcast?.collectionName ?? '');
 
     // Set text colors based on theme
@@ -202,13 +184,12 @@ export function createAssetOptions(
   outputType: OutputType,
   podcast: Podcast | null,
   backgroundColor: string,
-  message: string,
-  resolve: ResolveAssetPath = resolveDemoAsset
+  message: string
 ): GenerateAssetOptions {
   const size = SIZES[sizeIndex];
   return {
-    templateUrl: getTemplateUrl(size, outputType, resolve),
-    fill: createFillCallback(podcast, backgroundColor, message, resolve),
+    templateUrl: getTemplateUrl(size, outputType),
+    fill: createFillCallback(podcast, backgroundColor, message),
     outputType,
     width: size.width,
     height: size.height,
@@ -225,12 +206,11 @@ export function createPreviewOptions(
   outputType: OutputType,
   podcast: Podcast | null,
   backgroundColor: string,
-  message: string,
-  resolve: ResolveAssetPath = resolveDemoAsset
+  message: string
 ): GenerateAssetOptions {
   return {
-    templateUrl: getPreviewTemplateUrl(outputType, resolve),
-    fill: createFillCallback(podcast, backgroundColor, message, resolve),
+    templateUrl: getPreviewTemplateUrl(outputType),
+    fill: createFillCallback(podcast, backgroundColor, message),
     outputType,
     width: PREVIEW_SIZE,
     height: PREVIEW_SIZE,

@@ -14,9 +14,9 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import { checkImageContent } from '../../moderation';
 import { selectBlocks } from '../../utils';
 import type { ModerationResult } from '../../types';
+import { resolveAssetPath } from '../../resolveAssetPath';
 import { ResultItem } from './ResultItem';
 import './Sidebar.css';
-import { DEMO_ASSETS_BASE_URL } from '../../../imgly/demo-assets';
 
 interface SidebarProps {
   cesdk: CreativeEditorSDK | null;
@@ -25,19 +25,18 @@ interface SidebarProps {
 export function Sidebar({ cesdk }: SidebarProps) {
   const [results, setResults] = useState<ModerationResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const unsuccessfulResults = results.filter((r) => r.state !== 'success');
 
   const handleValidate = useCallback(async () => {
     if (!cesdk) return;
     setIsLoading(true);
-    setError(null);
     try {
       const newResults = await checkImageContent(cesdk.engine);
       setResults(newResults);
-    } catch {
-      setError('The moderation check failed. Try again.');
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Content moderation check failed:', error);
     } finally {
       setIsLoading(false);
     }
@@ -62,7 +61,7 @@ export function Sidebar({ cesdk }: SidebarProps) {
           disabled={!cesdk || isLoading}
         >
           <img
-            src={`${DEMO_ASSETS_BASE_URL}/assets/icons/refresh.svg`}
+            src={resolveAssetPath('/assets/icons/refresh.svg')}
             alt=""
             width="16"
             height="16"
@@ -75,11 +74,6 @@ export function Sidebar({ cesdk }: SidebarProps) {
         </span>
       </div>
       <div className="moderation-list">
-        {error != null && (
-          <div className="moderation-status-text moderation-error" role="alert">
-            {error}
-          </div>
-        )}
         {unsuccessfulResults.length === 0 ? (
           <div
             className="moderation-status-text"
@@ -93,7 +87,7 @@ export function Sidebar({ cesdk }: SidebarProps) {
         ) : (
           unsuccessfulResults.map((result) => (
             <ResultItem
-              key={`${result.blockId}-${result.name}`}
+              key={result.blockId}
               result={result}
               onSelect={handleSelectBlock}
             />

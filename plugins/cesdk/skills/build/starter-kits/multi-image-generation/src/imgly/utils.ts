@@ -12,10 +12,6 @@ import type { RgbaColor } from './types';
  * Convert hex color string to RGBA object.
  */
 export function hexToRgba(hex: string): RgbaColor {
-  const short = /^#?([a-f\d])([a-f\d])([a-f\d])$/i.exec(hex);
-  if (short) {
-    hex = `#${short[1]}${short[1]}${short[2]}${short[2]}${short[3]}${short[3]}`;
-  }
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) return { r: 0, g: 0, b: 0, a: 1 };
   return {

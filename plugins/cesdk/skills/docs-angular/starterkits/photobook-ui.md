@@ -16,7 +16,7 @@ Custom UI for building photo books focusing on theming, page layouts, and managi
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-photobook-ui-react-web)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/starterkit-photobook-ui/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/starterkit-photobook-ui/index.html)
 
 ***
 
@@ -55,13 +55,13 @@ src/
 ├── app/                          # Demo application
 ├── imgly/
 │   ├── index.ts                  # Editor initialization function
-│   ├── apply-layout.ts
-│   ├── engine-utils.ts
-│   ├── imageColorsSource.ts
-│   ├── loadAssetSourceFromContentJSON.ts
 │   ├── photobook-layouts.ts
 │   ├── photobook-stickers.ts
-│   └── unsplash-source.ts
+│   └── utils/
+│       ├── UnsplashSource.ts
+│       ├── apply-layout.ts
+│       ├── engine-utils.ts
+│       └── loadAssetSourceFromContentJSON.ts
 └── index.tsx                 # Application entry point
 ```
 

@@ -148,7 +148,7 @@ locking them with the CE.SDK engine.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.2/engine-guides-video-transform)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.2-rc.0/engine-guides-video-transform)
 
 <EngineReferenceNote {...props} />
 
@@ -269,7 +269,7 @@ For templates, disable individual transform scopes and use the transform lock fo
   print("transformsLocked=\(transformsLocked) moveScopeEnabled=\(moveScopeEnabled) moveAllowed=\(moveAllowed)")
 ```
 
-Use individual scopes when one operation should remain available, such as allowing crop but preventing movement. Disable `layer/crop` when crop or content reframing must stay fixed. `setTransformLocked(_:locked:)` protects block-frame geometry — moving, rotating, flipping, scaling, and resizing a locked block throws — while crop setters use the `layer/crop` permission path instead. A lock applies down the hierarchy, so a child of a locked group cannot be transformed either. Each block keeps its own flag, so unlocking the group leaves a child that was locked on its own still locked. A page is the exception: locking a page holds the page and not what sits on it. `isScopeEnabled(_:key:)` reads only the block-level flag, while `isAllowedByScope(_:key:)` combines the global and block-level scope state. Engine API calls from your app code are not blocked by scopes unless `debug/enforceScopesInAPIs` is enabled, so gate the controls your app exposes on `isAllowedByScope(_:key:)`.
+Use individual scopes when one operation should remain available, such as allowing crop but preventing movement. Disable `layer/crop` when crop or content reframing must stay fixed. `setTransformLocked(_:locked:)` protects block-frame geometry — moving, rotating, flipping, scaling, and resizing a locked block throws — while crop setters use the `layer/crop` permission path instead. `isScopeEnabled(_:key:)` reads only the block-level flag, while `isAllowedByScope(_:key:)` combines the global and block-level scope state. Engine API calls from your app code are not blocked by scopes unless `debug/enforceScopesInAPIs` is enabled, so gate the controls your app exposes on `isAllowedByScope(_:key:)`.
 
 ## Troubleshooting
 

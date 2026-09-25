@@ -18,7 +18,7 @@ Build a custom AI-powered image generation provider for CE.SDK using the `@imgly
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/guides-user-interface-ai-integration-custom-provider-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/guides-user-interface-ai-integration-custom-provider-browser/index.html)
 
 This guide walks you through creating an image generation provider that connects to your own AI service. You'll learn about the provider interface, OpenAPI schema-based input configuration, quick actions, middleware patterns, and CE.SDK integration.
 
@@ -651,17 +651,10 @@ quickActions: {
 
 Available quick action IDs:
 
-- `'ly.img.editImage'`: Edit the selected image. Input: `{ prompt, uri }`.
-- `'ly.img.swapBackground'`: Replace the background of the selected image. Input: `{ prompt, uri }`.
-- `'ly.img.createVariant'`: Generate a variation of the selected image. Input: `{ prompt, uri }`.
-- `'ly.img.createImage'`: Open the image generation panel on your provider with the selected image attached to the prompt. It generates nothing itself, so enable it with `true`.
-- `'ly.img.styleTransfer'`: Apply an art style to the selected image. Input: `{ style, uri }`.
-- `'ly.img.artistTransfer'`: Apply a famous artist's style to the selected image. Input: `{ artist, uri }`.
-- `'ly.img.combineImages'`: Combine two or more selected images. Input: `{ prompt, uris }`.
-- `'ly.img.remixPage'`: Turn the current page into an image. Input: `{ prompt, uri }`.
-- `'ly.img.remixPageWithPrompt'`: Remix the current page with a prompt. Input: `{ prompt, uri }`.
-
-A video provider maps `'ly.img.createVideo'`, which opens the video generation panel with the selected image attached, and `'ly.img.animateBetweenImages'`, which takes `{ firstFrameUri, lastFrameUri }` from two selected images.
+- `'ly.img.editImage'`: Edit selected image with AI
+- `'ly.img.swapBackground'`: Replace image background
+- `'ly.img.createVariant'`: Generate variation of image
+- `'ly.img.styleTransfer'`: Apply style to image
 
 ## Configuring Output Behavior
 

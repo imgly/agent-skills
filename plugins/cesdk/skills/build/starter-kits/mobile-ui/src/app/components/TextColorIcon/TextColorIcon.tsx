@@ -1,4 +1,4 @@
-import { rgbaToHex } from '../../../imgly/color-utilities';
+import { rgbaToHex } from '../../../imgly/ColorUtilities';
 import { useSelectedProperty } from '../../hooks/UseSelectedProperty';
 import classes from './TextColorIcon.module.css';
 

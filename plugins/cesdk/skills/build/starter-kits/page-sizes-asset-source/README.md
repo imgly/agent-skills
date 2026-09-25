@@ -102,7 +102,7 @@ src/
 │   │       ├── navigationBar.ts          # Navigation bar layout
 │   │       └── panel.ts                  # Panel configuration
 │   ├── index.ts                  # Editor initialization function
-│   └── demo-assets.ts
+│   └── resolveAssetPath.ts
 └── index.ts
 ```
 

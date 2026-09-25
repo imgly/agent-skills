@@ -45,12 +45,6 @@ case pixelStream
 case radialGradient
 ```
 
-### FillType.stripe
-
-```swift
-case stripe
-```
-
 ### FillType.video
 
 ```swift

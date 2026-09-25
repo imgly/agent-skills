@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 266 generated API digests.
+Complete catalog of 261 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -55,7 +55,6 @@ Complete catalog of 266 generated API digests.
 - [AssetIntProperty](<../engine/ly.img.engine/-asset-int-property.md>) — `ly.img.engine`
 - [AssetLicense](<../engine/ly.img.engine/-asset-license.md>) — `ly.img.engine`
 - [AssetPayload](<../engine/ly.img.engine/-asset-payload.md>) — `ly.img.engine`
-- [AssetPlacement](<../engine/ly.img.engine/-asset-placement.md>) — `ly.img.engine`
 - [AssetProperty](<../engine/ly.img.engine/-asset-property.md>) — `ly.img.engine`
 - [AssetSource](<../engine/ly.img.engine/-asset-source.md>) — `ly.img.engine`
 - [AssetSource.Companion](<../engine/ly.img.engine/-asset-source/-companion.md>) — `ly.img.engine`
@@ -86,11 +85,9 @@ Complete catalog of 266 generated API digests.
 - [BlurType.Uniform](<../engine/ly.img.engine/-blur-type/-uniform.md>) — `ly.img.engine`
 - [BooleanOperation](<../engine/ly.img.engine/-boolean-operation.md>) — `ly.img.engine`
 - [CMYKColor](<../engine/ly.img.engine/-c-m-y-k-color.md>) — `ly.img.engine`
-- [CMYKProfileInfo](<../engine/ly.img.engine/-c-m-y-k-profile-info.md>) — `ly.img.engine`
 - [CharacterInkBox](<../engine/ly.img.engine/-character-ink-box.md>) — `ly.img.engine`
 - [Color](<../engine/ly.img.engine/-color.md>) — `ly.img.engine`
 - [Color.Companion](<../engine/ly.img.engine/-color/-companion.md>) — `ly.img.engine`
-- [ColorRenderingIntent](<../engine/ly.img.engine/-color-rendering-intent.md>) — `ly.img.engine`
 - [ColorSpace](<../engine/ly.img.engine/-color-space.md>) — `ly.img.engine`
 - [CompressionFormat](<../engine/ly.img.engine/-compression-format.md>) — `ly.img.engine`
 - [CompressionLevel](<../engine/ly.img.engine/-compression-level.md>) — `ly.img.engine`
@@ -110,7 +107,6 @@ Complete catalog of 266 generated API digests.
 - [DesignBlockType.CaptionTrack](<../engine/ly.img.engine/-design-block-type/-caption-track.md>) — `ly.img.engine`
 - [DesignBlockType.Companion](<../engine/ly.img.engine/-design-block-type/-companion.md>) — `ly.img.engine`
 - [DesignBlockType.Cutout](<../engine/ly.img.engine/-design-block-type/-cutout.md>) — `ly.img.engine`
-- [DesignBlockType.ExclusionArea](<../engine/ly.img.engine/-design-block-type/-exclusion-area.md>) — `ly.img.engine`
 - [DesignBlockType.Graphic](<../engine/ly.img.engine/-design-block-type/-graphic.md>) — `ly.img.engine`
 - [DesignBlockType.Group](<../engine/ly.img.engine/-design-block-type/-group.md>) — `ly.img.engine`
 - [DesignBlockType.Page](<../engine/ly.img.engine/-design-block-type/-page.md>) — `ly.img.engine`
@@ -166,7 +162,6 @@ Complete catalog of 266 generated API digests.
 - [FillType.LinearGradient](<../engine/ly.img.engine/-fill-type/-linear-gradient.md>) — `ly.img.engine`
 - [FillType.PixelStream](<../engine/ly.img.engine/-fill-type/-pixel-stream.md>) — `ly.img.engine`
 - [FillType.RadialGradient](<../engine/ly.img.engine/-fill-type/-radial-gradient.md>) — `ly.img.engine`
-- [FillType.Stripe](<../engine/ly.img.engine/-fill-type/-stripe.md>) — `ly.img.engine`
 - [FillType.Video](<../engine/ly.img.engine/-fill-type/-video.md>) — `ly.img.engine`
 - [FindAssetsQuery](<../engine/ly.img.engine/-find-assets-query.md>) — `ly.img.engine`
 - [FindAssetsResult](<../engine/ly.img.engine/-find-assets-result.md>) — `ly.img.engine`

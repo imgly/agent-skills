@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import type CreativeEngine from '@cesdk/engine';
 import { useEditor } from '../contexts/EditorContext';
-import { useProperty } from '../hooks/useSelectedProperty';
+import { useProperty } from '../../imgly/hooks/useSelectedProperty';
 import SliderBar from '../SliderBar/SliderBar';
 
 const LUT_FILTER_DEFAULT_VALUE = 100;
@@ -77,6 +77,7 @@ const FilterSliderBar = ({ lutFilterConfig }: FilterSliderBarProps) => {
 
   useEffect(() => {
     setFilterProperties(lutFilterIntensity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lutFilterConfig]);
 
   return (

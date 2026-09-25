@@ -23,7 +23,6 @@
 - [Panel](./customization/panel.md) - Show or hide side panels to focus the user interface on what matters most for your use case.
 - [Inspector Bar](./customization/inspector-bar.md) - Customize the inspector bar for editing properties like position, color, and size.
 - [Canvas Menu](./customization/canvas-menu.md) - Customize the floating toolbar that appears when a design block is selected on the canvas.
-- [Video Timeline](./customization/video-timeline.md) - Customize the video timeline's add-content buttons, header, height, and expanded state.
 - [Hide Elements](./customization/hide-elements.md) - Hide the dock completely or remove specific items from UI components to create customized editing experiences.
 
 

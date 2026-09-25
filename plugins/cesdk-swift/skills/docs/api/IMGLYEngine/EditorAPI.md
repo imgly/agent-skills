@@ -503,14 +503,6 @@ Checks wether the block has selection and hover highlighting enabled or disabled
 
 Checks whether the block can currently be selected. `id`
 
-### loadCMYKProfile()
-
-```swift
-@MainActor func loadCMYKProfile() async throws
-```
-
-Loads the CMYK profile that this document previews and converts CMYK colors with. The profile is a resource, and a resource takes several update cycles to arrive, so a CMYK conversion made right after the engine starts fails. Await this once and every later [`convertColorToColorSpace(color:colorSpace:)`](./convertcolortocolorspace(color:colorspace:).md) answers without handling `COLOR.PROFILE_NOT_LOADED`.
-
 ### onHistoryUpdated
 
 > **Deprecated:** Use 'onHistoryUpdatedWithKind' instead.
@@ -721,7 +713,7 @@ Set multiple movement constraint rules at once. See [`setMovementConstraint(_:)`
 @MainActor func setMovementConstraint(_ rule: MovementConstraintRule) throws
 ```
 
-Set one or more rules that limit how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop, nudge). Programmatic API calls are not affected. `rule`
+Set one or more rules that limit how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop). Programmatic API calls are not affected. `rule`
 
 ### setResizeHandlesVisibility(_:)
 

@@ -8,7 +8,6 @@ type PanelId =
   | "//ly.img.panel/assetLibrary.replace"
   | "//ly.img.panel/settings"
   | "//ly.img.panel/inspector"
-  | "//ly.img.panel/layers"
   | string & object;
 ```
 

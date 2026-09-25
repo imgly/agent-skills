@@ -13,7 +13,6 @@ type SettingStringPropertyName =
   | "page/title/separator"
   | "page/title/fontFileUri"
   | "fallbackFontUri"
-  | "fallbackCMYKProfileUri"
   | string & object;
 ```
 

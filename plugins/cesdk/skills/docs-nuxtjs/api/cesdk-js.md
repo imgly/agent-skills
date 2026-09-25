@@ -29,12 +29,10 @@
 | [ActionFunction](./api/cesdk-js/type-aliases/actionfunction.md) | Type helper for retrieving the correct action function type based on the action ID. Returns the strongly-typed action for known actions, or a custom action type for unknown IDs. |
 | [ActionId](./api/cesdk-js/type-aliases/actionid.md) | Available action event types that can be registered with the ActionsAPI. These correspond to different UI actions that can be customized. Supports both predefined action types from the Actions interface and custom string identifiers. |
 | [AnyUILocationOptions](./api/cesdk-js/type-aliases/anyuilocationoptions.md) | Union type for location options. Resolves to the appropriate options type based on area-specific requirements. |
-| [AssetDropAction](./api/cesdk-js/type-aliases/assetdropaction.md) | Action function for an asset dropped on the canvas. |
 | [AssetEntryId](./api/cesdk-js/type-aliases/assetentryid.md) | Asset library entry IDs that can be used with asset library APIs. Includes built-in entry IDs registered by the SDK, and allows custom entry IDs. |
 | [AssetLibraryDockComponent](./api/cesdk-js/type-aliases/assetlibrarydockcomponent.md) | Represents an asset library dock component. |
 | [AssetLibraryEntryInput](./api/cesdk-js/type-aliases/assetlibraryentryinput.md) | A reference to an asset library entry to display. Either an entry ID, or an object that names the entry plus source IDs to hide for this display only — for example a replace panel that shows a library with a non-applicable source hidden (the text "Styles" panel shows `ly.img.text` but hides its text-combinations source). This per-display `excludeSourceIds` is distinct from the entry's own `includeGroups`/`excludeGroups`, which apply wherever the entry is shown. |
 | [AssetLibraryPanelPayload](./api/cesdk-js/type-aliases/assetlibrarypanelpayload.md) | Represents the payload for the asset library panel in the Creative Editor SDK. This interface defines the title, entries, and placement options for the asset library panel. |
-| [BarPosition](./api/cesdk-js/type-aliases/barposition.md) | This type is used to specify the position of a horizontal bar within the user interface, such as the navigation bar or the inspector bar. |
 | [BuilderRenderFunction](./api/cesdk-js/type-aliases/builderrenderfunction.md) | Function that defines a component with the help of the passed builder object. |
 | [CanvasBarComponentId](./api/cesdk-js/type-aliases/canvasbarcomponentid.md) | Represents the ID of a canvas bar component. |
 | [CanvasMenuComponentId](./api/cesdk-js/type-aliases/canvasmenucomponentid.md) | A list of the component IDs that can be used in the canvas menu. |
@@ -86,8 +84,6 @@
 | [KeyboardKey](./api/cesdk-js/type-aliases/keyboardkey.md) | W3C standard keyboard key values Reference: https://www.w3.org/TR/uievents-key/ |
 | [KeyboardSequence](./api/cesdk-js/type-aliases/keyboardsequence.md) | Type alias for keyboard sequences (for backward compatibility) |
 | [KeyboardShortcutContext](./api/cesdk-js/type-aliases/keyboardshortcutcontext.md) | Context passed to a shortcut's `run` and `when` callbacks. |
-| [LayersMenuComponentId](./api/cesdk-js/type-aliases/layersmenucomponentid.md) | Represents the ID of a layer list row menu component. |
-| [LayersMenuRowKind](./api/cesdk-js/type-aliases/layersmenurowkind.md) | Which kind of row a layer list menu was opened from. - `'page'` — a page row, which answers to the page commands - `'layer'` — any other row, which answers to the arrange and group commands |
 | [LoadingComponent](./api/cesdk-js/type-aliases/loadingcomponent.md) | Represents a loading indicator component. |
 | [LoadingOrder](./api/cesdk-js/type-aliases/loadingorder.md) | Order type for loading indicator components. |
 | [LocaleKey](./api/cesdk-js/type-aliases/localekey.md) | Represents the supported locale keys for the Creative Editor SDK. |
@@ -106,12 +102,9 @@
 | [OrderComponentFor](./api/cesdk-js/type-aliases/ordercomponentfor.md) | Maps UI areas to their order component types. |
 | [OrderComponentMatcher](./api/cesdk-js/type-aliases/ordercomponentmatcher.md) | Represents a matcher for order components. |
 | [OrderContextFor](./api/cesdk-js/type-aliases/ordercontextfor.md) | Maps a UI area to its appropriate order context type for public API usage. - Caption panel uses CaptionPanelOrderContext (adds view property) - Video clip menu uses VideoClipMenuOrderContext (adds clipType) - All other areas use OrderContext (editMode only) |
-| [PageAddAction](./api/cesdk-js/type-aliases/pageaddaction.md) | Action function for adding a page |
 | [PageAssetReference](./api/cesdk-js/type-aliases/pageassetreference.md) | Reference to a page preset from an asset source. |
 | [PageDimensions](./api/cesdk-js/type-aliases/pagedimensions.md) | Direct page dimensions specification. |
 | [PageFormatDefinition](./api/cesdk-js/type-aliases/pageformatdefinition.md) | Represents the definition of a page format in the Creative Editor SDK. This interface defines the width, height, unit, and optional fixed orientation for a page format. |
-| [PageMoveDownAction](./api/cesdk-js/type-aliases/pagemovedownaction.md) | Action function for moving the selected page one position down. |
-| [PageMoveUpAction](./api/cesdk-js/type-aliases/pagemoveupaction.md) | Action function for moving the selected page one position up. |
 | [PageResizePanelPayload](./api/cesdk-js/type-aliases/pageresizepanelpayload.md) | Represents the payload for the page resize panel in the Creative Editor SDK. |
 | [PageSelectNextAction](./api/cesdk-js/type-aliases/pageselectnextaction.md) | Action function for selecting the next page. |
 | [PageSelectPreviousAction](./api/cesdk-js/type-aliases/pageselectpreviousaction.md) | Action function for selecting the previous page. |
@@ -127,14 +120,12 @@
 | [PreviewType](./api/cesdk-js/type-aliases/previewtype.md) | Represents a preview, which can be either an image or a color. |
 | [PreviewTypeColor](./api/cesdk-js/type-aliases/previewtypecolor.md) | Represents a color preview. |
 | [PreviewTypeImage](./api/cesdk-js/type-aliases/previewtypeimage.md) | Represents an image preview. |
-| [PrintMarkExportOptions](./api/cesdk-js/type-aliases/printmarkexportoptions.md) | The printer's mark options of an export, as `engine.block.export` takes them. |
 | [SaveSceneAction](./api/cesdk-js/type-aliases/savesceneaction.md) | Action function for handling scene saving operations. |
 | [SceneCreateAction](./api/cesdk-js/type-aliases/scenecreateaction.md) | Action for creating a new scene with configurable mode and page sizes. Returns the scene block ID. |
 | [SceneCreateOptions](./api/cesdk-js/type-aliases/scenecreateoptions.md) | Options for creating a new scene. |
 | [ScrollToBlockAction](./api/cesdk-js/type-aliases/scrolltoblockaction.md) | Action function for scrolling to a specific block |
 | [ScrollToPageAction](./api/cesdk-js/type-aliases/scrolltopageaction.md) | Action function for scrolling to a specific page |
 | [SelectionAllAction](./api/cesdk-js/type-aliases/selectionallaction.md) | Action function for selecting all blocks on the current page. |
-| [SelectionArrangeAction](./api/cesdk-js/type-aliases/selectionarrangeaction.md) | Action function for moving the selection one step through its parent's stacking order, or all the way to either end of it. |
 | [SelectionDeleteAction](./api/cesdk-js/type-aliases/selectiondeleteaction.md) | Action function for deleting every selected block. |
 | [SelectionDuplicateAction](./api/cesdk-js/type-aliases/selectionduplicateaction.md) | Action function for duplicating every selected block. |
 | [SelectionGroupAction](./api/cesdk-js/type-aliases/selectiongroupaction.md) | Action function for grouping selected blocks. |
@@ -186,7 +177,6 @@
 
 | Interface | Description |
 | ------ | ------ |
-| [AssetDropPayload](./api/cesdk-js/interfaces/assetdroppayload.md) | Where a dragged asset was released on the canvas. |
 | [AssetLibraryEntry](./api/cesdk-js/interfaces/assetlibraryentry.md) | Represents an entry in the asset library, combining data and view configurations. |
 | [BaseInsertOptions](./api/cesdk-js/interfaces/baseinsertoptions.md) | Options for inserting components into a UI area. |
 | [BasePositionalInsertOptions](./api/cesdk-js/interfaces/basepositionalinsertoptions.md) | Options for inserting components into a positional UI area (e.g., canvas bar). |
@@ -223,7 +213,6 @@
 | [InsertBeforeOptions](./api/cesdk-js/interfaces/insertbeforeoptions.md) | Insert before a matched component. |
 | [InsertResult](./api/cesdk-js/interfaces/insertresult.md) | Result of an insert operation. |
 | [KeyboardShortcut](./api/cesdk-js/interfaces/keyboardshortcut.md) | Unified keyboard shortcut definition |
-| [LayersMenuOrderContext](./api/cesdk-js/interfaces/layersmenuordercontext.md) | Context for the layer list row menu, which adds row kind filtering. |
 | [LibraryOptions](./api/cesdk-js/interfaces/libraryoptions.md) | Represents options for a library. |
 | [MediaPreviewOptions](./api/cesdk-js/interfaces/mediapreviewoptions.md) | Represents options for a media preview. |
 | [NavigationBarActionButton](./api/cesdk-js/interfaces/navigationbaractionbutton.md) | Base interface for action buttons in the navigation bar. Contains common properties shared across all action button types. |
@@ -237,9 +226,6 @@
 | [PositionalInsertAppendOptions](./api/cesdk-js/interfaces/positionalinsertappendoptions.md) | Append to end (positional areas). |
 | [PositionalInsertAtPositionOptions](./api/cesdk-js/interfaces/positionalinsertatpositionoptions.md) | Insert at a specific position (positional areas). |
 | [PositionalInsertBeforeOptions](./api/cesdk-js/interfaces/positionalinsertbeforeoptions.md) | Insert before a matched component (positional areas). |
-| [PromptInputAttachmentOptions](./api/cesdk-js/interfaces/promptinputattachmentoptions.md) | Represents one attachment a prompt refers to. |
-| [PromptInputAttachmentsOptions](./api/cesdk-js/interfaces/promptinputattachmentsoptions.md) | Represents options for the attachments of a prompt input. |
-| [PromptInputOptions](./api/cesdk-js/interfaces/promptinputoptions.md) | Represents options for a prompt input. |
 | [RegisteredActions](./api/cesdk-js/interfaces/registeredactions.md) | Represents a collection of action functions used throughout the application. Each property corresponds to a specific UI action or event that can be customized. |
 | [RemoveResult](./api/cesdk-js/interfaces/removeresult.md) | Result of a remove operation on a single area. |
 | [ReplaceAssetLibraryEntriesContext](./api/cesdk-js/interfaces/replaceassetlibraryentriescontext.md) | Provides context for replacing asset library entries, including the selected blocks and the default entries (each may carry per-entry source exclusions). |

@@ -11,7 +11,7 @@ layout APIs and snapping system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.2/engine-guides-position-and-align)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.2-rc.0/engine-guides-position-and-align)
 
 CE.SDK positions blocks relative to their parent container with the origin at the top left. You can set positions using absolute values (design units) or as percentages of the parent's dimensions. For multi-element layouts, alignment and distribution APIs arrange blocks precisely without manual calculations. Snapping settings let you tune the visual guides shown when users drag elements in the editor.
 
@@ -446,7 +446,6 @@ If `alignHorizontally(_:alignment:)` or `alignVertically(_:alignment:)` has no e
 - Confirm `isAlignable(_:)` returns `true` for the blocks
 - Verify all block IDs in the array are valid
 - Check that blocks have the `"layer/move"` scope enabled
-- Check that no block is transform-locked, either on its own or by a group or frame above it
 
 ### Blocks Cannot Be Distributed
 
@@ -455,7 +454,6 @@ If `distributeHorizontally(_:)` or `distributeVertically(_:)` doesn't work:
 - Verify `isDistributable(_:)` returns `true`
 - Ensure you have at least three blocks in the array
 - Check that all blocks share the same parent
-- Check that no block is transform-locked, either on its own or by a group or frame above it
 
 ## API Reference
 

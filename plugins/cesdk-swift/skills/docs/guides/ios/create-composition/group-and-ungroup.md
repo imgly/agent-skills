@@ -109,7 +109,7 @@ Group multiple blocks to move, scale, and transform them as a single unit; ungro
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.2/engine-guides-grouping)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.2-rc.0/engine-guides-grouping)
 
 Groups let you treat multiple blocks as a cohesive unit. Grouped blocks move, scale, and rotate together while maintaining their relative positions. Groups can contain other groups, enabling hierarchical compositions.
 
@@ -124,7 +124,7 @@ Groups are blocks with type `.group` that contain child blocks as members. Trans
 Groups can be nested, meaning a group can contain other groups. This enables complex hierarchical structures where multiple logical units can be combined and manipulated together.
 
 > **Note:** **What cannot be grouped*** Scene blocks cannot be grouped
-> * A block cannot be grouped with a group it sits inside, which would make that group a child of itself
+> * Blocks already part of a group cannot be grouped again until ungrouped
 
 ## Create the Blocks
 

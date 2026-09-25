@@ -344,14 +344,6 @@ abstract fun fillParent(block: DesignBlock)
 
 Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block's fill is unknown, the content fill mode is changed from Crop to Cover to prevent invalid crop values. Required scope: "layer/move" - "layer/resize"
 
-### findAllInExclusionAreas
-
-```kotlin
-abstract fun findAllInExclusionAreas(): List<DesignBlock>
-```
-
-Returns all blocks that overlap an exclusion area on their page. The engine never moves a block to satisfy an exclusion area. A scene loaded from a file, or laid out through the API, can legitimately overlap one, and silently repositioning it would lose the author's layout. Use this to warn or to highlight instead.
-
 ### findAllMetadata
 
 ```kotlin
@@ -1043,7 +1035,7 @@ Get the name of the spot color assigned to a cutout type.
 abstract fun getState(block: DesignBlock): BlockState
 ```
 
-Get the current state of a block. Note If this block is in error state or this block has a Shape block, Fill block or Effect block(s), that is in error state, the returned state will be BlockState.Error. Else, if this block is in pending state or this block has a Shape block, Fill block or Effect block(s), that is in pending state, the returned state will be BlockState.Pending. Else, the returned state will be BlockState.Ready. Note: A block whose CMYK or spot color needs the document CMYK profile is BlockState.Pending while that profile loads. Note: Runs an engine update when the block names a resource that nothing asked for yet. A font set just before this call is then reported as pending.
+Get the current state of a block. Note If this block is in error state or this block has a Shape block, Fill block or Effect block(s), that is in error state, the returned state will be BlockState.Error. Else, if this block is in pending state or this block has a Shape block, Fill block or Effect block(s), that is in pending state, the returned state will be BlockState.Pending. Else, the returned state will be BlockState.Ready.
 
 ### getString
 
@@ -1157,14 +1149,6 @@ abstract fun getStrokeWidth(block: DesignBlock): Float
 ```
 
 Get the stroke width of the given design block.
-
-### getTextBackgroundColors
-
-```kotlin
-abstract fun getTextBackgroundColors(block: DesignBlock, from: Int = -1, to: Int = -1): List<Color>
-```
-
-Returns the ordered unique list of background colors of the text in the selected range. Text without a background color is reported as a fully transparent color.
 
 ### getTextCases
 
@@ -2885,14 +2869,6 @@ abstract fun setStrokeWidth(block: DesignBlock, width: Float)
 ```
 
 Set the stroke width of the given design block. Required scope: "stroke/change"
-
-### setTextBackgroundColor
-
-```kotlin
-abstract fun setTextBackgroundColor(block: DesignBlock, color: Color, from: Int = -1, to: Int = -1)
-```
-
-Changes the background color of the text in the selected range to the given color. The background is drawn as a rectangle behind each affected text run, or as a band along the curve for text on a path. A fully transparent color removes the background from the range. The run background is independent of the block-level background color ("backgroundColor/color"); it is drawn on top of the block-level background. Required scope: "fill/change"
 
 ### setTextCase
 

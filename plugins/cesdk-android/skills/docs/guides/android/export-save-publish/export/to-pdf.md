@@ -140,7 +140,7 @@ underlayer support for special media printing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.2/engine-guides-export-to-pdf)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.2-rc.0/engine-guides-export-to-pdf)
 
 <EngineReferenceNote {...props} />
 
@@ -306,31 +306,6 @@ val underlayerPdf = writePdfExport(fileName = "design-with-underlayer.pdf", buff
 
 The underlayer is generated from the contours of visible design elements on the exported page. Elements with transparency produce a proportionally lighter underlayer.
 
-## Add Printer's Marks
-
-A print shop needs to see where to cut, and a press operator needs a target to align the plates against. Enable `exportPdfWithCropMarks` for the four pairs of corner lines that mark the cut, and `exportPdfWithRegistrationMarks` for a bullseye at the middle of each page edge. Both default to `false`, so an export that does not ask for marks is unchanged.
-
-```kotlin
-val printMarkOptions = ExportOptions(
-    exportPdfWithCropMarks = true,
-    exportPdfWithRegistrationMarks = true,
-    printMarkOffset = 3.0F,
-    cropMarkLength = 5.0F,
-    printMarkWidth = 0.25F,
-)
-val pdfData = engine.block.export(
-    block = page,
-    mimeType = MimeType.PDF,
-    options = printMarkOptions,
-)
-```
-
-Both mark types are painted in the PDF registration colorant `All`, so they appear on every separation, and each is knocked out in white underneath so it stays legible over dark artwork.
-
-`printMarkOffset` and `cropMarkLength` are in design units, so the offset is directly comparable with the page bleed and the sheet grows by the sum of the two. `printMarkWidth` is in points, the unit a print shop states a stroke weight in. A negative offset falls back to the 6 pt default, and `0` places a mark on the trim edge.
-
-The offset is measured from the trim, so a small offset places a mark inside the bleed, which the knife removes anyway. Marks grow the exported page by the offset plus the equivalent of 15 points on each side, or by the offset plus `cropMarkLength` when that is longer. The artwork does not move, and the TrimBox and BleedBox keep describing the same physical rectangles. A page whose trim is not a rectangle gets no marks and no larger page.
-
 ## Export at Target Dimensions
 
 Use `targetWidth` and `targetHeight` on `ExportOptions` to control the exported PDF dimensions in pixels. The block renders large enough to fill the target size while maintaining its aspect ratio.
@@ -364,11 +339,6 @@ For print output, calculate the target dimensions from your desired DPI:
 | `underlayerOffset`               | Size adjustment in design units. Negative values shrink the underlayer inward.                                                                                     |
 | `underlayerRenderRatio`          | Resolution multiplier for the raster pass that extracts the underlayer contour. Higher values can preserve small details at higher memory cost. Defaults to `1.0`. |
 | `underlayerMaxError`             | Maximum curve-fit error in pixels when vectorizing the underlayer contour. Smaller values fit tighter outlines with more path complexity. Defaults to `2.0`.       |
-| `exportPdfWithCropMarks`         | Draw the four pairs of corner lines that show a print shop where to cut. Defaults to `false`.                                                                       |
-| `exportPdfWithRegistrationMarks` | Draw a bullseye target at the middle of each page edge, which a press operator aligns the plates by. Defaults to `false`.                                           |
-| `printMarkOffset`                | Distance in design units from the trim to the nearest edge of any mark, so it is comparable with the page bleed. Defaults to 6 pt. |
-| `printMarkWidth`                 | Stroke weight in points of any mark, the unit a print shop states a weight in. Defaults to `0.25`.                                  |
-| `cropMarkLength`                 | Length in design units of one crop mark line, the same unit as `printMarkOffset`. Defaults to 15 pt.                               |
 | `targetWidth`                    | Target output width in pixels. Must be used with `targetHeight`.                                                                                                   |
 | `targetHeight`                   | Target output height in pixels. Must be used with `targetWidth`.                                                                                                   |
 

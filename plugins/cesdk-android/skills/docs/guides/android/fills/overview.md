@@ -24,7 +24,6 @@ Choose the fill type that matches the content you want the block to render:
 | Image | Photos, textures, rendered thumbnails, and other still media. |
 | Video | Moving media inside a design block, including trimmed or looping clips. |
 | Pixel stream | Dynamic pixel content supplied by an integration at runtime. |
-| Stripe | Marking a block without hiding what is behind it, such as a region content must stay clear of. |
 
 Color and gradient fills are usually best for graphic shapes, backgrounds, and design accents. Image, video, and pixel stream fills are media fills: they depend on a source and often need content fitting decisions so the media appears correctly inside the block frame.
 

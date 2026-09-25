@@ -11,7 +11,6 @@ type ComponentId =
   | InspectorBarComponentId
   | CaptionPanelComponentId
   | ClipContextMenuComponentId
-  | LayersMenuComponentId
   | VideoTimelineControlsBarComponentId;
 ```
 

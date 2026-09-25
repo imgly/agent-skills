@@ -22,14 +22,12 @@ const ALL_ADJUSTMENTS: Adjustment[] = [
   {
     Body: ChangeCropSecondary,
     Icon: CropIcon,
-    id: 'crop',
-    label: 'Crop'
+    id: 'crop'
   },
   {
     Body: ChangeImageFileSecondary,
     Icon: ReplaceIcon,
     id: 'replace',
-    label: 'Replace',
     align: 'left'
   }
 ];

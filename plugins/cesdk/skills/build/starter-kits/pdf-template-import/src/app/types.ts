@@ -2,7 +2,7 @@
  * Type definitions for PDF Template Import Starterkit
  */
 import type { Configuration } from '@cesdk/cesdk-js';
-import type { ImportMessage } from '../imgly/plugins/pdf-importer';
+import type { LogMessage } from '@imgly/pdf-importer';
 
 export type ProcessingStatus =
   | 'idle'
@@ -23,7 +23,7 @@ export interface ExampleFile {
 export interface ProcessResult {
   imageUrl: string;
   sceneArchiveUrl: string;
-  messages: ImportMessage[];
+  messages: LogMessage[];
   fileName: string;
 }
 

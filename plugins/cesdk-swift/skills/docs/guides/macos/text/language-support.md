@@ -165,7 +165,7 @@ Configure typefaces, manage right-to-left text, and bind multilingual content to
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.2/engine-guides-text-language-support)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.2-rc.0/engine-guides-text-language-support)
 
 <EngineReferenceNote {...props} />
 
@@ -309,14 +309,13 @@ This automatic detection works for:
 
 ### Text Alignment for RTL Languages
 
-`HorizontalTextAlignment` has five cases:
+`HorizontalTextAlignment` has four cases:
 
 | Case | Behavior |
 | --- | --- |
 | `.left` | Always align text to the left. |
 | `.right` | Always align text to the right. |
 | `.center` | Center-align text. |
-| `.justify` | Stretch every line of a paragraph except the last, by widening the gaps between words. The last line, and any line with no gap to widen, keeps its natural width and is aligned like `.auto`. |
 | `.auto` | Resolve direction from the script — RTL scripts align right, LTR scripts align left. |
 
 `setTextHorizontalAlignment(_:alignment:)` with the default negative `paragraphIndex` sets a block-level value. The example below creates an Arabic text block, applies the Noto Sans Arabic typeface, sets `.right` explicitly, and reads back the effective alignment:
@@ -506,7 +505,7 @@ Use typefaces that cover every script you ship. Comprehensive Unicode coverage a
 | --- | --- |
 | `Typeface` | Family of fonts sharing a `name`; carries an array of `Font` files. |
 | `Font` | Single font file with a `uri`, `subFamily` label, `weight`, and `style`. |
-| `HorizontalTextAlignment` | `.left`, `.right`, `.center`, `.justify`, `.auto`. |
+| `HorizontalTextAlignment` | `.left`, `.right`, `.center`, `.auto`. |
 
 ## Troubleshooting
 

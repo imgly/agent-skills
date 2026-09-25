@@ -45,7 +45,6 @@ export default function App({ config }: AppProps) {
     mockupImageUrl,
     mockupSceneString,
     isLoading,
-    renderError,
     setEngineReady,
     renderMockupForProduct,
     updateMockupScene,
@@ -125,10 +124,6 @@ export default function App({ config }: AppProps) {
     // END_HIDDEN_BLOCK
     designEngineRef.current = cesdk;
 
-    // START_HIDDEN_BLOCK
-    (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
-
     const sceneLoad = ++sceneLoadRef.current;
     await initProductPreviewDesignEditor(cesdk);
 
@@ -188,7 +183,6 @@ export default function App({ config }: AppProps) {
           mockupImageUrl={mockupImageUrl}
           mockupSceneString={mockupSceneString}
           isLoading={isLoading}
-          renderError={renderError}
           isFullscreen={isFullscreen}
           license={config.license}
           baseURL={config.baseURL}
@@ -198,9 +192,7 @@ export default function App({ config }: AppProps) {
         />
 
         <div
-          className={`${styles.editorWrapper} ${
-            isFullscreen ? styles.hidden : ''
-          }`}
+          className={`${styles.editorWrapper} ${isFullscreen ? styles.hidden : ''}`}
         >
           <CreativeEditor
             className={styles.editor}

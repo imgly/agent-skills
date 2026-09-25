@@ -30,6 +30,7 @@ const BlockBarUI = ({ children }: { children?: ReactNode }) => {
       Children.map(children, (child) => {
         // Only clone the element if it's a valid React element
         if (isValidElement(child)) {
+          // @ts-ignore
           return cloneElement(child, { isActive: !selectedId });
         }
         return child;

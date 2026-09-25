@@ -16,7 +16,7 @@ Easily build custom mobile UIs and provide a seamless design editing experience 
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-mobile-ui-react-web)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/starterkit-mobile-ui/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/starterkit-mobile-ui/index.html)
 
 ***
 
@@ -54,8 +54,8 @@ The `src/` folder contains the editor code:
 src/
 ├── app/                          # Demo application
 ├── imgly/
-│   ├── color-utilities.ts
-│   ├── creative-engine-utils.ts
+│   ├── ColorUtilities.ts
+│   ├── CreativeEngineUtils.ts
 │   ├── index.ts                  # Editor initialization function
 │   ├── upload.ts
 │   └── utils.ts                  # Utility functions

@@ -24,7 +24,6 @@ professional editing capabilities into your web application.
 - [AI Editor](./starterkits/ai-editor.md) - Quickly add AI-powered visual editing and media generation to your web app — seamlessly connect any AI model.
 - [T-Shirt Designer](./starterkits/t-shirt-designer.md) - Apparel Editor for creating print-ready design.
 - [Product Editor](./starterkits/product-editor.md) - Product Editor for customizing any product with print-ready designs.
-- [Photobook Editor](./starterkits/photobook-editor.md) - A complete photobook editor with a layouts library, photo auto-fill, live design validation, and export to print-ready PDF/X-4.
 - [Video Editing](./starterkits/video-editing.md) - Create and edit video compositions with timeline editing, captions, animations, and template-based generation.
 - [Plugins](./starterkits/plugins.md) - Add powerful custom functionality to the editor — background removal, QR codes, vectorization, and more.
 - [Custom Built UIs](./starterkits/custom-built-uis.md) - Fully custom UIs built with React using the Engine API. Freely adapt to your use case.

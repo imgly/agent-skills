@@ -10,7 +10,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initCutoutLinesEditor } from './imgly';
-import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
+import { resolveAssetPath } from './imgly/resolveAssetPath';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
@@ -41,9 +41,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
+    // Debug access (remove in production)
     (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initCutoutLinesEditor(cesdk);
 
@@ -53,7 +52,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // Load the cutout lines demo scene.
     // This scene contains pre-made shapes ready for cutout line creation.
-    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/example.scene`);
+    await cesdk.load(resolveAssetPath('/assets/example.scene'));
     // START_HIDDEN_BLOCK
     reportDemoPhase('ready');
     // END_HIDDEN_BLOCK

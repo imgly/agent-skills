@@ -42,12 +42,6 @@ export function setupTranslations(cesdk: CreativeEditorSDK): void {
   //   }
   // });
 
-  cesdk.i18n.setTranslations({
-    en: {
-      'libraries.ly.img.exclusionArea.label': 'Exclusion Areas'
-    },
-    de: {
-      'libraries.ly.img.exclusionArea.label': 'Ausschlussbereiche'
-    }
-  });
+  // Suppress unused variable warning
+  void cesdk;
 }

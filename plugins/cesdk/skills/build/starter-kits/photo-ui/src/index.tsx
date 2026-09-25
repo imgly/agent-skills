@@ -44,10 +44,9 @@ main().catch((error) => {
   console.error('Failed to initialize application:', error);
 });
 
-//START_HIDDEN_BLOCK
+// Debug access (remove in production)
 declare global {
   interface Window {
     cesdk?: CreativeEngine;
   }
 }
-//END_HIDDEN_BLOCK

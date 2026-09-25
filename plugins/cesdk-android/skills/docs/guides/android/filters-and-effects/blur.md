@@ -173,7 +173,7 @@ softening backgrounds, creating depth, and focusing attention.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.2/engine-guides-filters-and-effects-blur)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.2-rc.0/engine-guides-filters-and-effects-blur)
 
 <EngineReferenceNote {...props} />
 

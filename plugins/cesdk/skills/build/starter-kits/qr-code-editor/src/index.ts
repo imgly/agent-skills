@@ -10,7 +10,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initQRCodeEditor } from './imgly';
-import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
+import { resolveAssetPath } from './imgly/resolveAssetPath';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
@@ -41,9 +41,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
+    // Debug access (remove in production)
     (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initQRCodeEditor(cesdk);
 
@@ -53,17 +52,10 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // Load the QR code demo scene from the public showcases URL
     // This scene contains pre-made QR code elements for demonstration
-    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/scene.archive`);
+    await cesdk.load(resolveAssetPath('/assets/scene.archive'));
 
-    // Select the first QR code block for immediate editing. The plugin writes
-    // this metadata key on every QR block it creates.
-    const qrCodeBlock = cesdk.engine.block
-      .findAll()
-      .find((block) =>
-        cesdk.engine.block
-          .findAllMetadata(block)
-          .includes('@imgly/plugin-qr-code-web')
-      );
+    // Select the first QR code block for immediate editing
+    const qrCodeBlock = cesdk.engine.block.findByName('QR Code 1')[0];
     if (qrCodeBlock) {
       cesdk.engine.block.select(qrCodeBlock);
     }

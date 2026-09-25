@@ -27,8 +27,7 @@ const ALL_ADJUSTMENTS: Adjustment[] = [
   {
     Body: ChangeShapeColorSecondary,
     Icon: ShapeColorIcon,
-    id: 'color',
-    label: 'Color'
+    id: 'color'
   }
 ];
 const ShapesAdjustmentBar = () => {

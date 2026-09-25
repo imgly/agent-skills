@@ -18,7 +18,7 @@ Automatically generate size variations of your design and easily scale your mark
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-automated-resizing-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/starterkit-automated-resizing/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/starterkit-automated-resizing/index.html)
 
 ***
 
@@ -56,7 +56,7 @@ Before you begin, make sure you have the following:
     src/
     ├── app/                          # Demo application
     ├── imgly/
-    │   ├── config/advanced-editor/
+    │   ├── advanced-editor-config/
     │   │   ├── actions.ts                # Export/import actions
     │   │   ├── features.ts               # Feature toggles
     │   │   ├── i18n.ts                   # Translations
@@ -70,7 +70,7 @@ Before you begin, make sure you have the following:
     │   │       ├── inspectorBar.ts           # Inspector bar layout
     │   │       ├── navigationBar.ts          # Navigation bar layout
     │   │       └── panel.ts                  # Panel configuration
-    │   ├── config/design-editor/
+    │   ├── design-editor-config/
     │   │   ├── actions.ts                # Export/import actions
     │   │   ├── features.ts               # Feature toggles
     │   │   ├── i18n.ts                   # Translations
@@ -185,7 +185,7 @@ Before you begin, make sure you have the following:
 
     ```
     imgly/
-    ├── config/advanced-editor/
+    ├── advanced-editor-config/
     │   ├── actions.ts                # Export/import actions
     │   ├── features.ts               # Feature toggles
     │   ├── i18n.ts                   # Translations
@@ -199,7 +199,7 @@ Before you begin, make sure you have the following:
     │       ├── inspectorBar.ts           # Inspector bar layout
     │       ├── navigationBar.ts          # Navigation bar layout
     │       └── panel.ts                  # Panel configuration
-    ├── config/design-editor/
+    ├── design-editor-config/
     │   ├── actions.ts                # Export/import actions
     │   ├── features.ts               # Feature toggles
     │   ├── i18n.ts                   # Translations

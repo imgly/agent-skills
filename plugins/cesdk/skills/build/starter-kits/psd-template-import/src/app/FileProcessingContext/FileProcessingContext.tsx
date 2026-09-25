@@ -120,8 +120,9 @@ export function FileProcessingContextProvider({
         const response = await fetch(file.psdUrl);
         const blob = await response.blob();
         await processPSDBlob(blob, file.name);
-      } catch {
-        // The error state is already set; the screen offers a way back.
+      } catch (err) {
+        // Error already handled in processPSDBlob
+        setStatus('idle');
       }
     },
     [processPSDBlob]
@@ -142,8 +143,9 @@ export function FileProcessingContextProvider({
 
       try {
         await processPSDBlob(file, file.name);
-      } catch {
-        // The error state is already set; the screen offers a way back.
+      } catch (err) {
+        // Error already handled in processPSDBlob
+        setStatus('idle');
       }
     },
     [processPSDBlob]

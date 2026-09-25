@@ -60,9 +60,7 @@ const ColorDropdown = ({
               try {
                 const color = hexToRgba(hex);
                 onClick(color);
-              } catch {
-                // Ignore a color string the picker cannot parse.
-              }
+              } catch {}
             }}
             value={rgbaToHex(activeColor)}
           >

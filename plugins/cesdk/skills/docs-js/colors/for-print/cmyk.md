@@ -4,8 +4,7 @@
 
 ---
 
-Work with CMYK colors in CE.SDK for professional print production workflows
-with support for color space conversion and tint control.
+Work with CMYK colors in CE.SDK for professional print production workflows with support for color space conversion and tint control.
 
 ![CMYK Colors example showing blocks with cyan, magenta, yellow, and black colors for print](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -19,7 +18,7 @@ with support for color space conversion and tint control.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-for-print-cmyk-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/guides-colors-for-print-cmyk-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/guides-colors-for-print-cmyk-browser/index.html)
 
 CMYK (Cyan, Magenta, Yellow, Key/Black) is the standard color model for print production. Unlike RGB which is additive and designed for screens, CMYK uses subtractive color mixing to represent how inks combine on paper. CE.SDK supports CMYK colors natively, allowing you to prepare designs for professional print output while maintaining accurate color representation.
 
@@ -271,10 +270,6 @@ class Example implements EditorPlugin {
       );
     }
 
-    // Converting CMYK to sRGB reads the document CMYK profile, which is a resource. Load it
-    // once first, so the conversion does not have to handle COLOR.PROFILE_NOT_LOADED.
-    await engine.editor.loadCMYKProfile();
-
     // Example 9: Convert RGB to CMYK
     const rgbBlue: RGBAColor = { r: 0.2, g: 0.4, b: 0.9, a: 1.0 };
     const convertedCmyk = engine.editor.convertColorToColorSpace(
@@ -502,10 +497,6 @@ The `isCMYKColor()` type guard checks if a color has the CMYK properties (`c`, `
 Use `engine.editor.convertColorToColorSpace()` to convert colors between 'sRGB' and 'CMYK':
 
 ```typescript highlight-convert
-    // Converting CMYK to sRGB reads the document CMYK profile, which is a resource. Load it
-    // once first, so the conversion does not have to handle COLOR.PROFILE_NOT_LOADED.
-    await engine.editor.loadCMYKProfile();
-
     // Example 9: Convert RGB to CMYK
     const rgbBlue: RGBAColor = { r: 0.2, g: 0.4, b: 0.9, a: 1.0 };
     const convertedCmyk = engine.editor.convertColorToColorSpace(
@@ -560,48 +551,6 @@ CMYK colors work in gradient color stops. Create a gradient fill and set stops u
 
 This creates a gradient transitioning through the primary CMYK colors—cyan, magenta, and yellow.
 
-## Setting the Document CMYK Profile
-
-CE.SDK previews CMYK colors through an ICC profile. The bundled default profile models a US press condition. For another print condition, for example European coated paper, set the CMYK profile of the document to the profile your printer supplies.
-
-The engine picks the CMYK profile in this order:
-
-1. A CMYK image with its own embedded ICC profile uses that profile, for that image only.
-2. The CMYK profile of the document, when you set one.
-3. The profile at the `fallbackCMYKProfileUri` setting.
-4. The bundled default profile, when that setting is empty.
-
-The document profile and its conversion settings belong to `engine.scene`. They are saved with the scene and bundled into scene archives. Undo and redo do not change these properties. The `fallbackCMYKProfileUri` editor setting belongs to the current editor environment.
-
-Raster exports use the document profile for CMYK-to-RGB conversion. A scene whose `scene/colorConversionMode` is `Legacy` keeps its previous conversion until you set the property to `Managed`.
-
-```typescript
-// Load the profile from a URL. The promise resolves once the profile is in effect.
-await engine.scene.setCMYKProfile(
-  'https://example.com/profiles/PSOcoated_v3.icc'
-);
-
-// Or pass the profile bytes directly.
-const response = await fetch('https://example.com/profiles/PSOcoated_v3.icc');
-engine.scene.setCMYKProfileFromData(
-  new Uint8Array(await response.arrayBuffer())
-);
-
-// Read what the document names, and go back to the fallback profile.
-const info = engine.scene.getCMYKProfileInfo(); // { contentHash } or null
-engine.scene.removeCMYKProfile();
-
-// Configure the conversion.
-engine.scene.setColorRenderingIntent(ColorRenderingIntent.Perceptual);
-engine.scene.setBlackPointCompensationEnabled(false);
-```
-
-An assignment is atomic. While a profile loads, the previous profile stays in effect. When the profile cannot be loaded, is not a valid ICC profile, or is not a CMYK profile, the call fails and the previous profile stays in effect. `engine.scene.getCMYKProfileInfo()` returns the content hash of the profile the document names, or `null` when the document names no CMYK profile. `engine.scene.removeCMYKProfile()` goes back to the fallback profile.
-
-A profile set from bytes is saved as a `buffer://` URI when you save the scene to a string, and only the same engine can read that URI. Save the scene to an archive to keep the profile bytes with the scene.
-
-You can also set how colors outside the destination gamut are mapped, with the rendering intent, and whether black point compensation is on. The defaults are relative colorimetric intent with black point compensation.
-
 ## Troubleshooting
 
 ### Colors Look Different on Screen vs Print
@@ -618,22 +567,16 @@ Make sure you're checking a `Color` value returned from `engine.block.getColor()
 
 ## API Reference
 
-| Method                                            | Description                                                         |
-| ------------------------------------------------- | ------------------------------------------------------------------- |
-| `engine.block.setColor()`                         | Set a color property value                                          |
-| `engine.block.getColor()`                         | Get a color property from a block                                   |
-| `engine.editor.convertColorToColorSpace()`        | Convert color to a different color space                            |
-| `engine.block.createFill()`                       | Create a color fill                                                 |
-| `engine.block.setFill()`                          | Assign a fill to a block                                            |
-| `engine.block.getFill()`                          | Get the fill from a block                                           |
-| `engine.block.setGradientColorStops()`            | Set gradient color stops                                            |
-| `isCMYKColor()`                                   | Check if a color is CMYK                                            |
-| `engine.scene.setCMYKProfile()`                   | Load a CMYK ICC profile from a URI and make it the document profile |
-| `engine.scene.setCMYKProfileFromData()`           | Make the CMYK ICC profile in the given bytes the document profile   |
-| `engine.scene.getCMYKProfileInfo()`               | Get the content hash of the document CMYK profile, or `null`        |
-| `engine.scene.removeCMYKProfile()`                | Remove the document CMYK profile and use the fallback profile       |
-| `engine.scene.setColorRenderingIntent()`          | Set the rendering intent of CMYK conversion                         |
-| `engine.scene.setBlackPointCompensationEnabled()` | Turn black point compensation on or off                             |
+| Method | Description |
+| ------ | ----------- |
+| `engine.block.setColor()` | Set a color property value |
+| `engine.block.getColor()` | Get a color property from a block |
+| `engine.editor.convertColorToColorSpace()` | Convert color to a different color space |
+| `engine.block.createFill()` | Create a color fill |
+| `engine.block.setFill()` | Assign a fill to a block |
+| `engine.block.getFill()` | Get the fill from a block |
+| `engine.block.setGradientColorStops()` | Set gradient color stops |
+| `isCMYKColor()` | Check if a color is CMYK |
 
 
 

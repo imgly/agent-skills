@@ -1,51 +1,56 @@
 #!/bin/bash
-# Writes the dev credentials this kit needs into .env from 1Password:
-# the CE.SDK license and the IMG.LY AI Gateway key.
 set -e
 
-ACCOUNT=imgly.1password.com
-
+# Check if 1Password CLI is installed
 if ! command -v op &> /dev/null; then
     echo "Error: 1Password CLI (op) is not installed."
     echo "Install it from: https://developer.1password.com/docs/cli/get-started/"
     exit 1
 fi
 
-if ! op whoami --account "$ACCOUNT" &> /dev/null; then
+# Check if user is signed in to 1Password
+if ! op whoami --account imgly.1password.com &> /dev/null; then
     echo "Please sign in to 1Password first:"
-    op signin --account "$ACCOUNT"
+    op signin --account imgly.1password.com
 fi
 
-# Sets NAME=VALUE in .env, replacing the line when it already exists.
-set_env() {
-    local name=$1 value=$2
-    if [ -f .env ] && grep -q "^$name=" .env; then
-        # A key can hold sed's replacement metacharacters.
-        local escaped
-        escaped=$(printf '%s' "$value" | sed 's/[&|\\]/\\&/g')
-        sed -i.bak "s|^$name=.*|$name=$escaped|" .env
+# Retrieve the CESDK license key from 1Password
+echo "Retrieving CESDK license key from 1Password..."
+CESDK_LICENSE=$(op read "op://Secrets/web-examples/CESDK_API_KEY" --account imgly.1password.com)
+
+if [ -z "$CESDK_LICENSE" ]; then
+    echo "Error: Could not retrieve CESDK_API_KEY from 1Password"
+    exit 1
+fi
+
+# Write to .env file (preserving any existing proxy URLs)
+if [ -f .env ]; then
+    # Update existing .env
+    if grep -q "VITE_CESDK_LICENSE" .env; then
+        # Replace existing license
+        sed -i.bak "s/VITE_CESDK_LICENSE=.*/VITE_CESDK_LICENSE=$CESDK_LICENSE/" .env
         rm -f .env.bak
     else
-        echo "$name=$value" >> .env
+        # Append license
+        {
+            echo ""
+            echo "# CE.SDK License Key (Retrieved from 1Password)"
+            echo "# Last updated: $(date)"
+            echo "VITE_CESDK_LICENSE=$CESDK_LICENSE"
+        } >> .env
     fi
-}
+else
+    # Create new .env
+    cat > .env << EOF
+# CE.SDK License Key (Retrieved from 1Password)
+# Last updated: $(date)
+VITE_CESDK_LICENSE=$CESDK_LICENSE
 
-read_secret() {
-    local value
-    value=$(op read "$1" --account "$ACCOUNT")
-    if [ -z "$value" ]; then
-        echo "Error: Could not retrieve $1 from 1Password"
-        exit 1
-    fi
-    echo "$value"
-}
+# AI Proxy URLs (configure these for AI features)
+# VITE_FAL_AI_PROXY_URL=
+# VITE_ANTHROPIC_PROXY_URL=
+# VITE_OPENAI_PROXY_URL=
+EOF
+fi
 
-echo "Retrieving the CE.SDK license key from 1Password..."
-set_env VITE_CESDK_LICENSE "$(read_secret op://Secrets/web-examples/CESDK_API_KEY)"
-
-echo "Retrieving the AI Gateway key from 1Password..."
-set_env VITE_AI_API_KEY "$(read_secret op://Shared/web-plugins-dev/VITE_GATEWAY_API_KEY)"
-# The shared dev key is issued for the staging gateway, so production rejects it.
-set_env VITE_AI_GATEWAY_URL https://gateway.staging.img.ly
-
-echo "✓ Updated .env with the CE.SDK license and the AI Gateway key"
+echo "✓ Successfully updated .env with CESDK license key from 1Password"

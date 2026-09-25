@@ -3,7 +3,7 @@
 ---
 
 ```ts
-type OrderContextFor<A> = A extends "ly.img.caption.panel" ? CaptionPanelOrderContext : A extends "ly.img.video.clip.menu" ? VideoClipMenuOrderContext : A extends "ly.img.layerList.menu" ? LayersMenuOrderContext : OrderContext;
+type OrderContextFor<A> = A extends "ly.img.caption.panel" ? CaptionPanelOrderContext : A extends "ly.img.video.clip.menu" ? VideoClipMenuOrderContext : OrderContext;
 ```
 
 Maps a UI area to its appropriate order context type for public API usage.

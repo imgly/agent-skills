@@ -189,7 +189,7 @@ layout APIs and snapping system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.2/engine-guides-position-and-align)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.2-rc.0/engine-guides-position-and-align)
 
 <EngineReferenceNote {...props} />
 
@@ -451,7 +451,6 @@ If `alignHorizontally()` or `alignVertically()` has no effect:
 - Confirm `isAlignable()` returns `true` for the blocks
 - Verify all blocks in the list are valid
 - Check that blocks have the `"layer/move"` scope enabled
-- Check that no block is transform-locked, either on its own or by a group or frame above it
 
 ### Blocks Cannot Be Distributed
 
@@ -459,7 +458,6 @@ If `distributeHorizontally()` or `distributeVertically()` does not work:
 
 - Verify `isDistributable()` returns `true`
 - Confirm each block is valid and all blocks share the same parent
-- Check that no block is transform-locked, either on its own or by a group or frame above it
 - Do not enforce a three-block minimum in app code; Android can distribute a two-block set when `isDistributable()` returns `true`
 
 ### Snapping Guides Do Not Appear

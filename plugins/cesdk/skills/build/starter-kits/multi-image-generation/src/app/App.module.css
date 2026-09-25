@@ -123,6 +123,7 @@
   color: var(--color-text);
 }
 
+
 /* START_HIDDEN_BLOCK */
 
 :global(html.demo-preview),
@@ -156,6 +157,7 @@
   padding: 2rem;
   gap: 48px;
 }
+
 
 /* START_HIDDEN_BLOCK */
 

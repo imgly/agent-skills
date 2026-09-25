@@ -1,5 +1,5 @@
 import { useEditor } from '../contexts/EditorContext';
-import { useProperty } from '../hooks/useSelectedProperty';
+import { useProperty } from '../../imgly/hooks/useSelectedProperty';
 import SliderBar from '../SliderBar/SliderBar';
 
 import type CreativeEngine from '@cesdk/engine';

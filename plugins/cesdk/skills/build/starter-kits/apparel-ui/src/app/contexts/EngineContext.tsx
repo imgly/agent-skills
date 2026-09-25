@@ -45,12 +45,15 @@ export const EngineProvider = ({
       }
       localEngine.editor.setSetting('mouse/enableScroll', false);
       localEngine.editor.setSetting('mouse/enableZoom', false);
+      //START_HIDDEN_BLOCK
+      if (import.meta.env.VITE_ADD_CESDK_GLOBALS === 'true') {
+        // @ts-ignore
+        window.imgly = { ...window.imgly, cesdk: localEngine };
+      }
+      //END_HIDDEN_BLOCK
       if (configure) {
         await configure(localEngine);
       }
-      //START_HIDDEN_BLOCK
-      (window as any).cesdk = localEngine;
-      //END_HIDDEN_BLOCK
       setEngine(localEngine);
       setIsLoaded(true);
     };
@@ -64,6 +67,7 @@ export const EngineProvider = ({
       setIsLoaded(false);
     };
     // We do not want to rerender when the config changes. Config should never change!
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!engine) {

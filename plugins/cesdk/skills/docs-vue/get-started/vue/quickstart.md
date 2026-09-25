@@ -31,8 +31,6 @@ Try the live demos below to see each editor in action, then get started with the
   <SolutionCard title="T-Shirt Designer" description="Apparel Editor for creating print-ready design." contentId="jwinqr" liveExampleUrl="/examples/starterkit-t-shirt-designer/" heroImage={tshirtHero} />
 
   <SolutionCard title="Product Editor" description="Product Editor for customizing any product with print-ready designs." contentId="p7m8k2" liveExampleUrl="/examples/starterkit-product-editor/" heroImage={productHero} />
-
-  <SolutionCard title="Photobook Editor" description="Photobook Editor for building print-ready photo books with layouts and validation." contentId="pbedit" liveExampleUrl="/examples/starterkit-photobook-editor/" heroImage={photobookEditorHero} />
 </SolutionGrid>
 
 ### Video Editing

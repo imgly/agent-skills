@@ -22,17 +22,15 @@
 - [Movement Constraints](./user-interface/customization/movement-constraints.md) - Restrict how far blocks can be dragged outside the page in the CE.SDK web editor.
 - [Color Palette](./user-interface/customization/color-palette.md) - Customize the color palette available to users for consistent branding and styling.
 - [Disable or Enable Features](./user-interface/customization/disable-or-enable.md) - Control which editor features are available to users by enabling, disabling, or conditionally toggling them using the Feature API.
-- [Navigation Bar](./user-interface/customization/navigation-bar.md) - Show, hide, position, or customize the editor’s navigation bar to match your app layout.
+- [Navigation Bar](./user-interface/customization/navigation-bar.md) - Show, hide, or customize the editor’s top navigation bar to match your app layout.
 - [Dock](./user-interface/customization/dock.md) - Configure the dock area to show or hide tools, panels, or quick access actions.
 - [Panel Customization](./user-interface/customization/panel.md) - Control CE.SDK's UI panels programmatically to create custom editor layouts and workflows.
-- [Layer & Page List](./user-interface/customization/layer-list.md) - Configure the layer and page list — its feature keys, dock button, sections, canvas follow, and the menu on each row.
 - [Inspector Bar](./user-interface/customization/inspector-bar.md) - Customize the inspector bar for editing properties like position, color, and size.
 - [Canvas Menu](./user-interface/customization/canvas-menu.md) - Control visibility and options in the canvas context menu.
 - [Customize the Clip Context Menu](./svelte.md) - Control which actions appear in the video timeline clip context menu, reorder built-in actions, and add custom entries per clip type.
 - [Video Timeline](./user-interface/customization/video-timeline.md) - Customize the video timeline's track visibility, transition controls, height, and controls bar.
 - [Canvas Bar](./user-interface/customization/canvas.md) - Edit or hide the floating bar above the canvas to streamline user interactions.
 - [Loading Indicator](./svelte.md) - Customize the loading screen that appears while the CE.SDK editor initializes by adding headings, body text, or removing the spinner.
-- [Exclusion Areas](./user-interface/customization/exclusion-areas.md) - Put the exclusion area controls in your editor — the feature key, the asset source and the dock button.
 - [Component Order API](./user-interface/customization/reference/component-order-api.md) - Complete reference for the unified Component Order API that controls layout and composition of all CE.SDK UI areas.
 - [Component Reference](./user-interface/customization/reference/component-reference.md) - Complete list of all built-in component IDs for each CE.SDK UI area including navigation bar, dock, inspector bar, canvas menu, and canvas bar.
 

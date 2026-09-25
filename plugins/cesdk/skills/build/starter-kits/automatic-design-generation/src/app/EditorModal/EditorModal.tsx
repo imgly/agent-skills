@@ -15,7 +15,6 @@ import type { Configuration } from '@cesdk/cesdk-js';
 import {
   initDesignGenerationDesignEditor,
   initDesignGenerationVideoEditor,
-  readVariables,
   type GeneratedAsset
 } from '../../imgly';
 
@@ -50,10 +49,6 @@ export function EditorModal({
       // START_HIDDEN_BLOCK
       reportDemoPhase('created');
       // END_HIDDEN_BLOCK
-      // START_HIDDEN_BLOCK
-      (window as any).cesdk = cesdk;
-      // END_HIDDEN_BLOCK
-
       // Skip if no scene to load
       if (!asset.sceneString) return;
 
@@ -90,7 +85,6 @@ export function EditorModal({
         onSave({
           ...asset,
           sceneString,
-          variables: readVariables(engine),
           src: blobUrl
         });
       });
@@ -98,12 +92,6 @@ export function EditorModal({
       // Load scene and configure
       cesdk.engine.editor.setSetting('page/title/show', false);
       await cesdk.load(asset.sceneString);
-
-      // A scene string holds the `{{Name}}` references but not their values,
-      // so without this the text blocks show their placeholders.
-      for (const [name, value] of Object.entries(asset.variables)) {
-        cesdk.engine.variable.setString(name, value);
-      }
 
       // Set the scene name
       const scene = cesdk.engine.scene.get();
@@ -135,9 +123,6 @@ export function EditorModal({
 
     return () => {
       document.body.style.overflow = originalOverflow;
-      // START_HIDDEN_BLOCK
-      delete (window as any).cesdk;
-      // END_HIDDEN_BLOCK
     };
   }, []);
 

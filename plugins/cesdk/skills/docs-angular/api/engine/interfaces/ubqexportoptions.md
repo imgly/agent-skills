@@ -27,11 +27,6 @@ adding underlayers.
 |  `underlayerMaxError` | `number` |
 |  `allowTextOverhang` | `boolean` |
 |  `exportPdfWithDeviceCMYK` | `boolean` |
-|  `exportPdfWithCropMarks` | `boolean` |
-|  `exportPdfWithRegistrationMarks` | `boolean` |
-|  `printMarkOffset` | `number` |
-|  `cropMarkLength` | `number` |
-|  `printMarkWidth` | `number` |
 |  `pdfImageQuality` | `number` |
 |  `pdfChunkSize` | `number` |
 

@@ -18,7 +18,7 @@ Enhance video creation by importing, customizing, and styling captions directly 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-captions-react-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/starterkit-video-captions/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/starterkit-video-captions/index.html)
 
 ***
 
@@ -797,6 +797,7 @@ The Video Captions starter kit includes everything needed for professional video
 
 ### Caption Inspector doesn't open
 
+- **Check video captions feature**: Ensure `features/videoCaptionsEnabled` is set to `true` in settings
 - **Verify caption mode**: The inspector opens automatically in `autocaption` mode
 - **Open manually**: Use `cesdk.ui.openPanel('//ly.img.panel/inspector/caption')` to open it programmatically
 

@@ -9,11 +9,9 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initDesignEditor } from './imgly';
-import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-export { DEMO_ASSETS_BASE_URL };
 // END_HIDDEN_BLOCK
 
 // ============================================================================
@@ -43,9 +41,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
+    // Debug access (remove in production)
     (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initDesignEditor(cesdk);
     // ============================================================================
@@ -54,7 +51,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     await cesdk.load(
-      `${DEMO_ASSETS_BASE_URL}/assets/4-5-marketing-ad/scene.scene`
+      'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/4-5-marketing-ad/scene.scene'
     );
     // highlight-scene-loading
     // START_HIDDEN_BLOCK

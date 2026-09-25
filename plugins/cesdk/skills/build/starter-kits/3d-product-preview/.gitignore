@@ -29,7 +29,3 @@ tsconfig.local.json
 
 # Lock files (use npm ci in CI)
 yarn.lock
-
-# Test output
-test-results/
-playwright-report/

@@ -29,7 +29,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initGettyImagesEditor } from './imgly';
-import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
+import { resolveAssetPath } from './imgly/resolveAssetPath';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
@@ -81,9 +81,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
+    // Debug access (remove in production)
     (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     // highlight-init
     // Initialize the editor with Getty Images integration
@@ -95,7 +94,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // highlight-scene-loading
     // Load the Getty Images demo scene from CDN
     // This scene showcases images that can be replaced with photos from Getty Images
-    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/getty-images.scene`);
+    await cesdk.load(resolveAssetPath('/assets/getty-images.scene'));
     // highlight-scene-loading
     // highlight-init
     // START_HIDDEN_BLOCK

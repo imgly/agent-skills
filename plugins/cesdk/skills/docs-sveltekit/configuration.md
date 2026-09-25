@@ -18,7 +18,7 @@ Set up CE.SDK with license keys, asset base URLs, user IDs, and runtime configur
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-configuration-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/guides-configuration-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/guides-configuration-browser/index.html)
 
 `CreativeEditorSDK.create()` initializes the full CE.SDK editor with UI components. The configuration object controls license validation, asset loading, user tracking, and UI behavior.
 
@@ -218,15 +218,15 @@ class Example implements EditorPlugin {
 export default Example;
 ```
 
-## License Key
+## Required Configuration
 
-CE.SDK is a commercial product and a license is required for production use. Without a license, CE.SDK runs in evaluation mode, which watermarks exports.
+The `license` property is the only required configuration. All other properties have sensible defaults.
 
 | Property | Type | Purpose |
 |----------|------|---------|
-| `license` | `string` | License key that removes export watermarks |
+| `license` | `string` | License key to remove export watermarks |
 
-Request a license through [IMG.LY Contact Sales](https://img.ly/forms/contact-sales/).
+The license key validates your CE.SDK subscription and removes watermarks from exports. Get a free trial license at [https://img.ly/forms/free-trial](https://img.ly/forms/free-trial).
 
 ## Optional Configuration
 

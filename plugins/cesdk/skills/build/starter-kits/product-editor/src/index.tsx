@@ -50,9 +50,8 @@ function ProductEditor() {
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
+    // Debug access (remove in production)
     (window as any).cesdk = sdk;
-    // END_HIDDEN_BLOCK
     setCesdk(sdk);
   }, []);
 

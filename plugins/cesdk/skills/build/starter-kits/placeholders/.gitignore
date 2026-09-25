@@ -28,7 +28,3 @@ release/.gitignore
 release/node_modules/
 release/dist/
 release/package-lock.json
-
-# Test output
-test-results/
-playwright-report/

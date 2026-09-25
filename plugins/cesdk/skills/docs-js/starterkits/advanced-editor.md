@@ -18,7 +18,7 @@ Comprehensive design editing for your web app—professional tools for graphics,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-design-editor-ts-web/tree/v$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/starterkit-advanced-design-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/starterkit-advanced-design-editor/index.html)
 
 ***
 
@@ -57,20 +57,23 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     ├── index.ts                      # Application entry point
     └── imgly/
         ├── index.ts                  # Editor initialization function
-        └── config/
-            ├── plugin.ts             # Main configuration plugin
-            ├── actions.ts            # Export/import actions
-            ├── features.ts           # Feature toggles
-            ├── i18n.ts               # Translations
-            ├── settings.ts           # Engine settings
-            └── ui/                   # UI customization
-                ├── index.ts          # Combines UI customization exports
-                ├── canvas.ts         # Canvas configuration
-                ├── components.ts     # Custom component registration
-                ├── dock.ts           # Dock layout configuration
-                ├── inspectorBar.ts   # Inspector bar layout
-                ├── navigationBar.ts  # Navigation bar layout
-                └── panel.ts          # Panel configuration
+        ├── resolveAssetPath.ts       # BASE_URL-aware asset path resolver
+        ├── config/
+        │   ├── plugin.ts             # Main configuration plugin
+        │   ├── actions.ts            # Export/import actions
+        │   ├── features.ts           # Feature toggles
+        │   ├── i18n.ts               # Translations
+        │   ├── settings.ts           # Engine settings
+        │   └── ui/                   # UI customization
+        │       ├── index.ts          # Combines UI customization exports
+        │       ├── canvas.ts         # Canvas configuration
+        │       ├── components.ts     # Custom component registration
+        │       ├── dock.ts           # Dock layout configuration
+        │       ├── inspectorBar.ts   # Inspector bar layout
+        │       ├── navigationBar.ts  # Navigation bar layout
+        │       └── panel.ts          # Panel configuration
+        └── plugins/
+            └── background-removal.ts # Background removal plugin
     ```
 
     ## Step 2: Install Dependencies
@@ -169,7 +172,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     ```
     imgly/
     ├── index.ts                  # Editor initialization function
-    ├── demo-assets.ts            # Demo asset base URL
+    ├── resolveAssetPath.ts       # BASE_URL-aware asset path resolver
     ├── config/
     │   ├── plugin.ts             # Main configuration plugin
     │   ├── actions.ts            # Export/import actions

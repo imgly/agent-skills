@@ -10,8 +10,6 @@ On Android, CE.SDK makes use of system-frameworks to benefit from hardware accel
 
 - Android 7 or later (`minSdk 24`)
 
-Building an app with CE.SDK requires `compileSdk 34` or higher. Other dependencies may require a higher compile SDK. This build requirement does not change the minimum supported Android version.
-
 ## Recommended Hardware
 
 Android phones released in the last 5 years, e.g. Asus Zenfone 3, Samsung M31s, or Google Pixel 5. Video capabilities directly depend on the video capabilities of the individual phone.

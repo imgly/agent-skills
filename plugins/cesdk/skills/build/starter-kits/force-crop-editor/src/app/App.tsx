@@ -92,9 +92,7 @@ export default function App({ config }: AppProps) {
       reportDemoPhase('created');
       // END_HIDDEN_BLOCK
       // Expose cesdk instance globally for automated testing
-      // START_HIDDEN_BLOCK
       (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
-      // END_HIDDEN_BLOCK
 
       // Initialize the force crop editor with selected configuration
       await initForceCropEditor(cesdk, {

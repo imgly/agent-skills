@@ -16,7 +16,6 @@ type ColorPropertyName =
   | "effect/recolor/fromColor"
   | "effect/recolor/toColor"
   | "fill/color/value"
-  | "fill/stripe/color"
   | string & object;
 ```
 

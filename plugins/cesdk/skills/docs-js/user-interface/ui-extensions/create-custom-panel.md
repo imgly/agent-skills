@@ -18,7 +18,7 @@ Create custom sidebar panels that integrate with CE.SDK's user interface using t
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-create-custom-panel-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/guides-user-interface-ui-extensions-create-custom-panel-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/guides-user-interface-ui-extensions-create-custom-panel-browser/index.html)
 
 Custom panels extend CE.SDK by adding sidebar interfaces that match the editor's design language. The builder system provides pre-built components for forms, buttons, and media display, allowing you to create rich editing experiences without building UI from scratch.
 
@@ -100,11 +100,6 @@ export default class CreateCustomPanelExample implements EditorPlugin {
       const viewState = state('view', 'content');
       const enabledState = state('enabled', true);
       const shadowState = state('shadow', false);
-      const promptState = state('prompt', '');
-      const referencesState = state<string[]>('references', []);
-      const sampleImages = [1, 2, 3].map(
-        (index) => `https://img.ly/static/ubq_samples/sample_${index}.jpg`
-      );
 
       builder.Section('settings', {
         title: 'Settings',
@@ -134,35 +129,6 @@ export default class CreateCustomPanelExample implements EditorPlugin {
           builder.Checkbox('enabled', {
             inputLabel: 'Enable feature',
             ...enabledState
-          });
-
-          builder.PromptInput('prompt', {
-            inputLabel: 'Prompt',
-            placeholder: 'Describe the change',
-            ...promptState,
-            attachments: {
-              label: 'Reference images',
-              addLabel: 'Add image',
-              maxCount: 3,
-              onAdd: () => {
-                const next = sampleImages.find(
-                  (uri) => !referencesState.value.includes(uri)
-                );
-                if (next == null) return;
-                referencesState.setValue([...referencesState.value, next]);
-              },
-              items: referencesState.value.map((uri) => ({
-                id: uri,
-                thumbnailUri: uri,
-                label: 'Reference image',
-                removeLabel: 'Remove image',
-                onRemove: () => {
-                  referencesState.setValue(
-                    referencesState.value.filter((item) => item !== uri)
-                  );
-                }
-              }))
-            }
           });
 
           builder.Button('apply', {
@@ -260,11 +226,6 @@ const headlineState = state('headline', 'Product name');
 const viewState = state('view', 'content');
 const enabledState = state('enabled', true);
 const shadowState = state('shadow', false);
-const promptState = state('prompt', '');
-const referencesState = state<string[]>('references', []);
-const sampleImages = [1, 2, 3].map(
-  (index) => `https://img.ly/static/ubq_samples/sample_${index}.jpg`
-);
 ```
 
 State objects integrate directly with input components by spreading the object into the component props.
@@ -334,45 +295,6 @@ builder.Checkbox('enabled', {
   ...enabledState
 });
 ```
-
-### Prompt Input
-
-Capture a prompt with `builder.PromptInput()`. The field grows with its text, from three lines to ten, and scrolls past that. It has no resize handle.
-
-```typescript highlight-prompt-input
-builder.PromptInput('prompt', {
-  inputLabel: 'Prompt',
-  placeholder: 'Describe the change',
-  ...promptState,
-  attachments: {
-    label: 'Reference images',
-    addLabel: 'Add image',
-    maxCount: 3,
-    onAdd: () => {
-      const next = sampleImages.find(
-        (uri) => !referencesState.value.includes(uri)
-      );
-      if (next == null) return;
-      referencesState.setValue([...referencesState.value, next]);
-    },
-    items: referencesState.value.map((uri) => ({
-      id: uri,
-      thumbnailUri: uri,
-      label: 'Reference image',
-      removeLabel: 'Remove image',
-      onRemove: () => {
-        referencesState.setValue(
-          referencesState.value.filter((item) => item !== uri)
-        );
-      }
-    }))
-  }
-});
-```
-
-The `attachments` option adds a row below the text for the images the prompt refers to. Each item needs an `id` and a `thumbnailUri`; give it `onRemove` and `removeLabel` to draw a remove button. The row's add button calls `onAdd`, and turns disabled once `maxCount` items are attached. Leave `attachments` out for a prompt with no row.
-
-An item with `isSuggested` is offered rather than attached: it shakes, carries no remove button and does not count towards `maxCount`. Use `onClick` to attach it. Set `isHighlighted` on an attached item to mark it as the one in use elsewhere, such as the block selected on the canvas.
 
 ## Adding Buttons
 

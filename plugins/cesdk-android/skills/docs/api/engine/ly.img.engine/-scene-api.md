@@ -127,22 +127,6 @@ abstract fun findNearestToViewPortCenterByType(blockType: String): List<DesignBl
 
 Finds all blocks with the given type sorted by distance to viewport center.
 
-### getCMYKProfileInfo
-
-```kotlin
-abstract fun getCMYKProfileInfo(): CMYKProfileInfo?
-```
-
-What the document stores about its CMYK profile. Reports the profile that the document names, whether it is loaded, still loading, or failed to load. The fallback profile is not reported. Await EditorApi.loadCMYKProfile to learn whether the profile that renders is usable.
-
-### getColorRenderingIntent
-
-```kotlin
-abstract fun getColorRenderingIntent(): ColorRenderingIntent
-```
-
-How a color that the destination cannot reproduce is mapped into it.
-
 ### getCurrentPage
 
 ```kotlin
@@ -216,14 +200,6 @@ abstract fun immediateZoomToBlock(block: DesignBlock, paddingLeft: Float = 0.0f,
 
 Sets the zoom and focus to show a block. This only shows an effect if the zoom level is not handled/overwritten by the UI. Without padding, this results in a tight view on the block. It is set immediately and assumes that the block dimensions are known. The block should not be in pending state and it's layout should be up to date.
 
-### isBlackPointCompensationEnabled
-
-```kotlin
-abstract fun isBlackPointCompensationEnabled(): Boolean
-```
-
-Whether conversion maps the black point of the source onto the destination.
-
 ### isCameraPositionClampingEnabled
 
 ```kotlin
@@ -284,14 +260,6 @@ abstract fun onZoomLevelChanged(): Flow<Unit>
 
 Subscribe to changes to the zoom level.
 
-### removeCMYKProfile
-
-```kotlin
-abstract fun removeCMYKProfile()
-```
-
-Removes the CMYK profile from the document. CMYK conversion then uses the fallbackCMYKProfileUri setting, or the bundled profile when that setting is unset. Color management stays on. A setCMYKProfile request that is still loading is cancelled.
-
 ### saveToArchive
 
 ```kotlin
@@ -311,38 +279,6 @@ abstract suspend fun saveToString(scene: DesignBlock, options: SaveToStringOptio
 ```
 
 Serializes the current scene into a string. Selection is discarded. If a resource uri has a scheme that is not in allowedResourceSchemes, an exception will be thrown.
-
-### setBlackPointCompensationEnabled
-
-```kotlin
-abstract fun setBlackPointCompensationEnabled(enabled: Boolean)
-```
-
-Turns black point compensation of the document on or off. The setting is document state and applies to every conversion from the document CMYK profile. Undo and redo do not change it.
-
-### setCMYKProfileFromData
-
-```kotlin
-abstract fun setCMYKProfileFromData(data: ByteBuffer)
-```
-
-Makes the ICC profile in data the CMYK profile of the document. Works like setCMYKProfile, but the change is in effect when the call returns. The engine keeps one buffer per distinct profile for its lifetime. SceneApi.saveToString stores this profile as a buffer:// URI that only this engine can read. Save to an archive to keep the profile bytes with the scene.
-
-### setCMYKProfile
-
-```kotlin
-abstract suspend fun setCMYKProfile(uri: Uri)
-```
-
-Loads the ICC profile at uri and makes it the CMYK profile of the document. The profile is document state: it is saved with the scene and bundled into an archive. It converts CMYK colors, the CMYK approximations of spot colors, and CMYK images without an embedded profile, while scene/colorConversionMode is Managed. An image with its own profile keeps using that profile.
-
-### setColorRenderingIntent
-
-```kotlin
-abstract fun setColorRenderingIntent(intent: ColorRenderingIntent)
-```
-
-Sets how a color that the destination cannot reproduce is mapped into it. The intent is document state and applies to every conversion from the document CMYK profile. Undo and redo do not change it.
 
 ### setDesignUnit
 

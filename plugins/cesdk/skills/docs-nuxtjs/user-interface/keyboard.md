@@ -20,7 +20,7 @@ supported.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-keyboard-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/guides-user-interface-keyboard-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/guides-user-interface-keyboard-browser/index.html)
 
 Power users live on the keyboard. CE.SDK ships with a complete shortcut catalog — undo, redo, copy, paste, nudge, group, save, zoom, text formatting, playback — so the moment your users open the editor, every common action is one chord away. Bind your own shortcuts on top, replace the defaults with your brand's conventions, or scope them to specific surfaces — without writing a keyboard event handler yourself.
 
@@ -312,19 +312,6 @@ These are the shortcuts the core configs register out of the box. `Mod` resolves
 | Cut                                          | `Mod+X`                |
 | Paste                                        | `Mod+V`                |
 | Split the selected clip at the playhead      | `S`                    |
-
-### Arrange
-
-Each of these moves every selected block through its parent's stacking order.
-
-| Action                                        | Shortcut |
-| --------------------------------------------- | -------- |
-| Move the selection one step towards the front | `Mod+]`  |
-| Move the selection one step towards the back  | `Mod+[`  |
-| Move the selection in front of every sibling  | `]`      |
-| Move the selection behind every sibling       | `[`      |
-
-`Mod+]` and `Mod+[` also fire while the layer and page list or the inspector holds focus. The bare `]` and `[` are limited to the canvas and the video timeline, because a bare key would otherwise fire while a layer is being renamed.
 
 ### Text Formatting
 

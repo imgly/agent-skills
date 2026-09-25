@@ -13,7 +13,6 @@ input label, input label position, value, value setter, disabled state, and suff
 - [`CheckboxOptions`](./api/cesdk-js/interfaces/checkboxoptions.md)
 - [`ColorInputOptions`](./api/cesdk-js/interfaces/colorinputoptions.md)
 - [`NumberInputOptions`](./api/cesdk-js/interfaces/numberinputoptions.md)
-- [`PromptInputOptions`](./api/cesdk-js/interfaces/promptinputoptions.md)
 - [`SelectOptions`](./api/cesdk-js/interfaces/selectoptions.md)
 - [`SliderOptions`](./api/cesdk-js/interfaces/slideroptions.md)
 - [`TextAreaOptions`](./api/cesdk-js/interfaces/textareaoptions.md)

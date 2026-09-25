@@ -189,7 +189,7 @@ approved palette.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.2/editor-guides-configuration-color-palette)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.2-rc.0/editor-guides-configuration-color-palette)
 
 <EngineReferenceNote {...props} />
 

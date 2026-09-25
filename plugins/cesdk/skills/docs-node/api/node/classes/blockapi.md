@@ -350,9 +350,7 @@ Manage the complete lifecycle: create, find, duplicate, destroy, and serialize b
 
   `Promise`\<`void`>
 
-  A Promise that resolves once every resource has finished loading. The state of a block
-  then reports the result of its fetch. A file that arrives but that the engine cannot decode
-  keeps it pending.
+  A Promise that resolves once all resources have finished loading.
 
   #### Signature
 
@@ -522,36 +520,6 @@ Find blocks by properties like name, type, or kind.
 
   ```typescript
   findAllUnused(): number[]
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### findAllInExclusionAreas()
-
-    <br /><p>Get all blocks that overlap an exclusion area on their page.</p>
-  </summary>
-
-  The engine never moves a block to satisfy an exclusion area. A scene loaded from a file, or laid out
-  through the API, can legitimately overlap one, and silently repositioning it would lose the
-  author's layout. Use this to warn or to highlight instead.
-
-  An exclusion area that is hidden, or that is not on a page, reports nothing. `exclusionArea/constrains` is not
-  read: an advisory exclusion area has no push, so a warning is the only thing it has. A group that
-  straddles an exclusion area is reported instead of the blocks inside it.
-
-  #### Returns
-
-  `number`\[]
-
-  A list of block ids that overlap an exclusion area, sorted ascending.
-
-  #### Signature
-
-  ```typescript
-  findAllInExclusionAreas(): number[]
   ```
 </details>
 
@@ -2181,7 +2149,7 @@ Structure designs by positioning, sizing, layering, aligning, and distributing b
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `ids` | `number`\[] | A non-empty array of block ids. |
-  | `horizontalBlockAlignment` | `"Auto"` | `"Right"` | `"Left"` | `"Center"` | `"Justify"` | How they should be aligned: 'Left', 'Right', or 'Center'. |
+  | `horizontalBlockAlignment` | `"Auto"` | `"Right"` | `"Left"` | `"Center"` | How they should be aligned: 'Left', 'Right', or 'Center'. |
 
   #### Returns
 
@@ -2190,7 +2158,7 @@ Structure designs by positioning, sizing, layering, aligning, and distributing b
   #### Signature
 
   ```typescript
-  alignHorizontally(ids: number[], horizontalBlockAlignment: "Auto" | "Right" | "Left" | "Center" | "Justify"): void
+  alignHorizontally(ids: number[], horizontalBlockAlignment: "Auto" | "Right" | "Left" | "Center"): void
   ```
 
   ***
@@ -4337,79 +4305,6 @@ Create, edit, and style text content.
 
 <details>
   <summary>
-    ### setTextBackgroundColor()
-
-    <br /><p>Sets the background color for a range of text.
-    The background is drawn as a rectangle behind each affected text run, or as a band along the curve for text
-    on a path.
-    A fully transparent color removes the background from the range.
-    The run background is independent of the block-level background color
-    ('backgroundColor/color'); it is drawn on top of the block-level background.</p>
-  </summary>
-
-  ```javascript
-  engine.block.setTextBackgroundColor(text, { r: 1.0, g: 1.0, b: 0.0, a: 1.0 }, 1, 4);
-  ```
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The text block whose background color should be changed. |
-  | `color` | [`Color`](./api/node/type-aliases/color.md) | The new background color of the selected text range. |
-  | `from?` | `number` | The start index of the UTF-16 range to change. Defaults to the start of the current selection or text. |
-  | `to?` | `number` | The end index of the UTF-16 range to change. Defaults to the end of the current selection or text. |
-
-  #### Returns
-
-  `void`
-
-  #### Signature
-
-  ```typescript
-  setTextBackgroundColor(id: number, color: Color, from?: number, to?: number): void
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
-    ### getTextBackgroundColors()
-
-    <br /><p>Gets the unique background colors within a range of text.
-    Text without a background color is reported as a fully transparent color.</p>
-  </summary>
-
-  ```javascript
-  const backgroundColorsInRange = engine.block.getTextBackgroundColors(text, 2, 5);
-  ```
-
-  #### Parameters
-
-  | Parameter | Type | Description |
-  | ------ | ------ | ------ |
-  | `id` | `number` | The text block whose background colors should be returned. |
-  | `from?` | `number` | The start index of the UTF-16 range. Defaults to the start of the current selection or text. |
-  | `to?` | `number` | The end index of the UTF-16 range. Defaults to the end of the current selection or text. |
-
-  #### Returns
-
-  [`Color`](./api/node/type-aliases/color.md)\[]
-
-  The ordered unique list of background colors.
-
-  #### Signature
-
-  ```typescript
-  getTextBackgroundColors(id: number, from?: number, to?: number): Color[]
-  ```
-
-  ***
-</details>
-
-<details>
-  <summary>
     ### setTextFontWeight()
 
     <br /><p>Sets the font weight for a range of text.</p>
@@ -5037,7 +4932,7 @@ Create, edit, and style text content.
   ```javascript
   const alignment = engine.block.getTextHorizontalAlignment(text, 0);
   const blockAlignment = engine.block.getTextHorizontalAlignment(text); // paragraphIndex defaults to -1
-  // e.g. 'Left' | 'Right' | 'Center' | 'Justify' | 'Auto' | undefined
+  // e.g. 'Left' | 'Center' | 'Right' | 'Auto' | undefined
   ```
 
   #### Parameters
@@ -5049,7 +4944,7 @@ Create, edit, and style text content.
 
   #### Returns
 
-  `"Auto"` | `"Right"` | `"Left"` | `"Center"` | `"Justify"`
+  `"Auto"` | `"Right"` | `"Left"` | `"Center"`
 
   The paragraph override, `undefined` if no override is set,
   or the block-level alignment when `paragraphIndex < 0`.
@@ -5057,7 +4952,7 @@ Create, edit, and style text content.
   #### Signature
 
   ```typescript
-  getTextHorizontalAlignment(id: number, paragraphIndex?: number): "Auto" | "Right" | "Left" | "Center" | "Justify"
+  getTextHorizontalAlignment(id: number, paragraphIndex?: number): "Auto" | "Right" | "Left" | "Center"
   ```
 
   ***
@@ -5074,7 +4969,6 @@ Create, edit, and style text content.
   engine.block.setTextHorizontalAlignment(text, 'Center', 0);
   engine.block.setTextHorizontalAlignment(text, undefined, 0); // clear override
   engine.block.setTextHorizontalAlignment(text, 'Right'); // apply to all
-  engine.block.setTextHorizontalAlignment(text, 'Justify'); // stretch every line but each paragraph's last
   ```
 
   #### Parameters
@@ -5082,7 +4976,7 @@ Create, edit, and style text content.
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `number` | The text block to modify. |
-  | `alignment` | `"Auto"` | `"Right"` | `"Left"` | `"Center"` | `"Justify"` | The alignment to apply, or `undefined` to clear the paragraph override. `'Justify'` stretches every line of a paragraph except the last. The last line keeps its natural width and follows the text direction, like `'Auto'`. |
+  | `alignment` | `"Auto"` | `"Right"` | `"Left"` | `"Center"` | The alignment to apply, or `undefined` to clear the paragraph override. |
   | `paragraphIndex?` | `number` | The 0-based index of the paragraph. Negative values clear all paragraph-level alignment overrides and, when `alignment` is provided, apply that alignment to the whole text block. |
 
   #### Returns
@@ -5092,7 +4986,7 @@ Create, edit, and style text content.
   #### Signature
 
   ```typescript
-  setTextHorizontalAlignment(id: number, alignment: "Auto" | "Right" | "Left" | "Center" | "Justify", paragraphIndex?: number): void
+  setTextHorizontalAlignment(id: number, alignment: "Auto" | "Right" | "Left" | "Center", paragraphIndex?: number): void
   ```
 
   ***
@@ -5862,16 +5756,14 @@ Create, edit, and style text content.
 
   #### Returns
 
-  `"Right"` | `"Left"` | `"Center"` | `"Justify"`
+  `"Right"` | `"Left"` | `"Center"`
 
-  The effective alignment ('Left', 'Right', 'Center', or 'Justify').
-  Only `'Auto'` is resolved — `'Justify'` is itself an effective alignment and is
-  returned verbatim.
+  The effective alignment ('Left', 'Right', or 'Center').
 
   #### Signature
 
   ```typescript
-  getTextEffectiveHorizontalAlignment(id: number): "Right" | "Left" | "Center" | "Justify"
+  getTextEffectiveHorizontalAlignment(id: number): "Right" | "Left" | "Center"
   ```
 
   ***
@@ -7756,10 +7648,7 @@ Create and manage groups of blocks.
     <br /><p>Checks if a set of blocks can be grouped.</p>
   </summary>
 
-  A scene block or a page cannot be grouped, and neither can a block together
-  with a group it sits inside, which would make that group a child of itself.
-  Blocks that already belong to a group can be grouped again, which is how a
-  group inside a group is made.
+  A scene block or a block that is already part of a group cannot be grouped.
 
   ```javascript
   const groupable = engine.block.isGroupable([block1, block2])
@@ -8178,10 +8067,6 @@ Query the intrinsic state or identity of a block, such as its name, UUID, or loc
   </summary>
 
   A block's state is determined by its own state and that of its shape, fill, and effects.
-  A block whose CMYK or spot color needs the document CMYK profile is pending while that
-  profile loads.
-  Runs an engine update when the block names a resource that nothing asked for yet.
-  A font set just before this call is then reported as pending.
 
   ```javascript
   const state = engine.block.getState(block);

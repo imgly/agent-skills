@@ -3,7 +3,8 @@ import type { Configuration } from '@cesdk/engine';
 import isEqual from 'lodash/isEqual';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { useSinglePageFocus } from '../hooks/UseSinglePageFocus';
-import { caseAssetPath, initMobileEditor } from '../../imgly';
+import { caseAssetPath } from '../../imgly/utils';
+import { SelectionProvider } from '../hooks/UseSelection';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
@@ -48,7 +49,6 @@ export const EditorProvider = ({
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
   const [editMode, setEditMode] = useState('Transform');
-  const engineRef = useRef<CreativeEngine | null>(null);
   const editorUpdateCallbackRef = useRef<() => void>(() => {});
   const engineEventCallbackRef = useRef<(events: unknown[]) => void>(() => {});
   const [selectedBlocks, setSelectedBlocks] = useState<SelectedBlock[] | null>(
@@ -120,17 +120,53 @@ export const EditorProvider = ({
         engine.dispose();
         return;
       }
-      engineRef.current = engine;
-      //START_HIDDEN_BLOCK
-      (window as Window & { cesdk?: CreativeEngine }).cesdk = engine;
-      //END_HIDDEN_BLOCK
+      engine.editor.setSetting('mouse/enableScroll', false);
+      engine.editor.setSetting('mouse/enableZoom', false);
 
+      // Debug access in development
+      if (import.meta.env.DEV) {
+        (window as Window & { engine?: CreativeEngine }).engine = engine;
+      }
+
+      // Register the default asset sources directly on the headless engine.
+      // getBaseURL() returns the configured base URL with a trailing slash, and
+      // each source is parsed from `${baseURL}<sourceId>/content.json`.
+      const baseURL = engine.getBaseURL();
+
+      // Typefaces
+      await engine.asset.addLocalAssetSourceFromJSONURI(
+        `${baseURL}ly.img.typeface/content.json`
+      );
+      // Filled vector shapes only
+      await engine.asset.addLocalAssetSourceFromJSONURI(
+        `${baseURL}ly.img.vector.shape/content.json`,
+        { matcher: ['ly.img.vector.shape.filled.*'] }
+      );
+      // Stickers
+      await engine.asset.addLocalAssetSourceFromJSONURI(
+        `${baseURL}ly.img.sticker/content.json`
+      );
+      // Local source for user image uploads
+      engine.asset.addLocalSource('ly.img.image.upload', [
+        'image/jpeg',
+        'image/png',
+        'image/webp',
+        'image/svg+xml',
+        'image/bmp',
+        'image/gif',
+        'image/apng'
+      ]);
+      // Demo images
+      await engine.asset.addLocalAssetSourceFromJSONURI(
+        `${baseURL}ly.img.image/content.json`,
+        { matcher: ['ly.img.image.*'] }
+      );
+      engine.editor.setSetting('page/title/show', false);
       engine.editor.onStateChanged(() => editorUpdateCallbackRef.current());
       engine.event.subscribe([], (events: unknown[]) =>
         engineEventCallbackRef.current(events)
       );
-
-      await initMobileEditor(engine, caseAssetPath('/social-media.scene'));
+      await engine.scene.load(caseAssetPath('/social-media.scene'));
 
       setFocusEngine(engine);
       setFocusEnabled(true);
@@ -144,14 +180,12 @@ export const EditorProvider = ({
 
     return () => {
       mounted = false;
-      // The effect runs once, so the `engine` state of that first render is
-      // always null here. The ref is what holds the engine this effect created.
-      if (engineRef.current) {
-        engineRef.current.dispose();
-        engineRef.current = null;
+      if (engine) {
+        engine.dispose();
       }
       setEngineIsLoaded(false);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const value: EditorContextType = {
@@ -169,7 +203,9 @@ export const EditorProvider = ({
     setZoomPaddingBottom
   };
   return (
-    <EditorContext.Provider value={value}>{children}</EditorContext.Provider>
+    <EditorContext.Provider value={value}>
+      <SelectionProvider engine={engine}>{children}</SelectionProvider>
+    </EditorContext.Provider>
   );
 };
 

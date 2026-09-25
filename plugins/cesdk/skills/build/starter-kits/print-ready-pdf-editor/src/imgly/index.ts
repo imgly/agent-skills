@@ -29,14 +29,12 @@ import {
 } from '@cesdk/cesdk-js/plugins';
 
 // Configuration and plugins
-import { ExclusionAreaAssetSource } from './plugins/exclusionArea/exclusionArea';
 import { DesignEditorConfig } from './config/plugin';
 import { ExportPrintReadyPDFPanelPlugin } from './plugins/export-print-ready-pdf';
 
 // Re-export for external use
 export { DesignEditorConfig } from './config/plugin';
 export { ExportPrintReadyPDFPanelPlugin } from './plugins/export-print-ready-pdf';
-export { ExclusionAreaAssetSource } from './plugins/exclusionArea/exclusionArea';
 
 /**
  * Initialize the CE.SDK Print-Ready PDF Editor with a complete configuration.
@@ -141,9 +139,7 @@ export async function initPrintReadyPdfEditor(cesdk: CreativeEditorSDK) {
       new PremiumTemplatesAssetSource({
         include: ['ly.img.templates.premium.*']
       })
-    ),
-
-    cesdk.addPlugin(new ExclusionAreaAssetSource())
+    )
   ]);
   // highlight-asset-sources
 }

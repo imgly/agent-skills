@@ -1,5 +1,3 @@
-import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
-
 /**
  * CE.SDK Start with Image - Image Catalog
  *
@@ -9,6 +7,8 @@ import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
  * - Sea: https://unsplash.com/photos/6qqwAsB22_M
  * - Surf: https://unsplash.com/photos/y-GMWtWW_H8
  */
+
+import { resolveAssetPath } from '../imgly/resolveAssetPath';
 
 // ============================================================================
 // Types
@@ -30,18 +30,18 @@ export interface ImageAsset {
 // highlight-image-catalog
 export const IMAGE_CATALOG: ImageAsset[] = [
   {
-    full: `${DEMO_ASSETS_BASE_URL}/assets/images/mountain-1200.jpg`,
-    thumbUri: `${DEMO_ASSETS_BASE_URL}/assets/images/mountain-300.jpg`,
+    full: resolveAssetPath('/assets/images/mountain-1200.jpg'),
+    thumbUri: resolveAssetPath('/assets/images/mountain-300.jpg'),
     alt: 'Mountain landscape'
   },
   {
-    full: `${DEMO_ASSETS_BASE_URL}/assets/images/sea-1200.jpg`,
-    thumbUri: `${DEMO_ASSETS_BASE_URL}/assets/images/sea-300.jpg`,
+    full: resolveAssetPath('/assets/images/sea-1200.jpg'),
+    thumbUri: resolveAssetPath('/assets/images/sea-300.jpg'),
     alt: 'Sea view'
   },
   {
-    full: `${DEMO_ASSETS_BASE_URL}/assets/images/surf-1200.jpg`,
-    thumbUri: `${DEMO_ASSETS_BASE_URL}/assets/images/surf-300.jpg`,
+    full: resolveAssetPath('/assets/images/surf-1200.jpg'),
+    thumbUri: resolveAssetPath('/assets/images/surf-300.jpg'),
     alt: 'Surfer riding a wave'
   }
 ];

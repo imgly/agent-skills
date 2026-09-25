@@ -31,11 +31,9 @@ import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 // Configuration and plugins
 import { AdvancedEditorConfig } from '@cesdk/core-configs-web/advanced-editor';
-import { ExclusionAreaAssetSource } from './plugins/exclusionArea/exclusionArea';
 
 // Re-export for external use
 export { AdvancedEditorConfig } from '@cesdk/core-configs-web/advanced-editor';
-export { ExclusionAreaAssetSource } from './plugins/exclusionArea/exclusionArea';
 
 /**
  * Initialize the CE.SDK Advanced Editor with a complete configuration.
@@ -107,9 +105,7 @@ export async function initAdvancedEditor(cesdk: CreativeEditorSDK) {
       new PremiumTemplatesAssetSource({
         include: ['ly.img.templates.premium.*']
       })
-    ),
-
-    cesdk.addPlugin(new ExclusionAreaAssetSource())
+    )
   ]);
   // highlight-asset-sources
 

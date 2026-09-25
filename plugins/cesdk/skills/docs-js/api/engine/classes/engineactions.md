@@ -14,7 +14,7 @@ have not overridden are reachable only via [run](./api/engine/classes/engineacti
 
 ## Remarks
 
-Main-thread only.
+Main-thread only. [get](./api/engine/classes/engineactions.md) is web-only; use run/has/list cross-platform.
 
 ## Constructors
 
@@ -113,7 +113,7 @@ Main-thread only.
 
   ##### Remarks
 
-  Available on the web bindings and on `@cesdk/node-native`.
+  Web-only.
 
   #### Call Signature
 
@@ -139,7 +139,7 @@ Main-thread only.
 
   ##### Remarks
 
-  Available on the web bindings and on `@cesdk/node-native`.
+  Web-only.
 
   #### Signatures
 
@@ -181,8 +181,7 @@ Main-thread only.
 
   `Promise`\<[`EngineActionsRegistry`](./api/engine/interfaces/engineactionsregistry.md)\[`K`] *extends* (...`args`) => `R` ? `Awaited`\<`R`> : `unknown`>
 
-  The action's result, or a rejection if the id is unknown, it threw, or
-  the engine was disposed while the run was still in flight.
+  The action's result, or a rejection if the id is unknown or it threw.
 
   #### Call Signature
 
@@ -212,8 +211,7 @@ Main-thread only.
 
   `Promise`\<`R`>
 
-  The action's result, or a rejection if the id is unknown, it threw, or
-  the engine was disposed while the run was still in flight.
+  The action's result, or a rejection if the id is unknown or it threw.
 
   #### Signatures
 

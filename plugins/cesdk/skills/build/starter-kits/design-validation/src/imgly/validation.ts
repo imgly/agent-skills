@@ -11,13 +11,9 @@
  * Presentation (display names, icons) is handled at the app level.
  */
 
-import type { CreativeEngine } from '@cesdk/cesdk-js';
+import type CreativeEditorSDK from '@cesdk/cesdk-js';
 
-import type {
-  BlockValidationResult,
-  MeasureImage,
-  ValidationState
-} from './types';
+import type { BlockValidationResult, ValidationState } from './types';
 import {
   getOutsideBlocks,
   getProtrudingBlocks,
@@ -29,12 +25,12 @@ import {
  * Validates blocks that are completely outside the page.
  */
 export function validateOutsideBlocks(
-  engine: CreativeEngine
+  cesdk: CreativeEditorSDK
 ): BlockValidationResult[] {
-  return getOutsideBlocks(engine).map((blockId) => ({
+  return getOutsideBlocks(cesdk).map((blockId) => ({
     blockId,
     state: 'failed' as const,
-    blockType: engine.block.getKind(blockId)
+    blockType: cesdk.engine.block.getKind(blockId)
   }));
 }
 
@@ -42,12 +38,12 @@ export function validateOutsideBlocks(
  * Validates blocks that partially protrude from the page.
  */
 export function validateProtrudingBlocks(
-  engine: CreativeEngine
+  cesdk: CreativeEditorSDK
 ): BlockValidationResult[] {
-  return getProtrudingBlocks(engine).map((blockId) => ({
+  return getProtrudingBlocks(cesdk).map((blockId) => ({
     blockId,
     state: 'warning' as const,
-    blockType: engine.block.getKind(blockId)
+    blockType: cesdk.engine.block.getKind(blockId)
   }));
 }
 
@@ -55,27 +51,25 @@ export function validateProtrudingBlocks(
  * Validates text blocks that may be obstructed by other blocks.
  */
 export function validatePartiallyHiddenTexts(
-  engine: CreativeEngine
+  cesdk: CreativeEditorSDK
 ): BlockValidationResult[] {
-  return getPartiallyHiddenTexts(engine).map((blockId) => ({
+  return getPartiallyHiddenTexts(cesdk).map((blockId) => ({
     blockId,
     state: 'warning' as const,
-    blockType: engine.block.getKind(blockId)
+    blockType: cesdk.engine.block.getKind(blockId)
   }));
 }
 
 /**
  * Validates image blocks for resolution quality.
- * Pass `measureImage` to read image resolutions outside a browser.
  */
 export async function validateLowResolution(
-  engine: CreativeEngine,
-  measureImage?: MeasureImage
+  cesdk: CreativeEditorSDK
 ): Promise<BlockValidationResult[]> {
-  const allImageBlocks = engine.block.findByKind('image');
+  const allImageBlocks = cesdk.engine.block.findByKind('image');
   const results = await Promise.all(
     allImageBlocks.map(async (blockId) => {
-      const quality = await getImageBlockQuality(engine, blockId, measureImage);
+      const quality = await getImageBlockQuality(cesdk.engine, blockId);
       let state: ValidationState;
       if (quality < 0.7) {
         state = 'failed';
@@ -87,7 +81,7 @@ export async function validateLowResolution(
       return {
         blockId,
         state,
-        blockType: engine.block.getKind(blockId)
+        blockType: cesdk.engine.block.getKind(blockId)
       };
     })
   );

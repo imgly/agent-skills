@@ -112,9 +112,11 @@ export const ColorPicker = ({
           )}
           ref={pickerRef}
         >
+          {/* @ts-ignore */}
           <HexAlphaColorPicker color={value} onChange={handleChange} />
           <div className={'flex space-x-2'}>
             <span>#</span>
+            {/* @ts-ignore */}
             <HexColorInput color={value} onChange={handleChange} />
           </div>
         </div>

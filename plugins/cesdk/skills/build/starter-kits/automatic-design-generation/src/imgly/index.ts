@@ -29,8 +29,8 @@ import {
 } from '@cesdk/cesdk-js/plugins';
 
 // Configuration plugins from design and video configs
-import { DesignEditorConfig } from './config/design/plugin';
-import { VideoEditorConfig } from './config/video/plugin';
+import { DesignEditorConfig } from './design/plugin';
+import { VideoEditorConfig } from './video/plugin';
 
 // ============================================================================
 // Re-exports
@@ -39,15 +39,14 @@ import { VideoEditorConfig } from './config/video/plugin';
 // Re-export generation function and types
 export {
   generateAsset,
-  readVariables,
   type GeneratedAsset,
   type GenerateAssetOptions,
   type OutputType
 } from './generation';
 
 // Re-export editor config plugins
-export { DesignEditorConfig } from './config/design/plugin';
-export { VideoEditorConfig } from './config/video/plugin';
+export { DesignEditorConfig } from './design/plugin';
+export { VideoEditorConfig } from './video/plugin';
 
 // ============================================================================
 // Editor Initialization

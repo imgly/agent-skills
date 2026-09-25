@@ -16,11 +16,7 @@ const Modal = ({ title, onClose, children }: ModalProps) => {
         <div />
         <h3 className={classes.title}>{title}</h3>
         <div>
-          <IconButton
-            aria-label="Close"
-            icon={<CloseIcon />}
-            onClick={onClose}
-          />
+          <IconButton icon={<CloseIcon />} onClick={onClose} />
         </div>
       </div>
       <div className={classes.body}>{children}</div>

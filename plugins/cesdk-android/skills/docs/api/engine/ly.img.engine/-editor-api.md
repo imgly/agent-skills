@@ -449,14 +449,6 @@ abstract fun isSelectionEnabled(block: DesignBlock): Boolean
 
 Checks whether the block can currently be selected.
 
-### loadCMYKProfile
-
-```kotlin
-abstract suspend fun loadCMYKProfile()
-```
-
-Loads the CMYK profile that this document previews and converts CMYK colors with. The profile is a resource, and a resource takes several update cycles to arrive, so a CMYK conversion made right after the engine starts fails. Await this once and every later convertColorToColorSpace answers without handling COLOR.PROFILE_NOT_LOADED.
-
 ### onCarouselPageChanged
 
 ```kotlin
@@ -624,7 +616,7 @@ abstract fun setMovementConstraint(rule: MovementConstraintRule)
 abstract fun setMovementConstraint(rules: List<MovementConstraintRule>)
 ```
 
-Set a rule that limits how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop, nudge). Programmatic API calls are not affected. MovementConstraintRule.overshoot is a non-negative fraction of the moved block's own size: 0f pins blocks fully inside the page, 0.3f allows 30% to extend past the page bounds. The rule's MovementConstraintRule.scope determines which blocks it applies to.
+Set a rule that limits how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop). Programmatic API calls are not affected. MovementConstraintRule.overshoot is a non-negative fraction of the moved block's own size: 0f pins blocks fully inside the page, 0.3f allows 30% to extend past the page bounds. The rule's MovementConstraintRule.scope determines which blocks it applies to.
 
 ### setRole
 

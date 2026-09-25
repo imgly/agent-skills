@@ -18,7 +18,7 @@ Effortlessly remove background from images directly in the browser with no addit
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-background-removal-editor-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/starterkit-background-removal-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/starterkit-background-removal-editor/index.html)
 
 ***
 
@@ -130,7 +130,9 @@ Before you begin, make sure you have the following:
     │       ├── inspectorBar.ts           # Inspector bar layout
     │       ├── navigationBar.ts          # Navigation bar layout
     │       └── panel.ts                  # Panel configuration
-    └── index.ts                  # Editor initialization function
+    ├── index.ts                  # Editor initialization function
+    └── plugins/
+        └── background-removal.ts
     ```
 
     ## Step 2: Install Dependencies

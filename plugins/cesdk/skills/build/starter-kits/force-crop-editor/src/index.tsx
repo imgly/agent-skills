@@ -23,6 +23,9 @@ const config: Configuration = {
   // Unique user identifier for analytics (customize for your app)
   userId: 'starterkit-force-crop-editor-user',
 
+  // Local assets for monorepo development
+  
+
   license: import.meta.env.VITE_CESDK_LICENSE
 };
 

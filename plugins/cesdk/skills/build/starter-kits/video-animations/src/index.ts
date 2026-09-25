@@ -43,9 +43,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
+    // Debug access (remove in production)
     (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initVideoAnimationsEditor(cesdk);
 

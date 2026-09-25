@@ -18,7 +18,7 @@ Connect CE.SDK to AI models for image, video, text, and audio generation through
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ai-integration-gateway-provider-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/guides-user-interface-ai-integration-gateway-provider-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/guides-user-interface-ai-integration-gateway-provider-browser/index.html)
 
 The IMG.LY AI Gateway is a managed API service that sits between CE.SDK and upstream AI providers. Instead of configuring each provider separately with proxy URLs and API keys, we point all generation requests at a single gateway URL. The gateway handles model routing, authentication, billing, and credit management. Each content type has a dedicated `GatewayProvider` factory that fetches the model's OpenAPI schema and renders input fields automatically.
 
@@ -388,9 +388,6 @@ The available configuration options are:
 - **`middlewares`**: Middleware functions that wrap the generation call. See [Middleware](#middleware).
 - **`onError`**: Called when schema loading or provider initialization fails. Generation failures are handled in middleware — see [Handling Gateway Errors](#handling-gateway-errors).
 - **`supportedQuickActions`**: Enable or disable individual quick actions on the gateway model. Map a quick-action ID to `false` to disable it, or `true` to keep the default. Omitted IDs keep their defaults.
-
-The defaults depend on the model's capability. Image-to-image models offer `ly.img.editImage`, `ly.img.swapBackground`, `ly.img.createImage`, `ly.img.createVariant`, `ly.img.styleTransfer`, `ly.img.artistTransfer`, `ly.img.combineImages`, `ly.img.remixPage` and `ly.img.remixPageWithPrompt`. Image-to-video models offer `ly.img.createVideo`. Text models offer `ly.img.improve`, `ly.img.fix`, `ly.img.shorter`, `ly.img.longer`, `ly.img.changeTone`, `ly.img.translate` and `ly.img.changeTextTo`. Text-to-image and text-to-video models offer none.
-
 - **`debug`**: Enable console logging for troubleshooting.
 
 ## Middleware

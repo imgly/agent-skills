@@ -16,8 +16,6 @@ import styles from './MockupPreview.module.css';
 interface MockupPreviewProps {
   imageUrl: string | null;
   isLoading: boolean;
-  /** Message of the last failed render, or `null` when the last one worked. */
-  renderError: string | null;
   isFullscreen: boolean;
   onToggleFullscreen: () => void;
   onEditMockup: () => void;
@@ -31,7 +29,6 @@ interface MockupPreviewProps {
 export function MockupPreview({
   imageUrl,
   isLoading,
-  renderError,
   isFullscreen,
   onToggleFullscreen,
   onEditMockup,
@@ -60,13 +57,6 @@ export function MockupPreview({
         <div className={styles.loadingIndicator}>
           <div className={styles.spinner} />
         </div>
-      )}
-
-      {/* Render Error */}
-      {renderError && !isLoading && (
-        <p className={styles.error} role="alert">
-          The mockup could not be rendered. {renderError}
-        </p>
       )}
 
       {/* Mockup Image */}

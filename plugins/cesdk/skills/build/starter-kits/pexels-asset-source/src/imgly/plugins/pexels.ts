@@ -183,7 +183,7 @@ let hasShownApiKeyWarning = false;
  * @returns AssetSource configuration for CE.SDK
  */
 // highlight-createAssetSource
-export function createPexelsAssetSource(apiKey: string): AssetSource {
+function createPexelsAssetSource(apiKey: string): AssetSource {
   /**
    * Find Pexels assets based on query parameters.
    */

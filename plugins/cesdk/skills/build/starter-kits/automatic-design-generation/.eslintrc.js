@@ -7,12 +7,15 @@ module.exports = {
     project: './tsconfig.json'
   },
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-  plugins: ['@typescript-eslint', 'react-hooks'],
+  plugins: ['@typescript-eslint', 'deprecation'],
   rules: {
-    '@typescript-eslint/no-deprecated': 'error',
-    'react-hooks/rules-of-hooks': 'error',
+    // Warn on deprecated APIs (not error)
+    'deprecation/deprecation': 'warn',
+    // Allow console statements in examples
     'no-console': 'off',
+    // Allow any type in examples
     '@typescript-eslint/no-explicit-any': 'off',
+    // Allow unused vars/args prefixed with `_`
     '@typescript-eslint/no-unused-vars': [
       'error',
       { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
@@ -23,23 +26,11 @@ module.exports = {
     es2020: true,
     node: true
   },
-  overrides: [
-    {
-      // Playwright names its fixture callback `use`, which the rule reads as
-      // React's `use` hook.
-      files: ['tests/e2e/**'],
-      rules: { 'react-hooks/rules-of-hooks': 'off' }
-    }
-  ],
   ignorePatterns: [
-    'build/**',
     'dist/**',
     'coverage/**',
     'node_modules/**',
     'release/**',
-    'playwright-report/**',
-    'test-results/**',
-    '*.min.js',
     '*.config.js',
     '*.config.ts',
     'scripts/**',

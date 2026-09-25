@@ -49,7 +49,7 @@ enum ResolutionItemValue {
   Custom = 'custom'
 }
 
-export enum QualityType {
+enum QualityType {
   Low = 'low',
   Medium = 'medium',
   High = 'high',
@@ -142,7 +142,7 @@ type SelectValue = { id: string; label: string | string[] };
  * @throws Error if the page range format is invalid
  */
 // highlight-get-pages-from-range
-export const getPagesFromRange = (
+const getPagesFromRange = (
   scenePages: number[],
   pageRange: string
 ): number[] => {
@@ -153,7 +153,7 @@ export const getPagesFromRange = (
   const regexPattern = /^(\d+-\d+|\d+)(,(\d+-\d+|\d+))*$/;
 
   // Test the input page range against the regex pattern
-  if (!regexPattern.test(pageRange.replace(/\s/g, ''))) {
+  if (!regexPattern.test(pageRange.replace(/\s/, ''))) {
     throw new Error('Invalid page range');
   }
 
@@ -177,51 +177,22 @@ export const getPagesFromRange = (
 };
 // highlight-get-pages-from-range
 
-const PAGE_RANGE_HINT = 'e.g.: 1,1-2';
-
 /**
- * Check a page range against the pages of the scene.
- *
- * @param scenePages - Array of page block IDs from the scene
- * @param pageRange - Page range string (e.g., "1,2-4,6")
- * @returns The message to show below the input, or `undefined` when the range
- *   selects at least one page
+ * Create a description string showing the export dimensions in pixels.
  */
-// highlight-page-range-error
-export const pageRangeError = (
-  scenePages: number[],
-  pageRange: string
-): string | undefined => {
-  if (!pageRange) {
-    return undefined;
-  }
-  try {
-    return getPagesFromRange(scenePages, pageRange).length === 0
-      ? 'No page in that range'
-      : undefined;
-  } catch {
-    return 'Invalid page range';
-  }
-};
-// highlight-page-range-error
-
-/**
- * Format the export dimensions in pixels for the given design unit.
- *
- * @param designUnit - The scene's design unit: `Pixel`, `Millimeter` or `Inch`
- * @param sceneDPI - The scene's dots per inch, used for the non-pixel units
- * @param scale - The resolution factor the user picked
- * @returns A string such as `1080 x 1080 px`
- */
-// highlight-format-export-size
-export const formatExportSize = (
-  designUnit: string,
-  sceneDPI: number,
+const createDescription = (
+  engine: CreativeEngine,
+  scene: number | null,
   scale: number,
   pageWidth: number,
   pageHeight: number
-): string => {
-  const dpi = sceneDPI * scale;
+) => {
+  const designUnit = scene
+    ? engine.block.getEnum(scene, 'scene/designUnit')
+    : 'Pixel';
+  const defaultDPI = scene ? engine.block.getFloat(scene, 'scene/dpi') : 300;
+
+  const dpi = defaultDPI * scale;
 
   let width = pageWidth * scale;
   let height = pageHeight * scale;
@@ -238,57 +209,38 @@ export const formatExportSize = (
 
   return `${width} x ${height} px`;
 };
-// highlight-format-export-size
 
 /**
- * Create a description string showing the export dimensions in pixels.
- */
-const createDescription = (
-  engine: CreativeEngine,
-  scene: number | null,
-  scale: number,
-  pageWidth: number,
-  pageHeight: number
-) =>
-  formatExportSize(
-    scene ? engine.block.getEnum(scene, 'scene/designUnit') : 'Pixel',
-    scene ? engine.block.getFloat(scene, 'scene/dpi') : 300,
-    scale,
-    pageWidth,
-    pageHeight
-  );
-
-type ExportMimeType =
-  | 'application/pdf'
-  | 'application/octet-stream'
-  | ImageMimeType
-  | undefined;
-
-/**
- * Render the design with the specified options.
+ * Export the design with the specified options.
  *
- * For PDF format, produces a single file containing the pages in the range.
- * For image formats, produces one file per page in the range.
- *
- * @returns One blob per exported file, empty when there is no scene
- * @throws Error if the page range format is invalid
+ * For PDF format, exports all specified pages as a single PDF file.
+ * For image formats, exports each page as a separate image file.
  */
 // highlight-export-design
-export const exportDesignBlobs = async (
-  engine: CreativeEngine,
+const exportDesign = async (
+  cesdk: CreativeEditorSDK,
   pageRange: string,
-  mimeType: ExportMimeType,
+  mimeType:
+    | 'application/pdf'
+    | 'application/octet-stream'
+    | ImageMimeType
+    | undefined,
   scale: number,
   qualityType: QualityType
-): Promise<Blob[]> => {
+) => {
+  const engine = cesdk.engine;
   const scene = engine.scene.get();
   if (scene == null) {
-    return [];
+    return;
   }
   const pages = engine.scene.getPages();
-  const filteredPages = getPagesFromRange(pages, pageRange);
-
-  // the export will create a single PDF
+  let filteredPages: number[] = pages;
+  try {
+    filteredPages = getPagesFromRange(pages, pageRange);
+  } catch {
+    return;
+  }
+  // the export will create a single PDF and download it
   if (mimeType === 'application/pdf') {
     const hiddenPages = pages.filter(
       (id: number) => !filteredPages.includes(id)
@@ -305,54 +257,29 @@ export const exportDesignBlobs = async (
       engine.block.setVisible(id, true);
     });
 
-    return [blob];
-  }
+    await cesdk.utils.downloadFile(blob, mimeType);
+  } else {
+    // resize the exported image
+    const exportPageWidth =
+      engine.block.getFloat(scene, 'scene/pageDimensions/width') * scale;
+    const exportPageHeight =
+      engine.block.getFloat(scene, 'scene/pageDimensions/height') * scale;
 
-  // resize the exported image
-  const exportPageWidth =
-    engine.block.getFloat(scene, 'scene/pageDimensions/width') * scale;
-  const exportPageHeight =
-    engine.block.getFloat(scene, 'scene/pageDimensions/height') * scale;
-
-  // each page is exported separately
-  const blobs: Blob[] = [];
-  for (let i = 0; i < filteredPages.length; i++) {
-    blobs.push(
-      await engine.block.export(filteredPages[i], {
+    // each page will be exported and downloaded separately
+    for (let i = 0; i < filteredPages.length; i++) {
+      const blob = await engine.block.export(filteredPages[i], {
         mimeType: mimeType,
         targetWidth: exportPageWidth,
         targetHeight: exportPageHeight,
         jpegQuality: QualityJpeg[qualityType],
         pngCompressionLevel: QualityPng[qualityType]
-      })
-    );
+      });
+
+      await cesdk.utils.downloadFile(blob, mimeType);
+    }
   }
-  return blobs;
 };
 // highlight-export-design
-
-/**
- * Export the design and download every produced file.
- */
-const exportDesign = async (
-  cesdk: CreativeEditorSDK,
-  pageRange: string,
-  mimeType: ExportMimeType,
-  scale: number,
-  qualityType: QualityType
-) => {
-  const blobs = await exportDesignBlobs(
-    cesdk.engine,
-    pageRange,
-    mimeType,
-    scale,
-    qualityType
-  );
-
-  for (let i = 0; i < blobs.length; i++) {
-    await cesdk.utils.downloadFile(blobs[i], mimeType);
-  }
-};
 
 // ============================================================================
 // Setup Function
@@ -423,11 +350,11 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
       const pagesState = state<PageAmountType>('pages', PageAmountType.ALL);
 
       const rangeInputState = state<string>('rangeInput', '');
+      const rangeInputErrorState = state<string | undefined>('rangeInputError');
+      const rangePageState = state<number[]>('rangePages', []);
 
-      // Only the Range mode exports a range; All always exports every page.
-      const pageRange =
-        pagesState.value === PageAmountType.RANGE ? rangeInputState.value : '';
-      const rangeError = pageRangeError(engine.scene.getPages(), pageRange);
+      const maxErrorWidth = state<boolean>('maxErrorWidth', false);
+      const maxErrorHeight = state<boolean>('maxErrorHeight', false);
 
       const qualityState = state<SelectValue>('quality', QUALITY_DEFAULT_VALUE);
       const resolutionState = state<SelectValue>(
@@ -435,11 +362,9 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
         RESOLUTION_DEFAULT_VALUE
       );
 
-      const customScaleState = state<number>('custom-resolution-scale', 1);
       const scale =
-        resolutionState.value.id === ResolutionItemValue.Custom
-          ? customScaleState.value
-          : RESOLUTION_SCALE[resolutionState.value.id as ResolutionItemValue];
+        RESOLUTION_SCALE[resolutionState.value.id as ResolutionItemValue];
+      const customScaleState = state<number>('custom-resolution-scale', 1);
 
       // Format selection section
       builder.Section('format-section', {
@@ -483,10 +408,20 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
             builder.TextInput('page-range', {
               inputLabel: 'Page Range',
               value: rangeInputState.value,
-              setValue: rangeInputState.setValue
+              setValue: (newValue) => {
+                rangeInputState.setValue(newValue);
+                try {
+                  rangePageState.setValue(getPagesFromRange([], newValue));
+                  rangeInputErrorState.setValue(undefined);
+                } catch (error: unknown) {
+                  rangeInputErrorState.setValue(
+                    error instanceof Error ? error.message : 'Invalid range'
+                  );
+                }
+              }
             });
             builder.Text('page-range-info', {
-              content: rangeError ?? PAGE_RANGE_HINT,
+              content: rangeInputErrorState.value ?? 'e.g.: 1,1-2',
               align: 'right'
             });
           }
@@ -523,16 +458,20 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
               setValue: resolutionState.setValue
             });
 
-            builder.Text('resolution-description', {
-              content: createDescription(
-                engine,
-                scene,
-                scale,
-                pageWidth,
-                pageHeight
-              ),
-              align: 'right'
-            });
+            if (scale != null) {
+              builder.Text('resolution-description', {
+                content: createDescription(
+                  engine,
+                  scene,
+                  resolutionState.value.id === ResolutionItemValue.Custom
+                    ? customScaleState.value
+                    : scale,
+                  pageWidth,
+                  pageHeight
+                ),
+                align: 'right'
+              });
+            }
 
             if (resolutionState.value.id === ResolutionItemValue.Custom) {
               const widthState = state<number>(
@@ -557,6 +496,9 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
                   widthState.setValue(newWidth);
                   // set the pixel scale for the export
                   customScaleState.setValue(newHeight / pageHeight);
+
+                  maxErrorWidth.setValue(newWidth > MAX_RESOLUTION);
+                  maxErrorHeight.setValue(newHeight > MAX_RESOLUTION);
                 }
               });
               builder.NumberInput('custom-resolution-width', {
@@ -572,8 +514,18 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
                   heightState.setValue(newHeight);
                   // set the pixel scale value for the export
                   customScaleState.setValue(newWidth / pageWidth);
+
+                  maxErrorWidth.setValue(newWidth > MAX_RESOLUTION);
+                  maxErrorHeight.setValue(newHeight > MAX_RESOLUTION);
                 }
               });
+
+              if (maxErrorWidth.value || maxErrorHeight.value) {
+                builder.Text('custom-resolution-maxError', {
+                  content: `Height or width can't be greater than ${MAX_RESOLUTION}`,
+                  align: 'right'
+                });
+              }
             }
           }
         });
@@ -586,18 +538,20 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
           builder.Button('export', {
             label: 'Export Design',
             isLoading: loadingState.value,
+            isDisabled: maxErrorWidth.value || maxErrorHeight.value,
             color: 'accent',
             onClick: async () => {
-              if (rangeError != null) {
-                return;
-              }
               loadingState.setValue(true);
 
               await exportDesign(
                 cesdk,
-                pageRange,
+                rangeInputState.value,
                 formatState.value,
-                scale,
+                resolutionState.value.id === ResolutionItemValue.Custom
+                  ? customScaleState.value
+                  : RESOLUTION_SCALE[
+                      resolutionState.value.id as ResolutionScaleValue
+                    ],
                 qualityState.value.id as QualityType
               );
 

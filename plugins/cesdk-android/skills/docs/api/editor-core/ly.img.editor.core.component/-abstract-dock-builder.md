@@ -61,7 +61,7 @@ Decoration of the items in the dock. Useful when you want to add custom backgrou
 ### listBuilder
 
 ```kotlin
-open var listBuilder: ScopedProperty<Scope, HorizontalListBuilder<EditorComponent<*>>>
+var listBuilder: ScopedProperty<Scope, HorizontalListBuilder<EditorComponent<*>>>
 ```
 
 A list builder that builds a list of EditorComponents that should be part of the dock. Note that adding items to the list does not mean displaying. The items will be displayed if EditorComponent.visible is true for them. Also note that items will be rebuilt when scope is updated. By default listBuilder does not add anything to the dock.

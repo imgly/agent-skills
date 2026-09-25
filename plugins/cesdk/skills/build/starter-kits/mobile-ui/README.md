@@ -65,8 +65,8 @@ npm run build
 src/
 ├── app/                          # Demo application
 ├── imgly/
-│   ├── color-utilities.ts
-│   ├── creative-engine-utils.ts
+│   ├── ColorUtilities.ts
+│   ├── CreativeEngineUtils.ts
 │   ├── index.ts                  # Editor initialization function
 │   ├── upload.ts
 │   └── utils.ts                  # Utility functions

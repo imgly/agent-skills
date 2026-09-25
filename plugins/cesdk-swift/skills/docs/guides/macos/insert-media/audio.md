@@ -12,7 +12,7 @@ properties for background music, voiceovers, and sound effects.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0-rc.2/engine-guides-insert-media-audio)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.2-rc.0/engine-guides-insert-media-audio)
 
 <EngineReferenceNote {...props} />
 

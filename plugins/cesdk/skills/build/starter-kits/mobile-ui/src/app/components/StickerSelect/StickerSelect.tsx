@@ -44,7 +44,6 @@ const StickerSelect = ({ group, onClick }: StickerSelectProps) => {
           key={asset.id}
           onClick={() => onClick(asset)}
           backgroundImage={asset.meta.thumbUri}
-          ariaLabel={asset.label ?? asset.id}
         />
       ))}
     </div>

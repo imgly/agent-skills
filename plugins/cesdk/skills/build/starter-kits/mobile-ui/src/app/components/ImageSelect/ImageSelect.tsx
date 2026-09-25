@@ -54,11 +54,7 @@ const ImageSelect = ({ onSelect, group }: ImageSelectProps) => {
           className={classes.imageButton}
           onClick={() => onSelect(asset)}
         >
-          <img
-            height="56"
-            src={asset.meta.thumbUri}
-            alt={asset.label ?? asset.id}
-          />
+          <img height="56" src={asset.meta.thumbUri} alt="sample asset" />
         </button>
       ))}
     </Masonry>

@@ -3,7 +3,7 @@
 ---
 
 ```ts
-const FILL_TYPES: readonly ["color", "gradient/linear", "gradient/radial", "gradient/conical", "image", "video", "pixelStream", "stripe"];
+const FILL_TYPES: readonly ["color", "gradient/linear", "gradient/radial", "gradient/conical", "image", "video", "pixelStream"];
 ```
 
 The shorthand block type IDs for the fill blocks. These are the IDs used to create new fills

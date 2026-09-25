@@ -67,10 +67,7 @@ async function getGroups(engine: CreativeEngine): Promise<string[]> {
 
 function hasImageFill(engine: CreativeEngine, block: DesignBlockId): boolean {
   try {
-    if (
-      !engine.block.supportsFill(block) ||
-      !engine.block.isFillEnabled(block)
-    ) {
+    if (!engine.block.hasFill(block) || !engine.block.isFillEnabled(block)) {
       return false;
     }
     const fill = engine.block.getFill(block);
@@ -94,9 +91,7 @@ function readImageIdentity(
   try {
     const uri = engine.block.getString(fill, 'fill/image/imageFileURI');
     if (uri.length > 0) return `uri:${uri}`;
-  } catch {
-    // The property is absent on this block or fill type.
-  }
+  } catch {}
 
   try {
     const sources = engine.block.getSourceSet(fill, 'fill/image/sourceSet');
@@ -106,16 +101,12 @@ function readImageIdentity(
       .sort()
       .join('|');
     if (joined.length > 0) return `set:${joined}`;
-  } catch {
-    // The property is absent on this block or fill type.
-  }
+  } catch {}
 
   try {
     const ref = engine.block.getString(fill, 'fill/image/externalReference');
     if (ref.length > 0) return `ref:${ref}`;
-  } catch {
-    // The property is absent on this block or fill type.
-  }
+  } catch {}
 
   return null;
 }
@@ -218,15 +209,11 @@ function readBlockLabel(
   try {
     const name = engine.block.getName(block);
     if (name && name.trim().length > 0) return name.trim();
-  } catch {
-    // The property is absent on this block or fill type.
-  }
+  } catch {}
   try {
     const fallback = engine.block.getMetadata(block, 'fallback-name');
     if (fallback && fallback.trim().length > 0) return fallback.trim();
-  } catch {
-    // The property is absent on this block or fill type.
-  }
+  } catch {}
   return null;
 }
 

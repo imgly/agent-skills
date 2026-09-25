@@ -42,7 +42,7 @@ open suspend fun applyAsset(asset: Asset): DesignBlock?
 open suspend fun applyAsset(asset: Asset, block: DesignBlock)
 ```
 
-Custom implementation of applying asset to the active scene. It is required to override this method only in case the asset needs to be applied differently compared to ly.img.engine.AssetApi.defaultApplyAsset. Implementation can be invoked via ly.img.engine.AssetApi.applyAssetSourceAsset where sourceId should be the sourceId of this AssetSource. If no custom implementation is provided, ly.img.engine.AssetApi.applyAssetSourceAsset will invoke ly.img.engine.AssetApi.defaultApplyAsset instead. An override does not receive the AssetPlacement of ly.img.engine.AssetApi.applyAssetSourceAsset, so the placement is lost even when the override only calls ly.img.engine.AssetApi.defaultApplyAsset.
+Custom implementation of applying asset to the active scene. It is required to override this method only in case the asset needs to be applied differently compared to ly.img.engine.AssetApi.defaultApplyAsset. Implementation can be invoked via ly.img.engine.AssetApi.applyAssetSourceAsset where sourceId should be the sourceId of this AssetSource. If no custom implementation is provided, ly.img.engine.AssetApi.applyAssetSourceAsset will invoke ly.img.engine.AssetApi.defaultApplyAsset instead.
 
 ### credits
 

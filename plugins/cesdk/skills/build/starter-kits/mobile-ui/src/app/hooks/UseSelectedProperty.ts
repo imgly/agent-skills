@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import type CreativeEngine from '@cesdk/engine';
 import { useEditor } from '../contexts/EditorContext';
+import { useSelection } from './UseSelection';
 
 type PropertyType =
   | 'Float'
@@ -55,12 +56,21 @@ export function setProperty(
   const blockType = engine.block.getPropertyType(propertyName) as PropertyType;
   const typeDependentMethodName = BLOCK_PROPERTY_METHODS[blockType];
   if (typeDependentMethodName?.set) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (engine.block as any)[typeDependentMethodName.set](
-      blockId,
-      propertyName,
-      ...values
-    );
+    if (Array.isArray(values)) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return (engine.block as any)[typeDependentMethodName.set](
+        blockId,
+        propertyName,
+        ...values
+      );
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return (engine.block as any)[typeDependentMethodName.set](
+        blockId,
+        propertyName,
+        values
+      );
+    }
   }
 }
 
@@ -108,7 +118,11 @@ export const useProperty = (
     (...value: any[]) => {
       if (!block || !engine) return;
       try {
-        setProperty(engine, block, propertyName, ...value);
+        if (Array.isArray(value)) {
+          setProperty(engine, block, propertyName, ...value);
+        } else {
+          setProperty(engine, block, propertyName, value);
+        }
         if (options.shouldAddUndoStep) {
           engine.editor.addUndoStep();
         }
@@ -121,11 +135,9 @@ export const useProperty = (
 
   useEffect(() => {
     if (!block || !engine) return;
-    // A text block carries its colour itself and has no fill to subscribe to.
-    const blockToSubscribeTo =
-      propertyName.startsWith('fill/') && engine.block.supportsFill(block)
-        ? engine.block.getFill(block)
-        : block;
+    const blockToSubscribeTo = propertyName.startsWith('fill/')
+      ? engine.block.getFill(block)
+      : block;
     const unsubscribe = engine.event.subscribe(
       [blockToSubscribeTo],
       (events) => {
@@ -154,9 +166,9 @@ export const useSelectedProperty = (
   propertyName: string,
   options = { shouldAddUndoStep: true }
 ) => {
-  const { selectedBlocks } = useEditor();
+  const { selection } = useSelection();
   const [propertyValue, setEnginePropertyValue] = useProperty(
-    selectedBlocks?.[0]?.id,
+    selection[0],
     propertyName,
     options
   );

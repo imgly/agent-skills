@@ -19,7 +19,7 @@ your designs using CE.SDK's comprehensive text rendering capabilities.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-language-support-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/guides-text-language-support-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/guides-text-language-support-browser/index.html)
 
 CE.SDK provides built-in support for creating designs that work seamlessly across different languages and writing systems. The engine automatically handles text shaping, bidirectional layout, and script-specific rendering - supporting all Unicode characters, complex script ligatures, and mixed LTR/RTL content without additional configuration.
 
@@ -451,7 +451,6 @@ The alignment options:
 - **'Left'** - Always align text to the left
 - **'Right'** - Always align text to the right
 - **'Center'** - Center-align text (language-neutral)
-- **'Justify'** - Stretch every line of a paragraph except the last, by widening the gaps between words. The last line keeps its natural width and is aligned like **'Auto'**: flush right for RTL scripts, flush left for LTR. Justified Arabic and Hebrew therefore read correctly. A line with no gap to widen keeps its natural width too — a single unbroken word, or a script written without word spaces such as Chinese, Japanese or Korean.
 
 With 'Auto' alignment, the Arabic text in our example automatically aligns to the right without explicit configuration:
 
@@ -479,8 +478,7 @@ To check the effective alignment when 'Auto' is set, use `getTextEffectiveHorizo
 
 ```typescript
 const effectiveAlignment = engine.block.getTextEffectiveHorizontalAlignment(textBlock);
-// Returns 'Left' or 'Right' based on text content, never 'Auto'.
-// Only 'Auto' is resolved this way — 'Justify' is itself an effective alignment and comes back verbatim.
+// Returns 'Left' or 'Right' based on text content, never 'Auto'
 ```
 
 This approach simplifies multilingual templates - the same template works correctly for both LTR and RTL languages without alignment adjustments.

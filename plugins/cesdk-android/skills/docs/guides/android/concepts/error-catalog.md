@@ -491,23 +491,6 @@ Audio/video codec capability and decoding.
 | `CODEC.WEBCODECS_NOT_AVAILABLE_NODE` | WebCodecs API is not available in Node.js. | Run in a browser environment, or use a different codec backend on Node. |  |
 | `CODEC.WEBCODECS_NOT_SUPPORTED` | WebCodecs API is not supported. | The current browser does not expose the WebCodecs API. Upgrade to a supported version. |  |
 
-## COLOR
-
-ICC color profiles, document CMYK profiles, and color management.
-
-| Code | Message | Hint | Docs |
-| --- | --- | --- | --- |
-| `COLOR.IMAGE_DECODE_FAILED` | The CMYK image data could not be decoded. Size: \{byteCount} bytes. | The CMYK or YCCK samples of the image could not be read. The image loads without color management instead, so its colors can be wrong. |  |
-| `COLOR.IMAGE_TRANSFORM_FAILED` | The color profile of the image at \{uri} could not be applied. | The profile could be read, but the engine could not convert colors with it. The image loads without color management, so its colors can be wrong. |  |
-| `COLOR.PROFILE_ASSIGNMENT_SUPERSEDED` | The color profile at \{uri} was not assigned, because a later change replaced the request. | Another profile assignment, a profile removal or a scene load happened while this profile was loading. The later change is in effect. Set the profile again if you still want it. |  |
-| `COLOR.PROFILE_DATA_SPACE_MISMATCH` | The color profile data describes \{space}, but \{expected} is required here. | Pass the bytes of a profile whose color space matches the one it is used for. The document CMYK profile has to be a CMYK profile. The previous profile stays in use. |  |
-| `COLOR.PROFILE_INVALID` | The ICC profile data could not be read. Size: \{byteCount} bytes. | The bytes are not a valid ICC profile. Check that the file is complete and was not truncated by the download. |  |
-| `COLOR.PROFILE_MISSING` | The color profile at \{uri} could not be loaded. | Check that the URI is reachable and returns valid ICC profile data. A setter keeps the previous profile. A profile named by the scene or the setting is skipped: colors of that space use the next profile the engine can load, and are previewed unmanaged when there is none. |  |
-| `COLOR.PROFILE_NOT_LOADED` | The CMYK color profile is not loaded yet, so the color cannot be converted. | The call started the load. Run \`update()\` and convert again. Converting without the profile would return a different color than the engine renders. |  |
-| `COLOR.PROFILE_SPACE_MISMATCH` | The color profile at \{uri} describes \{space}, but \{expected} is required here. | Point the profile at a file whose color space matches the one it is used for. A document profile and the \`fallbackCMYKProfileUri\` setting both have to name a CMYK profile. A setter keeps the previous profile. A profile named by the scene or the setting is skipped, and colors use the next profile. |  |
-| `COLOR.PROFILE_UNSUPPORTED_SPACE` | The ICC profile uses the color space \{space}, which is not supported. | Use an RGB, CMYK or Gray profile. Other color spaces cannot be opened. |  |
-| `COLOR.RENDERING_INTENT_INVALID` | The rendering intent value \{value} is not valid. | Use 0 (Perceptual), 1 (RelativeColorimetric), 2 (Saturation) or 3 (AbsoluteColorimetric). The previous rendering intent stays in use. |  |
-
 ## COMPUTE
 
 Compute contexts (Metal, GL, CPU) and capability negotiation.
@@ -787,6 +770,7 @@ License unlock, API-key handling, entitlement checks.
 | `LICENSE.CLAIM_INVALID` | The license has a missing or invalid "\{claim}" value. | The license server issued a license that this SDK version cannot read. Contact support@img.ly and include this message. |  |
 | `LICENSE.DEACTIVATION_TIMEOUT` | Deactivation timed out. | The license server did not acknowledge the deactivation in time. Retry, or contact support if the issue persists. |  |
 | `LICENSE.ENGINE_VERSION_INVALID` | The License Key (API Key) you are using requires a newer version of the IMG.LY SDK. Please update to the latest version. | Upgrade the CE.SDK engine to a version compatible with this license. |  |
+| `LICENSE.ENGINE_VERSION_OUT_OF_RANGE` | This license covers engine versions \{min} up to (but not including) \{max}; this build is \{current}. | Run an engine within the licensed range, or obtain a license that covers \{current}. An open bound is shown as '\*'. |  |
 | `LICENSE.EXPIRED` | Thanks for using IMG.LY for creative editing. Please note that your license file or commercial use is expired. | Renew your subscription at https://img.ly/pricing to continue commercial use. |  |
 | `LICENSE.IDENTIFIER_MISMATCH` | The License Key (API Key) you are using to access the IMG.LY SDK is invalid for this app identifier. Current app identifier "\{current}" differs from license app identifiers: \[\{allowed}] | Your license is tied to specific app identifiers. Adjust the application bundle id to one of '\{allowed}' or update the license. |  |
 | `LICENSE.INVALID` | The License Key (API Key) you are using to access the IMG.LY SDK is invalid. | Verify the License Key matches your IMG.LY subscription. If issues persist, contact support@img.ly. |  |
@@ -798,6 +782,7 @@ License unlock, API-key handling, entitlement checks.
 | `LICENSE.NO_ACTIVE_TO_DEACTIVATE` | No active license to deactivate. | The deactivation request targets a license that is not currently active. Unlock a license first. |  |
 | `LICENSE.NO_USER_ID` | License does not have a user ID. | User-specific entitlements require a license that carries a user id. Re-issue the license with a user id assigned. |  |
 | `LICENSE.PLATFORM_MISMATCH` | The License Key (API Key) you are using to access the IMG.LY SDK is invalid for this platform. Current platform: "\{current}" differs from license platforms: \[\{allowed}] | Your license restricts the platforms this engine may run on. Update the license to include '\{current}' or run on one of: \{allowed}. |  |
+| `LICENSE.PRERELEASE_NOT_ALLOWED` | This license does not cover prerelease engine builds, and this build is \{current}. | Run a release build of the engine, or obtain a license whose config sets 'allowPrerelease' to true. |  |
 | `LICENSE.PRODUCT_MISMATCH` | The License Key (API Key) you are using to access the IMG.LY SDK is invalid for this product. Current build product: "\{current}" differs from license product: "\{required}" | Your license is tied to a specific product. Use a build for '\{required}' or obtain a license for '\{current}'. |  |
 | `LICENSE.REQUEST_IN_PROGRESS` | License request already in progress. | A license fetch is in flight. Wait for it to finish before calling unlock again. |  |
 | `LICENSE.SERVER_ERROR` | License server reported an error: \{reason} | Server response: \{reason}. If the message is unexpected, contact IMG.LY support. |  |
@@ -844,7 +829,6 @@ Scene-level operations (load, save, archive, structural validation).
 | --- | --- | --- | --- |
 | `SCENE.ARCHIVAL_REQUEST_FAILED` | Archival request failed: \{reason} | An async archival operation (save/load) was completed in error state. The underlying reason is: \{reason} | [Scenes](./scenes.md) |
 | `SCENE.ARCHIVE_ADD_RESOURCE_FAILED` | Could not add the resource '\{resource}' to the archive. Adding data failed. | The engine could not fetch or write the bytes for \{resource}. Verify the resource is reachable and not larger than the archive can hold. | [Scenes](./scenes.md) |
-| `SCENE.ARCHIVE_BUFFER_DATA_MISSING` | Could not add the resource '\{resource}' to the archive. Its buffer holds no data. | A buffer URL names data that only this engine holds, so the archive must carry the bytes. The buffer is empty or was destroyed. Write the data again with setBufferData, or clear the reference on the block, then save. | [Scenes](./scenes.md) |
 | `SCENE.ARCHIVE_CHUNK_READ_FAILED` | Failed to read chunk data from data provider. | The data provider returned no bytes for an available range. The underlying source may have disconnected or returned a partial response. | [Scenes](./scenes.md) |
 | `SCENE.ARCHIVE_CORRUPTED_EMPTY_RESOURCE` | Corrupted archive. Some elements in the scene are referencing empty data, e.g., '\{resource}'. | The archive is internally inconsistent. Regenerate it from the original scene and verify the source has no missing assets. | [Scenes](./scenes.md) |
 | `SCENE.ARCHIVE_CREATE_FAILED` | Could not create archive. | Final archive assembly failed for an unspecified reason. Inspect prior log lines for the underlying failure. | [Scenes](./scenes.md) |

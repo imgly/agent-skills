@@ -18,7 +18,7 @@ Automatically adapt the same design or template to different page sizes and easi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-page-sizes-asset-source-ts-web/tree/release-$UBQ_VERSION$)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0-rc.2/examples/starterkit-page-sizes-asset-source/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2-rc.0/examples/starterkit-page-sizes-asset-source/index.html)
 
 ***
 
@@ -70,7 +70,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     │   │       ├── navigationBar.ts          # Navigation bar layout
     │   │       └── panel.ts                  # Panel configuration
     │   ├── index.ts                  # Editor initialization function
-    │   └── demo-assets.ts
+    │   └── resolveAssetPath.ts
     └── index.ts
     ```
 
@@ -184,7 +184,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
     │       ├── navigationBar.ts          # Navigation bar layout
     │       └── panel.ts                  # Panel configuration
     ├── index.ts                  # Editor initialization function
-    └── demo-assets.ts
+    └── resolveAssetPath.ts
     ```
 
     ## Step 2: Install Dependencies

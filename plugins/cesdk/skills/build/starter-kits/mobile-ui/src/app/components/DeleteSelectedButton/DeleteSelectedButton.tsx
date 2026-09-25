@@ -37,9 +37,10 @@ const DeleteSelectedButton = ({
       onClick={() => deleteSelectedElement()}
       icon={<TrashBinIcon />}
       iconColor="red"
-      aria-label="Delete"
       isActive={isActive}
-    />
+    >
+      Delete
+    </IconButton>
   );
 };
 export default DeleteSelectedButton;

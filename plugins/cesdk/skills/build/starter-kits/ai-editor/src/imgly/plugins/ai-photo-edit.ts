@@ -80,10 +80,12 @@ export class AiPhotoEditConfig implements EditorPlugin {
     const factories = this.providers.image2image ?? [];
     if (factories.length === 0) return;
 
-    // The provider Select above the prompt is gated by a predicate that only
-    // `ImageGeneration` satisfies. This kit bypasses that plugin, so it sets
-    // the feature on instead of enabling it, otherwise the Select never shows.
-    cesdk.feature.set(
+    // `initializeProviders` renders a provider Select above the prompt
+    // when more than one provider is initialized — but only when this
+    // feature is enabled. `ImageGeneration` enables it as a side effect;
+    // since we bypass that plugin, we need to enable it ourselves, or
+    // users who select multiple models only ever see one of them.
+    cesdk.feature.enable(
       'ly.img.plugin-ai-image-generation-web.providerSelect',
       true
     );
@@ -200,7 +202,7 @@ export class AiPhotoEditConfig implements EditorPlugin {
  * the only renderer the gateway adds is the `image_urls` picker, which we're
  * replacing anyway.
  */
-export function customizeProviderForPhotoEdit(
+function customizeProviderForPhotoEdit(
   provider: Provider<'image', any, any>,
   cesdk: CreativeEditorSDK
 ): void {
@@ -250,8 +252,8 @@ export function customizeProviderForPhotoEdit(
         value: getCurrentPageImageUri(cesdk) ?? ''
       }),
 
-      // `PromptInput` for `prompt` + a `style` picker whose value is appended
-      // to the prompt before generation. The helper registers both keys.
+      // TextArea for `prompt` + a `style` picker whose value is appended to
+      // the prompt before generation. The helper registers both keys.
       //
       // `inputLabel` and `placeholder` are fed straight to the builder as
       // translation keys — passing literals here would miss every lookup
@@ -296,7 +298,7 @@ export function customizeProviderForPhotoEdit(
  * image, normalizing scenes built with `createFromImage` (which stores
  * `fill/image/imageFileURI`) into the same shape downstream edits expect.
  */
-export function applyToPhotoMiddleware(
+function applyToPhotoMiddleware(
   cesdk: CreativeEditorSDK
 ): Middleware<any, any> {
   return async (input, options, next) => {
@@ -352,9 +354,7 @@ export function applyToPhotoMiddleware(
  * an `<img>.onerror` fire and the surrounding framework stringifies that
  * Event into the unhelpful `"[object Event]"` error.
  */
-export function getCurrentPageImageUri(
-  cesdk: CreativeEditorSDK
-): string | undefined {
+function getCurrentPageImageUri(cesdk: CreativeEditorSDK): string | undefined {
   try {
     const page = cesdk.engine.scene.getCurrentPage();
     if (page == null) return undefined;

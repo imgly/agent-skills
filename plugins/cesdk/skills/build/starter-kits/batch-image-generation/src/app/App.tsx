@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { batchRender } from '../imgly';
 
 import { EMPLOYEES } from './constants';
+import { resolveAssetPath } from './resolveAssetPath';
 import { loadTemplates } from './templates';
 import type { Employee, TeamImage, Template } from './types';
 import { EditorModal } from './EditorModal/EditorModal';
@@ -16,7 +17,6 @@ import { LoadingOverlay } from './LoadingOverlay/LoadingOverlay';
 import { TemplateSelector } from './TemplateSelector/TemplateSelector';
 
 import styles from './App.module.css';
-import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../../shared/demo-preview/lifecycle';
@@ -99,7 +99,7 @@ export default function App({ config }: AppProps) {
 
     // Build batch items
     const items = EMPLOYEES.map((emp) => ({
-      images: { Photo: `${DEMO_ASSETS_BASE_URL}/images/${emp.imagePath}` },
+      images: { Photo: resolveAssetPath(`/images/${emp.imagePath}`) },
       variables: {
         [VAR_NAMES.FIRST_NAME]: emp.firstName,
         [VAR_NAMES.LAST_NAME]: emp.lastName,

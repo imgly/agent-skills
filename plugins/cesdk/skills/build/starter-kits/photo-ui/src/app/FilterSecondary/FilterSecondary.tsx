@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useEditor } from '../contexts/EditorContext';
-import { DEMO_ASSETS_BASE_URL } from '../../imgly';
+import { DEMO_ASSETS_BASE_URL, useEditor } from '../contexts/EditorContext';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import FilterButton from '../FilterButton/FilterButton';
 import FILTER_MANIFEST from './FilterManifest.json';
@@ -41,6 +40,7 @@ const FilterSecondary = () => {
       block: 'nearest',
       inline: 'center'
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -60,9 +60,7 @@ const FilterSecondary = () => {
               (effect) =>
                 engine.block.getString(effect, 'type') === LUT_FILTER_TYPE
             );
-            if (adjustmentEffect != null) {
-              engine.block.destroy(adjustmentEffect);
-            }
+            engine.block.destroy(adjustmentEffect);
             setActiveFilterId('none');
           }}
           isActive={activeFilterId === 'none'}

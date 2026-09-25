@@ -120,31 +120,15 @@ starterkit-design-editor-ts-web/
 
 ## Troubleshooting
 
-| Issue               | Solution                                  |
-| ------------------- | ----------------------------------------- |
+| Issue | Solution |
+|-------|----------|
 | Editor doesn't load | Verify assets are accessible at `baseURL` |
-| Assets don't appear | Check `public/assets/` directory exists   |
-| Watermark appears   | Add your license key                      |
+| Assets don't appear | Check `public/assets/` directory exists |
+| Watermark appears | Add your license key |
 
 ## Documentation
 
 For complete integration guides and API reference, visit the [Design Editor Documentation](https://img.ly/docs/cesdk/js/starterkits/design-editor-8unj9u/).
-
-## Demo Assets
-
-The demo assets for this starter kit load from the IMG.LY CDN by default, and
-`.env.example` links a zip with them. To host them yourself, upload the
-extracted files to your own server or CDN and set `VITE_DEMO_ASSETS_BASE_URL`
-in `.env`:
-
-```bash
-VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
-```
-
-The demo assets are intended for development and prototyping — replace
-them with your own content or licensed stock assets before shipping to
-production (see `DEMO-ASSETS-NOTICE.txt` in the download). This applies in
-particular to media such as music tracks and stock imagery.
 
 ## License
 

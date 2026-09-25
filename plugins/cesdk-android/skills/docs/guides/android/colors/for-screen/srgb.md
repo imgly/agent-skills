@@ -15,7 +15,7 @@ import ly.img.engine.RGBAColor
 import ly.img.engine.ShapeType
 import ly.img.engine.SpotColor
 
-suspend fun srgbColors(engine: Engine) {
+fun srgbColors(engine: Engine) {
     val scene = engine.scene.create()
 
     val page = engine.block.create(DesignBlockType.Page)
@@ -91,8 +91,6 @@ suspend fun srgbColors(engine: Engine) {
         is SpotColor -> error("Expected sRGB color, got spot color: $currentStrokeColor")
     }
 
-    // Converting CMYK reads the document CMYK profile, which is a resource. Load it once first.
-    engine.editor.loadCMYKProfile()
     val cmykOrange = Color.fromCMYK(c = 0F, m = 0.5F, y = 1F, k = 0F, tint = 1F)
     val convertedToSrgb = engine.editor.convertColorToColorSpace(
         color = cmykOrange,
@@ -111,7 +109,7 @@ with red, green, blue, and alpha components.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0-rc.2/engine-guides-colors-for-screen-srgb)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.2-rc.0/engine-guides-colors-for-screen-srgb)
 
 <EngineReferenceNote {...props} />
 
@@ -220,8 +218,6 @@ Android represents color spaces as implementations of the `Color` interface. Use
 Use `engine.editor.convertColorToColorSpace` with `ColorSpace.SRGB` when you need an sRGB representation of another color space, such as CMYK.
 
 ```kotlin highlight-android-convert-to-srgb
-// Converting CMYK reads the document CMYK profile, which is a resource. Load it once first.
-engine.editor.loadCMYKProfile()
 val cmykOrange = Color.fromCMYK(c = 0F, m = 0.5F, y = 1F, k = 0F, tint = 1F)
 val convertedToSrgb = engine.editor.convertColorToColorSpace(
     color = cmykOrange,

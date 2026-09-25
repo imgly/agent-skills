@@ -3,7 +3,7 @@
 ---
 
 ```ts
-const CaptionHorizontalAlignmentValues: readonly ["Left", "Right", "Center", "Justify", "Auto"];
+const CaptionHorizontalAlignmentValues: readonly ["Left", "Right", "Center", "Auto"];
 ```
 
 

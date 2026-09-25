@@ -120,8 +120,9 @@ export function FileProcessingContextProvider({
         const response = await fetch(file.pptxUrl);
         const blob = await response.blob();
         await processPPTXBlob(blob, file.name);
-      } catch {
-        // The error state is already set; the screen offers a way back.
+      } catch (err) {
+        // Error already handled in processPPTXBlob
+        setStatus('idle');
       }
     },
     [processPPTXBlob]
@@ -142,8 +143,9 @@ export function FileProcessingContextProvider({
 
       try {
         await processPPTXBlob(file, file.name);
-      } catch {
-        // The error state is already set; the screen offers a way back.
+      } catch (err) {
+        // Error already handled in processPPTXBlob
+        setStatus('idle');
       }
     },
     [processPPTXBlob]

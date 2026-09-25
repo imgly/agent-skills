@@ -2,7 +2,7 @@ import Select from '../Select/Select';
 import { useEffect, useState } from 'react';
 import { useEditor } from '../../contexts/EditorContext';
 
-export const STICKER_GROUP_LABELS: Record<string, string> = {
+const LABELS: Record<string, string> = {
   doodle: 'Doodle',
   emoji: 'Emoji',
   emoticons: 'Emoticons',
@@ -13,8 +13,8 @@ export const STICKER_GROUP_LABELS: Record<string, string> = {
   stickers: 'Stickers'
 };
 
-export const labelForGroup = (group: string) =>
-  STICKER_GROUP_LABELS[group] ?? group.charAt(0).toUpperCase() + group.slice(1);
+const labelForGroup = (group: string) =>
+  LABELS[group] ?? group.charAt(0).toUpperCase() + group.slice(1);
 
 type StickerSelectFilterProps = {
   onChange: (group: string) => void;
@@ -30,10 +30,11 @@ const StickerSelectFilter = ({ onChange }: StickerSelectFilterProps) => {
       setAvailableGroups(newGroups);
     };
     loadGroups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Select aria-label="Sticker group" onChange={onChange}>
+    <Select onChange={onChange}>
       <option value="">All</option>
       {availableGroups.map((group) => (
         <option value={group} key={group}>

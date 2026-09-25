@@ -172,15 +172,15 @@ try {
 
 This guide covers required and optional configuration properties, and runtime APIs for server-side CE.SDK usage.
 
-## License Key
+## Required Configuration
 
-CE.SDK is a commercial product and a license is required for production use. Without a license, CE.SDK runs in evaluation mode, which watermarks exports.
+The `license` property is the only required configuration. All other properties have sensible defaults.
 
 | Property | Type | Purpose |
 |----------|------|---------|
-| `license` | `string` | License key that removes export watermarks |
+| `license` | `string` | License key to remove export watermarks |
 
-Request a license through [IMG.LY Contact Sales](https://img.ly/forms/contact-sales/).
+The license key validates your CE.SDK subscription and removes watermarks from exports. Without a valid license, exports include a watermark. Get a free trial license at [https://img.ly/forms/free-trial](https://img.ly/forms/free-trial).
 
 ```javascript
 const config = {

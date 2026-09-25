@@ -10,6 +10,7 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import {
   renderMockup,
+  CLEAR_IMAGE,
   type RenderResult,
   type HeadlessEngineConfig
 } from '../../imgly';
@@ -19,7 +20,7 @@ import {
   DEFAULT_MAX_PLACEHOLDERS,
   DEFAULT_RENDER_DEBOUNCE_MS
 } from '../constants';
-import { buildPlaceholders, getMockupSceneUrl } from '../utils';
+import { getMockupSceneUrl, getPlaceholderName } from '../utils';
 
 interface UseMockupRendererOptions {
   designEngineRef: React.RefObject<CreativeEditorSDK | null>;
@@ -28,7 +29,6 @@ interface UseMockupRendererOptions {
 
 interface UseMockupRendererResult {
   mockupImageUrl: string | null;
-  renderError: string | null;
   mockupSceneString: string | undefined;
   isLoading: boolean;
   isEngineReady: boolean;
@@ -51,7 +51,6 @@ export function useMockupRenderer({
     string | undefined
   >();
   const [isLoading, setIsLoading] = useState(true);
-  const [renderError, setRenderError] = useState<string | null>(null);
   const [isEngineReady, setIsEngineReady] = useState(false);
 
   // Internal refs
@@ -66,6 +65,34 @@ export function useMockupRenderer({
   sceneStringRef.current = mockupSceneString;
 
   /**
+   * Builds placeholders object from exported design pages.
+   */
+  const buildPlaceholders = useCallback(async (cesdk: CreativeEditorSDK) => {
+    if (!cesdk?.engine) return {};
+    const pages = cesdk.engine.block.findByKind('page');
+
+    const pageBlobs = await Promise.all(
+      pages.map((id) =>
+        cesdk.engine.block.export(id, {
+          mimeType: 'image/png',
+          targetWidth: DEFAULT_EXPORT_WIDTH,
+          targetHeight: DEFAULT_EXPORT_HEIGHT
+        })
+      )
+    );
+
+    const placeholders: Record<string, Blob | string> = {};
+    pageBlobs.forEach((blob, index) => {
+      placeholders[getPlaceholderName(index)] = blob;
+    });
+    for (let i = pageBlobs.length; i < DEFAULT_MAX_PLACEHOLDERS; i++) {
+      placeholders[getPlaceholderName(i)] = CLEAR_IMAGE;
+    }
+
+    return placeholders;
+  }, []);
+
+  /**
    * Executes the render operation.
    */
   const executeRender = useCallback(async () => {
@@ -74,14 +101,9 @@ export function useMockupRenderer({
 
     isRenderingRef.current = true;
     setIsLoading(true);
-    setRenderError(null);
 
     try {
-      const placeholders = await buildPlaceholders(
-        cesdk.engine,
-        DEFAULT_MAX_PLACEHOLDERS,
-        { width: DEFAULT_EXPORT_WIDTH, height: DEFAULT_EXPORT_HEIGHT }
-      );
+      const placeholders = await buildPlaceholders(cesdk);
       const sceneSource = sceneStringRef.current
         ? { sceneString: sceneStringRef.current }
         : getMockupSceneUrl(productKeyRef.current);
@@ -97,8 +119,6 @@ export function useMockupRenderer({
 
       setMockupImageUrl(result.mockupUrl);
       setMockupSceneString(result.sceneString);
-    } catch (error) {
-      setRenderError(error instanceof Error ? error.message : String(error));
     } finally {
       setIsLoading(false);
       isRenderingRef.current = false;
@@ -112,7 +132,7 @@ export function useMockupRenderer({
         );
       }
     }
-  }, [designEngineRef, config]);
+  }, [designEngineRef, config, buildPlaceholders]);
 
   /**
    * Schedules a debounced render.
@@ -158,8 +178,7 @@ export function useMockupRenderer({
     const cesdk = designEngineRef.current;
     if (!cesdk) return;
 
-    const unsubscribe =
-      cesdk.engine.editor.onHistoryUpdatedWithKind(scheduleRender);
+    const unsubscribe = cesdk.engine.editor.onHistoryUpdated(scheduleRender);
 
     return () => {
       clearTimeout(debounceRef.current);
@@ -193,7 +212,6 @@ export function useMockupRenderer({
 
   return {
     mockupImageUrl,
-    renderError,
     mockupSceneString,
     isLoading,
     isEngineReady,

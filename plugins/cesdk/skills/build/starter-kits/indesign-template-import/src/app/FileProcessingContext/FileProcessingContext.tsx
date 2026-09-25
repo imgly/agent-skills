@@ -120,8 +120,9 @@ export function FileProcessingContextProvider({
         const response = await fetch(file.idmlUrl);
         const blob = await response.blob();
         await processIDMLBlob(blob, file.name);
-      } catch {
-        // The error state is already set; the screen offers a way back.
+      } catch (err) {
+        // Error already handled in processIDMLBlob
+        setStatus('idle');
       }
     },
     [processIDMLBlob]
@@ -142,8 +143,9 @@ export function FileProcessingContextProvider({
 
       try {
         await processIDMLBlob(file, file.name);
-      } catch {
-        // The error state is already set; the screen offers a way back.
+      } catch (err) {
+        // Error already handled in processIDMLBlob
+        setStatus('idle');
       }
     },
     [processIDMLBlob]

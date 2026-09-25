@@ -2687,66 +2687,6 @@ case codecWebcodecsNotAvailableNode
 case codecWebcodecsNotSupported
 ```
 
-### EngineErrorCode.colorImageDecodeFailed
-
-```swift
-case colorImageDecodeFailed
-```
-
-### EngineErrorCode.colorImageTransformFailed
-
-```swift
-case colorImageTransformFailed
-```
-
-### EngineErrorCode.colorProfileAssignmentSuperseded
-
-```swift
-case colorProfileAssignmentSuperseded
-```
-
-### EngineErrorCode.colorProfileDataSpaceMismatch
-
-```swift
-case colorProfileDataSpaceMismatch
-```
-
-### EngineErrorCode.colorProfileInvalid
-
-```swift
-case colorProfileInvalid
-```
-
-### EngineErrorCode.colorProfileMissing
-
-```swift
-case colorProfileMissing
-```
-
-### EngineErrorCode.colorProfileNotLoaded
-
-```swift
-case colorProfileNotLoaded
-```
-
-### EngineErrorCode.colorProfileSpaceMismatch
-
-```swift
-case colorProfileSpaceMismatch
-```
-
-### EngineErrorCode.colorProfileUnsupportedSpace
-
-```swift
-case colorProfileUnsupportedSpace
-```
-
-### EngineErrorCode.colorRenderingIntentInvalid
-
-```swift
-case colorRenderingIntentInvalid
-```
-
 ### EngineErrorCode.computeColorSpaceBitDepthUnsupported
 
 ```swift
@@ -4175,6 +4115,12 @@ case licenseDeactivationTimeout
 case licenseEngineVersionInvalid
 ```
 
+### EngineErrorCode.licenseEngineVersionOutOfRange
+
+```swift
+case licenseEngineVersionOutOfRange
+```
+
 ### EngineErrorCode.licenseExpired
 
 ```swift
@@ -4239,6 +4185,12 @@ case licenseNoUserId
 
 ```swift
 case licensePlatformMismatch
+```
+
+### EngineErrorCode.licensePrereleaseNotAllowed
+
+```swift
+case licensePrereleaseNotAllowed
 ```
 
 ### EngineErrorCode.licenseProductMismatch
@@ -4431,12 +4383,6 @@ case sceneArchivalRequestFailed
 
 ```swift
 case sceneArchiveAddResourceFailed
-```
-
-### EngineErrorCode.sceneArchiveBufferDataMissing
-
-```swift
-case sceneArchiveBufferDataMissing
 ```
 
 ### EngineErrorCode.sceneArchiveChunkReadFailed

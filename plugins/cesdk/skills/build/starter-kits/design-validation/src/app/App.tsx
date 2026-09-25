@@ -10,10 +10,10 @@ import CreativeEditorSDK, { type Configuration } from '@cesdk/cesdk-js';
 import CreativeEditor from '@cesdk/cesdk-js/react';
 
 import { initDesignValidationEditor } from '../imgly';
+import { resolveAssetPath } from '../imgly/resolveAssetPath';
 import { Sidebar } from './Sidebar/Sidebar';
 
 import classes from './App.module.css';
-import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
 
 // START_HIDDEN_BLOCK
 import {
@@ -36,15 +36,14 @@ export function App({ editorConfig }: AppProps) {
     // END_HIDDEN_BLOCK
     cesdkRef.current = instance;
 
-    // START_HIDDEN_BLOCK
+    // Debug access (remove in production)
     (window as any).cesdk = instance;
-    // END_HIDDEN_BLOCK
 
     // Initialize editor with CE.SDK configuration
     await initDesignValidationEditor(instance);
 
     // Load the scene
-    await instance.load(`${DEMO_ASSETS_BASE_URL}/assets/example.scene`);
+    await instance.load(resolveAssetPath('/assets/example.scene'));
 
     setCesdk(instance);
     // START_HIDDEN_BLOCK
