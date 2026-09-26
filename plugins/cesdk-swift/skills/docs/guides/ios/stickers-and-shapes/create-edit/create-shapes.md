@@ -217,7 +217,7 @@ combined with fills.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.1/engine-guides-create-shapes)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.2/engine-guides-create-shapes)
 
 <EngineReferenceNote {...props} />
 

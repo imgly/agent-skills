@@ -28,7 +28,7 @@ import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1/starterkit-html5-ads-exporter';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.2/starterkit-html5-ads-exporter';
 
 // highlight-config
 const config = {

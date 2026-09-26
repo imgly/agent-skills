@@ -128,7 +128,7 @@ CE.SDK.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.1/engine-guides-create-templates-import-from-scene-file)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.2/engine-guides-create-templates-import-from-scene-file)
 
 <EngineReferenceNote {...props} />
 

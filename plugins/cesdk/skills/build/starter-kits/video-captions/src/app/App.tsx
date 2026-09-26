@@ -35,7 +35,7 @@ import {
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1/starterkit-video-captions';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.2/starterkit-video-captions';
 
 interface AppProps {
   editorConfig: Configuration;

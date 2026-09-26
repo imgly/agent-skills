@@ -23,7 +23,7 @@ import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1/starterkit-photobook-ui';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.2/starterkit-photobook-ui';
 
 const template = {
   name: 'Example Photobook',

@@ -4097,6 +4097,12 @@ case licenseAvSessionRequiresApiKey
 case licenseCannotDeactivateOffline
 ```
 
+### EngineErrorCode.licenseClaimInvalid
+
+```swift
+case licenseClaimInvalid
+```
+
 ### EngineErrorCode.licenseDeactivationTimeout
 
 ```swift
@@ -4107,6 +4113,12 @@ case licenseDeactivationTimeout
 
 ```swift
 case licenseEngineVersionInvalid
+```
+
+### EngineErrorCode.licenseEngineVersionOutOfRange
+
+```swift
+case licenseEngineVersionOutOfRange
 ```
 
 ### EngineErrorCode.licenseExpired
@@ -4173,6 +4185,12 @@ case licenseNoUserId
 
 ```swift
 case licensePlatformMismatch
+```
+
+### EngineErrorCode.licensePrereleaseNotAllowed
+
+```swift
+case licensePrereleaseNotAllowed
 ```
 
 ### EngineErrorCode.licenseProductMismatch
