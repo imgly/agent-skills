@@ -1,4 +1,4 @@
-import { DEMO_ASSETS_BASE_URL } from './contexts/EditorContext';
+import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
 
 const WEIGHTS: Array<{ weight: number; file: string }> = [
   { weight: 400, file: 'IBMPlexSans-Regular.ttf' },

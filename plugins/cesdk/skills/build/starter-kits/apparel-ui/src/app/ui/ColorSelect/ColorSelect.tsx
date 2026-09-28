@@ -5,10 +5,10 @@ import {
   isColorEqual,
   hexToRgba,
   rgbaToHex
-} from '../../../imgly/ColorUtilities';
+} from '../../../imgly/color-utilities';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
-import { resolveAssetPath } from '../../../imgly/resolveAssetPath';
 import classes from './ColorSelect.module.css';
+import { DEMO_ASSETS_BASE_URL } from '../../../imgly/demo-assets';
 
 interface ColorSelectProps {
   colorPalette: Array<RGBAColor>;
@@ -54,13 +54,18 @@ const ColorSelect = ({
           try {
             const color = hexToRgba(hex);
             onClick(color);
-          } catch {}
+          } catch {
+            // Ignore a color string the picker cannot parse.
+          }
         }}
         // value={activeColorHex}
         value={rgbaToHex(activeColor)}
       >
         <button className={classes.colorButton}>
-          <img src={resolveAssetPath('/ColorPicker.png')} alt={'Pick color'} />
+          <img
+            src={`${DEMO_ASSETS_BASE_URL}/ColorPicker.png`}
+            alt={'Pick color'}
+          />
         </button>
       </ColorPicker>
     </AdjustmentsBar>

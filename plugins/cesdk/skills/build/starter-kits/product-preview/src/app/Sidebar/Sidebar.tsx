@@ -15,6 +15,7 @@ interface SidebarProps {
   mockupImageUrl: string | null;
   mockupSceneString: string | undefined;
   isLoading: boolean;
+  renderError: string | null;
   isFullscreen: boolean;
   license?: string;
   baseURL?: string;
@@ -28,6 +29,7 @@ export function Sidebar({
   mockupImageUrl,
   mockupSceneString,
   isLoading,
+  renderError,
   isFullscreen,
   license,
   baseURL,
@@ -65,6 +67,7 @@ export function Sidebar({
       <MockupPreview
         imageUrl={mockupImageUrl}
         isLoading={isLoading}
+        renderError={renderError}
         isFullscreen={isFullscreen}
         onToggleFullscreen={handleToggleFullscreen}
         onEditMockup={handleEditMockup}

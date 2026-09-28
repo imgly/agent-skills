@@ -12,7 +12,10 @@ import type { Configuration } from '@cesdk/cesdk-js';
 import type CreativeEngine from '@cesdk/engine';
 import { createRoot } from 'react-dom/client';
 
-import { initMultiImageGenerationHeadlessEngine } from './imgly';
+import {
+  initMultiImageGenerationHeadlessEngine,
+  registerMultiImageGenerationAssetSources
+} from './imgly';
 import App from './app/App';
 
 // ============================================================================
@@ -27,10 +30,9 @@ const config: Partial<Configuration> = {
   // Local assets (uncomment and set path for self-hosted assets)
   // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
 
-  license: import.meta.env.VITE_CESDK_LICENSE,
+  license: import.meta.env.VITE_CESDK_LICENSE
 
   // Development: use local assets when CESDK_USE_LOCAL is set
-  
 };
 
 // ============================================================================
@@ -43,9 +45,11 @@ async function main(): Promise<void> {
     license: config.license,
     baseURL: config.baseURL
   });
+  await registerMultiImageGenerationAssetSources(engine);
 
-  // Debug access (remove in production)
+  // START_HIDDEN_BLOCK
   (window as unknown as { engine: CreativeEngine }).engine = engine;
+  // END_HIDDEN_BLOCK
 
   // Render application with initialized instances
   const container = document.getElementById('root');

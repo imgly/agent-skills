@@ -66,7 +66,7 @@ export default function App({ cesdk, children }: AppProps) {
         'product.setupScene',
         setupSceneOptions(defaultProduct, defaultColor)
       );
-      storeProductMetadata(cesdk, defaultProduct, defaultColor);
+      storeProductMetadata(cesdk.engine, defaultProduct, defaultColor);
 
       await cesdk.actions.run('product.switchArea', defaultProduct.areas[0].id);
 
@@ -102,7 +102,7 @@ export default function App({ cesdk, children }: AppProps) {
       'product.setupScene',
       setupSceneOptions(product, newColor)
     );
-    storeProductMetadata(cesdk, product, newColor);
+    storeProductMetadata(cesdk.engine, product, newColor);
 
     const enabledAreas = product.areas.filter((area) => !area.disabled);
     const targetAreaId =
@@ -116,7 +116,7 @@ export default function App({ cesdk, children }: AppProps) {
 
     const product =
       PRODUCT_SAMPLES.find((sample) => sample.id === productId) ??
-      readProductFromMetadata(cesdk);
+      readProductFromMetadata(cesdk.engine);
     if (!product) return;
 
     setColor(newColor);
@@ -148,7 +148,7 @@ export default function App({ cesdk, children }: AppProps) {
     if (!cesdk) return;
     // Export every area to PDF + thumbnail, bundle with the scene archive
     // into a single .zip, and trigger a browser download.
-    await downloadProductAssets(cesdk);
+    await downloadProductAssets(cesdk.engine);
   };
 
   // ============================================================================

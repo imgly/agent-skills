@@ -28,7 +28,6 @@ const InspectorBar = ({
 }: InspectorBarProps) => {
   const adjustmentToComponent = useMemo(
     () =>
-      // eslint-disable-next-line react/display-name
       ({ label, id, Icon, onClick }: Adjustment) => (
         <IconButton
           key={id}
@@ -38,10 +37,9 @@ const InspectorBar = ({
               : onAdjustmentChange(id)
           }
           icon={<Icon />}
+          aria-label={label}
           isActive={activeAdjustmentId === id}
-        >
-          {label}
-        </IconButton>
+        />
       ),
     [onAdjustmentChange, activeAdjustmentId]
   );

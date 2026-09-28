@@ -23,7 +23,7 @@
 
 | Interface | Description |
 | ------ | ------ |
-| [BleedMarginOptions](./api/cesdk-js/documentation/namespaces/configtypes/interfaces/bleedmarginoptions.md) | Represents the bleed margin configuration options for a single design unit type in the Creative Editor SDK. This interface defines the dropdown options and the default bleed margin value. |
+| [BleedMarginOptions](./api/cesdk-js/documentation/namespaces/configtypes/interfaces/bleedmarginoptions.md) | Represents the bleed margin configuration options for a single design unit type in the Creative Editor SDK. |
 | [FontSizeOptions](./api/cesdk-js/documentation/namespaces/configtypes/interfaces/fontsizeoptions.md) | Represents the font size configuration options in the Creative Editor SDK. This interface defines the dropdown options for font sizes. |
 | [UIOptionsForSingleDesignUnit](./api/cesdk-js/documentation/namespaces/configtypes/interfaces/uioptionsforsingledesignunit.md) | Represents the UI options for a single design unit type in the Creative Editor SDK. This interface defines the bleed margin options for a single design unit. |
 | [UIOptionsPerDesignUnit](./api/cesdk-js/documentation/namespaces/configtypes/interfaces/uioptionsperdesignunit.md) | Represents the UI options for different design units in the Creative Editor SDK. This interface defines the UI options for millimeters, pixels, and inches. |

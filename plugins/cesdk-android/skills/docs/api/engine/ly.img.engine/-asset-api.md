@@ -53,6 +53,10 @@ abstract suspend fun applyAssetSourceAsset(sourceId: String, asset: Asset): Desi
 ```
 
 ```kotlin
+abstract suspend fun applyAssetSourceAsset(sourceId: String, asset: Asset, placement: AssetPlacement): DesignBlock?
+```
+
+```kotlin
 abstract suspend fun applyAssetSourceAsset(sourceId: String, asset: Asset, block: DesignBlock)
 ```
 
@@ -78,6 +82,10 @@ Notifies the engine that the contents of an asset source changed.
 
 ```kotlin
 abstract suspend fun defaultApplyAsset(asset: Asset): DesignBlock?
+```
+
+```kotlin
+abstract suspend fun defaultApplyAsset(asset: Asset, placement: AssetPlacement): DesignBlock?
 ```
 
 ```kotlin

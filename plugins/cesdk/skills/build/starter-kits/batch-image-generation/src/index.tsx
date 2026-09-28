@@ -20,10 +20,9 @@ import App from './app/App';
 const config: Configuration = {
   baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-batch-image-generation-user',
-  license: import.meta.env.VITE_CESDK_LICENSE,
+  license: import.meta.env.VITE_CESDK_LICENSE
 
   // Local assets for development
-  
 };
 
 const container = document.getElementById('root');

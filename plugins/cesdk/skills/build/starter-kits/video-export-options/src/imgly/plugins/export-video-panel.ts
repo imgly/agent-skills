@@ -178,7 +178,7 @@ export const ExportVideoPanelPlugin = (
         const page = engine.scene.getCurrentPage();
         if (!page) return;
 
-        const fpsState = state('fps', fpsOptions[1]) as {
+        const fpsState = state('fps', fpsOptions[1] ?? fpsOptions[0]) as {
           value: FpsOption;
           setValue: (v: FpsOption) => void;
         };
@@ -284,7 +284,9 @@ export const ExportVideoPanelPlugin = (
                 value: heightState.value,
                 setValue: (newHeight) => {
                   heightState.setValue(newHeight);
-                  const newWidth = (pageWidth * newHeight) / pageHeight;
+                  const newWidth = Math.round(
+                    (pageWidth * newHeight) / pageHeight
+                  );
                   widthState.setValue(newWidth);
                 }
               });
@@ -296,7 +298,9 @@ export const ExportVideoPanelPlugin = (
                 value: widthState.value,
                 setValue: (newWidth) => {
                   widthState.setValue(newWidth);
-                  const newHeight = (pageHeight * newWidth) / pageWidth;
+                  const newHeight = Math.round(
+                    (pageHeight * newWidth) / pageWidth
+                  );
                   heightState.setValue(newHeight);
                 }
               });

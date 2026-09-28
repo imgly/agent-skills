@@ -1,5 +1,5 @@
 import AdjustmentsBar from '../../ui/AdjustmentsBar/AdjustmentsBar';
-import { DEMO_ASSETS_BASE_URL } from '../../contexts/EditorContext';
+import { DEMO_ASSETS_BASE_URL } from '../../../imgly/demo-assets';
 import classes from './ThemeBar.module.css';
 
 export const ALL_THEMES = [

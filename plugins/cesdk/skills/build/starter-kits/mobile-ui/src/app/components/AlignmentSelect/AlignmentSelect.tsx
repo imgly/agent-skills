@@ -34,6 +34,7 @@ const AlignmentSelect = ({
         <IconButton
           key={value}
           isActive={value === activeAlignment}
+          aria-label={value}
           onClick={() => onClick(value)}
           icon={Icon}
         />

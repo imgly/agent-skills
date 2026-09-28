@@ -13,7 +13,7 @@ import { createRoot } from 'react-dom/client';
 import type { Configuration } from '@cesdk/cesdk-js';
 
 import App from './app/App';
-import { resolveAssetPath } from './resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
 // ============================================================================
 // Editor Configuration
@@ -42,9 +42,7 @@ export const editorConfig: Configuration = {
 /**
  * Demo scene URL for the placeholders video editor.
  */
-export const SCENE_URL = resolveAssetPath(
-  '/cases/placeholders-video/example.scene'
-);
+export const SCENE_URL = `${DEMO_ASSETS_BASE_URL}/cases/placeholders-video/example.scene`;
 // highlight-scene-url
 
 // ============================================================================

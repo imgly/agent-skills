@@ -26,7 +26,6 @@ export const editorConfig: Configuration = {
   },
 
   // Local assets for development
-  
 
   license: import.meta.env.VITE_CESDK_LICENSE
 };

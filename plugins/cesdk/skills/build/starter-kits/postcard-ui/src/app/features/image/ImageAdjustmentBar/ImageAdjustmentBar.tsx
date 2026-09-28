@@ -33,8 +33,10 @@ const ImageAdjustmentBar = () => {
   );
 
   const selectedAdjustment = useMemo(
-    // @ts-ignore
-    () => ALL_ADJUSTMENTS[calculatedAdjustmentId],
+    () =>
+      calculatedAdjustmentId == null
+        ? undefined
+        : ALL_ADJUSTMENTS[calculatedAdjustmentId],
     [calculatedAdjustmentId]
   );
   const AdjustmentComponent = useMemo(() => {
@@ -76,8 +78,7 @@ const ImageAdjustmentBar = () => {
           <IconButton
             key="crop"
             // Disable cropping on placeholders
-            // @ts-ignore
-            disabled={showsPlaceholderOverlay}
+            disabled={showsPlaceholderOverlay === true}
             onClick={() => {
               if (calculatedAdjustmentId === 'crop') {
                 engine.actions.run('editmode.exit');

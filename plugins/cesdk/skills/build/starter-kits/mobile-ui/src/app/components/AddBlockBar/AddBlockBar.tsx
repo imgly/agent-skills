@@ -11,10 +11,30 @@ import IconButton from '../IconButton/IconButton';
 import classes from './AddBlockBar.module.css';
 
 const SECONDARY_PANELS = [
-  { id: 'text', Component: AddTextSecondary, Icon: <TextIcon /> },
-  { id: 'image', Component: AddImageSecondary, Icon: <ImageIcon /> },
-  { id: 'sticker', Component: AddStickerSecondary, Icon: <StickerIcon /> },
-  { id: 'shape', Component: AddShapeSecondary, Icon: <ShapeIcon /> }
+  {
+    id: 'text',
+    label: 'Text',
+    Component: AddTextSecondary,
+    Icon: <TextIcon />
+  },
+  {
+    id: 'image',
+    label: 'Image',
+    Component: AddImageSecondary,
+    Icon: <ImageIcon />
+  },
+  {
+    id: 'sticker',
+    label: 'Sticker',
+    Component: AddStickerSecondary,
+    Icon: <StickerIcon />
+  },
+  {
+    id: 'shape',
+    label: 'Shape',
+    Component: AddShapeSecondary,
+    Icon: <ShapeIcon />
+  }
 ];
 
 const AddBlockBar = () => {
@@ -32,10 +52,11 @@ const AddBlockBar = () => {
         <SecondaryPanel onClose={() => setSecondaryPanelId('')} />
       )}
       <div className={classes.wrapper}>
-        {SECONDARY_PANELS.map(({ id, Icon }) => (
+        {SECONDARY_PANELS.map(({ id, label, Icon }) => (
           <IconButton
             key={id}
             theme="menu"
+            aria-label={label}
             onClick={() => setSecondaryPanelId(id)}
             icon={Icon}
           />

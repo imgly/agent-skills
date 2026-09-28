@@ -42,8 +42,9 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // START_HIDDEN_BLOCK
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
-    // Debug access (remove in production)
+    // START_HIDDEN_BLOCK
     (window as any).cesdk = cesdk;
+    // END_HIDDEN_BLOCK
 
     await initLayoutsAssetSource(cesdk);
     // ============================================================================
@@ -52,9 +53,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     // Load the custom layouts scene with pre-designed content
-    await cesdk.load(
-      `${DEMO_ASSETS_BASE_URL}/assets/custom-layouts.scene`
-    );
+    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/custom-layouts.scene`);
     // highlight-scene-loading
     // START_HIDDEN_BLOCK
     reportDemoPhase('ready');

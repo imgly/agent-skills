@@ -55,9 +55,10 @@ npm run preview
 src/
 ├── app/                          # Demo application
 ├── imgly/
-│   ├── ColorUtilities.ts
-│   ├── CreativeEngineUtils.ts
-│   ├── UnsplashSource.ts
+│   ├── color-utilities.ts
+│   ├── creative-engine-utils.ts
+│   ├── image-colors-source.ts
+│   ├── unsplash-source.ts
 │   ├── UseEditMode.ts
 │   ├── UseHistory.ts
 │   ├── UseImageUpload.ts

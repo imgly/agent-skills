@@ -37,6 +37,7 @@ export default function RestaurantSelector({
             })}
             style={{ backgroundColor: restaurant.secondaryColor }}
             disabled={disabled}
+            aria-pressed={selectedRestaurant?.name === restaurant.name}
             onClick={() => handleClick(restaurant)}
           >
             <img src={restaurant.cardPath} alt={restaurant.name} />

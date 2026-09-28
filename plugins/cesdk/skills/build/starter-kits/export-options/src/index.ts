@@ -11,7 +11,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initExportOptionsEditor } from './imgly';
-import { resolveAssetPath } from './imgly/resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
@@ -51,8 +51,9 @@ async function initializeEditor(): Promise<void> {
     reportDemoPhase('created');
     // END_HIDDEN_BLOCK
 
-    // Debug access (remove in production)
+    // START_HIDDEN_BLOCK
     (window as any).cesdk = cesdk;
+    // END_HIDDEN_BLOCK
 
     // Initialize with export options configuration
     await initExportOptionsEditor(cesdk);
@@ -63,7 +64,7 @@ async function initializeEditor(): Promise<void> {
 
     // highlight-load-scene
     // Load the demo scene
-    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
+    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/example-1.scene`);
     // highlight-load-scene
     // START_HIDDEN_BLOCK
     reportDemoPhase('ready');

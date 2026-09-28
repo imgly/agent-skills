@@ -69,6 +69,7 @@ export const ColorPicker = ({
   ) : (
     <label
       htmlFor={name}
+      aria-label={`${label ?? name} picker`}
       className={classNames(
         classes.inputWrapper,
         'space-x-2',
@@ -111,6 +112,7 @@ export const ColorPicker = ({
             {presetColors.map((color, i) => (
               <button
                 key={color + i}
+                aria-label={`${label ?? name} ${color}`}
                 style={{ backgroundColor: color }}
                 onClick={() => {
                   handleChange(color);
@@ -141,7 +143,11 @@ export const ColorPicker = ({
           <HexAlphaColorPicker color={value} onChange={handleChange} />
           <div className={'flex space-x-2'}>
             <span>#</span>
-            <HexColorInput color={value} onChange={handleChange} />
+            <HexColorInput
+              aria-label={`${label ?? name} hex value`}
+              color={value}
+              onChange={handleChange}
+            />
           </div>
         </div>
       </div>

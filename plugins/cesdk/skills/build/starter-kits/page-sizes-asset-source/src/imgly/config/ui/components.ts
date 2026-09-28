@@ -35,8 +35,7 @@
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
-
-import { resolveAssetPath } from '../../resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL } from '../../demo-assets';
 
 /**
  * Register and configure custom UI components.
@@ -152,7 +151,7 @@ export function setupComponents(cesdk: CreativeEditorSDK): void {
 
       Button('open-page-resize', {
         label: 'Page Sizes',
-        icon: () => resolveAssetPath('/assets/page-sizes-large.svg'),
+        icon: () => `${DEMO_ASSETS_BASE_URL}/assets/page-sizes-large.svg`,
         isSelected: isResizePanelOpen,
         onClick: () => {
           if (isResizePanelOpen) {

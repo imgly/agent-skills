@@ -17,7 +17,6 @@ export const useProperty = (
     } catch (error) {
       console.log(error);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [block, engine, propertyName]);
 
   const [propertyValue, setPropertyValue] = useState(getSelectedProperty());
@@ -30,11 +29,7 @@ export const useProperty = (
     (...value: any) => {
       if (!block) return;
       try {
-        if (Array.isArray(value)) {
-          setProperty(engine, block, propertyName, ...value);
-        } else {
-          setProperty(engine, block, propertyName, value);
-        }
+        setProperty(engine, block, propertyName, ...value);
         if (options.shouldAddUndoStep) {
           engine.editor.addUndoStep();
         }
@@ -42,15 +37,16 @@ export const useProperty = (
         console.log(error);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [block, engine, propertyName, options]
   );
 
   useEffect(() => {
     if (!block) return;
-    const blockToSubscribeTo = propertyName.startsWith('fill/')
-      ? engine.block.getFill(block)
-      : block;
+    // A text block carries its colour itself and has no fill to subscribe to.
+    const blockToSubscribeTo =
+      propertyName.startsWith('fill/') && engine.block.supportsFill(block)
+        ? engine.block.getFill(block)
+        : block;
     const unsubscribe = engine.event.subscribe(
       [blockToSubscribeTo],
       (events) => {
@@ -66,7 +62,6 @@ export const useProperty = (
       }
     );
     return () => unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engine, propertyName, block, getSelectedProperty]);
 
   if (!block) {
@@ -89,13 +84,15 @@ export const useSelectedProperty = (
   return [propertyValue, setEnginePropertyValue];
 };
 
-// @ts-ignore
-const BLOCK_PROPERTY_METHODS: Record<
-  PropertyType,
-  {
-    get?: string;
-    set?: string;
-  }
+// Only the property types this kit reads.
+const BLOCK_PROPERTY_METHODS: Partial<
+  Record<
+    PropertyType,
+    {
+      get?: string;
+      set?: string;
+    }
+  >
 > = {
   Float: {
     get: 'getFloat',
@@ -136,22 +133,12 @@ export function setProperty(
   const blockType = engine.block.getPropertyType(propertyName);
   const typeDependentMethodName =
     BLOCK_PROPERTY_METHODS[blockType as keyof typeof BLOCK_PROPERTY_METHODS];
-  if (typeDependentMethodName.set) {
-    if (Array.isArray(values)) {
-      // @ts-ignore
-      return engine.block[typeDependentMethodName.set](
-        blockId,
-        propertyName,
-        ...values
-      );
-    } else {
-      // @ts-ignore
-      return engine.block[typeDependentMethodName.set](
-        blockId,
-        propertyName,
-        values
-      );
-    }
+  if (typeDependentMethodName?.set) {
+    return engine.block[typeDependentMethodName.set](
+      blockId,
+      propertyName,
+      ...values
+    );
   }
 }
 export function getProperty(
@@ -161,8 +148,7 @@ export function getProperty(
 ) {
   const blockType = engine.block.getPropertyType(propertyName);
   const typeDependentMethodName = BLOCK_PROPERTY_METHODS[blockType];
-  if (typeDependentMethodName.get) {
-    // @ts-ignore
+  if (typeDependentMethodName?.get) {
     return engine.block[typeDependentMethodName.get](blockId, propertyName);
   }
 }

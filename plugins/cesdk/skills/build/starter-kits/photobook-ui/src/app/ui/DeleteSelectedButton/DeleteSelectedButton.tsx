@@ -18,9 +18,13 @@ function DeleteSelectedButton({ isActive = false }) {
     engine.editor.addUndoStep();
   };
 
+  // For a render after a delete the selection can still name a destroyed block,
+  // which the engine refuses to answer scope questions about.
   if (
-    !selection.every((block) =>
-      engine.block.isAllowedByScope(block, 'lifecycle/destroy')
+    !selection.every(
+      (block) =>
+        engine.block.isValid(block) &&
+        engine.block.isAllowedByScope(block, 'lifecycle/destroy')
     )
   ) {
     return null;

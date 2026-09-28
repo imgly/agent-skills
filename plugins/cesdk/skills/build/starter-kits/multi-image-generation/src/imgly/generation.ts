@@ -55,6 +55,11 @@ export async function fillTemplate(
   await applyRestaurantColors(engine, restaurant);
 
   // Set rating stars visibility
+  if (restaurant.rating < 0 || restaurant.rating > 5) {
+    throw new RangeError(
+      `A rating must be between 0 and 5, got ${restaurant.rating}.`
+    );
+  }
   for (let i = 1; i <= 5; i++) {
     const ratingBlocks = engine.block.findByName(`Rating${i}`);
     for (const ratingBlock of ratingBlocks) {

@@ -29,7 +29,6 @@ export const useToolbarHeight = () => {
     return () => {
       setPaddingBottom(defaultPaddingBottom);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [height]);
 
   return {

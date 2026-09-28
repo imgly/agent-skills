@@ -44,6 +44,7 @@ const ShapeSelect = ({ onClick, group }: ShapeSelectProps) => {
           key={asset.id}
           onClick={() => onClick(asset)}
           backgroundImage={asset.meta.thumbUri}
+          ariaLabel={asset.label ?? asset.id}
         ></Card>
       ))}
     </div>

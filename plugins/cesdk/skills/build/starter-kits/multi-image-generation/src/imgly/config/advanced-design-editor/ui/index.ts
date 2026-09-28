@@ -20,9 +20,6 @@ import { setupPanels } from './panel';
  * @param cesdk - The CreativeEditorSDK instance to configure
  */
 export function setupUI(cesdk: CreativeEditorSDK): void {
-  // Set default editor view
-  cesdk.ui.setView('default');
-
   setupPanels(cesdk); // Panel positions first (affects layout)
   setupComponents(cesdk); // Custom components
   setupNavigationBar(cesdk); // Top bar

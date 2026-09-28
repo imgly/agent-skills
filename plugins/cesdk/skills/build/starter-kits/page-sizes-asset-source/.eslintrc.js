@@ -7,14 +7,15 @@ module.exports = {
     project: './tsconfig.json'
   },
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-  plugins: ['@typescript-eslint', 'deprecation'],
+  plugins: ['@typescript-eslint'],
   rules: {
-    // Warn on deprecated APIs (not error)
-    'deprecation/deprecation': 'warn',
-    // Allow console statements in examples
+    '@typescript-eslint/no-deprecated': 'error',
     'no-console': 'off',
-    // Allow any type in examples
-    '@typescript-eslint/no-explicit-any': 'off'
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
+    ]
   },
   env: {
     browser: true,
@@ -22,10 +23,14 @@ module.exports = {
     node: true
   },
   ignorePatterns: [
+    'build/**',
     'dist/**',
     'coverage/**',
     'node_modules/**',
     'release/**',
+    'playwright-report/**',
+    'test-results/**',
+    '*.min.js',
     '*.config.js',
     '*.config.ts',
     'scripts/**',

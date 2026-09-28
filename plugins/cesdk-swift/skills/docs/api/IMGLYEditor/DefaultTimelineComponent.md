@@ -3,18 +3,10 @@
 - **Module:** `IMGLYEditor`
 - **DocC identifier:** `/documentation/IMGLYEditor/DefaultTimelineComponent`
 
-The default timeline component for video editing.
+> **Deprecated:** Use 'Timeline' instead. Renamed to `Timeline`.
+
+The previous name of [`Timeline`](timeline.md).
 
 ```swift
-@MainActor struct DefaultTimelineComponent
+typealias DefaultTimelineComponent = Timeline
 ```
-
-## Members
-
-### init(context:)
-
-```swift
-@MainActor init(context: BottomPanel.Context)
-```
-
-Creates a timeline component. `context`

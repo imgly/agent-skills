@@ -13,7 +13,7 @@ import styles from './LocaleSwitcher.module.css';
 /**
  * Available locale options with their display labels
  */
-const LOCALES = [
+export const LOCALES = [
   { value: 'en', label: 'English' },
   { value: 'de', label: 'German' }
 ] as const;

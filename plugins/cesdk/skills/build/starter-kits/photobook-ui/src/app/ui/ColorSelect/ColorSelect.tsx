@@ -6,7 +6,7 @@ import {
   isColorEqual,
   rgbaToHex
 } from '../../contexts/color-utilities';
-import { DEMO_ASSETS_BASE_URL } from '../../contexts/EditorContext';
+import { DEMO_ASSETS_BASE_URL } from '../../../imgly/demo-assets';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import classes from './ColorSelect.module.css';
 
@@ -34,6 +34,7 @@ function ColorSelect({
       {colorPalette.map((color) => (
         <button
           key={color.r + color.g + color.b}
+          aria-label={rgbaToHex(color)}
           onClick={() => onClick(color)}
           style={{
             backgroundColor: `rgb(${color.r * 255},${color.g * 255},${
@@ -54,7 +55,9 @@ function ColorSelect({
           try {
             const color = hexToRgba(hex);
             onClick(color);
-          } catch {}
+          } catch {
+            // Ignore a color string the picker cannot parse.
+          }
         }}
         // value={activeColorHex}
         value={rgbaToHex(activeColor)}

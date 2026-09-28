@@ -33,11 +33,11 @@ import type {
 // ============================================================================
 
 /**
- * 1x1 white pixel image for clearing unused placeholder slots in mockup
- * scenes. Using a data URI avoids external network requests.
+ * Marks a placeholder slot as unused: the slot's fill is switched off instead
+ * of being pointed at an image. A `data:` URL cannot stand in for it, because
+ * `scene.saveToString` rejects that scheme.
  */
-export const CLEAR_IMAGE =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==';
+export const CLEAR_IMAGE = 'ly.img.mockup/clear';
 
 // ============================================================================
 // Internal State
@@ -88,37 +88,54 @@ export async function renderMockup(
   // Track blob URLs we create
   const blobUrls: string[] = [];
 
-  // Replace each placeholder
-  for (const [name, source] of Object.entries(placeholders)) {
-    const url =
-      source instanceof Blob
-        ? (blobUrls.push(URL.createObjectURL(source)),
-          blobUrls[blobUrls.length - 1])
-        : source;
+  try {
+    // Replace each placeholder
+    for (const [name, source] of Object.entries(placeholders)) {
+      const blocks = cachedEngine.block.findByName(name);
 
-    cachedEngine.block.findByName(name).forEach((block) => {
-      const fill = cachedEngine!.block.getFill(block);
-      cachedEngine!.block.setString(fill, 'fill/image/imageFileURI', url);
+      if (source === CLEAR_IMAGE) {
+        blocks.forEach((block) =>
+          cachedEngine!.block.setFillEnabled(block, false)
+        );
+        continue;
+      }
+
+      const url =
+        source instanceof Blob
+          ? (blobUrls.push(URL.createObjectURL(source)),
+            blobUrls[blobUrls.length - 1])
+          : source;
+
+      blocks.forEach((block) => {
+        const fill = cachedEngine!.block.getFill(block);
+        // A slot cleared by an earlier render still has its fill switched off.
+        cachedEngine!.block.setFillEnabled(block, true);
+        cachedEngine!.block.setString(fill, 'fill/image/imageFileURI', url);
+      });
+    }
+
+    // Save scene string
+    const sceneString = await cachedEngine.scene.saveToString();
+
+    // Export mockup
+    const scene = cachedEngine.scene.get();
+    if (scene === null) {
+      throw new Error('No scene loaded');
+    }
+
+    const mockupBlob = await cachedEngine.block.export(scene, {
+      mimeType: exportMimeType
     });
+
+    const mockupUrl = URL.createObjectURL(mockupBlob);
+    blobUrls.push(mockupUrl);
+
+    return { mockupUrl, sceneString, blobUrls };
+  } catch (error) {
+    // A failed render must not leak the object URLs it already created.
+    blobUrls.forEach((url) => URL.revokeObjectURL(url));
+    throw error;
   }
-
-  // Save scene string
-  const sceneString = await cachedEngine.scene.saveToString();
-
-  // Export mockup
-  const scene = cachedEngine.scene.get();
-  if (scene === null) {
-    throw new Error('No scene loaded');
-  }
-
-  const mockupBlob = await cachedEngine.block.export(scene, {
-    mimeType: exportMimeType
-  });
-
-  const mockupUrl = URL.createObjectURL(mockupBlob);
-  blobUrls.push(mockupUrl);
-
-  return { mockupUrl, sceneString, blobUrls };
 }
 
 /**

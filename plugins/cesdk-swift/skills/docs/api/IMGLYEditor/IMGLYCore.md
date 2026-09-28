@@ -45,6 +45,14 @@ static let addCameraForeground: Image
 
 An icon image for adding content from the camera.
 
+### IMGLY.addClipLibrary
+
+```swift
+static let addClipLibrary: Image
+```
+
+An icon image for adding a clip from the asset library to the timeline.
+
 ### IMGLY.addElement
 
 ```swift

@@ -6,7 +6,7 @@
  * ## Panel IDs
  *
  * - `'//ly.img.panel/inspector'` - Right-side property inspector
- * - `'//ly.img.panel/assets'` - Left-side asset library
+ * - `'//ly.img.panel/assetLibrary'` - Left-side asset library
  * - `'//ly.img.panel/settings'` - Settings panel
  *
  * ## Panel Positions
@@ -40,7 +40,7 @@ export function setupPanels(cesdk: CreativeEditorSDK): void {
   cesdk.ui.setPanelPosition('//ly.img.panel/inspector', 'right');
 
   // Asset library panel on the left
-  cesdk.ui.setPanelPosition('//ly.img.panel/assets', 'left');
+  cesdk.ui.setPanelPosition('//ly.img.panel/assetLibrary', 'left');
   // #endregion
 
   // ============================================================================
@@ -51,6 +51,6 @@ export function setupPanels(cesdk: CreativeEditorSDK): void {
   // #region Panel Floating
   // Panels are docked by default (not floating)
   cesdk.ui.setPanelFloating('//ly.img.panel/inspector', false);
-  cesdk.ui.setPanelFloating('//ly.img.panel/assets', false);
+  cesdk.ui.setPanelFloating('//ly.img.panel/assetLibrary', false);
   // #endregion
 }

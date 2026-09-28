@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { useEngine } from '../../contexts/EngineContext';
 import { usePagePreview } from '../../contexts/PagePreviewContext';
 import { useSinglePageMode } from '../../contexts/SinglePageModeContext';
-import { DEMO_ASSETS_BASE_URL } from '../../contexts/EditorContext';
+import { DEMO_ASSETS_BASE_URL } from '../../../imgly/demo-assets';
 import classes from './BookPreviewBar.module.css';
 
 function BookPreviewBar() {
@@ -75,9 +75,10 @@ function BookPreviewBar() {
     <div className={classes.wrapper}>
       <h3 className={classes.headline}>Pages</h3>
       <ul className={classes.pagePreviewList}>
-        {sortedPageIds?.map((id) => (
+        {sortedPageIds?.map((id, index) => (
           <li key={id}>
             <button
+              aria-label={`Page ${index + 1}`}
               className={classNames(classes.pagePreviewItem, {
                 [classes['pagePreviewItem--active']]: id === currentPageBlockId,
                 [classes['pagePreviewItem--loading']]:
@@ -107,16 +108,16 @@ function BookPreviewBar() {
       </ul>
       <div className={classes.actions}>
         <div className={classes.orderButtons}>
-          <button onClick={movePageUp}>
+          <button aria-label="Move page up" onClick={movePageUp}>
             <ArrowUpIcon />
           </button>
-          <button onClick={movePageDown}>
+          <button aria-label="Move page down" onClick={movePageDown}>
             <ArrowDownIcon />
           </button>
         </div>
         <div>
           {canDeleteCurrentPage && (
-            <button onClick={deletePage}>
+            <button aria-label="Delete page" onClick={deletePage}>
               <TrashBinIcon />
             </button>
           )}

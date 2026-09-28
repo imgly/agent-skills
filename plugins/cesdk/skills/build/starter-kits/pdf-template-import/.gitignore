@@ -12,3 +12,7 @@ tsconfig.tsbuildinfo
 
 # Auto-generated TypeScript config for local development
 tsconfig.local.json
+
+# Test output
+test-results/
+playwright-report/

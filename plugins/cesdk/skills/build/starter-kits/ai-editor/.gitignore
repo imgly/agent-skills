@@ -23,3 +23,7 @@ release/.eslintrc.js
 release/LICENSE
 release/hero.webp
 release/index.html
+
+# Test output
+test-results/
+playwright-report/

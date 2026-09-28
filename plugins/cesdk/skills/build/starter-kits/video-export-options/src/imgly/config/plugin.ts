@@ -22,9 +22,9 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { setupActions } from './actions';
-import { setupKeyboardShortcuts } from './keyboard/keyboard';
 import { setupFeatures } from './features';
 import { setupTranslations } from './i18n';
+import { setupKeyboardShortcuts } from './keyboard/keyboard';
 import { setupSettings } from './settings';
 import { setupUI } from './ui';
 
@@ -119,6 +119,7 @@ export class VideoEditorConfig implements EditorPlugin {
       // ui.elements.*, locale, i18n) that were cleared by resetEditor() above.
       // If you have already migrated to the respective API calls, you can
       // safely remove this line.
+      // eslint-disable-next-line -- Intentional backward-compat shim for pre-migration user configurations. Remove once all deprecated configuration paths are dropped.
       cesdk.reapplyLegacyUserConfiguration();
     }
   }
