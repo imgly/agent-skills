@@ -1,32 +1,16 @@
 ---
 name: explain
 description: |
-  Explain how CE.SDK Web features work — concepts, architecture, and workflows.
-  Covers React, Vue.js, Svelte, Angular, Electron, Vanilla JavaScript, Node.js, Nuxt.js, Next.js, SvelteKit.
-
-  Use when the user says "explain", "how does X work", "walk me through", "what is",
-  or "describe" and wants to understand a CE.SDK concept for Web development.
-  Generates custom markdown explanations with diagrams and code examples.
-
-  Not for looking up existing docs (use docs-{framework}) or writing code (use build).
-
-  <example>
-  Context: User wants to understand how text layers work
-  user: "Explain how text layers work in CE.SDK"
-  assistant: "I'll use /cesdk:explain to generate a detailed explanation."
-  </example>
-
-  <example>
-  Context: User needs a concept explained
-  user: "How does the block hierarchy work for video editing?"
-  assistant: "Let me use /cesdk:explain to explain video block hierarchy."
-  </example>
+  Explain how CE.SDK (IMG.LY CreativeEditor SDK) features work: concepts,
+  architecture, block hierarchy, rendering, export, on Web, Swift, Android,
+  Flutter, and React Native. Use for "explain" or "how does X work". Not for
+  docs (docs) or code (build).
 argument-hint: "[topic or question]"
 ---
 
 ## Version Notice
 
-> CE.SDK `1.84.0-nightly.20260922` · generated `2026-09-21` · plugin `cesdk`
+> CE.SDK `1.84.0-nightly.20260930` · generated `2026-09-29` · plugin `cesdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
@@ -35,95 +19,64 @@ argument-hint: "[topic or question]"
 > anything without explicit user approval. Continue with this bundle unless an
 > update is approved.
 
-# CE.SDK Web Explainer
-
-Generate custom explanations and tutorials for IMG.LY CreativeEditor SDK (Web).
+# Explain CE.SDK
 
 **Topic**: $ARGUMENTS
 
-## Your Role
+Covers Web (React, Vue.js, Svelte, Angular, Electron, Vanilla JavaScript, Node.js, Nuxt.js, Next.js, SvelteKit); Flutter (Dart) on iOS and Android; React Native (TypeScript) on iOS and Android; Swift on iOS, macOS, and Mac Catalyst; Kotlin and Jetpack Compose on Android.
 
-You are a CE.SDK documentation expert. Generate clear, well-structured markdown explanations
-tailored to the user's specific question. Produce framework-specific content for Web platforms.
+## Platform Detection
 
-## Framework Detection
+Detect the platform from the project files, then read the matching reference folder.
 
-Detect the user's framework from project files. If no project exists yet or
-detection is ambiguous, ask the user to choose from all available frameworks
-and whether they prefer JavaScript or TypeScript.
+| Project files | Platform | Reference folder |
+|---------------|----------|------------------|
+| `pubspec.yaml` (its `android/` and `ios/` folders belong to the Flutter app) | Flutter (Dart; native editor on iOS and Android) | `references/flutter/` |
+| `react-native` in `package.json` dependencies (its `android/` and `ios/` folders belong to the React Native app) | React Native (TypeScript; native editor on iOS and Android) | `references/react-native/` |
+| `Package.swift`, `*.xcodeproj`, or `*.xcworkspace` | Swift (iOS, macOS, Mac Catalyst) | `references/swift/` |
+| `build.gradle`, `build.gradle.kts`, or `settings.gradle*` | Android (Kotlin, Jetpack Compose) | `references/android/` |
+| `package.json` | Web — pick the framework from its dependencies (table below) | `references/web/` |
 
-### Auto-detection from `package.json`
+Match the rows in the order listed. A Flutter or React Native project also
+holds `android/` and `ios/` folders, and a React Native project lists
+`react` in `package.json`; those files belong to the wrapper app, so its row
+wins over the Swift, Android, and Web rows.
 
-If a `package.json` exists, check dependencies in this order:
+### Web framework from `package.json` dependencies
 
-| Dependency | Framework | Docs skill |
-|-----------|-----------|------------|
-| `next` | Next.js | `docs-nextjs` |
-| `nuxt` | Nuxt.js | `docs-nuxtjs` |
-| `@sveltejs/kit` | SvelteKit | `docs-sveltekit` |
-| `@angular/core` | Angular | `docs-angular` |
-| `svelte` (no kit) | Svelte | `docs-svelte` |
-| `vue` (no nuxt) | Vue | `docs-vue` |
-| `react` (no next) | React | `docs-react` |
-| `electron` | Electron | `docs-electron` |
-| `@cesdk/node` in deps, or `"type": "module"` with no framework deps | Node.js | `docs-node` |
-| none of the above | Vanilla JS | `docs-js` |
+Check in this order: `react-native` → React Native (the row above, not Web), then `next` → Next.js, `nuxt` → Nuxt.js, `@sveltejs/kit` → SvelteKit,
+`@angular/core` → Angular, `svelte` → Svelte, `vue` → Vue.js, `react` → React,
+`electron` → Electron, `@cesdk/node` or a server project → Node.js, none → Vanilla JS.
 
-### New project or ambiguous detection
+| Framework | Docs folder |
+|-----------|-------------|
+| React | `skills/docs/references/web/react/` |
+| Vue.js | `skills/docs/references/web/vue/` |
+| Svelte | `skills/docs/references/web/svelte/` |
+| Angular | `skills/docs/references/web/angular/` |
+| Electron | `skills/docs/references/web/electron/` |
+| Vanilla JavaScript | `skills/docs/references/web/js/` |
+| Node.js | `skills/docs/references/web/node/` |
+| Nuxt.js | `skills/docs/references/web/nuxtjs/` |
+| Next.js | `skills/docs/references/web/nextjs/` |
+| SvelteKit | `skills/docs/references/web/sveltekit/` |
 
-If no `package.json` exists (new project) or detection is unclear, ask the user:
+A monorepo with several of these files or an empty folder is ambiguous: **ask the user which platform and framework to target**
+instead of guessing. Never mix content from two platforms in one answer, except
+that a Flutter or React Native answer adds the Swift and Kotlin code its native
+mapping calls for.
 
-1. **Which framework?** Offer all options: React, Vue.js, Svelte, Angular,
-   Next.js, Nuxt.js, SvelteKit, Electron, Node.js, or Vanilla JavaScript.
-2. **JavaScript or TypeScript?** CE.SDK starter kits use TypeScript by default,
-   but the user may prefer plain JavaScript.
+## How to Use
 
-## Guidelines
-
-1. **Reference the docs first**: Use `/cesdk:docs-{framework}` to look up accurate information — bundled docs are version-verified and more reliable than pre-trained knowledge
-2. **Lead with concepts**: Start with a clear explanation, then provide examples
-3. **Platform-specific**: Code must be valid for the detected framework
-4. **Complete examples**: Include imports, setup, and error handling
-5. **Explain trade-offs**: When multiple approaches exist, explain when to use each
-
-## Documentation Access
-
-Use the `/cesdk:docs-{framework}` skill to look up bundled documentation (e.g. `/cesdk:docs-react`), or use Glob:
-`**/skills/docs-{framework}/<path>.md`
-
-## Output Format
-
-Structure your response as:
-
-### Overview
-
-Brief explanation of the concept.
-
-### How It Works
-
-Detailed explanation with diagrams or step-by-step breakdown as needed.
-
-### Example Code
-
-\`\`\`typescript
-// Complete, working example
-\`\`\`
-
-### Key Points
-
-- Important takeaways
-- Common gotchas
-
-### Related Topics
-
-Links to related documentation for further reading.
-
-## Additional Triggers
-
-Also triggered by "walk me through", "describe how", or requests to understand CE.SDK
-workflows like asset loading pipelines, rendering lifecycles, or block hierarchies.
+1. Detect the platform and framework as above.
+2. Read `README.md` in the matching folder under this skill's `references/`.
+   It holds the explanation guidelines and output format for that platform.
+3. Ground the explanation in the bundled documentation: the same platform and
+   framework folder under `skills/docs/references/`.
+4. Lead with the concept, then a complete example valid for the detected
+   platform, then trade-offs and related topics.
 
 ## Related Skills
 
-- Use \`/cesdk:docs-{framework}\` for source documentation and API reference (e.g. `/cesdk:docs-react`)
-- Use \`/cesdk:build\` when the user wants implementation, not just explanation
+- Use `/cesdk:docs` for source documentation and API reference
+- Use `/cesdk:build` when the user wants implementation, not just explanation

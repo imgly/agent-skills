@@ -1,0 +1,30 @@
+> This is one page of the CE.SDK Angular `@cesdk/engine` API reference. For a complete overview, see the [Angular Documentation Index](https://img.ly/docs/cesdk/angular.md) or the [engine API Index](./api/engine.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
+
+---
+
+```ts
+function checkVideoExportSupport(): Promise<void>;
+```
+
+Throws an error if the current browser does not support video exporting.
+
+## Returns
+
+`Promise`\<`void`>
+
+## Deprecated
+
+Run the engine's `video.encode.checkSupport` action instead:
+`await engine.actions.run('video.encode.checkSupport')`. This runs its own dry run, separate
+from the engine's, and the two can disagree.
+
+
+---
+
+## More Resources
+
+- **[Angular Documentation Index](https://img.ly/docs/cesdk/angular.md)** - Browse all Angular documentation
+- **[engine API Reference](./api/engine.md)** - Full engine API reference
+- **[Complete Documentation](./llms-full.txt.md)** - Full documentation in one file (for LLMs)
+- **[Web Documentation](./angular.md)** - Interactive documentation with examples
+- **[Support](mailto:support@img.ly)** - Contact IMG.LY support

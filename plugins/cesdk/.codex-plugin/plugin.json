@@ -3,7 +3,7 @@
     "name": "IMG.LY GmbH",
     "url": "https://img.ly"
   },
-  "description": "IMG.LY CreativeEditor SDK builder agent and documentation for Web",
+  "description": "IMG.LY CreativeEditor SDK documentation, explanations, and implementation skills for Web, Swift, Android, Flutter, and React Native",
   "homepage": "https://img.ly/docs/cesdk",
   "interface": {
     "capabilities": [
@@ -13,14 +13,14 @@
     ],
     "category": "Developer Tools",
     "defaultPrompt": [
-      "Build a CE.SDK Web feature.",
-      "Explain a CE.SDK Web API or workflow.",
-      "Find the relevant CE.SDK Web documentation."
+      "Build a CE.SDK feature.",
+      "Explain a CE.SDK API or workflow.",
+      "Find the relevant CE.SDK documentation."
     ],
     "developerName": "IMG.LY GmbH",
-    "displayName": "CE.SDK Web",
-    "longDescription": "CE.SDK builder agent and documentation for Web — photo editors, video editors, design editors, and creative automation.",
-    "shortDescription": "Build and understand CE.SDK Web projects.",
+    "displayName": "CE.SDK",
+    "longDescription": "CE.SDK docs, explain, and build skills for Web, Swift, Android, Flutter, and React Native — photo editors, video editors, design editors, and creative automation.",
+    "shortDescription": "Build and understand CE.SDK projects.",
     "websiteURL": "https://img.ly/docs/cesdk"
   },
   "keywords": [
@@ -32,6 +32,16 @@
     "img.ly",
     "sdk",
     "creative-automation",
+    "swift",
+    "ios",
+    "macos",
+    "android",
+    "kotlin",
+    "jetpack-compose",
+    "flutter",
+    "dart",
+    "react-native",
+    "expo",
     "react",
     "vue",
     "svelte",
@@ -43,9 +53,9 @@
     "nextjs",
     "sveltekit"
   ],
-  "license": "MIT",
+  "license": "MIT AND LicenseRef-IMGLY-Terms-of-Service",
   "name": "cesdk",
   "repository": "https://github.com/imgly/agent-skills",
   "skills": "./skills/",
-  "version": "1.84.0-nightly.20260922"
+  "version": "1.84.0-nightly.20260930"
 }
