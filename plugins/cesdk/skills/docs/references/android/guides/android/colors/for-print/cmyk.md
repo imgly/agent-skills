@@ -144,9 +144,10 @@ with support for color space conversion and tint control.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-colors-for-print-cmyk)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-colors-for-print-cmyk)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 CMYK (Cyan, Magenta, Yellow, Key/Black) is the standard color model for print production. Unlike sRGB, which is additive and designed for screens, CMYK uses subtractive color mixing to represent how inks combine on paper. Android represents CMYK values with `CMYKColor`, so the same color APIs can work with sRGB, CMYK, and spot colors.
 

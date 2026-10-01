@@ -128,9 +128,10 @@ CE.SDK.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-templates-import-from-scene-file)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-templates-import-from-scene-file)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Scene files are portable templates that preserve the design structure, pages, blocks, assets, styles, and layout. This guide covers how to load templates from scene URLs, serialized strings, and archives, then apply template content while preserving the current page dimensions.
 

@@ -17,19 +17,15 @@ import App from './app/App';
 // Editor Configuration
 // ============================================================================
 
-// highlight-config
 /**
  * Static CE.SDK configuration.
  */
 export const editorConfig: Configuration = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-start-with-video-user',
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
-// highlight-config
 
 // ============================================================================
 // React App Bootstrap

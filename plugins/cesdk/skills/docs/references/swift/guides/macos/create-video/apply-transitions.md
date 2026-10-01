@@ -141,9 +141,10 @@ Blend adjacent video clips into each other with clip-to-clip transitions such as
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-apply-transitions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-apply-transitions)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 A transition belongs to the **outgoing clip** and blends it into the following clip on the same track. When you assign one, the engine overlaps the two clips for the transition duration: the incoming clip—and every clip after it on that track—moves earlier on the timeline, and audio cross-fades over the same window following the transition's easing curve.
 

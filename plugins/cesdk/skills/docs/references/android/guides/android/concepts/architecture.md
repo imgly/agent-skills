@@ -80,9 +80,10 @@ Understand how CE.SDK is structured around the CreativeEngine and its six interc
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-concepts-architecture)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-concepts-architecture)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK is built around the **CreativeEngine** runtime, exposed on Android through the `Engine` class. It manages state, rendering, and coordination between six specialized APIs. Understanding how these pieces connect makes it much easier to navigate the SDK and decide where a change belongs.
 

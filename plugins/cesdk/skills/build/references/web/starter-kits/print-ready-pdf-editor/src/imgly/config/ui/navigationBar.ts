@@ -73,9 +73,7 @@ export function setupNavigationBar(cesdk: CreativeEditorSDK): void {
     // ============================
     // Print-Ready PDF Export
     // ============================
-    // highlight-navigation-bar
     'ly.img.export-print-ready-pdf.navigationBar'
-    // highlight-navigation-bar
   ]);
   // #endregion
 }

@@ -69,9 +69,10 @@ loaded scene is immediately editable.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-load-scene-from-remote)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-load-scene-from-remote)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Scene files contain layout, properties, and asset references, but not the assets themselves. When loading a scene, make sure the referenced asset URLs remain accessible. For self-contained packages with bundled assets, use archives instead.
 

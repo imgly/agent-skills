@@ -16,6 +16,7 @@ Extend editor functionality with file format imports, content moderation, design
 - [PowerPoint Template Import for Angular](./starterkits/pptx-template-import.md) - Transform PowerPoint slides into editable CE.SDK designs. All formatting preserved.
 - [InDesign Template Import for Angular](./starterkits/indesign-template-import.md) - Transform your existing InDesign templates for use in the CE.SDK with our Importer. Preserve design elements and streamline the transition between platforms.
 - [PDF Template Import for Angular](./starterkits/pdf-template-import.md) - Transform PDF documents into editable CE.SDK designs. All formatting preserved.
+- [EPS Artwork Gallery](./starterkits/eps-artwork-gallery.md) - Add EPS artwork to the editor's media Gallery and import it as editable groups in an existing design.
 - [Content Moderation Editor for Angular](./starterkits/content-moderation.md) - Content moderation made easy. Decide what type of imagery to restrict and receive automatic notifications flagging content that might be violating your guidelines.
 - [Design Validation Editor for Angular](./starterkits/design-validation.md) - Reduce the risk of misprints and speed up validation process thanks to design validation. Automatic error notifications will let you know if the design is not print-ready.
 - [Version History for Angular](./starterkits/version-history.md) - With Version History, you can monitor changes made to each design and easily restore past versions if needed.

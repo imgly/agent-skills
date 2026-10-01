@@ -103,9 +103,10 @@ the camera, and react to zoom changes — all through the Engine `scene` API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-set-zoom-level)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-set-zoom-level)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 The zoom level is a ratio between design pixels and screen pixels. A zoom level of `1.0` shows one design pixel as one screen pixel; `2.0` shows it as two. Every call below operates on the engine's active scene and reads back through `engine.scene`.
 

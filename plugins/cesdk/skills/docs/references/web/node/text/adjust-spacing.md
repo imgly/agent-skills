@@ -10,11 +10,11 @@ Control letter spacing, line height, and paragraph spacing in text blocks using 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-text-adjust-spacing-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-text-adjust-spacing-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-adjust-spacing-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-text-adjust-spacing-server-js)
 
 CE.SDK provides three text spacing properties: `text/letterSpacing`, `text/lineHeight`, and `text/paragraphSpacing`. All are float properties controlled via `engine.block.setFloat()` and `engine.block.getFloat()`.
 

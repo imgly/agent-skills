@@ -143,9 +143,10 @@ using CreativeEngine block APIs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-programmatic-animations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-programmatic-animations)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Programmatic animation control is useful for automation, templates, and custom mobile controls. Animations belong to video scenes and attach to design blocks through separate In, Loop, and Out slots.
 

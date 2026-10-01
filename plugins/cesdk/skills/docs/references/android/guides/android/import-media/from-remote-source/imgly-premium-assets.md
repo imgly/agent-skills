@@ -117,9 +117,10 @@ Android asset source.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-imgly-premium-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-import-media-imgly-premium-assets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 IMG.LY premium templates are delivered as a licensed asset package. Contact [IMG.LY sales](https://img.ly/forms/contact-sales) to obtain the package, then extract it and host its contents on your server or CDN. CE.SDK can query the hosted manifest, show template thumbnails, and load an individual template's `.zip` archive into the scene.
 

@@ -336,11 +336,12 @@ filter asset sources for brand-specific color grading.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-custom-filters)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-custom-filters)
 
 CE.SDK provides built-in LUT filters, but many applications need brand-specific color grading or custom filter collections. Custom filter asset sources let you register your own LUT filters, query them like any other asset source, and apply the selected metadata to an image block.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 This guide covers how to define filter metadata, create a custom asset source, load filters from JSON configuration, query filter assets, and apply a filter to a block.
 

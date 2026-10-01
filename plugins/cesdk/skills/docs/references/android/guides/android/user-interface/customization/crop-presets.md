@@ -130,9 +130,10 @@ Customize the aspect ratio options users see when they open crop mode in the And
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/editor-guides-crop-presets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/editor-guides-crop-presets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Crop presets are asset-source entries with a `payload.transformPreset` value. The Android image crop UI reads aspect ratio presets from `ly.img.crop.presets`.
 

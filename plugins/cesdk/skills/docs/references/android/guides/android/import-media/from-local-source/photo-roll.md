@@ -114,9 +114,10 @@ with the system photo picker or in-app device gallery browsing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/editor-guides-import-media-from-local-source-photo-roll)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/editor-guides-import-media-from-local-source-photo-roll)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 We integrate Android gallery access through `SystemGalleryAssetSource` and the
 editor's Gallery button. `SystemGalleryConfiguration.Disabled` keeps

@@ -81,9 +81,10 @@ Create stickers from images for use in your designs, perfect for adding icons, l
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-stickers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-stickers)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Stickers are graphic blocks with image fills that cannot be recolored. They work well for icons, brand logos, emoji, and complex multi-color graphics. Unlike shapes (which use solid or gradient fills and can be recolored), stickers preserve the original colors and details of the source image.
 

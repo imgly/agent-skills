@@ -14,6 +14,40 @@ It’s designed for developers, product teams, and technical decision-makers eva
 - Custom-built rendering engine for consistent cross-platform performance
 - Flexible enough for both low-code and fully custom implementations
 
+## Design Creation and Editing
+
+CE.SDK provides comprehensive tools for creating and editing images, videos, and multi-page layouts directly in your application with full feature parity to desktop applications.
+
+### Core Capabilities
+
+- Create, edit, compose, and customize visual content
+- Dual control: Use the built-in editor UI or programmatic API
+- Rich editing tools: filters, text styling, stickers, layers, and layout controls
+
+### Supported Workflows
+
+- Social media content creation and user-generated content flows
+- Marketing tools for creative teams
+- Branded asset creation (slides, product visuals, templates)
+- Composition tools for multi-page layouts, collages, and background blending
+
+## Templates and Reusable Layouts
+
+Define reusable templates to simplify design creation. These templates support:
+
+- Role-based editing (lock/unlock elements based on user type)
+- Smart placeholders (predefined image/text drop zones)
+- Preset styles for consistent branding
+- Programmatic or user-driven updates
+
+Templates make it easy to scale consistent design output while keeping editing intuitive.
+
+## Automation and Dynamic Content
+
+You can generate visuals automatically by combining templates with structured data.
+
+Common use cases include personalized ads, localizations, product catalogs, or A/B testing. The SDK works in headless mode and supports batch workflows, making it easy to automate at scale.
+
 ## Multi-modal
 
 CE.SDK supports a wide range of content types and formats:

@@ -213,9 +213,10 @@ Create and customize text designs that users can insert from the CE.SDK asset li
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-text-designs)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-text-text-designs)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Text designs, also known as text components, are serialized text blocks stored in an asset source. Each asset entry points to a `blocks.blocks` file and a thumbnail so the editor can show the component and insert it into the current scene.
 

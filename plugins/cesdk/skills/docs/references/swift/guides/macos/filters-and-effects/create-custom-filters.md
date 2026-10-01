@@ -203,9 +203,10 @@ Extend CE.SDK with your own LUT filters by creating and registering custom filte
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-custom-filters)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-custom-filters)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK provides built-in LUT filters, but many applications need brand-specific color grading or custom filter collections. Custom filter asset sources let you register your own LUT filters that can be queried and applied programmatically, alongside the built-in defaults.
 

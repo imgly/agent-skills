@@ -10,9 +10,9 @@
 
 Our documentation is now available in LLMs.txt format, optimized for AI reasoning engines. To better support platform-specific development, we've created separate documentation files for each platform.
 
-For  developers, this means you can now access documentation tailored to your specific platform, whether it's iOS, Android, Web, or any other supported platform. This approach allows for a more focused and efficient use of AI tools in your development workflow.
+For Nuxt.js developers, this means you can now access documentation tailored to your specific platform, whether it's iOS, Android, Web, or any other supported platform. This approach allows for a more focused and efficient use of AI tools in your development workflow.
 
-[Download](https://img.ly/docs/cesdk/getFullUrl\(`/$\{props.platform.slug}/llms-full.txt`\))
+[Download /nuxtjs/llms-full.txt](./llms-full.txt.md)
 
 These documentation files are substantial in size, with token counts exceeding the context windows of many AI models. This guide explains how to download and effectively use these platform-specific documentation files with AI tools to accelerate your development process.
 

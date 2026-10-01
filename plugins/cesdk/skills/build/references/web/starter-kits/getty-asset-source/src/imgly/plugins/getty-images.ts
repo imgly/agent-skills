@@ -64,7 +64,6 @@ const EMPTY_RESULT: AssetsQueryResult<AssetResult> = {
 // Track whether we've shown the proxy URL warning
 let hasShownProxyUrlWarning = false;
 
-// highlight-createAssetSource
 /**
  * Create a Getty Images asset source with the given proxy URL.
  *
@@ -98,13 +97,10 @@ export function createGettyImagesAssetSource(proxyUrl: string): AssetSource {
     }
 
     try {
-      // highlight-pagination
       // Getty Images uses 1-based page numbering
       // Convert from CE.SDK's 0-based pagination
       const gettyPage = queryData.page + 1;
-      // highlight-pagination
 
-      // highlight-proxy-request
       // Build query parameters for proxy request
       const params = new URLSearchParams({
         query: queryData.query || 'business',
@@ -115,9 +111,7 @@ export function createGettyImagesAssetSource(proxyUrl: string): AssetSource {
       // Call the proxy server which handles Getty Images API authentication
       // and returns data already formatted for CE.SDK
       const response = await fetch(`${proxyUrl}?${params}`);
-      // highlight-proxy-request
 
-      // highlight-response-handling
       if (!response.ok) {
         throw new Error(`Getty API error: ${response.statusText}`);
       }
@@ -125,7 +119,6 @@ export function createGettyImagesAssetSource(proxyUrl: string): AssetSource {
       // The proxy already returns data in CE.SDK format
       const data = (await response.json()) as AssetsQueryResult<AssetResult>;
       return data;
-      // highlight-response-handling
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('Getty Images API error:', error);
@@ -136,7 +129,6 @@ export function createGettyImagesAssetSource(proxyUrl: string): AssetSource {
   return {
     id: 'gettyImagesImageAssets',
     findAssets: findGettyImagesAssets,
-    // highlight-credits-license
     credits: {
       name: 'Getty Images',
       url: 'https://www.gettyimages.com/'
@@ -145,10 +137,8 @@ export function createGettyImagesAssetSource(proxyUrl: string): AssetSource {
       name: 'Getty Images Content License Agreement',
       url: 'https://www.gettyimages.com/eula'
     }
-    // highlight-credits-license
   };
 }
-// highlight-createAssetSource
 
 // ============================================================================
 // Plugin Class
@@ -173,7 +163,6 @@ export function createGettyImagesAssetSource(proxyUrl: string): AssetSource {
  * await cesdk.addPlugin(new GettyImagesAssetSourcePlugin());
  * ```
  */
-// highlight-plugin-class
 export class GettyImagesAssetSourcePlugin implements EditorPlugin {
   /**
    * Unique identifier for this plugin.
@@ -271,4 +260,3 @@ export class GettyImagesAssetSourcePlugin implements EditorPlugin {
     );
   }
 }
-// highlight-plugin-class

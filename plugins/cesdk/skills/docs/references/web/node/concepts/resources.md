@@ -11,11 +11,11 @@ reference via URIs in CE.SDK.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-concepts-resources-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-concepts-resources-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-concepts-resources-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-concepts-resources-server-js)
 
 Resources are external media files that blocks reference through URI properties like `fill/image/imageFileURI` or `fill/video/fileURI`. CE.SDK loads resources automatically when needed, but you can preload them for better performance. When working with temporary data like buffers or blobs, you need to persist them before saving. If resource URLs change (such as during CDN migration), you can update the mappings without modifying scene data.
 
@@ -412,6 +412,8 @@ Handle transient resources during save with the `onDisallowedResourceScheme` cal
 ```
 
 This pattern lets you intercept temporary resources, upload them to permanent storage, and save the scene with stable URLs that will work when reloaded.
+
+If the callback throws, rejects, or returns no string, `saveToString()` rejects with an error that carries its message. The scene keeps its original URLs.
 
 ## Troubleshooting
 

@@ -11,9 +11,6 @@ import { hexToRgba } from '../../imgly/color-utilities';
 import { useSinglePageMode } from './SinglePageModeContext';
 import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 export const ALL_STEPS = ['edit', 'preview'] as const;
 type Step = (typeof ALL_STEPS)[number];
@@ -57,9 +54,6 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
         });
         if (cancelled) return;
         setSceneIsLoaded(true);
-        // START_HIDDEN_BLOCK
-        reportDemoPhase('ready');
-        // END_HIDDEN_BLOCK
       }
     };
     loadTemplate();

@@ -53,7 +53,6 @@ export { createAutocaptionPlugin } from './plugins/auto-caption';
  *
  * @param cesdk - The CreativeEditorSDK instance to configure
  */
-// highlight-autocaption
 export async function initVideoCaptionsAutocaptionEditor(
   cesdk: CreativeEditorSDK
 ) {
@@ -112,7 +111,6 @@ export async function initVideoCaptionsAutocaptionEditor(
   // Add the autocaption plugin
   await cesdk.addPlugin(createAutocaptionPlugin());
 }
-// highlight-autocaption
 
 /**
  * Initialize the CE.SDK Video Editor in blank mode.
@@ -124,7 +122,6 @@ export async function initVideoCaptionsAutocaptionEditor(
  *
  * @param cesdk - The CreativeEditorSDK instance to configure
  */
-// highlight-blank
 export async function initVideoCaptionsBlankEditor(cesdk: CreativeEditorSDK) {
   // Add configuration plugin
   await cesdk.addPlugin(new VideoEditorConfig());
@@ -178,7 +175,6 @@ export async function initVideoCaptionsBlankEditor(cesdk: CreativeEditorSDK) {
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
 }
-// highlight-blank
 
 /**
  * Initialize the CE.SDK Video Editor in import mode.
@@ -190,7 +186,6 @@ export async function initVideoCaptionsBlankEditor(cesdk: CreativeEditorSDK) {
  *
  * @param cesdk - The CreativeEditorSDK instance to configure
  */
-// highlight-import
 export async function initVideoCaptionsImportEditor(cesdk: CreativeEditorSDK) {
   // Add configuration plugin
   await cesdk.addPlugin(new VideoEditorConfig());
@@ -244,7 +239,6 @@ export async function initVideoCaptionsImportEditor(cesdk: CreativeEditorSDK) {
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
 }
-// highlight-import
 
 /**
  * Initialize the CE.SDK Video Editor in pre-captioned mode.
@@ -257,7 +251,6 @@ export async function initVideoCaptionsImportEditor(cesdk: CreativeEditorSDK) {
  *
  * @param cesdk - The CreativeEditorSDK instance to configure
  */
-// highlight-pre-captioned
 export async function initVideoCaptionsPreCaptionedEditor(
   cesdk: CreativeEditorSDK
 ) {
@@ -313,4 +306,3 @@ export async function initVideoCaptionsPreCaptionedEditor(
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
 }
-// highlight-pre-captioned

@@ -106,9 +106,10 @@ preset — you describe the look as JSON and the engine applies it to a caption 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-update-caption-presets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-update-caption-presets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 A caption preset is a JSON document that the engine applies to a caption block — there are no blocks to build or files to serialize. CE.SDK groups these presets under the `ly.img.caption.presets` asset source. This guide defines a custom preset, hosts it in a `content.json`, registers another preset at runtime, and applies a preset to a caption with the engine's asset APIs.
 

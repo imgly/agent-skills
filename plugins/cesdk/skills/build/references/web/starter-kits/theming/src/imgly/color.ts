@@ -38,7 +38,6 @@ const transferCL = (from: string, to: string) => {
 // Token Generation Functions
 // ============================================================================
 
-// highlight-surface-tokens
 export function generateColorAbstractionTokensSurface(color: string) {
   return {
     '--ubq-elevation-1': setLightness(color, '+0.05').css('hsl'),
@@ -73,17 +72,13 @@ export function generateColorAbstractionTokensSurface(color: string) {
     '--ubq-progress': getContrastColor(color).alpha(0.7).css('hsl')
   };
 }
-// highlight-surface-tokens
 
-// highlight-canvas-tokens
 export function generateColorAbstractionTokensCanvas(color: string) {
   return {
     '--ubq-canvas': chroma(color).css('hsl')
   };
 }
-// highlight-canvas-tokens
 
-// highlight-active-tokens
 export function generateColorAbstractionTokensActive(color: string) {
   return {
     '--ubq-foreground-active': chroma(color).alpha(0.9).css('hsl'),
@@ -96,9 +91,7 @@ export function generateColorAbstractionTokensActive(color: string) {
     ).css('hsl')
   };
 }
-// highlight-active-tokens
 
-// highlight-accent-tokens
 export function generateColorAbstractionTokensAccent(color: string) {
   return {
     '--ubq-foreground-accent': getContrastColor(color).alpha(1.0).css('hsl'),
@@ -111,9 +104,7 @@ export function generateColorAbstractionTokensAccent(color: string) {
     '--ubq-notice-success': transferCL(color, '#09B48B').css('hsl')
   };
 }
-// highlight-accent-tokens
 
-// highlight-static-tokens
 export function generateStaticTokens() {
   return {
     '--ubq-static-selection-frame': 'hsl(230, 100%, 60%)',
@@ -135,4 +126,3 @@ export function generateStaticTokens() {
       hsla(0, 0%, 67%, 0.16)`
   };
 }
-// highlight-static-tokens

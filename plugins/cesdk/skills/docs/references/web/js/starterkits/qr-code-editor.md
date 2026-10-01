@@ -12,13 +12,13 @@ Easily generate and customize QR codes within CE.SDK.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-qr-code-editor-ts-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/starterkit-qr-code-editor-ts-web/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-qr-code-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-qr-code-editor-ts-web/tree/release-1.83.0)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-qr-code-editor-ts-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-qr-code-editor-ts-web/tree/release-1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/starterkit-qr-code-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-qr-code-editor/index.html)
 
 ***
 
@@ -66,7 +66,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -144,9 +144,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.83.0</TerminalTab>
     </TerminalTabs>
 
     ### QR Code Plugin
@@ -154,9 +154,9 @@ Before you begin, make sure you have the following:
     Add QR code generation:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @imgly/plugin-qr-code-web@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @imgly/plugin-qr-code-web@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="yarn">yarn add @imgly/plugin-qr-code-web@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="npm">npm install @imgly/plugin-qr-code-web@1.83.0</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @imgly/plugin-qr-code-web@1.83.0</TerminalTab>
+      <TerminalTab label="yarn">yarn add @imgly/plugin-qr-code-web@1.83.0</TerminalTab>
     </TerminalTabs>
 
     - `@imgly/plugin-qr-code-web` – CE.SDK plugin that integrates QR code generation into the editor UI (canvas menu and dock panel)
@@ -167,7 +167,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>

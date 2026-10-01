@@ -263,9 +263,10 @@ Keep an open Android Editor asset library in sync after your app changes an exte
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-asset-library-refresh-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-import-media-asset-library-refresh-assets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 When an external upload flow, backend job, or sync process changes a custom asset source, update the backing catalog and any cache first. Then call `engine.asset.assetSourceContentsChanged(sourceId=_)` with that source's exact ID.
 

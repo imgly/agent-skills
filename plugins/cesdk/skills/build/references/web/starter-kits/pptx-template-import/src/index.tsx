@@ -19,12 +19,10 @@ import { App } from './app/App';
  * runtime APIs in the AdvancedEditorConfig plugin.
  */
 export const editorConfig: Configuration = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-pptx-template-import-user',
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
 
 createRoot(document.getElementById('root')!).render(

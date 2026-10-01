@@ -16,7 +16,6 @@ import App from './app/App';
 // ============================================================================
 
 const engineConfig = {
-  license: import.meta.env.VITE_CESDK_LICENSE,
   featureFlags: {
     preventScrolling: true
   }

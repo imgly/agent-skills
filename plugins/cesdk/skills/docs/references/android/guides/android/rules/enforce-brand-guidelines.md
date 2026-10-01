@@ -178,9 +178,10 @@ elements like logos and legal text, while keeping selected content editable.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-enforce-brand-guidelines)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-enforce-brand-guidelines)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Brand guidelines enforcement in CE.SDK combines two complementary approaches:
 restricting which assets users can choose and controlling what editing

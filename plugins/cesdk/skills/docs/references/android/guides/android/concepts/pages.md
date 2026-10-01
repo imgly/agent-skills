@@ -134,9 +134,10 @@ Pages define the format of your designs. Every graphic block, text element, and 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-concepts-pages)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-concepts-pages)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Pages provide the canvas and frame for your designs. Whether you're building a multi-page document, a carousel, or a video composition, understanding how pages work helps you structure content correctly.
 

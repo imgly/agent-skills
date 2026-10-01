@@ -248,9 +248,10 @@ Populate a reusable template from application data and export the finished desig
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-design-generation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-design-generation)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Each generation job starts from a pristine template and resolves its current block IDs before applying one record. This keeps template state isolated without turning the mobile workflow into a batch-processing service.
 

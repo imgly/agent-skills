@@ -200,9 +200,10 @@ canvas size.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-apply-template)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-apply-template)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Applying a template loads the template's content into the current scene while keeping the scene's design unit and page dimensions. The content is resized to fit those dimensions. This differs from `engine.scene.load(sceneUri=_)`, which replaces the entire scene, including its dimensions.
 

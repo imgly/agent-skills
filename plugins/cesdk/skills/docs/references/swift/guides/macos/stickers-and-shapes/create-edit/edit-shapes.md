@@ -317,9 +317,10 @@ group.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-edit-shapes)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-edit-shapes)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 The `graphic` [design block](../../concepts/blocks.md) in CE.SDK pairs a shape — the geometric definition — with a fill — the color, gradient, image, or video that makes the shape visible. This guide covers editing every part of that pair: swapping the shape's geometry, modifying shape-specific properties, changing fills and strokes, transforming the block, combining shapes with boolean operations, applying effects, and grouping.
 

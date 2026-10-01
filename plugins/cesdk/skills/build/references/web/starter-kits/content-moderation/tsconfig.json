@@ -2,8 +2,14 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "types": ["vite/client"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "vite/client"
+    ],
     "moduleResolution": "bundler",
     "skipLibCheck": true,
     "noImplicitAny": false,
@@ -14,16 +20,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "allowImportingTsExtensions": true
+    "jsx": "react-jsx"
   },
   "include": [
     "*.ts",
     "*.tsx",
     "src/**/*.ts",
-    "src/**/*.tsx",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "src/**/*.tsx"
   ],
-  "exclude": ["*.mjs", "node_modules", "dist"]
+  "exclude": [
+    "*.mjs",
+    "node_modules",
+    "dist"
+  ]
 }

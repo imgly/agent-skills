@@ -150,9 +150,10 @@ generation, and custom template creation tools.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-templates-from-scratch)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-templates-from-scratch)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK lets you create a template without starting from an existing scene. You define the page size, add text and graphic blocks, bind text variables, mark media as a placeholder, restrict editing with scopes, and save the result for reuse.
 

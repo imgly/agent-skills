@@ -129,9 +129,10 @@ blocks.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-audio-add-music)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-audio-add-music)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Audio blocks are standalone time-based blocks that play alongside video content, independent of video fills. You can set an audio source URI, position the block in the timeline, configure volume, query audio assets, and layer multiple audio blocks in the same video scene.
 

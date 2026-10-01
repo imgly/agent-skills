@@ -21,12 +21,6 @@ import SCENES from '../scenes.json';
 
 import styles from './EditorModal.module.css';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 interface EditorModalProps {
   isOpen: boolean;
@@ -66,9 +60,6 @@ export default function EditorModal({
   useEffect(() => {
     if (!isOpen) return;
     return () => {
-      // START_HIDDEN_BLOCK
-      delete (window as any).cesdk;
-      // END_HIDDEN_BLOCK
     };
   }, [isOpen]);
 
@@ -100,16 +91,7 @@ export default function EditorModal({
         <CreativeEditor
           className={styles.container}
           config={editorBaseConfig}
-          // START_HIDDEN_BLOCK
-          onLoadingStateChange={reportDemoLoadingState}
-          // END_HIDDEN_BLOCK
           init={async (cesdk) => {
-            // START_HIDDEN_BLOCK
-            reportDemoPhase('created');
-            // END_HIDDEN_BLOCK
-            // START_HIDDEN_BLOCK
-            (window as any).cesdk = cesdk;
-            // END_HIDDEN_BLOCK
 
             // Initialize appropriate editor configuration based on mode
             if (selectedRestaurant) {
@@ -154,9 +136,6 @@ export default function EditorModal({
 
             // Fit scene to view
             cesdk.actions.run('zoom.toPage', { autoFit: true });
-            // START_HIDDEN_BLOCK
-            reportDemoPhase('ready');
-            // END_HIDDEN_BLOCK
           }}
           onError={(error) => {
             // eslint-disable-next-line no-console

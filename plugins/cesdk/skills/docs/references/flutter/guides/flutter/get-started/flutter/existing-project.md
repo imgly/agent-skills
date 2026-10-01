@@ -50,7 +50,7 @@ Before you begin, ensure you have the following requirements:
 
 ### Platform Requirements
 
-- **iOS**: 16.0+ (Xcode $XCODE\_VERSION$+, Swift $SWIFT\_VERSION$+)
+- **iOS**: 16.0+ (Xcode 26.4.1+, Swift 6.3.1+)
 - **Android**: 7.0+ (API level 24+)
 
 ### License

@@ -140,9 +140,10 @@ editing permissions through the scopes mechanism.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-rules-overview)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-rules-overview)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 In CE.SDK, *rules* are the design constraints and guardrails that control which editing operations are permitted. The primary mechanism for enforcing rules is the **scopes system** — permission flags that let you build guided editing experiences, maintain brand consistency, ensure design quality, and prevent unauthorized modifications.
 

@@ -30,9 +30,31 @@ You can work with:
 - **Custom Templates**: Templates you create based on your specific use case, offering full flexibility over design, dynamic fields, and editing constraints.
 - **Premium Templates**: Additional high-quality templates provided by IMG.LY, which can be integrated into your application if licensed.
 
+## Applying Templates to Existing Scenes
+
+It’s possible to apply a template to an existing scene. In these cases:
+
+- The template structure can be merged with the current content.
+- Alternatively, the scene can be reset and rebuilt based on the new template, depending on the chosen integration approach.
+
+This enables workflows like refreshing an old design with a new branded layout without starting over.
+
 ## Output Formats When Using Templates
 
 When generating outputs from templates, CE.SDK supports:
+
+| Category    | Supported Formats                                                                    |
+| ----------- | ------------------------------------------------------------------------------------ |
+| **Images**  | `.png` (with transparency), `.jpeg`, `.webp`, `.tga`                                 |
+| **Vector**  | `.svg` (scalable vector graphics with text as paths)                                 |
+| **Print**   | `.pdf` (supports underlayer printing and spot colors)                                |
+| **Video**   | `.mp4` (H.264 video with AAC audio — requires the native `@cesdk/node-native` package; not available in the WASM-based `@cesdk/node`) |
+| **Scene**   | `.imgly` or `.scene` (description of the scene without any assets) |
+| **Archive** | `.imgly` or `.zip` (fully self-contained archive that bundles the scene file with all assets) |
+| **HTML**    | `.html` (static designs and animated video timelines — requires the separate `@imgly/html-exporter` package) |
+
+> **Note:** Our custom cross-platform C++ based rendering and layout engine ensures
+> consistent output quality across devices.
 
 Templates are format-aware, allowing you to design once and export to multiple formats seamlessly. For example, a single marketing template could be used to produce a social media graphic, a printable flyer, and a promotional video, all using the same underlying design.
 

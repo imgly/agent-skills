@@ -68,9 +68,10 @@ if a block supports them.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-supported-filters-and-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-supported-filters-and-effects)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK provides 22 built-in effect types for visual transformations including color adjustments, blur effects, artistic filters, and distortion effects. This reference guide shows how to check effect support and add effects programmatically, followed by detailed property tables for each effect type.
 

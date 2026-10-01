@@ -171,9 +171,10 @@ Manage undo and redo operations with the Android CreativeEngine API, subscribe t
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-undo-and-history)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-undo-and-history)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 This guide focuses on the engine APIs. It assumes your app already has an initialized `Engine` and a scene or block to edit. Pass an existing page to `undoAndHistory()` to keep its active history isolated from the temporary guide history. When no page is passed, the standalone sample creates a small offscreen demo page and preserves that new scene's initial history. The highlighted code is the history logic you would apply to your own scene.
 

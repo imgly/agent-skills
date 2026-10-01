@@ -14,13 +14,13 @@ or application design.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/guides-user-interface-appearance-theming-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-user-interface-appearance-theming-browser/index.html)
 
 CE.SDK provides comprehensive theming capabilities at two levels: built-in themes for immediate use, and a complete CSS theming API for detailed brand-specific styling. This guide demonstrates how to use each approach to customize the editor's appearance.
 

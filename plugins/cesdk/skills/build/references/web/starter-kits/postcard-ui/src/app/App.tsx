@@ -27,7 +27,6 @@ const App: React.FC<AppProps> = ({ engineConfig }) => {
 
   // Merge with required defaults
   const config: Partial<Configuration> = {
-    baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
     ...engineConfig,
     featureFlags: {
       preventScrolling: true,

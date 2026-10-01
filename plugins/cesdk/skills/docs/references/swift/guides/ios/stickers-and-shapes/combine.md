@@ -214,9 +214,10 @@ Combine multiple shapes using boolean operations to create custom compound desig
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-bool-ops)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-bool-ops)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK provides four boolean operations for graphic and text blocks: Union, Difference, Intersection, and XOR. Use them to merge simple primitives, create cutouts, isolate overlapping areas, or remove overlaps from a compound shape.
 

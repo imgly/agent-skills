@@ -10,10 +10,10 @@
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 
 // Configuration
-import { ViewerConfig } from '@cesdk/core-configs-web/viewer-editor';
+import { ViewerConfig } from './config/plugin';
 
 // Re-export for external use
-export { ViewerConfig } from '@cesdk/core-configs-web/viewer-editor';
+export { ViewerConfig } from './config/plugin';
 
 /**
  * Initialize the CE.SDK Viewer with a complete configuration.
@@ -36,8 +36,6 @@ export async function initDesignViewer(cesdk: CreativeEditorSDK) {
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 }

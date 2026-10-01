@@ -52,12 +52,10 @@ export async function initFormBasedTemplateAdoption(cesdk: CreativeEditorSDK) {
   // Role and Theme Configuration
   // ============================================================================
 
-  // highlight-role-theme
   // Set Creator role for template editing
   cesdk.engine.editor.setRole('Creator');
   // Set light theme
   cesdk.ui.setTheme('light');
-  // highlight-role-theme
 
   // ============================================================================
   // Configuration Plugin
@@ -70,7 +68,6 @@ export async function initFormBasedTemplateAdoption(cesdk: CreativeEditorSDK) {
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -122,15 +119,12 @@ export async function initFormBasedTemplateAdoption(cesdk: CreativeEditorSDK) {
     // Vector shapes (rectangles, circles, arrows, etc.)
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Form-Based Template Adoption Plugin
   // ============================================================================
 
-  // highlight-form-plugin
   // Add the form-based template adoption plugin
   // This configures the UI for form-based editing and registers the custom panel
   await cesdk.addPlugin(FormBasedTemplateAdoptionPlugin());
-  // highlight-form-plugin
 }

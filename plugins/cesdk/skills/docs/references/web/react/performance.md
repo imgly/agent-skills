@@ -35,7 +35,7 @@ Load CE.SDK directly from CDN using dynamic imports. This works in modern browse
 ```ts
 async function loadCreativeEditorSDK(): Promise<typeof CreativeEditorSDK> {
   const { default: CreativeEditorSDK } = await import(
-    'https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ_VERSION$/index.js'
+    'https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/index.js'
   );
   return CreativeEditorSDK;
 }
@@ -164,7 +164,7 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 const config = {
   license: 'YOUR_CESDK_LICENSE_KEY',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/$UBQ_VERSION$/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0/assets'
 };
 
 const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);

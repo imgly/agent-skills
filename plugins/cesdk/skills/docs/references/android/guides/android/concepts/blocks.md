@@ -214,9 +214,10 @@ CE.SDK designs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-concepts-blocks)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-concepts-blocks)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Every visual element in CE.SDK, including images, text, shapes, and audio, is represented as a block. Blocks are organized in a tree structure within scenes and pages, where parent-child relationships determine rendering order and visibility. Each block has properties you can read and modify, a `Type` that defines its core behavior, and an optional `Kind` for custom categorization.
 

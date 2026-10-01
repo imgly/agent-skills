@@ -29,9 +29,36 @@ All operations are optimized for in-app performance and align with real-time edi
 
 The SDK supports a broad range of image input types:
 
+| Category      | Supported Formats                                                                       |
+| ------------- | --------------------------------------------------------------------------------------- |
+| **Images**    | `.png`, `.apng`, `.jpeg`, `.jpg`, `.gif`, `.webp`, `.svg`, `.bmp`                       |
+| **Video**     | `.mp4` (H.264/AVC, H.265/HEVC), `.mov` (H.264/AVC, H.265/HEVC), `.webm` (VP8, VP9, AV1 — not supported by the native `@cesdk/node-native` package) |
+| **Audio**     | `.wav`, `.mp3`, `.m4a`, `.mp4` (AAC or MP3), `.mov` (AAC or MP3)                        |
+| **Animation** | `.json` (Lottie)                                                                        |
+
+Animated images (`.gif` and `.apng`) import as a static first frame in design
+scenes and as a looping video fill in video scenes.
+
+> **Note:** Need to import a format not listed here? CE.SDK allows you to create custom
+> importers for any file type by using our Scene and Block APIs
+> programmatically.
+
 ## Output and export options
 
 Export edited images in the following formats:
+
+| Category    | Supported Formats                                                                    |
+| ----------- | ------------------------------------------------------------------------------------ |
+| **Images**  | `.png` (with transparency), `.jpeg`, `.webp`, `.tga`                                 |
+| **Vector**  | `.svg` (scalable vector graphics with text as paths)                                 |
+| **Print**   | `.pdf` (supports underlayer printing and spot colors)                                |
+| **Video**   | `.mp4` (H.264 video with AAC audio — requires the native `@cesdk/node-native` package; not available in the WASM-based `@cesdk/node`) |
+| **Scene**   | `.imgly` or `.scene` (description of the scene without any assets) |
+| **Archive** | `.imgly` or `.zip` (fully self-contained archive that bundles the scene file with all assets) |
+| **HTML**    | `.html` (static designs and animated video timelines — requires the separate `@imgly/html-exporter` package) |
+
+> **Note:** Our custom cross-platform C++ based rendering and layout engine ensures
+> consistent output quality across devices.
 
 You can define export resolution, compression level, and file metadata. CE.SDK also supports exporting with transparent backgrounds, underlayers, or color masks.
 

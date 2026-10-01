@@ -79,9 +79,10 @@ Set up a two-surface integration where template creators have full editing acces
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-lock-template)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-lock-template)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Many integrations need two different editing experiences: one for designers who build templates, and one for end users who customize them. The Creator and Adopter roles make this possible—same CE.SDK, different permissions based on who's using it. For detailed scope configuration patterns, see [Lock Content](../rules/lock-content.md).
 

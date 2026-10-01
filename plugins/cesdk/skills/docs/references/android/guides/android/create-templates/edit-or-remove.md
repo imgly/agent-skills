@@ -360,11 +360,12 @@ with CE.SDK Engine.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-templates-edit-or-remove)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-templates-edit-or-remove)
 
 Templates evolve as designs change. You might need to update brand copy, fix content errors, remove outdated entries, or replace one stored version with another.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 This guide uses a headless Engine workflow: create a local source, save a template scene into asset metadata, load it back for editing, update block content and template metadata, validate the result, remove stale entries, and re-add updated versions.
 

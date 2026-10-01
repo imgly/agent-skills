@@ -104,9 +104,10 @@ Edit stickers after they've been placed in a scene — swap the source image, tr
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-edit-stickers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-edit-stickers)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Stickers are graphic blocks with an image fill and the `"sticker"` kind tag (see [Create Stickers](./create-stickers.md)). Once a sticker exists in a scene, every transform, opacity, drop shadow, stroke, blur, and effect setter that works on a graphic block also works on the sticker. The one thing that doesn't apply is recoloring — the image fill preserves the source artwork's colors.
 

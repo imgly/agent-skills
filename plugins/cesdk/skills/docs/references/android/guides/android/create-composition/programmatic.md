@@ -226,9 +226,10 @@ Build compositions entirely through code using the CE.SDK Engine for automation,
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-composition-programmatic)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-composition-programmatic)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK provides a complete Engine API for building designs through code. Instead of relying on user interactions through an editor UI, you can create scenes, add blocks like text, images, and shapes, and position them programmatically. This approach enables automation workflows, batch processing, headless rendering, and integration with custom interfaces.
 

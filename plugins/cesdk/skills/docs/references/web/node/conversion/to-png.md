@@ -8,11 +8,11 @@ Export designs to PNG format with lossless quality and optional transparency sup
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-conversion-to-png-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-conversion-to-png-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-conversion-to-png-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-conversion-to-png-server-js)
 
 PNG is a lossless image format that preserves image quality and supports transparency. It's ideal for designs requiring pixel-perfect fidelity, logos, graphics with transparent backgrounds, and any content where quality cannot be compromised.
 

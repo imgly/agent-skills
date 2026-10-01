@@ -314,9 +314,10 @@ Use variable fonts to offer a full range of font weights and styles from a singl
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/editor-guides-text-variable-fonts)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/editor-guides-text-variable-fonts)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Variable fonts are OpenType fonts that pack multiple variations of a font family into a single file. Instead of loading one file per weight, you register a single file and CE.SDK renders each variant by applying variation axis values. This reduces network requests and simplifies font management, especially for typefaces with many weights.
 

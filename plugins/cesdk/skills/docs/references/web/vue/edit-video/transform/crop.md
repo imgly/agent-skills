@@ -12,13 +12,13 @@ Crop videos to focus on specific areas, remove unwanted edges, or prepare clips 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-transform-crop-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-create-video-transform-crop-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-transform-crop-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-create-video-transform-crop-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/guides-create-video-transform-crop-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-create-video-transform-crop-browser/index.html)
 
 Video cropping in CreativeEditor SDK (CE.SDK) lets you re-frame clips, remove unwanted edges, or adapt footage for platform-specific formats. Unlike resizing or scaling which affects the entire frame uniformly, cropping selects a specific region to display.
 

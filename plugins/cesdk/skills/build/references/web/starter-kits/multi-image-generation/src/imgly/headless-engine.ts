@@ -20,7 +20,6 @@ export async function initMultiImageGenerationHeadlessEngine(
   options: Partial<Configuration> = {}
 ): Promise<CreativeEngine> {
   return CreativeEngine.init({
-    baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
     ...options
   });
 }

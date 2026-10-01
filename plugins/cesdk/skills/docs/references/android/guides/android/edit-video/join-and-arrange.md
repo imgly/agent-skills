@@ -197,9 +197,10 @@ composition using CE.SDK tracks, durations, and time offsets on Android.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-join-and-arrange-video)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-join-and-arrange-video)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Video compositions in CE.SDK use a **Scene > Page > Track > Clip** hierarchy.
 Tracks group clips for timed playback. This guide sets clip durations and time

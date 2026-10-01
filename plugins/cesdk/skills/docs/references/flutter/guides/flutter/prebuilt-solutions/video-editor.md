@@ -86,14 +86,14 @@ This guarantees consistent features, interoperable designs, and uniform renderin
 
 ## Prerequisites
 
-This version requires Flutter 3.16.0, Dart 2.12.0, iOS 16, Swift $SWIFT\_VERSION$ (Xcode $XCODE\_VERSION$), and Android 7 as the minimum specifications.
+This version requires Flutter 3.16.0, Dart 2.12.0, iOS 16, Swift 6.3.1 (Xcode 26.4.1), and Android 7 as the minimum specifications.
 Ensure your `pubspec.yml` file contains the required dependencies:
 
 ```
 dependencies:
     flutter:
         sdk: flutter
-    imgly_editor: 1.84.0-nightly.20260930
+    imgly_editor: 1.83.0
 ```
 
 ## Supported Media Types
@@ -102,9 +102,57 @@ dependencies:
 
 ### Importing Media
 
+| Category      | Supported Formats                                                  |
+| ------------- | ------------------------------------------------------------------ |
+| **Images**    | `.png`, `.apng`, `.jpeg`, `.jpg`, `.gif`, `.webp`, `.svg`, `.bmp`  |
+| **Video**     | `.mp4` (H.264/AVC, H.265/HEVC), `.mov` (H.264/AVC, H.265/HEVC)     |
+| **Audio**     | `.wav`, `.mp3`, `.m4a`, `.mp4` (AAC or MP3), `.mov` (AAC or MP3)   |
+| **Animation** | `.json` (Lottie)                                                   |
+
+Animated images (`.gif` and `.apng`) import as a static first frame in design
+scenes and as a looping video fill in video scenes.
+
+> **Note:** Need to import a format not listed here? CE.SDK allows you to create custom
+> importers for any file type by using our Scene and Block APIs
+> programmatically.
+
 ### Exporting Media
 
+| Category    | Supported Formats                                                                    |
+| ----------- | ------------------------------------------------------------------------------------ |
+| **Images**  | `.png` (with transparency), `.jpeg`, `.webp`, `.tga`                                 |
+| **Vector**  | `.svg` (scalable vector graphics with text as paths)                                 |
+| **Print**   | `.pdf` (supports underlayer printing and spot colors)                                |
+| **Video**   | `.mp4` (H.264 or H.265 on supported platforms with limited transparency support)     |
+| **Scene**   | `.imgly` or `.scene` (description of the scene without any assets) |
+| **Archive** | `.imgly` or `.zip` (fully self-contained archive that bundles the scene file with all assets) |
+
+> **Note:** Our custom cross-platform C++ based rendering and layout engine ensures
+> consistent output quality across devices.
+
 ### Importing Templates
+
+| Format   | Description                                                     |
+| -------- | --------------------------------------------------------------- |
+| `.idml`  | InDesign (via `@imgly/idml-importer`)                           |
+| `.psd`   | Photoshop (via `@imgly/psd-importer`)                           |
+| `.pdf`   | PDF (via `@imgly/pdf-importer`)                                 |
+| `.pptx`  | PowerPoint (via `@imgly/pptx-importer`)                         |
+| `.imgly` | CE.SDK Native (scene or archive, detected automatically)        |
+| `.scene` | CE.SDK Native (scene extension)       |
+| `.zip`   | CE.SDK Native (archive extension)     |
+
+Non-native design files are converted into editable CE.SDK scenes by dedicated
+importer packages rather than uploaded as media assets.
+
+> **Note:** The `.idml`, `.psd`, `.pdf` and `.pptx` importers ship as separate packages
+> that you install in addition to CE.SDK. These importer packages run only in
+> the browser and in Node.js. They are not available on any other platform,
+> including Android, iOS, Flutter and React Native.
+
+> **Note:** Need to import a format not listed here? CE.SDK allows you to create custom
+> importers for any file type by using our Scene and Block APIs to generate
+> scenes programmatically.
 
 For detailed information, see the [full file format support list](../file-format-support.md).
 
@@ -157,7 +205,7 @@ Configure the editor by passing a configuration object during initialization:
     final settings = EditorSettings(
         license: "YOUR_LICENSE",
         userId: "YOUR_USER_ID",
-        baseURL: URL(string: "https://cdn.img.ly/packages/imgly/cesdk-engine/1.84.0-nightly.20260930/assets")!
+        baseURL: URL(string: "https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0/assets")!
     );
 ```
 

@@ -123,9 +123,10 @@ Manage assets in local asset sources by updating metadata, removing individual a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-edit-or-remove-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-edit-or-remove-assets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Assets in local sources can be modified or removed after they have been added. CE.SDK provides two levels of removal: individual assets within a source and entire asset sources. This guide covers how to query, update, and remove assets programmatically, and how to notify the engine when a source's contents change. Adding assets to a source is covered in the [Local Asset](./from-local-source/local-asset.md) guide, and on iOS in the [User Upload](./from-local-source/user-upload.md) guide.
 

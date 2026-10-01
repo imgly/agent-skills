@@ -73,17 +73,14 @@ export async function initLayoutsAssetSource(cesdk: CreativeEditorSDK) {
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -135,13 +132,11 @@ export async function initLayoutsAssetSource(cesdk: CreativeEditorSDK) {
     // Vector shapes (rectangles, circles, arrows, etc.)
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Layouts Plugin
   // ============================================================================
 
-  // highlight-layouts
   // Add the layouts asset source plugin
   // This provides pre-designed layout templates that can be applied to pages
   await cesdk.addPlugin(
@@ -150,5 +145,4 @@ export async function initLayoutsAssetSource(cesdk: CreativeEditorSDK) {
     })
   );
 
-  // highlight-layouts
 }

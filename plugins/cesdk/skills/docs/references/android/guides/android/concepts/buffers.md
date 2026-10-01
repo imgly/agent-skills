@@ -125,9 +125,10 @@ Store and manage temporary binary data directly in memory using CE.SDK's buffer 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-buffers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-buffers)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Buffers are in-memory containers referenced via `buffer://` Uris. Unlike external files that require network or file I/O, buffers live only inside the current engine session. This makes them useful for generated audio, real-time image data, or any content you want to pass to blocks without writing it to disk first.
 

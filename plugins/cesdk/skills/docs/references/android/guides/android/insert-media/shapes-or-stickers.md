@@ -373,9 +373,10 @@ materialize stickers from an asset source.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-insert-media-shapes-or-stickers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-insert-media-shapes-or-stickers)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Shapes are vector graphics created with `engine.block.createShape()` and attached to graphic blocks. CE.SDK supports six Android shape types: `ShapeType.Rect`, `ShapeType.Ellipse`, `ShapeType.Star`, `ShapeType.Polygon`, `ShapeType.Line`, and `ShapeType.VectorPath`. Stickers are graphic blocks that usually use an image fill and the `sticker` block kind.
 

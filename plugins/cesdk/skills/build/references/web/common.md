@@ -155,26 +155,11 @@ All kits share this structure — only the config and entry point differ:
 1. **Copy** the appropriate starter kit directory into the user's project directory
 2. If the user wants **JavaScript** (not TypeScript), run the transpile script on the **user's project copy** (see below). Never run it on the bundled starter kit source
 3. Update `package.json` name and adjust dependencies as needed
-4. **Pin CE.SDK packages to v1.84.0-nightly.20260930** (required — ensures runtime matches this skill's bundled docs). In the kit's `package.json`, every `@cesdk/*` and `@imgly/*` dependency set to `"latest"` must be installed at the pinned version — **except** for packages with independent release cycles (see skip list below):
+4. **Pin CE.SDK packages to v1.84.0-nightly.20261001** (required — ensures runtime matches this skill's bundled docs). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.84.0-nightly.20261001`. Remove the `^` so npm installs exactly that version, for example:
    \`\`\`bash
-   # Inspect package.json, then for each @cesdk/* or @imgly/* dep with value "latest"
-   # (and not in the skip list below):
-   npm install <package-name>@1.84.0-nightly.20260930
+   npm install @cesdk/cesdk-js@1.84.0-nightly.20261001 --save-exact
    \`\`\`
-   Example (if the kit has `"@cesdk/cesdk-js": "latest"`):
-   \`\`\`bash
-   npm install @cesdk/cesdk-js@1.84.0-nightly.20260930
-   \`\`\`
-   **Skip list — do NOT pin these packages to v1.84.0-nightly.20260930** (they have their own release schedules, their npm versions do NOT match CE.SDK versions, and pinning would resolve to a non-existent version):
-   - `@imgly/background-removal`
-   - `@imgly/background-removal-node`
-   - `@imgly/html-exporter`
-   - `@imgly/idml-importer`
-   - `@imgly/pptx-importer`
-   - `@imgly/psd-importer`
-
-   For these, install without a version suffix (e.g. `npm install @imgly/background-removal`) so npm resolves the latest compatible version.
-   Also leave dependencies with explicit versions (e.g. `"^1.4.5"`) untouched.
+   Leave other dependencies untouched. Importers and exporters such as `@imgly/pptx-importer` have their own versions.
 5. Run `npm install` to install remaining dependencies, then `npm run dev` to start the dev server
 6. Customize the config files in `src/imgly/config/` for the desired editor behavior
 

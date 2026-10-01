@@ -105,9 +105,10 @@ preview metadata for local and custom asset sources with the Swift Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-thumbnails)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-thumbnails)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Thumbnails are configured through an asset's metadata. When you register an asset, you provide a `thumbUri` that the asset library displays as the asset's preview, separate from the full-resolution `uri` used on the canvas. We recommend a **512px width** for `thumbUri` to keep previews crisp without loading the full asset.
 

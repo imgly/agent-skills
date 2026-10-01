@@ -102,9 +102,10 @@ Add text and image watermarks to images programmatically using CE.SDK's Engine b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-edit-image-add-watermark)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-edit-image-add-watermark)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Watermarks protect intellectual property, indicate ownership, add branding, or mark content as drafts. CE.SDK supports two types of watermarks: **text watermarks** created from text blocks for copyright notices and brand names, and **image watermarks** created from graphic blocks with image fills for logos and symbols.
 

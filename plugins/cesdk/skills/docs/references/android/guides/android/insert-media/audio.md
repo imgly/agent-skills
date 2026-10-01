@@ -119,9 +119,10 @@ sound effects, and voiceovers.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-insert-media-audio)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-insert-media-audio)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Audio blocks are time-based blocks that play sound alongside the rest of a scene. They have no visual canvas representation; they live on the timeline with their own duration, offset, and volume controls, independent of video fills attached to graphic blocks.
 

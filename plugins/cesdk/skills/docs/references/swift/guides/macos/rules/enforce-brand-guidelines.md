@@ -147,9 +147,10 @@ Learn how to restrict the available fonts to brand typefaces and lock brand elem
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-enforce-brand-guidelines)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-enforce-brand-guidelines)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Brand guidelines enforcement in CE.SDK combines two complementary approaches: restricting which assets users can choose and controlling what editing operations are permitted on brand elements. This guide restricts the available fonts to an approved set and uses the scopes system to lock brand elements like logos and legal text so they cannot be modified. On iOS, to restrict the colors users can pick in the editor, configure the editor's color palette — see the Color Palette guide. The example builds on a scene with a single page; adapt the block creation to the scene your app edits.
 

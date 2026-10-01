@@ -122,11 +122,12 @@ Configure size limits to balance quality and performance in CE.SDK applications.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-size-limits)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-size-limits)
 
 CE.SDK processes images and videos on the device, so size limits depend on available memory and rendering hardware. Tuning these limits keeps memory use predictable on smaller devices while still letting capable devices export at high resolution.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 This guide covers reading and writing the `maxImageSize` setting, observing setting changes, querying the device's maximum export size, and handling export failures.
 
@@ -137,6 +138,26 @@ CE.SDK manages size limits at two stages: **input** (when loading images) and **
 Export resolution has no artificial limit. The engine can render up to 16,384×16,384 pixels in theory, but the actual ceiling is determined by the device's rendering hardware and available memory. Use `engine.editor.getMaxExportSize()` to read the device's reported upper bound at runtime.
 
 ## Resolution & Duration Limits
+
+| Constraint            | Recommendation / Limit                                                                                                                                                                                                |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Input Resolution**  | Maximum input resolution is **4096×4096 pixels**. Images from external sources (e.g., Unsplash) are resized to this size before rendering on the canvas. You can modify this value using the `maxImageSize` setting.  |
+| **Output Resolution** | There is no enforced output resolution limit. Theoretically, the editor supports output sizes up to **16,384×16,384 pixels**. However, practical limits depend on the device's GPU capabilities and available memory. |
+
+All image processing in CE.SDK happens on the device running the engine, so these values depend on the **maximum texture size** supported by its hardware. The default limit of 4096×4096 is a safe baseline that works universally. Higher resolutions (e.g., 8192×8192) may work on certain devices but could fail on others during export if the GPU texture size is exceeded.
+
+> **Note:** To ensure consistent results across devices, it’s best to test higher output
+> sizes on your target hardware and set conservative defaults in production.
+
+| Constraint     | Recommendation / Limit                                                                                                                                                                                                                                                                          |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Resolution** | Up to **4K UHD** is supported for **playback** and **export** on capable devices, bounded by GPU texture size and available memory. For **import**, CE.SDK does not impose artificial limits, but maximum video size is bounded by available device memory and the native media framework's decoder capabilities. The maximum export dimension varies by device and can be queried via `engine.editor.getMaxExportSize()`. |
+| **Frame Rate** | 30 FPS at 1080p is broadly supported; 60 FPS and high-resolution exports benefit from hardware acceleration via the device's native media frameworks.                                                                                                                                            |
+| **Duration**   | Stories and reels of up to **2 minutes** are fully supported. Longer videos are also supported, but we generally found a maximum duration of **10 minutes** to be a good balance for a smooth editing experience and a pleasant export duration of around one minute on modern hardware.        |
+
+> **Note:** Performance scales with device hardware. For best results with high-resolution
+> or high-frame-rate video, modern devices with hardware video acceleration are
+> recommended.
 
 ## Configuring maxImageSize
 

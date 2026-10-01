@@ -115,7 +115,6 @@ export async function importPdfFile(
   try {
     // Initialize headless engine for processing
     engine = await CreativeEngine.init({
-      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       ...(license && { license }),
       ...(baseURL && { baseURL })
     });

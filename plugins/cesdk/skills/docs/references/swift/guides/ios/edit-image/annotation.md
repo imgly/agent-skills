@@ -154,9 +154,10 @@ designs with shape blocks.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-annotation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-annotation)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Annotations in CE.SDK are graphic blocks with shape geometry. Use them to highlight important areas, circle details, underline content, hide sensitive information, or add visual review marks on top of existing page content.
 

@@ -171,9 +171,10 @@ using CE.SDK's animation system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-animations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-animations)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK creates animations as separate block instances and attaches them to target blocks. You can apply entrance animations that play when a block appears, exit animations that play before it leaves, and loop animations that run while it stays visible. Text blocks also support writing-style controls for whole-block, line, word, or character reveals.
 

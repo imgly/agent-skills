@@ -132,9 +132,10 @@ ranges, reading formatting state, and managing the active text selection.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-edit)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-text-edit)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK supports two text-editing paths. The CE.SDK editor UI lets users enter text editing mode on a selected text block, while the Android Engine API edits text content and formatting directly. This guide focuses on the Engine APIs and assumes you already have an `Engine` instance.
 
@@ -193,6 +194,19 @@ engine.block.removeText(text, from = 0, to = 7)
 ```
 
 The sample starts with `Winter Sale`, inserts ` Design`, replaces `Sale` with `Campaign`, then removes the first word so the final text reads `Design Campaign`.
+
+## Using Tab Stops
+
+Tab characters align text into columns. A tab moves the text after it to the next tab stop, in both left-to-right and right-to-left text. A tab whose stop lies past the frame edge wraps to the next line. The `tabStopInterval` setting defines the distance between tab stops as a multiple of the base font size. The default is `2`; a value of `0` or less makes tab characters advance no width.
+
+```kotlin
+val table = engine.block.create(DesignBlockType.Text)
+engine.block.appendChild(parent = page, child = table)
+engine.block.replaceText(table, text = "Name:\tCE.SDK")
+engine.editor.setSettingFloat("tabStopInterval", value = 3F)
+```
+
+While editing on the canvas with a hardware keyboard, Tab inserts a tab character. In lists, Tab and Shift+Tab at the start of a paragraph change the list indent level instead; outside a list Shift+Tab does nothing.
 
 ## Applying Text Formatting
 

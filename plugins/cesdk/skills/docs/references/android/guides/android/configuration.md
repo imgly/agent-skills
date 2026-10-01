@@ -60,9 +60,10 @@ tracking, rendering behavior, and runtime Engine settings.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/editor-guides-configuration-basics)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/editor-guides-configuration-basics)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](./engine-interface.md) guide.
 
 The Android `Editor` composable owns Engine startup for the CE.SDK editor UI. Pass startup values directly to `Editor`, then use `EditorConfiguration` for callbacks, component customization, and runtime Engine settings through the existing `editorContext.engine`.
 
@@ -112,7 +113,7 @@ userId = signedInUserId,
 
 `baseUri` is the base path for relative editor and Engine asset paths. If omitted, `Editor` uses the top-level `defaultBaseUri` from `ly.img.editor`, a versioned IMG.LY CDN URL defined by the Android SDK. For production apps, bundle the CE.SDK Android assets with your app or host them yourself, then point `baseUri` at that location instead of relying on the IMG.LY CDN.
 
-For the local URI shown below, download the versioned CE.SDK Android asset bundle from [the IMG.LY CDN](https://cdn.img.ly/packages/imgly/cesdk-android/1.84.0-nightly.20260930/imgly-assets.zip) and extract it. The archive contains a top-level `assets/` directory; copy that directory into your app module's `src/main/assets/` folder so `file:///android_asset/assets/` points directly at the asset files. If you host the same asset folder, pass its HTTPS base URL as `baseUri` instead; the [Serve Assets From Your Server](./serve-assets.md) guide covers that setup.
+For the local URI shown below, download the versioned CE.SDK Android asset bundle from [the IMG.LY CDN](https://cdn.img.ly/packages/imgly/cesdk-android/1.83.0/imgly-assets.zip) and extract it. The archive contains a top-level `assets/` directory; copy that directory into your app module's `src/main/assets/` folder so `file:///android_asset/assets/` points directly at the asset files. If you host the same asset folder, pass its HTTPS base URL as `baseUri` instead; the [Serve Assets From Your Server](./serve-assets.md) guide covers that setup.
 
 ```kotlin highlight-android-base-uri
 baseUri = "file:///android_asset/assets/".toUri(),

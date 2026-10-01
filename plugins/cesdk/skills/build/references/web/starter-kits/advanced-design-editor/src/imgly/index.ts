@@ -30,11 +30,11 @@ import {
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 // Configuration and plugins
-import { AdvancedEditorConfig } from '@cesdk/core-configs-web/advanced-editor';
+import { AdvancedEditorConfig } from './config/plugin';
 import { ExclusionAreaAssetSource } from './plugins/exclusionArea/exclusionArea';
 
 // Re-export for external use
-export { AdvancedEditorConfig } from '@cesdk/core-configs-web/advanced-editor';
+export { AdvancedEditorConfig } from './config/plugin';
 export { ExclusionAreaAssetSource } from './plugins/exclusionArea/exclusionArea';
 
 /**
@@ -59,16 +59,13 @@ export async function initAdvancedEditor(cesdk: CreativeEditorSDK) {
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   await Promise.all([
     cesdk.addPlugin(new BlurAssetSource()),
     cesdk.addPlugin(new ImageColorsAssetSource()),
@@ -111,7 +108,6 @@ export async function initAdvancedEditor(cesdk: CreativeEditorSDK) {
 
     cesdk.addPlugin(new ExclusionAreaAssetSource())
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Navigation Bar Actions

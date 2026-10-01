@@ -10,11 +10,11 @@ Apply solid colors to design elements programmatically using CE.SDK's color syst
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-colors-apply-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-colors-apply-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-apply-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-colors-apply-server-js)
 
 Colors in CE.SDK are applied to block properties like fill, stroke, and shadow using `engine.block.setColor()`. The engine supports three color spaces: sRGB for screen display, CMYK for print production, and spot colors for specialized printing requirements.
 

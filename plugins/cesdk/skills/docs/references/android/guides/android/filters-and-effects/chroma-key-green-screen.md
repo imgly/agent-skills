@@ -176,9 +176,10 @@ for video compositing and virtual background applications.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-filters-and-effects-chroma-key-green-screen)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-filters-and-effects-chroma-key-green-screen)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 While green is the most common key color due to its contrast with skin tones, the effect works with any solid color—blue screens, white backgrounds, or custom colors. CE.SDK processes chroma keying in real-time using GPU-accelerated shaders.
 

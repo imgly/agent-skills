@@ -210,9 +210,10 @@ and export the result to a PNG or PDF.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-use-templates-generate)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-use-templates-generate)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Template generation transforms a reusable template into a finished design by populating data and exporting the result. Load a template with `engine.scene.load()`, replace its variables and placeholders with the Variable and Block APIs, then export it with `engine.block.export()`.
 

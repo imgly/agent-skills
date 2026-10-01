@@ -193,9 +193,10 @@ Add visual depth and emphasis to design elements using drop shadows and glow eff
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-shadows-and-glows)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-shadows-and-glows)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Drop shadows create the illusion of elements floating above the canvas, while glow effects add luminous halos that make elements stand out. On Android, drop shadows are native block properties and glow effects are configured through the effects system.
 

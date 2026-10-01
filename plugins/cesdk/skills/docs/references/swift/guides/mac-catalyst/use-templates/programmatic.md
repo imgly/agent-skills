@@ -120,9 +120,10 @@ processing, personalization, and headless design generation.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-use-templates-programmatic)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-use-templates-programmatic)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Templates are scenes with predefined structures that support dynamic content through variables. This guide shows you how to work with them through the Engine API—no editor interface required. You build a greeting card template from scratch, bind variables, save it for reuse, and batch-export personalized designs.
 

@@ -139,8 +139,6 @@ export async function initVideoExportOptionsEditor(cesdk: CreativeEditorSDK) {
   // Export Options Panel Plugin
   // ============================================================================
 
-  // highlight-export-panel
   // Add custom export panel with resolution and FPS selection
   await cesdk.addPlugin(ExportVideoPanelPlugin());
-  // highlight-export-panel
 }

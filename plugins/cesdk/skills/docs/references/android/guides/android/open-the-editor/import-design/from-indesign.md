@@ -41,9 +41,10 @@ Android app, then continue editing the imported design.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-open-the-editor-import-design-from-indesign)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-open-the-editor-import-design-from-indesign)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Android does not parse IDML files. Convert the IDML into a self-contained
 `.imgly` archive in a browser or Node.js environment, then deliver that archive

@@ -18,7 +18,6 @@ import './app/global.css';
 import { App } from './app/App';
 
 export const editorConfig: Configuration = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-video-captions-user',
 
   featureFlags: {
@@ -27,7 +26,6 @@ export const editorConfig: Configuration = {
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
 
 createRoot(document.getElementById('root')!).render(

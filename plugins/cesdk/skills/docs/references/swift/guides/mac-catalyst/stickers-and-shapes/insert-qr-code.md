@@ -163,9 +163,10 @@ Generate a QR code with Core Image and place it on a CE.SDK page as an image fil
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-shapes-qrcode)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-shapes-qrcode)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 QR codes are a practical way to turn any design into a scannable gateway for landing pages, app installs, product info, or event tickets. CE.SDK does not ship a built-in QR generator, but Core Image includes one — encode the URL, colorize it, and hand the resulting image to a graphic block through an image fill.
 

@@ -496,9 +496,10 @@ protruding content, obscured text, and unfilled placeholders.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-pre-export-validation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-pre-export-validation)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Pre-export validation catches layout and content issues before export, preventing problems like cropped content, hidden text, and incomplete designs in the final output. The checks shown here run against CE.SDK Engine block APIs, so you can call them before your own export step.
 

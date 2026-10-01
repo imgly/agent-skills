@@ -148,9 +148,10 @@ Understand the three color spaces in CE.SDK and when to use each for screen or p
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-colors-basics)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-colors-basics)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK supports three color spaces: **sRGB** for screen display, **CMYK** for print workflows, and **Spot Color** for specialized printing. On Android, create color values with the `Color` factory functions and apply them with typed block APIs where available.
 

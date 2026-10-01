@@ -12,9 +12,35 @@ This guide provides a complete reference of supported file formats for importing
 
 CE.SDK supports importing the following media types:
 
+| Category      | Supported Formats                                                  |
+| ------------- | ------------------------------------------------------------------ |
+| **Images**    | `.png`, `.apng`, `.jpeg`, `.jpg`, `.gif`, `.webp`, `.svg`, `.bmp`  |
+| **Video**     | `.mp4` (H.264/AVC, H.265/HEVC), `.mov` (H.264/AVC, H.265/HEVC)     |
+| **Audio**     | `.wav`, `.mp3`, `.m4a`, `.mp4` (AAC or MP3), `.mov` (AAC or MP3)   |
+| **Animation** | `.json` (Lottie)                                                   |
+
+Animated images (`.gif` and `.apng`) import as a static first frame in design
+scenes and as a looping video fill in video scenes.
+
+> **Note:** Need to import a format not listed here? CE.SDK allows you to create custom
+> importers for any file type by using our Scene and Block APIs
+> programmatically.
+
 ## Video and Audio Codecs
 
 While container formats (`.mp4`, `.mov`) define how media is packaged, codecs determine how the content is compressed. CE.SDK supports the following codecs for playback and editing:
+
+### **Video Codecs**
+
+- **H.264 / AVC** (in `.mp4`)
+- **H.265 / HEVC** (in `.mp4`, may require platform-specific support)
+
+### **Audio Codecs**
+
+- **MP3** (in `.mp3` or within `.mp4`)
+- **AAC** (in `.m4a` or within `.mp4` or `.mov`)
+
+These codecs apply to importing media. For export, CE.SDK produces MP4 with H.264 (H.265 only on supported browser and mobile platforms); the native Node.js package (`@cesdk/node-native`) exports H.264 video with AAC audio.
 
 > **Warning:** H.265/HEVC playback depends on the device providing a hardware or system
 > decoder. Availability varies across devices and operating system versions, so
@@ -26,11 +52,55 @@ CE.SDK processes media on-device, so performance is bounded by the hardware capa
 
 ### Image Resolution Limits
 
+| Constraint            | Recommendation / Limit                                                                                                                                                                                                |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Input Resolution**  | Maximum input resolution is **4096×4096 pixels**. Images from external sources (e.g., Unsplash) are resized to this size before rendering on the canvas. You can modify this value using the `maxImageSize` setting.  |
+| **Output Resolution** | There is no enforced output resolution limit. Theoretically, the editor supports output sizes up to **16,384×16,384 pixels**. However, practical limits depend on the device's GPU capabilities and available memory. |
+
+All image processing in CE.SDK happens on the device running the engine, so these values depend on the **maximum texture size** supported by its hardware. The default limit of 4096×4096 is a safe baseline that works universally. Higher resolutions (e.g., 8192×8192) may work on certain devices but could fail on others during export if the GPU texture size is exceeded.
+
+> **Note:** To ensure consistent results across devices, it’s best to test higher output
+> sizes on your target hardware and set conservative defaults in production.
+
 ### Video Resolution and Duration Limits
+
+| Constraint     | Recommendation / Limit                                                                                                                                                                                                                                                                          |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Resolution** | Up to **4K UHD** is supported for **playback** and **export** on capable devices, bounded by GPU texture size and available memory. For **import**, CE.SDK does not impose artificial limits, but maximum video size is bounded by available device memory and the native media framework's decoder capabilities. The maximum export dimension varies by device and can be queried via `engine.editor.getMaxExportSize()`. |
+| **Frame Rate** | 30 FPS at 1080p is broadly supported; 60 FPS and high-resolution exports benefit from hardware acceleration via the device's native media frameworks.                                                                                                                                            |
+| **Duration**   | Stories and reels of up to **2 minutes** are fully supported. Longer videos are also supported, but we generally found a maximum duration of **10 minutes** to be a good balance for a smooth editing experience and a pleasant export duration of around one minute on modern hardware.        |
+
+> **Note:** Performance scales with device hardware. For best results with high-resolution
+> or high-frame-rate video, modern devices with hardware video acceleration are
+> recommended.
 
 ## Format-Specific Considerations
 
 ### SVG Limitations
+
+CE.SDK uses Skia for SVG parsing and rendering. While most SVG files render correctly, there are some important limitations to be aware of:
+
+### Text Elements
+
+- SVG text elements are not supported - any text in SVG files will not be rendered.
+- Convert text to paths in your vector editor before exporting if text is needed.
+
+### Styling Limitations
+
+- CSS styles included in SVGs are not supported - use presentation attributes instead.
+- RGBA color syntax is not supported - use `fill-opacity` and `stroke-opacity` attributes.
+- When exporting SVGs from design tools, choose the "presentation attributes" option.
+
+### Unsupported SVG Elements
+
+The following SVG elements are not supported:
+
+- Animation elements (`<animate>`)
+- Foreign object (`<foreignObject>`)
+- Text-related elements (`<altGlyph>`, `<font>`, `<glyph>`)
+- Script elements (`<script>`)
+- Some filter elements (`<feComponentTransfer>`, `<feConvolveMatrix>`, `<feTile>`, `<feDropShadow>`)
+- Inlined SVGs via `<image>` or `<feImage>` elements
 
 ### WebP Support
 
@@ -57,6 +127,16 @@ CE.SDK loads scenes and design archives directly on-device:
 ## Font Format Support
 
 CE.SDK supports modern font formats for typography:
+
+| Format   | Description                       |
+| -------- | --------------------------------- |
+| `.ttf`   | TrueType Font                     |
+| `.otf`   | OpenType Font                     |
+| `.woff`  | Web Open Font Format              |
+| `.woff2` | Compressed Web Open Font Format 2 |
+
+> **Note:** Fonts should be appropriately licensed before being embedded in your
+> application.
 
 ## Best Practices
 

@@ -164,9 +164,10 @@ Style text blocks programmatically with colors, backgrounds, typefaces, and form
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-properties)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-text-properties)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK exposes text styling through the Block API. Edit text content, apply colors and backgrounds, manage typefaces, and control case, weight, and style for an entire text block or for individual character ranges. Ranges are described with native Swift `Range<String.Index>` values.
 

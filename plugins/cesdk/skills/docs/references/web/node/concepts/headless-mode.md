@@ -53,7 +53,7 @@ You are responsible for:
 ### Requirements to Run CreativeEngine on Node.js
 
 - **Node.js 22+** (or the matching runtime for your serverless provider).
-- **@cesdk/node@$UBQ\_VERSION$** installed locally: `npm install @cesdk/node@$UBQ_VERSION$`.
+- **@cesdk/node@1.83.0** installed locally: `npm install @cesdk/node@1.83.0`.
 - A valid **CE.SDK license key**.
 - A **base asset bundle** reachable from the runtime (CDN or self-hosted path). The CDN URLs shown below work for quick tests.
 
@@ -67,7 +67,7 @@ To try out the CE.SDK headless mode:
 2. Install the Node.js package:
 
 ```bash
-npm install @cesdk/node@$UBQ_VERSION$
+npm install @cesdk/node@1.83.0
 ```
 
 ### 1. Create a CE.SDK Helper

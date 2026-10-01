@@ -36,7 +36,6 @@ const SCENE_PADDING = 60;
 // Plugin Factory
 // ============================================================================
 
-// highlight-plugin
 export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
   name: 'ly.img.form-based-template-adoption',
   version: '1.0.0',
@@ -49,17 +48,14 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
     // Editor Settings
     // ========================================================================
 
-    // highlight-editor-settings
     engine.editor.setSetting('page/title/show', false);
     engine.editor.setSetting('mouse/enableScroll', false);
     engine.editor.setSetting('mouse/enableZoom', false);
-    // highlight-editor-settings
 
     // ========================================================================
     // UI Configuration - Hide all elements for form-based editing
     // ========================================================================
 
-    // highlight-ui-config
     // Disable dock feature entirely (replaces deprecated ui.elements.dock.show)
     cesdk.feature.set('ly.img.dock', false);
 
@@ -82,13 +78,11 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
 
     // Hide 'Resize' button on the navigation bar
     cesdk.feature.set('ly.img.page.resize', false);
-    // highlight-ui-config
 
     // ========================================================================
     // Localization
     // ========================================================================
 
-    // highlight-localization
     cesdk.i18n.setTranslations({
       en: {
         'panel.form-based-adaption': 'Edit Template'
@@ -97,15 +91,12 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
         'panel.form-based-adaption': 'Template bearbeiten'
       }
     });
-    // highlight-localization
 
     // ========================================================================
     // Disable Direct Selection
     // ========================================================================
 
-    // highlight-disable-selection
     engine.editor.setGlobalScope('editor/select', 'Deny');
-    // highlight-disable-selection
 
     // ========================================================================
     // State Variables
@@ -122,7 +113,6 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
     // Resize Observer - Zoom to Canvas
     // ========================================================================
 
-    // highlight-resize-observer
     const resizeObserver = new ResizeObserver(() => {
       const scene = engine.scene?.get();
       if (!engine.scene) {
@@ -133,13 +123,11 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
       engine.scene.zoomToBlock(scene!, { padding: SCENE_PADDING });
     });
     resizeObserver.observe(engine.element!);
-    // highlight-resize-observer
 
     // ========================================================================
     // Scene Change Handler
     // ========================================================================
 
-    // highlight-scene-handler
     let hasInitialized = false;
     engine.scene.onActiveChanged(() => {
       if (hasInitialized) return;
@@ -187,13 +175,11 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
       }
       setupScene();
     });
-    // highlight-scene-handler
 
     // ========================================================================
     // Custom Panel Registration
     // ========================================================================
 
-    // highlight-panel-registration
     cesdk.ui.registerPanel(
       'form-based-adaption',
       ({ builder, engine, state }) => {
@@ -357,24 +343,19 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
         });
       }
     );
-    // highlight-panel-registration
 
     // ========================================================================
     // Open the Panel
     // ========================================================================
 
-    // highlight-open-panel
     cesdk.ui.openPanel('form-based-adaption', { closableByUser: false });
-    // highlight-open-panel
   }
 });
-// highlight-plugin
 
 // ============================================================================
 // Helper Functions
 // ============================================================================
 
-// highlight-helpers
 let fileInput: HTMLInputElement | null = null;
 
 function getFileInput(): HTMLInputElement {
@@ -417,4 +398,3 @@ export function uploadFile({
     element.click();
   });
 }
-// highlight-helpers

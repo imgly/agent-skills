@@ -12,9 +12,10 @@ size from code.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-insert-media-videos)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-insert-media-videos)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Videos in CE.SDK are graphic blocks with a video fill. A graphic block provides the shape and position on the page; the attached video fill carries the source URL and the trim metadata.
 

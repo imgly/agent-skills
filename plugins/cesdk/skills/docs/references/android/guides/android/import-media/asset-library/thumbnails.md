@@ -185,9 +185,10 @@ show image, video, audio, and remote-source assets.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-asset-library-thumbnails)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-asset-library-thumbnails)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Thumbnails make asset sources easier to browse before users add content to a scene. On Android, the editor UI reads thumbnail metadata from each asset result; asset source and metadata configuration happen through the Engine Asset API.
 

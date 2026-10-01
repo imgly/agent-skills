@@ -78,7 +78,7 @@ export interface UnsplashEditorOptions {
  * ```typescript
  * // Using environment variables (recommended for new projects)
  * await initUnsplashEditor(cesdk, {
- *   unsplashApiUrl: import.meta.env.VITE_UNSPLASH_API_URL
+ *   unsplashApiUrl: (undefined as string | undefined)
  * });
  *
  * // Using direct configuration (for existing projects)
@@ -106,17 +106,14 @@ export async function initUnsplashEditor(
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Unsplash Asset Source Plugin
   // ============================================================================
 
-  // highlight-unsplash-setup
   // Add Unsplash image library integration
   // Requires: npm install unsplash-js
   // Configure: Pass unsplashApiUrl option or set VITE_UNSPLASH_API_URL env var
@@ -125,13 +122,11 @@ export async function initUnsplashEditor(
     unsplashPluginOptions.apiUrl = options.unsplashApiUrl;
   }
   await cesdk.addPlugin(new UnsplashAssetSourcePlugin(unsplashPluginOptions));
-  // highlight-unsplash-setup
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -190,5 +185,4 @@ export async function initUnsplashEditor(
       })
     )
   ]);
-  // highlight-asset-sources
 }

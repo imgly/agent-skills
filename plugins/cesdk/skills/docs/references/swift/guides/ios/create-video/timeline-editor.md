@@ -128,9 +128,10 @@ Build video timelines with CE.SDK by arranging tracks, clips, trim ranges, playb
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-timeline-editor)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-timeline-editor)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Use the Engine APIs in this guide when you need to prepare a video scene programmatically, build a custom timeline surface, or automate timeline edits before opening or exporting the scene. On iOS, the [Video Editor Starter Kit](../starterkits/video-editor.md) already renders a built-in timeline component in its bottom panel.
 

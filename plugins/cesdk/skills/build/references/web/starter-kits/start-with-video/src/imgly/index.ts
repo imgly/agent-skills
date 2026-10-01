@@ -142,10 +142,8 @@ export async function initStartWithVideoEditor(
   // Scene Loading - Create from Video
   // ============================================================================
 
-  // highlight-create-from-video
   // Create a new scene from the selected video
   await cesdk.engine.scene.createFromVideo(videoUrl);
-  // highlight-create-from-video
 
   // Zoom to fit the video in the canvas
   cesdk.actions.run('zoom.toPage', {

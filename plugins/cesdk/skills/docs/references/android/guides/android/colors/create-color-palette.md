@@ -186,9 +186,10 @@ colors reusable as engine assets.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/editor-guides-configuration-color-palette)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/editor-guides-configuration-color-palette)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Color libraries in Android are regular local asset sources that contain color assets. Use the local source when your app needs reusable color definitions for custom UI, asset queries, or workflows outside the built-in editor controls. Use `EditorConfiguration.colorPalette` to choose which screen-preview colors appear as swatches in the built-in Android editor color controls.
 

@@ -108,9 +108,10 @@ and trim lengths, while leaving the original media file unchanged.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-video-trim)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-video-trim)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Trimming works together with block timing. Fill-level trim values choose the
 portion of the source media that plays, while block-level timing controls when

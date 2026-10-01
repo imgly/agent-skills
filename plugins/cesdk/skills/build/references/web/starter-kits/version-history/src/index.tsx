@@ -13,7 +13,6 @@ import { Configuration } from '@cesdk/cesdk-js';
 import App from './app/App';
 
 export const editorConfig: Configuration = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-version-history-user',
 
   // Local assets for development
@@ -21,7 +20,6 @@ export const editorConfig: Configuration = {
   // Role: Creator has full editing capabilities
   role: 'Creator',
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
 
 createRoot(document.getElementById('root')!).render(

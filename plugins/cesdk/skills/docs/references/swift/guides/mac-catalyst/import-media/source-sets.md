@@ -112,9 +112,10 @@ Configure source sets for images and videos so CE.SDK automatically selects the 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-source-sets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-source-sets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Source sets let you provide multiple versions of the same asset at different resolutions. CE.SDK automatically selects the most appropriate source based on the current drawing size in screen pixels. This improves performance by loading smaller images for mobile previews while ensuring high-quality assets are used for final exports.
 

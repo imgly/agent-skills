@@ -131,21 +131,6 @@
   padding: 12px;
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview) .overlay {
-  background: transparent;
-}
-
-/* With the transparent overlay, the selection card would stay visible
- * behind the open editor and both frames would cast their shadow onto
- * the same 12px rim, stacking into a darker outline. Hide the card
- * while the editor is open so only one frame shadow shows at a time. */
-:global(html.demo-preview) .wrapper:has(.overlay) .block {
-  visibility: hidden;
-}
-
-/* END_HIDDEN_BLOCK */
 
 .editorWrapper {
   position: relative;

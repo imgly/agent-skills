@@ -132,14 +132,6 @@
   color: var(--color-text);
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview),
-:global(html.demo-preview) :global(body) {
-  background-color: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 :global(body.no-scroll) {
   overflow: hidden;

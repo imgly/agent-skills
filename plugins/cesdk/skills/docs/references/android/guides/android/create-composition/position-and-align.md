@@ -189,9 +189,10 @@ layout APIs and snapping system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-position-and-align)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-position-and-align)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK positions blocks relative to their parent container with the origin at the top left. You can set positions using absolute values in design units or as percentages of the parent's dimensions. For multi-element layouts, alignment and distribution APIs arrange blocks without manual spacing calculations. Snapping settings tune the visual guides shown during interactive editing.
 

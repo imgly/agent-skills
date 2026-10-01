@@ -106,9 +106,10 @@ system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-set-editing-constraints)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-set-editing-constraints)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Editing constraints let you lock specific properties of design elements while keeping others editable. Scopes cover movement, resizing, rotation, fill changes, text editing, lifecycle operations, and other editor capabilities. Use them to protect brand templates, guide template adoption, and build form-based workflows where users can personalize only selected fields.
 

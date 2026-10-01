@@ -5,9 +5,6 @@ import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { useSinglePageFocus } from '../hooks/UseSinglePageFocus';
 import { caseAssetPath, initMobileEditor } from '../../imgly';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 interface SelectedBlock {
   id: number;
@@ -104,7 +101,6 @@ export const EditorProvider = ({
     const loadEditor = async () => {
       // Merge with required defaults
       const config: Partial<Configuration> = {
-        baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
         ...engineConfig,
         featureFlags: {
           preventScrolling: true,
@@ -113,17 +109,11 @@ export const EditorProvider = ({
       };
 
       const engine = await CreativeEngine.init(config);
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
       if (!mounted) {
         engine.dispose();
         return;
       }
       engineRef.current = engine;
-      //START_HIDDEN_BLOCK
-      (window as Window & { cesdk?: CreativeEngine }).cesdk = engine;
-      //END_HIDDEN_BLOCK
 
       engine.editor.onStateChanged(() => editorUpdateCallbackRef.current());
       engine.event.subscribe([], (events: unknown[]) =>
@@ -135,9 +125,6 @@ export const EditorProvider = ({
       setFocusEngine(engine);
       setFocusEnabled(true);
       setEngine(engine);
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('ready');
-      // END_HIDDEN_BLOCK
       setEngineIsLoaded(true);
     };
     loadEditor();

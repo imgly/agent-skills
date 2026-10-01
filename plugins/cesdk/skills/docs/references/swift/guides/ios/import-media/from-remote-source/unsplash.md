@@ -259,16 +259,17 @@ Unsplash API on demand.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-custom-asset-source)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-custom-asset-source)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 CE.SDK lets you plug external image providers — like Unsplash or your own backend — into the engine as custom asset sources. This guide builds an Unsplash source, maps its REST responses to the engine's asset format, handles attribution, surfaces the source in the asset library, and shows the engine-managed local-source alternative.
 
 ## Prerequisites
 
 - An Unsplash API access key from the [Unsplash Developer portal](https://unsplash.com/developers).
-- A proxy that forwards requests to the Unsplash API. The example reads the proxy host from `secrets.unsplashHost` — a secrets shim the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.84.0-nightly.20260930/secrets/Secrets.swift) ships, which you replace with your own host string. Unsplash's guidelines ask you to proxy requests rather than embed your access key in the app; setting up the proxy itself is out of scope here.
+- A proxy that forwards requests to the Unsplash API. The example reads the proxy host from `secrets.unsplashHost` — a secrets shim the [iOS guides repository](https://github.com/imgly/cesdk-swift-examples/blob/v1.83.0/secrets/Secrets.swift) ships, which you replace with your own host string. Unsplash's guidelines ask you to proxy requests rather than embed your access key in the app; setting up the proxy itself is out of scope here.
 
 ## Setting Up the Unsplash API Client
 

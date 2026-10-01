@@ -202,9 +202,10 @@ Swap one color for another with the Recolor effect, or remove backgrounds with t
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-colors-replace)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-colors-replace)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK exposes two color-replacement effects through the engine's effect stack. The **Recolor** effect swaps pixels matching a source color with a target color while preserving image detail. The **Green Screen** effect makes pixels matching a source color transparent, useful for removing solid-color backgrounds. Both effects attach to graphic blocks via `appendEffect(_:effectID:)` and configure colors and tolerance through the standard property API.
 

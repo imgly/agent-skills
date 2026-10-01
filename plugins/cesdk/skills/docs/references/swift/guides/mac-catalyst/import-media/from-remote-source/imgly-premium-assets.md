@@ -105,9 +105,10 @@ into CE.SDK's asset library alongside your other sources.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-from-remote-source-imgly-premium-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-import-media-from-remote-source-imgly-premium-assets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 IMG.LY offers premium templates through downloadable asset archives. You host these templates on your own server or CDN and register them as a local asset source, so they appear in the asset library alongside every other source. Because each template is a self-contained design archive, the integration parses a manifest, registers a source with a custom apply callback that loads the archive, and resolves the manifest's hosting placeholders at runtime. Contact IMG.LY sales to purchase premium template packages.
 

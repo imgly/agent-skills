@@ -13,13 +13,13 @@ durations using CE.SDK's timeline UI and programmatic trim API.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-create-video-trim-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-create-video-trim-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-create-video-trim-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-create-video-trim-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/guides-create-video-trim-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-create-video-trim-browser/index.html)
 
 Understanding the difference between **fill-level trimming** and **block-level timing** is essential. Fill-level trimming (`setTrimOffset`, `setTrimLength`) controls which portion of the source media plays, while block-level timing (`setTimeOffset`, `setDuration`) controls when and how long the block appears in the composition. These two systems work together to give you complete control over video playback.
 

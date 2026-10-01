@@ -444,9 +444,10 @@ royalty-free stock photos without leaving the editor.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-from-pexels)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-import-from-pexels)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Pexels accepts an API key in the `Authorization` request header. In production, the Android app should call your backend proxy,
 and the proxy should hold the key, forward curated or search requests to Pexels, and return the Pexels JSON response.

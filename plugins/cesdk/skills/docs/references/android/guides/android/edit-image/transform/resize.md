@@ -151,9 +151,10 @@ size modes, or resizing grouped blocks together.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-edit-image-transform-resize)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-edit-image-transform-resize)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Image resizing changes a block's dimensions rather than applying a scale multiplier. Use `engine.block.setWidth()` and `engine.block.setHeight()` for individual dimensions, and choose a `SizeMode` to control how each value is interpreted.
 

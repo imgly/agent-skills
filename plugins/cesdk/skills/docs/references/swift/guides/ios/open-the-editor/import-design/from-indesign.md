@@ -45,9 +45,10 @@ archive on a server, then loading that archive into the engine.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-from-indesign)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-import-from-indesign)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 InDesign import is handled by the `@imgly/idml-importer` package, which parses IDML files and converts them into CE.SDK scenes. That package runs in Node.js and the browser — there is no on-device IDML parser. The recommended workflow is to convert IDML files to a portable `.imgly` archive once with the [Node.js importer](./from-indesign.md), then ship or download that archive and load it with `engine.scene.load(from:)`.
 

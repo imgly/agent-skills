@@ -51,7 +51,6 @@ export { Html5ExportPanelPlugin } from './plugins/html5-export-panel';
  *
  * @param cesdk - The CreativeEditorSDK instance to configure
  */
-// highlight-init-function
 export async function initHtml5ExporterEditor(cesdk: CreativeEditorSDK) {
   // ============================================================================
   // Configuration Plugin
@@ -65,26 +64,21 @@ export async function initHtml5ExporterEditor(cesdk: CreativeEditorSDK) {
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // HTML5 Export Panel Plugin
   // ============================================================================
 
-  // highlight-html5-export-panel
   // Add the HTML5 export panel plugin with format and text mode options
   await cesdk.addPlugin(new Html5ExportPanelPlugin());
-  // highlight-html5-export-panel
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -143,6 +137,4 @@ export async function initHtml5ExporterEditor(cesdk: CreativeEditorSDK) {
       })
     )
   ]);
-  // highlight-asset-sources
 }
-// highlight-init-function

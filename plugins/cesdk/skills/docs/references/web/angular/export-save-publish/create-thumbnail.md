@@ -12,13 +12,13 @@ Generate thumbnail preview images from CE.SDK scenes by exporting with target di
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-export-save-publish-create-thumbnail-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-export-save-publish-create-thumbnail-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-create-thumbnail-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-export-save-publish-create-thumbnail-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/guides-export-save-publish-create-thumbnail-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-export-save-publish-create-thumbnail-browser/index.html)
 
 Thumbnails provide visual previews of designs without loading the full editor. Use `engine.block.export()` with `targetWidth` and `targetHeight` options to scale content while maintaining aspect ratio. Supported formats include PNG, JPEG, and WebP.
 

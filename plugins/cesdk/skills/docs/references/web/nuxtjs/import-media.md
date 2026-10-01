@@ -22,6 +22,7 @@
 - [Source Sets](./import-media/source-sets.md) - Provide multiple versions of images and videos at different resolutions for optimal performance and quality across editing and export workflows.
 - [Using Default Assets](./import-media/default-assets.md) - Load shapes, stickers, images, and other built-in assets from IMG.LY's CDN to populate your CE.SDK editor using the Asset API.
 - [Retrieve MIME Type](./import-media/retrieve-mimetype.md) - Detect the MIME type of resources loaded in the engine to determine file formats for processing, export, or display.
+- [Import EPS Artwork](./import-media/from-eps.md) - Import EPS artwork as native groups, replace named placeholders, and export an existing template in browsers and Node.js.
 - [Asset Content JSON Schema](./import-media/content-json-schema.md) - Understand the JSON schema structure for defining asset source content including version, metadata, and payload properties for images, videos, fonts, and templates.
 - [Supported File Formats for Import](./import-media/file-format-support.md) - Review the supported image, video, audio, and template formats for importing assets into CE.SDK on the web.
 - [Size Limits](./import-media/size-limits.md) - Learn about file size restrictions and how to optimize large assets for use in CE.SDK.

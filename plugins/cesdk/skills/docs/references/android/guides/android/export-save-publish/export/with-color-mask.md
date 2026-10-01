@@ -149,11 +149,12 @@ matching mask image for print and compositing workflows.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-export-with-color-mask)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-export-with-color-mask)
 
 CE.SDK can render a second export pass for pixels that match a chosen opaque color. Android returns a `Pair<ByteBuffer, ByteBuffer>`: the first buffer contains the image result, and the second buffer contains the mask image.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 ## Exporting with Color Masks
 

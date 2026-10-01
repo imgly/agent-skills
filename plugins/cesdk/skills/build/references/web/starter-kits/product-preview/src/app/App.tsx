@@ -17,12 +17,6 @@ import { Topbar } from './Topbar/Topbar';
 import { Sidebar } from './Sidebar/Sidebar';
 import styles from './App.module.css';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 interface AppProps {
   config: Configuration;
@@ -120,14 +114,8 @@ export default function App({ config }: AppProps) {
   // ============================================================================
 
   const handleEditorInit = useCallback(async (cesdk: CreativeEditorSDK) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
     designEngineRef.current = cesdk;
 
-    // START_HIDDEN_BLOCK
-    (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     const sceneLoad = ++sceneLoadRef.current;
     await initProductPreviewDesignEditor(cesdk);
@@ -147,9 +135,6 @@ export default function App({ config }: AppProps) {
       INITIAL_PRODUCT_KEY,
       mockupSceneStringRef.current
     );
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   }, []);
 
   // ============================================================================
@@ -205,9 +190,6 @@ export default function App({ config }: AppProps) {
           <CreativeEditor
             className={styles.editor}
             config={config}
-            // START_HIDDEN_BLOCK
-            onLoadingStateChange={reportDemoLoadingState}
-            // END_HIDDEN_BLOCK
             init={handleEditorInit}
           />
         </div>

@@ -153,13 +153,6 @@
   color: var(--text-color);
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview) .app {
-  background-color: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 /* ============================================================================
    Main Layout - Editor LEFT, Mockup RIGHT

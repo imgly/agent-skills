@@ -219,9 +219,10 @@ and configurable output dimensions.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-export-to-png)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-export-to-png)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 PNG (Portable Network Graphics) preserves transparency and uses lossless compression. It works well for graphics, UI elements, icons, logos, and other designs that need crisp edges or alpha channels.
 

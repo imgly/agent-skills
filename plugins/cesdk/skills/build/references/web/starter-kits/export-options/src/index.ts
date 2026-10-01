@@ -13,27 +13,19 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { initExportOptionsEditor } from './imgly';
 import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Configuration
 // ============================================================================
 
-// highlight-config
 const config = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-export-options-user',
 
   // IMG.LY CDN (for quick testing only, NOT recommended for production)
-  // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
-// highlight-config
 
 // ============================================================================
 // Initialize Editor
@@ -42,18 +34,11 @@ const config = {
 /**
  * Initialize the CE.SDK Export Options Editor
  */
-// highlight-init
 async function initializeEditor(): Promise<void> {
   try {
     // Create new CE.SDK instance
     const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
 
-    // START_HIDDEN_BLOCK
-    (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     // Initialize with export options configuration
     await initExportOptionsEditor(cesdk);
@@ -62,17 +47,9 @@ async function initializeEditor(): Promise<void> {
     // Load Scene
     // ============================================================================
 
-    // highlight-load-scene
     // Load the demo scene
     await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/example-1.scene`);
-    // highlight-load-scene
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   } catch (error) {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   }
@@ -80,4 +57,3 @@ async function initializeEditor(): Promise<void> {
 
 // Start the editor
 initializeEditor();
-// highlight-init

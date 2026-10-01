@@ -10,7 +10,7 @@ Configure size limits to balance quality and performance in headless Node.js wor
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
@@ -193,6 +193,26 @@ This guide covers how to configure the `maxImageSize` setting for headless workf
 CE.SDK manages size limits at two stages: **input** (when loading images) and **output** (when exporting). The `maxImageSize` setting controls input resolution, automatically downscaling images that exceed the configured limit (default: 4096×4096px). This prevents memory issues in serverless functions and containerized environments. Export resolution has no artificial limits—the theoretical maximum is 16,384×16,384 pixels, constrained by server GPU/CPU capabilities, available RAM, and deployment environment (serverless memory limits, container quotas, VM allocations). With the WASM-based `@cesdk/node` package, headless environments use software rendering with conservative limits; the native `@cesdk/node-native` package renders on the GPU where available.
 
 ## Resolution & Duration Limits
+
+| Constraint            | Recommendation / Limit                                                                                                                                                                                                |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Input Resolution**  | Maximum input resolution is **4096×4096 pixels**. Images from external sources (e.g., Unsplash) are resized to this size before rendering on the canvas. You can modify this value using the `maxImageSize` setting.  |
+| **Output Resolution** | There is no enforced output resolution limit. Theoretically, the editor supports output sizes up to **16,384×16,384 pixels**. However, practical limits depend on the device's GPU capabilities and available memory. |
+
+All image processing in CE.SDK happens on the device running the engine, so these values depend on the **maximum texture size** supported by its hardware. The default limit of 4096×4096 is a safe baseline that works universally. Higher resolutions (e.g., 8192×8192) may work on certain devices but could fail on others during export if the GPU texture size is exceeded.
+
+> **Note:** To ensure consistent results across devices, it’s best to test higher output
+> sizes on your target hardware and set conservative defaults in production.
+
+| Constraint     | Recommendation / Limit                                                                                                                                                                                                                                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Resolution** | Up to **4K UHD** is supported for **playback** and **export**, depending on the user's hardware and available GPU resources. For **import**, CE.SDK does not impose artificial limits, but maximum video size is bounded by available memory: WASM-based builds (browser and `@cesdk/node`) are limited by the **32-bit address space of WebAssembly (wasm32)** and, in the browser, the **tab’s memory cap (~2 GB)**, while native builds such as `@cesdk/node-native` can use the full process memory. |
+| **Frame Rate** | 30 FPS at 1080p is broadly supported; 60 FPS and high-res exports benefit from hardware acceleration                                                                                                                                                                                                                           |
+| **Duration**   | Stories and reels of up to **2 minutes** are fully supported. Longer videos are also supported, but we generally found a maximum duration of **10 minutes** to be a good balance for a smooth editing experience and a pleasant export duration of around one minute on modern hardware.                                       |
+
+> **Note:** Performance scales with the host hardware. For best results with high-resolution
+> or high-frame-rate video, modern CPUs/GPUs with hardware acceleration are
+> recommended.
 
 ## Configuring maxImageSize
 

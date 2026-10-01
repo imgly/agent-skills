@@ -150,9 +150,10 @@ backgrounds with videos through CE.SDK's video fill system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-fills-video)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-fills-video)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Video fills are fill objects you attach to blocks that support fills. Use them
 when video should behave like a visual material inside a graphic shape or

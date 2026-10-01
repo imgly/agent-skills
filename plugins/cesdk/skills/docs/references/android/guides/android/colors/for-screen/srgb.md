@@ -111,9 +111,10 @@ with red, green, blue, and alpha components.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-colors-for-screen-srgb)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-colors-for-screen-srgb)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 sRGB is the standard color space for screen displays. In the Android engine API, sRGB values are represented by `RGBAColor` objects. Each red, green, blue, and alpha component uses a floating-point value from `0F` to `1F`, not the `0` to `255` integer range used by many Android and design-tool color utilities.
 

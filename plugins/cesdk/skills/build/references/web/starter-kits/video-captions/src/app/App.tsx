@@ -20,13 +20,6 @@ import {
 import styles from './App.module.css';
 import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../shared/demo-preview/lifecycle';
-export { DEMO_ASSETS_BASE_URL };
-// END_HIDDEN_BLOCK
 
 interface AppProps {
   editorConfig: Configuration;
@@ -66,25 +59,12 @@ const CAPTION_MODES: Array<{
 ];
 
 export function App({ editorConfig }: AppProps) {
-  // START_HIDDEN_BLOCK
-  // The editor mounts only after the visitor acts, so the shell
-  // being on screen is the end of this demo's automatic load.
-  useEffect(() => {
-    reportDemoPhase('shell');
-  }, []);
-  // END_HIDDEN_BLOCK
   const [editorMode, setEditorMode] = useState<CaptionMode | null>(null);
   const closeEditorRef = useRef<() => void>(() => setEditorMode(null));
   closeEditorRef.current = () => setEditorMode(null);
 
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
-      // START_HIDDEN_BLOCK
-      (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
-      // END_HIDDEN_BLOCK
 
       switch (editorMode) {
         case 'autocaption': {
@@ -210,9 +190,6 @@ export function App({ editorConfig }: AppProps) {
           break;
         }
       }
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('ready');
-      // END_HIDDEN_BLOCK
     },
     [editorMode]
   );
@@ -284,9 +261,6 @@ export function App({ editorConfig }: AppProps) {
               key={editorMode}
               className={styles.editorContainer}
               config={editorConfig}
-              // START_HIDDEN_BLOCK
-              onLoadingStateChange={reportDemoLoadingState}
-              // END_HIDDEN_BLOCK
               init={handleInit}
             />
           </div>

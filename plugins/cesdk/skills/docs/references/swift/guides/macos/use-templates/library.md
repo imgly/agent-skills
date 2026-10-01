@@ -137,9 +137,10 @@ apply to the current scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-use-templates-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-use-templates-library)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Templates are pre-designed scenes stored as assets within an asset source. Each template asset keeps the URL of its `.scene` file in its metadata, and an apply callback loads that scene into the current design when the template is selected. This makes templates different from image or sticker sources: instead of instantiating a single block, a template applies a complete scene.
 

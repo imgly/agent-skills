@@ -23,9 +23,6 @@ import {
   setupPhotoScene
 } from '../../imgly';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 const ENABLE_AUTO_RECENTER = true;
 export const CANVAS_COLOR = { r: 236, g: 236, b: 238 };
@@ -124,17 +121,11 @@ export function EditorProvider({
     const loadEditor = async () => {
       // Initialize engine with eager import (no dynamic import delay)
       engineInstance = await CreativeEngine.init(engineConfig);
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
       if (!mounted) {
         engineInstance.dispose();
         return;
       }
 
-      //START_HIDDEN_BLOCK
-      (window as Window & { cesdk?: CreativeEngine }).cesdk = engineInstance;
-      //END_HIDDEN_BLOCK
 
       // Set up state change listener
       engineInstance.editor.onStateChanged(() =>
@@ -163,9 +154,6 @@ export function EditorProvider({
 
       // Update state
       setEngine(engineInstance);
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('ready');
-      // END_HIDDEN_BLOCK
       setEngineIsLoaded(true);
       setSceneIsLoaded(true);
     };

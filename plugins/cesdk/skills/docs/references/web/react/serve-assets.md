@@ -15,7 +15,7 @@ Use the switch below to choose your setup: the full **Editor** (`@cesdk/cesdk-js
   <TabItem label="Editor">
     The full editor registers asset sources through plugins imported from `@cesdk/cesdk-js/plugins`, each of which accepts a `baseURL` option.
 
-    [Download Assets (v$UBQ\_VERSION$)](https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ_VERSION$/imgly-assets.zip)
+    [Download Assets (v1.83.0)](https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip)
 
     ### Quick Start
 
@@ -23,11 +23,11 @@ Use the switch below to choose your setup: the full **Editor** (`@cesdk/cesdk-js
 
     ```bash
     # Download assets for current SDK version
-    curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ_VERSION$/imgly-assets.zip
+    curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
 
     # Create versioned directory and extract assets
-    mkdir -p public/cesdk/$UBQ_VERSION$
-    unzip imgly-assets.zip -d public/cesdk/$UBQ_VERSION$/
+    mkdir -p public/cesdk/1.83.0
+    unzip imgly-assets.zip -d public/cesdk/1.83.0/
     rm imgly-assets.zip
     ```
 
@@ -216,7 +216,7 @@ Use the switch below to choose your setup: the full **Editor** (`@cesdk/cesdk-js
   <TabItem label="Headless">
     When you build your own UI on the headless `@cesdk/engine`, don't use the `@cesdk/cesdk-js/plugins` asset-source plugins—they are coupled to the editor and pull it in. Instead, set `baseURL` when initializing the engine and register each content asset source directly through the engine API.
 
-    [Download Assets (v$UBQ\_VERSION$)](https://cdn.img.ly/packages/imgly/cesdk-engine/$UBQ_VERSION$/imgly-assets.zip)
+    [Download Assets (v1.83.0)](https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0/imgly-assets.zip)
 
     ### Quick Start
 
@@ -224,11 +224,11 @@ Use the switch below to choose your setup: the full **Editor** (`@cesdk/cesdk-js
 
     ```bash
     # Download assets for current SDK version
-    curl -O https://cdn.img.ly/packages/imgly/cesdk-engine/$UBQ_VERSION$/imgly-assets.zip
+    curl -O https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0/imgly-assets.zip
 
     # Create versioned directory and extract assets
-    mkdir -p public/cesdk/$UBQ_VERSION$
-    unzip imgly-assets.zip -d public/cesdk/$UBQ_VERSION$/
+    mkdir -p public/cesdk/1.83.0
+    unzip imgly-assets.zip -d public/cesdk/1.83.0/
     rm imgly-assets.zip
     ```
 

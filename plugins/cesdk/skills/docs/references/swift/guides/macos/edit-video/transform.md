@@ -148,9 +148,10 @@ locking them with the CE.SDK engine.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-video-transform)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-video-transform)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Video transformations affect either the block frame or the media inside that frame. Block-level transforms change the graphic block's position, rotation, flip state, size, and group placement. Content-level crop transforms reframe the video fill without moving the block itself.
 

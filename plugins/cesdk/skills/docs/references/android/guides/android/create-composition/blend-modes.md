@@ -95,9 +95,10 @@ blend mode system for professional layered compositions.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-blend-modes)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-blend-modes)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Blend modes control how a block's colors combine with underlying layers, similar to blend modes in Photoshop or other design tools. CE.SDK provides 27 blend modes organized into categories: Normal, Darken, Lighten, Contrast, Inversion, and Component.
 

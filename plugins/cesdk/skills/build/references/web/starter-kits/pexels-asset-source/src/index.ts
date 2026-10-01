@@ -31,36 +31,27 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { initPexelsImageEditor } from './imgly';
 import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Configuration
 // ============================================================================
 
-// highlight-license
 const config = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-pexels-asset-source-user',
 
   // IMG.LY CDN (for quick testing only, NOT recommended for production)
-  // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
-// highlight-license
 
 // ============================================================================
 // Pexels Configuration
 // ============================================================================
 
-// highlight-pexels-config
 // Option 1: Read from environment variables (recommended for new projects with .env)
 const pexelsConfig = {
-  pexelsApiKey: import.meta.env.VITE_PEXELS_API_KEY as string | undefined
+  pexelsApiKey: (undefined as string | undefined) as string | undefined
 };
 
 // Option 2: Direct configuration (for existing projects or custom setups)
@@ -68,7 +59,6 @@ const pexelsConfig = {
 // const pexelsConfig = {
 //   pexelsApiKey: 'your-pexels-api-key'
 // };
-// highlight-pexels-config
 
 // ============================================================================
 // Initialize Pexels Image Editor
@@ -76,34 +66,18 @@ const pexelsConfig = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
-    (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
-    // highlight-init
     // Initialize the editor with Pexels integration
     await initPexelsImageEditor(cesdk, pexelsConfig);
     // ============================================================================
     // Scene Loading
     // ============================================================================
 
-    // highlight-scene-loading
     // Load the Pexels demo scene from CDN
     // This scene showcases images that can be replaced with photos from Pexels
     await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/pexels.scene`);
-    // highlight-scene-loading
-    // highlight-init
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

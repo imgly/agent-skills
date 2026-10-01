@@ -100,9 +100,10 @@ Curve a text block so its characters follow an SVG path — an arch, a full circ
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-text-on-path)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-text-text-on-path)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Text on a path makes a text block's baseline follow an SVG curve instead of a straight line — useful for badges, circular seals, and arched headlines. It applies to text blocks only and disables word wrapping while a path is active: explicit line breaks in the text collapse to spaces. Setting a path resizes the block to match the path's aspect ratio.
 

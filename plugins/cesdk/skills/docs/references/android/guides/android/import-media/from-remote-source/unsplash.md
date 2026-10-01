@@ -305,9 +305,10 @@ Unsplash API on demand.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-custom-asset-source)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-custom-asset-source)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 CE.SDK lets you plug external image providers — like Unsplash or your own backend — into the engine as custom asset sources. This guide builds an Unsplash source, maps its REST responses to the engine's asset format, handles attribution, surfaces the source in the asset library, and shows the engine-managed local-source alternative.
 

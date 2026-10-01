@@ -12,11 +12,11 @@ environments.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-colors-for-print-cmyk-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-colors-for-print-cmyk-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-for-print-cmyk-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-colors-for-print-cmyk-server-js)
 
 CMYK (Cyan, Magenta, Yellow, Key/Black) is the standard color model for print production. Unlike RGB which is additive and designed for screens, CMYK uses subtractive color mixing to represent how inks combine on paper. CE.SDK supports CMYK colors natively, allowing you to prepare designs for professional print output while maintaining accurate color representation.
 

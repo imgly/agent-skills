@@ -380,14 +380,15 @@ serializing it, and publishing a caption preset content.json manifest.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-update-caption-presets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-update-caption-presets)
 
 Caption presets are serialized text or caption blocks plus metadata that points
 to a thumbnail and optional customizable properties. Android can create the
 preset file and load the asset definitions for your app code; the built-in
 Android editor UI does not currently include a caption presets panel.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 This guide covers the caption presets folder structure, how to create a styled
 text block, how to serialize it as a preset file, how to define customizable

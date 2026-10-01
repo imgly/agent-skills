@@ -69,7 +69,6 @@ const MARGIN_PROPERTIES = [
  * - Color profile selection (CMYK/RGB)
  * - Page range selection
  */
-// highlight-export-plugin
 export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
   name: 'ly.img.export-print-ready-pdf',
   version: '1.0.0',
@@ -140,7 +139,6 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
         const rangePageState = state<number[]>('rangePages', []);
 
         // #region PDF/X Standard Section
-        // highlight-standard-section
         builder.Section('standard-section', {
           children: () => {
             builder.Select('pdfx-standard', {
@@ -153,11 +151,9 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
             });
           }
         });
-        // highlight-standard-section
         // #endregion
 
         // #region Bleed Margin Section
-        // highlight-bleed-section
         builder.Section('bleed-section', {
           children: () => {
             builder.Checkbox('bleed-enabled', {
@@ -178,11 +174,9 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
             }
           }
         });
-        // highlight-bleed-section
         // #endregion
 
         // #region Color Profile Section
-        // highlight-color-profile-section
         builder.Section('color-profile-section', {
           children: () => {
             builder.Select('color-profile', {
@@ -195,11 +189,9 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
             });
           }
         });
-        // highlight-color-profile-section
         // #endregion
 
         // #region Pages Section
-        // highlight-pages-section
         builder.Section('pages-section', {
           children: () => {
             builder.ButtonGroup('pages', {
@@ -239,7 +231,6 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
             }
           }
         });
-        // highlight-pages-section
         // #endregion
 
         // #region Export Button Section
@@ -294,7 +285,6 @@ export const ExportPrintReadyPDFPanelPlugin = (): EditorPlugin => ({
     // #endregion
   }
 });
-// highlight-export-plugin
 
 // #region Export Function
 /**
@@ -370,7 +360,6 @@ export interface PrintReadyPDFOptions {
  * @param options - Page range, colour profile, PDF/X standard and bleed
  * @returns The converted PDF/X document
  */
-// highlight-export-function
 export const exportPrintReadyPDF = async (
   engine: CreativeEngine,
   options: PrintReadyPDFOptions
@@ -424,12 +413,22 @@ export const exportPrintReadyPDF = async (
     const { convertToPDFX } =
       await import('@imgly/plugin-print-ready-pdfs-web');
 
+    const { createConversionRuntime } =
+      await import('@imgly/pdf-conversion-utils');
+    const runtime = createConversionRuntime({
+      assetBaseURL: new URL(
+        `${import.meta.env.BASE_URL}pdf-conversion/`,
+        globalThis.location.href
+      )
+    });
+
     // Convert to the selected print-ready PDF/X standard (defaults to PDF/X-4)
     return await convertToPDFX(pdfBlob, {
+      runtime,
       outputProfile: colorProfile,
       outputStandard,
       title: 'Print-Ready Export'
-    });
+    }).finally(() => runtime.dispose());
   } finally {
     hiddenPages.forEach((id: number) => {
       engine.block.setVisible(id, true);
@@ -439,7 +438,6 @@ export const exportPrintReadyPDF = async (
     });
   }
 };
-// highlight-export-function
 // #endregion
 
 // #region Helper Functions

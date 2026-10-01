@@ -32,7 +32,6 @@ const ROLES: Role[] = ['Creator', 'Adopter'];
 // Component
 // ============================================================================
 
-// highlight-role-switcher
 export default function RoleSwitcher({ value, onChange }: RoleSwitcherProps) {
   return (
     <div className={styles.wrapper}>
@@ -55,4 +54,3 @@ export default function RoleSwitcher({ value, onChange }: RoleSwitcherProps) {
     </div>
   );
 }
-// highlight-role-switcher

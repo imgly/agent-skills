@@ -60,9 +60,10 @@ text content that includes emojis with the Swift Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-with-emojis)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-text-with-emojis)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Emojis are Unicode characters representing pictographic symbols. They can be single code points (😀), multi-character sequences (flags like 🇩🇪), Zero-Width-Joiner combinations (👨‍👩‍👧), or skin-tone variants (👋🏽). Regular text fonts do not contain glyphs for these characters, so CE.SDK renders them with a separate emoji font that you configure through the engine's settings.
 

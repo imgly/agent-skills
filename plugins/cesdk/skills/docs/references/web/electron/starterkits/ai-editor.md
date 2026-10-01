@@ -12,13 +12,13 @@ Quickly add AI-powered visual editing and media generation to your web app — s
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-ai-editor-react-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/starterkit-ai-editor-react-web/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-ai-editor-react-web/tree/v$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-ai-editor-react-web/tree/v1.83.0)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-ai-editor-react-web/tree/v$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-ai-editor-react-web/tree/v1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/starterkit-ai-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-ai-editor/index.html)
 
 ***
 
@@ -108,7 +108,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -208,9 +208,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.83.0</TerminalTab>
     </TerminalTabs>
 
     ### AI Plugins
@@ -219,15 +219,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-ai-apps-web@$UBQ\_VERSION$ @imgly/plugin-ai-generation-web@$UBQ\_VERSION$
+        npm install @imgly/plugin-ai-apps-web@1.83.0 @imgly/plugin-ai-generation-web@1.83.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-ai-apps-web@$UBQ\_VERSION$ @imgly/plugin-ai-generation-web@$UBQ\_VERSION$
+        pnpm add @imgly/plugin-ai-apps-web@1.83.0 @imgly/plugin-ai-generation-web@1.83.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-ai-apps-web@$UBQ\_VERSION$ @imgly/plugin-ai-generation-web@$UBQ\_VERSION$
+        yarn add @imgly/plugin-ai-apps-web@1.83.0 @imgly/plugin-ai-generation-web@1.83.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -235,15 +235,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-ai-image-generation-web@$UBQ\_VERSION$
+        npm install @imgly/plugin-ai-image-generation-web@1.83.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-ai-image-generation-web@$UBQ\_VERSION$
+        pnpm add @imgly/plugin-ai-image-generation-web@1.83.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-ai-image-generation-web@$UBQ\_VERSION$
+        yarn add @imgly/plugin-ai-image-generation-web@1.83.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -251,15 +251,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-ai-text-generation-web@$UBQ\_VERSION$
+        npm install @imgly/plugin-ai-text-generation-web@1.83.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-ai-text-generation-web@$UBQ\_VERSION$
+        pnpm add @imgly/plugin-ai-text-generation-web@1.83.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-ai-text-generation-web@$UBQ\_VERSION$
+        yarn add @imgly/plugin-ai-text-generation-web@1.83.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -267,15 +267,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-ai-video-generation-web@$UBQ\_VERSION$
+        npm install @imgly/plugin-ai-video-generation-web@1.83.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-ai-video-generation-web@$UBQ\_VERSION$
+        pnpm add @imgly/plugin-ai-video-generation-web@1.83.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-ai-video-generation-web@$UBQ\_VERSION$
+        yarn add @imgly/plugin-ai-video-generation-web@1.83.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -283,15 +283,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-ai-audio-generation-web@$UBQ\_VERSION$
+        npm install @imgly/plugin-ai-audio-generation-web@1.83.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-ai-audio-generation-web@$UBQ\_VERSION$
+        pnpm add @imgly/plugin-ai-audio-generation-web@1.83.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-ai-audio-generation-web@$UBQ\_VERSION$
+        yarn add @imgly/plugin-ai-audio-generation-web@1.83.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -301,7 +301,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -635,7 +635,7 @@ See [AI Integration](./user-interface/ai-integration.md) for provider setup and 
 Add AI-powered background removal that runs entirely client-side:
 
 ```typescript title="src/imgly/plugins/background-removal.ts"
-import BackgroundRemovalPlugin from '@imgly/plugin-background-removal';
+import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 await cesdk.addPlugin(BackgroundRemovalPlugin());
 ```

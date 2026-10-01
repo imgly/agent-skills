@@ -69,9 +69,10 @@ Add outlines around shapes, text, and graphics to create emphasis, separation, o
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-stroke)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-stroke)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Strokes are visual outlines on design blocks. This guide focuses on controlling stroke color, width, line pattern, position relative to the block edge, and corner geometry through the block API. Mutating stroke properties requires the `stroke/change` scope. Additional overprint, end-cap, and custom-dash APIs are listed in the API Reference.
 

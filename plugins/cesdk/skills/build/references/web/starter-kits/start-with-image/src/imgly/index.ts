@@ -65,17 +65,14 @@ export async function initStartWithImageEditor(
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -134,13 +131,11 @@ export async function initStartWithImageEditor(
       })
     )
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Create Design from Image
   // ============================================================================
 
-  // highlight-create-from-image
   // Create a design scene from the provided image URL
   // This is the key feature of the start-with-image workflow
   const imageToLoad = imageUrl || DEFAULT_IMAGE_URL;
@@ -152,5 +147,4 @@ export async function initStartWithImageEditor(
   if (page != null) {
     cesdk.engine.block.setSelected(page, true);
   }
-  // highlight-create-from-image
 }

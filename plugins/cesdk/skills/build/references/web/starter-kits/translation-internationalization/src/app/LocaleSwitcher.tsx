@@ -11,11 +11,12 @@ import classNames from 'classnames';
 import styles from './LocaleSwitcher.module.css';
 
 /**
- * Available locale options with their display labels
+ * Available locale options, each labelled in its own language so a reader of
+ * that language finds it
  */
 export const LOCALES = [
   { value: 'en', label: 'English' },
-  { value: 'de', label: 'German' }
+  { value: 'de', label: 'Deutsch' }
 ] as const;
 
 export type Locale = (typeof LOCALES)[number]['value'];
@@ -45,6 +46,7 @@ export function LocaleSwitcher({
             <button
               key={locale.value}
               type="button"
+              lang={locale.value}
               className={classNames({
                 [styles.active]: selectedLocale === locale.value
               })}

@@ -129,9 +129,10 @@ Configure blocks to size themselves from fixed values, their parent, or their co
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-auto-resize)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-auto-resize)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 This example uses a title with Auto mode, a background panel with Percent mode, and computed frame sizes to center text. Android also exposes `fillParent()` as a shortcut when an attached block should cover its parent in one call.
 

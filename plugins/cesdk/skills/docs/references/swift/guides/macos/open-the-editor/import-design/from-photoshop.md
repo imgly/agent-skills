@@ -45,9 +45,10 @@ archive on a server, then loading that archive into the engine.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-from-photoshop)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-import-from-photoshop)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Photoshop import is handled by the `@imgly/psd-importer` package, which parses PSD files and converts them into CE.SDK scenes. That package runs in Node.js and the browser — there is no on-device PSD parser. The recommended workflow is to convert PSD files to a portable `.imgly` archive once with the [Node.js importer](./from-photoshop.md), then ship or download that archive and load it with `engine.scene.load(from:)`.
 

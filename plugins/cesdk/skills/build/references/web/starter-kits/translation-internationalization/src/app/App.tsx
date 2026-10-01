@@ -19,9 +19,6 @@ import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
 import { LocaleSwitcher, type Locale } from './LocaleSwitcher';
 import styles from './App.module.css';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 interface AppProps {
   editorConfig: Configuration;
@@ -51,7 +48,6 @@ export function App({ editorConfig }: AppProps) {
   // Locale Change Handler
   // ============================================================================
 
-  // highlight-locale-switching
   const handleLocaleChange = useCallback((newLocale: Locale) => {
     setSelectedLocale(newLocale);
 
@@ -60,41 +56,27 @@ export function App({ editorConfig }: AppProps) {
       cesdkRef.current.i18n.setLocale(newLocale);
     }
   }, []);
-  // highlight-locale-switching
 
   // ============================================================================
   // Editor Initialization
   // ============================================================================
 
   const handleEditorInit = useCallback(async (cesdk: CreativeEditorSDK) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
     // Store reference for locale switching
     cesdkRef.current = cesdk;
 
-    // START_HIDDEN_BLOCK
-    (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     // Initialize the translation & internationalization editor
     await initTranslationInternationalizationEditor(cesdk);
 
-    // highlight-locale
     // Start in the browser's language; the editor setup above defaults to English
     cesdk.i18n.setLocale(initialLocaleRef.current);
-    // highlight-locale
 
     // ============================================================================
     // Scene Loading
     // ============================================================================
 
-    // highlight-scene-loading
     await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/example-1.scene`);
-    // highlight-scene-loading
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   }, []);
 
   // ============================================================================

@@ -27,7 +27,6 @@ interface VideoSelectorProps {
 // Component
 // ============================================================================
 
-// highlight-video-selector
 export default function VideoSelector({
   videos,
   selectedVideo,
@@ -58,4 +57,3 @@ export default function VideoSelector({
     </aside>
   );
 }
-// highlight-video-selector

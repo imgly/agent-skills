@@ -149,9 +149,10 @@ Fill graphic blocks with video content from URLs or asset libraries using CE.SDK
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-fills-video)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-fills-video)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Understanding the distinction between **video fills** and **video blocks** is essential. Video fills are fill objects that can be applied to any block supporting fills — shapes, text, backgrounds — to paint them with video content. Video blocks are dedicated time-based blocks with full editing capabilities like trimming and duration control. Video fills focus on applying video as a visual treatment, while video blocks provide complete video editing functionality.
 

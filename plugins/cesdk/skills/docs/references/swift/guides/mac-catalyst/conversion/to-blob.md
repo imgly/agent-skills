@@ -45,9 +45,10 @@ Export design blocks to binary `Data` (aliased as `Blob`) for saving to disk, up
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-to-blob)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-to-blob)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK's `engine.block.export()` method renders any design block — a page, scene, or individual graphic block — into a `Blob`. In Swift, `Blob` is a typealias for `Data`, so the result integrates directly with Foundation APIs like `FileManager` and `URLSession`, and can be decoded straight into an image for display.
 

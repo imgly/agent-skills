@@ -88,9 +88,10 @@ documents with millimeter or inch units and configurable DPI for export quality.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-design-units)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-design-units)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Design units determine the coordinate system for all layout values in CE.SDK - positions, sizes, and margins. The engine supports three unit types: **Pixel** for screen-based designs, **Millimeter** for metric print dimensions, and **Inch** for imperial print formats.
 

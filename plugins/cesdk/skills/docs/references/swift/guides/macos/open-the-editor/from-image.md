@@ -56,9 +56,10 @@ units, ready for immediate editing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-scene-from-image-url)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-scene-from-image-url)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 `engine.scene.create(fromImage:)` fetches the image, creates a scene whose page matches the image's dimensions, and adds the image directly as the page's fill. This is the starting point for image-editing workflows where users enhance, annotate, or transform an existing image.
 

@@ -147,9 +147,10 @@ Generate small preview images from CE.SDK scenes for galleries, file browsers, a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-thumbnail)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-thumbnail)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Thumbnails use the same block export API as full-size image exports. Pass a page to `engine.block.export(_:mimeType:options:)`, choose an image `MIMEType`, and set target dimensions in `ExportOptions`. The call returns the image as `Data` that you can decode, cache, write to disk, or upload.
 

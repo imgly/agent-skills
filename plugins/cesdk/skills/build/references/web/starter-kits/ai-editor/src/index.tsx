@@ -25,9 +25,7 @@ import App from './app/App';
  * @see https://img.ly/docs/cesdk/js/configuration-2c1c3d/
  */
 const editorConfig = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-ai-editor-user',
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
 
 // ============================================================================

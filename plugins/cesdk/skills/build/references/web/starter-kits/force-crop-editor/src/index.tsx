@@ -19,11 +19,9 @@ import App from './app/App';
 // ============================================================================
 
 const config: Configuration = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   // Unique user identifier for analytics (customize for your app)
   userId: 'starterkit-force-crop-editor-user',
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
 
 // ============================================================================

@@ -236,9 +236,10 @@ color fill system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-fills-color)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-fills-color)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 ![Color fills applied to shapes using sRGB, CMYK, and Spot Colors](https://img.ly/docs/cesdk/android/fills/color-7129cd/assets/android.hero.webp)
 

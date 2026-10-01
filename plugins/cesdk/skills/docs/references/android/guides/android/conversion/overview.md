@@ -8,7 +8,8 @@ CreativeEditor SDK (CE.SDK) exports Android designs to formats such as PNG,
 PDF, SVG, and MP4 so your app can prepare assets for sharing, printing,
 storage, or publishing workflows.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 You can trigger conversions programmatically with the Android Engine API or let
 users start exports through the editor UI.
@@ -20,6 +21,20 @@ users start exports through the editor UI.
 ## Supported Input and Output Formats
 
 CE.SDK accepts a range of input formats when working with designs, including:
+
+| Category      | Supported Formats                                                  |
+| ------------- | ------------------------------------------------------------------ |
+| **Images**    | `.png`, `.apng`, `.jpeg`, `.jpg`, `.gif`, `.webp`, `.svg`, `.bmp`  |
+| **Video**     | `.mp4` (H.264/AVC, H.265/HEVC), `.mov` (H.264/AVC, H.265/HEVC)     |
+| **Audio**     | `.wav`, `.mp3`, `.m4a`, `.mp4` (AAC or MP3), `.mov` (AAC or MP3)   |
+| **Animation** | `.json` (Lottie)                                                   |
+
+Animated images (`.gif` and `.apng`) import as a static first frame in design
+scenes and as a looping video fill in video scenes.
+
+> **Note:** Need to import a format not listed here? CE.SDK allows you to create custom
+> importers for any file type by using our Scene and Block APIs
+> programmatically.
 
 When it comes to exporting or converting designs, the SDK supports the following output formats:
 

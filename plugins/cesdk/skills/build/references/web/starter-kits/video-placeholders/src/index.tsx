@@ -19,31 +19,25 @@ import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 // Editor Configuration
 // ============================================================================
 
-// highlight-config
 /**
  * Static CE.SDK configuration.
  * Role-specific settings are applied in the init functions.
  */
 export const editorConfig: Configuration = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-video-placeholders-user',
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
-// highlight-config
 
 // ============================================================================
 // Scene URL
 // ============================================================================
 
-// highlight-scene-url
 /**
  * Demo scene URL for the placeholders video editor.
  */
 export const SCENE_URL = `${DEMO_ASSETS_BASE_URL}/cases/placeholders-video/example.scene`;
-// highlight-scene-url
 
 // ============================================================================
 // React App Bootstrap

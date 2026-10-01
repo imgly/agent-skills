@@ -105,9 +105,10 @@ or decorative effects.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-outlines-stroke)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-outlines-stroke)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Strokes are visual outlines on design blocks. This guide focuses on controlling stroke color, width, line pattern, position relative to the block edge, and corner geometry through the block API. Mutating stroke properties requires the `stroke/change` scope. Additional cap, custom dash, and PDF overprint APIs are listed in the API Reference.
 

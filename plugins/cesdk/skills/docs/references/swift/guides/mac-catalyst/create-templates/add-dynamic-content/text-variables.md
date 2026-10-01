@@ -77,9 +77,10 @@ app supplies, so a single template can produce many personalized results.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-variables)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-text-variables)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Text variables separate a design's text layout from the values your app supplies. Put tokens such as `{{firstName}}` into text blocks, then update the variable store with matching keys before you preview or export.
 

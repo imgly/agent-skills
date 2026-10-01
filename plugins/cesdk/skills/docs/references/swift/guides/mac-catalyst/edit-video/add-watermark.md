@@ -12,9 +12,10 @@ Add text and image watermarks to video content for copyright protection, brandin
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-video-add-watermark)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-video-add-watermark)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Video watermarks in CE.SDK are design blocks placed over the video page. A text watermark is a regular text block; an image watermark is a graphic block with an image fill. Both blocks carry a `duration` and `timeOffset`, so the same time-aware properties that drive the video timeline keep watermarks visible for as long as you want.
 

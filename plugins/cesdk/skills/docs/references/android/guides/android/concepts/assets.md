@@ -247,9 +247,10 @@ those assets into blocks in a scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-concepts-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-concepts-assets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Images, videos, audio, fonts, stickers, and templates are all *assets* in CE.SDK. The Android engine gets access to them
 through *asset sources*. When you apply an asset, CE.SDK creates or updates a block so that the asset becomes visible in the

@@ -12,24 +12,18 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { initQRCodeEditor } from './imgly';
 import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Configuration
 // ============================================================================
 
 const config = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-qr-code-editor-user',
 
   // IMG.LY CDN (for quick testing only, NOT recommended for production)
-  // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
 
 // ============================================================================
@@ -38,12 +32,6 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
-    (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initQRCodeEditor(cesdk);
 
@@ -67,14 +55,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     if (qrCodeBlock) {
       cesdk.engine.block.select(qrCodeBlock);
     }
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

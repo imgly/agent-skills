@@ -27,7 +27,6 @@ export interface ImageAsset {
 // Image Catalog
 // ============================================================================
 
-// highlight-image-catalog
 export const IMAGE_CATALOG: ImageAsset[] = [
   {
     full: `${DEMO_ASSETS_BASE_URL}/assets/images/mountain-1200.jpg`,
@@ -45,4 +44,3 @@ export const IMAGE_CATALOG: ImageAsset[] = [
     alt: 'Surfer riding a wave'
   }
 ];
-// highlight-image-catalog

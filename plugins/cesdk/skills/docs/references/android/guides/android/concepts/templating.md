@@ -90,9 +90,10 @@ Templates transform static designs into dynamic, data-driven content. They combi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/editor-guides-concepts-templating)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/editor-guides-concepts-templating)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 A template is a regular CE.SDK scene that contains **variable tokens** in text and **placeholder blocks** for media. When you load a template, you can populate the variables with data and swap placeholder content without rebuilding the underlying layout.
 

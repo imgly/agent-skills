@@ -1,9 +1,6 @@
 import CreativeEngine, { Configuration } from '@cesdk/engine';
 import { createContext, useContext, useEffect, useState } from 'react';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 interface EngineContextType {
   engine: CreativeEngine;
@@ -34,13 +31,9 @@ export function EngineProvider({
 
     const loadEngine = async () => {
       if (import.meta.env.CESDK_USE_LOCAL) {
-        config.baseURL = import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL;
       }
 
       localEngine = await CreativeEngine.init(config);
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
       if (!mounted) {
         localEngine.dispose();
         return;
@@ -49,9 +42,6 @@ export function EngineProvider({
       localEngine.editor.setSetting('mouse/enableScroll', false);
       localEngine.editor.setSetting('mouse/enableZoom', false);
 
-      //START_HIDDEN_BLOCK
-      (window as Window & { cesdk?: CreativeEngine }).cesdk = localEngine;
-      //END_HIDDEN_BLOCK
 
       if (configure) {
         await configure(localEngine);

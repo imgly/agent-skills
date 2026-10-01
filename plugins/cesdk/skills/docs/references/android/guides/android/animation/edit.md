@@ -165,9 +165,10 @@ and replacing or removing animations from Android design blocks.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-edit-animations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-edit-animations)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Editing animations in Android uses the same block API model as creating animations: retrieve the attached animation block, inspect its properties, then update or replace that animation block. This guide assumes you already attached In, Out, or Loop animations as covered in [Base Animations](./create/base.md).
 

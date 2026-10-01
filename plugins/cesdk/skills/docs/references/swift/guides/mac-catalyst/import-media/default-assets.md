@@ -112,9 +112,10 @@ Load CE.SDK's built-in asset sources — shapes, stickers, filters, fonts, and s
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-default-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-default-assets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK provides built-in asset sources for shapes, stickers, filters, effects, fonts, and sample media. This guide registers asset sources from IMG.LY's CDN and applies them to create a scene with a star shape, an emoji sticker, and an image.
 

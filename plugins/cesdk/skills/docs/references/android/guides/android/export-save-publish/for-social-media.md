@@ -133,9 +133,10 @@ dimensions, format, and quality settings.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-export-for-social-media)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-export-for-social-media)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Short-form vertical video uses a 9:16 aspect ratio. Instagram Reels, TikTok,
 and YouTube Shorts commonly use 1080×1920 pixels for that format. This guide

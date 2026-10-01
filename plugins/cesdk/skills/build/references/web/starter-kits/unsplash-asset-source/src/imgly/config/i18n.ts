@@ -26,7 +26,6 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  * ```
  */
 export function setupTranslations(cesdk: CreativeEditorSDK): void {
-  // highlight-unsplash-translations
   // Add Unsplash-specific translations
   cesdk.i18n.setTranslations({
     en: {
@@ -43,7 +42,6 @@ export function setupTranslations(cesdk: CreativeEditorSDK): void {
       'libraries.unsplash.label': 'Unsplash'
     }
   });
-  // highlight-unsplash-translations
 
   // Example: Override additional built-in labels with custom text
   // cesdk.i18n.setTranslations({

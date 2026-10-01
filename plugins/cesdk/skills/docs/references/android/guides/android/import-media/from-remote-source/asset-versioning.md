@@ -204,9 +204,10 @@ Manage how CE.SDK stores and resolves asset URLs in saved designs, keeping desig
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-asset-versioning)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-asset-versioning)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 CE.SDK references assets via URLs rather than embedding files directly into
 designs. When you save a design with `engine.scene.saveToString()`, asset URLs

@@ -12,9 +12,10 @@ engine manages only one active scene at a time.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-modifying-scenes)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-modifying-scenes)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Every design you create starts with a scene. Scenes contain pages, and pages contain the visible design elements such as text, images, shapes, and other blocks. Understanding how scenes work is essential for building, saving, and restoring user designs.
 

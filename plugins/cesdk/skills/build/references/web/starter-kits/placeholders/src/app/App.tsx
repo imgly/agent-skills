@@ -16,27 +16,17 @@ import {
 import RoleSwitcher from './RoleSwitcher/RoleSwitcher';
 import styles from './App.module.css';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Types
 // ============================================================================
 
-// highlight-role-type
 type Role = 'Creator' | 'Adopter';
-// highlight-role-type
 
-// highlight-props-type
 interface AppProps {
   config: Configuration;
   sceneUrl: string;
 }
-// highlight-props-type
 
 // ============================================================================
 // App Component
@@ -48,19 +38,11 @@ export default function App({ config, sceneUrl }: AppProps) {
   const [role, setRole] = useState<Role>('Creator');
   const [editorKey, setEditorKey] = useState(0);
 
-  // highlight-create-editor
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
       cesdkRef.current = cesdk;
 
-      // START_HIDDEN_BLOCK
-      (window as any).cesdk = cesdk;
-      // END_HIDDEN_BLOCK
 
-      // highlight-init-by-role
       // Initialize with role-specific configuration
       // Each role uses a different config and runtime APIs
       if (role === 'Creator') {
@@ -68,7 +50,6 @@ export default function App({ config, sceneUrl }: AppProps) {
       } else {
         await initPlaceholdersAdopterEditor(cesdk);
       }
-      // highlight-init-by-role
 
       // Load scene: restore in-memory snapshot on role switch, otherwise load from URL on first mount
       const savedScene = savedSceneStringRef.current;
@@ -85,15 +66,10 @@ export default function App({ config, sceneUrl }: AppProps) {
 
       // Zoom auto-fit to page
       cesdk.actions.run('zoom.toPage', { autoFit: true });
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('ready');
-      // END_HIDDEN_BLOCK
     },
     [role, sceneUrl]
   );
-  // highlight-create-editor
 
-  // highlight-role-switching
   const handleRoleChange = useCallback(async (newRole: Role) => {
     const cesdk = cesdkRef.current;
     if (cesdk) {
@@ -106,7 +82,6 @@ export default function App({ config, sceneUrl }: AppProps) {
     setRole(newRole);
     setEditorKey((prev) => prev + 1);
   }, []);
-  // highlight-role-switching
 
   return (
     <div className={styles.app}>
@@ -118,9 +93,6 @@ export default function App({ config, sceneUrl }: AppProps) {
           key={editorKey}
           className={styles.editor}
           config={config}
-          // START_HIDDEN_BLOCK
-          onLoadingStateChange={reportDemoLoadingState}
-          // END_HIDDEN_BLOCK
           init={handleInit}
         />
       </div>

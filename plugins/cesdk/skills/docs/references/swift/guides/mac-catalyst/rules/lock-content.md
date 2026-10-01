@@ -125,9 +125,10 @@ Lock design elements to prevent unwanted modifications using CE.SDK's scope-base
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-lock-content)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-lock-content)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK uses **scopes** to control what users can modify in a design. Each scope gates a specific capability—moving, resizing, text editing, image replacement, and more. The permission system has two layers: **global scopes** set defaults for the entire scene, and **block-level scopes** override those defaults when the global scope is set to `.defer`.
 

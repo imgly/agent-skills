@@ -115,9 +115,10 @@ custom controls, or template-driven video output.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-video-edit-programmatic)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-video-edit-programmatic)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Programmatic editing works directly on the Engine scene graph rather than the
 built-in timeline UI for iOS. The [Timeline Editor](../create-video/timeline-editor.md)

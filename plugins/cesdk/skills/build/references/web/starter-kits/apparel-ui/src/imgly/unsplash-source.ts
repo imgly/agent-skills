@@ -14,12 +14,8 @@ const EMPTY_RESULT = {
   nextPage: undefined
 };
 
-let DEFAULT_UNSPLASH_API_URL = import.meta.env.VITE_UNSPLASH_API_URL || '';
+let DEFAULT_UNSPLASH_API_URL = '';
 
-//START_HIDDEN_BLOCK
-if (!DEFAULT_UNSPLASH_API_URL)
-  DEFAULT_UNSPLASH_API_URL = 'https://api.img.ly/unsplashProxy';
-//END_HIDDEN_BLOCK
 
 function createUnsplashSource(engine: CreativeEngine) {
   const unsplash = createApi({

@@ -246,9 +246,10 @@ Redact sensitive video content using blur, pixelization, or solid overlays for p
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-redaction)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-redaction)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 The Android [Video Editor starter kit](../starterkits/video-editor.md) is the recommended starting point for UI-based video editing workflows. Use the Engine APIs in this guide when you need to prepare redacted video content programmatically, automate privacy edits, or apply redactions before export.
 

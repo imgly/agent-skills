@@ -200,9 +200,10 @@ Configure and populate a Template Library with the Android Engine API so your ap
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-use-templates-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-use-templates-library)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Templates are pre-designed scenes stored as assets within an asset source. Each template asset keeps the URI of its `.scene` file in `meta.uri`, and the source's apply callback loads that scene when the template is selected. This makes template sources different from image or sticker sources: applying a template updates the current scene instead of creating one block.
 

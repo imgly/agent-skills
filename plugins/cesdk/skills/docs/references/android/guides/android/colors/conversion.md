@@ -157,9 +157,10 @@ CE.SDK.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-colors-conversion)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-colors-conversion)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK supports sRGB, CMYK, and SpotColor values. Color conversion is a programmatic Engine API on Android, so use it when you build custom color interfaces, show print values, or prepare colors before export.
 

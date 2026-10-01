@@ -72,9 +72,10 @@ Convert CE.SDK exports to Base64-encoded strings for embedding in HTML, storing 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-conversion-to-base64)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-conversion-to-base64)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Base64 encoding transforms binary image data into ASCII text. In Swift, CE.SDK's `engine.block.export()` returns a `Blob` (a typealias for `Data`), which you convert to Base64 using Foundation's built-in `base64EncodedString()` method.
 

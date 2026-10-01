@@ -89,9 +89,10 @@ Load pre-designed templates to give users a professional starting point instead 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-from-template)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-from-template)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Templates provide consistent layouts and styling that users can customize for their own needs. CE.SDK loads Android templates from remote or local scene URIs, from serialized strings, and applies template content to an existing scene while preserving its page dimensions.
 

@@ -11,6 +11,7 @@ type SettingFloatPropertyName =
   | "dragToSwapFills/longPressDurationMs"
   | "controlGizmo/blockScaleDownLimit"
   | "listIndentPerLevel"
+  | "tabStopInterval"
   | string & object;
 ```
 

@@ -260,9 +260,10 @@ configured sticker.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-edit-stickers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-edit-stickers)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Stickers are graphic blocks with image fills and the `"sticker"` kind tag. After a sticker exists in a scene, use block APIs for transforms, opacity, shadows, strokes, blur, effects, and duplication. Use the sticker's image fill when you need to replace the source artwork.
 

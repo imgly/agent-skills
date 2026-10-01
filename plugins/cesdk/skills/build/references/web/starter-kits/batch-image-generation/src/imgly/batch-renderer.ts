@@ -6,7 +6,6 @@
  * const results = await batchRender(sceneString, [
  *   { images: { Photo: '/img/1.jpg' }, variables: { Name: 'Alice' } },
  *   { images: { Photo: '/img/2.jpg' }, variables: { Name: 'Bob' } }
- * ], { baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL });
  *
  * results.forEach(r => console.log(URL.createObjectURL(r.blob)));
  * ```

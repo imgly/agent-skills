@@ -370,9 +370,10 @@ Generate sound effects programmatically using buffers with arbitrary audio data.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-add-sound-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-add-sound-effects)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 CE.SDK lets you create audio from code using buffers. This approach is useful for notification tones, procedural audio, or any scenario where you need to synthesize audio at runtime instead of shipping separate audio files.
 

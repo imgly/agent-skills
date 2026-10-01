@@ -27,7 +27,6 @@
  *
  * // Import an IDML file
  * const result = await importIdmlFile(idmlBlob, 'design.idml', {
- *   baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL
  * });
  *
  * // Load into editor
@@ -96,7 +95,6 @@ export interface IdmlImportResult {
  * @example
  * ```typescript
  * const result = await importIdmlFile(idmlBlob, 'design.idml', {
- *   baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL
  * });
  * console.log('Preview:', result.imageUrl);
  * console.log('Warnings:', result.messages.filter(m => m.type === 'warning'));
@@ -119,7 +117,6 @@ export async function importIdmlFile(
   try {
     // Initialize headless engine for processing
     engine = await CreativeEngine.init({
-      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       ...(license && { license }),
       ...(baseURL && { baseURL })
     });

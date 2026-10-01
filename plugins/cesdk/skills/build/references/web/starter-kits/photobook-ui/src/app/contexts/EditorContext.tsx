@@ -12,10 +12,6 @@ import { useSinglePageMode } from './SinglePageModeContext';
 import { usePagePreview } from './PagePreviewContext';
 import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
-export { DEMO_ASSETS_BASE_URL };
-// END_HIDDEN_BLOCK
 
 const template = {
   name: 'Example Photobook',
@@ -75,9 +71,6 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         });
         if (cancelled) return;
         setSceneIsLoaded(true);
-        // START_HIDDEN_BLOCK
-        reportDemoPhase('ready');
-        // END_HIDDEN_BLOCK
       }
     };
 

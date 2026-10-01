@@ -168,9 +168,10 @@ Generate personalized designs at scale using CE.SDK's headless Android engine to
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-data-merge)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-data-merge)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Data merge generates multiple personalized designs from a single template by replacing variable content with external data. On Android, this works best as an engine-only workflow: build a reusable scene once, load it for each record, set variable values, update named placeholder blocks, and export the result.
 

@@ -263,9 +263,10 @@ Load custom typefaces into CE.SDK and apply them through the Android editor UI o
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/editor-guides-text-custom-fonts)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/editor-guides-text-custom-fonts)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK ships with default typefaces, but you can replace or extend them with font files from your own app bundle, CDN, or asset host. On Android, typefaces are regular asset payloads: define the font family, register it in an asset source, then pass the typeface asset IDs to the editor font sheet or query them from your own code.
 

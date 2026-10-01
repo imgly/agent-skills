@@ -39,6 +39,33 @@ CE.SDK provides a comprehensive set of text styling and formatting options:
   - Adjust line height for readability.
   - Set paragraph spacing for structured layouts.
 
+## Text Containers and Auto-Sizing
+
+Text in CE.SDK can be configured in frames that adapt to different content scenarios:
+
+- **Fixed-size frame:** Keep text confined within a defined width and height.
+- **Growing frames:** Allow the text block to expand automatically as more text is added in specific directions.
+
+Auto-sizing behaviors can be customized to ensure your text either stays within design constraints or flows naturally as content changes.
+
+## Emojis in Text
+
+CE.SDK fully supports inserting emojis alongside regular text:
+
+- **Emoji insertion:** Add emojis directly within text blocks, just like any other character.
+- **Styling:** Emojis inherit the styling of surrounding text, ensuring visual consistency.
+- **Format support:** Unicode-based emojis are supported with robust fallback behavior for consistent display across platforms.
+- **Customizable:** The font used for drawing Emojis can be configured.
+
+## Fonts, Language, and Script Support
+
+Text handling in CE.SDK is built to support a wide range of languages, scripts, and font management needs:
+
+- **Custom fonts:** Upload and manage your own font collections to match brand guidelines.
+- **Font restrictions:** Control which fonts are available to end users for a curated design experience.
+- **Multi-script handling:** Seamlessly mix different scripts (e.g., Latin, Cyrillic, Kanji) within the same design.
+- **Fallbacks:** Handles an endless amount of characters by providing a robust fallback system that ensures your text is always readable.
+
 
 
 ---

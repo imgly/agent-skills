@@ -13,37 +13,28 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { initUnsplashEditor, UnsplashEditorOptions } from './imgly';
 import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // CE.SDK Configuration
 // ============================================================================
 
-// highlight-license
 const config = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-unsplash-asset-source-user',
 
   // IMG.LY CDN (for quick testing only, NOT recommended for production)
-  // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
-// highlight-license
 
 // ============================================================================
 // Unsplash Editor Options
 // ============================================================================
 
-// highlight-unsplash-config
 // Option 1: Read from environment variable (recommended for new projects)
 // Set VITE_UNSPLASH_API_URL in your .env file
 const editorOptions: UnsplashEditorOptions = {
-  unsplashApiUrl: import.meta.env.VITE_UNSPLASH_API_URL
+  unsplashApiUrl: (undefined as string | undefined)
 };
 
 // Option 2: Direct configuration (for existing projects)
@@ -54,7 +45,6 @@ const editorOptions: UnsplashEditorOptions = {
 
 // Option 3: Use demo proxy (development only, no configuration needed)
 // const editorOptions: UnsplashEditorOptions = {};
-// highlight-unsplash-config
 
 // ============================================================================
 // Initialize Unsplash Editor
@@ -62,31 +52,17 @@ const editorOptions: UnsplashEditorOptions = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
-    (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initUnsplashEditor(cesdk, editorOptions);
     // ============================================================================
     // Scene Loading
     // ============================================================================
 
-    // highlight-scene-loading
     // Load the Unsplash demo scene from CDN
     // This scene showcases images that can be replaced with photos from Unsplash
     await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/unsplash.scene`);
-    // highlight-scene-loading
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

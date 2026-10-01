@@ -76,9 +76,10 @@ only changes how values are interpreted at the API boundary.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-concepts-font-size-unit)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-concepts-font-size-unit)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 A scene's `fontSizeUnit` is the unit `BlockApi.setTextFontSize` expects when setting a value and `BlockApi.getTextFontSizes` returns the value. CE.SDK supports two units: `FontUnit.POINT` (the typographic default) and `FontUnit.PIXEL` (to match a pixel-based design unit).
 

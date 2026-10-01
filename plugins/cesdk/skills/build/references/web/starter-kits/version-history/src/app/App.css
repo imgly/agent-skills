@@ -134,13 +134,6 @@ body {
   background: #f5f5f5;
 }
 
-/* START_HIDDEN_BLOCK */
-
-html.demo-preview .wrapper {
-  background: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 /* CESDK Editor container */
 .cesdk-wrapper {

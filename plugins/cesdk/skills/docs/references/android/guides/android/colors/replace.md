@@ -181,11 +181,12 @@ Recolor and Green Screen effects.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-colors-replace)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-colors-replace)
 
 CE.SDK provides two effects for selective color modification. **Recolor** replaces pixels that match a source color with a target color, while **Green Screen** makes pixels that match a source color transparent. Both effects expose tolerance parameters so you can control how closely pixels must match before they are changed.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 This guide covers the built-in Android editor controls and the programmatic block API for applying, tuning, stacking, and batch-processing color replacement effects.
 

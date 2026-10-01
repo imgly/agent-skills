@@ -106,9 +106,10 @@ Android Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-custom-lut-filter)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-custom-lut-filter)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 LUT filters remap colors through a predefined transformation table, making them useful for repeatable color grading and brand-aligned image treatments. This guide shows how to configure a tiled PNG LUT, apply it to an image-backed graphic block, and manage the effect after it is attached.
 
@@ -140,7 +141,7 @@ The fastest way to author a custom LUT filter is to edit the identity LUT: a neu
 
 To author a new filter from the identity LUT:
 
-1. [Download the identity LUT](https://img.ly/docs/cesdk/android/filters-and-effects/create-custom-lut-filter-6e3f49/content-assets/6e3f49/identity.png)
+1. [Download the identity LUT](https://img.ly/docs/cesdk/content-assets/6e3f49/identity.png)
 2. Open it in an image editor that applies adjustments to the whole image
 3. Apply color adjustments such as curves, levels, hue, saturation, or color balance
 4. Export the edited image as PNG and include that file in your app or serve it from a URL

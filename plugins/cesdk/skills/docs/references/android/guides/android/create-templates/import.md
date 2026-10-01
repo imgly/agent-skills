@@ -140,9 +140,10 @@ serialized strings in Android apps.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-templates)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-import-templates)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Templates are pre-designed scenes that provide starting points for user projects. On Android, the Scene API can replace the current scene with a scene file, a self-contained archive, or serialized scene content.
 

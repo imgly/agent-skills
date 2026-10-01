@@ -226,9 +226,10 @@ serialize them.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-retrieve-mimetype)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-retrieve-mimetype)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK resources can be referenced by `https://`, `file://`, `buffer://`, and other resource Uris. Do not infer whether a resource needs relocation from the URI scheme alone. Use `engine.editor.findAllTransientResources()` as the source of truth, then call `engine.editor.getMimeType()` for the returned Uris before deciding how to upload, filter, or persist them.
 

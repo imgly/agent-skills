@@ -12,13 +12,13 @@ Control CE.SDK's interface programmatically at runtime through event subscriptio
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-user-interface-ui-extensions-customize-behaviour-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-user-interface-ui-extensions-customize-behaviour-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-user-interface-ui-extensions-customize-behaviour-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-user-interface-ui-extensions-customize-behaviour-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/guides-user-interface-ui-extensions-customize-behaviour-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-user-interface-ui-extensions-customize-behaviour-browser/index.html)
 
 UI behavior customization enables responsive, context-aware editing experiences. You can listen for user interactions, manipulate UI state dynamically based on application logic, integrate CE.SDK with external workflows, and build custom behavior that responds to editing events.
 

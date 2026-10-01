@@ -251,9 +251,10 @@ integrate a CMS, DAM, or custom asset management system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-from-remote-source-your-server)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-import-media-from-remote-source-your-server)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 CE.SDK offers two ways to bring your server's content into the engine. Choose the pattern that fits how your assets change.
 

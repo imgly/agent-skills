@@ -254,9 +254,10 @@ and configurable bitrate and resolution.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-export-to-mp4)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-export-to-mp4)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 MP4 is the most widely supported video format. CE.SDK renders the page timeline,
 encodes frames with H.264, and muxes audio into the MP4 container on a

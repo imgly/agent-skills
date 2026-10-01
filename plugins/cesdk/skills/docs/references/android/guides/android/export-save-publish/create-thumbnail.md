@@ -141,9 +141,10 @@ Generate small preview images from CE.SDK scenes and pages for galleries, file b
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-thumbnail)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-thumbnail)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Thumbnails use the same block export API as full-size image exports. Pass a page or scene block to `engine.block.export(...)`, choose an image MIME type, and set target dimensions in `ExportOptions`.
 

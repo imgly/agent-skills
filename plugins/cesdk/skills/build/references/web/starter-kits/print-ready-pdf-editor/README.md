@@ -41,6 +41,10 @@ npm run dev
 
 Open `http://localhost:5173` in your browser.
 
+## Conversion Assets
+
+The Vite configuration serves the shared Ghostscript worker during development and copies `worker.browser.js`, `gs.js`, and `gs.wasm` into `dist/pdf-conversion/` for production. Deploy the complete `dist/` directory, including those assets and the emitted ICC profiles. When hosting under a subdirectory, set Vite's `base` to that deployment path before building; PDF/X conversion uses the same base.
+
 ## Configuration
 
 ### Loading Content
@@ -126,12 +130,12 @@ src/
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
+| Issue               | Solution                                  |
+| ------------------- | ----------------------------------------- |
 | Editor doesn't load | Verify assets are accessible at `baseURL` |
-| Assets don't appear | Check `public/assets/` directory exists |
-| Watermark appears | Add your license key |
-| PDF export fails | Check browser console for errors |
+| Assets don't appear | Check `public/assets/` directory exists   |
+| Watermark appears   | Add your license key                      |
+| PDF export fails    | Check browser console for errors          |
 
 ## Documentation
 

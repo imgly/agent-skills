@@ -12,24 +12,17 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { initVideoExportOptionsEditor } from './imgly';
 import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Configuration
 // ============================================================================
 
-// highlight-license
 const config = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-video-export-options-user',
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
-// highlight-license
 
 // ============================================================================
 // Initialize Video Editor with Export Options
@@ -37,34 +30,20 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
-    (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initVideoExportOptionsEditor(cesdk);
     // ============================================================================
     // Scene Loading
     // ============================================================================
 
-    // highlight-scene-loading
     await cesdk.load(
       `${DEMO_ASSETS_BASE_URL}/assets/example-video-motion.scene`
     );
-    // highlight-scene-loading
 
     // Open panel
     cesdk.ui.openPanel('//ly.img.panel/video-export');
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

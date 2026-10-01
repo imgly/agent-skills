@@ -189,9 +189,10 @@ approved palette.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/editor-guides-configuration-color-palette)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/editor-guides-configuration-color-palette)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 The Android editor reads palette swatches from `EditorConfiguration.colorPalette`. The list replaces the built-in swatches that appear in the CE.SDK editor UI's fill, stroke, and similar color controls; include any default colors you still want to keep.
 

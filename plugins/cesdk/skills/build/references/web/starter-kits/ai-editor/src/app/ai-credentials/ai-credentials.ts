@@ -44,18 +44,12 @@
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 
-// START_HIDDEN_BLOCK
-import { hasEmbeddedParent, requestTokenFromParent } from './ai-token-embedded';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Credential Mode Detection
 // ============================================================================
 
 export type AiCredentialMode =
-  // START_HIDDEN_BLOCK
-  | 'embedded'
-  // END_HIDDEN_BLOCK
   | 'apiKey'
   | 'unconfigured';
 
@@ -107,14 +101,11 @@ function getApiKey(): string | undefined {
   const stored = getUserApiKey();
   if (stored != null) return stored;
 
-  const key = import.meta.env.VITE_AI_API_KEY;
+  const key = (undefined as string | undefined);
   return typeof key === 'string' && key.length > 0 ? key : undefined;
 }
 
 export function detectAiCredentialMode(): AiCredentialMode {
-  // START_HIDDEN_BLOCK
-  if (hasEmbeddedParent()) return 'embedded';
-  // END_HIDDEN_BLOCK
   if (getApiKey() != null) return 'apiKey';
   return 'unconfigured';
 }
@@ -144,11 +135,6 @@ export type AiTokenResult = string | { dangerouslyExposeApiKey: string };
  * distinguish "missing" from "invalid."
  */
 export async function resolveAiToken(): Promise<AiTokenResult> {
-  // START_HIDDEN_BLOCK
-  if (hasEmbeddedParent()) {
-    return requestTokenFromParent();
-  }
-  // END_HIDDEN_BLOCK
 
   const apiKey = getApiKey();
   if (apiKey != null) {
@@ -211,14 +197,7 @@ const DEFAULT_GATEWAY_URL = 'https://gateway.img.ly';
  * every outbound request uses the same host.
  */
 export function getGatewayUrl(): string {
-  // START_HIDDEN_BLOCK
-  if (hasEmbeddedParent()) {
-    const params = new URLSearchParams(window.location.search);
-    const hostGateway = params.get('gatewayUrl');
-    if (hostGateway != null && hostGateway.length > 0) return hostGateway;
-  }
-  // END_HIDDEN_BLOCK
-  return import.meta.env.VITE_AI_GATEWAY_URL || DEFAULT_GATEWAY_URL;
+  return DEFAULT_GATEWAY_URL;
 }
 
 // ============================================================================

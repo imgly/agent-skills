@@ -118,9 +118,10 @@ Apply blur effects to design blocks using CE.SDK's dedicated blur system for sof
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-blur)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-blur)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Unlike stackable effects, blur is a dedicated feature with its own API. Each block supports **exactly one** blur at a time, though the same blur instance can be shared across multiple blocks. CE.SDK provides four blur types: **uniform** for even softening, **linear** and **mirrored** for gradient-based effects along an axis, and **radial** for circular focal points.
 

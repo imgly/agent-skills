@@ -18,9 +18,7 @@ import App from './app/App';
  * Customize license and baseURL for production use.
  */
 const config: Configuration = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-batch-image-generation-user',
-  license: import.meta.env.VITE_CESDK_LICENSE
 
   // Local assets for development
 };

@@ -25,17 +25,14 @@ import type { CreativeEngine, ImageMimeType } from '@cesdk/cesdk-js';
 // Constants and Types
 // ============================================================================
 
-// highlight-available-formats
 const AVAILABLE_FORMATS = [
   'image/jpeg',
   'image/png',
   'application/pdf'
 ] as const;
-// highlight-available-formats
 
 type Formats = (typeof AVAILABLE_FORMATS)[number];
 
-// highlight-enums
 enum PageAmountType {
   ALL = 'all',
   RANGE = 'range'
@@ -56,9 +53,7 @@ export enum QualityType {
   VeryHigh = 'very-high',
   Maximum = 'maximum'
 }
-// highlight-enums
 
-// highlight-quality-settings
 const QualityJpeg = {
   [QualityType.Low]: 0.2,
   [QualityType.Medium]: 0.4,
@@ -74,7 +69,6 @@ const QualityPng = {
   [QualityType.VeryHigh]: 3,
   [QualityType.Maximum]: 1
 };
-// highlight-quality-settings
 
 const QUALITY_SELECT_VALUES = [
   { id: QualityType.Low, label: `quality/${QualityType.Low}` },
@@ -91,7 +85,6 @@ type ResolutionScaleValue = Exclude<
   ResolutionItemValue.Custom
 >;
 
-// highlight-resolution-settings
 const RESOLUTION_SCALE: Record<ResolutionScaleValue, number> = {
   [ResolutionItemValue.Small]: 0.5,
   [ResolutionItemValue.Original]: 1,
@@ -100,7 +93,6 @@ const RESOLUTION_SCALE: Record<ResolutionScaleValue, number> = {
 };
 
 const MAX_RESOLUTION = 4000;
-// highlight-resolution-settings
 
 const RESOLUTION_SELECT_VALUES = [
   {
@@ -141,7 +133,6 @@ type SelectValue = { id: string; label: string | string[] };
  * @returns Array of page block IDs that match the range
  * @throws Error if the page range format is invalid
  */
-// highlight-get-pages-from-range
 export const getPagesFromRange = (
   scenePages: number[],
   pageRange: string
@@ -175,7 +166,6 @@ export const getPagesFromRange = (
 
   return [...scenePages].filter((_, i) => pageIndexes.includes(i + 1));
 };
-// highlight-get-pages-from-range
 
 const PAGE_RANGE_HINT = 'e.g.: 1,1-2';
 
@@ -187,7 +177,6 @@ const PAGE_RANGE_HINT = 'e.g.: 1,1-2';
  * @returns The message to show below the input, or `undefined` when the range
  *   selects at least one page
  */
-// highlight-page-range-error
 export const pageRangeError = (
   scenePages: number[],
   pageRange: string
@@ -203,7 +192,6 @@ export const pageRangeError = (
     return 'Invalid page range';
   }
 };
-// highlight-page-range-error
 
 /**
  * Format the export dimensions in pixels for the given design unit.
@@ -213,7 +201,6 @@ export const pageRangeError = (
  * @param scale - The resolution factor the user picked
  * @returns A string such as `1080 x 1080 px`
  */
-// highlight-format-export-size
 export const formatExportSize = (
   designUnit: string,
   sceneDPI: number,
@@ -238,7 +225,6 @@ export const formatExportSize = (
 
   return `${width} x ${height} px`;
 };
-// highlight-format-export-size
 
 /**
  * Create a description string showing the export dimensions in pixels.
@@ -273,7 +259,6 @@ type ExportMimeType =
  * @returns One blob per exported file, empty when there is no scene
  * @throws Error if the page range format is invalid
  */
-// highlight-export-design
 export const exportDesignBlobs = async (
   engine: CreativeEngine,
   pageRange: string,
@@ -329,7 +314,6 @@ export const exportDesignBlobs = async (
   }
   return blobs;
 };
-// highlight-export-design
 
 /**
  * Export the design and download every produced file.
@@ -366,7 +350,6 @@ const exportDesign = async (
  *
  * @param cesdk - The CreativeEditorSDK instance
  */
-// highlight-setup-function
 export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
   // Register translations for the export panel
   cesdk.i18n.setTranslations({
@@ -394,7 +377,6 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
   });
 
   // Register the navigation bar export button
-  // highlight-register-component
   cesdk.ui.registerComponent(
     'ly.img.export-options-design.navigationBar',
     ({ builder }) => {
@@ -412,10 +394,8 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
       });
     }
   );
-  // highlight-register-component
 
   // Register the export panel
-  // highlight-register-panel
   cesdk.ui.registerPanel(
     '//ly.img.panel/export',
     ({ builder, engine, state }) => {
@@ -608,7 +588,6 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
       });
     }
   );
-  // highlight-register-panel
 
   // Set panel position
   cesdk.ui.setPanelPosition(
@@ -624,4 +603,3 @@ export function setupExportDesignPanel(cesdk: CreativeEditorSDK): void {
     }
   );
 }
-// highlight-setup-function

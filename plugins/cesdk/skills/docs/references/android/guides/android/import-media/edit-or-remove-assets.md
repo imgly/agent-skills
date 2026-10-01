@@ -219,9 +219,10 @@ Manage assets in Android local asset sources by updating metadata, removing indi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-edit-or-remove-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-import-media-edit-or-remove-assets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Assets in local sources can change after users import or generate media. CE.SDK lets you query those assets, replace their metadata by removing and re-adding them, remove stale entries, and notify subscribers when a source changes.
 

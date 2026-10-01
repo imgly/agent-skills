@@ -4,7 +4,7 @@
 
 ---
 
-A comprehensive overview of all CE.SDK capabilities available for .
+A comprehensive overview of all CE.SDK capabilities available for React Native.
 
 <CapabilityTable platform={props.platform.id} />
 

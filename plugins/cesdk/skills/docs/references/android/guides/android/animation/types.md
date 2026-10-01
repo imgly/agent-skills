@@ -159,9 +159,10 @@ Apply entrance, exit, and loop animations to design blocks using the available a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-animation-types)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-animation-types)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK organizes animations into three categories: entrance (In), exit (Out), and loop. Each category determines when the animation plays during the block's lifecycle. This guide demonstrates different animation types and their configurable properties.
 
@@ -228,6 +229,10 @@ Text-only entrance animation types include:
 - `AnimationType.BlockSwipeText` - Text-only block sweep reveal
 - `AnimationType.SpreadText` - Text-only letter spacing effect
 - `AnimationType.MergeText` - Text-only line merge effect
+
+### Ken Burns Animation
+
+The Ken Burns animation (`AnimationType.KenBurns`) pans and zooms across an image or video. The pan travels through the space between the block frame and the crop edges. When you attach the animation, the engine raises the crop scale ratio of the block to at least 1.3, so that this space exists. The content fill mode of the block becomes `Crop`. The engine does this on the next update, after the block is laid out and its image or video has loaded. A crop that is already zoomed in further keeps its scale.
 
 ## Exit Animations
 

@@ -61,9 +61,10 @@ system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-set-editing-constraints)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-set-editing-constraints)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Editing constraints let you lock specific properties of design elements while keeping others editable. The Scope system provides granular control over more than 20 editing capabilities, including movement, resizing, rotation, fill changes, text editing, and lifecycle operations. Use it to create brand templates, guided editing experiences, and form-based workflows where design integrity must be preserved while still allowing controlled personalization.
 

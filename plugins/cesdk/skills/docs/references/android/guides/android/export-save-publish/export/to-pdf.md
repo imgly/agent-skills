@@ -140,9 +140,10 @@ underlayer support for special media printing.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-export-to-pdf)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-export-to-pdf)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 PDF provides a document format for sharing and printing designs. CE.SDK exports PDF files that preserve vector graphics, support multi-page scenes, and include options for print compatibility. You can configure high compatibility mode for consistent rendering across PDF viewers, and generate underlayers for printing on transparent or non-white materials.
 

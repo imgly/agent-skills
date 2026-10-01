@@ -68,17 +68,14 @@ export async function initGettyImagesEditor(
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -137,17 +134,14 @@ export async function initGettyImagesEditor(
       })
     )
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Getty Images Asset Source Plugin
   // ============================================================================
 
-  // highlight-getty-setup
   // Setup Getty Images as the primary image source
   // This replaces the default image library with Getty Images stock photos
   await cesdk.addPlugin(
     new GettyImagesAssetSourcePlugin({ proxyUrl: options?.gettyProxyUrl })
   );
-  // highlight-getty-setup
 }

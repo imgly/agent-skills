@@ -58,7 +58,6 @@ interface ContentJSON {
 // Remote CDN base URL for initial scene loading
 const SCENES_CDN_URL = `${DEMO_ASSETS_BASE_URL}/assets/templates`;
 
-// highlight-video-scene-assets
 const VIDEO_SCENES_ASSETS: ContentJSON = {
   version: '1.0.0',
   id: 'ly.img.video.scene',
@@ -87,9 +86,7 @@ const VIDEO_SCENES_ASSETS: ContentJSON = {
     }
   ]
 };
-// highlight-video-scene-assets
 
-// highlight-audio-assets
 const AUDIO_ASSETS: ContentJSON = {
   version: '1.0.0',
   id: 'ly.img.audio',
@@ -173,7 +170,6 @@ const AUDIO_ASSETS: ContentJSON = {
     }
   ]
 };
-// highlight-audio-assets
 
 // ============================================================================
 // URL Parameter Helpers
@@ -264,7 +260,6 @@ export async function initVideoAnimationsEditor(cesdk: CreativeEditorSDK) {
   // Custom Asset Sources
   // ============================================================================
 
-  // highlight-custom-assets
   // Load custom video scene templates from CDN with custom applyAsset callback
   engine.asset.addLocalSource(
     VIDEO_SCENES_ASSETS.id,
@@ -309,5 +304,4 @@ export async function initVideoAnimationsEditor(cesdk: CreativeEditorSDK) {
     JSON.stringify(AUDIO_ASSETS),
     `${DEMO_ASSETS_BASE_URL}/assets/audio`
   );
-  // highlight-custom-assets
 }

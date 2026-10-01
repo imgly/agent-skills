@@ -13,13 +13,13 @@ Configure video exports with appropriate resolution, framerate, and bitrate opti
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-export-save-publish-export-for-social-media-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-export-save-publish-export-for-social-media-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-export-save-publish-export-for-social-media-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-export-save-publish-export-for-social-media-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/guides-export-save-publish-export-for-social-media-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-export-save-publish-export-for-social-media-browser/index.html)
 
 Short-form vertical video has become the dominant format for social media. Instagram Reels, TikTok, and YouTube Shorts all use the 9:16 aspect ratio at 1080×1920 pixels. This guide demonstrates how to create and export vertical video content with the correct settings for these platforms.
 

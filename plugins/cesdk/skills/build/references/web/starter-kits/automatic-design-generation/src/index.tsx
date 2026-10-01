@@ -26,9 +26,7 @@ import App from './app/App';
  * This config is shared between the headless engine and the editor UI.
  */
 const config: Configuration = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-automatic-design-generation-user',
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
 
 // ============================================================================

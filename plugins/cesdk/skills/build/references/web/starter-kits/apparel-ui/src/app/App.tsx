@@ -31,7 +31,6 @@ const App = ({ engineConfig }: AppProps) => {
 
   // Merge with required defaults
   const config: Partial<Configuration> = {
-    baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
     role: 'Adopter',
     ...engineConfig,
     featureFlags: {

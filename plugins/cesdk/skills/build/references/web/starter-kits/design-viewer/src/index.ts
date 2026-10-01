@@ -16,19 +16,14 @@ export { DEMO_ASSETS_BASE_URL };
 // Configuration
 // ============================================================================
 
-// highlight-license
 const config = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-design-viewer-user',
 
   // IMG.LY CDN (for quick testing only, NOT recommended for production)
-  // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
-// highlight-license
 
 // ============================================================================
 // Initialize Viewer
@@ -36,9 +31,6 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initDesignViewer(cesdk);
 
@@ -46,7 +38,6 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // Scene Loading
     // ============================================================================
 
-    // highlight-scene-loading
     await cesdk.load(
       `${DEMO_ASSETS_BASE_URL}/assets/1-1-marketing-multipost/scene.scene`
     );
@@ -56,7 +47,6 @@ CreativeEditorSDK.create('#cesdk_container', config)
       autoFit: true,
       padding: 24
     });
-    // highlight-scene-loading
   })
   .catch((error) => {
     // eslint-disable-next-line no-console

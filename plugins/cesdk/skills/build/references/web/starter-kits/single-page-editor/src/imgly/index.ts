@@ -54,25 +54,20 @@ export async function initSinglePageEditor(cesdk: CreativeEditorSDK) {
   // Add the single-page editor configuration plugin
   // This sets up the UI, features, settings (including singlePageModeEnabled),
   // and i18n for single-page design editing
-  // highlight-config-plugin
   await cesdk.addPlugin(new DesignEditorConfig());
-  // highlight-config-plugin
 
   // ============================================================================
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -131,5 +126,4 @@ export async function initSinglePageEditor(cesdk: CreativeEditorSDK) {
       })
     )
   ]);
-  // highlight-asset-sources
 }

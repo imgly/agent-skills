@@ -214,11 +214,12 @@ generation, and custom template creation tools.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-templates-from-scratch)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-templates-from-scratch)
 
 CE.SDK lets you create a template without starting from an existing scene. You can define the page size, add text and graphic blocks, bind text variables, mark media as a placeholder, restrict editing with scopes, and save the result for reuse.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 This guide uses a promotional card template with variable-driven text and one swappable image area. The sample assumes an existing `Engine` instance and focuses on the scene and block APIs that create the reusable template.
 

@@ -170,13 +170,14 @@ responsive source sets using CE.SDK's image fill system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-fills-image)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-fills-image)
 
 Image fills render design blocks with raster or vector image content, supporting common formats such as PNG, JPEG, WebP, and SVG. You can load images from remote URLs or app-owned Android URIs, provide responsive source sets, and choose how the image scales inside its block.
 
 This guide covers how to create and apply image fills programmatically, configure content fill modes, work with responsive source sets, and pass image URIs that Android can resolve.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 ## Understanding Image Fills
 

@@ -17,7 +17,12 @@ Instead of starting the full editor with panels and toolbars, your browser code 
 
 ### When to Use Headless Mode
 
-<HeadlessScenario />
+| Scenario                                 | Headless Mode |   UI-Based Mode    |
+| ---------------------------------------- | :-----------: | :----------------: |
+| Automate design generation from a script |      ✅       |         ❌         |
+| Export scenes without user interaction   |      ✅       |         ❌         |
+| Let users visually edit a design         |      ❌       |         ✅         |
+| Build a custom editor interface          |      ✅       | Requires custom UI |
 
 ## How Headless Mode Works
 
@@ -46,7 +51,7 @@ CE.SDK’s Engine needs a **WebGL-capable environment**. When you ship a headles
 1. Install the Engine package:
 
    ```bash
-   npm install @cesdk/engine@$UBQ_VERSION$
+   npm install @cesdk/engine@1.83.0
    ```
 
 ````
@@ -56,7 +61,7 @@ CE.SDK’s Engine needs a **WebGL-capable environment**. When you ship a headles
    ```ts
    const config = {
      license: '<YOUR_LICENSE_KEY>',
-     baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/$UBQ_VERSION$/assets'
+     baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0/assets'
    };
    
 ````
@@ -74,7 +79,7 @@ import CreativeEngine from '@cesdk/engine';
 
 const config = {
   license: '<YOUR_LICENSE_KEY>',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/$UBQ_VERSION$/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0/assets'
 };
 
 let engine;
@@ -202,7 +207,7 @@ Once that element is in the DOM, the snippet’s querySelector('#download-headle
 
   const config = {
     license: '<YOUR_LICENSE_KEY>',
-    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/$UBQ_VERSION$/assets'
+    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0/assets'
   };
 
   let engine;

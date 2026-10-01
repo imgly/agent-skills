@@ -147,9 +147,10 @@ Configure emoji rendering in CE.SDK text blocks with a dedicated emoji font for 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-with-emojis)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-text-with-emojis)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Emojis are Unicode characters that can be single code points, flag sequences, joined family symbols, or skin tone variants. CE.SDK renders them through the same text engine as other text content, with a configurable emoji font for consistent output.
 

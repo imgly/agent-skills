@@ -150,9 +150,10 @@ formatting, and querying text.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-edit)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-text-edit)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK provides text editing through range-based APIs that operate on Swift `Range<String.Index>` values. This guide covers replacing and removing text content, applying formatting to character ranges, querying text properties, and retrieving line and font information.
 
@@ -233,6 +234,19 @@ try engine.block.removeText(text, from: "Hello CE.SDK Guide!".range(of: "Hello "
 ```
 
 The example builds the `Range<String.Index>` arguments from the expected text content (`"Hello World!"` → `"Hello CE.SDK!"` → `"Hello CE.SDK Guide!"`). In an interactive editor, pass the user's current selection instead.
+
+## Using Tab Stops
+
+Tab characters align text into columns. A tab moves the text after it to the next tab stop, in both left-to-right and right-to-left text. A tab whose stop lies past the frame edge wraps to the next line. The `tabStopInterval` setting defines the distance between tab stops as a multiple of the base font size. The default is `2`; a value of `0` or less makes tab characters advance no width.
+
+```swift
+let table = try engine.block.create(.text)
+try engine.block.appendChild(to: page, child: table)
+try engine.block.replaceText(table, text: "Name:\tCE.SDK")
+try engine.editor.setSettingFloat("tabStopInterval", value: 3.0)
+```
+
+While editing on the canvas with a hardware keyboard, Tab inserts a tab character. In lists, Tab and Shift+Tab at the start of a paragraph change the list indent level instead; outside a list Shift+Tab does nothing.
 
 ## Applying Text Formatting
 

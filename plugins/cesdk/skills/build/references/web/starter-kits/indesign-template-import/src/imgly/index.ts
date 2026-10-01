@@ -58,7 +58,6 @@ export async function initInDesignTemplateImportEditor(
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -117,5 +116,4 @@ export async function initInDesignTemplateImportEditor(
       })
     )
   ]);
-  // highlight-asset-sources
 }

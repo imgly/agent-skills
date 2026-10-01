@@ -199,9 +199,10 @@ secure proxy that keeps your API credentials off the device.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-from-remote-source-getty-images)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-import-media-from-remote-source-getty-images)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Getty Images offers premium, professionally curated stock photography through its API. You expose that library inside CE.SDK by implementing a custom asset source: a class that conforms to the `AssetSource` protocol, fetches results from your proxy, and maps them into the asset format the engine understands. Once registered, the source behaves like any other — it can be queried programmatically and surfaced in the asset library.
 

@@ -16,7 +16,6 @@ import type { AssetResult, CreativeEngine } from '@cesdk/cesdk-js';
  * 2. Replaces the current page's structure with the layout
  * 3. Copies text and image content from the old page to the new layout
  */
-// highlight-apply-layout
 export async function applyLayoutToPage(
   engine: CreativeEngine,
   asset: AssetResult,
@@ -82,7 +81,6 @@ export async function applyLayoutToPage(
 
   return page;
 }
-// highlight-apply-layout
 
 /**
  * Copies image files and text block contents from one page to another.

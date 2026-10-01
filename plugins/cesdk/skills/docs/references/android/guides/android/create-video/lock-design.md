@@ -149,9 +149,10 @@ Protect video clips, overlays, and placeholders from unwanted edits using CE.SDK
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-lock-video-design)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-lock-video-design)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK uses global scopes and block-level scopes to decide which editing operations are allowed. For video designs, the same model can lock the whole scene, keep watermarks protected, and make only selected clips or overlays editable.
 

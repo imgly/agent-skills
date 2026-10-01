@@ -155,9 +155,10 @@ personalization, and automated design production.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-use-templates-generate)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-use-templates-generate)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Template generation transforms a template into a finished design by populating data and exporting to an output format. Load a template with `engine.scene.load(from:)`, replace its variables and placeholders with `engine.variable.set(key:value:)` and the block APIs, then export with `engine.block.export(_:mimeType:options:)`.
 

@@ -112,9 +112,10 @@ Combine multiple video clips into a sequence and organize them in the compositio
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-join-and-arrange-video)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-join-and-arrange-video)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Video compositions in CE.SDK use a **Scene → Page → Track → Clip** hierarchy. Tracks group clips for timed playback. This guide sets clip durations and time offsets explicitly so each underlying API is visible; in most apps the default automatic mode covered in [Creating Tracks](./join-and-arrange.md#creating-tracks) handles sequencing for you.
 

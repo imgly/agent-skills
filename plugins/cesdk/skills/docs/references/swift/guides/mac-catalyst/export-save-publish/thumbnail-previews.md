@@ -183,9 +183,10 @@ Build timeline filmstrips, page storyboards, and waveform lanes in Swift by stre
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-thumbnail-previews)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-thumbnail-previews)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK exposes two preview APIs on `BlockAPI`. `generateVideoThumbnailSequence(_:thumbnailHeight:timeRange:numberOfFrames:)` streams image frames sampled across a time range, and `generateAudioThumbnailSequence(_:samplesPerChunk:timeRange:numberOfSamples:numberOfChannels:)` streams a waveform as chunks of `Float` samples. Both return an `AsyncThrowingStream` you consume with `for try await`.
 

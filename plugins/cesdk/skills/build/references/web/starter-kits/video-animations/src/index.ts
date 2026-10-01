@@ -15,24 +15,17 @@ import {
   openAnimationPanel
 } from './imgly';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Configuration
 // ============================================================================
 
-// highlight-license
 const config = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-video-animations-user',
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
-// highlight-license
 
 // ============================================================================
 // Initialize Video Animations Editor
@@ -40,12 +33,6 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
-    (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
     await initVideoAnimationsEditor(cesdk);
 
@@ -53,18 +40,15 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // Scene Loading
     // ============================================================================
 
-    // highlight-scene-loading
     // Load initial scene from CDN
     await cesdk.load(
       `${DEMO_ASSETS_BASE_URL}/assets/templates/lunar-video-default/scene.scene`
     );
-    // highlight-scene-loading
 
     // ============================================================================
     // Animation Panel
     // ============================================================================
 
-    // highlight-animation-panel
     // Open animation panel on initialization
     openAnimationPanel(cesdk);
 
@@ -72,15 +56,8 @@ CreativeEditorSDK.create('#cesdk_container', config)
     cesdk.engine.scene.onActiveChanged(() => {
       openAnimationPanel(cesdk);
     });
-    // highlight-animation-panel
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

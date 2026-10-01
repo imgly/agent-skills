@@ -55,9 +55,10 @@ editable scenes directly from images and videos.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-design)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-import-design)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK supports several ways to open a design beyond starting from a blank canvas. Each `load` or `create` call replaces the active scene, so the imported design becomes the one your app edits and exports.
 

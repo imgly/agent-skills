@@ -134,9 +134,10 @@ timeline placement, generate waveform samples, and export audio data.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-audio-audio)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-audio-audio)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Audio blocks let you add background music, voice-overs, sound effects, and other standalone sound to scenes. CE.SDK also exposes video audio track counts, playback controls, trim controls, waveform generation, and audio-only export through the Engine block API.
 

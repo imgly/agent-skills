@@ -20,6 +20,7 @@ professional editing capabilities into your Android application.
 - [Memories in Android](./starterkits/memories.md) - Add the Android Memories starter kit to a new or existing app with a reusable starter-kit module—turn photos and clips into a shareable memory montage.
 - [T-Shirt Designer in Android](./starterkits/t-shirt-designer.md) - Add the Android Apparel Editor starter kit to a new or existing app with a reusable starter-kit module.
 - [Custom Built UIs](./starterkits/custom-built-uis.md) - Fully custom UIs built with React using the Engine API. Freely adapt to your use case.
+- [Extensibility](./starterkits/extensibility.md) - Extend editor functionality with file format imports, content moderation, design validation, and version history.
 
 
 ---

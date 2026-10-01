@@ -30,9 +30,10 @@ content.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-scene-from-video-url)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-scene-from-video-url)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Starting from an existing video lets you build editors for customizing video content — trimmers, overlay editors, or upload-and-edit flows. Create a scene from a single video with `engine.scene.create(fromVideo:)`.
 

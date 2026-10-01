@@ -37,8 +37,8 @@ swift run -c release scipio --help
 First, create an empty directory somewhere and create a `Package.swift` file inside with the following contents:
 
 ```swift
-// swift-tools-version: $SWIFT_VERSION$
-// swift-tools-version: $SWIFT_VERSION$
+// swift-tools-version: 6.3.1
+// swift-tools-version: 6.3.1
 import PackageDescription
 
 // Dummy package to bundle dependencies as a precompiled XCFramework
@@ -51,7 +51,7 @@ let package = Package(
   ],
   // Custom dependencies can be added here
   dependencies: [
-    .package(url: "https://github.com/imgly/IMGLYUI-swift.git", exact: "1.84.0-nightly.20260930"),
+    .package(url: "https://github.com/imgly/IMGLYUI-swift.git", exact: "1.83.0"),
     // If you use these libraries in your app, make sure to match exact versions here
     .package(url: "https://github.com/siteline/SwiftUI-Introspect.git", exact: "26.0.0"),
     .package(url: "https://github.com/onevcat/Kingfisher.git", exact: "8.5.0"),

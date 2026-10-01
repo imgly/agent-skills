@@ -83,15 +83,15 @@ const engine = await CreativeEngine.init({
 
 To use the default content sources (stickers, shapes, typefaces, filters, and so on) server-side, extract the archive, point `baseURL` at it, and register each source you need directly through the engine API. This is the same asset API used in the browser; the `@cesdk/cesdk-js/plugins` asset-source plugins are editor-only and are not used with `@cesdk/node`.
 
-[Download Assets (v$UBQ\_VERSION$)](https://cdn.img.ly/packages/imgly/cesdk-node/$UBQ_VERSION$/imgly-assets.zip)
+[Download Assets (v1.83.0)](https://cdn.img.ly/packages/imgly/cesdk-node/1.83.0/imgly-assets.zip)
 
 Or download and extract it from the command line:
 
 ```bash
 # Download and extract the content assets for your SDK version
-curl -O https://cdn.img.ly/packages/imgly/cesdk-node/$UBQ_VERSION$/imgly-assets.zip
-mkdir -p cesdk-assets/$UBQ_VERSION$
-unzip imgly-assets.zip -d cesdk-assets/$UBQ_VERSION$/
+curl -O https://cdn.img.ly/packages/imgly/cesdk-node/1.83.0/imgly-assets.zip
+mkdir -p cesdk-assets/1.83.0
+unzip imgly-assets.zip -d cesdk-assets/1.83.0/
 rm imgly-assets.zip
 ```
 

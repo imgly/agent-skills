@@ -163,7 +163,7 @@ Manage the complete lifecycle: create, find, duplicate, destroy, and serialize b
   | ------ | ------ | ------ |
   | `blocks` | `number`\[] | The blocks to save. |
   | `allowedResourceSchemes?` | `string`\[] | The resource schemes to allow in the saved string. Defaults to \['buffer', 'http', 'https']. |
-  | `onDisallowedResourceScheme?` | (`url`, `dataHash`) => `Promise`\<`string`> | An optional callback that is called for each resource URL that has a scheme absent from `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the resource's data. The callback should return a new URL for the resource, which will be used in the serialized scene. The callback is expected to return the original URL if no persistence is needed. |
+  | `onDisallowedResourceScheme?` | (`url`, `dataHash`) => `Promise`\<`string`> | An optional callback that is called for each resource URL that has a scheme absent from `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the resource's data. The callback should return a new URL for the resource, which will be used in the serialized scene. The callback is expected to return the original URL if no persistence is needed. If the callback throws, rejects, or returns no string, the returned promise rejects and the blocks keep their URLs. |
 
   #### Returns
 
@@ -651,7 +651,7 @@ Export blocks to various formats like images, videos, and audio.
   | `maskColorR` | `number` | The red component of the special color mask color. |
   | `maskColorG` | `number` | The green component of the special color mask color. |
   | `maskColorB` | `number` | The blue component of the special color mask color. |
-  | `options?` | [`ExportOptions`](./api/node/type-aliases/exportoptions.md) | The options for exporting the block type |
+  | `options?` | [`ExportOptions`](./api/node/type-aliases/exportoptions.md) | The options for exporting the block type. `onProgress` is ignored: a color mask export reports no progress. |
 
   ##### Returns
 
@@ -686,7 +686,7 @@ Export blocks to various formats like images, videos, and audio.
   | `maskColorR` | `number` | The red component of the special color mask color. |
   | `maskColorG` | `number` | The green component of the special color mask color. |
   | `maskColorB` | `number` | The blue component of the special color mask color. |
-  | `options?` | `Omit`\<[`ExportOptions`](./api/node/type-aliases/exportoptions.md), `"mimeType"`> | The options for exporting the block type |
+  | `options?` | `Omit`\<[`ExportOptions`](./api/node/type-aliases/exportoptions.md), `"mimeType"`> | The options for exporting the block type. `onProgress` is ignored: a color mask export reports no progress. |
 
   ##### Returns
 

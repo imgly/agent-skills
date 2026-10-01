@@ -36,10 +36,6 @@ import { createApi, OrderBy } from 'unsplash-js';
 
 let DEFAULT_UNSPLASH_API_URL = '';
 
-//START_HIDDEN_BLOCK
-if (!DEFAULT_UNSPLASH_API_URL)
-  DEFAULT_UNSPLASH_API_URL = 'https://api.img.ly/unsplashProxy';
-//END_HIDDEN_BLOCK
 
 /**
  * Configuration options for the Unsplash Asset Source Plugin.
@@ -130,18 +126,15 @@ function translateToAssetResult(image: UnsplashPhoto): AssetResult {
  * @param apiUrl - The Unsplash API proxy URL
  * @returns The findAssets function
  */
-// highlight-find-assets
 function createFindUnsplashAssets(apiUrl: string) {
   const unsplashApi = createApi({ apiUrl });
 
   return async function findUnsplashAssets(queryData: AssetQueryData) {
     const { page, perPage } = queryData;
 
-    // highlight-pagination
     // Unsplash counts pages from 1
     // Convert from CE.SDK's 0-based pagination
     const unsplashPage = page + 1;
-    // highlight-pagination
 
     if (queryData.query) {
       // Search for photos matching query
@@ -194,7 +187,6 @@ function createFindUnsplashAssets(apiUrl: string) {
     return undefined;
   };
 }
-// highlight-find-assets
 
 /**
  * Create an Unsplash asset source with the given API URL.
@@ -202,7 +194,6 @@ function createFindUnsplashAssets(apiUrl: string) {
  * @param apiUrl - The Unsplash API proxy URL
  * @returns The configured asset source
  */
-// highlight-asset-source
 export function createUnsplashAssetSource(apiUrl: string): AssetSource {
   return {
     id: 'unsplash',
@@ -221,7 +212,6 @@ export function createUnsplashAssetSource(apiUrl: string): AssetSource {
     }
   };
 }
-// highlight-asset-source
 
 /**
  * Default Unsplash asset source using the demo proxy.
@@ -254,7 +244,6 @@ export const unsplashAssetSource: AssetSource = createUnsplashAssetSource(
  * }));
  * ```
  */
-// highlight-plugin-class
 export class UnsplashAssetSourcePlugin implements EditorPlugin {
   /**
    * Unique identifier for this plugin.
@@ -346,4 +335,3 @@ export class UnsplashAssetSourcePlugin implements EditorPlugin {
     );
   }
 }
-// highlight-plugin-class

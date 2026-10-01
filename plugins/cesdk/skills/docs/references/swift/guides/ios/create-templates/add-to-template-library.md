@@ -84,9 +84,10 @@ Create a template library where templates are stored, managed, and applied progr
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-templates-add-to-template-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-templates-add-to-template-library)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Templates in CE.SDK are stored and accessed through the asset system. A template library is a local asset source configured to hold and serve template assets, so users can browse thumbnails and apply templates to their designs. This guide covers saving scenes as templates, creating a template asset source, adding templates with metadata, and managing them.
 

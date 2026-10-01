@@ -84,9 +84,10 @@ API for Swift, with a duration in seconds and an optional easing curve.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-audio-audio-fade)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-audio-audio-fade)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 An audio fade ramps the volume of a clip between silence and its configured volume over a fixed duration. Use `setAudioFadeIn(_:duration:easing:)` for the start of a clip and `setAudioFadeOut(_:duration:easing:)` for the end. Both take a duration in seconds and an optional easing curve, and a duration of `0` — the default — means no fade.
 

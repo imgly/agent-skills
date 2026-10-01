@@ -127,11 +127,12 @@ Import archived CE.SDK scenes that bundle the design structure together with all
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-design-from-archive)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-import-design-from-archive)
 
 Scene files reference assets by URL, so they can break when those URLs become unavailable. Archives solve this by packaging the scene together with every accessible font, image, video, and audio resource into one file — saved with the `.imgly` extension (the `.zip` extension also works). Use archives when a design must be moved between environments, shared with another user, or stored long term.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 ## Understanding CE.SDK Archives
 

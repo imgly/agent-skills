@@ -23,7 +23,7 @@ Before you begin, make sure the following requirements are met:
 
 - React Native: 0.73
 - iOS: 16
-- Swift: $SWIFT\_VERSION$ (Xcode $XCODE\_VERSION$)
+- Swift: 6.3.1 (Xcode 26.4.1)
 - Android: 7.0 (Android SDK 24)
 - Android compile SDK: 34 or higher (other dependencies may require a higher version)
 
@@ -32,7 +32,7 @@ Before you begin, make sure the following requirements are met:
 First, install the `@imgly/editor-react-native` module by running the following command:
 
 ```sh
-npm install @imgly/editor-react-native@1.84.0-nightly.20260930
+npm install @imgly/editor-react-native@1.83.0
 ```
 
 ## iOS Configuration

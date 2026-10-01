@@ -13,7 +13,7 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  * Gets the renderer proxy URL from environment or returns the default.
  */
 export function getRendererURL(): string {
-  const envUrl = import.meta.env.VITE_RENDERER_PROXY_URL;
+  const envUrl = (undefined as string | undefined);
   return envUrl;
 }
 

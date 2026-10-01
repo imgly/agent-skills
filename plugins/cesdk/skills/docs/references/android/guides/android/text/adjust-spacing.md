@@ -74,9 +74,10 @@ Control letter spacing, line height, and paragraph spacing in text blocks using 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-adjust-spacing)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-text-adjust-spacing)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK stores text spacing on text blocks. Use `engine.block.setFloat()` and `engine.block.getFloat()` for block-level letter spacing, line height, and paragraph spacing. Use `engine.block.setTextLineHeight()` and `engine.block.getTextLineHeight()` when individual paragraphs need their own line-height values.
 

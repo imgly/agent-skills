@@ -128,9 +128,10 @@ Learn how asset sources, asset library categories, and dock buttons work togethe
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/editor-guides-import-media-asset-library-basics)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/editor-guides-import-media-asset-library-basics)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 On Android, configure the asset library through the editor's Kotlin `configuration` block. Asset sources live on the Engine, `AssetLibrary` defines the categories and sections shown in sheets, and dock buttons can open those categories for users.
 

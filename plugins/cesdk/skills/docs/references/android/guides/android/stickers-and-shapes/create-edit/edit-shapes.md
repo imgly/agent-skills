@@ -159,9 +159,10 @@ properties, updating fills, and transforming the block.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-edit-shapes)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-edit-shapes)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 The snippets use an existing `graphic` block with a rectangle shape and color fill. Shape APIs operate on the shape block attached to the graphic block, while size, position, rotation, and fills remain properties of the graphic block itself.
 

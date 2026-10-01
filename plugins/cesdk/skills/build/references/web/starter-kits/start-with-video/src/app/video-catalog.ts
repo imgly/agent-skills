@@ -29,7 +29,6 @@ export interface VideoAsset {
 // Video Catalog
 // ============================================================================
 
-// highlight-video-catalog
 export const VIDEO_CATALOG: VideoAsset[] = [
   {
     full: `${DEMO_ASSETS_BASE_URL}/assets/videos/pexels-koolshooters-6975806.mp4`,
@@ -59,4 +58,3 @@ export const VIDEO_CATALOG: VideoAsset[] = [
     }
   }
 ];
-// highlight-video-catalog

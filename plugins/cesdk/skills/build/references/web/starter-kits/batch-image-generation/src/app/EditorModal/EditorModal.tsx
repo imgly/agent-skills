@@ -18,12 +18,6 @@ import {
 
 import styles from './EditorModal.module.css';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 interface EditorModalProps {
   /** Editor type: 'template' for Creator role, 'instance' for Adopter role */
@@ -58,22 +52,13 @@ export function EditorModal({
     document.body.classList.add('no-scroll');
     return () => {
       document.body.classList.remove('no-scroll');
-      // START_HIDDEN_BLOCK
-      delete (window as any).cesdk;
-      // END_HIDDEN_BLOCK
     };
   }, []);
 
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
       cesdkRef.current = cesdk;
 
-      // START_HIDDEN_BLOCK
-      (window as any).cesdk = cesdk;
-      // END_HIDDEN_BLOCK
 
       // Initialize editor based on type
       if (type === 'template') {
@@ -112,9 +97,6 @@ export function EditorModal({
       // Load scene and zoom to fit
       await cesdk.load(sceneString);
       cesdk.actions.run('zoom.toPage', { autoFit: true });
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('ready');
-      // END_HIDDEN_BLOCK
     },
     [type, title, sceneString, variables, onSave, onClose]
   );
@@ -129,9 +111,6 @@ export function EditorModal({
         <CreativeEditor
           className={styles.editor}
           config={cesdkConfig}
-          // START_HIDDEN_BLOCK
-          onLoadingStateChange={reportDemoLoadingState}
-          // END_HIDDEN_BLOCK
           init={handleInit}
         />
       </div>

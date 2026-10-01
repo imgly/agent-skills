@@ -122,9 +122,10 @@ Swift Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-placeholders)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-placeholders)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Placeholders are the backbone of editable-yet-locked templates: a designer marks which blocks an end user may replace, and the rest of the design stays fixed. This guide covers checking placeholder support, enabling behavior, exposing visual controls, the scopes placeholders depend on, and applying settings to multiple blocks at once.
 

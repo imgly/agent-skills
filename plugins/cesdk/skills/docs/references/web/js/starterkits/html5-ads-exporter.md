@@ -12,13 +12,13 @@ Export static and animated designs as HTML5 ad banners in a customizable, ad-net
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-html5-ads-exporter-ts-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/starterkit-html5-ads-exporter-ts-web/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-html5-ads-exporter-ts-web/tree/v$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-html5-ads-exporter-ts-web/tree/v1.83.0)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-html5-ads-exporter-ts-web/tree/v$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-html5-ads-exporter-ts-web/tree/v1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/starterkit-html5-ads-exporter/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-html5-ads-exporter/index.html)
 
 ***
 
@@ -102,7 +102,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -199,15 +199,15 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js@$UBQ\_VERSION$
+        npm install @cesdk/cesdk-js@1.83.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$
+        pnpm add @cesdk/cesdk-js@1.83.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js@$UBQ\_VERSION$
+        yarn add @cesdk/cesdk-js@1.83.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -235,7 +235,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -559,7 +559,7 @@ CE.SDK has a rich plugin ecosystem that extends the editor with powerful capabil
 Add AI-powered background removal that runs entirely client-side. The background removal plugin processes images directly in the browser without sending data to external servers.
 
 ```typescript title="src/imgly/config/plugin.ts"
-import BackgroundRemovalPlugin from '@imgly/plugin-background-removal';
+import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 // Add background removal capability
 await cesdk.addPlugin(BackgroundRemovalPlugin());

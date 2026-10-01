@@ -50,7 +50,7 @@ Before you begin, ensure you have the following requirements:
 
 ### Platform Requirements
 
-- **iOS**: 16.0+ (Xcode $XCODE\_VERSION$+, Swift $SWIFT\_VERSION$+)
+- **iOS**: 16.0+ (Xcode 26.4.1+, Swift 6.3.1+)
 - **Android**: 7.0+ (API level 24+)
 
 ### License
@@ -148,7 +148,25 @@ EXPO_PUBLIC_SHOWCASES_LICENSE_REACT_NATIVE=your_actual_license_key_here npx expo
 
 Install the React Native dependencies:
 
-<Install />
+<Tabs syncKey="code-language">
+  <TabItem label="npm">
+    ```shell
+    npm install @cesdk/cesdk-js@1.83.0
+    ```
+  </TabItem>
+
+  <TabItem label="yarn">
+    ```shell
+    yarn add @cesdk/cesdk-js@1.83.0
+    ```
+  </TabItem>
+
+  <TabItem label="pnpm">
+    ```shell
+    pnpm add @cesdk/cesdk-js@1.83.0
+    ```
+  </TabItem>
+</Tabs>
 
 This downloads and installs all required packages, including the CreativeEditor SDK.
 

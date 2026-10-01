@@ -245,9 +245,10 @@ exposing the results as a CE.SDK asset source.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-getty-images)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-import-media-getty-images)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Getty Images requires authenticated server-side access. The Android app should call your proxy, and the proxy should hold the
 Getty Images API key and secret, forward search requests to Getty Images, and return Getty Images' raw `searchimages` JSON.

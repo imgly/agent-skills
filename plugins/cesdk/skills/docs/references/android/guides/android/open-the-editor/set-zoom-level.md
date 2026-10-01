@@ -187,9 +187,10 @@ the camera, and react to zoom changes through the Engine `scene` API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-set-zoom-level)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-set-zoom-level)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 The zoom level is a ratio between design dots and screen pixels. A zoom level of `1F` shows one design dot as one screen pixel; `2F` shows it as two. The snippets below operate on the active scene and a valid `page` block in that scene.
 

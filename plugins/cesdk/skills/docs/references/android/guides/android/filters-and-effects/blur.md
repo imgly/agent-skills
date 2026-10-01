@@ -173,9 +173,10 @@ softening backgrounds, creating depth, and focusing attention.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-filters-and-effects-blur)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-filters-and-effects-blur)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Unlike stackable effects, blur is attached through its own block APIs. A block supports at most one blur at a time, but the same blur instance can be assigned to multiple compatible blocks.
 

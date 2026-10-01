@@ -120,14 +120,6 @@
     sans-serif;
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview),
-:global(html.demo-preview) :global(body) {
-  background: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 :global(#root) {
   width: 100%;
@@ -147,13 +139,6 @@
   background: #fafafa;
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview) .container {
-  background: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 .editorWrapper {
   position: relative;

@@ -96,7 +96,6 @@ const EMPTY_RESULT: AssetsQueryResult<AssetResult> = {
 // Pexels API Client
 // ============================================================================
 
-// highlight-pexels-api
 /**
  * Fetch data from the Pexels API.
  *
@@ -128,13 +127,11 @@ async function fetchFromPexels(
 
   return response.json();
 }
-// highlight-pexels-api
 
 // ============================================================================
 // Asset Transformation
 // ============================================================================
 
-// highlight-transform-asset
 /**
  * Transform a Pexels photo to CE.SDK AssetResult format.
  *
@@ -164,7 +161,6 @@ function transformToAssetResult(photo: PexelsPhoto): AssetResult {
     }
   };
 }
-// highlight-transform-asset
 
 // ============================================================================
 // Asset Source Factory
@@ -182,7 +178,6 @@ let hasShownApiKeyWarning = false;
  * @param apiKey - The Pexels API key
  * @returns AssetSource configuration for CE.SDK
  */
-// highlight-createAssetSource
 export function createPexelsAssetSource(apiKey: string): AssetSource {
   /**
    * Find Pexels assets based on query parameters.
@@ -210,13 +205,10 @@ export function createPexelsAssetSource(apiKey: string): AssetSource {
     }
 
     try {
-      // highlight-pagination
       // Pexels uses 1-based page numbering
       // Convert from CE.SDK's 0-based pagination
       const pexelsPage = queryData.page + 1;
-      // highlight-pagination
 
-      // highlight-api-request
       // Build query parameters
       const params = new URLSearchParams({
         page: pexelsPage.toString(),
@@ -232,9 +224,7 @@ export function createPexelsAssetSource(apiKey: string): AssetSource {
         // Use curated photos when no search query
         response = await fetchFromPexels('curated', params, apiKey);
       }
-      // highlight-api-request
 
-      // highlight-response-handling
       // Transform Pexels response to CE.SDK format
       const assets = response.photos.map(transformToAssetResult);
       const hasMore = response.photos.length > 0 && response.next_page;
@@ -245,7 +235,6 @@ export function createPexelsAssetSource(apiKey: string): AssetSource {
         currentPage: queryData.page,
         nextPage: hasMore ? queryData.page + 1 : undefined
       };
-      // highlight-response-handling
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('Pexels API error:', error);
@@ -256,7 +245,6 @@ export function createPexelsAssetSource(apiKey: string): AssetSource {
   return {
     id: 'pexels',
     findAssets: findPexelsAssets,
-    // highlight-credits-license
     credits: {
       name: 'Pexels',
       url: 'https://www.pexels.com/'
@@ -265,10 +253,8 @@ export function createPexelsAssetSource(apiKey: string): AssetSource {
       name: 'Pexels License (free)',
       url: 'https://www.pexels.com/license/'
     }
-    // highlight-credits-license
   };
 }
-// highlight-createAssetSource
 
 // ============================================================================
 // Plugin Class
@@ -293,7 +279,6 @@ export function createPexelsAssetSource(apiKey: string): AssetSource {
  * await cesdk.addPlugin(new PexelsAssetSourcePlugin());
  * ```
  */
-// highlight-plugin-class
 export class PexelsAssetSourcePlugin implements EditorPlugin {
   /**
    * Unique identifier for this plugin.
@@ -391,4 +376,3 @@ export class PexelsAssetSourcePlugin implements EditorPlugin {
     );
   }
 }
-// highlight-plugin-class

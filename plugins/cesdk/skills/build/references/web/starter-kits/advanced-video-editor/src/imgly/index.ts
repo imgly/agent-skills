@@ -30,10 +30,10 @@ import {
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 // Configuration and plugins
-import { AdvancedVideoEditorConfig } from '@cesdk/core-configs-web/advanced-video-editor';
+import { AdvancedVideoEditorConfig } from './config/plugin';
 
 // Re-export for external use
-export { AdvancedVideoEditorConfig } from '@cesdk/core-configs-web/advanced-video-editor';
+export { AdvancedVideoEditorConfig } from './config/plugin';
 
 /**
  * Initialize the CE.SDK Advanced Video Editor with a complete configuration.
@@ -51,16 +51,13 @@ export async function initAdvancedVideoEditor(cesdk: CreativeEditorSDK) {
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   await Promise.all([
     cesdk.addPlugin(new BlurAssetSource()),
     cesdk.addPlugin(new CaptionPresetsAssetSource()),
@@ -113,7 +110,6 @@ export async function initAdvancedVideoEditor(cesdk: CreativeEditorSDK) {
     cesdk.addPlugin(new TypefaceAssetSource()),
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Navigation Bar Actions

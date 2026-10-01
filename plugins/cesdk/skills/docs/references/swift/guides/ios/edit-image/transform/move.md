@@ -109,9 +109,10 @@ Position images on the canvas using absolute pixel coordinates or percentage-bas
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-edit-image-transform-move)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-edit-image-transform-move)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Position images on the canvas using coordinates that start at the top-left corner `(0, 0)`. X increases to the right, Y increases downward. Values are relative to the parent block, which simplifies nested layouts.
 

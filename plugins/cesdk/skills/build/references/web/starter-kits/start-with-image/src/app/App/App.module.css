@@ -116,14 +116,6 @@
   background-color: #f4f4f5;
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview),
-:global(html.demo-preview) :global(body) {
-  background-color: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 :global(#root) {
   width: 100%;

@@ -119,9 +119,10 @@ Customize the page format presets that appear in the CE.SDK editor UI so your us
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/editor-guides-configuration-page-format)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/editor-guides-configuration-page-format)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 CE.SDK includes page format presets in the resize sheet. The Android editor UI reads these presets from the `ly.img.page.presets` asset source, so you customize the selector by replacing that source with your own fixed-size assets.
 

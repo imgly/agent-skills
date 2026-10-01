@@ -163,9 +163,10 @@ image placeholders through the CreativeEngine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-form-based-editing)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-form-based-editing)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Form-based editing turns template customization into structured data entry. Instead of asking users to edit blocks directly on the canvas, your Android UI collects values in native controls and applies them to a template with variables and placeholders.
 

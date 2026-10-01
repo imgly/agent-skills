@@ -10,11 +10,11 @@ Generate finished designs from templates by loading, populating variables, and e
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-use-templates-generate-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-use-templates-generate-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-use-templates-generate-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-use-templates-generate-server-js)
 
 Template generation transforms templates into finished designs by populating data and exporting to output formats. Load templates with `engine.scene.load()`, set variables with `engine.variable.setString()`, and export with `engine.block.export()`. This enables batch processing, personalization systems, and automated design production.
 

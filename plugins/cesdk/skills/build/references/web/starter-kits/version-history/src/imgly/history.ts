@@ -17,7 +17,6 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  * @param sceneString - The serialized scene string
  * @returns Object containing thumbnailUrl and sceneUrl blob URLs
  */
-// highlight-createSnapshot
 export async function createSnapshot(
   cesdk: CreativeEditorSDK,
   sceneString: string
@@ -42,4 +41,3 @@ export async function createSnapshot(
 
   return { thumbnailUrl, sceneUrl };
 }
-// highlight-createSnapshot

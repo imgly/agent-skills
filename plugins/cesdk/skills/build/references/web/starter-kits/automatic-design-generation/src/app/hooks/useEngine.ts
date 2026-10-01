@@ -41,9 +41,6 @@ export function useEngine(config: Configuration): UseEngineReturn {
       setVideoSupported(isVideoSupported);
 
       engineRef.current = engine;
-      // START_HIDDEN_BLOCK
-      (window as any).engine = engine;
-      // END_HIDDEN_BLOCK
 
       setIsReady(true);
     };

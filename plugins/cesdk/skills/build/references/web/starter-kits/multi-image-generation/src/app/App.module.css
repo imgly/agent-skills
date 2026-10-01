@@ -123,14 +123,6 @@
   color: var(--color-text);
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview),
-:global(html.demo-preview) :global(body) {
-  background: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 :global(body.no-scroll) {
   overflow: hidden;
@@ -157,13 +149,6 @@
   gap: 48px;
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview) .app {
-  background: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 @media (max-width: 650px) {
   .app {

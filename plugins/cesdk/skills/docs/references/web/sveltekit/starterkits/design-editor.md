@@ -14,13 +14,13 @@ dependencies.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-design-editor-ts-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/starterkit-design-editor-ts-web/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-design-editor-ts-web/tree/v$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-design-editor-ts-web/tree/v1.83.0)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-design-editor-ts-web/tree/v$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-design-editor-ts-web/tree/v1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/starterkit-design-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-design-editor/index.html)
 
 ***
 
@@ -86,9 +86,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.83.0</TerminalTab>
     </TerminalTabs>
 
     ### Background Removal
@@ -97,15 +97,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/background-removal onnxruntime-web
+        npm install @imgly/plugin-background-removal-web@1.83.0 onnxruntime-web@1.21.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/background-removal onnxruntime-web
+        pnpm add @imgly/plugin-background-removal-web@1.83.0 onnxruntime-web@1.21.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/background-removal onnxruntime-web
+        yarn add @imgly/plugin-background-removal-web@1.83.0 onnxruntime-web@1.21.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -117,7 +117,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d static/
         rm imgly-assets.zip
       </TerminalTab>
@@ -261,9 +261,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.83.0</TerminalTab>
     </TerminalTabs>
 
     ### Background Removal
@@ -272,15 +272,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/background-removal onnxruntime-web
+        npm install @imgly/plugin-background-removal-web@1.83.0 onnxruntime-web@1.21.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/background-removal onnxruntime-web
+        pnpm add @imgly/plugin-background-removal-web@1.83.0 onnxruntime-web@1.21.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/background-removal onnxruntime-web
+        yarn add @imgly/plugin-background-removal-web@1.83.0 onnxruntime-web@1.21.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -292,7 +292,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d static/
         rm imgly-assets.zip
       </TerminalTab>
@@ -635,7 +635,7 @@ CE.SDK has a rich plugin ecosystem that extends the editor with powerful capabil
 Add AI-powered background removal: The background removal plugin processes images directly in the browser without sending data to external servers.
 
 ```typescript title="src/lib/imgly/config/plugin.ts"
-import BackgroundRemovalPlugin from '@imgly/plugin-background-removal';
+import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 // Add background removal capability
 await cesdk.addPlugin(BackgroundRemovalPlugin());

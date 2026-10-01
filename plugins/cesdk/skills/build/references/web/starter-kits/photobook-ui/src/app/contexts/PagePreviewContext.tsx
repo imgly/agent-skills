@@ -30,6 +30,11 @@ interface PagePreview {
 }
 type PagePreviews = Record<number, PagePreview>;
 
+// Three times the 96 x 68 px preview in the page rail, sharp on high-density
+// screens. A full-size page is 3508 x 2480 px and slows start-up for nothing.
+const PREVIEW_WIDTH = 288;
+const PREVIEW_HEIGHT = 204;
+
 export function PagePreviewProvider({
   children
 }: PagePreviewProviderProps): React.ReactNode {
@@ -124,7 +129,9 @@ export function PagePreviewProvider({
         try {
           blob = await engine.block.export(pageId, {
             mimeType: 'image/jpeg',
-            jpegQuality: 0.5
+            jpegQuality: 0.5,
+            targetWidth: PREVIEW_WIDTH,
+            targetHeight: PREVIEW_HEIGHT
           });
         } catch (error) {
           if (engine.block.isValid(pageId)) {

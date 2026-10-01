@@ -70,9 +70,10 @@ Apply custom LUT (Look-Up Table) filters to achieve brand-consistent color gradi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-custom-lut-filter)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-custom-lut-filter)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 LUT filters remap colors through a predefined transformation table, enabling cinematic color grading and consistent brand aesthetics. This guide shows how to apply your own LUT files directly to design elements using the effect API. To organize collections of filters as reusable assets, see [Create Custom Filters](./create-custom-filters.md) for registering them as custom asset sources.
 
@@ -104,7 +105,7 @@ The fastest way to author a custom LUT filter is to edit the **identity LUT**: a
 
 To author a new filter from this identity LUT:
 
-1. [Download the identity LUT](https://img.ly/docs/cesdk/ios/filters-and-effects/create-custom-lut-filter-6e3f49/content-assets/6e3f49/identity.png)
+1. [Download the identity LUT](https://img.ly/docs/cesdk/content-assets/6e3f49/identity.png)
 2. Open it in an image editor that operates on the whole image (Adobe Photoshop, Affinity Photo, GIMP, Pixelmator Pro)
 3. Apply color adjustments — curves, levels, hue/saturation, color balance, channel mixer — to the entire image
 4. Export the result as PNG; the exported file is your custom LUT

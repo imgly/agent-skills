@@ -107,9 +107,10 @@ Add text and image watermarks to video content for copyright protection, brandin
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-video-add-watermark)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-video-add-watermark)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Video watermarks in CE.SDK are design blocks positioned over video content. Text watermarks display copyright notices, URLs, or branding text, while image watermarks show logos or graphics. Both watermark types need their duration set so they remain visible throughout video playback.
 

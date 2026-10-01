@@ -429,9 +429,10 @@ and programmatic split API to create independent segments.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-video-split)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-video-split)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Clip splitting divides one block into two at a specified time. The original block ends at the split point, and the new block starts there. Both blocks reference the same source media with independent timing. This differs from trimming, which adjusts a single block's playback range without creating new blocks.
 

@@ -139,9 +139,10 @@ Expose a template's variables and placeholders through your own input controls s
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-templates-form-based-editing)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-templates-form-based-editing)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Form-based editing turns template adoption into structured data entry. Instead of asking users to locate and edit elements on the canvas, you read a template's customization points with the headless Creative Engine and build your own form — text fields for variables, image pickers for placeholders — that writes values back through the engine API.
 

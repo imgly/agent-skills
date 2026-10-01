@@ -269,9 +269,10 @@ Build timeline scrubbers, filmstrips, page storyboards, and waveform lanes from 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-thumbnail-previews)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-thumbnail-previews)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK exposes two preview APIs on `engine.block`. `generateVideoThumbnailSequence` returns image frames sampled across a time range, and `generateAudioThumbnailSequence` returns a waveform as chunks of float samples. Both return a cold `Flow` that emits as results become ready, so you can paint a scrubber while the rest of it still renders.
 

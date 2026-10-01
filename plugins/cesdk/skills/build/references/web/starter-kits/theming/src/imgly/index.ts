@@ -66,7 +66,6 @@ export async function initThemingEditor(cesdk: CreativeEditorSDK) {
   // Theme Configuration Examples
   // ============================================================================
 
-  // highlight-theme
   cesdk.engine.editor.setRole('Creator');
 
   // Set the initial theme (replaces config.theme)
@@ -76,7 +75,6 @@ export async function initThemingEditor(cesdk: CreativeEditorSDK) {
   // Set the UI scale (replaces config.ui.scale)
   // Available scales: 'normal' | 'large'
   cesdk.ui.setScale('normal');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins

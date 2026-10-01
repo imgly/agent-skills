@@ -10,11 +10,11 @@ Configure blocks to dynamically adjust their dimensions using three sizing modes
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-automation-auto-resize-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-automation-auto-resize-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-automation-auto-resize-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-automation-auto-resize-server-js)
 
 CE.SDK provides three sizing modes for controlling block dimensions. Absolute mode uses fixed pixel values. Percent mode sizes blocks relative to their parent container. Auto mode automatically expands blocks to fit their content. You can set width and height modes independently, allowing flexible combinations like fixed width with auto height for text that wraps.
 

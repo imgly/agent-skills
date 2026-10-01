@@ -14,9 +14,10 @@ type-specific properties like corner radius and star points.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-insert-media-shapes-or-stickers)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-insert-media-shapes-or-stickers)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Shapes are vector graphics created with `engine.block.createShape(_:)` and attached to graphic blocks. CE.SDK supports six shape types: **rect**, **ellipse**, **star**, **polygon**, **line**, and **vectorPath**. Stickers are pre-made graphic assets loaded from sources like `ly.img.sticker`.
 

@@ -322,13 +322,14 @@ Create a collage on Android by loading a layout page and transferring existing i
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-collage)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-collage)
 
 Layouts are predefined page structures that arrange images and text in a composition. Unlike templates, which usually replace the whole scene, this workflow keeps the user's content and maps it into a new layout.
 
 The Android example uses the Engine directly. You can call the same layout application function from your own Compose UI, an asset source callback, or any other Android workflow that lets users choose a layout.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 ## What You'll Learn
 

@@ -162,9 +162,10 @@ apply to the live preview in real time. When recording finishes, swap the fill f
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-using-camera)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-using-camera)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 On iOS, if you want IMG.LY's ready-made camera UI instead of wiring your own capture pipeline,
 see [Integrate Mobile Camera](./integrate.md). This guide takes the engine-level path.

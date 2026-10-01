@@ -80,6 +80,7 @@ The settings are organized by type:
 |  `web/fetchCredentials` | `"omit"` | `"same-origin"` | `"include"` | Web-only: Credentials mode for cross-origin fetch requests. - "omit": Never send cookies - "same-origin": Send cookies only for same-origin requests (default) - "include": Always send cookies, even for cross-origin requests Note: Only affects web platform. Ignored on native platforms. |
 |  `controlGizmo/blockScaleDownLimit` | `number` | Scale-down limit for blocks in screen pixels when scaling with gizmos or touch gestures. |
 |  `listIndentPerLevel` | `number` | The width of each list indentation level, in EM units. |
+|  `tabStopInterval` | `number` | The distance between text tab stops, as a multiple of the base font size. A value of 0 or less makes tab characters advance no width. |
 |  `positionSnappingThreshold` | `number` | The threshold distance in pixels for position snapping. |
 |  `rotationSnappingThreshold` | `number` | The threshold angle in degrees for rotation snapping. |
 |  `grid/spacingX` | `number` | Horizontal spacing between vertical grid lines in design units. |

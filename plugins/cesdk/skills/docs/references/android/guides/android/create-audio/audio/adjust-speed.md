@@ -77,9 +77,10 @@ from quarter-speed (0.25x) to triple-speed (3.0x).
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-audio-adjust-speed)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-audio-adjust-speed)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Playback speed adjustment changes how fast or slow audio plays in the timeline. A speed multiplier of 1.0 represents normal speed, values below 1.0 slow down playback, and values above 1.0 speed it up.
 

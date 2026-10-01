@@ -165,9 +165,10 @@ Configure typefaces, manage right-to-left text, and bind multilingual content to
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-language-support)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-text-language-support)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 The engine handles text shaping, bidirectional layout, and script-specific rendering automatically — every Unicode character, complex script ligatures, and mixed LTR/RTL content render without additional configuration. The Block API exposes the knobs that drive those defaults: typefaces, block- and paragraph-level alignment, and variables for dynamic content.
 

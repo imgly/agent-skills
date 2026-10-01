@@ -48,7 +48,6 @@ export { setupExportDesignPanel } from './plugins/export-design-panel';
  *
  * @param cesdk - The CreativeEditorSDK instance to configure
  */
-// highlight-init-function
 export async function initExportOptionsEditor(cesdk: CreativeEditorSDK) {
   // ============================================================================
   // Configuration Plugin
@@ -62,26 +61,21 @@ export async function initExportOptionsEditor(cesdk: CreativeEditorSDK) {
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Export Design Panel Plugin
   // ============================================================================
 
-  // highlight-export-panel
   // Setup the export design panel with format, quality, and resolution options
   setupExportDesignPanel(cesdk);
-  // highlight-export-panel
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -144,4 +138,3 @@ export async function initExportOptionsEditor(cesdk: CreativeEditorSDK) {
   // open panel
   cesdk.ui.openPanel('//ly.img.panel/export');
 }
-// highlight-init-function

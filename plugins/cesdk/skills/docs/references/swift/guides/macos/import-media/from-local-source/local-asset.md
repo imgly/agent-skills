@@ -70,9 +70,10 @@ Register a local asset source, describe files that already live on the device as
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-local-asset)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-import-media-local-asset)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 A local asset source is a named repository you register with the engine. It owns a list of assets and, unlike a remote source, resolves every asset from a local file URL — an image bundled with your app, a file your app manages, or a file the user picked from disk. Once a file is registered as an asset, the engine indexes it, makes it searchable, and can insert it into a scene. This guide covers registering a source, turning a file URL into an asset, and adding it. Querying, updating, and removing assets are covered in the [Edit or Remove Assets](../edit-or-remove-assets.md) guide.
 

@@ -10,7 +10,15 @@ modules)**, enabling you to process images and designs programmatically. By
 the end of this guide, you’ll have a working Node.js script that **loads a
 scene, modifies it, and exports it as an image**.
 
-<CesdkOverview />
+## What's CreativeEditor SDK?
+
+CreativeEditor SDK (CE.SDK) lets you integrate a customizable image and video editor into your web app. It includes filters, text overlays, and other media editing tools, and adapts easily to your use case.
+
+CreativeEditor SDK is a commercial product. To use it, you need a valid license key. If you don’t have one yet, you can get a free trial or purchase a license.
+
+[Free Trial](https://img.ly/forms/free-trial)
+
+[Purchase License](https://img.ly/pricing)
 
 ## Who Is This Guide For?
 
@@ -56,7 +64,7 @@ touch index.js
 Run the following command to install the required packages:
 
 ```bash
-npm install @cesdk/node@$UBQ_VERSION$
+npm install @cesdk/node@1.83.0
 ```
 
 Your project structure should now look like this:

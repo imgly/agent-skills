@@ -86,9 +86,10 @@ Manage how CE.SDK stores and resolves asset URLs in saved designs, keeping desig
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-from-remote-source-asset-versioning)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-import-media-from-remote-source-asset-versioning)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 CE.SDK references assets via URLs rather than embedding files directly into designs. When you save a design with `engine.scene.saveToString()`, asset URLs are stored as strings. On load, CE.SDK fetches assets from those URLs. This keeps saved designs small but means URL changes can break existing designs. This guide explains how CE.SDK stores asset references and strategies for managing asset URLs over time.
 

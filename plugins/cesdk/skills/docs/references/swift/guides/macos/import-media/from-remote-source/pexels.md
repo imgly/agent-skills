@@ -205,9 +205,10 @@ directly to your designs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-from-pexels)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-import-from-pexels)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Pexels offers a large library of high-quality, royalty-free stock photos through a public REST API. You expose that library inside CE.SDK by implementing a custom asset source: a small class that conforms to the `AssetSource` protocol, fetches results from the Pexels API, and maps them into the asset format the engine understands. Once registered, the source behaves like any other — it can be queried programmatically and surfaced in the asset library.
 

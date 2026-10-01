@@ -33,7 +33,8 @@ exportWithColorMask(handle: DesignBlockId, maskColorR: number, maskColorG: numbe
 - `maskColorR` - The red component of the special color mask color.
 - `maskColorG` - The green component of the special color mask color.
 - `maskColorB` - The blue component of the special color mask color.
-- `options` - The options for exporting the block type
+- `options` - The options for exporting the block type. `onProgress` is ignored: a color
+mask export reports no progress.
 
 **Returns:** A promise that resolves with an array of the exported image and mask or is rejected with an error.
 
@@ -154,7 +155,8 @@ saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisal
 - `onDisallowedResourceScheme` - An optional callback that is called for each resource URL that has a scheme absent from
 `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the
 resource's data. The callback should return a new URL for the resource, which will be used in the serialized
-scene. The callback is expected to return the original URL if no persistence is needed.
+scene. The callback is expected to return the original URL if no persistence is needed. If the callback throws,
+rejects, or returns no string, the returned promise rejects and the blocks keep their URLs.
 
 **Returns:** A promise that resolves to a string representing the blocks or an error.
 

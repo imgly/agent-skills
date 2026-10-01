@@ -13,7 +13,7 @@ and target dimensions.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-export-overview)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-export-overview)
 
 Whether you're building a design tool, photo editor, or batch rendering pipeline, understanding export options helps you deliver the right output for each use case. This guide covers the supported formats, their options, and how to export programmatically.
 
@@ -74,6 +74,8 @@ func exportOverview(engine: Engine) async throws {
   // something to read without making a network request.
   let audioBlock = try engine.block.create(.audio)
   try engine.block.appendChild(to: page, child: audioBlock)
+  // A new audio block has no end, so give it a length before exporting it.
+  try engine.block.setDuration(audioBlock, duration: 1.0)
   let audioBuffer = engine.editor.createBuffer()
   try engine.editor.setBufferLength(url: audioBuffer, length: 96000)
   try engine.block.setURL(audioBlock, property: "audio/fileURI", value: audioBuffer)
@@ -125,8 +127,7 @@ func exportOverview(engine: Engine) async throws {
     }
   }
 
-  let audioOptions = AudioExportOptions(skipEncoding: true)
-  let audioStream = try await engine.block.exportAudio(audioBlock, mimeType: .wav, options: audioOptions)
+  let audioStream = try await engine.block.exportAudio(audioBlock, mimeType: .wav)
   for try await event in audioStream {
     if case let .finished(audio) = event {
       try audio.write(to: exportsDirectory.appendingPathComponent("design.wav"))
@@ -351,11 +352,8 @@ The `videoBitrate` option accepts a positive number (explicit bits per second) o
 
 Export audio tracks from pages or audio blocks. Supported MIME types are `.wav` (uncompressed) and `.mp4` (AAC encoded). `exportAudio` returns an `AsyncThrowingStream<AudioExport, Error>` that yields `.progress` events while encoding and a final `.finished(audio:)` event with the encoded data.
 
-The example below sets `skipEncoding: true` to return the raw PCM buffer directly; set it to `false` (the default) to receive a fully encoded WAV file.
-
 ```swift highlight-exportOverview-audio
-let audioOptions = AudioExportOptions(skipEncoding: true)
-let audioStream = try await engine.block.exportAudio(audioBlock, mimeType: .wav, options: audioOptions)
+let audioStream = try await engine.block.exportAudio(audioBlock, mimeType: .wav)
 for try await event in audioStream {
   if case let .finished(audio) = event {
     try audio.write(to: exportsDirectory.appendingPathComponent("design.wav"))

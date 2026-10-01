@@ -210,9 +210,10 @@ asset system with an Android `AssetSource`.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-custom-asset-source)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-custom-asset-source)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 A custom importer is an asset source that translates media from your app into CE.SDK asset results. The source receives search and pagination requests from the Engine, fetches or filters media in your own data layer, and returns `Asset` objects with enough metadata for CE.SDK to preview and apply them.
 

@@ -66,9 +66,10 @@ Learn how to intercept and transform asset URIs in CE.SDK, enabling authenticati
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-uri-resolver)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-uri-resolver)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 When CE.SDK loads an asset, it resolves the requested URI to an absolute URL before fetching it. You can intercept this step to add authentication tokens, redirect to a different host, or transform URIs to match your application's needs.
 

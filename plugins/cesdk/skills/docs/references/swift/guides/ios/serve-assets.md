@@ -91,9 +91,10 @@ Configure the Creative Engine to load its asset sources from your own server or 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-serve-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-serve-assets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](./engine-interface.md) guide.
 
 The engine serves all assets from the IMG.LY CDN by default, which is convenient while you are getting started. For production you should serve them from your own location so your app doesn't depend on the IMG.LY CDN at runtime — it gives you control over performance and availability and keeps you within your own compliance boundary.
 
@@ -101,12 +102,12 @@ The engine serves all assets from the IMG.LY CDN by default, which is convenient
 
 The assets are versioned alongside the SDK, so always download the archive that matches your engine version — content from a different version may not be compatible. Asset versions are platform-specific: the iOS and Android archives are usually aligned, but the web SDK can move at a different pace, so download from the `cesdk-swift` path that matches your engine version.
 
-[Download Assets (v1.84.0-nightly.20260930)](https://cdn.img.ly/packages/imgly/cesdk-swift/1.84.0-nightly.20260930/imgly-assets.zip)
+[Download Assets (v1.83.0)](https://cdn.img.ly/packages/imgly/cesdk-swift/1.83.0/imgly-assets.zip)
 
 Or download and extract it from the command line:
 
 ```bash
-curl -O https://cdn.img.ly/packages/imgly/cesdk-swift/1.84.0-nightly.20260930/imgly-assets.zip
+curl -O https://cdn.img.ly/packages/imgly/cesdk-swift/1.83.0/imgly-assets.zip
 unzip imgly-assets.zip -d IMGLYAssets.bundle
 ```
 

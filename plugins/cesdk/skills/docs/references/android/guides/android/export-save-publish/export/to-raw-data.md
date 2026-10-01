@@ -12,9 +12,10 @@ graphics pipelines.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-export-to-raw-data)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-export-to-raw-data)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 ```kotlin file=@cesdk_android_examples/engine-guides-export-to-raw-data/ToRawData.kt reference-only
 import kotlinx.coroutines.Dispatchers

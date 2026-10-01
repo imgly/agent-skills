@@ -7,7 +7,8 @@
 Learn how CE.SDK's rules system enforces design constraints and controls
 editing permissions through the scopes mechanism.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 In CE.SDK, rules are design constraints and guardrails that control which editing operations are permitted. The primary mechanism for enforcing rules is the **scopes system**: permission flags that let you build guided editing experiences, maintain brand consistency, ensure design quality, and prevent unauthorized modifications.
 

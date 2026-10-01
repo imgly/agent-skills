@@ -189,9 +189,10 @@ such as vector shapes, stickers, and sample images from those sources.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-default-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-import-media-default-assets)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK ships asset catalogs for core editor content and sample media. Register the catalogs you need with `engine.asset.addLocalSourceFromJSON()`, then use the regular asset APIs to query, fetch, and apply entries to the active scene.
 

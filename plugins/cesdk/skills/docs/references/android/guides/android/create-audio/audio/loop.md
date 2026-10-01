@@ -117,9 +117,10 @@ effects, and rhythmic audio segments.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-audio-loop)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-audio-loop)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Audio looping restarts an audio block from the beginning when playback reaches the end. When you set a block duration longer than the audio length and enable looping, CE.SDK repeats the audio to fill the whole duration.
 

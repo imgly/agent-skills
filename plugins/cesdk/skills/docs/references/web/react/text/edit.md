@@ -13,13 +13,13 @@ formatting, and querying text.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-text-edit-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-text-edit-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-text-edit-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-text-edit-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/guides-text-edit-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-text-edit-browser/index.html)
 
 CE.SDK provides text editing through two approaches: interactive canvas editing where users type directly into text blocks, and programmatic editing through range-based APIs. This guide focuses on the programmatic approach, covering how to replace text, apply formatting to specific ranges, and query text properties.
 
@@ -139,6 +139,20 @@ class Example implements EditorPlugin {
 
     // Remove "Hello " to get "CE.SDK Guide!" (positions 0-6)
     engine.block.removeText(text, 0, 6);
+
+    // A tab character moves the text after it to the next tab stop.
+    // Tabs align the two columns of this second text block.
+    const table = engine.block.create("text");
+    engine.block.appendChild(page, table);
+    engine.block.setPositionX(table, 50);
+    engine.block.setPositionY(table, 380);
+    engine.block.setWidthMode(table, "Auto");
+    engine.block.setHeightMode(table, "Auto");
+    engine.block.setTextFontSize(table, 60);
+    engine.block.replaceText(table, "Name:\tCE.SDK\nSize:\tA4");
+
+    // Tab stops repeat every `tabStopInterval` multiples of the base font size.
+    engine.editor.setSettingFloat("tabStopInterval", 3.0);
 
     // Apply bold formatting to "CE.SDK" (positions 0-6)
     engine.block.setTextFontWeight(text, "bold", 0, 6);
@@ -268,6 +282,30 @@ engine.block.removeText(text, 0, 6);
 
 The `removeText()` method deletes characters in the specified range. When we omit indices, operations apply to the entire text content.
 
+## Using Tab Stops
+
+We align text into columns with tab characters. A tab moves the text after it to the next tab stop. Tab stops repeat at a fixed interval from the start of each line, in both left-to-right and right-to-left text. A tab whose stop lies past the frame edge wraps to the next line.
+
+```typescript highlight=highlight-tab-stops
+    // A tab character moves the text after it to the next tab stop.
+    // Tabs align the two columns of this second text block.
+    const table = engine.block.create("text");
+    engine.block.appendChild(page, table);
+    engine.block.setPositionX(table, 50);
+    engine.block.setPositionY(table, 380);
+    engine.block.setWidthMode(table, "Auto");
+    engine.block.setHeightMode(table, "Auto");
+    engine.block.setTextFontSize(table, 60);
+    engine.block.replaceText(table, "Name:\tCE.SDK\nSize:\tA4");
+
+    // Tab stops repeat every `tabStopInterval` multiples of the base font size.
+    engine.editor.setSettingFloat("tabStopInterval", 3.0);
+```
+
+The `tabStopInterval` setting defines the distance between tab stops as a multiple of the base font size. The default is `2`. A value of `0` or less makes tab characters advance no width.
+
+During interactive editing, pressing `Tab` inserts a tab character at the cursor. In lists, `Tab` and `Shift+Tab` at the start of a paragraph change the list indent level instead; outside a list `Shift+Tab` does nothing.
+
 ## Applying Text Formatting
 
 We apply formatting to specific character ranges using setter methods. Each method accepts optional `from` and `to` parameters to target specific ranges.
@@ -357,6 +395,8 @@ The `getFontMetrics()` method returns the font's `ascender`, `descender`, `units
 
 **Line count is zero**: Ensure the text block has content and is rendered. Empty text blocks return zero lines.
 
+**Tab characters show no width**: Check that the `tabStopInterval` setting is greater than `0`.
+
 ## API Reference
 
 | Method                                                   | Purpose                                     |
@@ -373,6 +413,7 @@ The `getFontMetrics()` method returns the font's `ascender`, `descender`, `units
 | `engine.block.getTextVisibleLineCount()`                 | Get number of rendered lines                |
 | `engine.block.getTextVisibleLineContent()`               | Get text content of a specific line         |
 | `engine.block.getTextVisibleLineGlobalBoundingBoxXYWH()` | Get line bounds in scene coordinates        |
+| `engine.editor.setSettingFloat()`                        | Set the distance between text tab stops     |
 
 ## Text Type
 

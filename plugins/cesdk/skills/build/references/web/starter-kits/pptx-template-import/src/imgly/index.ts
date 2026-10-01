@@ -55,7 +55,6 @@ export async function initPptxTemplateImportEditor(cesdk: CreativeEditorSDK) {
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -113,5 +112,4 @@ export async function initPptxTemplateImportEditor(cesdk: CreativeEditorSDK) {
     // Vector shapes (rectangles, circles, arrows, etc.)
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
-  // highlight-asset-sources
 }

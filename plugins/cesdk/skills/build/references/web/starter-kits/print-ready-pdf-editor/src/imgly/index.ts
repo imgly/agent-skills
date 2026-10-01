@@ -50,7 +50,6 @@ export { ExclusionAreaAssetSource } from './plugins/exclusionArea/exclusionArea'
  *
  * @param cesdk - The CreativeEditorSDK instance to configure
  */
-// highlight-init-function
 export async function initPrintReadyPdfEditor(cesdk: CreativeEditorSDK) {
   // ============================================================================
   // Configuration Plugin
@@ -64,27 +63,22 @@ export async function initPrintReadyPdfEditor(cesdk: CreativeEditorSDK) {
   // Export Print-Ready PDF Panel Plugin
   // ============================================================================
 
-  // highlight-export-plugin
   // Add the custom export panel for print-ready PDFs
   // This provides PDF/X-4 or PDF/X-3 export with color profiles and bleed margins
   await cesdk.addPlugin(ExportPrintReadyPDFPanelPlugin());
-  // highlight-export-plugin
 
   // ============================================================================
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -145,5 +139,4 @@ export async function initPrintReadyPdfEditor(cesdk: CreativeEditorSDK) {
 
     cesdk.addPlugin(new ExclusionAreaAssetSource())
   ]);
-  // highlight-asset-sources
 }

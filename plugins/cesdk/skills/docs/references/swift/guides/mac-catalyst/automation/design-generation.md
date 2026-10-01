@@ -323,9 +323,10 @@ design as a PNG with the CE.SDK Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-design-generation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-design-generation)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 The workflow starts from one pristine template, validates its data contract, applies one record, and exports its page. Start every independent generation job from the original template input and resolve new block IDs after loading it.
 

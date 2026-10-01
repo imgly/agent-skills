@@ -139,7 +139,6 @@ export function setupComponents(cesdk: CreativeEditorSDK): void {
   // Custom Page Navigation Component
   // ============================================================================
 
-  // highlight-page-select-icons
   // Add custom icons for page navigation arrows
   cesdk.ui.addIconSet(
     '@imgly/custom',
@@ -164,9 +163,7 @@ export function setupComponents(cesdk: CreativeEditorSDK): void {
       </svg>
     `
   );
-  // highlight-page-select-icons
 
-  // highlight-page-select-component
   // Register custom page-select component for navigating templates with multiple pages
   // This provides a way to switch between pages in multi-page templates while
   // keeping the single-page editing mode experience
@@ -272,5 +269,4 @@ export function setupComponents(cesdk: CreativeEditorSDK): void {
       });
     }
   });
-  // highlight-page-select-component
 }

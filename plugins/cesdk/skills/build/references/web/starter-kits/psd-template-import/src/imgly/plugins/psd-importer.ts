@@ -17,7 +17,6 @@
  *
  * // Import a PSD file
  * const result = await importPsdFile(psdBlob, 'design.psd', {
- *   baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL
  * });
  *
  * // Load into editor
@@ -96,7 +95,6 @@ export interface PsdImportResult {
  * @example
  * ```typescript
  * const result = await importPsdFile(psdBlob, 'design.psd', {
- *   baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL
  * });
  * console.log('Preview:', result.imageUrl);
  * console.log('Warnings:', result.messages.filter(m => m.type === 'warning'));
@@ -119,7 +117,6 @@ export async function importPsdFile(
   try {
     // Initialize headless engine for processing
     engine = await CreativeEngine.init({
-      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       ...(license && { license }),
       ...(baseURL && { baseURL })
     });

@@ -14,9 +14,32 @@ You can use compositions to create a wide variety of projects, including social 
 
 [Get Started](./get-started/overview.md)
 
+## Working with Multiple Pages and Artboards
+
+CE.SDK supports working with multiple artboards or canvases within a single document, enabling you to design multi-page layouts or create several design variations within the same project.
+
+Typical multi-page use cases include:
+
+- Designing multi-page marketing brochures.
+- Exporting designs as multi-page PDFs.
+- Building multiple versions of a design for different audiences or platforms.
+
 ## Exporting Compositions
 
 CE.SDK compositions can be exported in several formats:
+
+| Category    | Supported Formats                                                                    |
+| ----------- | ------------------------------------------------------------------------------------ |
+| **Images**  | `.png` (with transparency), `.jpeg`, `.webp`, `.tga`                                 |
+| **Vector**  | `.svg` (scalable vector graphics with text as paths)                                 |
+| **Print**   | `.pdf` (supports underlayer printing and spot colors)                                |
+| **Video**   | `.mp4` (H.264 video with AAC audio — requires the native `@cesdk/node-native` package; not available in the WASM-based `@cesdk/node`) |
+| **Scene**   | `.imgly` or `.scene` (description of the scene without any assets) |
+| **Archive** | `.imgly` or `.zip` (fully self-contained archive that bundles the scene file with all assets) |
+| **HTML**    | `.html` (static designs and animated video timelines — requires the separate `@imgly/html-exporter` package) |
+
+> **Note:** Our custom cross-platform C++ based rendering and layout engine ensures
+> consistent output quality across devices.
 
 
 

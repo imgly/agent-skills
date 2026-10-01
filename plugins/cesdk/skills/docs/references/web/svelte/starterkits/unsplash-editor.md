@@ -12,13 +12,13 @@ CE.SDK can include assets from third-party libraries accessible via API. Search 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-unsplash-asset-source-ts-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/starterkit-unsplash-asset-source-ts-web/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-unsplash-asset-source-ts-web/tree/release-$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-unsplash-asset-source-ts-web/tree/release-1.83.0)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-unsplash-asset-source-ts-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-unsplash-asset-source-ts-web/tree/release-1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/starterkit-unsplash-asset-source/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-unsplash-asset-source/index.html)
 
 ***
 
@@ -84,9 +84,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.83.0</TerminalTab>
     </TerminalTabs>
 
     ### Unsplash Client
@@ -99,33 +99,13 @@ Before you begin, make sure you have the following:
       <TerminalTab label="yarn">yarn add unsplash-js</TerminalTab>
     </TerminalTabs>
 
-    ### Background Removal
-
-    Add AI-powered background removal:
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm install @imgly/background-removal onnxruntime-web
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm add @imgly/background-removal onnxruntime-web
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn add @imgly/background-removal onnxruntime-web
-      </TerminalTab>
-    </TerminalTabs>
-
-    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
-
     ## Step 4: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -237,9 +217,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@$UBQ\_VERSION$</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.83.0</TerminalTab>
     </TerminalTabs>
 
     ### Unsplash Client
@@ -252,33 +232,13 @@ Before you begin, make sure you have the following:
       <TerminalTab label="yarn">yarn add unsplash-js</TerminalTab>
     </TerminalTabs>
 
-    ### Background Removal
-
-    Add AI-powered background removal:
-
-    <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">
-        npm install @imgly/background-removal onnxruntime-web
-      </TerminalTab>
-
-      <TerminalTab label="pnpm">
-        pnpm add @imgly/background-removal onnxruntime-web
-      </TerminalTab>
-
-      <TerminalTab label="yarn">
-        yarn add @imgly/background-removal onnxruntime-web
-      </TerminalTab>
-    </TerminalTabs>
-
-    The `onnxruntime-web` package provides the machine learning runtime required for client-side AI processing.
-
     ## Step 3: Download Assets
 
     CE.SDK requires engine assets (fonts, icons, UI elements) to function. These must be served as static files from your project's `public/` directory.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -678,7 +638,7 @@ CE.SDK has a rich plugin ecosystem that extends the editor with powerful capabil
 Add AI-powered background removal: The background removal plugin processes images directly in the browser without sending data to external servers.
 
 ```typescript title="src/imgly/config/plugin.ts"
-import BackgroundRemovalPlugin from '@imgly/plugin-background-removal';
+import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 // Add background removal capability
 await cesdk.addPlugin(BackgroundRemovalPlugin());

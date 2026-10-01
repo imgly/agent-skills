@@ -160,6 +160,7 @@
 | [OptionalPrefix](./api/engine/type-aliases/optionalprefix.md) | - |
 | [PageGuidesSource](./api/engine/type-aliases/pageguidessource.md) | - |
 | [PaletteColor](./api/engine/type-aliases/palettecolor.md) | Represents a color definition for the custom color palette. |
+| [\_PersistedCallback](./api/engine/type-aliases/persistedcallback.md) | How the engine takes one answer: the stored URL, or the reason the host could not store the data. The engine waits for one answer per resource. |
 | [PlaybackFadeInEasing](./api/engine/type-aliases/playbackfadeineasing.md) | - |
 | [PlaybackFadeOutEasing](./api/engine/type-aliases/playbackfadeouteasing.md) | - |
 | [PositionMode](./api/engine/type-aliases/positionmode.md) | - |

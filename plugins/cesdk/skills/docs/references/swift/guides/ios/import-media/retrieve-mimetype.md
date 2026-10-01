@@ -85,9 +85,10 @@ Detect the MIME type of resources the engine can access and relocate embedded me
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-retrieve-mimetype)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-retrieve-mimetype)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 When a scene archive bundles its media, the embedded files are held in memory and referenced through internal `buffer://` URIs rather than their original URLs. To process those files correctly — to persist them with the right extension, or to upload them to a CDN and produce a portable scene — you first need to know each resource's format. `getMIMEType(url:)` detects the format of any resource the engine can reach, including buffer URIs, local files, and remote URLs.
 

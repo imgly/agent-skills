@@ -105,9 +105,10 @@ and other documents requiring multiple pages within a single scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-multi-page)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-multi-page)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Multi-page layouts allow you to create documents with multiple pages within a single scene. Each page is an independent canvas that can contain different content while sharing the same scene context. CE.SDK provides scene layout modes that arrange pages vertically, horizontally, or in a free-form canvas.
 

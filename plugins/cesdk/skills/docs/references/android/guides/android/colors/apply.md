@@ -139,9 +139,10 @@ CE.SDK's Android Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-colors)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-colors)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Colors in CE.SDK are applied to block properties like fill, stroke, and shadow. The Android Engine API supports sRGB for screen display, CMYK for print production, and spot colors for specialized printing workflows.
 

@@ -140,9 +140,10 @@ and out abruptly.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-audio-audio-fade)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-audio-audio-fade)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 An audio fade ramps the volume of a clip between silence and its configured volume over a fixed duration. Use `setAudioFadeIn()` for the start of a clip and `setAudioFadeOut()` for the end. Both take a duration in seconds and an optional easing curve. A duration of `0` — the default — means no fade.
 

@@ -17,7 +17,6 @@
  *
  * // Import a PPTX file
  * const result = await importPptxFile(pptxBlob, 'presentation.pptx', {
- *   baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL
  * });
  *
  * // Load into editor
@@ -81,7 +80,6 @@ export interface PptxImportResult {
  * @example
  * ```typescript
  * const result = await importPptxFile(pptxBlob, 'presentation.pptx', {
- *   baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL
  * });
  * console.log('Preview:', result.imageUrl);
  * console.log('Warnings:', result.messages.filter(m => m.type === 'warning'));
@@ -104,7 +102,6 @@ export async function importPptxFile(
   try {
     // Initialize headless engine for processing
     engine = await CreativeEngine.init({
-      baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
       ...(license && { license }),
       ...(baseURL && { baseURL })
     });

@@ -213,7 +213,7 @@ appropriate resolution for editing previews and exports.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-source-sets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-source-sets)
 
 Source sets let you provide multiple versions of the same media asset at
 different pixel dimensions. The engine can load a smaller source for preview
@@ -224,7 +224,8 @@ This guide covers source sets on image fills, source sets inside asset
 definitions, video source sets, and the video preview quality setting that helps
 keep editing responsive.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 ## How Source Set Selection Works
 

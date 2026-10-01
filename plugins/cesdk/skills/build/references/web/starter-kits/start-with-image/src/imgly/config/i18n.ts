@@ -48,9 +48,17 @@ export function setupTranslations(cesdk: CreativeEditorSDK): void {
       'libraries.ly.img.sticker.label': 'Stickers',
       'libraries.ly.img.vector.shape.label': 'Shapes',
       'libraries.ly.img.text.label': 'Text',
+      'ly.img.crop.dock.label': 'Crop',
+      'ly.img.adjustment.dock.label': 'Adjust',
+      'ly.img.filter.dock.label': 'Filter',
+      'ly.img.effects.dock.label': 'Effects',
       'photoEditor.dock.requiresImage': 'Requires an image'
     },
     de: {
+      'ly.img.crop.dock.label': 'Zuschneiden',
+      'ly.img.adjustment.dock.label': 'Anpassen',
+      'ly.img.filter.dock.label': 'Filter',
+      'ly.img.effects.dock.label': 'Effekte',
       'photoEditor.dock.requiresImage': 'Erfordert ein Bild'
     }
   });

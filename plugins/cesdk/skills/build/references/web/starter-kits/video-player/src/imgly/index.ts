@@ -10,10 +10,10 @@
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 
 // Configuration
-import { PlayerConfig } from '@cesdk/core-configs-web/player-editor';
+import { PlayerConfig } from './config/plugin';
 
 // Re-export for external use
-export { PlayerConfig } from '@cesdk/core-configs-web/player-editor';
+export { PlayerConfig } from './config/plugin';
 
 /**
  * Initialize the CE.SDK Player with a complete configuration.
@@ -37,8 +37,6 @@ export async function initVideoPlayer(cesdk: CreativeEditorSDK) {
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 }

@@ -171,9 +171,10 @@ above the canvas, while glow effects add luminous halos that draw attention.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-shadows-and-glows)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-shadows-and-glows)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK exposes two distinct approaches. **Drop shadows** are native block properties, configured directly on supported blocks with dedicated `setDropShadow*(_:)` methods. **Glow effects** are created through the effects system with `createEffect(_:)` and tuned with property setters. Drop shadows apply to graphic, text, and shape blocks. Glow effects apply to blocks that support effects, such as graphic and shape blocks; text blocks don't support effects.
 

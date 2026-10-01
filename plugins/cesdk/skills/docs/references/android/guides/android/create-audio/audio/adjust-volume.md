@@ -136,9 +136,10 @@ Control audio playback volume with CE.SDK's Engine API for Android, from silent
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-audio-audio-adjust-volume)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-audio-audio-adjust-volume)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Volume control adjusts how loud or quiet audio plays during playback. CE.SDK uses a normalized 0.0-1.0 range where 0.0 is completely silent and 1.0 is full volume. This applies to both audio blocks and video fills with embedded audio. Volume settings are commonly used for balancing multiple audio sources, creating fade effects, and allowing users to adjust playback levels.
 

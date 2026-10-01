@@ -30,10 +30,10 @@ import {
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 // Configuration and plugins
-import { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+import { DesignEditorConfig } from './config/plugin';
 
 // Re-export for external use
-export { DesignEditorConfig } from '@cesdk/core-configs-web/design-editor';
+export { DesignEditorConfig } from './config/plugin';
 
 /**
  * Initialize the CE.SDK Design Editor with a complete configuration.
@@ -59,17 +59,14 @@ export async function initDesignEditor(cesdk: CreativeEditorSDK) {
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -134,7 +131,6 @@ export async function initDesignEditor(cesdk: CreativeEditorSDK) {
       })
     )
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Navigation Bar Actions

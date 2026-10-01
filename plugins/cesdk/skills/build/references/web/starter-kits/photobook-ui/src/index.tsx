@@ -17,7 +17,6 @@ import { injectFonts } from './app/fonts';
 // ============================================================================
 
 const engineConfig = {
-  license: import.meta.env.VITE_CESDK_LICENSE,
   featureFlags: {
     preventScrolling: true
   }

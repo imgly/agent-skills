@@ -68,17 +68,14 @@ export async function initPexelsImageEditor(
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -137,17 +134,14 @@ export async function initPexelsImageEditor(
       })
     )
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Pexels Asset Source Plugin
   // ============================================================================
 
-  // highlight-pexels-setup
   // Setup Pexels as the primary image source
   // This replaces the default image library with Pexels stock photos
   await cesdk.addPlugin(
     new PexelsAssetSourcePlugin({ apiKey: options?.pexelsApiKey })
   );
-  // highlight-pexels-setup
 }

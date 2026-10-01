@@ -138,13 +138,6 @@
     sans-serif;
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview) .app {
-  background: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 .header {
   display: flex;

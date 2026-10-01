@@ -117,9 +117,10 @@ update, and destruction events in your CE.SDK scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-events)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-events)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Events let you monitor block changes as they happen. On Android,
 `engine.event.subscribe()` returns a `Flow<List<DesignBlockEvent>>`, so you

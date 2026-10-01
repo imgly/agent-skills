@@ -138,9 +138,10 @@ Create structured compositions using stack layouts that automatically arrange pa
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-layout)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-layout)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Stack layouts arrange pages automatically with consistent spacing. Vertical stacks arrange pages top-to-bottom, while horizontal stacks arrange them left-to-right. This eliminates manual positioning for compositions like photo collages, product catalogs, or social media carousels.
 

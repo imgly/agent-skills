@@ -13,12 +13,10 @@ import App from './app/App';
 // ============================================================================
 
 const config: Configuration = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-product-preview-user',
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
 
 // ============================================================================

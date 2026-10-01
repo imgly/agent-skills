@@ -8,21 +8,21 @@ In this guide, you'll learn how to use the Print Ready PDF plugin to transform
 CE.SDK's standard RGB PDF exports into PDF/X compliant, CMYK-based files
 suitable for professional commercial printing. By default the plugin produces
 PDF/X-4 output (live transparency, vector text preserved); PDF/X-3 is
-available as an opt-in fallback. We'll add a custom export button that
-handles color space conversion, ICC profile embedding, and PDF/X
-compliance—all client-side without any backend infrastructure.
+available as an opt-in fallback. We'll add a custom export button that handles
+color space conversion, ICC profile embedding, and PDF/X compliance—all
+client-side without any backend infrastructure.
 
 > **Reading time:** 15 minutes
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/plugins-print-ready-pdf-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/plugins-print-ready-pdf-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/plugins-print-ready-pdf-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/plugins-print-ready-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/plugins-print-ready-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/plugins-print-ready-pdf-browser/index.html)
 
 ## What You'll Build
 
@@ -43,10 +43,14 @@ A complete print-ready PDF export workflow that:
 
 ## Step 1: Install the Plugin
 
-First, add the Print Ready PDF plugin to your project alongside CE.SDK:
+> **Caution:** The shared worker integration shown here requires the approved workspace
+> builds. The conversion runtime is not yet publicly released; use this
+> installation command only after the coordinated package release.
+
+Add the Print Ready PDF plugin and its shared conversion runtime alongside CE.SDK:
 
 ```bash
-npm install @cesdk/cesdk-js@$UBQ_VERSION$ @imgly/plugin-print-ready-pdfs-web@1.0.0
+npm install @cesdk/cesdk-js@1.83.0 @imgly/plugin-print-ready-pdfs-web@1.83.0 @imgly/pdf-conversion-utils
 ```
 
 The plugin is a standalone npm package that works with any CE.SDK integration.
@@ -55,12 +59,13 @@ The plugin is a standalone npm package that works with any CE.SDK integration.
 
 - `@cesdk/cesdk-js`: CE.SDK core library
 - `@imgly/plugin-print-ready-pdfs-web`: Print-ready PDF conversion plugin
+- `@imgly/pdf-conversion-utils`: Shared Ghostscript worker runtime
 
 **Try it yourself:**
 
 1. Run `npm install` in your project
 2. Verify packages appear in `package.json`
-3. Check node\_modules contains both packages
+3. Check node\_modules contains all three packages
 
 ## Step 2: Set Up CE.SDK with Custom Export Button
 
@@ -71,20 +76,23 @@ Initialize CE.SDK and add a custom export button to the navigation bar:
 const cesdk = await CreativeEditorSDK.create('#cesdk-container', config);
 
 // Add custom export button to navigation bar
-cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-  id: 'ly.img.actions.navigationBar',
-  children: [
-    {
-      key: 'export-print-ready-pdf',
-      id: 'ly.img.action.navigationBar',
-      label: 'Export Print-Ready PDF',
-      iconName: '@imgly/Download',
-      onClick: async () => {
-        await exportPrintReadyPDF();
-      },
-    },
-  ],
-});
+cesdk.ui.insertOrderComponent(
+  { in: 'ly.img.navigation.bar', position: 'end' },
+  {
+    id: 'ly.img.actions.navigationBar',
+    children: [
+      {
+        key: 'export-print-ready-pdf',
+        id: 'ly.img.action.navigationBar',
+        label: 'Export Print-Ready PDF',
+        iconName: '@imgly/Download',
+        onClick: async () => {
+          await exportPrintReadyPDF();
+        }
+      }
+    ]
+  }
+);
 ```
 
 **CE.SDK concepts explained:**
@@ -116,7 +124,7 @@ const pages = cesdk.engine.block.findByType('page');
 
 // Export first page as PDF
 const pdfBlob = await cesdk.engine.block.export(pages[0], {
-  mimeType: 'application/pdf',
+  mimeType: 'application/pdf'
 });
 ```
 
@@ -137,14 +145,25 @@ The `engine.block.export()` method is the recommended approach for PDF export. C
 
 ## Step 4: Convert to Print-Ready Format
 
-Use the plugin to convert CE.SDK's RGB PDF into a CMYK PDF/X file:
+Use the plugin to convert CE.SDK's RGB PDF into a CMYK PDF/X file. Host `worker.browser.js`, `gs.js`, and `gs.wasm` from `@imgly/pdf-conversion-utils/dist/` together under your application's `pdf-conversion/` directory. The example's Vite configuration serves them during development and copies them into the production build. Deploy that directory together with the emitted JavaScript and ICC profiles. Retain `COPYING.AGPL-3.0`, `LICENSE.md`, `PROVENANCE.md` and `THIRD_PARTY_NOTICES.md` from the same runtime build alongside the converter assets. These include the full AGPL text, third-party notices and matching [Ghostscript build sources](https://github.com/imgly/pdf-utils/releases/tag/source-gs-10.08.0-imgly-1) and [runtime wrapper sources](https://github.com/imgly/pdf-utils/releases/tag/runtime-wrapper-0.1.0-source).
+
+Pass a runtime configured with that URL to the converter. The example creates one runtime per export and disposes it after success or failure:
 
 ```typescript
+import { createConversionRuntime } from '@imgly/pdf-conversion-utils';
+
+const runtime = createConversionRuntime({
+  assetBaseURL: new URL(
+    `${import.meta.env.BASE_URL}pdf-conversion/`,
+    globalThis.location.href
+  )
+});
 // Convert to print-ready PDF/X-4 (default)
 const printReadyPDF = await convertToPDFX(pdfBlob, {
+  runtime,
   outputProfile: 'fogra39', // European printing standard
-  title: 'Print-Ready Export',
-});
+  title: 'Print-Ready Export'
+}).finally(() => runtime.dispose());
 ```
 
 `convertToPDFX` produces PDF/X-4 output by default. Pass `outputStandard: 'PDF/X-3'` if your prepress pipeline requires the older standard.
@@ -213,8 +232,8 @@ Here's the full integration combining all steps:
 ```typescript file=@cesdk_web_examples/plugins-print-ready-pdf-browser/src/index.ts reference-only
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 type CreativeEditorSDK = InstanceType<typeof CreativeEditorSDK>;
-// @ts-expect-error - Plugin types will be available in future release
 import { convertToPDFX } from '@imgly/plugin-print-ready-pdfs-web';
+import { createConversionRuntime } from '@imgly/pdf-conversion-utils';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
@@ -314,10 +333,17 @@ async function exportPrintReadyPDF() {
 
     // Convert to print-ready PDF/X-4 (default). Pass
     // `outputStandard: 'PDF/X-3'` to fall back to the older standard.
+    const runtime = createConversionRuntime({
+      assetBaseURL: new URL(
+        `${import.meta.env.BASE_URL}pdf-conversion/`,
+        globalThis.location.href
+      )
+    });
     const printReadyPDF = await convertToPDFX(pdfBlob, {
+      runtime,
       outputProfile: 'fogra39', // European printing standard
       title: 'Print-Ready Export'
-    });
+    }).finally(() => runtime.dispose());
 
     // Download the print-ready PDF
     const url = URL.createObjectURL(printReadyPDF);
@@ -342,7 +368,7 @@ init().catch((error) => {
 
 This implementation adds a complete print-ready PDF export workflow to CE.SDK with just a few lines of code.
 
-Find the complete working example in the [GitHub repository](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/plugins-print-ready-pdf-browser).
+Find the complete working example in the [GitHub repository](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/plugins-print-ready-pdf-browser).
 
 ## Transparency Handling
 
@@ -352,7 +378,7 @@ The default output is PDF/X-4, which is based on PDF 1.6 and supports live trans
 // Default — PDF/X-4 with live transparency preserved
 const printReadyPDF = await convertToPDFX(pdfBlob, {
   outputProfile: 'fogra39',
-  title: 'Print-Ready Export',
+  title: 'Print-Ready Export'
 });
 ```
 
@@ -365,7 +391,7 @@ If your downstream pipeline does not accept PDF/X-4, opt back into the older PDF
 const printReadyPDF = await convertToPDFX(pdfBlob, {
   outputStandard: 'PDF/X-3',
   outputProfile: 'fogra39',
-  title: 'Print-Ready Export (X-3)',
+  title: 'Print-Ready Export (X-3)'
 });
 ```
 
@@ -398,14 +424,14 @@ const printReadyPDF = await convertToPDFX(pdfBlob, {
   outputStandard: 'PDF/X-3',
   outputProfile: 'fogra39',
   title: 'X-3 with Preserved Transparency',
-  flattenTransparency: false,
+  flattenTransparency: false
 });
 ```
 
-| Setting | Visual Fidelity | PDF/X-3 Compliance |
-|---------|----------------|-------------------|
-| `flattenTransparency: true` (default for X-3) | May have artifacts | Strictly compliant |
-| `flattenTransparency: false` | Preserved | May not validate if transparency exists |
+| Setting                                       | Visual Fidelity    | PDF/X-3 Compliance                      |
+| --------------------------------------------- | ------------------ | --------------------------------------- |
+| `flattenTransparency: true` (default for X-3) | May have artifacts | Strictly compliant                      |
+| `flattenTransparency: false`                  | Preserved          | May not validate if transparency exists |
 
 The `flattenTransparency` option is ignored when `outputStandard` is `'PDF/X-4'` — X-4 keeps transparency live by definition.
 
@@ -418,7 +444,7 @@ If a downstream prepress pipeline (e.g. ZePrA, PitStop) handles ICC profile embe
 const cmykPDF = await convertToPDFX(pdfBlob, {
   outputProfile: 'fogra39',
   embedICCProfile: false,
-  title: 'CMYK for Downstream Pipeline',
+  title: 'CMYK for Downstream Pipeline'
 });
 ```
 
@@ -436,14 +462,14 @@ Use printer-specific ICC profiles:
 
 ```typescript
 // Load custom ICC profile from your server
-const customProfile = await fetch('/path/to/custom.icc').then(r => r.blob());
+const customProfile = await fetch('/path/to/custom.icc').then((r) => r.blob());
 
 const printReadyPDF = await convertToPDFX(pdfBlob, {
   outputProfile: 'custom',
   customProfile: customProfile,
   title: 'Custom Profile Export',
   outputConditionIdentifier: 'Custom_CMYK_Profile',
-  outputCondition: 'Custom profile for specialized printing',
+  outputCondition: 'Custom profile for specialized printing'
 });
 ```
 
@@ -505,20 +531,23 @@ If `blob.size === 0`, the CE.SDK export failed. Check for scene errors.
 **Solution:** Verify your button insertion code:
 
 ```typescript
-cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-  id: 'ly.img.actions.navigationBar',
-  children: [
-    {
-      key: 'export-print-ready-pdf',
-      id: 'ly.img.action.navigationBar',
-      label: 'Export Print-Ready PDF',
-      iconName: '@imgly/Download',
-      onClick: async () => {
-        /* ... */
-      },
-    },
-  ],
-});
+cesdk.ui.insertOrderComponent(
+  { in: 'ly.img.navigation.bar', position: 'end' },
+  {
+    id: 'ly.img.actions.navigationBar',
+    children: [
+      {
+        key: 'export-print-ready-pdf',
+        id: 'ly.img.action.navigationBar',
+        label: 'Export Print-Ready PDF',
+        iconName: '@imgly/Download',
+        onClick: async () => {
+          /* ... */
+        }
+      }
+    ]
+  }
+);
 ```
 
 Check browser console for configuration errors. Ensure the button is added after CE.SDK initialization completes.

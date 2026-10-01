@@ -240,9 +240,10 @@ optionally insert the imported asset into the active scene.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-import-media-local-asset)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-import-media-local-asset)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Local asset sources are useful when your app already has access to files on the device. The file can come from Android's system document picker, your app's private storage, or a file that your app copied into its sandbox.
 

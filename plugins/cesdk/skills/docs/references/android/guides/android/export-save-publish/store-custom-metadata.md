@@ -93,9 +93,10 @@ storing application state, or linking blocks to external systems.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-store-metadata)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-store-metadata)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Metadata lets you store string key-value pairs on any design block. The data is invisible to end users, but it is saved with the scene and restored when the scene is loaded again.
 

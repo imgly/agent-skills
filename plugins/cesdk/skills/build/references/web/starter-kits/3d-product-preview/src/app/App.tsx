@@ -14,12 +14,6 @@ import { Mockup3DPreview } from './Mockup3DPreview/Mockup3DPreview';
 import { PRODUCTS, getDesignSceneUrl, getModelUrl } from './constants';
 import styles from './App.module.css';
 
-// START_HIDDEN_BLOCK
-import {
-  reportDemoPhase,
-  reportDemoLoadingState
-} from '../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // Default product to load on startup
 const DEFAULT_PRODUCT_KEY = 'apparel';
@@ -105,14 +99,8 @@ export default function App({ config }: AppProps) {
   // Stable callback that doesn't change - uses refs for latest values
   const handleEditorInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
       designEngineRef.current = cesdk;
 
-      // START_HIDDEN_BLOCK
-      (window as any).cesdk = cesdk;
-      // END_HIDDEN_BLOCK
 
       const sceneLoad = ++sceneLoadRef.current;
       await init3dProductPreviewEditor(cesdk);
@@ -130,9 +118,6 @@ export default function App({ config }: AppProps) {
 
       // Render initial mockup (engine initializes lazily on first render)
       await renderMockupForProductRef.current(DEFAULT_PRODUCT_KEY);
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('ready');
-      // END_HIDDEN_BLOCK
     },
     [] // Empty deps - uses refs for latest callbacks
   );
@@ -181,9 +166,6 @@ export default function App({ config }: AppProps) {
           <CreativeEditor
             className={styles.editor}
             config={config}
-            // START_HIDDEN_BLOCK
-            onLoadingStateChange={reportDemoLoadingState}
-            // END_HIDDEN_BLOCK
             init={handleEditorInit}
           />
         </div>

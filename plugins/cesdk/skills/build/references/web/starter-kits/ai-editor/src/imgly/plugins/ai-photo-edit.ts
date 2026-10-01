@@ -121,6 +121,7 @@ export class AiPhotoEditConfig implements EditorPlugin {
       en: {
         [`panel.${PANEL_ID}`]: 'AI Edit',
         [`${PLUGIN_ID}.dock`]: 'AI Edit',
+        [`${PLUGIN_ID}.dock.requiresImage`]: 'Requires an image',
 
         // Prompt input (passed to CommonProperties.StyleTransfer below).
         [`${PLUGIN_ID}.prompt.label`]: 'Prompt',
@@ -143,6 +144,9 @@ export class AiPhotoEditConfig implements EditorPlugin {
         Steampunk: 'Steampunk',
         'Night Bokeh': 'Night Bokeh',
         'Pop Art': 'Pop Art'
+      },
+      de: {
+        [`${PLUGIN_ID}.dock.requiresImage`]: 'Erfordert ein Bild'
       }
     });
 
@@ -158,13 +162,19 @@ export class AiPhotoEditConfig implements EditorPlugin {
     //
     // The `@imgly/Sparkle` icon is registered by `initializeProviders`
     // above (via `addIconSetOnce('@imgly/plugin-ai-generation', icons)`).
+    //
+    // AI Edit transforms the page's photo, so a page without one (a color
+    // or gradient fill, for example) disables the button.
     // ------------------------------------------------------------------
     cesdk.ui.registerComponent(DOCK_COMPONENT_ID, ({ builder }) => {
       const isPanelOpen = cesdk.ui.isPanelOpen(PANEL_ID);
+      const noImage = getCurrentPageImageUri(cesdk) == null;
 
       builder.Button(DOCK_BUTTON_ID, {
         icon: '@imgly/Sparkle',
         label: `${PLUGIN_ID}.dock`,
+        isDisabled: noImage,
+        tooltip: noImage ? `${PLUGIN_ID}.dock.requiresImage` : undefined,
         isSelected: isPanelOpen,
         onClick: () => {
           if (isPanelOpen) {

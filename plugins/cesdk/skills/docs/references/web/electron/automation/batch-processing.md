@@ -17,8 +17,8 @@ This guides helps you understand how the CE.SDK can work in a batch process work
 
 - Two different batch processing approaches:
 
-  - Sequential
-  - Parallel
+  - On the main thread
+  - In an export worker
 
 - How to batch:
 
@@ -30,24 +30,33 @@ This guides helps you understand how the CE.SDK can work in a batch process work
 
 ## Batch Processing Strategies
 
-You can run batch operations in two ways:
+The Engine is single-threaded, so a second instance in the same tab shares the main thread and buys no parallelism. What you choose is where each export renders:
 
-- **Sequential:** a single engine loop.
-- **Parallel:** multiple workers spinning up.
+- **On the main thread:** a single Engine loop. Each export freezes the page while it renders.
+- **In an export worker:** the same loop with the `exportWorker` feature flag on, so each export renders in a Web Worker and the page stays interactive.
 
 The following examples show both approaches when running a batch export in the browser:
 
 <Tabs>
-  <TabItem label="Sequential (single core)">
+  <TabItem label="On the main thread">
     ```ts
+    import CreativeEngine from '@cesdk/engine';
 
-    // ... downloadBlob logic
-    //Start the engine and download the scene
-    const engine = await CreativeEngine.init({ license: LICENSE_KEY });
+    async function downloadBlob(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const link = Object.assign(document.createElement('a'), { href: url, download: filename });
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    const engine = await CreativeEngine.init({
+      license: 'YOUR_CESDK_LICENSE_KEY',
+    });
 
     for (const record of records) {
       await engine.scene.load(record.scene);
-      const blob = await engine.block.export(engine.scene.getPages()[0], 'image/png');
+      const [page] = engine.scene.getPages();
+      const blob = await engine.block.export(page, { mimeType: 'image/png' });
       await downloadBlob(blob, `${record.id}.png`);
     }
 
@@ -58,28 +67,40 @@ The following examples show both approaches when running a batch export in the b
     1. `CreativeEngine.init` spins up a single engine instance for the tab.
     2. The loop iterates over the `record` dataset.
     3. The Engine loads the scene.
-    4. The `export` call renders the first page as a PNG blob.
+    4. The `export` call renders the first page as a PNG blob, blocking the page until it returns.
     5. The code disposes of the engine to free resources.
   </TabItem>
 
-  <TabItem label="Parallel (2 cores)">
+  <TabItem label="In an export worker">
     ```ts
-    const workers = [new Worker('worker.js'), new Worker('worker.js')];
+    import CreativeEngine from '@cesdk/engine';
 
-    await Promise.all(
-      records.map((record, idx) =>
-        workers[idx % workers.length].postMessage({ type: 'PROCESS', record })
-      )
-    );
+    // downloadBlob as in the previous tab
+    const engine = await CreativeEngine.init({
+      license: 'YOUR_CESDK_LICENSE_KEY',
+      featureFlags: { exportWorker: true },
+    });
+
+    for (const record of records) {
+      await engine.scene.load(record.scene);
+      const [page] = engine.scene.getPages();
+      const blob = await engine.block.export(page, { mimeType: 'image/png' });
+      await downloadBlob(blob, `${record.id}.png`);
+    }
+
+    engine.dispose();
 
     ```
 
     In this code:
 
-    1. 2 workers run in separate threads.
-    2. Each worker receives a different data set.
-    3. Each worker runs the heavier CreativeEngine work off the main thread.
-    4. `Promise.all` waits for every worker call to finish before moving on.
+    1. The `exportWorker` feature flag routes `block.export` into a Web Worker.
+    2. The loop and `scene.load` still run on the main thread. Only the rendering moves.
+    3. Each `export` call serializes the scene, starts a worker with its own Engine, and renders there, so the page stays interactive.
+
+    Every call pays a worker startup and holds a second Engine in memory while it runs, so this buys responsiveness rather than throughput. Video and audio exports use a worker already, without the flag. For jobs that need several records rendering at once, run the Engine server-side with `@cesdk/node`, where each process gets its own thread.
+
+    The worker loads its host script from `core.baseURL`, beside the wasm, and renders on an `OffscreenCanvas`. Copy that whole directory when you self-host, because a partial copy only fails once the flag is on.
   </TabItem>
 </Tabs>
 
@@ -87,8 +108,8 @@ The following table summarizes the pros and cons of each approach:
 
 | Approach | When to use | Pros | Cons |
 | --- | --- | --- | --- |
-| **Sequential** | - Default browser workload<br>- Small batch sizes</br>- Limited RAM on user devices | - Lower memory footprint<br>- Simpler code path</br>- Easy cleanup |- Slower total runtime<br>- UI can feel locked if not chunked</br> |
-| **Parallel** | - Big datasets<br>Enough resources in user devices</br>| - Higher throughput<br>- Can keep UI responsive</br> | - More memory consumption per tab<br>Coordination complexity</br>- Throttling risk |
+| **Main thread** | - Small batch sizes<br />- Limited RAM on user devices<br />- No UI to keep responsive | - Lower memory footprint<br />- One Engine to start and dispose | - Each export freezes the page<br />- Long batches look like a hang |
+| **Export worker** | - Batches run while the user keeps working<br />- Devices with RAM to spare | - The page stays interactive<br />- Same API, one flag to enable | - A worker starts per export<br />- A second Engine in memory per export<br />- No shorter total runtime |
 
 ## How To Batch Template Population
 
@@ -153,10 +174,10 @@ The CE.SDK provides a set of format options when exporting the edited designs:
 
 | Format | EngineAPI function | Related guide |
 | --- | --- | --- |
-| PNG | `engine.block.export(block, 'image/png')` | [PNG](./export-save-publish/export/to-png.md)  |
-| JPEG | `engine.block.export(block, 'image/jpeg', 0.95)` | [JPEG](./export-save-publish/export/to-jpeg.md) |
-| PDF | `engine.block.export(block, 'application/pdf')` | [PDF](./export-save-publish/export/to-pdf.md) |
-| MP4 | `engine.block.exportVideo(block, MimeType.Mp4)` | [MP4](./export-save-publish/export/to-mp4.md) |
+| PNG | `engine.block.export(block, { mimeType: 'image/png' })` | [PNG](./export-save-publish/export/to-png.md)  |
+| JPEG | `engine.block.export(block, { mimeType: 'image/jpeg', jpegQuality: 0.95 })` | [JPEG](./export-save-publish/export/to-jpeg.md) |
+| PDF | `engine.block.export(block, { mimeType: 'application/pdf' })` | [PDF](./export-save-publish/export/to-pdf.md) |
+| MP4 | `engine.block.exportVideo(block, { mimeType: 'video/mp4' })` | [MP4](./export-save-publish/export/to-mp4.md) |
 
 Check all the export options in the [Export section](./export-save-publish/export/overview.md).
 
@@ -165,18 +186,26 @@ Check all the export options in the [Export section](./export-save-publish/expor
 The export feature allows you to automate thumbnails generation by tweaking the format and the size of the design, for example:
 
 ```ts
-// Example: Real-time thumbnail generation
-const thumbnailEngine = await CreativeEngine.init({ container: null });
+import CreativeEngine from '@cesdk/engine';
+
+// CreativeEngine.init is already headless: it renders to its own canvas, which
+// stays out of the DOM until you append engine.element. It still runs on the
+// main thread, so enable the export worker to keep thumbnails off it.
+const thumbnailEngine = await CreativeEngine.init({
+  license: 'YOUR_CESDK_LICENSE_KEY',
+  featureFlags: { exportWorker: true },
+});
 
 async function generateThumbnail(sceneData) {
   await thumbnailEngine.scene.load(sceneData);
-  const page = thumbnailEngine.scene.getPages()[0];
+  const [page] = thumbnailEngine.scene.getPages();
 
   // Generate small preview
-  const thumbnail = await thumbnailEngine.block.export(page, 'image/jpeg', {
+  const thumbnail = await thumbnailEngine.block.export(page, {
+    mimeType: 'image/jpeg',
     targetWidth: 200,
     targetHeight: 200,
-    quality: 0.7,
+    jpegQuality: 0.7,
   });
 
   return thumbnail;
@@ -184,9 +213,9 @@ async function generateThumbnail(sceneData) {
 
 ```
 
-Read more about thumbnails generation in [the Engine guide](./engine-interface.md).
+Set `targetWidth` and `targetHeight` together, or neither applies. They define a box the render fills while keeping the page's aspect ratio, so a non-square page produces a thumbnail larger than 200×200 on one axis.
 
-The CE.SDK also provides over 20 pre-designed text layouts to apply on thumbnails. Check the [relevant guide](./text/text-designs.md) to use them.
+Read more about thumbnails generation in [the Engine guide](./engine-interface.md).
 
 ### Batch Thumbnail Generation from Video Scenes
 
@@ -194,9 +223,9 @@ Extract representative frames from videos efficiently, and automate this action 
 
 | Action | EngineAPI function | Related guide |
 | --- | --- | --- |
-| Load video source | `engine.scene.createFromVideo()` | [Create from Video](./create-video/control.md) |
-| Seek to timestamp | `engine.block.setPlaybackTime()` | [Control Audio and Video](./create-video/control.md) |
-| Export single frame | `engine.block.export(block, options)` | [To PNG](./export-save-publish/export/to-png.md) <br />[Text Designs](./text/text-designs.md) |
+| Load video source | `engine.scene.createFromVideo()` | [Create Videos Overview](./create-video/overview.md) |
+| Seek to timestamp | `engine.block.setPlaybackTime()` on the page | [Control Audio and Video](./create-video/control.md) |
+| Export single frame | `engine.block.export(block, options)` | [To PNG](./export-save-publish/export/to-png.md) |
 | Generate sequence thumbnails | `engine.block.generateVideoThumbnailSequence()` | [Thumbnail Previews](./export-save-publish/thumbnail-previews.md) |
 | Size thumbnails consistently | `targetWidth / targetHeight` export options | [To PNG](./export-save-publish/export/to-png.md) |
 
@@ -205,17 +234,28 @@ The following code shows how to **generate thumbnails from a video**:
 ```ts
 import CreativeEngine from '@cesdk/engine';
 
-const engine = await CreativeEngine.init({ license: LICENSE_KEY });
+const engine = await CreativeEngine.init({
+  license: 'YOUR_CESDK_LICENSE_KEY',
+});
 await engine.scene.load('/assets/video-scene.imgly');
 
 const [page] = engine.scene.getPages();
 const videoBlock = engine.block
   .getChildren(page)
-  .find((child) => engine.block.getType(child) === 'video');
+  .find(
+    (child) =>
+      engine.block.supportsFill(child) &&
+      engine.block.getType(engine.block.getFill(child)) ===
+        '//ly.img.ubq/fill/video'
+  );
 
 if (videoBlock) {
-  const videoFill = engine.block.getFill(videoBlock);
-  await engine.block.setPlaybackTime(videoFill, 4.2);
+  // Decode the video before seeking, so the frame exists to render.
+  await engine.block.forceLoadAVResource(engine.block.getFill(videoBlock));
+
+  // Seek on the page: a fill's own playback time only drives rendering
+  // under solo playback.
+  engine.block.setPlaybackTime(page, 4.2);
 
   const thumbnail = await engine.block.export(page, {
     mimeType: 'image/png',
@@ -233,9 +273,10 @@ engine.dispose();
 The preceding code:
 
 1. Loads a scene containing a video.
-2. Seeks to 4.2 s.
-3. Exports the page as a PNG.
-4. Saves the thumbnail.
+2. Finds the block whose fill is a video. `getType` returns the full type id, and video is a *fill* type, so there is no `video` block type to match on.
+3. Waits for the video resource to decode.
+4. Seeks the page to 4.2 s, which cascades the time down to the blocks it contains.
+5. Exports the page as a PNG and saves the thumbnail.
 
 ## Optimize Memory Usage
 
@@ -290,7 +331,9 @@ import CreativeEngine from '@cesdk/engine';
 
 let engine;
 try {
-  engine = await CreativeEngine.init({ license: LICENSE_KEY });
+  engine = await CreativeEngine.init({
+    license: 'YOUR_CESDK_LICENSE_KEY',
+  });
   await engine.scene.load('/assets/video-scene.imgly');
 
   const [page] = engine.scene.getPages();
@@ -298,13 +341,16 @@ try {
 
   const videoBlock = engine.block
     .getChildren(page)
-    .find((child) => engine.block.getType(child) === 'video');
+    .find(
+      (child) =>
+        engine.block.supportsFill(child) &&
+        engine.block.getType(engine.block.getFill(child)) ===
+          '//ly.img.ubq/fill/video'
+    );
   if (!videoBlock) throw new Error('No video block found.');
 
-  const videoFill = engine.block.getFill(videoBlock);
-  if (!videoFill) throw new Error('Video block is missing its fill.');
-
-  await engine.block.setPlaybackTime(videoFill, 4.2);
+  await engine.block.forceLoadAVResource(engine.block.getFill(videoBlock));
+  engine.block.setPlaybackTime(page, 4.2);
 
   const thumbnail = await engine.block.export(page, {
     mimeType: 'image/png',
@@ -360,7 +406,7 @@ The following table contains some checks **examples**:
 | Check | Example |
 | --- | --- |
 | Check input data structure | `if (!isValidRecord(record)) throw new Error('Invalid payload');` |
-| Check file existence and accessibility | `await fs.promises.access(filePath, fs.constants.R_OK);` |
+| Check the asset is reachable | `await fetch(assetUrl, { method: 'HEAD' });` |
 | Verify templates load correctly | `await engine.scene.load(templateUrl);` |
 | Use dry-run mode for testing | `if (options.dryRun) return simulate(record);` |
 
@@ -396,7 +442,7 @@ function validateRecord(record) {
 When running on production, enhance browser-based batch processes with architecture and UX decisions that help the user run the workflow, such as:
 
 - **User-initiated batches**: keep work tied to explicit user actions; show confirmation dialogs for large jobs.
-- **Chunked processing**: split datasets into small slices (for example, 20 records) to avoid blocking the main thread.
+- **Chunked processing**: split datasets into small slices (for example, 20 records) and yield to the browser between slices. On the main thread this only spreads the freeze out, because each export still blocks for its own duration. Enable the `exportWorker` feature flag to remove the freeze itself.
 - **Resource caps**: document safe limits (for example, 50–100 exports per session) and enforce them in the UI.
 - **Persistence**: use `localStorage` or IndexedDB to cache progress so reloads can resume work.
 
@@ -449,7 +495,7 @@ function reportBatchMetrics(batchMetrics) {
 | Items fail silently        | Missing error handling                     | Wrap processing in try-catch blocks                 |
 | Inconsistent outputs       | Shared state between iterations            | Reset state or reload template each iteration       |
 | Process hangs indefinitely | Uncaught promise rejection                 | Use error handling and timeouts                     |
-| Performance bottlenecks  | Multiple | - Profile batch operations <br>- Identify slow operations</br>- Optimize export settings<br>- Reduce template complexity</br> |
+| Performance bottlenecks  | Multiple | - Profile batch operations<br />- Identify slow operations<br />- Optimize export settings<br />- Reduce template complexity |
 
 ### Debugging Strategies
 

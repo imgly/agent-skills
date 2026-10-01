@@ -27,10 +27,10 @@ import {
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 // Configuration and plugins
-import { PhotoEditorConfig } from '@cesdk/core-configs-web/photo-editor';
+import { PhotoEditorConfig } from './config/plugin';
 
 // Re-export for external use
-export { PhotoEditorConfig } from '@cesdk/core-configs-web/photo-editor';
+export { PhotoEditorConfig } from './config/plugin';
 
 /**
  * Initialize the CE.SDK Photo Editor with a complete configuration.
@@ -57,17 +57,14 @@ export async function initPhotoEditor(cesdk: CreativeEditorSDK) {
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
   await Promise.all([
     cesdk.addPlugin(new BlurAssetSource()),
@@ -83,18 +80,15 @@ export async function initPhotoEditor(cesdk: CreativeEditorSDK) {
     cesdk.addPlugin(new TypefaceAssetSource()),
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Localization
   // ============================================================================
 
-  // highlight-localization
   // Add custom translations for UI labels
   cesdk.i18n.setTranslations({
     en: { 'actions.export.image': 'Export Image' }
   });
-  // highlight-localization
 
   // ============================================================================
   // Navigation Bar Button

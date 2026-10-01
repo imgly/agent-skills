@@ -92,9 +92,10 @@ Add backgrounds to designs using fills for pages and shapes, and the background 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-add-background)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-add-background)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK provides two approaches for adding backgrounds to design elements. Use fills for pages and graphic blocks, and use the background color API for text blocks that need padding and rounded corners behind their text.
 

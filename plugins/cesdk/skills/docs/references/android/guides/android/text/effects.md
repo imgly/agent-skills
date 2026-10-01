@@ -126,9 +126,10 @@ Add visual depth and interest to text blocks using drop shadows and stroke outli
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-text-effects)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Text effects that are directly supported on text blocks include drop shadows for depth and stroke outlines for text borders. These visual effects are distinct from text styling properties like colors, fonts, and backgrounds.
 

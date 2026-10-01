@@ -83,9 +83,10 @@ Load previously saved scenes to resume editing or modify existing designs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/find/v1.84.0-nightly.20260930?q=engine-guides-load-scene)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/find/v1.83.0?q=engine-guides-load-scene)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Scene files contain layout, block properties, and asset references, but not the referenced assets themselves. When you load a scene, keep the image, font, audio, and video URLs from that scene accessible to the Android app.
 

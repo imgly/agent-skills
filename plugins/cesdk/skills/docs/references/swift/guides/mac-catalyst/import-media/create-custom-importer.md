@@ -136,9 +136,10 @@ and rebuilding its content as editable blocks with the Scene and Block APIs.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-create-custom-importer)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-custom-importer)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK natively opens its own scenes and archives, plus images and videos, and converts Photoshop and InDesign files through dedicated server-side packages. A custom importer covers everything else: when you have a proprietary or otherwise unsupported format, you parse it yourself and reconstruct its content as CE.SDK blocks. The engine never reads your file — it only sees the pages, graphics, and text blocks you create.
 

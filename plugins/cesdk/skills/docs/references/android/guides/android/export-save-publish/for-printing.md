@@ -197,9 +197,10 @@ resolution.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-export-for-printing)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-export-for-printing)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK exports designs as PDFs, but professional print workflows require specific configurations beyond standard export. This guide covers PDF export options for print, including high compatibility mode for complex designs, underlayers for printing on special media, and output resolution settings.
 

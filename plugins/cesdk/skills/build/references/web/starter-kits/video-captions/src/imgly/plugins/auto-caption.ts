@@ -15,7 +15,6 @@ import { ElevenLabsScribeV2 } from '@imgly/plugin-autocaption-web/fal-ai';
  * for production — the default is IMG.LY's rate-limited demo proxy.
  */
 const AUTOCAPTION_PROXY_URL: string =
-  import.meta.env.VITE_AUTOCAPTION_PROXY_URL ||
   'https://proxy.img.ly/api/proxy/falai';
 
 /**

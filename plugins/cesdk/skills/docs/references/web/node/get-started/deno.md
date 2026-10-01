@@ -10,7 +10,15 @@ modern runtime for JavaScript and TypeScript. By the end of this guide, you’ll
 have a Deno script that **loads a scene, modifies it, and exports it as an
 image**—all without a UI.
 
-<CesdkOverview />
+## What's CreativeEditor SDK?
+
+CreativeEditor SDK (CE.SDK) lets you integrate a customizable image and video editor into your web app. It includes filters, text overlays, and other media editing tools, and adapts easily to your use case.
+
+CreativeEditor SDK is a commercial product. To use it, you need a valid license key. If you don’t have one yet, you can get a free trial or purchase a license.
+
+[Free Trial](https://img.ly/forms/free-trial)
+
+[Purchase License](https://img.ly/pricing)
 
 ## Who Is This Guide For?
 

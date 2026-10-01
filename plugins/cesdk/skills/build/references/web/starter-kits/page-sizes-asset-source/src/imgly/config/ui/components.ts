@@ -140,7 +140,6 @@ export function setupComponents(cesdk: CreativeEditorSDK): void {
   // Page Sizes Dock Button
   // ============================================================================
 
-  // highlight-page-sizes
   // Register custom dock button component that opens the page resize panel
   cesdk.ui.registerComponent(
     'ly.img.page.resize.dock',
@@ -163,5 +162,4 @@ export function setupComponents(cesdk: CreativeEditorSDK): void {
       });
     }
   );
-  // highlight-page-sizes
 }

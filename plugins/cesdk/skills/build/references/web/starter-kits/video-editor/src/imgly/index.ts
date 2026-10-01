@@ -30,10 +30,10 @@ import {
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 // Configuration and plugins
-import { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
+import { VideoEditorConfig } from './config/plugin';
 
 // Re-export for external use
-export { VideoEditorConfig } from '@cesdk/core-configs-web/video-editor';
+export { VideoEditorConfig } from './config/plugin';
 
 /**
  * Initialize the CE.SDK Video Editor with a complete configuration.
@@ -59,17 +59,14 @@ export async function initVideoEditor(cesdk: CreativeEditorSDK) {
   // Theme and Locale
   // ============================================================================
 
-  // highlight-theme
   // Configure appearance: 'light' | 'dark' | 'system'
   // cesdk.setTheme('dark');
   // cesdk.setLocale('en');
-  // highlight-theme
 
   // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
@@ -146,7 +143,6 @@ export async function initVideoEditor(cesdk: CreativeEditorSDK) {
     // Vector shapes (rectangles, circles, arrows, etc.)
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Navigation Bar Button

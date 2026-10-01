@@ -122,9 +122,10 @@ Load asset definitions from remote JSON files hosted on a CDN or server into CE.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-remote-asset)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-remote-asset)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Remote asset loading lets you host asset definitions on a CDN or server and load them into CE.SDK at runtime. This keeps asset management separate from your app, so you can update the available assets without shipping a new build. `engine.asset.addLocalAssetSourceFromJSON(_:)` loads a manifest from a URL, and the string overload loads one you already have in memory.
 

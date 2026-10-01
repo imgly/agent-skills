@@ -171,11 +171,12 @@ transparency.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-export-to-jpeg)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-export-to-jpeg)
 
 JPEG uses lossy compression, which makes it a good fit for photographs, social media images, and web delivery. It does not preserve transparency, so transparent areas become opaque in the exported image.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 This guide covers exporting a page to JPEG, tuning quality, resizing the output, and writing the returned `ByteBuffer` to a file.
 

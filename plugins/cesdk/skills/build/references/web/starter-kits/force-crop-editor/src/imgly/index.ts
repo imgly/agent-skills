@@ -119,7 +119,6 @@ export async function initForceCropEditor(
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   // Asset source plugins provide built-in asset libraries
   await Promise.all([
     cesdk.addPlugin(new BlurAssetSource()),
@@ -131,13 +130,11 @@ export async function initForceCropEditor(
     cesdk.addPlugin(new TypefaceAssetSource()),
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Setup Photo Editing Scene
   // ============================================================================
 
-  // highlight-scene-setup
   const engine = cesdk.engine;
 
   // Create the scene with the engine, which does not wait for the canvas, so
@@ -157,13 +154,11 @@ export async function initForceCropEditor(
 
   // Initially select the page
   engine.block.select(page);
-  // highlight-scene-setup
 
   // ============================================================================
   // Force Crop Configuration
   // ============================================================================
 
-  // highlight-force-crop
   // Remove all existing crop presets and add our custom one
   engine.asset.addLocalSource('ly.img.page.presets');
   engine.asset.addAssetToSource(
@@ -180,5 +175,4 @@ export async function initForceCropEditor(
 
   // Fit the page into view now that it has its final size
   await cesdk.actions.run('zoom.toPage', { page: 'first', autoFit: true });
-  // highlight-force-crop
 }

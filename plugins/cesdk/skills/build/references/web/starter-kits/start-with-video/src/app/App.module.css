@@ -112,14 +112,6 @@
   background: #f5f5f5;
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview),
-:global(html.demo-preview) :global(body) {
-  background: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 :global(#root) {
   width: 100%;
@@ -138,13 +130,6 @@
   padding: 1rem;
 }
 
-/* START_HIDDEN_BLOCK */
-
-:global(html.demo-preview) .app {
-  background: transparent;
-}
-
-/* END_HIDDEN_BLOCK */
 
 .editorWrapper {
   position: relative;

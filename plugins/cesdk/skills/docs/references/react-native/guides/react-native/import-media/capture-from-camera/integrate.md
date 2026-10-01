@@ -5,7 +5,7 @@
 ---
 
 In this example, we will show you how to initialize the [Camera SDK](https://img.ly/products/camera-sdk)'s mobile editor in your React Native app.
-We also prepared a dedicated example application which you can checkout on [GitHub](https://github.com/imgly/cesdk-react-native-examples/tree/v1.84.0-nightly.20260930).
+We also prepared a dedicated example application which you can checkout on [GitHub](https://github.com/imgly/cesdk-react-native-examples/tree/v1.83.0).
 
 ## Requirements
 
@@ -13,7 +13,7 @@ For this version, the minimum requirements are:
 
 - React Native: 0.73
 - iOS: 16
-- Swift: $SWIFT\_VERSION$ (Xcode $XCODE\_VERSION$)
+- Swift: 6.3.1 (Xcode 26.4.1)
 - Android: 7
 
 ## Add from npmjs.com

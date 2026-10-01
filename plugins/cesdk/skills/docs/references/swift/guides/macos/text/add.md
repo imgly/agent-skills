@@ -198,9 +198,10 @@ Create and configure text blocks in CE.SDK with custom fonts, rich text styling,
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-add)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-text-add)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Text blocks are fundamental design elements for displaying titles, captions, labels, and body text. CE.SDK provides range-based styling APIs so a single text block can contain multiple colors, font weights, font styles, and text cases.
 

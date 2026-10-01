@@ -23,7 +23,7 @@ Before you begin, make sure the following requirements are met:
 
 - React Native: 0.73
 - iOS: 16
-- Swift: $SWIFT\_VERSION$ (Xcode $XCODE\_VERSION$)
+- Swift: 6.3.1 (Xcode 26.4.1)
 - Android: 7.0 (Android SDK 24)
 
 ## Create the Project

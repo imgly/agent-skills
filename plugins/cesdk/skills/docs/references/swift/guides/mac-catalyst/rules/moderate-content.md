@@ -337,9 +337,10 @@ integrate third-party moderation services to detect inappropriate content.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-moderate-content)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-moderate-content)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK does not provide prebuilt content moderation workflows. Instead, it provides engine APIs that extract images and text from designs for moderation by third-party services of your choice. This is intentional: moderation requirements are specific to each business — which categories to check, what thresholds to apply, and which services to use. When and where to check content (during editing, before export, on upload) also varies with your workflow.
 

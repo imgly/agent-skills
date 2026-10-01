@@ -326,6 +326,8 @@ The engine seeds its registry with the editor's command vocabulary. These run wh
 - `text.letterSpacing` - Set the letter spacing
 - `text.list` - Set the list style (none/unordered/ordered)
 - `text.typeface` - Set the typeface
+- `text.tab` - The Tab text-editing command: indent the list item at a paragraph start, otherwise insert a tab character
+- `text.tabBack` - The Shift+Tab text-editing command: outdent the list item at a paragraph start, and do nothing outside a list
 
 ### Pages
 

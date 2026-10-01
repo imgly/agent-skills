@@ -234,9 +234,10 @@ Apply duotone effects to images with the CE.SDK Engine, mapping image tones to t
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-duotone)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-duotone)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Duotone is a color effect that maps image brightness to two colors: a dark color for shadows and a light color for highlights. The result is a two-tone image where the original colors are replaced by gradations between your chosen pair. This guide covers applying duotone presets from the asset library, creating custom color combinations, combining duotone with other effects, and managing applied effects.
 

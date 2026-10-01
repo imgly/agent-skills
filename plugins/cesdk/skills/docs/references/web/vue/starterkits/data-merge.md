@@ -12,13 +12,13 @@ Generate a batch of images from a set of data, for instance team cards.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-batch-image-generation-react-web/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/starterkit-batch-image-generation-react-web/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-batch-image-generation-react-web/tree/release-$UBQ_VERSION$)
+> - [View source on GitHub](https://github.com/imgly/starterkit-batch-image-generation-react-web/tree/release-1.83.0)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-batch-image-generation-react-web/tree/release-$UBQ_VERSION$)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-batch-image-generation-react-web/tree/release-1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/starterkit-batch-image-generation/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-batch-image-generation/index.html)
 
 ***
 
@@ -105,7 +105,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript and React.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -203,15 +203,15 @@ This guide assumes basic familiarity with JavaScript or TypeScript and React.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js@$UBQ\_VERSION$
+        npm install @cesdk/cesdk-js@1.83.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js@$UBQ\_VERSION$
+        pnpm add @cesdk/cesdk-js@1.83.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js@$UBQ\_VERSION$
+        yarn add @cesdk/cesdk-js@1.83.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -221,15 +221,15 @@ This guide assumes basic familiarity with JavaScript or TypeScript and React.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/engine@$UBQ\_VERSION$
+        npm install @cesdk/engine@1.83.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/engine@$UBQ\_VERSION$
+        pnpm add @cesdk/engine@1.83.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/engine@$UBQ\_VERSION$
+        yarn add @cesdk/engine@1.83.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -239,7 +239,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript and React.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ\_VERSION$/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -679,7 +679,7 @@ CE.SDK has a rich plugin ecosystem that extends the editor with powerful capabil
 Add AI-powered background removal that runs entirely client-side. The background removal plugin processes images directly in the browser without sending data to external servers.
 
 ```typescript title="src/imgly/config/plugin.ts"
-import BackgroundRemovalPlugin from '@imgly/plugin-background-removal';
+import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 
 // Add background removal capability
 await cesdk.addPlugin(BackgroundRemovalPlugin());

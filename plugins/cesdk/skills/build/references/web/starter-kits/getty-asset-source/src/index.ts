@@ -31,36 +31,27 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { initGettyImagesEditor } from './imgly';
 import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 // ============================================================================
 // Configuration
 // ============================================================================
 
-// highlight-license
 const config = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-getty-asset-source-user',
 
   // IMG.LY CDN (for quick testing only, NOT recommended for production)
-  // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
 
   // Local assets for development
 
-  license: import.meta.env.VITE_CESDK_LICENSE
 };
-// highlight-license
 
 // ============================================================================
 // Getty Images Configuration
 // ============================================================================
 
-// highlight-getty-config
 // Option 1: Read from environment variables (recommended for new projects with .env)
 const gettyConfig = {
-  gettyProxyUrl: import.meta.env.VITE_GETTY_IMAGES_PROXY_URL as
+  gettyProxyUrl: (undefined as string | undefined) as
     | string
     | undefined
 };
@@ -70,7 +61,6 @@ const gettyConfig = {
 // const gettyConfig = {
 //   gettyProxyUrl: 'https://your-proxy-server.com/getty-api'
 // };
-// highlight-getty-config
 
 // ============================================================================
 // Initialize Getty Images Editor
@@ -78,34 +68,18 @@ const gettyConfig = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('created');
-    // END_HIDDEN_BLOCK
-    // START_HIDDEN_BLOCK
-    (window as any).cesdk = cesdk;
-    // END_HIDDEN_BLOCK
 
-    // highlight-init
     // Initialize the editor with Getty Images integration
     await initGettyImagesEditor(cesdk, gettyConfig);
     // ============================================================================
     // Scene Loading
     // ============================================================================
 
-    // highlight-scene-loading
     // Load the Getty Images demo scene from CDN
     // This scene showcases images that can be replaced with photos from Getty Images
     await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/getty-images.scene`);
-    // highlight-scene-loading
-    // highlight-init
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('ready');
-    // END_HIDDEN_BLOCK
   })
   .catch((error) => {
-    // START_HIDDEN_BLOCK
-    reportDemoPhase('failed');
-    // END_HIDDEN_BLOCK
     // eslint-disable-next-line no-console
     console.error('Failed to initialize CE.SDK:', error);
   });

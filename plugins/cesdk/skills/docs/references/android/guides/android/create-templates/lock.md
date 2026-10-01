@@ -139,9 +139,10 @@ while adopters customize only the areas you allow.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-lock-template)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-lock-template)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Many integrations need two editing experiences: one for designers or admins who build templates, and one for end users who fill them in. CE.SDK models this with roles and scopes. Use a Creator surface to prepare the template. In production, save that configured template and load it in an Adopter surface; the sample keeps both roles in one scene so it can focus on the permission rules.
 

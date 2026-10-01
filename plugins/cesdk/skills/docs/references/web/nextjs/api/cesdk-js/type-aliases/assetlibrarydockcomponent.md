@@ -17,7 +17,7 @@ It includes properties for the ID, key, label, icon, entries, and optional butto
 | ------ | ------ | ------ |
 |  `id` | `"ly.img.assetLibrary.dock"` | - |
 |  `key?` | `string` | Individual and optional key for the component. |
-|  `label?` | `string` | Label to display on the button. |
+|  `label?` | `string` | Label to display on the button. Without it, the button uses the translation key `libraries.<key>.label`. |
 |  `icon?` | `string` | Icon to display on the button. |
 |  `entries` | `string`\[] | Determines with what entries the asset library is opened. |
 |  `onClick?` | () => `void` | Custom onClick handler. If provided, overrides the default asset library toggle behavior. |

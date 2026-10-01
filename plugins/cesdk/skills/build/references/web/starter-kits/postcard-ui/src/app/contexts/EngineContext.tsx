@@ -1,9 +1,6 @@
 import CreativeEngine, { Configuration } from '@cesdk/engine';
 import { createContext, useContext, useEffect, useState } from 'react';
 
-// START_HIDDEN_BLOCK
-import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
-// END_HIDDEN_BLOCK
 
 interface EngineContextType {
   engine: CreativeEngine;
@@ -31,14 +28,7 @@ export const EngineProvider = ({
     let localEngine: CreativeEngine;
     let mounted = true;
     const loadEngine = async () => {
-      //START_HIDDEN_BLOCK
-      if (import.meta.env.CESDK_USE_LOCAL)
-        config.baseURL = import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL;
-      //END_HIDDEN_BLOCK
       localEngine = await CreativeEngine.init(config);
-      // START_HIDDEN_BLOCK
-      reportDemoPhase('created');
-      // END_HIDDEN_BLOCK
       if (!mounted) {
         localEngine.dispose();
         return;
@@ -48,15 +38,7 @@ export const EngineProvider = ({
       if (configure) {
         await configure(localEngine);
       }
-      //START_HIDDEN_BLOCK
-      (window as any).cesdk = localEngine;
-      //END_HIDDEN_BLOCK
       setEngine(localEngine);
-      // START_HIDDEN_BLOCK
-      // This demo loads its scene only once a template is picked, so the
-      // engine coming up is the end of its automatic load.
-      reportDemoPhase('ready');
-      // END_HIDDEN_BLOCK
       setIsLoaded(true);
     };
     loadEngine();

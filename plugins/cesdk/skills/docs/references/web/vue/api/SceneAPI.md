@@ -243,7 +243,8 @@ saveToString(options?: {
   - onDisallowedResourceScheme: An optional callback that is called for each resource URL that has a scheme absent from
     `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the
     resource's data. The callback should return a new URL for the resource, which will be used in the serialized
-    scene. The callback is expected to return the original URL if no persistence is needed.
+    scene. The callback is expected to return the original URL if no persistence is needed. If the callback
+    throws, rejects, or returns no string, the returned promise rejects and the scene keeps its URLs.
   - compression: Optional compression settings containing:
     - format: Compression format (None or Zstd). Defaults to Zstd.
     - level: Compression level (Fastest, Default, or Best). Defaults to Default.

@@ -47,7 +47,6 @@ export default function App({ engineConfig }: AppProps) {
   const [engine, setEngine] = useState(null);
 
   const config: Partial<Configuration> = {
-    baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
     role: 'Adopter',
     ...engineConfig,
     featureFlags: {

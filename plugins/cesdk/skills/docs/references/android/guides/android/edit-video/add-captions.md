@@ -130,9 +130,10 @@ Add synchronized captions to video scenes with CE.SDK's caption tracks, caption 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-captions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-captions)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Captions in CE.SDK use the same block hierarchy as other video content: a page contains a video track and a caption track, and the caption track contains caption blocks. Each caption block stores text, a time offset, a duration, and styling properties.
 

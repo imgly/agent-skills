@@ -183,11 +183,12 @@ Optimize CE.SDK integration for faster loading, lower memory pressure, and relia
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-performance)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-performance)
 
 ![Exported Android performance sample](https://img.ly/docs/cesdk/android/performance-3c12eb/assets/android.export.webp)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](./engine-interface.md) guide.
 
 CE.SDK ships a fully featured engine runtime. On Android, performance work usually comes from downloading and starting the `Engine` only when an editing session needs it, loading smaller media while editing, tuning export dimensions, and releasing engine resources when the session ends.
 

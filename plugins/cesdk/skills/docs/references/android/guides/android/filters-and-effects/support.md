@@ -108,9 +108,10 @@ property keys.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-supported-filters-and-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-supported-filters-and-effects)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Effects are separate blocks in an ordered effect stack. You create an effect block, append it to a supported design block, then configure that effect through its property keys.
 

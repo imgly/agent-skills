@@ -170,9 +170,10 @@ Apply color grading, blur, pixelization, and other visual treatments to design e
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-using-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-using-effects)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 CE.SDK uses a single effect API for both filters and effects. **Filters** apply color transformations such as LUT filters and duotone, while **effects** apply visual modifications such as blur, pixelize, vignette, and image adjustments. Both are created with `createEffect` and attached to a block's effect list, where they render in order and can be stacked, toggled, and removed individually.
 

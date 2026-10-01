@@ -64,7 +64,6 @@ const DEFAULT_BASE_URL = `${DEMO_ASSETS_BASE_URL}/assets`;
  * await cesdk.addPlugin(new LayoutsAssetSourcePlugin());
  * ```
  */
-// highlight-plugin-class
 export class LayoutsAssetSourcePlugin implements EditorPlugin {
   /**
    * Unique identifier for this plugin.
@@ -104,16 +103,13 @@ export class LayoutsAssetSourcePlugin implements EditorPlugin {
     const baseURL = this.options.baseURL ?? DEFAULT_BASE_URL;
     const addUndoStep = this.options.addUndoStep ?? true;
 
-    // highlight-load-assets
     // Load the layouts asset source using the engine API
     // The API handles {{base_url}} replacement automatically
     await cesdk.engine.asset.addLocalAssetSourceFromJSONString(
       JSON.stringify(LAYOUT_ASSETS),
       baseURL
     );
-    // highlight-load-assets
 
-    // highlight-apply-middleware
     // Register middleware to intercept layout asset application
     this.unsubscribeMiddleware = cesdk.engine.asset.registerApplyMiddleware(
       async (sourceId, assetResult, apply) => {
@@ -126,7 +122,6 @@ export class LayoutsAssetSourcePlugin implements EditorPlugin {
         return applyLayoutToPage(cesdk.engine, assetResult, addUndoStep);
       }
     );
-    // highlight-apply-middleware
 
     // Add translation for the panel label
     cesdk.i18n.setTranslations({
@@ -170,4 +165,3 @@ export class LayoutsAssetSourcePlugin implements EditorPlugin {
     this.unsubscribeMiddleware?.();
   }
 }
-// highlight-plugin-class

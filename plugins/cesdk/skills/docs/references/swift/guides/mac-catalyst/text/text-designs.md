@@ -133,9 +133,10 @@ Build a library of reusable text components — pre-designed, pre-styled text la
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-text-designs)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-text-designs)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Text designs (also known as text components) are serialized text blocks with styling, constraints, and behavior baked in. Users browse them in the asset library and tap to insert one — the engine loads the bundled archive, attaches the resulting block to the current page, and the user is editing in place.
 

@@ -180,9 +180,10 @@ CE.SDK's Android Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-using-animations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-using-animations)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Base animations add motion to non-text design blocks through entrance (In), exit (Out), and loop animations. CE.SDK creates animations as separate blocks, attaches them to design blocks, and lets you configure duration, easing, and type-specific properties.
 

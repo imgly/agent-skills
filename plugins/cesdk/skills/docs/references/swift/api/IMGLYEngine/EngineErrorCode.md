@@ -977,6 +977,18 @@ case blockAnimationAssetMissingMode
 case blockAnimationAssetMissingType
 ```
 
+### EngineErrorCode.blockAnimationAssetModeMismatch
+
+```swift
+case blockAnimationAssetModeMismatch
+```
+
+### EngineErrorCode.blockAnimationAssetTextOnly
+
+```swift
+case blockAnimationAssetTextOnly
+```
+
 ### EngineErrorCode.blockAnimationNoAnimationsOnBlock
 
 ```swift
@@ -1665,6 +1677,12 @@ case blockOpNeedsTwoBlocks
 
 ```swift
 case blockParentNotLaidOut
+```
+
+### EngineErrorCode.blockPathOperationFailed
+
+```swift
+case blockPathOperationFailed
 ```
 
 ### EngineErrorCode.blockPendingProgressInvalid
@@ -3929,6 +3947,12 @@ case encodeOutputSizeInsufficientResources
 case encodePageNoChildren
 ```
 
+### EngineErrorCode.encodePdfColorMaskUnsupported
+
+```swift
+case encodePdfColorMaskUnsupported
+```
+
 ### EngineErrorCode.encodePdfCreateFailed
 
 ```swift
@@ -4745,6 +4769,12 @@ case sceneNotSceneType
 case sceneNotValid
 ```
 
+### EngineErrorCode.scenePersistenceNoUrl
+
+```swift
+case scenePersistenceNoUrl
+```
+
 ### EngineErrorCode.sceneTempFileCreateFailed
 
 ```swift
@@ -5175,6 +5205,12 @@ case utilsMp4AudioTrackIndexOutOfBounds
 
 ```swift
 case utilsMp4OpenFailed
+```
+
+### EngineErrorCode.utilsMp4SampleOutsideFile
+
+```swift
+case utilsMp4SampleOutsideFile
 ```
 
 ### EngineErrorCode.utilsMp4VideoCodecUnsupported

@@ -59,11 +59,9 @@ export async function initTranslationInternationalizationEditor(
   // Theme and Locale
   // ============================================================================
 
-  // highlight-locale-setup
   // Set default locale to English
   // Use cesdk.i18n.setLocale('de') to switch to German
   cesdk.i18n.setLocale('en');
-  // highlight-locale-setup
 
   // ============================================================================
   // Asset Source Plugins

@@ -147,9 +147,10 @@ surrounding template layout under your control.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-placeholders)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-placeholders)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../../engine-interface.md) guide.
 
 Placeholders separate replaceable content from the template block that positions and styles it. This guide checks support, enables placeholder behavior and interaction, configures visual controls, and applies placeholder settings to multiple blocks.
 

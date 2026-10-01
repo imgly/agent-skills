@@ -68,7 +68,6 @@ export async function initExportUsingRenderer(cesdk: CreativeEditorSDK) {
   // Asset Source Plugins
   // ============================================================================
 
-  // highlight-asset-sources
   await Promise.all([
     cesdk.addPlugin(new BlurAssetSource()),
     cesdk.addPlugin(new CaptionPresetsAssetSource()),
@@ -98,17 +97,14 @@ export async function initExportUsingRenderer(cesdk: CreativeEditorSDK) {
     cesdk.addPlugin(new TypefaceAssetSource()),
     cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
-  // highlight-asset-sources
 
   // ============================================================================
   // Renderer Export Setup
   // ============================================================================
 
-  // highlight-renderer-export
   // Setup server-side rendering export functionality
   // This adds:
   // - Export using CE.SDK Renderer action
   // - Custom navigation bar layout
   setupRendererExport(cesdk);
-  // highlight-renderer-export
 }

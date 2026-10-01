@@ -9,7 +9,8 @@ performance depend on the available memory, GPU, and Android media codecs.
 This reference helps you plan video workflows that stay within those device
 limits.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Plan around the native device capabilities that vary across Android phones and
 tablets: codec availability, maximum texture size, available memory, and the

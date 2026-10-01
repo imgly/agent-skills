@@ -145,9 +145,10 @@ Dynamic content transforms static designs into flexible, data-driven templates. 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-dynamic-content)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-dynamic-content)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 This guide covers how to use dynamic content capabilities in CE.SDK templates. The example creates a social media card with personalized name and company variables, a replaceable hero image, and a protected brand image.
 

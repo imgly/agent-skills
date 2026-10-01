@@ -105,9 +105,10 @@ Convert CE.SDK exports to Base64-encoded strings for embedding in HTML, storing 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-nightly.20260930/engine-guides-conversion-to-base64)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-conversion-to-base64)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Base64 encoding transforms binary image data into ASCII text. On Android, CE.SDK's `engine.block.export()` returns a `ByteBuffer`; convert that buffer to a Base64 string with Android's `Base64` API, then prepend the MIME type when you need a data URI.
 

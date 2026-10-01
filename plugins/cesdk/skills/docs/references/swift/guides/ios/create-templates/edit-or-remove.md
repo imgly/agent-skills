@@ -135,9 +135,10 @@ Modify existing templates and manage template lifecycle in your asset library us
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-nightly.20260930/engine-guides-edit-or-remove-templates)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-edit-or-remove-templates)
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 Templates evolve as designs change. You might need to update branding, fix content errors, or remove outdated templates from your library. CE.SDK provides APIs for adding, editing, and removing templates from asset sources.
 

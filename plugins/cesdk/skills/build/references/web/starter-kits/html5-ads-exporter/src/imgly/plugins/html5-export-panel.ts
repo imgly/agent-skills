@@ -26,13 +26,11 @@ import { exportHtml, injectGsapPlayer } from '@imgly/html-exporter';
 // Constants and Types
 // ============================================================================
 
-// highlight-available-formats
 const AVAILABLE_FORMATS = ['embedded', 'external'] as const;
 type Format = (typeof AVAILABLE_FORMATS)[number];
 
 const AVAILABLE_TEXT_MODES = ['html', 'vector'] as const;
 type TextMode = (typeof AVAILABLE_TEXT_MODES)[number];
-// highlight-available-formats
 
 // ============================================================================
 // Helper Functions
@@ -41,7 +39,6 @@ type TextMode = (typeof AVAILABLE_TEXT_MODES)[number];
 /**
  * Download a blob as a file to the user's device.
  */
-// highlight-local-download
 const localDownload = (data: Blob, filename: string): void => {
   const element = document.createElement('a');
   element.setAttribute('href', URL.createObjectURL(data));
@@ -51,7 +48,6 @@ const localDownload = (data: Blob, filename: string): void => {
   element.click();
   document.body.removeChild(element);
 };
-// highlight-local-download
 
 // ============================================================================
 // Plugin Class
@@ -65,7 +61,6 @@ const localDownload = (data: Blob, filename: string): void => {
  *
  * @public
  */
-// highlight-plugin-class
 export class Html5ExportPanelPlugin implements EditorPlugin {
   name = 'html5-export-panel';
   version = CreativeEditorSDK.version;
@@ -93,7 +88,6 @@ export class Html5ExportPanelPlugin implements EditorPlugin {
     });
 
     // Register the navigation bar export button
-    // highlight-register-component
     cesdk.ui.registerComponent(
       'ly.img.html5-export.navigationBar',
       ({ builder }) => {
@@ -111,10 +105,8 @@ export class Html5ExportPanelPlugin implements EditorPlugin {
         });
       }
     );
-    // highlight-register-component
 
     // Register the export panel
-    // highlight-register-panel
     cesdk.ui.registerPanel(
       '//ly.img.panel/html5-export',
       ({ builder, engine, state }) => {
@@ -301,7 +293,6 @@ export class Html5ExportPanelPlugin implements EditorPlugin {
         });
       }
     );
-    // highlight-register-panel
 
     // Set panel position
     cesdk.ui.setPanelPosition(
@@ -318,4 +309,3 @@ export class Html5ExportPanelPlugin implements EditorPlugin {
     );
   }
 }
-// highlight-plugin-class

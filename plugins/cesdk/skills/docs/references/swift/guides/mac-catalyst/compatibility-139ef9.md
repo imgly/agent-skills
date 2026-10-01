@@ -4,6 +4,14 @@
 
 ---
 
+CE.SDK runs entirely on clients and makes use of hardware acceleration provided within that environment. Therefore, the user’s hardware always acts as an upper bound of what’s achievable.
+
+The editor's performance scales with scene complexity. We generally found scenes with up to 200 blocks well usable, but complex blocks like auto-sizing text or high-resolution image fills may affect performance negatively. This is always constrained by the processing power available on the user's device, so for low-end devices, the experience may suffer earlier. Therefore, it’s generally desirable to keep scenes only as complex as needed.
+
+## Hardware Limitations
+
+Each device has a limited amount of high performance hardware decoders and encoders. If the maximum number is reached it will fall back to (slow) software de- and encoding. Therefore users may encounter slow export performance when trying to export in parallel with other software that utilizes encoders and decoders, e.g. Zoom, Teams or video content in other tabs / apps. This, unfortunately, is a limitation of hardware, operating system and browser and cannot be solved.
+
 ## Targets
 
 On Apple platforms, CE.SDK makes use of system-frameworks to benefit from hardware acceleration and platform native performance. The following targets are supported:

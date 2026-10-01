@@ -6,7 +6,8 @@
 
 Read the most prominent colors out of a block directly from the engine. The result reflects what is actually rendered on the canvas, so crops, color adjustments, and effects are all taken into account.
 
-<EngineReferenceNote {...props} />
+> **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
+> [Engine Interface](../engine-interface.md) guide.
 
 `engine.block.getDominantColors(_:options:)` analyzes the rendered appearance of a block and returns its most prominent colors, sorted from most to least dominant. It works on any visible block — an image fill, a solid graphic, or a whole page — and runs entirely inside the engine.
 

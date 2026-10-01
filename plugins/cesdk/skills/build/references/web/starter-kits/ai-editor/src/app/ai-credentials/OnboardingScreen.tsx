@@ -43,11 +43,6 @@ export function OnboardingScreen(props: OnboardingScreenProps) {
     window.location.reload();
   }, []);
 
-  // START_HIDDEN_BLOCK
-  if (props.reason === 'invalid' && props.mode === 'embedded') {
-    return <EmbeddedSessionRejectedScreen onReload={handleReload} />;
-  }
-  // END_HIDDEN_BLOCK
 
   if (import.meta.env.PROD) {
     return <DeployedApiKeyScreen reason={reason} />;
@@ -146,72 +141,6 @@ export function OnboardingScreen(props: OnboardingScreenProps) {
   );
 }
 
-// START_HIDDEN_BLOCK
-/**
- * Variant shown when the starterkit runs embedded in the IMG.LY demos
- * iframe and the session JWT minted by the hosting page is rejected by
- * the gateway. The iframe can't fix this on its own — the mismatch is
- * always between the host's Clerk app and the gateway the host forwards
- * via the `?gatewayUrl=` URL param (e.g. a staging Clerk key paired with
- * the production gateway).
- *
- * The copy intentionally avoids mentioning `VITE_AI_API_KEY` or `.env`
- * since neither is relevant to the embedded flow.
- */
-function EmbeddedSessionRejectedScreen({ onReload }: { onReload: () => void }) {
-  return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <span className={`${styles.badge} ${styles.badgeInvalid}`}>
-          Session rejected
-        </span>
-
-        <div className={styles.title} role="heading" aria-level={2}>
-          The hosting page&apos;s session token was rejected
-        </div>
-
-        <p className={styles.lead}>
-          The IMG.LY AI Gateway rejected the session token minted by the hosting
-          demos page. This is a host-side configuration mismatch — the iframe
-          can&apos;t resolve it from here.
-        </p>
-
-        <ol className={styles.steps}>
-          <li className={styles.step}>
-            <span className={styles.stepNumber}>1</span>
-            <div className={styles.stepBody}>
-              <p className={styles.stepText}>
-                The Clerk publishable key on the host (
-                <code>NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</code>) must match an
-                instance the targeted gateway trusts. A staging Clerk key only
-                works against <code>gateway.staging.img.ly</code>; a production
-                key only against <code>gateway.img.ly</code>.
-              </p>
-            </div>
-          </li>
-          <li className={styles.step}>
-            <span className={styles.stepNumber}>2</span>
-            <div className={styles.stepBody}>
-              <p className={styles.stepText}>
-                If the host runs against a non-production gateway, it must
-                forward that URL to the iframe via{' '}
-                <code>NEXT_PUBLIC_AI_GATEWAY_URL</code> (appended to the iframe
-                as <code>?gatewayUrl=…</code>).
-              </p>
-            </div>
-          </li>
-        </ol>
-
-        <div className={styles.actions}>
-          <button type="button" className={styles.secondary} onClick={onReload}>
-            Reload
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-// END_HIDDEN_BLOCK
 
 /**
  * Variant shown in deployed production bundles (`import.meta.env.PROD`)

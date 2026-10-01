@@ -46,6 +46,16 @@ image profile handling depends on the source asset and Android's media
 decoding path, so test profile-sensitive images on your target devices. See
 [Colors](../colors/overview.md) for color-space behavior in CE.SDK.
 
+| Constraint            | Recommendation / Limit                                                                                                                                                                                                |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Input Resolution**  | Maximum input resolution is **4096×4096 pixels**. Images from external sources (e.g., Unsplash) are resized to this size before rendering on the canvas. You can modify this value using the `maxImageSize` setting.  |
+| **Output Resolution** | There is no enforced output resolution limit. Theoretically, the editor supports output sizes up to **16,384×16,384 pixels**. However, practical limits depend on the device's GPU capabilities and available memory. |
+
+All image processing in CE.SDK happens on the device running the engine, so these values depend on the **maximum texture size** supported by its hardware. The default limit of 4096×4096 is a safe baseline that works universally. Higher resolutions (e.g., 8192×8192) may work on certain devices but could fail on others during export if the GPU texture size is exceeded.
+
+> **Note:** To ensure consistent results across devices, it’s best to test higher output
+> sizes on your target hardware and set conservative defaults in production.
+
 ## Output and Export Options
 
 Export edited scenes using the public Android `MimeType` values exposed by

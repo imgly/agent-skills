@@ -17,9 +17,7 @@ import App from './app/App';
 // ============================================================================
 
 const engineConfig = {
-  baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
   userId: 'starterkit-photo-ui-user',
-  license: import.meta.env.VITE_CESDK_LICENSE,
   featureFlags: {
     preventScrolling: true
   }
@@ -44,10 +42,3 @@ main().catch((error) => {
   console.error('Failed to initialize application:', error);
 });
 
-//START_HIDDEN_BLOCK
-declare global {
-  interface Window {
-    cesdk?: CreativeEngine;
-  }
-}
-//END_HIDDEN_BLOCK

@@ -10,13 +10,13 @@ Import Adobe InDesign (IDML) files into CE.SDK, converting them into editable sc
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-$UBQ_VERSION$.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-$UBQ_VERSION$/guides-open-the-editor-import-design-from-indesign-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-open-the-editor-import-design-from-indesign-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-open-the-editor-import-design-from-indesign-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-open-the-editor-import-design-from-indesign-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20260930/examples/guides-open-the-editor-import-design-from-indesign-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-open-the-editor-import-design-from-indesign-browser/index.html)
 
 ![Import from InDesign](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -459,7 +459,7 @@ export default Example;
 Install the `@imgly/idml-importer` package alongside CE.SDK:
 
 ```bash
-npm install @imgly/idml-importer @cesdk/cesdk-js@$UBQ_VERSION$
+npm install @imgly/idml-importer @cesdk/cesdk-js@1.83.0
 ```
 
 The browser environment uses the native `DOMParser` API for XML parsing, which requires no additional dependencies.
