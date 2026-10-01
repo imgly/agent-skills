@@ -5,9 +5,12 @@
  * These are internal helpers used by the validation functions.
  */
 
-import type CreativeEditorSDK from '@cesdk/cesdk-js';
+import type { CreativeEngine } from '@cesdk/cesdk-js';
 
-import type { BoundingBox } from './types';
+import type { BoundingBox, ImageSize, MeasureImage } from './types';
+
+/** The engine's error code for an intersection that comes out empty. */
+const EMPTY_SHAPE_ERROR = 'BLOCK.RESULT_EMPTY_SHAPE';
 
 // ============================================================================
 // Bounding Box Utilities
@@ -30,44 +33,44 @@ function getElementOverlap(
  * Gets the global bounding box of a block.
  */
 function getElementBoundingBox(
-  cesdk: CreativeEditorSDK,
+  engine: CreativeEngine,
   blockId: number
 ): BoundingBox {
-  const x = cesdk.engine.block.getGlobalBoundingBoxX(blockId);
-  const y = cesdk.engine.block.getGlobalBoundingBoxY(blockId);
-  const width = cesdk.engine.block.getGlobalBoundingBoxWidth(blockId);
-  const height = cesdk.engine.block.getGlobalBoundingBoxHeight(blockId);
+  const x = engine.block.getGlobalBoundingBoxX(blockId);
+  const y = engine.block.getGlobalBoundingBoxY(blockId);
+  const width = engine.block.getGlobalBoundingBoxWidth(blockId);
+  const height = engine.block.getGlobalBoundingBoxHeight(blockId);
   return [x, y, x + width, y + height];
 }
 
 /**
  * Gets all relevant blocks for validation (text and graphics).
  */
-function getRelevantBlocks(cesdk: CreativeEditorSDK): number[] {
+function getRelevantBlocks(engine: CreativeEngine): number[] {
   return [
-    ...cesdk.engine.block.findByType('text'),
-    ...cesdk.engine.block.findByType('graphic')
+    ...engine.block.findByType('text'),
+    ...engine.block.findByType('graphic')
   ];
 }
 
 /**
  * Finds the parent page of a block.
  */
-function findParentPage(cesdk: CreativeEditorSDK, blockId: number): number {
-  const parent = cesdk.engine.block.getParent(blockId);
-  if (parent !== null && cesdk.engine.block.getKind(parent) === 'page') {
+function findParentPage(engine: CreativeEngine, blockId: number): number {
+  const parent = engine.block.getParent(blockId);
+  if (parent !== null && engine.block.getKind(parent) === 'page') {
     return parent;
   }
-  return parent !== null ? findParentPage(cesdk, parent) : blockId;
+  return parent !== null ? findParentPage(engine, parent) : blockId;
 }
 
 /**
  * Returns the BlockIds of all blocks that lay "above" the block.
  */
-function getBlockIdsAbove(cesdk: CreativeEditorSDK, blockId: number): number[] {
-  const page = cesdk.engine.block.findByType('page')[0];
+function getBlockIdsAbove(engine: CreativeEngine, blockId: number): number[] {
+  const page = engine.block.findByType('page')[0];
   if (!page) return [];
-  const sortedBlockIds = cesdk.engine.block.getChildren(page);
+  const sortedBlockIds = engine.block.getChildren(page);
   return sortedBlockIds.slice(sortedBlockIds.indexOf(blockId) + 1);
 }
 
@@ -78,12 +81,12 @@ function getBlockIdsAbove(cesdk: CreativeEditorSDK, blockId: number): number[] {
 /**
  * Returns blocks that are completely outside the page.
  */
-export function getOutsideBlocks(cesdk: CreativeEditorSDK): number[] {
-  return getRelevantBlocks(cesdk).filter((elementBlockId) => {
-    const parentPage = findParentPage(cesdk, elementBlockId);
+export function getOutsideBlocks(engine: CreativeEngine): number[] {
+  return getRelevantBlocks(engine).filter((elementBlockId) => {
+    const parentPage = findParentPage(engine, elementBlockId);
     const overlapWithPage = getElementOverlap(
-      getElementBoundingBox(cesdk, elementBlockId),
-      getElementBoundingBox(cesdk, parentPage)
+      getElementBoundingBox(engine, elementBlockId),
+      getElementBoundingBox(engine, parentPage)
     );
     return overlapWithPage === 0;
   });
@@ -92,14 +95,14 @@ export function getOutsideBlocks(cesdk: CreativeEditorSDK): number[] {
 /**
  * Returns blocks that partially protrude from the page (0 < overlap < 99%).
  */
-export function getProtrudingBlocks(cesdk: CreativeEditorSDK): number[] {
-  const page = cesdk.engine.block.findByType('page')[0];
+export function getProtrudingBlocks(engine: CreativeEngine): number[] {
+  const page = engine.block.findByType('page')[0];
   if (!page) return [];
 
-  return getRelevantBlocks(cesdk).filter((elementBlockId) => {
+  return getRelevantBlocks(engine).filter((elementBlockId) => {
     const overlapWithPage = getElementOverlap(
-      getElementBoundingBox(cesdk, elementBlockId),
-      getElementBoundingBox(cesdk, page)
+      getElementBoundingBox(engine, elementBlockId),
+      getElementBoundingBox(engine, page)
     );
     return overlapWithPage > 0 && overlapWithPage < 0.99;
   });
@@ -108,17 +111,16 @@ export function getProtrudingBlocks(cesdk: CreativeEditorSDK): number[] {
 /**
  * Returns all text blocks that may be obstructed by other blocks.
  */
-export function getPartiallyHiddenTexts(cesdk: CreativeEditorSDK): number[] {
-  const engine = cesdk.engine;
+export function getPartiallyHiddenTexts(engine: CreativeEngine): number[] {
   return engine.block.findByType('text').filter((elementBlockId) => {
-    const elementsLayingAbove = getBlockIdsAbove(cesdk, elementBlockId);
+    const elementsLayingAbove = getBlockIdsAbove(engine, elementBlockId);
     const elementBBOverlapping = elementsLayingAbove.filter(
       (blockId) =>
         // Skip groups since text inside groups shouldn't be considered hidden
-        cesdk.engine.block.getType(blockId) !== '//ly.img.ubq/group' &&
+        engine.block.getType(blockId) !== '//ly.img.ubq/group' &&
         getElementOverlap(
-          getElementBoundingBox(cesdk, elementBlockId),
-          getElementBoundingBox(cesdk, blockId)
+          getElementBoundingBox(engine, elementBlockId),
+          getElementBoundingBox(engine, blockId)
         ) > 0
     );
 
@@ -145,8 +147,9 @@ export function getPartiallyHiddenTexts(cesdk: CreativeEditorSDK): number[] {
           engine.block.destroy(union);
         }
       } catch (e) {
-        const message = (e as Error).message;
-        if (!message.includes('Result is an empty shape.')) {
+        // The engine reports "no overlap" as a catalog error. Match the code,
+        // not the message, which differs between engine builds.
+        if ((e as { code?: string }).code !== EMPTY_SHAPE_ERROR) {
           throw e;
         }
       }
@@ -186,15 +189,13 @@ function transformToPixel(
 }
 
 // Simple cache for image resolution
-const resolutionCache: Record<string, { width: number; height: number }> = {};
+const resolutionCache: Record<string, ImageSize> = {};
 
 /**
- * Fetches the original image resolution.
+ * Reads an image's own resolution by loading it in the browser.
  */
-function fetchImageResolution(
-  url: string
-): Promise<{ width: number; height: number }> {
-  return new Promise((resolve, reject) => {
+export const measureImageInBrowser: MeasureImage = (url) =>
+  new Promise((resolve, reject) => {
     if (resolutionCache[url]) {
       resolve(resolutionCache[url]);
       return;
@@ -208,18 +209,19 @@ function fetchImageResolution(
       resolutionCache[url] = imageResolution;
       resolve(imageResolution);
     };
-    img.onerror = () => reject();
+    img.onerror = () => reject(new Error(`Could not load ${url}.`));
     img.src = url;
   });
-}
 
 /**
  * Gets the image quality for a block.
  * Returns a value where < 0.7 is failed, 0.7-1 is warning, >= 1 is success.
+ * Pass `measureImage` to read image resolutions outside a browser.
  */
 export async function getImageBlockQuality(
-  engine: CreativeEditorSDK['engine'],
-  imageId: number
+  engine: CreativeEngine,
+  imageId: number,
+  measureImage: MeasureImage = measureImageInBrowser
 ): Promise<number> {
   const frameWidthDesignUnit = engine.block.getFrameWidth(imageId);
   const frameHeightDesignUnit = engine.block.getFrameHeight(imageId);
@@ -242,7 +244,7 @@ export async function getImageBlockQuality(
   if (!imageURI) return 1;
 
   try {
-    const { width, height } = await fetchImageResolution(imageURI);
+    const { width, height } = await measureImage(imageURI);
     const scaleY = engine.block.getCropScaleY(imageId) || 1;
 
     // Calculate pixel density

@@ -12,7 +12,7 @@ For a complete list of available component IDs in each area, see the [Component 
 
 ## UI Areas Overview
 
-The Component Order API supports six UI areas, each with specific purposes and requirements:
+The Component Order API supports nine UI areas, each with specific purposes and requirements:
 
 | Area | Location Value | Description | Special Options |
 |------|----------------|-------------|-----------------|
@@ -21,7 +21,10 @@ The Component Order API supports six UI areas, each with specific purposes and r
 | Canvas Menu | `'ly.img.canvas.menu'` | Right-click/long-press context menu on canvas | `when.editMode` |
 | Navigation Bar | `'ly.img.navigation.bar'` | Top navigation with actions and controls | — |
 | Canvas Bar | `'ly.img.canvas.bar'` | Controls above/below the canvas | `at: 'top' \| 'bottom'` (required) |
+| Caption Panel | `'ly.img.caption.panel'` | Controls inside the caption editing panel | — |
+| Clip Context Menu | `'ly.img.video.clip.menu'` | Menu on a video timeline clip | `when.clipType` |
 | Video Timeline Controls Bar | `'ly.img.video.timeline.controls.bar'` | Controls bar above the video timeline (play/pause, split, zoom, …) | — |
+| Layer & Page List Menu | `'ly.img.layerList.menu'` | Menu on a row of the layer and page list | `when.rowKind` |
 
 ## Core Concepts
 
@@ -392,7 +395,10 @@ type UIArea =
   | 'ly.img.canvas.menu'
   | 'ly.img.navigation.bar'
   | 'ly.img.canvas.bar'
-  | 'ly.img.video.timeline.controls.bar';
+  | 'ly.img.caption.panel'
+  | 'ly.img.video.clip.menu'
+  | 'ly.img.video.timeline.controls.bar'
+  | 'ly.img.layerList.menu';
 
 // Component matchers
 type ComponentMatcher<C> =
@@ -406,6 +412,16 @@ type ComponentMatcher<C> =
 // Order context for conditional ordering
 interface OrderContext {
   editMode?: string;    // 'Transform', 'Text', 'Crop', 'Trim', 'Vector', etc.
+}
+
+// 'ly.img.video.clip.menu' takes a wider context
+interface VideoClipMenuOrderContext extends OrderContext {
+  clipType?: 'clip' | 'overlay' | 'caption';
+}
+
+// 'ly.img.layerList.menu' takes a wider context
+interface LayersMenuOrderContext extends OrderContext {
+  rowKind?: 'page' | 'layer';
 }
 
 // Result types

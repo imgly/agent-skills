@@ -18,7 +18,7 @@ Apply solid colors to design elements like shapes, text, and backgrounds using C
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-colors-apply-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2/examples/guides-colors-apply-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0/examples/guides-colors-apply-browser/index.html)
 
 Colors in CE.SDK are applied to block properties like fill, stroke, and shadow using `engine.block.setColor()`. The engine supports three color spaces: sRGB for screen display, CMYK for print production, and spot colors for specialized printing requirements.
 
@@ -151,6 +151,7 @@ class Example implements EditorPlugin {
     engine.block.setColor(block, 'dropShadow/color', spotPink);
 
     // Convert colors between color spaces
+    await engine.editor.loadCMYKProfile();
     const cmykFromRgb = engine.editor.convertColorToColorSpace(
       rgbaBlue,
       'CMYK'
@@ -266,6 +267,7 @@ Use `engine.editor.convertColorToColorSpace()` to convert any color to a differe
 
 ```typescript highlight=highlight-convert-color
     // Convert colors between color spaces
+    await engine.editor.loadCMYKProfile();
     const cmykFromRgb = engine.editor.convertColorToColorSpace(
       rgbaBlue,
       'CMYK'

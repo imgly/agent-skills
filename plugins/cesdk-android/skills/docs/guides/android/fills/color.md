@@ -165,6 +165,7 @@ suspend fun fillsColor(engine: Engine) {
     check(engine.block.getFill(block1) == sharedFill)
     check(engine.block.getFill(block2) == sharedFill)
 
+    engine.editor.loadCMYKProfile()
     val rgbColor = Color.fromRGBA(r = 1F, g = 0F, b = 0F, a = 1F)
     val cmykColor = engine.editor.convertColorToColorSpace(
         color = rgbColor,
@@ -235,7 +236,7 @@ color fill system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.2/engine-guides-fills-color)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-fills-color)
 
 <EngineReferenceNote {...props} />
 
@@ -438,6 +439,7 @@ Shared fills are useful for synchronized brand elements. Keep ownership clear in
 Convert color values to sRGB or CMYK with `convertColorToColorSpace()`:
 
 ```kotlin highlight-android-convert-color
+engine.editor.loadCMYKProfile()
 val rgbColor = Color.fromRGBA(r = 1F, g = 0F, b = 0F, a = 1F)
 val cmykColor = engine.editor.convertColorToColorSpace(
     color = rgbColor,

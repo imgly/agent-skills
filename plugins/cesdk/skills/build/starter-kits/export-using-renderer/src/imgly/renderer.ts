@@ -39,6 +39,11 @@ export async function exportUsingRenderer(
   notificationId: string
 ): Promise<void> {
   const rendererURL = getRendererURL();
+  if (!rendererURL) {
+    throw new Error(
+      'VITE_RENDERER_PROXY_URL is not set, so there is no Renderer to export with.'
+    );
+  }
 
   cesdk.ui.updateNotification(notificationId, {
     message: 'Uploading the archive...',
@@ -54,15 +59,18 @@ export async function exportUsingRenderer(
   // Use an XMLHttpRequest for its flexible progress notifications
   const xhr = new XMLHttpRequest();
 
+  // The two timestamps come from load events, not from progress events: a
+  // progress event that is not length-computable is never reported.
+  xhr.upload.addEventListener('loadend', () => {
+    state.uploadFinished = state.uploadFinished || Date.now();
+  });
+
   // Track upload progress
   xhr.upload.addEventListener('progress', (event) => {
     if (!event.lengthComputable) {
       return;
     }
     const progress = Math.round(100.0 * (event.loaded / event.total));
-    if (progress >= 100 && !state.uploadFinished) {
-      state.uploadFinished = Date.now();
-    }
     cesdk.ui.updateNotification(notificationId, {
       message:
         progress >= 100
@@ -75,11 +83,14 @@ export async function exportUsingRenderer(
 
   // Track download progress
   xhr.addEventListener('progress', (event) => {
+    if (!state.renderFinished) {
+      // A response proves the upload is done, even when the browser reports
+      // the upload's end afterwards.
+      state.renderFinished = Date.now();
+      state.uploadFinished = state.uploadFinished || state.renderFinished;
+    }
     if (!event.lengthComputable) {
       return;
-    }
-    if (!state.renderFinished) {
-      state.renderFinished = Date.now();
     }
     const progress = Math.round(100.0 * (event.loaded / event.total));
     cesdk.ui.updateNotification(notificationId, {
@@ -95,6 +106,9 @@ export async function exportUsingRenderer(
       reject(err);
     });
     xhr.addEventListener('loadend', () => {
+      const now = Date.now();
+      state.uploadFinished = state.uploadFinished || now;
+      state.renderFinished = state.renderFinished || now;
       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
         resolve();
       } else {
@@ -143,7 +157,9 @@ export function setupRendererExport(cesdk: CreativeEditorSDK): void {
       console.error('Error encountered during scene export:', error);
       cesdk.ui.dismissNotification(progressNotification);
       cesdk.ui.showNotification({
-        message: 'Export failed',
+        message: `Export failed: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
         type: 'error'
       });
     }

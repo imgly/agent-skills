@@ -5,9 +5,9 @@
  */
 
 import type { ValidationResult } from '../Sidebar/Sidebar';
-import { resolveAssetPath } from '../resolveAssetPath';
 
 import classes from './ResultItem.module.css';
+import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
 const ICONS: Record<string, string> = {
   text: '/assets/icons/text.svg',
@@ -45,7 +45,7 @@ export function ResultItem({
       </div>
       <div className={classes.blockLabel}>
         <img
-          src={resolveAssetPath(iconPath)}
+          src={`${DEMO_ASSETS_BASE_URL}${iconPath}`}
           alt=""
           className={classes.blockIcon}
           width={16}

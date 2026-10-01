@@ -44,7 +44,7 @@ export function setupTranslations(cesdk: CreativeEditorSDK): void {
 
   cesdk.i18n.setTranslations({
     en: {
-      'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
+      'libraries.ly.img.audio.label': 'Soundstripe',
       'libraries.ly.img.video.scene.label': 'Example Templates'
     }
   });

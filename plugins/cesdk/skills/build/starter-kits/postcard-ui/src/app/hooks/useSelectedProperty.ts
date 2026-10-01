@@ -51,17 +51,20 @@ export const useProperty = <T extends BlockPropertyValue = BlockPropertyValue>(
     const blockToSubscribeTo = propertyName.startsWith('fill/')
       ? engine.block.getFill(block)
       : block;
-    let unsubscribe = engine.event.subscribe([blockToSubscribeTo], (events) => {
-      if (
-        events.length > 0 &&
-        !events.find(({ type }) => type === 'Destroyed')
-      ) {
-        const newProperty = getSelectedProperty();
-        if (newProperty !== undefined) {
-          setPropertyValue(newProperty);
+    const unsubscribe = engine.event.subscribe(
+      [blockToSubscribeTo],
+      (events) => {
+        if (
+          events.length > 0 &&
+          !events.find(({ type }) => type === 'Destroyed')
+        ) {
+          const newProperty = getSelectedProperty();
+          if (newProperty !== undefined) {
+            setPropertyValue(newProperty);
+          }
         }
       }
-    });
+    );
     return () => unsubscribe();
   }, [engine, propertyName, block, getSelectedProperty]);
 

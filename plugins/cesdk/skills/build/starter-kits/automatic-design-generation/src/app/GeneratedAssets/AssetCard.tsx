@@ -1,10 +1,10 @@
 import type { GeneratedAsset } from '../../imgly';
 
 import { Button } from '../Button/Button';
-import { resolveAssetPath } from '../resolveAssetPath';
 import { Spinner } from '../Spinner/Spinner';
 
 import styles from './GeneratedAssets.module.css';
+import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
 interface AssetCardProps {
   asset: GeneratedAsset;
@@ -45,7 +45,7 @@ export function AssetCard({ asset, onDownload, onEdit }: AssetCardProps) {
           <div className={styles.assetOverlay}>
             <button className={styles.editButton} onClick={onEdit}>
               <img
-                src={resolveAssetPath('/icons/edit.svg')}
+                src={`${DEMO_ASSETS_BASE_URL}/icons/edit.svg`}
                 alt=""
                 width={16}
                 height={16}
@@ -69,7 +69,7 @@ export function AssetCard({ asset, onDownload, onEdit }: AssetCardProps) {
           onClick={onDownload}
         >
           <img
-            src={resolveAssetPath('/icons/download.svg')}
+            src={`${DEMO_ASSETS_BASE_URL}/icons/download.svg`}
             alt=""
             width={16}
             height={16}

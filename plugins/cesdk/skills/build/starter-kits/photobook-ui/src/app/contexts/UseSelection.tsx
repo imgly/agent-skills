@@ -29,11 +29,18 @@ export function SelectionProvider({
             const newSelection = engine.block.findAllSelected();
             isChanging.current = true;
             // Prevent the immediate cancelling of this new selection
-            new Promise((resolve) =>
+            new Promise<void>((resolve) =>
               setTimeout(() => {
                 const currentSelection = engine.block.findAllSelected();
+                // Undo can destroy a block this correction still remembers, so
+                // take the engine's selection instead of restoring a dead one.
+                if (
+                  newSelection.some((block) => !engine.block.isValid(block))
+                ) {
+                  setSelection(currentSelection);
+                }
                 // Correct the selection state if differs
-                if (!isEqual(currentSelection, newSelection)) {
+                else if (!isEqual(currentSelection, newSelection)) {
                   if (newSelection.length === 0) {
                     engine.block.setSelected(currentSelection[0], false);
                   } else if (currentSelection.length > 0) {
@@ -49,7 +56,7 @@ export function SelectionProvider({
                   }
                 }
                 isChanging.current = false;
-                resolve;
+                resolve();
               }, 200)
             );
             if (isEqual(selection, newSelection)) {

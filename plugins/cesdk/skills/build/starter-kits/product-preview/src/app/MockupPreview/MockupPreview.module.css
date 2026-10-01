@@ -146,3 +146,18 @@
     ),
     rgba(255, 255, 255, 0.95) !important;
 }
+
+/* ============================================================================
+   Render Error
+   ============================================================================ */
+
+.error {
+  position: absolute;
+  inset: auto 16px 16px;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 14px;
+}

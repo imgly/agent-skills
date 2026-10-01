@@ -19,7 +19,7 @@ comprehensive color fill system with support for multiple color spaces.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v$UBQ_VERSION$/guides-fills-color-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2/examples/guides-fills-color-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.83.0/examples/guides-fills-color-browser/index.html)
 
 Color fills are one of the fundamental fill types in CE.SDK, allowing you to paint design blocks with solid, uniform colors. Unlike gradient fills that transition between colors or image fills that display photo content, color fills apply a single color across the entire block. The color fill system supports multiple color spaces including RGB for screen display, CMYK for print workflows, and Spot Colors for brand consistency.
 
@@ -295,6 +295,7 @@ class Example implements EditorPlugin {
     const rgbColor = { r: 1.0, g: 0.0, b: 0.0, a: 1.0 };
 
     // Convert to CMYK
+    await engine.editor.loadCMYKProfile();
     const cmykColor = engine.editor.convertColorToColorSpace(rgbColor, 'CMYK');
     // eslint-disable-next-line no-console
     console.log('Converted CMYK color:', cmykColor);
@@ -559,6 +560,7 @@ Convert colors between different color spaces using `convertColorToColorSpace()`
     const rgbColor = { r: 1.0, g: 0.0, b: 0.0, a: 1.0 };
 
     // Convert to CMYK
+    await engine.editor.loadCMYKProfile();
     const cmykColor = engine.editor.convertColorToColorSpace(rgbColor, 'CMYK');
     // eslint-disable-next-line no-console
     console.log('Converted CMYK color:', cmykColor);

@@ -14,6 +14,7 @@ func colorConversion(engine: Engine) async throws {
   engine.editor.setSpotColor(name: "Brand Red", c: 0.0, m: 0.95, y: 0.95, k: 0.1)
 
   let cmykCyan = Color.cmyk(c: 1.0, m: 0.0, y: 0.0, k: 0.0, tint: 1.0)
+  try await engine.editor.loadCMYKProfile()
   let cyanAsSrgb = try engine.editor.convertColorToColorSpace(color: cmykCyan, colorSpace: .sRGB)
   print("CMYK cyan as sRGB: \(cyanAsSrgb)")
 
@@ -63,26 +64,27 @@ func colorConversion(engine: Engine) async throws {
 }
 ```
 
-Convert colors between sRGB, CMYK, and spot color spaces programmatically in CE.SDK.
+Convert colors between sRGB, CMYK, and spot color spaces programmatically in
+CE.SDK.
 
 > **Reading time:** 8 minutes
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.82.2/engine-guides-color-conversion)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-color-conversion)
 
 CE.SDK supports three color spaces: sRGB, CMYK, and Spot Color. When building color interfaces or preparing designs for export, you may need to convert colors between these spaces. The engine handles the mathematical conversion automatically through the `convertColorToColorSpace(color:colorSpace:)` API.
 
-This guide covers how to convert colors between sRGB and CMYK, handle spot color conversions, identify color types with enum pattern matching, and understand how tint and alpha values are preserved during conversion.
+This guide covers how to convert colors between sRGB and CMYK, handle spot color conversions, identify color types with enum pattern matching, and understand how tint and alpha affect conversion.
 
 ## Supported Color Spaces
 
 CE.SDK supports conversion between three color spaces. Each is represented as a case of the `Color` enum:
 
-| Color Space | Swift Case | Use Case |
-|-------------|------------|----------|
-| **sRGB** | `Color.rgba(r:g:b:a:)` (0.0-1.0) | Screen display |
-| **CMYK** | `Color.cmyk(c:m:y:k:tint:)` (0.0-1.0) | Print workflows |
+| Color Space    | Swift Case                                 | Use Case             |
+| -------------- | ------------------------------------------ | -------------------- |
+| **sRGB**       | `Color.rgba(r:g:b:a:)` (0.0-1.0)           | Screen display       |
+| **CMYK**       | `Color.cmyk(c:m:y:k:tint:)` (0.0-1.0)      | Print workflows      |
 | **Spot Color** | `Color.spot(name:tint:externalReference:)` | Specialized printing |
 
 The `ColorSpace` enum identifies the target of a conversion. Its cases are `.sRGB`, `.cmyk`, and `.spotColor`.
@@ -104,17 +106,30 @@ engine.editor.setSpotColor(name: "Brand Red", c: 0.0, m: 0.95, y: 0.95, k: 0.1)
 
 You can call both overloads of `setSpotColor` for the same name so the spot color converts cleanly into either target space.
 
+## Loading the CMYK Profile
+
+In Managed scenes, RGB-to-CMYK conversion uses the document CMYK profile, or the fallback profile when no document profile is available. The synchronous conversion reports `COLOR.PROFILE_NOT_LOADED` only while a profile from a URI loads.
+
+Await `loadCMYKProfile()` before converting colors to avoid this loading error:
+
+```swift
+try await engine.editor.loadCMYKProfile()
+```
+
+The loading call can fail if no usable profile is available. RGB-to-CMYK conversion uses a simple formula if the profile cannot load or only converts CMYK to RGB. Legacy scenes always use the simple formula for RGB-to-CMYK conversion.
+
 ## Converting to sRGB
 
 Use `engine.editor.convertColorToColorSpace(color:colorSpace:)` with `colorSpace: .sRGB` to convert any color to sRGB. The method throws if the conversion fails.
 
 ```swift highlight-colorConversion-toSrgb
 let cmykCyan = Color.cmyk(c: 1.0, m: 0.0, y: 0.0, k: 0.0, tint: 1.0)
+try await engine.editor.loadCMYKProfile()
 let cyanAsSrgb = try engine.editor.convertColorToColorSpace(color: cmykCyan, colorSpace: .sRGB)
 print("CMYK cyan as sRGB: \(cyanAsSrgb)")
 ```
 
-When converting CMYK or spot colors to sRGB, the engine returns a `Color.rgba` value. The tint value from CMYK or spot colors becomes the alpha value in the returned sRGB color.
+When converting CMYK or spot colors to sRGB, the engine returns a `Color.rgba` value. The result is opaque. In Managed scenes, CMYK tint scales the ink values before conversion. RGB spot tint blends toward white.
 
 ## Converting to CMYK
 
@@ -126,9 +141,10 @@ let redAsCmyk = try engine.editor.convertColorToColorSpace(color: srgbRed, color
 print("sRGB red as CMYK: \(redAsCmyk)")
 ```
 
-When converting sRGB colors to CMYK, the alpha value becomes the tint value of the returned CMYK color. For spot colors, define a CMYK approximation with `setSpotColor(name:c:m:y:k:)` before converting.
+RGB alpha does not generally become CMYK tint. Preserve transparency separately. Spot colors retain a registered CMYK approximation. In Managed scenes, a spot with only an RGB approximation converts through the CMYK profile with its tint applied.
 
-> **Note:** Color space conversions may not be perfectly reversible. Some sRGB colors cannot be exactly represented in CMYK due to different color gamuts.
+> **Note:** Color space conversions may not be perfectly reversible. Some sRGB colors
+> cannot be exactly represented in CMYK due to different color gamuts.
 
 Spot colors convert into both target spaces using the approximations you registered above:
 
@@ -165,14 +181,14 @@ The `colorSpace` property returns a `ColorSpace` enum value (`.sRGB`, `.cmyk`, o
 
 ## Handling Tint and Alpha
 
-The tint and alpha values represent transparency in different color spaces:
+Alpha controls transparency. Tint controls color strength and does not generally preserve alpha:
 
-| Source | Target | Transformation |
-|--------|--------|----------------|
-| sRGB (alpha) | CMYK | Alpha becomes tint |
-| CMYK (tint) | sRGB | Tint becomes alpha |
-| Spot (tint) | sRGB | Tint becomes alpha |
-| Spot (tint) | CMYK | Tint is preserved |
+| Source       | Target | Transformation                                                                                |
+| ------------ | ------ | --------------------------------------------------------------------------------------------- |
+| sRGB (alpha) | CMYK   | Alpha is not generally preserved; keep transparency separately                                |
+| CMYK (tint)  | sRGB   | Tint scales ink values; the result is opaque                                                  |
+| Spot (tint)  | sRGB   | Tint changes the approximation; the result is opaque                                          |
+| Spot (tint)  | CMYK   | CMYK approximations retain tint; Managed RGB-only approximations apply tint before conversion |
 
 ## Practical Use Cases
 
@@ -209,26 +225,26 @@ if case .cmyk = exportInput {
 
 ## Troubleshooting
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Spot color converts to unexpected values | Spot color not defined | Call `setSpotColor(name:r:g:b:)` or `setSpotColor(name:c:m:y:k:)` before conversion |
-| Colors look different after conversion | Color gamut differences | Some sRGB colors cannot be exactly represented in CMYK |
-| Mixing up `Color` cases | Direct property access on the wrong case | Use a `switch` statement or `if case` pattern matching to safely unpack components |
+| Issue                                    | Cause                                    | Solution                                                                            |
+| ---------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------- |
+| Spot color converts to unexpected values | Spot color not defined                   | Call `setSpotColor(name:r:g:b:)` or `setSpotColor(name:c:m:y:k:)` before conversion |
+| Colors look different after conversion   | Color gamut differences                  | Some sRGB colors cannot be exactly represented in CMYK                              |
+| Mixing up `Color` cases                  | Direct property access on the wrong case | Use a `switch` statement or `if case` pattern matching to safely unpack components  |
 
 ## API Reference
 
-| Method | Description |
-|--------|-------------|
+| Method                                                      | Description                                                                                           |
+| ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `engine.editor.convertColorToColorSpace(color:colorSpace:)` | Convert a color to the target color space. Returns a `Color` enum value matching the requested space. |
-| `engine.editor.setSpotColor(name:r:g:b:)` | Define a spot color with an RGB approximation. Components range from 0.0 to 1.0. |
-| `engine.editor.setSpotColor(name:c:m:y:k:)` | Define a spot color with a CMYK approximation. Components range from 0.0 to 1.0. |
+| `engine.editor.setSpotColor(name:r:g:b:)`                   | Define a spot color with an RGB approximation. Components range from 0.0 to 1.0.                      |
+| `engine.editor.setSpotColor(name:c:m:y:k:)`                 | Define a spot color with a CMYK approximation. Components range from 0.0 to 1.0.                      |
 
-| Type | Description |
-|------|-------------|
-| `Color.rgba(r:g:b:a:)` | sRGB color for screen display. Alpha controls transparency. |
-| `Color.cmyk(c:m:y:k:tint:)` | CMYK color for print. Tint controls opacity. |
-| `Color.spot(name:tint:externalReference:)` | Named color for specialized printing. |
-| `ColorSpace` | Enum with cases `.sRGB`, `.cmyk`, and `.spotColor`. |
+| Type                                       | Description                                                 |
+| ------------------------------------------ | ----------------------------------------------------------- |
+| `Color.rgba(r:g:b:a:)`                     | sRGB color for screen display. Alpha controls transparency. |
+| `Color.cmyk(c:m:y:k:tint:)`                | CMYK color for print. Tint controls ink strength.           |
+| `Color.spot(name:tint:externalReference:)` | Named color for specialized printing.                       |
+| `ColorSpace`                               | Enum with cases `.sRGB`, `.cmyk`, and `.spotColor`.         |
 
 
 

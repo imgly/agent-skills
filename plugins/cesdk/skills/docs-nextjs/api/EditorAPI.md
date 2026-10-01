@@ -159,7 +159,8 @@ getTextCursorPositionInScreenSpaceY(): number
 ### unstable_isInteractionHappening()
 
 Check if a user interaction is currently happening.
-Detects active interactions like resize edits with drag handles or touch gestures.
+Detects active interactions like resize edits with drag handles, touch gestures, and content
+dragged over the canvas.
 
 ```typescript
 unstable_isInteractionHappening(): boolean
@@ -953,6 +954,11 @@ getSpotColorForCutoutType(type: CutoutType): string
 ### convertColorToColorSpace()
 
 Converts a color to the given color space.
+In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK
+uses the document or fallback CMYK profile.
+While the required profile loads from a URI, this conversion throws `COLOR.PROFILE_NOT_LOADED`.
+Await {@link loadCMYKProfile} first. RGB-to-CMYK conversion uses a simple formula
+if the profile only converts CMYK to RGB or cannot load.
 
 ```typescript
 convertColorToColorSpace(color: Color, colorSpace: 'sRGB'): RGBAColor
@@ -963,6 +969,27 @@ convertColorToColorSpace(color: Color, colorSpace: 'sRGB'): RGBAColor
 - `colorSpace` - The color space to convert to.
 
 **Returns:** The converted color.
+
+### loadCMYKProfile()
+
+Loads the CMYK profile used for managed color conversion and preview.
+The profile is a resource, and a resource takes several update cycles to arrive, so a
+conversion that needs it can fail right after the engine starts. Await this once and every later
+{@link convertColorToColorSpace} answers without handling `COLOR.PROFILE_NOT_LOADED`.
+Loads the profile the document names, otherwise the one the `fallbackCMYKProfileUri` setting
+names, which is the bundled default profile while that setting is unset. Call it again after
+changing either, so the new profile is loaded before the next conversion.
+```javascript
+await engine.editor.loadCMYKProfile();
+const rgb = engine.editor.convertColorToColorSpace(cmyk, 'sRGB');
+```
+
+```typescript
+loadCMYKProfile(): Promise<void>
+```
+
+**Returns:** A promise that resolves once the profile is loaded, and rejects with
+`COLOR.PROFILE_MISSING` when it cannot be read.
 
 ## Resource Management
 

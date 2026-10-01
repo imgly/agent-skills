@@ -8,9 +8,8 @@ import classNames from 'classnames';
 
 import type { Podcast } from '../api/transformer';
 
-import { resolveAssetPath } from '../resolveAssetPath';
-
 import styles from './PodcastSearch.module.css';
+import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
 interface PodcastSearchProps {
   searchQuery: string;
@@ -53,7 +52,7 @@ export function PodcastSearch({
               >
                 <div className={styles.placeholderImageWrapper}>
                   <img
-                    src={resolveAssetPath('/placeholder-search-result.png')}
+                    src={`${DEMO_ASSETS_BASE_URL}/placeholder-search-result.png`}
                     alt="Search Placeholder"
                     className={styles.placeholderImage}
                   />

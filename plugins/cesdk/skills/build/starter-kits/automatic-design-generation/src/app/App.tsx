@@ -5,7 +5,6 @@
 import { useState, useCallback } from 'react';
 import type { Configuration } from '@cesdk/cesdk-js';
 
-import type { OutputType } from '../imgly';
 import type { Podcast } from './api/transformer';
 
 import { useAssetGeneration } from './hooks/useAssetGeneration';
@@ -121,14 +120,6 @@ export default function App({ config }: AppProps) {
     [onPodcastSelect]
   );
 
-  // Type change wrapper
-  const handleTypeChange = useCallback(
-    (type: OutputType) => {
-      onTypeChange(type);
-    },
-    [onTypeChange]
-  );
-
   // Step navigation — only allow going back to completed steps
   const handleStepClick = useCallback(
     (step: number) => {
@@ -183,7 +174,7 @@ export default function App({ config }: AppProps) {
               onMessageChange={onMessageChange}
               onColorChange={onColorChange}
               onSizeToggle={onSizeToggle}
-              onTypeChange={handleTypeChange}
+              onTypeChange={onTypeChange}
             />
             <Preview previewAsset={previewAsset} outputType={outputType} />
           </div>

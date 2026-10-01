@@ -21,3 +21,12 @@ export interface BlockValidationResult {
 // ============================================================================
 
 export type BoundingBox = [number, number, number, number];
+
+/** An image's own pixel resolution. */
+export interface ImageSize {
+  width: number;
+  height: number;
+}
+
+/** Reads the resolution of the image behind a URL. */
+export type MeasureImage = (url: string) => Promise<ImageSize>;

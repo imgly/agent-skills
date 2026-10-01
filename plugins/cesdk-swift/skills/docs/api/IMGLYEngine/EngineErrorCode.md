@@ -2687,6 +2687,120 @@ case codecWebcodecsNotAvailableNode
 case codecWebcodecsNotSupported
 ```
 
+### EngineErrorCode.colorDocumentProfileNotSet
+
+```swift
+case colorDocumentProfileNotSet
+```
+
+### EngineErrorCode.colorImageDecodeFailed
+
+```swift
+case colorImageDecodeFailed
+```
+
+### EngineErrorCode.colorImageTransformFailed
+
+```swift
+case colorImageTransformFailed
+```
+
+### EngineErrorCode.colorImportedImageColorSpaceInvalid
+
+```swift
+case colorImportedImageColorSpaceInvalid
+```
+
+### EngineErrorCode.colorImportedImageColorTransformInvalid
+
+```swift
+case colorImportedImageColorTransformInvalid
+```
+
+### EngineErrorCode.colorImportedImageDecodeInvalid
+
+```swift
+case colorImportedImageDecodeInvalid
+```
+
+### EngineErrorCode.colorImportedImageDefinitionNotFound
+
+```swift
+case colorImportedImageDefinitionNotFound
+```
+
+### EngineErrorCode.colorImportedImageHasSourceSet
+
+```swift
+case colorImportedImageHasSourceSet
+```
+
+### EngineErrorCode.colorImportedImageNoImage
+
+```swift
+case colorImportedImageNoImage
+```
+
+### EngineErrorCode.colorImportedImageProfileMismatch
+
+```swift
+case colorImportedImageProfileMismatch
+```
+
+### EngineErrorCode.colorImportedImageRecordInvalid
+
+```swift
+case colorImportedImageRecordInvalid
+```
+
+### EngineErrorCode.colorProfileAssignmentSuperseded
+
+```swift
+case colorProfileAssignmentSuperseded
+```
+
+### EngineErrorCode.colorProfileDataSpaceMismatch
+
+```swift
+case colorProfileDataSpaceMismatch
+```
+
+### EngineErrorCode.colorProfileInvalid
+
+```swift
+case colorProfileInvalid
+```
+
+### EngineErrorCode.colorProfileMissing
+
+```swift
+case colorProfileMissing
+```
+
+### EngineErrorCode.colorProfileNotLoaded
+
+```swift
+case colorProfileNotLoaded
+```
+
+### EngineErrorCode.colorProfileSpaceMismatch
+
+```swift
+case colorProfileSpaceMismatch
+```
+
+### EngineErrorCode.colorProfileUnsupportedSpace
+
+```swift
+case colorProfileUnsupportedSpace
+```
+
+### EngineErrorCode.colorRenderingIntentInvalid
+
+```swift
+case colorRenderingIntentInvalid
+```
+
 ### EngineErrorCode.computeColorSpaceBitDepthUnsupported
 
 ```swift
@@ -4383,6 +4497,12 @@ case sceneArchivalRequestFailed
 
 ```swift
 case sceneArchiveAddResourceFailed
+```
+
+### EngineErrorCode.sceneArchiveBufferDataMissing
+
+```swift
+case sceneArchiveBufferDataMissing
 ```
 
 ### EngineErrorCode.sceneArchiveChunkReadFailed

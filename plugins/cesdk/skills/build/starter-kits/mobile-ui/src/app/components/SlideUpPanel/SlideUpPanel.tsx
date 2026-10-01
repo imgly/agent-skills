@@ -75,7 +75,7 @@ const SlideUpPanel = ({
         isExpanded,
         defaultHeadline,
         setIsExpanded: (value) => {
-          onExpandedChanged && onExpandedChanged(value);
+          onExpandedChanged?.(value);
         }
       }}
     >
@@ -116,12 +116,14 @@ type SlideUpPanelHeaderProps = {
   children?: ReactNode;
   headline?: string;
   closeComponent?: ReactNode;
+  closeLabel?: string;
 };
 
 const SlideUpPanelHeader = ({
   children,
   headline,
-  closeComponent = <CaretDownIcon />
+  closeComponent = <CaretDownIcon />,
+  closeLabel = 'Collapse'
 }: SlideUpPanelHeaderProps) => {
   const { setIsExpanded, isExpanded, defaultHeadline } = useSlideUp();
   return (
@@ -132,6 +134,7 @@ const SlideUpPanelHeader = ({
         {isExpanded && (
           <IconButton
             icon={closeComponent}
+            aria-label={closeLabel}
             onClick={() => setIsExpanded(false)}
             size="sm"
           ></IconButton>

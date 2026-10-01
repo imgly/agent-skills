@@ -914,7 +914,9 @@ The id of the [`textBackground(action:title:icon:isEnabled:isVisible:)`](../text
 ```swift
 @MainActor static func textBackground(action: @escaping InspectorBar.Context.To<Void> = { $0.eventHandler.send(.openSheet(type: .textBackground())) }, @ViewBuilder title: @escaping InspectorBar.Context.To<some View> = { _ in
       Text(.imgly.localized("ly_img_editor_inspector_bar_button_text_background"))
-    }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { BackgroundColorIcon(id: $0.selection.block) }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = { context in
+    }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { BackgroundColorIcon(id: $0.selection.block) }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { context in
+      try context.engine.block.getTextOnPath(context.selection.block) == nil
+    }, isVisible: @escaping InspectorBar.Context.To<Bool> = { context in
       try (context.selection.type == .text || context.selection.type == .caption) &&
         context.engine.block.isAllowedByScope(context.selection.block, key: "text/character")
     }) -> some InspectorBar.Item

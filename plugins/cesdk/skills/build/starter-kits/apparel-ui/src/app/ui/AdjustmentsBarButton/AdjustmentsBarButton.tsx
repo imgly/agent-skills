@@ -9,7 +9,10 @@ interface AdjustmentsBarButtonProps {
   onClick?: () => void;
 }
 
-const AdjustmentsBarButton = forwardRef(
+const AdjustmentsBarButton = forwardRef<
+  HTMLButtonElement,
+  AdjustmentsBarButtonProps
+>(
   (
     { children, isActive, iconColor, onClick }: AdjustmentsBarButtonProps,
     ref
@@ -21,7 +24,6 @@ const AdjustmentsBarButton = forwardRef(
         })}
         onClick={onClick}
         style={{ color: iconColor }}
-        // @ts-ignore
         ref={ref}
       >
         {children}

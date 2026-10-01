@@ -17,6 +17,7 @@ const IconButton = ({
   theme,
   onClick,
   size = 'md',
+  children,
   ...rest
 }: IconButtonProps) => {
   return (
@@ -32,6 +33,7 @@ const IconButton = ({
       <span className={classes.iconWrapper} style={{ color: iconColor }}>
         {icon}
       </span>
+      {children}
     </button>
   );
 };

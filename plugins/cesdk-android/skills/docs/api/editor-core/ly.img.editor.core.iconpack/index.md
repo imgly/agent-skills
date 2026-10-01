@@ -281,6 +281,12 @@ val IconPack.Music: ImageVector
 val IconPack.Pages: ImageVector
 ```
 
+### Pause
+
+```kotlin
+val IconPack.Pause: ImageVector
+```
+
 ### PlayBoxOutline
 
 ```kotlin
@@ -291,6 +297,12 @@ val IconPack.PlayBoxOutline: ImageVector
 
 ```kotlin
 val IconPack.PlayBox: ImageVector
+```
+
+### Play
+
+```kotlin
+val IconPack.Play: ImageVector
 ```
 
 ### Playbox
@@ -349,6 +361,18 @@ val IconPack.ReorderHorizontally: ImageVector
 val IconPack.Reorderhorizontally: ImageVector
 ```
 > **Deprecated:** Use IconPack.ReorderHorizontally instead. Replace with `IconPack.ReorderHorizontally`.
+
+### RepeatOff
+
+```kotlin
+val IconPack.RepeatOff: ImageVector
+```
+
+### Repeat
+
+```kotlin
+val IconPack.Repeat: ImageVector
+```
 
 ### Replace
 
@@ -491,6 +515,12 @@ val IconPack.TextPresets: ImageVector
 val IconPack.Textfields: ImageVector
 ```
 > **Deprecated:** Use IconPack.TextFields instead. Replace with `IconPack.TextFields`.
+
+### Timeline
+
+```kotlin
+val IconPack.Timeline: ImageVector
+```
 
 ### Transition
 

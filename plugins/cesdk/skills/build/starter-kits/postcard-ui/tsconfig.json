@@ -18,8 +18,15 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "allowImportingTsExtensions": true
   },
-  "include": ["*.ts", "src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "*.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
   "exclude": ["*.mjs", "node_modules", "dist"]
 }

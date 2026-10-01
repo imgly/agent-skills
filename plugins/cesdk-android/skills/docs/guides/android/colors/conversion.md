@@ -29,6 +29,10 @@ suspend fun colorConversion(engine: Engine): ColorConversionResult = withContext
         externalReference = "",
     )
 
+    // A CMYK conversion reads the document CMYK profile, which is a resource. Load it once so the
+    // conversions below do not have to handle COLOR.PROFILE_NOT_LOADED.
+    engine.editor.loadCMYKProfile()
+
     val cmykToSrgb = engine.editor.convertColorToColorSpace(
         color = cmykColor,
         colorSpace = ColorSpace.SRGB,
@@ -146,13 +150,14 @@ data class ColorConversionResult(
 )
 ```
 
-Convert colors between sRGB, CMYK, and spot color spaces programmatically in CE.SDK.
+Convert colors between sRGB, CMYK, and spot color spaces programmatically in
+CE.SDK.
 
 > **Reading time:** 7 minutes
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.2/engine-guides-colors-conversion)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-colors-conversion)
 
 <EngineReferenceNote {...props} />
 
@@ -164,11 +169,11 @@ This guide covers converting colors to sRGB and CMYK, converting spot colors thr
 
 CE.SDK works with these Android color value types:
 
-| Color Space | Android Type | Use Case |
-| --- | --- | --- |
-| **sRGB** | `RGBAColor` with `r`, `g`, `b`, `a` components from `0.0` to `1.0` | Screen display and previews |
-| **CMYK** | `CMYKColor` with `c`, `m`, `y`, `k`, `tint` components from `0.0` to `1.0` | Print workflows |
-| **SpotColor** | `SpotColor` with `name`, `tint`, and `externalReference` | Specialized printing with named inks |
+| Color Space   | Android Type                                                               | Use Case                             |
+| ------------- | -------------------------------------------------------------------------- | ------------------------------------ |
+| **sRGB**      | `RGBAColor` with `r`, `g`, `b`, `a` components from `0.0` to `1.0`         | Screen display and previews          |
+| **CMYK**      | `CMYKColor` with `c`, `m`, `y`, `k`, `tint` components from `0.0` to `1.0` | Print workflows                      |
+| **SpotColor** | `SpotColor` with `name`, `tint`, and `externalReference`                   | Specialized printing with named inks |
 
 Use `ColorSpace.SRGB` or `ColorSpace.CMYK` as conversion targets. A `SpotColor` can be converted by using the RGB or CMYK approximation registered for its name.
 
@@ -196,6 +201,18 @@ val spotColor = Color.fromSpotColor(
 )
 ```
 
+## Loading the CMYK Profile
+
+In Managed scenes, RGB-to-CMYK conversion uses the document CMYK profile, or the fallback profile when no document profile is available. The synchronous conversion reports `COLOR.PROFILE_NOT_LOADED` only while a profile from a URI loads.
+
+Await `loadCMYKProfile()` before converting colors to avoid this loading error:
+
+```kotlin
+engine.editor.loadCMYKProfile()
+```
+
+The loading call can fail if no usable profile is available. RGB-to-CMYK conversion uses a simple formula if the profile cannot load or only converts CMYK to RGB. Legacy scenes always use the simple formula for RGB-to-CMYK conversion.
+
 ## Converting to sRGB
 
 Use `engine.editor.convertColorToColorSpace(color, ColorSpace.SRGB)` when you need screen-display values. The returned value is a `Color`, so cast it to `RGBAColor` after converting to sRGB.
@@ -219,7 +236,7 @@ CMYK colors convert to `RGBAColor` components. Spot colors use the registered RG
 
 ## Converting to CMYK
 
-Use `engine.editor.convertColorToColorSpace(color, ColorSpace.CMYK)` when a print workflow needs CMYK components. For spot colors, register a CMYK approximation before converting to CMYK.
+Use `engine.editor.convertColorToColorSpace(color, ColorSpace.CMYK)` when a print workflow needs CMYK components. Spot colors retain a registered CMYK approximation. In Managed scenes, a spot with only an RGB approximation converts through the CMYK profile with its tint applied.
 
 ```kotlin highlight-android-convert-to-cmyk
     val srgbToCmyk = engine.editor.convertColorToColorSpace(
@@ -241,7 +258,8 @@ Use `engine.editor.convertColorToColorSpace(color, ColorSpace.CMYK)` when a prin
     println("Spot color converted to CMYK: $spotToCmyk")
 ```
 
-> **Note:** Color space conversions may not be perfectly reversible. Some sRGB colors cannot be represented exactly in CMYK because the color gamuts differ.
+> **Note:** Color space conversions may not be perfectly reversible. Some sRGB colors
+> cannot be represented exactly in CMYK because the color gamuts differ.
 
 ## Identifying Color Types
 
@@ -261,15 +279,19 @@ This lets you branch on `RGBAColor`, `CMYKColor`, and `SpotColor` before reading
 
 ## Handling Tint and Alpha
 
-On Android, alpha and tint are not simply copied between target fields. Non-black sRGB colors convert to CMYK with `tint = 1.0` even if the source has alpha, while pure black sRGB uses the source alpha as the CMYK tint. Tinted CMYK and spot colors convert to full-opacity sRGB previews, but their RGB components are blended toward white based on the tint. For example, pure CMYK red with `tint = 0.5` converts to a pink preview with `r = 1.0`, `g = 0.5`, `b = 0.5`, and `a = 1.0`.
+Alpha controls transparency. Tint controls color strength. Non-black sRGB colors convert to CMYK with `tint = 1.0`, even if the source has alpha. Pure black sRGB uses the source alpha as the CMYK tint.
 
-| Source | Target | Transformation |
-| --- | --- | --- |
-| sRGB alpha (non-black) | CMYK | The converted CMYK color uses `tint = 1.0` |
-| sRGB alpha (pure black) | CMYK | The converted CMYK color uses `tint = source alpha` |
-| CMYK tint | sRGB | RGB components blend toward white and `a = 1.0` |
-| SpotColor tint | sRGB | RGB components blend toward white and `a = 1.0` |
-| SpotColor tint | CMYK | The converted CMYK color uses `tint = source tint` |
+CMYK and spot colors convert to opaque sRGB previews. In Managed scenes, CMYK tint scales the ink values before profile conversion. Legacy scenes blend the converted RGB components toward white. RGB spot approximations blend toward white in both modes.
+
+When converting a spot color to CMYK, a registered CMYK approximation retains its tint. In Managed scenes, RGB-only approximations apply tint before profile conversion and return `tint = 1.0`. Legacy scenes convert RGB-only approximations without applying tint.
+
+| Source                  | Target | Transformation                                                                                                         |
+| ----------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------- |
+| sRGB alpha (non-black)  | CMYK   | The converted CMYK color uses `tint = 1.0`                                                                             |
+| sRGB alpha (pure black) | CMYK   | The converted CMYK color uses `tint = source alpha`                                                                    |
+| CMYK tint               | sRGB   | Managed scenes scale ink values; Legacy scenes blend RGB toward white. The result is opaque.                           |
+| SpotColor tint          | sRGB   | Tint changes the approximation; the result is opaque.                                                                  |
+| SpotColor tint          | CMYK   | CMYK approximations retain tint. Managed RGB-only approximations apply tint before conversion and return `tint = 1.0`. |
 
 The sample below uses a non-black transparent sRGB color, so its converted CMYK color keeps `tint = 1.0`.
 
@@ -334,22 +356,22 @@ val printColor = if (colorForExport is CMYKColor) {
 
 ## Troubleshooting
 
-| Issue | Cause | Solution |
-| --- | --- | --- |
-| Spot color converts to an unexpected value | The spot color has no approximation for the target color space | Call `setSpotColor(...)` with an `RGBAColor` or `CMYKColor` before conversion |
-| Colors differ after round-tripping | Color conversion is not always lossless | Avoid assuming that converting sRGB to CMYK and back returns the exact original value |
-| Type-specific properties are unavailable | `convertColorToColorSpace(...)` returns the base `Color` type | Cast after converting, or check the type with Kotlin `is` checks |
+| Issue                                      | Cause                                                          | Solution                                                                              |
+| ------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Spot color converts to an unexpected value | The spot color has no approximation for the target color space | Call `setSpotColor(...)` with an `RGBAColor` or `CMYKColor` before conversion         |
+| Colors differ after round-tripping         | Color conversion is not always lossless                        | Avoid assuming that converting sRGB to CMYK and back returns the exact original value |
+| Type-specific properties are unavailable   | `convertColorToColorSpace(...)` returns the base `Color` type  | Cast after converting, or check the type with Kotlin `is` checks                      |
 
 ## API Reference
 
-| API | Purpose |
-| --- | --- |
-| `engine.editor.convertColorToColorSpace(color=_, colorSpace=_)` | Converts a color to `ColorSpace.SRGB` or `ColorSpace.CMYK` |
-| `engine.editor.setSpotColor(name=_, color=Color.fromRGBA(r=_, g=_, b=_, a=_))` | Defines or updates an RGB approximation for a spot color |
-| `engine.editor.setSpotColor(name=_, color=Color.fromCMYK(c=_, m=_, y=_, k=_, tint=_))` | Defines or updates a CMYK approximation for a spot color |
-| `Color.fromRGBA(r=_, g=_, b=_, a=_)` | Creates an sRGB color value |
-| `Color.fromCMYK(c=_, m=_, y=_, k=_, tint=_)` | Creates a CMYK color value |
-| `Color.fromSpotColor(name=_, tint=_, externalReference=_)` | Creates a spot color reference that uses the registered approximation for its name |
+| API                                                                                    | Purpose                                                                            |
+| -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `engine.editor.convertColorToColorSpace(color=_, colorSpace=_)`                        | Converts a color to `ColorSpace.SRGB` or `ColorSpace.CMYK`                         |
+| `engine.editor.setSpotColor(name=_, color=Color.fromRGBA(r=_, g=_, b=_, a=_))`         | Defines or updates an RGB approximation for a spot color                           |
+| `engine.editor.setSpotColor(name=_, color=Color.fromCMYK(c=_, m=_, y=_, k=_, tint=_))` | Defines or updates a CMYK approximation for a spot color                           |
+| `Color.fromRGBA(r=_, g=_, b=_, a=_)`                                                   | Creates an sRGB color value                                                        |
+| `Color.fromCMYK(c=_, m=_, y=_, k=_, tint=_)`                                           | Creates a CMYK color value                                                         |
+| `Color.fromSpotColor(name=_, tint=_, externalReference=_)`                             | Creates a spot color reference that uses the registered approximation for its name |
 
 
 

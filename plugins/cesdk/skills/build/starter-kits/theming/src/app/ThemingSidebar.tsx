@@ -16,40 +16,17 @@ import {
   generateColorAbstractionTokensCanvas,
   generateColorAbstractionTokensSurface,
   generateStaticTokens
-} from '../imgly';
+} from '../imgly/color';
 import { ScaleControl, type Scale } from './ScaleControl';
 import { ThemeControl, type Theme } from './ThemeControl';
 import { ColorPicker } from './ColorPicker/ColorPicker';
+import { COLOR_PRESETS, THEME_COLORS, type ColorType } from './theme-colors';
 
 import styles from './ThemingSidebar.module.css';
-
-type ColorType = 'surface' | 'canvas' | 'active' | 'accent';
 
 interface ThemingSidebarProps {
   cesdk: CreativeEditorSDK | null;
 }
-
-const THEME_COLORS = {
-  light: {
-    surfaceColor: '#D6DBE1',
-    canvasColor: '#D6DBE1',
-    activeColor: '#4E545A',
-    accentColor: '#4260F5'
-  },
-  dark: {
-    surfaceColor: '#121A21',
-    canvasColor: '#121A21',
-    activeColor: '#F5F5F5',
-    accentColor: '#415AD3'
-  }
-};
-
-const COLOR_PRESETS = {
-  surface: ['#DCDFE1', '#230D38', '#242623', '#FCEFEB', '#060709'],
-  canvas: ['#DCDFE1', '#230D38', '#242623', '#FCEFEB', '#060709'],
-  active: ['#5D6266', '#D142A3', '#BBC6A4', '#F4BCAC', '#4D5E6D'],
-  accent: ['#3E4044', '#66D3EB', '#F6CE4B', '#265E7A', '#D0FDEB']
-};
 
 export function ThemingSidebar({ cesdk }: ThemingSidebarProps) {
   const [currentTheme, setCurrentTheme] = useState<Theme>('dark');

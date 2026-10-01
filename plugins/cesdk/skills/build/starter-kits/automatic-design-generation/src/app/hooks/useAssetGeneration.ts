@@ -52,7 +52,8 @@ const initialPreviewAsset: GeneratedAsset = {
   height: PREVIEW_SIZE,
   src: null,
   type: 'image',
-  sceneString: null
+  sceneString: null,
+  variables: {}
 };
 
 export function useAssetGeneration(): UseAssetGenerationReturn {
@@ -74,7 +75,8 @@ export function useAssetGeneration(): UseAssetGenerationReturn {
           height: SIZES[index].height,
           src: null,
           type: outputType,
-          sceneString: null
+          sceneString: null,
+          variables: {}
         }))
       );
     },
@@ -138,7 +140,8 @@ export function useAssetGeneration(): UseAssetGenerationReturn {
           height: SIZES[sizeIndex].height,
           src: null,
           type: outputType,
-          sceneString: null
+          sceneString: null,
+          variables: {}
         }
       ]);
 

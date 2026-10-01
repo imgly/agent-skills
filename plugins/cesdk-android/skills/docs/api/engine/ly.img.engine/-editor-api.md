@@ -56,7 +56,7 @@ Throws an exception if the device does not support displaying and working in the
 abstract fun convertColorToColorSpace(color: Color, colorSpace: ColorSpace): Color
 ```
 
-Converts a color to the given color space.
+Converts a color to the given color space. In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK uses the document or fallback CMYK profile. While the required profile loads from a URI, this conversion throws COLOR.PROFILE_NOT_LOADED. Await loadCMYKProfile first. RGB-to-CMYK conversion uses a simple formula if the profile only converts CMYK to RGB or cannot load.
 
 ### createBuffer
 
@@ -449,6 +449,14 @@ abstract fun isSelectionEnabled(block: DesignBlock): Boolean
 
 Checks whether the block can currently be selected.
 
+### loadCMYKProfile
+
+```kotlin
+abstract suspend fun loadCMYKProfile()
+```
+
+Loads the CMYK profile used for managed color conversion and preview. The profile is a resource, and a resource takes several update cycles to arrive, so a conversion that needs it can fail right after the engine starts. Await this once and every later convertColorToColorSpace answers without handling COLOR.PROFILE_NOT_LOADED.
+
 ### onCarouselPageChanged
 
 ```kotlin
@@ -616,7 +624,7 @@ abstract fun setMovementConstraint(rule: MovementConstraintRule)
 abstract fun setMovementConstraint(rules: List<MovementConstraintRule>)
 ```
 
-Set a rule that limits how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop). Programmatic API calls are not affected. MovementConstraintRule.overshoot is a non-negative fraction of the moved block's own size: 0f pins blocks fully inside the page, 0.3f allows 30% to extend past the page bounds. The rule's MovementConstraintRule.scope determines which blocks it applies to.
+Set a rule that limits how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop, nudge). Programmatic API calls are not affected. MovementConstraintRule.overshoot is a non-negative fraction of the moved block's own size: 0f pins blocks fully inside the page, 0.3f allows 30% to extend past the page bounds. The rule's MovementConstraintRule.scope determines which blocks it applies to.
 
 ### setRole
 

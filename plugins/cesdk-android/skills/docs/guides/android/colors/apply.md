@@ -100,6 +100,7 @@ fun colors(
 
         check(currentShadowColor == spotPartialYellow)
 
+        engine.editor.loadCMYKProfile()
         val cmykBlueConverted = engine.editor.convertColorToColorSpace(
             color = rgbaBlue,
             colorSpace = ColorSpace.CMYK,
@@ -138,7 +139,7 @@ CE.SDK's Android Engine API.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.82.2/engine-guides-colors)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-colors)
 
 <EngineReferenceNote {...props} />
 
@@ -241,6 +242,7 @@ Spot colors work with shadows the same way they work with fills and strokes.
 Use `engine.editor.convertColorToColorSpace()` when you need a color value in sRGB or CMYK.
 
 ```kotlin highlight-android-convert-color
+engine.editor.loadCMYKProfile()
 val cmykBlueConverted = engine.editor.convertColorToColorSpace(
     color = rgbaBlue,
     colorSpace = ColorSpace.CMYK,

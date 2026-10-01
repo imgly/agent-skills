@@ -9,6 +9,8 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initVideoPlayer } from './imgly';
+import { DEMO_ASSETS_BASE_URL } from './imgly/demo-assets';
+export { DEMO_ASSETS_BASE_URL };
 
 // ============================================================================
 // Configuration
@@ -34,8 +36,9 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // Debug access (remove in production)
+    // START_HIDDEN_BLOCK
     (window as any).cesdk = cesdk;
+    // END_HIDDEN_BLOCK
 
     await initVideoPlayer(cesdk);
 
@@ -45,7 +48,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
 
     // highlight-scene-loading
     await cesdk.load(
-      'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/video-fashion-portfolio/scene.scene'
+      `${DEMO_ASSETS_BASE_URL}/assets/video-fashion-portfolio/scene.scene`
     );
 
     cesdk.actions.run('zoom.toPage', {

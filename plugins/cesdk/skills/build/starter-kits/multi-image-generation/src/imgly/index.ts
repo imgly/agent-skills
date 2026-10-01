@@ -9,6 +9,7 @@
  * import {
  *   // Engine
  *   initMultiImageGenerationHeadlessEngine,
+ *   registerMultiImageGenerationAssetSources,
  *   renderSceneToImage,
  *
  *   // Editor Configuration Plugins
@@ -26,7 +27,6 @@
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
-import CreativeEngine from '@cesdk/engine';
 
 import {
   BlurAssetSource,
@@ -60,58 +60,8 @@ export type { Restaurant, Template, GeneratedAsset } from './types';
 // Engine Utilities
 // =============================================================================
 
-/**
- * Initialize a headless CE.SDK engine with standard asset sources.
- */
-export async function initMultiImageGenerationHeadlessEngine(
-  options: { license?: string; baseURL?: string } = {}
-): Promise<CreativeEngine> {
-  const config = {
-    baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,
-    ...(options.license != null && { license: options.license }),
-    ...(options.baseURL != null && { baseURL: options.baseURL })
-  };
-
-  const engine = await CreativeEngine.init(config);
-
-  // Add standard asset source plugins
-  await engine.addPlugin(new ImageColorsAssetSource());
-  await engine.addPlugin(new ColorPaletteAssetSource());
-  await engine.addPlugin(new TypefaceAssetSource());
-  await engine.addPlugin(new TextAssetSource());
-  await engine.addPlugin(new TextComponentAssetSource());
-  await engine.addPlugin(new VectorShapeAssetSource());
-  await engine.addPlugin(new StickerAssetSource());
-  await engine.addPlugin(new EffectsAssetSource());
-  await engine.addPlugin(new FiltersAssetSource());
-  await engine.addPlugin(new BlurAssetSource());
-  await engine.addPlugin(
-    new PagePresetsAssetSource({
-      include: [
-        'ly.img.page.presets.instagram.*',
-        'ly.img.page.presets.facebook.*',
-        'ly.img.page.presets.x.*',
-        'ly.img.page.presets.linkedin.*',
-        'ly.img.page.presets.pinterest.*',
-        'ly.img.page.presets.tiktok.*',
-        'ly.img.page.presets.youtube.*'
-      ]
-    })
-  );
-  await engine.addPlugin(new CropPresetsAssetSource());
-  await engine.addPlugin(
-    new UploadAssetSources({
-      include: ['ly.img.image.upload']
-    })
-  );
-  await engine.addPlugin(
-    new DemoAssetSources({
-      include: ['ly.img.image.*']
-    })
-  );
-
-  return engine;
-}
+export { initMultiImageGenerationHeadlessEngine } from './headless-engine';
+export { registerMultiImageGenerationAssetSources } from './asset-sources';
 
 // =============================================================================
 // Editor Initialization

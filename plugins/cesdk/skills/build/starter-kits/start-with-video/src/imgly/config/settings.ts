@@ -27,9 +27,6 @@ export function setupSettings(engine: CreativeEngine): void {
   // ============================================================================
 
   // #region Video Features
-  // Enable video captions functionality
-  engine.editor.setSetting('features/videoCaptionsEnabled' as any, true);
-
   // Show all timeline tracks (clips, overlays, audio) for full multi-track editing
   engine.editor.setSetting('timeline/trackVisibility', 'all');
 
@@ -82,6 +79,9 @@ export function setupSettings(engine: CreativeEngine): void {
   // - 'Direct': Select the exact element clicked
   // - 'Hierarchical': Traverse up/down the hierarchy on each click
   engine.editor.setSetting('doubleClickSelectionMode', 'Hierarchical');
+
+  // Press and hold an image, then drag it onto another image to exchange the two.
+  engine.editor.setSetting('dragToSwapFills/enabled', true);
   // #endregion
 
   // ============================================================================

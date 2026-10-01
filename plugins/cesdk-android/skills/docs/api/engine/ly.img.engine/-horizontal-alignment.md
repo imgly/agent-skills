@@ -3,6 +3,8 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
+The horizontal alignment of a text block. The engine reads these values by name, not by position. The order here is the display order, and it does not match the engine's numeric order.
+
 ```kotlin
 enum HorizontalAlignment : Enum<HorizontalAlignment>
 ```
@@ -25,6 +27,14 @@ enum entry Center
 ```
 
 Align text to the center.
+
+### Justify
+
+```kotlin
+enum entry Justify
+```
+
+The gaps between words are widened until each line fills the block. The last line of a paragraph keeps its natural width and aligns like Auto. A line with no gap to widen, such as CJK text, keeps its natural width too.
 
 ### Left
 

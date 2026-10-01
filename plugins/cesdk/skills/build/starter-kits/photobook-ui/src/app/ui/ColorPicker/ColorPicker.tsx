@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { useOnClickOutside } from './UseOnClickOutside';
 import { cloneElement, ReactElement, useRef, useState } from 'react';
 import { HexColorInput, HexAlphaColorPicker } from 'react-colorful';
-import CaretBottom from './CaretBottom.svg?react';
+import CaretBottom from './CaretBottom.svg';
 import classes from './ColorPicker.module.css';
 import useDebounceCallback from './UseDebounceCallback';
 
@@ -110,11 +110,9 @@ export const ColorPicker = ({
           )}
           ref={pickerRef}
         >
-          {/* @ts-ignore */}
           <HexAlphaColorPicker color={value} onChange={handleChange} />
           <div className={'flex space-x-2'}>
             <span>#</span>
-            {/* @ts-ignore */}
             <HexColorInput color={value} onChange={handleChange} />
           </div>
         </div>

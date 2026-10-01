@@ -7,6 +7,10 @@ This enum is used to specify the position of the navigation bar within the user 
 By setting the position to `Top` or `Bottom`, you can control the layout and placement of the
 navigation bar to better suit the user's workflow and preferences.
 
+## Deprecated
+
+Use the string literal type `BarPosition` ('top' | 'bottom') instead.
+
 ## Enumeration Members
 
 | Enumeration Member | Value |

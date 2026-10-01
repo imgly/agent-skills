@@ -6,7 +6,6 @@
 
 import classNames from 'classnames';
 
-import { resolveAssetPath } from '../resolveAssetPath';
 import type { Template } from '../types';
 
 import styles from './TemplateSelector.module.css';
@@ -65,7 +64,7 @@ export function TemplateSelector({
                     }}
                   >
                     <img
-                      src={resolveAssetPath('./icons/edit.svg')}
+                      src={'./icons/edit.svg'}
                       alt=""
                       width={16}
                       height={16}

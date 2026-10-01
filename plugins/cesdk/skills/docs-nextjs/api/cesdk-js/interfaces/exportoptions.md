@@ -20,6 +20,11 @@ adding underlayers.
   | `"exportPdfWithUnderlayer"`
   | `"underlayerSpotColorName"`
   | `"underlayerOffset"`
+  | `"exportPdfWithCropMarks"`
+  | `"exportPdfWithRegistrationMarks"`
+  | `"printMarkOffset"`
+  | `"cropMarkLength"`
+  | `"printMarkWidth"`
   | `"onProgress"`>
 
 ## Properties
@@ -34,6 +39,11 @@ adding underlayers.
 |  `exportPdfWithUnderlayer` | `EngineExportOptions` | - | `Pick.exportPdfWithUnderlayer` |
 |  `underlayerSpotColorName` | `EngineExportOptions` | - | `Pick.underlayerSpotColorName` |
 |  `underlayerOffset` | `EngineExportOptions` | - | `Pick.underlayerOffset` |
+|  `exportPdfWithCropMarks` | `EngineExportOptions` | - | `Pick.exportPdfWithCropMarks` |
+|  `exportPdfWithRegistrationMarks` | `EngineExportOptions` | - | `Pick.exportPdfWithRegistrationMarks` |
+|  `printMarkOffset` | `EngineExportOptions` | - | `Pick.printMarkOffset` |
+|  `cropMarkLength` | `EngineExportOptions` | - | `Pick.cropMarkLength` |
+|  `printMarkWidth` | `EngineExportOptions` | - | `Pick.printMarkWidth` |
 |  `onProgress` | `EngineExportOptions` | - | `Pick.onProgress` |
 |  `mimeType` | `MimeType_2` | The mime type of the exported blob | - |
 |  `pages?` | `number`\[] | The pages to export with the selected page as the default | - |

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import classes from './IconButton.module.css';
 
-interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon: React.ReactNode;
   children?: React.ReactNode;
   isActive?: boolean;

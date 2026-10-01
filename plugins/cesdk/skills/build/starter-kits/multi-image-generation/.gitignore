@@ -29,3 +29,7 @@ release/LICENSE
 release/hero.webp
 release/node_modules/
 release/dist/
+
+# Test output
+test-results/
+playwright-report/

@@ -87,6 +87,14 @@ Adds a custom asset source. Its ID has to be unique. `source`
 
 Apply an asset result to the active scene. The default behavior will instantiate a block and configure it according to the asset’s properties. `sourceID`
 
+### apply(sourceID:assetResult:placement:)
+
+```swift
+@MainActor func apply(sourceID: String, assetResult: AssetResult, placement: AssetPlacement) async throws -> DesignBlockID?
+```
+
+Apply an asset result to the active scene at the given placement. `sourceID`
+
 ### applyAssetSourceProperty(sourceID:assetResult:property:)
 
 ```swift
@@ -124,6 +132,14 @@ Notifies the engine that the contents of an asset source changed. `sourceID`
 ```
 
 The default implementation for applying an asset to the scene. This implementation is used when no `applyAsset` function is provided to `addSource`. `assetResult`
+
+### defaultApplyAsset(assetResult:placement:)
+
+```swift
+@MainActor func defaultApplyAsset(assetResult: AssetResult, placement: AssetPlacement) async throws -> DesignBlockID?
+```
+
+The default implementation for applying an asset to the scene, placing the created block as requested. `assetResult`
 
 ### defaultApplyAssetToBlock(assetResult:block:)
 

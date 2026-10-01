@@ -54,8 +54,9 @@ export default function App({ config }: AppProps) {
       // START_HIDDEN_BLOCK
       reportDemoPhase('created');
       // END_HIDDEN_BLOCK
-      // Debug access (remove in production)
+      // START_HIDDEN_BLOCK
       (window as any).cesdk = cesdk;
+      // END_HIDDEN_BLOCK
 
       // START_HIDDEN_BLOCK
 

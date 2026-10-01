@@ -6,24 +6,16 @@ import {
   useEffect,
   useState
 } from 'react';
+import { hexToRgba } from './color-utilities';
 import { useEngine } from './EngineContext';
 import { useSinglePageMode } from './SinglePageModeContext';
 import { usePagePreview } from './PagePreviewContext';
+import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
 
 // START_HIDDEN_BLOCK
 import { reportDemoPhase } from '../../../../shared/demo-preview/lifecycle';
+export { DEMO_ASSETS_BASE_URL };
 // END_HIDDEN_BLOCK
-
-/**
- * Demo assets for this example (images, scenes, fonts, …) are loaded from
- * the IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.2/starterkit-photobook-ui';
 
 const template = {
   name: 'Example Photobook',
@@ -32,32 +24,6 @@ const template = {
   scene: '/photobook.scene',
   keyword: 'family kids parents amusement'
 };
-
-function hexToRgba(hex: string): RGBAColor {
-  if (hex.length === 2) {
-    hex = hex.replace(/#([0-9a-fA-F])/g, '#$1$1$1$1$1$1');
-  }
-  if (hex.length === 4) {
-    hex = hex.replace(
-      /#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])/g,
-      '#$1$1$2$2$3$3'
-    );
-  }
-  const alphaHex = hex.length === 9 ? hex.slice(7, 9) : 'FF';
-
-  if (![7, 9].includes(hex.length)) {
-    throw new Error(
-      `hexToRgba expects a hex string of length 7 (including #).${hex}`
-    );
-  }
-
-  return {
-    r: parseInt(hex.slice(1, 3), 16) / 255,
-    g: parseInt(hex.slice(3, 5), 16) / 255,
-    b: parseInt(hex.slice(5, 7), 16) / 255,
-    a: parseInt(alphaHex, 16) / 255
-  };
-}
 
 interface EditorContextType {
   sceneIsLoaded: boolean;
@@ -74,15 +40,19 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
   const { setEnabled: setPagePreviewsEnabled } = usePagePreview();
 
   useEffect(() => {
+    // Loading a scene takes several awaits. Stop at each one if this component
+    // went away in the meantime, so nothing touches an editor that is gone.
+    let cancelled = false;
+    let zoomTimer: ReturnType<typeof setTimeout> | undefined;
+
     const loadTemplate = async () => {
       if (engineIsLoaded) {
         setEnabled(false);
         setSceneIsLoaded(false);
 
         // Load the photobook scene
-        await engine.scene.load(
-          `${DEMO_ASSETS_BASE_URL}${template.scene}`
-        );
+        await engine.scene.load(`${DEMO_ASSETS_BASE_URL}${template.scene}`);
+        if (cancelled) return;
 
         // Simulate that a user has replaced the placeholder images
         engine.block
@@ -100,7 +70,10 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         setEnabled(true);
 
         // Wait for zoom to finish
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => {
+          zoomTimer = setTimeout(resolve, 100);
+        });
+        if (cancelled) return;
         setSceneIsLoaded(true);
         // START_HIDDEN_BLOCK
         reportDemoPhase('ready');
@@ -109,7 +82,10 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     };
 
     loadTemplate();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      cancelled = true;
+      clearTimeout(zoomTimer);
+    };
   }, [engineIsLoaded, engine]);
 
   const findImageAssets = useCallback(async () => {

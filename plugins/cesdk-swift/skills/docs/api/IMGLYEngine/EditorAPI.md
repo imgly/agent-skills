@@ -55,7 +55,7 @@ If the engine does not support working in the P3 color space, this function thro
 @MainActor func convertColorToColorSpace(color: Color, colorSpace: ColorSpace) throws -> Color
 ```
 
-Converts a color to the given color space. `color`
+Converts a color to the given color space. In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK uses the document or fallback CMYK profile. While the required profile loads from a URI, this conversion throws `COLOR.PROFILE_NOT_LOADED`. Await [`loadCMYKProfile()`](loadcmykprofile().md) first. RGB-to-CMYK conversion uses a simple formula if the profile only converts CMYK to RGB or cannot load. `color`
 
 ### createBuffer()
 
@@ -503,6 +503,14 @@ Checks wether the block has selection and hover highlighting enabled or disabled
 
 Checks whether the block can currently be selected. `id`
 
+### loadCMYKProfile()
+
+```swift
+@MainActor func loadCMYKProfile() async throws
+```
+
+Loads the CMYK profile used for managed color conversion and preview. The profile is a resource, and a resource takes several update cycles to arrive, so a conversion that needs it can fail right after the engine starts. Await this once and every later [`convertColorToColorSpace(color:colorSpace:)`](./convertcolortocolorspace(color:colorspace:).md) answers without handling `COLOR.PROFILE_NOT_LOADED`.
+
 ### onHistoryUpdated
 
 > **Deprecated:** Use 'onHistoryUpdatedWithKind' instead.
@@ -713,7 +721,7 @@ Set multiple movement constraint rules at once. See [`setMovementConstraint(_:)`
 @MainActor func setMovementConstraint(_ rule: MovementConstraintRule) throws
 ```
 
-Set one or more rules that limit how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop). Programmatic API calls are not affected. `rule`
+Set one or more rules that limit how far blocks can be positioned outside their parent page during user interactions (drag, resize, touch gestures, crop, nudge). Programmatic API calls are not affected. `rule`
 
 ### setResizeHandlesVisibility(_:)
 

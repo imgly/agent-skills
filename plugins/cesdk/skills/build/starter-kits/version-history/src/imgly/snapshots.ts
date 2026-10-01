@@ -1,3 +1,5 @@
+import { DEMO_ASSETS_BASE_URL } from './demo-assets';
+
 /**
  * CE.SDK Version History - Snapshots Store
  *
@@ -7,8 +9,6 @@
  * This approach keeps all version history logic in the imgly/ module,
  * making the React components simple consumers of the state.
  */
-
-import { resolveAssetPath } from './resolveAssetPath';
 
 export interface Snapshot {
   thumbnailUrl: string;
@@ -23,20 +23,20 @@ export interface Snapshot {
 
 export const INITIAL_SNAPSHOTS: Snapshot[] = [
   {
-    thumbnailUrl: resolveAssetPath('/assets/snapshots/1/thumbnail.png'),
-    sceneUrl: resolveAssetPath('/assets/snapshots/1/scene.scene'),
+    thumbnailUrl: `${DEMO_ASSETS_BASE_URL}/assets/snapshots/1/thumbnail.png`,
+    sceneUrl: `${DEMO_ASSETS_BASE_URL}/assets/snapshots/1/scene.scene`,
     createdAt: '2023-11-30T08:00:00.000Z',
     userName: 'Patrick S.'
   },
   {
-    thumbnailUrl: resolveAssetPath('/assets/snapshots/2/thumbnail.png'),
-    sceneUrl: resolveAssetPath('/assets/snapshots/2/scene.scene'),
+    thumbnailUrl: `${DEMO_ASSETS_BASE_URL}/assets/snapshots/2/thumbnail.png`,
+    sceneUrl: `${DEMO_ASSETS_BASE_URL}/assets/snapshots/2/scene.scene`,
     createdAt: '2023-11-29T14:00:00.000Z',
     userName: 'Dustin K.'
   },
   {
-    thumbnailUrl: resolveAssetPath('/assets/snapshots/3/thumbnail.png'),
-    sceneUrl: resolveAssetPath('/assets/snapshots/3/scene.scene'),
+    thumbnailUrl: `${DEMO_ASSETS_BASE_URL}/assets/snapshots/3/thumbnail.png`,
+    sceneUrl: `${DEMO_ASSETS_BASE_URL}/assets/snapshots/3/scene.scene`,
     createdAt: '2023-11-28T12:00:00.000Z',
     userName: 'Marius W.'
   }

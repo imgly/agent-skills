@@ -1,6 +1,6 @@
 import type { Font, Typeface } from '@cesdk/engine';
 import { useEditor } from '../../contexts/EditorContext';
-import { autoPlaceBlockOnPage } from '../../../imgly/CreativeEngineUtils';
+import { autoPlaceBlockOnPage } from '../../../imgly/creative-engine-utils';
 import FontSelect from '../FontSelect/FontSelect';
 import SlideUpPanel, {
   SlideUpPanelBody,

@@ -11,6 +11,20 @@ enum ForceCropMode
 
 ## Members
 
+### allCases
+
+```swift
+static var allCases: [ForceCropMode] { get }
+```
+
+### defaultIfNeededThreshold
+
+```swift
+static let defaultIfNeededThreshold: Float
+```
+
+The threshold that [`ifNeeded`](ifneeded.md) uses.
+
 ### ForceCropMode.always
 
 ```swift
@@ -19,13 +33,13 @@ case always
 
 Applies the preset and always opens the crop UI.
 
-### ForceCropMode.ifNeeded
+### ForceCropMode.ifNeeded(threshold:)
 
 ```swift
-case ifNeeded
+case ifNeeded(threshold: Float)
 ```
 
-Only applies the preset if dimensions differ, then opens the crop UI.
+Only applies the preset if the dimensions differ by more than `threshold`, then opens the crop UI. `threshold`
 
 ### ForceCropMode.silent
 
@@ -34,3 +48,11 @@ case silent
 ```
 
 Applies the preset without opening the crop UI.
+
+### ifNeeded
+
+```swift
+static var ifNeeded: ForceCropMode { get }
+```
+
+[`ForceCropMode.ifNeeded(threshold:)`](./ifneeded(threshold:).md) with [`defaultIfNeededThreshold`](defaultifneededthreshold.md).
