@@ -66,9 +66,9 @@ Detailed explanation with diagrams or step-by-step breakdown as needed.
 
 ### Example Code
 
-\`\`\`typescript
+```typescript
 // Complete, working example
-\`\`\`
+```
 
 ### Key Points
 
@@ -86,5 +86,5 @@ workflows like asset loading pipelines, rendering lifecycles, or block hierarchi
 
 ## Related Skills
 
-- Use \`/cesdk:docs\` for source documentation and API reference
-- Use \`/cesdk:build\` when the user wants implementation, not just explanation
+- Use `/cesdk:docs` for source documentation and API reference
+- Use `/cesdk:build` when the user wants implementation, not just explanation

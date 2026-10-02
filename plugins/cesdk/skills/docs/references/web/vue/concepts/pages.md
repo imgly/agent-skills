@@ -18,7 +18,7 @@ Pages define the format of your designs—every graphic block, text element, and
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-concepts-pages-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-concepts-pages-browser/index.html)
 
 Pages provide the canvas and frame for your designs. Whether you're building a multi-page document, a social media carousel, or a video composition, understanding how pages work will help you with structuring your content correctly.
 
@@ -159,6 +159,20 @@ class Example implements EditorPlugin {
     const pagesByType = engine.block.findByType('page');
     console.log('Pages found by type:', pagesByType);
 
+    // Enable single page mode and show only the second page
+    engine.editor.setSetting('features/singlePageModeEnabled', true);
+    engine.scene.setCurrentPages([secondPage]);
+
+    // Or show more pages. Two pages form a facing pair
+    engine.scene.setCurrentPages([firstPage, secondPage]);
+
+    // Read the shown pages. The list is empty while the mode is disabled
+    const currentPages = engine.scene.getCurrentPages();
+    console.log('Current pages:', currentPages);
+
+    // Turn the mode off to show every page again
+    engine.editor.setSetting('features/singlePageModeEnabled', false);
+
     // Select the first page and zoom to fit
     engine.block.select(firstPage);
     engine.scene.enableZoomAutoFit(firstPage, 'Both');
@@ -269,7 +283,7 @@ The CE.SDK engine supports pages with different dimensions. When using stacked l
     engine.block.setFloat(scene, 'scene/pageDimensions/height', 600);
 ```
 
-You can set default page dimensions at the scene level using `engine.block.setFloat()` with `scene/pageDimensions/width` and `scene/pageDimensions/height`. The `scene/aspectRatioLock` property controls whether changing one dimension automatically adjusts the other. Individual pages can also have their dimensions set directly with `setWidth()` and `setHeight()`.
+You can set default page dimensions at the scene level using `engine.block.setFloat()` with `scene/pageDimensions/width` and `scene/pageDimensions/height`. If you do not set them, they report the current size of the first page, or 1 when that page has no absolute width and height. The `scene/aspectRatioLock` property controls whether changing one dimension automatically adjusts the other. Individual pages can also have their dimensions set directly with `setWidth()` and `setHeight()`.
 
 ## Finding and Navigating Pages
 
@@ -377,6 +391,42 @@ The scene's layout mode controls how multiple pages are arranged. Set this using
 - **HorizontalStack**: Pages arrange horizontally, side by side
 - **DepthStack**: Pages overlay each other, typically used for video editing
 - **Free**: Pages can be positioned freely without automatic arrangement
+
+## Single Page Mode
+
+Single page mode focuses the editor on one page (or a facing pair) of a multi-page design. All other pages leave the view but stay in the document and in the saved file. This mode is useful for print products like postcards, photo books, or apparel print areas.
+
+Enable the mode with the engine setting, then choose the shown page:
+
+```typescript highlight=highlight-single-page-mode
+    // Enable single page mode and show only the second page
+    engine.editor.setSetting('features/singlePageModeEnabled', true);
+    engine.scene.setCurrentPages([secondPage]);
+
+    // Or show more pages. Two pages form a facing pair
+    engine.scene.setCurrentPages([firstPage, secondPage]);
+
+    // Read the shown pages. The list is empty while the mode is disabled
+    const currentPages = engine.scene.getCurrentPages();
+    console.log('Current pages:', currentPages);
+
+    // Turn the mode off to show every page again
+    engine.editor.setSetting('features/singlePageModeEnabled', false);
+```
+
+When you use `CreativeEditorSDK`, you can also enable the mode at creation time with the `featureFlags: { singlePageMode: true }` configuration option and switch pages with `cesdk.switchPage(pageId)`, which also scrolls the viewport to the page.
+
+The mode behaves as follows:
+
+- The camera is constrained to the shown pages. Users cannot scroll to other pages.
+- `engine.scene.getPages()` still returns every page, and `engine.block.isVisible()` still returns `true` for a page out of the view. Use `engine.scene.getCurrentPages()` to read which pages the mode shows. Turning the mode off shows every page again, so the mode leaves no lasting change.
+- An export of the scene holds every page, also the pages that the mode does not show. An export leaves out only pages that you hide with `engine.block.setVisible()`.
+- Saving a scene includes every page. The mode bakes no visibility into the file.
+- Exporting a page holds that page, even while it is out of view. Exporting a scene holds every page, except pages hidden with `engine.block.setVisible()`.
+- Undo and redo keep the page the user is looking at. Switching pages adds no undo step.
+- Deleting the shown page shows the next page, or the previous page when the last page was deleted.
+- Switching pages deselects blocks on the page that leaves the view.
+- Adding a page in the editor UI shows the new page.
 
 ## Pages for Static Designs vs. Video Editing
 

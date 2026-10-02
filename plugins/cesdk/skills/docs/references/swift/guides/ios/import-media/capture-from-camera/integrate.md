@@ -114,7 +114,7 @@ The camera is a self-contained view that captures media and returns it to your a
 
 Add the [IMGLYUI Swift Package](https://github.com/imgly/IMGLYUI-swift) to your project with [Swift Package Manager](https://github.com/apple/swift-package-manager), then add a library product to your app target: the default `IMGLYUI` library for every UI module, or only `IMGLYCamera` to keep your app size minimal when that is all you `import`.
 
-For a step-by-step walkthrough of installing CE.SDK, see the get-started guides for [Existing Project with SwiftUI](../../get-started/ios/existing-project/swiftui.md) or [Existing Project with UIKit](../../get-started/ios/existing-project/uikit.md).
+For a step-by-step walkthrough of installing CE.SDK, see the [iOS Quickstart](../../get-started/ios/quickstart.md).
 
 ## Requirements
 

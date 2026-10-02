@@ -61,11 +61,11 @@ An export event contains only technical metadata—never your content. Image exp
 
 The user ID is transmitted exactly as your integration provides it and is used solely to deduplicate users when counting monthly active users. It doesn't need to be a real identifier: if you want to keep your internal user IDs private, pass a hashed or otherwise opaque value instead—deduplication works just as well, as long as the value is unique and stable per user.
 
-Export events are only sent when tracking is enabled for your license. Enterprise licenses with offline validation can opt out of tracking entirely; [contact our sales team](https://img.ly/forms/contact-sales) to explore these options.
+Export events are only sent when tracking is enabled for your license. Enterprise licenses with offline validation can opt out of tracking entirely; [contact our sales team](https://img.ly/forms/contact-sales/) to explore these options.
 
 ## Export Counts and Billing
 
-Export events are the technical metering primitive. How those counts map to your bill—which tiers apply and how usage is aggregated—is defined by your plan and contract, not by the SDK. If you have questions about how exports are billed under your agreement, [contact our sales team](https://img.ly/forms/contact-sales).
+Export events are the technical metering primitive. How those counts map to your bill—which tiers apply and how usage is aggregated—is defined by your plan and contract, not by the SDK. If you have questions about how exports are billed under your agreement, [contact our sales team](https://img.ly/forms/contact-sales/).
 
 
 

@@ -14,9 +14,9 @@ scene, modifies it, and exports it as an image**.
 
 CreativeEditor SDK (CE.SDK) lets you integrate a customizable image and video editor into your web app. It includes filters, text overlays, and other media editing tools, and adapts easily to your use case.
 
-CreativeEditor SDK is a commercial product. To use it, you need a valid license key. If you don’t have one yet, you can get a free trial or purchase a license.
+CreativeEditor SDK is a commercial product. To use it, you need a valid license key. If you don’t have one yet, contact our sales team or purchase a license.
 
-[Free Trial](https://img.ly/forms/free-trial)
+[Contact Sales](https://img.ly/forms/contact-sales/)
 
 [Purchase License](https://img.ly/pricing)
 
@@ -42,7 +42,7 @@ This guide is for developers who:
 Before getting started, ensure you have:
 
 - **Node.js v22 or later** installed. ([Download Node.js](https://nodejs.org/)).
-- A valid **CE.SDK license key** - Required for engine initialization. [Start a free trial](https://img.ly/forms/free-trial) to get your license key.
+- A valid **CE.SDK license key** - Required for engine initialization. [Contact sales](https://img.ly/forms/contact-sales/) to get your license key.
 
 ## Step 1: Set Up Your Project
 

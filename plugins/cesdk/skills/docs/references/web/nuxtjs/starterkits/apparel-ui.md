@@ -16,7 +16,7 @@ Custom, mobile apparel UI for creating print-ready design.
 >
 > - [View source on GitHub](https://github.com/imgly/starterkit-apparel-ui-react-web)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-apparel-ui/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/starterkit-apparel-ui/index.html)
 
 ***
 
@@ -150,7 +150,7 @@ The Apparel Editor includes everything needed for apparel design workflows.
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get a license key and remove the watermark.
 
 ***
 
@@ -169,7 +169,7 @@ The Apparel Editor includes everything needed for apparel design workflows.
 ### Watermark appears in production
 
 - **Add your license key**: Set the `license` property in your configuration
-- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+- **Get a license**: Contact us at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
 
 ***
 

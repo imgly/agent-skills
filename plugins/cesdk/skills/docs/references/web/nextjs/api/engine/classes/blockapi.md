@@ -156,13 +156,15 @@ Manage the complete lifecycle: create, find, duplicate, destroy, and serialize b
   </summary>
 
   If a page with multiple children is given, the entire hierarchy is saved.
+  The resources of that whole hierarchy are checked against `allowedResourceSchemes`
+  and are passed to `onDisallowedResourceScheme`.
 
   #### Parameters
 
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `blocks` | `number`\[] | The blocks to save. |
-  | `allowedResourceSchemes?` | `string`\[] | The resource schemes to allow in the saved string. Defaults to \['buffer', 'http', 'https']. |
+  | `allowedResourceSchemes?` | `string`\[] | The resource schemes to allow in the saved string. Defaults to \['buffer', 'bundle', 'http', 'https']. |
   | `onDisallowedResourceScheme?` | (`url`, `dataHash`) => `Promise`\<`string`> | An optional callback that is called for each resource URL that has a scheme absent from `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the resource's data. The callback should return a new URL for the resource, which will be used in the serialized scene. The callback is expected to return the original URL if no persistence is needed. If the callback throws, rejects, or returns no string, the returned promise rejects and the blocks keep their URLs. |
 
   #### Returns
@@ -2493,6 +2495,9 @@ Manage a block's selection state and visibility on the canvas.
 
     <br /><p>Gets the visibility state of a block.</p>
   </summary>
+
+  Reports the visibility you set, not the current view. A page that single page mode
+  takes out of view stays visible; use `scene.getCurrentPages` to read the view.
 
   #### Parameters
 

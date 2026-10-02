@@ -531,11 +531,16 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `component.themeSelect` | `string` |
 |  `component.themeSelect.dark` | `string` |
 |  `component.themeSelect.dark.description` | `string` |
+|  `component.themeSelect.darkHighContrast` | `string` |
+|  `component.themeSelect.darkHighContrast.description` | `string` |
+|  `component.themeSelect.description` | `string` |
 |  `component.themeSelect.dialog` | `string` |
 |  `component.themeSelect.dialog.description` | `string` |
 |  `component.themeSelect.generate` | `string` |
 |  `component.themeSelect.light` | `string` |
 |  `component.themeSelect.light.description` | `string` |
+|  `component.themeSelect.lightHighContrast` | `string` |
+|  `component.themeSelect.lightHighContrast.description` | `string` |
 |  `component.themeSelect.system` | `string` |
 |  `component.themeSelect.system.description` | `string` |
 |  `component.timeline.audio.options.description` | `string` |
@@ -685,6 +690,10 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `error.editorCropElementNotCroppable.description` | `string` |
 |  `error.editorCropNoSelectedElement` | `string` |
 |  `error.editorCropNoSelectedElement.description` | `string` |
+|  `error.editorCurrentPagesDuplicatePage` | `string` |
+|  `error.editorCurrentPagesDuplicatePage.description` | `string` |
+|  `error.editorCurrentPagesInvalidCount` | `string` |
+|  `error.editorCurrentPagesInvalidCount.description` | `string` |
 |  `error.editorNoSceneAvailable` | `string` |
 |  `error.editorNoSceneAvailable.description` | `string` |
 |  `error.editorPagesNotResized` | `string` |

@@ -113,6 +113,20 @@ suspend fun pages(engine: Engine): PagesGuideSummary = withContext(engine.dispat
     val pagesByType = engine.block.findByType(DesignBlockType.Page)
     val nearestPages = engine.scene.findNearestToViewPortCenterByType(DesignBlockType.Page)
 
+    // Enable single page mode and show only the second page.
+    engine.editor.setSettingBoolean("features/singlePageModeEnabled", true)
+    engine.scene.setCurrentPages(listOf(secondPage))
+
+    // Or show more pages. Two pages form a facing pair.
+    engine.scene.setCurrentPages(listOf(firstPage, secondPage))
+
+    // Read the shown pages. The list is empty while the mode is disabled.
+    val currentPages = engine.scene.getCurrentPages()
+    println("Current pages: $currentPages")
+
+    // Turn the mode off to show every page again.
+    engine.editor.setSettingBoolean("features/singlePageModeEnabled", false)
+
     engine.block.forceLoadResources(listOf(imageBlock, textBlock))
 
     PagesGuideSummary(
@@ -238,7 +252,7 @@ engine.block.setFloat(
 )
 ```
 
-Use the scene-level properties `scene/pageDimensions/width` and `scene/pageDimensions/height` to define the shared default size for pages. The `scene/aspectRatioLock` property controls whether width and height stay linked when you change one dimension.
+Use the scene-level properties `scene/pageDimensions/width` and `scene/pageDimensions/height` to define the shared default size for pages. If you do not set them, they report the current size of the first page, or 1 when that page has no absolute width and height. The `scene/aspectRatioLock` property controls whether width and height stay linked when you change one dimension.
 
 Individual pages can also be sized directly with `engine.block.setWidth()` and `engine.block.setHeight()`. Keep the scene-level dimensions as the shared default for stacked layouts, and use `SceneLayout.FREE` when different page sizes are intentional.
 
@@ -347,6 +361,30 @@ The scene layout controls how multiple pages are arranged. Use `engine.scene.cre
 | `SceneLayout.DEPTH_STACK` | Pages overlap in depth order, which is common for video scenes. |
 | `SceneLayout.FREE` | Pages can be positioned freely and may use different dimensions. |
 
+## Single Page Mode
+
+Single page mode focuses the editor on one page (or a facing pair) of a multi-page design. All other pages leave the view but stay in the document and in the saved file. This mode is useful for print products like postcards, photo books, or apparel print areas.
+
+Enable the mode with the engine setting, then choose the shown page:
+
+```kotlin highlight-android-pages-single-page-mode
+    // Enable single page mode and show only the second page.
+    engine.editor.setSettingBoolean("features/singlePageModeEnabled", true)
+    engine.scene.setCurrentPages(listOf(secondPage))
+
+    // Or show more pages. Two pages form a facing pair.
+    engine.scene.setCurrentPages(listOf(firstPage, secondPage))
+
+    // Read the shown pages. The list is empty while the mode is disabled.
+    val currentPages = engine.scene.getCurrentPages()
+    println("Current pages: $currentPages")
+
+    // Turn the mode off to show every page again.
+    engine.editor.setSettingBoolean("features/singlePageModeEnabled", false)
+```
+
+The mode is view state only. `engine.scene.getPages()` still returns every page and a saved scene keeps every page. `engine.block.isVisible()` still returns `true` for a page out of the view, and `engine.scene.getCurrentPages()` reports the view. An export of the scene holds every page, also the pages that the mode does not show. An export leaves out only pages that you hide with `engine.block.setVisible()`.
+
 ## Pages for Static Designs vs. Video Editing
 
 Pages behave differently depending on the scene mode you choose.
@@ -388,6 +426,8 @@ If `engine.scene.getPages()` returns an empty list, make sure a scene exists and
 | `engine.scene.setLayout(layout=SceneLayout.HORIZONTAL_STACK)` | Change how existing pages are arranged. |
 | `engine.scene.getPages()` | Return all pages in scene order. |
 | `engine.scene.getCurrentPage()` | Return the selected or nearest visible page. |
+| `engine.scene.setCurrentPages(pages = listOf(page))` | Show the given pages in single page mode. |
+| `engine.scene.getCurrentPages()` | Return the pages single page mode shows. |
 | `engine.scene.findNearestToViewPortCenterByType(type=DesignBlockType.Page)` | Sort pages by distance to the viewport center. |
 | `engine.block.findByType(type=DesignBlockType.Page)` | Find all page blocks in the scene. |
 | `engine.block.setFloat(block=_, property="scene/pageDimensions/width", value=_)` | Set the shared page width. |

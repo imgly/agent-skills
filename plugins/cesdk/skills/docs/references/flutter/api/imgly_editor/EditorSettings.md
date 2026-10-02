@@ -58,7 +58,7 @@ us accurately calculate monthly active users (MAU).
 - **Kind:** Constructor
 
 ```dart
-EditorSettings({this.license, this.baseUri = "https://cdn.img.ly/packages/imgly/cesdk-flutter/1.82.1/assets", this.userId})
+EditorSettings({this.license, this.baseUri = "https://cdn.img.ly/packages/imgly/cesdk-flutter/1.83.0/assets", this.userId})
 ```
 
 Creates new `EditorSettings` from the given

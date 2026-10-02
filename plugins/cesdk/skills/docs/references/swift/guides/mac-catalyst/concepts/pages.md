@@ -101,6 +101,20 @@ func pages(engine: Engine) async throws {
   // Find pages using the block API
   let pagesByType = try engine.block.find(byType: .page)
   print("Pages found by type:", pagesByType)
+
+  // Enable single page mode and show only the second page
+  try engine.editor.setSettingBool("features/singlePageModeEnabled", value: true)
+  try engine.scene.setCurrentPages([secondPage])
+
+  // Or show more pages. Two pages form a facing pair
+  try engine.scene.setCurrentPages([firstPage, secondPage])
+
+  // Read the shown pages. The array is empty while the mode is disabled
+  let currentPages = try engine.scene.getCurrentPages()
+  print("Current pages:", currentPages)
+
+  // Turn the mode off to show every page again
+  try engine.editor.setSettingBool("features/singlePageModeEnabled", value: false)
 }
 ```
 
@@ -202,7 +216,7 @@ try engine.block.setFloat(scene, property: "scene/pageDimensions/width", value: 
 try engine.block.setFloat(scene, property: "scene/pageDimensions/height", value: 600)
 ```
 
-Set default page dimensions at the scene level using `engine.block.setFloat(_:property:value:)` with `scene/pageDimensions/width` and `scene/pageDimensions/height`. The `scene/aspectRatioLock` property controls whether changing one dimension automatically adjusts the other. Individual pages can also have their dimensions set directly with `setWidth()` and `setHeight()`.
+Set default page dimensions at the scene level using `engine.block.setFloat(_:property:value:)` with `scene/pageDimensions/width` and `scene/pageDimensions/height`. If you do not set them, they report the current size of the first page, or 1 when that page has no absolute width and height. The `scene/aspectRatioLock` property controls whether changing one dimension automatically adjusts the other. Individual pages can also have their dimensions set directly with `setWidth()` and `setHeight()`.
 
 ## Finding and Navigating Pages
 
@@ -305,6 +319,30 @@ The scene's layout mode controls how multiple pages are arranged. Set this when 
 | `.horizontalStack` | Pages arrange horizontally, side by side |
 | `.depthStack` | Pages overlay each other, typically used in video mode |
 | `.free` | Pages can be positioned freely without automatic arrangement |
+
+## Single Page Mode
+
+Single page mode focuses the editor on one page (or a facing pair) of a multi-page design. All other pages leave the view but stay in the document and in the saved file. This mode is useful for print products like postcards, photo books, or apparel print areas.
+
+Enable the mode with the engine setting, then choose the shown page:
+
+```swift highlight-pages-singlePageMode
+  // Enable single page mode and show only the second page
+  try engine.editor.setSettingBool("features/singlePageModeEnabled", value: true)
+  try engine.scene.setCurrentPages([secondPage])
+
+  // Or show more pages. Two pages form a facing pair
+  try engine.scene.setCurrentPages([firstPage, secondPage])
+
+  // Read the shown pages. The array is empty while the mode is disabled
+  let currentPages = try engine.scene.getCurrentPages()
+  print("Current pages:", currentPages)
+
+  // Turn the mode off to show every page again
+  try engine.editor.setSettingBool("features/singlePageModeEnabled", value: false)
+```
+
+The mode is view state only. `engine.scene.getPages()` still returns every page and a saved scene keeps every page. `engine.block.isVisible(_:)` still returns `true` for a page out of the view, and `engine.scene.getCurrentPages()` reports the view. An export of the scene holds every page, also the pages that the mode does not show. An export leaves out only pages that you hide with `engine.block.setVisible(_:visible:)`.
 
 ## Next Steps
 

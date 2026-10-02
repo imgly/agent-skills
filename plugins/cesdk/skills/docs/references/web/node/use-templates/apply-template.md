@@ -71,13 +71,14 @@ async function run() {
     await engine.scene.applyTemplateFromURL(templateUrl);
     console.log('✓ Template applied from URL');
 
-    // Verify that page dimensions are preserved after applying template
-    const width = engine.block.getWidth(page);
-    const height = engine.block.getHeight(page);
+    // Applying a template replaces the page, so read the page again
+    const appliedPage = engine.scene.getPages()[0];
+    const width = engine.block.getWidth(appliedPage);
+    const height = engine.block.getHeight(appliedPage);
     console.log(`✓ Page dimensions preserved: ${width}x${height}`);
 
     // Export the result with consistent dimensions
-    const blob = await engine.block.export(page, {
+    const blob = await engine.block.export(appliedPage, {
       mimeType: 'image/png',
       targetWidth: 1080,
       targetHeight: 1920
@@ -95,12 +96,13 @@ async function run() {
     console.log('✓ Switched to alternative template');
 
     // Verify dimensions remain the same
-    const newWidth = engine.block.getWidth(page);
-    const newHeight = engine.block.getHeight(page);
+    const switchedPage = engine.scene.getPages()[0];
+    const newWidth = engine.block.getWidth(switchedPage);
+    const newHeight = engine.block.getHeight(switchedPage);
     console.log(`✓ Dimensions after switch: ${newWidth}x${newHeight}`);
 
     // Export the alternative template
-    const blob2 = await engine.block.export(page, {
+    const blob2 = await engine.block.export(switchedPage, {
       mimeType: 'image/png',
       targetWidth: 1080,
       targetHeight: 1920
@@ -191,12 +193,13 @@ To apply a template from a URL, call `engine.scene.applyTemplateFromURL()` with 
 
 ## Verify Preserved Dimensions
 
-After applying the template, the page dimensions remain unchanged. You can verify this by checking the width and height of the page.
+After applying the template, the page dimensions remain unchanged. Applying a template replaces the page, so read the page again with `engine.scene.getPages()` before you check its width and height.
 
 ```typescript highlight=highlight-verify-dimensions
-// Verify that page dimensions are preserved after applying template
-const width = engine.block.getWidth(page);
-const height = engine.block.getHeight(page);
+// Applying a template replaces the page, so read the page again
+const appliedPage = engine.scene.getPages()[0];
+const width = engine.block.getWidth(appliedPage);
+const height = engine.block.getHeight(appliedPage);
 console.log(`✓ Page dimensions preserved: ${width}x${height}`);
 ```
 
@@ -206,7 +209,7 @@ Export the result with the same dimensions you configured. This ensures all outp
 
 ```typescript highlight=highlight-export
     // Export the result with consistent dimensions
-    const blob = await engine.block.export(page, {
+    const blob = await engine.block.export(appliedPage, {
       mimeType: 'image/png',
       targetWidth: 1080,
       targetHeight: 1920
@@ -230,12 +233,13 @@ You can apply multiple templates to the same scene. Each application replaces th
     console.log('✓ Switched to alternative template');
 
     // Verify dimensions remain the same
-    const newWidth = engine.block.getWidth(page);
-    const newHeight = engine.block.getHeight(page);
+    const switchedPage = engine.scene.getPages()[0];
+    const newWidth = engine.block.getWidth(switchedPage);
+    const newHeight = engine.block.getHeight(switchedPage);
     console.log(`✓ Dimensions after switch: ${newWidth}x${newHeight}`);
 
     // Export the alternative template
-    const blob2 = await engine.block.export(page, {
+    const blob2 = await engine.block.export(switchedPage, {
       mimeType: 'image/png',
       targetWidth: 1080,
       targetHeight: 1920
@@ -270,7 +274,7 @@ Verify network connectivity and URL validity. In server environments, ensure you
 
 ### Content Not Scaling as Expected
 
-Template content scales to fit the current page dimensions. Verify page dimensions are set before applying the template.
+Template content scales to `scene/pageDimensions/width` and `scene/pageDimensions/height`. Until you set them, the engine uses the size of the first page. A value that you set wins over the page size, and a loaded scene keeps its saved value. When there is no page size to use, the template keeps its own.
 
 ## Related Guides
 

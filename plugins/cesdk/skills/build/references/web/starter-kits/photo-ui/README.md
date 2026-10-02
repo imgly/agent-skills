@@ -29,9 +29,6 @@ npm install
 ```bash
 # Start development server
 npm run dev
-
-# Start with local CE.SDK build (for monorepo development)
-npm run dev:local
 ```
 
 The application will be available at `http://localhost:5173`.
@@ -117,14 +114,12 @@ Sample images are located in `public/images/`. You can replace them with your ow
 
 ## Scripts
 
-| Script              | Description                           |
-| ------------------- | ------------------------------------- |
-| `npm run dev`       | Start development server              |
-| `npm run dev:local` | Start with local CE.SDK build         |
-| `npm run build`     | Build for production                  |
-| `npm run preview`   | Preview production build              |
-| `npm run check:all` | Run all checks (syntax, format, lint) |
-| `npm run fix:all`   | Fix formatting and linting issues     |
+| Script                 | Description                  |
+| ---------------------- | ---------------------------- |
+| `npm run dev`          | Start development server     |
+| `npm run build`        | Build for production         |
+| `npm run preview`      | Preview production build     |
+| `npm run check:syntax` | Run TypeScript type checking |
 
 ## Learn More
 

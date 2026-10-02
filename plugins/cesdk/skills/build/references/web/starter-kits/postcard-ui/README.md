@@ -33,9 +33,6 @@ npm install
 ```bash
 # Start development server
 npm run dev
-
-# Start with local CE.SDK assets (monorepo only)
-npm run dev:local
 ```
 
 ### Build
@@ -43,9 +40,6 @@ npm run dev:local
 ```bash
 # Production build
 npm run build
-
-# Build with local CE.SDK assets (monorepo only)
-npm run build:local
 ```
 
 ## Project Structure
@@ -119,12 +113,6 @@ Owns all React UI that is specific to the postcard use-case:
 | ----- | ------- |
 | `@/*` | `src/*` |
 
-### Type checking
-
-```bash
-npm run check:syntax  # TypeScript strict-mode type check
-```
-
 ## Key Components
 
 ### Contexts
@@ -182,10 +170,6 @@ All components use CSS modules for scoped styling. Global styles are defined in 
 - `npm run build` - Production build
 - `npm run preview` - Preview production build
 - `npm run check:syntax` - TypeScript strict-mode type checking
-- `npm run check:format` - Prettier formatting check
-- `npm run check:lint` - ESLint checking
-- `npm run check:all` - Run all checks
-- `npm run fix:all` - Auto-fix formatting and linting issues
 
 ## Demo Assets
 

@@ -18,7 +18,7 @@ Transform your existing InDesign templates for use in the CE.SDK with our Import
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-indesign-template-import-react-web/tree/release-1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-indesign-template-import/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/starterkit-indesign-template-import/index.html)
 
 ***
 
@@ -556,7 +556,7 @@ The InDesign Template Import starter kit enables professional publishing workflo
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get a license key and remove the watermark.
 
 ***
 
@@ -583,7 +583,7 @@ The InDesign Template Import starter kit enables professional publishing workflo
 ### Watermark appears in production
 
 - **Add your license key**: Set the `license` property in your configuration
-- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+- **Get a license**: Contact us at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
 
 ***
 

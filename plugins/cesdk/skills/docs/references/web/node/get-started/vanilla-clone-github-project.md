@@ -32,7 +32,7 @@ Before getting started, ensure you have the following:
 
 - **Git** - Required to clone the project repository. [Download Git](https://git-scm.com/downloads).
 - **The latest LTS version of Node.js and npm** - Necessary for installing dependencies and running the script. [Download Node.js](https://nodejs.org/).
-- A valid **CE.SDK license key** ([Get a free trial](https://img.ly/forms/free-trial)).
+- A valid **CE.SDK license key** ([Request a license](https://img.ly/forms/contact-sales/)).
 
 ## Step 1: Clone the GitHub Repository
 

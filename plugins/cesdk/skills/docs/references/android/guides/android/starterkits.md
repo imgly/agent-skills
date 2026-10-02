@@ -17,7 +17,6 @@ professional editing capabilities into your Android application.
 - [Photo Editor in Android](./starterkits/photo-editor.md) - Add the Android Photo Editor starter kit to a new or existing app with a reusable starter-kit module.
 - [Design Editor in Android](./starterkits/design-editor.md) - Add the Android Design Editor starter kit to a new or existing app with a reusable starter-kit module.
 - [Video Editor in Android](./starterkits/video-editor.md) - Add the Android Video Editor starter kit to a new or existing app with a reusable starter-kit module.
-- [Memories in Android](./starterkits/memories.md) - Add the Android Memories starter kit to a new or existing app with a reusable starter-kit module—turn photos and clips into a shareable memory montage.
 - [T-Shirt Designer in Android](./starterkits/t-shirt-designer.md) - Add the Android Apparel Editor starter kit to a new or existing app with a reusable starter-kit module.
 - [Custom Built UIs](./starterkits/custom-built-uis.md) - Fully custom UIs built with React using the Engine API. Freely adapt to your use case.
 - [Extensibility](./starterkits/extensibility.md) - Extend editor functionality with file format imports, content moderation, design validation, and version history.

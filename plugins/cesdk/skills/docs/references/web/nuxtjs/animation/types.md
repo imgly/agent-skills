@@ -18,7 +18,7 @@ Apply entrance, exit, and loop animations to design blocks using the available a
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-animation-types-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-animation-types-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-animation-types-browser/index.html)
 
 CE.SDK organizes animations into three categories: entrance (In), exit (Out), and loop. Each category determines when the animation plays during the block's lifecycle. This guide demonstrates different animation types and their configurable properties.
 
@@ -315,10 +315,6 @@ Other entrance animation types include:
 - `pop` — Bouncy scale effect
 - `spin` — Rotates the block into view
 - `grow` — Scales up from a point
-
-### Ken Burns Animation
-
-The Ken Burns animation (`ken_burns`) pans and zooms across an image or video. The pan travels through the space between the block frame and the crop edges. When you attach the animation, the engine raises the crop scale ratio of the block to at least 1.3, so that this space exists. The content fill mode of the block becomes `Crop`. The engine does this on the next update, after the block is laid out and its image or video has loaded. A crop that is already zoomed in further keeps its scale.
 
 ## Exit Animations
 

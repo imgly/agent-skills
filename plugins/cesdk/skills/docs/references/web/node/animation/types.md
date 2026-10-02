@@ -276,10 +276,6 @@ Other entrance animation types include:
 - `spin` — Rotates the block into view
 - `grow` — Scales up from a point
 
-### Ken Burns Animation
-
-The Ken Burns animation (`ken_burns`) pans and zooms across an image or video. The pan travels through the space between the block frame and the crop edges. When you attach the animation, the engine raises the crop scale ratio of the block to at least 1.3, so that this space exists. The content fill mode of the block becomes `Crop`. The engine does this on the next update, after the block is laid out and its image or video has loaded. A crop that is already zoomed in further keeps its scale.
-
 ## Exit Animations
 
 Exit animations define how a block leaves the screen. We use `engine.block.setOutAnimation()` to attach them. CE.SDK prevents overlap between entrance and exit durations automatically.

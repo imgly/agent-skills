@@ -13,7 +13,7 @@ component ID, payload, and focusable state.
 | Property | Type | Description |
 | ------ | ------ | ------ |
 |  `componentId` | `string` | The unique identifier for the registered component. |
-|  `payload?` | `any` | Optional payload to pass to the component. |
+|  `payload?` | [`ComponentPayload`](./api/cesdk-js/interfaces/componentpayload.md) | Optional payload to pass to the component. |
 |  `focusable?` | `boolean` | Whether the component should be focusable (default: true) |
 
 

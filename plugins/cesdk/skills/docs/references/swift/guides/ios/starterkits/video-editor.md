@@ -569,7 +569,7 @@ All configurable components are located in the `components/` folder:
 
 ## Troubleshooting
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get a license key and remove the watermark.
 
 ### Editor doesn't load
 
@@ -591,7 +591,7 @@ All configurable components are located in the `components/` folder:
 ### Watermark appears in production
 
 - **Add your license key**: Set the `license` property in your `EngineSettings`
-- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+- **Get a license**: Contact us at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
 
 ***
 

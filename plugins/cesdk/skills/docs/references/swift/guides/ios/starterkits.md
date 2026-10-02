@@ -19,6 +19,7 @@ professional editing capabilities into your iOS application.
 - [Video Editor in iOS](./starterkits/video-editor.md) - Add the iOS Video Editor starter kit to a new or existing app with a reusable Swift configuration module.
 - [T-Shirt Designer in iOS](./starterkits/t-shirt-designer.md) - Add the iOS T-Shirt Designer starter kit to a new or existing app with a reusable Swift configuration module.
 - [Custom Built UIs](./starterkits/custom-built-uis.md) - Fully custom UIs built with React using the Engine API. Freely adapt to your use case.
+- [Extensibility](./starterkits/extensibility.md) - Extend editor functionality with file format imports, content moderation, design validation, and version history.
 
 
 ---

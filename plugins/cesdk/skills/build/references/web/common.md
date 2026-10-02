@@ -50,9 +50,9 @@ Structure your response as:
 
 ### Implementation
 
-\`\`\`typescript
+```typescript
 // Complete, working example with imports
-\`\`\`
+```
 
 ### Explanation
 
@@ -71,13 +71,12 @@ Each kit is a complete Vite + TypeScript project ready to run.
 
 All kits share this structure — only the config and entry point differ:
 
-\`\`\`
+```
 {kit-name}/
 ├── package.json              — Dependencies (@cesdk/cesdk-js), scripts (dev, build)
 ├── index.html                — Mount point with #cesdk_container div
 ├── vite.config.ts            — Vite build config
 ├── tsconfig.json             — TypeScript config
-├── tsconfig.base.json        — Shared TS base config
 └── src/
     ├── index.ts              — Entry point: creates CE.SDK, calls init function
     └── imgly/
@@ -90,7 +89,7 @@ All kits share this structure — only the config and entry point differ:
         │   ├── i18n.ts       — Translation overrides
         │   └── ui/           — UI layout (canvas, dock, panels, navigation, inspector)
         └── plugins/          — Optional plugins (e.g., background-removal.ts)
-\`\`\`
+```
 
 ### Available Kits
 
@@ -153,12 +152,18 @@ All kits share this structure — only the config and entry point differ:
 ### Scaffolding a New Project
 
 1. **Copy** the appropriate starter kit directory into the user's project directory
+   **Prerelease v1.84.0-nightly.20261002:** before any `npm install`, add these lines to the project's `.npmrc` (create the file if it is missing, keep its other lines):
+   ```ini
+   # CE.SDK prerelease: remove once the project uses a stable CE.SDK version.
+   legacy-peer-deps=true
+   ```
+   Kits with an importer or exporter such as `@imgly/pptx-importer` declare peer ranges like `@cesdk/engine >=1.72.0`, which npm never matches with a prerelease version, so `npm install` fails with ERESOLVE without it.
 2. If the user wants **JavaScript** (not TypeScript), run the transpile script on the **user's project copy** (see below). Never run it on the bundled starter kit source
 3. Update `package.json` name and adjust dependencies as needed
-4. **Pin CE.SDK packages to v1.84.0-nightly.20261001** (required — ensures runtime matches this skill's bundled docs). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.84.0-nightly.20261001`. Remove the `^` so npm installs exactly that version, for example:
-   \`\`\`bash
-   npm install @cesdk/cesdk-js@1.84.0-nightly.20261001 --save-exact
-   \`\`\`
+4. **Pin CE.SDK packages to v1.84.0-nightly.20261002** (required — ensures runtime matches this skill's bundled docs). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.84.0-nightly.20261002`. Remove the `^` so npm installs exactly that version, for example:
+   ```bash
+   npm install @cesdk/cesdk-js@1.84.0-nightly.20261002 --save-exact
+   ```
    Leave other dependencies untouched. Importers and exporters such as `@imgly/pptx-importer` have their own versions.
 5. Run `npm install` to install remaining dependencies, then `npm run dev` to start the dev server
 6. Customize the config files in `src/imgly/config/` for the desired editor behavior
@@ -171,16 +176,16 @@ Access kit files with Glob: `**/skills/build/references/web/starter-kits/{kit-na
 
 After copying a starter kit into the user's project, run the bundled transpile script
 on the **user's project directory** to convert from TypeScript to JavaScript. The script
-strips type annotations, renames `.ts` files to `.js`, removes `tsconfig.json`/`tsconfig.base.json`,
-updates `index.html` references, and cleans TypeScript dependencies from `package.json`.
+strips type annotations, renames `.ts`/`.tsx` files to `.js`/`.jsx`, removes `tsconfig.json`,
+updates `index.html` references, and removes TypeScript dependencies and `tsc` steps from `package.json`.
 
-\`\`\`bash
-# 1. Install typescript temporarily (needed by the transpile script)
-cd /path/to/users/project && npm install --no-save typescript
+```bash
+# 1. Install TypeScript 5 temporarily in the project (the script loads it from there)
+cd /path/to/users/project && npm install --no-save typescript@5
 
 # 2. Run the transpile script on the user's project (NOT on the starter kit source)
 node <transpile-script-path> /path/to/users/project
-\`\`\`
+```
 
 The script path is: `**/skills/build/references/web/scripts/transpile-to-js.mjs`
 
@@ -197,6 +202,6 @@ automation workflows, and "implement video export" or "create a design tool" que
 
 ## Related Skills
 
-- Use \`/cesdk:docs\` to look up documentation and API reference
-- Use \`/cesdk:explain\` to understand concepts before implementing
+- Use `/cesdk:docs` to look up documentation and API reference
+- Use `/cesdk:explain` to understand concepts before implementing
 - Use the builder agent for autonomous multi-step project scaffolding

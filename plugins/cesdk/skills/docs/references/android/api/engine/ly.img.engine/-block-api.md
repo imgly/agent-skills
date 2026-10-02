@@ -1978,7 +1978,7 @@ Returns whether the block should be visible on the canvas at the current playbac
 abstract fun isVisible(block: DesignBlock): Boolean
 ```
 
-Query a block's visibility.
+Query a block's visibility. Reports the visibility you set, not the current view. A page that single page mode takes out of view stays visible; use getCurrentPages to read the view.
 
 ### loadFromArchive
 
@@ -2114,7 +2114,7 @@ Saves the given blocks to an archive. Note: All given block handles must be vali
 abstract suspend fun saveToString(blocks: List<DesignBlock>, allowedResourceSchemes: List<String> = listOf("bundle", "file", "http", "https")): String
 ```
 
-Saves the given blocks to a proprietary string. If a resource uri has a scheme that is not in allowedResourceSchemes, an exception will be thrown. Note: All given block handles must be valid, otherwise an exception will be thrown.
+Saves the given blocks to a proprietary string. If given the root of a block hierarchy, e.g. a page with multiple children, the entire hierarchy is saved. If a resource uri of any block in that hierarchy has a scheme that is not in allowedResourceSchemes, an exception will be thrown. Note: All given block handles must be valid, otherwise an exception will be thrown.
 
 ### scale
 

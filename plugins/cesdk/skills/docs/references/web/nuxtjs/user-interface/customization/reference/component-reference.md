@@ -8,7 +8,7 @@ This guide provides the complete list of all built-in component IDs for each of 
 
 Component IDs in CE.SDK follow the pattern `ly.img.[feature].[area]` (for example, `ly.img.undoRedo.navigationBar`). Custom components you create can use any ID pattern.
 
-For information on how to use these IDs with the API methods, see the [Component Order API Reference](./user-interface/customization/reference/component-order-api.md). For task-focused tutorials, see the [Quick Start guides](./user-interface/customization/quick-start.md).
+For information on how to use these IDs with the API methods, see the [Component Order API Reference](./user-interface/customization/reference/component-order-api.md). For task-focused tutorials, see [Customization](./user-interface/customization.md).
 
 ## Layout Components
 

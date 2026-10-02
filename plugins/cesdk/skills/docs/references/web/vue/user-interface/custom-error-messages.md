@@ -142,7 +142,8 @@ Use the `{{argument}}` (double-brace) syntax and the exact argument name from th
 - [Localization](./user-interface/localization.md) — Manage locales and translate the rest of the editor interface.
 - [Migrate to Structured Errors](./to-v1-77.md) — Branch on stable error codes instead of matching message strings.
 - [Error Catalog](./concepts/error-catalog.md) — Every engine error code, its message, and its hint.
-- [Notifications and Dialogs](./user-interface/ui-extensions/notifications-and-dialogs.md) — Show your own notifications and dialogs from the editor.
+- [Notifications](./user-interface/ui-extensions/notifications.md) — Show your own non-blocking status messages from the editor.
+- [Dialogs](./user-interface/ui-extensions/dialogs.md) — Show your own modal dialogs from the editor.
 
 
 

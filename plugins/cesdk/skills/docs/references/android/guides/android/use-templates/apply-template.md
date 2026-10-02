@@ -276,7 +276,7 @@ val secondTemplateFile = File.createTempFile("new-arrivals-template", ".imgly").
 
 ## Apply a Template from URI
 
-Create a scene and set the scene-level page dimensions you want to keep. `applyTemplate` reads these dimensions from `scene/pageDimensions/width` and `scene/pageDimensions/height`, then resizes the template content to fit them.
+Create a scene and set the scene-level page dimensions you want to keep. `applyTemplate` reads these dimensions from `scene/pageDimensions/width` and `scene/pageDimensions/height`, then resizes the template content to fit them. When you do not set them, it uses the size of the first page.
 
 ```kotlin highlight-android-setup
     val scene = engine.scene.create(designUnit = DesignUnit.PIXEL, fontSizeUnit = FontUnit.PIXEL)
@@ -362,7 +362,7 @@ Verify the template URI is reachable and valid. For remote URLs, check network c
 
 ### Content Not Scaling as Expected
 
-Template content scales to fit the current scene-level page dimensions. Set `scene/pageDimensions/width` and `scene/pageDimensions/height` before applying the template so the content adjusts to the size you expect.
+Template content scales to fit the current scene-level page dimensions. Set `scene/pageDimensions/width` and `scene/pageDimensions/height` before applying the template so the content adjusts to the size you expect. Until you set them, the engine uses the size of the first page. A value that you set wins over the page size, and a loaded scene keeps its saved value. When there is no page size to use, the template keeps its own.
 
 ## API Reference
 

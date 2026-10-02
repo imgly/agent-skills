@@ -1,6 +1,6 @@
 > This is one page of the CE.SDK Android documentation. For a complete overview, see the [Android Documentation Index](https://img.ly/docs/cesdk/android/). For all docs in one file, see [llms-full.txt](https://img.ly/docs/cesdk/android/llms-full.txt).
 
-**Navigation:** [Starter Kits](../starterkits.md) > [Memories](./memories.md)
+**Navigation:** [Starter Kits](../starterkits.md) > [Custom Built UIs](./custom-built-uis.md) > [Memories UI](./memories.md)
 
 ---
 
@@ -215,46 +215,35 @@ internal fun createSlideshowScene(engine: Engine): DesignBlock {
 }
 
 /**
- * The persistent, single-purpose tracks of the slideshow, bottom-to-top in render order. The per-
- * slide media tracks are created later (in [createMainImageSequence]) and stack on top of these.
+ * The persistent, single-purpose tracks of the slideshow, bottom-to-top in render order. The media
+ * track that carries every clip is created later (in [createMainImageSequence]) and stacks on top.
  */
 internal data class TrackReferences(
     val textTrack: DesignBlock,
     val backgroundTrack: DesignBlock,
     val backgroundBlock: DesignBlock,
-    val matteTrack: DesignBlock,
-    val matteBlock: DesignBlock,
 )
 
 internal fun setupTracks(
     engine: Engine,
     page: DesignBlock,
 ): TrackReferences {
-    // background = per-style backdrop (hidden by default); matte = black rectangle so a crossfade
-    // fades to black instead of revealing the backdrop. Appended first → they render behind the
-    // media. The text (title) track sits just above them; the media tracks are appended on top later.
+    // background = per-style backdrop, hidden by default. Appended first → it renders behind the
+    // media. The text (title) track sits just above it; the media track is appended on top later.
     val backgroundTrack = engine.block.create(DesignBlockType.Track)
-    val matteTrack = engine.block.create(DesignBlockType.Track)
     val textTrack = engine.block.create(DesignBlockType.Track)
 
     // Tags let the rest of the kit re-locate tracks by role instead of retaining stale block ids.
-    tagSlideshowTracks(engine, textTrack = textTrack, backgroundTrack = backgroundTrack, matteTrack = matteTrack)
+    tagSlideshowTracks(engine, textTrack = textTrack, backgroundTrack = backgroundTrack)
 
     engine.block.appendChild(parent = page, child = backgroundTrack)
-    engine.block.appendChild(parent = page, child = matteTrack)
     engine.block.appendChild(parent = page, child = textTrack)
 
     val backgroundBlock = fullPageBlock(engine, page)
     engine.block.setVisible(backgroundBlock, false)
     engine.block.appendChild(parent = backgroundTrack, child = backgroundBlock)
 
-    val matteBlock = fullPageBlock(engine, page)
-    val matteFill = engine.block.createFill(FillType.Color)
-    engine.block.setColor(matteFill, "fill/color/value", Color.fromRGBA(0f, 0f, 0f, 1f))
-    engine.block.setFill(matteBlock, matteFill)
-    engine.block.appendChild(parent = matteTrack, child = matteBlock)
-
-    return TrackReferences(textTrack, backgroundTrack, backgroundBlock, matteTrack, matteBlock)
+    return TrackReferences(textTrack, backgroundTrack, backgroundBlock)
 }
 
 private fun fullPageBlock(
@@ -273,13 +262,19 @@ private fun fullPageBlock(
 ```kotlin file=@cesdk_android_examples/../cesdk_android_showcases/starter-kits/starter-kit-memories/starter-kit/src/main/kotlin/ly/img/editor/configuration/memories/style/VideoStyle.kt reference-only
 package ly.img.editor.configuration.memories.style
 
+import ly.img.editor.configuration.memories.scene.TransitionSpec
+import ly.img.editor.configuration.memories.util.OVERLAP_DURATION
+import ly.img.engine.Color
+import ly.img.engine.TransitionType
+
 /**
  * Catalog of the video styles offered in the Styles sheet.
  *
  * This is the single source of truth for a style: its name, typeface, preferred font
- * weights, the image-filter adjustments, the scene background and media scale, and the title
- * text color all live here. To add, remove, or tune a style, edit [VideoStyles.ALL] below —
- * nothing else needs to change. The generic application logic lives in [StyleApplier].
+ * weights, the image-filter adjustments, the scene background and media scale, the title
+ * text color, and the transition between slides all live here. To add, remove, or tune a
+ * style, edit [VideoStyles.ALL] below — nothing else needs to change. The generic
+ * application logic lives in [StyleApplier].
  *
  * The bundled files a style needs — its looping backdrop [StyleBackground.Video] and its picker
  * thumbnail — are supplied by the [STYLE_SOURCE_ID] custom local asset source (see
@@ -302,6 +297,11 @@ data class VideoStyle(
     val background: StyleBackground = StyleBackground.None,
     /** Title text color for this style (hex). White reads on the dark/video backdrops; Noir uses black. */
     val titleTextColorHex: String = "#FFFFFF",
+    /**
+     * How one slide becomes the next. A style's transition is as much of its character as its
+     * filter is, so each one blends differently — see [VideoStyles.ALL].
+     */
+    val transition: TransitionSpec = TransitionSpec(TransitionType.CrossFade),
     /** Opaque ARGB color for the picker tile (shown behind the icon / as a placeholder). */
     val previewBackground: Long,
 )
@@ -317,11 +317,19 @@ sealed interface StyleBackground {
     ) : StyleBackground
 
     /**
-     * A looping video behind the media, supplied by the [STYLE_SOURCE_ID] asset source.
+     * A looping clip behind the media, supplied by the [STYLE_SOURCE_ID] asset source.
      * [assetId] is the id of the backdrop asset in that source (e.g. "hologram").
+     *
+     * Named for the **fill** it uses, not the file it points at: the engine plays a Lottie the same
+     * way it plays an MP4, through a video fill, so both work here. The shipped backdrops are Lottie
+     * — see `content.json` and `tools/generate_style_lotties.py`.
+     *
+     * [opacity] dims the clip so it reads as a backdrop instead of competing with the photos.
+     * It blends against the page's black fill, so a lower value is darker, not lighter.
      */
     data class Video(
         val assetId: String,
+        val opacity: Float = 0.5f,
     ) : StyleBackground
 }
 
@@ -333,6 +341,11 @@ object VideoStyles {
         typeface = "Montserrat",
         fontWeights = listOf("SemiBold", "Medium", "Regular"),
         previewBackground = 0xFFEFEBE9,
+        // A long, unhurried dissolve — the slideshow default that gets out of the way.
+        transition = TransitionSpec(
+            type = TransitionType.CrossFade,
+            duration = OVERLAP_DURATION,
+        ),
     )
 
     /** Professional black & white on a clean white backdrop, with black title type. */
@@ -350,6 +363,12 @@ object VideoStyles {
         background = StyleBackground.Solid(colorHex = "#FFFFFF"),
         titleTextColorHex = "#000000",
         previewBackground = 0xFF222222,
+        // Cutting through black is the film-editorial move, and it reads as intent rather than
+        // accident against the white backdrop.
+        transition = TransitionSpec(
+            type = TransitionType.FadeToBlack,
+            duration = 1.8,
+        ),
     )
 
     /** Futuristic cool cast over a looping hologram backdrop. A blue temperature shift cools the media. */
@@ -365,6 +384,14 @@ object VideoStyles {
         mediaScale = 0.8f,
         background = StyleBackground.Video(assetId = "hologram"),
         previewBackground = 0xFFE1F5FE,
+        // A short warp, so the slides look like they are being retransmitted rather than dissolved.
+        transition = TransitionSpec(
+            type = TransitionType.CrossWarp,
+            duration = 1.2,
+            configure = { engine, transition ->
+                engine.block.setFloat(transition, "transition/cross-warp/zoom", 0.85f)
+            },
+        ),
     )
 
     /** Playful, poppy filter over a looping bubblegum backdrop: punchy saturation, bright tones. */
@@ -381,6 +408,15 @@ object VideoStyles {
         mediaScale = 0.8f,
         background = StyleBackground.Video(assetId = "bubblegum"),
         previewBackground = 0xFFFCE4EC,
+        // A pink wipe sweeping up: the playful, hard-edged counterpart to a dissolve.
+        transition = TransitionSpec(
+            type = TransitionType.ColorWipe,
+            duration = 1.0,
+            configure = { engine, transition ->
+                engine.block.setEnum(transition, "transition/color-wipe/direction", "Up")
+                engine.block.setColor(transition, "transition/color-wipe/color", Color.fromHex("#FF4FA3"))
+            },
+        ),
     )
 
     /** All styles, in the order they appear in the Styles sheet. */
@@ -399,8 +435,8 @@ import ly.img.engine.Engine
 import ly.img.engine.FindAssetsQuery
 
 /**
- * The custom **local** asset source that supplies the bundled style assets — the looping backdrop
- * videos and every style's picker thumbnail. The files stay local (in `src/main/assets`) and are
+ * The custom **local** asset source that supplies the bundled style assets — the looping backdrops
+ * and every style's picker thumbnail. The files stay local (in `src/main/assets`) and are
  * described by `assets/ly.img.memories.style/content.json`; the engine loads them through
  * [addLocalSourceFromJSON][ly.img.engine.AssetApi.addLocalSourceFromJSON], exactly like the default
  * IMG.LY sources. Keeping them behind an asset source means the style catalog references assets by
@@ -432,7 +468,7 @@ suspend fun Engine.loadStyleThumbnails(): Map<String, String> = asset.findAssets
     asset.meta?.get("thumbUri")?.let { asset.id to it }
 }.toMap()
 
-/** The backdrop video URI for a style, read from its [STYLE_SOURCE_ID] asset (null if absent). */
+/** The backdrop clip's URI for a style, read from its [STYLE_SOURCE_ID] asset (null if absent). */
 suspend fun Engine.styleBackgroundVideoUri(assetId: String): String? =
     asset.fetchAsset(sourceId = STYLE_SOURCE_ID, assetId = assetId)?.meta?.get("uri")
 ```
@@ -486,8 +522,78 @@ private suspend fun MemoriesConfiguration.exportSlideshow(): ByteBuffer {
 }
 ```
 
+```kotlin file=@cesdk_android_examples/../cesdk_android_showcases/starter-kits/starter-kit-memories/starter-kit/src/main/kotlin/ly/img/editor/configuration/memories/util/Animations.kt reference-only
+package ly.img.editor.configuration.memories.util
+
+import ly.img.engine.AnimationType
+import ly.img.engine.Engine
+
+/**
+ * The slide animations for the Memories slideshow — **this is the file to edit**.
+ *
+ * A slide's motion is one move that runs the whole clip: a slow Ken Burns drift the viewer barely
+ * notices. The blend into the next slide is the style's transition, not an animation, so a slide
+ * needs no out-animation to leave on — [AnimationPair.createOut] is null unless a recipe wants a
+ * second move. The kit picks one pair at random per slide ([getRandomAnimationPair]).
+ *
+ * An [AnimationPair] is a *recipe*, not a pair of engine blocks: [AnimationPair.createIn] /
+ * [AnimationPair.createOut] build a **fresh** engine animation each time they are called. Engine
+ * animations are single-owner (1:1 with a design block), so every slide must own its own animation
+ * instances — assigning one pooled animation block to several slides corrupts the scene (the engine
+ * re-points the animation to the newest block only) and later crashes: destroying a slide auto-
+ * destroys the shared animation, leaving every other slide holding a dangling id. [applySlideAnimation]
+ * calls these builders per slide so each clip gets its own blocks.
+ *
+ * To change the motion, edit the list in [createAnimationPairs] — add, remove, or tweak entries, or
+ * write a whole new recipe. The low-level builders below wrap the engine calls so the list stays
+ * readable.
+ */
+data class AnimationPair(
+    val createIn: (Engine) -> Int,
+    /** A second move as the slide leaves. Null when the one move covers the whole clip. */
+    val createOut: ((Engine) -> Int)? = null,
+)
+
+object Animations {
+    /** The pool of animations a slide can use. Edit this list to change the slideshow's motion. */
+    fun createAnimationPairs(): List<AnimationPair> = listOf(
+        kenBurnsDrift(),
+    )
+
+    /** Pick a random pair for the next slide. */
+    fun getRandomAnimationPair(animationPairs: List<AnimationPair>): AnimationPair = animationPairs.random()
+
+    // ---- Low-level builders (you usually don't need to touch these) --------------------------
+
+    /**
+     * One slow Ken Burns across the whole clip: a gentle push in with a little drift, at a constant
+     * rate. Linear is the Ken Burns choice — an eased curve spends its speed early or late, which
+     * over a whole clip reads as the photo lurching and then crawling.
+     *
+     * Ken Burns is a pure transform while its `animation/ken_burns/fade` property stays at its
+     * `false` default — leave it there. Blur, which this replaced, ramps the clip's alpha too, but
+     * its `animation/blur/fade` defaults to `true`: set that to `false` and it is a pure transform
+     * as well. Leaving it on is what made the incoming clip semi-transparent through the whole
+     * transition overlap, so the backdrop showed through the blend.
+     */
+    private fun kenBurnsDrift(): AnimationPair = AnimationPair(
+        createIn = { engine ->
+            engine.block.createAnimation(AnimationType.KenBurns).also { animation ->
+                // The whole clip, so the move is slow enough to read as life rather than motion.
+                engine.block.setDuration(animation, IMAGE_DURATION)
+                engine.block.setFloat(animation, "animation/ken_burns/zoomIntensity", 0.2f)
+                // A full crop-length of travel reads as the photo sliding past; a third of it reads
+                // as drift.
+                engine.block.setFloat(animation, "animation/ken_burns/travelDistanceRatio", 0.3f)
+                engine.block.setEnum(animation, "animationEasing", "Linear")
+            }
+        },
+    )
+}
+```
+
 Turn a set of photos and video clips into a shareable memory montage on Android. The kit picks up
-media from the gallery, arranges it on a timeline with crossfades and title cards, applies styled
+media from the gallery, arranges it on a timeline with transitions and title cards, applies styled
 looks, layers in audio, and exports an MP4—entirely on the device with no server dependencies.
 
 ![Memories starter kit screenshot](https://img.ly/docs/cesdk/android/starterkits/memories-mmrs01/assets/android.hero.webp)
@@ -605,7 +711,7 @@ starter-kit/src/main/
 │   └── ly.img.memories.style/        # The kit's own local asset source (backdrops + picker thumbnails)
 │       ├── content.json              # Describes the style assets; URIs use the {{base_url}} placeholder
 │       ├── thumbnails/               # noir.png, hologram.png, bubblegum.png
-│       └── videos/                   # hologram.mp4, bubblegum.mp4 (looping style backdrops)
+│       └── animations/               # hologram.json, bubblegum.json (looping Lottie backdrops)
 └── kotlin/ly/img/editor/configuration/memories/
     ├── MemoriesConfiguration.kt      # Wires the editor's onCreate / dock / bottomPanel / navigationBar / overlay / onExport slots
     ├── MemoriesApp.kt                # The full flow: photo picker → slideshow editor
@@ -617,12 +723,13 @@ starter-kit/src/main/
     ├── component/                    # Editor UI slots: Dock, BottomPanel, NavigationBar, Overlay, ExportOverlay
     ├── scene/                        # Timeline assembly (the tracks are the source of truth)
     │   ├── SceneSetup.kt             # Builds the video scene and its tracks in code
-    │   ├── Timeline.kt               # Lays each photo/clip on its own track for the crossfade montage
+    │   ├── Timeline.kt               # Lays every clip on one media track, in slot order
+    │   ├── Transitions.kt            # TransitionSpec + wiring a style's blend onto every boundary
     │   ├── TrackEditor.kt            # Reads/writes the tracks and applies in-place edits
     │   ├── Title.kt                  # Title card + burst-image intro
     │   └── Playback.kt               # Loop / volume helpers
     ├── style/                        # The styled looks + their custom asset source
-    │   ├── VideoStyle.kt             # Style catalog (filter, backdrop, matte, typeface) referencing assets by id
+    │   ├── VideoStyle.kt             # Style catalog (filter, backdrop, transition, typeface) referencing assets by id
     │   ├── StyleAssetSource.kt       # Registers ly.img.memories.style via addLocalSourceFromJSON
     │   └── StyleApplier.kt           # Applies a style to the slideshow
     ├── screen/                       # ImageSelectionScreen (picker) + LoadingScreen
@@ -639,9 +746,85 @@ starter-kit/src/main/
 
 The Memories scene is built in code (no serialized scene file). The setup logic lives in
 `scene/SceneSetup.kt` and runs from the editor's `onCreate` (`callback/OnCreate.kt`): it creates a
-video scene, lays out the persistent background / matte / text tracks, then `scene/Timeline.kt`
-places one track per photo or clip so consecutive slides overlap for the crossfade while a later
-slide always renders above the earlier one.
+video scene, lays out the persistent background and text tracks, then `scene/Timeline.kt` appends
+every photo and clip to a single media track in slot order.
+
+The clips are siblings on that one track because a transition belongs to the **outgoing** clip and
+blends it into its neighbour—which only works between siblings. The track's own time offset holds
+the title gap; everything inside it is positioned by the engine.
+
+## Transitions and Slide Motion
+
+Two things move in a Memories montage, and each has one job:
+
+| | What moves | Who owns it |
+| --- | --- | --- |
+| **Between** two slides | The blend from one clip to the next | The style's transition, applied by the engine |
+| **Within** one slide | A slow Ken Burns across the clip's full duration | `util/Animations.kt` |
+
+Keeping them apart is what lets both stay simple. Assigning a transition overlaps the pair and pulls
+every later clip earlier, so the engine—not the kit—owns the timeline: there is no start-time
+arithmetic anywhere in `scene/`. The engine also clamps each overlap to half of the shorter
+neighbour, so a clip shorter than the requested duration needs no special case. A 4s video between
+8s photos simply gets 2s blends on either side.
+
+> **A slide animation must not touch alpha:** The transition blends the two clips against each other. An animation that *also* ramps the clip's
+> opacity leaves both of them semi-transparent for the whole overlap, and the backdrop shows through
+> the blend. `AnimationType.Blur` and `CropZoom` both ramp alpha unless you turn it off, with
+> `animation/blur/fade` and `animation/crop_zoom/fade` respectively—both default to `true`. Ken
+> Burns has the same switch in `animation/ken_burns/fade`, but it defaults to `false`, so it is a
+> pure transform out of the box, which is why the kit uses it.
+
+Because the transition does the leaving, a slide needs no out-animation. `AnimationPair.createOut`
+is nullable and defaults to `null`, and the shipped recipe is a single Ken Burns spanning the whole
+clip with `Linear` easing—an eased curve spends its speed early or late, which over eight seconds
+reads as the photo lurching and then crawling.
+
+```kotlin title = "starter-kit/src/main/kotlin/ly/img/editor/configuration/memories/util/Animations.kt" highlight-starter-kit-ken-burns-drift
+private fun kenBurnsDrift(): AnimationPair = AnimationPair(
+    createIn = { engine ->
+        engine.block.createAnimation(AnimationType.KenBurns).also { animation ->
+            // The whole clip, so the move is slow enough to read as life rather than motion.
+            engine.block.setDuration(animation, IMAGE_DURATION)
+            engine.block.setFloat(animation, "animation/ken_burns/zoomIntensity", 0.2f)
+            // A full crop-length of travel reads as the photo sliding past; a third of it reads
+            // as drift.
+            engine.block.setFloat(animation, "animation/ken_burns/travelDistanceRatio", 0.3f)
+            engine.block.setEnum(animation, "animationEasing", "Linear")
+        }
+    },
+)
+```
+
+### A Transition Per Style
+
+A transition is as much a style's character as its filter is, so each one blends differently:
+
+| Style | Transition | Overlap |
+| --- | --- | --- |
+| Default | `CrossFade` | 3.2s |
+| Noir | `FadeToBlack` | 1.8s |
+| Hologram | `CrossWarp` | 1.2s |
+| Bubblegum | `ColorWipe`, pink, sweeping up | 1.0s |
+
+A style declares one as a `TransitionSpec`: the type, how long the clips overlap, and a `configure`
+lambda for the type's own properties, which live under `transition/{type}/{property}` keypaths. Call
+`findAllProperties` on a created transition to see what a type exposes.
+
+```kotlin title = "starter-kit/src/main/kotlin/ly/img/editor/configuration/memories/style/VideoStyle.kt" highlight-starter-kit-transition-spec
+transition = TransitionSpec(
+    type = TransitionType.ColorWipe,
+    duration = 1.0,
+    configure = { engine, transition ->
+        engine.block.setEnum(transition, "transition/color-wipe/direction", "Up")
+        engine.block.setColor(transition, "transition/color-wipe/color", Color.fromHex("#FF4FA3"))
+    },
+),
+```
+
+Because styles overlap by different amounts, choosing one changes how long the montage runs.
+`style/StyleApplier.kt` re-wires every boundary, reads the new end back off the engine, and
+re-stretches the backdrop to match—so nothing predicts a duration it can measure.
 
 ## Styles From a Custom Asset Source
 
@@ -660,10 +843,22 @@ Web.
 
 ```json title="starter-kit/src/main/assets/ly.img.memories.style/content.json"
 {
-  "uri": "{{base_url}}/ly.img.memories.style/videos/hologram.mp4",
+  "uri": "{{base_url}}/ly.img.memories.style/animations/hologram.json",
   "thumbUri": "{{base_url}}/ly.img.memories.style/thumbnails/hologram.png"
 }
 ```
+
+The two animated backdrops are **Lottie**, not video. A video fill plays either—the engine picks its
+decoder from the asset's `mimeType`, so `application/json` routes the file through its Lottie
+renderer and `video/mp4` through the video decoder. `StyleBackground.Video` is named for the fill,
+not the file. Vector costs a fraction of the bytes for this kind of abstract motion: the two
+backdrops here are 25 KB together, against 25 MB as MP4.
+
+> **Keep a vector backdrop cheap:** A Lottie backdrop is rasterized on the main thread every frame, so its cost tracks how much
+> geometry it draws, not its file size. On a mid-range phone a full-frame gradient renders faster
+> than the MP4 it replaces, and roughly 40 stroked paths still match it—but a few hundred paths, or
+> several full-frame blurs, will stall playback. The shipped backdrops use two and three shapes.
+> `tools/generate_style_lotties.py` regenerates them.
 
 To add a look, drop its thumbnail (and backdrop, if any) into the `assets` folder, add an entry to
 `content.json`, and add the matching `VideoStyle` in `style/VideoStyle.kt`.
@@ -673,12 +868,13 @@ To add a look, drop its thumbnail (and backdrop, if any) into the `assets` folde
 The starter kit ships a generic structure and behavior, but every part of it is in your codebase and
 meant to be customized. The most common edit points:
 
-- **Slide animations** — `util/Animations.kt`. Add, remove, or tune the in/out animation pairs a
-  slide can use.
+- **Slide motion** — `util/Animations.kt`. Add, remove, or tune the animation recipes a slide can
+  use. Keep them alpha-free, for the reason above.
+- **Transitions** — the `transition` field on each `VideoStyle`, wired by `scene/Transitions.kt`.
 - **Looks / filters (styles)** — `style/VideoStyle.kt`. Each style bundles a filter, backdrop,
-  matte, and title typeface, referencing the bundled assets by id (see above).
-- **Timing, page size, title** — `util/Constants.kt` (clip duration, crossfade overlap, canvas
-  size, title duration).
+  transition, and title typeface, referencing the bundled assets by id (see above).
+- **Timing, page size, title** — `util/Constants.kt` (clip duration, the default transition
+  overlap, canvas size, title duration).
 - **Timeline assembly** — `scene/SceneSetup.kt`, `scene/Timeline.kt`, and `scene/Title.kt`.
 
 ## Customize Export Functionality
@@ -694,7 +890,7 @@ navigation-bar close button via `rememberCloseEditor` in `component/NavigationBa
 
 ## Troubleshooting
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get a license key and remove the watermark.
 
 ### Editor doesn't load
 

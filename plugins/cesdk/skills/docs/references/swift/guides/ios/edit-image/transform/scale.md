@@ -114,10 +114,10 @@ The CE.SDK UI supports these interactions automatically:
 Enabled by default:
 
 ```swift
-try engine.editor.setSettingBool("touch/pinchAction", value: true)
+try engine.editor.setSettingEnum("touch/pinchAction", value: "Scale")
 ```
 
-Setting this to false disables pinch scaling entirely. For environments with keyboard and mouse a similar property exists:
+Set it to `"None"` to turn off pinch scaling. For environments with keyboard and mouse a similar property exists:
 
 ```swift
 try engine.editor.setSettingBool("mouse/enableZoom", value: true)
@@ -166,7 +166,7 @@ try engine.block.setTransformLocked(imageBlock, locked: true)
 |---|---|---|
 |“Property not found: transform/scale/x”|Using old spec property names that no longer exist.|Replace with `engine.block.scale(_, to:)` for uniform scale. See [Crop](./crop.md) for more on how crop scale affects scaling results.|
 |Image changes size but looks oddly distorted|Combining crop and width changes in a surprising way.|Use a simpler pattern: either change width alone, or use a controlled crop/scaleX + width approach and test with sample images.|
-|Pinch does nothing on canvas|Pinch scaling disabled|Ensure "touch/pinchAction" is true (or not overridden in settings).|
+|Pinch does nothing on canvas|Pinch scaling disabled|Ensure "touch/pinchAction" is `"Scale"`, the default, and not overridden in settings.|
 |Scale handles don’t appear|Gizmo handles disabled in editor settings|Set `controlGizmo/showScaleHandles` to true.|
 |Image won’t scale at all|Block is transform-locked or scope-locked|Check `transformLocked` and any related scopes like "layer/resize". Unlock or re-enable scope if needed.|
 

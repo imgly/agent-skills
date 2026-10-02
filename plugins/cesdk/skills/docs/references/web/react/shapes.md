@@ -14,6 +14,7 @@
 
 - [Create Shapes](./stickers-and-shapes/create-edit/create-shapes.md) - Learn how to programmatically create and configure shapes in CE.SDK for browser applications.
 - [Edit Shapes](./stickers-and-shapes/create-edit/edit-shapes.md) - Learn how to programmatically edit shapes in CE.SDK, including geometry changes, fill modifications, stroke properties, transforms, and boolean operations.
+- [Vector Edit](./stickers-and-shapes/create-edit/vector-edit.md) - Learn how to enter vector edit mode and manipulate individual anchor points, curves and bezier handles of shapes in CE.SDK.
 - [Combine Shapes](./stickers-and-shapes/combine.md) - Combine multiple shapes using boolean operations to create custom compound designs.
 - [Insert QR Code](./stickers-and-shapes/insert-qr-code.md) - Add scannable QR codes to designs using image fills.
 

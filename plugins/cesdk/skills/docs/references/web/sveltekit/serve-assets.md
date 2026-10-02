@@ -362,7 +362,7 @@ If the console shows 404 errors for `content.json` files:
 
 1. Verify the `baseURL` your asset sources resolve against is correct
 2. Check that asset directories exist at the expected paths
-3. Configure CORS headers if serving assets from a different domain
+3. Configure CORS headers if serving assets from a different domain, as described in [Cross-Origin Resources (CORS)](./concepts/cors.md)
 
 ### CDN Warning in Console
 

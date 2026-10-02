@@ -147,9 +147,6 @@ This separation ensures the engine integration is reusable and testable independ
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run check:syntax` - Type check TypeScript
-- `npm run check:lint` - Lint code
-- `npm run check:format` - Check code formatting
-- `npm run fix:all` - Fix linting and formatting issues
 
 ## Browser Support
 

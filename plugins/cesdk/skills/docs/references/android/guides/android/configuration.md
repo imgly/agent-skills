@@ -77,7 +77,7 @@ Production apps should pass a CE.SDK license key. Passing `null` or an empty val
 | --------- | --------- | -------------------------------------------------------------- |
 | `license` | `String?` | License key used to unlock CE.SDK and remove export watermarks |
 
-Request a trial license through [IMG.LY Contact Sales](https://img.ly/forms/contact-sales/).
+Get a license through [IMG.LY Contact Sales](https://img.ly/forms/contact-sales/).
 
 ```kotlin highlight-android-license
 license = license,

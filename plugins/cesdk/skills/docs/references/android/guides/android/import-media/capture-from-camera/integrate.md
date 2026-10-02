@@ -132,7 +132,7 @@ val cameraInput = CaptureMedia.Input(
 )
 ```
 
-Use a CE.SDK license key from your IMG.LY dashboard. You can request a trial license at [img.ly/forms/contact-sales](https://img.ly/forms/contact-sales). The optional `userId` helps count monthly active users accurately when signed-in users work across multiple devices.
+Use a CE.SDK license key from your IMG.LY dashboard. You can get one at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/). The optional `userId` helps count monthly active users accurately when signed-in users work across multiple devices.
 
 ## Register the Camera Launcher
 

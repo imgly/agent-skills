@@ -22,7 +22,7 @@ client-side without any backend infrastructure.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/plugins-print-ready-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/plugins-print-ready-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/plugins-print-ready-pdf-browser/index.html)
 
 ## What You'll Build
 
@@ -39,7 +39,7 @@ A complete print-ready PDF export workflow that:
 
 - Modern browser with WebAssembly support (Chrome 90+, Firefox 88+, Safari 14+)
 - Basic knowledge of JavaScript/TypeScript and CE.SDK
-- Optional: CE.SDK license to remove watermark - [Get a free trial](https://img.ly/forms/free-trial)
+- Optional: CE.SDK license to remove watermark - [Request a license](https://img.ly/forms/contact-sales/)
 
 ## Step 1: Install the Plugin
 
@@ -254,7 +254,7 @@ let cesdk: CreativeEditorSDK;
 
 const config = {
   // By default, CE.SDK runs with a watermark.
-  // Get a free trial license at https://img.ly/forms/free-trial to remove it.
+  // Request a license at https://img.ly/forms/contact-sales/ to remove it.
   // Uncomment the line below and add your license key:
   // license: 'your-license-key-here',
   // baseURL: import.meta.env.VITE_IMGLY_LOCAL_ASSETS_URL,

@@ -1,5 +1,7 @@
 > This is one page of the CE.SDK Vue documentation. For a complete overview, see the [Vue Documentation Index](https://img.ly/docs/cesdk/vue.md). For all docs in one file, see [llms-full.txt](./llms-full.txt.md).
 
+**Navigation:** [Guides](./guides.md) > [Create and Edit Shapes](./shapes.md) > [Vector Edit](./stickers-and-shapes/create-edit/vector-edit.md)
+
 ---
 
 This guide shows how to use the vector edit APIs to enter path editing mode, switch between move, bend, add and delete modes, control bezier handle mirroring, and manage anchor points on any shape.
@@ -14,7 +16,7 @@ This guide shows how to use the vector edit APIs to enter path editing mode, swi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-stickers-and-shapes-vector-edit-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-stickers-and-shapes-vector-edit-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-stickers-and-shapes-vector-edit-browser/index.html)
 
 Vector edit mode lets you modify any shape at the path level. When you enter vector edit mode on a shape, CE.SDK converts it to a vector path and exposes its anchor points and bezier handles for direct manipulation.
 

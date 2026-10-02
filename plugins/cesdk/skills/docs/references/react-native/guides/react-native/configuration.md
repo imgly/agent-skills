@@ -12,7 +12,7 @@ import IMGLYEditor, {
 
 export const basicEditor = async (): Promise<void> => {
   const settings = new EditorSettingsModel({
-    license: 'YOUR_LICENSE_KEY', // Get your license from https://img.ly/forms/free-trial, pass null for evaluation mode with watermark
+    license: 'YOUR_LICENSE_KEY', // Request a license at https://img.ly/forms/contact-sales/, pass null for evaluation mode with watermark
     baseUri: 'YOUR_BASE_URI',
     userId: 'YOUR_USER_ID'
   });
@@ -44,7 +44,7 @@ All the basic configuration settings are part of the `EditorConfiguration` which
 
 ```javascript highlight-configuration
 const settings = new EditorSettingsModel({
-  license: 'YOUR_LICENSE_KEY', // Get your license from https://img.ly/forms/free-trial, pass null for evaluation mode with watermark
+  license: 'YOUR_LICENSE_KEY', // Request a license at https://img.ly/forms/contact-sales/, pass null for evaluation mode with watermark
   baseUri: 'YOUR_BASE_URI',
   userId: 'YOUR_USER_ID'
 });
@@ -53,7 +53,7 @@ const settings = new EditorSettingsModel({
 - `license` - the license to activate the [Engine](./get-started/overview.md) with.
 
 ```javascript highlight-license
-license: 'YOUR_LICENSE_KEY', // Get your license from https://img.ly/forms/free-trial, pass null for evaluation mode with watermark
+license: 'YOUR_LICENSE_KEY', // Request a license at https://img.ly/forms/contact-sales/, pass null for evaluation mode with watermark
 ```
 
 - `baseUri` - the base URI used by the engine for built-in assets like emoji and fallback fonts, and by the editor for its default and demo asset sources (stickers, filters, and more). The default value points at the versioned IMG.LY CDN `https://cdn.img.ly/packages/imgly/cesdk-react-native/<version>/assets`. For production use, we recommend [downloading the assets](https://cdn.img.ly/packages/imgly/cesdk-react-native/1.83.0/imgly-assets.zip), hosting them on your own server, and setting `baseUri` to your hosted location.

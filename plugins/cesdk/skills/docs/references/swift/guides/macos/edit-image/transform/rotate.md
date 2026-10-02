@@ -101,7 +101,7 @@ try engine.editor.setSettingBool("controlGizmo/showRotateHandles", value: false)
 Though the handle is gone, the user can still use the two finger rotation gesture on a touch device. You can disable that gesture with the following setting.
 
 ```swift
-try engine.editor.setSettingBool("touch/rotateAction", value: false)
+try engine.editor.setSettingEnum("touch/rotateAction", value: "None")
 ```
 
 When you want to lock only certain blocks, you can toggle the transform lock property. This will apply to all transformations for the block.

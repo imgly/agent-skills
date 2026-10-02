@@ -2663,6 +2663,12 @@ case codecVideoEncoderBusy
 case codecVideoEncoderCreateFailed
 ```
 
+### EngineErrorCode.codecVideoEncoderFatal
+
+```swift
+case codecVideoEncoderFatal
+```
+
 ### EngineErrorCode.codecVideoEncoderInvalidResolution
 
 ```swift
@@ -3215,6 +3221,18 @@ case editorCropElementNotCroppable
 case editorCropNoSelectedElement
 ```
 
+### EngineErrorCode.editorCurrentPagesDuplicatePage
+
+```swift
+case editorCurrentPagesDuplicatePage
+```
+
+### EngineErrorCode.editorCurrentPagesInvalidCount
+
+```swift
+case editorCurrentPagesInvalidCount
+```
+
 ### EngineErrorCode.editorFontDataLoadFailed
 
 ```swift
@@ -3237,6 +3255,12 @@ case editorFontMetricsExtractFailed
 
 ```swift
 case editorFontUriEmpty
+```
+
+### EngineErrorCode.editorGlobalScopeInvalidValue
+
+```swift
+case editorGlobalScopeInvalidValue
 ```
 
 ### EngineErrorCode.editorHistoryHandleInvalid
@@ -3405,6 +3429,12 @@ case editorSettingNotEnum
 
 ```swift
 case editorSettingNotFound
+```
+
+### EngineErrorCode.editorSettingTypeMismatch
+
+```swift
+case editorSettingTypeMismatch
 ```
 
 ### EngineErrorCode.editorSettingTypeUnsupported

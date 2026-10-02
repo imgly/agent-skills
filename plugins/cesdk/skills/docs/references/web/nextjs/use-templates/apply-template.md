@@ -16,7 +16,7 @@ Apply template content to an existing scene while preserving your canvas dimensi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-use-templates-apply-template-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-use-templates-apply-template-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-use-templates-apply-template-browser/index.html)
 
 ![Apply a Template](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -113,9 +113,10 @@ class Example implements EditorPlugin {
 
     console.log('Template applied from URL');
 
-    // Verify that page dimensions are preserved after applying template
-    const width = engine.block.getWidth(page);
-    const height = engine.block.getHeight(page);
+    // Applying a template replaces the page, so read the page again
+    const appliedPage = engine.scene.getPages()[0];
+    const width = engine.block.getWidth(appliedPage);
+    const height = engine.block.getHeight(appliedPage);
     console.log(`Page dimensions preserved: ${width}x${height}`);
 
     // Demonstrate template switching - apply a different template
@@ -216,12 +217,13 @@ To apply a template from a URL, call `engine.scene.applyTemplateFromURL()` with 
 
 ## Verify Preserved Dimensions
 
-After applying the template, the page dimensions remain unchanged. You can verify this by checking the width and height of the page.
+After applying the template, the page dimensions remain unchanged. Applying a template replaces the page, so read the page again with `engine.scene.getPages()` before you check its width and height.
 
 ```typescript highlight=highlight-verify-dimensions
-// Verify that page dimensions are preserved after applying template
-const width = engine.block.getWidth(page);
-const height = engine.block.getHeight(page);
+// Applying a template replaces the page, so read the page again
+const appliedPage = engine.scene.getPages()[0];
+const width = engine.block.getWidth(appliedPage);
+const height = engine.block.getHeight(appliedPage);
 console.log(`Page dimensions preserved: ${width}x${height}`);
 ```
 
@@ -267,7 +269,7 @@ Verify CORS configuration allows fetching from the template URL. Check network c
 
 ### Content Not Scaling as Expected
 
-Template content scales to fit the current page dimensions. Verify page dimensions are set before applying the template.
+Template content scales to `scene/pageDimensions/width` and `scene/pageDimensions/height`. Until you set them, the engine uses the size of the first page. A value that you set wins over the page size, and a loaded scene keeps its saved value. When there is no page size to use, the template keeps its own. The `scene.create` action sets both values, so set them again after you resize the page with `setWidth()` or `setHeight()`.
 
 ## Related Guides
 

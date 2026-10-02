@@ -18,7 +18,7 @@ CE.SDK's cutout plugin enables effortless creation and customization of cutout s
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-cutout-lines-editor-ts-web/tree/release-1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-cutout-lines-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/starterkit-cutout-lines-editor/index.html)
 
 ***
 
@@ -403,7 +403,7 @@ See [Dock](./user-interface/customization/dock.md), [Inspector Bar](./user-inter
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get a license key and remove the watermark.
 
 ***
 
@@ -417,13 +417,13 @@ See [Dock](./user-interface/customization/dock.md), [Inspector Bar](./user-inter
 ### Cutout option not appearing
 
 - **Select a shape**: Cutout lines work with shapes, not images. Select a vector shape to see the option.
-- **Check plugin installation**: Ensure \`@imgly/plugin-cutout-library-web\`\` is installed
+- **Check plugin installation**: Ensure `@imgly/plugin-cutout-library-web` is installed
 - **Verify plugin setup**: Check that `setupCutoutLibraryPlugin(cesdk)` is called during initialization
 
 ### Watermark appears in production
 
 - **Add your license key**: Set the `license` property in your configuration
-- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+- **Get a license**: Contact us at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
 
 ***
 

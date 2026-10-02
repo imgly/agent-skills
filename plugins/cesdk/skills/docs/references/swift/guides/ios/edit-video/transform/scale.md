@@ -116,7 +116,7 @@ A standard pinch-to-zoom gesture allows a user to scale a block. Toggle this abi
 
 ```swift
 //disable pinch-to-scale
-try engine.editor.setSettingBool("touch/pinchAction", value: false)
+try engine.editor.setSettingEnum("touch/pinchAction", value: "None")
 ```
 
 By default, video clip blocks in the **Video Editor** do not enable their scale handles, toggle this ability using the `controlGizmo/showScaleHandles` property of the `editor`. Displaying the scale handles will allow the user to scale even when pinch-to-zoom is disabled.

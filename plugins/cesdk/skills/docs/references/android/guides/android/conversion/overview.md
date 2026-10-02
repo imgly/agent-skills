@@ -93,7 +93,7 @@ Use `targetWidth` and `targetHeight` for explicit pixel dimensions; changing
 
 - [To Base64](./to-base64.md) — Convert exported binary data into Base64 strings and data URIs.
 - [To Binary Data](./to-blob.md) — Export design blocks to `ByteBuffer` data for saving, uploading, or sharing.
-- [To PNG](../export-save-publish/export/to-png.md) — Export CE.SDK designs as PNG images with lossless compression, alpha support, and configurable output dimensions.&#x20;
+- [To PNG](../export-save-publish/export/to-png.md) — Export CE.SDK designs as PNG images with lossless compression, alpha support, and configurable output dimensions.
 - [To PDF](./to-pdf.md) — Convert your design or document into a high-quality, print-ready PDF format.
 
 

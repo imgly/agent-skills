@@ -18,7 +18,7 @@ Use a form-based custom panel in CE.SDK to enable users to easily customize temp
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-form-based-template-adoption-ts-web/tree/v1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-form-based-template-adoption/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/starterkit-form-based-template-adoption/index.html)
 
 ***
 
@@ -493,7 +493,7 @@ The Form-Based Template Adoption starter kit enables simplified template customi
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get a license key and remove the watermark.
 
 ***
 
@@ -513,7 +513,7 @@ The Form-Based Template Adoption starter kit enables simplified template customi
 ### Watermark appears in production
 
 - **Add your license key**: Set the `license` property in your configuration
-- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+- **Get a license**: Contact us at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
 
 ***
 

@@ -1125,7 +1125,9 @@ and custom interface elements within the editor.
     ### getTheme()
 
     <br /><p>Gets the resolved theme that is currently being used.
-    If the theme configuration is 'system', returns the OS preference.
+    If the theme configuration is 'system', returns the OS preference,
+    including the high-contrast variants when the OS requests increased
+    contrast ('prefers-contrast: more').
     If the theme configuration is a function, it is evaluated lazily and the result is returned.</p>
   </summary>
 
@@ -1133,16 +1135,16 @@ and custom interface elements within the editor.
 
   [`Theme`](./api/cesdk-js/documentation/namespaces/configtypes/type-aliases/theme.md)
 
-  The resolved theme ('light' or 'dark').
+  The resolved theme ('light', 'dark', 'light-high-contrast' or 'dark-high-contrast').
 
   #### Example
 
   ```javascript
   // Get the actual theme being used
-  const theme = cesdk.ui.getTheme(); // 'light' or 'dark'
+  const theme = cesdk.ui.getTheme(); // e.g. 'light' or 'dark-high-contrast'
 
   // Use for conditional styling
-  const iconColor = cesdk.ui.getTheme() === 'dark' ? 'white' : 'black';
+  const isDark = cesdk.ui.getTheme().startsWith('dark');
 
   // Theme function is evaluated each time getTheme() is called
   cesdk.ui.setTheme(() => new Date().getHours() >= 18 ? 'dark' : 'light');
@@ -1169,8 +1171,10 @@ and custom interface elements within the editor.
   Can be set to:
 
   - 'light' or 'dark' for a specific theme
-  - 'system' to use the OS preference
-  - A function that returns 'light' or 'dark' for dynamic theming
+  - 'light-high-contrast' or 'dark-high-contrast' for the WCAG-conformant
+    high-contrast variants
+  - 'system' to use the OS preference (color scheme and contrast)
+  - A function that returns a concrete theme for dynamic theming
 
   #### Parameters
 
@@ -1199,7 +1203,7 @@ and custom interface elements within the editor.
 
   // Toggle between themes
   const currentTheme = cesdk.ui.getTheme();
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  const newTheme = currentTheme.startsWith('dark') ? 'light' : 'dark';
   cesdk.ui.setTheme(newTheme);
   ```
 </details>

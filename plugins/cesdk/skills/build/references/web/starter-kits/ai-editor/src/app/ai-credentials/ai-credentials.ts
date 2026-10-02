@@ -187,8 +187,7 @@ const DEFAULT_GATEWAY_URL = 'https://gateway.img.ly';
  *
  *   1. Embedded mode — `?gatewayUrl=` query param forwarded by the
  *      hosting demos page. Lets the host pair its Clerk instance with
- *      the matching gateway (e.g. staging Clerk → `gateway.staging.img.ly`)
- *      without any starterkit-side config.
+ *      the matching gateway without any starterkit-side config.
  *   2. `VITE_AI_GATEWAY_URL` env var — standalone dev pointing at a
  *      non-production gateway.
  *   3. The default production gateway.

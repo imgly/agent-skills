@@ -3,11 +3,15 @@
 ---
 
 ```ts
-type Theme = "light" | "dark";
+type Theme = "light" | "dark" | "light-high-contrast" | "dark-high-contrast";
 ```
 
 Represents the base theme values for the Creative Editor SDK.
 This type defines the concrete themes that can be rendered.
+
+The high-contrast themes meet WCAG 2.1 AAA text contrast and draw control
+boundaries at 3:1 or more. The label of an active control meets AA while it
+is hovered or pressed.
 
 
 ---

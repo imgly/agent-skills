@@ -544,6 +544,38 @@ getCurrentPage(): DesignBlockId | null
 
 **Returns:** The current page in the scene or null.
 
+### setCurrentPages()
+
+Set the pages that single page mode shows. All other pages leave the view but
+stay in the document and in the saved file.
+Takes visible effect while the setting `features/singlePageModeEnabled` is enabled.
+Exporting a page holds that page, even while it is out of view. Exporting a scene holds
+every page, except pages hidden with `block.setVisible`.
+```javascript
+engine.scene.setCurrentPages([page]);
+```
+
+```typescript
+setCurrentPages(pages: DesignBlockId[]): void
+```
+
+**Parameters:**
+- `pages` - The pages to show. Two pages form a facing-page view. Each page must be distinct.
+
+### getCurrentPages()
+
+Get the pages that single page mode shows.
+```javascript
+const currentPages = engine.scene.getCurrentPages();
+```
+
+```typescript
+getCurrentPages(): DesignBlockId[]
+```
+
+**Returns:** The shown pages, or an empty list when the setting
+`features/singlePageModeEnabled` is disabled.
+
 ### findNearestToViewPortCenterByType()
 
 Find all blocks with the given type sorted by the distance to viewport center.

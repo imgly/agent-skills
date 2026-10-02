@@ -18,7 +18,7 @@ Set up CE.SDK with license keys, asset base URLs, user IDs, and runtime configur
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-configuration-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-configuration-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-configuration-browser/index.html)
 
 `CreativeEditorSDK.create()` initializes the full CE.SDK editor with UI components. The configuration object controls license validation, asset loading, user tracking, and UI behavior.
 
@@ -28,7 +28,7 @@ import Example from './browser';
 
 const config = {
   // License key removes watermarks from exports
-  // Get a free trial at https://img.ly/forms/free-trial
+  // Request a license at https://img.ly/forms/contact-sales/
   // license: 'YOUR_CESDK_LICENSE_KEY',
 
   // User ID for accurate MAU tracking across devices
@@ -258,7 +258,7 @@ The license key validates your CE.SDK subscription and removes watermarks from e
 
 ```typescript highlight=highlight-license
 // License key removes watermarks from exports
-// Get a free trial at https://img.ly/forms/free-trial
+// Request a license at https://img.ly/forms/contact-sales/
 // license: 'YOUR_CESDK_LICENSE_KEY',
 ```
 

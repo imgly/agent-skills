@@ -122,7 +122,7 @@ Android asset source.
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../../engine-interface.md) guide.
 
-IMG.LY premium templates are delivered as a licensed asset package. Contact [IMG.LY sales](https://img.ly/forms/contact-sales) to obtain the package, then extract it and host its contents on your server or CDN. CE.SDK can query the hosted manifest, show template thumbnails, and load an individual template's `.zip` archive into the scene.
+IMG.LY premium templates are delivered as a licensed asset package. Contact [IMG.LY sales](https://img.ly/forms/contact-sales/) to obtain the package, then extract it and host its contents on your server or CDN. CE.SDK can query the hosted manifest, show template thumbnails, and load an individual template's `.zip` archive into the scene.
 
 This guide covers locating the hosted `content.json`, creating a local source with archive loading support, loading asset definitions from JSON, and applying a template through the Asset API.
 
@@ -130,7 +130,7 @@ This guide covers locating the hosted `content.json`, creating a local source wi
 
 Before integrating premium assets, make sure you have:
 
-- The licensed IMG.LY premium asset package, available from [IMG.LY sales](https://img.ly/forms/contact-sales).
+- The licensed IMG.LY premium asset package, available from [IMG.LY sales](https://img.ly/forms/contact-sales/).
 - A server or CDN that hosts the extracted package contents over HTTPS.
 - An existing CE.SDK `Engine` instance.
 - Network access from your Android app to the hosted asset files.

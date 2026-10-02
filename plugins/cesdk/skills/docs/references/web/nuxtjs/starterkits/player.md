@@ -18,7 +18,7 @@ Lightweight video playback for your Nuxt.js app—play, pause, and navigate vide
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-video-player-ts-web/tree/v1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-video-player/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/starterkit-video-player/index.html)
 
 ***
 
@@ -377,7 +377,7 @@ The Video Player includes everything needed for video playback.
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get
 > a license key and remove the watermark.
 
 ***
@@ -403,7 +403,7 @@ The Video Player includes everything needed for video playback.
 ### Watermark appears in production
 
 - **Add your license key**: Set the `license` property in your configuration
-- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+- **Get a license**: Contact us at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
 
 ***
 

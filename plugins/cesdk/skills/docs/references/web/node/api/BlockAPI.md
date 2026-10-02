@@ -144,6 +144,8 @@ loadFromURL(url: string): Promise<DesignBlockId[]>
 
 Saves the given blocks to a serialized string.
 If a page with multiple children is given, the entire hierarchy is saved.
+The resources of that whole hierarchy are checked against `allowedResourceSchemes`
+and are passed to `onDisallowedResourceScheme`.
 
 ```typescript
 saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisallowedResourceScheme?: (url: string, dataHash: string) => Promise<string>): Promise<string>
@@ -151,7 +153,7 @@ saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisal
 
 **Parameters:**
 - `blocks` - The blocks to save.
-- `allowedResourceSchemes` - The resource schemes to allow in the saved string. Defaults to ['buffer', 'http', 'https'].
+- `allowedResourceSchemes` - The resource schemes to allow in the saved string. Defaults to ['buffer', 'bundle', 'http', 'https'].
 - `onDisallowedResourceScheme` - An optional callback that is called for each resource URL that has a scheme absent from
 `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the
 resource's data. The callback should return a new URL for the resource, which will be used in the serialized
@@ -1803,6 +1805,8 @@ findAllSelected(): DesignBlockId[]
 ### isVisible()
 
 Gets the visibility state of a block.
+Reports the visibility you set, not the current view. A page that single page mode
+takes out of view stays visible; use `scene.getCurrentPages` to read the view.
 
 ```typescript
 isVisible(id: DesignBlockId): boolean

@@ -27,7 +27,7 @@ The settings are organized by type:
 |  ~~`controlGizmo/showScaleHandles`~~ | `boolean` | **Deprecated** Use `controlGizmo/scaleHandlesVisibility`. `false` hides the corner (scale) handles. |
 |  `doubleClickToCropEnabled` | `boolean` | Enable double-click to enter crop mode. |
 |  `dragToSwapFills/enabled` | `boolean` | Whether pressing and holding an image element lifts its image into a drag. Releasing it over another image element exchanges the two images. |
-|  `features/singlePageModeEnabled` | `boolean` | Enable single page mode where only one page is shown at a time. |
+|  `features/singlePageModeEnabled` | `boolean` | Show only the current pages (see `scene.setCurrentPages`) in the interactive view. A saved scene keeps every page, and an export of a scene holds every page, except pages hidden with `block.setVisible`. If the mode is on when a scene loads, it also controls the pages that the scene saved as hidden. It shows them like other pages, and the next save stores them as visible. |
 |  `features/fileSystemUsageEnabled` | `boolean` | Enable file system usage, that allows the engine to use the file system to store files for local uploads. |
 |  `features/pageCarouselEnabled` | `boolean` | Enable the page carousel for navigating between pages. |
 |  `features/transformEditsRetainCoverMode` | `boolean` | Whether transform edits should retain the cover mode of the content. |

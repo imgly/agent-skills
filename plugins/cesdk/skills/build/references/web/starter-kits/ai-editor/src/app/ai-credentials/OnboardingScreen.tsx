@@ -7,10 +7,10 @@
  *      release) — the starterkit runs inside the IMG.LY demos iframe and
  *      the session JWT minted by the hosting page was rejected; points
  *      at the host-side Clerk/gateway mismatch, not at any `.env`.
- *   2. `import.meta.env.PROD` — a deployed bundle (customer prod, or
- *      our `ubique.img.ly` staging) opened standalone. Shows an input
- *      field that writes the pasted key to `localStorage` via
- *      `setUserApiKey`; used for both the `missing` and `invalid` states.
+ *   2. `import.meta.env.PROD` — any deployed production build opened
+ *      standalone. Shows an input field that writes the pasted key to
+ *      `localStorage` via `setUserApiKey`; used for both the `missing` and
+ *      `invalid` states.
  *   3. Dev (`vite dev`) — `.env` walkthrough for IMG.LY devs + adopters
  *      running the starterkit locally after cloning.
  */

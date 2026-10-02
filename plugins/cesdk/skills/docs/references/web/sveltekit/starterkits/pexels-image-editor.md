@@ -18,7 +18,7 @@ CE.SDK can include assets from third-party libraries accessible via API. Search 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-pexels-asset-source-ts-web/tree/release-1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-pexels-asset-source/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/starterkit-pexels-asset-source/index.html)
 
 ***
 
@@ -559,16 +559,33 @@ See [Print Ready PDF](./plugins/print-ready-pdf.md) for setup instructions and c
 Extend the editor with generative AI capabilities for text-to-image generation, image enhancement, and intelligent editing features. CE.SDK integrates with various AI providers.
 
 ```typescript title="src/imgly/config/plugin.ts"
-import AIPlugin from '@imgly/plugin-ai-generation';
+import ImageGeneration from '@imgly/plugin-ai-image-generation-web';
+import { GatewayProvider } from '@imgly/plugin-ai-image-generation-web/gateway';
 
-// Configure AI generation
-await cesdk.addPlugin(AIPlugin({
-  provider: 'your-ai-provider',
-  apiKey: 'your-api-key'
-}));
+// Your backend mints a short-lived IMG.LY AI Gateway token
+cesdk.actions.register('ly.img.ai.getToken', async () => {
+  const response = await fetch('/api/ai/token', { method: 'POST' });
+  const { token } = await response.json();
+  return token;
+});
+
+// Add text-to-image generation through the IMG.LY AI Gateway
+await cesdk.addPlugin(
+  ImageGeneration({
+    providers: {
+      text2image: GatewayProvider('bfl/flux-2', {})
+    }
+  })
+);
+
+// Show the image generation panel in the dock
+cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+  'ly.img.ai.image-generation.dock',
+  ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })
+]);
 ```
 
-See [AI Integration](./user-interface/ai-integration.md) for provider setup and supported AI features.
+See [Managed Model Gateway](./user-interface/ai-integration/gateway-provider.md) for the token endpoint and [AI Integration](./user-interface/ai-integration.md) for all AI features.
 
 ***
 
@@ -617,7 +634,7 @@ See [AI Integration](./user-interface/ai-integration.md) for provider setup and 
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get a license key and remove the watermark.
 
 ***
 
@@ -641,7 +658,7 @@ CE.SDK requires browser APIs and cannot run during server-side rendering. Use dy
 ### Watermark appears in production
 
 - **Add your license key**: Set the `license` property in your configuration
-- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+- **Get a license**: Contact us at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
 
 ***
 

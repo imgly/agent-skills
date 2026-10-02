@@ -24,7 +24,7 @@ A server-side PDF conversion workflow that:
 
 ## Prerequisites
 
-- CE.SDK license with Design Editor features - [Get a free trial](https://img.ly/forms/free-trial)
+- CE.SDK license with Design Editor features - [Request a license](https://img.ly/forms/contact-sales/)
 - Node.js 22+ installed (required by `@cesdk/node`)
 - Basic knowledge of Node.js and async/await
 

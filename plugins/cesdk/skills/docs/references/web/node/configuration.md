@@ -37,7 +37,7 @@ function createLogger(prefix: string) {
 }
 
 // License key removes watermarks from exports
-// Get a free trial at https://img.ly/forms/free-trial
+// Request a license at https://img.ly/forms/contact-sales/
 const license = process.env.CESDK_LICENSE ?? '';
 
 // Location of core engine assets (WASM, data files)
@@ -210,7 +210,7 @@ The license key validates your CE.SDK subscription and removes watermarks from e
 
 ```typescript highlight=highlight-license
 // License key removes watermarks from exports
-// Get a free trial at https://img.ly/forms/free-trial
+// Request a license at https://img.ly/forms/contact-sales/
 const license = process.env.CESDK_LICENSE ?? '';
 ```
 

@@ -853,6 +853,53 @@ Methods for exporting scenes and pages as files in various formats and mimeTypes
   ```
 </details>
 
+## Page Management
+
+<details>
+  <summary>
+    ### switchPage()
+
+    <br /><p>Shows the given page in single page mode and scrolls the viewport to it. Does nothing to
+    the page set while the mode is off, but still scrolls to the page.</p>
+  </summary>
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `pageId` | `number` | The page to show. |
+
+  #### Returns
+
+  `Promise`\<`void`>
+
+  #### Signature
+
+  ```typescript
+  switchPage(pageId: number): Promise<void>
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### ~~unstable\_switchPage()~~
+
+    <br /><p>| Parameter | Type |
+    | ------ | ------ |
+    | <code>pageId</code> | <code>number</code> |</p>
+  </summary>
+
+  #### Returns
+
+  `Promise`\<`void`>
+
+  #### Deprecated
+
+  Use `switchPage` instead. This method will be removed in a future version.
+</details>
+
 ## Upload Operations
 
 Methods for handling file uploads and asset creation from user-provided files.
@@ -941,24 +988,6 @@ Methods for handling file uploads and asset creation from user-provided files.
 ## Page Management
 
 This API is experimental and may change or be removed in future versions.
-
-<details>
-  <summary>
-    ### unstable\_switchPage()
-  </summary>
-
-  #### Parameters
-
-  | Parameter | Type |
-  | ------ | ------ |
-  | `pageId` | `number` |
-
-  #### Returns
-
-  `Promise`\<`void`>
-
-  ***
-</details>
 
 <details>
   <summary>

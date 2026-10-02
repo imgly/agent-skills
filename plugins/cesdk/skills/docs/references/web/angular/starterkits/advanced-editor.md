@@ -20,7 +20,7 @@ with no server dependencies.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-design-editor-ts-web/tree/v1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-advanced-design-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/starterkit-advanced-design-editor/index.html)
 
 ***
 
@@ -666,35 +666,39 @@ See [Print Ready PDF](./plugins/print-ready-pdf.md) for setup instructions and c
 Extend the editor with generative AI capabilities for text-to-image generation, image enhancement, and intelligent editing features. CE.SDK integrates with various AI providers.
 
 ```typescript title="src/app/imgly/config/plugin.ts"
-import AIPlugin from '@imgly/plugin-ai-generation';
+import ImageGeneration from '@imgly/plugin-ai-image-generation-web';
+import { GatewayProvider } from '@imgly/plugin-ai-image-generation-web/gateway';
 
-// Configure AI generation
+// Your backend mints a short-lived IMG.LY AI Gateway token
+cesdk.actions.register('ly.img.ai.getToken', async () => {
+  const response = await fetch('/api/ai/token', { method: 'POST' });
+  const { token } = await response.json();
+  return token;
+});
+
+// Add text-to-image generation through the IMG.LY AI Gateway
 await cesdk.addPlugin(
-  AIPlugin({
-    provider: 'your-ai-provider',
-    apiKey: 'your-api-key',
+  ImageGeneration({
+    providers: {
+      text2image: GatewayProvider('bfl/flux-2', {}),
+    },
   }),
 );
+
+// Show the image generation panel in the dock
+cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+  'ly.img.ai.image-generation.dock',
+  ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
+]);
 ```
 
-See [AI Integration](./user-interface/ai-integration.md) for provider setup and supported AI features.
+See [Managed Model Gateway](./user-interface/ai-integration/gateway-provider.md) for the token endpoint and [AI Integration](./user-interface/ai-integration.md) for all AI features.
 
 #### Custom Asset Sources
 
 Connect external asset libraries like Unsplash, Getty Images, or your own content management system. Asset sources let users browse and insert content from any source.
 
-```typescript title="src/app/imgly/config/plugin.ts"
-import UnsplashAssetSource from '@imgly/plugin-unsplash';
-
-// Add Unsplash integration
-await cesdk.addPlugin(
-  UnsplashAssetSource({
-    accessKey: 'your-unsplash-access-key',
-  }),
-);
-```
-
-See [Custom Asset Sources](./import-media/from-remote-source/unsplash.md) for integration patterns.
+You register one with `engine.asset.addSource()`, without installing a plugin package. See [Import From Remote Source](./import-media/from-remote-source.md) for integration patterns and [Unsplash](./import-media/from-remote-source/unsplash.md) for a complete Unsplash integration.
 
 #### Discover More Plugins
 
@@ -754,7 +758,7 @@ Design Editor (Advanced) includes everything needed for professional design edit
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get
 > a license key and remove the watermark.
 
 ***
@@ -780,7 +784,7 @@ Design Editor (Advanced) includes everything needed for professional design edit
 ### Watermark appears in production
 
 - **Add your license key**: Set the `license` property in your configuration
-- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+- **Get a license**: Contact us at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
 
 ***
 

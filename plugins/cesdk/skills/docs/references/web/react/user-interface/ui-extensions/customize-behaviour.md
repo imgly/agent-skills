@@ -18,7 +18,7 @@ Control CE.SDK's interface programmatically at runtime through event subscriptio
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-user-interface-ui-extensions-customize-behaviour-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-user-interface-ui-extensions-customize-behaviour-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-user-interface-ui-extensions-customize-behaviour-browser/index.html)
 
 UI behavior customization enables responsive, context-aware editing experiences. You can listen for user interactions, manipulate UI state dynamically based on application logic, integrate CE.SDK with external workflows, and build custom behavior that responds to editing events.
 
@@ -253,7 +253,7 @@ export default class CustomizeBehaviorExample implements EditorPlugin {
 
     // Toggle theme after delay
     setTimeout(() => {
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const newTheme = currentTheme.startsWith('dark') ? 'light' : 'dark';
       cesdk.ui.setTheme(newTheme);
       // eslint-disable-next-line no-console
       console.log('Theme changed to:', newTheme);
@@ -392,6 +392,8 @@ For complete panel management including custom panel registration and advanced p
 
 ## Showing Notifications and Dialogs
 
+The [Notifications](./user-interface/ui-extensions/notifications.md) and [Dialogs](./user-interface/ui-extensions/dialogs.md) guides cover every option.
+
 ### Displaying Notifications
 
 Show temporary feedback using `cesdk.ui.showNotification()`. Configure the notification's message and type (`info`, `success`, `error`). How long it stays follows the user's notification setting.
@@ -453,7 +455,7 @@ Control the editor's theme and UI scale at runtime. Set theme to `'light'`, `'da
 ```typescript
 // Toggle theme
 const currentTheme = cesdk.ui.getTheme();
-cesdk.ui.setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+cesdk.ui.setTheme(currentTheme.startsWith('dark') ? 'light' : 'dark');
 
 // Set scale
 cesdk.ui.setScale('large');

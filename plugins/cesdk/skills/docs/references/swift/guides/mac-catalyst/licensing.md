@@ -8,7 +8,7 @@ Thanks for your interest in CreativeEditor SDK (CE.SDK).
 
 We offer flexible commercial licensing options to support teams and projects of all sizes. Whether you're building a new product or scaling an existing one, our goal is to provide the best creative editing experience—backed by a licensing model that aligns with your needs.
 
-Get in touch with us through our [contact sales form](https://img.ly/forms/contact-sales).
+Get in touch with us through our [contact sales form](https://img.ly/forms/contact-sales/).
 
 ## Commercial Licensing
 
@@ -23,13 +23,13 @@ CE.SDK is offered through a subscription-based commercial model. This allows us 
 
 CE.SDK licenses are tied to a single commercial product instance, verified by the hostname for web apps and bundle/app ID for mobile apps.
 
-Licensing typically uses remote validation and includes lightweight event tracking. It’s possible to disable tracking or use offline-compatible options. To explore these options, [contact our sales team](https://img.ly/forms/contact-sales). For details on which operations count as an export, see [Export Counting](./export-counting.md).
+Licensing typically uses remote validation and includes lightweight event tracking. It’s possible to disable tracking or use offline-compatible options. To explore these options, [contact our sales team](https://img.ly/forms/contact-sales/). For details on which operations count as an export, see [Export Counting](./export-counting.md).
 
 ## Trial License Key
 
 Trial licenses are available for evaluation and testing and are valid for **30 days**. They provide full access to CE.SDK’s features so you can explore its capabilities in your environment.
 
-If you need more time to evaluate, [contact our sales team](https://img.ly/forms/contact-sales).
+If you need more time to evaluate, [contact our sales team](https://img.ly/forms/contact-sales/).
 
 ## Evaluation Mode
 

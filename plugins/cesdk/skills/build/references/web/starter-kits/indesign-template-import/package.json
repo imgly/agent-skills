@@ -9,9 +9,9 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.84.0-nightly.20261001",
-    "@cesdk/engine": "^1.84.0-nightly.20261001",
-    "@imgly/idml-importer": "^1.5.4",
+    "@cesdk/cesdk-js": "^1.84.0-nightly.20261002",
+    "@cesdk/engine": "^1.84.0-nightly.20261002",
+    "@imgly/idml-importer": "^2.0.0",
     "@imgly/pdf-importer": "^0.3.0",
     "classnames": "^2.3.2",
     "react": "^18.2.0",

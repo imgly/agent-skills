@@ -2331,7 +2331,7 @@ Saves the given blocks and all of their referenced assets into an archive. The a
 @MainActor func saveToString(blocks: [DesignBlockID], allowedResourceSchemes: [String] = ["bundle", "file", "http", "https"], onDisallowedResourceScheme: (@MainActor @Sendable (URL, String) async -> URL)? = nil) async throws -> String
 ```
 
-Saves the given blocks into a string. If given the root of a block hierarchy, e.g. a page with multiple children, the entire hierarchy is saved. `blocks`
+Saves the given blocks into a string. If given the root of a block hierarchy, e.g. a page with multiple children, the entire hierarchy is saved. The resources of that whole hierarchy are checked against `allowedResourceSchemes` and passed to `onDisallowedResourceScheme`. `blocks`
 
 ### scale(_:to:anchorX:anchorY:)
 

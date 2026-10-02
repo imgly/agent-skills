@@ -134,7 +134,7 @@ Verify the template URL is reachable and valid. For remote URLs, check network c
 
 ### Content Not Scaling as Expected
 
-Template content scales to fit the current page dimensions. Set the page dimensions before applying the template so the content adjusts to the size you expect.
+Template content scales to `scene/pageDimensions/width` and `scene/pageDimensions/height`. Until you set them, the engine uses the size of the first page. A value that you set wins over the page size, and a loaded scene keeps its saved value. When there is no page size to use, the template keeps its own.
 
 ## API Reference
 

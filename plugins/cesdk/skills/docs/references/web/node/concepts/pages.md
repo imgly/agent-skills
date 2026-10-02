@@ -147,6 +147,20 @@ async function main(): Promise<void> {
     const pagesByType = engine.block.findByType('page');
     console.log('Pages found by type:', pagesByType);
 
+    // Enable single page mode and show only the second page
+    engine.editor.setSetting('features/singlePageModeEnabled', true);
+    engine.scene.setCurrentPages([secondPage]);
+
+    // Or show more pages. Two pages form a facing pair
+    engine.scene.setCurrentPages([firstPage, secondPage]);
+
+    // Read the shown pages. The list is empty while the mode is disabled
+    const currentPages = engine.scene.getCurrentPages();
+    console.log('Current pages:', currentPages);
+
+    // Turn the mode off to show every page again
+    engine.editor.setSetting('features/singlePageModeEnabled', false);
+
     // Export each page to demonstrate the result
     const outputDir = './output';
     if (!existsSync(outputDir)) {
@@ -271,7 +285,7 @@ The CE.SDK engine supports pages with different dimensions. When using stacked l
     engine.block.setFloat(scene, 'scene/pageDimensions/height', 600);
 ```
 
-You can set default page dimensions at the scene level using `engine.block.setFloat()` with `scene/pageDimensions/width` and `scene/pageDimensions/height`. The `scene/aspectRatioLock` property controls whether changing one dimension automatically adjusts the other. Individual pages can also have their dimensions set directly with `setWidth()` and `setHeight()`.
+You can set default page dimensions at the scene level using `engine.block.setFloat()` with `scene/pageDimensions/width` and `scene/pageDimensions/height`. If you do not set them, they report the current size of the first page, or 1 when that page has no absolute width and height. The `scene/aspectRatioLock` property controls whether changing one dimension automatically adjusts the other. Individual pages can also have their dimensions set directly with `setWidth()` and `setHeight()`.
 
 ## Finding and Navigating Pages
 
@@ -373,6 +387,28 @@ The scene's layout mode controls how multiple pages are arranged. Set this using
 - **HorizontalStack**: Pages arrange horizontally, side by side
 - **DepthStack**: Pages overlay each other, typically used for video editing
 - **Free**: Pages can be positioned freely without automatic arrangement
+
+## Single Page Mode
+
+Single page mode focuses the view on one page (or a facing pair) of a multi-page design. All other pages leave the view but stay in the document and in the saved file. The mode is meant for an interactive editor, so the example turns it off again before it exports.
+
+```typescript highlight=highlight-single-page-mode
+    // Enable single page mode and show only the second page
+    engine.editor.setSetting('features/singlePageModeEnabled', true);
+    engine.scene.setCurrentPages([secondPage]);
+
+    // Or show more pages. Two pages form a facing pair
+    engine.scene.setCurrentPages([firstPage, secondPage]);
+
+    // Read the shown pages. The list is empty while the mode is disabled
+    const currentPages = engine.scene.getCurrentPages();
+    console.log('Current pages:', currentPages);
+
+    // Turn the mode off to show every page again
+    engine.editor.setSetting('features/singlePageModeEnabled', false);
+```
+
+The mode is view state only. `engine.scene.getPages()` still returns every page and a saved scene keeps every page. `engine.block.isVisible()` still returns `true` for a page out of the view, and `engine.scene.getCurrentPages()` reports the view. An export of the scene holds every page, also the pages that the mode does not show. An export leaves out only pages that you hide with `engine.block.setVisible()`.
 
 ## Pages for Static Designs vs. Video Editing
 

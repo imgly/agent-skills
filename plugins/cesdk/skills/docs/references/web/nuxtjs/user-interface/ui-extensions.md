@@ -18,7 +18,8 @@
 - [Create a Custom Panel](./user-interface/ui-extensions/create-custom-panel.md) - Design a custom sidebar panel to support unique workflows and user needs.
 - [Asset Library](./user-interface/ui-extensions/asset-library.md) - Extend CE.SDK's asset library with custom sources, user uploads, and remote APIs
 - [Customize UI Behavior](./user-interface/ui-extensions/customize-behaviour.md) - Programmatically control and respond to CE.SDK's user interface at runtime with event subscriptions, panel management, and dynamic customization.
-- [Notifications and Dialogs](./user-interface/ui-extensions/notifications-and-dialogs.md) - Display notifications and dialogs to communicate with users during their editing workflow.
+- [Notifications](./user-interface/ui-extensions/notifications.md) - Display notifications to give users non-blocking feedback during their editing workflow.
+- [Dialogs](./user-interface/ui-extensions/dialogs.md) - Display modal dialogs to present information and collect user decisions during their editing workflow.
 
 
 ---

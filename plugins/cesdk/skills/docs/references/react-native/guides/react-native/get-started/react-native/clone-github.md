@@ -55,7 +55,7 @@ Before you begin, ensure you have the following requirements:
 
 ### License
 
-- A valid **CE.SDK license key** ([Get a free trial](https://img.ly/forms/free-trial)), pass `null` to run in evaluation mode with watermark.
+- A valid **CE.SDK license key** ([Request a license](https://img.ly/forms/contact-sales/)), pass `null` to run in evaluation mode with watermark.
 
 ### Verify Your Setup
 
@@ -325,7 +325,7 @@ Invalid license key
 
 **Solution:**
 
-1. Ensure you have a valid license key from [IMG.LY](https://img.ly/forms/free-trial) (or pass `null` for evaluation mode with watermark)
+1. Ensure you have a valid license key from [IMG.LY](https://img.ly/forms/contact-sales/) (or pass `null` for evaluation mode with watermark)
 2. Verify the license key is correctly set in `src/secrets/secrets.ts`
 3. Check that the license key is for the correct platform (React Native)
 4. Ensure there are no extra spaces or characters in the license key

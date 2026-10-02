@@ -18,7 +18,7 @@ Create and place custom UI components in CE.SDK using `registerComponent()` and 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-user-interface-customization-quick-start-create-custom-components-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-user-interface-customization-quick-start-create-custom-components-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-user-interface-customization-quick-start-create-custom-components-browser/index.html)
 
 Custom components let you extend CE.SDK's UI beyond built-in action buttons. The workflow has two steps: register the component with `registerComponent()`, then place it with `insertOrderComponent()`.
 
@@ -91,13 +91,13 @@ class Example implements EditorPlugin {
 
     // Register a custom theme toggle button
     cesdk.ui.registerComponent('my.themeToggle', ({ builder }) => {
-      const currentTheme = cesdk.ui.getTheme();
+      const isDark = cesdk.ui.getTheme().startsWith('dark');
       builder.Button('my.themeToggle.button', {
-        label: currentTheme === 'light' ? 'Dark Mode' : 'Light Mode',
+        label: isDark ? 'Light Mode' : 'Dark Mode',
         icon: '@imgly/Adjustments',
         variant: 'regular',
         onClick: () => {
-          cesdk.ui.setTheme(currentTheme === 'light' ? 'dark' : 'light');
+          cesdk.ui.setTheme(isDark ? 'light' : 'dark');
         }
       });
     });
@@ -195,13 +195,13 @@ Use `cesdk.ui.registerComponent()` to define a custom component. The function re
 ```typescript highlight=highlight-register-component
 // Register a custom theme toggle button
 cesdk.ui.registerComponent('my.themeToggle', ({ builder }) => {
-  const currentTheme = cesdk.ui.getTheme();
+  const isDark = cesdk.ui.getTheme().startsWith('dark');
   builder.Button('my.themeToggle.button', {
-    label: currentTheme === 'light' ? 'Dark Mode' : 'Light Mode',
+    label: isDark ? 'Light Mode' : 'Dark Mode',
     icon: '@imgly/Adjustments',
     variant: 'regular',
     onClick: () => {
-      cesdk.ui.setTheme(currentTheme === 'light' ? 'dark' : 'light');
+      cesdk.ui.setTheme(isDark ? 'light' : 'dark');
     }
   });
 });

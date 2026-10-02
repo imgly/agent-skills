@@ -5,7 +5,7 @@ import IMGLYEditor, {
 
 export const basicEditor = async (): Promise<void> => {
   const settings = new EditorSettingsModel({
-    license: 'YOUR_LICENSE_KEY', // Get your license from https://img.ly/forms/free-trial, pass null for evaluation mode with watermark
+    license: 'YOUR_LICENSE_KEY', // Request a license at https://img.ly/forms/contact-sales/, pass null for evaluation mode with watermark
     baseUri: 'YOUR_BASE_URI',
     userId: 'YOUR_USER_ID'
   });

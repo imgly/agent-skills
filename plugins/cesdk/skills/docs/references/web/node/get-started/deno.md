@@ -14,9 +14,9 @@ image**—all without a UI.
 
 CreativeEditor SDK (CE.SDK) lets you integrate a customizable image and video editor into your web app. It includes filters, text overlays, and other media editing tools, and adapts easily to your use case.
 
-CreativeEditor SDK is a commercial product. To use it, you need a valid license key. If you don’t have one yet, you can get a free trial or purchase a license.
+CreativeEditor SDK is a commercial product. To use it, you need a valid license key. If you don’t have one yet, contact our sales team or purchase a license.
 
-[Free Trial](https://img.ly/forms/free-trial)
+[Contact Sales](https://img.ly/forms/contact-sales/)
 
 [Purchase License](https://img.ly/pricing)
 
@@ -39,7 +39,7 @@ This guide is for developers who:
 Before getting started, ensure you have:
 
 - **Deno installed**.
-- A valid **CE.SDK license key** ([Get a free trial](https://img.ly/forms/free-trial)).
+- A valid **CE.SDK license key** ([Request a license](https://img.ly/forms/contact-sales/)).
 - **Deno v1.28 or later** to ensure compatibility with npm packages.
 
 > **Note:** Node.js executable isn't capable of processing or exporting video.
@@ -106,7 +106,7 @@ try {
 
 > **Warning:** **Important**: You must replace `'YOUR_LICENSE_KEY'` with your actual CE.SDK
 > license key. The script fails with initialization errors without a valid
-> license key. [Get a free trial license key](https://img.ly/forms/free-trial).
+> license key. [Request a license key](https://img.ly/forms/contact-sales/).
 
 ## Step 3: Run the Script
 

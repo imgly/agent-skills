@@ -18,7 +18,7 @@ Easily visualize the final product with the Mockup Editor. Suitable for apparel,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-product-preview-react-web/tree/v1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-product-preview/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/starterkit-product-preview/index.html)
 
 ***
 
@@ -629,16 +629,7 @@ See [Print Ready PDF](./plugins/print-ready-pdf.md) for setup instructions and c
 
 Connect external asset libraries like Unsplash, Getty Images, or your own content management system. Asset sources let users browse and insert content from any source.
 
-```typescript title="src/lib/imgly/index.ts"
-import UnsplashAssetSource from '@imgly/plugin-unsplash';
-
-// Add Unsplash integration
-await cesdk.addPlugin(UnsplashAssetSource({
-  accessKey: 'your-unsplash-access-key'
-}));
-```
-
-See [Custom Asset Sources](./import-media/from-remote-source/unsplash.md) for integration patterns.
+You register one with `engine.asset.addSource()`, without installing a plugin package. See [Import From Remote Source](./import-media/from-remote-source.md) for integration patterns and [Unsplash](./import-media/from-remote-source/unsplash.md) for a complete Unsplash integration.
 
 #### Discover More Plugins
 
@@ -698,7 +689,7 @@ The Mockup Editor includes everything needed for professional mockup rendering.
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get a license key and remove the watermark.
 
 ***
 
@@ -729,7 +720,7 @@ The Mockup Editor includes everything needed for professional mockup rendering.
 ### Watermark appears in production
 
 - **Add your license key**: Set the `license` property in your configuration
-- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+- **Get a license**: Contact us at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
 
 ***
 

@@ -26,7 +26,7 @@ We are going to use AWS CDK to provision the infrastructure (API Gateway, Lambda
 
 - [Install and configure](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) the AWS CLI.
 - [Install the AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) npm package and bootstrap the necessary resources.
-- Get a valid [CE.SDK license key](https://img.ly/forms/free-trial).
+- Get a valid [CE.SDK license key](https://img.ly/forms/contact-sales/).
 
 ## Step 1: Create the AWS CDK App
 

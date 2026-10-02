@@ -12,6 +12,7 @@ Fully custom UIs built with React using the Engine API. Freely adapt to your use
 
 ## Related Pages
 
+- [Memories in Android](./memories.md) - Add the Android Memories starter kit to a new or existing app with a reusable starter-kit module—turn photos and clips into a shareable memory montage.
 - [Postcard Editor in Android](./postcard-editor.md) - Add the Android Postcard Editor starter kit to a new or existing app with a reusable starter-kit module.
 
 

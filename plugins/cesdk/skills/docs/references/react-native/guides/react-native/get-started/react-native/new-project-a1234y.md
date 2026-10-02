@@ -17,7 +17,7 @@ Before you begin, make sure the following requirements are met:
 - A properly configured Expo development environment
 - Platform-specific development setup for your target (Android and/or iOS)
 - Git CLI installed
-- A valid **CE.SDK license key** ([Get a free trial](https://img.ly/forms/free-trial)), pass `null` to run in evaluation mode with watermark.
+- A valid **CE.SDK license key** ([Request a license](https://img.ly/forms/contact-sales/)), pass `null` to run in evaluation mode with watermark.
 
 ## Minimum Requirements
 

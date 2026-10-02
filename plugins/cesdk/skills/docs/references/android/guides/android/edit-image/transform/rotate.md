@@ -63,7 +63,7 @@ engine.editor.setSettingBoolean("controlGizmo/showRotateHandles", false)
 Although the code makes the rotation handle invisible, the user can still use the two-finger rotation gesture on a touch device. You can turn off that gesture with the following setting:
 
 ```kotlin
-engine.editor.setSettingBoolean("touch/rotateAction", false)
+engine.editor.setSettingEnum("touch/rotateAction", "None")
 ```
 
 When you want to lock only certain blocks, you can toggle the transform lock property. This will apply to all transformations for the block.

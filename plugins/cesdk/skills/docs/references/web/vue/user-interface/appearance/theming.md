@@ -20,7 +20,7 @@ or application design.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-user-interface-appearance-theming-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-user-interface-appearance-theming-browser/index.html)
 
 CE.SDK provides comprehensive theming capabilities at two levels: built-in themes for immediate use, and a complete CSS theming API for detailed brand-specific styling. This guide demonstrates how to use each approach to customize the editor's appearance.
 
@@ -111,9 +111,14 @@ class Example implements EditorPlugin {
     });
 
     // Get the current active theme
-    const currentTheme = cesdk.ui.getTheme(); // Returns 'light' or 'dark'
+    const currentTheme = cesdk.ui.getTheme(); // e.g. 'light' or 'dark-high-contrast'
     // eslint-disable-next-line no-console
     console.log('Current theme:', currentTheme);
+
+    // Match the high-contrast themes too when branching on light or dark
+    const isDark = currentTheme.startsWith('dark');
+    // eslint-disable-next-line no-console
+    console.log('Dark appearance:', isDark);
 
     // Get the current scale setting
     const currentScale = cesdk.ui.getScale(); // Returns scale or callback function
@@ -190,7 +195,9 @@ We provide ready-to-use theme options and scale settings that can be configured 
 
 ### Setting the Theme
 
-Use `cesdk.ui.setTheme()` to switch between light, dark, or system themes. The system option automatically follows the user's operating system theme preference.
+Use `cesdk.ui.setTheme()` to switch between the `'light'`, `'dark'`, `'light-high-contrast'` and `'dark-high-contrast'` themes, or `'system'`. The system option follows the user's operating system preference for both color scheme and increased contrast.
+
+The high-contrast themes meet WCAG 2.1 AAA text contrast (7:1) and draw every control boundary at 3:1 or more. The label of an active control holds AA (4.5:1) while it is hovered or pressed.
 
 ```typescript highlight-set-theme
 // Set the theme to light, dark, or system
@@ -206,9 +213,14 @@ To determine which theme is currently active, use `cesdk.ui.getTheme()`:
 
 ```typescript highlight-get-theme
     // Get the current active theme
-    const currentTheme = cesdk.ui.getTheme(); // Returns 'light' or 'dark'
+    const currentTheme = cesdk.ui.getTheme(); // e.g. 'light' or 'dark-high-contrast'
     // eslint-disable-next-line no-console
     console.log('Current theme:', currentTheme);
+
+    // Match the high-contrast themes too when branching on light or dark
+    const isDark = currentTheme.startsWith('dark');
+    // eslint-disable-next-line no-console
+    console.log('Dark appearance:', isDark);
 
     // Get the current scale setting
     const currentScale = cesdk.ui.getScale(); // Returns scale or callback function
@@ -216,7 +228,7 @@ To determine which theme is currently active, use `cesdk.ui.getTheme()`:
     console.log('Current scale:', currentScale);
 ```
 
-This method always returns either `'light'` or `'dark'`, never `'system'`. When the system theme is configured, `getTheme()` returns the resolved theme based on the current OS preference.
+`getTheme()` never returns `'system'`. It returns the theme that is rendered: `'light'`, `'dark'`, `'light-high-contrast'` or `'dark-high-contrast'`. To branch on light or dark, test the prefix, so the high-contrast themes are included.
 
 ### Setting the Scale
 
@@ -276,7 +288,7 @@ Custom themes use CSS selectors that combine the root class, theme attribute, an
 The selector components are:
 
 - `.ubq-public`: Root class that scopes all CE.SDK UI elements
-- `[data-ubq-theme]`: Attribute for theme variant (`'light'` or `'dark'`)
+- `[data-ubq-theme]`: Attribute for theme variant (`'light'`, `'dark'`, `'light-high-contrast'` or `'dark-high-contrast'`). A theme scoped to `'light'` or `'dark'` does not apply to the high-contrast themes.
 - `[data-ubq-scale]`: Attribute for scale mode (`'normal'`, `'large'`, or `'modern'`)
 - `[data-ubq-touch]`: `'true'` on touch devices, `'false'` otherwise. On touch devices, keep `--ubq-typography-input-m-size` at 16px or larger, otherwise Safari on iOS zooms into a focused text field.
 
@@ -450,8 +462,8 @@ Quick reference for all theming-related APIs:
 
 | Method                                        | Description                                                     |
 | --------------------------------------------- | --------------------------------------------------------------- |
-| `cesdk.ui.setTheme('light' \| 'dark' \| 'system')` | Set the theme to light, dark, or system (follows OS preference) |
-| `cesdk.ui.getTheme()`                        | Get current active theme (returns `'light'` or `'dark'`)        |
+| `cesdk.ui.setTheme('light' \| 'dark' \| 'light-high-contrast' \| 'dark-high-contrast' \| 'system')` | Set the theme, or follow the OS color-scheme and increased-contrast preferences |
+| `cesdk.ui.getTheme()`                        | Get the current active theme (never `'system'`; may be either high-contrast value) |
 
 ### Scale Management
 
@@ -504,6 +516,7 @@ Complete reference of all available CSS custom properties for theming:
 - `--ubq-interactive-active-default`: Active element default state
 - `--ubq-interactive-active-hover`: Active element hover state
 - `--ubq-interactive-active-pressed`: Active element pressed state
+- `--ubq-interactive-active-wash`: Strength of the active color tint behind an active control, as a percentage (e.g. `12%`)
 - `--ubq-interactive-accent-default`: Accent interactive default state
 - `--ubq-interactive-accent-hover`: Accent interactive hover state
 - `--ubq-interactive-accent-pressed`: Accent interactive pressed state
@@ -536,6 +549,9 @@ Complete reference of all available CSS custom properties for theming:
 - `--ubq-stroke-contrast-1`: Low contrast stroke color
 - `--ubq-stroke-contrast-2`: Medium contrast stroke color
 - `--ubq-stroke-contrast-3`: High contrast stroke color
+- `--ubq-interactive-stroke`: Boundary of every interactive control (buttons, button groups, inputs). Set it to `transparent` to remove the boundaries.
+- `--ubq-interactive-accent-stroke`: Ring around solid accent buttons. Set it together with `--ubq-interactive-accent-default`.
+- `--ubq-interactive-danger-stroke`: Ring around solid danger buttons. Set it together with `--ubq-interactive-danger-default`.
 
 **Focus Indicators**
 
@@ -567,6 +583,7 @@ Complete reference of all available CSS custom properties for theming:
 - `--ubq-static-snapping`: Snapping guide color
 - `--ubq-static-bleed`: Bleed area color
 - `--ubq-static-text-variable`: Variable text indicator color
+- `--ubq-static-error-state`: Placeholder color over a block that failed to load
 - `--ubq-static-card-label-background`: Card label background gradient
 - `--ubq-static-card-background`: Card background gradient
 
@@ -654,7 +671,7 @@ Each typography style supports the following properties:
 All custom properties must be scoped using this pattern:
 
 ```css
-.ubq-public[data-ubq-theme='light' | 'dark'][data-ubq-scale='normal' | 'large' | 'modern'] {
+.ubq-public[data-ubq-theme='light' | 'dark' | 'light-high-contrast' | 'dark-high-contrast'][data-ubq-scale='normal' | 'large' | 'modern'] {
   /* Custom properties here */
 }
 ```

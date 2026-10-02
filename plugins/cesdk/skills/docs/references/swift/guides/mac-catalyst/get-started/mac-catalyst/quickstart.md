@@ -140,7 +140,7 @@ struct IntegrateWithSwiftUI: View {
 
 This guide walks you through integrating the CE.SDK Engine into a brand-new Mac Catalyst app. Mac Catalyst runs your UIKit-based iOS app on the Mac, so you host the engine's canvas inside your own SwiftUI or UIKit view and drive it with the engine APIs — there is no prebuilt editor UI to drop in.
 
-> **Note:** The prebuilt editor and camera (`IMGLYEditor`, `IMGLYCamera`) build on iOS only — CE.SDK does not currently ship a packaged UI like the iOS `IMGLYUI` package for macOS or Mac Catalyst. On Mac Catalyst, `IMGLYEngine` is the module you integrate: initialize the engine, host its canvas, and build your own controls on top. See the [Engine Interface](../../engine-interface.md) guide for the engine's capabilities and [Build Your Own UI](../../user-interface/build-your-own-ui.md) for a complete custom-editor walkthrough. If you need a packaged UI on these platforms rather than building your own, [get in touch with us](https://img.ly/forms/contact-sales).
+> **Note:** The prebuilt editor and camera (`IMGLYEditor`, `IMGLYCamera`) build on iOS only — CE.SDK does not currently ship a packaged UI like the iOS `IMGLYUI` package for macOS or Mac Catalyst. On Mac Catalyst, `IMGLYEngine` is the module you integrate: initialize the engine, host its canvas, and build your own controls on top. See the [Engine Interface](../../engine-interface.md) guide for the engine's capabilities and [Build Your Own UI](../../user-interface/build-your-own-ui.md) for a complete custom-editor walkthrough. If you need a packaged UI on these platforms rather than building your own, [get in touch with us](https://img.ly/forms/contact-sales/).
 
 > **Reading time:** 5 minutes
 >
@@ -154,7 +154,7 @@ To work with the SDK, you'll need:
 
 - A Mac running a recent version of [Xcode](https://developer.apple.com/xcode/)
 - A deployment target of macOS 11 or later (Mac Catalyst)
-- A valid **CE.SDK license key** ([Get a free trial](https://img.ly/forms/free-trial))
+- A valid **CE.SDK license key** ([Request a license](https://img.ly/forms/contact-sales/))
 
 ## Creating a new Xcode Project
 
@@ -358,7 +358,7 @@ Every Swift file that uses the engine needs `import IMGLYEngine` before the firs
 
 #### License Key Error at Runtime
 
-Double-check that the license value passed to `Engine(license:userID:)` is the exact key with proper capitalization. If you don't have a license, [register for a free trial](https://img.ly/forms/free-trial) to get a demonstration license. Pass `nil` to run in evaluation mode with a watermark.
+Double-check that the license value passed to `Engine(license:userID:)` is the exact key with proper capitalization. If you don't have a license, [contact sales](https://img.ly/forms/contact-sales/) to request one. Pass `nil` to run in evaluation mode with a watermark.
 
 #### Canvas Is Blank
 

@@ -83,7 +83,7 @@ export class ProductBackdrop implements EditorPlugin {
 
       const [pageBlock] = engine.block.findByName(areaId);
       if (pageBlock == null) return;
-      await cesdk.unstable_switchPage(pageBlock);
+      await cesdk.switchPage(pageBlock);
 
       // Hide all backdrops, show only the target area's backdrop
       engine.block

@@ -18,7 +18,7 @@ Customize the font family used throughout the CE.SDK editor interface to match y
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-user-interface-appearance-change-ui-font-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/guides-user-interface-appearance-change-ui-font-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-user-interface-appearance-change-ui-font-browser/index.html)
 
 CE.SDK's UI uses CSS custom properties for typography, allowing you to apply a custom font to all editor elements—panels, buttons, labels, and inputs—through a single CSS variable.
 
@@ -54,7 +54,7 @@ export async function initialize(cesdk: CreativeEditorSDK) {
   cesdk.engine.block.appendChild(page, text);
 
   // You can verify the current theme and scale settings
-  const currentTheme = cesdk.ui.getTheme(); // 'light' or 'dark'
+  const currentTheme = cesdk.ui.getTheme(); // e.g. 'light' or 'dark-high-contrast'
   const currentScale = cesdk.ui.getScale(); // 'normal', 'large', or 'modern'
   console.log('Current theme:', currentTheme);
   console.log('Current scale:', currentScale);
@@ -170,7 +170,7 @@ Use browser DevTools to inspect UI elements and confirm the font-family property
 
 ```typescript
 // You can verify the current theme and scale settings
-const currentTheme = cesdk.ui.getTheme(); // 'light' or 'dark'
+const currentTheme = cesdk.ui.getTheme(); // e.g. 'light' or 'dark-high-contrast'
 const currentScale = cesdk.ui.getScale(); // 'normal', 'large', or 'modern'
 console.log('Current theme:', currentTheme);
 console.log('Current scale:', currentScale);

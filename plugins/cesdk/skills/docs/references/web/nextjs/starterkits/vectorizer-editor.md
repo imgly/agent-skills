@@ -18,7 +18,7 @@ Transform your pixel-based images into scalable vector graphics with Vectorizer 
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-vectorizer-editor-ts-web/tree/release-1.83.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261001/examples/starterkit-vectorizer-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/starterkit-vectorizer-editor/index.html)
 
 ***
 
@@ -478,7 +478,7 @@ See [Dock](./user-interface/customization/dock.md), [Inspector Bar](./user-inter
 
 <br />
 
-> **Free Trial:** [Sign up for a free trial](https://img.ly/forms/free-trial) to get a license key and remove the watermark.
+> **Get a License:** [Contact us](https://img.ly/forms/contact-sales/) to get a license key and remove the watermark.
 
 ***
 
@@ -501,7 +501,7 @@ CE.SDK requires browser APIs and cannot run during server-side rendering. Ensure
 ### Watermark appears in production
 
 - **Add your license key**: Set the `license` property in your configuration
-- **Sign up for a trial**: Get a free trial license at [img.ly/forms/free-trial](https://img.ly/forms/free-trial)
+- **Get a license**: Contact us at [img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
 
 ***
 

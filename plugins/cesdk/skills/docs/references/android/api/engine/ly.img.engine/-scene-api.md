@@ -151,6 +151,14 @@ abstract fun getCurrentPage(): DesignBlock?
 
 Get the current page, i.e., the page of the first selected element if this page is at least 25% visible or, otherwise, the page nearest to the viewport center.
 
+### getCurrentPages
+
+```kotlin
+abstract fun getCurrentPages(): List<DesignBlock>
+```
+
+Get the pages that single page mode shows.
+
 ### getDesignUnit
 
 ```kotlin
@@ -343,6 +351,14 @@ abstract fun setColorRenderingIntent(intent: ColorRenderingIntent)
 ```
 
 Sets how a color that the destination cannot reproduce is mapped into it. The intent is document state and applies to every conversion from the document CMYK profile. Undo and redo do not change it.
+
+### setCurrentPages
+
+```kotlin
+abstract fun setCurrentPages(pages: List<DesignBlock>)
+```
+
+Set the pages that single page mode shows. All other pages leave the view but stay in the document and in the saved file. Takes visible effect while the setting features/singlePageModeEnabled is enabled. Exporting a page holds that page, even while it is out of view. Exporting a scene holds every page, except pages hidden with setVisible.
 
 ### setDesignUnit
 

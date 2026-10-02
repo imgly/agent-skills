@@ -184,7 +184,7 @@ export function setupComponents(cesdk: CreativeEditorSDK): void {
   }
 
   function switchAndSelectPage(newPage: number) {
-    cesdk.unstable_switchPage(newPage);
+    cesdk.switchPage(newPage);
     // Select the new page
     cesdk.engine.block.select(newPage);
   }

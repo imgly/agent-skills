@@ -468,6 +468,68 @@ Manage pages within scenes and find elements.
 
 <details>
   <summary>
+    ### setCurrentPages()
+
+    <br /><p>Set the pages that single page mode shows. All other pages leave the view but
+    stay in the document and in the saved file.</p>
+  </summary>
+
+  Takes visible effect while the setting `features/singlePageModeEnabled` is enabled.
+  Exporting a page holds that page, even while it is out of view. Exporting a scene holds
+  every page, except pages hidden with `block.setVisible`.
+
+  ```javascript
+  engine.scene.setCurrentPages([page]);
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `pages` | `number`\[] | The pages to show. Two pages form a facing-page view. Each page must be distinct. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setCurrentPages(pages: number[]): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### getCurrentPages()
+
+    <br /><p>Get the pages that single page mode shows.</p>
+  </summary>
+
+  ```javascript
+  const currentPages = engine.scene.getCurrentPages();
+  ```
+
+  #### Returns
+
+  `number`\[]
+
+  The shown pages, or an empty list when the setting
+  `features/singlePageModeEnabled` is disabled.
+
+  #### Signature
+
+  ```typescript
+  getCurrentPages(): number[]
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### findNearestToViewPortCenterByType()
 
     <br /><p>Find all blocks with the given type sorted by the distance to viewport center.</p>

@@ -8,7 +8,7 @@ This guide provides the complete reference for the Component Order API, which co
 
 The Component Order API provides a unified way to customize all UI areas with consistent patterns. This API replaces the deprecated area-specific methods and supports powerful matching patterns including glob wildcards, position-based matchers, and edit mode contexts for conditional customization.
 
-For a complete list of available component IDs in each area, see the [Component Reference](./user-interface/customization/reference/component-reference.md). For task-focused tutorials, see the [Quick Start guides](./user-interface/customization/quick-start.md).
+For a complete list of available component IDs in each area, see the [Component Reference](./user-interface/customization/reference/component-reference.md). For task-focused tutorials, see [Customization](./user-interface/customization.md).
 
 ## UI Areas Overview
 

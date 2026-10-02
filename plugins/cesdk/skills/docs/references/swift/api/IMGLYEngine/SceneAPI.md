@@ -161,6 +161,14 @@ How a color that the destination cannot reproduce is mapped into it. The renderi
 
 Get the current page, i.e., the page of the first selected element if this page is at least 25% visible, otherwise, the page nearest to the viewport center. The current page in the scene or an error.
 
+### getCurrentPages()
+
+```swift
+@MainActor func getCurrentPages() throws -> [DesignBlockID]
+```
+
+Get the pages that single page mode shows. The shown pages, or an empty list when the setting `features/singlePageModeEnabled` is disabled.
+
 ### getDesignUnit()
 
 ```swift
@@ -388,6 +396,14 @@ Makes the ICC profile in the given bytes the CMYK profile of the document. `data
 ```
 
 Sets how a color that the destination cannot reproduce is mapped into it. `intent`
+
+### setCurrentPages(_:)
+
+```swift
+@MainActor func setCurrentPages(_ pages: [DesignBlockID]) throws
+```
+
+Set the pages that single page mode shows. All other pages leave the view but stay in the document and in the saved file. `pages`
 
 ### setDesignUnit(_:)
 
