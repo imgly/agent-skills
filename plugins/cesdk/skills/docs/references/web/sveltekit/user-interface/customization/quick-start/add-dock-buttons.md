@@ -12,13 +12,13 @@ Add asset library buttons to the CE.SDK dock using the built-in `ly.img.assetLib
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-user-interface-customization-quick-start-add-dock-buttons-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-user-interface-customization-quick-start-add-dock-buttons-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-user-interface-customization-quick-start-add-dock-buttons-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-user-interface-customization-quick-start-add-dock-buttons-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-user-interface-customization-quick-start-add-dock-buttons-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-user-interface-customization-quick-start-add-dock-buttons-browser/index.html)
 
 CE.SDK provides the `ly.img.assetLibrary.dock` component for adding buttons to the dock that open the asset library panel. This is the fastest way to give users access to specific asset categories without registering custom components.
 

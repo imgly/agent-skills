@@ -281,6 +281,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
 
     // 'ly.img.video', /* Enables all children below */
     // 'ly.img.video.caption', /* Video captions */
+    // 'ly.img.video.separateAudio', /* Separate Audio clip menu item */
     // 'ly.img.video.timeline', /* Video Timeline visibility - read-only */
     // 'ly.img.video.timeline.addClip', /* Add clips to timeline */
     // 'ly.img.video.timeline.audio', /* Audio track in timeline */

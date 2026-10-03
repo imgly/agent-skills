@@ -12,13 +12,13 @@ Form-based editing provides structured template customization through input cont
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-create-templates-dynamic-content-form-based-editing-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-create-templates-dynamic-content-form-based-editing-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-create-templates-dynamic-content-form-based-editing-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-create-templates-dynamic-content-form-based-editing-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-create-templates-dynamic-content-form-based-editing-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-create-templates-dynamic-content-form-based-editing-browser/index.html)
 
 Form-based editing transforms template adoption from visual design into structured data entry. Instead of locating and editing elements on a canvas, users fill familiar form controls (text inputs, file uploads) that map directly to template variables and placeholders.
 

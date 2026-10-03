@@ -176,7 +176,7 @@ Load asset definitions from remote JSON files hosted on a CDN or server into CE.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-remote-asset)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/engine-guides-remote-asset)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../../engine-interface.md) guide.

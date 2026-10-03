@@ -582,9 +582,9 @@ Add automatic content moderation to your Android editor—check the images and t
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-content-moderation-editor-android/archive/refs/heads/v1.83.0.zip)
+> - [Download examples](https://github.com/imgly/starterkit-content-moderation-editor-android/archive/refs/heads/v1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-content-moderation-editor-android/tree/v1.83.0)
+> - [View source on GitHub](https://github.com/imgly/starterkit-content-moderation-editor-android/tree/v1.84.0)
 
 ***
 
@@ -623,7 +623,7 @@ Every screen in the kit reads the key from this one constant. The Gateway API ke
     ### Step 1: Clone the Repository
 
     ```bash
-    git clone -b v1.83.0 https://github.com/imgly/starterkit-content-moderation-editor-android.git
+    git clone -b v1.84.0 https://github.com/imgly/starterkit-content-moderation-editor-android.git
     cd starterkit-content-moderation-editor-android
     ```
 
@@ -700,7 +700,7 @@ Every screen in the kit reads the key from this one constant. The Gateway API ke
 
     ```bash
     repo="starterkit-content-moderation-editor-android"
-    version="1.83.0"
+    version="1.84.0"
     curl -0 "https://codeload.github.com/imgly/${repo}/tar.gz/refs/heads/v${version}" | tar -xz --strip-components=1 "${repo}-${version}/starter-kit"
     ```
 
@@ -1263,7 +1263,7 @@ A custom provider fully controls its own categories, descriptions and thresholds
 
 ### Base Uri
 
-The starter kit does not make any `baseUri` configuration, which means it points to `https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0/assets`. If you want to store them in your own CDN or locally, assets can be accessed via [zip file](https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0/imgly-assets.zip). For example, if you want to store them locally, unzip the content and place at `starter-kit/src/main/assets`:
+The starter kit does not make any `baseUri` configuration, which means it points to `https://cdn.img.ly/packages/imgly/cesdk-engine/1.84.0/assets`. If you want to store them in your own CDN or locally, assets can be accessed via [zip file](https://cdn.img.ly/packages/imgly/cesdk-engine/1.84.0/imgly-assets.zip). For example, if you want to store them locally, unzip the content and place at `starter-kit/src/main/assets`:
 
 ```kotlin highlight-starter-kit-base-uri
 import androidx.compose.runtime.Composable

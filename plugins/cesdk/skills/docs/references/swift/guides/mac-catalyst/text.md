@@ -17,6 +17,7 @@
 - [Edit Text](./text/edit.md) - Edit text content programmatically with range-based APIs for replacing, formatting, and querying text.
 - [Text Styling](./text/styling.md) - Apply fonts, colors, alignment, and other styling options to customize text appearance.
 - [Text Decorations](./text/decorations.md) - Add underline, strikethrough, and overline decorations to text with customizable styles, colors, and thickness.
+- [Subscript and Superscript](./text/subscript-superscript.md) - Format ranges of text as subscript or superscript for prices, formulas, footnotes, and technical notation.
 - [Text on a Path](./text/text-on-path.md) - Place text along an SVG path — a circle, arch, wave, or any curve — with the setTextOnPath engine API or, on iOS, the editor's built-in Path inspector.
 - [Text Designs](./text/text-designs.md) - Create and customize text component libraries using predefined text designs that appear in your asset library.
 - [Text Enumerations](./text/enumerations.md) - Add bullet lists and numbered lists to text blocks in CE.SDK using per-paragraph list styles and nesting levels.

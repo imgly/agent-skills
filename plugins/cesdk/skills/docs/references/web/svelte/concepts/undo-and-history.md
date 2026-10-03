@@ -12,13 +12,13 @@ Implement undo/redo functionality and manage multiple history stacks to track ed
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-concepts-undo-and-history-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-concepts-undo-and-history-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-concepts-undo-and-history-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-concepts-undo-and-history-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-concepts-undo-and-history-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-concepts-undo-and-history-browser/index.html)
 
 CE.SDK automatically tracks editing operations, enabling users to undo and redo changes. The engine creates undo steps for most operations automatically. You can also create multiple independent history stacks to isolate different editing contexts, such as separate histories for a main canvas and an overlay editing panel.
 
@@ -450,7 +450,7 @@ We create a new history stack using `engine.editor.createHistory()`. Use `engine
     );
 ```
 
-Operations performed while a history is active only affect that history. When you switch back to the primary history, its undo/redo state remains unchanged by operations performed in the secondary history.
+Operations performed while a history is active only affect that history. When you switch back to the primary history, its undo/redo state remains unchanged by operations performed in the secondary history. A new history starts from the current scene, including edits that have no undo step yet and the current selection. When you switch back to a history, the scene returns to that history's last undo step.
 
 ### Cleaning Up History Stacks
 

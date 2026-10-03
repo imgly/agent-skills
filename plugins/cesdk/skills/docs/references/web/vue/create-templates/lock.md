@@ -12,13 +12,13 @@ Set up a two-surface integration where template creators have full editing acces
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-create-templates-lock-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-create-templates-lock-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-create-templates-lock-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-create-templates-lock-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-create-templates-lock-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-create-templates-lock-browser/index.html)
 
 Many integrations need two different editing experiences: one for designers who build templates, and one for end users who customize them. The Creator and Adopter roles make this possible—same CE.SDK, different permissions based on who's using it. For detailed scope configuration patterns, see [Lock Content](./rules/lock-content.md).
 

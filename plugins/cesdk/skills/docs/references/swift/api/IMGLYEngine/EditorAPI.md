@@ -657,7 +657,7 @@ Removes the last history state from the stack, if available.
 @MainActor func setActiveHistory(_ history: History)
 ```
 
-Mark the given history as active, returns an error if the handle doesn’t refer to a history. All other histories get cleared from the active state. Undo/redo operations only apply to the active history. `history`
+Mark the given history as active, returns an error if the handle doesn’t refer to a history. All other histories get cleared from the active state. Undo/redo operations only apply to the active history. A new history starts from the current scene, including edits without an undo step and the selection; returning to a history restores its last undo step. `history`
 
 ### setBufferData(url:offset:data:)
 

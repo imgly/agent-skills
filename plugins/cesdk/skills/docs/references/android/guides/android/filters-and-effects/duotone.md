@@ -234,7 +234,7 @@ Apply duotone effects to images with the CE.SDK Engine, mapping image tones to t
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-duotone)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/engine-guides-duotone)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

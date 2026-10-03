@@ -171,7 +171,7 @@ Manage undo and redo operations with the Android CreativeEngine API, subscribe t
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-undo-and-history)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/engine-guides-undo-and-history)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.
@@ -262,7 +262,7 @@ Multiple histories are useful when an Android flow needs isolated undo and redo 
 
 ### Creating and Switching History Stacks
 
-Create a second stack with `createHistory()`, switch to it with `setActiveHistory()`, and switch back when the isolated edits are done.
+Create a second stack with `createHistory()`, switch to it with `setActiveHistory()`, and switch back when the isolated edits are done. A new history starts from the current scene, including edits that have no undo step yet and the current selection. When you switch back to a history, the scene returns to that history's last undo step.
 
 ```kotlin highlight-android-multiple-histories
 val primaryHistory = engine.editor.getActiveHistory()

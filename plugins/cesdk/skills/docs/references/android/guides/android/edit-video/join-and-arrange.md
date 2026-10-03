@@ -197,7 +197,7 @@ composition using CE.SDK tracks, durations, and time offsets on Android.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-join-and-arrange-video)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/engine-guides-join-and-arrange-video)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

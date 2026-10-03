@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 266 generated API digests.
+Complete catalog of 267 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -202,6 +202,7 @@ Complete catalog of 266 generated API digests.
 - [SceneApi](<../engine/ly.img.engine/-scene-api.md>) — `ly.img.engine`
 - [SceneLayout](<../engine/ly.img.engine/-scene-layout.md>) — `ly.img.engine`
 - [SceneMode \[deprecated\]](<../engine/ly.img.engine/-scene-mode.md>) — `ly.img.engine`
+- [ScriptStyle](<../engine/ly.img.engine/-script-style.md>) — `ly.img.engine`
 - [Setting](<../engine/ly.img.engine/-setting.md>) — `ly.img.engine`
 - [Setting.Boolean](<../engine/ly.img.engine/-setting/-boolean.md>) — `ly.img.engine`
 - [Setting.Color](<../engine/ly.img.engine/-setting/-color.md>) — `ly.img.engine`

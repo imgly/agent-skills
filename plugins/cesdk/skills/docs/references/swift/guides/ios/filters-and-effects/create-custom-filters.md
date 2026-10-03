@@ -203,7 +203,7 @@ Extend CE.SDK with your own LUT filters by creating and registering custom filte
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-custom-filters)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/engine-guides-create-custom-filters)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

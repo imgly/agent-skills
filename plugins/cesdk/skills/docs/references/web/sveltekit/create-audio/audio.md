@@ -105,6 +105,12 @@ Find in the following list of examples different API calls listed in the precedi
     // Attach to the page so it’s part of the scene
     engine.block.appendChild(pageId, audioBlockId);
     ```
+
+    The `keepTrimSettings` option defaults to `true`. The audio block then plays like the video: the same part of the source at the same speed, for the clip's duration. It also copies the video's volume, mute state, looping, and audio fades. Pass `{ keepTrimSettings: false }` to play the full track at normal speed with default settings.
+
+    A video that plays faster than 3x is force muted, and so is its extracted audio. The audio plays again when its speed is 3x or less.
+
+    In the web editor, the **Separate Audio** action in the clip context menu of the video timeline does this for every audio track of a clip. See [Customize the Clip Context Menu](./sveltekit.md).
   </TabItem>
 
   <TabItem label="Add Audio Sources">

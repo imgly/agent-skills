@@ -10,11 +10,11 @@ Flip images horizontally and vertically in CE.SDK for headless server-side proce
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-edit-image-transform-flip-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-edit-image-transform-flip-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-edit-image-transform-flip-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-edit-image-transform-flip-server-js)
 
 Flipping mirrors content along horizontal or vertical axes. Use flip operations for orientation correction, creating reflection effects, and adapting layouts.
 

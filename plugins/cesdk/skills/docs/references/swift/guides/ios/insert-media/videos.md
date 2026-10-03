@@ -12,7 +12,7 @@ size from code.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-insert-media-videos)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/engine-guides-insert-media-videos)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

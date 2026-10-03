@@ -11,11 +11,11 @@ Configure image exports with exact pixel dimensions optimized for Instagram port
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-export-save-publish-export-for-social-media-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-export-save-publish-export-for-social-media-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-export-save-publish-export-for-social-media-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-export-save-publish-export-for-social-media-server-js)
 
 Instagram portrait posts use a 4:5 aspect ratio at 1080×1350 pixels, providing more vertical screen real estate than square posts. This guide demonstrates how to export images with these dimensions using CE.SDK in Node.js.
 

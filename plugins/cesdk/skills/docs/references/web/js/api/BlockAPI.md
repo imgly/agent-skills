@@ -5269,6 +5269,45 @@ setTextCase(id: DesignBlockId, textCase: TextCase, from?: number, to?: number): 
 - `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
 - `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
 
+### getTextScriptStyles()
+
+Gets the unique text script styles within a range of text.
+```javascript
+const scriptStyles = engine.block.getTextScriptStyles(text);
+// e.g., ['Normal', 'Superscript']
+```
+
+```typescript
+getTextScriptStyles(id: DesignBlockId, from?: number, to?: number): ScriptStyle[]
+```
+
+**Parameters:**
+- `id` - The text block whose script styles should be returned.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+**Returns:** The ordered list of unique script styles.
+
+### setTextScriptStyle()
+
+Sets the script style for a range of text.
+Superscript and subscript text is scaled down and shifted off the regular baseline.
+The block properties 'text/superscriptFontScale', 'text/superscriptVerticalShift',
+'text/subscriptFontScale' and 'text/subscriptVerticalShift' adjust the scale and shift.
+```javascript
+engine.block.setTextScriptStyle(text, 'Superscript');
+```
+
+```typescript
+setTextScriptStyle(id: DesignBlockId, scriptStyle: ScriptStyle, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block whose script style should be changed.
+- `scriptStyle` - The new script style.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
 ### getTextDecorations()
 
 Gets the unique text decoration configurations within a range of text.

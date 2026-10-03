@@ -12,7 +12,7 @@ Look up documentation for IMG.LY CreativeEditor SDK (Node.js).
 [CE.SDK Web API Index]|root: .
 
 CreativeEngine:{asset,block,editor,event,scene,variable,actions,shortcuts,reactor,version,addPlugin,unstable_setVideoExportInactivityTimeout,unstable_setExportInactivityTimeout,addPostUpdateCallback,addPreUpdateCallback},... (+7)
-BlockAPI:{export,getDominantColors,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo},... (+409)
+BlockAPI:{export,getDominantColors,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo},... (+411)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
 SceneAPI:{setCMYKProfile,setCMYKProfileFromData,getCMYKProfileInfo,removeCMYKProfile,getColorRenderingIntent,setColorRenderingIntent,isBlackPointCompensationEnabled,setBlackPointCompensationEnabled,load,loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create},... (+35)
 EditorAPI:{unlockWithLicense,isCapabilitySupported,getCapabilityState,checkCapabilities,startTracking,setTrackingMetadata,getTrackingMetadata,trackEvent,getActiveLicense,getEngineVersion,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,hasSelectedVectorNode},... (+101)

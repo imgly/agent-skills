@@ -45,7 +45,7 @@ archive on a server, then loading that archive into the engine.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-import-from-photoshop)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/engine-guides-import-from-photoshop)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../../engine-interface.md) guide.

@@ -19,6 +19,7 @@ Represents a single contiguous text run with uniform formatting.
 |  `typeface` | [`Typeface`](./api/engine/interfaces/typeface.md) | The typeface used by this run. |
 |  `resolvedFontFileUri` | `string` | The resolved font file URI. |
 |  `textDecoration` | [`TextDecorationConfig`](./api/engine/interfaces/textdecorationconfig.md) | The text decoration configuration of this run. |
+|  `scriptStyle` | [`ScriptStyle`](./api/engine/type-aliases/scriptstyle.md) | The script style of this run. |
 |  `kerning` | `number` | Additional kerning offset in em units. |
 
 

@@ -11,11 +11,11 @@ URIs using CE.SDK's versatile image fill system.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-fills-image-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-fills-image-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-fills-image-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-fills-image-server-js)
 
 Image fills paint design blocks with raster or vector image content, supporting various formats including PNG, JPEG, WebP, and SVG. You can load images from remote URLs, data URIs, or file paths, with built-in support for responsive images through source sets and multiple content fill modes for flexible positioning.
 

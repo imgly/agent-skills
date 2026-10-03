@@ -150,7 +150,7 @@ generation, and custom template creation tools.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-templates-from-scratch)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/engine-guides-create-templates-from-scratch)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

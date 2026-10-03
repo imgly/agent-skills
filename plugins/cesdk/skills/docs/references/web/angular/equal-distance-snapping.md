@@ -8,13 +8,13 @@ Turn on equal-distance snapping so a dragged block lands at an equal distance fr
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-equal-distance-snapping-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-equal-distance-snapping-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-equal-distance-snapping-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-equal-distance-snapping-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-equal-distance-snapping-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-equal-distance-snapping-browser/index.html)
 
 While the user drags a block, the engine looks for sibling blocks that already sit at an equal distance from each other. When the dragged block comes close to a position that continues or splits that spacing, the engine pulls the block onto it. It then draws a line across each gap, a tick at both ends of the line, and a badge with the size of the gap.
 

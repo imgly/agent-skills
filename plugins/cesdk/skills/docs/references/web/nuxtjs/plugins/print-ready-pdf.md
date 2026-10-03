@@ -16,13 +16,13 @@ client-side without any backend infrastructure.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/plugins-print-ready-pdf-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/plugins-print-ready-pdf-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/plugins-print-ready-pdf-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/plugins-print-ready-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/plugins-print-ready-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/plugins-print-ready-pdf-browser/index.html)
 
 ## What You'll Build
 
@@ -50,7 +50,7 @@ A complete print-ready PDF export workflow that:
 Add the Print Ready PDF plugin and its shared conversion runtime alongside CE.SDK:
 
 ```bash
-npm install @cesdk/cesdk-js@1.83.0 @imgly/plugin-print-ready-pdfs-web@1.83.0 @imgly/pdf-conversion-utils
+npm install @cesdk/cesdk-js@1.84.0 @imgly/plugin-print-ready-pdfs-web@1.84.0 @imgly/pdf-conversion-utils
 ```
 
 The plugin is a standalone npm package that works with any CE.SDK integration.
@@ -368,7 +368,7 @@ init().catch((error) => {
 
 This implementation adds a complete print-ready PDF export workflow to CE.SDK with just a few lines of code.
 
-Find the complete working example in the [GitHub repository](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/plugins-print-ready-pdf-browser).
+Find the complete working example in the [GitHub repository](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/plugins-print-ready-pdf-browser).
 
 ## Transparency Handling
 

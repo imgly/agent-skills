@@ -160,7 +160,7 @@ IMGLYEditorModuleSwiftAdapter.shared.builderClosure = { _, metadata in
 }
 ```
 
-Further, we provide convenience extensions both for the `OnCreate` and `OnExport` callbacks to reduce the amount of code you need to write. For a detailed example, please take a look [at our showcases app](https://github.com/imgly/cesdk-react-native-examples/tree/v1.83.0/showcases/ios/Customizations.swift).
+Further, we provide convenience extensions both for the `OnCreate` and `OnExport` callbacks to reduce the amount of code you need to write. For a detailed example, please take a look [at our showcases app](https://github.com/imgly/cesdk-react-native-examples/tree/v1.84.0/showcases/ios/Customizations.swift).
 
 ### Android
 
@@ -193,7 +193,7 @@ android {
 }
 
 dependencies {
-+  implementation "ly.img:editor:1.83.0"
++  implementation "ly.img:editor:1.84.0"
 +  implementation(platform("androidx.compose:compose-bom:2023.05.01"))
 +  implementation "androidx.activity:activity-compose:1.6.1"
 }
@@ -226,7 +226,7 @@ IMGLYEditorModule.builderClosure = { _, metadata ->
 }
 ```
 
-Further, we provide a class called `EditorDefaults` which contains convenience methods for both the `OnCreate` and `OnExport` callbacks to reduce the amount of code you need to write. For a detailed example, please take a look [here](https://github.com/imgly/cesdk-react-native-examples/tree/v1.83.0/showcases/android/app/src/main/java/ly/img/editor/reactnative/showcases/MainActivity.kt).
+Further, we provide a class called `EditorDefaults` which contains convenience methods for both the `OnCreate` and `OnExport` callbacks to reduce the amount of code you need to write. For a detailed example, please take a look [here](https://github.com/imgly/cesdk-react-native-examples/tree/v1.84.0/showcases/android/app/src/main/java/ly/img/editor/reactnative/showcases/MainActivity.kt).
 
 
 

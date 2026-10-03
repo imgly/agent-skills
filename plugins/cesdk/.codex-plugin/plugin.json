@@ -57,5 +57,5 @@
   "name": "cesdk",
   "repository": "https://github.com/imgly/agent-skills",
   "skills": "./skills/",
-  "version": "1.84.0-nightly.20261002"
+  "version": "1.85.0-nightly.20261003"
 }

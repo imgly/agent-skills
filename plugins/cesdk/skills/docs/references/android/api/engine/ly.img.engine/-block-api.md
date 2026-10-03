@@ -1326,6 +1326,14 @@ abstract fun getTextRuns(block: DesignBlock, from: Int = -1, to: Int = -1): List
 
 Returns all text runs within the given range of text. Each run represents a contiguous span of text with uniform formatting. Runs are ordered and together cover the full requested range.
 
+### getTextScriptStyles
+
+```kotlin
+abstract fun getTextScriptStyles(block: DesignBlock, from: Int = -1, to: Int = -1): List<ScriptStyle>
+```
+
+Returns the ordered list of unique script styles of the text in the selected range.
+
 ### getTextVisibleLineContent
 
 ```kotlin
@@ -3013,6 +3021,14 @@ abstract fun setTextOnPath(block: DesignBlock, svgPath: String?)
 ```
 
 Sets or clears the SVG path that defines a text block's baseline. When a path is set, text is laid out as a single line along the path. Pass null to restore normal text layout. The path must be a valid single-subpath SVG path in the block's local coordinate space.
+
+### setTextScriptStyle
+
+```kotlin
+abstract fun setTextScriptStyle(block: DesignBlock, scriptStyle: ScriptStyle, from: Int = -1, to: Int = -1)
+```
+
+Sets the given script style for the selected range of text. Superscript and subscript text is scaled down and shifted off the regular baseline. The block properties "text/superscriptFontScale", "text/superscriptVerticalShift", "text/subscriptFontScale" and "text/subscriptVerticalShift" adjust the scale and shift. Required scope: "text/character"
 
 ### setTimeOffset
 

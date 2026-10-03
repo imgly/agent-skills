@@ -10,11 +10,11 @@ Apply visual effects to text blocks programmatically including drop shadows and 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-text-effects-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-text-effects-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-text-effects-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-text-effects-server-js)
 
 CE.SDK provides visual effect capabilities for text blocks through the Block API. We can apply drop shadows for depth and stroke outlines for text borders.
 
@@ -171,6 +171,8 @@ We add a colored border around text using stroke APIs. We enable stroke with `se
 ```
 
 The stroke width is specified in pixels. Text blocks support `'Center'`, `'Inner'`, and `'Outer'` stroke positioning via `setStrokePosition()`. Stroke styles include `'Solid'`, `'Dashed'`, `'Dotted'`, and other line patterns.
+
+The stroke also outlines the underline, strikethrough, and overline of the text.
 
 ## API Reference
 

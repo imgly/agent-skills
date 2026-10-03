@@ -13,6 +13,7 @@ type ClipContextMenuComponentId =
   | "ly.img.video.clip.menu.setAsClip"
   | "ly.img.video.clip.menu.mute"
   | "ly.img.video.clip.menu.trim"
+  | "ly.img.video.clip.menu.separateAudio"
   | "ly.img.video.clip.menu.caption.merge"
   | "ly.img.video.clip.menu.caption.add"
   | "ly.img.video.clip.menu.replace"

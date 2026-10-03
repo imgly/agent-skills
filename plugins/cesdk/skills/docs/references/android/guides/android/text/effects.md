@@ -126,7 +126,7 @@ Add visual depth and interest to text blocks using drop shadows and stroke outli
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-text-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/engine-guides-text-effects)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.
@@ -177,6 +177,8 @@ engine.block.setStrokePosition(block = outlineText, position = StrokePosition.CE
 ```
 
 The stroke width is specified in design units. Text blocks support `StrokePosition.CENTER`, `StrokePosition.INNER`, and `StrokePosition.OUTER` via `setStrokePosition()`. Stroke styles include `StrokeStyle.SOLID`, `StrokeStyle.DASHED`, `StrokeStyle.DOTTED`, and other line patterns.
+
+The stroke also outlines the underline, strikethrough, and overline of the text.
 
 ## Other Effects
 

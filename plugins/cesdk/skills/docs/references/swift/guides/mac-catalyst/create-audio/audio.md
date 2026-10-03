@@ -134,7 +134,7 @@ timeline placement, generate waveform samples, and export audio data.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-create-audio-audio)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/engine-guides-create-audio-audio)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.
@@ -225,7 +225,9 @@ try await engine.block.forceLoadAVResource(videoFill)
 
 <Tabs>
   <TabItem label="Extract Audio From Video">
-    Extract one audio track from the video fill into a new audio block. `AudioFromVideoOptions(keepTrimSettings: true, muteOriginalVideo: true)` mirrors the source video's trim onto the extracted block and silences the original fill so the audio plays from the extracted block alone.
+    Extract one audio track from the video fill into a new audio block. With `AudioFromVideoOptions(keepTrimSettings: true, muteOriginalVideo: true)`, the extracted block plays like the video: the same part of the source at the same speed, for the clip's duration. It also copies the video's volume, mute state, looping, and audio fades. `muteOriginalVideo` silences the original fill so the audio plays from the extracted block alone.
+
+    A video that plays faster than 3x is force muted, and so is its extracted audio. The audio plays again when its speed is 3x or less.
 
     ```swift highlight-audio-extract
     let extractedAudio = try engine.block.createAudioFromVideo(
@@ -387,7 +389,7 @@ To persist the full scene including audio sources, see the scene persistence API
 | Video fill setup | `engine.block.setFill(_:fill:)` | Assign the loaded video fill to the video block |
 | Extract video audio | `engine.block.createAudioFromVideo(_:trackIndex:options:)` | Extract one audio track by zero-based audio-track ordinal from a video fill |
 | Extract video audio | `engine.block.createAudiosFromVideo(_:options:)` | Extract every audio track from a video fill |
-| Extract video audio | `AudioFromVideoOptions(keepTrimSettings:muteOriginalVideo:)` | Configure trim mirroring and source muting |
+| Extract video audio | `AudioFromVideoOptions(keepTrimSettings:muteOriginalVideo:)` | Make the audio play like the video, and mute the source |
 | Count video audio | `engine.block.getAudioTrackCountFromVideo(_:)` | Count the audio tracks in a video fill |
 | Inspect video audio | `engine.block.getAudioInfoFromVideo(_:)` | Read `AudioTrackInfo` metadata; use the returned list position for extraction because `AudioTrackInfo.trackIndex` is the container track index |
 | Playback | `engine.block.setPlaying(_:enabled:)` | Start or stop playback for a page or playable block |

@@ -13,13 +13,13 @@ dialogs from CE.SDK's UI API.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-user-interface-ui-extensions-dialogs-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-user-interface-ui-extensions-dialogs-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-user-interface-ui-extensions-dialogs-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-user-interface-ui-extensions-dialogs-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-user-interface-ui-extensions-dialogs-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-user-interface-ui-extensions-dialogs-browser/index.html)
 
 Dialogs are modal overlays that block interaction with the editor until the user responds or the dialog closes. Use them for confirmations, important alerts, and long-running operations that the user has to wait for. For feedback that doesn't need a decision, use a [notification](./user-interface/ui-extensions/notifications.md) instead.
 

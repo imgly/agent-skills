@@ -93,7 +93,7 @@ Ensure your `pubspec.yml` file contains the required dependencies:
 dependencies:
     flutter:
         sdk: flutter
-    imgly_editor: 1.83.0
+    imgly_editor: 1.84.0
 ```
 
 ## Supported Media Types
@@ -205,7 +205,7 @@ Configure the editor by passing a configuration object during initialization:
     final settings = EditorSettings(
         license: "YOUR_LICENSE",
         userId: "YOUR_USER_ID",
-        baseURL: URL(string: "https://cdn.img.ly/packages/imgly/cesdk-engine/1.83.0/assets")!
+        baseURL: URL(string: "https://cdn.img.ly/packages/imgly/cesdk-engine/1.84.0/assets")!
     );
 ```
 

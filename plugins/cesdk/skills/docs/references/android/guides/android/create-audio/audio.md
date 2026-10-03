@@ -205,7 +205,7 @@ and generate waveform data with CE.SDK for Android.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.83.0/engine-guides-create-audio-audio)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/engine-guides-create-audio-audio)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.
@@ -295,7 +295,9 @@ Create a video fill and wait for the suspend `forceLoadAVResource()` API to comp
 
 <Tabs>
   <TabItem label="Extract Audio From Video">
-    Check that the loaded source contains audio, and extract the first track into a new audio block. `AudioFromVideoOptions` keeps the trim settings and mutes the source video fill.
+    Check that the loaded source contains audio, and extract the first track into a new audio block. With `AudioFromVideoOptions(keepTrimSettings = true)`, the audio block plays like the video: the same part of the source at the same speed, for the clip's duration. It also copies the video's volume, mute state, looping, and audio fades. `muteOriginalVideo = true` mutes the source video fill.
+
+    A video that plays faster than 3x is force muted, and so is its extracted audio. The audio plays again when its speed is 3x or less.
 
     ```kotlin highlight-android-extract-audio
     val trackCountBeforeExtraction = engine.block.getAudioTrackCountFromVideo(videoFill)

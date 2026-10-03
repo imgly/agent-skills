@@ -99,7 +99,7 @@ Add visual depth and interest to text blocks using drop shadows and stroke outli
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-text-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/engine-guides-text-effects)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.
@@ -152,6 +152,8 @@ try engine.block.setStrokePosition(outlineText, position: .center)
 ```
 
 The stroke width is specified in the scene's design unit. Text blocks support `StrokePosition.center`, `StrokePosition.inner`, and `StrokePosition.outer` via `setStrokePosition(_:position:)`. Stroke styles include `StrokeStyle.solid`, `StrokeStyle.dashed`, `StrokeStyle.dotted`, and other line patterns.
+
+The stroke also outlines the underline, strikethrough, and overline of the text.
 
 ### Reading Stroke Values
 

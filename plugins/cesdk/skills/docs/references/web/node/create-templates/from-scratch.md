@@ -10,11 +10,11 @@ Build reusable design templates entirely through code using CE.SDK's programmati
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-create-templates-from-scratch-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-create-templates-from-scratch-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-create-templates-from-scratch-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-create-templates-from-scratch-server-js)
 
 CE.SDK provides a complete API for building design templates through code. Instead of starting from an existing template, you can create a blank scene, define page dimensions, add text and graphic blocks, configure placeholders for swappable media, add text variables for dynamic content, apply editing constraints to protect layout integrity, and save the template for reuse. This approach enables automation workflows, batch template generation, and integration with custom template creation tools.
 

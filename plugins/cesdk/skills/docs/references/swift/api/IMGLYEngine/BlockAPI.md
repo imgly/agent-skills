@@ -1521,6 +1521,14 @@ Returns the 0-based paragraph indices that overlap the given string subrange. `i
 
 Returns all text runs within the given range of text. `id`
 
+### getTextScriptStyles(_:in:)
+
+```swift
+@MainActor func getTextScriptStyles(_ id: DesignBlockID, in subrange: Range<String.Index>? = nil) throws -> [ScriptStyle]
+```
+
+Returns the ordered list of unique script styles of the text in the selected range. `id`
+
 ### getTextVisibleLineContent(_:lineIndex:)
 
 ```swift
@@ -3262,6 +3270,14 @@ Sets whether text is placed on the opposite side of the baseline path. `id`
 ```
 
 Sets the start offset along the baseline path as a proportion of the path length. `id`
+
+### setTextScriptStyle(_:scriptStyle:in:)
+
+```swift
+@MainActor func setTextScriptStyle(_ id: DesignBlockID, scriptStyle: ScriptStyle, in subrange: Range<String.Index>? = nil) throws
+```
+
+Sets the given script style for the selected range of text. Superscript and subscript text is scaled down and shifted off the regular baseline. The block properties “text/superscriptFontScale”, “text/superscriptVerticalShift”, “text/subscriptFontScale” and “text/subscriptVerticalShift” adjust the scale and shift. Required scope: “text/character” `id`
 
 ### setTimeOffset(_:offset:)
 

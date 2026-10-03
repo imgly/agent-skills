@@ -12,7 +12,7 @@ Options for configuring audio extraction from video operations.
 
 | Property | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-|  `keepTrimSettings?` | `boolean` | `true` | If true, the audio block will have the same duration, trim length, and trim offset as the source video. If false, the full audio track is extracted without trim settings. |
+|  `keepTrimSettings?` | `boolean` | `true` | If true, the audio block plays like the source video. It has the same duration and trim, and it copies the playback speed, looping, volume, mute state and audio fades. Above 3x, the audio is force muted like the video. If false, the full audio track is extracted with the default playback settings. |
 |  `muteOriginalVideo?` | `boolean` | `true` | If true, mutes the audio of the original video fill block. |
 
 

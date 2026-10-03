@@ -132,6 +132,7 @@ Complete translation type that includes both built-in and custom translations.
 |  `action.scene.load` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`action.scene.load`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `action.scene.new` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`action.scene.new`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `action.selectGroup` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`action.selectGroup`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `action.separateAudio` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`action.separateAudio`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `action.setAsClip` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`action.setAsClip`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `action.setAsOverlay` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`action.setAsOverlay`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `action.shadow.angle.change` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`action.shadow.angle.change`](./api/cesdk-js/interfaces/builtintranslations.md) |
@@ -853,6 +854,7 @@ Complete translation type that includes both built-in and custom translations.
 |  `error.sceneTempFileCreateFailed.description` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`error.sceneTempFileCreateFailed.description`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `error.sceneZipCreateFailed` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`error.sceneZipCreateFailed`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `error.sceneZipCreateFailed.description` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`error.sceneZipCreateFailed.description`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `error.separateAudio` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`error.separateAudio`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `error.upload` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`error.upload`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `error.upload.description` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`error.upload.description`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `error.upload.sizeExceeded` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`error.upload.sizeExceeded`](./api/cesdk-js/interfaces/builtintranslations.md) |
@@ -1126,6 +1128,7 @@ Complete translation type that includes both built-in and custom translations.
 |  `notification.dismissal.open` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`notification.dismissal.open`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `notification.dismissal.seconds` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`notification.dismissal.seconds`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `notification.dismissal.seconds.description` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`notification.dismissal.seconds.description`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `notification.separateAudio.noAudio` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`notification.separateAudio.noAudio`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `notification.transitions.appliedToAll` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`notification.transitions.appliedToAll`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `notification.transitions.removedAll` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`notification.transitions.removedAll`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `notification.transitions.replacedAnimation` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`notification.transitions.replacedAnimation`](./api/cesdk-js/interfaces/builtintranslations.md) |
@@ -2118,6 +2121,7 @@ Complete translation type that includes both built-in and custom translations.
 |  `settings.feature.video.controls.timelineZoom` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.video.controls.timelineZoom`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `settings.feature.video.controls.toggle` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.video.controls.toggle`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `settings.feature.video.overlays` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.video.overlays`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `settings.feature.video.separateAudio` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.video.separateAudio`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `settings.feature.video.timeline` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.video.timeline`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `settings.feature.video.timeline.ruler` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`settings.feature.video.timeline.ruler`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `typography.autoSize` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`typography.autoSize`](./api/cesdk-js/interfaces/builtintranslations.md) |

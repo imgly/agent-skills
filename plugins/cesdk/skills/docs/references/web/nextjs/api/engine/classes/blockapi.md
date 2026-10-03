@@ -4844,6 +4844,78 @@ Create, edit, and style text content.
 
 <details>
   <summary>
+    ### getTextScriptStyles()
+
+    <br /><p>Gets the unique text script styles within a range of text.</p>
+  </summary>
+
+  ```javascript
+  const scriptStyles = engine.block.getTextScriptStyles(text);
+  // e.g., ['Normal', 'Superscript']
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block whose script styles should be returned. |
+  | `from?` | `number` | The start index of the UTF-16 range. Defaults to the start of the current selection or text. |
+  | `to?` | `number` | The end index of the UTF-16 range. Defaults to the end of the current selection or text. |
+
+  #### Returns
+
+  [`ScriptStyle`](./api/engine/type-aliases/scriptstyle.md)\[]
+
+  The ordered list of unique script styles.
+
+  #### Signature
+
+  ```typescript
+  getTextScriptStyles(id: number, from?: number, to?: number): ScriptStyle[]
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
+    ### setTextScriptStyle()
+
+    <br /><p>Sets the script style for a range of text.</p>
+  </summary>
+
+  Superscript and subscript text is scaled down and shifted off the regular baseline.
+  The block properties 'text/superscriptFontScale', 'text/superscriptVerticalShift',
+  'text/subscriptFontScale' and 'text/subscriptVerticalShift' adjust the scale and shift.
+
+  ```javascript
+  engine.block.setTextScriptStyle(text, 'Superscript');
+  ```
+
+  #### Parameters
+
+  | Parameter | Type | Description |
+  | ------ | ------ | ------ |
+  | `id` | `number` | The text block whose script style should be changed. |
+  | `scriptStyle` | [`ScriptStyle`](./api/engine/type-aliases/scriptstyle.md) | The new script style. |
+  | `from?` | `number` | The start index of the UTF-16 range. Defaults to the start of the current selection or text. |
+  | `to?` | `number` | The end index of the UTF-16 range. Defaults to the end of the current selection or text. |
+
+  #### Returns
+
+  `void`
+
+  #### Signature
+
+  ```typescript
+  setTextScriptStyle(id: number, scriptStyle: ScriptStyle, from?: number, to?: number): void
+  ```
+
+  ***
+</details>
+
+<details>
+  <summary>
     ### getTextDecorations()
 
     <br /><p>Gets the unique text decoration configurations within a range of text.</p>

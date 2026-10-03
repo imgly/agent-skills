@@ -123,6 +123,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `action.scene.load` | `string` |
 |  `action.scene.new` | `string` |
 |  `action.selectGroup` | `string` |
+|  `action.separateAudio` | `string` |
 |  `action.setAsClip` | `string` |
 |  `action.setAsOverlay` | `string` |
 |  `action.shadow.angle.change` | `string` |
@@ -844,6 +845,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `error.sceneTempFileCreateFailed.description` | `string` |
 |  `error.sceneZipCreateFailed` | `string` |
 |  `error.sceneZipCreateFailed.description` | `string` |
+|  `error.separateAudio` | `string` |
 |  `error.upload` | `string` |
 |  `error.upload.description` | `string` |
 |  `error.upload.sizeExceeded` | `string` |
@@ -1117,6 +1119,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `notification.dismissal.open` | `string` |
 |  `notification.dismissal.seconds` | `string` |
 |  `notification.dismissal.seconds.description` | `string` |
+|  `notification.separateAudio.noAudio` | `string` |
 |  `notification.transitions.appliedToAll` | `string` |
 |  `notification.transitions.removedAll` | `string` |
 |  `notification.transitions.replacedAnimation` | `string` |
@@ -2109,6 +2112,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `settings.feature.video.controls.timelineZoom` | `string` |
 |  `settings.feature.video.controls.toggle` | `string` |
 |  `settings.feature.video.overlays` | `string` |
+|  `settings.feature.video.separateAudio` | `string` |
 |  `settings.feature.video.timeline` | `string` |
 |  `settings.feature.video.timeline.ruler` | `string` |
 |  `typography.autoSize` | `string` |

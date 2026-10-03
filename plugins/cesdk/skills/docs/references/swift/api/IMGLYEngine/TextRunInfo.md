@@ -51,10 +51,10 @@ var from: Int
 
 Start grapheme index (inclusive).
 
-### init(from:to:text:color:fontWeight:fontStyle:fontSize:textCase:typeface:resolvedFontFileURL:textDecoration:kerning:)
+### init(from:to:text:color:fontWeight:fontStyle:fontSize:textCase:typeface:resolvedFontFileURL:textDecoration:scriptStyle:kerning:)
 
 ```swift
-init(from: Int, to: Int, text: String, color: Color, fontWeight: FontWeight, fontStyle: FontStyle, fontSize: Float, textCase: TextCase, typeface: Typeface, resolvedFontFileURL: URL, textDecoration: TextDecorationConfig = TextDecorationConfig(), kerning: Float = 0.0)
+init(from: Int, to: Int, text: String, color: Color, fontWeight: FontWeight, fontStyle: FontStyle, fontSize: Float, textCase: TextCase, typeface: Typeface, resolvedFontFileURL: URL, textDecoration: TextDecorationConfig = TextDecorationConfig(), scriptStyle: ScriptStyle = .normal, kerning: Float = 0.0)
 ```
 
 ### kerning
@@ -72,6 +72,14 @@ var resolvedFontFileURL: URL
 ```
 
 The resolved font file URI.
+
+### scriptStyle
+
+```swift
+var scriptStyle: ScriptStyle
+```
+
+The script style of this run.
 
 ### text
 

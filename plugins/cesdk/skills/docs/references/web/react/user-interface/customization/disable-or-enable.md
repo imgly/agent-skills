@@ -12,13 +12,13 @@ Control which editor features are available to users using the Feature API.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-user-interface-customization-disable-or-enable-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-user-interface-customization-disable-or-enable-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-user-interface-customization-disable-or-enable-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-user-interface-customization-disable-or-enable-browser/index.html)
 
 The Feature API provides global control over feature visibility throughout the editor. Use it to hide delete buttons from certain users, disable crop controls based on context, or conditionally enable features based on user roles or selection state. Unlike the Component Order API which targets specific components in specific areas, the Feature API affects features everywhere in the editor at once.
 
@@ -526,6 +526,7 @@ CE.SDK includes many built-in features organized by category:
 | `ly.img.video.timeline.controls.split`        | Controls split clip control                                                                |
 | `ly.img.video.timeline.controls.timelineZoom` | Controls timeline zoom controls                                                            |
 | `ly.img.video.caption`                        | Controls video captions                                                                    |
+| `ly.img.video.separateAudio`                  | Controls the Separate Audio action in the timeline clip menu                               |
 | `ly.img.animations`                           | Controls the Animations button (video mode)                                                |
 | `ly.img.transitions`                          | Controls the clip-to-clip Transitions UI on the timeline and in the inspector (video mode) |
 

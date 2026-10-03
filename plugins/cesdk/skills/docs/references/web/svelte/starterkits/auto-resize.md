@@ -12,13 +12,13 @@ Automatically generate size variations of your design and easily scale your mark
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-automated-resizing-react-web/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/starterkit-automated-resizing-react-web/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-automated-resizing-react-web/tree/v1.83.0)
+> - [View source on GitHub](https://github.com/imgly/starterkit-automated-resizing-react-web/tree/v1.84.0)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-automated-resizing-react-web/tree/v1.83.0)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-automated-resizing-react-web/tree/v1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/starterkit-automated-resizing/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/starterkit-automated-resizing/index.html)
 
 ***
 
@@ -117,7 +117,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.84.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -227,9 +227,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.83.0</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.83.0</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.83.0</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.84.0</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.84.0</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.84.0</TerminalTab>
     </TerminalTabs>
 
     ### Headless Engine
@@ -237,9 +237,9 @@ Before you begin, make sure you have the following:
     The starter kit boots a headless `CreativeEngine` for variant generation. Install the engine package alongside the editor:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/engine@1.83.0</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/engine@1.83.0</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/engine@1.83.0</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/engine@1.84.0</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/engine@1.84.0</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/engine@1.84.0</TerminalTab>
     </TerminalTabs>
 
     ## Step 3: Download Assets
@@ -248,7 +248,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.83.0/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.84.0/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>

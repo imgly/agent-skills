@@ -12,13 +12,13 @@ Add visual depth and interest to text blocks using drop shadows and stroke outli
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-text-effects-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-text-effects-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-text-effects-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-text-effects-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-text-effects-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-text-effects-browser/index.html)
 
 Text effects in CE.SDK include drop shadows for depth and stroke outlines for text borders. These visual effects are distinct from text styling properties like colors, fonts, and backgrounds.
 
@@ -214,6 +214,8 @@ Stroke outlines add a colored border around text. We enable stroke with `setStro
 ```
 
 The stroke width is specified in pixels. Text blocks support `'Center'`, `'Inner'`, and `'Outer'` stroke positioning via `setStrokePosition()`. Stroke styles include `'Solid'`, `'Dashed'`, `'Dotted'`, and other line patterns.
+
+The stroke also outlines the underline, strikethrough, and overline of the text.
 
 ## API Reference
 

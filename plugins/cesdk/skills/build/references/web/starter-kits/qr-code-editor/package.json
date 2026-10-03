@@ -9,9 +9,9 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.84.0-nightly.20261002",
-    "@imgly/plugin-qr-code-web": "^1.84.0-nightly.20261002",
-    "@cesdk/engine": "^1.84.0-nightly.20261002"
+    "@cesdk/cesdk-js": "^1.85.0-nightly.20261003",
+    "@imgly/plugin-qr-code-web": "^1.85.0-nightly.20261003",
+    "@cesdk/engine": "^1.85.0-nightly.20261003"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

@@ -73,7 +73,7 @@ Manage undo and redo operations in CE.SDK programmatically, subscribe to history
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.83.0/engine-guides-undo-and-history)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/engine-guides-undo-and-history)
 
 CE.SDK automatically tracks editing operations, enabling users to undo and redo changes. The engine creates undo steps for most operations automatically. You can also create multiple independent history stacks to isolate editing contexts — for example, separate histories for a main canvas and an overlay editor.
 
@@ -186,6 +186,8 @@ CE.SDK supports multiple independent history stacks. This is useful when differe
 
 - Create a stack with `createHistory()` and activate it with `setActiveHistory()`
 - Operations while a stack is active only affect that stack
+- A new stack starts from the current scene, including edits that have no undo step yet and the current selection
+- Switching back to a stack returns the scene to that stack's last undo step
 - Always call `destroyHistory()` when a stack is no longer needed to free resources
 
 ## API Reference

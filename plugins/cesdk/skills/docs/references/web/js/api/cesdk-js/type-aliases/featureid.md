@@ -188,6 +188,7 @@ type FeatureId =
   | "ly.img.video.timeline.controls.split"
   | "ly.img.video.timeline.controls.timelineZoom"
   | "ly.img.video.caption"
+  | "ly.img.video.separateAudio"
   | "ly.img.transform"
   | "ly.img.transform.position"
   | "ly.img.transform.size"

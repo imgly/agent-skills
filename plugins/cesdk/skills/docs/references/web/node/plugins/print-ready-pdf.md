@@ -33,10 +33,10 @@ A server-side PDF conversion workflow that:
 Add CE.SDK Engine and the Print Ready PDF plugin to your Node.js project:
 
 ```bash
-npm install @cesdk/node@1.83.0 @imgly/plugin-print-ready-pdfs-web@1.0.0
+npm install @cesdk/node@1.84.0 @imgly/plugin-print-ready-pdfs-web@1.0.0
 ```
 
-Using the native Node.js package? Install `@cesdk/node-native@1.83.0` instead of `@cesdk/node` — the engine API is identical.
+Using the native Node.js package? Install `@cesdk/node-native@1.84.0` instead of `@cesdk/node` — the engine API is identical.
 
 **Package details:**
 
@@ -382,7 +382,7 @@ npm list @cesdk/node @imgly/plugin-print-ready-pdfs-web
 If missing, reinstall:
 
 ```bash
-npm install @cesdk/node@1.83.0 @imgly/plugin-print-ready-pdfs-web@1.0.0
+npm install @cesdk/node@1.84.0 @imgly/plugin-print-ready-pdfs-web@1.0.0
 ```
 
 ### Memory Issues with Large Files

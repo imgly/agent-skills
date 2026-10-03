@@ -41,7 +41,7 @@ Then, open the newly created project in your preferred editor.
 Next, install the `@imgly/editor-react-native` module by running the following command:
 
 ```sh
-npm install @imgly/editor-react-native@1.83.0
+npm install @imgly/editor-react-native@1.84.0
 ```
 
 ## iOS Configuration

@@ -6,7 +6,7 @@
 Represents a single contiguous text run with uniform formatting. Each run covers a range of grapheme clusters [from, to) within the text block.
 
 ```kotlin
-data class TextRunInfo(val from: Int, val to: Int, val text: String, val color: Color, val fontWeight: FontWeight, val fontStyle: FontStyle, val fontSize: Float, val textCase: TextCase, val typeface: Typeface, val resolvedFontFileUri: String, val textDecoration: TextDecorationConfig, val kerning: Float)
+data class TextRunInfo(val from: Int, val to: Int, val text: String, val color: Color, val fontWeight: FontWeight, val fontStyle: FontStyle, val fontSize: Float, val textCase: TextCase, val typeface: Typeface, val resolvedFontFileUri: String, val textDecoration: TextDecorationConfig, val scriptStyle: ScriptStyle = ScriptStyle.NORMAL, val kerning: Float)
 ```
 
 
@@ -15,7 +15,7 @@ data class TextRunInfo(val from: Int, val to: Int, val text: String, val color: 
 ### TextRunInfo
 
 ```kotlin
-constructor(from: Int, to: Int, text: String, color: Color, fontWeight: FontWeight, fontStyle: FontStyle, fontSize: Float, textCase: TextCase, typeface: Typeface, resolvedFontFileUri: String, textDecoration: TextDecorationConfig, kerning: Float)
+constructor(from: Int, to: Int, text: String, color: Color, fontWeight: FontWeight, fontStyle: FontStyle, fontSize: Float, textCase: TextCase, typeface: Typeface, resolvedFontFileUri: String, textDecoration: TextDecorationConfig, scriptStyle: ScriptStyle = ScriptStyle.NORMAL, kerning: Float)
 ```
 
 ### color
@@ -73,6 +73,14 @@ val resolvedFontFileUri: String
 ```
 
 The resolved font file URI.
+
+### scriptStyle
+
+```kotlin
+val scriptStyle: ScriptStyle
+```
+
+The script style of this run.
 
 ### textCase
 

@@ -13,13 +13,13 @@ for video compositing and virtual background applications.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.83.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.83.0/guides-filters-and-effects-chroma-key-green-screen-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-filters-and-effects-chroma-key-green-screen-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.83.0/guides-filters-and-effects-chroma-key-green-screen-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-filters-and-effects-chroma-key-green-screen-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-nightly.20261002/examples/guides-filters-and-effects-chroma-key-green-screen-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-filters-and-effects-chroma-key-green-screen-browser/index.html)
 
 The green screen effect (chroma key) replaces a specified color with transparency, enabling compositing workflows where foreground subjects appear over different backgrounds. While green is the most common key color due to its contrast with skin tones, the effect works with any solid color—blue screens, white backgrounds, or custom colors. CE.SDK processes chroma keying in real-time using GPU-accelerated shaders.
 

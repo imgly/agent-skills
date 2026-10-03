@@ -149,6 +149,7 @@
 | [SceneLayout](./api/node/type-aliases/scenelayout.md) | - |
 | [SceneMode](./api/node/type-aliases/scenemode.md) | - |
 | [Scope](./api/node/type-aliases/scope.md) | Represents the various scopes that define the capabilities and permissions within the Creative Editor SDK. Each scope corresponds to a specific functionality or action that can be performed within the editor. |
+| [ScriptStyle](./api/node/type-aliases/scriptstyle.md) | Represents the script style of a range of text. |
 | [SettingBoolPropertyName](./api/node/type-aliases/settingboolpropertyname.md) | - |
 | [SettingColorPropertyName](./api/node/type-aliases/settingcolorpropertyname.md) | - |
 | [SettingEnumPropertyName](./api/node/type-aliases/settingenumpropertyname.md) | - |

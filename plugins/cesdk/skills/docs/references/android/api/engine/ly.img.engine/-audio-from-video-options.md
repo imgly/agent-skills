@@ -22,7 +22,7 @@ constructor(keepTrimSettings: Boolean = true, muteOriginalVideo: Boolean = false
 val keepTrimSettings: Boolean = true
 ```
 
-If true, the audio block will have the same duration, trim length, and trim offset as the source video. If false, the full audio track is extracted without trim settings. The default value is true.
+If true, the audio block plays like the source video. It has the same duration and trim, and it copies the playback speed, looping, volume, mute state and audio fades. Above 3x, the audio is force muted like the video. If false, the full audio track is extracted with the default playback settings. The default value is true.
 
 ### muteOriginalVideo
 
