@@ -18,7 +18,7 @@ Comprehensive design editing for your web app—professional tools for graphics,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-design-editor-ts-web/tree/v1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/starterkit-advanced-design-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-advanced-design-editor/index.html)
 
 ***
 

@@ -18,7 +18,7 @@ Lightweight design viewing for your Angular app—pan, zoom, and navigate multi-
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-design-viewer-ts-web/tree/v1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/starterkit-design-viewer/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-design-viewer/index.html)
 
 ***
 

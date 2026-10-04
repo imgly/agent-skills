@@ -18,7 +18,7 @@ Integrate CE.SDK with 3D libraries for real-time, interactive design previews on
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-3d-product-preview-react-web/tree/release-1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/starterkit-3d-product-preview/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-3d-product-preview/index.html)
 
 ***
 

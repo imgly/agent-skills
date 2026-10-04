@@ -18,7 +18,7 @@ The Renderer brings CE.SDK's design engine to your backend with fast, compliant,
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-export-using-renderer-ts-web/tree/v1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/starterkit-export-using-renderer/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-export-using-renderer/index.html)
 
 ***
 

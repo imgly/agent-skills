@@ -18,7 +18,7 @@ CE.SDK treats all insertable content as assets—images, videos, audio, stickers
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-import-media-asset-library-basics-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-import-media-asset-library-basics-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/guides-import-media-asset-library-basics-browser/index.html)
 
 The asset library connects the engine to the user interface through three layers:
 

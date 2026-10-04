@@ -18,7 +18,7 @@ Transform PDF documents into editable CE.SDK designs. All formatting preserved.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-pdf-template-import-react-web/tree/release-1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/starterkit-pdf-template-import/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-pdf-template-import/index.html)
 
 ***
 

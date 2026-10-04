@@ -22,7 +22,7 @@ client-side without any backend infrastructure.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/plugins-print-ready-pdf-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/plugins-print-ready-pdf-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/plugins-print-ready-pdf-browser/index.html)
 
 ## What You'll Build
 

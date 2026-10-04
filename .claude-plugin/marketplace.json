@@ -1,7 +1,7 @@
 {
   "metadata": {
     "description": "CE.SDK agent skills for Web, Swift, Android, Flutter, and React Native.",
-    "version": "1.85.0-nightly.20261003"
+    "version": "1.85.0-nightly.20261004"
   },
   "name": "imgly",
   "owner": {
@@ -60,7 +60,7 @@
         "Flutter",
         "React Native"
       ],
-      "version": "1.85.0-nightly.20261003"
+      "version": "1.85.0-nightly.20261004"
     }
   ]
 }

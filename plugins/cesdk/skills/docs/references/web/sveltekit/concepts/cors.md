@@ -19,7 +19,7 @@ stops an export.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-concepts-cors-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/guides-concepts-cors-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/guides-concepts-cors-browser/index.html)
 
 CE.SDK reads the bytes of every image, video, audio file and font it renders, with the browser's `fetch()` in CORS mode. When a file comes from a different origin than your editor, the browser hands the bytes to CE.SDK only if the response carries an `Access-Control-Allow-Origin` header that allows your editor's origin. Without it, the browser blocks the response, and the block that uses the file cannot load it.
 

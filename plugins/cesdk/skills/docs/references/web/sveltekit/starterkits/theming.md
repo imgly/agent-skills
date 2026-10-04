@@ -18,7 +18,7 @@ Effortlessly adapt the UI of the CreativeEditor SDK to best match your app. With
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-theming-react-web/tree/release-1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/starterkit-theming/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-theming/index.html)
 
 ***
 

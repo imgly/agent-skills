@@ -18,7 +18,7 @@ Ships with English and German. Supports translations for any language.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-translation-internationalization-react-web/tree/v1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/starterkit-translation-internationalization/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-translation-internationalization/index.html)
 
 ***
 

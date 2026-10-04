@@ -18,7 +18,7 @@ Ensure staying on brand and simplify the design process by defining placeholders
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-placeholders-react-web/tree/v1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261003/examples/starterkit-placeholders/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-placeholders/index.html)
 
 ***
 
