@@ -1,0 +1,183 @@
+:global(html) {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.45;
+}
+
+:global(*),
+:global(*::before),
+:global(*::after) {
+  border-style: solid;
+  border-width: 0;
+  box-sizing: border-box;
+}
+
+:global(body),
+:global(blockquote),
+:global(dl),
+:global(dd),
+:global(h1),
+:global(h2),
+:global(h3),
+:global(h4),
+:global(h5),
+:global(h6),
+:global(hr),
+:global(figure),
+:global(p),
+:global(pre) {
+  margin: 0;
+}
+
+:global(button) {
+  background-color: transparent;
+  padding: 0;
+}
+
+:global(button),
+:global([role='button']) {
+  cursor: pointer;
+}
+
+:global(button::-moz-focus-inner) {
+  border: 0 !important;
+}
+
+:global(h1),
+:global(h2),
+:global(h3),
+:global(h4),
+:global(h5),
+:global(h6) {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+:global(button),
+:global(input),
+:global(optgroup),
+:global(select),
+:global(textarea) {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:global(img),
+:global(svg),
+:global(video),
+:global(canvas),
+:global(audio),
+:global(iframe),
+:global(embed),
+:global(object) {
+  display: block;
+}
+
+:global(img),
+:global(video) {
+  height: auto;
+  max-width: 100%;
+}
+
+:global(a) {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+:global(*:focus) {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* ============================================================================
+ * Global Layout
+ * ============================================================================ */
+
+:global(:root) {
+  --color-primary: #471aff;
+  --color-primary-hover: #3d15d9;
+  --color-text: #161617;
+  --color-text-secondary: rgba(22, 22, 23, 0.65);
+  --color-border: #e0e0e8;
+  --color-bg: #f8f9fc;
+  --color-white: #ffffff;
+  --font-family:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --border-radius: 8px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --ci-foreground-black-default: #161617;
+  --ci-surface-elevation-1: #f4f4f4;
+}
+
+:global(html),
+:global(body) {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+
+:global(body.no-scroll) {
+  overflow: hidden;
+}
+
+:global(#root) {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================================================
+ * Component Styles
+ * ============================================================================ */
+
+.innerWrapper {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  height: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+  background: #efefef;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0px 0px 2px rgba(22, 22, 23, 0.25),
+    0px 4px 6px -2px rgba(22, 22, 23, 0.12),
+    0px 2px 2.5px -2px rgba(22, 22, 23, 0.12),
+    0px 1px 1.75px -2px rgba(22, 22, 23, 0.12);
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  container-type: inline-size;
+}
+
+.headline {
+  color: white !important;
+  text-align: center;
+}
+
+.fullHeightWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 8px;
+}

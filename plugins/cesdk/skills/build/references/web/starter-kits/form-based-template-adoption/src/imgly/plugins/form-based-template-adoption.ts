@@ -1,0 +1,400 @@
+/**
+ * CE.SDK Form-Based Template Adoption Plugin
+ *
+ * This plugin demonstrates form-based template editing where users
+ * can modify template content through a structured panel UI instead
+ * of direct canvas manipulation.
+ *
+ * Features:
+ * - Image editing through file upload
+ * - Text editing through form inputs
+ * - Color editing across all elements
+ * - Hidden dock/inspector for simplified UI
+ *
+ * @see https://img.ly/docs/cesdk/js/plugins-693c48/
+ */
+
+import { EditorPlugin } from '@cesdk/cesdk-js';
+
+import {
+  BlocksToEditableProperties,
+  getAllColors,
+  getTemplateImageBlocks,
+  getTemplateTextBlocks,
+  readCurrentColor,
+  relocateResourcesToBlobURLs,
+  waitUntilLoaded,
+  type EditableProperty,
+  type EditingOptions,
+  type FoundColor,
+  type TextEditingOptions
+} from './template-properties';
+
+const SCENE_PADDING = 60;
+
+// ============================================================================
+// Plugin Factory
+// ============================================================================
+
+export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
+  name: 'ly.img.form-based-template-adoption',
+  version: '1.0.0',
+  initialize: async ({ cesdk }) => {
+    if (cesdk == null) return;
+
+    const engine = cesdk.engine;
+
+    // ========================================================================
+    // Editor Settings
+    // ========================================================================
+
+    engine.editor.setSetting('page/title/show', false);
+    engine.editor.setSetting('mouse/enableScroll', false);
+    engine.editor.setSetting('mouse/enableZoom', false);
+
+    // ========================================================================
+    // UI Configuration - Hide all elements for form-based editing
+    // ========================================================================
+
+    // Disable dock feature entirely (replaces deprecated ui.elements.dock.show)
+    cesdk.feature.set('ly.img.dock', false);
+
+    cesdk.ui.setComponentOrder({ in: 'ly.img.inspector.bar' }, []);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, []);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.canvas.bar', at: 'bottom' }, []);
+
+    // Configure navigation bar with actions dropdown containing export buttons
+    cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
+      'ly.img.undoRedo.navigationBar',
+      'ly.img.spacer',
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          'ly.img.exportImage.navigationBar',
+          'ly.img.exportPDF.navigationBar'
+        ]
+      }
+    ]);
+
+    // Hide 'Resize' button on the navigation bar
+    cesdk.feature.set('ly.img.page.resize', false);
+
+    // ========================================================================
+    // Localization
+    // ========================================================================
+
+    cesdk.i18n.setTranslations({
+      en: {
+        'panel.form-based-adaption': 'Edit Template'
+      },
+      de: {
+        'panel.form-based-adaption': 'Template bearbeiten'
+      }
+    });
+
+    // ========================================================================
+    // Disable Direct Selection
+    // ========================================================================
+
+    engine.editor.setGlobalScope('editor/select', 'Deny');
+
+    // ========================================================================
+    // State Variables
+    // ========================================================================
+
+    let imageBlocks: number[] = [];
+    let editableImageTemplateBlocks: EditableProperty[] = [];
+    let textBlocks: number[] = [];
+    let editableTextTemplateBlocks: EditableProperty[] = [];
+
+    let colors: Record<string, FoundColor[] | undefined> = {};
+
+    // ========================================================================
+    // Resize Observer - Zoom to Canvas
+    // ========================================================================
+
+    const resizeObserver = new ResizeObserver(() => {
+      const scene = engine.scene?.get();
+      if (!engine.scene) {
+        resizeObserver.disconnect();
+        return;
+      }
+      if (scene === null) return;
+      engine.scene.zoomToBlock(scene!, { padding: SCENE_PADDING });
+    });
+    resizeObserver.observe(engine.element!);
+
+    // ========================================================================
+    // Scene Change Handler
+    // ========================================================================
+
+    let hasInitialized = false;
+    engine.scene.onActiveChanged(() => {
+      if (hasInitialized) return;
+      hasInitialized = true;
+      async function setupScene() {
+        const engine = cesdk!.engine;
+        // Relocate all transient resources to blob and blob urls.
+        // This is important to be able to show image previews in the UI
+        relocateResourcesToBlobURLs(engine);
+        // Deselect all blocks
+        engine.block.findAllSelected().forEach((block) => {
+          engine.block.setSelected(block, false);
+        });
+
+        imageBlocks = getTemplateImageBlocks(engine);
+        editableImageTemplateBlocks = BlocksToEditableProperties(
+          engine,
+          imageBlocks
+        );
+
+        textBlocks = getTemplateTextBlocks(engine);
+        editableTextTemplateBlocks = BlocksToEditableProperties(
+          engine,
+          textBlocks,
+          (block) => {
+            const text = engine.block.getString(block, 'text/text');
+            return {
+              expanded: text.includes('\n')
+            } as EditingOptions;
+          }
+        );
+
+        colors = getAllColors(engine);
+
+        await waitUntilLoaded(engine);
+        engine.scene.zoomToBlock(engine.scene.get()!, {
+          padding: SCENE_PADDING
+        });
+        // reset history, e.g to include selection changes made above
+        const oldHistory = engine.editor.getActiveHistory();
+        const newHistory = engine.editor.createHistory();
+        engine.editor.setActiveHistory(newHistory);
+        engine.editor.destroyHistory(oldHistory);
+        engine.editor.addUndoStep();
+      }
+      setupScene();
+    });
+
+    // ========================================================================
+    // Custom Panel Registration
+    // ========================================================================
+
+    cesdk.ui.registerPanel(
+      'form-based-adaption',
+      ({ builder, engine, state }) => {
+        const pages = engine.block.findByType('page');
+        if (pages.length === 0) return;
+
+        // Image Section
+        if (imageBlocks.length > 0) {
+          builder.Section('form-based-adaption.image', {
+            title: 'Image',
+            children: () => {
+              editableImageTemplateBlocks.forEach(({ blocks }) => {
+                const block = blocks[0];
+                const fillBlock = engine.block.getFill(block);
+                const uri =
+                  engine.block.getSourceSet(
+                    fillBlock,
+                    'fill/image/sourceSet'
+                  )?.[0]?.uri ??
+                  engine.block.getString(fillBlock, 'fill/image/imageFileURI');
+
+                const uploadState = state(`imageUpload-${block}`, false);
+
+                const blockName = engine.block.getName(block);
+
+                builder.MediaPreview(`imagePreview-${block}`, {
+                  size: 'small',
+                  preview: {
+                    type: 'image',
+                    uri
+                  },
+                  action: {
+                    label: `Change ${blockName || 'Image'}`,
+                    isLoading: uploadState.value,
+                    onClick: () => {
+                      uploadFile({
+                        supportedMimeTypes: ['image/*']
+                      }).then((files) => {
+                        const [file] = files;
+                        if (file != null) {
+                          const url = URL.createObjectURL(file);
+                          blocks.map((blockToChange) => {
+                            const fillToChange =
+                              engine.block.getFill(blockToChange);
+                            engine.block.setString(
+                              fillToChange,
+                              'fill/image/imageFileURI',
+                              ''
+                            );
+                            engine.block.setSourceSet(
+                              fillToChange,
+                              'fill/image/sourceSet',
+                              []
+                            );
+                            return engine.block
+                              .addImageFileURIToSourceSet(
+                                fillToChange,
+                                'fill/image/sourceSet',
+                                url
+                              )
+                              .then(() => {
+                                uploadState.setValue(false);
+                                engine.editor.addUndoStep();
+                              })
+                              .catch(() => {
+                                // eslint-disable-next-line no-console
+                                console.error('Error uploading image');
+                                uploadState.setValue(false);
+                              });
+                          });
+                        }
+                      });
+                    }
+                  }
+                });
+              });
+            }
+          });
+        }
+
+        // Text Section
+        if (textBlocks.length > 0) {
+          const textBlockState = state<Map<string, TextEditingOptions>>(
+            'textBlockState',
+            new Map(
+              editableTextTemplateBlocks.map(({ name, options }) => [
+                name,
+                options
+              ])
+            )
+          );
+          builder.Section('form-based-adaption.text', {
+            title: 'Text',
+            children: () => {
+              editableTextTemplateBlocks.forEach(({ blocks, name }) => {
+                const value = engine.block.getString(blocks[0], 'text/text');
+                const setValue = (newValue: string) => {
+                  blocks.forEach((block) => {
+                    engine.block.replaceText(block, newValue);
+                  });
+                  cesdk.engine.editor.addUndoStep();
+                };
+                const expanded =
+                  textBlockState.value.get(name)!.expanded ?? false;
+                if (expanded) {
+                  builder.TextArea(`text-${name}`, {
+                    inputLabel: name,
+                    value,
+                    setValue
+                  });
+                } else {
+                  builder.TextInput(`text-${name}`, {
+                    inputLabel: name,
+                    value,
+                    setValue
+                  });
+                }
+              });
+            }
+          });
+        }
+
+        // Color Section
+        builder.Section('form-based-adaption.color', {
+          title: 'Color',
+          children: () => {
+            Object.keys(colors).forEach((colorId, i) => {
+              const foundsColors = colors[colorId];
+              const currentColor = readCurrentColor(engine, foundsColors![0]);
+
+              builder.ColorInput(`color-${colorId}`, {
+                inputLabel: `Color ${i + 1}`,
+                label: `Color ${i + 1}`,
+                value: currentColor,
+
+                setValue: (newValue) => {
+                  foundsColors!.forEach((foundColor) => {
+                    if (foundColor.type === 'fill') {
+                      const fill = engine.block.getFill(foundColor.id);
+                      engine.block.setColor(fill, 'fill/color/value', {
+                        ...newValue,
+                        a: foundColor.initialOpacity
+                      });
+                    } else if (foundColor.type === 'stroke') {
+                      engine.block.setStrokeColor(foundColor.id, {
+                        ...newValue,
+                        a: foundColor.initialOpacity
+                      });
+                    } else if (foundColor.type === 'text') {
+                      engine.block.setTextColor(foundColor.id, {
+                        ...newValue,
+                        a: foundColor.initialOpacity
+                      });
+                    }
+                  });
+                  cesdk.engine.editor.addUndoStep();
+                }
+              });
+            });
+          }
+        });
+      }
+    );
+
+    // ========================================================================
+    // Open the Panel
+    // ========================================================================
+
+    cesdk.ui.openPanel('form-based-adaption', { closableByUser: false });
+  }
+});
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+let fileInput: HTMLInputElement | null = null;
+
+function getFileInput(): HTMLInputElement {
+  if (fileInput == null) {
+    fileInput = document.createElement('input');
+    fileInput.setAttribute('type', 'file');
+    fileInput.style.display = 'none';
+    document.body.appendChild(fileInput);
+  }
+  return fileInput;
+}
+
+export function uploadFile({
+  supportedMimeTypes,
+  multiple = true
+}: {
+  supportedMimeTypes: string[];
+  multiple?: boolean;
+}): Promise<File[]> {
+  const element = getFileInput();
+  const accept = supportedMimeTypes.join(',');
+
+  return new Promise<File[]>((resolve, reject) => {
+    if (accept) {
+      element.setAttribute('accept', accept);
+    }
+    if (multiple) {
+      element.setAttribute('multiple', String(multiple));
+    }
+    element.onchange = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (target.files) {
+        resolve(Object.values(target.files));
+      } else {
+        reject(new Error('No files selected'));
+      }
+      element.onchange = null;
+      element.value = '';
+    };
+    element.click();
+  });
+}
