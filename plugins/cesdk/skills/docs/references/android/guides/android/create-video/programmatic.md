@@ -140,7 +140,7 @@ durations, and export the result as an MP4 file.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-rc.0/engine-guides-create-video-programmatic)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-rc.1/engine-guides-create-video-programmatic)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

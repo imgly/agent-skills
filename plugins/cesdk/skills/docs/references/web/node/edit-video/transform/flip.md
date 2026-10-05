@@ -10,7 +10,7 @@ Run **CE.SDK** in **Node.js server mode** to mirror video blocks programmaticall
 
 ## Requirements
 
-- A CE.SDK server package: `npm install @cesdk/node@1.84.0-rc.0` (WASM) or `npm install @cesdk/node-native@1.84.0-rc.0` (native) — the engine API is identical
+- A CE.SDK server package: `npm install @cesdk/node@1.84.0-rc.1` (WASM) or `npm install @cesdk/node-native@1.84.0-rc.1` (native) — the engine API is identical
 - **Node.js 22** or newer
 - A CE.SDK license key. Set `baseURL` when serving the CE.SDK asset bundle from your own location (both Node.js packages bundle their engine assets, so `baseURL` is optional)
 

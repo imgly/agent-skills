@@ -94,7 +94,7 @@ Ensure your `pubspec.yml` file contains the required dependencies:
 dependencies:
     flutter:
         sdk: flutter
-    imgly_editor: 1.84.0-rc.0
+    imgly_editor: 1.84.0-rc.1
 ```
 
 ## Supported File Types

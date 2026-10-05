@@ -56,7 +56,7 @@ const settings = new EditorSettingsModel({
 license: 'YOUR_LICENSE_KEY', // Request a license at https://img.ly/forms/contact-sales/, pass null for evaluation mode with watermark
 ```
 
-- `baseUri` - the base URI used by the engine for built-in assets like emoji and fallback fonts, and by the editor for its default and demo asset sources (stickers, filters, and more). The default value points at the versioned IMG.LY CDN `https://cdn.img.ly/packages/imgly/cesdk-react-native/<version>/assets`. For production use, we recommend [downloading the assets](https://cdn.img.ly/packages/imgly/cesdk-react-native/1.84.0-rc.0/imgly-assets.zip), hosting them on your own server, and setting `baseUri` to your hosted location.
+- `baseUri` - the base URI used by the engine for built-in assets like emoji and fallback fonts, and by the editor for its default and demo asset sources (stickers, filters, and more). The default value points at the versioned IMG.LY CDN `https://cdn.img.ly/packages/imgly/cesdk-react-native/<version>/assets`. For production use, we recommend [downloading the assets](https://cdn.img.ly/packages/imgly/cesdk-react-native/1.84.0-rc.1/imgly-assets.zip), hosting them on your own server, and setting `baseUri` to your hosted location.
 
 ```javascript highlight-baseUri
 baseUri: 'YOUR_BASE_URI',

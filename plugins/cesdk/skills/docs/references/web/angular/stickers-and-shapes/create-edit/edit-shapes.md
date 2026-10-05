@@ -12,13 +12,13 @@ This guide shows how to programmatically edit shapes using the Block API, coveri
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-stickers-and-shapes-edit-shapes-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-stickers-and-shapes-edit-shapes-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-stickers-and-shapes-edit-shapes-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-stickers-and-shapes-edit-shapes-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-stickers-and-shapes-edit-shapes-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-stickers-and-shapes-edit-shapes-browser/index.html)
 
 The `graphic` block in CE.SDK allows you to modify and replace its shape. CE.SDK supports many different types of shapes, such as rectangles, lines, ellipses, polygons, stars, and custom vector paths.
 

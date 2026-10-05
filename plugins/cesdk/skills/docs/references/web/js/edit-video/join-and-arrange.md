@@ -12,13 +12,13 @@ Combine multiple video clips into sequences and organize them in the composition
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-create-video-join-and-arrange-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-create-video-join-and-arrange-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-create-video-join-and-arrange-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-create-video-join-and-arrange-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-create-video-join-and-arrange-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-create-video-join-and-arrange-browser/index.html)
 
 Video compositions in CE.SDK use a hierarchy: **Scene → Page → Track → Clip**. Tracks organize clips for sequential playback—when you add clips to a track, they play one after another. You can control precise timing using time offsets and create layered compositions by adding multiple tracks to a page.
 

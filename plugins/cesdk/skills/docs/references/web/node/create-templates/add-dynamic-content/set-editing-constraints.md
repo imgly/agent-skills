@@ -10,7 +10,7 @@ Control what users can edit in templates by setting fine-grained permissions on 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >

@@ -12,13 +12,13 @@ Add AI-powered generation capabilities to your CE.SDK application for generating
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-user-interface-ai-integration-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-user-interface-ai-integration-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-user-interface-ai-integration-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-user-interface-ai-integration-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-user-interface-ai-integration-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-user-interface-ai-integration-browser/index.html)
 
 > **Looking for the easy path?:** The [Managed Model Gateway](./user-interface/ai-integration/gateway-provider.md) is the fastest way to add AI generation to CE.SDK. We handle proxying, authentication, model routing, and billing — you only need a JWT-minting endpoint and a single gateway URL. The rest of this guide covers configuring upstream providers directly, which is useful when you need full control or already run your own proxy.
 
@@ -342,14 +342,14 @@ First, set up your project and install the necessary packages:
 
 ```bash
 # Initialize a new project or use an existing one
-npm install @cesdk/cesdk-js@1.84.0-rc.0
-npm install @imgly/plugin-ai-apps-web@1.84.0-rc.0
+npm install @cesdk/cesdk-js@1.84.0-rc.1
+npm install @imgly/plugin-ai-apps-web@1.84.0-rc.1
 
 # Install individual AI generation packages as needed
-npm install @imgly/plugin-ai-image-generation-web@1.84.0-rc.0
-npm install @imgly/plugin-ai-video-generation-web@1.84.0-rc.0
-npm install @imgly/plugin-ai-audio-generation-web@1.84.0-rc.0
-npm install @imgly/plugin-ai-text-generation-web@1.84.0-rc.0
+npm install @imgly/plugin-ai-image-generation-web@1.84.0-rc.1
+npm install @imgly/plugin-ai-video-generation-web@1.84.0-rc.1
+npm install @imgly/plugin-ai-audio-generation-web@1.84.0-rc.1
+npm install @imgly/plugin-ai-text-generation-web@1.84.0-rc.1
 ```
 
 Import the providers from their respective packages:
@@ -950,7 +950,7 @@ This is useful for:
 - Simplifying the UI by hiding unused features
 - Temporarily disabling features during maintenance
 
-For more details on available feature flags, see the [@imgly/plugin-ai-generation-web documentation](https://github.com/imgly/plugins/tree/release-1.84.0-rc.0/packages/plugin-ai-generation-web#available-feature-flags).
+For more details on available feature flags, see the [@imgly/plugin-ai-generation-web documentation](https://github.com/imgly/plugins/tree/release-1.84.0-rc.1/packages/plugin-ai-generation-web#available-feature-flags).
 
 ## 8. Proxy Server Configuration
 

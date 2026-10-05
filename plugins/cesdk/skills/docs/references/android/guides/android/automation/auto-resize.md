@@ -129,7 +129,7 @@ Configure blocks to size themselves from fixed values, their parent, or their co
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-rc.0/engine-guides-auto-resize)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0-rc.1/engine-guides-auto-resize)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

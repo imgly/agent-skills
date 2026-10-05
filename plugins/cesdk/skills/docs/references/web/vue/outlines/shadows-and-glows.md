@@ -12,13 +12,13 @@ Add visual depth and emphasis to design elements using drop shadows and glow eff
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-outlines-shadows-and-glows-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-outlines-shadows-and-glows-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-outlines-shadows-and-glows-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-outlines-shadows-and-glows-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-outlines-shadows-and-glows-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-outlines-shadows-and-glows-browser/index.html)
 
 Drop shadows create the illusion of elements floating above the canvas, while glow effects add luminous halos that make elements stand out. CE.SDK provides two approaches: **drop shadows** as native block properties and **glow effects** through the effects system. Both can be applied to graphic blocks, text, and shapes.
 

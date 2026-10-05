@@ -13,13 +13,13 @@ CE.SDK for integration with CMS, DAM, or custom asset management systems.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-import-media-from-remote-source-your-server-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-import-media-from-remote-source-your-server-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-import-media-from-remote-source-your-server-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-import-media-from-remote-source-your-server-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-import-media-from-remote-source-your-server-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-import-media-from-remote-source-your-server-browser/index.html)
 
 CE.SDK provides multiple ways to load assets from your servers. Static libraries like stickers and icons use JSON manifests hosted on a CDN. Dynamic libraries like user photos and DAM content require API endpoints backed by databases.
 

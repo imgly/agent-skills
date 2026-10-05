@@ -345,9 +345,9 @@ Decide what type of content to restrict and flag anything that may violate your 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-content-moderation-ios/archive/refs/heads/v1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/starterkit-content-moderation-ios/archive/refs/heads/v1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-content-moderation-ios/tree/v1.84.0-rc.0)
+> - [View source on GitHub](https://github.com/imgly/starterkit-content-moderation-ios/tree/v1.84.0-rc.1)
 
 ***
 
@@ -369,7 +369,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
     ### Step 1: Clone the Repository
 
     ```bash
-    git clone -b v1.84.0-rc.0 https://github.com/imgly/starterkit-content-moderation-ios.git
+    git clone -b v1.84.0-rc.1 https://github.com/imgly/starterkit-content-moderation-ios.git
     cd starterkit-content-moderation-ios
     ```
 
@@ -407,7 +407,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
        ```
        https://github.com/imgly/IMGLYUI-swift
        ```
-    3. Select version `1.84.0-rc.0` and add the `IMGLYEditor` product to your target
+    3. Select version `1.84.0-rc.1` and add the `IMGLYEditor` product to your target
 
     ### Step 2: Copy the Starter Kit Files
 
@@ -415,7 +415,7 @@ This guide assumes basic familiarity with iOS and Swift. You will need:
 
     ```bash
     repo="starterkit-content-moderation-ios"
-    version="1.84.0-rc.0"
+    version="1.84.0-rc.1"
     curl -L "https://codeload.github.com/imgly/${repo}/tar.gz/refs/heads/v${version}" | tar -xz --strip-components=1 "${repo}-v${version}/StarterKit"
     ```
 

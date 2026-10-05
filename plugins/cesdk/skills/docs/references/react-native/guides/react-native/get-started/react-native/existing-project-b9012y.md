@@ -32,7 +32,7 @@ Before you begin, make sure the following requirements are met:
 First, install the `@imgly/editor-react-native` module by running the following command:
 
 ```sh
-npm install @imgly/editor-react-native@1.84.0-rc.0
+npm install @imgly/editor-react-native@1.84.0-rc.1
 ```
 
 ## iOS Configuration

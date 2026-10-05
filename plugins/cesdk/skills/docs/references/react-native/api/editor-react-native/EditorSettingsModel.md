@@ -30,7 +30,7 @@ The license of the editor. Pass `null` to run the SDK in evaluation mode with a 
 - **Kind:** Property
 
 ```typescript
-baseUri: string = 'https://cdn.img.ly/packages/imgly/cesdk-react-native/1.84.0-rc.0/assets'
+baseUri: string = 'https://cdn.img.ly/packages/imgly/cesdk-react-native/1.84.0-rc.1/assets'
 ```
 
 The base URI used by the engine for built-in assets like emoji and

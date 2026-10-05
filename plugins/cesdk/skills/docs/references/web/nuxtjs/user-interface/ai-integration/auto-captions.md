@@ -14,9 +14,9 @@ Generate captions automatically from spoken audio in video and audio blocks usin
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-user-interface-ai-integration-auto-captions-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-user-interface-ai-integration-auto-captions-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-user-interface-ai-integration-auto-captions-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-user-interface-ai-integration-auto-captions-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-user-interface-ai-integration-auto-captions-browser/index.html)
 
 The Auto Caption plugin extracts audio from media blocks, sends it to a speech-to-text provider, and creates timed caption blocks from the transcription. It supports both a built-in UI workflow where users select which blocks to transcribe and a programmatic API for automation. The plugin ships with an ElevenLabs Scribe V2 provider via fal.ai, and you can implement your own provider using the `TranscriptionProvider` interface. For manually creating and editing captions, see [Add Captions](./edit-video/add-captions.md).
 

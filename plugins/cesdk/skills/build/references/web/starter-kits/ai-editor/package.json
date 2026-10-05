@@ -9,13 +9,13 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.84.0-rc.0",
-    "@imgly/plugin-ai-apps-web": "^1.84.0-rc.0",
-    "@imgly/plugin-ai-audio-generation-web": "^1.84.0-rc.0",
-    "@imgly/plugin-ai-generation-web": "^1.84.0-rc.0",
-    "@imgly/plugin-ai-image-generation-web": "^1.84.0-rc.0",
-    "@imgly/plugin-ai-text-generation-web": "^1.84.0-rc.0",
-    "@imgly/plugin-ai-video-generation-web": "^1.84.0-rc.0",
+    "@cesdk/cesdk-js": "^1.84.0-rc.1",
+    "@imgly/plugin-ai-apps-web": "^1.84.0-rc.1",
+    "@imgly/plugin-ai-audio-generation-web": "^1.84.0-rc.1",
+    "@imgly/plugin-ai-generation-web": "^1.84.0-rc.1",
+    "@imgly/plugin-ai-image-generation-web": "^1.84.0-rc.1",
+    "@imgly/plugin-ai-text-generation-web": "^1.84.0-rc.1",
+    "@imgly/plugin-ai-video-generation-web": "^1.84.0-rc.1",
     "classnames": "^2.5.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

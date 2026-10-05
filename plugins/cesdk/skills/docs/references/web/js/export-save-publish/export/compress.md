@@ -12,13 +12,13 @@ Compression reduces file sizes during export while maintaining visual quality. W
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-export-save-publish-export-compress-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-export-save-publish-export-compress-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-export-save-publish-export-compress-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-export-save-publish-export-compress-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-export-save-publish-export-compress-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-export-save-publish-export-compress-browser/index.html)
 
 Image compression reduces file sizes while maintaining acceptable visual quality. CE.SDK supports format-specific compression controls: lossless compression for PNG, lossy quality settings for JPEG, and both modes for WebP. The example includes a navigation bar dropdown menu with export options for comparing different formats and compression levels.
 

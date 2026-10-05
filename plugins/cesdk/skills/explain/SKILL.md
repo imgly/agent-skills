@@ -10,7 +10,7 @@ argument-hint: "[topic or question]"
 
 ## Version Notice
 
-> CE.SDK `1.84.0-rc.0` · generated `2026-10-04` · plugin `cesdk`
+> CE.SDK `1.84.0-rc.1` · generated `2026-10-05` · plugin `cesdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow

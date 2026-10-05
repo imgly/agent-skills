@@ -10,11 +10,11 @@ Add text and image watermarks to designs programmatically using CE.SDK's block A
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-edit-image-add-watermark-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-edit-image-add-watermark-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-edit-image-add-watermark-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-edit-image-add-watermark-server-js)
 
 Watermarks protect intellectual property, indicate ownership, add branding, or mark content as drafts. CE.SDK supports two types of watermarks: **text watermarks** created from text blocks for copyright notices and brand names, and **image watermarks** created from graphic blocks with image fills for logos and symbols.
 

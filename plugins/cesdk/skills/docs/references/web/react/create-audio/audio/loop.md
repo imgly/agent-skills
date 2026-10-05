@@ -13,13 +13,13 @@ and rhythmic elements using CE.SDK's audio looping system.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-create-audio-audio-loop-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-create-audio-audio-loop-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-create-audio-audio-loop-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-create-audio-audio-loop-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-create-audio-audio-loop-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-create-audio-audio-loop-browser/index.html)
 
 Audio looping allows media to play continuously by restarting from the beginning when it reaches the end. When you set a block's duration longer than the audio length and enable looping, CE.SDK automatically repeats the audio to fill the entire duration. This makes looping perfect for background music, ambient soundscapes, and repeating sound effects.
 

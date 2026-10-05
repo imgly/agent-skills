@@ -154,7 +154,7 @@ designs with shape blocks.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-rc.0/engine-guides-annotation)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-rc.1/engine-guides-annotation)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

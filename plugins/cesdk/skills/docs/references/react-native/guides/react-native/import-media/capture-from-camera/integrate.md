@@ -5,7 +5,7 @@
 ---
 
 In this example, we will show you how to initialize the [Camera SDK](https://img.ly/products/camera-sdk)'s mobile editor in your React Native app.
-We also prepared a dedicated example application which you can checkout on [GitHub](https://github.com/imgly/cesdk-react-native-examples/tree/v1.84.0-rc.0).
+We also prepared a dedicated example application which you can checkout on [GitHub](https://github.com/imgly/cesdk-react-native-examples/tree/v1.84.0-rc.1).
 
 ## Requirements
 

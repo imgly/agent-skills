@@ -120,7 +120,7 @@ processing, personalization, and headless design generation.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-rc.0/engine-guides-use-templates-programmatic)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-rc.1/engine-guides-use-templates-programmatic)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

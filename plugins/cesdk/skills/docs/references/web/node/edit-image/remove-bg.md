@@ -10,11 +10,11 @@ Remove image backgrounds programmatically on the server for automated processing
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-edit-image-remove-bg-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-edit-image-remove-bg-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-edit-image-remove-bg-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-edit-image-remove-bg-server-js)
 
 The `@imgly/background-removal-node` package provides AI-powered background removal for Node.js applications. Processing runs entirely on your server using native bindings, eliminating external API dependencies and ensuring data privacy.
 
@@ -141,10 +141,10 @@ This guide covers installing the library, configuring processing options, and in
 Install the background removal library alongside the CE.SDK Node engine:
 
 ```bash
-npm install @cesdk/node@1.84.0-rc.0 @imgly/background-removal-node
+npm install @cesdk/node@1.84.0-rc.1 @imgly/background-removal-node
 ```
 
-Using the native Node.js package? Install `@cesdk/node-native@1.84.0-rc.0` instead of `@cesdk/node` — the engine API is identical.
+Using the native Node.js package? Install `@cesdk/node-native@1.84.0-rc.1` instead of `@cesdk/node` — the engine API is identical.
 
 Import the `removeBackground` function and `Config` type:
 

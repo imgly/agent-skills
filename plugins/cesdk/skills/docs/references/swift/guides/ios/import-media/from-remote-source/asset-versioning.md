@@ -86,7 +86,7 @@ Manage how CE.SDK stores and resolves asset URLs in saved designs, keeping desig
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-rc.0/engine-guides-import-media-from-remote-source-asset-versioning)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-rc.1/engine-guides-import-media-from-remote-source-asset-versioning)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../../engine-interface.md) guide.

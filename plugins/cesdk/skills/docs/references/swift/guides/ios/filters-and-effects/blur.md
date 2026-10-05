@@ -118,7 +118,7 @@ Apply blur effects to design blocks using CE.SDK's dedicated blur system for sof
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-rc.0/engine-guides-blur)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0-rc.1/engine-guides-blur)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

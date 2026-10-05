@@ -8,11 +8,11 @@ Ramp audio up at the start of a clip and back down at the end using CE.SDK's hea
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-create-audio-audio-fade-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-create-audio-audio-fade-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-create-audio-audio-fade-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-create-audio-audio-fade-server-js)
 
 An audio fade ramps a clip between silence and its configured volume over a fixed duration, so audio eases in at the start and tapers off at the end instead of cutting abruptly. Fades apply to standalone audio blocks and to video fills with embedded audio. On the server they are useful for assembling compositions where every clip should open and close cleanly without hand-authored volume automation.
 

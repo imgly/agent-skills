@@ -14,13 +14,13 @@ like corner radius and star points.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-insert-media-shapes-or-stickers-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-insert-media-shapes-or-stickers-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-insert-media-shapes-or-stickers-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-insert-media-shapes-or-stickers-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-insert-media-shapes-or-stickers-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-insert-media-shapes-or-stickers-browser/index.html)
 
 Shapes are vector graphics created with `engine.block.createShape()` and attached to graphic blocks. CE.SDK supports six shape types: **rect**, **ellipse**, **star**, **polygon**, **line**, and **vector\_path**. Stickers are pre-made graphic assets from sources like `ly.img.sticker`. Both require fills or strokes to be visible on the canvas.
 

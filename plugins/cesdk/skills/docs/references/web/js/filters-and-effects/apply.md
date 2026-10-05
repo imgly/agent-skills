@@ -13,13 +13,13 @@ design elements using CE.SDK's visual effects system.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-filters-and-effects-apply-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-filters-and-effects-apply-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-filters-and-effects-apply-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-filters-and-effects-apply-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-filters-and-effects-apply-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-filters-and-effects-apply-browser/index.html)
 
 While CE.SDK uses a unified effect API for both filters and effects, they serve different purposes. **Filters** typically apply color transformations like LUT filters and duotone, while **effects** apply visual modifications such as blur, pixelize, vignette, and image adjustments. You can combine multiple effects on a single element, creating complex visual treatments by stacking them in a customizable order.
 

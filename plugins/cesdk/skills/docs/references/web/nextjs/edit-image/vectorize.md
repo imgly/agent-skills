@@ -12,13 +12,13 @@ Convert raster images into scalable vector graphics that resize without quality 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-edit-image-vectorize-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-edit-image-vectorize-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-edit-image-vectorize-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-edit-image-vectorize-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-edit-image-vectorize-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-edit-image-vectorize-browser/index.html)
 
 Vectorization transforms pixel-based images into vector paths that can be scaled to any size without losing quality. The `@imgly/plugin-vectorizer-web` plugin provides one-click UI conversion directly in the canvas menu. Common use cases include converting logos for scalable branding, creating cutout outlines from photographs, and extracting editable paths from illustrations.
 
@@ -121,8 +121,8 @@ The `@imgly/plugin-vectorizer-web` plugin adds a vectorize button to the canvas 
 Install the plugin via npm or yarn:
 
 ```sh
-yarn add @imgly/plugin-vectorizer-web@1.84.0-rc.0
-npm install @imgly/plugin-vectorizer-web@1.84.0-rc.0
+yarn add @imgly/plugin-vectorizer-web@1.84.0-rc.1
+npm install @imgly/plugin-vectorizer-web@1.84.0-rc.1
 ```
 
 ### Adding the Plugin

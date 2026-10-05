@@ -12,13 +12,13 @@ Connect CE.SDK to AI models for image, video, text, and audio generation through
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-user-interface-ai-integration-gateway-provider-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-user-interface-ai-integration-gateway-provider-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-user-interface-ai-integration-gateway-provider-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-user-interface-ai-integration-gateway-provider-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-user-interface-ai-integration-gateway-provider-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-user-interface-ai-integration-gateway-provider-browser/index.html)
 
 The IMG.LY AI Gateway is a managed API service that sits between CE.SDK and upstream AI providers. Instead of configuring each provider separately with proxy URLs and API keys, we point all generation requests at a single gateway URL. The gateway handles model routing, authentication, billing, and credit management. Each content type has a dedicated `GatewayProvider` factory that fetches the model's OpenAPI schema and renders input fields automatically.
 

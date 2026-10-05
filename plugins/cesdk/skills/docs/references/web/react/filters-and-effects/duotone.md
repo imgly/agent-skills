@@ -12,13 +12,13 @@ Apply duotone effects to images, mapping tones to two colors for stylized visual
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-filters-and-effects-duotone-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-filters-and-effects-duotone-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-filters-and-effects-duotone-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-filters-and-effects-duotone-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-filters-and-effects-duotone-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-filters-and-effects-duotone-browser/index.html)
 
 Duotone is a color effect that maps image brightness to two colors: a dark color for shadows and a light color for highlights. The result is a striking two-tone image where all original colors are replaced by gradations between your chosen pair. This technique creates bold, cohesive visuals that are particularly effective for brand consistency, vintage aesthetics, and artistic treatments.
 

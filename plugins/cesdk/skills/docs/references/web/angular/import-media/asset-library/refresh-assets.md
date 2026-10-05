@@ -12,13 +12,13 @@ Learn how to refresh asset sources when external changes occur outside CE.SDK.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-import-media-asset-library-refresh-assets-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-import-media-asset-library-refresh-assets-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-import-media-asset-library-refresh-assets-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-import-media-asset-library-refresh-assets-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-import-media-asset-library-refresh-assets-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-import-media-asset-library-refresh-assets-browser/index.html)
 
 CE.SDK automatically refreshes the asset library for built-in operations like uploads and deletions. However, when assets are modified outside of CE.SDK—through a custom CMS, cloud storage, or third-party upload widget—the asset panel won't reflect these changes automatically. Use `engine.asset.assetSourceContentsChanged()` to notify the engine and trigger a refresh.
 

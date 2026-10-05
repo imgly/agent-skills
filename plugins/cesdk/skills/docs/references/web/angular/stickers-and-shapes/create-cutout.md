@@ -13,13 +13,13 @@ decals, and custom-shaped prints programmatically.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-stickers-and-shapes-create-cutout-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-stickers-and-shapes-create-cutout-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-stickers-and-shapes-create-cutout-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-stickers-and-shapes-create-cutout-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.0/examples/guides-stickers-and-shapes-create-cutout-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.84.0-rc.1/examples/guides-stickers-and-shapes-create-cutout-browser/index.html)
 
 Cutouts define outline paths that cutting printers cut with a blade rather than print with ink. CE.SDK supports creating cutouts from SVG paths, generating them from block contours, and combining them with boolean operations.
 
@@ -277,15 +277,15 @@ Install the plugin:
 
 <Tabs syncKey="package-manager">
   <TabItem label="npm">
-    `bash npm install @imgly/plugin-cutout-library-web@1.84.0-rc.0 `
+    `bash npm install @imgly/plugin-cutout-library-web@1.84.0-rc.1 `
   </TabItem>
 
   <TabItem label="yarn">
-    `bash yarn add @imgly/plugin-cutout-library-web@1.84.0-rc.0 `
+    `bash yarn add @imgly/plugin-cutout-library-web@1.84.0-rc.1 `
   </TabItem>
 
   <TabItem label="pnpm">
-    `bash pnpm add @imgly/plugin-cutout-library-web@1.84.0-rc.0 `
+    `bash pnpm add @imgly/plugin-cutout-library-web@1.84.0-rc.1 `
   </TabItem>
 </Tabs>
 

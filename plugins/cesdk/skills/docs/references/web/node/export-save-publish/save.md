@@ -10,7 +10,7 @@ Save and serialize designs in CE.SDK for later retrieval, sharing, or storage us
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >

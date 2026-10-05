@@ -10,11 +10,11 @@ Implement undo/redo functionality and manage multiple history stacks to track ed
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0-rc.1.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.0/guides-concepts-undo-and-history-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0-rc.1/guides-concepts-undo-and-history-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.0/guides-concepts-undo-and-history-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0-rc.1/guides-concepts-undo-and-history-server-js)
 
 CE.SDK automatically tracks editing operations, enabling you to undo and redo changes programmatically. The engine creates undo steps for most operations automatically. You can also create multiple independent history stacks to isolate different editing contexts, such as separate histories for different processing pipelines.
 
