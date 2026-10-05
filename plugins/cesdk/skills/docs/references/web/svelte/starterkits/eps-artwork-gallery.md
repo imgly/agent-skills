@@ -15,7 +15,7 @@ add an editable group to an existing design.
 >
 > - [Download examples](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2/examples/demo-eps-import/source.zip)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/demo-eps-import/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/demo-eps-import/index.html)
 
 This Vanilla TypeScript showcase includes a reusable `EPSGalleryPlugin`, a saved-layout workflow, and editor controls for editing imported objects. The downloadable example uses CE.SDK 1.82.2, `@imgly/eps-importer@0.1.0`, and `@imgly/pdf-conversion-utils@0.1.0`. EPS import requires CE.SDK 1.82 or later.
 

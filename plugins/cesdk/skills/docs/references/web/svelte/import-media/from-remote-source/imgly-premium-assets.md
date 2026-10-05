@@ -19,7 +19,7 @@ directly into CE.SDK's asset library.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-import-media-from-remote-source-imgly-premium-assets-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/guides-import-media-from-remote-source-imgly-premium-assets-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/guides-import-media-from-remote-source-imgly-premium-assets-browser/index.html)
 
 IMG.LY offers premium templates through downloadable asset archives. These templates can be hosted on your own infrastructure and seamlessly integrated into CE.SDK's asset library, making them available to users alongside other asset sources. Contact IMG.LY sales to purchase premium template packages.
 

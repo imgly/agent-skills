@@ -18,7 +18,7 @@ Automatically adapt the same design or template to different page sizes and easi
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-page-sizes-asset-source-ts-web/tree/release-1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-page-sizes-asset-source/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/starterkit-page-sizes-asset-source/index.html)
 
 ***
 

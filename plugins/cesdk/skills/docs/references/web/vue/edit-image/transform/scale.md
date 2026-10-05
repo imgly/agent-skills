@@ -18,7 +18,7 @@ Scale images proportionally with `engine.block.scale()` using configurable ancho
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-edit-image-transform-scale-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/guides-edit-image-transform-scale-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/guides-edit-image-transform-scale-browser/index.html)
 
 Scaling transforms a block proportionally using a factor, while resizing changes dimensions directly. Use scaling to maintain aspect ratio or apply consistent size changes across multiple elements.
 

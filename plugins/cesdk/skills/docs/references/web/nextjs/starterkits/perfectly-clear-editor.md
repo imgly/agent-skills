@@ -18,7 +18,7 @@ One-click image enhancement using the Perfectly Clear (eyeQ) plugin — scene-aw
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-perfectlyclear-editor-ts-web/tree/release-1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-perfectlyclear-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/starterkit-perfectlyclear-editor/index.html)
 
 ***
 

@@ -18,7 +18,7 @@ Format ranges of text as subscript or superscript for prices, formulas, footnote
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-text-subscript-superscript-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/guides-text-subscript-superscript-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/guides-text-subscript-superscript-browser/index.html)
 
 CE.SDK formats superscript and subscript synthetically: the affected range is scaled down to 58.3% of its font size and shifted up or down by 33.3% of the unscaled font size. These defaults match common design applications, so the feature works with every font, and block properties let you adjust the scale and shift. Lines grow automatically when a shifted range needs more room, and exports include the shifted glyphs. Superscript and subscript combine with text decorations, text on a path, and text animations.
 

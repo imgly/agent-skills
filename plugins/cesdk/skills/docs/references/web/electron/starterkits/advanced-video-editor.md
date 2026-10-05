@@ -20,7 +20,7 @@ with no server dependencies.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-advanced-video-editor-ts-web/tree/v1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-advanced-video-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/starterkit-advanced-video-editor/index.html)
 
 ***
 

@@ -18,7 +18,7 @@ Allow users to select different layouts without changing page content.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-layouts-asset-source-ts-web/tree/release-1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-layouts-asset-source/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/starterkit-layouts-asset-source/index.html)
 
 ***
 

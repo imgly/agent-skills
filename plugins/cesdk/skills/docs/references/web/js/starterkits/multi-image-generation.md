@@ -18,7 +18,7 @@ Generate multiple image variants for a single data point.
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-multi-image-generation-react-web/tree/release-1.84.0)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261004/examples/starterkit-multi-image-generation/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/starterkit-multi-image-generation/index.html)
 
 ***
 
