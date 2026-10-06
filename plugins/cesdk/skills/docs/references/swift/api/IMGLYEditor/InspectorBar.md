@@ -75,8 +75,8 @@ The id of the [`animation(action:title:icon:isEnabled:isVisible:)`](../animation
     }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.animation }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = { context in
       try context.selection.type != .page &&
         context.selection.type != .audio &&
-        context.selection.type != .caption &&
-        context.engine.block.supportsAnimation(context.selection.block)
+        context.engine.block.supportsAnimation(context.selection.block) &&
+        context.engine.block.isAllowedByScope(context.selection.block, key: "appearance/animation")
     }) -> some InspectorBar.Item
 ```
 

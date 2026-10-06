@@ -130,7 +130,7 @@ Add synchronized captions to video scenes with CE.SDK's caption tracks, caption 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/engine-guides-captions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261006/engine-guides-captions)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.
@@ -296,6 +296,8 @@ engine.block.setInAnimation(caption1, animation = fadeInAnimation)
 ```
 
 Use entry animations sparingly for captions; timing and readability usually matter more than motion.
+
+`setInAnimation` changes one caption. Captions on one caption track share their animations: a caption you add to a track with `engine.block.appendChild(...)` or `engine.block.insertChild(...)` takes the animations of the captions already there, in place of any animations it had, and a caption you make longer with `engine.block.setDuration(...)` takes their animation durations again. A caption whose `appearance/animation` scope is locked keeps its own animations.
 
 ## Exporting Videos with Captions
 

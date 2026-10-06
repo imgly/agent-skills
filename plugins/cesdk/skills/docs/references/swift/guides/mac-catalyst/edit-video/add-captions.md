@@ -138,7 +138,7 @@ Add synchronized captions to video scenes with CE.SDK's caption tracks, caption 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/engine-guides-captions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261006/engine-guides-captions)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.
@@ -321,6 +321,8 @@ try engine.block.setInAnimation(caption1, animation: fadeInAnimation)
 ```
 
 Replace `setInAnimation(_:animation:)` with `setLoopAnimation(_:animation:)` for a continuous effect, or `setOutAnimation(_:animation:)` for an exit transition.
+
+`setInAnimation(_:animation:)` changes one caption. Captions on one caption track share their animations: a caption you add to a track with `appendChild(to:child:)` or `insertChild(into:child:at:)` takes the animations of the captions already there, in place of any animations it had, and a caption you make longer with `setDuration(_:duration:)` takes their animation durations again. A caption whose `appearance/animation` scope is locked keeps its own animations.
 
 ## Exporting Videos with Captions
 

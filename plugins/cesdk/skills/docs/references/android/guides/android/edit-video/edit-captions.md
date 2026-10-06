@@ -130,7 +130,7 @@ caption editing and style presets, and every caption appears as a clip on a dedi
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/editor-guides-create-video-edit-captions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261006/editor-guides-create-video-edit-captions)
 
 Captions are an editor UI feature for video scenes. Three registrations turn the surface on — a dock button, an asset source, and two inspector bar buttons — and the editor supplies the captions sheet, the timeline caption lane, and preset styling. To build captions programmatically instead, see [Add Captions](./add-captions.md).
 
@@ -197,7 +197,7 @@ InspectorBar.remember {
 - `InspectorBar.Button.rememberEditCaptions()` reopens the captions sheet with the selected caption scrolled into view. It hides itself when the caption's `text/edit` scope is denied — a caption is a text block, and that scope governs the whole sheet, so denying it takes caption editing, deleting, retiming, and importing away together.
 - `InspectorBar.Button.rememberCaptionStyle()` opens the caption style presets. It hides itself while `ly.img.caption.presets` is unregistered.
 
-Both buttons appear only while the selected block is a caption. Of the video configuration's own buttons, Duplicate, Layer, and Animations hide themselves for a caption, while Format, Fill & Stroke, Text Background, Split, and Delete stay available. Move as Clip isn't in that list, but it hides for captions too if you add it yourself. The [Inspector Bar](../user-interface/customization/inspector-bar.md) guide lists the full button set and which selections each one renders for.
+Both buttons appear only while the selected block is a caption. Of the video configuration's own buttons, Duplicate and Layer hide themselves for a caption, while Format, Fill & Stroke, Text Background, Animations, Split, and Delete stay available. Move as Clip isn't in that list, but it hides for captions too if you add it yourself. The [Inspector Bar](../user-interface/customization/inspector-bar.md) guide lists the full button set and which selections each one renders for.
 
 Selecting a caption on the canvas opens the [Canvas Menu](../user-interface/customization/canvas-menu.md) as usual, minus what a caption cannot do: Duplicate, because the copy would land outside the caption track, and the layer moves, because captions always render above the rest of the page. Delete and the remaining entries stay.
 
@@ -301,7 +301,7 @@ The first caption on an empty track, and every imported set, starts from **Outli
 
 The other inspector styling tools behave the same way: Format (font, size, alignment, spacing), Fill & Stroke, and Text Background each change every caption on the track, keeping the subtitles consistent. Because a caption's text properties always apply to the whole block, Format works on the caption as a unit — there is no per-selection formatting inside a caption, and list styles are unavailable. Text and timing remain per-caption.
 
-Animations are the exception, and the inspector hides them for a caption: the engine animates a caption block but does not sync animations across the track, so choosing one would animate a single subtitle while the rest stayed still. A style preset that carries animations still applies them to every caption, because there the engine writes each sibling itself.
+Animations work the same way. Picking an animation, None, or a setting such as duration or easing for one caption applies it to every caption on the track, through the `ly.img.animations` asset source, and each caption keeps its animation within its own length. A caption whose `appearance/animation` scope is locked keeps its animation, and the Animations button hides while the selected caption is locked. A style preset that carries animations applies them to every caption too.
 
 Captions render like any other design block, so exported videos include them burned in.
 

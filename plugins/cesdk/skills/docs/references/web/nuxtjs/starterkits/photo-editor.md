@@ -12,13 +12,13 @@ Professional photo editing for your Nuxt app—crop, filter, adjust, and remove 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-photo-editor-ts-web/archive/refs/tags/release-1.84.0.zip)
+> - [Download examples](https://github.com/imgly/starterkit-photo-editor-ts-web/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-photo-editor-ts-web/tree/v1.84.0)
+> - [View source on GitHub](https://github.com/imgly/starterkit-photo-editor-ts-web/tree/v1.85.0-nightly.20261006)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-photo-editor-ts-web/tree/v1.84.0)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-photo-editor-ts-web/tree/v1.85.0-nightly.20261006)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/starterkit-photo-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/starterkit-photo-editor/index.html)
 
 ***
 
@@ -104,15 +104,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js@1.84.0
+        npm install @cesdk/cesdk-js@1.85.0-nightly.20261006
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js@1.84.0
+        pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261006
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js@1.84.0
+        yarn add @cesdk/cesdk-js@1.85.0-nightly.20261006
       </TerminalTab>
     </TerminalTabs>
 
@@ -122,15 +122,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-background-removal-web@1.84.0 onnxruntime-web@1.21.0
+        npm install @imgly/plugin-background-removal-web@1.85.0-nightly.20261006 onnxruntime-web@1.21.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-background-removal-web@1.84.0 onnxruntime-web@1.21.0
+        pnpm add @imgly/plugin-background-removal-web@1.85.0-nightly.20261006 onnxruntime-web@1.21.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-background-removal-web@1.84.0 onnxruntime-web@1.21.0
+        yarn add @imgly/plugin-background-removal-web@1.85.0-nightly.20261006 onnxruntime-web@1.21.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -142,7 +142,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.84.0/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261006/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -300,15 +300,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js@1.84.0
+        npm install @cesdk/cesdk-js@1.85.0-nightly.20261006
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js@1.84.0
+        pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261006
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js@1.84.0
+        yarn add @cesdk/cesdk-js@1.85.0-nightly.20261006
       </TerminalTab>
     </TerminalTabs>
 
@@ -318,15 +318,15 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-background-removal-web@1.84.0 onnxruntime-web@1.21.0
+        npm install @imgly/plugin-background-removal-web@1.85.0-nightly.20261006 onnxruntime-web@1.21.0
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-background-removal-web@1.84.0 onnxruntime-web@1.21.0
+        pnpm add @imgly/plugin-background-removal-web@1.85.0-nightly.20261006 onnxruntime-web@1.21.0
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-background-removal-web@1.84.0 onnxruntime-web@1.21.0
+        yarn add @imgly/plugin-background-removal-web@1.85.0-nightly.20261006 onnxruntime-web@1.21.0
       </TerminalTab>
     </TerminalTabs>
 
@@ -338,7 +338,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.84.0/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261006/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>

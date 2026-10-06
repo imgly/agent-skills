@@ -15,7 +15,7 @@ server-side setups and how to run an engine plugin without any editor UI.
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/main/guides-concepts-plugin-architecture-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-concepts-plugin-architecture-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-concepts-plugin-architecture-server-js)
 
 A plugin is a self-contained unit that packages engine behavior—asset sources, settings, callbacks—and attaches to an existing engine. CE.SDK for Web distinguishes two plugin layers: engine plugins, which only need the engine, and editor plugins, which extend the editor UI. Only the first layer applies on the server, where no editor exists.
 

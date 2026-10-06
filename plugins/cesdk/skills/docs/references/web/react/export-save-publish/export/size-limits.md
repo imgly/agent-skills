@@ -12,13 +12,13 @@ Configure size limits to balance quality and performance in CE.SDK applications.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/guides-export-save-publish-size-limits-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-export-save-publish-size-limits-browser/index.html)
 
 CE.SDK processes images and videos client-side, which means size limits depend on the user's GPU capabilities and available memory. Understanding and configuring these limits helps you build applications that deliver high-quality results while maintaining smooth performance across different devices.
 

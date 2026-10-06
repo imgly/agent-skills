@@ -299,7 +299,7 @@ existing list builder, and creating app-specific controls.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/editor-guides-configuration-inspector-bar)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261006/editor-guides-configuration-inspector-bar)
 
 ## Inspector Bar Architecture
 
@@ -578,7 +578,7 @@ This table highlights the commonly used public composable helpers on `InspectorB
 | `InspectorBar.Button.rememberVolume` | `InspectorBar.Button.Id.volume` | Opens the volume sheet with `EditorEvent.Sheet.Open`. | Audio selections and video-fill selections with `fill/change` scope |
 | `InspectorBar.Button.rememberClipSpeed` | `InspectorBar.Button.Id.clipSpeed` | Opens the clip speed sheet with `EditorEvent.Sheet.Open`. | Audio or video-playback selections with `fill/change` scope |
 | `InspectorBar.Button.rememberCrop` | `InspectorBar.Button.Id.crop` | Opens the crop sheet with `EditorEvent.Sheet.Open`. Pages open page crop mode; other selections open element crop mode. | Page or non-sticker image/video fills that support crop and `layer/crop` scope |
-| `InspectorBar.Button.rememberAnimations` | `InspectorBar.Button.Id.animations` | Opens the animation sheet with `EditorEvent.Sheet.Open`. | Non-page, non-audio, non-caption selections |
+| `InspectorBar.Button.rememberAnimations` | `InspectorBar.Button.Id.animations` | Opens the animation sheet with `EditorEvent.Sheet.Open`. For a caption, the chosen animation applies to every caption on its track. | Non-page, non-audio selections with `appearance/animation` scope |
 | `InspectorBar.Button.rememberTransition` | `InspectorBar.Button.Id.transition` | Opens the transition sheet with `EditorEvent.Sheet.Open`, for the transition between the selected clip and the one after it. | Selections followed by another clip on the same track, where both support transitions and the next clip starts no later than the selected one ends |
 | `InspectorBar.Button.rememberAdjustments` | `InspectorBar.Button.Id.adjustments` | Opens the adjustments sheet with `EditorEvent.Sheet.Open`. | Non-sticker image/video fills with `appearance/adjustments` scope |
 | `InspectorBar.Button.rememberFilter` | `InspectorBar.Button.Id.filter` | Opens the filter sheet with `EditorEvent.Sheet.Open`. | Non-sticker image/video fills with `appearance/filter` scope |

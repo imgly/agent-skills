@@ -9,8 +9,8 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.85.0-nightly.20261005",
-    "@cesdk/engine": "^1.85.0-nightly.20261005",
+    "@cesdk/cesdk-js": "^1.85.0-nightly.20261006",
+    "@cesdk/engine": "^1.85.0-nightly.20261006",
     "@imgly/pdf-importer": "^0.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

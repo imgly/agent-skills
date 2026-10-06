@@ -10,11 +10,11 @@ Add synchronized captions to video projects using CE.SDK's caption system in hea
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-create-video-add-captions-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-create-video-add-captions-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-create-video-add-captions-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-create-video-add-captions-server-js)
 
 Captions in CE.SDK follow a hierarchy: **Page → CaptionTrack → Caption blocks**. Each caption has text, timing (time offset and duration), and styling properties. Captions appear and disappear based on their timing, synchronized with video playback.
 
@@ -417,6 +417,14 @@ Make captions more engaging by adding entry animations.
 ```
 
 Create an animation using `createAnimation` with types like 'fade', 'slide', or 'scale'. Set the animation duration and apply it with `setInAnimation`.
+
+### Animating Every Caption on a Track
+
+`createAnimation` and `setInAnimation` change one caption. To give every caption on a track the same animation, apply an asset from the `ly.img.animations` source to one caption with `engine.asset.applyToBlock()`, and change its settings with `engine.asset.applyProperty()` while that caption is selected. The engine applies the change to every caption on the caption track and keeps each animation within its caption's length. The editor's Animations panel works this way.
+
+A caption you append to a caption track with `engine.block.appendChild()` or `engine.block.insertChild()` takes the animations of the captions already there, in place of any animations it had. A caption you make longer with `engine.block.setDuration()` takes their animation durations again.
+
+Captions whose `appearance/animation` scope is locked keep their animation. With the global `appearance/animation` scope set to `Defer`, captions created through the API start with that scope off, so enable it on each caption that should follow the track.
 
 ### Animation Types
 

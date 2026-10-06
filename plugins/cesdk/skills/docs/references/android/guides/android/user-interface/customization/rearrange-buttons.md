@@ -120,7 +120,7 @@ bar to prioritize actions for your workflows.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/editor-guides-customization-rearrange-buttons)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261006/editor-guides-customization-rearrange-buttons)
 
 ## Overview
 

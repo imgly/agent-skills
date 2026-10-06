@@ -91,11 +91,11 @@ appears as a clip on a dedicated timeline lane.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/editor-guides-create-video-add-captions)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261006/editor-guides-create-video-add-captions)
 
 Captions are an editor UI feature provided by `IMGLYEditor` for video scenes. One dock button and two inspector bar buttons make up the surface, and the editor supplies the caption sheets, the timeline caption lane, and preset styling.
 
-The [Video Editor Starter Kit](../starterkits/video-editor.md)'s [`VideoEditorConfiguration`](https://github.com/imgly/cesdk-swift-examples/blob/v1.84.0/starter-kits/starter-kit-video/StarterKit/VideoEditorConfiguration.swift) — a configuration class the iOS guides repository ships as a complete video editor baseline — registers all three for you, so captions work out of the box. The sections below show how to register them in your own editor configuration; the `dock` and `inspectorBar` builders are exposed on every configuration. The [Configuration](../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
+The [Video Editor Starter Kit](../starterkits/video-editor.md)'s [`VideoEditorConfiguration`](https://github.com/imgly/cesdk-swift-examples/blob/v1.85.0-nightly.20261006/starter-kits/starter-kit-video/StarterKit/VideoEditorConfiguration.swift) — a configuration class the iOS guides repository ships as a complete video editor baseline — registers all three for you, so captions work out of the box. The sections below show how to register them in your own editor configuration; the `dock` and `inspectorBar` builders are exposed on every configuration. The [Configuration](../configuration.md) guide covers how `EditorConfiguration` and `EngineSettings` set up the editor as a whole.
 
 ## Understanding Caption Structure
 
@@ -136,7 +136,7 @@ builder.inspectorBar { inspectorBar in
 - `InspectorBar.Buttons.editCaptions()` reopens the captions sheet with the selected caption already selected and scrolled into view.
 - `InspectorBar.Buttons.captionStyle()` opens the caption style preset grid for the selected caption.
 
-Both buttons manage their own visibility: they appear only while the selected block is a caption, and Style additionally requires the `ly.img.caption.presets` asset source (registered by default — see Styling Captions below). Listing them first keeps them at the start of the bar, so a caption selection reads Edit Captions, Style, Format, Fill & Stroke, Background, Split and Delete. Buttons that don't apply to captions hide themselves, so Duplicate, Layer and Animations stay out of the bar even when your list includes them.
+Both buttons manage their own visibility: they appear only while the selected block is a caption, and Style additionally requires the `ly.img.caption.presets` asset source (registered by default — see Styling Captions below). Listing them first keeps them at the start of the bar, so a caption selection reads Edit Captions, Style, Format, Fill & Stroke, Background, Split and Delete. Buttons that don't apply to captions hide themselves, so Duplicate and Layer stay out of the bar even when your list includes them.
 
 The canvas menu follows the same rule. If you register one, a caption selection shows Delete alone: Bring Forward and Send Backward hide because a caption is always drawn on top of its page, and Duplicate hides because the copy would fall outside the caption track.
 
@@ -255,7 +255,7 @@ The **Style** inspector button opens the caption preset grid, fed by the `ly.img
 
 The other inspector styling tools behave the same way: Format (font, size, alignment, spacing), Fill & Stroke and Text Background each change every caption on the track, keeping the subtitles consistent. Text and timing remain per-caption.
 
-Animations are the exception, and are not offered for captions. The engine animates a caption block happily, but it does not sync animations across a track the way it syncs style — so each caption would animate on its own rather than as one set of subtitles. Headless callers can still apply `createAnimation` and `setInAnimation` to a caption directly.
+**Animations** work the same way. Picking an animation, None, or a setting such as duration or easing for one caption applies it to every caption on the track, through the `ly.img.animations` asset source. Each caption keeps its animation within its own length. A caption whose `appearance/animation` scope is locked keeps its animation, and the Animations button hides while the selected caption is locked. `createAnimation` and `setInAnimation` still change one caption only, for headless callers that want that.
 
 Captions render like any other design block, so exported videos include them burned in.
 

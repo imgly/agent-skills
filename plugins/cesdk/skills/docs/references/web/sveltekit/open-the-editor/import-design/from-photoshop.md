@@ -10,13 +10,13 @@ Import Adobe Photoshop (PSD) files into CE.SDK, converting them into editable sc
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-open-the-editor-import-design-from-photoshop-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-open-the-editor-import-design-from-photoshop-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-open-the-editor-import-design-from-photoshop-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-open-the-editor-import-design-from-photoshop-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/guides-open-the-editor-import-design-from-photoshop-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-open-the-editor-import-design-from-photoshop-browser/index.html)
 
 ![Import from Photoshop](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
@@ -456,7 +456,7 @@ export default Example;
 Install the `@imgly/psd-importer` package alongside CE.SDK:
 
 ```bash
-npm install @imgly/psd-importer @cesdk/cesdk-js@1.84.0
+npm install @imgly/psd-importer @cesdk/cesdk-js@1.85.0-nightly.20261006
 ```
 
 The browser environment uses `createWebEncodeBufferToPNG()` for PNG encoding, which requires no additional dependencies.

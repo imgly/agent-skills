@@ -12,13 +12,13 @@ Integrate Unsplash's vast library of royalty-free stock images directly into CE.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/guides-import-media-from-remote-source-unsplash-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-import-media-from-remote-source-unsplash-browser/index.html)
 
 Unsplash provides a vast library of high-quality, royalty-free stock images through their public API. This guide shows you how to integrate Unsplash's image search and browsing capabilities directly into CE.SDK using custom asset sources.
 

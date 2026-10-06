@@ -148,7 +148,7 @@ Add custom buttons to extend editor functionality with app-specific actions acro
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/editor-guides-ui-extensions-add-button)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261006/editor-guides-ui-extensions-add-button)
 
 ## Overview
 

@@ -276,7 +276,7 @@ Customize the inspector bar — the contextual toolbar that appears when a desig
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.84.0/editor-guides-configuration-inspector-bar)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261006/editor-guides-configuration-inspector-bar)
 
 ## Inspector Bar Architecture
 
@@ -532,7 +532,7 @@ Every predefined button is a static function in the `InspectorBar.Buttons` names
 | `InspectorBar.Buttons.effect` | `InspectorBar.Buttons.ID.effect` | Opens the effect sheet via editor event `.openSheet`. | Video, Image |
 | `InspectorBar.Buttons.blur` | `InspectorBar.Buttons.ID.blur` | Opens the blur sheet via editor event `.openSheet`. | Video, Image |
 | `InspectorBar.Buttons.shape` | `InspectorBar.Buttons.ID.shape` | Opens the shape sheet via editor event `.openSheet`. Applies to star, polygon, and rectangle shapes. | Video, Image, Shape |
-| `InspectorBar.Buttons.animation` | `InspectorBar.Buttons.ID.animation` | Opens the animation sheet via editor event `.openSheet`. | Video, Image, Sticker, Shape, Text |
+| `InspectorBar.Buttons.animation` | `InspectorBar.Buttons.ID.animation` | Opens the animation sheet via editor event `.openSheet`. For a caption, the chosen animation applies to every caption on its track. | Video, Image, Sticker, Shape, Text, Caption, with the `appearance/animation` scope |
 | `InspectorBar.Buttons.selectGroup` | `InspectorBar.Buttons.ID.selectGroup` | Selects the group that contains the currently selected design block via editor event `.selectGroupForSelection`. | Video, Image, Sticker, Shape, Text |
 | `InspectorBar.Buttons.enterGroup` | `InspectorBar.Buttons.ID.enterGroup` | Changes the selection from the selected group to a design block within it via editor event `.enterGroupForSelection`. | Group |
 | `InspectorBar.Buttons.layer` | `InspectorBar.Buttons.ID.layer` | Opens the layer sheet via editor event `.openSheet`. | Video, Image, Sticker, Shape, Text |

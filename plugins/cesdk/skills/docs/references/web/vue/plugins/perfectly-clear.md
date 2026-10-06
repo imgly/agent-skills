@@ -12,13 +12,13 @@ In this guide, you'll learn how to integrate the Perfectly Clear plugin into a C
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-perfectlyclear-editor-ts-web/archive/refs/tags/release-1.84.0.zip)
+> - [Download examples](https://github.com/imgly/starterkit-perfectlyclear-editor-ts-web/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-perfectlyclear-editor-ts-web/tree/release-1.84.0)
+> - [View source on GitHub](https://github.com/imgly/starterkit-perfectlyclear-editor-ts-web/tree/release-1.85.0-nightly.20261006)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-perfectlyclear-editor-ts-web/tree/release-1.84.0)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-perfectlyclear-editor-ts-web/tree/release-1.85.0-nightly.20261006)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/starterkit-perfectlyclear-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/starterkit-perfectlyclear-editor/index.html)
 
 The plugin registers an Enhance button component for every CE.SDK shell location (canvas menu, dock, inspector bar, navigation bar, canvas bar) but does not auto-insert into any order. You decide where the button appears by adding its component ID to the relevant component order. The runnable example linked above is a full editor with the plugin wired into the canvas menu — open it to see the integration end-to-end.
 
@@ -35,7 +35,7 @@ Registering the plugin is a two-step pattern: pass it to `cesdk.addPlugin()`, th
 The plugin is versioned in lockstep with `@cesdk/cesdk-js`. Pin both to the same version:
 
 ```bash
-npm install @cesdk/cesdk-js@1.84.0 @imgly/plugin-perfectlyclear-web@1.84.0
+npm install @cesdk/cesdk-js@1.85.0-nightly.20261006 @imgly/plugin-perfectlyclear-web@1.85.0-nightly.20261006
 ```
 
 ### Register the Plugin

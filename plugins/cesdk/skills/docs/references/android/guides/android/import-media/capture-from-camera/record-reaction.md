@@ -180,7 +180,7 @@ plus every recorded reaction clip.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/editor-guides-record-reaction)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261006/editor-guides-record-reaction)
 
 This guide uses the CE.SDK mobile camera in Reaction mode. For adding the
 camera to your app and the permissions it requires, see

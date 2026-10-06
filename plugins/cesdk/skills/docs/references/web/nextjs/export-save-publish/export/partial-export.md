@@ -14,13 +14,13 @@ API.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/guides-export-save-publish-export-partial-export-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-export-save-publish-export-partial-export-browser/index.html)
 
 Understanding how to export specific parts of your scene gives you fine-grained control over output generation. Instead of exporting an entire scene, you can export individual images, text blocks, shapes, grouped elements, or specific pages. This is essential for creating asset libraries, implementing "export selection" features, or generating multiple outputs from a single design.
 

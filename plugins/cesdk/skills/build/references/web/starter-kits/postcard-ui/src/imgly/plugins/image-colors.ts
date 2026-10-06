@@ -19,6 +19,7 @@ import type {
 } from '@cesdk/engine';
 import { ASSET_SOURCES } from '../constants';
 
+const GRAPHIC_TYPE = '//ly.img.ubq/graphic';
 const IMAGE_FILL_TYPE = '//ly.img.ubq/fill/image';
 const DOMINANT_COLORS_PER_IMAGE = 5;
 const DEDUPE_PRECISION = 3;
@@ -63,6 +64,23 @@ async function findAssets(
 async function getGroups(engine: CreativeEngine): Promise<string[]> {
   const palette = await getSharedPalette(engine);
   return palette.map(({ group }) => group);
+}
+
+// Document order, so the groups follow the pages and the layers inside them.
+function collectSceneImageBlocks(engine: CreativeEngine): DesignBlockId[] {
+  const scene = engine.scene.get();
+  if (scene == null) return [];
+  const imageBlocks: DesignBlockId[] = [];
+  const stack = engine.block.getChildren(scene).reverse();
+  while (stack.length > 0) {
+    const block = stack.pop()!;
+    if (engine.block.getType(block) === GRAPHIC_TYPE) {
+      if (hasImageFill(engine, block)) imageBlocks.push(block);
+    } else {
+      stack.push(...engine.block.getChildren(block).reverse());
+    }
+  }
+  return imageBlocks;
 }
 
 function hasImageFill(engine: CreativeEngine, block: DesignBlockId): boolean {
@@ -148,7 +166,6 @@ function getSharedPalette(
 async function collectBlockPalette(
   engine: CreativeEngine
 ): Promise<ImagePaletteEntry[]> {
-  const graphicBlocks = engine.block.findByType('graphic');
   const labelCounts = new Map<string, number>();
   // Kept separate so `Image N` numbering stays sequential regardless of how
   // many named blocks precede each unnamed one.
@@ -156,9 +173,7 @@ async function collectBlockPalette(
   const palette: ImagePaletteEntry[] = [];
   const seenImageIdentities = new Set<string>();
 
-  for (const block of graphicBlocks) {
-    if (!hasImageFill(engine, block)) continue;
-
+  for (const block of collectSceneImageBlocks(engine)) {
     const identity = readImageIdentity(engine, block);
     if (identity != null) {
       if (seenImageIdentities.has(identity)) continue;

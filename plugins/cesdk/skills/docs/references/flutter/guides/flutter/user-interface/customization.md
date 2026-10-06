@@ -207,7 +207,7 @@ IMGLYEditorPlugin.builderClosure = { _, metadata in
 }
 ```
 
-Further, we provide convenience extensions both for the `OnCreate` and `OnExport` callbacks to reduce the amount of code you need to write. For a detailed example, please take a look [at our showcases app](https://github.com/imgly/cesdk-flutter-examples/tree/v1.84.0/showcases/ios/Runner/AppDelegate.swift).
+Further, we provide convenience extensions both for the `OnCreate` and `OnExport` callbacks to reduce the amount of code you need to write. For a detailed example, please take a look [at our showcases app](https://github.com/imgly/cesdk-flutter-examples/tree/v1.85.0-nightly.20261006/showcases/ios/Runner/AppDelegate.swift).
 
 ### Android
 
@@ -237,7 +237,7 @@ android {
 }
 
 dependencies {
-+  implementation "ly.img:editor:1.84.0"
++  implementation "ly.img:editor:1.85.0-nightly.20261006"
 +  implementation(platform("androidx.compose:compose-bom:2023.05.01"))
 +  implementation "androidx.activity:activity-compose:1.8.2"
 }
@@ -274,7 +274,7 @@ android {
 }
 ```
 
-To support both Kotlin generations — for example while some machines still build with a Flutter version older than 3.44 — apply the plugin conditionally based on the effective Kotlin version, as our [showcases app](https://github.com/imgly/cesdk-flutter-examples/tree/v1.84.0/showcases/android/app/build.gradle) does.
+To support both Kotlin generations — for example while some machines still build with a Flutter version older than 3.44 — apply the plugin conditionally based on the effective Kotlin version, as our [showcases app](https://github.com/imgly/cesdk-flutter-examples/tree/v1.85.0-nightly.20261006/showcases/android/app/build.gradle) does.
 
 #### 2. Import the dependencies:
 
@@ -308,7 +308,7 @@ IMGLYEditorPlugin.builderClosure = { _, metadata ->
 }
 ```
 
-Further, we provide a class called `EditorDefaults` which contains convenience methods for both the `OnCreate` and `OnExport` callbacks to reduce the amount of code you need to write. For a detailed example, please take a look [here](https://github.com/imgly/cesdk-flutter-examples/tree/v1.84.0/showcases/android/app/src/main/kotlin/ly/img/editor/flutter/showcases/MainActivity.kt).
+Further, we provide a class called `EditorDefaults` which contains convenience methods for both the `OnCreate` and `OnExport` callbacks to reduce the amount of code you need to write. For a detailed example, please take a look [here](https://github.com/imgly/cesdk-flutter-examples/tree/v1.85.0-nightly.20261006/showcases/android/app/src/main/kotlin/ly/img/editor/flutter/showcases/MainActivity.kt).
 
 
 

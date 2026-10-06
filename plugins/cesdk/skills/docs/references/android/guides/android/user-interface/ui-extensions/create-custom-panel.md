@@ -208,7 +208,7 @@ Build a functional custom panel — a property editor that opens from an inspect
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/editor-guides-ui-extensions-create-custom-panel)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261006/editor-guides-ui-extensions-create-custom-panel)
 
 ## Overview
 

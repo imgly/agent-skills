@@ -362,7 +362,7 @@ existing entries from your Android editor configuration.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.84.0/editor-guides-configuration-navigation-bar)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261006/editor-guides-configuration-navigation-bar)
 
 ## Navigation Bar Architecture
 

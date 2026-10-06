@@ -9,7 +9,7 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/engine": "^1.85.0-nightly.20261005",
+    "@cesdk/engine": "^1.85.0-nightly.20261006",
     "classnames": "^2.5.1",
     "lodash": "^4.17.21",
     "react": "^18.3.1",

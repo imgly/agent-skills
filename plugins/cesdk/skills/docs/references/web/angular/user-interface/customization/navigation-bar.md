@@ -12,13 +12,13 @@ The navigation bar is the horizontal toolbar above or below the editor containin
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261005/examples/guides-user-interface-customization-navigation-bar-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-user-interface-customization-navigation-bar-browser/index.html)
 
 Actions that affect browser navigation (e.g., going back or closing the editor), have global effects on the scene (e.g., undo/redo and zoom), or process the scene in some way (e.g., saving and exporting) belong in the navigation bar.
 

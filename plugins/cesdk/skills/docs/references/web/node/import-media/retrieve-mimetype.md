@@ -10,11 +10,11 @@ Detect the MIME type of resources loaded in the engine and relocate them to exte
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.84.0.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.84.0/guides-import-media-retrieve-mimetype-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-import-media-retrieve-mimetype-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.84.0/guides-import-media-retrieve-mimetype-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-import-media-retrieve-mimetype-server-js)
 
 When loading scene archives in CE.SDK, embedded media resources are stored with internal `buffer://` URIs rather than their original URLs. These resources include both images and fonts used in the scene. To process these resources correctly—for instance when uploading to a CDN or exporting a clean scene file—you need to determine their MIME type and relocate them to external URLs.
 
