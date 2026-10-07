@@ -11,11 +11,11 @@ background music, sound effects, and voiceovers.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-insert-media-audio-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-insert-media-audio-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-insert-media-audio-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-insert-media-audio-server-js)
 
 Audio blocks are time-based blocks that play sound alongside video content. Unlike video fills that attach to graphic blocks, audio blocks exist independently in the composition with their own duration, position, and volume controls.
 

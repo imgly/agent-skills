@@ -678,7 +678,8 @@ getFill(id: DesignBlockId): DesignBlockId
 **Parameters:**
 - `id` - The block whose fill block should be returned.
 
-**Returns:** The block that currently defines the given block's fill.
+**Returns:** The block that currently defines the given block's fill, or an invalid block if unset.
+Check the result with `isValid`.
 
 ### setFill()
 
@@ -1906,9 +1907,12 @@ isGroupable(ids: DesignBlockId[]): boolean
 ### group()
 
 Groups multiple blocks into a new group block.
+The blocks keep their times on the timeline.
+The group spans from the earliest start to the latest end of the blocks, and their time offsets
+become relative to the group.
 ```javascript
 if (engine.block.isGroupable([block1, block2])) {
-  const group = engine.block.group(block1, block2]);
+  const group = engine.block.group([block1, block2]);
 }
 ```
 
@@ -1924,6 +1928,7 @@ group(ids: DesignBlockId[]): DesignBlockId
 ### ungroup()
 
 Ungroups a group block, releasing its children.
+The children keep their times on the timeline, so their time offsets become relative to their new parent.
 ```javascript
 engine.block.ungroup(group);
 ```
@@ -2157,7 +2162,8 @@ getShape(id: DesignBlockId): DesignBlockId
 **Parameters:**
 - `id` - The block whose shape block should be returned.
 
-**Returns:** The block that currently defines the given block's shape.
+**Returns:** The block that currently defines the given block's shape, or an invalid block if unset.
+Check the result with `isValid`.
 
 ### setShape()
 
@@ -4246,7 +4252,8 @@ getBlur(id: DesignBlockId): DesignBlockId
 **Parameters:**
 - `id` - The block to query.
 
-**Returns:** The 'blur' block.
+**Returns:** The 'blur' block, or an invalid block if unset.
+Check the result with `isValid`.
 
 ### setBlurEnabled()
 
@@ -5503,7 +5510,8 @@ getTextListStyle(id: DesignBlockId, paragraphIndex: number): ListStyle
 
 **Parameters:**
 - `id` - The text block whose list style should be returned.
-- `paragraphIndex` - The 0-based index of the paragraph.
+- `paragraphIndex` - The 0-based index of the paragraph. Must be non-negative:
+unlike the setter, a negative index throws.
 
 **Returns:** The list style of the paragraph.
 
@@ -5540,7 +5548,8 @@ getTextListLevel(id: DesignBlockId, paragraphIndex: number): number
 
 **Parameters:**
 - `id` - The text block whose list level should be returned.
-- `paragraphIndex` - The 0-based index of the paragraph.
+- `paragraphIndex` - The 0-based index of the paragraph. Must be non-negative:
+unlike the setter, a negative index throws.
 
 **Returns:** The list nesting level of the paragraph.
 
@@ -5618,7 +5627,8 @@ getTextLineHeight(id: DesignBlockId, paragraphIndex: number): number
 
 **Parameters:**
 - `id` - The text block to query.
-- `paragraphIndex` - The 0-based index of the paragraph.
+- `paragraphIndex` - The 0-based index of the paragraph. Must be non-negative:
+unlike the setter, a negative index throws.
 
 **Returns:** The line height multiplier for the paragraph.
 
@@ -6379,7 +6389,8 @@ getInAnimation(id: DesignBlockId): DesignBlockId
 **Parameters:**
 - `id` - The block whose "in" animation should be queried.
 
-**Returns:** The "in" animation of the block.
+**Returns:** The "in" animation of the block, or an invalid block if unset.
+Check the result with `isValid`.
 
 ### getLoopAnimation()
 
@@ -6392,7 +6403,8 @@ getLoopAnimation(id: DesignBlockId): DesignBlockId
 **Parameters:**
 - `id` - The block whose "loop" animation should be queried.
 
-**Returns:** The "loop" animation of the block.
+**Returns:** The "loop" animation of the block, or an invalid block if unset.
+Check the result with `isValid`.
 
 ### getOutAnimation()
 
@@ -6405,7 +6417,8 @@ getOutAnimation(id: DesignBlockId): DesignBlockId
 **Parameters:**
 - `id` - The block whose "out" animation should be queried.
 
-**Returns:** The "out" animation of the block.
+**Returns:** The "out" animation of the block, or an invalid block if unset.
+Check the result with `isValid`.
 
 ## Block Transitions
 
@@ -6483,6 +6496,7 @@ getTransition(id: DesignBlockId): DesignBlockId
 - `id` - The outgoing clip whose transition relation should be queried.
 
 **Returns:** The assigned transition block, or an invalid block if unset.
+Check the result with `isValid`.
 
 ---
 

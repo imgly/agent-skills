@@ -12,13 +12,13 @@ Apply sRGB colors to design elements for screen-based output using RGBA color va
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-colors-for-screen-srgb-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-colors-for-screen-srgb-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-colors-for-screen-srgb-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-colors-for-screen-srgb-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-colors-for-screen-srgb-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-colors-for-screen-srgb-browser/index.html)
 
 sRGB is the standard color space for screen displays. CE.SDK represents sRGB colors as RGBA objects where each component (red, green, blue, alpha) uses floating-point values between 0.0 and 1.0. This differs from the traditional 0-255 integer range used in many design tools.
 

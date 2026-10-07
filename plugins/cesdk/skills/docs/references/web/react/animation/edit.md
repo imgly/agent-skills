@@ -12,13 +12,13 @@ Modify existing animations by reading properties, changing duration and easing, 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-animation-edit-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-animation-edit-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-animation-edit-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-animation-edit-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-animation-edit-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-animation-edit-browser/index.html)
 
 Editing animations in CE.SDK involves retrieving existing animations from blocks and modifying their properties. This guide assumes you've already created and attached animations to blocks as covered in the [Base Animations](./animation/create/base.md) guide.
 
@@ -126,7 +126,7 @@ class Example implements EditorPlugin {
 
     // Set white background color
     const pageFill = engine.block.getFill(page);
-    if (pageFill) {
+    if (engine.block.isValid(pageFill)) {
       engine.block.setColor(pageFill, 'fill/color/value', {
         r: 1.0,
         g: 1.0,
@@ -181,13 +181,22 @@ class Example implements EditorPlugin {
     const outAnimation = engine.block.getOutAnimation(block1);
     const loopAnimation = engine.block.getLoopAnimation(block1);
 
-    // Check if animations exist (0 means no animation)
-    console.log('In animation:', inAnimation !== 0 ? 'exists' : 'none');
-    console.log('Out animation:', outAnimation !== 0 ? 'exists' : 'none');
-    console.log('Loop animation:', loopAnimation !== 0 ? 'exists' : 'none');
+    // An empty slot returns an invalid block
+    console.log(
+      'In animation:',
+      engine.block.isValid(inAnimation) ? 'exists' : 'none'
+    );
+    console.log(
+      'Out animation:',
+      engine.block.isValid(outAnimation) ? 'exists' : 'none'
+    );
+    console.log(
+      'Loop animation:',
+      engine.block.isValid(loopAnimation) ? 'exists' : 'none'
+    );
 
     // Get animation type if it exists
-    if (inAnimation !== 0) {
+    if (engine.block.isValid(inAnimation)) {
       const animationType = engine.block.getType(inAnimation);
       console.log('Animation type:', animationType);
     }
@@ -197,7 +206,7 @@ class Example implements EditorPlugin {
 
     // Read animation properties
     const animation2 = engine.block.getInAnimation(block2);
-    if (animation2 !== 0) {
+    if (engine.block.isValid(animation2)) {
       // Get current duration
       const duration = engine.block.getDuration(animation2);
       console.log('Duration:', duration, 'seconds');
@@ -216,7 +225,7 @@ class Example implements EditorPlugin {
 
     // Modify animation duration
     const animation3 = engine.block.getInAnimation(block3);
-    if (animation3 !== 0) {
+    if (engine.block.isValid(animation3)) {
       // Change duration to 1.5 seconds
       engine.block.setDuration(animation3, 1.5);
 
@@ -230,7 +239,7 @@ class Example implements EditorPlugin {
 
     // Change animation easing
     const animation4 = engine.block.getInAnimation(block4);
-    if (animation4 !== 0) {
+    if (engine.block.isValid(animation4)) {
       // Query available easing options
       const easingOptions = engine.block.getEnumValues('animationEasing');
       console.log('Available easing options:', easingOptions);
@@ -244,7 +253,7 @@ class Example implements EditorPlugin {
 
     // Adjust animation-specific properties
     const animation5 = engine.block.getInAnimation(block5);
-    if (animation5 !== 0) {
+    if (engine.block.isValid(animation5)) {
       // Get current direction (for slide animations)
       const currentDirection = engine.block.getFloat(
         animation5,
@@ -252,7 +261,7 @@ class Example implements EditorPlugin {
       );
       console.log('Current direction (radians):', currentDirection);
 
-      // Change direction to slide from top (3*PI/2 radians)
+      // Move the block up, so it enters from the bottom (3*PI/2 radians)
       engine.block.setFloat(
         animation5,
         'animation/slide/direction',
@@ -265,7 +274,7 @@ class Example implements EditorPlugin {
 
     // Replace an existing animation
     const oldAnimation = engine.block.getInAnimation(block6);
-    if (oldAnimation !== 0) {
+    if (engine.block.isValid(oldAnimation)) {
       // Destroy the old animation to prevent memory leaks
       engine.block.destroy(oldAnimation);
     }
@@ -283,13 +292,13 @@ class Example implements EditorPlugin {
 
     // Remove the loop animation by destroying it
     const currentLoop = engine.block.getLoopAnimation(block6);
-    if (currentLoop !== 0) {
+    if (engine.block.isValid(currentLoop)) {
       engine.block.destroy(currentLoop);
-      // Verify removal - should now return 0
+      // Verify removal: the empty slot returns an invalid block
       const verifyLoop = engine.block.getLoopAnimation(block6);
       console.log(
         'Loop animation after removal:',
-        verifyLoop === 0 ? 'none' : 'exists'
+        engine.block.isValid(verifyLoop) ? 'exists' : 'none'
       );
     }
   }
@@ -302,7 +311,7 @@ This guide covers retrieving animations, reading and modifying properties, chang
 
 ## Retrieving Animations
 
-Before modifying an animation, we retrieve it from the block using `getInAnimation()`, `getOutAnimation()`, or `getLoopAnimation()`. A return value of `0` indicates no animation is attached.
+Before modifying an animation, we retrieve it from the block using `getInAnimation()`, `getOutAnimation()`, or `getLoopAnimation()`. An empty slot returns an invalid block, not `0`. Check the result with `engine.block.isValid()` before you use it.
 
 ```typescript highlight-retrieve-animations
     // Retrieve animations from a block
@@ -310,13 +319,22 @@ Before modifying an animation, we retrieve it from the block using `getInAnimati
     const outAnimation = engine.block.getOutAnimation(block1);
     const loopAnimation = engine.block.getLoopAnimation(block1);
 
-    // Check if animations exist (0 means no animation)
-    console.log('In animation:', inAnimation !== 0 ? 'exists' : 'none');
-    console.log('Out animation:', outAnimation !== 0 ? 'exists' : 'none');
-    console.log('Loop animation:', loopAnimation !== 0 ? 'exists' : 'none');
+    // An empty slot returns an invalid block
+    console.log(
+      'In animation:',
+      engine.block.isValid(inAnimation) ? 'exists' : 'none'
+    );
+    console.log(
+      'Out animation:',
+      engine.block.isValid(outAnimation) ? 'exists' : 'none'
+    );
+    console.log(
+      'Loop animation:',
+      engine.block.isValid(loopAnimation) ? 'exists' : 'none'
+    );
 
     // Get animation type if it exists
-    if (inAnimation !== 0) {
+    if (engine.block.isValid(inAnimation)) {
       const animationType = engine.block.getType(inAnimation);
       console.log('Animation type:', animationType);
     }
@@ -331,7 +349,7 @@ We can inspect current animation settings using property getters. `getDuration()
 ```typescript highlight-read-properties
     // Read animation properties
     const animation2 = engine.block.getInAnimation(block2);
-    if (animation2 !== 0) {
+    if (engine.block.isValid(animation2)) {
       // Get current duration
       const duration = engine.block.getDuration(animation2);
       console.log('Duration:', duration, 'seconds');
@@ -355,7 +373,7 @@ Change animation timing with `setDuration()`. The duration is specified in secon
 ```typescript highlight-modify-duration
     // Modify animation duration
     const animation3 = engine.block.getInAnimation(block3);
-    if (animation3 !== 0) {
+    if (engine.block.isValid(animation3)) {
       // Change duration to 1.5 seconds
       engine.block.setDuration(animation3, 1.5);
 
@@ -374,7 +392,7 @@ Easing controls animation acceleration. We use `setEnum()` with the `'animationE
 ```typescript highlight-change-easing
     // Change animation easing
     const animation4 = engine.block.getInAnimation(block4);
-    if (animation4 !== 0) {
+    if (engine.block.isValid(animation4)) {
       // Query available easing options
       const easingOptions = engine.block.getEnumValues('animationEasing');
       console.log('Available easing options:', easingOptions);
@@ -400,7 +418,7 @@ Each animation type has unique configurable properties. For slide animations, we
 ```typescript highlight-adjust-properties
     // Adjust animation-specific properties
     const animation5 = engine.block.getInAnimation(block5);
-    if (animation5 !== 0) {
+    if (engine.block.isValid(animation5)) {
       // Get current direction (for slide animations)
       const currentDirection = engine.block.getFloat(
         animation5,
@@ -408,7 +426,7 @@ Each animation type has unique configurable properties. For slide animations, we
       );
       console.log('Current direction (radians):', currentDirection);
 
-      // Change direction to slide from top (3*PI/2 radians)
+      // Move the block up, so it enters from the bottom (3*PI/2 radians)
       engine.block.setFloat(
         animation5,
         'animation/slide/direction',
@@ -417,12 +435,12 @@ Each animation type has unique configurable properties. For slide animations, we
     }
 ```
 
-The `animation/slide/direction` property uses radians:
+The `animation/slide/direction` property is the direction of travel in radians. An entrance starts on the opposite side:
 
-- `0` — From the right
-- `Math.PI / 2` — From the bottom
-- `Math.PI` — From the left
-- `3 * Math.PI / 2` — From the top
+- `0` — Moves right, enters from the left
+- `Math.PI / 2` — Moves down, enters from the top
+- `Math.PI` — Moves left, enters from the right
+- `3 * Math.PI / 2` — Moves up, enters from the bottom
 
 For text animations, you can adjust `textAnimationWritingStyle` (Line, Word, Character) and `textAnimationOverlap` (0 for sequential, 1 for simultaneous).
 
@@ -433,7 +451,7 @@ To swap an animation type, destroy the existing animation before setting a new o
 ```typescript highlight-replace-animation
     // Replace an existing animation
     const oldAnimation = engine.block.getInAnimation(block6);
-    if (oldAnimation !== 0) {
+    if (engine.block.isValid(oldAnimation)) {
       // Destroy the old animation to prevent memory leaks
       engine.block.destroy(oldAnimation);
     }
@@ -449,7 +467,7 @@ We first retrieve and destroy the old animation, then create and attach a new on
 
 ## Removing Animations
 
-Remove an animation by destroying it. After destruction, the getter returns `0`.
+Remove an animation by destroying it. After destruction, the getter returns an invalid block.
 
 ```typescript highlight-remove-animation
     // Add a loop animation to demonstrate removal
@@ -459,13 +477,13 @@ Remove an animation by destroying it. After destruction, the getter returns `0`.
 
     // Remove the loop animation by destroying it
     const currentLoop = engine.block.getLoopAnimation(block6);
-    if (currentLoop !== 0) {
+    if (engine.block.isValid(currentLoop)) {
       engine.block.destroy(currentLoop);
-      // Verify removal - should now return 0
+      // Verify removal: the empty slot returns an invalid block
       const verifyLoop = engine.block.getLoopAnimation(block6);
       console.log(
         'Loop animation after removal:',
-        verifyLoop === 0 ? 'none' : 'exists'
+        engine.block.isValid(verifyLoop) ? 'exists' : 'none'
       );
     }
 ```
@@ -474,21 +492,22 @@ Destroying a design block automatically destroys all its attached animations. Ho
 
 ## API Reference
 
-| Method                                | Description                                        |
-| ------------------------------------- | -------------------------------------------------- |
-| `block.getInAnimation(block)`         | Get entrance animation (returns 0 if none)         |
-| `block.getOutAnimation(block)`        | Get exit animation (returns 0 if none)             |
-| `block.getLoopAnimation(block)`       | Get loop animation (returns 0 if none)             |
-| `block.getType(anim)`                 | Get animation type string                          |
-| `block.getDuration(anim)`             | Get animation duration in seconds                  |
-| `block.setDuration(anim, seconds)`    | Set animation duration                             |
-| `block.getEnum(anim, prop)`           | Get enum property value                            |
-| `block.setEnum(anim, prop, value)`    | Set enum property value                            |
-| `block.getFloat(anim, prop)`          | Get float property value                           |
-| `block.setFloat(anim, prop, value)`   | Set float property value                           |
-| `block.findAllProperties(anim)`       | Get all available properties                       |
-| `block.getEnumValues(prop)`           | Get available values for enum property             |
-| `block.destroy(anim)`                 | Destroy animation and free memory                  |
+| Method                              | Description                                                   |
+| ----------------------------------- | ------------------------------------------------------------- |
+| `block.getInAnimation(block)`       | Get entrance animation (invalid block if none)                |
+| `block.getOutAnimation(block)`      | Get exit animation (invalid block if none)                    |
+| `block.getLoopAnimation(block)`     | Get loop animation (invalid block if none)                    |
+| `block.isValid(block)`              | Check that a handle is a live block (false for an empty slot) |
+| `block.getType(anim)`               | Get animation type string                                     |
+| `block.getDuration(anim)`           | Get animation duration in seconds                             |
+| `block.setDuration(anim, seconds)`  | Set animation duration                                        |
+| `block.getEnum(anim, prop)`         | Get enum property value                                       |
+| `block.setEnum(anim, prop, value)`  | Set enum property value                                       |
+| `block.getFloat(anim, prop)`        | Get float property value                                      |
+| `block.setFloat(anim, prop, value)` | Set float property value                                      |
+| `block.findAllProperties(anim)`     | Get all available properties                                  |
+| `block.getEnumValues(prop)`         | Get available values for enum property                        |
+| `block.destroy(anim)`               | Destroy animation and free memory                             |
 
 ## Next Steps
 

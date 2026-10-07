@@ -3959,7 +3959,8 @@ Create, configure, and manage block fills, including solid colors, gradients, an
 
   `number`
 
-  The block that currently defines the given block's fill.
+  The block that currently defines the given block's fill, or an invalid block if unset.
+  Check the result with `isValid`.
 
   #### Signature
 
@@ -4230,7 +4231,8 @@ Create and configure shape blocks and geometric forms.
 
   `number`
 
-  The block that currently defines the given block's shape.
+  The block that currently defines the given block's shape, or an invalid block if unset.
+  Check the result with `isValid`.
 
   #### Signature
 
@@ -5257,7 +5259,7 @@ Create, edit, and style text content.
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `number` | The text block whose list style should be returned. |
-  | `paragraphIndex` | `number` | The 0-based index of the paragraph. |
+  | `paragraphIndex` | `number` | The 0-based index of the paragraph. Must be non-negative: unlike the setter, a negative index throws. |
 
   #### Returns
 
@@ -5324,7 +5326,7 @@ Create, edit, and style text content.
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `number` | The text block whose list level should be returned. |
-  | `paragraphIndex` | `number` | The 0-based index of the paragraph. |
+  | `paragraphIndex` | `number` | The 0-based index of the paragraph. Must be non-negative: unlike the setter, a negative index throws. |
 
   #### Returns
 
@@ -5469,7 +5471,7 @@ Create, edit, and style text content.
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `number` | The text block to query. |
-  | `paragraphIndex` | `number` | The 0-based index of the paragraph. |
+  | `paragraphIndex` | `number` | The 0-based index of the paragraph. Must be non-negative: unlike the setter, a negative index throws. |
 
   #### Returns
 
@@ -7823,7 +7825,8 @@ Create and manage animations and timeline-based effects.
 
   `number`
 
-  The "in" animation of the block.
+  The "in" animation of the block, or an invalid block if unset.
+  Check the result with `isValid`.
 
   #### Signature
 
@@ -7851,7 +7854,8 @@ Create and manage animations and timeline-based effects.
 
   `number`
 
-  The "loop" animation of the block.
+  The "loop" animation of the block, or an invalid block if unset.
+  Check the result with `isValid`.
 
   #### Signature
 
@@ -7879,7 +7883,8 @@ Create and manage animations and timeline-based effects.
 
   `number`
 
-  The "out" animation of the block.
+  The "out" animation of the block, or an invalid block if unset.
+  Check the result with `isValid`.
 
   #### Signature
 
@@ -7936,9 +7941,13 @@ Create and manage groups of blocks.
     <br /><p>Groups multiple blocks into a new group block.</p>
   </summary>
 
+  The blocks keep their times on the timeline.
+  The group spans from the earliest start to the latest end of the blocks, and their time offsets
+  become relative to the group.
+
   ```javascript
   if (engine.block.isGroupable([block1, block2])) {
-    const group = engine.block.group(block1, block2]);
+    const group = engine.block.group([block1, block2]);
   }
   ```
 
@@ -7969,6 +7978,8 @@ Create and manage groups of blocks.
 
     <br /><p>Ungroups a group block, releasing its children.</p>
   </summary>
+
+  The children keep their times on the timeline, so their time offsets become relative to their new parent.
 
   ```javascript
   engine.block.ungroup(group);
@@ -11910,7 +11921,8 @@ Apply and configure blur effects on blocks.
 
   `number`
 
-  The 'blur' block.
+  The 'blur' block, or an invalid block if unset.
+  Check the result with `isValid`.
 
   #### Signature
 
@@ -13148,6 +13160,7 @@ Create cutout operations and path-based modifications.
   `number`
 
   The assigned transition block, or an invalid block if unset.
+  Check the result with `isValid`.
 
   #### Signature
 

@@ -13,13 +13,13 @@ directly to your designs.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-import-media-from-remote-source-pexels-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-import-media-from-remote-source-pexels-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-import-media-from-remote-source-pexels-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-import-media-from-remote-source-pexels-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-import-media-from-remote-source-pexels-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-import-media-from-remote-source-pexels-browser/index.html)
 
 Pexels provides a vast library of high-quality, royalty-free stock photos through their public API. We integrate Pexels directly into CE.SDK so users can search, preview, and add photos without leaving the editor.
 

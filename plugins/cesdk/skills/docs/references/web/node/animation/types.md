@@ -10,11 +10,11 @@ Apply entrance, exit, and loop animations to design blocks programmatically usin
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-animation-types-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-animation-types-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-animation-types-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-animation-types-server-js)
 
 CE.SDK organizes animations into three categories: entrance (In), exit (Out), and loop. Each category determines when the animation plays during the block's lifecycle. This guide demonstrates how to apply different animation types and configure their properties in server-side applications.
 
@@ -44,7 +44,10 @@ async function main() {
     engine.block.setDuration(page, 10);
 
     // Set white background
-    if (!engine.block.supportsFill(page) || !engine.block.getFill(page)) {
+    if (
+      !engine.block.supportsFill(page) ||
+      !engine.block.isValid(engine.block.getFill(page))
+    ) {
       const fill = engine.block.createFill('color');
       engine.block.setFill(page, fill);
     }
@@ -100,11 +103,11 @@ async function main() {
     // Block 1: Slide entrance animation with direction
     const block1 = createImageBlock(0, imageUrls[0]);
 
-    // Create a slide animation that enters from the left
+    // Create a slide animation that enters from the right
     const slideAnimation = engine.block.createAnimation('slide');
     engine.block.setInAnimation(block1, slideAnimation);
     engine.block.setDuration(slideAnimation, 1.0);
-    // Direction in radians: 0=right, PI/2=bottom, PI=left, 3*PI/2=top
+    // Direction of travel in radians: 0=right, PI/2=down, PI=left, 3*PI/2=up
     engine.block.setFloat(slideAnimation, 'animation/slide/direction', Math.PI);
     engine.block.setEnum(slideAnimation, 'animationEasing', 'EaseOut');
 
@@ -232,14 +235,14 @@ Entrance animations define how a block appears. We use `engine.block.createAnima
 
 ### Slide Animation
 
-The slide animation moves a block in from a specified direction. The `direction` property uses radians where 0 is right, π/2 is bottom, π is left, and 3π/2 is top.
+The slide animation moves a block along a direction. The `direction` property is the direction of travel in radians: 0 moves right, π/2 moves down, π moves left, and 3π/2 moves up. An entrance starts on the opposite side, so π enters from the right.
 
 ```typescript highlight-entrance-slide
-// Create a slide animation that enters from the left
+// Create a slide animation that enters from the right
 const slideAnimation = engine.block.createAnimation('slide');
 engine.block.setInAnimation(block1, slideAnimation);
 engine.block.setDuration(slideAnimation, 1.0);
-// Direction in radians: 0=right, PI/2=bottom, PI=left, 3*PI/2=top
+// Direction of travel in radians: 0=right, PI/2=down, PI=left, 3*PI/2=up
 engine.block.setFloat(slideAnimation, 'animation/slide/direction', Math.PI);
 engine.block.setEnum(slideAnimation, 'animationEasing', 'EaseOut');
 ```

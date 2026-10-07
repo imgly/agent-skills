@@ -104,7 +104,7 @@ using CE.SDK's animation system.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261006/engine-guides-create-animations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261007/engine-guides-create-animations)
 
 CE.SDK provides a unified animation system for adding motion to design elements. Animations are created as separate block instances and attached to target blocks using type-specific methods. You can apply entrance animations (how blocks appear), exit animations (how blocks leave), and loop animations (continuous motion while visible). Text blocks support additional properties for word-by-word or character-by-character reveals.
 
@@ -147,7 +147,7 @@ try engine.block.setEnum(slideIn, property: "animationEasing", value: "EaseOut")
 try engine.block.setFloat(slideIn, property: "animation/slide/direction", value: 1.5 * .pi)
 ```
 
-The `animationEasing` property accepts `Linear`, `EaseIn`, `EaseOut`, `EaseInOut`, and higher-order curves like `EaseOutQuint` and `EaseOutBack`. Call `getEnumValues(ofProperty: "animationEasing")` to enumerate the full list at runtime. Slide direction uses radians where `0` is right, `0.5 * .pi` is bottom, `.pi` is left, and `1.5 * .pi` is top — the snippet above slides the block in from the top.
+The `animationEasing` property accepts `Linear`, `EaseIn`, `EaseOut`, `EaseInOut`, and higher-order curves like `EaseOutQuint` and `EaseOutBack`. Call `getEnumValues(ofProperty: "animationEasing")` to enumerate the full list at runtime. Slide direction is the direction of travel in radians: `0` moves right, `0.5 * .pi` moves down, `.pi` moves left, and `1.5 * .pi` moves up. The snippet above moves the block up, so it enters from the bottom.
 
 ## Exit Animations
 
@@ -188,7 +188,7 @@ Each animation type exposes configurable properties. Use `setFloat(_:property:va
 
 Common configurable properties include:
 
-- **Direction**: Set in radians for slide animations (`0` = right, `0.5 * .pi` = bottom, `.pi` = left, `1.5 * .pi` = top)
+- **Direction**: The direction of travel in radians for slide animations (`0` moves right, `0.5 * .pi` down, `.pi` left, `1.5 * .pi` up). An entrance starts on the opposite side.
 - **Easing**: `Linear`, `EaseIn`, `EaseOut`, `EaseInOut`
 
 ## Text Animations

@@ -12,13 +12,13 @@ Format ranges of text as subscript or superscript for prices, formulas, footnote
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-text-subscript-superscript-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-text-subscript-superscript-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-text-subscript-superscript-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-text-subscript-superscript-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-text-subscript-superscript-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-text-subscript-superscript-browser/index.html)
 
 CE.SDK formats superscript and subscript synthetically: the affected range is scaled down to 58.3% of its font size and shifted up or down by 33.3% of the unscaled font size. These defaults match common design applications, so the feature works with every font, and block properties let you adjust the scale and shift. Lines grow automatically when a shifted range needs more room, and exports include the shifted glyphs. Superscript and subscript combine with text decorations, text on a path, and text animations.
 

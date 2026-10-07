@@ -163,7 +163,7 @@ Generate a QR code with Core Image and place it on a CE.SDK page as an image fil
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261006/engine-guides-shapes-qrcode)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261007/engine-guides-shapes-qrcode)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

@@ -12,13 +12,13 @@ Configure emoji rendering in CE.SDK text blocks using a dedicated emoji font for
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-text-emojis-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-text-emojis-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-text-emojis-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-text-emojis-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-text-emojis-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-text-emojis-browser/index.html)
 
 Emojis are Unicode characters representing pictographic symbols. They can be single code points (😀), multi-character sequences (flags like 🇩🇪), ZWJ-joined combinations (👨‍👩‍👧), or skin tone variants (👋🏽). CE.SDK renders text to canvas for precise layout control, which bypasses browser font fallback. This means CE.SDK must explicitly provide an emoji font—it uses Noto Color Emoji by default.
 

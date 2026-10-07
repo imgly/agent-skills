@@ -447,7 +447,7 @@ Automate repetitive exports by keeping the editor UI out of the loop. On Android
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261006/engine-guides-automate-workflows)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261007/engine-guides-automate-workflows)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](./engine-interface.md) guide.

@@ -129,7 +129,7 @@ Apply entrance, exit, and loop animations to design blocks using the available a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261006/engine-guides-animation-types)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261007/engine-guides-animation-types)
 
 CE.SDK organizes animations into three categories: entrance (In), exit (Out), and loop. Each category determines when the animation plays during the block's lifecycle. This guide demonstrates different animation types and their configurable properties.
 
@@ -141,7 +141,7 @@ Entrance animations define how a block appears. We use `createAnimation(_:)` wit
 
 ### Slide Animation
 
-The slide animation moves a block in from a specified direction. The `animation/slide/direction` property uses radians where `0` is right, `.pi / 2` is bottom, `.pi` is left, and `3 * .pi / 2` is top.
+The slide animation moves a block along a direction. The `animation/slide/direction` property is the direction of travel in radians: `0` moves right, `.pi / 2` moves down, `.pi` moves left, and `3 * .pi / 2` moves up. An entrance starts on the opposite side, so `.pi` enters from the right.
 
 ```swift highlight-animationTypes-entranceSlide
 let slideAnimation = try engine.block.createAnimation(.slide)

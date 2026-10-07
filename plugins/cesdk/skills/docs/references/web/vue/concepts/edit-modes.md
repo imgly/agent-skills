@@ -12,13 +12,13 @@ Editor state determines how users interact with content on the canvas by control
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-concepts-editor-state-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-concepts-editor-state-browser/index.html)
 
 Edit modes define what type of content users can currently modify. Each mode enables different interaction behaviors—Transform mode for moving and resizing, Crop mode for adjusting content within frames, Text mode for inline text editing, and so on. The engine maintains the current edit mode as part of its state and notifies subscribers when it changes.
 

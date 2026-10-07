@@ -15,13 +15,13 @@ per-call overrides when you need them.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-concepts-font-size-unit-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-concepts-font-size-unit-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-concepts-font-size-unit-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-concepts-font-size-unit-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-concepts-font-size-unit-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-concepts-font-size-unit-browser/index.html)
 
 A scene's `fontSizeUnit` is the unit `setTextFontSize` and `getTextFontSizes` use when the caller doesn't specify one. CE.SDK supports two values: `'Point'` (the typographic default) and `'Pixel'` (matches Pixel-based design coordinates). The engine still stores font sizes in points internally; the unit only controls the API boundary.
 

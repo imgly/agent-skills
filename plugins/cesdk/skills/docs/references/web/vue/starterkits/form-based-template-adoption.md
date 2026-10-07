@@ -12,13 +12,13 @@ Use a form-based custom panel in CE.SDK to enable users to easily customize temp
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-form-based-template-adoption-ts-web/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/starterkit-form-based-template-adoption-ts-web/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-form-based-template-adoption-ts-web/tree/release-1.85.0-nightly.20261006)
+> - [View source on GitHub](https://github.com/imgly/starterkit-form-based-template-adoption-ts-web/tree/release-1.85.0-nightly.20261007)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-form-based-template-adoption-ts-web/tree/release-1.85.0-nightly.20261006)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-form-based-template-adoption-ts-web/tree/release-1.85.0-nightly.20261007)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/starterkit-form-based-template-adoption/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/starterkit-form-based-template-adoption/index.html)
 
 ***
 
@@ -103,7 +103,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261006/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -201,15 +201,15 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js@1.85.0-nightly.20261006
+        npm install @cesdk/cesdk-js@1.85.0-nightly.20261007
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261006
+        pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261007
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js@1.85.0-nightly.20261006
+        yarn add @cesdk/cesdk-js@1.85.0-nightly.20261007
       </TerminalTab>
     </TerminalTabs>
 
@@ -219,7 +219,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261006/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>

@@ -12,13 +12,13 @@ We add AI-powered text generation to CE.SDK applications for creating headlines,
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-user-interface-ai-integration-text-generation-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-user-interface-ai-integration-text-generation-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-user-interface-ai-integration-text-generation-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-user-interface-ai-integration-text-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-user-interface-ai-integration-text-generation-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-user-interface-ai-integration-text-generation-browser/index.html)
 
 The text generation plugin provides quick actions for improving writing, fixing spelling and grammar, shortening or lengthening text, changing tone, and translating to different languages.
 
@@ -226,21 +226,21 @@ Install `@imgly/plugin-ai-text-generation-web` to access the TextGeneration plug
 <Tabs syncKey="package-manager">
   <TabItem label="npm">
     ```bash
-    npm install @imgly/plugin-ai-text-generation-web@1.85.0-nightly.20261006
+    npm install @imgly/plugin-ai-text-generation-web@1.85.0-nightly.20261007
 
     ```
   </TabItem>
 
   <TabItem label="yarn">
     ```bash
-    yarn add @imgly/plugin-ai-text-generation-web@1.85.0-nightly.20261006
+    yarn add @imgly/plugin-ai-text-generation-web@1.85.0-nightly.20261007
 
     ```
   </TabItem>
 
   <TabItem label="pnpm">
     ```bash
-    pnpm add @imgly/plugin-ai-text-generation-web@1.85.0-nightly.20261006
+    pnpm add @imgly/plugin-ai-text-generation-web@1.85.0-nightly.20261007
 
     ```
   </TabItem>

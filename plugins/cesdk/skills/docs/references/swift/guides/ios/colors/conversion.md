@@ -71,7 +71,7 @@ CE.SDK.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261006/engine-guides-color-conversion)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261007/engine-guides-color-conversion)
 
 CE.SDK supports three color spaces: sRGB, CMYK, and Spot Color. When building color interfaces or preparing designs for export, you may need to convert colors between these spaces. The engine handles the mathematical conversion automatically through the `convertColorToColorSpace(color:colorSpace:)` API.
 

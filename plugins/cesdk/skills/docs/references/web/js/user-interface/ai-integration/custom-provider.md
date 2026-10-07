@@ -12,13 +12,13 @@ Build a custom AI-powered image generation provider for CE.SDK using the `@imgly
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-user-interface-ai-integration-custom-provider-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-user-interface-ai-integration-custom-provider-browser/index.html)
 
 This guide walks you through creating an image generation provider that connects to your own AI service. You'll learn about the provider interface, OpenAPI schema-based input configuration, quick actions, middleware patterns, and CE.SDK integration.
 
@@ -385,7 +385,7 @@ cd my-image-provider
 npm init -y
 
 # Install required dependencies
-npm install @imgly/plugin-ai-generation-web@1.85.0-nightly.20261006 @imgly/plugin-ai-image-generation-web@1.85.0-nightly.20261006 @cesdk/cesdk-js@1.85.0-nightly.20261006 typescript
+npm install @imgly/plugin-ai-generation-web@1.85.0-nightly.20261007 @imgly/plugin-ai-image-generation-web@1.85.0-nightly.20261007 @cesdk/cesdk-js@1.85.0-nightly.20261007 typescript
 ```
 
 Then import the packages in your TypeScript file:

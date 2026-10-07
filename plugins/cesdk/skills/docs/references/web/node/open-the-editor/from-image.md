@@ -11,11 +11,11 @@ environments for server-side image processing workflows.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-open-the-editor-from-image-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-open-the-editor-from-image-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-open-the-editor-from-image-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-open-the-editor-from-image-server-js)
 
 Starting from an existing image allows you to process and transform images on the server. The `engine.scene.createFromImage()` method fetches the image, creates a scene with matching dimensions, and sets up pixel-based design units. This is useful for batch processing, automated image transformations, and server-side rendering pipelines.
 

@@ -12,13 +12,13 @@ Automatically adapt the same design or template to different page sizes and easi
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-page-sizes-asset-source-ts-web/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/starterkit-page-sizes-asset-source-ts-web/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-page-sizes-asset-source-ts-web/tree/release-1.85.0-nightly.20261006)
+> - [View source on GitHub](https://github.com/imgly/starterkit-page-sizes-asset-source-ts-web/tree/release-1.85.0-nightly.20261007)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-page-sizes-asset-source-ts-web/tree/release-1.85.0-nightly.20261006)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-page-sizes-asset-source-ts-web/tree/release-1.85.0-nightly.20261007)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/starterkit-page-sizes-asset-source/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/starterkit-page-sizes-asset-source/index.html)
 
 ***
 
@@ -87,9 +87,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261006</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261006</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261006</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
     </TerminalTabs>
 
     ## Step 4: Download Assets
@@ -98,7 +98,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261006/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -201,9 +201,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261006</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261006</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261006</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
     </TerminalTabs>
 
     ## Step 3: Download Assets
@@ -212,7 +212,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261006/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>

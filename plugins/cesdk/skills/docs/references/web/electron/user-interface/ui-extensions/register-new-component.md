@@ -12,13 +12,13 @@ Register custom UI components using CE.SDK's builder system and place them in di
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-user-interface-ui-extensions-register-new-component-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-user-interface-ui-extensions-register-new-component-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-user-interface-ui-extensions-register-new-component-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-user-interface-ui-extensions-register-new-component-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-user-interface-ui-extensions-register-new-component-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-user-interface-ui-extensions-register-new-component-browser/index.html)
 
 The builder system provides a declarative API for creating UI components that integrate with CE.SDK. Components registered via `cesdk.ui.registerComponent()` receive a render function that is automatically re-invoked when relevant engine state changes, enabling reactive UIs without manual subscription management. You can create buttons, dropdowns, inputs, and other UI elements that react to engine state changes.
 

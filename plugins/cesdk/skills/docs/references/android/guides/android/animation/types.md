@@ -159,7 +159,7 @@ Apply entrance, exit, and loop animations to design blocks using the available a
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261006/engine-guides-animation-types)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261007/engine-guides-animation-types)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.
@@ -174,7 +174,7 @@ Entrance animations define how a block appears. Use `createAnimation()` with an 
 
 ### Slide Animation
 
-The slide animation moves a block in from a specified direction. The `animation/slide/direction` property uses radians where `0` is right, `PI / 2` is bottom, `PI` is left, and `3 * PI / 2` is top. Use `animation/slide/fade` when the slide should also fade opacity during the movement.
+The slide animation moves a block along a direction. The `animation/slide/direction` property is the direction of travel in radians: `0` moves right, `PI / 2` moves down, `PI` moves left, and `3 * PI / 2` moves up. An entrance starts on the opposite side, so `PI` enters from the right. Use `animation/slide/fade` when the slide should also fade opacity during the movement.
 
 ```kotlin highlight-android-entrance-slide
 val slideAnimation = engine.block.createAnimation(AnimationType.Slide)

@@ -9,9 +9,9 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.85.0-nightly.20261006",
-    "@imgly/plugin-print-ready-pdfs-web": "^1.85.0-nightly.20261006",
-    "@cesdk/engine": "^1.85.0-nightly.20261006",
+    "@cesdk/cesdk-js": "^1.85.0-nightly.20261007",
+    "@imgly/plugin-print-ready-pdfs-web": "^1.85.0-nightly.20261007",
+    "@cesdk/engine": "^1.85.0-nightly.20261007",
     "@imgly/pdf-conversion-utils": "^0.1.0"
   },
   "devDependencies": {

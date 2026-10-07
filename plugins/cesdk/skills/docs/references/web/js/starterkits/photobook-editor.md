@@ -12,11 +12,11 @@ A complete photobook editor with a layouts library, photo auto-fill, live design
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-photobook-editor-react-web/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/starterkit-photobook-editor-react-web/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-photobook-editor-react-web/tree/release-1.85.0-nightly.20261006)
+> - [View source on GitHub](https://github.com/imgly/starterkit-photobook-editor-react-web/tree/release-1.85.0-nightly.20261007)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/starterkit-photobook-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/starterkit-photobook-editor/index.html)
 
 ***
 
@@ -114,7 +114,7 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261006/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -274,15 +274,15 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js@1.85.0-nightly.20261006
+        npm install @cesdk/cesdk-js@1.85.0-nightly.20261007
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261006
+        pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261007
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js@1.85.0-nightly.20261006
+        yarn add @cesdk/cesdk-js@1.85.0-nightly.20261007
       </TerminalTab>
     </TerminalTabs>
 
@@ -312,7 +312,7 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261006/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -381,15 +381,15 @@ This guide assumes basic familiarity with React and TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/node-native@1.85.0-nightly.20261006 express dotenv
+        npm install @cesdk/node-native@1.85.0-nightly.20261007 express dotenv
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/node-native@1.85.0-nightly.20261006 express dotenv
+        pnpm add @cesdk/node-native@1.85.0-nightly.20261007 express dotenv
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/node-native@1.85.0-nightly.20261006 express dotenv
+        yarn add @cesdk/node-native@1.85.0-nightly.20261007 express dotenv
       </TerminalTab>
     </TerminalTabs>
 

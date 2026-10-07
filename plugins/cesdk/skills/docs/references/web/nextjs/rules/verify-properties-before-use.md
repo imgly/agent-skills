@@ -56,7 +56,7 @@ When configuring animations, always check available properties per animation typ
 
 ```ts
 const inAnim = engine.block.getInAnimation(block);
-if (inAnim !== null) {
+if (engine.block.isValid(inAnim)) {
   const props = engine.block.findAllProperties(inAnim);
 
   if (props.includes('animationEasing')) {

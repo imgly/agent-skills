@@ -8,17 +8,17 @@ Add text and image watermarks to designs programmatically using CE.SDK's block A
 
 ![Add Watermark example showing a design with text and logo watermarks](https://img.ly/docs/cesdk/./assets/browser.hero.webp)
 
-> **Reading time:** 8 minutes
+> **Reading time:** 10 minutes
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-edit-image-add-watermark-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-edit-image-add-watermark-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-edit-image-add-watermark-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-edit-image-add-watermark-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-edit-image-add-watermark-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-edit-image-add-watermark-browser/index.html)
 
 Watermarks protect intellectual property, indicate ownership, add branding, or mark content as drafts. CE.SDK supports two types of watermarks: **text watermarks** created from text blocks for copyright notices and brand names, and **image watermarks** created from graphic blocks with image fills for logos and symbols.
 
@@ -433,6 +433,81 @@ After adding watermarks, we add an export button to the navigation bar that down
 
 We use `cesdk.ui.insertOrderComponent()` to add a custom button to the editor's navigation bar. When clicked, `engine.block.export()` renders the page with all watermarks and returns a blob that `cesdk.utils.downloadFile()` downloads to the user's device. Supported formats include PNG, JPEG, and WebP.
 
+## Labeling AI-Generated Content on Export
+
+If regulatory or platform rules require you to label images that contain AI-generated material, you can apply a watermark at export time using the same text-watermark technique you used above.
+
+CE.SDK does not mark AI-generated blocks for you. A quick-action generation does write a `ly.img.ai.metadata` key while it runs, but that key only tracks the in-progress generation and is removed once the user applies or cancels the result. It cannot tell you later that a block came from AI, so you record the origin yourself.
+
+### Recording the Origin of Generated Blocks
+
+Tag blocks with your own metadata key at the moment they are generated. A generation middleware from `@imgly/plugin-ai-generation-web` receives the blocks a generation operates on in `options.blockIds`, which you can write to with `engine.block.setMetadata()`.
+
+```typescript
+import type { Middleware, Output } from '@imgly/plugin-ai-generation-web';
+
+const AI_ORIGIN_KEY = 'my.app.aiGenerated';
+
+function markGeneratedBlocks<I, O extends Output>(): Middleware<I, O> {
+  return async (input, options, next) => {
+    const result = await next(input, options);
+
+    options.blockIds?.forEach((blockId) => {
+      options.engine.block.setMetadata(blockId, AI_ORIGIN_KEY, 'true');
+    });
+
+    return result;
+  };
+}
+```
+
+Prefix keys with your own namespace, such as `my.app`, so they cannot collide with CE.SDK's own `ly.img.*` keys. Middlewares are configured per provider in your AI plugin configuration: add `markGeneratedBlocks()` to the provider's `middlewares` option.
+
+The tag is written when the generation completes, not when the user accepts it. For quick actions that show a confirmation step, clear the key again if the user cancels, or a reverted block stays marked as AI-generated.
+
+### Adding the Label at Export
+
+With the origin recorded, the export can add a label only when it is needed. Write a handler that checks the blocks the engine knows about, creates a text watermark when any of them carries your key, and removes that temporary label again after the export.
+
+```typescript
+async function exportWithAILabel() {
+  const hasGeneratedContent = engine.block
+    .findAll()
+    .some((block) => engine.block.hasMetadata(block, AI_ORIGIN_KEY));
+
+  let label: number | undefined;
+
+  try {
+    if (hasGeneratedContent) {
+      label = engine.block.create('text');
+      engine.block.setString(label, 'text/text', 'AI-generated');
+      engine.block.setTextFontSize(label, 16);
+      engine.block.setTextColor(label, { r: 1, g: 1, b: 1, a: 1 });
+      engine.block.setOpacity(label, 0.7);
+      engine.block.setWidthMode(label, 'Auto');
+      engine.block.setHeightMode(label, 'Auto');
+      engine.block.appendChild(page, label);
+      engine.block.setPositionX(label, 8);
+      engine.block.setPositionY(label, 8);
+    }
+
+    const blob = await engine.block.export(page, {
+      mimeType: 'image/png'
+    });
+
+    await cesdk.utils.downloadFile(blob, 'image/png');
+  } finally {
+    if (label != null) {
+      engine.block.destroy(label);
+    }
+  }
+}
+```
+
+Point the `onClick` of the export button you registered above at `exportWithAILabel`, and keep that single button, so no export path skips the label. The `finally` block removes the label even when the export fails, so a failed export never leaves the label behind in the design.
+
+> **Note:** The label is drawn into the exported image as pixels. Block metadata belongs to the scene, so your `my.app.aiGenerated` key is not written into the exported file.
+
 ## Troubleshooting
 
 **Watermark not visible**
@@ -473,6 +548,8 @@ We use `cesdk.ui.insertOrderComponent()` to add a custom button to the editor's 
 | `engine.block.setPositionY(id, value)` | Set vertical position |
 | `engine.block.setWidth(id, value)` | Set block width |
 | `engine.block.setHeight(id, value)` | Set block height |
+| `engine.block.setWidthMode(id, mode)` | Set how block width is resolved |
+| `engine.block.setHeightMode(id, mode)` | Set how block height is resolved |
 | `engine.block.getFrameWidth(id)` | Get rendered frame width |
 | `engine.block.getFrameHeight(id)` | Get rendered frame height |
 | `engine.block.setDropShadowEnabled(id, enabled)` | Enable drop shadow |
@@ -481,6 +558,10 @@ We use `cesdk.ui.insertOrderComponent()` to add a custom button to the editor's 
 | `engine.block.setDropShadowBlurRadiusX(id, radius)` | Set shadow blur |
 | `engine.block.setDropShadowColor(id, color)` | Set shadow color |
 | `engine.block.export(id, options)` | Export block to blob |
+| `engine.block.findAll()` | Get all blocks known to the engine |
+| `engine.block.setMetadata(id, key, value)` | Attach a custom key-value pair to a block |
+| `engine.block.hasMetadata(id, key)` | Check whether a block has a value for a key |
+| `engine.block.destroy(id)` | Delete a block and its children |
 | `cesdk.ui.insertOrderComponent(options, component)` | Add custom button to navigation bar |
 | `cesdk.utils.downloadFile(blob, mimeType)` | Download blob as file |
 
@@ -489,6 +570,8 @@ We use `cesdk.ui.insertOrderComponent()` to add a custom button to the editor's 
 - [Text Styling](./text/styling.md) — Style text blocks with fonts, colors, and effects
 - [Export Overview](./export-save-publish/export/overview.md) — Export options and formats for watermarked images
 - [Crop Images](./edit-image/transform/crop.md) — Transform images before watermarking
+- [AI Features](./user-interface/ai-integration.md) — Add AI generation to the editor and configure provider middlewares
+- [Store Custom Metadata](./export-save-publish/store-custom-metadata.md) — Attach and manage your own key-value data on blocks
 
 
 

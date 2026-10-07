@@ -10,11 +10,11 @@ Add motion to design blocks with entrance, exit, and loop animations using CE.SD
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-animation-create-base-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-animation-create-base-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-animation-create-base-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-animation-create-base-server-js)
 
 Base animations in CE.SDK add motion to design blocks through entrance (In), exit (Out), and loop animations. Animations are created as separate objects and attached to blocks, enabling reusable configurations across multiple elements.
 
@@ -206,7 +206,7 @@ async function main() {
     );
 
     // Replace in animation (destroy old one first to avoid memory leaks)
-    if (currentIn !== 0) {
+    if (engine.block.isValid(currentIn)) {
       engine.block.destroy(currentIn);
     }
     const newInAnimation = engine.block.createAnimation('wipe');
@@ -377,7 +377,7 @@ Animation objects must be properly managed to avoid memory leaks. When replacing
     );
 
     // Replace in animation (destroy old one first to avoid memory leaks)
-    if (currentIn !== 0) {
+    if (engine.block.isValid(currentIn)) {
       engine.block.destroy(currentIn);
     }
     const newInAnimation = engine.block.createAnimation('wipe');
@@ -385,7 +385,7 @@ Animation objects must be properly managed to avoid memory leaks. When replacing
     engine.block.setDuration(newInAnimation, 1.0);
 ```
 
-A return value of `0` indicates no animation is attached. Destroying a design block also destroys all its attached animations, but detached animations must be destroyed manually.
+An empty slot returns an invalid block, not `0`. Check the result with `engine.block.isValid()` before you use it. Destroying a design block also destroys all its attached animations, but detached animations must be destroyed manually.
 
 ## Easing Functions
 
@@ -428,23 +428,24 @@ engine.dispose();
 
 ## API Reference
 
-| Method                       | Description                                        |
-| ---------------------------- | -------------------------------------------------- |
-| `createAnimation(type)`      | Create a new animation instance                    |
-| `supportsAnimation(block)`   | Check if block supports animations                 |
-| `setInAnimation(block, anim)`| Apply entrance animation to block                  |
-| `setOutAnimation(block, anim)` | Apply exit animation to block                    |
-| `setLoopAnimation(block, anim)` | Apply loop animation to block                   |
-| `getInAnimation(block)`      | Get entrance animation (returns 0 if none)         |
-| `getOutAnimation(block)`     | Get exit animation (returns 0 if none)             |
-| `getLoopAnimation(block)`    | Get loop animation (returns 0 if none)             |
-| `setDuration(anim, seconds)` | Set animation duration                             |
-| `getDuration(anim)`          | Get animation duration                             |
-| `setEnum(anim, prop, value)` | Set enum property (easing, etc.)                   |
-| `setFloat(anim, prop, value)`| Set float property (direction, etc.)               |
-| `findAllProperties(anim)`    | Get all available properties for animation         |
-| `getEnumValues(prop)`        | Get available values for enum property             |
-| `destroy(anim)`              | Destroy animation instance                         |
+| Method                          | Description                                                   |
+| ------------------------------- | ------------------------------------------------------------- |
+| `createAnimation(type)`         | Create a new animation instance                               |
+| `supportsAnimation(block)`      | Check if block supports animations                            |
+| `setInAnimation(block, anim)`   | Apply entrance animation to block                             |
+| `setOutAnimation(block, anim)`  | Apply exit animation to block                                 |
+| `setLoopAnimation(block, anim)` | Apply loop animation to block                                 |
+| `getInAnimation(block)`         | Get entrance animation (invalid block if none)                |
+| `getOutAnimation(block)`        | Get exit animation (invalid block if none)                    |
+| `getLoopAnimation(block)`       | Get loop animation (invalid block if none)                    |
+| `isValid(block)`                | Check that a handle is a live block (false for an empty slot) |
+| `setDuration(anim, seconds)`    | Set animation duration                                        |
+| `getDuration(anim)`             | Get animation duration                                        |
+| `setEnum(anim, prop, value)`    | Set enum property (easing, etc.)                              |
+| `setFloat(anim, prop, value)`   | Set float property (direction, etc.)                          |
+| `findAllProperties(anim)`       | Get all available properties for animation                    |
+| `getEnumValues(prop)`           | Get available values for enum property                        |
+| `destroy(anim)`                 | Destroy animation instance                                    |
 
 
 

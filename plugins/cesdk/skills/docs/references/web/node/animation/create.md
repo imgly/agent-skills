@@ -10,11 +10,11 @@ Add motion to design elements by creating entrance, exit, and loop animations us
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-animation-create-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-animation-create-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-animation-create-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-animation-create-server-js)
 
 <NodejsVideoExportNotice {...props} />
 
@@ -206,7 +206,7 @@ async function main(): Promise<void> {
     // ===== Animation Properties Demo =====
     // Create slide animation and configure direction for title
     const titleInAnim = engine.block.getInAnimation(titleBlock);
-    if (titleInAnim !== 0) {
+    if (engine.block.isValid(titleInAnim)) {
       // Discover all available properties for this animation
       const properties = engine.block.findAllProperties(titleInAnim);
       console.log('Slide animation properties:', properties);
@@ -366,7 +366,7 @@ Each animation type exposes configurable properties. We use `engine.block.setFlo
 ```typescript highlight-animation-properties
 // Create slide animation and configure direction for title
 const titleInAnim = engine.block.getInAnimation(titleBlock);
-if (titleInAnim !== 0) {
+if (engine.block.isValid(titleInAnim)) {
   // Discover all available properties for this animation
   const properties = engine.block.findAllProperties(titleInAnim);
   console.log('Slide animation properties:', properties);
@@ -375,7 +375,7 @@ if (titleInAnim !== 0) {
 
 Common configurable properties include:
 
-- **Direction**: Set in radians for slide animations (0=right, PI/2=bottom, PI=left, 3\*PI/2=top)
+- **Direction**: The direction of travel in radians for slide animations (0 moves right, PI/2 down, PI left, 3\*PI/2 up). An entrance starts on the opposite side.
 - **Easing**: Linear, EaseIn, EaseOut, EaseInOut
 
 ## Text Animations
@@ -419,7 +419,7 @@ The `textAnimationOverlap` property (0 to 1) controls the cascading effect. A va
 
 ## Managing Animation Lifecycle
 
-We can retrieve current animations using `engine.block.getInAnimation()`, `engine.block.getOutAnimation()`, and `engine.block.getLoopAnimation()`. A return value of 0 indicates no animation is attached.
+We can retrieve current animations using `engine.block.getInAnimation()`, `engine.block.getOutAnimation()`, and `engine.block.getLoopAnimation()`. An empty slot returns an invalid block, not `0`. Check the result with `engine.block.isValid()` before you use it.
 
 ```typescript highlight-manage-lifecycle
     // Example: Retrieve animations to verify they're attached
@@ -473,7 +473,7 @@ When replacing an animation, destroy the old animation instance before creating 
 
 ```typescript
 const current = engine.block.getInAnimation(block);
-if (current !== 0) {
+if (engine.block.isValid(current)) {
   engine.block.destroy(current);
 }
 const newAnim = engine.block.createAnimation('fade');
@@ -486,23 +486,24 @@ If entrance and exit animations seem to overlap incorrectly, CE.SDK automaticall
 
 ## API Reference
 
-| Method                                        | Description                                |
-| --------------------------------------------- | ------------------------------------------ |
-| `engine.block.createAnimation(type)`          | Create animation instance                  |
-| `engine.block.supportsAnimation(block)`       | Check if block supports animations         |
-| `engine.block.setInAnimation(block, anim)`    | Attach entrance animation                  |
-| `engine.block.setOutAnimation(block, anim)`   | Attach exit animation                      |
-| `engine.block.setLoopAnimation(block, anim)`  | Attach loop animation                      |
-| `engine.block.getInAnimation(block)`          | Get entrance animation (0 if none)         |
-| `engine.block.getOutAnimation(block)`         | Get exit animation (0 if none)             |
-| `engine.block.getLoopAnimation(block)`        | Get loop animation (0 if none)             |
-| `engine.block.setDuration(anim, seconds)`     | Set animation duration                     |
-| `engine.block.setEnum(anim, prop, value)`     | Set enum property (easing, writing style)  |
-| `engine.block.setFloat(anim, prop, value)`    | Set float property (direction, overlap)    |
-| `engine.block.findAllProperties(anim)`        | List available properties                  |
-| `engine.block.getEnumValues(prop)`            | Get enum options                           |
-| `engine.block.destroy(anim)`                  | Destroy animation instance                 |
-| `engine.scene.saveToString()`                 | Save scene to string                       |
+| Method                                       | Description                                                   |
+| -------------------------------------------- | ------------------------------------------------------------- |
+| `engine.block.createAnimation(type)`         | Create animation instance                                     |
+| `engine.block.supportsAnimation(block)`      | Check if block supports animations                            |
+| `engine.block.setInAnimation(block, anim)`   | Attach entrance animation                                     |
+| `engine.block.setOutAnimation(block, anim)`  | Attach exit animation                                         |
+| `engine.block.setLoopAnimation(block, anim)` | Attach loop animation                                         |
+| `engine.block.getInAnimation(block)`         | Get entrance animation (invalid block if none)                |
+| `engine.block.getOutAnimation(block)`        | Get exit animation (invalid block if none)                    |
+| `engine.block.getLoopAnimation(block)`       | Get loop animation (invalid block if none)                    |
+| `engine.block.isValid(block)`                | Check that a handle is a live block (false for an empty slot) |
+| `engine.block.setDuration(anim, seconds)`    | Set animation duration                                        |
+| `engine.block.setEnum(anim, prop, value)`    | Set enum property (easing, writing style)                     |
+| `engine.block.setFloat(anim, prop, value)`   | Set float property (direction, overlap)                       |
+| `engine.block.findAllProperties(anim)`       | List available properties                                     |
+| `engine.block.getEnumValues(prop)`           | Get enum options                                              |
+| `engine.block.destroy(anim)`                 | Destroy animation instance                                    |
+| `engine.scene.saveToString()`                | Save scene to string                                          |
 
 
 

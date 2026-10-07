@@ -51,7 +51,7 @@ CE.SDK’s Engine needs a **WebGL-capable environment**. When you ship a headles
 1. Install the Engine package:
 
    ```bash
-   npm install @cesdk/engine@1.85.0-nightly.20261006
+   npm install @cesdk/engine@1.85.0-nightly.20261007
    ```
 
 ````
@@ -61,7 +61,7 @@ CE.SDK’s Engine needs a **WebGL-capable environment**. When you ship a headles
    ```ts
    const config = {
      license: '<YOUR_LICENSE_KEY>',
-     baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.85.0-nightly.20261006/assets'
+     baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.85.0-nightly.20261007/assets'
    };
    
 ````
@@ -79,7 +79,7 @@ import CreativeEngine from '@cesdk/engine';
 
 const config = {
   license: '<YOUR_LICENSE_KEY>',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.85.0-nightly.20261006/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.85.0-nightly.20261007/assets'
 };
 
 let engine;
@@ -207,7 +207,7 @@ Once that element is in the DOM, the snippet’s querySelector('#download-headle
 
   const config = {
     license: '<YOUR_LICENSE_KEY>',
-    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.85.0-nightly.20261006/assets'
+    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.85.0-nightly.20261007/assets'
   };
 
   let engine;

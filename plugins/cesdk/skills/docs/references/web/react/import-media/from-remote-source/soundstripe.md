@@ -14,13 +14,13 @@ designs.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-import-media-from-remote-source-soundstripe-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-import-media-from-remote-source-soundstripe-browser/index.html)
 
 Soundstripe provides a vast library of high-quality, royalty-free audio tracks through their API. This guide shows you how to integrate Soundstripe's audio search and browsing capabilities directly into CE.SDK using the official `@imgly/plugin-soundstripe-web` plugin. You'll learn how to set up Soundstripe API authentication (including proxy server requirements for production), implement search and discovery features, configure the asset library UI, and handle automatic URI refresh for expired audio links.
 
@@ -213,11 +213,11 @@ The proxy approach handles authentication securely, prevents exposing API keys i
 Install the plugin package using a package manager:
 
 ```bash
-pnpm add @imgly/plugin-soundstripe-web@1.85.0-nightly.20261006
+pnpm add @imgly/plugin-soundstripe-web@1.85.0-nightly.20261007
 # or
-yarn add @imgly/plugin-soundstripe-web@1.85.0-nightly.20261006
+yarn add @imgly/plugin-soundstripe-web@1.85.0-nightly.20261007
 # or
-npm install @imgly/plugin-soundstripe-web@1.85.0-nightly.20261006
+npm install @imgly/plugin-soundstripe-web@1.85.0-nightly.20261007
 ```
 
 ## Configuring the Plugin

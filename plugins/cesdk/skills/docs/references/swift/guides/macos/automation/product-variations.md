@@ -116,7 +116,7 @@ Generate multiple product variants — different colors, sizes or copy — from 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261006/engine-guides-product-variations)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261007/engine-guides-product-variations)
 
 ## What You'll Learn
 

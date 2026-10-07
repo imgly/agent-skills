@@ -45,7 +45,7 @@ Force trim lets you enforce minimum and maximum video durations in the timeline 
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261006/editor-guides-video-force-trim)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261007/editor-guides-video-force-trim)
 
 ## Configure duration constraints
 

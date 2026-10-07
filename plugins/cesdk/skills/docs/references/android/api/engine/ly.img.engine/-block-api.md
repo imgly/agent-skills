@@ -1478,7 +1478,7 @@ Query a block's width.
 abstract fun group(blocks: List<DesignBlock>): DesignBlock
 ```
 
-Group blocks together.
+Group blocks together. The blocks keep their times on the timeline. The group spans from the earliest start to the latest end of the blocks, and their time offsets become relative to the group.
 
 ### hasBackgroundColor
 
@@ -3340,4 +3340,4 @@ Toggles the text decoration underline of the given block. Required scope: "text/
 abstract fun ungroup(block: DesignBlock)
 ```
 
-Ungroups a group.
+Ungroups a group. The children keep their times on the timeline, so their time offsets become relative to their new parent.

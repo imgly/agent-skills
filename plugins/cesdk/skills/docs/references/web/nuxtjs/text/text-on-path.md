@@ -12,13 +12,13 @@ Curve a text block so its characters follow an SVG path — an arch, a full circ
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261006.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261006/guides-text-text-on-path-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-text-text-on-path-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261006/guides-text-text-on-path-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-text-text-on-path-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261006/examples/guides-text-text-on-path-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-text-text-on-path-browser/index.html)
 
 Text on a path makes a text block's baseline follow an SVG curve instead of a straight line — useful for badges, circular seals, and arched headlines. It works both through the editor's Path inspector and the engine API, applies to text blocks only, and disables word wrapping (line breaks collapse to spaces) while a path is active. Setting a path resizes the block to match the path's aspect ratio.
 
