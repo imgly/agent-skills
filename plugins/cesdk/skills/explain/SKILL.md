@@ -13,13 +13,13 @@ description: |
   <example>
   Context: User wants to understand how text layers work
   user: "Explain how text layers work in CE.SDK"
-  assistant: "I'll use /cesdk:explain to generate a detailed explanation."
+  assistant: "I'll use /imgly-sdk:explain to generate a detailed explanation."
   </example>
 
   <example>
   Context: User needs a concept explained
   user: "How does the block hierarchy work for video editing?"
-  assistant: "Let me use /cesdk:explain to explain video block hierarchy."
+  assistant: "Let me use /imgly-sdk:explain to explain video block hierarchy."
   </example>
 argument-hint: "[topic or question]"
 ---
@@ -80,7 +80,7 @@ If no `package.json` exists (new project) or detection is unclear, ask the user:
 
 ## Guidelines
 
-1. **Reference the docs first**: Use `/cesdk:docs-{framework}` to look up accurate information — bundled docs are version-verified and more reliable than pre-trained knowledge
+1. **Reference the docs first**: Use `/imgly-sdk:docs-{framework}` to look up accurate information — bundled docs are version-verified and more reliable than pre-trained knowledge
 2. **Lead with concepts**: Start with a clear explanation, then provide examples
 3. **Platform-specific**: Code must be valid for the detected framework
 4. **Complete examples**: Include imports, setup, and error handling
@@ -88,7 +88,7 @@ If no `package.json` exists (new project) or detection is unclear, ask the user:
 
 ## Documentation Access
 
-Use the `/cesdk:docs-{framework}` skill to look up bundled documentation (e.g. `/cesdk:docs-react`), or use Glob:
+Use the `/imgly-sdk:docs-{framework}` skill to look up bundled documentation (e.g. `/imgly-sdk:docs-react`), or use Glob:
 `**/skills/docs-{framework}/<path>.md`
 
 ## Output Format
@@ -125,5 +125,5 @@ workflows like asset loading pipelines, rendering lifecycles, or block hierarchi
 
 ## Related Skills
 
-- Use \`/cesdk:docs-{framework}\` for source documentation and API reference (e.g. `/cesdk:docs-react`)
-- Use \`/cesdk:build\` when the user wants implementation, not just explanation
+- Use \`/imgly-sdk:docs-{framework}\` for source documentation and API reference (e.g. `/imgly-sdk:docs-react`)
+- Use \`/imgly-sdk:build\` when the user wants implementation, not just explanation

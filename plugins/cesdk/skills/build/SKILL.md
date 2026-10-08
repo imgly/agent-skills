@@ -14,13 +14,13 @@ description: |
   <example>
   Context: User wants to build a Web app with CE.SDK
   user: "Help me set up CE.SDK in my project"
-  assistant: "I'll use /cesdk:build to help set this up."
+  assistant: "I'll use /imgly-sdk:build to help set this up."
   </example>
 
   <example>
   Context: User wants to add a specific feature
   user: "Add text overlays to my image editor"
-  assistant: "Let me use /cesdk:build to implement text overlays."
+  assistant: "Let me use /imgly-sdk:build to implement text overlays."
   </example>
 argument-hint: "[feature or task]"
 ---
@@ -89,7 +89,7 @@ If no `package.json` exists (new project) or detection is unclear, ask the user:
 
 ## Documentation Access
 
-Use the `/cesdk:docs-{framework}` skill to look up bundled documentation (e.g. `/cesdk:docs-react`), or use Glob:
+Use the `/imgly-sdk:docs-{framework}` skill to look up bundled documentation (e.g. `/imgly-sdk:docs-react`), or use Glob:
 `**/skills/docs-{framework}/<path>.md`
 
 Check the rules directory for known pitfalls: `**/skills/docs-{framework}/rules/*.md`
@@ -97,7 +97,7 @@ Check the rules directory for known pitfalls: `**/skills/docs-{framework}/rules/
 ## Workflow
 
 1. **Detect framework**: Identify the framework from project files
-2. **Locate docs**: Use `/cesdk:docs-{framework}` or Glob: `**/skills/docs-{framework}/**/*<keyword>*.md`
+2. **Locate docs**: Use `/imgly-sdk:docs-{framework}` or Glob: `**/skills/docs-{framework}/**/*<keyword>*.md`
 3. **Check for pitfalls**: Read `**/skills/docs-{framework}/rules/common-pitfalls.md`
 4. **Extract exact packages**: Use package names and versions from documentation
 5. **Provide solution**: Lead with working code, then explain
@@ -279,6 +279,6 @@ automation workflows, and "implement video export" or "create a design tool" que
 
 ## Related Skills
 
-- Use \`/cesdk:docs-{framework}\` to look up documentation and API reference (e.g. `/cesdk:docs-react`)
-- Use \`/cesdk:explain\` to understand concepts before implementing
+- Use \`/imgly-sdk:docs-{framework}\` to look up documentation and API reference (e.g. `/imgly-sdk:docs-react`)
+- Use \`/imgly-sdk:explain\` to understand concepts before implementing
 - Use the builder agent for autonomous multi-step project scaffolding

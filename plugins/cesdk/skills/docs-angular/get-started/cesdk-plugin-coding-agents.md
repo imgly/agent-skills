@@ -15,7 +15,7 @@ The CE.SDK plugin is the one-command way to give your AI coding agent bundled do
 A plugin is the distribution unit that bundles several agent capabilities behind one install. Depending on the agent, a plugin can package any combination of:
 
 - **Skills** — procedural knowledge and reference your agent loads on demand to work accurately
-- **Slash commands** — actions you invoke directly, like `/cesdk:build`
+- **Slash commands** — actions you invoke directly, like `/imgly-sdk:build`
 - **Subagents** — specialized agents with their own tools and persona for a focused task
 - **MCP servers** — live connections to external tools and data
 - **Hooks** — handlers that run at lifecycle points, such as before or after a tool call
@@ -25,8 +25,8 @@ The CE.SDK plugin packages documentation skills and two workflow skills. Claude 
 | Capability                      | What it gives your agent                                                                                 |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | **Documentation skills**        | The complete CE.SDK guides and API reference for each Web framework, bundled locally — no external calls |
-| **Build skill**                 | Guided code generation and project setup (`/cesdk:build`)                                                |
-| **Explain skill**               | Concept and architecture walkthroughs (`/cesdk:explain`)                                                 |
+| **Build skill**                 | Guided code generation and project setup (`/imgly-sdk:build`)                                                |
+| **Explain skill**               | Concept and architecture walkthroughs (`/imgly-sdk:explain`)                                                 |
 | **Builder agent (Claude Code)** | Autonomous scaffolding that detects your framework and implements a working CE.SDK project end to end    |
 
 For the full skill list, see [Agent Skills](./get-started/agent-skills.md). For real-time documentation search, connect the [MCP Server](./get-started/mcp-server.md).
@@ -42,7 +42,7 @@ Add the marketplace once, then install the plugin:
 claude plugin marketplace add imgly/agent-skills
 
 # Install the plugin
-claude plugin install cesdk@imgly
+claude plugin install imgly-sdk@imgly
 ```
 
 ### OpenAI Codex
@@ -51,7 +51,7 @@ Add the same marketplace, then install the plugin:
 
 ```bash
 codex plugin marketplace add imgly/agent-skills
-codex plugin add cesdk@imgly
+codex plugin add imgly-sdk@imgly
 ```
 
 ### Vercel Skills CLI (Codex, Cursor, and more)
@@ -101,9 +101,9 @@ Use the CE.SDK explain skill to describe the block hierarchy.
 Claude Code users can also invoke the same workflows with slash commands:
 
 ```text
-/cesdk:build create a photo editor with filters
-/cesdk:docs-react configuration
-/cesdk:explain how the block hierarchy works
+/imgly-sdk:build create a photo editor with filters
+/imgly-sdk:docs-react configuration
+/imgly-sdk:explain how the block hierarchy works
 ```
 
 ## Next Steps

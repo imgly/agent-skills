@@ -1,0 +1,65 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "name": "IMG.LY GmbH",
+    "url": "https://img.ly"
+  },
+  "description": "Build your own photo, video and design editor — white-label, embedded in your web app — with the IMG.LY SDK (CreativeEditor SDK, CE.SDK). Skills scaffold, implement and document custom editing experiences and creative automation for React, Vue, Svelte, Angular, Next.js, Nuxt.js, Electron, Vanilla JS and Node.js.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [
+          "CE.SDK documentation",
+          "Feature implementation",
+          "SDK integration"
+        ],
+        "category": "Developer Tools",
+        "defaultPrompt": [
+          "Build a photo editor into my web app with the IMG.LY SDK.",
+          "Explain how CE.SDK scenes, blocks and export work.",
+          "Find the CE.SDK documentation for this feature."
+        ],
+        "developerName": "IMG.LY GmbH",
+        "displayName": "IMG.LY SDK – Build Your Own Photo, Video & Design Editor",
+        "longDescription": "Build your own photo, video and design editor — white-label, embedded in your web app — with the IMG.LY SDK (CreativeEditor SDK, CE.SDK). Skills scaffold, implement and document custom editing experiences and creative automation for React, Vue, Svelte, Angular, Next.js, Nuxt.js, Electron, Vanilla JS and Node.js.",
+        "privacyPolicyURL": "https://img.ly/privacy-policy/",
+        "shortDescription": "Build your own photo, video & design editor with the IMG.LY SDK (CE.SDK).",
+        "termsOfServiceURL": "https://img.ly/tos/",
+        "websiteURL": "https://img.ly/docs/cesdk"
+      }
+    }
+  },
+  "homepage": "https://img.ly/docs/cesdk",
+  "keywords": [
+    "cesdk",
+    "imgly",
+    "img.ly",
+    "creative-editor",
+    "sdk",
+    "photo-editor",
+    "image-editor",
+    "video-editor",
+    "design-editor",
+    "canva-alternative",
+    "template-editor",
+    "print-customizer",
+    "creative-automation",
+    "white-label",
+    "embeddable-editor",
+    "javascript",
+    "typescript",
+    "react",
+    "nextjs",
+    "vue",
+    "nuxtjs",
+    "angular",
+    "svelte",
+    "sveltekit",
+    "electron",
+    "node"
+  ],
+  "license": "MIT AND LicenseRef-IMGLY-Terms-of-Service",
+  "name": "imgly-sdk",
+  "repository": "https://github.com/imgly/agent-skills",
+  "version": "1.83.0"
+}

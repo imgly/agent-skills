@@ -12,13 +12,13 @@ description: |
   <example>
   Context: User asks about React configuration
   user: "How do I configure the editor in React?"
-  assistant: "I'll use /cesdk:docs-react to look up configuration options."
+  assistant: "I'll use /imgly-sdk:docs-react to look up configuration options."
   </example>
 
   <example>
   Context: User needs React component setup
   user: "How do I embed CE.SDK in a React component?"
-  assistant: "Let me use /cesdk:docs-react to find the relevant documentation."
+  assistant: "Let me use /imgly-sdk:docs-react to find the relevant documentation."
   </example>
 argument-hint: "[search-topic]"
 ---
@@ -115,5 +115,5 @@ return types, and "engine.block" style queries.
 
 ## Related Skills
 
-- Use \`/cesdk:build\` when the user needs implementation help, not just docs
-- Use \`/cesdk:explain\` for conceptual explanations beyond what docs cover
+- Use \`/imgly-sdk:build\` when the user needs implementation help, not just docs
+- Use \`/imgly-sdk:explain\` for conceptual explanations beyond what docs cover

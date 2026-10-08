@@ -12,13 +12,13 @@ description: |
   <example>
   Context: User asks about Nuxt.js configuration
   user: "How do I configure the editor in Nuxt.js?"
-  assistant: "I'll use /cesdk:docs-nuxtjs to look up configuration options."
+  assistant: "I'll use /imgly-sdk:docs-nuxtjs to look up configuration options."
   </example>
 
   <example>
   Context: User needs Nuxt.js integration
   user: "How do I use CE.SDK in a Nuxt.js page?"
-  assistant: "Let me use /cesdk:docs-nuxtjs to find the relevant documentation."
+  assistant: "Let me use /imgly-sdk:docs-nuxtjs to find the relevant documentation."
   </example>
 argument-hint: "[search-topic]"
 ---
@@ -115,5 +115,5 @@ return types, and "engine.block" style queries.
 
 ## Related Skills
 
-- Use \`/cesdk:build\` when the user needs implementation help, not just docs
-- Use \`/cesdk:explain\` for conceptual explanations beyond what docs cover
+- Use \`/imgly-sdk:build\` when the user needs implementation help, not just docs
+- Use \`/imgly-sdk:explain\` for conceptual explanations beyond what docs cover

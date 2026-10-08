@@ -1,4 +1,6 @@
-# CE.SDK Agent Skills
+# IMG.LY SDK – Build Your Own Photo, Video & Design Editor
+
+Build your own photo, video and design editor — white-label, embedded in your web app — with the IMG.LY SDK (CreativeEditor SDK, CE.SDK). Skills scaffold, implement and document custom editing experiences and creative automation for React, Vue, Svelte, Angular, Next.js, Nuxt.js, Electron, Vanilla JS and Node.js.
 
 Give your AI coding assistant expert-level knowledge of CreativeEditor SDK. Build photo editors, video editors, and design tools by describing what you want.
 
@@ -51,7 +53,7 @@ Add the marketplace and install the plugin:
 claude plugin marketplace add imgly/agent-skills
 
 # Install the plugin
-claude plugin install cesdk@imgly
+claude plugin install imgly-sdk@imgly
 
 # Install native plugins
 claude plugin install cesdk-swift@imgly
@@ -67,7 +69,7 @@ Add the same marketplace and install the plugin in Codex:
 codex plugin marketplace add imgly/agent-skills
 
 # Install the plugin
-codex plugin add cesdk@imgly
+codex plugin add imgly-sdk@imgly
 
 # Install native plugins
 codex plugin add cesdk-swift@imgly

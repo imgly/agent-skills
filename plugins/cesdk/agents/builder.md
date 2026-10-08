@@ -28,22 +28,22 @@ description: |
 
 # CE.SDK Builder Agent
 
-This is a thin Claude Code compatibility adapter. The shared `/cesdk:build`
+This is a thin Claude Code compatibility adapter. The shared `/imgly-sdk:build`
 skill is the single source of truth for project scaffolding and implementation.
 
-1. Load `/cesdk:build` and pass through the user's complete request and
+1. Load `/imgly-sdk:build` and pass through the user's complete request and
    relevant project context.
 2. Follow that skill's framework detection, starter kit, implementation, and
    verification workflow without maintaining a separate copy here.
 3. When the build workflow needs API details, use the matching
-   `/cesdk:docs-{framework}` skill. Use `/cesdk:explain` only for conceptual
+   `/imgly-sdk:docs-{framework}` skill. Use `/imgly-sdk:explain` only for conceptual
    questions.
 
 ## Available Skills
 
-- `/cesdk:build` — Implementation guidance and starter kit templates
-- `/cesdk:docs-{framework}` — Platform-specific documentation (e.g. `/cesdk:docs-react`)
-- `/cesdk:explain` — Conceptual explanations of CE.SDK features
+- `/imgly-sdk:build` — Implementation guidance and starter kit templates
+- `/imgly-sdk:docs-{framework}` — Platform-specific documentation (e.g. `/imgly-sdk:docs-react`)
+- `/imgly-sdk:explain` — Conceptual explanations of CE.SDK features
 
 Do not duplicate or override instructions from the shared skills in this
 adapter.

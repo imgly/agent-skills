@@ -73,7 +73,7 @@ Add the marketplace and install the plugin:
 claude plugin marketplace add imgly/agent-skills
 
 # Install the plugin
-claude plugin install cesdk@imgly
+claude plugin install imgly-sdk@imgly
 
 # Install the Swift plugin
 claude plugin install cesdk-swift@imgly
@@ -91,7 +91,7 @@ Add the same marketplace and install the plugin in Codex:
 codex plugin marketplace add imgly/agent-skills
 
 # Install the Web, Swift, or Android plugin
-codex plugin add cesdk@imgly
+codex plugin add imgly-sdk@imgly
 codex plugin add cesdk-swift@imgly
 codex plugin add cesdk-android@imgly
 ```
