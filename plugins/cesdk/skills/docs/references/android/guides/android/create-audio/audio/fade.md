@@ -140,7 +140,7 @@ and out abruptly.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261007/engine-guides-create-audio-audio-fade)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261008/engine-guides-create-audio-audio-fade)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../../engine-interface.md) guide.
@@ -188,7 +188,7 @@ Set a fade-in with `setAudioFadeIn()`. The audio ramps up from silence over the 
 engine.block.setAudioFadeIn(block = narration, duration = 2.0)
 ```
 
-Durations are in seconds and accept fractional values. Negative durations and `NaN` are clamped to `0`, which leaves the block without a fade-in instead of failing.
+Durations are in seconds and accept fractional values. Negative durations and `NaN` are clamped to `0`, which leaves the block without a fade-in instead of failing. A positive infinite duration throws an error.
 
 ## Fading Audio Out
 

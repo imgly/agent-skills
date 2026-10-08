@@ -12,13 +12,13 @@ Hide UI components using two approaches: the Feature API for disabling entire fe
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-user-interface-customization-quick-start-show-hide-components-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-user-interface-customization-quick-start-show-hide-components-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-user-interface-customization-quick-start-show-hide-components-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-user-interface-customization-quick-start-show-hide-components-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-user-interface-customization-quick-start-show-hide-components-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-user-interface-customization-quick-start-show-hide-components-browser/index.html)
 
 CE.SDK provides two ways to hide UI elements. The **Feature API** hides features globally across the entire editor—use this for broad visibility control. The **Component Order API** removes specific components from specific UI areas—use this for targeted, surgical control over individual components.
 

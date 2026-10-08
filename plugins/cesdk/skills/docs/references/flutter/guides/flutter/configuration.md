@@ -52,7 +52,7 @@ license:
     "YOUR_LICENSE", // Get your license from https://img.ly/forms/free-trial, pass null for evaluation mode with watermark
 ```
 
-- `baseUri` - the base URI used by the engine for built-in assets like emoji and fallback fonts, and by the editor for its default and demo asset sources (stickers, filters, and more). The default value points at the versioned IMG.LY CDN `https://cdn.img.ly/packages/imgly/cesdk-flutter/<version>/assets`. For production use, we recommend [downloading the assets](https://cdn.img.ly/packages/imgly/cesdk-flutter/1.85.0-nightly.20261007/imgly-assets.zip), hosting them on your own server, and setting `baseUri` to your hosted location.
+- `baseUri` - the base URI used by the engine for built-in assets like emoji and fallback fonts, and by the editor for its default and demo asset sources (stickers, filters, and more). The default value points at the versioned IMG.LY CDN `https://cdn.img.ly/packages/imgly/cesdk-flutter/<version>/assets`. For production use, we recommend [downloading the assets](https://cdn.img.ly/packages/imgly/cesdk-flutter/1.85.0-nightly.20261008/imgly-assets.zip), hosting them on your own server, and setting `baseUri` to your hosted location.
 
 ```javascript highlight-baseUri
 baseUri: "YOUR_BASE_URI",

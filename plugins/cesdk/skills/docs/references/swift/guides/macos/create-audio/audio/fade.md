@@ -84,7 +84,7 @@ API for Swift, with a duration in seconds and an optional easing curve.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261007/engine-guides-create-audio-audio-fade)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261008/engine-guides-create-audio-audio-fade)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../../engine-interface.md) guide.
@@ -128,7 +128,7 @@ Set a fade-in with `setAudioFadeIn(_:duration:easing:)`. The audio ramps up from
 try engine.block.setAudioFadeIn(audioBlock, duration: 3.0)
 ```
 
-Negative and `NaN` durations are clamped to `0`, which disables the fade.
+Negative and `NaN` durations are clamped to `0`, which disables the fade. A positive infinite duration throws an error.
 
 ## Fading Audio Out
 

@@ -12,13 +12,13 @@ Customize UI text labels in CE.SDK to match your brand voice and product termino
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-user-interface-appearance-custom-labels-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-user-interface-appearance-custom-labels-browser/index.html)
 
 ```typescript file=@cesdk_web_examples/guides-user-interface-appearance-custom-labels-browser/browser.ts reference-only
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
@@ -302,7 +302,7 @@ To find which labels you can customize, CE.SDK provides several approaches:
 The complete list of translation keys is available in the English translation file hosted on CE.SDK's CDN:
 
 ```
-https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/assets/i18n/en.json
+https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/assets/i18n/en.json
 ```
 
 This JSON file contains all translation keys with their default English values. You can search for specific labels or browse categories to find the keys you need.
@@ -491,8 +491,8 @@ cesdk.i18n.setTranslations({
 
 **Translation Files:**
 
-- English: `https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/assets/i18n/en.json`
-- German: `https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/assets/i18n/de.json`
+- English: `https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/assets/i18n/en.json`
+- German: `https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/assets/i18n/de.json`
 
 **Special Syntax:**
 

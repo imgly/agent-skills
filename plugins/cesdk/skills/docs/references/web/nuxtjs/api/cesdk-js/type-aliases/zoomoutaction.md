@@ -8,6 +8,10 @@ type ZoomOutAction = (options?) => void | Promise<void>;
 
 Action function for zooming out by one step
 
+Zoom levels are per CSS pixel, so 1 is 100% on every screen.
+`engine.scene.getZoomLevel()` is in device pixels: divide it by
+`window.devicePixelRatio` to compare it with these levels.
+
 ## Parameters
 
 | Parameter | Type | Description |

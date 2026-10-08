@@ -6287,7 +6287,7 @@ Manage time-based media like video and audio, including playback, timing, and co
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `number` | The block whose duration should be changed. |
-  | `duration` | `number` | The new duration in seconds. |
+  | `duration` | `number` | The new duration in seconds. Infinity is allowed; NaN or a negative value is an error. |
 
   #### Returns
 
@@ -7238,7 +7238,7 @@ Manage time-based media like video and audio, including playback, timing, and co
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `number` | The audio block or video fill to update. |
-  | `duration` | `number` | The fade-in duration in seconds. A value of 0 disables the fade-in and negative values are clamped to 0. |
+  | `duration` | `number` | The fade-in duration in seconds. A value of 0 disables the fade-in and negative values are clamped to 0. Positive infinity is an error. |
   | `easing?` | | `"Linear"` | `"EaseIn"` | `"EaseOut"` | `"EaseInOut"` | `"EaseInQuart"` | `"EaseOutQuart"` | `"EaseInOutQuart"` | `"EaseInQuint"` | `"EaseOutQuint"` | `"EaseInOutQuint"` | `"EaseInBack"` | `"EaseOutBack"` | `"EaseInOutBack"` | `"EaseInSpring"` | `"EaseOutSpring"` | `"EaseInOutSpring"` | The easing curve of the fade. Defaults to 'Linear'. |
 
   #### Returns
@@ -7267,7 +7267,7 @@ Manage time-based media like video and audio, including playback, timing, and co
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `number` | The audio block or video fill to update. |
-  | `duration` | `number` | The fade-out duration in seconds. A value of 0 disables the fade-out and negative values are clamped to 0. |
+  | `duration` | `number` | The fade-out duration in seconds. A value of 0 disables the fade-out and negative values are clamped to 0. Positive infinity is an error. |
   | `easing?` | | `"Linear"` | `"EaseIn"` | `"EaseOut"` | `"EaseInOut"` | `"EaseInQuart"` | `"EaseOutQuart"` | `"EaseInOutQuart"` | `"EaseInQuint"` | `"EaseOutQuint"` | `"EaseInOutQuint"` | `"EaseInBack"` | `"EaseOutBack"` | `"EaseInOutBack"` | `"EaseInSpring"` | `"EaseOutSpring"` | `"EaseInOutSpring"` | The easing curve of the fade. Defaults to 'Linear'. |
 
   #### Returns
@@ -7438,7 +7438,7 @@ Manage time-based media like video and audio, including playback, timing, and co
 
   `number`
 
-  The video width in pixels.
+  The video width in pixels, or 0 for a file without a video track.
 
   #### Signature
 
@@ -7466,7 +7466,7 @@ Manage time-based media like video and audio, including playback, timing, and co
 
   `number`
 
-  The video height in pixels.
+  The video height in pixels, or 0 for a file without a video track.
 
   #### Signature
 
@@ -7499,7 +7499,7 @@ Manage time-based media like video and audio, including playback, timing, and co
   | `timeBegin` | `number` | The start time in seconds for the thumbnail sequence. |
   | `timeEnd` | `number` | The end time in seconds for the thumbnail sequence. |
   | `numberOfFrames` | `number` | The number of frames to generate. |
-  | `onFrame` | (`frameIndex`, `result`) => `void` | A callback that receives the frame index and image data. |
+  | `onFrame` | (`frameIndex`, `result`) => `void` | A callback that receives the frame index and image data. In Node.js the image data is a plain object with the fields of `ImageData`. |
 
   #### Returns
 
@@ -13380,7 +13380,7 @@ Convenient high-level functions that combine multiple operations into single, ea
 
   #### Throws
 
-  Error if no page exists or if height exceeds 512 pixels
+  Error if no page exists, if height exceeds 512 pixels, or if there is no DOM, as in Node.js or a web worker
 
   #### Signature
 

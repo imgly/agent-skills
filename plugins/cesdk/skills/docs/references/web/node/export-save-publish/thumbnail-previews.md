@@ -12,11 +12,11 @@ array you can store or draw.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-export-save-publish-thumbnail-previews-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-export-save-publish-thumbnail-previews-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-export-save-publish-thumbnail-previews-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-export-save-publish-thumbnail-previews-server-js)
 
 `engine.block.generateAudioThumbnailSequence()` produces a waveform for an audio block or a video fill. Instead of returning everything at once, it delivers the samples in chunks through a callback as the engine reads the media, so a long clip does not block your program.
 
@@ -212,10 +212,12 @@ try {
 
 This guide covers requesting a waveform, accumulating chunks into one array, reading interleaved stereo data, and cancelling a request that is still running.
 
-> **Note:** `generateVideoThumbnailSequence()` is not available on `@cesdk/node`. It builds
-> each frame as an `ImageData`, a global that Node does not provide, so calling
-> it throws a `ReferenceError`. Use the browser version of this guide for the
-> video filmstrip and page storyboard workflows.
+> **Note:** On `@cesdk/node`, `generateVideoThumbnailSequence()` delivers the frames of a
+> page or another design block as plain objects with the fields of `ImageData`.
+> A video fill delivers an `Error` instead, because `@cesdk/node` cannot decode
+> video. `generateThumbnailAtTimeOffset()` rejects, because it needs a DOM to
+> encode the PNG. The video filmstrip needs a browser. The browser version of
+> this guide explains the filmstrip and the page storyboard.
 
 For a static preview image produced through the export pipeline, see [Create Thumbnail](./export-save-publish/create-thumbnail.md).
 
@@ -354,7 +356,7 @@ Cancel before you request a second waveform for the same block. A block handles 
 ## Performance and Limits
 
 - Requests run one after another, so several waveforms started at once complete in turn rather than in parallel.
-- A WAV file, or a `buffer://` URI, produces its waveform almost immediately. A multi-minute MP3 or AAC track takes noticeably longer.
+- A WAV file produces its waveform almost immediately, also from a `buffer://` URI. A multi-minute MP3 or AAC track takes noticeably longer.
 - Calling `forceLoadAVResource()` first is optional. Both methods wait for the media on their own, but loading it up front downloads the audio before you ask for a waveform, so the first request does not spend that time waiting.
 - Callbacks run inside the engine's update loop. Mutating the scene from inside a callback re-enters the engine, so defer that work until after the sequence completes.
 - `samplesPerChunk`, `numberOfSamples`, and `numberOfChannels` are validated as integers and throw if they are not. `samplesPerChunk` must also be greater than zero, and `numberOfChannels` must be `1` or `2`.

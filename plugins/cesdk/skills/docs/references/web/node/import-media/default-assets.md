@@ -156,11 +156,11 @@ Register CE.SDK's default asset sources from your self-hosted asset library to p
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-import-media-default-assets-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-import-media-default-assets-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-import-media-default-assets-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-import-media-default-assets-server-js)
 
 CE.SDK provides built-in asset sources for shapes, stickers, filters, effects, fonts, and sample media. This guide demonstrates registering all available asset sources from your self-hosted asset library and applying them to create a scene with a star shape, a sticker, and an image, then exporting to PNG.
 

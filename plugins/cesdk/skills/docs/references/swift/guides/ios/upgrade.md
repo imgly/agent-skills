@@ -14,6 +14,7 @@
 - [To v1.19](./to-v1-19.md) - Learn what changed in v1.19 and how to update your implementation to stay compatible.
 - [To v1.73](./to-v1-73.md) - Learn what changed in v1.73 and how to update your iOS implementation to stay compatible.
 - [To v1.77](./to-v1-77.md) - Learn what changed in v1.77 for iOS — migrate your asset sources and branch on the new engine error codes.
+- [To v1.83](./to-v1-83.md) - Learn what changed in v1.83 for iOS — the video timeline renders its tracks alone until you declare its header and buttons.
 
 
 ---

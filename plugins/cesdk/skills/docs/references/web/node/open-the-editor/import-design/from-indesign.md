@@ -10,11 +10,11 @@ Import Adobe InDesign (IDML) files into CE.SDK using Node.js, converting them in
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-open-the-editor-import-design-from-indesign-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-open-the-editor-import-design-from-indesign-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-open-the-editor-import-design-from-indesign-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-open-the-editor-import-design-from-indesign-server-js)
 
 The `@imgly/idml-importer` package converts InDesign IDML files into CE.SDK scene format, preserving design structure for distribution or further processing. This guide focuses on batch converting IDML template files at build-time using Node.js—ideal for migrating existing template libraries or integrating with CI/CD pipelines. For enabling end-user uploads in the browser, see the [browser guide](./open-the-editor/import-design/from-indesign.md).
 
@@ -331,11 +331,11 @@ This guide covers installation, setting up a conversion script, parsing IDML fil
 Install the `@imgly/idml-importer` package alongside the Node.js SDK. Server-side conversion requires `jsdom` for XML parsing:
 
 ```bash
-npm install @imgly/idml-importer @cesdk/node@1.85.0-nightly.20261007 jsdom
+npm install @imgly/idml-importer @cesdk/node@1.85.0-nightly.20261008 jsdom
 npm install --save-dev @types/jsdom
 ```
 
-Using the native Node.js package? Install `@cesdk/node-native@1.85.0-nightly.20261007` instead of `@cesdk/node` — the engine API is identical.
+Using the native Node.js package? Install `@cesdk/node-native@1.85.0-nightly.20261008` instead of `@cesdk/node` — the engine API is identical.
 
 The `jsdom` package provides the XML parsing functionality that `DOMParser` provides in browsers.
 

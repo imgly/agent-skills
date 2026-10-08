@@ -15,7 +15,7 @@ Use the switch below to choose your setup: the full **Editor** (`@cesdk/cesdk-js
   <TabItem label="Editor">
     The full editor registers asset sources through plugins imported from `@cesdk/cesdk-js/plugins`, each of which accepts a `baseURL` option.
 
-    [Download Assets (v1.85.0-nightly.20261007)](https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip)
+    [Download Assets (v1.85.0-nightly.20261008)](https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/imgly-assets.zip)
 
     ### Quick Start
 
@@ -23,11 +23,11 @@ Use the switch below to choose your setup: the full **Editor** (`@cesdk/cesdk-js
 
     ```bash
     # Download assets for current SDK version
-    curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
+    curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/imgly-assets.zip
 
     # Create versioned directory and extract assets
-    mkdir -p public/cesdk/1.85.0-nightly.20261007
-    unzip imgly-assets.zip -d public/cesdk/1.85.0-nightly.20261007/
+    mkdir -p public/cesdk/1.85.0-nightly.20261008
+    unzip imgly-assets.zip -d public/cesdk/1.85.0-nightly.20261008/
     rm imgly-assets.zip
     ```
 
@@ -216,7 +216,7 @@ Use the switch below to choose your setup: the full **Editor** (`@cesdk/cesdk-js
   <TabItem label="Headless">
     When you build your own UI on the headless `@cesdk/engine`, don't use the `@cesdk/cesdk-js/plugins` asset-source plugins—they are coupled to the editor and pull it in. Instead, set `baseURL` when initializing the engine and register each content asset source directly through the engine API.
 
-    [Download Assets (v1.85.0-nightly.20261007)](https://cdn.img.ly/packages/imgly/cesdk-engine/1.85.0-nightly.20261007/imgly-assets.zip)
+    [Download Assets (v1.85.0-nightly.20261008)](https://cdn.img.ly/packages/imgly/cesdk-engine/1.85.0-nightly.20261008/imgly-assets.zip)
 
     ### Quick Start
 
@@ -224,11 +224,11 @@ Use the switch below to choose your setup: the full **Editor** (`@cesdk/cesdk-js
 
     ```bash
     # Download assets for current SDK version
-    curl -O https://cdn.img.ly/packages/imgly/cesdk-engine/1.85.0-nightly.20261007/imgly-assets.zip
+    curl -O https://cdn.img.ly/packages/imgly/cesdk-engine/1.85.0-nightly.20261008/imgly-assets.zip
 
     # Create versioned directory and extract assets
-    mkdir -p public/cesdk/1.85.0-nightly.20261007
-    unzip imgly-assets.zip -d public/cesdk/1.85.0-nightly.20261007/
+    mkdir -p public/cesdk/1.85.0-nightly.20261008
+    unzip imgly-assets.zip -d public/cesdk/1.85.0-nightly.20261008/
     rm imgly-assets.zip
     ```
 

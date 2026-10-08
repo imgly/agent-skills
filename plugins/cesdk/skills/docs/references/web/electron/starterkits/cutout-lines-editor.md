@@ -12,13 +12,13 @@ CE.SDK's cutout plugin enables effortless creation and customization of cutout s
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-cutout-lines-editor-ts-web/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/starterkit-cutout-lines-editor-ts-web/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-cutout-lines-editor-ts-web/tree/release-1.85.0-nightly.20261007)
+> - [View source on GitHub](https://github.com/imgly/starterkit-cutout-lines-editor-ts-web/tree/release-1.85.0-nightly.20261008)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-cutout-lines-editor-ts-web/tree/release-1.85.0-nightly.20261007)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-cutout-lines-editor-ts-web/tree/release-1.85.0-nightly.20261008)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/starterkit-cutout-lines-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/starterkit-cutout-lines-editor/index.html)
 
 ***
 
@@ -79,24 +79,24 @@ Before you begin, make sure you have the following:
     ### Core Editor
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
     </TerminalTabs>
 
     ### Cutout Lines Plugin
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-cutout-library-web@1.85.0-nightly.20261007
+        npm install @imgly/plugin-cutout-library-web@1.85.0-nightly.20261008
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-cutout-library-web@1.85.0-nightly.20261007
+        pnpm add @imgly/plugin-cutout-library-web@1.85.0-nightly.20261008
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-cutout-library-web@1.85.0-nightly.20261007
+        yarn add @imgly/plugin-cutout-library-web@1.85.0-nightly.20261008
       </TerminalTab>
     </TerminalTabs>
 
@@ -106,7 +106,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/imgly-assets.zip
         unzip imgly-assets.zip -d resources/
         rm imgly-assets.zip
       </TerminalTab>
@@ -197,24 +197,24 @@ Before you begin, make sure you have the following:
     ### Core Editor
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
     </TerminalTabs>
 
     ### Cutout Lines Plugin
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @imgly/plugin-cutout-library-web@1.85.0-nightly.20261007
+        npm install @imgly/plugin-cutout-library-web@1.85.0-nightly.20261008
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @imgly/plugin-cutout-library-web@1.85.0-nightly.20261007
+        pnpm add @imgly/plugin-cutout-library-web@1.85.0-nightly.20261008
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @imgly/plugin-cutout-library-web@1.85.0-nightly.20261007
+        yarn add @imgly/plugin-cutout-library-web@1.85.0-nightly.20261008
       </TerminalTab>
     </TerminalTabs>
 
@@ -222,7 +222,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/imgly-assets.zip
         unzip imgly-assets.zip -d resources/
         rm imgly-assets.zip
       </TerminalTab>

@@ -299,7 +299,7 @@ existing list builder, and creating app-specific controls.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261007/editor-guides-configuration-inspector-bar)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261008/editor-guides-configuration-inspector-bar)
 
 ## Inspector Bar Architecture
 

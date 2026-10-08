@@ -12,13 +12,13 @@ Transform your pixel-based images into scalable vector graphics with Vectorizer 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-vectorizer-editor-ts-web/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/starterkit-vectorizer-editor-ts-web/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-vectorizer-editor-ts-web/tree/release-1.85.0-nightly.20261007)
+> - [View source on GitHub](https://github.com/imgly/starterkit-vectorizer-editor-ts-web/tree/release-1.85.0-nightly.20261008)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-vectorizer-editor-ts-web/tree/release-1.85.0-nightly.20261007)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-vectorizer-editor-ts-web/tree/release-1.85.0-nightly.20261008)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/starterkit-vectorizer-editor/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/starterkit-vectorizer-editor/index.html)
 
 ***
 
@@ -83,24 +83,24 @@ Before you begin, make sure you have the following:
     ### Core Editor
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
     </TerminalTabs>
 
     ### Vectorizer Plugin
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @imgly/plugin-vectorizer-web@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @imgly/plugin-vectorizer-web@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="yarn">yarn add @imgly/plugin-vectorizer-web@1.85.0-nightly.20261007</TerminalTab>
+      <TerminalTab label="npm">npm install @imgly/plugin-vectorizer-web@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @imgly/plugin-vectorizer-web@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="yarn">yarn add @imgly/plugin-vectorizer-web@1.85.0-nightly.20261008</TerminalTab>
     </TerminalTabs>
 
     ## Step 4: Download Assets
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/imgly-assets.zip
         unzip imgly-assets.zip -d static/
         rm imgly-assets.zip
       </TerminalTab>
@@ -187,24 +187,24 @@ Before you begin, make sure you have the following:
     ### Core Editor
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261007</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
     </TerminalTabs>
 
     ### Vectorizer Plugin
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @imgly/plugin-vectorizer-web@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @imgly/plugin-vectorizer-web@1.85.0-nightly.20261007</TerminalTab>
-      <TerminalTab label="yarn">yarn add @imgly/plugin-vectorizer-web@1.85.0-nightly.20261007</TerminalTab>
+      <TerminalTab label="npm">npm install @imgly/plugin-vectorizer-web@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @imgly/plugin-vectorizer-web@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="yarn">yarn add @imgly/plugin-vectorizer-web@1.85.0-nightly.20261008</TerminalTab>
     </TerminalTabs>
 
     ## Step 3: Download Assets
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/imgly-assets.zip
         unzip imgly-assets.zip -d static/
         rm imgly-assets.zip
       </TerminalTab>

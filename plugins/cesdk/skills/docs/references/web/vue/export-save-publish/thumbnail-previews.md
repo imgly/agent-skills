@@ -12,13 +12,13 @@ Stream timeline filmstrips, page storyboards, and audio waveforms out of CE.SDK 
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-export-save-publish-thumbnail-previews-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-export-save-publish-thumbnail-previews-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-export-save-publish-thumbnail-previews-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-export-save-publish-thumbnail-previews-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-export-save-publish-thumbnail-previews-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-export-save-publish-thumbnail-previews-browser/index.html)
 
 Two methods on `engine.block` produce sequences of previews and hand them back one piece at a time, as soon as each piece is ready:
 
@@ -949,7 +949,7 @@ For the common case of "give me a preview of the current page", there is a short
   }
 ```
 
-It always uses the current page, accepts a `height` of 512 or less, and works in the browser only — not in Node.
+It always uses the current page and accepts a `height` of 512 or less. It needs a DOM to encode the PNG, so it rejects in Node and in a web worker.
 
 ## Cancel Generation
 
@@ -1044,7 +1044,7 @@ Always cancel before you request the same block again. A block handles one reque
 | --- | --- |
 | `engine.block.generateVideoThumbnailSequence(id: DesignBlockId, thumbnailHeight: number, timeBegin: number, timeEnd: number, numberOfFrames: number, onFrame: (frameIndex: number, result: ImageData \| Error) => void): () => void` | Streams image frames across a time range from a video fill or a design block. Returns a cancel function. |
 | `engine.block.generateAudioThumbnailSequence(id: DesignBlockId, samplesPerChunk: number, timeBegin: number, timeEnd: number, numberOfSamples: number, numberOfChannels: number, onChunk: (chunkIndex: number, result: Float32Array \| Error) => void): () => void` | Streams waveform chunks from an audio block or a video fill. Returns a cancel function. |
-| `engine.block.generateThumbnailAtTimeOffset(height: number, time: number): Promise<Blob>` | Browser-only shortcut that resolves with one PNG of the current page at a point in time. `height` must be 512 or less. |
+| `engine.block.generateThumbnailAtTimeOffset(height: number, time: number): Promise<Blob>` | Resolves with one PNG of the current page at a point in time. `height` must be 512 or less. Needs a DOM, so it rejects in Node and in a web worker. |
 | `engine.block.forceLoadAVResource(id: DesignBlockId): Promise<void>` | Downloads an audio or video resource up front, so the first preview request does not wait for it. |
 | `engine.block.getAVResourceTotalDuration(id: DesignBlockId): number` | Returns the full duration of a video fill's or audio block's media file, in seconds. |
 

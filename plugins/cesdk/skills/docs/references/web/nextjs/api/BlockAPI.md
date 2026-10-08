@@ -901,7 +901,7 @@ setDuration(id: DesignBlockId, duration: number): void
 
 **Parameters:**
 - `id` - The block whose duration should be changed.
-- `duration` - The new duration in seconds.
+- `duration` - The new duration in seconds. Infinity is allowed; NaN or a negative value is an error.
 
 ### getDuration()
 
@@ -1344,7 +1344,7 @@ setAudioFadeIn(id: DesignBlockId, duration: number, easing?: AnimationEasing): v
 
 **Parameters:**
 - `id` - The audio block or video fill to update.
-- `duration` - The fade-in duration in seconds. A value of 0 disables the fade-in and negative values are clamped to 0.
+- `duration` - The fade-in duration in seconds. A value of 0 disables the fade-in and negative values are clamped to 0. Positive infinity is an error.
 - `easing` - The easing curve of the fade. Defaults to 'Linear'.
 
 ### setAudioFadeOut()
@@ -1358,7 +1358,7 @@ setAudioFadeOut(id: DesignBlockId, duration: number, easing?: AnimationEasing): 
 
 **Parameters:**
 - `id` - The audio block or video fill to update.
-- `duration` - The fade-out duration in seconds. A value of 0 disables the fade-out and negative values are clamped to 0.
+- `duration` - The fade-out duration in seconds. A value of 0 disables the fade-out and negative values are clamped to 0. Positive infinity is an error.
 - `easing` - The easing curve of the fade. Defaults to 'Linear'.
 
 ### setPlaybackSpeed()
@@ -1440,7 +1440,7 @@ getVideoWidth(id: DesignBlockId): number
 **Parameters:**
 - `id` - The video fill block.
 
-**Returns:** The video width in pixels.
+**Returns:** The video width in pixels, or 0 for a file without a video track.
 
 ### getVideoHeight()
 
@@ -1453,7 +1453,7 @@ getVideoHeight(id: DesignBlockId): number
 **Parameters:**
 - `id` - The video fill block.
 
-**Returns:** The video height in pixels.
+**Returns:** The video height in pixels, or 0 for a file without a video track.
 
 ### generateVideoThumbnailSequence()
 
@@ -1474,7 +1474,8 @@ generateVideoThumbnailSequence(id: DesignBlockId, thumbnailHeight: number, timeB
 - `timeBegin` - The start time in seconds for the thumbnail sequence.
 - `timeEnd` - The end time in seconds for the thumbnail sequence.
 - `numberOfFrames` - The number of frames to generate.
-- `onFrame` - A callback that receives the frame index and image data.
+- `onFrame` - A callback that receives the frame index and image data. In Node.js the image
+data is a plain object with the fields of `ImageData`.
 
 **Returns:** A function to cancel the thumbnail generation request.
 

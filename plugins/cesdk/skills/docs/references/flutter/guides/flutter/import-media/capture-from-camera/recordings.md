@@ -96,7 +96,7 @@ class RecordingsReactionCameraSolution extends StatelessWidget {
 
 Learn how to get the captured photos and recorded videos from the `CameraCaptureResult` and `CameraReactionResult` types of the `openCamera` function.
 
-Explore a full code sample on [GitHub](https://github.com/imgly/cesdk-flutter-examples/tree/v1.85.0-nightly.20261007/showcases/guides/camera-guides-recordings/recordings_camera_solution.dart).
+Explore a full code sample on [GitHub](https://github.com/imgly/cesdk-flutter-examples/tree/v1.85.0-nightly.20261008/showcases/guides/camera-guides-recordings/recordings_camera_solution.dart).
 
 ## Success
 

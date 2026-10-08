@@ -13,13 +13,13 @@ videos from text or animating static images.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-user-interface-ai-integration-video-generation-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-user-interface-ai-integration-video-generation-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-user-interface-ai-integration-video-generation-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-user-interface-ai-integration-video-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-user-interface-ai-integration-video-generation-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-user-interface-ai-integration-video-generation-browser/index.html)
 
 The video generation plugin creates videos from text descriptions (text-to-video) or animates static images (image-to-video). Use models like Minimax Video, Pixverse, Kling Video, and ByteDance Seedance.
 
@@ -208,21 +208,21 @@ Install `@imgly/plugin-ai-video-generation-web` to access the VideoGeneration pl
 <Tabs syncKey="package-manager">
   <TabItem label="npm">
     ```bash
-    npm install @imgly/plugin-ai-video-generation-web@1.85.0-nightly.20261007
+    npm install @imgly/plugin-ai-video-generation-web@1.85.0-nightly.20261008
 
     ```
   </TabItem>
 
   <TabItem label="yarn">
     ```bash
-    yarn add @imgly/plugin-ai-video-generation-web@1.85.0-nightly.20261007
+    yarn add @imgly/plugin-ai-video-generation-web@1.85.0-nightly.20261008
 
     ```
   </TabItem>
 
   <TabItem label="pnpm">
     ```bash
-    pnpm add @imgly/plugin-ai-video-generation-web@1.85.0-nightly.20261007
+    pnpm add @imgly/plugin-ai-video-generation-web@1.85.0-nightly.20261008
 
     ```
   </TabItem>

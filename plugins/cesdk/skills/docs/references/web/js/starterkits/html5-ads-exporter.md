@@ -12,13 +12,13 @@ Export static and animated designs as HTML5 ad banners in a customizable, ad-net
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-html5-ads-exporter-ts-web/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/starterkit-html5-ads-exporter-ts-web/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-html5-ads-exporter-ts-web/tree/v1.85.0-nightly.20261007)
+> - [View source on GitHub](https://github.com/imgly/starterkit-html5-ads-exporter-ts-web/tree/v1.85.0-nightly.20261008)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-html5-ads-exporter-ts-web/tree/v1.85.0-nightly.20261007)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-html5-ads-exporter-ts-web/tree/v1.85.0-nightly.20261008)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/starterkit-html5-ads-exporter/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/starterkit-html5-ads-exporter/index.html)
 
 ***
 
@@ -102,7 +102,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -199,15 +199,15 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs syncKey="package-manager">
       <TerminalTab label="npm">
-        npm install @cesdk/cesdk-js@1.85.0-nightly.20261007
+        npm install @cesdk/cesdk-js@1.85.0-nightly.20261008
       </TerminalTab>
 
       <TerminalTab label="pnpm">
-        pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261007
+        pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261008
       </TerminalTab>
 
       <TerminalTab label="yarn">
-        yarn add @cesdk/cesdk-js@1.85.0-nightly.20261007
+        yarn add @cesdk/cesdk-js@1.85.0-nightly.20261008
       </TerminalTab>
     </TerminalTabs>
 
@@ -235,7 +235,7 @@ This guide assumes basic familiarity with JavaScript or TypeScript.
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261007/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>

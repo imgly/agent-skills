@@ -15,7 +15,7 @@ and scale, or replace a named artwork placeholder.
 >
 > - [Download examples](https://cdn.img.ly/demo/cesdk-web-examples/v1.82.2/examples/guides-import-media-from-eps-browser/source.zip)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261007/examples/guides-import-media-from-eps-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-import-media-from-eps-browser/index.html)
 
 We load a saved template, then expose explicit **Replace with EPS**, **Add EPS**, **Cancel import**, and **Export PDF** actions. Ordinary image upload is not extended by this example.
 

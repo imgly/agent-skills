@@ -10,11 +10,11 @@ Convert Adobe Photoshop (PSD) files to CE.SDK scene archives at build-time using
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-open-the-editor-import-design-from-photoshop-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-open-the-editor-import-design-from-photoshop-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-open-the-editor-import-design-from-photoshop-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-open-the-editor-import-design-from-photoshop-server-js)
 
 The `@imgly/psd-importer` package converts Photoshop files into CE.SDK scene format on the server, allowing you to distribute pre-converted templates without client-side processing. This guide covers batch conversion of PSD template files to CE.SDK scene archives that can be shipped with your product. For enabling end-users to upload PSD files directly in the browser, see the [browser guide](./open-the-editor/import-design/from-photoshop.md).
 
@@ -337,10 +337,10 @@ main().catch(console.error);
 Install the `@imgly/psd-importer` package alongside the CE.SDK Node.js engine and the `pngjs` package for PNG encoding:
 
 ```bash
-npm install @imgly/psd-importer @cesdk/node@1.85.0-nightly.20261007 pngjs
+npm install @imgly/psd-importer @cesdk/node@1.85.0-nightly.20261008 pngjs
 ```
 
-Using the native Node.js package? Install `@cesdk/node-native@1.85.0-nightly.20261007` instead of `@cesdk/node` — the engine API is identical.
+Using the native Node.js package? Install `@cesdk/node-native@1.85.0-nightly.20261008` instead of `@cesdk/node` — the engine API is identical.
 
 The server environment requires `pngjs` because Node.js doesn't have native browser APIs for PNG encoding. The `createPNGJSEncodeBufferToPNG(PNG)` function provides this capability.
 

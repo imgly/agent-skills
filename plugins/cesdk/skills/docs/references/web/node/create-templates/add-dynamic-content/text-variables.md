@@ -10,11 +10,11 @@ Text variables enable data-driven template personalization in headless Node.js e
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261007.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261007/guides-create-templates-dynamic-content-text-variables-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-create-templates-dynamic-content-text-variables-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261007/guides-create-templates-dynamic-content-text-variables-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-create-templates-dynamic-content-text-variables-server-js)
 
 ```typescript file=@cesdk_web_examples/guides-create-templates-dynamic-content-text-variables-server-js/server-js.ts reference-only
 import CreativeEngine from '@cesdk/node';
