@@ -10,7 +10,7 @@ https://github.com/user-attachments/assets/d01073ca-4a6a-49eb-8155-faa25ff04595
 
 [Agent Skills](https://agentskills.io) are portable knowledge packs that plug into AI coding assistants. By installing the CE.SDK skills, you get:
 
-- **Offline documentation**: All guides, API references, and best practices bundled locally — no external API calls
+- **Current documentation**: The Web docs skills read the CE.SDK guides and API references from img.ly. Agent pitfall rules are bundled locally
 - **Guided code generation**: Build and explain skills that walk through CE.SDK implementation step by step
 - **Autonomous scaffolding**: The shared build skill creates and verifies complete CE.SDK projects from scratch
 
@@ -170,9 +170,9 @@ Use the cesdk-android build skill to create an Android photo editor.
 
 ## How It Works
 
-Each documentation skill bundles the complete CE.SDK guides and API references for its framework in a compressed index. Skills read directly from these local files — no external services or MCP servers are required.
+Each Web documentation skill bundles an index of the CE.SDK docs for its framework and the agent pitfall rules. The skill fetches the pages it needs from `https://img.ly/docs/cesdk/` as Markdown. The site serves the latest stable CE.SDK release. No MCP servers are required.
 
-The build skill includes starter kit templates for common use cases like design editors, video editors, and photo editors. It detects your project's framework and generates code accordingly.
+The build skill clones starter kit templates for common use cases like design editors, video editors, and photo editors from their public GitHub repositories (`imgly/starterkit-*`). It detects your project's framework and generates code accordingly.
 
 ## License
 

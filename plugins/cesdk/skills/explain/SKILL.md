@@ -80,7 +80,7 @@ If no `package.json` exists (new project) or detection is unclear, ask the user:
 
 ## Guidelines
 
-1. **Reference the docs first**: Use `/imgly-sdk:docs-{framework}` to look up accurate information — bundled docs are version-verified and more reliable than pre-trained knowledge
+1. **Reference the docs first**: Use `/imgly-sdk:docs-{framework}` to look up accurate information. The CE.SDK docs are more reliable than pre-trained knowledge
 2. **Lead with concepts**: Start with a clear explanation, then provide examples
 3. **Platform-specific**: Code must be valid for the detected framework
 4. **Complete examples**: Include imports, setup, and error handling
@@ -88,8 +88,8 @@ If no `package.json` exists (new project) or detection is unclear, ask the user:
 
 ## Documentation Access
 
-Use the `/imgly-sdk:docs-{framework}` skill to look up bundled documentation (e.g. `/imgly-sdk:docs-react`), or use Glob:
-`**/skills/docs-{framework}/<path>.md`
+Use the `/imgly-sdk:docs-{framework}` skill to look up the documentation (e.g. `/imgly-sdk:docs-react`).
+It reads the current CE.SDK docs from `https://img.ly/docs/cesdk/{framework}/`.
 
 ## Output Format
 

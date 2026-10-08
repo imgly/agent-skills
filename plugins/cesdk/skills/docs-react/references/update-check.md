@@ -29,7 +29,7 @@ Age only triggers a check; it does not prove that an update exists.
    `metadata.version` when the plugin entry is absent.
 8. If the catalog is unavailable, malformed, missing the plugin, or the
    versions are incomparable, report that update status could not be determined
-   and continue with the bundled documentation.
+   and continue with the installed skills.
 9. If the remote version is not newer, continue without interrupting the user.
    If it is newer, report installed and available versions once. Do not change
    local state.

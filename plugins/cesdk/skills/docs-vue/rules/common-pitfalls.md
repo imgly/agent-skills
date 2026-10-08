@@ -245,11 +245,11 @@ This prevents the page from being selected while still allowing interaction with
 
 ---
 
-## Starter Kits Are TypeScript: Copy First, Then Transpile for JS
+## Starter Kits Are TypeScript: Clone First, Then Transpile for JS
 
-**Problem:** All bundled starter kits use TypeScript (`.ts` files, `tsconfig.json`, type annotations). Copying them into a JavaScript project without conversion leads to syntax errors. Manually rewriting or converting files by hand leads to missing CSS resets, broken Vite configs, or incorrect plugin initialization.
+**Problem:** All starter kits use TypeScript (`.ts` files, `tsconfig.json`, type annotations). Copying them into a JavaScript project without conversion leads to syntax errors. Manually rewriting or converting files by hand leads to missing CSS resets, broken Vite configs, or incorrect plugin initialization.
 
-**Solution:** Always **copy the starter kit into the user's project first**, then run the bundled transpile script on the **user's project copy**:
+**Solution:** Always **clone the starter kit into the user's project first**, then run the bundled transpile script on the **user's project copy**:
 
 ```bash
 # 1. Install typescript temporarily (needed by the transpile script)
@@ -263,4 +263,4 @@ The script strips type annotations, renames `.ts` to `.js`, removes `tsconfig.js
 
 Find the script with Glob: `**/skills/build/scripts/transpile-to-js.mjs`
 
-**Never run the transpile script on the starter kit source directory.** Never manually strip types or rewrite files by hand. Copy first, then transpile the copy.
+**Never run the transpile script on the starter kit source directory.** Never manually strip types or rewrite files by hand. Clone first, then transpile the cloned kit.
