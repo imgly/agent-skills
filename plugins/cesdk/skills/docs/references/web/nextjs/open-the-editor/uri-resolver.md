@@ -12,13 +12,13 @@ Learn how to intercept and transform asset URIs in CE.SDK, enabling authenticati
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-open-the-editor-uri-resolver-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-open-the-editor-uri-resolver-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-open-the-editor-uri-resolver-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-open-the-editor-uri-resolver-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-open-the-editor-uri-resolver-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-open-the-editor-uri-resolver-browser/index.html)
 
 When CE.SDK loads an asset, it resolves the URI to an absolute path before fetching. You can intercept this process to add authentication tokens or transform URIs based on your application's needs.
 

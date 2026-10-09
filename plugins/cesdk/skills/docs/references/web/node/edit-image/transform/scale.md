@@ -9,7 +9,7 @@ Use the CE.SDK headless Server Mode to resize and scale design blocks without re
 ## Requirements
 
 - **Node.js 22** or newer
-- A CE.SDK server package: `npm install @cesdk/node@1.85.0-nightly.20261008` (WASM) or `npm install @cesdk/node-native@1.85.0-nightly.20261008` (native) — the engine API is identical
+- A CE.SDK server package: `npm install @cesdk/node@1.85.0-nightly.20261009` (WASM) or `npm install @cesdk/node-native@1.85.0-nightly.20261009` (native) — the engine API is identical
 
 ## What You’ll Learn
 
@@ -41,7 +41,7 @@ A value of `2.0`, for example, makes the block twice as large.
 <details>
   <summary>Test a sample file</summary>
 
-  1. Run `npm install @cesdk/node@1.85.0-nightly.20261008` (or `npm install @cesdk/node-native@1.85.0-nightly.20261008` for the native package) at the root of your project.
+  1. Run `npm install @cesdk/node@1.85.0-nightly.20261009` (or `npm install @cesdk/node-native@1.85.0-nightly.20261009` for the native package) at the root of your project.
   2. Add credentials to `.env`:
      ```bash
      LICENSE_KEY="<your_license_key>"

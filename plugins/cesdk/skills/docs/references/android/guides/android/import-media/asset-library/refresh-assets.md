@@ -263,7 +263,7 @@ Keep an open Android Editor asset library in sync after your app changes an exte
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261008/engine-guides-import-media-asset-library-refresh-assets)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261009/engine-guides-import-media-asset-library-refresh-assets)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../../engine-interface.md) guide.

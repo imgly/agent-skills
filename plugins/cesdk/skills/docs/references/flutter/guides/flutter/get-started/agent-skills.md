@@ -19,7 +19,7 @@ with Jetpack Compose on Android, and the Flutter and React Native wrappers.
 
 ## Available Skills
 
-One `cesdk` plugin contains three skills. Each skill detects the platform and
+One `imgly-sdk` plugin contains three skills. Each skill detects the platform and
 framework from your project and reads the matching bundled references:
 
 | Skill     | Description                                                                        |
@@ -70,7 +70,7 @@ Add the marketplace and install the plugin:
 claude plugin marketplace add imgly/agent-skills
 
 # Install the plugin
-claude plugin install cesdk@imgly
+claude plugin install imgly-sdk@imgly
 ```
 
 ### Codex Plugin
@@ -82,7 +82,22 @@ Add the same marketplace and install the plugin in Codex:
 codex plugin marketplace add imgly/agent-skills
 
 # Install the plugin
-codex plugin add cesdk@imgly
+codex plugin add imgly-sdk@imgly
+```
+
+### Installs from before the rename
+
+The plugin used to be called `cesdk`. In Claude Code, an existing `cesdk@imgly`
+install keeps updating through an alias entry for the same plugin. Its skills
+now show as `/imgly-sdk:docs`, `/imgly-sdk:explain`, and `/imgly-sdk:build`.
+New installs use `imgly-sdk@imgly`.
+
+Codex cannot update a plugin under its old name, so an existing `cesdk@imgly`
+install stays on its last version. Replace it:
+
+```bash
+codex plugin remove cesdk@imgly
+codex plugin add imgly-sdk@imgly
 ```
 
 ### Vercel Skills CLI
@@ -133,11 +148,52 @@ explicit approval for the exact update command and target.
 
 By default every install method above tracks the **latest stable** CE.SDK release. If you build against a prerelease or nightly engine build (for example `@cesdk/node-native` on the `next` or `dev` npm dist-tag), you can install the matching skills from a dedicated release channel. The channels mirror the npm dist-tag names:
 
-| Channel    | Branch            | Matches engine dist-tag | Contents                                              |
-| ---------- | ----------------- | ----------------------- | ----------------------------------------------------- |
-| Stable     | `main` / `latest` | `latest`                | Latest stable release (default)                       |
-| Prerelease | `next`            | `next`                  | Latest release candidate (e.g. `1.77.0-rc.4`)         |
-| Nightly    | `dev`             | `dev`                   | Latest nightly build (e.g. `1.78.0-nightly.20260630`) |
+| Channel    | Branch            | Matches engine dist-tag | Marketplace  | Contents                                              |
+| ---------- | ----------------- | ----------------------- | ------------ | ----------------------------------------------------- |
+| Stable     | `main` / `latest` | `latest`                | `imgly`      | Latest stable release (default)                       |
+| Prerelease | `next`            | `next`                  | `imgly-next` | Latest release candidate (e.g. `1.77.0-rc.4`)         |
+| Nightly    | `dev`             | `dev`                   | `imgly-dev`  | Latest nightly build (e.g. `1.78.0-nightly.20260630`) |
+
+Each channel has its own marketplace name, so a prerelease or nightly
+marketplace can be added while the stable one stays registered. The plugin is
+`imgly-sdk` on every channel, so keep only one channel enabled: two enabled
+copies hide each other's skills. For example, to switch from stable to the
+prerelease:
+
+```bash
+# Claude Code (switch back with: claude plugin enable imgly-sdk@imgly)
+claude plugin disable imgly-sdk@imgly
+claude plugin marketplace add imgly/agent-skills@next
+claude plugin install imgly-sdk@imgly-next
+
+# Codex has no disable command, so remove the stable plugin
+codex plugin remove imgly-sdk@imgly
+codex plugin marketplace add imgly/agent-skills@next
+codex plugin add imgly-sdk@imgly-next
+```
+
+A version tag uses the marketplace name of the channel that published it; tags
+published before the per-channel names, such as `v1.78.0-nightly.20260630`, use
+marketplace `imgly` and plugin `cesdk`.
+
+A prerelease or nightly installed before the per-channel names is registered as
+marketplace `imgly`. Adding the stable marketplace then fails, and Codex stops
+updating that install. Remove it and add the channel again, for example for
+nightly:
+
+```bash
+# Claude Code
+claude plugin uninstall cesdk@imgly
+claude plugin marketplace remove imgly
+claude plugin marketplace add imgly/agent-skills@dev
+claude plugin install imgly-sdk@imgly-dev
+
+# Codex
+codex plugin remove cesdk@imgly
+codex plugin marketplace remove imgly
+codex plugin marketplace add imgly/agent-skills@dev
+codex plugin add imgly-sdk@imgly-dev
+```
 
 Every published version is also available under an exact `v<version>` Git tag.
 Use the channel-specific instructions below to track a moving channel or pin one
@@ -152,11 +208,11 @@ Pin the marketplace to a channel branch or a version tag with the `@<ref>` suffi
 ```bash
 # Prerelease (release candidate) channel — latest rc
 claude plugin marketplace add imgly/agent-skills@next
-claude plugin install cesdk@imgly
+claude plugin install imgly-sdk@imgly-next
 
 # Nightly channel — latest nightly
 claude plugin marketplace add imgly/agent-skills@dev
-claude plugin install cesdk@imgly
+claude plugin install imgly-sdk@imgly-dev
 
 # A specific published version
 claude plugin marketplace add imgly/agent-skills@v1.78.0-nightly.20260630
@@ -170,11 +226,11 @@ Add the matching marketplace ref:
 ```bash
 # Prerelease channel
 codex plugin marketplace add imgly/agent-skills@next
-codex plugin add cesdk@imgly
+codex plugin add imgly-sdk@imgly-next
 
 # Nightly channel
 codex plugin marketplace add imgly/agent-skills@dev
-codex plugin add cesdk@imgly
+codex plugin add imgly-sdk@imgly-dev
 
 # A specific published version
 codex plugin marketplace add imgly/agent-skills@v1.78.0-nightly.20260630

@@ -64,7 +64,7 @@ touch index.js
 Run the following command to install the required packages:
 
 ```bash
-npm install @cesdk/node@1.85.0-nightly.20261008
+npm install @cesdk/node@1.85.0-nightly.20261009
 ```
 
 Your project structure should now look like this:

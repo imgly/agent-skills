@@ -126,7 +126,7 @@ Add visual depth and interest to text blocks using drop shadows and stroke outli
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261008/engine-guides-text-effects)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261009/engine-guides-text-effects)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

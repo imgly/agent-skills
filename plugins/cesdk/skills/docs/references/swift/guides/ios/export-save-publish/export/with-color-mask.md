@@ -12,7 +12,7 @@ compositing pipelines.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261008/engine-guides-export-with-color-mask)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261009/engine-guides-export-with-color-mask)
 
 When exporting, CE.SDK can remove specific RGB colors by replacing matching pixels with transparency. The export generates two files: the masked image with transparent areas and an alpha mask showing removed pixels.
 

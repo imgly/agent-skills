@@ -12,13 +12,13 @@ Combine multiple shapes using boolean operations to create custom compound desig
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-stickers-and-shapes-combine-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-stickers-and-shapes-combine-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-stickers-and-shapes-combine-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-stickers-and-shapes-combine-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-stickers-and-shapes-combine-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-stickers-and-shapes-combine-browser/index.html)
 
 CE.SDK provides four boolean operations for combining shapes: *Union*, *Difference*, *Intersection*, and *XOR*. These operations work with graphic blocks and text blocks, allowing you to build complex designs from simple primitives.
 

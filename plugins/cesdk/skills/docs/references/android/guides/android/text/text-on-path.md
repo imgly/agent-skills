@@ -100,7 +100,7 @@ Curve a text block so its characters follow an SVG path — an arch, a full circ
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261008/engine-guides-text-text-on-path)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261009/engine-guides-text-text-on-path)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

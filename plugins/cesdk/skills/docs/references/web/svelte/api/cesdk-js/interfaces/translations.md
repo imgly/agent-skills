@@ -280,6 +280,7 @@ Complete translation type that includes both built-in and custom translations.
 |  `common.rotation` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`common.rotation`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `common.rotation.inUnit` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`common.rotation.inUnit`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `common.save` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`common.save`](./api/cesdk-js/interfaces/builtintranslations.md) |
+|  `common.search` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`common.search`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `common.select` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`common.select`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `common.shiftKey` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`common.shiftKey`](./api/cesdk-js/interfaces/builtintranslations.md) |
 |  `common.size` | `string` | [`BuiltinTranslations`](./api/cesdk-js/interfaces/builtintranslations.md).[`common.size`](./api/cesdk-js/interfaces/builtintranslations.md) |

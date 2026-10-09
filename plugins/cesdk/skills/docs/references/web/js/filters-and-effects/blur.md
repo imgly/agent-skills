@@ -13,13 +13,13 @@ creating depth, focus, and atmospheric effects.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-filters-and-effects-blur-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-filters-and-effects-blur-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-filters-and-effects-blur-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-filters-and-effects-blur-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-filters-and-effects-blur-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-filters-and-effects-blur-browser/index.html)
 
 Unlike general effects that stack on elements, blur is a dedicated feature with its own API methods. Each block supports exactly one blur at a time, though the same blur instance can be shared across multiple blocks. CE.SDK provides four blur types: **uniform** for consistent softening, **linear** and **mirrored** for gradient-based effects along axes, and **radial** for circular focal points.
 

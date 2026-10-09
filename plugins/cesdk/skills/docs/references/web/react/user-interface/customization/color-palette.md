@@ -12,13 +12,13 @@ CE.SDK's color palette system allows you to replace the default colors with cust
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
 > - [View source on GitHub](https://github.com/imgly/cesdk-web-examples)
 >
 > - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-user-interface-customization-color-palette-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-user-interface-customization-color-palette-browser/index.html)
 
 The CE.SDK can be configured with a series of colors that can be directly used whenever a color needs to be chosen. These color libraries need to be provided as asset sources - see our guide on [Custom Color Libraries](./colors/create-color-palette.md) for more details on how this is achieved.
 

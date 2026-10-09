@@ -40,21 +40,30 @@ Inspect only records that could supply the calling skill. Matching records that
 describe the same source, ref, scope, and active path corroborate one
 installation; conflicting candidates make provenance ambiguous.
 
+The canonical source is `imgly/agent-skills`.
+Each channel has its own marketplace name: `imgly` for `main` and
+`latest`, `imgly-next`, `imgly-dev`, and `imgly-legacy`. Installations
+made before the per-channel names use `imgly` on every channel.
+The plugin is `imgly-sdk`. Installations made before its rename use the
+alias `cesdk`, a second marketplace entry for the same plugin folder; treat
+both names as the local plugin. Codex cannot update a `cesdk` installation.
+
 - On Claude Code, read `claude plugin list --json` and
-  `claude plugin marketplace list --json`. Require the exact plugin,
-  marketplace `imgly`, and source `imgly/agent-skills`.
+  `claude plugin marketplace list --json`. Require the exact plugin, an
+  IMG.LY marketplace name, and the canonical source.
 - On Codex, read `codex plugin list --json` and
-  `codex plugin marketplace list --json`. Require the exact plugin, marketplace
-  `imgly`, and canonical marketplace source.
+  `codex plugin marketplace list --json`. Require the exact plugin, an
+  IMG.LY marketplace name, and the canonical marketplace source. The
+  marketplace ref is under `[marketplaces.<name>]` in
+  `$CODEX_HOME/config.toml` (default `~/.codex/config.toml`).
 - Skills CLI: read project `skills-lock.json`, then
-  `~/.agents/.skill-lock.json`. Require the exact
-  `imgly/agent-skills` source and a matching `skillPath`.
+  `~/.agents/.skill-lock.json`. Require the canonical source and a
+  matching `skillPath`.
 - Symlink or Git checkout: resolve the active `SKILL.md` and require a Git
-  origin exactly matching `https://github.com/imgly/agent-skills` or its SSH
-  equivalent. Record its ref and dirty state without changing either. A
-  checkout nested in an already matched host- or Skills-managed root
-  corroborates that installation; only a standalone checkout is a separate
-  candidate.
+  origin exactly matching `https://github.com/imgly/agent-skills` or its SSH equivalent.
+  Record its ref and dirty state without changing either. A checkout nested in an already
+  matched host- or Skills-managed root corroborates that installation;
+  only a standalone checkout is a separate candidate.
 - Otherwise report the installation as manual or unknown.
 
 Do not inspect another host's inventory merely because its CLI is installed.
@@ -69,10 +78,18 @@ target, and exact command. Then request explicit approval.
 Typical approved routes are:
 
 - Claude Code:
-  `claude plugin update <plugin>@imgly --scope <recorded-scope>`
-- Codex: `codex plugin marketplace upgrade imgly`, verify the version, then
-  `codex plugin add <plugin>@imgly` if the installed plugin still needs to be
+  `claude plugin update <plugin>@<marketplace> --scope <recorded-scope>`
+- Codex: `codex plugin marketplace upgrade <marketplace>`, verify the version,
+  then `codex plugin add <plugin>@<marketplace>` if the installed plugin still
+  needs to be
   refreshed. Start a new task after reinstalling.
+- Codex installation named `cesdk`: `codex plugin remove cesdk@<marketplace>`,
+  then `codex plugin add imgly-sdk@<marketplace>`.
+- Codex marketplace `imgly` with ref `next` or `dev`: upgrading it fails
+  because the channel now has its own marketplace name. Use
+  `codex plugin remove <plugin>@imgly`, `codex plugin marketplace remove imgly`,
+  `codex plugin marketplace add imgly/agent-skills@<ref>`, then
+  `codex plugin add imgly-sdk@imgly-<ref>`.
 - Skills CLI:
   `npx skills update <exact-skill-name> --project` or `--global`,
   matching the recorded scope.

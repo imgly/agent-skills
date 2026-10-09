@@ -447,6 +447,7 @@ Audio/video codec capability and decoding.
 | `CODEC.AUDIO_DECODE_UNSUPPORTED` | Audio decoding is not supported on this platform. | This build does not include an audio decoder. Rebuild with the relevant codec backend, or run on a supported platform. |  |
 | `CODEC.AUDIO_ENCODER_CONFIG_INVALID` | Invalid audio encoder configuration: \{channels} channels at \{sampleRate} Hz | Audio channels and sample rate must be positive. Got channels=\{channels}, sampleRate=\{sampleRate}. |  |
 | `CODEC.AUDIO_ENCODER_CREATE_FAILED` | Could not create audio encoder: \{reason} | The platform's audio encoder rejected the configuration. Reason: \{reason} |  |
+| `CODEC.AUDIO_ENCODER_FATAL` | Encountered fatal audio encoder error: \{reason} | The audio encoder stopped during the export. Export again. If it fails again in a browser, use a different browser. |  |
 | `CODEC.AUDIO_ENCODE_UNSUPPORTED` | Audio encoding is not supported on this platform. | This build does not include an audio encoder. Rebuild with the relevant codec backend, or run on a supported platform. |  |
 | `CODEC.AUDIO_TRACK_NOT_FOUND` | Couldn't find audio track in AVContainer. | The container has no audio track. Use a media file with an audio stream. |  |
 | `CODEC.BACKEND_TEXTURE_INCOMPLETE` | Backend texture is incomplete. | The Skia backend texture is missing state required for codec read-back. |  |
@@ -486,7 +487,7 @@ Audio/video codec capability and decoding.
 | `CODEC.VIDEO_DECODE_UNSUPPORTED` | Video decoding is not supported on this platform. | This build does not include a video decoder. Rebuild with the relevant codec backend, or run on a supported platform. |  |
 | `CODEC.VIDEO_ENCODER_BUSY` | Already encoding another video. | Wait for the current video encoding session to finish before starting another. |  |
 | `CODEC.VIDEO_ENCODER_CREATE_FAILED` | Could not create video encoder: \{reason} | The platform's video encoder rejected the configuration. Reason: \{reason} |  |
-| `CODEC.VIDEO_ENCODER_FATAL` | Encountered fatal video encoder error: \{reason} | The video encoder stopped during the export. Lower the resolution, choose a higher H.264 level, or use another codec. |  |
+| `CODEC.VIDEO_ENCODER_FATAL` | Encountered fatal video encoder error: \{reason} | The video encoder stopped during the export. Lower the resolution and export again. |  |
 | `CODEC.VIDEO_ENCODER_INVALID_RESOLUTION` | Invalid resolution for video encoder: \{width} x \{height} | Both dimensions must be > 0 and within the encoder's frame size limit. On Linux without the licensed codec pack, and on Windows, a frame has at most 36864 macroblocks of 16x16 pixels, such as 4096x2304. Got \{width}x\{height}. |  |
 | `CODEC.VIDEO_ENCODE_UNSUPPORTED` | Video encoding is not supported on this platform. | This build does not include a video encoder. Rebuild with the relevant codec backend, or run on a supported platform. |  |
 | `CODEC.VIDEO_SESSION_CREATE_FAILED` | VTCompressionSessionCreate failed. | VideoToolbox could not create a compression session for the requested codec and resolution. The codec may be unsupported on this hardware. |  |
@@ -679,7 +680,7 @@ Image and video encoding/export.
 | `ENCODE.AUDIO_FRAME_SIZE_CALC_INVALID` | Invalid audio frame size calculations. | Frame-size math produced zero or negative values. Verify channel count and bit depth. |  |
 | `ENCODE.AUDIO_INVALID_SAMPLE_RATE_FOR_TIMESTAMP` | Invalid sample rate for timestamp conversion. | Source audio sample rate is zero or negative. Verify it before computing timestamps. |  |
 | `ENCODE.AUDIO_MIME_TYPE_INVALID` | Mime type must be "audio/wav" or "audio/mp4". | Pass audio/wav or audio/mp4 as the target mime type for audio export. |  |
-| `ENCODE.AUDIO_MP4_NO_DATA_MUXED` | No audio data was muxed into MP4 container. | The muxer received no PCM frames. Check the source produced audio packets before finalization. |  |
+| `ENCODE.AUDIO_MP4_NO_DATA_MUXED` | No audio data was muxed into MP4 container. | The MP4 file received no audio data. For example, Chrome and Edge on Windows before version 157 encode nothing from less than about 0.05 seconds of audio. Export at least 0.05 seconds of audio. |  |
 | `ENCODE.AUDIO_MUXER_DESTROYED` | Muxer was destroyed before finalization. | The MP4 muxer was released early. Keep the encode service alive until the result callback fires. |  |
 | `ENCODE.AUDIO_NO_CHUNKS_IN_RANGE` | No audio chunks found in the specified time range. | The selected time range has no audio data. Adjust start/end times or verify the audio source covers the requested span. |  |
 | `ENCODE.AUDIO_NO_DATA_CAPTURED` | No audio data captured during export. | The export pipeline produced no audio samples. Verify the source has audible content within the requested range. |  |

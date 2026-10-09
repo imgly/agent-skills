@@ -12,11 +12,11 @@ array you can store or draw.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-export-save-publish-thumbnail-previews-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-export-save-publish-thumbnail-previews-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-export-save-publish-thumbnail-previews-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-export-save-publish-thumbnail-previews-server-js)
 
 `engine.block.generateAudioThumbnailSequence()` produces a waveform for an audio block or a video fill. Instead of returning everything at once, it delivers the samples in chunks through a callback as the engine reads the media, so a long clip does not block your program.
 

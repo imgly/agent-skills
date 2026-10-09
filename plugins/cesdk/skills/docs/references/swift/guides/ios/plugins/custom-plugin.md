@@ -136,7 +136,7 @@ with any existing editor configuration.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261008/editor-guides-plugins-custom-plugin)
+> - [View source on GitHub](https://github.com/imgly/cesdk-swift-examples/tree/v1.85.0-nightly.20261009/editor-guides-plugins-custom-plugin)
 
 ## When to Use Plugins
 

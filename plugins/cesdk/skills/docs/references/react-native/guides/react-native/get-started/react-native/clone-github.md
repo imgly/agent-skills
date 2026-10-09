@@ -151,19 +151,19 @@ Install the React Native dependencies:
 <Tabs syncKey="code-language">
   <TabItem label="npm">
     ```shell
-    npm install @cesdk/cesdk-js@1.85.0-nightly.20261008
+    npm install @cesdk/cesdk-js@1.85.0-nightly.20261009
     ```
   </TabItem>
 
   <TabItem label="yarn">
     ```shell
-    yarn add @cesdk/cesdk-js@1.85.0-nightly.20261008
+    yarn add @cesdk/cesdk-js@1.85.0-nightly.20261009
     ```
   </TabItem>
 
   <TabItem label="pnpm">
     ```shell
-    pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261008
+    pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261009
     ```
   </TabItem>
 </Tabs>

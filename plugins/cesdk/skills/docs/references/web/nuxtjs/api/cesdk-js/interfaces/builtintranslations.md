@@ -271,6 +271,7 @@ Built-in translation keys provided by the Creative Editor SDK.
 |  `common.rotation` | `string` |
 |  `common.rotation.inUnit` | `string` |
 |  `common.save` | `string` |
+|  `common.search` | `string` |
 |  `common.select` | `string` |
 |  `common.shiftKey` | `string` |
 |  `common.size` | `string` |

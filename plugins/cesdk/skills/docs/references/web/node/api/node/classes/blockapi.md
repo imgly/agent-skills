@@ -1753,7 +1753,7 @@ Structure designs by positioning, sizing, layering, aligning, and distributing b
   | ------ | ------ | ------ |
   | `id` | `number` | The block to update. |
   | `value` | `number` | The new width of the block. |
-  | `maintainCrop?` | `boolean` | Whether or not the crop values, if available, should be automatically adjusted. |
+  | `maintainCrop?` | `boolean` | Whether or not the crop values, if available, should be automatically adjusted. A Percent size, left or top stays Percent. |
 
   #### Returns
 
@@ -1819,7 +1819,7 @@ Structure designs by positioning, sizing, layering, aligning, and distributing b
   | ------ | ------ | ------ |
   | `id` | `number` | The block to update. |
   | `value` | `number` | The new height of the block. |
-  | `maintainCrop?` | `boolean` | Whether or not the crop values, if available, should be automatically adjusted. |
+  | `maintainCrop?` | `boolean` | Whether or not the crop values, if available, should be automatically adjusted. A Percent size, left or top stays Percent. |
 
   #### Returns
 
@@ -13185,9 +13185,9 @@ Convenient high-level functions that combine multiple operations into single, ea
   | Parameter | Type | Description |
   | ------ | ------ | ------ |
   | `id` | `number` | The block to update. |
-  | `width` | `number` | The new width of the block. |
-  | `height` | `number` | The new height of the block. |
-  | `options?` | \{ `maintainCrop?`: `boolean`; `sizeMode?`: [`SizeMode`](./api/node/type-aliases/sizemode.md); } | Optional parameters for the size. Properties: - `maintainCrop` - Whether or not the crop values, if available, should be automatically adjusted. - `sizeMode` - The size mode: Absolute, Percent or Auto. |
+  | `width` | `number` | The new width of the block, in its width mode. |
+  | `height` | `number` | The new height of the block, in its height mode. |
+  | `options?` | \{ `maintainCrop?`: `boolean`; `sizeMode?`: [`SizeMode`](./api/node/type-aliases/sizemode.md); } | Optional parameters for the size. Properties: - `maintainCrop` - Whether or not the crop values, if available, should be automatically adjusted. A Percent size, left or top stays Percent. - `sizeMode` - The size mode: Absolute, Percent or Auto. A new mode reads the stored size in that mode, so change the mode in a call without `maintainCrop`, otherwise the crop follows the reinterpreted size. |
   | `options.maintainCrop?` | `boolean` | - |
   | `options.sizeMode?` | [`SizeMode`](./api/node/type-aliases/sizemode.md) | - |
 

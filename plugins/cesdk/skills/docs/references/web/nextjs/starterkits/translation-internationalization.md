@@ -12,13 +12,13 @@ Ships with English and German. Supports translations for any language.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/starterkit-translation-internationalization-react-web/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/starterkit-translation-internationalization-react-web/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/starterkit-translation-internationalization-react-web/tree/v1.85.0-nightly.20261008)
+> - [View source on GitHub](https://github.com/imgly/starterkit-translation-internationalization-react-web/tree/v1.85.0-nightly.20261009)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-translation-internationalization-react-web/tree/v1.85.0-nightly.20261008)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/starterkit-translation-internationalization-react-web/tree/v1.85.0-nightly.20261009)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/starterkit-translation-internationalization/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/starterkit-translation-internationalization/index.html)
 
 ***
 
@@ -101,7 +101,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261009/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>
@@ -195,9 +195,9 @@ Before you begin, make sure you have the following:
     Install the Creative Editor SDK:
 
     <TerminalTabs syncKey="package-manager">
-      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
-      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
-      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261008</TerminalTab>
+      <TerminalTab label="npm">npm install @cesdk/cesdk-js@1.85.0-nightly.20261009</TerminalTab>
+      <TerminalTab label="pnpm">pnpm add @cesdk/cesdk-js@1.85.0-nightly.20261009</TerminalTab>
+      <TerminalTab label="yarn">yarn add @cesdk/cesdk-js@1.85.0-nightly.20261009</TerminalTab>
     </TerminalTabs>
 
     ## Step 3: Download Assets
@@ -206,7 +206,7 @@ Before you begin, make sure you have the following:
 
     <TerminalTabs>
       <TerminalTab label="Download">
-        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261008/imgly-assets.zip
+        curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.85.0-nightly.20261009/imgly-assets.zip
         unzip imgly-assets.zip -d public/
         rm imgly-assets.zip
       </TerminalTab>

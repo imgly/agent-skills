@@ -2429,6 +2429,12 @@ case codecAudioEncoderConfigInvalid
 case codecAudioEncoderCreateFailed
 ```
 
+### EngineErrorCode.codecAudioEncoderFatal
+
+```swift
+case codecAudioEncoderFatal
+```
+
 ### EngineErrorCode.codecAudioEncodeUnsupported
 
 ```swift

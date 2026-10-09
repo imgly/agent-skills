@@ -13,13 +13,13 @@ with support for color space conversion and tint control.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-colors-for-print-cmyk-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-colors-for-print-cmyk-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-colors-for-print-cmyk-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-colors-for-print-cmyk-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-colors-for-print-cmyk-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-colors-for-print-cmyk-browser/index.html)
 
 CMYK (Cyan, Magenta, Yellow, Key/Black) is the standard color model for print production. Unlike RGB which is additive and designed for screens, CMYK uses subtractive color mixing to represent how inks combine on paper. CE.SDK supports CMYK colors natively, allowing you to prepare designs for professional print output while maintaining accurate color representation.
 

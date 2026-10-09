@@ -12,13 +12,13 @@ Extend CE.SDK with one-click editing actions using official plugins for backgrou
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-user-interface-ui-extensions-quick-actions-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-user-interface-ui-extensions-quick-actions-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-user-interface-ui-extensions-quick-actions-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-user-interface-ui-extensions-quick-actions-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-user-interface-ui-extensions-quick-actions-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-user-interface-ui-extensions-quick-actions-browser/index.html)
 
 Quick actions are single-click operations that appear in the canvas menu when users select a block. CE.SDK provides official plugins that add image processing capabilities like background removal, vectorization, and QR code generation. These plugins integrate directly with the editor UI and execute their operations immediately when clicked.
 
@@ -261,19 +261,19 @@ The background removal plugin requires `onnxruntime-web` for its machine learnin
 <Tabs>
   <TabItem label="npm">
     ```sh
-    npm install @imgly/plugin-background-removal-web@1.85.0-nightly.20261008 @imgly/plugin-vectorizer-web@1.85.0-nightly.20261008 @imgly/plugin-qr-code-web@1.85.0-nightly.20261008 onnxruntime-web@1.21.0
+    npm install @imgly/plugin-background-removal-web@1.85.0-nightly.20261009 @imgly/plugin-vectorizer-web@1.85.0-nightly.20261009 @imgly/plugin-qr-code-web@1.85.0-nightly.20261009 onnxruntime-web@1.21.0
     ```
   </TabItem>
 
   <TabItem label="yarn">
     ```sh
-    yarn add @imgly/plugin-background-removal-web@1.85.0-nightly.20261008 @imgly/plugin-vectorizer-web@1.85.0-nightly.20261008 @imgly/plugin-qr-code-web@1.85.0-nightly.20261008 onnxruntime-web@1.21.0
+    yarn add @imgly/plugin-background-removal-web@1.85.0-nightly.20261009 @imgly/plugin-vectorizer-web@1.85.0-nightly.20261009 @imgly/plugin-qr-code-web@1.85.0-nightly.20261009 onnxruntime-web@1.21.0
     ```
   </TabItem>
 
   <TabItem label="pnpm">
     ```sh
-    pnpm add @imgly/plugin-background-removal-web@1.85.0-nightly.20261008 @imgly/plugin-vectorizer-web@1.85.0-nightly.20261008 @imgly/plugin-qr-code-web@1.85.0-nightly.20261008 onnxruntime-web@1.21.0
+    pnpm add @imgly/plugin-background-removal-web@1.85.0-nightly.20261009 @imgly/plugin-vectorizer-web@1.85.0-nightly.20261009 @imgly/plugin-qr-code-web@1.85.0-nightly.20261009 onnxruntime-web@1.21.0
     ```
   </TabItem>
 </Tabs>
@@ -317,7 +317,7 @@ await cesdk.addPlugin(
 Generates QR codes with customizable content and styling.
 
 ```sh
-npm install @imgly/plugin-qr-code-web@1.85.0-nightly.20261008
+npm install @imgly/plugin-qr-code-web@1.85.0-nightly.20261009
 ```
 
 Register the plugin:
@@ -343,7 +343,7 @@ cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
 Provides die-cut shapes for print production workflows like stickers, packaging, and labels.
 
 ```sh
-npm install @imgly/plugin-cutout-library-web@1.85.0-nightly.20261008
+npm install @imgly/plugin-cutout-library-web@1.85.0-nightly.20261009
 ```
 
 Register the plugin to load the cutout asset source:

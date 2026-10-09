@@ -1,4 +1,6 @@
-# CE.SDK Agent Skills
+# IMG.LY SDK – Build Your Own Photo, Video & Design Editor
+
+Build your own photo, video and design editor — white-label, embedded in your app — with the IMG.LY SDK (CreativeEditor SDK, CE.SDK). Skills scaffold, implement and document custom editing experiences and creative automation for Web, iOS, Android, Flutter and React Native.
 
 Give your AI coding assistant expert-level knowledge of CreativeEditor SDK. Build photo editors, video editors, and design tools by describing what you want.
 
@@ -12,7 +14,7 @@ https://github.com/user-attachments/assets/d01073ca-4a6a-49eb-8155-faa25ff04595
 - **Guided code generation**: Build and explain skills that walk through CE.SDK implementation step by step
 - **Autonomous scaffolding**: The build skill creates and verifies complete CE.SDK projects from starter kits
 
-One plugin, `cesdk`, covers:
+One plugin, `imgly-sdk`, covers:
 
 - **Web** (React, Vue, Svelte, SvelteKit, Angular, Next.js, Nuxt.js, Vanilla JS, Electron, Node.js)
 - **Swift** (iOS, macOS, Mac Catalyst)
@@ -45,7 +47,7 @@ Add the marketplace and install the plugin:
 claude plugin marketplace add imgly/agent-skills
 
 # Install the plugin
-claude plugin install cesdk@imgly
+claude plugin install imgly-sdk@imgly
 ```
 
 ### Codex Plugin
@@ -57,7 +59,22 @@ Add the same marketplace and install the plugin in Codex:
 codex plugin marketplace add imgly/agent-skills
 
 # Install the plugin
-codex plugin add cesdk@imgly
+codex plugin add imgly-sdk@imgly
+```
+
+### Installs from before the rename
+
+The plugin used to be called `cesdk`. In Claude Code, an existing
+`cesdk@imgly` install keeps updating through an alias entry for the same
+plugin. Its skills now show as `/imgly-sdk:docs`, `/imgly-sdk:explain`, and
+`/imgly-sdk:build`. New installs use `imgly-sdk@imgly`.
+
+Codex cannot update a plugin under its old name, so an existing `cesdk@imgly`
+install stays on its last version. Replace it:
+
+```bash
+codex plugin remove cesdk@imgly
+codex plugin add imgly-sdk@imgly
 ```
 
 ### Vercel Skills CLI
@@ -106,11 +123,48 @@ explicit approval for the exact update command and target.
 
 ## Release Channels
 
-| Channel | Branch | Matches engine dist-tag |
-|---------|--------|-------------------------|
-| Stable | `main` / `latest` | `latest` |
-| Prerelease | `next` | `next` |
-| Nightly | `dev` | `dev` |
+| Channel | Branch | Matches engine dist-tag | Marketplace |
+|---------|--------|-------------------------|-------------|
+| Stable | `main` / `latest` | `latest` | `imgly` |
+| Prerelease | `next` | `next` | `imgly-next` |
+| Nightly | `dev` | `dev` | `imgly-dev` |
+
+Each channel has its own marketplace name, so a prerelease or nightly
+marketplace can be added while the stable one stays registered. The plugin is
+`imgly-sdk` on every channel, so keep only one channel enabled: two enabled
+copies hide each other's skills. For example, to switch from stable to the
+prerelease:
+
+```bash
+# Claude Code (switch back with: claude plugin enable imgly-sdk@imgly)
+claude plugin disable imgly-sdk@imgly
+claude plugin marketplace add imgly/agent-skills@next
+claude plugin install imgly-sdk@imgly-next
+
+# Codex has no disable command, so remove the stable plugin
+codex plugin remove imgly-sdk@imgly
+codex plugin marketplace add imgly/agent-skills@next
+codex plugin add imgly-sdk@imgly-next
+```
+
+A prerelease or nightly installed before the per-channel names is registered as
+marketplace `imgly`. Adding the stable marketplace then fails, and Codex stops
+updating that install. Remove it and add the channel again, for example for
+nightly:
+
+```bash
+# Claude Code
+claude plugin uninstall cesdk@imgly
+claude plugin marketplace remove imgly
+claude plugin marketplace add imgly/agent-skills@dev
+claude plugin install imgly-sdk@imgly-dev
+
+# Codex
+codex plugin remove cesdk@imgly
+codex plugin marketplace remove imgly
+codex plugin marketplace add imgly/agent-skills@dev
+codex plugin add imgly-sdk@imgly-dev
+```
 
 Published versions can also be pinned with an exact `v<version>` Git tag.
 The bundled update workflow keeps channels separate and never replaces a pinned
@@ -152,3 +206,7 @@ MIT, except the wrapper package sources under
 `skills/docs/references/{flutter,react-native}/native-bridge/`. Those are
 IMG.LY SDK sources under the IMG.LY Terms of Service, in the license file
 of each package folder.
+
+---
+
+[Terms of Service](https://img.ly/tos/) · [Privacy Policy](https://img.ly/privacy-policy/) · Support: [img.ly/support](https://img.ly/support)

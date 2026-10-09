@@ -12,13 +12,13 @@ Bundle custom functionality into reusable plugins for CE.SDK.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-user-interface-ui-extensions-add-custom-feature-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-user-interface-ui-extensions-add-custom-feature-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-user-interface-ui-extensions-add-custom-feature-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-user-interface-ui-extensions-add-custom-feature-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-user-interface-ui-extensions-add-custom-feature-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-user-interface-ui-extensions-add-custom-feature-browser/index.html)
 
 Plugins provide a structured way to package UI components, event handlers, actions, and configuration into a single unit. While you can customize CE.SDK without plugins by calling APIs directly after initialization, plugins help organize code for sharing across projects or publishing for others to use.
 

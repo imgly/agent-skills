@@ -164,7 +164,7 @@ Android asset source.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261008/engine-guides-create-templates-add-to-template-library)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261009/engine-guides-create-templates-add-to-template-library)
 
 > **Note:** This guide assumes you already have an `Engine` reference. Learn more in the
 > [Engine Interface](../engine-interface.md) guide.

@@ -13,13 +13,13 @@ directly into CE.SDK's asset library.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-import-media-from-remote-source-imgly-premium-assets-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-import-media-from-remote-source-imgly-premium-assets-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-import-media-from-remote-source-imgly-premium-assets-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-import-media-from-remote-source-imgly-premium-assets-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-import-media-from-remote-source-imgly-premium-assets-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-import-media-from-remote-source-imgly-premium-assets-browser/index.html)
 
 IMG.LY offers premium templates through downloadable asset archives. These templates can be hosted on your own infrastructure and seamlessly integrated into CE.SDK's asset library, making them available to users alongside other asset sources. Contact IMG.LY sales to purchase premium template packages.
 

@@ -12,13 +12,13 @@ We add AI image generation to CE.SDK applications for creating visuals from text
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-user-interface-ai-integration-image-generation-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-user-interface-ai-integration-image-generation-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-user-interface-ai-integration-image-generation-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-user-interface-ai-integration-image-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-user-interface-ai-integration-image-generation-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-user-interface-ai-integration-image-generation-browser/index.html)
 
 The image generation plugin creates visuals from text descriptions (text-to-image) or transforms existing images (image-to-image). Use models like RecraftV3, Recraft20b, IdeogramV3, GeminiFlash25, and GPT Image with output in raster or vector format.
 
@@ -305,21 +305,21 @@ Install `@imgly/plugin-ai-image-generation-web` to access the ImageGeneration pl
 <Tabs syncKey="package-manager">
   <TabItem label="npm">
     ```bash
-    npm install @imgly/plugin-ai-image-generation-web@1.85.0-nightly.20261008
+    npm install @imgly/plugin-ai-image-generation-web@1.85.0-nightly.20261009
 
     ```
   </TabItem>
 
   <TabItem label="yarn">
     ```bash
-    yarn add @imgly/plugin-ai-image-generation-web@1.85.0-nightly.20261008
+    yarn add @imgly/plugin-ai-image-generation-web@1.85.0-nightly.20261009
 
     ```
   </TabItem>
 
   <TabItem label="pnpm">
     ```bash
-    pnpm add @imgly/plugin-ai-image-generation-web@1.85.0-nightly.20261008
+    pnpm add @imgly/plugin-ai-image-generation-web@1.85.0-nightly.20261009
 
     ```
   </TabItem>

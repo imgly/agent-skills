@@ -9,10 +9,10 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.85.0-nightly.20261008",
-    "@imgly/plugin-background-removal-web": "^1.85.0-nightly.20261008",
+    "@cesdk/cesdk-js": "^1.85.0-nightly.20261009",
+    "@imgly/plugin-background-removal-web": "^1.85.0-nightly.20261009",
     "onnxruntime-web": "1.21.0",
-    "@cesdk/engine": "^1.85.0-nightly.20261008"
+    "@cesdk/engine": "^1.85.0-nightly.20261009"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

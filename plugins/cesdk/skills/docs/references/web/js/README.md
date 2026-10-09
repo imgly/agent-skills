@@ -77,5 +77,5 @@ return types, and "engine.block" style queries.
 
 ## Related Skills
 
-- Use `/cesdk:build` when the user needs implementation help, not just docs
-- Use `/cesdk:explain` for conceptual explanations beyond what docs cover
+- Use `/imgly-sdk:build` when the user needs implementation help, not just docs
+- Use `/imgly-sdk:explain` for conceptual explanations beyond what docs cover

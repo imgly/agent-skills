@@ -49,7 +49,7 @@ If no `package.json` exists (new project) or detection is unclear, ask the user:
 
 ## Documentation Access
 
-Use the `/cesdk:docs` skill to look up bundled documentation, or use Glob:
+Use the `/imgly-sdk:docs` skill to look up bundled documentation, or use Glob:
 `**/skills/docs/references/web/{framework}/<path>.md`
 
 ## Output Format
@@ -86,5 +86,5 @@ workflows like asset loading pipelines, rendering lifecycles, or block hierarchi
 
 ## Related Skills
 
-- Use `/cesdk:docs` for source documentation and API reference
-- Use `/cesdk:build` when the user wants implementation, not just explanation
+- Use `/imgly-sdk:docs` for source documentation and API reference
+- Use `/imgly-sdk:build` when the user wants implementation, not just explanation

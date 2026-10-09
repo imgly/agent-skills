@@ -22,7 +22,7 @@ file it names (`react.md`, `nextjs.md`, ...) before this shared guidance.
 
 ## Documentation Access
 
-Use the `/cesdk:docs` skill to look up bundled documentation, or use Glob:
+Use the `/imgly-sdk:docs` skill to look up bundled documentation, or use Glob:
 `**/skills/docs/references/web/{framework}/<path>.md`
 
 Check the rules directory for known pitfalls: `**/skills/docs/references/web/{framework}/rules/*.md`
@@ -152,7 +152,7 @@ All kits share this structure — only the config and entry point differ:
 ### Scaffolding a New Project
 
 1. **Copy** the appropriate starter kit directory into the user's project directory
-   **Prerelease v1.85.0-nightly.20261008:** before any `npm install`, add these lines to the project's `.npmrc` (create the file if it is missing, keep its other lines):
+   **Prerelease v1.85.0-nightly.20261009:** before any `npm install`, add these lines to the project's `.npmrc` (create the file if it is missing, keep its other lines):
    ```ini
    # CE.SDK prerelease: remove once the project uses a stable CE.SDK version.
    legacy-peer-deps=true
@@ -160,9 +160,9 @@ All kits share this structure — only the config and entry point differ:
    Kits with an importer or exporter such as `@imgly/pptx-importer` declare peer ranges like `@cesdk/engine >=1.72.0`, which npm never matches with a prerelease version, so `npm install` fails with ERESOLVE without it.
 2. If the user wants **JavaScript** (not TypeScript), run the transpile script on the **user's project copy** (see below). Never run it on the bundled starter kit source
 3. Update `package.json` name and adjust dependencies as needed
-4. **Pin CE.SDK packages to v1.85.0-nightly.20261008** (required — ensures runtime matches this skill's bundled docs). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.85.0-nightly.20261008`. Remove the `^` so npm installs exactly that version, for example:
+4. **Pin CE.SDK packages to v1.85.0-nightly.20261009** (required — ensures runtime matches this skill's bundled docs). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.85.0-nightly.20261009`. Remove the `^` so npm installs exactly that version, for example:
    ```bash
-   npm install @cesdk/cesdk-js@1.85.0-nightly.20261008 --save-exact
+   npm install @cesdk/cesdk-js@1.85.0-nightly.20261009 --save-exact
    ```
    Leave other dependencies untouched. Importers and exporters such as `@imgly/pptx-importer` have their own versions.
 5. Run `npm install` to install remaining dependencies, then `npm run dev` to start the dev server
@@ -202,6 +202,6 @@ automation workflows, and "implement video export" or "create a design tool" que
 
 ## Related Skills
 
-- Use `/cesdk:docs` to look up documentation and API reference
-- Use `/cesdk:explain` to understand concepts before implementing
+- Use `/imgly-sdk:docs` to look up documentation and API reference
+- Use `/imgly-sdk:explain` to understand concepts before implementing
 - Use the builder agent for autonomous multi-step project scaffolding

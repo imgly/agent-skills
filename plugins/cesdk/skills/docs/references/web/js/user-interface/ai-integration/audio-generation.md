@@ -13,13 +13,13 @@ CE.SDK application using the Audio Generation plugin powered by ElevenLabs.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-user-interface-ai-integration-audio-generation-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-user-interface-ai-integration-audio-generation-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-user-interface-ai-integration-audio-generation-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-user-interface-ai-integration-audio-generation-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-user-interface-ai-integration-audio-generation-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-user-interface-ai-integration-audio-generation-browser/index.html)
 
 The Audio Generation plugin provides two main capabilities: text-to-speech with multiple voice options and sound effect generation from text descriptions. The plugin adds a built-in UI to CE.SDK that allows end users to generate audio content, while also providing programmatic control for automation workflows.
 
@@ -194,21 +194,21 @@ Install the audio generation plugin package:
 <Tabs syncKey="package-manager">
   <TabItem label="npm">
     ```bash
-    npm install @imgly/plugin-ai-audio-generation-web@1.85.0-nightly.20261008
+    npm install @imgly/plugin-ai-audio-generation-web@1.85.0-nightly.20261009
 
     ```
   </TabItem>
 
   <TabItem label="yarn">
     ```bash
-    yarn add @imgly/plugin-ai-audio-generation-web@1.85.0-nightly.20261008
+    yarn add @imgly/plugin-ai-audio-generation-web@1.85.0-nightly.20261009
 
     ```
   </TabItem>
 
   <TabItem label="pnpm">
     ```bash
-    pnpm add @imgly/plugin-ai-audio-generation-web@1.85.0-nightly.20261008
+    pnpm add @imgly/plugin-ai-audio-generation-web@1.85.0-nightly.20261009
 
     ```
   </TabItem>

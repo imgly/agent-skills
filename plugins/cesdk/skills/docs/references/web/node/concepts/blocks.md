@@ -11,11 +11,11 @@ CE.SDK designs.
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-concepts-blocks-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-concepts-blocks-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-concepts-blocks-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-concepts-blocks-server-js)
 
 Every visual element in CE.SDK—images, text, shapes, and audio—is represented as a block. Blocks are organized in a tree structure within scenes and pages, where parent-child relationships determine rendering order and visibility. Each block has properties you can read and modify, a `Type` that defines its core behavior, and an optional `Kind` for custom categorization.
 

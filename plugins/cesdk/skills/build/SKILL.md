@@ -1,16 +1,22 @@
 ---
 name: build
 description: |
-  Implement features and scaffold CE.SDK (IMG.LY CreativeEditor SDK) projects
-  from bundled starter kits and examples on Web, Swift, Android, Flutter, and
-  React Native. Use for "add", "build", "set up", "create an editor". Not for
-  docs or explain.
+  Build your own custom editor with the IMG.LY SDK (CE.SDK, CreativeEditor SDK), an
+  embeddable, white-label SDK, not a hosted tool: photo/image editor, video editor or
+  trimmer, design editor (Canva-like), template/brand editor, print & merch customizer,
+  social post/story creator, collage, sticker/text/filter overlays, crop, background
+  removal, and automated or server-side creative generation (PNG/JPEG/PDF/MP4). Use when
+  the user wants to add, build, embed, customize or scaffold any editing experience or
+  creative automation in their own app on Web (React, Next.js, Vue, Angular, Svelte,
+  Node), iOS/Swift, Android/Kotlin, Flutter or React Native, even if CE.SDK isn't
+  named. Not for one-off image/video processing scripts (ffmpeg, sharp, Pillow) with no
+  editor UI.
 argument-hint: "[feature or task]"
 ---
 
 ## Version Notice
 
-> CE.SDK `1.85.0-nightly.20261008` · generated `2026-10-08` · plugin `cesdk`
+> CE.SDK `1.85.0-nightly.20261009` · generated `2026-10-09` · plugin `imgly-sdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
@@ -81,6 +87,6 @@ mapping calls for.
 
 ## Related Skills
 
-- Use `/cesdk:docs` to look up documentation and API reference
-- Use `/cesdk:explain` to understand concepts before implementing
+- Use `/imgly-sdk:docs` to look up documentation and API reference
+- Use `/imgly-sdk:explain` to understand concepts before implementing
 - Claude Code: the `builder` agent delegates autonomous scaffolding to this skill

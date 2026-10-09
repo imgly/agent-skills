@@ -12,13 +12,13 @@ Create a CE.SDK scene from an HTMLCanvas element's rendered content, enabling ed
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-open-the-editor-from-htmlcanvas-browser)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-open-the-editor-from-htmlcanvas-browser)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-open-the-editor-from-htmlcanvas-browser)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-open-the-editor-from-htmlcanvas-browser)
 >
-> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261008/examples/guides-open-the-editor-from-htmlcanvas-browser/index.html)
+> - [Live demo](https://cdn.img.ly/demo/cesdk-web-examples/v1.85.0-nightly.20261009/examples/guides-open-the-editor-from-htmlcanvas-browser/index.html)
 
 You can capture any graphics rendered to a canvas—2D drawings, WebGL content, or programmatically generated visuals—and use them as the starting point for editing in CE.SDK. The workflow extracts canvas content as a data URL and passes it to the scene API.
 

@@ -1,16 +1,15 @@
 ---
 name: docs
 description: |
-  Look up CE.SDK (IMG.LY CreativeEditor SDK) guides, API references, and setup
-  pages for Web, Swift, Android, Flutter, and React Native. Use for "how do I",
-  config, or API-signature questions. Not for writing code (build) or concepts
-  (explain).
+  Look up IMG.LY SDK (CE.SDK) docs: guides, API signatures, config options, setup and
+  licensing for Web, Swift, Android, Flutter and React Native. Use for "how do I…" or
+  exact-API questions about an existing CE.SDK integration.
 argument-hint: "[search-topic]"
 ---
 
 ## Version Notice
 
-> CE.SDK `1.85.0-nightly.20261008` · generated `2026-10-08` · plugin `cesdk`
+> CE.SDK `1.85.0-nightly.20261009` · generated `2026-10-09` · plugin `imgly-sdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
@@ -78,5 +77,5 @@ mapping calls for.
 
 ## Related Skills
 
-- Use `/cesdk:build` when the user needs implementation help, not just docs
-- Use `/cesdk:explain` for conceptual explanations beyond what docs cover
+- Use `/imgly-sdk:build` when the user needs implementation help, not just docs
+- Use `/imgly-sdk:explain` for conceptual explanations beyond what docs cover

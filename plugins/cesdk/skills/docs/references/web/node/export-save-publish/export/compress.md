@@ -10,11 +10,11 @@ Reduce file sizes when exporting images by configuring compression and quality s
 >
 > **Resources:**
 >
-> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261008.zip)
+> - [Download examples](https://github.com/imgly/cesdk-web-examples/archive/refs/tags/release-1.85.0-nightly.20261009.zip)
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261008/guides-export-save-publish-export-compress-server-js)
+> - [View source on GitHub](https://github.com/imgly/cesdk-web-examples/tree/release-1.85.0-nightly.20261009/guides-export-save-publish-export-compress-server-js)
 >
-> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261008/guides-export-save-publish-export-compress-server-js)
+> - [Open in StackBlitz](https://stackblitz.com/github/imgly/cesdk-web-examples/tree/v1.85.0-nightly.20261009/guides-export-save-publish-export-compress-server-js)
 
 Image compression reduces file sizes while maintaining acceptable visual quality. CE.SDK supports format-specific compression controls: lossless compression for PNG, lossy quality settings for JPEG, and both modes for WebP.
 

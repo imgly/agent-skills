@@ -1,16 +1,15 @@
 ---
 name: explain
 description: |
-  Explain how CE.SDK (IMG.LY CreativeEditor SDK) features work: concepts,
-  architecture, block hierarchy, rendering, export, on Web, Swift, Android,
-  Flutter, and React Native. Use for "explain" or "how does X work". Not for
-  docs (docs) or code (build).
+  Explain how the IMG.LY SDK (CE.SDK) works: scenes, blocks, pages, fills, effects,
+  timeline, rendering, export, asset sources, plugins. Use for "how does X work / why"
+  questions about the engine or editor architecture.
 argument-hint: "[topic or question]"
 ---
 
 ## Version Notice
 
-> CE.SDK `1.85.0-nightly.20261008` · generated `2026-10-08` · plugin `cesdk`
+> CE.SDK `1.85.0-nightly.20261009` · generated `2026-10-09` · plugin `imgly-sdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
@@ -78,5 +77,5 @@ mapping calls for.
 
 ## Related Skills
 
-- Use `/cesdk:docs` for source documentation and API reference
-- Use `/cesdk:build` when the user wants implementation, not just explanation
+- Use `/imgly-sdk:docs` for source documentation and API reference
+- Use `/imgly-sdk:build` when the user wants implementation, not just explanation

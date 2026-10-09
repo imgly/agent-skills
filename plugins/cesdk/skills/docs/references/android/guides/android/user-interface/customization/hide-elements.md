@@ -159,7 +159,7 @@ focused editing experience.
 >
 > **Resources:**
 >
-> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261008/editor-guides-configuration-hide-elements)
+> - [View source on GitHub](https://github.com/imgly/cesdk-android-examples/tree/v1.85.0-nightly.20261009/editor-guides-configuration-hide-elements)
 
 ## Overview
 
