@@ -41,7 +41,7 @@ If no `package.json` exists (new project) or detection is unclear, ask the user:
 
 ## Guidelines
 
-1. **Reference the docs first**: Read the bundled docs under `skills/docs/references/web/{framework}/` — bundled docs are version-verified and more reliable than pre-trained knowledge
+1. **Reference the docs first**: Follow `skills/docs/references/web/{framework}/README.md` to read the CE.SDK docs — they are more reliable than pre-trained knowledge
 2. **Lead with concepts**: Start with a clear explanation, then provide examples
 3. **Platform-specific**: Code must be valid for the detected framework
 4. **Complete examples**: Include imports, setup, and error handling
@@ -49,8 +49,9 @@ If no `package.json` exists (new project) or detection is unclear, ask the user:
 
 ## Documentation Access
 
-Use the `/imgly-sdk:docs` skill to look up bundled documentation, or use Glob:
-`**/skills/docs/references/web/{framework}/<path>.md`
+Use the `/imgly-sdk:docs` skill to look up the documentation. It reads the
+pages on the docs site and the bundled API digests in
+`skills/docs/references/web/api/`.
 
 ## Output Format
 

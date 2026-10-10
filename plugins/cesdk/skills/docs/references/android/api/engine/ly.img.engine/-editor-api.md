@@ -230,7 +230,7 @@ Query the state of a global scope.
 abstract fun getMaxExportSize(): Int
 ```
 
-Get the export size limit in pixels on the current device. An export is only possible when both the width and height of the output are below or equal this limit. However, this is only an upper limit as the export might also not be possible due to other reasons, e.g., memory constraints.
+Get the export size limit in pixels on the current device. An export is only possible when both the width and height of the output are below or equal this limit. However, this is only an upper limit as the export might also not be possible due to other reasons, e.g., memory constraints. A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI, not against the page.
 
 ### getMimeType
 

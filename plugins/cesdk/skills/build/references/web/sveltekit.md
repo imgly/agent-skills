@@ -1,17 +1,19 @@
 # Build with CE.SDK in SvelteKit
 
-Docs folder: `skills/docs/references/web/sveltekit/` (guides, API digests, rules for SvelteKit).
+Docs folder: `skills/docs/references/web/sveltekit/` (remote docs workflow, page index, and rules for
+SvelteKit). The API digests are in `skills/docs/references/web/api/`.
 
 ## Setup
 
 Follow the get-started pages first. They carry the exact packages and versions.
+Fetch them as Markdown (WebFetch, or `curl -sL --compressed <url>`):
 
-- `skills/docs/references/web/sveltekit/get-started/agent-skills.md`
-- `skills/docs/references/web/sveltekit/get-started/build-with-ai.md`
-- `skills/docs/references/web/sveltekit/get-started/cesdk-plugin-coding-agents.md`
-- `skills/docs/references/web/sveltekit/get-started/mcp-server.md`
-- `skills/docs/references/web/sveltekit/get-started/overview.md`
-- `skills/docs/references/web/sveltekit/get-started/sveltekit/quickstart.md`
+- `https://img.ly/docs/cesdk/dev/sveltekit/get-started/agent-skills-f7g8h9.md`
+- `https://img.ly/docs/cesdk/dev/sveltekit/get-started/build-with-ai-k7m9p2.md`
+- `https://img.ly/docs/cesdk/dev/sveltekit/get-started/cesdk-plugin-coding-agents-c0d3ag.md`
+- `https://img.ly/docs/cesdk/dev/sveltekit/get-started/mcp-server-fde71c.md`
+- `https://img.ly/docs/cesdk/dev/sveltekit/get-started/overview-e18f40.md`
+- `https://img.ly/docs/cesdk/dev/sveltekit/get-started/sveltekit/quickstart-k4q5w6.md`
 
 ## Rules for SvelteKit
 

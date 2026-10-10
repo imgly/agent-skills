@@ -9,7 +9,7 @@ argument-hint: "[search-topic]"
 
 ## Version Notice
 
-> CE.SDK `1.85.0-nightly.20261009` · generated `2026-10-09` · plugin `imgly-sdk`
+> CE.SDK `1.85.0-nightly.20261010` · generated `2026-10-10` · plugin `imgly-sdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
@@ -68,12 +68,13 @@ mapping calls for.
 ## How to Use
 
 1. Detect the platform and framework as above.
-2. Read `README.md` in the matching reference folder. It holds the compressed
-   documentation index, the API index, and the lookup workflow for that platform.
-3. Follow that workflow: resolve the index entry to a file with Glob under the
-   reference folder, or Grep the folder for the keyword.
+2. Read `README.md` in the matching reference folder. It holds the lookup
+   workflow, the API index, and the agent rules for that platform. The page
+   index of the docs site (`<platform>.md`) sits beside it.
+3. Follow that workflow: pick pages from the index and fetch them from the docs
+   site as Markdown, or read the bundled API digests.
 4. Answer with the relevant section and code examples. Verify types and package
-   names against the bundled files, never against memory.
+   names against the fetched pages and the API digests, never against memory.
 
 ## Related Skills
 

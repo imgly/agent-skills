@@ -2523,7 +2523,7 @@ Update a block's height and optionally maintain the crop. If the crop is maintai
 abstract fun setInAnimation(block: DesignBlock, animation: DesignBlock)
 ```
 
-Sets the "in" animation for the given block.
+Sets the "in" animation for the given block. The animation is removed from every other block that uses it.
 
 ### setIncludedInExport
 
@@ -2555,7 +2555,7 @@ Set the kind of the given block, fails if the block is invalid.
 abstract fun setLoopAnimation(block: DesignBlock, animation: DesignBlock)
 ```
 
-Sets the "loop" animation for the given block.
+Sets the "loop" animation for the given block. The animation is removed from every other block that uses it.
 
 ### setLooping
 
@@ -2611,7 +2611,7 @@ Set the opacity of the given design block. Required scope: "layer/opacity"
 abstract fun setOutAnimation(block: DesignBlock, animation: DesignBlock)
 ```
 
-Sets the "out" animation for the given block.
+Sets the "out" animation for the given block. The animation is removed from every other block that uses it.
 
 ### setPageDurationSource
 

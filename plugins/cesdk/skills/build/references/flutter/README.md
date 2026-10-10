@@ -28,7 +28,7 @@ two connect.
    native customization.
 3. For native code, use the bundled Swift references in `skills/docs/references/swift/` and
    the Android references in `skills/docs/references/android/` as the source of truth.
-4. Use the bundled Flutter guides for integration steps and project setup.
+4. Use the Flutter guides on the docs site for integration steps and project setup.
 5. Cross-check the resolved package version in `pubspec.lock` when it differs
    from this bundle, and use pretrained knowledge only when nothing above
    answers.
@@ -41,7 +41,7 @@ two connect.
 2. Add `imgly_editor` and, when the app captures media, `imgly_camera` to
    `pubspec.yaml` at the CE.SDK version of this bundle, then run
    `flutter pub get`.
-3. Apply the platform setup from the bundled get-started guides: Android
+3. Apply the platform setup from the get-started guides on the docs site: Android
    `minSdkVersion`, the IMG.LY Maven repository, Kotlin version; iOS 16.0
    as the deployment target (`platform :ios, '16.0'` when the app still
    resolves plugins with CocoaPods instead of Swift Package Manager).

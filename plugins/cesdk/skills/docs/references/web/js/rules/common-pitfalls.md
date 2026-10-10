@@ -247,9 +247,9 @@ This prevents the page from being selected while still allowing interaction with
 
 ## Starter Kits Are TypeScript: Copy First, Then Transpile for JS
 
-**Problem:** All bundled starter kits use TypeScript (`.ts`/`.tsx` files, `tsconfig.json`, type annotations). Copying them into a JavaScript project without conversion leads to syntax errors. Manually rewriting or converting files by hand leads to missing CSS resets, broken Vite configs, or incorrect plugin initialization.
+**Problem:** All CE.SDK Web starter kits use TypeScript (`.ts`/`.tsx` files, `tsconfig.json`, type annotations). Copying them into a JavaScript project without conversion leads to syntax errors. Manually rewriting or converting files by hand leads to missing CSS resets, broken Vite configs, or incorrect plugin initialization.
 
-**Solution:** Always **copy the starter kit into the user's project first**, then run the bundled transpile script on the **user's project copy**:
+**Solution:** Always **copy or clone the starter kit into the user's project first**, then run the bundled transpile script on the **user's project copy**:
 
 ```bash
 # 1. Install TypeScript 5 temporarily in the project (the script loads it from there)

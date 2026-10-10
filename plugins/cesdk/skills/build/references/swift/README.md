@@ -20,8 +20,9 @@ UI is unavailable and offer an `IMGLYEngine`-backed custom UI instead.
 1. Prefer live Xcode symbol or documentation lookup, when available, for exact
    installed-SDK signatures, generic constraints, availability, and deprecations.
 2. Use bundled API digests for discovery, planning, and portable lookup.
-3. Use bundled guides for integration recipes.
-4. Use pretrained knowledge only when the installed SDK and bundle do not answer.
+3. Use the guides on the docs site for integration recipes.
+4. Use pretrained knowledge only when the installed SDK, the bundle, and the
+   docs site do not answer.
 
 If live Xcode symbols disagree with a bundled API digest, follow the installed
 SDK and call out the version difference.
@@ -30,24 +31,33 @@ SDK and call out the version difference.
 
 1. Identify iOS, macOS, or Mac Catalyst and the allowed modules.
 2. Consult the sibling `docs` skill for exact APIs and current guides.
-3. For a new iOS application, copy the closest bundled starter kit.
-4. From the copied `starter-kits/` root run
-   `./prepare_starter_kit.sh <kit-name>`; it links the scaffold files and
-   invokes XcodeGen. Do not claim that opening the raw folder is sufficient.
-5. Put the CE.SDK license in the generated `Secrets.swift`, resolve the exact
-   package version, and build the generated Xcode project.
-6. Keep engine work on `@MainActor` and return complete Swift code.
+3. For a new iOS application, clone the closest starter kit repository below.
+   It holds a complete Xcode project.
+4. Put the CE.SDK license in the kit's `Secrets.swift`, resolve the exact
+   package version, and build the Xcode project.
+5. Keep engine work on `@MainActor` and return complete Swift code.
 
 ## iOS-only Starter Kits
 
-| Kit | Path | Use case |
+| Kit | Repository | Use case |
 |---|---|---|
-| starter-kit-apparel | `starter-kits/starter-kit-apparel/` | Apparel and product personalization |
-| starter-kit-design | `starter-kits/starter-kit-design/` | General-purpose design editor |
-| starter-kit-photo | `starter-kits/starter-kit-photo/` | Photo editing and image adjustments |
-| starter-kit-postcard | `starter-kits/starter-kit-postcard/` | Postcard and greeting-card editor |
-| starter-kit-template | `starter-kits/starter-kit-template/` | Template-based content creation |
-| starter-kit-video | `starter-kits/starter-kit-video/` | Video editing and export |
+| starter-kit-apparel | `imgly/starterkit-apparel-editor-ios` | Apparel and product personalization |
+| starter-kit-content-moderation | `imgly/starterkit-content-moderation-ios` | Design editor that checks images and text against a moderation service |
+| starter-kit-design | `imgly/starterkit-design-editor-ios` | General-purpose design editor |
+| starter-kit-photo | `imgly/starterkit-photo-editor-ios` | Photo editing and image adjustments |
+| starter-kit-postcard | `imgly/starterkit-postcard-editor-ios` | Postcard and greeting-card editor |
+| starter-kit-video | `imgly/starterkit-video-editor-ios` | Video editing and export |
+
+Clone the kit into the user's project folder, then remove the copied `.git` folder:
+
+```bash
+git clone --depth 1 --branch v1.85.0-nightly.20261010 https://github.com/imgly/starterkit-apparel-editor-ios.git <target>
+rm -rf <target>/.git
+```
+
+The `v1.85.0-nightly.20261010` branch of each repository matches this bundle. If the branch
+does not exist (a nightly build, or a kit added after this release), clone the
+default branch without `--branch` and set the CE.SDK dependency to version `1.85.0-nightly.20261010`.
 
 The starter kits do not support macOS or Mac Catalyst. For those targets,
 create an engine-backed custom UI without importing iOS-only UI modules.

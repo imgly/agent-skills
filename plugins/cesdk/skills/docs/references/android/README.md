@@ -15,7 +15,7 @@ explicitly requires a custom engine surface.
 ## Source Priority
 
 1. Use bundled Dokka API digests for exact Kotlin declarations and deprecations.
-2. Use bundled Android guides for integration workflows.
+2. Use the Android guides on the docs site for integration workflows.
 3. Cross-check the project's resolved Gradle dependency or IDE symbols when the
    installed CE.SDK version differs from this bundle.
 4. Use pretrained knowledge only when the project and bundle do not answer.
@@ -26,20 +26,49 @@ dependency and call out the version difference.
 ## Lookup Workflow
 
 1. Resolve the active Gradle module and CE.SDK dependency version.
-2. Search the Android guide index below and read files under
-   `guides/android/`.
+2. Search `android.md` in this folder and fetch the pages as described in
+   Remote Documentation below.
 3. For API lookup, open the linked module catalog in the API index, match the
    fully qualified type, and follow its digest link under `api/<module>/`,
    for example
    `api/engine/ly.img.engine/-block-api.md`.
-4. Read the relevant bundled guides for lifecycle, configuration-state, and
+4. Read the relevant guides for lifecycle, configuration-state, and
    threading constraints before proposing integration code.
 
-## Guide Indexes
+## Remote Documentation
 
-### Android (Kotlin)
+The guides are on the CE.SDK docs site, not in this bundle. The index files in
+this folder list them:
 
-<-- IMGLY-AGENTS-MD-START -->[CE.SDK Android (Kotlin) Docs Index]|root: ./guides/android|IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any CE.SDK tasks. Consult the local docs directory before using pre-trained knowledge.|animation:{create,edit.md,overview.md,programmatic.md,types.md}|animation/create:{base.md,text.md}|automation:{auto-resize.md,batch-processing.md,data-merge.md,design-generation.md,multi-image-generation.md,overview.md,product-variations.md}|bundle-size.md|capabilities.md|colors:{adjust.md,apply.md,basics.md,conversion.md,create-color-palette.md,extract-colors.md,for-print,for-screen,overview.md,replace.md}|colors/for-print:{cmyk.md,spot.md}|colors/for-screen:{p3.md,srgb.md}|compatibility-139ef9.md|compatibility-fef719.md|concepts:{architecture.md,assets.md,blocks.md,buffers.md,design-units.md,edit-modes.md,editing-workflow.md,error-catalog.md,events.md,exclusion-areas.md,font-size-unit.md,headless-mode.md,import-export.md,pages.md,plugin-architecture.md,resources.md,scenes.md,templating.md,terminology.md,undo-and-history.md}|configuration.md|conversion:{overview.md,to-base64.md,to-blob.md,to-pdf.md}|create-audio:{audio}|create-audio/audio:{add-music.md,add-sound-effects.md,adjust-speed.md,adjust-volume.md,fade.md,loop.md,record-voiceover.md}|create-composition:{add-background.md,blend-modes.md,collage.md,group-and-ungroup.md,layer-management.md,layout.md,lock-design.md,multi-page.md,overview.md,position-and-align.md,programmatic.md}|create-offline-maven-repository.md|create-templates:{add-dynamic-content,add-to-template-library.md,edit-or-remove.md,from-scratch.md,import,lock.md,overview.md}|create-templates/add-dynamic-content:{form-based-editing.md,placeholders.md,set-editing-constraints.md,text-variables.md}|create-templates/import:{from-scene-file.md}|create-video:{apply-transitions.md,control.md,limitations.md,lock-design.md,overview.md,programmatic.md,record-reaction.md,timeline-editor.md,update-caption-presets.md}|edit-image:{add-watermark.md,annotation.md,overview.md,remove-bg.md,replace-colors.md,transform}|edit-image/transform:{crop.md,flip.md,move.md,resize.md,rotate.md,scale.md}|edit-video:{add-captions.md,add-watermark.md,annotation.md,edit-captions.md,force-trim.md,join-and-arrange.md,programmatic.md,redaction.md,split.md,transform,trim.md}|edit-video/transform:{crop.md,flip.md,move.md,resize.md,rotate.md,scale.md}|engine-interface.md|equal-distance-snapping.md|export-counting.md|export-save-publish:{create-thumbnail.md,export,for-printing.md,for-social-media.md,pre-export-validation.md,save.md,store-custom-metadata.md,thumbnail-previews.md}|export-save-publish/export:{audio.md,compress.md,overview.md,partial-export.md,size-limits.md,to-jpeg.md,to-mp4.md,to-pdf.md,to-png.md,to-raw-data.md,with-color-mask.md}|file-format-support.md|fills:{color.md,gradient.md,image.md,overview.md,video.md}|filters-and-effects:{apply.md,blur.md,chroma-key-green-screen.md,create-custom-filters.md,create-custom-lut-filter.md,distortion.md,duotone.md,overview.md,support.md}|get-started:{agent-skills.md,android,build-with-ai.md,mcp-server.md,overview.md}|get-started/android:{quickstart.md}|guides.md|import-media:{asset-library,capture-from-camera,concepts.md,create-custom-importer.md,default-assets.md,edit-or-remove-assets.md,file-format-support.md,from-local-source,from-remote-source,overview.md,retrieve-mimetype.md,size-limits.md,source-sets.md}|import-media/asset-library:{basics.md,customize.md,refresh-assets.md,thumbnails.md}|import-media/capture-from-camera:{camera-configuration.md,integrate.md,photos.md,record-reaction.md,record-video.md,recordings.md,take-photo.md,zoom.md}|import-media/from-local-source:{local-asset.md,photo-roll.md,user-upload.md}|import-media/from-remote-source:{asset-versioning.md,getty-images.md,imgly-premium-assets.md,pexels.md,remote-asset.md,third-party.md,unsplash.md,your-server.md}|insert-media:{audio.md,images.md,overview.md,shapes-or-stickers.md,videos.md}|key-capabilities.md|key-concepts.md|licensing.md|llms-txt.md|open-the-editor:{blank-canvas.md,from-image.md,from-template.md,from-video.md,import-design,load-scene.md,overview.md,set-zoom-level.md,uri-resolver.md}|open-the-editor/import-design:{from-archive.md,from-indesign.md,from-photoshop.md}|outlines:{overview.md,shadows-and-glows.md,strokes.md}|performance.md|plugins:{ai-image-generation.md,custom-plugin.md}|rules:{enforce-brand-guidelines.md,lock-content.md,moderate-content.md,overview.md}|security.md|serve-assets.md|settings.md|shapes.md|starterkits:{content-moderation.md,custom-built-uis.md,design-editor.md,extensibility.md,memories.md,photo-editor.md,postcard-editor.md,t-shirt-designer.md,video-editor.md}|stickers.md|stickers-and-shapes:{combine.md,create-cutout.md,create-edit}|stickers-and-shapes/create-edit:{create-shapes.md,create-stickers.md,edit-shapes.md,edit-stickers.md}|text:{add.md,adjust-spacing.md,auto-size.md,custom-fonts.md,decorations.md,edit.md,effects.md,emojis.md,enumerations.md,language-support.md,overview.md,styling.md,subscript-superscript.md,text-designs.md,text-on-path.md,variable-fonts.md}|to-v1-19.md|to-v1-73.md|to-v1-77.md|to-v1-83.md|upgrade.md|use-templates:{apply-template.md,generate.md,library.md,overview.md,programmatic.md,replace-content.md}|user-interface:{ai-integration,appearance,build-your-own-ui.md,custom-error-messages.md,customization,events.md,localization.md,overview.md,ui-extensions}|user-interface/ai-integration:{auto-captions.md}|user-interface/appearance:{custom-labels.md,icons.md,overlay.md,theming.md}|user-interface/customization:{canvas-menu.md,color-palette.md,crop-presets.md,dock.md,force-crop.md,hide-elements.md,inspector-bar.md,movement-constraints.md,navigation-bar.md,page-format.md,panel.md,rearrange-buttons.md,video-timeline.md}|user-interface/ui-extensions:{add-new-button.md,asset-library.md,create-custom-panel.md,customize-behaviour.md,quick-actions.md}|what-is-cesdk.md|<-- IMGLY-AGENTS-MD-END -->
+- `android.md` lists every page of https://img.ly/docs/cesdk/dev/android/ with its title and link.
+
+The links point to the docs of CE.SDK `1.85.0-nightly.20261010`, the version of this bundle,
+under `https://img.ly/docs/cesdk/dev/`. The docs site keeps one copy per version, with the same
+page paths:
+
+| CE.SDK version | Docs root |
+| --- | --- |
+| Latest stable release | `https://img.ly/docs/cesdk/` |
+| A stable release since 1.60 | `https://img.ly/docs/cesdk/archive/v<major>.<minor>/` |
+| Latest release candidate | `https://img.ly/docs/cesdk/next/` |
+| Latest nightly | `https://img.ly/docs/cesdk/dev/` |
+
+1. **Check the version.** Read the CE.SDK version the project uses. If it is not
+   `1.85.0-nightly.20261010`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
+   version.
+2. **Read the index** in this folder and pick the pages that match the query.
+3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
+   `.md`. For example, `https://img.ly/docs/cesdk/dev/android/<path>-<id>/` becomes
+   `https://img.ly/docs/cesdk/dev/android/<path>-<id>.md`. Use WebFetch. If WebFetch is not
+   available (for example in Codex), use `curl -sL --compressed <url>`. If a
+   page returns 404, it does not exist in that version: read that version's
+   index, `<root>android.md`, instead.
+4. **Answer from the fetched pages**, and cite their URLs. If neither a page nor
+   the bundled API digests cover the request, say so instead of filling the gap
+   with pre-trained knowledge.
+5. **Full text, last resort**: `https://img.ly/docs/cesdk/android/llms-full.txt` holds all pages
+   of the latest stable release in one file of several MB. Search it with
+   `curl -sL --compressed <url> | grep -n "<keyword>"`. Do not read it in full.
 
 ## API Index
 

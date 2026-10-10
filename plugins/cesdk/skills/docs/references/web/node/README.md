@@ -2,14 +2,77 @@
 
 Look up documentation for IMG.LY CreativeEditor SDK (Node.js).
 
-## Documentation Index
+## Remote Documentation
 
-<-- IMGLY-AGENTS-MD-START -->[CE.SDK Node.js Docs Index]|root: .|IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any CE.SDK tasks. Consult the local docs directory before using pre-trained knowledge.|actions.md|animation:{create,edit.md,types.md}|animation/create:{base.md,text.md}|api:{node}|api/node:{classes,enumerations,functions,interfaces,type-aliases,variables}|automation:{auto-resize.md,data-merge.md,design-generation.md,multi-image-generation.md,overview.md}|capabilities.md|colors:{adjust.md,apply.md,basics.md,conversion.md,create-color-palette.md,extract-colors.md,for-print,for-screen,overview.md,replace.md}|colors/for-print:{cmyk.md,spot.md}|colors/for-screen:{p3.md,srgb.md}|compatibility.md|concepts:{architecture.md,assets.md,blocks.md,buffers.md,design-units.md,editing-workflow.md,error-catalog.md,events.md,exclusion-areas.md,headless-mode.md,import-export.md,pages.md,plugin-architecture.md,resources.md,scenes.md,templating.md,terminology.md,undo-and-history.md}|configuration.md|conversion:{overview.md,to-base64.md,to-pdf.md}|create-audio:{audio}|create-audio/audio:{add-music.md,add-sound-effects.md,adjust-speed.md,adjust-volume.md,fade.md,loop.md}|create-composition:{add-background.md,blend-modes.md,collage.md,group-and-ungroup.md,layer-management.md,layout.md,lock-design.md,multi-page.md,overview.md,position-and-align.md,programmatic.md}|create-templates:{add-dynamic-content,add-to-template-library.md,edit-or-remove.md,from-scratch.md,import,lock.md,overview.md}|create-templates/add-dynamic-content:{placeholders.md,set-editing-constraints.md,text-variables.md}|create-templates/import:{from-scene-file.md}|create-video:{control.md,limitations.md}|edit-image:{add-watermark.md,overview.md,remove-bg.md,replace-colors.md,transform}|edit-image/transform:{crop.md,flip.md,move.md,resize.md,rotate.md,scale.md}|edit-video:{add-captions.md,add-watermark.md,join-and-arrange.md,redaction.md,split.md,transform,trim.md}|edit-video/transform:{crop.md,flip.md,move.md,resize.md,rotate.md,scale.md}|engine-interface.md|export-counting.md|export-save-publish:{create-thumbnail.md,export,for-printing.md,for-social-media.md,pre-export-validation.md,save.md,store-custom-metadata.md,thumbnail-previews.md}|export-save-publish/export:{audio.md,compress.md,overview.md,partial-export.md,size-limits.md,to-jpeg.md,to-pdf.md,to-png.md,to-raw-data.md,to-webp.md,with-color-mask.md}|file-format-support.md|fills:{color.md,gradient.md,image.md,overview.md,video.md}|filters-and-effects:{apply.md,blur.md,chroma-key-green-screen.md,create-custom-filters.md,create-custom-lut-filter.md,distortion.md,duotone.md,overview.md,support.md}|get-started:{agent-skills.md,build-with-ai.md,bun.md,cesdk-plugin-coding-agents.md,deno.md,mcp-server.md,overview.md,vanilla.md,vanilla-aws-lambda.md,vanilla-clone-github-project.md}|guides.md|import-media:{asset-library,concepts.md,content-json-schema.md,default-assets.md,edit-or-remove-assets.md,file-format-support.md,from-eps.md,from-remote-source,overview.md,retrieve-mimetype.md,size-limits.md,source-sets.md}|import-media/asset-library:{refresh-assets.md}|import-media/from-remote-source:{asset-versioning.md,remote-asset.md}|insert-media:{audio.md,images.md,overview.md,shapes-or-stickers.md,videos.md}|key-capabilities.md|key-concepts.md|licensing.md|llms-txt.md|open-the-editor:{blank-canvas.md,from-image.md,from-template.md,from-video.md,import-design,load-scene.md,overview.md,uri-resolver.md}|open-the-editor/import-design:{from-archive.md,from-indesign.md,from-photoshop.md}|outlines:{overview.md,shadows-and-glows.md,strokes.md}|overview.md|performance.md|plugins:{print-ready-pdf.md}|rules:{asset-handling.md,common-pitfalls.md,content-fill-mode.md,enforce-brand-guidelines.md,lock-content.md,moderate-content.md,overview.md,silent-init-errors.md,verify-properties-before-use.md}|security.md|serve-assets.md|settings.md|shapes.md|stickers.md|stickers-and-shapes:{combine.md,create-cutout.md,create-edit,insert-qr-code.md}|stickers-and-shapes/create-edit:{create-shapes.md,create-stickers.md,edit-shapes.md}|text:{add.md,adjust-spacing.md,auto-size.md,edit.md,effects.md,emojis.md,language-support.md,overview.md,styling.md,text-designs.md}|to-v1-19.md|to-v1-82.md|upgrade.md|use-templates:{apply-template.md,generate.md,overview.md,programmatic.md,replace-content.md}|what-is-cesdk.md|<-- IMGLY-AGENTS-MD-END -->
+The guides are on the CE.SDK docs site, not in this bundle. The index files in
+this folder list them:
+
+- `node.md` lists every page of https://img.ly/docs/cesdk/dev/node/ with its title and link.
+
+The links point to the docs of CE.SDK `1.85.0-nightly.20261010`, the version of this bundle,
+under `https://img.ly/docs/cesdk/dev/`. The docs site keeps one copy per version, with the same
+page paths:
+
+| CE.SDK version | Docs root |
+| --- | --- |
+| Latest stable release | `https://img.ly/docs/cesdk/` |
+| A stable release since 1.60 | `https://img.ly/docs/cesdk/archive/v<major>.<minor>/` |
+| Latest release candidate | `https://img.ly/docs/cesdk/next/` |
+| Latest nightly | `https://img.ly/docs/cesdk/dev/` |
+
+1. **Check the version.** Read the CE.SDK version the project uses. If it is not
+   `1.85.0-nightly.20261010`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
+   version.
+2. **Read the index** in this folder and pick the pages that match the query.
+3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
+   `.md`. For example, `https://img.ly/docs/cesdk/dev/node/<path>-<id>/` becomes
+   `https://img.ly/docs/cesdk/dev/node/<path>-<id>.md`. Use WebFetch. If WebFetch is not
+   available (for example in Codex), use `curl -sL --compressed <url>`. If a
+   page returns 404, it does not exist in that version: read that version's
+   index, `<root>node.md`, instead.
+4. **Answer from the fetched pages**, and cite their URLs. If neither a page nor
+   the bundled API digests cover the request, say so instead of filling the gap
+   with pre-trained knowledge.
+5. **Full text, last resort**: `https://img.ly/docs/cesdk/node/llms-full.txt` holds all pages
+   of the latest stable release in one file of several MB. Search it with
+   `curl -sL --compressed <url> | grep -n "<keyword>"`. Do not read it in full.
+
+## Local Rules
+
+Before setup, initialization, or common operations, read these files in this
+folder. They list agent pitfalls that the docs site does not cover.
+
+- `rules/asset-handling.md`
+- `rules/common-pitfalls.md`
+- `rules/content-fill-mode.md`
+- `rules/silent-init-errors.md`
+- `rules/verify-properties-before-use.md`
+
+## API Lookup
+
+For TypeScript API queries (method signatures, types, parameters):
+
+Start with the bundled API digests. All Web frameworks share them in `../api/`.
+
+1. **Module lookup**: Match the query to a module in the API index below and read
+   `../api/<ModuleName>.md` (e.g. `../api/BlockAPI.md`).
+2. **Method search**: Grep `../api/` for the method name.
+3. **Common types**: Read `../api/types.md`.
+
+The docs site has the full reference for this version:
+
+- Node package (`@cesdk/node`): `https://img.ly/docs/cesdk/dev/node/api/node.md`
+
+Class and type pages follow the same `.md` rule, for example
+`https://img.ly/docs/cesdk/dev/node/api/node/classes/blockapi.md`.
+
+**Tip**: Verify types against the TypeScript definitions. CE.SDK evolves rapidly
+and type shapes may differ from pre-trained knowledge.
 
 ## API Index
 
 <-- IMGLY-TYPES-MD-START -->
-[CE.SDK Web API Index]|root: .
+[CE.SDK Web API Index]|root: ../api
 
 CreativeEngine:{asset,block,editor,event,scene,variable,actions,shortcuts,reactor,version,addPlugin,unstable_setVideoExportInactivityTimeout,unstable_setExportInactivityTimeout,addPostUpdateCallback,addPreUpdateCallback},... (+7)
 BlockAPI:{export,getDominantColors,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo},... (+411)
@@ -20,51 +83,6 @@ EventAPI:{subscribe}
 VariableAPI:{findAll,setString,getString,remove}
 Types:{AnimationType,AssetResult,BlendMode,Color,ExportOptions,PropertyType,Scope,TextCase,VideoExportOptions}
 <-- IMGLY-TYPES-MD-END -->
-
-## How to Use
-
-1. **Index lookup**: Match the query to a path in the Documentation Index above.
-   The index uses compressed format: `dir:{file1.md,file2.md}` means files are at
-   `dir/file1.md` and `dir/file2.md`.
-   Resolve the path using Glob: `**/skills/docs/references/web/node/<path>.md`
-   (e.g., for `text/add.md` → `**/skills/docs/references/web/node/text/add.md`)
-2. **Search**: If no exact match exists, use Grep to search the documentation:
-   `Grep pattern="<keyword>" path="**/skills/docs/references/web/node/" output_mode="content"`
-   or search filenames: `Glob pattern="**/skills/docs/references/web/node/**/*<keyword>*.md"`
-3. **Read and respond** with the relevant section and code examples
-4. **Check rules** if the topic involves setup, initialization, or common
-   operations: `**/skills/docs/references/web/node/rules/*.md`
-
-## API Lookup
-
-For TypeScript API queries (method signatures, types, parameters):
-
-1. **Module lookup**: Match the query to a module in the API index above.
-   Read the module file: `**/skills/docs/references/web/node/api/<ModuleName>.md`
-   (e.g., for BlockAPI → `**/skills/docs/references/web/node/api/BlockAPI.md`)
-2. **Method search**: If looking for a specific method, use Grep:
-   `Grep pattern="<method>" path="**/skills/docs/references/web/node/api/" output_mode="content"`
-3. **For common types**: Read `**/skills/docs/references/web/node/api/types.md`
-
-**Tip**: Verify types against the TypeScript definitions — CE.SDK evolves rapidly and type shapes may differ from pre-trained knowledge.
-
-## Quick Reference
-
-| Topic | Path |
-|-------|------|
-| Getting started | `get-started/` |
-| API methods | `engine-interface.md` |
-| Configuration | `configuration.md`, `settings.md` |
-| Import media | `import-media/` |
-| Export/save | `export-save-publish/` |
-| Templates | `use-templates/`, `create-templates/` |
-| Text operations | `text/` |
-| Image editing | `edit-image/` |
-| Video editing | `edit-video/`, `create-video/` |
-| Fills & colors | `fills/`, `colors/` |
-| Filters/effects | `filters-and-effects/` |
-| Known pitfalls | `rules/` |
-| API modules | `api/BlockAPI.md`, `api/SceneAPI.md`, etc. |
 
 ## Additional Triggers
 

@@ -10,7 +10,7 @@ https://github.com/user-attachments/assets/d01073ca-4a6a-49eb-8155-faa25ff04595
 
 [Agent Skills](https://agentskills.io) are portable knowledge packs that plug into AI coding assistants. By installing the CE.SDK plugin, you get:
 
-- **Offline documentation**: All guides, API references, and best practices bundled locally — no external API calls
+- **Current documentation**: Skills read the CE.SDK guides on img.ly as Markdown, and bundle the API references and agent rules
 - **Guided code generation**: Build and explain skills that walk through CE.SDK implementation step by step
 - **Autonomous scaffolding**: The build skill creates and verifies complete CE.SDK projects from starter kits
 
@@ -189,13 +189,13 @@ Use the explain skill to describe how the block hierarchy works.
 ## How It Works
 
 The docs skill routes to the platform and framework folder under
-`skills/docs/references/`, where the complete CE.SDK guides and API references
-live with a compressed index. Skills read directly from these local files —
-no network access, no external services.
+`skills/docs/references/`. Each folder holds the docs site's page index, the
+API references, and agent rules. Skills fetch the guides from
+`https://img.ly/docs/cesdk/` as Markdown, so they need network access.
 
-The build skill includes starter kit templates for common use cases like design
-editors, video editors, and photo editors, per platform, and runnable examples
-for the Flutter and React Native wrappers. It detects your project's platform
+The build skill links public starter kit repositories for common use cases like
+design editors, video editors, and photo editors, per platform, and bundles
+runnable examples for the Flutter and React Native wrappers. It detects your project's platform
 and framework and generates code that matches. A wrapper folder links the
 bundled Swift and Android references for everything the wrapper leaves to
 native code.

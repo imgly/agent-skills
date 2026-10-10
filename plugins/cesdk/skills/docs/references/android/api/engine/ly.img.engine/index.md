@@ -20,7 +20,7 @@ Convenience function that registers a set of asset sources containing our exampl
 ```kotlin
 suspend fun Engine.addDemoAssetSources(exclude: Set<DemoAssetSource> = emptySet(), withUploadAssetSources: Boolean = false, baseUri: Uri = Engine.assetBaseUri)
 ```
-> **Deprecated:** Uses legacy v3-era demo asset source IDs and will be removed in a future version. Register each source via Engine.asset.addLocalSourceFromJSON(contentUri) instead. Migration guide: https://img.ly/docs/cesdk/android/to-v1-77-ac6ca9/
+> **Deprecated:** Uses legacy v3-era demo asset source IDs and will be removed in a future version. Register each source via Engine.asset.addLocalSourceFromJSON(contentUri) instead. Migration guide: https://img.ly/docs/cesdk/dev/android/to-v1-77-ac6ca9/
 
 Convenience function that registers a set of demo asset sources containing our example assets. Note: See DemoAssetSource enum for available values. Note: By default, these assets are parsed from the IMG.LY CDN at https://cdn.img.ly/packages/imgly/cesdk-android/<version>/assets/<id>/content.json. Important: For production use, you should self-host the assets or include them in your application bundle and provide your own base URI instead of loading them from the IMG.LY CDN. The assets can be downloaded from https://cdn.img.ly/packages/imgly/cesdk-android/<version>/imgly-assets.zip.
 

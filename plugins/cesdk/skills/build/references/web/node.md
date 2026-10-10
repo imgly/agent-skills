@@ -1,21 +1,23 @@
 # Build with CE.SDK in Node.js
 
-Docs folder: `skills/docs/references/web/node/` (guides, API digests, rules for Node.js).
+Docs folder: `skills/docs/references/web/node/` (remote docs workflow, page index, and rules for
+Node.js). The API digests are in `skills/docs/references/web/api/`.
 
 ## Setup
 
 Follow the get-started pages first. They carry the exact packages and versions.
+Fetch them as Markdown (WebFetch, or `curl -sL --compressed <url>`):
 
-- `skills/docs/references/web/node/get-started/agent-skills.md`
-- `skills/docs/references/web/node/get-started/build-with-ai.md`
-- `skills/docs/references/web/node/get-started/bun.md`
-- `skills/docs/references/web/node/get-started/cesdk-plugin-coding-agents.md`
-- `skills/docs/references/web/node/get-started/deno.md`
-- `skills/docs/references/web/node/get-started/mcp-server.md`
-- `skills/docs/references/web/node/get-started/overview.md`
-- `skills/docs/references/web/node/get-started/vanilla.md`
-- `skills/docs/references/web/node/get-started/vanilla-aws-lambda.md`
-- `skills/docs/references/web/node/get-started/vanilla-clone-github-project.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/agent-skills-f7g8h9.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/build-with-ai-k7m9p2.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/bun-l3456c.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/cesdk-plugin-coding-agents-c0d3ag.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/deno-m2345b.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/mcp-server-fde71c.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/overview-e18f40.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/vanilla-n1234a.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/vanilla-aws-lambda-fee18b.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/vanilla-clone-github-project-n1fe4a.md`
 
 ## Rules for Node.js
 

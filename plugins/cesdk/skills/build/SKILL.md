@@ -16,7 +16,7 @@ argument-hint: "[feature or task]"
 
 ## Version Notice
 
-> CE.SDK `1.85.0-nightly.20261009` · generated `2026-10-09` · plugin `imgly-sdk`
+> CE.SDK `1.85.0-nightly.20261010` · generated `2026-10-10` · plugin `imgly-sdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
@@ -78,9 +78,9 @@ mapping calls for.
 2. Web: read `references/web/index.md`, then the framework file it names and
    `references/web/common.md`. Every other platform: read `README.md` in its
    folder. These hold the implementation workflow, known pitfalls, the starter
-   kit or example table, and the output format. Starter kits sit beside them
-   under `starter-kits/`; the Flutter and React Native folders hold
-   `examples/` instead.
+   kit or example table, and the output format. Web, Swift, and Android list
+   public starter kit repositories to clone; the Flutter and React Native
+   folders bundle `examples/` instead.
 3. Look up exact APIs, package names, and versions in the same platform and
    framework folder under `skills/docs/references/` before writing code.
 4. Lead with complete, working code, then a short explanation and next steps.

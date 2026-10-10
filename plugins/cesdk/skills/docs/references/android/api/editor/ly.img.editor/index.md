@@ -12,7 +12,7 @@
 @Composable
 fun ApparelEditor(onClose: (Throwable?) -> Unit)
 ```
-> **Deprecated (with error):** ApparelEditor solution is moved to a starter kit package. Check this migration guide for details: https://img.ly/docs/cesdk/android/to-v1-73-ab14fb/
+> **Deprecated (with error):** ApparelEditor solution is moved to a starter kit package. Check this migration guide for details: https://img.ly/docs/cesdk/dev/android/to-v1-73-ab14fb/
 
 ### DesignEditor
 
@@ -20,7 +20,7 @@ fun ApparelEditor(onClose: (Throwable?) -> Unit)
 @Composable
 fun DesignEditor(onClose: (Throwable?) -> Unit)
 ```
-> **Deprecated (with error):** DesignEditor solution has become a starter kit. Check this migration guide for details: https://img.ly/docs/cesdk/android/to-v1-73-ab14fb/
+> **Deprecated (with error):** DesignEditor solution has become a starter kit. Check this migration guide for details: https://img.ly/docs/cesdk/dev/android/to-v1-73-ab14fb/
 
 ### Editor
 
@@ -37,7 +37,7 @@ Built to provide versatile photo and video editing capabilities. Toggling betwee
 @Composable
 fun PhotoEditor(onClose: (Throwable?) -> Unit)
 ```
-> **Deprecated (with error):** PhotoEditor solution has become a starter kit. Check this migration guide for details: https://img.ly/docs/cesdk/android/to-v1-73-ab14fb/
+> **Deprecated (with error):** PhotoEditor solution has become a starter kit. Check this migration guide for details: https://img.ly/docs/cesdk/dev/android/to-v1-73-ab14fb/
 
 ### PostcardEditor
 
@@ -45,7 +45,7 @@ fun PhotoEditor(onClose: (Throwable?) -> Unit)
 @Composable
 fun PostcardEditor(onClose: (Throwable?) -> Unit)
 ```
-> **Deprecated (with error):** PostcardEditor solution has become a starter kit. Check this migration guide for details: https://img.ly/docs/cesdk/android/to-v1-73-ab14fb/
+> **Deprecated (with error):** PostcardEditor solution has become a starter kit. Check this migration guide for details: https://img.ly/docs/cesdk/dev/android/to-v1-73-ab14fb/
 
 ### VideoEditor
 
@@ -53,7 +53,7 @@ fun PostcardEditor(onClose: (Throwable?) -> Unit)
 @Composable
 fun VideoEditor(onClose: (Throwable?) -> Unit)
 ```
-> **Deprecated (with error):** VideoEditor solution has become a starter kit. Check this migration guide for details: https://img.ly/docs/cesdk/android/to-v1-73-ab14fb/
+> **Deprecated (with error):** VideoEditor solution has become a starter kit. Check this migration guide for details: https://img.ly/docs/cesdk/dev/android/to-v1-73-ab14fb/
 
 ### defaultBaseUri
 

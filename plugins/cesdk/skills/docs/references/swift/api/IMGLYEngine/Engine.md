@@ -18,7 +18,7 @@
     'filter.lut'+'filter.duotone'->'filter') are skipped. Register sources via \
     'engine.asset.addLocalAssetSourceFromJSON(_:matcher:)' with the v5 IDs (plus the new \
     'ly.img.text', 'ly.img.text.styles', 'ly.img.text.curves', 'ly.img.text.components'). Migration guide: \
-    https://img.ly/docs/cesdk/ios/to-v1-77-ac6ca9/
+    https://img.ly/docs/cesdk/dev/ios/to-v1-77-ac6ca9/
     
 
 ```swift
@@ -32,7 +32,7 @@ Convenience function that registers a set of asset sources containing our exampl
 > **Deprecated:** 
     Uses legacy v3-era demo asset source IDs and will be removed in a future version. Register \
     each source via 'engine.asset.addLocalAssetSourceFromJSON(_:matcher:)' instead. \
-    Migration guide: https://img.ly/docs/cesdk/ios/to-v1-77-ac6ca9/
+    Migration guide: https://img.ly/docs/cesdk/dev/ios/to-v1-77-ac6ca9/
     
 
 ```swift

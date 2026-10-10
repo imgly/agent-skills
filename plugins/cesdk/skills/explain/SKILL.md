@@ -9,7 +9,7 @@ argument-hint: "[topic or question]"
 
 ## Version Notice
 
-> CE.SDK `1.85.0-nightly.20261009` · generated `2026-10-09` · plugin `imgly-sdk`
+> CE.SDK `1.85.0-nightly.20261010` · generated `2026-10-10` · plugin `imgly-sdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
@@ -70,8 +70,8 @@ mapping calls for.
 1. Detect the platform and framework as above.
 2. Read `README.md` in the matching folder under this skill's `references/`.
    It holds the explanation guidelines and output format for that platform.
-3. Ground the explanation in the bundled documentation: the same platform and
-   framework folder under `skills/docs/references/`.
+3. Ground the explanation in the documentation: follow `README.md` in the
+   same platform and framework folder under `skills/docs/references/`.
 4. Lead with the concept, then a complete example valid for the detected
    platform, then trade-offs and related topics.
 

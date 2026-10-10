@@ -48,7 +48,7 @@ Stable catalog id (e.g. "SCENE.NOT_VALID"). Empty only as a defensive fallback.
 val docsUrl: String?
 ```
 
-Fully-qualified docs URL using the Android docs base, e.g. https://img.ly/docs/cesdk/android/user-interface/font-size-d194d1/. null when docs is empty.
+Fully-qualified docs URL using the Android docs base, e.g. https://img.ly/docs/cesdk/dev/android/user-interface/font-size-d194d1/. null when docs is empty.
 
 ### hint
 

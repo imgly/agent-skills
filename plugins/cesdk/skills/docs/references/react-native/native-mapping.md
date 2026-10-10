@@ -203,10 +203,10 @@ the configuration itself native.
    native `EngineConfiguration.onUpload` and `engine.editor.setUriResolver`
    hooks.
 
-The bundled React Native guides that show the native customization end to
-end:
+The React Native guides on the docs site that show the native customization
+end to end (fetch them with WebFetch, or `curl -sL --compressed <url>`):
 
-- `guides/react-native/user-interface/customization.md`
-- `guides/react-native/import-media/capture-from-camera/camera-configuration.md`
+- `https://img.ly/docs/cesdk/dev/react-native/user-interface/customization-72b2f8.md`
+- `https://img.ly/docs/cesdk/dev/react-native/import-media/capture-from-camera/camera-configuration-46afd0.md`
 
 Reference folder: `skills/docs/references/react-native/`.

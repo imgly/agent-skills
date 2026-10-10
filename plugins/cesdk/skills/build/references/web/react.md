@@ -1,17 +1,19 @@
 # Build with CE.SDK in React
 
-Docs folder: `skills/docs/references/web/react/` (guides, API digests, rules for React).
+Docs folder: `skills/docs/references/web/react/` (remote docs workflow, page index, and rules for
+React). The API digests are in `skills/docs/references/web/api/`.
 
 ## Setup
 
 Follow the get-started pages first. They carry the exact packages and versions.
+Fetch them as Markdown (WebFetch, or `curl -sL --compressed <url>`):
 
-- `skills/docs/references/web/react/get-started/agent-skills.md`
-- `skills/docs/references/web/react/get-started/build-with-ai.md`
-- `skills/docs/references/web/react/get-started/cesdk-plugin-coding-agents.md`
-- `skills/docs/references/web/react/get-started/mcp-server.md`
-- `skills/docs/references/web/react/get-started/overview.md`
-- `skills/docs/references/web/react/get-started/react/quickstart.md`
+- `https://img.ly/docs/cesdk/dev/react/get-started/agent-skills-f7g8h9.md`
+- `https://img.ly/docs/cesdk/dev/react/get-started/build-with-ai-k7m9p2.md`
+- `https://img.ly/docs/cesdk/dev/react/get-started/cesdk-plugin-coding-agents-c0d3ag.md`
+- `https://img.ly/docs/cesdk/dev/react/get-started/mcp-server-fde71c.md`
+- `https://img.ly/docs/cesdk/dev/react/get-started/overview-e18f40.md`
+- `https://img.ly/docs/cesdk/dev/react/get-started/react/quickstart-r1q2w3.md`
 
 ## Rules for React
 

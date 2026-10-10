@@ -28,7 +28,7 @@ two connect.
    native customization.
 3. For native code, use the bundled Swift references in `../swift/` and
    the Android references in `../android/` as the source of truth.
-4. Use the bundled Flutter guides for integration steps and project setup.
+4. Use the Flutter guides on the docs site for integration steps and project setup.
 5. Cross-check the resolved package version in `pubspec.lock` when it differs
    from this bundle, and use pretrained knowledge only when nothing above
    answers.
@@ -37,8 +37,8 @@ two connect.
 
 1. Confirm the project is Flutter (`pubspec.yaml`) and which packages it
    uses: `imgly_editor`, `imgly_camera`, or both.
-2. Search the Flutter guide index below and read files under
-   `guides/flutter/`.
+2. Search `flutter.md` in this folder and fetch the pages as described in
+   Remote Documentation below.
 3. For the Dart API, read `api/<package>/<Type>.md`, for example
    `api/imgly_editor/EditorSettings.md` or
    `api/imgly_camera/CameraConfiguration.md`.
@@ -47,11 +47,40 @@ two connect.
    `../android/api/`. Answer with both native sides unless the user targets
    one.
 
-## Guide Indexes
+## Remote Documentation
 
-### Flutter (Dart)
+The guides are on the CE.SDK docs site, not in this bundle. The index files in
+this folder list them:
 
-<-- IMGLY-AGENTS-MD-START -->[CE.SDK Flutter (Dart) Docs Index]|root: ./guides/flutter|IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any CE.SDK tasks. Consult the local docs directory before using pre-trained knowledge.|animation:{overview.md}|automation:{overview.md}|capabilities.md|colors:{overview.md}|compatibility.md|concepts:{error-catalog.md,import-export.md}|configuration.md|conversion:{overview.md}|create-composition:{overview.md}|create-templates:{overview.md}|edit-image:{transform}|edit-image/transform:{move.md}|edit-video:{transform}|edit-video/transform:{flip.md,move.md,resize.md}|engine-interface.md|export-counting.md|export-save-publish:{export}|export-save-publish/export:{audio.md}|file-format-support.md|filters-and-effects:{overview.md}|get-started:{agent-skills.md,build-with-ai.md,flutter,mcp-server.md,overview.md}|get-started/flutter:{clone-github.md,existing-project.md,new-project.md}|import-media:{capture-from-camera,file-format-support.md,overview.md,size-limits.md}|import-media/capture-from-camera:{camera-configuration.md,integrate.md,recordings.md}|insert-media:{overview.md}|key-capabilities.md|key-concepts.md|licensing.md|llms-txt.md|open-the-editor:{overview.md}|outlines:{overview.md}|prebuilt-solutions:{camera-editor.md,design-editor.md,photo-editor.md,postcard-editor.md,t-shirt-designer.md,video-editor.md}|rules:{overview.md}|security.md|settings.md|text:{overview.md,text-designs.md}|to-v1-73.md|to-v1-77.md|use-templates:{overview.md}|user-interface:{custom-error-messages.md,customization.md}|what-is-cesdk.md|<-- IMGLY-AGENTS-MD-END -->
+- `flutter.md` lists every page of https://img.ly/docs/cesdk/dev/flutter/ with its title and link.
+
+The links point to the docs of CE.SDK `1.85.0-nightly.20261010`, the version of this bundle,
+under `https://img.ly/docs/cesdk/dev/`. The docs site keeps one copy per version, with the same
+page paths:
+
+| CE.SDK version | Docs root |
+| --- | --- |
+| Latest stable release | `https://img.ly/docs/cesdk/` |
+| A stable release since 1.60 | `https://img.ly/docs/cesdk/archive/v<major>.<minor>/` |
+| Latest release candidate | `https://img.ly/docs/cesdk/next/` |
+| Latest nightly | `https://img.ly/docs/cesdk/dev/` |
+
+1. **Check the version.** Read the CE.SDK version the project uses. If it is not
+   `1.85.0-nightly.20261010`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
+   version.
+2. **Read the index** in this folder and pick the pages that match the query.
+3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
+   `.md`. For example, `https://img.ly/docs/cesdk/dev/flutter/<path>-<id>/` becomes
+   `https://img.ly/docs/cesdk/dev/flutter/<path>-<id>.md`. Use WebFetch. If WebFetch is not
+   available (for example in Codex), use `curl -sL --compressed <url>`. If a
+   page returns 404, it does not exist in that version: read that version's
+   index, `<root>flutter.md`, instead.
+4. **Answer from the fetched pages**, and cite their URLs. If neither a page nor
+   the bundled API digests cover the request, say so instead of filling the gap
+   with pre-trained knowledge.
+5. **Full text, last resort**: `https://img.ly/docs/cesdk/flutter/llms-full.txt` holds all pages
+   of the latest stable release in one file of several MB. Search it with
+   `curl -sL --compressed <url> | grep -n "<keyword>"`. Do not read it in full.
 
 ## API Index
 

@@ -65,7 +65,7 @@ var description: String { get }
 var docsURL: URL? { get }
 ```
 
-Fully-qualified docs URL, e.g. `https://img.ly/docs/cesdk/ios/user-interface/font-size-d194d1/`. `nil` when the catalog entry links no docs page. The URL is built once on the ObjC++ side and carried in the underlying `NSError`’s `helpAnchor` (`NSHelpAnchorErrorKey`); this reads it back so the Apple docs base lives in exactly one place.
+Fully-qualified docs URL, e.g. `https://img.ly/docs/cesdk/dev/ios/user-interface/font-size-d194d1/`. `nil` when the catalog entry links no docs page. The URL is built once on the ObjC++ side and carried in the underlying `NSError`’s `helpAnchor` (`NSHelpAnchorErrorKey`); this reads it back so the Apple docs base lives in exactly one place.
 
 ### EngineError.ArgValue
 
