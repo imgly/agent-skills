@@ -3743,6 +3743,12 @@ case encodeAudioTrackIndexOutOfBounds
 case encodeAudioUnsupportedExportFormat
 ```
 
+### EngineErrorCode.encodeAudioWavTooLong
+
+```swift
+case encodeAudioWavTooLong
+```
+
 ### EngineErrorCode.encodeBlockMustBePage
 
 ```swift

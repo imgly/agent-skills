@@ -146,6 +146,10 @@ Saves the given blocks to a serialized string.
 If a page with multiple children is given, the entire hierarchy is saved.
 The resources of that whole hierarchy are checked against `allowedResourceSchemes`
 and are passed to `onDisallowedResourceScheme`.
+Performs an internal update to lay out pending changes before the save.
+While a font loads, its text is laid out with another font. When the text's size follows its
+content, blocks saved before the font arrives can differ from blocks saved after it. To compare
+two saves, first await `engine.block.forceLoadResources(blocks)`.
 
 ```typescript
 saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisallowedResourceScheme?: (url: string, dataHash: string) => Promise<string>): Promise<string>
@@ -167,6 +171,11 @@ rejects, or returns no string, the returned promise rejects and the blocks keep 
 Saves the given blocks and their assets to a zip archive.
 The archive contains all assets that were accessible when this function was called.
 Blocks in the archived scene reference assets relative to the location of the scene file.
+Performs an internal update to lay out pending changes before the save.
+While a font loads, its text is laid out with another font. When the text's size follows its
+content, blocks archived before the font arrives can differ from blocks archived after it. To
+compare two archives, first await `engine.block.forceLoadResources(blocks)`, then compare the
+`blocks.blocks` files inside them. Each archive entry stores the time of the save.
 
 ```typescript
 saveToArchive(blocks: DesignBlockId[]): Promise<Blob>
@@ -1463,6 +1472,9 @@ for the first to finish instead of failing.
 Note: For a video fill, cancelling has no effect once the first frame has been scheduled —
 the remaining frames are still delivered. Cancel before the first frame arrives, or ignore
 results from a request you have abandoned. Design block sequences cancel at any time.
+Note: A frame arrives at the end of an engine update. An engine call inside `onFrame` sees the
+scene without the state that the thumbnail renders with. For an argument that this call
+rejects, `onFrame` runs before the call returns.
 
 ```typescript
 generateVideoThumbnailSequence(id: DesignBlockId, thumbnailHeight: number, timeBegin: number, timeEnd: number, numberOfFrames: number, onFrame: (frameIndex: number, result: ImageData | Error) => void): () => void
@@ -1488,6 +1500,8 @@ Note: `numberOfSamples` counts samples per channel. The callback fires
 `ceil(numberOfSamples / samplesPerChunk)` times and the last chunk may be shorter.
 Note: The `Float32Array` is a view into engine memory that is only valid for the duration of
 the callback. Copy it before storing it.
+Note: A chunk arrives at the end of an engine update, and no chunk arrives after a cancel. For
+an argument that this call rejects, `onChunk` runs before the call returns.
 
 ```typescript
 generateAudioThumbnailSequence(id: DesignBlockId, samplesPerChunk: number, timeBegin: number, timeEnd: number, numberOfSamples: number, numberOfChannels: number, onChunk: (chunkIndex: number, result: Float32Array | Error) => void): () => void

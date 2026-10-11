@@ -479,7 +479,7 @@ Begins loading the resources of the given blocks and their children. If the reso
 abstract fun generateAudioThumbnailSequence(block: DesignBlock, samplesPerChunk: Int, timeBegin: Double, timeEnd: Double, numberOfSamples: Int, numberOfChannels: Int): Flow<AudioThumbnailResult>
 ```
 
-Generate a thumbnail sequence for the given audio block or video fill. A thumbnail in this case is a chunk of samples in the range of 0 to 1. In case stereo data is requested, the samples are interleaved, starting with the left channel. Note: Only one request per block runs at a time. A second request for the same block waits for the first to finish instead of failing. Note: numberOfSamples counts samples per channel, so each emission carries samplesPerChunk * numberOfChannels floats and the last one may be shorter. Note: Collect on the main thread; collection throws otherwise.
+Generate a thumbnail sequence for the given audio block or video fill. A thumbnail in this case is a chunk of samples in the range of 0 to 1. In case stereo data is requested, the samples are interleaved, starting with the left channel. Note: Only one request per block runs at a time. A second request for the same block waits for the first to finish instead of failing. Note: numberOfSamples counts samples per channel, so each emission carries samplesPerChunk * numberOfChannels floats and the last one may be shorter. Note: A chunk arrives at the end of an engine update. Cancelling the collecting coroutine also drops the chunks that wait for delivery. Note: Collect on the main thread; collect…
 
 ### generateVideoThumbnailSequence
 
@@ -487,7 +487,7 @@ Generate a thumbnail sequence for the given audio block or video fill. A thumbna
 abstract fun generateVideoThumbnailSequence(block: DesignBlock, thumbnailHeight: Int, timeBegin: Double, timeEnd: Double, numberOfFrames: Int): Flow<VideoThumbnailResult>
 ```
 
-Generate a thumbnail sequence for the given video fill or design block. Note: Only one request per block runs at a time. A second request for the same block waits for the first to finish instead of failing. Note: For a video fill, cancelling has no effect once the first frame has been scheduled — the engine still produces the remaining frames. Cancelling the collecting coroutine stops your collector from seeing them. Design block sequences cancel at any time. Note: Collect on the main thread; collection throws otherwise.
+Generate a thumbnail sequence for the given video fill or design block. Note: Only one request per block runs at a time. A second request for the same block waits for the first to finish instead of failing. Note: For a video fill, cancelling has no effect once the first frame has been scheduled — the engine still produces the remaining frames. Cancelling the collecting coroutine stops your collector from seeing them. Design block sequences cancel at any time. Note: A frame arrives at the end of an engine update, after the update that rendered it. Note: Collect on the main thread; collection throws otherwise.
 
 ### getAVResourceTotalDuration
 
@@ -2114,7 +2114,7 @@ Resize all blocks to the given size. The content of the blocks is automatically 
 abstract suspend fun saveToArchive(blocks: List<DesignBlock>): ByteBuffer
 ```
 
-Saves the given blocks to an archive. Note: All given block handles must be valid, otherwise this call returns an error.
+Saves the given blocks to an archive. Note: All given block handles must be valid, otherwise this call returns an error. Performs an internal update to lay out pending changes before the save.
 
 ### saveToString
 
@@ -2122,7 +2122,7 @@ Saves the given blocks to an archive. Note: All given block handles must be vali
 abstract suspend fun saveToString(blocks: List<DesignBlock>, allowedResourceSchemes: List<String> = listOf("bundle", "file", "http", "https")): String
 ```
 
-Saves the given blocks to a proprietary string. If given the root of a block hierarchy, e.g. a page with multiple children, the entire hierarchy is saved. If a resource uri of any block in that hierarchy has a scheme that is not in allowedResourceSchemes, an exception will be thrown. Note: All given block handles must be valid, otherwise an exception will be thrown.
+Saves the given blocks to a proprietary string. If given the root of a block hierarchy, e.g. a page with multiple children, the entire hierarchy is saved. If a resource uri of any block in that hierarchy has a scheme that is not in allowedResourceSchemes, an exception will be thrown. Note: All given block handles must be valid, otherwise an exception will be thrown. Performs an internal update to lay out pending changes before the save.
 
 ### scale
 

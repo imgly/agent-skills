@@ -9,7 +9,7 @@ this folder list them:
 
 - `react.md` lists every page of https://img.ly/docs/cesdk/dev/react/ with its title and link.
 
-The links point to the docs of CE.SDK `1.85.0-nightly.20261010`, the version of this bundle,
+The links point to the docs of CE.SDK `1.85.0-nightly.20261011`, the version of this bundle,
 under `https://img.ly/docs/cesdk/dev/`. The docs site keeps one copy per version, with the same
 page paths:
 
@@ -21,7 +21,7 @@ page paths:
 | Latest nightly | `https://img.ly/docs/cesdk/dev/` |
 
 1. **Check the version.** Read the CE.SDK version the project uses. If it is not
-   `1.85.0-nightly.20261010`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
+   `1.85.0-nightly.20261011`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
    version.
 2. **Read the index** in this folder and pick the pages that match the query.
 3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add

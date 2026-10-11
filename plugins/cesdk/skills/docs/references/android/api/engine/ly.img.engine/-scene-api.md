@@ -306,7 +306,7 @@ Removes the CMYK profile from the document. CMYK conversion then uses the fallba
 abstract suspend fun saveToArchive(scene: DesignBlock, options: SaveToArchiveOptions = SaveToArchiveOptions()): ByteBuffer
 ```
 
-Saves the current scene and all of its referenced assets into an archive. The archive contains all assets, that were accessible when this function was called. Blocks in the archived scene reference assets relative from to the location of the scene file. These references are resolved when loading such a scene via load.
+Saves the current scene and all of its referenced assets into an archive. The archive contains all assets, that were accessible when this function was called. Blocks in the archived scene reference assets relative from to the location of the scene file. These references are resolved when loading such a scene via load. While a font loads, its text is laid out with another font. When the text's size follows its content, a scene archived before the font arrives can differ from one archived after it. To compare two archives, first call engine.block.forceLoadResources(listOf(scene)), then compare the scene.scene files inside them. Each archive entry stores the time of the save. forceLoadResource…
 
 ### saveToString
 
