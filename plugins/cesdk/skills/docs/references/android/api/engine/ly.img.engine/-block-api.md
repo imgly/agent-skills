@@ -331,6 +331,14 @@ abstract suspend fun export(block: DesignBlock, mimeType: MimeType, options: Exp
 ```
 
 ```kotlin
+abstract suspend fun export(block: DesignBlock, output: OutputStream, mimeType: MimeType = MimeType.PDF, options: ExportOptions? = null, progressCallback: ((ExportPdfProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null)
+```
+
+```kotlin
+abstract fun export(block: DesignBlock, options: ExportOptions? = null, progressCallback: ((ExportPdfProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): Flow<ByteBuffer>
+```
+
+```kotlin
 abstract suspend fun export(blocks: List<DesignBlock>, mimeType: MimeType, options: ExportOptions? = null, progressCallback: ((ExportPdfProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
 ```
 
@@ -2507,7 +2515,7 @@ Set a gradient color stops property of the given design block.
 abstract fun setHeightMode(block: DesignBlock, mode: SizeMode)
 ```
 
-Set a block's mode for its height. Required scope: "layer/resize"
+Set a block's mode for its height. A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height after the mode, without maintainCrop: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: "layer/resize"
 
 ### setHeight
 
@@ -3108,7 +3116,7 @@ Set the audio volume of the given block.
 abstract fun setWidthMode(block: DesignBlock, mode: SizeMode)
 ```
 
-Set a block's mode for its width. Required scope: "layer/resize"
+Set a block's mode for its width. A switch between Absolute and Percent keeps the stored width and reads it in the new mode. Set the width after the mode, without maintainCrop: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: "layer/resize"
 
 ### setWidth
 

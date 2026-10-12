@@ -2831,6 +2831,9 @@ A Percent size, left or top stays Percent.
 ### setWidthMode()
 
 Sets the mode for the block's width.
+A switch between Absolute and Percent keeps the stored width and reads it in the new mode. Set the width
+after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has
+in the new mode. `setSize` changes the mode and the size in one call.
 ```javascript
 engine.block.setWidthMode(block, 'Percent');
 ```
@@ -2865,6 +2868,9 @@ A Percent size, left or top stays Percent.
 ### setHeightMode()
 
 Sets the mode for the block's height.
+A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height
+after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has
+in the new mode. `setSize` changes the mode and the size in one call.
 ```javascript
 engine.block.setHeightMode(block, 'Percent');
 ```
@@ -3137,6 +3143,8 @@ Convenient high-level functions that combine multiple operations into single, ea
 ### setSize()
 
 Update a block's size.
+The size of a group is always Absolute: a group takes `width` and `height` in design units and no `sizeMode`.
+A group keeps its aspect ratio, so `height` decides its size.
 
 ```typescript
 setSize(id: DesignBlockId, width: number, height: number, options?: {
@@ -3147,13 +3155,15 @@ setSize(id: DesignBlockId, width: number, height: number, options?: {
 
 **Parameters:**
 - `id` - The block to update.
-- `width` - The new width of the block, in its width mode.
-- `height` - The new height of the block, in its height mode.
+- `width` - The new width of the block, in `sizeMode` if it is set and in the block's width mode otherwise.
+- `height` - The new height of the block, in `sizeMode` if it is set and in the block's height mode
+  otherwise.
 - `options` - Optional parameters for the size. Properties:
   - `maintainCrop` - Whether or not the crop values, if available, should be automatically adjusted.
-    A Percent size, left or top stays Percent.
-  - `sizeMode` - The size mode: Absolute, Percent or Auto. A new mode reads the stored size in that mode, so
-    change the mode in a call without `maintainCrop`, otherwise the crop follows the reinterpreted size.
+    A Percent size, left or top stays Percent. With a `sizeMode`, the crop is adjusted from the frame that the
+    block has before the call. The call can run an internal update before it changes the block.
+  - `sizeMode` - The size mode: Absolute, Percent or Auto. `width` and `height` are in this mode. Auto holds
+    no size, so `width` and `height` make both axes Absolute again.
 
 ### setPosition()
 

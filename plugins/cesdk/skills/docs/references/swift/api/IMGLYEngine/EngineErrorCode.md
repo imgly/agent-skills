@@ -3419,6 +3419,12 @@ case editorSceneRequiresUrlLoad
 case editorSceneSizeUnavailable
 ```
 
+### EngineErrorCode.editorSceneUnknownBlockType
+
+```swift
+case editorSceneUnknownBlockType
+```
+
 ### EngineErrorCode.editorSettingEnumValueNotFound
 
 ```swift
@@ -4199,6 +4205,12 @@ case encodeVideoPcmReadFailed
 case encodeVideoResourceLoadFailed
 ```
 
+### EngineErrorCode.encodeVideoStagingWriteFailed
+
+```swift
+case encodeVideoStagingWriteFailed
+```
+
 ### EngineErrorCode.eventSubscriptionNotFound
 
 ```swift
@@ -4703,6 +4715,12 @@ case sceneBlockAtIndexInvalid
 case sceneBlocksInputInvalid
 ```
 
+### EngineErrorCode.sceneBlocksUnknownBlockType
+
+```swift
+case sceneBlocksUnknownBlockType
+```
+
 ### EngineErrorCode.sceneCompressionServiceUnavailable
 
 ```swift
@@ -4995,6 +5013,12 @@ case utilsApngNoFrames
 
 ```swift
 case utilsApngZeroCanvas
+```
+
+### EngineErrorCode.utilsBasePathInvalid
+
+```swift
+case utilsBasePathInvalid
 ```
 
 ### EngineErrorCode.utilsCaptionDataUnavailable

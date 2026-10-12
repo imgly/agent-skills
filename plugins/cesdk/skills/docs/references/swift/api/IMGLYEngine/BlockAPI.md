@@ -2759,7 +2759,7 @@ Update a block’s height and optionally maintain the crop. If the crop is maint
 @MainActor func setHeightMode(_ id: DesignBlockID, mode: SizeMode) throws
 ```
 
-Set a block’s mode for its height. Required scope: “layer/resize” `id`
+Set a block’s mode for its height. A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: “layer/resize” `id`
 
 ### setInAnimation(_:animation:)
 
@@ -3365,7 +3365,7 @@ Update a block’s width and optionally maintain the crop. If the crop is mainta
 @MainActor func setWidthMode(_ id: DesignBlockID, mode: SizeMode) throws
 ```
 
-Set a block’s mode for its width. Required scope: “layer/resize” `id`
+Set a block’s mode for its width. A switch between Absolute and Percent keeps the stored width and reads it in the new mode. Set the width after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: “layer/resize” `id`
 
 ### split(_:atTime:options:)
 
