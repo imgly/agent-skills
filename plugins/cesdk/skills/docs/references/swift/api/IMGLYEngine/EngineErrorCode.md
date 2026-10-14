@@ -3605,6 +3605,18 @@ case encodeAudioChannelCountInvalid
 case encodeAudioChunkReadFailed
 ```
 
+### EngineErrorCode.encodeAudioCodecInvalid
+
+```swift
+case encodeAudioCodecInvalid
+```
+
+### EngineErrorCode.encodeAudioCodecUnsupported
+
+```swift
+case encodeAudioCodecUnsupported
+```
+
 ### EngineErrorCode.encodeAudioContextNotAvailableDuringExport
 
 ```swift

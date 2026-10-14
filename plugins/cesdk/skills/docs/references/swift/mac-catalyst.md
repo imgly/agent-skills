@@ -401,6 +401,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - **Web**: [Vanilla JS/TS](https://img.ly/docs/cesdk/dev/js.md), [React](https://img.ly/docs/cesdk/dev/react.md), [Angular](https://img.ly/docs/cesdk/dev/angular.md), [Vue](https://img.ly/docs/cesdk/dev/vue.md), [Svelte](https://img.ly/docs/cesdk/dev/svelte.md), [Next.js](https://img.ly/docs/cesdk/dev/nextjs.md), [Nuxt.js](https://img.ly/docs/cesdk/dev/nuxtjs.md), [SvelteKit](https://img.ly/docs/cesdk/dev/sveltekit.md)
 - **Desktop**: [Electron](https://img.ly/docs/cesdk/dev/electron.md), [macOS](https://img.ly/docs/cesdk/dev/macos.md)
 - **Server**: [Node.js (Native)](https://img.ly/docs/cesdk/node-native.md), [Node.js](https://img.ly/docs/cesdk/dev/node.md), [Renderer](https://img.ly/docs/cesdk/renderer.md)
+- **AI & Agents**: [CoDesign](https://img.ly/docs/cesdk/codesign.md)
 
 ---
 
