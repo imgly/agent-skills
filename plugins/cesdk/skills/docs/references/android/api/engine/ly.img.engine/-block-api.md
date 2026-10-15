@@ -2667,7 +2667,7 @@ Enable or disable the placeholder function for a block.
 abstract fun setPlaybackSpeed(block: DesignBlock, speed: Float)
 ```
 
-Sets the playback speed multiplier of a block that supports playback control. Note: This also adjusts the trim and duration of the block. Video fills running faster than 3.0x are force muted until reduced to 3.0x or below.
+Sets the playback speed multiplier of a block that supports playback control. Note: This also adjusts the trim and duration of the block. Video fills running faster than 3.0x are force muted until reduced to 3.0x or below. An audio block that createAudioFromVideo extracts from a video faster than 3.0x keeps that speed and is force muted too. This function still rejects a speed above 3.0x for it.
 
 ### setPlaybackTime
 

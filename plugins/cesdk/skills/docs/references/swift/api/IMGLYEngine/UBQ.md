@@ -39,6 +39,24 @@ func setEngineIdentity(host: String)
 func test_mark(asClicked block: UInt32)
 ```
 
+### test_pointerDown(_:)
+
+```swift
+func test_pointerDown(_ position: CGPoint)
+```
+
+### test_pointerMove(_:)
+
+```swift
+func test_pointerMove(_ position: CGPoint)
+```
+
+### test_pointerUp(_:cancelled:)
+
+```swift
+func test_pointerUp(_ position: CGPoint, cancelled: Bool)
+```
+
 ### update()
 
 ```swift

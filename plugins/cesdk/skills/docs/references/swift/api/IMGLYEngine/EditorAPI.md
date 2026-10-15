@@ -307,6 +307,14 @@ Get the current role of the user. The current role of the user.
 
 Get when the rotation handle is shown for the selected block.
 
+### getSafeAreaInsets()
+
+```swift
+@MainActor func getSafeAreaInsets() -> SafeAreaInsets
+```
+
+Get the global safe area insets. The current safe area insets in points.
+
 ### getScaleHandlesVisibility()
 
 ```swift
@@ -746,6 +754,14 @@ Set the role of the user and apply role-dependent defaults for scopes and settin
 ```
 
 Set when the rotation handle is shown for the selected block.
+
+### setSafeAreaInsets(left:top:right:bottom:)
+
+```swift
+@MainActor func setSafeAreaInsets(left: Float? = nil, top: Float? = nil, right: Float? = nil, bottom: Float? = nil) throws
+```
+
+Set the global safe area insets that every camera operation respects: zoom, pan and clamping. `left`
 
 ### setScaleHandlesVisibility(_:)
 

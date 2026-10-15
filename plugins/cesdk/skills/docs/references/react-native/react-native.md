@@ -164,6 +164,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Crop Presets](https://img.ly/docs/cesdk/dev/react-native/user-interface/customization/crop-presets-f94f26/)
   - [Force Crop](https://img.ly/docs/cesdk/dev/react-native/user-interface/customization/force-crop-c2854e/)
   - [Movement Constraints](https://img.ly/docs/cesdk/dev/react-native/user-interface/customization/movement-constraints-8f3a2c/)
+  - [Drag & Drop](https://img.ly/docs/cesdk/dev/react-native/user-interface/customization/drag-and-drop-d4a97b/)
   - [Color Palette](https://img.ly/docs/cesdk/dev/react-native/user-interface/customization/color-palette-429fd9/)
   - [Disable or Enable Features](https://img.ly/docs/cesdk/dev/react-native/user-interface/customization/disable-or-enable-f058e2/)
   - [Rearrange Buttons](https://img.ly/docs/cesdk/dev/react-native/user-interface/customization/rearrange-buttons-97022a/)

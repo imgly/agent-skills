@@ -794,6 +794,10 @@ const audioBlock = engine.block.createAudioFromVideo(videoFillBlock, 0, { keepTr
 // Extract a specific track, keep trim settings, and mute the original video
 const dialogueTrack = engine.block.createAudioFromVideo(videoFillBlock, 1, { keepTrimSettings: true, muteOriginalVideo: true });
 ```
+Note: The audio block can still load after this call returns. When the video file is not completely in memory,
+for example an uploaded or a remote video, the audio comes from the file in the background. Until it is
+complete, `unstable_isAVResourceLoaded` returns false, `forceLoadAVResource` waits for it, and the block is
+pending once it is in the scene.
 
 ```typescript
 createAudioFromVideo(videoFillBlock: DesignBlockId, trackIndex: number, options?: AudioFromVideoOptions): DesignBlockId
@@ -818,6 +822,7 @@ const audioBlocks = engine.block.createAudiosFromVideo(videoFillBlock, { keepTri
 // Extract all tracks with trim settings and mute the original video
 const audioBlocks = engine.block.createAudiosFromVideo(videoFillBlock, { keepTrimSettings: true, muteOriginalVideo: true });
 ```
+Note: The audio blocks can still load after this call returns, as with `createAudioFromVideo`.
 
 ```typescript
 createAudiosFromVideo(videoFillBlock: DesignBlockId, options?: AudioFromVideoOptions): DesignBlockId[]
@@ -1375,6 +1380,8 @@ setAudioFadeOut(id: DesignBlockId, duration: number, easing?: AnimationEasing): 
 Sets the playback speed multiplier of a block that supports playback control.
 Note: This also adjusts the trim and duration of the block.
 Video fills running faster than 3.0x are force muted until reduced to 3.0x or below.
+An audio block that `createAudioFromVideo` extracts from a video faster than 3.0x keeps that speed and is force
+muted too. This method still rejects a speed above 3.0x for it.
 
 ```typescript
 setPlaybackSpeed(id: DesignBlockId, speed: number): void

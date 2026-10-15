@@ -2933,6 +2933,12 @@ case computeGrDirectContextCreateFailed
 case computeHttpDataNoBuffer
 ```
 
+### EngineErrorCode.computeImageDecodeFailed
+
+```swift
+case computeImageDecodeFailed
+```
+
 ### EngineErrorCode.computeMp3ParseTrackDataFailed
 
 ```swift
@@ -5481,6 +5487,12 @@ case utilsStdExpectedStringError
 
 ```swift
 case utilsStorageKeyNotFound
+```
+
+### EngineErrorCode.utilsTrackingEndpointOverrideUnavailable
+
+```swift
+case utilsTrackingEndpointOverrideUnavailable
 ```
 
 ### EngineErrorCode.utilsTrackingNotEnabled

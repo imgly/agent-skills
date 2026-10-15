@@ -49,7 +49,7 @@ The event handler of the current editor.
 let insets: EdgeInsets?
 ```
 
-The insets of the canvas.
+The insets of the canvas, to pass as padding to camera calls such as `engine.scene.zoom(to:)`. The engine already keeps content out of the horizontal safe area, such as the notch in landscape, so these insets leave out the part of it that is wider than the editor’s zoom padding.
 
 ### OnChanged.Callback
 
