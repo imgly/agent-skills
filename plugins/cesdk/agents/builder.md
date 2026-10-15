@@ -33,16 +33,15 @@ skill is the single source of truth for project scaffolding and implementation.
 
 1. Load `/imgly-sdk:build` and pass through the user's complete request and
    relevant project context.
-2. Follow that skill's framework detection, starter kit, implementation, and
+2. Follow that skill's platform detection, starter kit, implementation, and
    verification workflow without maintaining a separate copy here.
-3. When the build workflow needs API details, use the matching
-   `/imgly-sdk:docs-{framework}` skill. Use `/imgly-sdk:explain` only for conceptual
-   questions.
+3. When the build workflow needs API details, use `/imgly-sdk:docs`. Use
+   `/imgly-sdk:explain` only for conceptual questions.
 
 ## Available Skills
 
 - `/imgly-sdk:build` — Implementation guidance and starter kit templates
-- `/imgly-sdk:docs-{framework}` — Platform-specific documentation (e.g. `/imgly-sdk:docs-react`)
+- `/imgly-sdk:docs` — Documentation and API reference for every platform
 - `/imgly-sdk:explain` — Conceptual explanations of CE.SDK features
 
 Do not duplicate or override instructions from the shared skills in this

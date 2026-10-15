@@ -4,7 +4,7 @@
     "name": "IMG.LY GmbH",
     "url": "https://img.ly"
   },
-  "description": "Build your own photo, video and design editor — white-label, embedded in your web app — with the IMG.LY SDK (CreativeEditor SDK, CE.SDK). Skills scaffold, implement and document custom editing experiences and creative automation for React, Vue, Svelte, Angular, Next.js, Nuxt.js, Electron, Vanilla JS and Node.js.",
+  "description": "Build your own photo, video and design editor — white-label, embedded in your app — with the IMG.LY SDK (CreativeEditor SDK, CE.SDK). Skills scaffold, implement and document custom editing experiences and creative automation for Web, iOS, Android, Flutter and React Native.",
   "displayName": "IMG.LY SDK – Build Your Own Photo, Video & Design Editor",
   "homepage": "https://img.ly/docs/cesdk",
   "icon": "./.claude-plugin/icon.png",
@@ -24,6 +24,16 @@
     "creative-automation",
     "white-label",
     "embeddable-editor",
+    "swift",
+    "ios",
+    "macos",
+    "android",
+    "kotlin",
+    "jetpack-compose",
+    "flutter",
+    "dart",
+    "react-native",
+    "expo",
     "javascript",
     "typescript",
     "react",
@@ -40,5 +50,5 @@
   "name": "imgly-sdk",
   "repository": "https://github.com/imgly/agent-skills",
   "termsOfServiceUrl": "https://img.ly/tos/",
-  "version": "1.83.0"
+  "version": "1.84.0"
 }

@@ -4,7 +4,7 @@
     "name": "IMG.LY GmbH",
     "url": "https://img.ly"
   },
-  "description": "Build your own photo, video and design editor — white-label, embedded in your web app — with the IMG.LY SDK (CreativeEditor SDK, CE.SDK). Skills scaffold, implement and document custom editing experiences and creative automation for React, Vue, Svelte, Angular, Next.js, Nuxt.js, Electron, Vanilla JS and Node.js.",
+  "description": "Build your own photo, video and design editor — white-label, embedded in your app — with the IMG.LY SDK (CreativeEditor SDK, CE.SDK). Skills scaffold, implement and document custom editing experiences and creative automation for Web, iOS, Android, Flutter and React Native.",
   "extensions": {
     "com.openai": {
       "interface": {
@@ -15,13 +15,13 @@
         ],
         "category": "Developer Tools",
         "defaultPrompt": [
-          "Build a photo editor into my web app with the IMG.LY SDK.",
+          "Build a photo editor into my app with the IMG.LY SDK.",
           "Explain how CE.SDK scenes, blocks and export work.",
           "Find the CE.SDK documentation for this feature."
         ],
         "developerName": "IMG.LY GmbH",
         "displayName": "IMG.LY SDK – Build Your Own Photo, Video & Design Editor",
-        "longDescription": "Build your own photo, video and design editor — white-label, embedded in your web app — with the IMG.LY SDK (CreativeEditor SDK, CE.SDK). Skills scaffold, implement and document custom editing experiences and creative automation for React, Vue, Svelte, Angular, Next.js, Nuxt.js, Electron, Vanilla JS and Node.js.",
+        "longDescription": "Build your own photo, video and design editor — white-label, embedded in your app — with the IMG.LY SDK (CreativeEditor SDK, CE.SDK). Skills scaffold, implement and document custom editing experiences and creative automation for Web, iOS, Android, Flutter and React Native.",
         "privacyPolicyURL": "https://img.ly/privacy-policy/",
         "shortDescription": "Build your own photo, video & design editor with the IMG.LY SDK (CE.SDK).",
         "termsOfServiceURL": "https://img.ly/tos/",
@@ -46,6 +46,16 @@
     "creative-automation",
     "white-label",
     "embeddable-editor",
+    "swift",
+    "ios",
+    "macos",
+    "android",
+    "kotlin",
+    "jetpack-compose",
+    "flutter",
+    "dart",
+    "react-native",
+    "expo",
     "javascript",
     "typescript",
     "react",
@@ -61,5 +71,5 @@
   "license": "MIT AND LicenseRef-IMGLY-Terms-of-Service",
   "name": "imgly-sdk",
   "repository": "https://github.com/imgly/agent-skills",
-  "version": "1.83.0"
+  "version": "1.84.0"
 }

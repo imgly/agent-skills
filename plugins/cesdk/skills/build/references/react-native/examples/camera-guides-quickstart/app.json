@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraMavenRepos": ["https://maven.img.ly/maven"],
+            "minSdkVersion": 24,
+            "kotlinVersion": "1.9.10"
+          },
+          "ios": {
+            "deploymentTarget": "16.0",
+            "useFrameworks": "dynamic"
+          }
+        }
+      ]
+    ],
+    "ios": {
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera for demonstration purposes.",
+        "NSMicrophoneUsageDescription": "This app uses the camera for demonstration purposes."
+      }
+    }
+  }
+}
