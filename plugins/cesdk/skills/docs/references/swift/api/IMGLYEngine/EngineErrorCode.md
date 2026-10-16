@@ -257,6 +257,12 @@ case assetSourceAddDenied
 case assetSourceAlreadyExists
 ```
 
+### EngineErrorCode.assetSourceCallbackMissing
+
+```swift
+case assetSourceCallbackMissing
+```
+
 ### EngineErrorCode.assetSourceCannotAddAssets
 
 ```swift
@@ -2765,6 +2771,12 @@ case colorImportedImageDefinitionNotFound
 case colorImportedImageHasSourceSet
 ```
 
+### EngineErrorCode.colorImportedImageMaskInvalid
+
+```swift
+case colorImportedImageMaskInvalid
+```
+
 ### EngineErrorCode.colorImportedImageNoImage
 
 ```swift
@@ -3783,6 +3795,12 @@ case encodeBlockMustBePage
 
 ```swift
 case encodeBlockSizeZero
+```
+
+### EngineErrorCode.encodeBufferCopyAllocFailed
+
+```swift
+case encodeBufferCopyAllocFailed
 ```
 
 ### EngineErrorCode.encodeCancelledByBlockError

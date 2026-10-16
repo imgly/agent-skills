@@ -738,10 +738,16 @@ The engine then decodes the JPEG samples in the given color space, instead of re
 JPEG's own metadata. Finish writing an image buffer before calling this method.
 The definition describes the image bytes it was read from, so it applies only while the image
 still holds them. A write that changes the bytes switches it off, and writing the same bytes
-back switches it on again. There is no event for that; `unstable_getImportedImageDefinition`
-returns `null` while it is off. Remote content must stay unchanged while the definition is
-attached. Fills that share one URI with different definitions replace each other's cached
-pixels, so each one decodes the image again when it draws.
+back switches it on again. `unstable_getImportedImageDefinition` throws while it is off.
+Raw image-buffer writes do not change recorded definitions or create undoable image bytes.
+Remote content must stay unchanged while the definition is attached.
+The engine owns mask bytes and reuses identical content. Change a mask only through this method.
+A write to a mask buffer makes the mask fail its hash check, so it no longer decodes.
+An undo step retains its recorded metadata and mask bytes.
+Masks are dependent image assets. Scene and block strings store their URLs and metadata, not their bytes.
+Use `onDisallowedResourceScheme` to persist mask bytes and return durable URLs, or save an archive that includes them.
+Allowing the buffer scheme does not persist bytes; the destination engine must restore those buffers separately.
+Missing or mismatched masks fail to decode.
 
 ```typescript
 unstable_setImportedImageDefinition(id: DesignBlockId, definition: ImportedImageDefinitionInput): void
