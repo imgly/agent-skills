@@ -9,13 +9,21 @@ enum BlockState
 
 ## Members
 
-### BlockState.error(_:)
+### ==(_:_:)
 
 ```swift
-case error(BlockStateError)
+static func == (lhs: BlockState, rhs: BlockState) -> Bool
 ```
 
-There’s an error preventing rendering.
+Two error states are equal when their kind and the code of their engine error match.
+
+### BlockState.error(_:engineError:)
+
+```swift
+case error(BlockStateError, engineError: EngineError? = nil)
+```
+
+There’s an error preventing rendering. `error`
 
 ### BlockState.pending(progress:)
 

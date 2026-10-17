@@ -51,13 +51,13 @@ SDK and call out the version difference.
 Clone the kit into the user's project folder, then remove the copied `.git` folder:
 
 ```bash
-git clone --depth 1 --branch v1.85.0-nightly.20261016 https://github.com/imgly/starterkit-apparel-editor-ios.git <target>
+git clone --depth 1 --branch v1.86.0-nightly.20261017 https://github.com/imgly/starterkit-apparel-editor-ios.git <target>
 rm -rf <target>/.git
 ```
 
-The `v1.85.0-nightly.20261016` branch of each repository matches this bundle. If the branch
+The `v1.86.0-nightly.20261017` branch of each repository matches this bundle. If the branch
 does not exist (a nightly build, or a kit added after this release), clone the
-default branch without `--branch` and set the CE.SDK dependency to version `1.85.0-nightly.20261016`.
+default branch without `--branch` and set the CE.SDK dependency to version `1.86.0-nightly.20261017`.
 
 The starter kits do not support macOS or Mac Catalyst. For those targets,
 create an engine-backed custom UI without importing iOS-only UI modules.

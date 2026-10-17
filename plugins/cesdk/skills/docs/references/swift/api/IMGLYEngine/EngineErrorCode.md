@@ -1157,6 +1157,12 @@ case blockBlendModeUnsupported
 case blockBlocksNotCombinable
 ```
 
+### EngineErrorCode.blockBlurTypeUnsupportedOnGroup
+
+```swift
+case blockBlurTypeUnsupportedOnGroup
+```
+
 ### EngineErrorCode.blockBlurUnknownType
 
 ```swift
@@ -1185,6 +1191,12 @@ case blockBufferNotFound
 
 ```swift
 case blockBufferOffsetOutOfRange
+```
+
+### EngineErrorCode.blockBufferStagingFailed
+
+```swift
+case blockBufferStagingFailed
 ```
 
 ### EngineErrorCode.blockBufferUriInvalid
@@ -1343,6 +1355,18 @@ case blockEffectIndexOutOfBounds
 case blockEffectNotAnEffect
 ```
 
+### EngineErrorCode.blockEffectSourceInvalid
+
+```swift
+case blockEffectSourceInvalid
+```
+
+### EngineErrorCode.blockEffectSourceUnsupported
+
+```swift
+case blockEffectSourceUnsupported
+```
+
 ### EngineErrorCode.blockEffectsUnsupported
 
 ```swift
@@ -1389,6 +1413,12 @@ case blockEnumValueInvalid
 
 ```swift
 case blockExportableUnsupported
+```
+
+### EngineErrorCode.blockFillAlreadyUsedByBlock
+
+```swift
+case blockFillAlreadyUsedByBlock
 ```
 
 ### EngineErrorCode.blockFillGetSolidColorWrongType
@@ -1499,16 +1529,148 @@ case blockImageFillUnsupported
 case blockImageLoadFailed
 ```
 
+### EngineErrorCode.blockKeyframesDuplicateTime
+
+```swift
+case blockKeyframesDuplicateTime
+```
+
+### EngineErrorCode.blockKeyframesEasingOutOfRange
+
+```swift
+case blockKeyframesEasingOutOfRange
+```
+
+### EngineErrorCode.blockKeyframesEmpty
+
+```swift
+case blockKeyframesEmpty
+```
+
+### EngineErrorCode.blockKeyframesEnumOutOfRange
+
+```swift
+case blockKeyframesEnumOutOfRange
+```
+
+### EngineErrorCode.blockKeyframesMixedColorSpaces
+
+```swift
+case blockKeyframesMixedColorSpaces
+```
+
+### EngineErrorCode.blockKeyframesMixedValueKinds
+
+```swift
+case blockKeyframesMixedValueKinds
+```
+
+### EngineErrorCode.blockKeyframesNoTrack
+
+```swift
+case blockKeyframesNoTrack
+```
+
+### EngineErrorCode.blockKeyframesPropertyNotAnimatable
+
+```swift
+case blockKeyframesPropertyNotAnimatable
+```
+
+### EngineErrorCode.blockKeyframesRelativeUnsupported
+
+```swift
+case blockKeyframesRelativeUnsupported
+```
+
+### EngineErrorCode.blockKeyframesSpatialTangentUnsupported
+
+```swift
+case blockKeyframesSpatialTangentUnsupported
+```
+
+### EngineErrorCode.blockKeyframesTimeOutOfRange
+
+```swift
+case blockKeyframesTimeOutOfRange
+```
+
+### EngineErrorCode.blockKeyframesValueKindMismatch
+
+```swift
+case blockKeyframesValueKindMismatch
+```
+
 ### EngineErrorCode.blockKeyNotFound
 
 ```swift
 case blockKeyNotFound
 ```
 
+### EngineErrorCode.blockMaskIndexOutOfBounds
+
+```swift
+case blockMaskIndexOutOfBounds
+```
+
+### EngineErrorCode.blockMaskInvalid
+
+```swift
+case blockMaskInvalid
+```
+
+### EngineErrorCode.blockMasksUnsupported
+
+```swift
+case blockMasksUnsupported
+```
+
+### EngineErrorCode.blockMatteSourceInvalid
+
+```swift
+case blockMatteSourceInvalid
+```
+
+### EngineErrorCode.blockMatteUnsupported
+
+```swift
+case blockMatteUnsupported
+```
+
 ### EngineErrorCode.blockMissingRequestedComponent
 
 ```swift
 case blockMissingRequestedComponent
+```
+
+### EngineErrorCode.blockModifierIndexOutOfBounds
+
+```swift
+case blockModifierIndexOutOfBounds
+```
+
+### EngineErrorCode.blockModifierNotAModifier
+
+```swift
+case blockModifierNotAModifier
+```
+
+### EngineErrorCode.blockModifiersUnsupported
+
+```swift
+case blockModifiersUnsupported
+```
+
+### EngineErrorCode.blockModifierUnknownType
+
+```swift
+case blockModifierUnknownType
+```
+
+### EngineErrorCode.blockMotionBlurValueOutOfRange
+
+```swift
+case blockMotionBlurValueOutOfRange
 ```
 
 ### EngineErrorCode.blockNameUnsupported
@@ -1709,6 +1871,12 @@ case blockPositionLocked
 case blockPositionParentControlled
 ```
 
+### EngineErrorCode.blockPropertyBound
+
+```swift
+case blockPropertyBound
+```
+
 ### EngineErrorCode.blockPropertyEnumCastFailed
 
 ```swift
@@ -1883,10 +2051,28 @@ case blockStrokeDashArrayInvalid
 case blockStrokeDashOffsetInvalid
 ```
 
+### EngineErrorCode.blockStrokeFillTypeUnsupported
+
+```swift
+case blockStrokeFillTypeUnsupported
+```
+
+### EngineErrorCode.blockStrokeFillUnsupported
+
+```swift
+case blockStrokeFillUnsupported
+```
+
 ### EngineErrorCode.blockStrokeMissing
 
 ```swift
 case blockStrokeMissing
+```
+
+### EngineErrorCode.blockStrokeMiterLimitInvalid
+
+```swift
+case blockStrokeMiterLimitInvalid
 ```
 
 ### EngineErrorCode.blockStrokesUnsupported
@@ -1899,6 +2085,36 @@ case blockStrokesUnsupported
 
 ```swift
 case blockStrokeWidthInvalid
+```
+
+### EngineErrorCode.blockSubshapeCycle
+
+```swift
+case blockSubshapeCycle
+```
+
+### EngineErrorCode.blockSubshapeIndexOutOfBounds
+
+```swift
+case blockSubshapeIndexOutOfBounds
+```
+
+### EngineErrorCode.blockSubshapeNotAShape
+
+```swift
+case blockSubshapeNotAShape
+```
+
+### EngineErrorCode.blockSubshapesUnsupported
+
+```swift
+case blockSubshapesUnsupported
+```
+
+### EngineErrorCode.blockSubshapeTypeUnsupported
+
+```swift
+case blockSubshapeTypeUnsupported
 ```
 
 ### EngineErrorCode.blockSvgPathParseFailed
@@ -1919,6 +2135,30 @@ case blockTargetNotAnAnimation
 case blockTargetNotAVideoFill
 ```
 
+### EngineErrorCode.blockTextAnimatorAlreadyAttached
+
+```swift
+case blockTextAnimatorAlreadyAttached
+```
+
+### EngineErrorCode.blockTextAnimatorIndexOutOfBounds
+
+```swift
+case blockTextAnimatorIndexOutOfBounds
+```
+
+### EngineErrorCode.blockTextAnimatorNotAnAnimator
+
+```swift
+case blockTextAnimatorNotAnAnimator
+```
+
+### EngineErrorCode.blockTextAnimatorsUnsupported
+
+```swift
+case blockTextAnimatorsUnsupported
+```
+
 ### EngineErrorCode.blockTextCannotToggleBold
 
 ```swift
@@ -1929,6 +2169,12 @@ case blockTextCannotToggleBold
 
 ```swift
 case blockTextCannotToggleItalic
+```
+
+### EngineErrorCode.blockTextInvalidBaselineShift
+
+```swift
+case blockTextInvalidBaselineShift
 ```
 
 ### EngineErrorCode.blockTextInvalidFontSize
@@ -2081,6 +2327,12 @@ case blockTextUnsupportedFontWeight
 case blockThresholdNotFinite
 ```
 
+### EngineErrorCode.blockTransformLockedAnchorOrSkew
+
+```swift
+case blockTransformLockedAnchorOrSkew
+```
+
 ### EngineErrorCode.blockTransformLockedFillParent
 
 ```swift
@@ -2111,6 +2363,18 @@ case blockTransformLockedRotate
 case blockTransformLockedScale
 ```
 
+### EngineErrorCode.blockTransformParentCycle
+
+```swift
+case blockTransformParentCycle
+```
+
+### EngineErrorCode.blockTransformParentUnsupported
+
+```swift
+case blockTransformParentUnsupported
+```
+
 ### EngineErrorCode.blockTransitionBlockInvalid
 
 ```swift
@@ -2127,6 +2391,12 @@ case blockTransitionBlockNotATransition
 
 ```swift
 case blockTransitionTypeNotRegistered
+```
+
+### EngineErrorCode.blockTypeCannotAutoOrient
+
+```swift
+case blockTypeCannotAutoOrient
 ```
 
 ### EngineErrorCode.blockTypeCannotBeArranged
@@ -2165,10 +2435,22 @@ case blockTypeCannotBePlaceholder
 case blockTypeCannotBeSelected
 ```
 
+### EngineErrorCode.blockTypeCannotHaveAnchorOrSkew
+
+```swift
+case blockTypeCannotHaveAnchorOrSkew
+```
+
 ### EngineErrorCode.blockTypeCannotHaveRotation
 
 ```swift
 case blockTypeCannotHaveRotation
+```
+
+### EngineErrorCode.blockTypeCannotHaveTransformScale
+
+```swift
+case blockTypeCannotHaveTransformScale
 ```
 
 ### EngineErrorCode.blockTypeNoAddingChildren
@@ -2321,10 +2603,46 @@ case blockValuesNotFiniteThree
 case blockValuesNotFiniteTwo
 ```
 
+### EngineErrorCode.blockVariableBindingGradientStopsUnsupported
+
+```swift
+case blockVariableBindingGradientStopsUnsupported
+```
+
+### EngineErrorCode.blockVariableBindingUnsupported
+
+```swift
+case blockVariableBindingUnsupported
+```
+
+### EngineErrorCode.blockVariableNameInvalid
+
+```swift
+case blockVariableNameInvalid
+```
+
+### EngineErrorCode.blockVariableNameTaken
+
+```swift
+case blockVariableNameTaken
+```
+
 ### EngineErrorCode.blockVariableNotFound
 
 ```swift
 case blockVariableNotFound
+```
+
+### EngineErrorCode.blockVariableTypefaceInvalid
+
+```swift
+case blockVariableTypefaceInvalid
+```
+
+### EngineErrorCode.blockVariableTypeMismatch
+
+```swift
+case blockVariableTypeMismatch
 ```
 
 ### EngineErrorCode.blockVideoFillNoUri
@@ -3125,6 +3443,12 @@ case editorBlockNotAttachedToPage
 case editorBlockNoTimeOffsetSupport
 ```
 
+### EngineErrorCode.editorBlockNoTimeRemapSupport
+
+```swift
+case editorBlockNoTimeRemapSupport
+```
+
 ### EngineErrorCode.editorBlockNoTrimSupport
 
 ```swift
@@ -3749,6 +4073,12 @@ case encodeAudioServiceUnavailable
 case encodeAudioSingleTrackIndexNonzero
 ```
 
+### EngineErrorCode.encodeAudioStagingWriteFailed
+
+```swift
+case encodeAudioStagingWriteFailed
+```
+
 ### EngineErrorCode.encodeAudioStartTimeOutOfBounds
 
 ```swift
@@ -3795,6 +4125,12 @@ case encodeBlockMustBePage
 
 ```swift
 case encodeBlockSizeZero
+```
+
+### EngineErrorCode.encodeBlocksStayedPending
+
+```swift
+case encodeBlocksStayedPending
 ```
 
 ### EngineErrorCode.encodeBufferCopyAllocFailed
@@ -4173,6 +4509,18 @@ case encodeVideoBlockHasError
 
 ```swift
 case encodeVideoConcurrentEncoding
+```
+
+### EngineErrorCode.encodeVideoCoverMetadataFailed
+
+```swift
+case encodeVideoCoverMetadataFailed
+```
+
+### EngineErrorCode.encodeVideoCoverTimeInvalid
+
+```swift
+case encodeVideoCoverTimeInvalid
 ```
 
 ### EngineErrorCode.encodeVideoExportOptionsNotObject
@@ -4649,6 +4997,12 @@ case sceneArchiveDataProviderRangeUnavailable
 case sceneArchiveDataUnavailableForUrl
 ```
 
+### EngineErrorCode.sceneArchiveEntryStagingFailed
+
+```swift
+case sceneArchiveEntryStagingFailed
+```
+
 ### EngineErrorCode.sceneArchiveFetchFailed
 
 ```swift
@@ -4793,10 +5147,52 @@ case sceneEntityInvalid
 case sceneEntityNotAScene
 ```
 
+### EngineErrorCode.sceneFrameRateOutOfRange
+
+```swift
+case sceneFrameRateOutOfRange
+```
+
 ### EngineErrorCode.sceneLoadFromUriFailed
 
 ```swift
 case sceneLoadFromUriFailed
+```
+
+### EngineErrorCode.sceneLottieArchiveInvalid
+
+```swift
+case sceneLottieArchiveInvalid
+```
+
+### EngineErrorCode.sceneLottieArchiveTooLarge
+
+```swift
+case sceneLottieArchiveTooLarge
+```
+
+### EngineErrorCode.sceneLottieArchiveTooManyEntries
+
+```swift
+case sceneLottieArchiveTooManyEntries
+```
+
+### EngineErrorCode.sceneLottieArchiveUnsafePath
+
+```swift
+case sceneLottieArchiveUnsafePath
+```
+
+### EngineErrorCode.sceneMarkerIndexOutOfRange
+
+```swift
+case sceneMarkerIndexOutOfRange
+```
+
+### EngineErrorCode.sceneMarkerInvalidTime
+
+```swift
+case sceneMarkerInvalidTime
 ```
 
 ### EngineErrorCode.sceneMediaUriNotFound

@@ -324,6 +324,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Record Video](https://img.ly/docs/cesdk/dev/nextjs/import-media/capture-from-camera/record-video-47819b/)
 - [Edit or Remove Assets](https://img.ly/docs/cesdk/dev/nextjs/import-media/edit-or-remove-assets-ce072c/)
 - [Source Sets](https://img.ly/docs/cesdk/dev/nextjs/import-media/source-sets-5679c8/)
+- [Import Lottie Animations](https://img.ly/docs/cesdk/dev/nextjs/import-media/lottie-6bb9ab/)
 - [Using Default Assets](https://img.ly/docs/cesdk/dev/nextjs/import-media/default-assets-d2763d/)
 - [Retrieve Mimetype](https://img.ly/docs/cesdk/dev/nextjs/import-media/retrieve-mimetype-ed13bf/)
 - [Import EPS Artwork](https://img.ly/docs/cesdk/dev/nextjs/import-media/from-eps-9fe72b/)
@@ -428,6 +429,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Edit Shapes](https://img.ly/docs/cesdk/dev/nextjs/stickers-and-shapes/create-edit/edit-shapes-d67cfb/)
 - [Vector Edit](https://img.ly/docs/cesdk/dev/nextjs/stickers-and-shapes/create-edit/vector-edit-f3a7b2/)
 - [Combine Shapes](https://img.ly/docs/cesdk/dev/nextjs/stickers-and-shapes/combine-2a9e26/)
+- [Compound Shapes](https://img.ly/docs/cesdk/dev/nextjs/stickers-and-shapes/compound-shapes-f7fc4f/)
+- [Shape Modifiers](https://img.ly/docs/cesdk/dev/nextjs/stickers-and-shapes/shape-modifiers-670d04/)
 - [Insert QR Code](https://img.ly/docs/cesdk/dev/nextjs/stickers-and-shapes/insert-qr-code-b6cc53/)
 
 #### [Create and Edit Stickers](https://img.ly/docs/cesdk/dev/nextjs/stickers-3d4e5f/)
@@ -447,6 +450,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Layers](https://img.ly/docs/cesdk/dev/nextjs/create-composition/layer-management-18f07a/)
 - [Lock Design](https://img.ly/docs/cesdk/dev/nextjs/create-composition/lock-design-0a81de/)
 - [Blend Modes](https://img.ly/docs/cesdk/dev/nextjs/create-composition/blend-modes-ad3519/)
+- [Masks and Mattes](https://img.ly/docs/cesdk/dev/nextjs/create-composition/masks-and-mattes-aa9c93/)
 - [Programmatic Creation](https://img.ly/docs/cesdk/dev/nextjs/create-composition/programmatic-a688bf/)
 
 #### [Create and Use Templates](https://img.ly/docs/cesdk/dev/nextjs/create-templates-3aef79/)
@@ -457,6 +461,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [From Scene File](https://img.ly/docs/cesdk/dev/nextjs/create-templates/import/from-scene-file-52a01e/)
 - [Dynamic Content](https://img.ly/docs/cesdk/dev/nextjs/create-templates/add-dynamic-content-53fad7/)
   - [Text Variables](https://img.ly/docs/cesdk/dev/nextjs/create-templates/add-dynamic-content/text-variables-7ecb50/)
+  - [Variable Bindings](https://img.ly/docs/cesdk/dev/nextjs/create-templates/add-dynamic-content/variable-bindings-faa12f/)
   - [Placeholders](https://img.ly/docs/cesdk/dev/nextjs/create-templates/add-dynamic-content/placeholders-d9ba8a/)
   - [Set Editing Constraints](https://img.ly/docs/cesdk/dev/nextjs/create-templates/add-dynamic-content/set-editing-constraints-c892c0/)
   - [Form-Based Editing](https://img.ly/docs/cesdk/dev/nextjs/create-templates/add-dynamic-content/form-based-editing-a8a779/)
@@ -512,6 +517,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Apply Custom LUT Filter](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/create-custom-lut-filter-6e3f49/)
 - [Distortion](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/distortion-5b5a66/)
 - [Duotone](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/duotone-831fc5/)
+- [Color, Distort and Wipe Effects](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/color-distort-and-wipe-effects-dcd316/)
 
 #### [Animation](https://img.ly/docs/cesdk/dev/nextjs/animation-ce900c/)
 
@@ -521,6 +527,9 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Base Animations](https://img.ly/docs/cesdk/dev/nextjs/animation/create/base-0fc5c4/)
   - [Text Animations](https://img.ly/docs/cesdk/dev/nextjs/animation/create/text-d6f4aa/)
 - [Edit Animations](https://img.ly/docs/cesdk/dev/nextjs/animation/edit-32c12a/)
+- [Keyframes](https://img.ly/docs/cesdk/dev/nextjs/animation/keyframes-267836/)
+- [Text Animators](https://img.ly/docs/cesdk/dev/nextjs/animation/text-animators-97387e/)
+- [Motion Blur](https://img.ly/docs/cesdk/dev/nextjs/animation/motion-blur-122f43/)
 
 #### [Rules](https://img.ly/docs/cesdk/dev/nextjs/rules-1427c0/)
 
@@ -607,6 +616,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [To v1.77](https://img.ly/docs/cesdk/dev/nextjs/to-v1-77-e7f3a1/)
 
 #### [To v1.82](https://img.ly/docs/cesdk/dev/nextjs/to-v1-82-3fb2d1/)
+
+#### [To v1.85](https://img.ly/docs/cesdk/dev/nextjs/to-v1-85-e7d908/)
 
 
 ---

@@ -68,3 +68,11 @@ case string
 ```swift
 case `struct`
 ```
+
+### PropertyType.vec2
+
+```swift
+case vec2
+```
+
+A property with two float components.
