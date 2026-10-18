@@ -52,7 +52,7 @@ Cover time in seconds from the beginning of the exported video. Null uses the pa
 val frameRate: Float? = null
 ```
 
-The target frame rate of the exported video in Hz. The default value is null: the video uses the scene's scene/frameRate, the frame that the preview motion blur shows, or 30 when that is not a positive number.
+The target frame rate of the exported video in Hz, greater than 0 and at most 240. The default value is null: the video uses the scene's scene/frameRate, the frame that the preview motion blur shows, or 30 when that is not a positive number.
 
 ### h264Level
 

@@ -55,7 +55,7 @@ Align multiple blocks vertically within their bounding box or a single block to 
 @MainActor func appendChild(to parent: DesignBlockID, child: DesignBlockID) throws
 ```
 
-Appends a new or existing child to a block’s children. Required scope: “editor/add” `parent`
+Appends a new or existing child to a block’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. Required scope: “editor/add” `parent`
 
 ### appendEffect(_:effectID:)
 
@@ -87,7 +87,7 @@ Appends a modifier to the modifiers of a shape. The same modifier can appear mul
 @MainActor func appendSubshape(_ id: DesignBlockID, subshapeID: DesignBlockID) throws
 ```
 
-Appends a subshape to a compound shape. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. Required scope: “shape/change” `id`
+Appends a subshape to a compound shape. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: “shape/change” `id`
 
 ### appendTextAnimator(_:animatorID:)
 
@@ -525,7 +525,7 @@ Exports a design block element as a file of the given mime type. Performs an int
 @MainActor func fillParent(_ id: DesignBlockID) throws
 ```
 
-Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block’s fill is unknown, the content fill mode is changed from `Crop` to `Cover` to prevent invalid crop values. Required scope: “layer/move” `id`
+Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block’s fill is unknown, the content fill mode is changed from `Crop` to `Cover` to prevent invalid crop values. A block that follows a transform parent stops following it. Required scope: “layer/move” `id`
 
 ### find(byKind:)
 
@@ -2075,6 +2075,14 @@ Query if the given block has a stroke property. `id`
 
 Returns whether the block has a time offset property. `id`
 
+### hasTransformAnchor(_:)
+
+```swift
+@MainActor func hasTransformAnchor(_ id: DesignBlockID) throws -> Bool
+```
+
+Returns whether a block has its own anchor. Setting `transform/anchor/x` or `transform/anchor/y`, even to 0, or giving one of them keyframes, gives a block an anchor. A `rotation` keyframe track turns a block with an anchor around the anchor, and a block without one around its frame center, as [`setRotation(_:radians:)`](./setrotation(_:radians:).md) does. `id`
+
 ### hasTrim(_:)
 
 > **Deprecated:** Use 'supportsTrim(_:)' instead. Renamed to `supportsTrim(_:)`.
@@ -2091,7 +2099,7 @@ Returns whether the block has trim properties. `id`
 @MainActor func insertChild(into parent: DesignBlockID, child: DesignBlockID, at index: Int) throws
 ```
 
-Insert a new or existing child at a certain position in the parent’s children. Required scope: “editor/add” `parent`
+Insert a new or existing child at a certain position in the parent’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. Required scope: “editor/add” `parent`
 
 ### insertEffect(_:effectID:index:)
 
@@ -2123,7 +2131,7 @@ Inserts a modifier at the given index into the modifiers of a shape. The same mo
 @MainActor func insertSubshape(_ id: DesignBlockID, subshapeID: DesignBlockID, index: Int) throws
 ```
 
-Inserts a subshape at the given index of a compound shape. The subshape at index 0 is the base, and each later subshape combines with the result so far by `shape/compound/mode`. The placement properties of the subshape (`shape/position/x`, `shape/width`, `shape/rotation`, …) place it in the compound’s coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. Required scope: “shape/change” `id`
+Inserts a subshape at the given index of a compound shape. The subshape at index 0 is the base, and each later subshape combines with the result so far by `shape/compound/mode`. The placement properties of the subshape (`shape/position/x`, `shape/width`, `shape/rotation`, …) place it in the compound’s coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: “shape/change” `id`
 
 ### insertTextAnimator(_:animatorID:index:)
 
@@ -3087,7 +3095,7 @@ Set an int property of the given design block to the given value.
 @MainActor func setKeyframes(_ id: DesignBlockID, property: String, keyframes: [Keyframe], mode: TrackMode = .absolute) throws
 ```
 
-Replace the keyframes of a block property. Keyframe times are normalized from 0 to 1 over the duration of the block. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit also converts the keyframes of length and position properties, such as corner radii and `position`. The vec2 properties `position` (a block) and `shape/position` (a shape) animate the `/x` and `/y` properties together. Their `spatialOut` and `spatialIn` tangents curve the motion path. [`getVec2…
+Replace the keyframes of a block property. Keyframe times are normalized from 0 to 1 over the duration of the block. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit also converts the keyframes of length and position properties, such as corner radii and `position`. Rotating or flipping the block turns or mirrors the keyframes of its position, rotation and skew with it. A group’s keyframes turn with the group. A turn that is not a quarter turn joins `positio…
 
 ### setKind(_:kind:)
 
@@ -3119,7 +3127,7 @@ Set whether the block should start from the beginning again or stop. `id`
 @MainActor func setMatte(_ id: DesignBlockID, source: DesignBlockID?, mode: MatteMode = .alpha) throws
 ```
 
-Mask a block with the rendered alpha or luminance of another block, like a track matte. A block used as a matte source is not drawn on its own. If the source draws nothing, for example because it is hidden or outside its time range, an alpha or luma matte hides the block and an inverted matte shows it whole. SVG export does not apply mattes, so a matted block exports whole. Required scope: “layer/clipping” `id`
+Mask a block with the rendered alpha or luminance of another block, like a track matte. A block used as a matte source is not drawn on its own. If the source draws nothing, for example because it is hidden or outside its time range, an alpha or luma matte hides the block and an inverted matte shows it whole. SVG export does not apply mattes, so a matted block exports whole. Required scope: “layer/clipping” on the block, and “layer/visibility” on the source, which stops drawing on its own. `id`
 
 ### setMetadata(_:key:value:)
 

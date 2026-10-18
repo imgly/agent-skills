@@ -530,6 +530,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Keyframes](https://img.ly/docs/cesdk/dev/electron/animation/keyframes-267836/)
 - [Text Animators](https://img.ly/docs/cesdk/dev/electron/animation/text-animators-97387e/)
 - [Motion Blur](https://img.ly/docs/cesdk/dev/electron/animation/motion-blur-122f43/)
+- [Anchor, Skew and Auto-Orient](https://img.ly/docs/cesdk/dev/electron/animation/anchor-skew-auto-orient-ede5e9/)
 
 #### [Rules](https://img.ly/docs/cesdk/dev/electron/rules-1427c0/)
 

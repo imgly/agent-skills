@@ -65,7 +65,7 @@ Align multiple blocks vertically within their bounding box or a single block to 
 abstract fun appendChild(parent: DesignBlock, child: DesignBlock)
 ```
 
-Appends a new or existing child to a block's children. Required scope: "editor/add"
+Appends a new or existing child to a block's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. Required scope: "editor/add"
 
 ### appendEffect
 
@@ -97,7 +97,7 @@ Appends a modifier to the modifiers of a shape. The same modifier can appear mul
 abstract fun appendSubshape(block: DesignBlock, subshapeBlock: DesignBlock)
 ```
 
-Appends a subshape to a compound shape. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. Required scope: "shape/change" Experimental: this API may change in a minor release.
+Appends a subshape to a compound shape. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: "shape/change" Experimental: this API may change in a minor release.
 
 ### appendTextAnimator
 
@@ -406,7 +406,7 @@ Exports a design block element as a file of the given mime type. Performs an int
 abstract fun fillParent(block: DesignBlock)
 ```
 
-Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block's fill is unknown, the content fill mode is changed from Crop to Cover to prevent invalid crop values. Required scope: "layer/move" - "layer/resize"
+Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block's fill is unknown, the content fill mode is changed from Crop to Cover to prevent invalid crop values. A block that follows a transform parent stops following it. Required scope: "layer/move" - "layer/resize"
 
 ### findAllInExclusionAreas
 
@@ -918,7 +918,7 @@ Get a block's layout position on the y-axis. The layout position is only availab
 abstract fun getGlobalBoundingBoxHeight(block: DesignBlock): Float
 ```
 
-Get the height of the block's axis-aligned bounding box in the scene's global coordinate space. The scene's global coordinate space has its origin at the top left.
+Get the height of the block's axis-aligned bounding box in the scene's global coordinate space. The scene's global coordinate space has its origin at the top left. A block with a transform parent is placed where its transform parents are at the current playback time. Its own transform stays static, like that of every other block. For such a block the call evaluates the animations of its transform parents at that time.
 
 ### getGlobalBoundingBoxWidth
 
@@ -926,7 +926,7 @@ Get the height of the block's axis-aligned bounding box in the scene's global co
 abstract fun getGlobalBoundingBoxWidth(block: DesignBlock): Float
 ```
 
-Get the width of the block's axis-aligned bounding box in the scene's global coordinate space. The scene's global coordinate space has its origin at the top left.
+Get the width of the block's axis-aligned bounding box in the scene's global coordinate space. The scene's global coordinate space has its origin at the top left. A block with a transform parent is placed where its transform parents are at the current playback time. Its own transform stays static, like that of every other block. For such a block the call evaluates the animations of its transform parents at that time.
 
 ### getGlobalBoundingBoxX
 
@@ -934,7 +934,7 @@ Get the width of the block's axis-aligned bounding box in the scene's global coo
 abstract fun getGlobalBoundingBoxX(block: DesignBlock): Float
 ```
 
-Get the x position of the block's axis-aligned bounding box in the scene's global coordinate space. The scene's global coordinate space has its origin at the top left.
+Get the x position of the block's axis-aligned bounding box in the scene's global coordinate space. The scene's global coordinate space has its origin at the top left. A block with a transform parent is placed where its transform parents are at the current playback time. Its own transform stays static, like that of every other block. For such a block the call evaluates the animations of its transform parents at that time.
 
 ### getGlobalBoundingBoxY
 
@@ -942,7 +942,7 @@ Get the x position of the block's axis-aligned bounding box in the scene's globa
 abstract fun getGlobalBoundingBoxY(block: DesignBlock): Float
 ```
 
-Get the y position of the block's axis-aligned bounding box in the scene's global coordinate space. The scene's global coordinate space has its origin at the top left.
+Get the y position of the block's axis-aligned bounding box in the scene's global coordinate space. The scene's global coordinate space has its origin at the top left. A block with a transform parent is placed where its transform parents are at the current playback time. Its own transform stays static, like that of every other block. For such a block the call evaluates the animations of its transform parents at that time.
 
 ### getGradientColorStops
 
@@ -1846,6 +1846,14 @@ abstract fun hasTimeOffset(block: DesignBlock): Boolean
 
 Returns whether the block has a time offset property.
 
+### hasTransformAnchor
+
+```kotlin
+abstract fun hasTransformAnchor(block: DesignBlock): Boolean
+```
+
+Returns whether a block has its own anchor. Setting transform/anchor/x or transform/anchor/y, even to 0, or giving one of them keyframes, gives a block an anchor. A rotation keyframe track turns a block with an anchor around the anchor, and a block without one around its frame center, as setRotation does. Experimental: this API may change in a minor release.
+
 ### hasTrim
 
 ```kotlin
@@ -1861,7 +1869,7 @@ Returns whether the block has trim properties.
 abstract fun insertChild(parent: DesignBlock, child: DesignBlock, index: Int)
 ```
 
-Insert a new or existing child at a certain position in the parent's children. Required scope: "editor/add"
+Insert a new or existing child at a certain position in the parent's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. Required scope: "editor/add"
 
 ### insertEffect
 
@@ -1893,7 +1901,7 @@ Inserts a modifier at the given index into the modifiers of a shape. The same mo
 abstract fun insertSubshape(block: DesignBlock, subshapeBlock: DesignBlock, index: Int)
 ```
 
-Inserts a subshape at the given index of a compound shape. The subshape at index 0 is the base, and each later subshape combines with the result so far by shape/compound/mode. The placement properties of the subshape (shape/position/x, shape/width, shape/rotation, ...) place it in the compound's coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. Required scope: "shape/change" Experimental: this API may change in a minor release.
+Inserts a subshape at the given index of a compound shape. The subshape at index 0 is the base, and each later subshape combines with the result so far by shape/compound/mode. The placement properties of the subshape (shape/position/x, shape/width, shape/rotation, ...) place it in the compound's coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: "shape/change" Experimental: this API may change in a minor release.
 
 ### insertTextAnimator
 
@@ -2294,7 +2302,7 @@ Removes the effect at the given index. Required scope: "appearance/effect"
 abstract fun removeKeyframes(block: DesignBlock, property: String)
 ```
 
-Remove the keyframe track of a block property, so the static value applies again. Does nothing when the property has no keyframes. Required scope: "appearance/animation" Experimental: this API may change in a minor release.
+Remove the keyframe track of a block property, so the static value applies again. Does nothing when the property has no keyframes. Required scope: the scopes that setKeyframes needs for the removed track. Experimental: this API may change in a minor release.
 
 ### removeMask
 
@@ -2839,7 +2847,7 @@ Set an int property of the given design block to the given value.
 abstract fun setKeyframes(block: DesignBlock, property: String, keyframes: List<Keyframe>, mode: TrackMode = TrackMode.ABSOLUTE)
 ```
 
-Replace the keyframe track of a block property. Keyframe times are normalized over the duration of the block, from 0 to 1. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit also converts the keyframes of length and position properties, such as corner radii and position. The vec2 properties position (a block) and shape/position (a shape) animate the /x and /y properties together. Their spatialOut and spatialIn tangents curve the motion path. getVec2 and setVe…
+Replace the keyframe track of a block property. Keyframe times are normalized over the duration of the block, from 0 to 1. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit also converts the keyframes of length and position properties, such as corner radii and position. Rotating or flipping the block turns or mirrors the keyframes of its position, rotation and skew with it. A group's keyframes turn with the group. A turn that is not a quarter turn joins posi…
 
 ### setKind
 
@@ -2871,7 +2879,7 @@ Set whether the block should start from the beginning again or stop.
 abstract fun setMatte(block: DesignBlock, source: DesignBlock?, mode: MatteMode = MatteMode.ALPHA)
 ```
 
-Mask a block with the rendered alpha or luminance of another block, like a track matte. A block used as a matte source is not drawn on its own. If the source draws nothing, for example because it is hidden or outside its time range, an alpha or luma matte hides the block and an inverted matte shows it whole. SVG export does not apply mattes, so a matted block exports whole. Required scope: "layer/clipping" Experimental: this API may change in a minor release.
+Mask a block with the rendered alpha or luminance of another block, like a track matte. A block used as a matte source is not drawn on its own. If the source draws nothing, for example because it is hidden or outside its time range, an alpha or luma matte hides the block and an inverted matte shows it whole. SVG export does not apply mattes, so a matted block exports whole. Required scope: "layer/clipping" on the block, and "layer/visibility" on the source, which stops drawing on its own. Experimental: this API may change in a minor release.
 
 ### setMetadata
 

@@ -2245,7 +2245,7 @@ The subshape at index 0 is the base, and each later subshape combines with the r
 `shape/compound/mode`. The placement properties of the subshape (`shape/position/x`, `shape/width`,
 `shape/rotation`, ...) place it in the compound's coordinate space.
 A shape has one owner, so the subshape is detached from its previous block or compound shape.
-Line shapes cannot be subshapes.
+Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes.
 
 ```typescript
 insertSubshape(id: DesignBlockId, subshapeId: DesignBlockId, index: number): void
@@ -2260,7 +2260,7 @@ insertSubshape(id: DesignBlockId, subshapeId: DesignBlockId, index: number): voi
 
 Appends a subshape to a compound shape. Experimental: this API may change in a minor release.
 A shape has one owner, so the subshape is detached from its previous block or compound shape.
-Line shapes cannot be subshapes.
+Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes.
 
 ```typescript
 appendSubshape(id: DesignBlockId, subshapeId: DesignBlockId): void
@@ -2333,7 +2333,8 @@ Experimental: this API may change in a minor release.
 A block used as a matte source is not drawn on its own. If the source draws nothing, for example because it is
 hidden or outside its time range, an `'Alpha'` or `'Luma'` matte hides the block and an inverted matte shows it
 whole. SVG export does not apply mattes, so a matted block exports whole.
-Required scope: 'layer/clipping'
+Required scope: 'layer/clipping' on the block, and 'layer/visibility' on the source, which stops drawing on its
+own.
 
 ```typescript
 setMatte(id: DesignBlockId, source: DesignBlockId | null, mode?: MatteMode): void
@@ -2595,7 +2596,13 @@ fill, shape or effect uses the duration of the block it is attached to. Setting 
 property does not change its keyframes.
 The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them
 to the new block. Scaling the block or changing the design unit also converts the keyframes of length
-and position properties, such as corner radii and `position`.
+and position properties, such as corner radii and `position`. Rotating or flipping the block turns or mirrors
+the keyframes of its position, rotation and skew with it. A group's keyframes turn with the group. A turn that
+is not a quarter turn joins `position/x` and `position/y` tracks into one `position` track. They must share the
+mode, the times and the easings, and no `position` track may exist. Other axis tracks cannot turn: their Absolute
+values move with the block, and their Relative values stay.
+A `rotation` track turns a graphic or text without an anchor around its frame center, as `setRotation` does.
+With `transform/anchor/x` or `transform/anchor/y` set, even to 0, it turns around the anchor.
 The vec2 properties `position` (a block) and `shape/position` (a shape) animate the `/x` and `/y` properties
 together. Their `spatialOut` and `spatialIn` tangents curve the motion path. `getVec2` and `setVec2` read and
 write their static value. A `position/x` or `position/y` track overrides that axis of a `position` track.
@@ -2607,8 +2614,9 @@ engine.block.setKeyframes(fill, 'fill/color/value', [
   { time: 1, value: { type: 'Color', value: { r: 0, g: 0, b: 1, a: 1 } }, easing: { type: 'Hold' } }
 ]);
 ```
-Required scope: 'appearance/animation'. A negative `transform/scale/x` or `transform/scale/y` value also needs
-'layer/flip'.
+Required scope: 'appearance/animation' and the scope that the setter of the property needs, such as 'layer/move'
+for `position` or 'layer/rotate' for `rotation`. A `transform/scale/x` or `transform/scale/y` keyframe that shows a
+scale with another sign than the static scale also needs 'layer/flip'.
 
 ```typescript
 setKeyframes(id: DesignBlockId, property: string, keyframes: Keyframe[], mode?: TrackMode): void
@@ -2654,7 +2662,7 @@ getKeyframeMode(id: DesignBlockId, property: string): TrackMode
 Removes the keyframes of a block property, so its static value applies again.
 Experimental: this API may change in a minor release.
 Removing from a property without keyframes does nothing.
-Required scope: 'appearance/animation'
+Required scope: the scopes that `setKeyframes` needs for the removed track.
 
 ```typescript
 removeKeyframes(id: DesignBlockId, property: string): void
@@ -3291,10 +3299,29 @@ getFrameHeight(id: DesignBlockId): number
 
 **Returns:** The layout height.
 
+### hasTransformAnchor()
+
+Checks whether a block has its own anchor. Experimental: this API may change in a minor release.
+Setting `transform/anchor/x` or `transform/anchor/y`, even to 0, or giving one of them keyframes, gives a block
+an anchor. A `rotation` keyframe track turns a block with an anchor around the anchor, and a block without one
+around its frame center, as `setRotation` does.
+
+```typescript
+hasTransformAnchor(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - A graphic, text or caption block.
+
+**Returns:** Whether the block has an anchor.
+
 ### getGlobalBoundingBoxX()
 
 Gets the X position of the block's global bounding box.
 The position is in the scene's global coordinate space, with the origin at the top left.
+A block with a transform parent is placed where its transform parents are at the current playback time.
+Its own transform stays static, like that of every other block. For such a block the call evaluates the
+animations of its transform parents at that time.
 ```javascript
 const globalX = engine.block.getGlobalBoundingBoxX(block);
 ```
@@ -3312,6 +3339,9 @@ getGlobalBoundingBoxX(id: DesignBlockId): number
 
 Gets the Y position of the block's global bounding box.
 The position is in the scene's global coordinate space, with the origin at the top left.
+A block with a transform parent is placed where its transform parents are at the current playback time.
+Its own transform stays static, like that of every other block. For such a block the call evaluates the
+animations of its transform parents at that time.
 ```javascript
 const globalY = engine.block.getGlobalBoundingBoxY(block);
 ```
@@ -3329,6 +3359,9 @@ getGlobalBoundingBoxY(id: DesignBlockId): number
 
 Gets the width of the block's global bounding box.
 The width is in the scene's global coordinate space.
+A block with a transform parent is placed where its transform parents are at the current playback time.
+Its own transform stays static, like that of every other block. For such a block the call evaluates the
+animations of its transform parents at that time.
 ```javascript
 const globalWidth = engine.block.getGlobalBoundingBoxWidth(block);
 ```
@@ -3346,6 +3379,9 @@ getGlobalBoundingBoxWidth(id: DesignBlockId): number
 
 Gets the height of the block's global bounding box.
 The height is in the scene's global coordinate space.
+A block with a transform parent is placed where its transform parents are at the current playback time.
+Its own transform stays static, like that of every other block. For such a block the call evaluates the
+animations of its transform parents at that time.
 ```javascript
 const globalHeight = engine.block.getGlobalBoundingBoxHeight(block);
 ```
@@ -3428,7 +3464,8 @@ distributeVertically(ids: DesignBlockId[]): void
 ### fillParent()
 
 Resizes and positions a block to fill its parent.
-The crop values of the block are reset if it can be cropped.
+The crop values of the block are reset if it can be cropped. A block that follows a transform parent stops
+following it.
 
 ```typescript
 fillParent(id: DesignBlockId): void
@@ -3684,6 +3721,8 @@ getChildren(id: DesignBlockId): DesignBlockId[]
 ### insertChild()
 
 Inserts a child block at a specific index.
+A move fails when it would put a block with a matte inside its matte source, or on another page than its
+source.
 
 ```typescript
 insertChild(parent: DesignBlockId, child: DesignBlockId, index: number): void
@@ -3697,6 +3736,8 @@ insertChild(parent: DesignBlockId, child: DesignBlockId, index: number): void
 ### appendChild()
 
 Appends a child block to a parent.
+A move fails when it would put a block with a matte inside its matte source, or on another page than its
+source.
 
 ```typescript
 appendChild(parent: DesignBlockId, child: DesignBlockId): void
@@ -3723,8 +3764,9 @@ float properties. Image variables bind only to `fill/image/imageFileURI`,
 `setTypeface` and `setFont`. On a text block, a variable bound to `fill/solid/color` or
 the font size sets every run of the text, and `setTextColor` or `setTextFontSize` fails
 for any range. Keyframes, undo and scene loads still change it. Changing the
-design unit converts a bound length but not its number variable, so the next
-variable write sets the length in the new unit.
+design unit converts a bound length. A number variable whose bound properties all
+hold its value converts with them. Otherwise the variable keeps its value, and the
+next variable write sets the lengths in the new unit.
 ```javascript
 engine.variable.setColor('brand', { r: 1, g: 0, b: 0, a: 1 });
 engine.block.setVariableBinding(colorFill, 'fill/color/value', 'brand');

@@ -15,7 +15,7 @@ enum BlockState
 static func == (lhs: BlockState, rhs: BlockState) -> Bool
 ```
 
-Two error states are equal when their kind and the code of their engine error match.
+Two error states are equal when their kind matches. The engine error is not compared, as on Android.
 
 ### BlockState.error(_:engineError:)
 

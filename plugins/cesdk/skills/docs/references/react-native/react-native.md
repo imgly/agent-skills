@@ -418,6 +418,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Keyframes](https://img.ly/docs/cesdk/dev/react-native/animation/keyframes-267836/)
 - [Text Animators](https://img.ly/docs/cesdk/dev/react-native/animation/text-animators-97387e/)
 - [Motion Blur](https://img.ly/docs/cesdk/dev/react-native/animation/motion-blur-122f43/)
+- [Anchor, Skew and Auto-Orient](https://img.ly/docs/cesdk/dev/react-native/animation/anchor-skew-auto-orient-ede5e9/)
 - [Programmatic](https://img.ly/docs/cesdk/dev/react-native/animation/programmatic-eb359c/)
 
 #### [Rules](https://img.ly/docs/cesdk/dev/react-native/rules-1427c0/)

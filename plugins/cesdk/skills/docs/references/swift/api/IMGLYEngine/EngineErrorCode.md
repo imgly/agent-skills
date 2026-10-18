@@ -2111,6 +2111,12 @@ case blockSubshapeNotAShape
 case blockSubshapesUnsupported
 ```
 
+### EngineErrorCode.blockSubshapeTooDeep
+
+```swift
+case blockSubshapeTooDeep
+```
+
 ### EngineErrorCode.blockSubshapeTypeUnsupported
 
 ```swift
@@ -3183,6 +3189,12 @@ case computeColorSpaceUnsupportedByEngine
 
 ```swift
 case computeContextCreateFnNotFound
+```
+
+### EngineErrorCode.computeD3D12ContextCreateFailed
+
+```swift
+case computeD3D12ContextCreateFailed
 ```
 
 ### EngineErrorCode.computeDataProviderEmpty
@@ -4557,6 +4569,12 @@ case encodeVideoFillNoUri
 
 ```swift
 case encodeVideoFrameFailed
+```
+
+### EngineErrorCode.encodeVideoFrameRateInvalid
+
+```swift
+case encodeVideoFrameRateInvalid
 ```
 
 ### EngineErrorCode.encodeVideoHasNoAudioTracks
