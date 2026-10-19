@@ -3095,7 +3095,7 @@ Set an int property of the given design block to the given value.
 @MainActor func setKeyframes(_ id: DesignBlockID, property: String, keyframes: [Keyframe], mode: TrackMode = .absolute) throws
 ```
 
-Replace the keyframes of a block property. Keyframe times are normalized from 0 to 1 over the duration of the block. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit also converts the keyframes of length and position properties, such as corner radii and `position`. Rotating or flipping the block turns or mirrors the keyframes of its position, rotation and skew with it. A group’s keyframes turn with the group. A turn that is not a quarter turn joins `positio…
+Replace the keyframes of a block property. Keyframe times are normalized from 0 to 1 over the duration of the block. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit also converts the keyframes of length and position properties, such as corner radii and `position`. Rotating or flipping the block turns or mirrors the keyframes of its position, rotation and skew with it. A group’s keyframes turn with the group. A turn other than a half turn joins `position/x`…
 
 ### setKind(_:kind:)
 

@@ -2597,8 +2597,8 @@ property does not change its keyframes.
 The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them
 to the new block. Scaling the block or changing the design unit also converts the keyframes of length
 and position properties, such as corner radii and `position`. Rotating or flipping the block turns or mirrors
-the keyframes of its position, rotation and skew with it. A group's keyframes turn with the group. A turn that
-is not a quarter turn joins `position/x` and `position/y` tracks into one `position` track. They must share the
+the keyframes of its position, rotation and skew with it. A group's keyframes turn with the group. A turn other
+than a half turn joins `position/x` and `position/y` tracks into one `position` track. They must share the
 mode, the times and the easings, and no `position` track may exist. Other axis tracks cannot turn: their Absolute
 values move with the block, and their Relative values stay.
 A `rotation` track turns a graphic or text without an anchor around its frame center, as `setRotation` does.

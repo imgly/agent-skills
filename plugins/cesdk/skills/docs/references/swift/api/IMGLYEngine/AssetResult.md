@@ -71,7 +71,7 @@ License for this asset. Overwrites the source license if present.
 let locale: Locale?
 ```
 
-The locale of the label and tags.
+The locale that the query requested. The label and tags can come from a fallback locale, such as English.
 
 ### tags
 

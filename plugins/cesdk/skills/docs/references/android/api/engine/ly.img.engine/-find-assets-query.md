@@ -56,7 +56,7 @@ Filter by groups.
 val locale: String? = null
 ```
 
-Controls the locale of the label and tags for localized search. For local asset sources, labels and tags are resolved using a fallback chain: requested locale → "en" → first available entry → empty default.
+Controls the locale of the label and tags for localized search. Local asset sources and the built-in sources ly.img.animations, ly.img.transitions and ly.img.scene.colors resolve labels and tags with a fallback chain: requested locale → "en" → first available entry → empty default.
 
 ### page
 

@@ -73,7 +73,7 @@ Engine bridge initializer. `filterJSON` is the JSON array wire form of [`filter`
 let locale: Locale?
 ```
 
-Choose the locale of the label and tags for localized search and filtering. For local asset sources, labels and tags are resolved using a fallback chain: requested locale → “en” → first available entry → empty default.
+Choose the locale of the label and tags for localized search and filtering. Local asset sources and the built-in sources `ly.img.animations`, `ly.img.transitions` and `ly.img.scene.colors` resolve labels and tags with a fallback chain: requested locale → “en” → first available entry → empty default.
 
 ### page
 
