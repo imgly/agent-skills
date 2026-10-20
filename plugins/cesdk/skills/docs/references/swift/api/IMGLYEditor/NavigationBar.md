@@ -380,19 +380,17 @@ The id of the [`togglePreviewMode(action:label:isEnabled:isVisible:)`](../toggle
       $0.eventHandler.send(.setViewMode($0.state.viewMode == .preview ? .edit : .preview))
     }, @ViewBuilder label: @escaping NavigationBar.Context.To<some View> = {
       let isPreviewMode = $0.state.viewMode == .preview
-      return ZStack(alignment: .leading) {
-        Label {
+       
+       
+      return Label {
+        ZStack(alignment: .leading) {
           Text(.imgly.localized("ly_img_editor_navigation_bar_button_preview_mode"))
-        } icon: {
-          Image.imgly.preview
-        }
-        .opacity(isPreviewMode ? 0 : 1)
-        Label {
+            .opacity(isPreviewMode ? 0 : 1)
           Text(.imgly.localized("ly_img_editor_navigation_bar_button_edit_mode"))
-        } icon: {
-          Image.imgly.preview.symbolVariant(.fill)
+            .opacity(isPreviewMode ? 1 : 0)
         }
-        .opacity(isPreviewMode ? 1 : 0)
+      } icon: {
+        Image.imgly.preview.symbolVariant(isPreviewMode ? .fill : .none)
       }
       .labelStyle(.imgly.adaptiveIconOnly)
       .accessibilityElement(children: .ignore)  

@@ -31,7 +31,7 @@ how the two connect.
    a native customization.
 3. For native code, use the bundled Swift references in `skills/docs/references/swift/` and
    the Android references in `skills/docs/references/android/` as the source of truth.
-4. Use the bundled React Native guides for integration steps, Expo config
+4. Use the React Native guides on the docs site for integration steps, Expo config
    plugins, and project setup.
 5. Cross-check the installed package version in `package.json` when it
    differs from this bundle, and use pretrained knowledge only when nothing
@@ -44,7 +44,7 @@ how the two connect.
    first; there is no React Native starter kit to copy.
 2. Install `@imgly/editor-react-native` and, when the app captures media,
    `@imgly/camera-react-native` at the CE.SDK version of this bundle.
-3. Apply the platform setup from the bundled get-started guides: on Expo the
+3. Apply the platform setup from the get-started guides on the docs site: on Expo the
    `expo-build-properties` plugin in `app.json` (Android `minSdkVersion`,
    the IMG.LY Maven repository, Kotlin version; iOS deployment target and
    dynamic frameworks); on a bare project the same values in `android/` and

@@ -55,7 +55,7 @@ Align multiple blocks vertically within their bounding box or a single block to 
 @MainActor func appendChild(to parent: DesignBlockID, child: DesignBlockID) throws
 ```
 
-Appends a new or existing child to a block’s children. Required scope: “editor/add” `parent`
+Appends a new or existing child to a block’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. Required scope: “editor/add” `parent`
 
 ### appendEffect(_:effectID:)
 
@@ -64,6 +64,38 @@ Appends a new or existing child to a block’s children. Required scope: “edit
 ```
 
 Inserts an effect at the end of the list of effects. The same effect can appear multiple times in the list and won’t be removed if appended again. Required scope: “appearance/effect” `id`
+
+### appendMask(_:maskID:)
+
+```swift
+@MainActor func appendMask(_ id: DesignBlockID, maskID: DesignBlockID) throws
+```
+
+Inserts a mask at the end of the masks of the given block. A mask can be used by more than one block. Required scope: “layer/clipping” `id`
+
+### appendModifier(_:modifierID:)
+
+```swift
+@MainActor func appendModifier(_ id: DesignBlockID, modifierID: DesignBlockID) throws
+```
+
+Appends a modifier to the modifiers of a shape. The same modifier can appear multiple times in the list. Required scope: “shape/change” on every block that uses the shape. `id`
+
+### appendSubshape(_:subshapeID:)
+
+```swift
+@MainActor func appendSubshape(_ id: DesignBlockID, subshapeID: DesignBlockID) throws
+```
+
+Appends a subshape to a compound shape. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: “shape/change” `id`
+
+### appendTextAnimator(_:animatorID:)
+
+```swift
+@MainActor func appendTextAnimator(_ id: DesignBlockID, animatorID: DesignBlockID) throws
+```
+
+Appends a text animator to the text animators of a block. A text animator belongs to one block at a time. Required scope: “appearance/animation” `id`
 
 ### BlockAPI.Worker
 
@@ -275,6 +307,22 @@ Create a new fill. `type`
 
 Create a new fill, fails if type is unknown. `type`
 
+### createMask()
+
+```swift
+@MainActor func createMask() throws -> DesignBlockID
+```
+
+Create a new mask. A mask cuts its block down to the area of the mask’s shape. Give the mask a shape with [`setShape(_:shape:)`](./setshape(_:shape:).md); a mask without a shape has no effect. The shape is evaluated in the frame of the block that the mask is attached to. The mask properties are `mask/mode`, `mask/opacity`, `mask/feather`, `mask/expansion` and `mask/inverted`. The created mask’s handle.
+
+### createModifier(_:)
+
+```swift
+@MainActor func createModifier(_ type: ModifierType) throws -> DesignBlockID
+```
+
+Create a new shape modifier. A modifier changes the path of a shape, or draws the shape several times. `type`
+
 ### createShape(_:)-7vl24
 
 > **Deprecated:** 
@@ -294,6 +342,14 @@ Create a new shape, fails if type is unknown. `type`
 ```
 
 Create a new shape. `type`
+
+### createTextAnimator()
+
+```swift
+@MainActor func createTextAnimator() throws -> DesignBlockID
+```
+
+Create a new text animator. A text animator changes the glyphs of a text block that its range selector covers: their position, scale, rotation, skew, opacity, colors, stroke width, tracking and blur. Every property of a text animator can have keyframes. The created text animator’s handle.
 
 ### createTransition(_:)
 
@@ -429,7 +485,7 @@ Exports a design block as a video file of the given mime type. `id`
 @MainActor func exportVideo(_ ids: [DesignBlockID], mimeType: MIMEType = .mp4, options: VideoExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil) async throws -> AsyncThrowingStream<VideoExport, any Error>
 ```
 
-Exports multiple design blocks as video files of the given mime type. Videos are exported sequentially, with progress events yielded for each video. This method is more memory efficient than calling `exportVideo` repeatedly for multiple blocks as it reuses a single worker engine for all exports. `ids`
+Exports multiple design blocks as video files of the given mime type. `ids`
 
 ### exportVideoPublisher(_:mimeType:options:onPreExport:uriResolver:)-5man1
 
@@ -445,7 +501,7 @@ Exports a design block as a video file of the given mime type. `id`
 @MainActor func exportVideoPublisher(_ ids: [DesignBlockID], mimeType: MIMEType = .mp4, options: VideoExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil) async throws -> AnyPublisher<VideoExport, any Error>
 ```
 
-Exports multiple design blocks as video files of the given mime type. Videos are exported sequentially, with progress events published for each video. This method is more memory efficient than calling `exportVideoPublisher` repeatedly for multiple blocks as it reuses a single worker engine for all exports. `ids`
+Exports multiple design blocks as video files of the given mime type. `ids`
 
 ### exportWithColorMask(_:mimeType:maskColorR:maskColorG:maskColorB:options:onPreExport:uriResolver:)-1yiln
 
@@ -469,7 +525,7 @@ Exports a design block element as a file of the given mime type. Performs an int
 @MainActor func fillParent(_ id: DesignBlockID) throws
 ```
 
-Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block’s fill is unknown, the content fill mode is changed from `Crop` to `Cover` to prevent invalid crop values. Required scope: “layer/move” `id`
+Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block’s fill is unknown, the content fill mode is changed from `Crop` to `Cover` to prevent invalid crop values. A block that follows a transform parent stops following it. Required scope: “layer/move” `id`
 
 ### find(byKind:)
 
@@ -503,6 +559,14 @@ Finds all blocks with the given type. `type`
 
 Finds all blocks with the given type. `type`
 
+### find(byType:)-2wuaf
+
+```swift
+@MainActor func find(byType type: ModifierType) throws -> [DesignBlockID]
+```
+
+Finds all modifier blocks with the given type. `type`
+
 ### find(byType:)-6e1l2
 
 ```swift
@@ -510,6 +574,22 @@ Finds all blocks with the given type. `type`
 ```
 
 Finds all blocks with the given type. `type`
+
+### find(byType:)-6pnq
+
+```swift
+@MainActor func find(byType type: TextAnimatorType) throws -> [DesignBlockID]
+```
+
+Finds all text animator blocks. `type`
+
+### find(byType:)-8mdux
+
+```swift
+@MainActor func find(byType type: MaskType) throws -> [DesignBlockID]
+```
+
+Finds all mask blocks. `type`
 
 ### find(byType:)-9nw9h
 
@@ -595,6 +675,14 @@ Get all currently selected blocks. An array of block ids.
 
 Returns all blocks that are not attached to any scene. A list of block ids that are not attached to any scene.
 
+### findAllVariableBindings(_:)
+
+```swift
+@MainActor func findAllVariableBindings(_ id: DesignBlockID) throws -> [String]
+```
+
+Get the properties of a block that are bound to a variable. `id`
+
 ### flipCropHorizontal(_:)
 
 ```swift
@@ -617,7 +705,7 @@ Adjusts the crop in order to flip the content along its own vertical axis. `id`
 @MainActor func forceLoadAVResource(_ id: DesignBlockID) async throws
 ```
 
-Begins loading the required audio and video resource for the given video fill or audio block. If the resource had been loaded earlier and resulted in an error, it will be reloaded. `id`
+Begins loading the required audio and video resource for the given video fill or audio block. If the resource had been loaded earlier and resulted in an error, it will be reloaded. A `buffer://` source loads like a file. The call finishes once the engine can read the video, audio or Lottie in the buffer, with the images that a Lottie references. It fails when the buffer holds no file that it can read. A missing or empty buffer, or raw audio samples on an audio block, finish at once. `id`
 
 ### forceLoadResources(_:)
 
@@ -642,6 +730,14 @@ Generate a thumbnail sequence for the given audio block or video fill. A thumbna
 ```
 
 Generate a thumbnail sequence for the given video fill or design block. `id`
+
+### getAnimatedProperties(_:)
+
+```swift
+@MainActor func getAnimatedProperties(_ id: DesignBlockID) throws -> [String]
+```
+
+Get the properties of a block that have keyframes. `id`
 
 ### getAudioInfoFromVideo(_:)
 
@@ -915,6 +1011,14 @@ Get the playback duration of the given block in seconds. The duration defines fo
 
 Get a list of all effects attached to this block. `id`
 
+### getEffectSource(effectID:)
+
+```swift
+@MainActor func getEffectSource(effectID: DesignBlockID) throws -> DesignBlockID?
+```
+
+Get the block that an ‘effect’ block reads. `effectID`
+
 ### getEnum(_:property:)
 
 ```swift
@@ -1083,6 +1187,22 @@ Get the “in” animation of the given block. `id`
 
 Get the value of an int property of the given design block. `id`
 
+### getKeyframeMode(_:property:)
+
+```swift
+@MainActor func getKeyframeMode(_ id: DesignBlockID, property: String) throws -> TrackMode
+```
+
+Get the mode of the keyframes of a block property. `id`
+
+### getKeyframes(_:property:)
+
+```swift
+@MainActor func getKeyframes(_ id: DesignBlockID, property: String) throws -> [Keyframe]
+```
+
+Get the keyframes of a block property, sorted by time. `id`
+
 ### getKind(_:)
 
 ```swift
@@ -1099,6 +1219,22 @@ Get the kind of the given block, fails if the block is invalid. `id`
 
 Get the “loop” animation of the given block. `id`
 
+### getMasks(_:)
+
+```swift
+@MainActor func getMasks(_ id: DesignBlockID) throws -> [DesignBlockID]
+```
+
+Get the masks of a block, in the order in which they combine. `id`
+
+### getMatte(_:)
+
+```swift
+@MainActor func getMatte(_ id: DesignBlockID) throws -> BlockMatte?
+```
+
+Get the matte of a block. `id`
+
 ### getMetadata(_:key:)
 
 ```swift
@@ -1106,6 +1242,14 @@ Get the “loop” animation of the given block. `id`
 ```
 
 Get a metadata value of a block identified by a key. If the key does not exist, yet, this method will fail. `id`
+
+### getModifiers(_:)
+
+```swift
+@MainActor func getModifiers(_ id: DesignBlockID) throws -> [DesignBlockID]
+```
+
+Get the modifiers of a shape, in the order they apply to its path. `id`
 
 ### getName(_:)
 
@@ -1313,6 +1457,14 @@ Get the cap geometry at the leading edge of each dash piece. `id`
 
 Get the cap geometry at the end of an open stroked path. `id`
 
+### getStrokeFill(_:)
+
+```swift
+@MainActor func getStrokeFill(_ id: DesignBlockID) throws -> DesignBlockID?
+```
+
+Returns the fill block that paints the stroke of the given block. `id`
+
 ### getStrokeOverprint(_:)
 
 ```swift
@@ -1353,6 +1505,22 @@ Get the stroke style of the given design block. `id`
 
 Get the stroke width of the given design block. `id`
 
+### getSubshapes(_:)
+
+```swift
+@MainActor func getSubshapes(_ id: DesignBlockID) throws -> [DesignBlockID]
+```
+
+Get the subshapes of a compound shape, in the order in which they combine. `id`
+
+### getTextAnimators(_:)
+
+```swift
+@MainActor func getTextAnimators(_ id: DesignBlockID) throws -> [DesignBlockID]
+```
+
+Get the text animators of a block, in the order they apply. `id`
+
 ### getTextBackgroundColors(_:in:)
 
 ```swift
@@ -1360,6 +1528,14 @@ Get the stroke width of the given design block. `id`
 ```
 
 Returns the ordered unique list of background colors of the text in the selected range. Text without a background color is reported as a fully transparent color. `id`
+
+### getTextBaselineShifts(_:in:)
+
+```swift
+@MainActor func getTextBaselineShifts(_ id: DesignBlockID, in subrange: Range<String.Index>? = nil) throws -> [Float]
+```
+
+Returns the unique baseline shift values across the grapheme range, in design units. `id`
 
 ### getTextCases(_:in:)
 
@@ -1565,6 +1741,14 @@ Get the time offset of the given block relative to its parent. `id`
 
 Returns the total duration (in seconds) of a scene in video mode. The duration is defined by all blocks in the scene. `scene`
 
+### getTransformParent(_:)
+
+```swift
+@MainActor func getTransformParent(_ id: DesignBlockID) throws -> DesignBlockID?
+```
+
+Returns the block whose transform the given block follows. `id`
+
 ### getTransition(_:)
 
 ```swift
@@ -1636,6 +1820,22 @@ Get the value of a URL property of the given design block. `id`
 ```
 
 Get a block’s unique identifier. `id`
+
+### getVariableBinding(_:property:)
+
+```swift
+@MainActor func getVariableBinding(_ id: DesignBlockID, property: String) throws -> String?
+```
+
+Get the variable that a block property is bound to. `id`
+
+### getVec2(_:property:)
+
+```swift
+@MainActor func getVec2(_ id: DesignBlockID, property: String) throws -> SIMD2<Float>
+```
+
+Get the value of a vec2 property of the given design block. `id`
 
 ### getVideoHeight(_:)
 
@@ -1875,6 +2075,14 @@ Query if the given block has a stroke property. `id`
 
 Returns whether the block has a time offset property. `id`
 
+### hasTransformAnchor(_:)
+
+```swift
+@MainActor func hasTransformAnchor(_ id: DesignBlockID) throws -> Bool
+```
+
+Returns whether a block has its own anchor. Setting `transform/anchor/x` or `transform/anchor/y`, even to 0, or giving one of them keyframes, gives a block an anchor. A `rotation` keyframe track turns a block with an anchor around the anchor, and a block without one around its frame center, as [`setRotation(_:radians:)`](./setrotation(_:radians:).md) does. `id`
+
 ### hasTrim(_:)
 
 > **Deprecated:** Use 'supportsTrim(_:)' instead. Renamed to `supportsTrim(_:)`.
@@ -1891,7 +2099,7 @@ Returns whether the block has trim properties. `id`
 @MainActor func insertChild(into parent: DesignBlockID, child: DesignBlockID, at index: Int) throws
 ```
 
-Insert a new or existing child at a certain position in the parent’s children. Required scope: “editor/add” `parent`
+Insert a new or existing child at a certain position in the parent’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. Required scope: “editor/add” `parent`
 
 ### insertEffect(_:effectID:index:)
 
@@ -1900,6 +2108,38 @@ Insert a new or existing child at a certain position in the parent’s children.
 ```
 
 Inserts an effect at the given index into the list of effects of the given block. The same effect can appear multiple times in the list and won’t be removed if appended again. Required scope: “appearance/effect” `id`
+
+### insertMask(_:maskID:index:)
+
+```swift
+@MainActor func insertMask(_ id: DesignBlockID, maskID: DesignBlockID, index: Int) throws
+```
+
+Inserts a mask at the given index into the masks of the given block. A mask can be used by more than one block. Required scope: “layer/clipping” `id`
+
+### insertModifier(_:modifierID:index:)
+
+```swift
+@MainActor func insertModifier(_ id: DesignBlockID, modifierID: DesignBlockID, index: Int) throws
+```
+
+Inserts a modifier at the given index into the modifiers of a shape. The same modifier can appear multiple times in the list. Required scope: “shape/change” on every block that uses the shape. `id`
+
+### insertSubshape(_:subshapeID:index:)
+
+```swift
+@MainActor func insertSubshape(_ id: DesignBlockID, subshapeID: DesignBlockID, index: Int) throws
+```
+
+Inserts a subshape at the given index of a compound shape. The subshape at index 0 is the base, and each later subshape combines with the result so far by `shape/compound/mode`. The placement properties of the subshape (`shape/position/x`, `shape/width`, `shape/rotation`, …) place it in the compound’s coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: “shape/change” `id`
+
+### insertTextAnimator(_:animatorID:index:)
+
+```swift
+@MainActor func insertTextAnimator(_ id: DesignBlockID, animatorID: DesignBlockID, index: Int) throws
+```
+
+Inserts a text animator at the given index into the text animators of a block. A text animator belongs to one block at a time. Required scope: “appearance/animation” `id`
 
 ### isAlignable(_:)
 
@@ -2101,6 +2341,14 @@ Query whether the placeholder function for a block is enabled. `id`
 
 Returns whether the block is currently during active playback. `id`
 
+### isPropertyAnimatable(_:property:)
+
+```swift
+@MainActor func isPropertyAnimatable(_ id: DesignBlockID, property: String) throws -> Bool
+```
+
+Check whether a property of a block can have keyframes. `id`
+
 ### isPropertyReadable(property:)
 
 ```swift
@@ -2155,7 +2403,7 @@ Query if the stroke of the given design block is enabled. `id`
 @MainActor func isTransformLocked(_ id: DesignBlockID) throws -> Bool
 ```
 
-Query a block’s transform locked state. If `true`, the block’s transform can’t be changed. `id`
+Query a block’s transform locked state. If `true`, the block’s transform can’t be changed. The lock covers the static transform: keyframe tracks on the position, rotation, size, scale, anchor or skew still animate a locked block. `id`
 
 ### isValid(_:)
 
@@ -2259,7 +2507,7 @@ Subscribe to changes to the state of a block. `ids`
 @MainActor func referencesAnyVariables(_ id: DesignBlockID) throws -> Bool
 ```
 
-Checks whether the given block references any variables. Doesn’t check the block’s children. `id`
+Checks whether the given block references any text variables. Doesn’t check the block’s children or its variable bindings. `id`
 
 ### removeEffect(_:index:)
 
@@ -2269,6 +2517,22 @@ Checks whether the given block references any variables. Doesn’t check the blo
 
 Removes the effect at the given index. Required scope: “appearance/effect” `id`
 
+### removeKeyframes(_:property:)
+
+```swift
+@MainActor func removeKeyframes(_ id: DesignBlockID, property: String) throws
+```
+
+Remove the keyframes of a block property, so the static value applies again. Removing from a property without keyframes does nothing. `id`
+
+### removeMask(_:index:)
+
+```swift
+@MainActor func removeMask(_ id: DesignBlockID, index: Int) throws
+```
+
+Removes the mask at the given index. The mask block is not destroyed. Required scope: “layer/clipping” `id`
+
 ### removeMetadata(_:key:)
 
 ```swift
@@ -2276,6 +2540,14 @@ Removes the effect at the given index. Required scope: “appearance/effect” `
 ```
 
 Remove metadata associated with the key from the given block. `id`
+
+### removeModifier(_:index:)
+
+```swift
+@MainActor func removeModifier(_ id: DesignBlockID, index: Int) throws
+```
+
+Removes the modifier at the given index from the modifiers of a shape. The modifier is not destroyed. Required scope: “shape/change” on every block that uses the shape. `id`
 
 ### removePageDurationSource(_:)
 
@@ -2285,6 +2557,14 @@ Remove metadata associated with the key from the given block. `id`
 
 Remove the block as duration source block for the page. If a scene or page is given as block, it is deactivated for all blocks in the scene or page. `id`
 
+### removeSubshape(_:index:)
+
+```swift
+@MainActor func removeSubshape(_ id: DesignBlockID, index: Int) throws
+```
+
+Removes the subshape at the given index of a compound shape. The subshape is not destroyed. Required scope: “shape/change” `id`
+
 ### removeText(_:from:)
 
 ```swift
@@ -2293,6 +2573,14 @@ Remove the block as duration source block for the page. If a scene or page is gi
 
 Removes selected range of text of the given text block. Required scope: “text/edit” `id`
 
+### removeTextAnimator(_:index:)
+
+```swift
+@MainActor func removeTextAnimator(_ id: DesignBlockID, index: Int) throws
+```
+
+Removes the text animator at the given index from a block. The text animator is not destroyed. Required scope: “appearance/animation” `id`
+
 ### removeTransition(_:)
 
 ```swift
@@ -2300,6 +2588,14 @@ Removes selected range of text of the given text block. Required scope: “text/
 ```
 
 Removes the outgoing transition of a clip. `id`
+
+### removeVariableBinding(_:property:)
+
+```swift
+@MainActor func removeVariableBinding(_ id: DesignBlockID, property: String) throws
+```
+
+Remove the variable binding of a block property. The property keeps its current value. Does nothing if the property is not bound. `id`
 
 ### replaceText(_:text:in:)
 
@@ -2665,6 +2961,14 @@ Set the playback duration of the given block in seconds. The duration defines fo
 
 Sets the enabled state of an ‘effect’ block. `effectID`
 
+### setEffectSource(effectID:source:)
+
+```swift
+@MainActor func setEffectSource(effectID: DesignBlockID, source: DesignBlockID?) throws
+```
+
+Set the block that an ‘effect’ block reads, such as the map of a displacement map effect. The source still draws on its own. It is read without its position and rotation, and also when it is hidden. Required scope: “appearance/effect” on every block the effect is attached to. `effectID`
+
 ### setEnum(_:property:value:)
 
 ```swift
@@ -2759,7 +3063,7 @@ Update a block’s height and optionally maintain the crop. If the crop is maint
 @MainActor func setHeightMode(_ id: DesignBlockID, mode: SizeMode) throws
 ```
 
-Set a block’s mode for its height. Required scope: “layer/resize” `id`
+Set a block’s mode for its height. A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: “layer/resize” `id`
 
 ### setInAnimation(_:animation:)
 
@@ -2785,6 +3089,14 @@ Set whether you want the given design block to be included in exported result. `
 
 Set an int property of the given design block to the given value.
 
+### setKeyframes(_:property:keyframes:mode:)
+
+```swift
+@MainActor func setKeyframes(_ id: DesignBlockID, property: String, keyframes: [Keyframe], mode: TrackMode = .absolute) throws
+```
+
+Replace the keyframes of a block property. Keyframe times are normalized from 0 to 1 over the duration of the block. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit also converts the keyframes of length and position properties, such as corner radii and `position`. Rotating or flipping the block turns or mirrors the keyframes of its position, rotation and skew with it. A group’s keyframes turn with the group. A turn other than a half turn joins `position/x`…
+
 ### setKind(_:kind:)
 
 ```swift
@@ -2808,6 +3120,14 @@ Set the “loop” animation of the given block. `id`
 ```
 
 Set whether the block should start from the beginning again or stop. `id`
+
+### setMatte(_:source:mode:)
+
+```swift
+@MainActor func setMatte(_ id: DesignBlockID, source: DesignBlockID?, mode: MatteMode = .alpha) throws
+```
+
+Mask a block with the rendered alpha or luminance of another block, like a track matte. A block used as a matte source is not drawn on its own. If the source draws nothing, for example because it is hidden or outside its time range, an alpha or luma matte hides the block and an inverted matte shows it whole. SVG export does not apply mattes, so a matted block exports whole. Required scope: “layer/clipping” on the block, and “layer/visibility” on the source, which stops drawing on its own. `id`
 
 ### setMetadata(_:key:value:)
 
@@ -3103,6 +3423,14 @@ Enable or disable the stroke of the given design block. Required scope: “strok
 
 Set the cap geometry at the end of an open stroked path. Required scope: “stroke/change” `id`
 
+### setStrokeFill(_:fill:)
+
+```swift
+@MainActor func setStrokeFill(_ id: DesignBlockID, fill: DesignBlockID?) throws
+```
+
+Paints the stroke of the given block with a fill block, for example a gradient, instead of the stroke color. Color, gradient and stripe fills are supported; image, video and pixel stream fills are rejected. `id`
+
 ### setStrokeOverprint(_:overprint:)
 
 ```swift
@@ -3150,6 +3478,14 @@ Set the stroke width of the given design block. Required scope: “stroke/change
 ```
 
 Changes the background color of the text in the selected range to the given color. The background is drawn as a rectangle behind each affected text run, or as a band along the curve for text on a path. A fully transparent color removes the background from the range. The run background is independent of the block-level background color (“backgroundColor/color”); it is drawn on top of the block-level background. Required scope: “fill/change” `id`
+
+### setTextBaselineShift(_:baselineShift:in:)
+
+```swift
+@MainActor func setTextBaselineShift(_ id: DesignBlockID, baselineShift: Float, in subrange: Range<String.Index>? = nil) throws
+```
+
+Sets the baseline shift for a grapheme range. Moves the glyphs of the range up from the baseline, or down for a negative value. The line height does not change. Required scope: “text/character” `id`
 
 ### setTextCase(_:textCase:in:)
 
@@ -3295,6 +3631,14 @@ Set the time offset of the given block relative to its parent. The time offset c
 
 Update a block’s transform locked state. `id`
 
+### setTransformParent(_:parent:)
+
+```swift
+@MainActor func setTransformParent(_ id: DesignBlockID, parent: DesignBlockID?) throws
+```
+
+Makes a block follow the transform of another block, or stops it from following one. The block’s position, rotation and scale are then read in the local space of the transform parent, so the block moves with it. The block does not keep its place on screen when the link changes. Only the transform is inherited: opacity, visibility and the stacking order still come from the block’s own parent. A hidden block can be a transform parent. When the transform parent is destroyed, the block stops following it. A block whose transform is locked can neither get nor lose a link. Required scope: “layer/move” `id`
+
 ### setTransition(_:transition:)
 
 ```swift
@@ -3335,6 +3679,22 @@ Sets the given font and typeface for the text block. The current formatting, e.g
 
 Set a URL property of the given design block to the given value. `id`
 
+### setVariableBinding(_:property:key:)
+
+```swift
+@MainActor func setVariableBinding(_ id: DesignBlockID, property: String, key: String) throws
+```
+
+Bind a block property to a color, number, image or typeface variable, and apply the variable’s current value. Color variables bind to color properties and number variables to float properties. Image variables bind only to `"fill/image/imageFileURI"`, `"fill/image/previewFileURI"` and `"fill/video/fileURI"`. Typeface variables bind only to `"text/typeface"` and `"caption/typeface"`. A direct write to a bound property fails with `BLOCK.PROPERTY_BOUND` until the binding is removed. A bound typeface also locks `setTypeface` and `setFont`. On a text block, a variable bound to `"fill/solid/color"` or the font size sets every run of the text, and `setTextColor` or `setTextFontSize` fails for any r…
+
+### setVec2(_:property:value:)
+
+```swift
+@MainActor func setVec2(_ id: DesignBlockID, property: String, value: SIMD2<Float>) throws
+```
+
+Set a vec2 property of the given design block to the given value. `position` sets `position/x` and `position/y`, and `shape/position` sets `shape/position/x` and `shape/position/y`, with the checks of those properties. Either both components change or neither does. `id`
+
 ### setVisible(_:visible:)
 
 ```swift
@@ -3365,7 +3725,7 @@ Update a block’s width and optionally maintain the crop. If the crop is mainta
 @MainActor func setWidthMode(_ id: DesignBlockID, mode: SizeMode) throws
 ```
 
-Set a block’s mode for its width. Required scope: “layer/resize” `id`
+Set a block’s mode for its width. A switch between Absolute and Percent keeps the stored width and reads it in the new mode. Set the width after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: “layer/resize” `id`
 
 ### split(_:atTime:options:)
 
@@ -3455,6 +3815,22 @@ Queries whether the block supports effects. `id`
 
 Query if the given block has fill color properties. `id`
 
+### supportsMasks(_:)
+
+```swift
+@MainActor func supportsMasks(_ id: DesignBlockID) throws -> Bool
+```
+
+Queries whether the block supports masks. Graphic, text and group blocks do. `id`
+
+### supportsModifiers(_:)
+
+```swift
+@MainActor func supportsModifiers(_ id: DesignBlockID) throws -> Bool
+```
+
+Queries whether the block supports modifiers. Every shape block does. `id`
+
 ### supportsOpacity(_:)
 
 ```swift
@@ -3518,6 +3894,14 @@ Query if the given block has a shape property. `id`
 ```
 
 Query if the given block has a stroke property. `id`
+
+### supportsTextAnimators(_:)
+
+```swift
+@MainActor func supportsTextAnimators(_ id: DesignBlockID) throws -> Bool
+```
+
+Queries whether the block supports text animators. Text and caption blocks do. `id`
 
 ### supportsTimeOffset(_:)
 
@@ -3597,4 +3981,4 @@ Ungroups a group. `id`
 @MainActor func unstable_isAVResourceLoaded(_ id: DesignBlockID) throws -> Bool
 ```
 
-Returns whether the audio and video resource for the given video fill or audio block is loaded. `id`
+Returns whether the audio and video resource for the given video fill or audio block is loaded. A `buffer://` source counts as loaded once the engine has read its file, with the images that a Lottie references. A missing or empty buffer, or raw audio samples on an audio block, count as loaded. `id`

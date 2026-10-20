@@ -17,7 +17,7 @@ struct SaveToStringOptions
 var allowedResourceSchemes: [String]
 ```
 
-The resource schemes to allow in the saved string. Defaults to [“blob”, “bundle”, “file”, “http”, “https”].
+The resource schemes to allow in the saved string. Defaults to [“blob”, “bundle”, “file”, “http”, “https”]. Add “data” to keep `data:` URIs.
 
 ### compression
 

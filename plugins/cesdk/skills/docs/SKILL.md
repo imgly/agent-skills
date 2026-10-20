@@ -1,16 +1,15 @@
 ---
 name: docs
 description: |
-  Look up CE.SDK (IMG.LY CreativeEditor SDK) guides, API references, and setup
-  pages for Web, Swift, Android, Flutter, and React Native. Use for "how do I",
-  config, or API-signature questions. Not for writing code (build) or concepts
-  (explain).
+  Look up IMG.LY SDK (CE.SDK) docs: guides, API signatures, config options, setup and
+  licensing for Web, Swift, Android, Flutter and React Native. Use for "how do I…" or
+  exact-API questions about an existing CE.SDK integration.
 argument-hint: "[search-topic]"
 ---
 
 ## Version Notice
 
-> CE.SDK `1.84.0-rc.1` · generated `2026-10-05` · plugin `cesdk`
+> CE.SDK `1.85.0-rc.0` · generated `2026-10-19` · plugin `imgly-sdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow
@@ -69,14 +68,15 @@ mapping calls for.
 ## How to Use
 
 1. Detect the platform and framework as above.
-2. Read `README.md` in the matching reference folder. It holds the compressed
-   documentation index, the API index, and the lookup workflow for that platform.
-3. Follow that workflow: resolve the index entry to a file with Glob under the
-   reference folder, or Grep the folder for the keyword.
+2. Read `README.md` in the matching reference folder. It holds the lookup
+   workflow, the API index, and the agent rules for that platform. The page
+   index of the docs site (`<platform>.md`) sits beside it.
+3. Follow that workflow: pick pages from the index and fetch them from the docs
+   site as Markdown, or read the bundled API digests.
 4. Answer with the relevant section and code examples. Verify types and package
-   names against the bundled files, never against memory.
+   names against the fetched pages and the API digests, never against memory.
 
 ## Related Skills
 
-- Use `/cesdk:build` when the user needs implementation help, not just docs
-- Use `/cesdk:explain` for conceptual explanations beyond what docs cover
+- Use `/imgly-sdk:build` when the user needs implementation help, not just docs
+- Use `/imgly-sdk:explain` for conceptual explanations beyond what docs cover

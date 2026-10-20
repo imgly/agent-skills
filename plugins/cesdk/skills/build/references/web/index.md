@@ -22,5 +22,6 @@ frameworks in one repository: ask the user which framework to target.
 | Next.js | `nextjs.md` | `skills/docs/references/web/nextjs/` |
 | SvelteKit | `sveltekit.md` | `skills/docs/references/web/sveltekit/` |
 
-- `common.md` — shared Web workflow, known pitfalls, output format, starter kits
-- `starter-kits/` — Vite + TypeScript project templates listed in `common.md`
+- `common.md` — shared Web workflow, known pitfalls, output format, and the
+  starter kit repositories
+- `scripts/transpile-to-js.mjs` — converts a cloned TypeScript kit to JavaScript

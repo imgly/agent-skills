@@ -64,6 +64,14 @@ enum entry STRING
 enum entry STRUCT
 ```
 
+### VEC2
+
+```kotlin
+enum entry VEC2
+```
+
+Experimental: this API may change in a minor release.
+
 ### entries
 
 ```kotlin

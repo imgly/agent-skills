@@ -20,8 +20,9 @@ UI is unavailable and offer an `IMGLYEngine`-backed custom UI instead.
 1. Prefer live Xcode symbol or documentation lookup, when available, for exact
    installed-SDK signatures, generic constraints, availability, and deprecations.
 2. Use bundled API digests for discovery, planning, and portable lookup.
-3. Use bundled guides for integration recipes.
-4. Use pretrained knowledge only when the installed SDK and bundle do not answer.
+3. Use the guides on the docs site for integration recipes.
+4. Use pretrained knowledge only when the installed SDK, the bundle, and the
+   docs site do not answer.
 
 If live Xcode symbols disagree with a bundled API digest, follow the installed
 SDK and call out the version difference.

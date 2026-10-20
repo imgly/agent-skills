@@ -28,7 +28,7 @@ two connect.
    native customization.
 3. For native code, use the bundled Swift references in `skills/docs/references/swift/` and
    the Android references in `skills/docs/references/android/` as the source of truth.
-4. Use the bundled Flutter guides for integration steps and project setup.
+4. Use the Flutter guides on the docs site for integration steps and project setup.
 5. Cross-check the resolved package version in `pubspec.lock` when it differs
    from this bundle, and use pretrained knowledge only when nothing above
    answers.

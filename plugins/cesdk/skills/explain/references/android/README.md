@@ -15,7 +15,7 @@ explicitly requires a custom engine surface.
 ## Source Priority
 
 1. Use bundled Dokka API digests for exact Kotlin declarations and deprecations.
-2. Use bundled Android guides for integration workflows.
+2. Use the Android guides on the docs site for integration workflows.
 3. Cross-check the project's resolved Gradle dependency or IDE symbols when the
    installed CE.SDK version differs from this bundle.
 4. Use pretrained knowledge only when the project and bundle do not answer.
