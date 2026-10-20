@@ -294,6 +294,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Overview](https://img.ly/docs/cesdk/dev/flutter/create-video/overview-b06512/)
 - [Timeline Editor](https://img.ly/docs/cesdk/dev/flutter/create-video/timeline-editor-912252/)
+- [Markers and Frame Rate](https://img.ly/docs/cesdk/dev/flutter/create-video/markers-and-frame-rate-517cc2/)
 - [Control Audio and Video](https://img.ly/docs/cesdk/dev/flutter/create-video/control-daba54/)
 - [Trim](https://img.ly/docs/cesdk/dev/flutter/edit-video/trim-4f688b/)
 - [Force Trim](https://img.ly/docs/cesdk/dev/flutter/edit-video/force-trim-3c1e8a/)
@@ -423,6 +424,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Gradient](https://img.ly/docs/cesdk/dev/flutter/fills/gradient-0ff079/)
 - [Image](https://img.ly/docs/cesdk/dev/flutter/fills/image-e9cb5c/)
 - [Video](https://img.ly/docs/cesdk/dev/flutter/fills/video-ec7f9f/)
+- [Lottie](https://img.ly/docs/cesdk/dev/flutter/fills/lottie-a141ee/)
 
 #### [Outlines](https://img.ly/docs/cesdk/dev/flutter/outlines-b7820c/)
 
@@ -441,7 +443,9 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Apply Custom LUT Filter](https://img.ly/docs/cesdk/dev/flutter/filters-and-effects/create-custom-lut-filter-6e3f49/)
 - [Distortion](https://img.ly/docs/cesdk/dev/flutter/filters-and-effects/distortion-5b5a66/)
 - [Duotone](https://img.ly/docs/cesdk/dev/flutter/filters-and-effects/duotone-831fc5/)
-- [Color, Distort and Wipe Effects](https://img.ly/docs/cesdk/dev/flutter/filters-and-effects/color-distort-and-wipe-effects-dcd316/)
+- [Color Effects](https://img.ly/docs/cesdk/dev/flutter/filters-and-effects/color-effects-211484/)
+- [Wipe Effects](https://img.ly/docs/cesdk/dev/flutter/filters-and-effects/wipe-effects-a92cf6/)
+- [Stroke Effect](https://img.ly/docs/cesdk/dev/flutter/filters-and-effects/stroke-effect-57fcc1/)
 
 #### [Animation](https://img.ly/docs/cesdk/dev/flutter/animation-ce900c/)
 
@@ -451,8 +455,12 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Base Animations](https://img.ly/docs/cesdk/dev/flutter/animation/create/base-0fc5c4/)
   - [Text Animations](https://img.ly/docs/cesdk/dev/flutter/animation/create/text-d6f4aa/)
 - [Edit Animations](https://img.ly/docs/cesdk/dev/flutter/animation/edit-32c12a/)
+- [Composition Groups](https://img.ly/docs/cesdk/dev/flutter/animation/composition-groups-20bae2/)
+- [Time Remap](https://img.ly/docs/cesdk/dev/flutter/animation/time-remap-063ab0/)
 - [Keyframes](https://img.ly/docs/cesdk/dev/flutter/animation/keyframes-267836/)
+- [Follow Another Block](https://img.ly/docs/cesdk/dev/flutter/animation/transform-parent-b51eab/)
 - [Text Animators](https://img.ly/docs/cesdk/dev/flutter/animation/text-animators-97387e/)
+- [Motion Paths](https://img.ly/docs/cesdk/dev/flutter/animation/motion-paths-7c619f/)
 - [Motion Blur](https://img.ly/docs/cesdk/dev/flutter/animation/motion-blur-122f43/)
 - [Anchor, Skew and Auto-Orient](https://img.ly/docs/cesdk/dev/flutter/animation/anchor-skew-auto-orient-ede5e9/)
 - [Programmatic](https://img.ly/docs/cesdk/dev/flutter/animation/programmatic-eb359c/)

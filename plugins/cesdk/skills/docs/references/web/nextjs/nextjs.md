@@ -343,6 +343,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [To PNG](https://img.ly/docs/cesdk/dev/nextjs/export-save-publish/export/to-png-f87eaf/)
 - [To WebP](https://img.ly/docs/cesdk/dev/nextjs/export-save-publish/export/to-webp-aef6f4/)
 - [To HTML5](https://img.ly/docs/cesdk/dev/nextjs/export-save-publish/export/to-html5-76d2ab/)
+- [To IDML](https://img.ly/docs/cesdk/dev/nextjs/export-save-publish/export/to-idml-5c1a8f/)
 - [To Raw Data](https://img.ly/docs/cesdk/dev/nextjs/export-save-publish/export/to-raw-data-abd7da/)
 - [Compress](https://img.ly/docs/cesdk/dev/nextjs/export-save-publish/export/compress-29105e/)
 - [With a Color Mask](https://img.ly/docs/cesdk/dev/nextjs/export-save-publish/export/with-color-mask-4f868f/)
@@ -375,6 +376,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Overview](https://img.ly/docs/cesdk/dev/nextjs/create-video/overview-b06512/)
 - [Timeline Editor](https://img.ly/docs/cesdk/dev/nextjs/create-video/timeline-editor-912252/)
+- [Markers and Frame Rate](https://img.ly/docs/cesdk/dev/nextjs/create-video/markers-and-frame-rate-517cc2/)
 - [Control Audio and Video](https://img.ly/docs/cesdk/dev/nextjs/create-video/control-daba54/)
 - [Trim](https://img.ly/docs/cesdk/dev/nextjs/edit-video/trim-4f688b/)
 - [Split](https://img.ly/docs/cesdk/dev/nextjs/edit-video/split-464167/)
@@ -499,6 +501,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Gradient](https://img.ly/docs/cesdk/dev/nextjs/fills/gradient-0ff079/)
 - [Image](https://img.ly/docs/cesdk/dev/nextjs/fills/image-e9cb5c/)
 - [Video](https://img.ly/docs/cesdk/dev/nextjs/fills/video-ec7f9f/)
+- [Lottie](https://img.ly/docs/cesdk/dev/nextjs/fills/lottie-a141ee/)
 
 #### [Outlines](https://img.ly/docs/cesdk/dev/nextjs/outlines-b7820c/)
 
@@ -517,7 +520,9 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Apply Custom LUT Filter](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/create-custom-lut-filter-6e3f49/)
 - [Distortion](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/distortion-5b5a66/)
 - [Duotone](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/duotone-831fc5/)
-- [Color, Distort and Wipe Effects](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/color-distort-and-wipe-effects-dcd316/)
+- [Color Effects](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/color-effects-211484/)
+- [Wipe Effects](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/wipe-effects-a92cf6/)
+- [Stroke Effect](https://img.ly/docs/cesdk/dev/nextjs/filters-and-effects/stroke-effect-57fcc1/)
 
 #### [Animation](https://img.ly/docs/cesdk/dev/nextjs/animation-ce900c/)
 
@@ -527,8 +532,12 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Base Animations](https://img.ly/docs/cesdk/dev/nextjs/animation/create/base-0fc5c4/)
   - [Text Animations](https://img.ly/docs/cesdk/dev/nextjs/animation/create/text-d6f4aa/)
 - [Edit Animations](https://img.ly/docs/cesdk/dev/nextjs/animation/edit-32c12a/)
+- [Composition Groups](https://img.ly/docs/cesdk/dev/nextjs/animation/composition-groups-20bae2/)
+- [Time Remap](https://img.ly/docs/cesdk/dev/nextjs/animation/time-remap-063ab0/)
 - [Keyframes](https://img.ly/docs/cesdk/dev/nextjs/animation/keyframes-267836/)
+- [Follow Another Block](https://img.ly/docs/cesdk/dev/nextjs/animation/transform-parent-b51eab/)
 - [Text Animators](https://img.ly/docs/cesdk/dev/nextjs/animation/text-animators-97387e/)
+- [Motion Paths](https://img.ly/docs/cesdk/dev/nextjs/animation/motion-paths-7c619f/)
 - [Motion Blur](https://img.ly/docs/cesdk/dev/nextjs/animation/motion-blur-122f43/)
 - [Anchor, Skew and Auto-Orient](https://img.ly/docs/cesdk/dev/nextjs/animation/anchor-skew-auto-orient-ede5e9/)
 

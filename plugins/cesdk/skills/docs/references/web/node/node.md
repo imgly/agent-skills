@@ -163,6 +163,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [To JPEG](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/to-jpeg-6f88e9/)
 - [To PNG](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/to-png-f87eaf/)
 - [To WebP](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/to-webp-aef6f4/)
+- [To PSD](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/to-psd-bc27e9/)
 - [To Raw Data](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/to-raw-data-abd7da/)
 - [Compress](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/compress-29105e/)
 - [With a Color Mask](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/with-color-mask-4f868f/)
@@ -193,6 +194,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [Create and Edit Videos](https://img.ly/docs/cesdk/dev/node/create-video-c41a08/)
 
+- [Markers and Frame Rate](https://img.ly/docs/cesdk/dev/node/create-video/markers-and-frame-rate-517cc2/)
 - [Control Audio and Video](https://img.ly/docs/cesdk/dev/node/create-video/control-daba54/)
 - [Trim](https://img.ly/docs/cesdk/dev/node/edit-video/trim-4f688b/)
 - [Split](https://img.ly/docs/cesdk/dev/node/edit-video/split-464167/)
@@ -296,6 +298,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Gradient](https://img.ly/docs/cesdk/dev/node/fills/gradient-0ff079/)
 - [Image](https://img.ly/docs/cesdk/dev/node/fills/image-e9cb5c/)
 - [Video](https://img.ly/docs/cesdk/dev/node/fills/video-ec7f9f/)
+- [Lottie](https://img.ly/docs/cesdk/dev/node/fills/lottie-a141ee/)
 
 #### [Outlines](https://img.ly/docs/cesdk/dev/node/outlines-b7820c/)
 
@@ -314,7 +317,9 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Apply Custom LUT Filter](https://img.ly/docs/cesdk/dev/node/filters-and-effects/create-custom-lut-filter-6e3f49/)
 - [Distortion](https://img.ly/docs/cesdk/dev/node/filters-and-effects/distortion-5b5a66/)
 - [Duotone](https://img.ly/docs/cesdk/dev/node/filters-and-effects/duotone-831fc5/)
-- [Color, Distort and Wipe Effects](https://img.ly/docs/cesdk/dev/node/filters-and-effects/color-distort-and-wipe-effects-dcd316/)
+- [Color Effects](https://img.ly/docs/cesdk/dev/node/filters-and-effects/color-effects-211484/)
+- [Wipe Effects](https://img.ly/docs/cesdk/dev/node/filters-and-effects/wipe-effects-a92cf6/)
+- [Stroke Effect](https://img.ly/docs/cesdk/dev/node/filters-and-effects/stroke-effect-57fcc1/)
 
 #### [Animation](https://img.ly/docs/cesdk/dev/node/animation-ce900c/)
 
@@ -323,8 +328,12 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Base Animations](https://img.ly/docs/cesdk/dev/node/animation/create/base-0fc5c4/)
   - [Text Animations](https://img.ly/docs/cesdk/dev/node/animation/create/text-d6f4aa/)
 - [Edit Animations](https://img.ly/docs/cesdk/dev/node/animation/edit-32c12a/)
+- [Composition Groups](https://img.ly/docs/cesdk/dev/node/animation/composition-groups-20bae2/)
+- [Time Remap](https://img.ly/docs/cesdk/dev/node/animation/time-remap-063ab0/)
 - [Keyframes](https://img.ly/docs/cesdk/dev/node/animation/keyframes-267836/)
+- [Follow Another Block](https://img.ly/docs/cesdk/dev/node/animation/transform-parent-b51eab/)
 - [Text Animators](https://img.ly/docs/cesdk/dev/node/animation/text-animators-97387e/)
+- [Motion Paths](https://img.ly/docs/cesdk/dev/node/animation/motion-paths-7c619f/)
 - [Motion Blur](https://img.ly/docs/cesdk/dev/node/animation/motion-blur-122f43/)
 - [Anchor, Skew and Auto-Orient](https://img.ly/docs/cesdk/dev/node/animation/anchor-skew-auto-orient-ede5e9/)
 
