@@ -1193,6 +1193,12 @@ case blockBufferNotFound
 case blockBufferOffsetOutOfRange
 ```
 
+### EngineErrorCode.blockBufferStagingFailed
+
+```swift
+case blockBufferStagingFailed
+```
+
 ### EngineErrorCode.blockBufferUriInvalid
 
 ```swift
@@ -3185,6 +3191,12 @@ case computeColorSpaceUnsupportedByEngine
 case computeContextCreateFnNotFound
 ```
 
+### EngineErrorCode.computeD3D12ContextCreateFailed
+
+```swift
+case computeD3D12ContextCreateFailed
+```
+
 ### EngineErrorCode.computeDataProviderEmpty
 
 ```swift
@@ -4071,6 +4083,12 @@ case encodeAudioServiceUnavailable
 
 ```swift
 case encodeAudioSingleTrackIndexNonzero
+```
+
+### EngineErrorCode.encodeAudioStagingWriteFailed
+
+```swift
+case encodeAudioStagingWriteFailed
 ```
 
 ### EngineErrorCode.encodeAudioStartTimeOutOfBounds
@@ -4995,6 +5013,12 @@ case sceneArchiveDataProviderRangeUnavailable
 
 ```swift
 case sceneArchiveDataUnavailableForUrl
+```
+
+### EngineErrorCode.sceneArchiveEntryStagingFailed
+
+```swift
+case sceneArchiveEntryStagingFailed
 ```
 
 ### EngineErrorCode.sceneArchiveFetchFailed
