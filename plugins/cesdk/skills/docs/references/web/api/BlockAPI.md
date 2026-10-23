@@ -5292,6 +5292,8 @@ getStrokeColor(id: DesignBlockId): Color
 ### setStrokeWidth()
 
 Sets the stroke width of a block.
+When the dash pattern is a preset's pattern at the old width, it is scaled to the new width. Any other
+dash pattern keeps its lengths.
 
 ```typescript
 setStrokeWidth(id: DesignBlockId, width: number): void

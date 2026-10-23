@@ -5783,6 +5783,12 @@ case utilsPixelBufferNotStreamFill
 case utilsPixelBufferUnsupportedFormat
 ```
 
+### EngineErrorCode.utilsPixelBufferUnsupportedPlatform
+
+```swift
+case utilsPixelBufferUnsupportedPlatform
+```
+
 ### EngineErrorCode.utilsReflectionBlockNotValid
 
 ```swift

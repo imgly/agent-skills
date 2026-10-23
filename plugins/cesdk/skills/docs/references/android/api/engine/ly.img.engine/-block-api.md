@@ -3216,7 +3216,7 @@ Set the stroke style of the given design block. Required scope: "stroke/change"
 abstract fun setStrokeWidth(block: DesignBlock, width: Float)
 ```
 
-Set the stroke width of the given design block. Required scope: "stroke/change"
+Set the stroke width of the given design block. When the dash pattern is a preset's pattern at the old width, it is scaled to the new width. Any other dash pattern keeps its lengths. Required scope: "stroke/change"
 
 ### setTextBackgroundColor
 
