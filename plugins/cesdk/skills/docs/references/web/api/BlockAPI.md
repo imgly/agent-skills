@@ -257,9 +257,10 @@ forceLoadResources(ids: DesignBlockId[]): Promise<void>
 - `ids` - The blocks whose resources should be loaded. Pass an empty array to load resources for every
   block currently known to the engine.
 
-**Returns:** A Promise that resolves once every resource has finished loading. The state of a block
-then reports the result of its fetch. A file that arrives but that the engine cannot decode
-keeps it pending.
+**Returns:** A Promise that resolves once every resource has finished loading. It rejects when a
+resource fails to load, or when the file of an image fill cannot be decoded. Of a source set, the
+load checks the smallest raster entry or the largest SVG entry. It does not check a CMYK JPEG that
+has no color profile of its own. The state of each block then reports the result.
 
 ## Block Fills
 

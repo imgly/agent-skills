@@ -120,7 +120,7 @@ Stroke width of any printer's mark, in points. Every mark type shares it, and a 
 val targetHeight: Float? = null
 ```
 
-An optional target height used in conjunction with target width. If used, the block will be rendered large enough, that it fills the target size entirely while maintaining its aspect ratio.
+An optional target height. If used, the block will be rendered large enough that it fills the target size entirely while maintaining its aspect ratio. Without a target width, the width follows from that aspect ratio.
 
 ### targetWidth
 
@@ -128,7 +128,7 @@ An optional target height used in conjunction with target width. If used, the bl
 val targetWidth: Float? = null
 ```
 
-An optional target width used in conjunction with target height. If used, the block will be rendered large enough, that it fills the target size entirely while maintaining its aspect ratio.
+An optional target width. If used, the block will be rendered large enough that it fills the target size entirely while maintaining its aspect ratio. Without a target height, the height follows from that aspect ratio.
 
 ### underlayerMaxError
 

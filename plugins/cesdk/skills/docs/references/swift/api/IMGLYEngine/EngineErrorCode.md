@@ -179,6 +179,12 @@ case assetFontMissingName
 case assetFontMissingUrl
 ```
 
+### EngineErrorCode.assetFontWeightUnknown
+
+```swift
+case assetFontWeightUnknown
+```
+
 ### EngineErrorCode.assetIdAlreadyExists
 
 ```swift
@@ -3959,6 +3965,12 @@ case encodeAudioChannelCountInvalid
 case encodeAudioChunkReadFailed
 ```
 
+### EngineErrorCode.encodeAudioCodecContainerMismatch
+
+```swift
+case encodeAudioCodecContainerMismatch
+```
+
 ### EngineErrorCode.encodeAudioCodecInvalid
 
 ```swift
@@ -4511,10 +4523,28 @@ case encodeTrackNotInPageHierarchy
 case encodeTrackNotPartOfPage
 ```
 
+### EngineErrorCode.encodeVideoAlphaUnsupported
+
+```swift
+case encodeVideoAlphaUnsupported
+```
+
 ### EngineErrorCode.encodeVideoBlockHasError
 
 ```swift
 case encodeVideoBlockHasError
+```
+
+### EngineErrorCode.encodeVideoCodecContainerMismatch
+
+```swift
+case encodeVideoCodecContainerMismatch
+```
+
+### EngineErrorCode.encodeVideoCodecInvalid
+
+```swift
+case encodeVideoCodecInvalid
 ```
 
 ### EngineErrorCode.encodeVideoConcurrentEncoding
@@ -6021,6 +6051,12 @@ case utilsWavZeroSampleRate
 
 ```swift
 case utilsWavZeroSizeChunk
+```
+
+### EngineErrorCode.utilsWebmMuxFailed
+
+```swift
+case utilsWebmMuxFailed
 ```
 
 ### EngineErrorCode.utilsZstdCompressFailed

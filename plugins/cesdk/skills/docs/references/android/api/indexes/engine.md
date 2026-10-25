@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 321 generated API digests.
+Complete catalog of 323 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -67,6 +67,7 @@ Complete catalog of 321 generated API digests.
 - [AssetTransformPreset.FreeAspectRatio](<../engine/ly.img.engine/-asset-transform-preset/-free-aspect-ratio.md>) — `ly.img.engine`
 - [AssetTransformPreset.Representation](<../engine/ly.img.engine/-asset-transform-preset/-representation.md>) — `ly.img.engine`
 - [AssetUTM](<../engine/ly.img.engine/-asset-u-t-m.md>) — `ly.img.engine`
+- [AudioCodec](<../engine/ly.img.engine/-audio-codec.md>) — `ly.img.engine`
 - [AudioContext](<../engine/ly.img.engine/-audio-context.md>) — `ly.img.engine`
 - [AudioFromVideoOptions](<../engine/ly.img.engine/-audio-from-video-options.md>) — `ly.img.engine`
 - [AudioThumbnailResult](<../engine/ly.img.engine/-audio-thumbnail-result.md>) — `ly.img.engine`
@@ -320,6 +321,7 @@ Complete catalog of 321 generated API digests.
 - [VideoBitrate.Auto](<../engine/ly.img.engine/-video-bitrate/-auto.md>) — `ly.img.engine`
 - [VideoBitrate.Custom](<../engine/ly.img.engine/-video-bitrate/-custom.md>) — `ly.img.engine`
 - [VideoBitrate.System](<../engine/ly.img.engine/-video-bitrate/-system.md>) — `ly.img.engine`
+- [VideoCodec](<../engine/ly.img.engine/-video-codec.md>) — `ly.img.engine`
 - [VideoThumbnailResult](<../engine/ly.img.engine/-video-thumbnail-result.md>) — `ly.img.engine`
 - [ZoomAutoFitAxis](<../engine/ly.img.engine/-zoom-auto-fit-axis.md>) — `ly.img.engine`
 - [ly.img.engine.*](<../engine/ly.img.engine/index.md>) — `ly.img.engine`

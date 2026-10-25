@@ -157,16 +157,16 @@ All kits share this structure — only the config and entry point differ:
 Clone the kit into the user's project folder, then remove the copied `.git` folder:
 
 ```bash
-git clone --depth 1 --branch v1.86.0-nightly.20261023 https://github.com/imgly/starterkit-design-editor-ts-web.git <target>
+git clone --depth 1 --branch v1.86.0-nightly.20261025 https://github.com/imgly/starterkit-design-editor-ts-web.git <target>
 rm -rf <target>/.git
 ```
 
-The `v1.86.0-nightly.20261023` branch of each repository matches this bundle. If the branch
+The `v1.86.0-nightly.20261025` branch of each repository matches this bundle. If the branch
 does not exist (a nightly build, or a kit added after this release), clone the
 default branch without `--branch` and pin the CE.SDK version as described below.
 
 1. **Clone** the matching kit into the user's project directory as shown above
-   **Prerelease v1.86.0-nightly.20261023:** before any `npm install`, add these lines to the project's `.npmrc` (create the file if it is missing, keep its other lines):
+   **Prerelease v1.86.0-nightly.20261025:** before any `npm install`, add these lines to the project's `.npmrc` (create the file if it is missing, keep its other lines):
    ```ini
    # CE.SDK prerelease: remove once the project uses a stable CE.SDK version.
    legacy-peer-deps=true
@@ -174,9 +174,9 @@ default branch without `--branch` and pin the CE.SDK version as described below.
    Kits with an importer or exporter such as `@imgly/pptx-importer` declare peer ranges like `@cesdk/engine >=1.72.0`, which npm never matches with a prerelease version, so `npm install` fails with ERESOLVE without it.
 2. If the user wants **JavaScript** (not TypeScript), run the transpile script on the **cloned kit** (see below)
 3. Update `package.json` name and adjust dependencies as needed
-4. **Pin CE.SDK packages to v1.86.0-nightly.20261023** (required — ensures runtime matches this skill's docs and API digests). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.86.0-nightly.20261023`. Remove the `^` so npm installs exactly that version, for example:
+4. **Pin CE.SDK packages to v1.86.0-nightly.20261025** (required — ensures runtime matches this skill's docs and API digests). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.86.0-nightly.20261025`. Remove the `^` so npm installs exactly that version, for example:
    ```bash
-   npm install @cesdk/cesdk-js@1.86.0-nightly.20261023 --save-exact
+   npm install @cesdk/cesdk-js@1.86.0-nightly.20261025 --save-exact
    ```
    Leave other dependencies untouched. Importers and exporters such as `@imgly/pptx-importer` have their own versions.
 5. Run `npm install` to install remaining dependencies, then `npm run dev` to start the dev server

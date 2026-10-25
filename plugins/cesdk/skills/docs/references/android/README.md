@@ -42,7 +42,7 @@ this folder list them:
 
 - `android.md` lists every page of https://img.ly/docs/cesdk/dev/android/ with its title and link.
 
-The links point to the docs of CE.SDK `1.86.0-nightly.20261023`, the version of this bundle,
+The links point to the docs of CE.SDK `1.86.0-nightly.20261025`, the version of this bundle,
 under `https://img.ly/docs/cesdk/dev/`. The docs site keeps one copy per version, with the same
 page paths:
 
@@ -54,7 +54,7 @@ page paths:
 | Latest nightly | `https://img.ly/docs/cesdk/dev/` |
 
 1. **Check the version.** Read the CE.SDK version the project uses. If it is not
-   `1.86.0-nightly.20261023`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
+   `1.86.0-nightly.20261025`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
    version.
 2. **Read the index** in this folder and pick the pages that match the query.
 3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
@@ -79,7 +79,7 @@ ly.img:camera:[catalog](api/indexes/camera.md)|digests:2|platforms:{android}
 ly.img:camera-core:[catalog](api/indexes/camera-core.md)|digests:33|platforms:{android}
 ly.img:editor:[catalog](api/indexes/editor.md)|digests:7|platforms:{android}
 ly.img:editor-core:[catalog](api/indexes/editor-core.md)|digests:274|platforms:{android}
-ly.img:engine:[catalog](api/indexes/engine.md)|digests:321|platforms:{android}
+ly.img:engine:[catalog](api/indexes/engine.md)|digests:323|platforms:{android}
 ly.img:engine-camera:[catalog](api/indexes/engine-camera.md)|digests:1|platforms:{android}
 ly.img:plugin-ai-core:[catalog](api/indexes/plugin-ai-core.md)|digests:10|platforms:{android}
 ly.img:plugin-ai-image-generation:[catalog](api/indexes/plugin-ai-image-generation.md)|digests:4|platforms:{android}

@@ -21,6 +21,12 @@ let allowTextOverhang: Bool
 let audioBitrate: Int32
 ```
 
+### audioCodec
+
+```swift
+let audioCodec: AudioCodec
+```
+
 ### coverTimeOffset
 
 ```swift
@@ -41,6 +47,12 @@ Engine bridge form of [`coverTimeOffset`](covertimeoffset.md).
 
 ```swift
 let duration: Double
+```
+
+### exportAlpha
+
+```swift
+let exportAlpha: Bool
 ```
 
 ### framerate
@@ -69,18 +81,18 @@ convenience init(h264Profile: H264Profile, h264Level: Int32, videoBitrate: Int32
 
 Objective-C-compatible initializer retaining the existing construction selector.
 
-### init(h264Profile:h264Level:videoBitrate:audioBitrate:timeOffset:duration:framerate:targetWidth:targetHeight:allowTextOverhang:coverTimeOffset:)-2ulbp
+### init(h264Profile:h264Level:videoBitrate:audioBitrate:timeOffset:duration:framerate:targetWidth:targetHeight:allowTextOverhang:videoCodec:audioCodec:exportAlpha:coverTimeOffset:)-6gz76
 
 ```swift
-@nonobjc init(h264Profile: H264Profile = .main, h264Level: Int32 = 52, videoBitrate: Int32 = 0, audioBitrate: Int32 = 0, timeOffset: Double = 0, duration: Double = 0, framerate: Float? = nil, targetWidth: Float = 0, targetHeight: Float = 0, allowTextOverhang: Bool = false, coverTimeOffset: Double? = nil)
+@nonobjc init(h264Profile: H264Profile = .main, h264Level: Int32 = 52, videoBitrate: Int32 = 0, audioBitrate: Int32 = 0, timeOffset: Double = 0, duration: Double = 0, framerate: Float? = nil, targetWidth: Float = 0, targetHeight: Float = 0, allowTextOverhang: Bool = false, videoCodec: VideoCodec = .auto, audioCodec: AudioCodec = .auto, exportAlpha: Bool = false, coverTimeOffset: Double? = nil)
 ```
 
 The video export options. `h264Profile`
 
-### init(h264Profile:h264Level:videoBitrate:audioBitrate:timeOffset:duration:framerate:targetWidth:targetHeight:allowTextOverhang:coverTimeOffset:)-7blhx
+### init(h264Profile:h264Level:videoBitrate:audioBitrate:timeOffset:duration:framerate:targetWidth:targetHeight:allowTextOverhang:videoCodec:audioCodec:exportAlpha:coverTimeOffset:)-fafn
 
 ```swift
-@nonobjc convenience init(h264Profile: H264Profile = .main, h264Level: Int32 = 52, videoBitrate: VideoBitrate, audioBitrate: Int32 = 0, timeOffset: Double = 0, duration: Double = 0, framerate: Float? = nil, targetWidth: Float = 0, targetHeight: Float = 0, allowTextOverhang: Bool = false, coverTimeOffset: Double? = nil)
+@nonobjc convenience init(h264Profile: H264Profile = .main, h264Level: Int32 = 52, videoBitrate: VideoBitrate, audioBitrate: Int32 = 0, timeOffset: Double = 0, duration: Double = 0, framerate: Float? = nil, targetWidth: Float = 0, targetHeight: Float = 0, allowTextOverhang: Bool = false, videoCodec: VideoCodec = .auto, audioCodec: AudioCodec = .auto, exportAlpha: Bool = false, coverTimeOffset: Double? = nil)
 ```
 
 The video export options. `h264Profile`
@@ -107,4 +119,10 @@ let timeOffset: Double
 
 ```swift
 let videoBitrate: Int32
+```
+
+### videoCodec
+
+```swift
+let videoCodec: VideoCodec
 ```
