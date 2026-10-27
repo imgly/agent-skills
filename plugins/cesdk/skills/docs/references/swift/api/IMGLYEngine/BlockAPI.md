@@ -765,6 +765,8 @@ Get the duration in seconds of the video or audio resource that is attached to t
 
 ### getBackgroundColor(_:)
 
+> **Deprecated:** Use 'getColor(_:property:) -> Color' with the property 'backgroundColor/color' instead.
+
 ```swift
 @MainActor func getBackgroundColor(_ id: DesignBlockID) throws -> RGBA
 ```
@@ -813,9 +815,7 @@ Get the value of a color property of the given design block. `id`
 
 ### getColor(_:property:)-98eai
 
-> **Deprecated:** 
-    Use 'getColor(id: DesignBlockID, property: String) -> Color' instead.
-    
+> **Deprecated:** Use 'getColor(_:property:) -> Color' instead.
 
 ```swift
 @MainActor func getColor(_ id: DesignBlockID, property: String) throws -> RGBA
@@ -825,9 +825,7 @@ Get the value of a string property of the given design block. `id`
 
 ### getColorSpotName(_:property:)
 
-> **Deprecated:** 
-    Use 'getColor(id: DesignBlockID, property: String) -> Color' instead.
-    
+> **Deprecated:** Use 'getColor(_:property:) -> Color' and read its '.spot' case instead.
 
 ```swift
 @MainActor func getColorSpotName(_ id: DesignBlockID, property: String) throws -> String
@@ -837,9 +835,7 @@ Get the spot color name of a color property of the given design block. `id`
 
 ### getColorSpotTint(_:property:)
 
-> **Deprecated:** 
-    Use 'getColor(id: DesignBlockID, property: String) -> Color' instead.
-    
+> **Deprecated:** Use 'getColor(_:property:) -> Color' and read its '.spot' case instead.
 
 ```swift
 @MainActor func getColorSpotTint(_ id: DesignBlockID, property: String) throws -> Float
@@ -961,9 +957,7 @@ Get the drop shadow’s clipping of the given design block. `id`
 
 ### getDropShadowColor(_:)-73z92
 
-> **Deprecated:** 
-    Use 'getDropShadowColor(id: DesignBlockID) -> Color' instead.
-    
+> **Deprecated:** Use 'getDropShadowColor(_:) -> Color' instead.
 
 ```swift
 @MainActor func getDropShadowColor(_ id: DesignBlockID) throws -> RGBA
@@ -1399,9 +1393,7 @@ Get the stroke color of the given design block. `id`
 
 ### getStrokeColor(_:)-8rv52
 
-> **Deprecated:** 
-    Use 'getStrokeColor(id: DesignBlockID) -> Color' instead.
-    
+> **Deprecated:** Use 'getStrokeColor(_:) -> Color' instead.
 
 ```swift
 @MainActor func getStrokeColor(_ id: DesignBlockID) throws -> RGBA
@@ -2703,6 +2695,8 @@ Set an audio fade-out for the given block. The audio ramps down from the block�
 
 ### setBackgroundColor(_:r:g:b:a:)
 
+> **Deprecated:** Use 'setColor(_:property:color:)' with the property 'backgroundColor/color' instead.
+
 ```swift
 @MainActor func setBackgroundColor(_ id: DesignBlockID, r: Float, g: Float, b: Float, a: Float = 1) throws
 ```
@@ -2767,9 +2761,7 @@ Set a color property of the given design block to the given value. `id`
 
 ### setColor(_:property:r:g:b:a:)
 
-> **Deprecated:** 
-    Use 'setColor(id: DesignBlockID, property: String, color: Color)' instead.
-    
+> **Deprecated:** Use 'setColor(_:property:color:)' instead.
 
 ```swift
 @MainActor func setColor(_ id: DesignBlockID, property: String, r: Float, g: Float, b: Float, a: Float = 1) throws
@@ -2779,9 +2771,7 @@ Set a color property of the given design block to the given value. `id`
 
 ### setColorSpot(_:property:name:tint:)
 
-> **Deprecated:** 
-    Use 'setColor(id: DesignBlockID, property: String, color: Color)' instead.
-    
+> **Deprecated:** Use 'setColor(_:property:color:)' with a '.spot' color instead.
 
 ```swift
 @MainActor func setColorSpot(_ id: DesignBlockID, property: String, name: String, tint: Float = 1) throws
@@ -2911,9 +2901,7 @@ Set the drop shadow color of the given design block. Required scope: “appearan
 
 ### setDropShadowColor(_:r:g:b:a:)
 
-> **Deprecated:** 
-    Use 'setDropShadowColor(id: DesignBlockID, color: Color)' instead.
-    
+> **Deprecated:** Use 'setDropShadowColor(_:color:)' instead.
 
 ```swift
 @MainActor func setDropShadowColor(_ id: DesignBlockID, r: Float, g: Float, b: Float, a: Float = 1) throws
@@ -3357,9 +3345,7 @@ Set the stroke color of the given design block. Required scope: “stroke/change
 
 ### setStrokeColor(_:r:g:b:a:)
 
-> **Deprecated:** 
-    Use 'setStrokeColor(id: DesignBlockID, color: Color)' instead.
-    
+> **Deprecated:** Use 'setStrokeColor(_:color:)' instead.
 
 ```swift
 @MainActor func setStrokeColor(_ id: DesignBlockID, r: Float, g: Float, b: Float, a: Float = 1) throws

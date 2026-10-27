@@ -401,6 +401,12 @@ case assetUriInvalidBare
 case assetUriMetaMissing
 ```
 
+### EngineErrorCode.asyncOperationCancelled
+
+```swift
+case asyncOperationCancelled
+```
+
 ### EngineErrorCode.audioDataSourceInitFailed
 
 ```swift
@@ -3329,6 +3335,12 @@ case computeSkiaGlInterfaceInvalid
 case computeVideoUnsupportedAudioTracks
 ```
 
+### EngineErrorCode.editorAssetDropFailed
+
+```swift
+case editorAssetDropFailed
+```
+
 ### EngineErrorCode.editorAudioBufferInvalidSize
 
 ```swift
@@ -3981,6 +3993,12 @@ case encodeAudioCodecInvalid
 
 ```swift
 case encodeAudioCodecUnsupported
+```
+
+### EngineErrorCode.encodeAudioConcurrentEncoding
+
+```swift
+case encodeAudioConcurrentEncoding
 ```
 
 ### EngineErrorCode.encodeAudioContextNotAvailableDuringExport

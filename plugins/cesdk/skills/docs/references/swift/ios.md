@@ -79,6 +79,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [Resources](https://img.ly/docs/cesdk/dev/ios/concepts/resources-a58d71/)
 
+#### [Cancel Operations](https://img.ly/docs/cesdk/dev/ios/concepts/cancel-operations-70cf0e/)
+
 #### [Undo and History](https://img.ly/docs/cesdk/dev/ios/concepts/undo-and-history-99479d/)
 
 #### [Design Units](https://img.ly/docs/cesdk/dev/ios/concepts/design-units-cc6597/)

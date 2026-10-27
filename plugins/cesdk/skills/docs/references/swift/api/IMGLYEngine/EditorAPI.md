@@ -349,9 +349,7 @@ Get a color setting. `keypath`
 
 ### getSettingColor(_:)-9yw92
 
-> **Deprecated:** 
-    Use 'getSettingColor(id: DesignBlockID, property: String) -> Color' instead.
-    
+> **Deprecated:** Use 'getSettingColor(_:) -> Color' instead.
 
 ```swift
 @MainActor func getSettingColor(_ keypath: String) throws -> RGBA
@@ -805,9 +803,7 @@ Set a color setting. `keypath`
 
 ### setSettingColor(_:r:g:b:a:)
 
-> **Deprecated:** 
-    Use 'setSettingColor(id: DesignBlockID, property: String, color: Color)' instead.
-    
+> **Deprecated:** Use 'setSettingColor(_:color:)' instead.
 
 ```swift
 @MainActor func setSettingColor(_ keypath: String, r: Float, g: Float, b: Float, a: Float = 1) throws

@@ -60,7 +60,7 @@ abstract suspend fun applyAssetSourceAsset(sourceId: String, asset: Asset, place
 abstract suspend fun applyAssetSourceAsset(sourceId: String, asset: Asset, block: DesignBlock)
 ```
 
-Applies an asset to the active scene using custom AssetSource.applyAsset function.
+Applies an asset to the active scene using custom AssetSource.applyAsset function. Cancelling the coroutine stops the download that the engine's default apply waits for, and no block is created. An asset source with a custom AssetSource.applyAsset function keeps running: a block that it creates stays, and the call does not return it.
 
 ### applyAssetSourceProperty
 
@@ -92,7 +92,7 @@ abstract suspend fun defaultApplyAsset(asset: Asset, placement: AssetPlacement):
 abstract suspend fun defaultApplyAsset(asset: Asset, block: DesignBlock)
 ```
 
-This is the default implementation of applying asset to the active scene. This means a design block is instantiated and configured according to the Asset.meta properties.
+This is the default implementation of applying asset to the active scene. This means a design block is instantiated and configured according to the Asset.meta properties. Cancelling the coroutine stops the download that the call waits for, and no block is created.
 
 ### fetchAsset
 
