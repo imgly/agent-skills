@@ -75,8 +75,8 @@ The id of the [`animation(action:title:icon:isEnabled:isVisible:)`](../animation
     }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.animation }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = { context in
       try context.selection.type != .page &&
         context.selection.type != .audio &&
-        context.selection.type != .caption &&
-        context.engine.block.supportsAnimation(context.selection.block)
+        context.engine.block.supportsAnimation(context.selection.block) &&
+        context.engine.block.isAllowedByScope(context.selection.block, key: "appearance/animation")
     }) -> some InspectorBar.Item
 ```
 
@@ -842,6 +842,35 @@ let selection: InspectorBar.Context.Selection
 ```
 
 The current selection.
+
+### Buttons.ID.separateAudio
+
+```swift
+static var separateAudio: EditorComponentID { get }
+```
+
+The id of the [`separateAudio(action:title:icon:isEnabled:isVisible:)`](../separateaudio(action:title:icon:isenabled:isvisible:).md) button.
+
+### Buttons.separateAudio(action:title:icon:isEnabled:isVisible:)
+
+```swift
+@MainActor static func separateAudio(action: @escaping InspectorBar.Context.To<Void> = { $0.eventHandler.send(.separateAudioForSelection) }, @ViewBuilder title: @escaping InspectorBar.Context.To<some View> = { _ in
+      Text(.imgly.localized("ly_img_editor_inspector_bar_button_separate_audio"))
+    }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.separateAudio }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = { context in
+      guard context.selection.type == .graphic, context.selection.fillType == .video,
+            context.selection.kind != "animatedSticker",
+            try context.engine.block.isAllowedByScope(context.selection.block, key: "fill/change") else {
+        return false
+      }
+      let fill = try context.engine.block.getFill(context.selection.block)
+       
+      guard try !context.engine.block.isForceMuted(fill) else { return false }
+      guard try context.engine.block.unstable_isAVResourceLoaded(fill) else { return true }
+      return try context.engine.block.getAudioTrackCountFromVideo(fill) > 0
+    }) -> some InspectorBar.Item
+```
+
+Creates a [`InspectorBar.Button`](../button.md) that moves the audio of the selected video clip into new audio clips, one per audio track, and mutes the video clip. `action`
 
 ### Buttons.ID.shape
 

@@ -20,7 +20,7 @@ Convenience function that registers a set of asset sources containing our exampl
 ```kotlin
 suspend fun Engine.addDemoAssetSources(exclude: Set<DemoAssetSource> = emptySet(), withUploadAssetSources: Boolean = false, baseUri: Uri = Engine.assetBaseUri)
 ```
-> **Deprecated:** Uses legacy v3-era demo asset source IDs and will be removed in a future version. Register each source via Engine.asset.addLocalSourceFromJSON(contentUri) instead. Migration guide: https://img.ly/docs/cesdk/archive/v1.84/android/to-v1-77-ac6ca9/
+> **Deprecated:** Uses legacy v3-era demo asset source IDs and will be removed in a future version. Register each source via Engine.asset.addLocalSourceFromJSON(contentUri) instead. Migration guide: https://img.ly/docs/cesdk/archive/v1.85/android/to-v1-77-ac6ca9/
 
 Convenience function that registers a set of demo asset sources containing our example assets. Note: See DemoAssetSource enum for available values. Note: By default, these assets are parsed from the IMG.LY CDN at https://cdn.img.ly/packages/imgly/cesdk-android/<version>/assets/<id>/content.json. Important: For production use, you should self-host the assets or include them in your application bundle and provide your own base URI instead of loading them from the IMG.LY CDN. The assets can be downloaded from https://cdn.img.ly/packages/imgly/cesdk-android/<version>/imgly-assets.zip.
 
@@ -97,7 +97,7 @@ suspend fun Engine.populateAssetSource(id: String, jsonUri: Uri, replaceBaseUri:
 ```
 > **Deprecated:** Will be removed in a future version. Use Engine.asset.addLocalSourceFromJSON(contentUri) instead. Replace with `asset.addLocalSourceFromJSON(jsonUri)`.
 
-Creates and adds a new local asset source with id. A describing content json file is fetched from jsonUri and containing assets are added to the local asset source. Note: Check "https://cdn.img.ly/packages/imgly/cesdk-android/1.84.0/assets/ly.img.sticker/content.json" for the structure of the json file.
+Creates and adds a new local asset source with id. A describing content json file is fetched from jsonUri and containing assets are added to the local asset source. Note: Check "https://cdn.img.ly/packages/imgly/cesdk-android/1.85.0/assets/ly.img.sticker/content.json" for the structure of the json file.
 
 ### setMoveHandleVisibility
 

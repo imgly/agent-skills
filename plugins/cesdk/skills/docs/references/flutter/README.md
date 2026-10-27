@@ -52,10 +52,10 @@ two connect.
 The guides are on the CE.SDK docs site, not in this bundle. The index files in
 this folder list them:
 
-- `flutter.md` lists every page of https://img.ly/docs/cesdk/archive/v1.84/flutter/ with its title and link.
+- `flutter.md` lists every page of https://img.ly/docs/cesdk/archive/v1.85/flutter/ with its title and link.
 
-The links point to the docs of CE.SDK `1.84.0`, the version of this bundle,
-under `https://img.ly/docs/cesdk/archive/v1.84/`. The docs site keeps one copy per version, with the same
+The links point to the docs of CE.SDK `1.85.0`, the version of this bundle,
+under `https://img.ly/docs/cesdk/archive/v1.85/`. The docs site keeps one copy per version, with the same
 page paths:
 
 | CE.SDK version | Docs root |
@@ -66,12 +66,12 @@ page paths:
 | Latest nightly | `https://img.ly/docs/cesdk/dev/` |
 
 1. **Check the version.** Read the CE.SDK version the project uses. If it is not
-   `1.84.0`, replace `https://img.ly/docs/cesdk/archive/v1.84/` in each link with the root of that
+   `1.85.0`, replace `https://img.ly/docs/cesdk/archive/v1.85/` in each link with the root of that
    version.
 2. **Read the index** in this folder and pick the pages that match the query.
 3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
-   `.md`. For example, `https://img.ly/docs/cesdk/archive/v1.84/flutter/<path>-<id>/` becomes
-   `https://img.ly/docs/cesdk/archive/v1.84/flutter/<path>-<id>.md`. Use WebFetch. If WebFetch is not
+   `.md`. For example, `https://img.ly/docs/cesdk/archive/v1.85/flutter/<path>-<id>/` becomes
+   `https://img.ly/docs/cesdk/archive/v1.85/flutter/<path>-<id>.md`. Use WebFetch. If WebFetch is not
    available (for example in Codex), use `curl -sL --compressed <url>`. If a
    page returns 404, it does not exist in that version: read that version's
    index, `<root>flutter.md`, instead.

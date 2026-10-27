@@ -245,6 +245,14 @@ struct SendBackward
 
 An event for sending backward the selected design block.
 
+### Selection.EditorEvents.Selection.SeparateAudio
+
+```swift
+struct SeparateAudio
+```
+
+An event for moving the audio of the selected design block into new audio blocks in a video scene.
+
 ### Selection.EditorEvents.Selection.Split
 
 ```swift

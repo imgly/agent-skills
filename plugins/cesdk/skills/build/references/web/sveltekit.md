@@ -8,12 +8,12 @@ SvelteKit). The API digests are in `skills/docs/references/web/api/`.
 Follow the get-started pages first. They carry the exact packages and versions.
 Fetch them as Markdown (WebFetch, or `curl -sL --compressed <url>`):
 
-- `https://img.ly/docs/cesdk/archive/v1.84/sveltekit/get-started/agent-skills-f7g8h9.md`
-- `https://img.ly/docs/cesdk/archive/v1.84/sveltekit/get-started/build-with-ai-k7m9p2.md`
-- `https://img.ly/docs/cesdk/archive/v1.84/sveltekit/get-started/cesdk-plugin-coding-agents-c0d3ag.md`
-- `https://img.ly/docs/cesdk/archive/v1.84/sveltekit/get-started/mcp-server-fde71c.md`
-- `https://img.ly/docs/cesdk/archive/v1.84/sveltekit/get-started/overview-e18f40.md`
-- `https://img.ly/docs/cesdk/archive/v1.84/sveltekit/get-started/sveltekit/quickstart-k4q5w6.md`
+- `https://img.ly/docs/cesdk/archive/v1.85/sveltekit/get-started/agent-skills-f7g8h9.md`
+- `https://img.ly/docs/cesdk/archive/v1.85/sveltekit/get-started/build-with-ai-k7m9p2.md`
+- `https://img.ly/docs/cesdk/archive/v1.85/sveltekit/get-started/cesdk-plugin-coding-agents-c0d3ag.md`
+- `https://img.ly/docs/cesdk/archive/v1.85/sveltekit/get-started/mcp-server-fde71c.md`
+- `https://img.ly/docs/cesdk/archive/v1.85/sveltekit/get-started/overview-e18f40.md`
+- `https://img.ly/docs/cesdk/archive/v1.85/sveltekit/get-started/sveltekit/quickstart-k4q5w6.md`
 
 ## Rules for SvelteKit
 

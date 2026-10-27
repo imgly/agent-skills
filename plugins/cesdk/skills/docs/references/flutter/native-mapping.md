@@ -182,7 +182,7 @@ the configuration itself native.
 The Flutter guides on the docs site that show the native customization
 end to end (fetch them with WebFetch, or `curl -sL --compressed <url>`):
 
-- `https://img.ly/docs/cesdk/archive/v1.84/flutter/user-interface/customization-72b2f8.md`
-- `https://img.ly/docs/cesdk/archive/v1.84/flutter/import-media/capture-from-camera/camera-configuration-46afd0.md`
+- `https://img.ly/docs/cesdk/archive/v1.85/flutter/user-interface/customization-72b2f8.md`
+- `https://img.ly/docs/cesdk/archive/v1.85/flutter/import-media/capture-from-camera/camera-configuration-46afd0.md`
 
 Reference folder: `skills/docs/references/flutter/`.

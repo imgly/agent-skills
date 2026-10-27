@@ -1,6 +1,6 @@
 # ly.img:editor-core Android API Catalog
 
-Complete catalog of 273 generated API digests.
+Complete catalog of 274 generated API digests.
 
 - [AbstractButtonBuilder](<../editor-core/ly.img.editor.core.component/-abstract-button-builder.md>) — `ly.img.editor.core.component`
 - [AbstractCanvasMenuBuilder](<../editor-core/ly.img.editor.core.component/-abstract-canvas-menu-builder.md>) — `ly.img.editor.core.component`
@@ -90,6 +90,7 @@ Complete catalog of 273 generated API digests.
 - [EditorEvent.Selection.MoveAsOverlay](<../editor-core/ly.img.editor.core.event/-editor-event/-selection/-move-as-overlay.md>) — `ly.img.editor.core.event`
 - [EditorEvent.Selection.SelectGroup](<../editor-core/ly.img.editor.core.event/-editor-event/-selection/-select-group.md>) — `ly.img.editor.core.event`
 - [EditorEvent.Selection.SendBackward](<../editor-core/ly.img.editor.core.event/-editor-event/-selection/-send-backward.md>) — `ly.img.editor.core.event`
+- [EditorEvent.Selection.SeparateAudio](<../editor-core/ly.img.editor.core.event/-editor-event/-selection/-separate-audio.md>) — `ly.img.editor.core.event`
 - [EditorEvent.Selection.Split](<../editor-core/ly.img.editor.core.event/-editor-event/-selection/-split.md>) — `ly.img.editor.core.event`
 - [EditorEvent.SetViewMode](<../editor-core/ly.img.editor.core.event/-editor-event/-set-view-mode.md>) — `ly.img.editor.core.event`
 - [EditorEvent.Sheet](<../editor-core/ly.img.editor.core.event/-editor-event/-sheet.md>) — `ly.img.editor.core.event`

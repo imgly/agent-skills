@@ -40,10 +40,10 @@ dependency and call out the version difference.
 The guides are on the CE.SDK docs site, not in this bundle. The index files in
 this folder list them:
 
-- `android.md` lists every page of https://img.ly/docs/cesdk/archive/v1.84/android/ with its title and link.
+- `android.md` lists every page of https://img.ly/docs/cesdk/archive/v1.85/android/ with its title and link.
 
-The links point to the docs of CE.SDK `1.84.0`, the version of this bundle,
-under `https://img.ly/docs/cesdk/archive/v1.84/`. The docs site keeps one copy per version, with the same
+The links point to the docs of CE.SDK `1.85.0`, the version of this bundle,
+under `https://img.ly/docs/cesdk/archive/v1.85/`. The docs site keeps one copy per version, with the same
 page paths:
 
 | CE.SDK version | Docs root |
@@ -54,12 +54,12 @@ page paths:
 | Latest nightly | `https://img.ly/docs/cesdk/dev/` |
 
 1. **Check the version.** Read the CE.SDK version the project uses. If it is not
-   `1.84.0`, replace `https://img.ly/docs/cesdk/archive/v1.84/` in each link with the root of that
+   `1.85.0`, replace `https://img.ly/docs/cesdk/archive/v1.85/` in each link with the root of that
    version.
 2. **Read the index** in this folder and pick the pages that match the query.
 3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
-   `.md`. For example, `https://img.ly/docs/cesdk/archive/v1.84/android/<path>-<id>/` becomes
-   `https://img.ly/docs/cesdk/archive/v1.84/android/<path>-<id>.md`. Use WebFetch. If WebFetch is not
+   `.md`. For example, `https://img.ly/docs/cesdk/archive/v1.85/android/<path>-<id>/` becomes
+   `https://img.ly/docs/cesdk/archive/v1.85/android/<path>-<id>.md`. Use WebFetch. If WebFetch is not
    available (for example in Codex), use `curl -sL --compressed <url>`. If a
    page returns 404, it does not exist in that version: read that version's
    index, `<root>android.md`, instead.
@@ -78,8 +78,8 @@ page paths:
 ly.img:camera:[catalog](api/indexes/camera.md)|digests:2|platforms:{android}
 ly.img:camera-core:[catalog](api/indexes/camera-core.md)|digests:33|platforms:{android}
 ly.img:editor:[catalog](api/indexes/editor.md)|digests:7|platforms:{android}
-ly.img:editor-core:[catalog](api/indexes/editor-core.md)|digests:273|platforms:{android}
-ly.img:engine:[catalog](api/indexes/engine.md)|digests:267|platforms:{android}
+ly.img:editor-core:[catalog](api/indexes/editor-core.md)|digests:274|platforms:{android}
+ly.img:engine:[catalog](api/indexes/engine.md)|digests:321|platforms:{android}
 ly.img:engine-camera:[catalog](api/indexes/engine-camera.md)|digests:1|platforms:{android}
 ly.img:plugin-ai-core:[catalog](api/indexes/plugin-ai-core.md)|digests:10|platforms:{android}
 ly.img:plugin-ai-image-generation:[catalog](api/indexes/plugin-ai-image-generation.md)|digests:4|platforms:{android}

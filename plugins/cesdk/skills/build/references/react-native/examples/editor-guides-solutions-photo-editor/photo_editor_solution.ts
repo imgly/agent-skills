@@ -1,6 +1,6 @@
 import IMGLYEditor, {
-    EditorPreset,
-    EditorSettingsModel
+  EditorPreset,
+  EditorSettingsModel
 } from '@imgly/editor-react-native';
 
 export const photo_editor_solution = async (): Promise<void> => {

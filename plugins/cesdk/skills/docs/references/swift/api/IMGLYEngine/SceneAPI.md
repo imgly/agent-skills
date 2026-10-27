@@ -9,6 +9,14 @@
 
 ## Members
 
+### addMarker(name:time:duration:)
+
+```swift
+@MainActor func addMarker(name: String, time: Double, duration: Double = 0) throws
+```
+
+Add a marker to the end of the current scene’s marker list. Markers name points or spans on the scene timeline. Several markers may share a name. `name`
+
 ### applyTemplate(from:)-24f7b
 
 ```swift
@@ -193,6 +201,14 @@ Returns the font-size unit of the current scene. The current font-size unit.
 
 Get the current scene layout. The current layout of the scene.
 
+### getMarkers()
+
+```swift
+@MainActor func getMarkers() throws -> [SceneMarker]
+```
+
+Get the markers of the current scene in the order they were added. The markers of the scene.
+
 ### getMode()
 
 ```swift
@@ -241,21 +257,21 @@ Whether conversion maps the black point of the source onto the destination. `tru
 
 Queries whether zoom auto-fit is enabled. `id`
 
-### load(from:overrideEditorConfig:waitForResources:)-51d9s
-
-```swift
-@discardableResult @MainActor func load(from url: URL, overrideEditorConfig: Bool = false, waitForResources: Bool = false) async throws -> DesignBlockID
-```
-
-Load a scene from the URL of a scene or archive file. The file will be fetched asynchronously by the engine and loaded as an archive or as a scene file depending on its content. This loads `.imgly` files as well as the legacy `.scene` and `.zip` formats. `url`
-
-### load(from:overrideEditorConfig:waitForResources:)-8amez
+### load(from:overrideEditorConfig:waitForResources:)
 
 ```swift
 @discardableResult @MainActor func load(from string: String, overrideEditorConfig: Bool = false, waitForResources: Bool = false) async throws -> DesignBlockID
 ```
 
 Load the contents of a scene file. `string`
+
+### load(from:overrideEditorConfig:waitForResources:onProgress:)
+
+```swift
+@discardableResult @MainActor func load(from url: URL, overrideEditorConfig: Bool = false, waitForResources: Bool = false, onProgress: (@MainActor @Sendable (Int) -> Void)? = nil) async throws -> DesignBlockID
+```
+
+Load a scene from the URL of a scene or archive file. The file will be fetched asynchronously by the engine and loaded as an archive or as a scene file depending on its content. This loads `.imgly` files as well as the legacy `.scene` and `.zip` formats. `url`
 
 ### load(fromString:overrideEditorConfig:)
 
@@ -277,10 +293,10 @@ Load the contents of a scene file. `string`
 
 Load a scene from the URL to the scene file. The scene file will be fetched asynchronously by the engine. `url`
 
-### loadArchive(from:overrideEditorConfig:waitForResources:)
+### loadArchive(from:overrideEditorConfig:waitForResources:onProgress:)
 
 ```swift
-@discardableResult @MainActor func loadArchive(from url: URL, overrideEditorConfig: Bool = false, waitForResources: Bool = false) async throws -> DesignBlockID
+@discardableResult @MainActor func loadArchive(from url: URL, overrideEditorConfig: Bool = false, waitForResources: Bool = false, onProgress: (@MainActor @Sendable (Int) -> Void)? = nil) async throws -> DesignBlockID
 ```
 
 Load the contents of a scene previously saved as an archive. The archive file will be fetched asynchronously by the engine. `url`
@@ -340,6 +356,14 @@ Subscribe to changes to the zoom level.
 ```
 
 Removes the CMYK profile from the document. CMYK conversion then uses the `fallbackCMYKProfileUri` setting, or the bundled profile when that setting is unset. Color management stays on. A [`setCMYKProfile(from:)`](./setcmykprofile(from:)-3inol.md) request that is still loading is cancelled.
+
+### removeMarker(at:)
+
+```swift
+@MainActor func removeMarker(at index: Int) throws
+```
+
+Remove a marker from the current scene. `index`
 
 ### saveToArchive(options:)
 

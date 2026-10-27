@@ -157,20 +157,20 @@ All kits share this structure — only the config and entry point differ:
 Clone the kit into the user's project folder, then remove the copied `.git` folder:
 
 ```bash
-git clone --depth 1 --branch v1.84.0 https://github.com/imgly/starterkit-design-editor-ts-web.git <target>
+git clone --depth 1 --branch v1.85.0 https://github.com/imgly/starterkit-design-editor-ts-web.git <target>
 rm -rf <target>/.git
 ```
 
-The `v1.84.0` branch of each repository matches this bundle. If the branch
+The `v1.85.0` branch of each repository matches this bundle. If the branch
 does not exist (a nightly build, or a kit added after this release), clone the
 default branch without `--branch` and pin the CE.SDK version as described below.
 
 1. **Clone** the matching kit into the user's project directory as shown above
 2. If the user wants **JavaScript** (not TypeScript), run the transpile script on the **cloned kit** (see below)
 3. Update `package.json` name and adjust dependencies as needed
-4. **Pin CE.SDK packages to v1.84.0** (required — ensures runtime matches this skill's docs and API digests). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.84.0`. Remove the `^` so npm installs exactly that version, for example:
+4. **Pin CE.SDK packages to v1.85.0** (required — ensures runtime matches this skill's docs and API digests). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.85.0`. Remove the `^` so npm installs exactly that version, for example:
    ```bash
-   npm install @cesdk/cesdk-js@1.84.0 --save-exact
+   npm install @cesdk/cesdk-js@1.85.0 --save-exact
    ```
    Leave other dependencies untouched. Importers and exporters such as `@imgly/pptx-importer` have their own versions.
 5. Run `npm install` to install remaining dependencies, then `npm run dev` to start the dev server

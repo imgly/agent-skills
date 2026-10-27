@@ -229,6 +229,14 @@ static var sendSelectionBackward: EditorEvents.Selection.SendBackward { get }
 
 Creates an [`EditorEvent`](../editorevent.md) to send backward the selected design block.
 
+### separateAudioForSelection
+
+```swift
+static var separateAudioForSelection: EditorEvents.Selection.SeparateAudio { get }
+```
+
+Creates an [`EditorEvent`](../editorevent.md) to move the audio of the selected design block into new audio blocks in a video scene. Each audio track of the video gets its own audio block, and the video is muted.
+
 ### setExtraCanvasInsets(_:)
 
 ```swift

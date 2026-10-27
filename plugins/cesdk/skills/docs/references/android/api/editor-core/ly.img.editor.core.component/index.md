@@ -898,6 +898,15 @@ fun CanvasMenu.Button.rememberSendBackward(builder: CanvasMenu.ButtonBuilder.() 
 
 A composable helper function that creates and remembers an Button that sends backward currently selected design block via EditorEvent.Selection.SendBackward. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions. Check ly.img.editor.core.configuration.EditorConfiguration.Companion.remember for more details on this pattern.
 
+### rememberSeparateAudio
+
+```kotlin
+@Composable
+fun InspectorBar.Button.rememberSeparateAudio(builder: InspectorBar.ButtonBuilder.() -> Unit = {}): Button<InspectorBar.ItemScope>
+```
+
+A composable helper function that creates and remembers an Button that moves the audio of currently selected video clip into new audio clips, one per audio track, and mutes the video clip via EditorEvent.Selection.SeparateAudio. The button is visible when the selected design block is a DesignBlockType.Graphic with a FillType.Video fill that is not an animated sticker, its "fill/change" scope is allowed, and its video has audio, muted or not, and plays at 3x or slower. A video that has not loaded yet counts as a video with audio, because its audio tracks are known only after it loads. Note that builder lambda runs only once, therefore you should not have builder property reassignments based…
+
 ### rememberShape
 
 ```kotlin
@@ -1294,6 +1303,14 @@ val CanvasMenu.Button.Id.sendBackward: EditorComponentId
 ```
 
 The id of the canvas menu button returned by CanvasMenu.Button.rememberSendBackward.
+
+### separateAudio
+
+```kotlin
+val InspectorBar.Button.Id.separateAudio: EditorComponentId
+```
+
+The id of the inspector bar button returned by InspectorBar.Button.rememberSeparateAudio.
 
 ### shape
 

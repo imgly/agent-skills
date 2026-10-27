@@ -138,13 +138,6 @@ setBlackPointCompensationEnabled(enabled: boolean): void
 ### load()
 
 Load a scene from a scene string or from a URL to a scene or archive file.
-The input kind is detected automatically: serialized scene content is loaded directly, while a
-URL is fetched and loaded as an archive or as a scene file depending on its content. This loads
-`.imgly` files as well as the legacy `.scene` and `.zip` formats. Any existing scene is replaced
-by the new one.
-```javascript
-await creativeEngine.scene.load('https://example.com/my-scene.imgly');
-```
 
 ```typescript
 load(source: string | URL, overrideEditorConfig?: boolean, waitForResources?: boolean): Promise<DesignBlockId>
@@ -152,7 +145,6 @@ load(source: string | URL, overrideEditorConfig?: boolean, waitForResources?: bo
 
 **Parameters:**
 - `source` - A scene string previously created by `saveToString`, or the URL of a scene or archive file.
-Pass a `URL` instance to load a URL unambiguously; strings are detected by their content.
 - `overrideEditorConfig` - Whether to override editor configuration with settings and data from the scene file. Defaults to false.
 - `waitForResources` - Whether to wait for all resources to finish loading before resolving. Defaults to false.
 
@@ -183,6 +175,7 @@ loadFromString(sceneContent: string, overrideEditorConfig?: boolean, waitForReso
 
 Load a scene from the URL to the scene file.
 The scene file will be fetched asynchronously by the engine and loaded into the engine once it is available. Any existing scene is replaced by the new one.
+A URL to an archive loads too, but reports no progress. Call `load` with `onProgress` for that.
 This requires continuous `render` calls on this engine instance, as `loadFromArchiveURL` does.
 The engine advances the fetch while it renders, so without a render loop the returned promise
 never settles — it neither resolves nor rejects, even for a URL that cannot be reached.
@@ -205,8 +198,6 @@ loadFromURL(url: string, overrideEditorConfig?: boolean, waitForResources?: bool
 ### loadFromArchiveURL()
 
 Load a previously archived scene from the URL to the scene file.
-The scene file will be fetched asynchronously by the engine. This requires continuous `render`
-calls on this engines instance.
 
 ```typescript
 loadFromArchiveURL(url: string, overrideEditorConfig?: boolean, waitForResources?: boolean): Promise<DesignBlockId>
@@ -225,6 +216,10 @@ loadFromArchiveURL(url: string, overrideEditorConfig?: boolean, waitForResources
 
 Serializes the current scene into a string. Selection is discarded.
 When persisting the result as a file, use the `.imgly` extension.
+While a font loads, its text is laid out with another font. When the text's size follows its
+content, a scene saved before the font arrives can differ from one saved after it. To compare two
+saved scenes, first await `engine.block.forceLoadResources([engine.scene.get()!])`. It rejects when a
+resource fails to load, and you can still save the scene then.
 
 ```typescript
 saveToString(options?: {
@@ -239,7 +234,7 @@ saveToString(options?: {
 
 **Parameters:**
 - `options` - Save options containing:
-  - allowedResourceSchemes: The resource schemes to allow in the saved string. Defaults to ['blob', 'bundle', 'file', 'http', 'https', 'opfs'].
+  - allowedResourceSchemes: The resource schemes to allow in the saved string. Defaults to ['blob', 'bundle', 'file', 'http', 'https', 'opfs']. Add 'data' to keep `data:` URIs.
   - onDisallowedResourceScheme: An optional callback that is called for each resource URL that has a scheme absent from
     `resourceSchemesAllowed`. The `url` parameter is the resource URL and the `dataHash` parameter is the hash of the
     resource's data. The callback should return a new URL for the resource, which will be used in the serialized
@@ -258,6 +253,11 @@ The archive contains all assets, that were accessible when this function was cal
 Blocks in the archived scene reference assets relative from to the location of the scene
 file. These references are resolved when loading such a scene via `load`.
 When persisting the result as a file, use the `.imgly` extension.
+While a font loads, its text is laid out with another font. When the text's size follows its
+content, a scene archived before the font arrives can differ from one archived after it. To compare
+two archives, first await `engine.block.forceLoadResources([engine.scene.get()!])`, then compare the
+`scene.scene` files inside them. Each archive entry stores the time of the save.
+`forceLoadResources` rejects when a resource fails to load, and you can still save the scene then.
 
 ```typescript
 saveToArchive(options?: SaveToArchiveOptions): Promise<Blob>
@@ -443,6 +443,54 @@ getFontSizeUnit(): FontSizeUnit
 ```
 
 **Returns:** The current font-size unit.
+
+### addMarker()
+
+Adds a marker to the end of the current scene's marker list.
+Experimental: this API may change in a minor release.
+Markers name points or spans on the scene timeline. Several markers may share a name.
+```javascript
+engine.scene.addMarker('intro', 0, 2.5);
+engine.scene.addMarker('beat', 4);
+```
+
+```typescript
+addMarker(name: string, time: number, duration?: number): void
+```
+
+**Parameters:**
+- `name` - The name of the marker.
+- `time` - The start of the marker in seconds. Must not be negative.
+- `duration` - The length of the marker in seconds. Must not be negative. Defaults to 0, a single point.
+
+### getMarkers()
+
+Returns the markers of the current scene in the order they were added.
+Experimental: this API may change in a minor release.
+```javascript
+const markers = engine.scene.getMarkers();
+```
+
+```typescript
+getMarkers(): SceneMarker[]
+```
+
+**Returns:** The markers of the scene.
+
+### removeMarker()
+
+Removes a marker from the current scene.
+Experimental: this API may change in a minor release.
+```javascript
+engine.scene.removeMarker(0);
+```
+
+```typescript
+removeMarker(index: number): void
+```
+
+**Parameters:**
+- `index` - The index of the marker in the list that `getMarkers` returns.
 
 ### getLayout()
 

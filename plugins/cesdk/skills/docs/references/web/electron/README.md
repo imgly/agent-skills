@@ -7,10 +7,10 @@ Look up documentation for IMG.LY CreativeEditor SDK (Electron).
 The guides are on the CE.SDK docs site, not in this bundle. The index files in
 this folder list them:
 
-- `electron.md` lists every page of https://img.ly/docs/cesdk/archive/v1.84/electron/ with its title and link.
+- `electron.md` lists every page of https://img.ly/docs/cesdk/archive/v1.85/electron/ with its title and link.
 
-The links point to the docs of CE.SDK `1.84.0`, the version of this bundle,
-under `https://img.ly/docs/cesdk/archive/v1.84/`. The docs site keeps one copy per version, with the same
+The links point to the docs of CE.SDK `1.85.0`, the version of this bundle,
+under `https://img.ly/docs/cesdk/archive/v1.85/`. The docs site keeps one copy per version, with the same
 page paths:
 
 | CE.SDK version | Docs root |
@@ -21,12 +21,12 @@ page paths:
 | Latest nightly | `https://img.ly/docs/cesdk/dev/` |
 
 1. **Check the version.** Read the CE.SDK version the project uses. If it is not
-   `1.84.0`, replace `https://img.ly/docs/cesdk/archive/v1.84/` in each link with the root of that
+   `1.85.0`, replace `https://img.ly/docs/cesdk/archive/v1.85/` in each link with the root of that
    version.
 2. **Read the index** in this folder and pick the pages that match the query.
 3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
-   `.md`. For example, `https://img.ly/docs/cesdk/archive/v1.84/electron/<path>-<id>/` becomes
-   `https://img.ly/docs/cesdk/archive/v1.84/electron/<path>-<id>.md`. Use WebFetch. If WebFetch is not
+   `.md`. For example, `https://img.ly/docs/cesdk/archive/v1.85/electron/<path>-<id>/` becomes
+   `https://img.ly/docs/cesdk/archive/v1.85/electron/<path>-<id>.md`. Use WebFetch. If WebFetch is not
    available (for example in Codex), use `curl -sL --compressed <url>`. If a
    page returns 404, it does not exist in that version: read that version's
    index, `<root>electron.md`, instead.
@@ -61,11 +61,11 @@ Start with the bundled API digests. All Web frameworks share them in `../api/`.
 
 The docs site has the full reference for this version:
 
-- Editor API (`@cesdk/cesdk-js`): `https://img.ly/docs/cesdk/archive/v1.84/electron/api/cesdk-js.md`
-- Engine API (`@cesdk/engine`): `https://img.ly/docs/cesdk/archive/v1.84/electron/api/engine.md`
+- Editor API (`@cesdk/cesdk-js`): `https://img.ly/docs/cesdk/archive/v1.85/electron/api/cesdk-js.md`
+- Engine API (`@cesdk/engine`): `https://img.ly/docs/cesdk/archive/v1.85/electron/api/engine.md`
 
 Class and type pages follow the same `.md` rule, for example
-`https://img.ly/docs/cesdk/archive/v1.84/electron/api/engine/classes/blockapi.md`.
+`https://img.ly/docs/cesdk/archive/v1.85/electron/api/engine/classes/blockapi.md`.
 
 **Tip**: Verify types against the TypeScript definitions. CE.SDK evolves rapidly
 and type shapes may differ from pre-trained knowledge.
@@ -76,12 +76,12 @@ and type shapes may differ from pre-trained knowledge.
 [CE.SDK Web API Index]|root: ../api
 
 CreativeEngine:{asset,block,editor,event,scene,variable,actions,shortcuts,reactor,version,addPlugin,unstable_setVideoExportInactivityTimeout,unstable_setExportInactivityTimeout,addPostUpdateCallback,addPreUpdateCallback},... (+7)
-BlockAPI:{export,getDominantColors,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo},... (+411)
+BlockAPI:{export,getDominantColors,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo},... (+456)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
-SceneAPI:{setCMYKProfile,setCMYKProfileFromData,getCMYKProfileInfo,removeCMYKProfile,getColorRenderingIntent,setColorRenderingIntent,isBlackPointCompensationEnabled,setBlackPointCompensationEnabled,load,loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create},... (+35)
-EditorAPI:{unlockWithLicense,isCapabilitySupported,getCapabilityState,checkCapabilities,startTracking,setTrackingMetadata,getTrackingMetadata,trackEvent,getActiveLicense,getEngineVersion,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening,hasSelectedVectorNode},... (+101)
+SceneAPI:{setCMYKProfile,setCMYKProfileFromData,getCMYKProfileInfo,removeCMYKProfile,getColorRenderingIntent,setColorRenderingIntent,isBlackPointCompensationEnabled,setBlackPointCompensationEnabled,load,loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create},... (+38)
+EditorAPI:{unlockWithLicense,isCapabilitySupported,getCapabilityState,checkCapabilities,startTracking,setTrackingMetadata,getTrackingMetadata,trackEvent,overrideTrackingEndpoint,getActiveLicense,getEngineVersion,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening},... (+102)
 EventAPI:{subscribe}
-VariableAPI:{findAll,setString,getString,remove}
+VariableAPI:{findAll,setString,getString,remove,rename,setColor,getColor,setNumber,getNumber,setImage,getImage,setTypeface,getTypeface,getType,findAllOfType}
 Types:{AnimationType,AssetResult,BlendMode,Color,ExportOptions,PropertyType,Scope,TextCase,VideoExportOptions}
 <-- IMGLY-TYPES-MD-END -->
 

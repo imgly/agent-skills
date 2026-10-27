@@ -10,6 +10,14 @@ interface SceneApi
 
 ## Members
 
+### addMarker
+
+```kotlin
+abstract fun addMarker(name: String, time: Double, duration: Double = 0.0)
+```
+
+Add a marker to the end of the current scene's marker list. Markers name points or spans on the scene timeline. Several markers may share a name. Experimental: this API may change in a minor release.
+
 ### applyTemplate
 
 ```kotlin
@@ -183,6 +191,14 @@ abstract fun getLayout(): SceneLayout
 
 Get the current scene layout.
 
+### getMarkers
+
+```kotlin
+abstract fun getMarkers(): List<SceneMarker>
+```
+
+Get the markers of the current scene in the order they were added. Experimental: this API may change in a minor release.
+
 ### getMode
 
 ```kotlin
@@ -259,7 +275,7 @@ Queries whether zoom auto-fit is enabled for block.
 ### loadArchive
 
 ```kotlin
-abstract suspend fun loadArchive(archiveUri: Uri, overrideEditorConfig: Boolean = false, waitForResources: Boolean = false): DesignBlock
+abstract suspend fun loadArchive(archiveUri: Uri, overrideEditorConfig: Boolean = false, waitForResources: Boolean = false, onProgress: ((Int) -> Unit)? = null): DesignBlock
 ```
 
 Load the contents of a scene previously saved as an archive.
@@ -267,11 +283,11 @@ Load the contents of a scene previously saved as an archive.
 ### load
 
 ```kotlin
-abstract suspend fun load(scene: String, overrideEditorConfig: Boolean = false, waitForResources: Boolean = false): DesignBlock
+abstract suspend fun load(scene: String, overrideEditorConfig: Boolean = false, waitForResources: Boolean = false, onProgress: ((Int) -> Unit)? = null): DesignBlock
 ```
 
 ```kotlin
-abstract suspend fun load(sceneUri: Uri, overrideEditorConfig: Boolean = false, waitForResources: Boolean = false): DesignBlock
+abstract suspend fun load(sceneUri: Uri, overrideEditorConfig: Boolean = false, waitForResources: Boolean = false, onProgress: ((Int) -> Unit)? = null): DesignBlock
 ```
 
 Load the contents of a scene file.
@@ -300,13 +316,21 @@ abstract fun removeCMYKProfile()
 
 Removes the CMYK profile from the document. CMYK conversion then uses the fallbackCMYKProfileUri setting, or the bundled profile when that setting is unset. Color management stays on. A setCMYKProfile request that is still loading is cancelled.
 
+### removeMarker
+
+```kotlin
+abstract fun removeMarker(index: Int)
+```
+
+Remove a marker from the current scene. Experimental: this API may change in a minor release.
+
 ### saveToArchive
 
 ```kotlin
 abstract suspend fun saveToArchive(scene: DesignBlock, options: SaveToArchiveOptions = SaveToArchiveOptions()): ByteBuffer
 ```
 
-Saves the current scene and all of its referenced assets into an archive. The archive contains all assets, that were accessible when this function was called. Blocks in the archived scene reference assets relative from to the location of the scene file. These references are resolved when loading such a scene via load.
+Saves the current scene and all of its referenced assets into an archive. The archive contains all assets, that were accessible when this function was called. Blocks in the archived scene reference assets relative from to the location of the scene file. These references are resolved when loading such a scene via load. While a font loads, its text is laid out with another font. When the text's size follows its content, a scene archived before the font arrives can differ from one archived after it. To compare two archives, first call engine.block.forceLoadResources(listOf(scene)), then compare the scene.scene files inside them. Each archive entry stores the time of the save. forceLoadResource…
 
 ### saveToString
 

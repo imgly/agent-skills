@@ -387,6 +387,14 @@ static let sendBackward: Image
 
 An icon image for send backward.
 
+### IMGLY.separateAudio
+
+```swift
+static let separateAudio: Image
+```
+
+An icon image for separate audio.
+
 ### IMGLY.shape
 
 ```swift

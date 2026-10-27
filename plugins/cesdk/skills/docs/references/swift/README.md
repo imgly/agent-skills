@@ -44,12 +44,12 @@ SDK and call out the version difference.
 The guides are on the CE.SDK docs site, not in this bundle. The index files in
 this folder list them:
 
-- `ios.md` lists every page of https://img.ly/docs/cesdk/archive/v1.84/ios/ with its title and link.
-- `macos.md` lists every page of https://img.ly/docs/cesdk/archive/v1.84/macos/ with its title and link.
-- `mac-catalyst.md` lists every page of https://img.ly/docs/cesdk/archive/v1.84/mac-catalyst/ with its title and link.
+- `ios.md` lists every page of https://img.ly/docs/cesdk/archive/v1.85/ios/ with its title and link.
+- `macos.md` lists every page of https://img.ly/docs/cesdk/archive/v1.85/macos/ with its title and link.
+- `mac-catalyst.md` lists every page of https://img.ly/docs/cesdk/archive/v1.85/mac-catalyst/ with its title and link.
 
-The links point to the docs of CE.SDK `1.84.0`, the version of this bundle,
-under `https://img.ly/docs/cesdk/archive/v1.84/`. The docs site keeps one copy per version, with the same
+The links point to the docs of CE.SDK `1.85.0`, the version of this bundle,
+under `https://img.ly/docs/cesdk/archive/v1.85/`. The docs site keeps one copy per version, with the same
 page paths:
 
 | CE.SDK version | Docs root |
@@ -60,12 +60,12 @@ page paths:
 | Latest nightly | `https://img.ly/docs/cesdk/dev/` |
 
 1. **Check the version.** Read the CE.SDK version the project uses. If it is not
-   `1.84.0`, replace `https://img.ly/docs/cesdk/archive/v1.84/` in each link with the root of that
+   `1.85.0`, replace `https://img.ly/docs/cesdk/archive/v1.85/` in each link with the root of that
    version.
 2. **Read the index** in this folder and pick the pages that match the query.
 3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
-   `.md`. For example, `https://img.ly/docs/cesdk/archive/v1.84/ios/<path>-<id>/` becomes
-   `https://img.ly/docs/cesdk/archive/v1.84/ios/<path>-<id>.md`. Use WebFetch. If WebFetch is not
+   `.md`. For example, `https://img.ly/docs/cesdk/archive/v1.85/ios/<path>-<id>/` becomes
+   `https://img.ly/docs/cesdk/archive/v1.85/ios/<path>-<id>.md`. Use WebFetch. If WebFetch is not
    available (for example in Codex), use `curl -sL --compressed <url>`. If a
    page returns 404, it does not exist in that version: read that version's
    index, `<root>ios.md`, instead.
@@ -85,7 +85,7 @@ IMGLYCamera:{Camera,CameraConfiguration,CameraError,CameraLayoutMode,CameraMode,
 IMGLYCore:{EngineSettings,Foundation,IMGLY,IMGLYCompatible,PhotoRollAssetSource,PhotoRollAssetSourceMode,PhotoRollMediaType,TextAssetSource[deprecated]}|platforms:{ios}
 IMGLYCoreUI:{AssetLibrary,AssetLibraryBuilder,AssetLibraryCategory,AssetLibraryContent,AssetLibraryGroup,AssetLibraryModifierError,AssetLibraryMoreTab,AssetLibrarySection,AssetLibrarySource,AssetLibraryTab,AssetLibraryTabView,AssetLibraryView,AssetLoader,AssetPreview,AudioGrid,AudioList,AudioPreview,AudioUploadButton,AudioUploadGrid,CategoryModifier,DefaultAssetLibrary[deprecated],ImageGrid,IMGLYCore,IMGLYEngine,MediaType,Message,nonNil(_:file:function:line:),PhotoRollAccessory,PhotoRollDestination,PhotoRollPreview,SectionModifier,ShapeGrid,StickerGrid,SwiftUICore,TextComponentGrid,TextGrid,TextList,TextPresetsGrid,TextPreview,UploadButton,UploadGrid}|platforms:{ios}
 IMGLYEditor:{AdaptiveIconOnlyLabelStyle,ArrayBuilder,ArrayModifier,AssetLibraryButtonStyle,AssetLibraryConfiguration,BackgroundColorIcon,BottomPanel,CanvasMenu,CanvasMenuLabelStyle,CategoryModifications,DefaultTimelineComponent[deprecated],Dock,Editor,EditorComponent,EditorComponentID,EditorComponents,EditorConfiguration,EditorContext,EditorError,EditorEvent,EditorEventHandler,EditorEvents,EditorState,EditorViewMode,ExportProgress,FillStrokeIcon,ForceCropMode,ForceCropPreset,IMGLYCore,InspectorBar,NamedColor,NavigationBar,NavigationLabel,None,OnChanged,OnClose,OnCreate,OnError,OnExport,OnLoaded,OnUpload,SheetStyle,SheetType,SheetTypes,SwiftUI,Timeline,transitionIncomingClip(engine:outgoing:)}|platforms:{ios}
-IMGLYEngine:{AnimationEasing,AnimationType,Asset,AssetAPI,AssetColor,AssetContext,AssetCredits,AssetDefinition,AssetFacetPath,AssetFacetValue,AssetFilter,AssetLicense,AssetPayload,AssetPlacement,AssetProperty,AssetQueryData,AssetQueryResult,AssetResult,AssetSource,AssetSpotColorRepresentation,AssetTransformPreset,AssetUTM,AudioExport,AudioExportOptions,AudioFromVideoOptions,AudioThumbnail,AudioTrackInfo,BlendMode,Blob,BlockAPI,BlockEvent,BlockEventType,BlockState,BlockStateError,BlurType,BooleanOperation,Canvas,char8_t,CharacterInkBox,CMYK,CMYKProfileInfo,Color,ColorRenderingIntent,ColorSpace,CompressionFormat,CompressionLevel,CompressionOptions,ContentFillMode,CursorType,CutoutOperation,CutoutType,DesignBlockID,DesignBlockType,DesignUnit,DominantColor,DominantColorsOptions,EditMode,EditorAPI,EffectType,Engine,EngineError,EngineErrorCode,EngineErrorDomain,EventAPI,ExportOptions,FetchAssetOptions,FillRule,FillType,Font,FontMetrics,FontStyle,FontUnit,FontWeight,GlobalScope,GradientColorStop,GradientType,Groups,H264Profile,HandleVisibility,History,HistoryUpdate,HorizontalBlockAlignment,HorizontalContentFillAlignment,HorizontalTextAlignment,LicenseError,ListStyle,Locale,MIMEType,MovementConstraintRule,MovementConstraintScope,ObjectType,PositionMode,PropertyType,ResolvedMovementConstraint,RGBA,SaveToArchiveOptions,SaveToStringOptions,SceneAPI,SceneLayout,SceneMode,ScriptStyle,SelectionBox,ShapeType,SizeMode,SortingOrder,SortKey,Source,SplitOptions,StrokeCap,StrokeCornerGeometry,StrokePosition,StrokeStyle,Subscription,TextCase,TextDecorationConfig,TextDecorationLine,TextDecorationStyle,TextRunInfo,TransitionType,Typeface,UBQ,VariableAPI,VerticalBlockAlignment,VerticalContentFillAlignment,VideoBitrate,VideoExport,VideoExportOptions,VideoThumbnail,ZoomAutoFitAxis}|platforms:{ios,macos,mac-catalyst}
+IMGLYEngine:{AnimationEasing,AnimationType,Asset,AssetAPI,AssetColor,AssetContext,AssetCredits,AssetDefinition,AssetFacetPath,AssetFacetValue,AssetFilter,AssetLicense,AssetPayload,AssetPlacement,AssetProperty,AssetQueryData,AssetQueryResult,AssetResult,AssetSource,AssetSpotColorRepresentation,AssetTransformPreset,AssetUTM,AudioExport,AudioExportOptions,AudioFromVideoOptions,AudioThumbnail,AudioTrackInfo,BlendMode,Blob,BlockAPI,BlockEvent,BlockEventType,BlockMatte,BlockState,BlockStateError,BlurType,BooleanOperation,Canvas,char8_t,CharacterInkBox,CMYK,CMYKProfileInfo,Color,ColorRenderingIntent,ColorSpace,CompressionFormat,CompressionLevel,CompressionOptions,ContentFillMode,CursorType,CutoutOperation,CutoutType,DesignBlockID,DesignBlockType,DesignUnit,DiscreteValue,DominantColor,DominantColorsOptions,EditMode,EditorAPI,EffectType,Engine,EngineError,EngineErrorCode,EngineErrorDomain,EventAPI,ExportOptions,FetchAssetOptions,FillRule,FillType,Font,FontMetrics,FontStyle,FontUnit,FontWeight,GlobalScope,GradientColorStop,GradientType,Groups,H264Profile,HandleVisibility,History,HistoryUpdate,HorizontalBlockAlignment,HorizontalContentFillAlignment,HorizontalTextAlignment,Keyframe,KeyframeEasing,KeyframeValue,LicenseError,ListStyle,Locale,MaskType,MatteMode,MIMEType,ModifierType,MovementConstraintRule,MovementConstraintScope,ObjectType,PathVertex,PositionMode,PropertyType,ResolvedMovementConstraint,RGBA,SafeAreaInsets,SaveToArchiveOptions,SaveToStringOptions,SceneAPI,SceneLayout,SceneMarker,SceneMode,ScriptStyle,SelectionBox,ShapeType,SizeMode,SortingOrder,SortKey,Source,SplitOptions,StrokeCap,StrokeCornerGeometry,StrokePosition,StrokeStyle,Subscription,TextAnimatorType,TextCase,TextDecorationConfig,TextDecorationLine,TextDecorationStyle,TextRunInfo,TrackMode,TransitionType,Typeface,UBQ,VariableAPI,VariableType,VerticalBlockAlignment,VerticalContentFillAlignment,VideoBitrate,VideoExport,VideoExportOptions,VideoThumbnail,ZoomAutoFitAxis}|platforms:{ios,macos,mac-catalyst}
 <-- IMGLY-TYPES-MD-END -->
 
 ## Related Skills

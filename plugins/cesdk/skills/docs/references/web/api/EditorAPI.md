@@ -835,6 +835,8 @@ getUsedMemory(): number
 Get the maximum export size limit for the current device.
 Exports are only possible when both width and height are below this limit.
 Note that exports may still fail due to other constraints like memory.
+A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI,
+not against the page.
 
 ```typescript
 getMaxExportSize(): number

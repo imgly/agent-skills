@@ -15,6 +15,14 @@ enum ShapeType
 init?(rawValue: String)
 ```
 
+### ShapeType.compound
+
+```swift
+case compound
+```
+
+A compound shape that combines several subshapes.
+
 ### ShapeType.ellipse
 
 ```swift

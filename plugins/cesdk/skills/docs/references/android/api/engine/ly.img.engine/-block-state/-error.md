@@ -22,6 +22,14 @@ constructor(typeOrdinal: Int)
 constructor(type: BlockState.Error.Type)
 ```
 
+### engineError
+
+```kotlin
+var engineError: EngineException?
+```
+
+The catalog error behind type, when the engine knows it, for example the code SCENE.LOTTIE_ARCHIVE_UNSAFE_PATH for a .lottie archive with an entry outside it. It has the fields of the EngineException that a failed call throws. null for an error that BlockApi.setState set, or that has no catalog error. It is not part of equals.
+
 ### type
 
 ```kotlin

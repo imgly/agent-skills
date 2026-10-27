@@ -6,7 +6,7 @@
 The export options.
 
 ```kotlin
-data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f)
+data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null)
 ```
 
 
@@ -15,7 +15,7 @@ data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Floa
 ### ExportOptions
 
 ```kotlin
-constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f)
+constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null)
 ```
 
 ### allowTextOverhang
@@ -73,6 +73,14 @@ val jpegQuality: Float = 0.9f
 ```
 
 The JPEG quality to use when encoding to JPEG. Valid values are (0-1], higher means better quality. Ignored for other encodings. The default value is 0.9.
+
+### pdfChunkSize
+
+```kotlin
+val pdfChunkSize: Int? = null
+```
+
+Upper bound, in bytes, for a single chunk of PDF output. Affects a PDF export only. It matters most for the streamed BlockApi.export overloads, where this is the memory the caller has to hold for one chunk. A larger value lowers the per-chunk overhead and raises the memory each chunk costs. A smaller value does the opposite. null, the default, uses an engine-chosen size, and so does a value below 1. Any other value is clamped to 4096, 67108864, so an unusable request lowers the quality of the trade rather than failing the export. Note this is a bound and not a chunk size: the encoder also flushes after each page, so the last chunk of a page is normally smaller.
 
 ### pdfImageQuality
 

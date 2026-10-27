@@ -239,7 +239,7 @@ Query the state of a global scope. `key`
 @MainActor func getMaxExportSize() throws -> Int
 ```
 
-Get the export size limit in pixels on the current device. An export is only possible when both the width and height of the output are below or equal this limit. However, this is only an upper limit as the export might also not be possible due to other reasons, e.g., memory constraints. The upper export size limit in pixels or an unlimited size, i.e, the maximum signed 32-bit integer value, if the limit is unknown.
+Get the export size limit in pixels on the current device. An export is only possible when both the width and height of the output are below or equal this limit. However, this is only an upper limit as the export might also not be possible due to other reasons, e.g., memory constraints. A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI, not against the page. The upper export size limit in pixels or an unlimited size, i.e, the maximum signed 32-bit integer value, if the limit is unknown.
 
 ### getMimeType(uri:)
 
@@ -306,6 +306,14 @@ Get the current role of the user. The current role of the user.
 ```
 
 Get when the rotation handle is shown for the selected block.
+
+### getSafeAreaInsets()
+
+```swift
+@MainActor func getSafeAreaInsets() -> SafeAreaInsets
+```
+
+Get the global safe area insets. The current safe area insets in points.
 
 ### getScaleHandlesVisibility()
 
@@ -746,6 +754,14 @@ Set the role of the user and apply role-dependent defaults for scopes and settin
 ```
 
 Set when the rotation handle is shown for the selected block.
+
+### setSafeAreaInsets(left:top:right:bottom:)
+
+```swift
+@MainActor func setSafeAreaInsets(left: Float? = nil, top: Float? = nil, right: Float? = nil, bottom: Float? = nil) throws
+```
+
+Set the global safe area insets that every camera operation respects: zoom, pan and clamping. `left`
 
 ### setScaleHandlesVisibility(_:)
 
