@@ -13,4 +13,9 @@
 fun Dock.Button.rememberBackgroundRemoval(config: BackgroundRemovalConfig, builder: Dock.ButtonBuilder.() -> Unit = {}): Button<Dock.ItemScope>
 ```
 
-A composable helper function that creates and remembers a Dock.Button that removes background from the current page.
+```kotlin
+@Composable
+fun InspectorBar.Button.rememberBackgroundRemoval(config: BackgroundRemovalConfig, builder: InspectorBar.ButtonBuilder.() -> Unit = {}): Button<InspectorBar.ItemScope>
+```
+
+A composable helper function that creates and remembers a Dock.Button that removes the background of the image of the current page. The button is only visible when the page has an image fill that is not SVG, and its scope allows a fill change.
