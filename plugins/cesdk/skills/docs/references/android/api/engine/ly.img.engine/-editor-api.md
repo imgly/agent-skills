@@ -214,7 +214,7 @@ Get the current edit mode of the editor. An edit mode defines what type of conte
 abstract suspend fun getFontMetrics(fontFileUri: String): FontMetrics
 ```
 
-Returns the font metrics for a given font file URI. If the font is not yet loaded, it will be fetched asynchronously. The returned metrics are in the font's design units coordinate space.
+Returns the font metrics for a given font file URI. If the font is not yet loaded, it will be fetched asynchronously. The returned metrics are in the font's design units coordinate space. Cancelling the coroutine stops the download of the font.
 
 ### getGlobalScope
 
@@ -238,7 +238,7 @@ Get the export size limit in pixels on the current device. An export is only pos
 abstract suspend fun getMimeType(uri: Uri): String
 ```
 
-Returns the mimetype of the resources at the given Uri. If the resource is not already downloaded, this function will download it.
+Returns the mimetype of the resources at the given Uri. If the resource is not already downloaded, this function will download it. Cancelling the coroutine stops the download.
 
 ### getMovementConstraint
 

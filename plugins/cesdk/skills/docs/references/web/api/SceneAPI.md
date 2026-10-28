@@ -17,11 +17,13 @@ await engine.scene.setCMYKProfile('https://example.com/profiles/PSOcoated_v3.icc
 ```
 
 ```typescript
-setCMYKProfile(uri: string): Promise<void>
+setCMYKProfile(uri: string, options?: AbortOptions): Promise<void>
 ```
 
 **Parameters:**
 - `uri` - The URI of a CMYK ICC profile.
+- `options` - An `abortSignal` that stops the download of the profile. The previous profile
+stays then.
 
 **Returns:** A promise that resolves once the profile is in effect. It rejects with
 `COLOR.PROFILE_MISSING` when the URI cannot be loaded, `COLOR.PROFILE_INVALID` or
@@ -153,12 +155,6 @@ load(source: string | URL, overrideEditorConfig?: boolean, waitForResources?: bo
 ### loadFromString()
 
 Load the contents of a scene file.
-The string must be the binary contents of a scene file and is directly imported as blocks. Any existing scene is replaced by the new one.
-This is useful for loading scenes that were saved with `saveToString` or scenes that were created in another editor instance.
-```javascript
-const sceneContent = await creativeEngine.scene.saveToString();
-creativeEngine.scene.loadFromString(sceneContent);
-```
 
 ```typescript
 loadFromString(sceneContent: string, overrideEditorConfig?: boolean, waitForResources?: boolean): Promise<DesignBlockId>
@@ -174,15 +170,6 @@ loadFromString(sceneContent: string, overrideEditorConfig?: boolean, waitForReso
 ### loadFromURL()
 
 Load a scene from the URL to the scene file.
-The scene file will be fetched asynchronously by the engine and loaded into the engine once it is available. Any existing scene is replaced by the new one.
-A URL to an archive loads too, but reports no progress. Call `load` with `onProgress` for that.
-This requires continuous `render` calls on this engine instance, as `loadFromArchiveURL` does.
-The engine advances the fetch while it renders, so without a render loop the returned promise
-never settles — it neither resolves nor rejects, even for a URL that cannot be reached.
-```javascript
-const sceneURL = 'https://example.com/my-scene.json';
-creativeEngine.scene.loadFromURL(sceneURL);
-```
 
 ```typescript
 loadFromURL(url: string, overrideEditorConfig?: boolean, waitForResources?: boolean): Promise<DesignBlockId>
@@ -229,6 +216,7 @@ saveToString(options?: {
             format?: CompressionFormat;
             level?: CompressionLevel;
         };
+        abortSignal?: AbortSignal;
     }): Promise<string>
 ```
 
@@ -243,6 +231,8 @@ saveToString(options?: {
   - compression: Optional compression settings containing:
     - format: Compression format (None or Zstd). Defaults to Zstd.
     - level: Compression level (Fastest, Default, or Best). Defaults to Default.
+  - abortSignal: Stops a save that waits for `onDisallowedResourceScheme`. Later answers of the
+    callback change nothing then.
 
 **Returns:** A promise that resolves with a string on success or an error on failure.
 
@@ -324,13 +314,15 @@ const scene = await engine.scene.createFromImage('https://img.ly/static/ubq_samp
 ```
 
 ```typescript
-createFromImage(url: string, dpi?: number, pixelScaleFactor?: number, sceneLayout?: SceneLayout, spacing?: number, spacingInScreenSpace?: boolean): Promise<DesignBlockId>
+createFromImage(url: string, dpi?: number, pixelScaleFactor?: number, sceneLayout?: SceneLayout, spacing?: number, spacingInScreenSpace?: boolean, options?: AbortOptions): Promise<DesignBlockId>
 ```
 
 **Parameters:**
 - `url` - The image URL.
 - `dpi` - The scene's DPI.
 - `pixelScaleFactor` - The display's pixel scale factor.
+- `options` - An `abortSignal` that stops the download of the image. The current scene stays
+then.
 
 **Returns:** A promise that resolves with the scene ID on success or rejected with an error otherwise.
 
@@ -344,11 +336,13 @@ const scene = await engine.scene.createFromVideo('https://img.ly/static/ubq_vide
 ```
 
 ```typescript
-createFromVideo(url: string): Promise<DesignBlockId>
+createFromVideo(url: string, options?: AbortOptions): Promise<DesignBlockId>
 ```
 
 **Parameters:**
 - `url` - The video URL.
+- `options` - An `abortSignal` that stops the download of the video. The current scene stays
+then.
 
 **Returns:** A promise that resolves with the scene ID on success or rejected with an error otherwise.
 
@@ -555,11 +549,13 @@ engine.scene.applyTemplateFromURL('https://cdn.img.ly/assets/demo/v4/ly.img.temp
 ```
 
 ```typescript
-applyTemplateFromURL(url: string): Promise<void>
+applyTemplateFromURL(url: string, options?: AbortOptions): Promise<void>
 ```
 
 **Parameters:**
 - `url` - The url to the template scene file.
+- `options` - An `abortSignal` that stops the download of the template. The current scene
+stays then.
 
 **Returns:** A Promise that resolves once the template was applied or rejects if there was an error.
 

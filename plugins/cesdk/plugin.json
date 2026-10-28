@@ -71,5 +71,5 @@
   "license": "MIT AND LicenseRef-IMGLY-Terms-of-Service",
   "name": "imgly-sdk",
   "repository": "https://github.com/imgly/agent-skills",
-  "version": "1.85.0-rc.1"
+  "version": "1.85.1-rc.0"
 }

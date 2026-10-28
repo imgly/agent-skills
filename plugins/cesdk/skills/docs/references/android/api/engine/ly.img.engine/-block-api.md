@@ -17,7 +17,7 @@ abstract suspend fun addImageFileURIToSourceSet(block: DesignBlock, property: St
 ```
 > **Deprecated:** Use addImageFileUriToSourceSet instead. Replace with `this.addImageFileUriToSourceSet(block, property, uri)`.
 
-Add a source to the sourceSet property of the given block. If there already exists in source set an image with the same width, that existing image will be replaced. If the source set is or gets empty, the crop and content fill mode of the associated block will be set to the default values. Note: This fetches the resource from the given URI to obtain the image dimensions. It is recommended to use setSourceSet if the dimension is known.
+Add a source to the sourceSet property of the given block. If there already exists in source set an image with the same width, that existing image will be replaced. If the source set is or gets empty, the crop and content fill mode of the associated block will be set to the default values. Note: This fetches the resource from the given URI to obtain the image dimensions. It is recommended to use setSourceSet if the dimension is known. Cancelling the coroutine stops the download, and the source set stays unchanged.
 
 ### addImageFileUriToSourceSet
 
@@ -33,7 +33,7 @@ Add a source to the sourceSet property of the given block. If there already exis
 abstract suspend fun addVideoFileUriToSourceSet(block: DesignBlock, property: String, uri: String)
 ```
 
-Add a source to the sourceSet property of the given block. If there already exists in source set a video with the same width, that existing video will be replaced. If the source set is or gets empty, the crop and content fill mode of the associated block will be set to the default values. Note: This fetches the resource from the given URI to obtain the video dimensions. It is recommended to use setSourceSet if the dimension is known.
+Add a source to the sourceSet property of the given block. If there already exists in source set a video with the same width, that existing video will be replaced. If the source set is or gets empty, the crop and content fill mode of the associated block will be set to the default values. Note: This fetches the resource from the given URI to obtain the video dimensions. It is recommended to use setSourceSet if the dimension is known. Cancelling the coroutine stops the download, and the source set stays unchanged.
 
 ### adjustCropToFillFrame
 
@@ -198,7 +198,7 @@ Create a new blur, fails if type is unknown or not a valid blur type.
 abstract suspend fun createCaptionsFromURI(uri: String): List<DesignBlock>
 ```
 
-Creates new caption blocks from the given file.
+Creates new caption blocks from the given file. Cancelling the coroutine stops the download, and no caption block is created.
 
 ### createCutoutFromBlocks
 
@@ -547,7 +547,7 @@ Adjusts the crop in order to flip the content along its own vertical axis.
 abstract suspend fun forceLoadAVResource(block: DesignBlock)
 ```
 
-Begins loading the required audio and video resource for the given video fill or audio block. If the resource had been loaded earlier and resulted in an error, it will be reloaded. A buffer:// source loads like a file. The call finishes once the engine can read the video, audio or Lottie in the buffer, with the images that a Lottie references. It fails when the buffer holds no file that it can read. A missing or empty buffer, or raw audio samples on an audio block, finish at once.
+Begins loading the required audio and video resource for the given video fill or audio block. If the resource had been loaded earlier and resulted in an error, it will be reloaded. A buffer:// source loads like a file. The call finishes once the engine can read the video, audio or Lottie in the buffer, with the images that a Lottie references. It fails when the buffer holds no file that it can read. A missing or empty buffer, or raw audio samples on an audio block, finish at once. Cancelling the coroutine ends the wait. It stops the download, unless a block or another call needs the file. The engine reads every video fill at each update, so the download of a video fill goes on.
 
 ### forceLoadResources
 
@@ -555,7 +555,7 @@ Begins loading the required audio and video resource for the given video fill or
 abstract suspend fun forceLoadResources(blocks: List<DesignBlock>)
 ```
 
-Begins loading the resources of the given blocks and their children. If the resource had been loaded earlier and resulted in an error, it will be reloaded. Note: This function is useful for preloading resources before they are needed. Warning: For elements with a source set, all elements in the source set will be loaded.
+Begins loading the resources of the given blocks and their children. If the resource had been loaded earlier and resulted in an error, it will be reloaded. Note: This function is useful for preloading resources before they are needed. Warning: For elements with a source set, all elements in the source set will be loaded. Cancelling the coroutine ends the wait, and stops each load that no block uses and no other call waits for.
 
 ### generateAudioThumbnailSequence
 
@@ -2238,7 +2238,7 @@ Query a block's visibility. Reports the visibility you set, not the current view
 abstract suspend fun loadFromArchive(archiveUri: Uri): List<DesignBlock>
 ```
 
-Loads existing blocks from an archive. The archiveUri should be that of a file previously saved with saveToArchive. The blocks are not attached by default and won't be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one.
+Loads existing blocks from an archive. The archiveUri should be that of a file previously saved with saveToArchive. The blocks are not attached by default and won't be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one. Cancelling the coroutine stops the download, and no block is created.
 
 ### loadFromString
 
