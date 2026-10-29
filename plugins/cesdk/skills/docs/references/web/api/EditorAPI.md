@@ -558,6 +558,31 @@ getSettingFloat(keypath: SettingsFloat): number
 
 **Returns:** The float value of the setting.
 
+### setSettingDouble()
+
+Set a double setting value without reducing its precision.
+
+```typescript
+setSettingDouble(keypath: OptionalPrefix<SettingsDouble>, value: number): void
+```
+
+**Parameters:**
+- `keypath` - The setting key, such as `clip/defaultDurationValue` (seconds).
+- `value` - The finite double value to set.
+
+### getSettingDouble()
+
+Get a double setting value.
+
+```typescript
+getSettingDouble(keypath: OptionalPrefix<SettingsDouble>): number
+```
+
+**Parameters:**
+- `keypath` - The setting key, such as `clip/defaultDurationValue` (seconds).
+
+**Returns:** The setting value with double precision.
+
 ### setSettingString()
 
 Set a string setting value.

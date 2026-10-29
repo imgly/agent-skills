@@ -41,7 +41,7 @@ Add a source to the sourceSet property of the given block. If there already exis
 abstract fun adjustCropToFillFrame(block: DesignBlock, minScaleRatio: Float)
 ```
 
-Adjust the crop position/scale to at least fill the crop frame. Required scope: "layer/crop"
+Adjust the crop position/scale to at least fill the crop frame. On a page with a bleed, the content also covers the bleed, and the ratio includes the bleed. This needs the setting page/imageFillCoversBleed, which is on by default. Required scope: "layer/crop"
 
 ### alignHorizontally
 
@@ -306,7 +306,7 @@ abstract fun create(blockType: String): DesignBlock
 ```
 > **Deprecated:** Use type safe overload instead. Replace with `this.create(DesignBlockType.)`.
 
-Create a new block.
+Create a new block. New text and graphic blocks use clip/defaultDurationValue (5 seconds by default). Duration is provisional until an engine update after placement and media loading initializes it once using clip/initialDurationMode. Waiting for forceLoadAVResource alone does not guarantee that update has run. An explicit setDuration call takes precedence. Finish parent and time-offset placement before that update. Custom asset callbacks that defer placement across updates must set the final duration explicitly.
 
 ### destroy
 
@@ -338,7 +338,7 @@ Distribute multiple blocks vertically within their bounding box so that the spac
 abstract fun duplicate(block: DesignBlock, attachToParent: Boolean = true): DesignBlock
 ```
 
-Duplicates a block including its children. Required scope: "lifecycle/duplicate" If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy.
+Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. Required scope: "lifecycle/duplicate" If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy.
 
 ### enterGroup
 
@@ -710,7 +710,7 @@ Get the crop rotation of the given design block.
 abstract fun getCropScaleRatio(block: DesignBlock): Float
 ```
 
-Get the crop scale ratio of the given design block.
+Get the crop scale ratio of the given design block. On a page with a bleed, a ratio of 1 means that the content covers the page and its bleed. This needs the setting page/imageFillCoversBleed, which is on by default.
 
 ### getCropScaleX
 
@@ -2599,7 +2599,7 @@ Set the crop rotation of the given design block. Required scope: "layer/crop"
 abstract fun setCropScaleRatio(block: DesignBlock, scaleRatio: Float)
 ```
 
-Set the crop scale ratio of the given design block. This will uniformly scale the content up or down. The center of the scale operation is the center of the crop frame. Required scope: "layer/crop"
+Set the crop scale ratio of the given design block. This will uniformly scale the content up or down. The center of the scale operation is the center of the crop frame. On a page with a bleed, the ratio and the center of the scale include the bleed. This needs the setting page/imageFillCoversBleed, which is on by default. Required scope: "layer/crop"
 
 ### setCropScaleX
 

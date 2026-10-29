@@ -3557,6 +3557,12 @@ case editorCameraZoomClampNotEnabled
 case editorCameraZoomLimitsNotFinite
 ```
 
+### EngineErrorCode.editorClipDefaultDurationInvalid
+
+```swift
+case editorClipDefaultDurationInvalid
+```
+
 ### EngineErrorCode.editorCommandArgTypeMismatch
 
 ```swift

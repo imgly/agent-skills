@@ -68,7 +68,7 @@ Types: Scope
 
 ## settingTypes
 
-Types: SettingStringPropertyName, SettingColorPropertyName, SettingFloatPropertyName, SettingBoolPropertyName, SettingEnumPropertyName, SettingIntPropertyName, TouchPinchAction, TouchRotateAction, CameraClampingOvershootMode, ControlGizmoMoveHandleVisibility, ControlGizmoResizeHandlesVisibility, ControlGizmoScaleHandlesVisibility, ControlGizmoRotateHandlesVisibility, DoubleClickSelectionMode, ColorPickerColorMode, TimelineTrackVisibility, SettingEnumValues, SettingEnumType
+Types: SettingStringPropertyName, SettingColorPropertyName, SettingFloatPropertyName, SettingBoolPropertyName, SettingDoublePropertyName, SettingEnumPropertyName, SettingIntPropertyName, ClipInitialDurationMode, TouchPinchAction, TouchRotateAction, CameraClampingOvershootMode, ControlGizmoMoveHandleVisibility, ControlGizmoResizeHandlesVisibility, ControlGizmoScaleHandlesVisibility, ControlGizmoRotateHandlesVisibility, DoubleClickSelectionMode, ColorPickerColorMode, TimelineTrackVisibility, SettingEnumValues, SettingEnumType
 
 ## settings
 

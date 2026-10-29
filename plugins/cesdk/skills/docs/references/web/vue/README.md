@@ -9,7 +9,7 @@ this folder list them:
 
 - `vue.md` lists every page of https://img.ly/docs/cesdk/dev/vue/ with its title and link.
 
-The links point to the docs of CE.SDK `1.86.0-nightly.20261028`, the version of this bundle,
+The links point to the docs of CE.SDK `1.86.0-nightly.20261029`, the version of this bundle,
 under `https://img.ly/docs/cesdk/dev/`. The docs site keeps one copy per version, with the same
 page paths:
 
@@ -21,7 +21,7 @@ page paths:
 | Latest nightly | `https://img.ly/docs/cesdk/dev/` |
 
 1. **Check the version.** Read the CE.SDK version the project uses. If it is not
-   `1.86.0-nightly.20261028`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
+   `1.86.0-nightly.20261029`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
    version.
 2. **Read the index** in this folder and pick the pages that match the query.
 3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
@@ -79,7 +79,7 @@ CreativeEngine:{asset,block,editor,event,scene,variable,actions,shortcuts,reacto
 BlockAPI:{export,getDominantColors,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo,createAudioFromVideo,createAudiosFromVideo},... (+456)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
 SceneAPI:{setCMYKProfile,setCMYKProfileFromData,getCMYKProfileInfo,removeCMYKProfile,getColorRenderingIntent,setColorRenderingIntent,isBlackPointCompensationEnabled,setBlackPointCompensationEnabled,load,loadFromString,loadFromURL,loadFromArchiveURL,saveToString,saveToArchive,create},... (+38)
-EditorAPI:{unlockWithLicense,isCapabilitySupported,getCapabilityState,checkCapabilities,startTracking,setTrackingMetadata,getTrackingMetadata,trackEvent,overrideTrackingEndpoint,getActiveLicense,getEngineVersion,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening},... (+102)
+EditorAPI:{unlockWithLicense,isCapabilitySupported,getCapabilityState,checkCapabilities,startTracking,setTrackingMetadata,getTrackingMetadata,trackEvent,overrideTrackingEndpoint,getActiveLicense,getEngineVersion,onStateChanged,setEditMode,getEditMode,unstable_isInteractionHappening},... (+104)
 EventAPI:{subscribe}
 VariableAPI:{findAll,setString,getString,remove,rename,setColor,getColor,setNumber,getNumber,setImage,getImage,setTypeface,getTypeface,getType,findAllOfType}
 Types:{AnimationType,AssetResult,BlendMode,Color,ExportOptions,PropertyType,Scope,TextCase,VideoExportOptions}

@@ -226,6 +226,7 @@ create(type: DesignBlockType): DesignBlockId
 ### duplicate()
 
 Duplicates a block and its children.
+Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization.
 
 ```typescript
 duplicate(id: DesignBlockId, attachToParent?: boolean): DesignBlockId
@@ -4359,6 +4360,8 @@ setCropRotation(id: DesignBlockId, rotation: number): void
 
 Sets the uniform crop scale ratio of a block.
 This scales the content up or down from the center of the crop frame.
+On a page with a bleed, the ratio and the center of the scale include the bleed.
+This needs the setting `page/imageFillCoversBleed`, which is on by default.
 ```javascript
 engine.block.setCropScaleRatio(image, 3.0);
 ```
@@ -4467,6 +4470,8 @@ getCropRotation(id: DesignBlockId): number
 ### getCropScaleRatio()
 
 Gets the uniform crop scale ratio of a block.
+On a page with a bleed, a ratio of 1 means that the content covers the page and its bleed.
+This needs the setting `page/imageFillCoversBleed`, which is on by default.
 ```javascript
 const cropScaleRatio = engine.block.getCropScaleRatio(image);
 ```
@@ -4515,6 +4520,8 @@ getCropTranslationY(id: DesignBlockId): number
 ### adjustCropToFillFrame()
 
 Adjusts the crop position and scale of the given image block to fill its crop frame, while maintaining the position and size of the crop frame.
+On a page with a bleed, the content also covers the bleed, and the ratio includes the bleed.
+This needs the setting `page/imageFillCoversBleed`, which is on by default.
 ```javascript
 const adjustedScaleRatio = engine.block.adjustCropToFillFrame(image, 1.0);
 ```

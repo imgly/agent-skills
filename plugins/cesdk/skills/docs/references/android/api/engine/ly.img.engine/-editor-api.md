@@ -288,6 +288,14 @@ abstract fun getSettingColor(keypath: String): RGBAColor
 
 Get a color setting.
 
+### getSettingDouble
+
+```kotlin
+abstract fun getSettingDouble(keypath: String): Double
+```
+
+Get a double setting.
+
 ### getSettingEnumOptions
 
 ```kotlin
@@ -665,6 +673,14 @@ abstract fun setSettingColor(keypath: String, value: RGBAColor)
 ```
 
 Set a color setting.
+
+### setSettingDouble
+
+```kotlin
+abstract fun setSettingDouble(keypath: String, value: Double)
+```
+
+Set a double setting.
 
 ### setSettingEnum
 

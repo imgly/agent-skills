@@ -31,7 +31,7 @@ Add a source to the `sourceSet` property of the given block. If there already ex
 @MainActor func adjustCropToFillFrame(_ id: DesignBlockID, minScaleRatio: Float) throws
 ```
 
-Adjust the crop position/scale to at least fill the crop frame. Required scope: “layer/crop” `id`
+Adjust the crop position/scale to at least fill the crop frame. On a page with a bleed, the content also covers the bleed, and the ratio includes the bleed. This needs the setting `page/imageFillCoversBleed`, which is on by default. Required scope: “layer/crop” `id`
 
 ### alignHorizontally(_:alignment:)
 
@@ -389,7 +389,7 @@ Distribute multiple blocks vertically within their bounding box so that the spac
 @MainActor func duplicate(_ id: DesignBlockID, attachToParent: Bool = true) throws -> DesignBlockID
 ```
 
-Duplicates a block including its children. Required scope: “lifecycle/duplicate” If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. `id`
+Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. Required scope: “lifecycle/duplicate” If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. `id`
 
 ### enterGroup(_:)
 
@@ -881,7 +881,7 @@ Get the crop rotation of the given design block. `id`
 @MainActor func getCropScaleRatio(_ id: DesignBlockID) throws -> Float
 ```
 
-Get the crop scale ratio of the given design block. `id`
+Get the crop scale ratio of the given design block. On a page with a bleed, a ratio of 1 means that the content covers the page and its bleed. This needs the setting `page/imageFillCoversBleed`, which is on by default. `id`
 
 ### getCropScaleX(_:)
 
@@ -2825,7 +2825,7 @@ Set the crop rotation of the given design block. Required scope: “layer/crop�
 @MainActor func setCropScaleRatio(_ id: DesignBlockID, scaleRatio: Float) throws
 ```
 
-Set the crop scale ratio of the given design block. This will uniformly scale the content up or down. The center of the scale operation is the center of the crop frame. Required scope: “layer/crop” `id`
+Set the crop scale ratio of the given design block. This will uniformly scale the content up or down. The center of the scale operation is the center of the crop frame. On a page with a bleed, the ratio and the center of the scale include the bleed. This needs the setting `page/imageFillCoversBleed`, which is on by default. Required scope: “layer/crop” `id`
 
 ### setCropScaleX(_:scaleX:)
 

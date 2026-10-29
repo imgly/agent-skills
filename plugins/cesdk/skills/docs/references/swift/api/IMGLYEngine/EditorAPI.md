@@ -357,6 +357,14 @@ Get a color setting. `keypath`
 
 Get a color setting. `keypath`
 
+### getSettingDouble(_:)
+
+```swift
+@MainActor func getSettingDouble(_ keypath: String) throws -> Double
+```
+
+Get a double setting. `keypath`
+
 ### getSettingEnum(_:)
 
 ```swift
@@ -810,6 +818,14 @@ Set a color setting. `keypath`
 ```
 
 Set a color setting. `keypath`
+
+### setSettingDouble(_:value:)
+
+```swift
+@MainActor func setSettingDouble(_ keypath: String, value: Double) throws
+```
+
+Sets a double setting. The default clip duration is in seconds.
 
 ### setSettingEnum(_:value:)
 

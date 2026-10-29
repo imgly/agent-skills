@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 323 generated API digests.
+Complete catalog of 325 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -90,6 +90,7 @@ Complete catalog of 323 generated API digests.
 - [CMYKColor](<../engine/ly.img.engine/-c-m-y-k-color.md>) — `ly.img.engine`
 - [CMYKProfileInfo](<../engine/ly.img.engine/-c-m-y-k-profile-info.md>) — `ly.img.engine`
 - [CharacterInkBox](<../engine/ly.img.engine/-character-ink-box.md>) — `ly.img.engine`
+- [ClipInitialDurationMode](<../engine/ly.img.engine/-clip-initial-duration-mode.md>) — `ly.img.engine`
 - [Color](<../engine/ly.img.engine/-color.md>) — `ly.img.engine`
 - [Color.Companion](<../engine/ly.img.engine/-color/-companion.md>) — `ly.img.engine`
 - [ColorRenderingIntent](<../engine/ly.img.engine/-color-rendering-intent.md>) — `ly.img.engine`
@@ -254,6 +255,7 @@ Complete catalog of 323 generated API digests.
 - [Setting](<../engine/ly.img.engine/-setting.md>) — `ly.img.engine`
 - [Setting.Boolean](<../engine/ly.img.engine/-setting/-boolean.md>) — `ly.img.engine`
 - [Setting.Color](<../engine/ly.img.engine/-setting/-color.md>) — `ly.img.engine`
+- [Setting.Double](<../engine/ly.img.engine/-setting/-double.md>) — `ly.img.engine`
 - [Setting.Enum](<../engine/ly.img.engine/-setting/-enum.md>) — `ly.img.engine`
 - [Setting.Float](<../engine/ly.img.engine/-setting/-float.md>) — `ly.img.engine`
 - [Setting.Int](<../engine/ly.img.engine/-setting/-int.md>) — `ly.img.engine`
