@@ -332,6 +332,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Using Default Assets](https://img.ly/docs/cesdk/dev/nextjs/import-media/default-assets-d2763d/)
 - [Retrieve Mimetype](https://img.ly/docs/cesdk/dev/nextjs/import-media/retrieve-mimetype-ed13bf/)
 - [Import EPS Artwork](https://img.ly/docs/cesdk/dev/nextjs/import-media/from-eps-9fe72b/)
+- [Place PDF Pages in a Design](https://img.ly/docs/cesdk/dev/nextjs/import-media/from-pdf-7d41ac/)
 - [Asset Content JSON Schema](https://img.ly/docs/cesdk/dev/nextjs/import-media/content-json-schema-a7b3d2/)
 - [File Format Support](https://img.ly/docs/cesdk/dev/nextjs/import-media/file-format-support-8cdc84/)
 - [Size Limits](https://img.ly/docs/cesdk/dev/nextjs/import-media/size-limits-c32275/)
