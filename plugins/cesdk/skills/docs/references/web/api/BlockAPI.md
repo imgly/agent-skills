@@ -115,11 +115,12 @@ The blocks are not attached by default and won't be visible until attached to a 
 The UUID of the loaded blocks is replaced with a new one.
 
 ```typescript
-loadFromArchiveURL(url: string): Promise<DesignBlockId[]>
+loadFromArchiveURL(url: string, options?: AbortOptions): Promise<DesignBlockId[]>
 ```
 
 **Parameters:**
 - `url` - The URL of the blocks archive file.
+- `options` - An `abortSignal` that stops the load. The load then creates no block.
 
 **Returns:** A promise that resolves with a list of handles representing the found blocks or an error.
 
@@ -131,11 +132,12 @@ The blocks are not attached by default and won't be visible until attached to a 
 The UUID of the loaded blocks is replaced with a new one.
 
 ```typescript
-loadFromURL(url: string): Promise<DesignBlockId[]>
+loadFromURL(url: string, options?: AbortOptions): Promise<DesignBlockId[]>
 ```
 
 **Parameters:**
 - `url` - The URL to the blocks file
+- `options` - An `abortSignal` that stops the load. The load then creates no block.
 
 **Returns:** A promise that resolves with a list of block handles
 
@@ -151,7 +153,7 @@ content, blocks saved before the font arrives can differ from blocks saved after
 two saves, first await `engine.block.forceLoadResources(blocks)`.
 
 ```typescript
-saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisallowedResourceScheme?: (url: string, dataHash: string) => Promise<string>): Promise<string>
+saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisallowedResourceScheme?: (url: string, dataHash: string) => Promise<string>, options?: AbortOptions): Promise<string>
 ```
 
 **Parameters:**
@@ -162,6 +164,8 @@ saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisal
 resource's data. The callback should return a new URL for the resource, which will be used in the serialized
 scene. The callback is expected to return the original URL if no persistence is needed. If the callback throws,
 rejects, or returns no string, the returned promise rejects and the blocks keep their URLs.
+- `options` - An `abortSignal` that stops a save that waits for `onDisallowedResourceScheme`.
+Later answers of the callback change nothing then.
 
 **Returns:** A promise that resolves to a string representing the blocks or an error.
 
@@ -177,11 +181,12 @@ compare two archives, first await `engine.block.forceLoadResources(blocks)`, the
 `blocks.blocks` files inside them. Each archive entry stores the time of the save.
 
 ```typescript
-saveToArchive(blocks: DesignBlockId[]): Promise<Blob>
+saveToArchive(blocks: DesignBlockId[], options?: AbortOptions): Promise<Blob>
 ```
 
 **Parameters:**
 - `blocks` - The blocks to save.
+- `options` - An `abortSignal` that stops the save.
 
 **Returns:** A promise that resolves with a Blob on success or an error on failure.
 
@@ -250,12 +255,14 @@ This is useful for preloading resources. If a resource failed to load previously
 Pass an empty array to load resources for every block currently known to the engine.
 
 ```typescript
-forceLoadResources(ids: DesignBlockId[]): Promise<void>
+forceLoadResources(ids: DesignBlockId[], options?: AbortOptions): Promise<void>
 ```
 
 **Parameters:**
 - `ids` - The blocks whose resources should be loaded. Pass an empty array to load resources for every
   block currently known to the engine.
+- `options` - An `abortSignal` that ends the wait, and stops each load that no block uses and no
+  other call waits for.
 
 **Returns:** A Promise that resolves once every resource has finished loading. The state of a block
 then reports the result of its fetch. A file that arrives but that the engine cannot decode
@@ -489,13 +496,15 @@ await engine.block.addImageFileURIToSourceSet(imageFill, 'fill/image/sourceSet',
 ```
 
 ```typescript
-addImageFileURIToSourceSet(id: DesignBlockId, property: SourceSetPropertyName, uri: string): Promise<void>
+addImageFileURIToSourceSet(id: DesignBlockId, property: SourceSetPropertyName, uri: string, options?: AbortOptions): Promise<void>
 ```
 
 **Parameters:**
 - `id` - The block to update.
 - `property` - The name of the property to modify.
 - `uri` - The source to add to the source set.
+- `options` - An `abortSignal` that stops the download of the image. The source set stays
+unchanged then.
 
 **Returns:** A promise that resolves when the operation is complete.
 
@@ -508,13 +517,15 @@ await engine.block.addVideoFileURIToSourceSet(videoFill, 'fill/video/sourceSet',
 ```
 
 ```typescript
-addVideoFileURIToSourceSet(id: DesignBlockId, property: SourceSetPropertyName, uri: string): Promise<void>
+addVideoFileURIToSourceSet(id: DesignBlockId, property: SourceSetPropertyName, uri: string, options?: AbortOptions): Promise<void>
 ```
 
 **Parameters:**
 - `id` - The block to update.
 - `property` - The name of the property to modify.
 - `uri` - The source to add to the source set.
+- `options` - An `abortSignal` that stops the download of the video. The source set stays
+unchanged then.
 
 **Returns:** A promise that resolves when the operation is complete.
 
@@ -875,11 +886,13 @@ Manage time-based media like video and audio, including playback, timing, and co
 Creates new caption blocks from an SRT or VTT file URI.
 
 ```typescript
-createCaptionsFromURI(uri: string): Promise<DesignBlockId[]>
+createCaptionsFromURI(uri: string, options?: AbortOptions): Promise<DesignBlockId[]>
 ```
 
 **Parameters:**
 - `uri` - The URI for the captions file to load. Supported file formats are: SRT and VTT.
+- `options` - An `abortSignal` that stops the download of the file. No caption block is
+created then.
 
 **Returns:** A promise that resolves with a list of the created caption blocks.
 
@@ -1421,11 +1434,14 @@ Lottie in the buffer, with the images that a Lottie references. It fails when th
 can read. A missing or empty buffer, or raw audio samples on an audio block, finish at once.
 
 ```typescript
-forceLoadAVResource(id: DesignBlockId): Promise<void>
+forceLoadAVResource(id: DesignBlockId, options?: AbortOptions): Promise<void>
 ```
 
 **Parameters:**
 - `id` - The video fill or audio block whose resource should be loaded.
+- `options` - An `abortSignal` that ends the wait. It stops the download, unless a block or another
+  call needs the file. The engine reads every video fill at each update, so the download of a video fill
+  goes on.
 
 **Returns:** A Promise that resolves once the resource has finished loading.
 

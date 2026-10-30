@@ -44,7 +44,7 @@ Create a new scene in video mode, along with its own camera.
 abstract suspend fun createFromImage(imageUri: Uri, dpi: Float = 300.0f, pixelScaleFactor: Float = 1.0f, sceneLayout: SceneLayout = SceneLayout.FREE): DesignBlock
 ```
 
-Loads the given image and creates a scene with a single page showing the image. Fetching the image may take an arbitrary amount of time, so the scene isn't immediately available.
+Loads the given image and creates a scene with a single page showing the image. Fetching the image may take an arbitrary amount of time, so the scene isn't immediately available. Cancelling the coroutine stops the download, and the current scene stays.
 
 ### createFromVideo
 
@@ -52,7 +52,7 @@ Loads the given image and creates a scene with a single page showing the image. 
 abstract suspend fun createFromVideo(videoUri: Uri): DesignBlock
 ```
 
-Loads the given video and creates a scene with a single page showing the video. Fetching the video may take an arbitrary amount of time, so the scene isn't immediately available.
+Loads the given video and creates a scene with a single page showing the video. Fetching the video may take an arbitrary amount of time, so the scene isn't immediately available. Cancelling the coroutine stops the download, and the current scene stays.
 
 ### create
 
@@ -278,7 +278,7 @@ Queries whether zoom auto-fit is enabled for block.
 abstract suspend fun loadArchive(archiveUri: Uri, overrideEditorConfig: Boolean = false, waitForResources: Boolean = false, onProgress: ((Int) -> Unit)? = null): DesignBlock
 ```
 
-Load the contents of a scene previously saved as an archive.
+Load the contents of a scene previously saved as an archive. Cancelling the coroutine stops the download, and the current scene stays.
 
 ### load
 

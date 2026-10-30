@@ -47,7 +47,7 @@ apply(sourceId: string, assetResult: AssetResult, options?: ApplyAssetOptions): 
 **Parameters:**
 - `sourceId` - The ID of the asset source.
 - `assetResult` - A single asset result from a `findAssets` query.
-- `options` - Optional configuration for asset application.
+- `options` - Optional configuration for asset application. An `abortSignal` stops the apply.
 
 **Returns:** Promise resolving to the created block ID, or undefined if no block was created.
 
@@ -257,6 +257,7 @@ relative URLs in the asset definitions (e.g., `{{base_url}}` placeholders).
 ```typescript
 addLocalAssetSourceFromJSONURI(contentURI: string, options?: {
         matcher?: string[];
+        abortSignal?: AbortSignal;
     }): Promise<string>
 ```
 
@@ -264,6 +265,7 @@ addLocalAssetSourceFromJSONURI(contentURI: string, options?: {
 - `contentURI` - The URI for the JSON file to load and parse.
 - `options` - Optional configuration:
   - `matcher`: Array of patterns to filter assets by ID. Supports `*` wildcard. An asset is included if it matches ANY pattern.
+  - `abortSignal`: Stops the download of the JSON file. No asset source is added then.
 
 **Returns:** The ID of the newly created asset source (as specified in the JSON's `id` field).
 

@@ -10,6 +10,10 @@ Types: LogLevel
 
 Types: MimeType, ImageMimeType, AudioMimeType, VideoMimeType, ApplicationMimeType
 
+## abortOptions
+
+Types: AbortOptions
+
 ## asset
 
 Types: Locale, Groups, SortingOrder, Source, AssetMetaData, AssetRGBColor, AssetCMYKColor, AssetSpotColor, AssetColor, AssetFixedAspectRatio, AssetFreeAspectRatio, AssetContentAspectRatio, AssetFixedSize, AssetTransformPreset, AssetStringProperty, AssetNumberProperty, AssetBooleanProperty, AssetEnumProperty, AssetColorProperty, AssetProperty, AssetStylePresetAnimationProperties, AssetStylePresetAnimation, AssetStylePresetPropertyValue, AssetStylePresetProperties, AssetStylePresetScalableProperty, AssetStylePreset, AssetPayload, Asset, AssetDefinition, AssetResult, CompleteAssetResult, AssetQueryData, AssetsQueryResult, AssetSource

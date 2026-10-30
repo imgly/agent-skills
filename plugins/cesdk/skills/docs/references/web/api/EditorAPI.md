@@ -989,8 +989,12 @@ const rgb = engine.editor.convertColorToColorSpace(cmyk, 'sRGB');
 ```
 
 ```typescript
-loadCMYKProfile(): Promise<void>
+loadCMYKProfile(options?: AbortOptions): Promise<void>
 ```
+
+**Parameters:**
+- `options` - An `abortSignal` that ends the wait. The download of the profile goes on, because the
+document keeps its profile loaded for its color conversions.
 
 **Returns:** A promise that resolves once the profile is loaded, and rejects with
 `COLOR.PROFILE_MISSING` when it cannot be read.
@@ -1110,11 +1114,12 @@ Get the MIME type of a resource.
 Downloads the resource if not already cached.
 
 ```typescript
-getMimeType(uri: string): Promise<string>
+getMimeType(uri: string, options?: AbortOptions): Promise<string>
 ```
 
 **Parameters:**
 - `uri` - The URI of the resource.
+- `options` - An `abortSignal` that stops the download of the resource.
 
 **Returns:** Promise resolving to the resource's MIME type.
 
@@ -1132,11 +1137,12 @@ console.log(metrics.underlineOffset, metrics.underlineSize, metrics.strikeoutOff
 ```
 
 ```typescript
-getFontMetrics(fontFileUri: string): Promise<FontMetrics>
+getFontMetrics(fontFileUri: string, options?: AbortOptions): Promise<FontMetrics>
 ```
 
 **Parameters:**
 - `fontFileUri` - The URI of the font file to get metrics from.
+- `options` - An `abortSignal` that stops the download of the font.
 
 **Returns:** A promise resolving to the font metrics.
 
