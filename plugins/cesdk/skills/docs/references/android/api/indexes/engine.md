@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 325 generated API digests.
+Complete catalog of 329 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -126,6 +126,7 @@ Complete catalog of 325 generated API digests.
 - [DiscreteValue.Bool](<../engine/ly.img.engine/-discrete-value/-bool.md>) — `ly.img.engine`
 - [DiscreteValue.Int](<../engine/ly.img.engine/-discrete-value/-int.md>) — `ly.img.engine`
 - [DiscreteValue.Text](<../engine/ly.img.engine/-discrete-value/-text.md>) — `ly.img.engine`
+- [DocumentColorProfileInfo](<../engine/ly.img.engine/-document-color-profile-info.md>) — `ly.img.engine`
 - [DominantColor](<../engine/ly.img.engine/-dominant-color.md>) — `ly.img.engine`
 - [DominantColorsOptions](<../engine/ly.img.engine/-dominant-colors-options.md>) — `ly.img.engine`
 - [EditorApi](<../engine/ly.img.engine/-editor-api.md>) — `ly.img.engine`
@@ -242,6 +243,9 @@ Complete catalog of 325 generated API digests.
 - [ObjectType](<../engine/ly.img.engine/-object-type.md>) — `ly.img.engine`
 - [PathVertex](<../engine/ly.img.engine/-path-vertex.md>) — `ly.img.engine`
 - [PositionMode](<../engine/ly.img.engine/-position-mode.md>) — `ly.img.engine`
+- [ProfileColorSpace](<../engine/ly.img.engine/-profile-color-space.md>) — `ly.img.engine`
+- [ProfileRole](<../engine/ly.img.engine/-profile-role.md>) — `ly.img.engine`
+- [ProfileSlot](<../engine/ly.img.engine/-profile-slot.md>) — `ly.img.engine`
 - [PropertyType](<../engine/ly.img.engine/-property-type.md>) — `ly.img.engine`
 - [RGBAColor](<../engine/ly.img.engine/-r-g-b-a-color.md>) — `ly.img.engine`
 - [ResolvedMovementConstraint](<../engine/ly.img.engine/-resolved-movement-constraint.md>) — `ly.img.engine`

@@ -140,8 +140,9 @@ Finds all blocks with the given type sorted by distance to viewport center.
 ```kotlin
 abstract fun getCMYKProfileInfo(): CMYKProfileInfo
 ```
+> **Deprecated:** Use getDocumentColorProfileInfo with Default/CMYK instead. Replace with `import ly.img.engine.ProfileSlot import ly.img.engine.ProfileRole import ly.img.engine.ProfileColorSpace; getDocumentColorProfileInfo(ProfileSlot(ProfileRole.DEFAULT, ProfileColorSpace.CMYK))`.
 
-What the document stores about its CMYK profile. Reports the profile that the document names, whether it is loaded, still loading, or failed to load. The fallback profile is not reported. Await EditorApi.loadCMYKProfile to learn whether the profile that renders is usable.
+What the document stores about its CMYK profile. Reports the profile that the document names, whether it is loaded, still loading, or failed to load. The fallback profile is not reported. Await EditorApi.loadColorProfiles to learn whether the profile that renders is usable.
 
 ### getColorRenderingIntent
 
@@ -174,6 +175,14 @@ abstract fun getDesignUnit(): DesignUnit
 ```
 
 Returns the design unit of the current scene.
+
+### getDocumentColorProfileInfo
+
+```kotlin
+abstract fun getDocumentColorProfileInfo(slot: ProfileSlot): DocumentColorProfileInfo
+```
+
+Returns a slot's reference without loading it. Fallback profiles are not reported.
 
 ### getFontSizeUnit
 
@@ -313,8 +322,17 @@ Subscribe to changes to the zoom level.
 ```kotlin
 abstract fun removeCMYKProfile()
 ```
+> **Deprecated:** Use removeDocumentColorProfile with Default/CMYK instead. Replace with `import ly.img.engine.ProfileSlot import ly.img.engine.ProfileRole import ly.img.engine.ProfileColorSpace; removeDocumentColorProfile(ProfileSlot(ProfileRole.DEFAULT, ProfileColorSpace.CMYK))`.
 
 Removes the CMYK profile from the document. CMYK conversion then uses the fallbackCMYKProfileUri setting, or the bundled profile when that setting is unset. Color management stays on. A setCMYKProfile request that is still loading is cancelled.
+
+### removeDocumentColorProfile
+
+```kotlin
+abstract fun removeDocumentColorProfile(slot: ProfileSlot)
+```
+
+Removes one profile and supersedes its pending assignment. Other slots stay unchanged. Removing Default/CMYK restores fallback resolution. Removing an empty slot succeeds.
 
 ### removeMarker
 
@@ -357,16 +375,18 @@ Turns black point compensation of the document on or off. The setting is documen
 ```kotlin
 abstract fun setCMYKProfileFromData(data: ByteBuffer)
 ```
+> **Deprecated:** Use setDocumentColorProfileFromData with Default/CMYK instead. Replace with `import ly.img.engine.ProfileSlot import ly.img.engine.ProfileRole import ly.img.engine.ProfileColorSpace; setDocumentColorProfileFromData(ProfileSlot(ProfileRole.DEFAULT, ProfileColorSpace.CMYK), data)`.
 
-Makes the ICC profile in data the CMYK profile of the document. Works like setCMYKProfile, but the change is in effect when the call returns. The engine keeps one buffer per distinct profile for its lifetime. SceneApi.saveToString stores this profile as a buffer:// URI that only this engine can read. Save to an archive to keep the profile bytes with the scene.
+Makes the ICC profile in data the CMYK profile of the document. Assigns to the slot with role Default and color space CMYK. Works like setCMYKProfile, but the change is in effect when the call returns. The engine keeps one buffer per distinct profile for its lifetime. SceneApi.saveToString stores this profile as a buffer:// URI that only this engine can read. Save to an archive to keep the profile bytes with the scene.
 
 ### setCMYKProfile
 
 ```kotlin
 abstract suspend fun setCMYKProfile(uri: Uri)
 ```
+> **Deprecated:** Use setDocumentColorProfile with Default/CMYK instead. Replace with `import ly.img.engine.ProfileSlot import ly.img.engine.ProfileRole import ly.img.engine.ProfileColorSpace; setDocumentColorProfile(ProfileSlot(ProfileRole.DEFAULT, ProfileColorSpace.CMYK), uri)`.
 
-Loads the ICC profile at uri and makes it the CMYK profile of the document. The profile is document state: it is saved with the scene and bundled into an archive. It converts CMYK colors, the CMYK approximations of spot colors, and CMYK images without an embedded profile, while scene/colorConversionMode is Managed. An image with its own profile keeps using that profile.
+Loads the ICC profile at uri and makes it the CMYK profile of the document. Assigns to the slot with role Default and color space CMYK. The profile is document state: it is saved with the scene and bundled into an archive. It converts CMYK colors, the CMYK approximations of spot colors, and CMYK images without an embedded profile, while scene/colorConversionMode is Managed. An image with its own profile keeps using that profile.
 
 ### setColorRenderingIntent
 
@@ -391,6 +411,22 @@ abstract fun setDesignUnit(designUnit: DesignUnit)
 ```
 
 Converts all values of the current scene into the given design unit.
+
+### setDocumentColorProfileFromData
+
+```kotlin
+abstract fun setDocumentColorProfileFromData(slot: ProfileSlot, data: ByteBuffer)
+```
+
+Assigns ICC bytes synchronously, with the same slots and persistence as setDocumentColorProfile. The engine copies the bytes and keeps one buffer per distinct profile for its lifetime. saveToString stores a buffer URI readable only by this engine; use an archive to retain bytes. To save a URL instead, upload the bytes that findAllTransientResources lists and call relocateResource before saving.
+
+### setDocumentColorProfile
+
+```kotlin
+abstract suspend fun setDocumentColorProfile(slot: ProfileSlot, uri: Uri)
+```
+
+Assigns an ICC profile to one document role and component space. Profiles save with the scene and are bundled into archives. Only Default/CMYK currently affects managed conversion; other slots store profiles without changing rendering or export. Failure or coroutine cancellation keeps the previous profile. Another assignment or removal in this slot, or scene replacement, supersedes pending loading. Other slots are independent. Undo and redo do not change profiles.
 
 ### setFontSizeUnit
 

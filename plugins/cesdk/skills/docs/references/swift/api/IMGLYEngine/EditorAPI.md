@@ -55,7 +55,7 @@ If the engine does not support working in the P3 color space, this function thro
 @MainActor func convertColorToColorSpace(color: Color, colorSpace: ColorSpace) throws -> Color
 ```
 
-Converts a color to the given color space. In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK uses the document or fallback CMYK profile. While the required profile loads from a URI, this conversion throws `COLOR.PROFILE_NOT_LOADED`. Await [`loadCMYKProfile()`](loadcmykprofile().md) first. RGB-to-CMYK conversion uses a simple formula if the profile only converts CMYK to RGB or cannot load. `color`
+Converts a color to the given color space. In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK uses the document or fallback CMYK profile. While the required profile loads from a URI, this conversion throws `COLOR.PROFILE_NOT_LOADED`. Await [`loadColorProfiles()`](loadcolorprofiles().md) first. RGB-to-CMYK conversion uses a simple formula if the profile only converts CMYK to RGB or cannot load. `color`
 
 ### createBuffer()
 
@@ -519,11 +519,21 @@ Checks whether the block can currently be selected. `id`
 
 ### loadCMYKProfile()
 
+> **Deprecated:** Use 'loadColorProfiles()' instead. Renamed to `loadColorProfiles()`.
+
 ```swift
 @MainActor func loadCMYKProfile() async throws
 ```
 
 Loads the CMYK profile used for managed color conversion and preview. The profile is a resource, and a resource takes several update cycles to arrive, so a conversion that needs it can fail right after the engine starts. Await this once and every later [`convertColorToColorSpace(color:colorSpace:)`](./convertcolortocolorspace(color:colorspace:).md) answers without handling `COLOR.PROFILE_NOT_LOADED`.
+
+### loadColorProfiles()
+
+```swift
+@MainActor func loadColorProfiles() async throws
+```
+
+Loads the color profiles used for managed color conversion and preview. Waits for every profile the document names, and for the effective Default/CMYK profile, including the configured or bundled fallback. Only the Default/CMYK result decides the outcome: a profile of another slot that fails to load is logged and does not fail the call. Configuration changes during loading are resolved before completion. Call again after later changes. Returns immediately when every profile the document names is already loaded. Task cancellation ends this wait; the profile keeps loading for color conversion.
 
 ### onHistoryUpdated
 

@@ -56,7 +56,7 @@ Throws an exception if the device does not support displaying and working in the
 abstract fun convertColorToColorSpace(color: Color, colorSpace: ColorSpace): Color
 ```
 
-Converts a color to the given color space. In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK uses the document or fallback CMYK profile. While the required profile loads from a URI, this conversion throws COLOR.PROFILE_NOT_LOADED. Await loadCMYKProfile first. RGB-to-CMYK conversion uses a simple formula if the profile only converts CMYK to RGB or cannot load.
+Converts a color to the given color space. In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK uses the document or fallback CMYK profile. While the required profile loads from a URI, this conversion throws COLOR.PROFILE_NOT_LOADED. Await loadColorProfiles first. RGB-to-CMYK conversion uses a simple formula if the profile only converts CMYK to RGB or cannot load.
 
 ### createBuffer
 
@@ -462,8 +462,17 @@ Checks whether the block can currently be selected.
 ```kotlin
 abstract suspend fun loadCMYKProfile()
 ```
+> **Deprecated:** Use loadColorProfiles instead. Replace with `loadColorProfiles()`.
 
 Loads the CMYK profile used for managed color conversion and preview. The profile is a resource, and a resource takes several update cycles to arrive, so a conversion that needs it can fail right after the engine starts. Await this once and every later convertColorToColorSpace answers without handling COLOR.PROFILE_NOT_LOADED.
+
+### loadColorProfiles
+
+```kotlin
+abstract suspend fun loadColorProfiles()
+```
+
+Loads the color profiles used for managed color conversion and preview. Waits for every profile the document names, and for the effective Default/CMYK profile, including the configured or bundled fallback. Only the Default/CMYK result decides the outcome: a profile of another slot that fails to load is logged and does not fail the call. Configuration changes during loading are resolved before completion. Call again after later changes. Returns immediately when every profile the document names is already loaded. Coroutine cancellation ends this wait; the profile keeps loading for color conversion.
 
 ### onCarouselPageChanged
 
@@ -528,7 +537,7 @@ Redo one step in the history if a redo step is available.
 abstract fun relocateResource(currentUri: Uri, relocatedUri: Uri)
 ```
 
-Changes the uri associated with a resource. Note: This function can be used change the Uri of a resource that has been relocated (e.g., to a CDN).
+Changes the uri associated with a resource. Note: This function can be used change the Uri of a resource that has been relocated (e.g., to a CDN). Relocating the Uri of a document color profile also repoints the profile. A setDocumentColorProfile request for that Uri that is still loading commits the new Uri once it loads.
 
 ### removeMovementConstraint
 

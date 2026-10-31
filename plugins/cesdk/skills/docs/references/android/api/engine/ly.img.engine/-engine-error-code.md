@@ -3162,6 +3162,12 @@ const val COLOR_PROFILE_MISSING: String
 const val COLOR_PROFILE_NOT_LOADED: String
 ```
 
+### COLOR_PROFILE_SLOT_INVALID
+
+```kotlin
+const val COLOR_PROFILE_SLOT_INVALID: String
+```
+
 ### COLOR_PROFILE_SPACE_MISMATCH
 
 ```kotlin

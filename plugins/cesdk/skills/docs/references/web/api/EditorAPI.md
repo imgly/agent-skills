@@ -986,7 +986,7 @@ Converts a color to the given color space.
 In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK
 uses the document or fallback CMYK profile.
 While the required profile loads from a URI, this conversion throws `COLOR.PROFILE_NOT_LOADED`.
-Await {@link loadCMYKProfile} first. RGB-to-CMYK conversion uses a simple formula
+Await {@link loadColorProfiles} first. RGB-to-CMYK conversion uses a simple formula
 if the profile only converts CMYK to RGB or cannot load.
 
 ```typescript
@@ -999,7 +999,7 @@ convertColorToColorSpace(color: Color, colorSpace: 'sRGB'): RGBAColor
 
 **Returns:** The converted color.
 
-### loadCMYKProfile()
+### loadCMYKProfile() *(deprecated)*
 
 Loads the CMYK profile used for managed color conversion and preview.
 The profile is a resource, and a resource takes several update cycles to arrive, so a
@@ -1009,7 +1009,7 @@ Loads the profile the document names, otherwise the one the `fallbackCMYKProfile
 names, which is the bundled default profile while that setting is unset. Call it again after
 changing either, so the new profile is loaded before the next conversion.
 ```javascript
-await engine.editor.loadCMYKProfile();
+await engine.editor.loadColorProfiles();
 const rgb = engine.editor.convertColorToColorSpace(cmyk, 'sRGB');
 ```
 
@@ -1215,6 +1215,9 @@ The callback will be called as long as there is data left to provide and the cal
 
 Changes the URL associated with a resource.
 This function can be used change the URL of a resource that has been relocated (e.g., to a CDN).
+Relocating the URL of a document color profile also repoints the profile. A
+`setDocumentColorProfile` request for that URL that is still loading commits the new URL once
+it loads.
 
 ```typescript
 relocateResource(currentUrl: string, relocatedUrl: string): void

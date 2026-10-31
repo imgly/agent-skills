@@ -2,9 +2,73 @@
 
 ## Color Management
 
-### setCMYKProfile()
+### setDocumentColorProfile()
+
+Assigns an ICC profile to one document role and component space.
+Profiles save with the scene and are bundled into archives. Only Default/CMYK currently
+affects managed conversion; other slots store profiles without changing rendering or export.
+Failure keeps the previous profile. Another assignment or removal in this slot, or scene
+replacement, supersedes pending loading. Other slots are independent. Undo and redo do not
+change profiles.
+
+```typescript
+setDocumentColorProfile(slot: ProfileSlot, uri: string, options?: AbortOptions): Promise<void>
+```
+
+**Parameters:**
+- `slot` - The role and component space to assign.
+- `uri` - The URI of an ICC profile matching the slot's space.
+- `options` - Abort options. Aborting keeps the previous profile unchanged.
+
+**Returns:** Resolves after assignment; rejects on loading, validation, a space mismatch,
+supersession or an invalid slot (`COLOR.PROFILE_SLOT_INVALID`).
+
+### setDocumentColorProfileFromData()
+
+Assigns ICC bytes synchronously, with the same slots and persistence as setDocumentColorProfile.
+The engine copies the bytes and keeps one buffer per distinct profile for its lifetime.
+saveToString stores a buffer URI readable only by this engine; use an archive to retain the bytes.
+To save a URL instead, upload the bytes that findAllTransientResources lists and call relocateResource
+before saving.
+
+```typescript
+setDocumentColorProfileFromData(slot: ProfileSlot, data: Uint8Array): void
+```
+
+**Parameters:**
+- `slot` - The role and component space to assign.
+- `data` - ICC bytes matching the slot's space.
+
+### getDocumentColorProfileInfo()
+
+Returns the reference stored in a slot without loading it. Fallback profiles are not reported.
+The name is empty while unloaded or when absent from the profile.
+
+```typescript
+getDocumentColorProfileInfo(slot: ProfileSlot): DocumentColorProfileInfo
+```
+
+**Parameters:**
+- `slot` - The role and component space to inspect.
+
+**Returns:** The stored hash, URI and loaded name.
+
+### removeDocumentColorProfile()
+
+Removes one profile and supersedes its pending assignment. Other slots stay unchanged.
+Removing Default/CMYK restores fallback resolution. Removing an empty slot succeeds.
+
+```typescript
+removeDocumentColorProfile(slot: ProfileSlot): void
+```
+
+**Parameters:**
+- `slot` - The role and component space to remove.
+
+### setCMYKProfile() *(deprecated)*
 
 Loads the ICC profile at a URI and makes it the CMYK profile of the document.
+Assigns to the slot with role `Default` and color space `CMYK`.
 The profile is document state: it is saved with the scene and bundled into an archive. It
 converts CMYK colors, the CMYK approximations of spot colors, and CMYK images without an
 embedded profile, while `scene/colorConversionMode` is `'Managed'`. An image with its own
@@ -13,7 +77,10 @@ The assignment is atomic. The previous profile stays in effect while the new one
 failure leaves it unchanged. A later assignment, {@link removeCMYKProfile} or a scene load
 replaces a request that is still loading. Undo and redo do not change the profile.
 ```javascript
-await engine.scene.setCMYKProfile('https://example.com/profiles/PSOcoated_v3.icc');
+await engine.scene.setDocumentColorProfile(
+  { role: 'Default', space: 'CMYK' },
+  'https://example.com/profiles/PSOcoated_v3.icc'
+);
 ```
 
 ```typescript
@@ -31,16 +98,20 @@ stays then.
 `COLOR.PROFILE_SPACE_MISMATCH` when the profile is not CMYK, and
 `COLOR.PROFILE_ASSIGNMENT_SUPERSEDED` when a later change replaced the request.
 
-### setCMYKProfileFromData()
+### setCMYKProfileFromData() *(deprecated)*
 
 Makes the ICC profile in the given bytes the CMYK profile of the document.
+Assigns to the slot with role `Default` and color space `CMYK`.
 Works like {@link setCMYKProfile}, but the change is in effect when the call returns. The
 engine keeps one buffer per distinct profile for its lifetime.
 {@link saveToString} stores this profile as a `buffer://` URI that only this engine can read.
 Save to an archive to keep the profile bytes with the scene.
 ```javascript
 const response = await fetch('https://example.com/profiles/PSOcoated_v3.icc');
-engine.scene.setCMYKProfileFromData(new Uint8Array(await response.arrayBuffer()));
+engine.scene.setDocumentColorProfileFromData(
+  { role: 'Default', space: 'CMYK' },
+  new Uint8Array(await response.arrayBuffer())
+);
 ```
 
 ```typescript
@@ -50,11 +121,11 @@ setCMYKProfileFromData(data: Uint8Array): void
 **Parameters:**
 - `data` - The bytes of a CMYK ICC profile.
 
-### getCMYKProfileInfo()
+### getCMYKProfileInfo() *(deprecated)*
 
 What the document stores about its CMYK profile.
 Reports the profile that the document names, whether it is loaded, still loading, or failed
-to load. The fallback profile is not reported. Await `engine.editor.loadCMYKProfile()` to learn
+to load. The fallback profile is not reported. Await `engine.editor.loadColorProfiles()` to learn
 whether the profile that renders is usable.
 
 ```typescript
@@ -63,14 +134,14 @@ getCMYKProfileInfo(): CMYKProfileInfo
 
 **Returns:** The info for the document's CMYK profile.
 
-### removeCMYKProfile()
+### removeCMYKProfile() *(deprecated)*
 
 Removes the CMYK profile from the document.
 CMYK conversion then uses the `fallbackCMYKProfileUri` setting, or the bundled profile when
 that setting is unset. Color management stays on. A {@link setCMYKProfile} request that is
 still loading is cancelled.
 ```javascript
-engine.scene.removeCMYKProfile();
+engine.scene.removeDocumentColorProfile({ role: 'Default', space: 'CMYK' });
 ```
 
 ```typescript

@@ -3161,6 +3161,12 @@ case colorProfileMissing
 case colorProfileNotLoaded
 ```
 
+### EngineErrorCode.colorProfileSlotInvalid
+
+```swift
+case colorProfileSlotInvalid
+```
+
 ### EngineErrorCode.colorProfileSpaceMismatch
 
 ```swift

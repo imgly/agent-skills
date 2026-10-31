@@ -3,7 +3,7 @@
 - **Module:** `ly.img:plugin-background-removal`
 - **Package:** `ly.img.editor.plugin.backgroundRemoval`
 
-Plugin for background removal. This plugin adds a button to the Dock that removes the background of the current page's image. Add InspectorBar.Button.rememberBackgroundRemoval with inspectorBarModifier to remove the background of the selected image or page. Each result file goes through the editor's onUpload callback, and the image gets the URI that the callback returns.
+Plugin for background removal. This plugin adds a button to the Dock that removes the background of the current page's image. Add InspectorBar.Button.rememberBackgroundRemoval with inspectorBarModifier to remove the background of the selected image or page. The results are PNG files in the app's cache directory, which Android can clear. To keep them, upload the file:// URIs that engine.editor.findAllMediaURIs() returns, and point the scene to the uploads with engine.editor.relocateResource.
 
 ```kotlin
 open class BackgroundRemovalPlugin : EditorConfigurationBuilder

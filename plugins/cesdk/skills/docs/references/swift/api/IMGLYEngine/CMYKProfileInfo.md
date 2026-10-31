@@ -25,7 +25,7 @@ SHA-256 of the profile bytes, base64 encoded. Two profiles with the same hash ha
 let name: String
 ```
 
-The ICC `desc` tag of the profile. Empty when the profile carries no description, and while it is still loading.
+The ICC `desc` tag of the profile. Empty when the profile carries no description, and until the engine opens the profile. A profile that you assign opens at once. After a scene or archive load, a profile opens when a conversion needs it, or when `loadColorProfiles()` runs.
 
 ### uri
 
