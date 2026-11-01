@@ -28,7 +28,7 @@ abstract suspend fun applyTemplate(template: String)
 abstract suspend fun applyTemplate(templateUri: Uri)
 ```
 
-Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions.
+Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks.
 
 ### createForVideo
 

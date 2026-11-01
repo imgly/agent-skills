@@ -2609,6 +2609,24 @@ case blockValueNotFiniteInUnitRange
 case blockValueNotNumber
 ```
 
+### EngineErrorCode.blockValueSetNameInvalid
+
+```swift
+case blockValueSetNameInvalid
+```
+
+### EngineErrorCode.blockValueSetNameTaken
+
+```swift
+case blockValueSetNameTaken
+```
+
+### EngineErrorCode.blockValueSetNotFound
+
+```swift
+case blockValueSetNotFound
+```
+
 ### EngineErrorCode.blockValuesNotFiniteThree
 
 ```swift

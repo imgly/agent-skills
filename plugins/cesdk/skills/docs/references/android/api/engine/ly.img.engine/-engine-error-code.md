@@ -2622,6 +2622,24 @@ const val BLOCK_VALUE_NOT_FINITE_IN_UNIT_RANGE: String
 const val BLOCK_VALUE_NOT_NUMBER: String
 ```
 
+### BLOCK_VALUE_SET_NAME_INVALID
+
+```kotlin
+const val BLOCK_VALUE_SET_NAME_INVALID: String
+```
+
+### BLOCK_VALUE_SET_NAME_TAKEN
+
+```kotlin
+const val BLOCK_VALUE_SET_NAME_TAKEN: String
+```
+
+### BLOCK_VALUE_SET_NOT_FOUND
+
+```kotlin
+const val BLOCK_VALUE_SET_NOT_FOUND: String
+```
+
 ### BLOCK_VARIABLE_BINDING_GRADIENT_STOPS_UNSUPPORTED
 
 ```kotlin

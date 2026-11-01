@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 329 generated API digests.
+Complete catalog of 333 generated API digests.
 
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -318,7 +318,11 @@ Complete catalog of 329 generated API digests.
 - [UnstableEngineApi](<../engine/ly.img.engine/-unstable-engine-api.md>) — `ly.img.engine`
 - [UriResolverAsync](<../engine/ly.img.engine/-uri-resolver-async.md>) — `ly.img.engine`
 - [UriResolverAsync.Companion](<../engine/ly.img.engine/-uri-resolver-async/-companion.md>) — `ly.img.engine`
+- [ValueSetId](<../engine/ly.img.engine/-value-set-id.md>) — `ly.img.engine`
 - [VariableApi](<../engine/ly.img.engine/-variable-api.md>) — `ly.img.engine`
+- [VariableTarget](<../engine/ly.img.engine/-variable-target.md>) — `ly.img.engine`
+- [VariableTarget.Default](<../engine/ly.img.engine/-variable-target/-default.md>) — `ly.img.engine`
+- [VariableTarget.ValueSet](<../engine/ly.img.engine/-variable-target/-value-set.md>) — `ly.img.engine`
 - [VariableType](<../engine/ly.img.engine/-variable-type.md>) — `ly.img.engine`
 - [Vector2](<../engine/ly.img.engine/-vector2.md>) — `ly.img.engine`
 - [VerticalBlockAlignment](<../engine/ly.img.engine/-vertical-block-alignment.md>) — `ly.img.engine`

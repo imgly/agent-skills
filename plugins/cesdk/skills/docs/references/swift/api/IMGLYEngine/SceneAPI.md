@@ -23,7 +23,7 @@ Add a marker to the end of the current scene’s marker list. Markers name point
 @MainActor func applyTemplate(from string: String) async throws
 ```
 
-Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. `string`
+Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks. `string`
 
 ### applyTemplate(from:)-8krqr
 
@@ -31,7 +31,7 @@ Applies the contents of the given template scene to the currently loaded scene. 
 @MainActor func applyTemplate(from url: URL) async throws
 ```
 
-Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. `url`
+Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks. `url`
 
 ### applyTemplate(fromString:)
 
@@ -41,7 +41,7 @@ Applies the contents of the given template scene to the currently loaded scene. 
 @MainActor func applyTemplate(fromString string: String) async throws
 ```
 
-Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. `string`
+Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks. `string`
 
 ### applyTemplate(fromURL:)
 
@@ -51,7 +51,7 @@ Applies the contents of the given template scene to the currently loaded scene. 
 @MainActor func applyTemplate(fromURL url: URL) async throws
 ```
 
-Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. `url`
+Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks. `url`
 
 ### create(designUnit:fontSizeUnit:sceneLayout:)
 

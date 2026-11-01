@@ -218,7 +218,7 @@ load(source: string | URL, overrideEditorConfig?: boolean, waitForResources?: bo
 
 **Parameters:**
 - `source` - A scene string previously created by `saveToString`, or the URL of a scene or archive file.
-- `overrideEditorConfig` - Whether to override editor configuration with settings and data from the scene file. Defaults to false.
+- `overrideEditorConfig` - Whether to override editor configuration with settings and data from the scene file. The scene's variables load either way, and a key that is not valid is repaired, such as `ubq.name` to `ubq_name`. A variable set while no scene existed replaces the loaded value of its key. Defaults to false.
 - `waitForResources` - Whether to wait for all resources to finish loading before resolving. Defaults to false.
 
 **Returns:** A handle to the loaded scene.
@@ -233,7 +233,7 @@ loadFromString(sceneContent: string, overrideEditorConfig?: boolean, waitForReso
 
 **Parameters:**
 - `sceneContent` - The scene file contents, a base64 string.
-- `overrideEditorConfig` - Whether to override editor configuration with settings and data from the scene file. Defaults to false.
+- `overrideEditorConfig` - Whether to override editor configuration with settings and data from the scene file. The scene's variables load either way, and a key that is not valid is repaired, such as `ubq.name` to `ubq_name`. A variable set while no scene existed replaces the loaded value of its key. Defaults to false.
 - `waitForResources` - Whether to wait for all resources to finish loading before resolving. Defaults to false.
 
 **Returns:** A handle to the loaded scene.
@@ -248,7 +248,7 @@ loadFromURL(url: string, overrideEditorConfig?: boolean, waitForResources?: bool
 
 **Parameters:**
 - `url` - The URL of the scene file.
-- `overrideEditorConfig` - Whether to override editor configuration with settings and data from the scene file. Defaults to false.
+- `overrideEditorConfig` - Whether to override editor configuration with settings and data from the scene file. The scene's variables load either way, and a key that is not valid is repaired, such as `ubq.name` to `ubq_name`. A variable set while no scene existed replaces the loaded value of its key. Defaults to false.
 - `waitForResources` - Whether to wait for all resources to finish loading before resolving. Defaults to false.
 
 **Returns:** scene A promise that resolves once the scene was loaded or rejects with an error otherwise.
@@ -263,7 +263,7 @@ loadFromArchiveURL(url: string, overrideEditorConfig?: boolean, waitForResources
 
 **Parameters:**
 - `url` - The URL of the scene archive file.
-- `overrideEditorConfig` - Whether to override editor configuration with settings and data from the scene file. Defaults to false.
+- `overrideEditorConfig` - Whether to override editor configuration with settings and data from the scene file. The scene's variables load either way, and a key that is not valid is repaired, such as `ubq.name` to `ubq_name`. A variable set while no scene existed replaces the loaded value of its key. Defaults to false.
 - `waitForResources` - Whether to wait for all resources to finish loading before resolving. Defaults to false.
 
 **Returns:** scene A promise that resolves once the scene was loaded or rejects with an error otherwise.
@@ -596,6 +596,8 @@ Applies the contents of the given template scene to the currently loaded scene.
 This loads the template scene while keeping the design unit and page dimensions
 of the current scene. The content of the pages is automatically adjusted to fit
 the new dimensions.
+The current scene keeps its variables and value sets, and gains those of the template that it
+lacks.
 ```javascript
 engine.scene.applyTemplateFromString(await engine.scene.saveToString());
 ```
@@ -615,6 +617,8 @@ Applies the contents of the given template scene to the currently loaded scene.
 This loads the template scene while keeping the design unit and page dimensions
 of the current scene. The content of the pages is automatically adjusted to fit
 the new dimensions.
+The current scene keeps its variables and value sets, and gains those of the template that it
+lacks.
 ```javascript
 engine.scene.applyTemplateFromURL('https://cdn.img.ly/assets/demo/v4/ly.img.template/templates/cesdk_postcard_1.scene');
 ```

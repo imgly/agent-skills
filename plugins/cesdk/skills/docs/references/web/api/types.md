@@ -76,7 +76,7 @@ Types: Settings, SettingKey, SettingValueType
 
 ## variable
 
-Types: VariableType
+Types: VariableType, ValueSetId, VariableTarget, VariableOptions
 
 ---
 
