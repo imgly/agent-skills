@@ -627,6 +627,14 @@ Subscribe to changes to the editor state.
 
 Redo one step in the history if a redo step is available.
 
+### releaseMemory()
+
+```swift
+@MainActor func releaseMemory()
+```
+
+Free the memory that the engine can build again without a download. The engine frees the decoded images that the canvas did not draw last, and the video thumbnails. It also frees the files that no block uses, and the unused GPU textures. The files that blocks use stay, so no file downloads again. The next frames decode the freed images again when they need them. On iOS the engine calls it on its own when the system sends a memory warning.
+
 ### relocateResource(currentURL:relocatedURL:)
 
 ```swift

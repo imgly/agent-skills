@@ -366,7 +366,7 @@ abstract suspend fun exportVideo(block: DesignBlock, timeOffset: Double, duratio
 abstract suspend fun exportVideo(blocks: List<DesignBlock>, timeOffset: Double, duration: Double, mimeType: MimeType, progressCallback: (ExportVideoProgress) -> Unit, options: ExportVideoOptions? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
 ```
 
-Exports a design block as a video file of the given mime type. Note: MP4 exports embed a PNG cover at the page playback position unless coverTimeOffset overrides it. Note: The export will run across multiple iterations of the update loop. In each iteration a frame is scheduled for encoding. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance and is alive until the suspending function resumes. Use this lambda to configure the background engine for export. If uriResolver is provided it will be set on the background engine before the exported scene is loaded and once more after onPreExport is invoked (so it takes precedence i…
+Exports a design block as a video file of the given mime type. Note: MP4 exports embed a PNG cover at the page playback position unless coverTimeOffset overrides it. Note: The export will run across multiple iterations of the update loop. In each iteration a frame is scheduled for encoding. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with…
 
 ### exportWithColorMask
 
@@ -378,7 +378,7 @@ abstract suspend fun exportWithColorMask(block: DesignBlock, mimeType: MimeType,
 abstract suspend fun exportWithColorMask(blocks: List<DesignBlock>, mimeType: MimeType, maskColor: RGBAColor, options: ExportOptions? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<Pair<ByteBuffer, ByteBuffer>>
 ```
 
-Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance and is alive until the suspending function resumes. Use this lambda to configure the background engine for export. If uriResolver is provided it will be set on the background engine before the exported scene is loaded and once more after onPreExport is invoked (so it takes precedence if onPreExport also sets a resolver).
+Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPreExport runs on every export, and what it changes stays for the next export: settings, role, global scopes, asset sources a…
 
 ### export
 
@@ -398,7 +398,7 @@ abstract fun export(block: DesignBlock, options: ExportOptions? = null, progress
 abstract suspend fun export(blocks: List<DesignBlock>, mimeType: MimeType, options: ExportOptions? = null, progressCallback: ((ExportPdfProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
 ```
 
-Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance and is alive until the suspending function resumes. Use this lambda to configure the background engine for export. If uriResolver is provided it will be set on the background engine before the exported scene is loaded and once more after onPreExport is invoked (so it takes precedence if onPreExport also sets a resolver).
+Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPreExport runs on every export, and what it changes stays for the next export: settings, role, global scopes, asset sources a…
 
 ### fillParent
 

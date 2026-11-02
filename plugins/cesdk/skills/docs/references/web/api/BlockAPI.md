@@ -1740,7 +1740,8 @@ Gets the current state of a block.
 A block's state is determined by its own state and that of its shape, fill, and effects.
 A block whose CMYK or spot color needs the document CMYK profile is pending while that
 profile loads.
-Runs an engine update when the block names a resource that nothing asked for yet.
+Runs an engine update for a resource that nothing asked for yet,
+while the scene has a change to lay out.
 A font set just before this call is then reported as pending.
 An 'Error' state carries the catalog error of the failed load in `engineError` when the
 engine knows it, such as a `.lottie` archive that cannot be read or a video that cannot be

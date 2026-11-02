@@ -48,7 +48,7 @@ Draw crop marks outside the bleed on every exported PDF page. Crop marks are the
 val exportPdfWithHighCompatibility: Boolean = true
 ```
 
-Export the PDF document with a higher compatibility to different PDF viewers. Bitmap images and some effects like gradients will be rasterized with the DPI setting instead of embedding them directly. The default value is true.
+Export the PDF document with a higher compatibility to different PDF viewers. Bitmap images, stripe fills, conical gradients, gradients with transparency and fills with effects are rasterized with the DPI setting instead of embedding them directly. A linear or radial gradient without transparency stays a vector. The default value is true.
 
 ### exportPdfWithRegistrationMarks
 

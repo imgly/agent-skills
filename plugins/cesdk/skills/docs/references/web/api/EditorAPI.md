@@ -855,6 +855,20 @@ getUsedMemory(): number
 
 **Returns:** The current memory usage in bytes.
 
+### releaseMemory()
+
+Free the memory that the engine can build again without a download.
+The engine frees the decoded images that the canvas did not draw last, and the video thumbnails. It also frees
+the files that no block uses, and the unused GPU textures. The files that blocks use stay, so no file downloads
+again. The next frames decode the freed images again when they need them.
+```javascript
+engine.editor.releaseMemory();
+```
+
+```typescript
+releaseMemory(): void
+```
+
 ### getMaxExportSize()
 
 Get the maximum export size limit for the current device.

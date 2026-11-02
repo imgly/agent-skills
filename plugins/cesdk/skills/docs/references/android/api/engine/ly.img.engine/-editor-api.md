@@ -531,6 +531,14 @@ abstract fun redo()
 
 Redo one step in the history if a redo step is available.
 
+### releaseMemory
+
+```kotlin
+abstract fun releaseMemory()
+```
+
+Free the memory that the engine can build again without a download. The engine frees the decoded images that the canvas did not draw last, and the video thumbnails. It also frees the files that no block uses, and the unused GPU textures. The files that blocks use stay, so no file downloads again. The next frames decode the freed images again when they need them. The engine calls it on its own when the system reports low memory or moves the app to the background. From Android 14 the system reports no low memory to an app in the foreground, so call it there yourself.
+
 ### relocateResource
 
 ```kotlin
@@ -585,7 +593,7 @@ Mark the given history as active, returns an error if the handle doesn't refer t
 abstract fun setAppIsPaused(paused: Boolean)
 ```
 
-Inform the engine that the app went to the background when paused. When the app is paused, the engine will try to release resources to save memory. The audio output device will be suspended on pause. It starts again automatically as soon as a block is playing or can be started manually with startAudioOutputDevice.
+Inform the engine that the app went to the background when paused. A pause frees the audio and video decoders, and the memory that releaseMemory frees. So after a resume, the first frames upload their textures again and make the video thumbnails again. The audio output device will be suspended on pause. It starts again automatically as soon as a block is playing or can be started manually with startAudioOutputDevice.
 
 ### setBufferData
 
