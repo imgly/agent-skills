@@ -3086,7 +3086,8 @@ sendBackward(id: DesignBlockId): void
 
 ### getRotation()
 
-Gets the rotation of a block in radians.
+Gets the rotation of a block in the scene's angle unit (radians by default).
+The angle unit is configured via `engine.scene.setAngleUnit()`.
 
 ```typescript
 getRotation(id: DesignBlockId): number
@@ -3095,12 +3096,13 @@ getRotation(id: DesignBlockId): number
 **Parameters:**
 - `id` - The block to query.
 
-**Returns:** The block's rotation around its center in radians.
+**Returns:** The block's rotation around its center in the scene's angle unit (radians by default).
 
 ### setRotation()
 
-Sets the rotation of a block in radians.
-Rotation is applied around the block's center.
+Sets the rotation of a block in the scene's angle unit (radians by default).
+Rotation is applied around the block's center. The angle unit is configured via
+`engine.scene.setAngleUnit()`.
 
 ```typescript
 setRotation(id: DesignBlockId, radians: number): void
@@ -3108,7 +3110,7 @@ setRotation(id: DesignBlockId, radians: number): void
 
 **Parameters:**
 - `id` - The block to update.
-- `radians` - The new rotation in radians.
+- `radians` - The new rotation in the scene's angle unit (radians by default).
 
 ### getWidth()
 
@@ -4341,7 +4343,7 @@ setCropScaleY(id: DesignBlockId, scaleY: number): void
 
 ### setCropRotation()
 
-Sets the crop rotation of a block in radians.
+Sets the crop rotation of a block in the scene's angle unit (radians by default).
 ```javascript
 engine.block.setCropRotation(image, Math.PI);
 ```
@@ -4352,7 +4354,7 @@ setCropRotation(id: DesignBlockId, rotation: number): void
 
 **Parameters:**
 - `id` - The block whose crop should be set.
-- `rotation` - The rotation in radians.
+- `rotation` - The rotation in the scene's angle unit (radians by default).
 
 ### setCropScaleRatio()
 
@@ -4449,7 +4451,7 @@ getCropScaleY(id: DesignBlockId): number
 
 ### getCropRotation()
 
-Gets the crop rotation of a block in radians.
+Gets the crop rotation of a block in the scene's angle unit (radians by default).
 ```javascript
 const cropRotation = engine.block.getCropRotation(image);
 ```
@@ -4461,7 +4463,7 @@ getCropRotation(id: DesignBlockId): number
 **Parameters:**
 - `id` - The block whose crop rotation should be queried.
 
-**Returns:** The crop rotation in radians.
+**Returns:** The crop rotation in the scene's angle unit (radians by default).
 
 ### getCropScaleRatio()
 

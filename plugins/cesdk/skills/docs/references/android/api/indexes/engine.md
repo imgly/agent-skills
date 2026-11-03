@@ -1,7 +1,8 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 321 generated API digests.
+Complete catalog of 322 generated API digests.
 
+- [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
 - [AnimationType.Baseline](<../engine/ly.img.engine/-animation-type/-baseline.md>) — `ly.img.engine`
