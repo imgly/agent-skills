@@ -1337,7 +1337,7 @@ Query a block’s mode for its y position. `id`
 @MainActor func getRotation(_ id: DesignBlockID) throws -> Float
 ```
 
-Query a block’s rotation in radians. `id`
+Query a block’s rotation in the scene’s angle unit (radians by default, see `SceneAPI.setAngleUnit`). `id`
 
 ### getScreenSpaceBoundingBox(containing:)
 

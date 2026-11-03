@@ -53,13 +53,13 @@ Applies the contents of the given template scene to the currently loaded scene. 
 
 Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. `url`
 
-### create(designUnit:fontSizeUnit:sceneLayout:)
+### create(designUnit:fontSizeUnit:sceneLayout:angleUnit:)
 
 ```swift
-@discardableResult @MainActor func create(designUnit: DesignUnit, fontSizeUnit: FontUnit? = nil, sceneLayout: SceneLayout = .free) throws -> DesignBlockID
+@discardableResult @MainActor func create(designUnit: DesignUnit, fontSizeUnit: FontUnit? = nil, sceneLayout: SceneLayout = .free, angleUnit: AngleUnit = .rad) throws -> DesignBlockID
 ```
 
-Create a new scene with explicit design and font-size units. `designUnit`
+Create a new scene with explicit design, font-size and angle units. `designUnit`
 
 ### create(fromImage:dpi:pixelScaleFactor:sceneLayout:)
 
@@ -144,6 +144,14 @@ Finds all blocks with the given type sorted by distance to viewport center. `typ
 ```
 
 Return the currently active scene. The scene or nil, if none was created yet.
+
+### getAngleUnit()
+
+```swift
+@MainActor func getAngleUnit() throws -> AngleUnit
+```
+
+Returns the angle unit of the current scene. The current angle unit.
 
 ### getCMYKProfileInfo()
 
@@ -388,6 +396,14 @@ Serializes the current scene into a string. Selection is discarded. `allowedReso
 ```
 
 Serializes the current scene into a string with optional compression. Selection is discarded. `options`
+
+### setAngleUnit(_:)
+
+```swift
+@MainActor func setAngleUnit(_ angleUnit: AngleUnit) throws
+```
+
+Sets the unit in which angles are interpreted on the current scene: the values of every angle property for `setFloat` and `getFloat` (`rotation`, `transform/skew`, `effect/linear_wipe/angle`, …), their keyframe values, and `setRotation` and `getRotation`. The engine stores angles in radians and scene files keep their format; this only affects how values are interpreted at the API boundary. `.rad` is the default. `angleUnit`
 
 ### setBlackPointCompensationEnabled(_:)
 

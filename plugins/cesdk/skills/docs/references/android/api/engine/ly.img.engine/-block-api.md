@@ -1143,7 +1143,7 @@ Get the type of a property given its name.
 abstract fun getRotation(block: DesignBlock): Float
 ```
 
-Query a block's rotation in radians.
+Query a block's rotation in the scene's angle unit (radians by default, see SceneApi.setAngleUnit).
 
 ### getScreenSpaceBoundingBoxRect
 

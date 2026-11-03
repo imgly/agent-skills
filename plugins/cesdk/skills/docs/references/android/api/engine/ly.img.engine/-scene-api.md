@@ -61,7 +61,7 @@ abstract fun create(sceneLayout: SceneLayout = SceneLayout.FREE): DesignBlock
 ```
 
 ```kotlin
-abstract fun create(designUnit: DesignUnit, fontSizeUnit: FontUnit? = null, sceneLayout: SceneLayout = SceneLayout.FREE): DesignBlock
+abstract fun create(designUnit: DesignUnit, fontSizeUnit: FontUnit? = null, sceneLayout: SceneLayout = SceneLayout.FREE, angleUnit: AngleUnit = AngleUnit.RADIAN): DesignBlock
 ```
 
 Create a new scene, along with its own camera.
@@ -134,6 +134,14 @@ abstract fun findNearestToViewPortCenterByType(blockType: String): List<DesignBl
 > **Deprecated:** Use type safe overload instead. Replace with `this.findNearestToViewPortCenterByType(DesignBlockType.)`.
 
 Finds all blocks with the given type sorted by distance to viewport center.
+
+### getAngleUnit
+
+```kotlin
+abstract fun getAngleUnit(): AngleUnit
+```
+
+Returns the angle unit of the current scene.
 
 ### getCMYKProfileInfo
 
@@ -343,6 +351,14 @@ abstract suspend fun saveToString(scene: DesignBlock, options: SaveToStringOptio
 ```
 
 Serializes the current scene into a string. Selection is discarded. If a resource uri has a scheme that is not in allowedResourceSchemes, an exception will be thrown.
+
+### setAngleUnit
+
+```kotlin
+abstract fun setAngleUnit(angleUnit: AngleUnit)
+```
+
+Sets the unit in which angles are interpreted on the current scene: the values of every angle property for BlockApi.setFloat / BlockApi.getFloat (rotation, transform/skew, effect/linear_wipe/angle, ...), their keyframe values, and BlockApi.setRotation / BlockApi.getRotation. The engine stores angles in radians and scene files keep their format; this only affects how values are interpreted at the API boundary. AngleUnit.RADIAN is the default.
 
 ### setBlackPointCompensationEnabled
 
