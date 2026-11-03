@@ -278,6 +278,10 @@ While a font loads, its text is laid out with another font. When the text's size
 content, a scene saved before the font arrives can differ from one saved after it. To compare two
 saved scenes, first await `engine.block.forceLoadResources([engine.scene.get()!])`. It rejects when a
 resource fails to load, and you can still save the scene then.
+The source set entries that the engine makes are `buffer://` resources that only this engine
+holds. `onDisallowedResourceScheme` gets each of them, whatever `allowedResourceSchemes` holds.
+The save leaves out each entry that the callback did not move to another address, and each
+fill keeps them.
 
 ```typescript
 saveToString(options?: {

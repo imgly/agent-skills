@@ -134,6 +134,9 @@ defaultApplyAsset(assetResult: AssetResult, options?: DefaultApplyAssetOptions):
 
 Apply an asset to a block using the engine's default implementation.
 The default implementation already handles various different kinds of assets and acts as a good starting point.
+An aspect ratio or fixed size preset reads the block's layout, so the call performs an internal update to lay out
+pending changes. With the setting `features/implicitUpdatesEnabled` off, the preset can read the layout of the last
+update instead of pending changes. A block with no layout on a page that single page mode hides returns an error.
 ```javascript
 engine.asset.addSource({
   id: 'foobar',

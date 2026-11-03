@@ -1291,7 +1291,7 @@ Get the playback speed multiplier for the given block. `id`
 @MainActor func getPlaybackTime(_ id: DesignBlockID) throws -> Double
 ```
 
-Get the playback time of the given block. `id`
+Get the playback time of the given block. During an export, this returns the time of the playhead and not the time of the exported frame. `id`
 
 ### getPositionX(_:)
 

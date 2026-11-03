@@ -17,7 +17,7 @@ struct SaveToArchiveOptions
 var compression: CompressionOptions?
 ```
 
-Optional compression settings for the scene inside the archive.
+Optional compression settings for the scene inside the archive. Without them, the scene is compressed with Zstd at the default level.
 
 ### init(compression:)
 

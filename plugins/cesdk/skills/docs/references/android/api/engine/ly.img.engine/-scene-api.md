@@ -360,7 +360,7 @@ abstract suspend fun saveToString(scene: DesignBlock, allowedResourceSchemes: Li
 abstract suspend fun saveToString(scene: DesignBlock, options: SaveToStringOptions): String
 ```
 
-Serializes the current scene into a string. Selection is discarded. If a resource uri has a scheme that is not in allowedResourceSchemes, an exception will be thrown.
+Serializes the current scene into a string. Selection is discarded. If a resource uri has a scheme that is not in allowedResourceSchemes, an exception will be thrown. The source set entries that the engine makes are buffer:// resources that only this engine holds. The save leaves them out, even when the allowed resource schemes hold "buffer", and each fill keeps them.
 
 ### setBlackPointCompensationEnabled
 

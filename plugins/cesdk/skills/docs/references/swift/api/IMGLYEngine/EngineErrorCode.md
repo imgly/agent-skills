@@ -1595,6 +1595,12 @@ case blockKeyframesPropertyNotAnimatable
 case blockKeyframesRelativeUnsupported
 ```
 
+### EngineErrorCode.blockKeyframesScaleAxesDiffer
+
+```swift
+case blockKeyframesScaleAxesDiffer
+```
+
 ### EngineErrorCode.blockKeyframesSpatialTangentUnsupported
 
 ```swift

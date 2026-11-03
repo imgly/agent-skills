@@ -151,6 +151,10 @@ Performs an internal update to lay out pending changes before the save.
 While a font loads, its text is laid out with another font. When the text's size follows its
 content, blocks saved before the font arrives can differ from blocks saved after it. To compare
 two saves, first await `engine.block.forceLoadResources(blocks)`.
+The source set entries that the engine makes are `buffer://` resources that only this engine
+holds. `onDisallowedResourceScheme` gets each of them, whatever `allowedResourceSchemes` holds.
+The save leaves out each entry that the callback did not move to another address, and each
+fill keeps them.
 
 ```typescript
 saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisallowedResourceScheme?: (url: string, dataHash: string) => Promise<string>, options?: AbortOptions): Promise<string>
@@ -1211,6 +1215,7 @@ setPlaybackTime(id: DesignBlockId, time: number): void
 ### getPlaybackTime()
 
 Gets the current playback time of a block's content.
+During an export, this returns the time of the playhead and not the time of the exported frame.
 
 ```typescript
 getPlaybackTime(id: DesignBlockId): number
@@ -1770,6 +1775,7 @@ engine.block.setState(video, {type: 'Pending', progress: 0.5});
 engine.block.setState(page, {type: 'Ready'});
 engine.block.setState(image, {type: 'Error', error: 'ImageDecoding'});
 ```
+While an image fill is pending, the engine adds no automatic source set entries to it.
 
 ```typescript
 setState(id: DesignBlockId, state: BlockState): void
@@ -3502,6 +3508,8 @@ Full-page blocks are resized to remain as full-page afterwards, while the blocks
 const pages = engine.scene.getPages();
 engine.block.resizeContentAware(pages, width: 100.0, 100.0);
 ```
+Performs an internal update to lay out pending changes, also with the setting `features/implicitUpdatesEnabled`
+off. A block with no layout on a page that single page mode hides returns an error.
 
 ```typescript
 resizeContentAware(ids: DesignBlockId[], width: number, height: number): void
@@ -5886,6 +5894,9 @@ Create cutout operations and path-based modifications.
 
 Creates a cutout block from the contours of other blocks.
 The path is derived from either existing vector paths or by vectorizing the block's appearance.
+Performs an internal update to lay out pending changes, because the cutout reads the blocks' layout. With the
+setting `features/implicitUpdatesEnabled` off, the update runs only when a passed block has no layout, and it then
+lays out all pending changes. A block with no layout on a page that single page mode hides returns an error.
 
 ```typescript
 createCutoutFromBlocks(ids: DesignBlockId[], vectorizeDistanceThreshold?: number, simplifyDistanceThreshold?: number, useExistingShapeInformation?: boolean): DesignBlockId

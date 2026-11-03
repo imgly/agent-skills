@@ -1095,7 +1095,7 @@ Gets the playback speed multiplier of a block that supports playback control.
 abstract fun getPlaybackTime(block: DesignBlock): Double
 ```
 
-Get the playback time of the given block.
+Get the playback time of the given block. During an export, this returns the time of the playhead and not the time of the exported frame.
 
 ### getPositionXMode
 
@@ -2398,7 +2398,7 @@ Resets the manually set crop of the given design block. The block's content fill
 abstract fun resizeContentAware(blocks: List<DesignBlock>, width: Float, height: Float)
 ```
 
-Resize all blocks to the given size. The content of the blocks is automatically adjusted to fit the new dimensions. Required scope: "layer/resize"
+Resize all blocks to the given size. The content of the blocks is automatically adjusted to fit the new dimensions. Performs an internal update to lay out pending changes, also with the setting features/implicitUpdatesEnabled off. A block with no layout on a page that single page mode hides returns an error.
 
 ### saveToArchive
 
@@ -3087,7 +3087,7 @@ Set the spot color assign to a cutout type. If no spot color is set, type Cutout
 abstract fun setState(block: DesignBlock, state: BlockState)
 ```
 
-Set the state of a block.
+Set the state of a block. While an image fill is pending, the engine adds no automatic source set entries to it.
 
 ### setString
 
