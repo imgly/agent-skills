@@ -72,7 +72,7 @@ The OS/2 yStrikeoutSize value in font design units.
 val underlineOffset: Float
 ```
 
-The post.underlinePosition value in font design units (typically negative).
+The post.underlinePosition value in font design units (typically negative). A missing or zero value defaults to -1/18 em, rounded toward zero.
 
 ### underlineSize
 
@@ -80,7 +80,7 @@ The post.underlinePosition value in font design units (typically negative).
 val underlineSize: Float
 ```
 
-The post.underlineThickness value in font design units.
+The post.underlineThickness value in font design units. A missing or zero value defaults to 1/18 em, rounded toward zero.
 
 ### unitsPerEm
 

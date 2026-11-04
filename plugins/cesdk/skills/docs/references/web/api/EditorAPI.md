@@ -353,6 +353,9 @@ Set a history as the active undo/redo stack.
 All other histories lose their active state. Undo/redo operations only apply to the active history.
 A new history starts from the current scene, including edits without an undo step and the selection;
 returning to a history restores its last undo step.
+Setting a history that is not new as active, also the active one, discards edits
+without an undo step.
+Edits with an undo step stay in the history they were made in.
 ```javascript
 engine.editor.setActiveHistory(newHistory);
 ```
@@ -405,6 +408,8 @@ removeUndoStep(): void
 ### undo()
 
 Undo one step in the active history if an undo step is available.
+Scene edits made since the last undo step are discarded. Call addUndoStep first, so that
+redo can restore them.
 ```javascript
 engine.editor.undo();
 ```
@@ -416,6 +421,8 @@ undo(): void
 ### redo()
 
 Redo one step in the active history if a redo step is available.
+Scene edits made since the last undo step are discarded. Call addUndoStep first
+to keep them, which clears the redo steps.
 ```javascript
 engine.editor.redo();
 ```
@@ -1167,6 +1174,7 @@ getMimeType(uri: string, options?: AbortOptions): Promise<string>
 Gets the font metrics for a given font file URI.
 If the font is not yet loaded, it will be fetched asynchronously.
 The returned metrics are in the font's design units coordinate space.
+Missing or zero underline metrics use the defaults documented in {@link FontMetrics}.
 ```javascript
 const metrics = await engine.editor.getFontMetrics('/extensions/ly.img.cesdk.fonts/fonts/Roboto/Roboto-Regular.ttf');
 console.log(metrics.ascender, metrics.descender, metrics.unitsPerEm);

@@ -625,7 +625,7 @@ Subscribe to changes to the editor state.
 @MainActor func redo() throws
 ```
 
-Redo one step in the history if a redo step is available.
+Redo one step in the history if a redo step is available. Scene edits made since the last undo step are discarded. Call addUndoStep first to keep them, which clears the redo steps.
 
 ### releaseMemory()
 
@@ -689,7 +689,7 @@ Removes the last history state from the stack, if available.
 @MainActor func setActiveHistory(_ history: History)
 ```
 
-Mark the given history as active, returns an error if the handle doesn’t refer to a history. All other histories get cleared from the active state. Undo/redo operations only apply to the active history. A new history starts from the current scene, including edits without an undo step and the selection; returning to a history restores its last undo step. `history`
+Mark the given history as active, returns an error if the handle doesn’t refer to a history. All other histories get cleared from the active state. Undo/redo operations only apply to the active history. A new history starts from the current scene, including edits without an undo step and the selection; returning to a history restores its last undo step. Setting a history that is not new as active, also the active one, discards edits without an undo step. Edits with an undo step stay in the history they were made in. `history`
 
 ### setBufferData(url:offset:data:)
 
@@ -971,7 +971,7 @@ Toggle the currently selected vector node between smooth (bezier handles) and co
 @MainActor func undo() throws
 ```
 
-Undo one step in the history if an undo step is available.
+Undo one step in the history if an undo step is available. Scene edits made since the last undo step are discarded. Call addUndoStep first, so that redo can restore them.
 
 ### unstable_isInteractionHappening()
 

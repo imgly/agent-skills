@@ -361,6 +361,7 @@ create(sceneLayout?: SceneLayout, options?: CreateSceneOptions): DesignBlockId
   - `designUnit` - The design unit of the new scene. Defaults to `Pixel`.
   - `fontSizeUnit` - The font-size unit. If omitted, paired with `designUnit`
     (`Pixel` design unit → `Pixel` font unit, others → `Point`).
+  - `angleUnit` - The angle unit, see `setAngleUnit`. Defaults to `Radian`.
 
 **Returns:** The scene's handle.
 
@@ -512,6 +513,41 @@ getFontSizeUnit(): FontSizeUnit
 ```
 
 **Returns:** The current font-size unit.
+
+### setAngleUnit()
+
+Sets the unit in which angles are interpreted on the current scene: the values of every angle
+property for `setFloat` and `getFloat` (`rotation`, `transform/skew`, `effect/linear_wipe/angle`,
+...), their keyframe values, and `setRotation` and `getRotation`. The engine stores angles in
+radians and scene files keep their format; this only affects how values are interpreted at the
+API boundary. `Radian` is the default.
+CE.SDK uses radians for every angle property in memory and in the API. The `Degree` unit is a
+compatibility option for older integrations, and the CE.SDK editor UI expects radians.
+`motionBlur/shutterAngle`, `motionBlur/shutterPhase` and the `rotate` action take degrees in
+either unit. Changing the unit also converts a number variable bound only to angle properties.
+```javascript
+engine.scene.setAngleUnit('Degree');
+```
+
+```typescript
+setAngleUnit(angleUnit: AngleUnit): void
+```
+
+**Parameters:**
+- `angleUnit` - The new angle unit of the scene.
+
+### getAngleUnit()
+
+Returns the angle unit of the current scene.
+```javascript
+engine.scene.getAngleUnit();
+```
+
+```typescript
+getAngleUnit(): AngleUnit
+```
+
+**Returns:** The current angle unit.
 
 ### addMarker()
 

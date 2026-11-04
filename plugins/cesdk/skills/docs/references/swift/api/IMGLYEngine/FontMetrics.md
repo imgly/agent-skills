@@ -3,7 +3,7 @@
 - **Module:** `IMGLYEngine`
 - **DocC identifier:** `/documentation/IMGLYEngine/FontMetrics`
 
-Font metrics extracted from a font file in raw font design units.
+Font metrics extracted from a font file in font design units.
 
 ```swift
 struct FontMetrics
@@ -71,7 +71,7 @@ The OS/2 yStrikeoutSize value in font design units.
 let underlineOffset: Float
 ```
 
-The post.underlinePosition value in font design units (typically negative).
+The post.underlinePosition value in font design units (typically negative). A missing or zero value defaults to -1/18 em, rounded toward zero.
 
 ### underlineSize
 
@@ -79,7 +79,7 @@ The post.underlinePosition value in font design units (typically negative).
 let underlineSize: Float
 ```
 
-The post.underlineThickness value in font design units.
+The post.underlineThickness value in font design units. A missing or zero value defaults to 1/18 em, rounded toward zero.
 
 ### unitsPerEm
 

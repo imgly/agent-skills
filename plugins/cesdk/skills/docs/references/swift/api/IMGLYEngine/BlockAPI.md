@@ -1331,7 +1331,7 @@ Query a block’s mode for its y position. `id`
 @MainActor func getRotation(_ id: DesignBlockID) throws -> Float
 ```
 
-Query a block’s rotation in radians. `id`
+Query a block’s rotation in the scene’s angle unit (radians by default, see `SceneAPI.setAngleUnit`). `id`
 
 ### getScreenSpaceBoundingBox(containing:)
 
@@ -2515,7 +2515,7 @@ Removes the effect at the given index. Required scope: “appearance/effect” `
 @MainActor func removeKeyframes(_ id: DesignBlockID, property: String) throws
 ```
 
-Remove the keyframes of a block property, so the static value applies again. Removing from a property without keyframes does nothing. `id`
+Remove the keyframes of a block property, so the static value applies again. Removing from an animatable property without keyframes does nothing. Throws `.blockKeyframesPropertyNotAnimatable` when the property has no keyframes and [`isPropertyAnimatable(_:property:)`](./ispropertyanimatable(_:property:).md) returns false. `id`
 
 ### removeMask(_:index:)
 
@@ -2635,7 +2635,7 @@ Saves the given blocks into a string. If given the root of a block hierarchy, e.
 @MainActor func scale(_ id: DesignBlockID, to scale: Float, anchorX: Float = 0, anchorY: Float = 0) throws
 ```
 
-Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. Required scope: “layer/resize” `id`
+Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, every child of it and each transform parent. That update also lays out every other pending change. Required scope: “layer/resize” `id`
 
 ### select(_:)
 
@@ -3003,7 +3003,7 @@ Set the fill color of the given design block. Required scope: “fill/change” 
 @MainActor func setFlipHorizontal(_ id: DesignBlockID, flip: Bool) throws
 ```
 
-Update a block’s horizontal flip. Required scope: “layer/flip” `id`
+Update a block’s horizontal flip. With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. Required scope: “layer/flip” `id`
 
 ### setFlipVertical(_:flip:)
 
@@ -3011,7 +3011,7 @@ Update a block’s horizontal flip. Required scope: “layer/flip” `id`
 @MainActor func setFlipVertical(_ id: DesignBlockID, flip: Bool) throws
 ```
 
-Update a block’s vertical flip. Required scope: “layer/flip” `id`
+Update a block’s vertical flip. With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. Required scope: “layer/flip” `id`
 
 ### setFloat(_:property:value:)
 
@@ -3267,7 +3267,7 @@ Set a block’s mode for its y position. Required scope: “layer/move” `id`
 @MainActor func setRotation(_ id: DesignBlockID, radians: Float) throws
 ```
 
-Update a block’s rotation. Required scope: “layer/rotate” `id`
+Update a block’s rotation. With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. Required scope: “layer/rotate” `id`
 
 ### setScopeEnabled(_:key:enabled:)
 

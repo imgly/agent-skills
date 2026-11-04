@@ -1152,6 +1152,7 @@ getTotalSceneDuration(scene: DesignBlockId): number
 ### setPlaying()
 
 Sets whether a block should play its content during active playback.
+Note that playing a page switches the editor to the Playback edit mode. From 0.2 s after the start, a change to the position, size, rotation, fill or text of a content block ends that mode. So does a change to the opacity, adjustments, shape or volume of any block, the page included. The editor returns to the Transform edit mode, which stops the playback.
 
 ```typescript
 setPlaying(id: DesignBlockId, enabled: boolean): void
@@ -2401,6 +2402,10 @@ getFlipVertical(id: DesignBlockId): boolean
 ### setFlipHorizontal()
 
 Sets the horizontal flip state of a block.
+With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that
+it reads has no layout yet, as right after an undo.
+It reads the block, the members of a group and each transform parent. That update also lays out
+every other pending change.
 
 ```typescript
 setFlipHorizontal(id: DesignBlockId, flip: boolean): void
@@ -2413,6 +2418,10 @@ setFlipHorizontal(id: DesignBlockId, flip: boolean): void
 ### setFlipVertical()
 
 Sets the vertical flip state of a block.
+With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that
+it reads has no layout yet, as right after an undo.
+It reads the block, the members of a group and each transform parent. That update also lays out
+every other pending change.
 
 ```typescript
 setFlipVertical(id: DesignBlockId, flip: boolean): void
@@ -2666,7 +2675,7 @@ getKeyframes(id: DesignBlockId, property: string): Keyframe[]
 - `id` - The block that owns the property.
 - `property` - The animatable property path.
 
-**Returns:** The keyframes, or an empty array when the property has none.
+**Returns:** The keyframes, or an empty array for an animatable property without keyframes.
 
 ### getKeyframeMode()
 
@@ -2680,13 +2689,15 @@ getKeyframeMode(id: DesignBlockId, property: string): TrackMode
 - `id` - The block that owns the property.
 - `property` - The animatable property path.
 
-**Returns:** The mode. Throws when the property has no keyframes.
+**Returns:** The mode.
 
 ### removeKeyframes()
 
 Removes the keyframes of a block property, so its static value applies again.
 Experimental: this API may change in a minor release.
-Removing from a property without keyframes does nothing.
+Removing from an animatable property without keyframes does nothing. Throws
+`BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE` when the property has no keyframes and
+`isPropertyAnimatable` returns false.
 Required scope: the scopes that `setKeyframes` needs for the removed track.
 
 ```typescript
@@ -3095,7 +3106,8 @@ sendBackward(id: DesignBlockId): void
 
 ### getRotation()
 
-Gets the rotation of a block in radians.
+Gets the rotation of a block in the scene's angle unit (radians by default).
+The angle unit is configured via `engine.scene.setAngleUnit()`.
 
 ```typescript
 getRotation(id: DesignBlockId): number
@@ -3104,12 +3116,17 @@ getRotation(id: DesignBlockId): number
 **Parameters:**
 - `id` - The block to query.
 
-**Returns:** The block's rotation around its center in radians.
+**Returns:** The block's rotation around its center in the scene's angle unit (radians by default).
 
 ### setRotation()
 
-Sets the rotation of a block in radians.
-Rotation is applied around the block's center.
+Sets the rotation of a block in the scene's angle unit (radians by default).
+Rotation is applied around the block's center. The angle unit is configured via
+`engine.scene.setAngleUnit()`.
+With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that
+it reads has no layout yet, as right after an undo.
+It reads the block, the members of a group and each transform parent. That update also lays out
+every other pending change.
 
 ```typescript
 setRotation(id: DesignBlockId, radians: number): void
@@ -3117,7 +3134,7 @@ setRotation(id: DesignBlockId, radians: number): void
 
 **Parameters:**
 - `id` - The block to update.
-- `radians` - The new rotation in radians.
+- `radians` - The new rotation in the scene's angle unit (radians by default).
 
 ### getWidth()
 
@@ -3525,6 +3542,10 @@ resizeContentAware(ids: DesignBlockId[], width: number, height: number): void
 Scales a block and its children proportionally.
 This updates the position, size and style properties (e.g. stroke width) of
 the block and its children around the specified anchor point.
+With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that
+it reads has no layout yet, as right after an undo.
+It reads the block, every child of it and each transform parent. That update also lays out
+every other pending change.
 ```javascript
 // Scale a block to double its size, anchored at the center.
 engine.block.scale(block, 2.0, 0.5, 0.5);
@@ -4352,7 +4373,7 @@ setCropScaleY(id: DesignBlockId, scaleY: number): void
 
 ### setCropRotation()
 
-Sets the crop rotation of a block in radians.
+Sets the crop rotation of a block in the scene's angle unit (radians by default).
 ```javascript
 engine.block.setCropRotation(image, Math.PI);
 ```
@@ -4363,7 +4384,7 @@ setCropRotation(id: DesignBlockId, rotation: number): void
 
 **Parameters:**
 - `id` - The block whose crop should be set.
-- `rotation` - The rotation in radians.
+- `rotation` - The rotation in the scene's angle unit (radians by default).
 
 ### setCropScaleRatio()
 
@@ -4462,7 +4483,7 @@ getCropScaleY(id: DesignBlockId): number
 
 ### getCropRotation()
 
-Gets the crop rotation of a block in radians.
+Gets the crop rotation of a block in the scene's angle unit (radians by default).
 ```javascript
 const cropRotation = engine.block.getCropRotation(image);
 ```
@@ -4474,7 +4495,7 @@ getCropRotation(id: DesignBlockId): number
 **Parameters:**
 - `id` - The block whose crop rotation should be queried.
 
-**Returns:** The crop rotation in radians.
+**Returns:** The crop rotation in the scene's angle unit (radians by default).
 
 ### getCropScaleRatio()
 

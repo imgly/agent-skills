@@ -9,6 +9,12 @@ class UBQ
 
 ## Members
 
+### hasPendingWork()
+
+```swift
+func hasPendingWork() -> Bool
+```
+
 ### init(canvas:audioContext:)
 
 ```swift

@@ -214,7 +214,7 @@ Get the current edit mode of the editor. An edit mode defines what type of conte
 abstract suspend fun getFontMetrics(fontFileUri: String): FontMetrics
 ```
 
-Returns the font metrics for a given font file URI. If the font is not yet loaded, it will be fetched asynchronously. The returned metrics are in the font's design units coordinate space. Cancelling the coroutine stops the download of the font.
+Returns the font metrics for a given font file URI. If the font is not yet loaded, it will be fetched asynchronously. The returned metrics are in the font's design units coordinate space. Missing or zero underline metrics use the defaults documented in FontMetrics. Cancelling the coroutine stops the download of the font.
 
 ### getGlobalScope
 
@@ -529,7 +529,7 @@ Subscribe to changes to the editor state.
 abstract fun redo()
 ```
 
-Redo one step in the history if a redo step is available.
+Redo one step in the history if a redo step is available. Scene edits made since the last undo step are discarded. Call addUndoStep first to keep them, which clears the redo steps.
 
 ### releaseMemory
 
@@ -585,7 +585,7 @@ Removes the last history state from the stack, if available.
 abstract fun setActiveHistory(history: History)
 ```
 
-Mark the given history as active, returns an error if the handle doesn't refer to a history. All other histories get cleared from the active state. Undo/redo operations only apply to the active history. A new history starts from the current scene, including edits without an undo step and the selection; returning to a history restores its last undo step.
+Mark the given history as active, returns an error if the handle doesn't refer to a history. All other histories get cleared from the active state. Undo/redo operations only apply to the active history. A new history starts from the current scene, including edits without an undo step and the selection; returning to a history restores its last undo step. Setting a history that is not new as active, also the active one, discards edits without an undo step. Edits with an undo step stay in the history they were made in.
 
 ### setAppIsPaused
 
@@ -813,4 +813,4 @@ Toggle the currently selected vector node between smooth (bezier handles) and co
 abstract fun undo()
 ```
 
-Undo one step in the history if an undo step is available.
+Undo one step in the history if an undo step is available. Scene edits made since the last undo step are discarded. Call addUndoStep first, so that redo can restore them.

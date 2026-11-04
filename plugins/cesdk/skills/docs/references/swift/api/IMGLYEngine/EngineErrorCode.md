@@ -3365,6 +3365,12 @@ case computeSkiaGlInterfaceInvalid
 case computeVideoUnsupportedAudioTracks
 ```
 
+### EngineErrorCode.computeWebglContextUnavailable
+
+```swift
+case computeWebglContextUnavailable
+```
+
 ### EngineErrorCode.editorAssetDropFailed
 
 ```swift
@@ -4583,6 +4589,12 @@ case encodeTrackNotPartOfPage
 case encodeVideoAlphaUnsupported
 ```
 
+### EngineErrorCode.encodeVideoAudioMixRunning
+
+```swift
+case encodeVideoAudioMixRunning
+```
+
 ### EngineErrorCode.encodeVideoBlockHasError
 
 ```swift
@@ -4677,6 +4689,12 @@ case encodeVideoMimeNotMp4
 
 ```swift
 case encodeVideoNoAudioDuration
+```
+
+### EngineErrorCode.encodeVideoPageRemoved
+
+```swift
+case encodeVideoPageRemoved
 ```
 
 ### EngineErrorCode.encodeVideoPcmReadFailed

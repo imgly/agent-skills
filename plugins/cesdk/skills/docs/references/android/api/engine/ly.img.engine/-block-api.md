@@ -610,6 +610,7 @@ Get the number of available audio tracks in a video fill block.
 ```kotlin
 abstract fun getBackgroundColor(block: DesignBlock): RGBAColor
 ```
+> **Deprecated:** Use getColor with the property 'backgroundColor/color' instead. It returns Color, an RGBAColor only for sRGB. Replace with `import ly.img.engine.RGBAColor; this.getColor(block, "backgroundColor/color") as RGBAColor`.
 
 Get the background color of the given design block.
 
@@ -990,7 +991,7 @@ Get the value of an int property of the given design block.
 abstract fun getKeyframeMode(block: DesignBlock, property: String): TrackMode
 ```
 
-Get the mode of the keyframe track of a block property. Throws when the property has no keyframes. Experimental: this API may change in a minor release.
+Get the mode of the keyframe track of a block property. Throws BLOCK.KEYFRAMES_NO_TRACK when the property has no keyframes, or BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when isPropertyAnimatable also returns false. Experimental: this API may change in a minor release.
 
 ### getKeyframes
 
@@ -998,7 +999,7 @@ Get the mode of the keyframe track of a block property. Throws when the property
 abstract fun getKeyframes(block: DesignBlock, property: String): List<Keyframe>
 ```
 
-Get the keyframes of a block property, sorted by time. Experimental: this API may change in a minor release.
+Get the keyframes of a block property, sorted by time. Throws BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when the property has no keyframes and isPropertyAnimatable returns false. Experimental: this API may change in a minor release.
 
 ### getKind
 
@@ -1143,7 +1144,7 @@ Get the type of a property given its name.
 abstract fun getRotation(block: DesignBlock): Float
 ```
 
-Query a block's rotation in radians.
+Query a block's rotation in the scene's angle unit (radians by default, see SceneApi.setAngleUnit).
 
 ### getScreenSpaceBoundingBoxRect
 
@@ -2302,7 +2303,7 @@ Removes the effect at the given index. Required scope: "appearance/effect"
 abstract fun removeKeyframes(block: DesignBlock, property: String)
 ```
 
-Remove the keyframe track of a block property, so the static value applies again. Does nothing when the property has no keyframes. Required scope: the scopes that setKeyframes needs for the removed track. Experimental: this API may change in a minor release.
+Remove the keyframe track of a block property, so the static value applies again. Does nothing for an animatable property without keyframes. Throws BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when the property has no keyframes and isPropertyAnimatable returns false. Required scope: the scopes that setKeyframes needs for the removed track. Experimental: this API may change in a minor release.
 
 ### removeMask
 
@@ -2422,7 +2423,7 @@ Saves the given blocks to a proprietary string. If given the root of a block hie
 abstract fun scale(block: DesignBlock, scale: Float, @FloatRange(from = 0.0, to = 1.0)anchorX: Float, @FloatRange(from = 0.0, to = 1.0)anchorY: Float)
 ```
 
-Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. Required scope: "layer/resize"
+Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, every child of it and each transform parent. That update also lays out every other pending change. Required scope: "layer/resize"
 
 ### select
 
@@ -2493,6 +2494,7 @@ Enable or disable the background of the given design block. Required scope: "fil
 ```kotlin
 abstract fun setBackgroundColor(block: DesignBlock, color: RGBAColor)
 ```
+> **Deprecated:** Use setColor with the property 'backgroundColor/color' instead. Replace with `this.setColor(block, "backgroundColor/color", color)`.
 
 Set the background color of the given design block. Required scope: "fill/change"
 
@@ -2767,7 +2769,7 @@ Sets the block containing the fill properties of the given block. Note: The prev
 abstract fun setFlipHorizontal(block: DesignBlock, flip: Boolean)
 ```
 
-Update a block's horizontal flip. Required scope: "layer/flip"
+Update a block's horizontal flip. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. Required scope: "layer/flip"
 
 ### setFlipVertical
 
@@ -2775,7 +2777,7 @@ Update a block's horizontal flip. Required scope: "layer/flip"
 abstract fun setFlipVertical(block: DesignBlock, flip: Boolean)
 ```
 
-Update a block's vertical flip. Required scope: "layer/flip"
+Update a block's vertical flip. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. Required scope: "layer/flip"
 
 ### setFloat
 
@@ -2991,7 +2993,7 @@ Set the playback time of the given block.
 abstract fun setPlaying(block: DesignBlock, enabled: Boolean)
 ```
 
-Set whether the block should be during active playback.
+Set whether the block should be during active playback. Note that playing a page switches the editor to the Playback edit mode. From 0.2 s after the start, a change to the position, size, rotation, fill or text of a content block ends that mode. So does a change to the opacity, adjustments, shape or volume of any block, the page included. The editor returns to the Transform edit mode, which stops the playback.
 
 ### setPositionXMode
 
@@ -3031,7 +3033,7 @@ Update a block's y position. The position refers to the block's local space, rel
 abstract fun setRotation(block: DesignBlock, radians: Float)
 ```
 
-Update a block's rotation. Required scope: "layer/rotate"
+Update a block's rotation. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. Required scope: "layer/rotate"
 
 ### setScopeEnabled
 
