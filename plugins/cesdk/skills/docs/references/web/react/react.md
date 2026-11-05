@@ -104,6 +104,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 ### [Starter Kits](https://img.ly/docs/cesdk/next/react/starterkits-kxg120/)
 
+#### [Headless Design Engine](https://img.ly/docs/cesdk/next/react/starterkits/headless-hdls01/)
+
 #### [Photo Editor](https://img.ly/docs/cesdk/next/react/starterkits/photo-editor-r6kq0u/)
 
 #### [Design Editor](https://img.ly/docs/cesdk/next/react/starterkits/design-editor-8unj9u/)
@@ -330,6 +332,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Using Default Assets](https://img.ly/docs/cesdk/next/react/import-media/default-assets-d2763d/)
 - [Retrieve Mimetype](https://img.ly/docs/cesdk/next/react/import-media/retrieve-mimetype-ed13bf/)
 - [Import EPS Artwork](https://img.ly/docs/cesdk/next/react/import-media/from-eps-9fe72b/)
+- [Place PDF Pages in a Design](https://img.ly/docs/cesdk/next/react/import-media/from-pdf-7d41ac/)
 - [Asset Content JSON Schema](https://img.ly/docs/cesdk/next/react/import-media/content-json-schema-a7b3d2/)
 - [File Format Support](https://img.ly/docs/cesdk/next/react/import-media/file-format-support-8cdc84/)
 - [Size Limits](https://img.ly/docs/cesdk/next/react/import-media/size-limits-c32275/)
@@ -339,6 +342,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Overview](https://img.ly/docs/cesdk/next/react/export-save-publish/export/overview-9ed3a8/)
 - [For Social Media](https://img.ly/docs/cesdk/next/react/export-save-publish/for-social-media-0e8a92/)
 - [To MP4](https://img.ly/docs/cesdk/next/react/export-save-publish/export/to-mp4-c998a8/)
+- [To WebM](https://img.ly/docs/cesdk/next/react/export-save-publish/export/to-webm-764271/)
 - [For Audio Processing](https://img.ly/docs/cesdk/next/react/export-save-publish/export/audio-68de25/)
 - [To PDF](https://img.ly/docs/cesdk/next/react/export-save-publish/export/to-pdf-95e04b/)
 - [To JPEG](https://img.ly/docs/cesdk/next/react/export-save-publish/export/to-jpeg-6f88e9/)
@@ -466,6 +470,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Dynamic Content](https://img.ly/docs/cesdk/next/react/create-templates/add-dynamic-content-53fad7/)
   - [Text Variables](https://img.ly/docs/cesdk/next/react/create-templates/add-dynamic-content/text-variables-7ecb50/)
   - [Variable Bindings](https://img.ly/docs/cesdk/next/react/create-templates/add-dynamic-content/variable-bindings-faa12f/)
+  - [Value Sets](https://img.ly/docs/cesdk/next/react/create-templates/add-dynamic-content/value-sets-fa0904/)
   - [Placeholders](https://img.ly/docs/cesdk/next/react/create-templates/add-dynamic-content/placeholders-d9ba8a/)
   - [Set Editing Constraints](https://img.ly/docs/cesdk/next/react/create-templates/add-dynamic-content/set-editing-constraints-c892c0/)
   - [Form-Based Editing](https://img.ly/docs/cesdk/next/react/create-templates/add-dynamic-content/form-based-editing-a8a779/)

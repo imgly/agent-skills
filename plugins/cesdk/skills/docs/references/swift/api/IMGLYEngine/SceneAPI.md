@@ -23,7 +23,7 @@ Add a marker to the end of the current scene’s marker list. Markers name point
 @MainActor func applyTemplate(from string: String) async throws
 ```
 
-Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. `string`
+Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks. `string`
 
 ### applyTemplate(from:)-8krqr
 
@@ -31,7 +31,7 @@ Applies the contents of the given template scene to the currently loaded scene. 
 @MainActor func applyTemplate(from url: URL) async throws
 ```
 
-Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. `url`
+Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks. `url`
 
 ### applyTemplate(fromString:)
 
@@ -41,7 +41,7 @@ Applies the contents of the given template scene to the currently loaded scene. 
 @MainActor func applyTemplate(fromString string: String) async throws
 ```
 
-Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. `string`
+Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks. `string`
 
 ### applyTemplate(fromURL:)
 
@@ -51,7 +51,7 @@ Applies the contents of the given template scene to the currently loaded scene. 
 @MainActor func applyTemplate(fromURL url: URL) async throws
 ```
 
-Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. `url`
+Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks. `url`
 
 ### create(designUnit:fontSizeUnit:sceneLayout:angleUnit:)
 
@@ -155,6 +155,8 @@ Returns the angle unit of the current scene. The current angle unit.
 
 ### getCMYKProfileInfo()
 
+> **Deprecated:** Use 'getDocumentColorProfileInfo' with ProfileSlot(role: .default, space: .cmyk) instead.
+
 ```swift
 @MainActor func getCMYKProfileInfo() throws -> CMYKProfileInfo
 ```
@@ -192,6 +194,14 @@ Get the pages that single page mode shows. The shown pages, or an empty list whe
 ```
 
 Returns the design unit of the current scene. The current design unit.
+
+### getDocumentColorProfileInfo(_:)
+
+```swift
+@MainActor func getDocumentColorProfileInfo(_ slot: ProfileSlot) throws -> DocumentColorProfileInfo
+```
+
+Returns a slot’s reference without loading it. Fallback profiles are not reported. `slot`
 
 ### getFontSizeUnit()
 
@@ -359,11 +369,21 @@ Subscribe to changes to the zoom level.
 
 ### removeCMYKProfile()
 
+> **Deprecated:** Use 'removeDocumentColorProfile' with ProfileSlot(role: .default, space: .cmyk) instead.
+
 ```swift
 @MainActor func removeCMYKProfile()
 ```
 
 Removes the CMYK profile from the document. CMYK conversion then uses the `fallbackCMYKProfileUri` setting, or the bundled profile when that setting is unset. Color management stays on. A [`setCMYKProfile(from:)`](./setcmykprofile(from:)-3inol.md) request that is still loading is cancelled.
+
+### removeDocumentColorProfile(_:)
+
+```swift
+@MainActor func removeDocumentColorProfile(_ slot: ProfileSlot) throws
+```
+
+Removes one profile and supersedes its pending assignment. Other slots stay unchanged. Removing Default/CMYK restores fallback resolution. Removing an empty slot succeeds. `slot`
 
 ### removeMarker(at:)
 
@@ -415,19 +435,23 @@ Turns black point compensation of the document on or off. `enabled`
 
 ### setCMYKProfile(from:)-3inol
 
+> **Deprecated:** Use 'setDocumentColorProfile' with ProfileSlot(role: .default, space: .cmyk) instead.
+
 ```swift
 @MainActor func setCMYKProfile(from url: URL) async throws
 ```
 
-Loads the ICC profile at a URL and makes it the CMYK profile of the document. `url`
+Loads the ICC profile at a URL and makes it the CMYK profile of the document. Assigns to the slot with role `Default` and color space `CMYK`. `url`
 
 ### setCMYKProfile(from:)-5xy8v
+
+> **Deprecated:** Use 'setDocumentColorProfile' with ProfileSlot(role: .default, space: .cmyk) instead.
 
 ```swift
 @MainActor func setCMYKProfile(from data: Data) throws
 ```
 
-Makes the ICC profile in the given bytes the CMYK profile of the document. `data`
+Makes the ICC profile in the given bytes the CMYK profile of the document. Assigns to the slot with role `Default` and color space `CMYK`. `data`
 
 ### setColorRenderingIntent(_:)
 
@@ -452,6 +476,22 @@ Set the pages that single page mode shows. All other pages leave the view but st
 ```
 
 Converts all values of the current scene into the given design unit. `designUnit`
+
+### setDocumentColorProfile(_:from:)-6coxh
+
+```swift
+@MainActor func setDocumentColorProfile(_ slot: ProfileSlot, from data: Data) throws
+```
+
+Assigns ICC bytes synchronously, with the same slots and persistence as the URL overload. The engine copies the bytes and keeps one buffer per distinct profile for its lifetime. `saveToString` stores a buffer URI readable only by this engine; use an archive to retain bytes. To save a URL instead, upload the bytes that `findAllTransientResources` lists and call `relocateResource` before saving. `slot`
+
+### setDocumentColorProfile(_:from:)-9ilzb
+
+```swift
+@MainActor func setDocumentColorProfile(_ slot: ProfileSlot, from url: URL) async throws
+```
+
+Assigns an ICC profile to one document role and component space. Profiles save with the scene and are bundled into archives. Only Default/CMYK currently affects managed conversion; other slots store profiles without changing rendering or export. Failure or task cancellation keeps the previous profile. Another assignment or removal in this slot, or scene replacement, supersedes pending loading. Other slots are independent. Undo and redo do not change profiles. `slot`
 
 ### setFontSizeUnit(_:)
 

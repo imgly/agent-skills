@@ -41,7 +41,7 @@ Add a source to the sourceSet property of the given block. If there already exis
 abstract fun adjustCropToFillFrame(block: DesignBlock, minScaleRatio: Float)
 ```
 
-Adjust the crop position/scale to at least fill the crop frame. Required scope: "layer/crop"
+Adjust the crop position/scale to at least fill the crop frame. On a page with a bleed, the content also covers the bleed, and the ratio includes the bleed. This needs the setting page/imageFillCoversBleed, which is on by default. Required scope: "layer/crop"
 
 ### alignHorizontally
 
@@ -306,7 +306,7 @@ abstract fun create(blockType: String): DesignBlock
 ```
 > **Deprecated:** Use type safe overload instead. Replace with `this.create(DesignBlockType.)`.
 
-Create a new block.
+Create a new block. New text and graphic blocks use clip/defaultDurationValue (5 seconds by default). Duration is provisional until an engine update after placement and media loading initializes it once using clip/initialDurationMode. Waiting for forceLoadAVResource alone does not guarantee that update has run. An explicit setDuration call takes precedence. Finish parent and time-offset placement before that update. Custom asset callbacks that defer placement across updates must set the final duration explicitly.
 
 ### destroy
 
@@ -338,7 +338,7 @@ Distribute multiple blocks vertically within their bounding box so that the spac
 abstract fun duplicate(block: DesignBlock, attachToParent: Boolean = true): DesignBlock
 ```
 
-Duplicates a block including its children. Required scope: "lifecycle/duplicate" If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy.
+Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. Required scope: "lifecycle/duplicate" If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy.
 
 ### enterGroup
 
@@ -356,6 +356,14 @@ abstract fun exitGroup(block: DesignBlock)
 
 Changes selection from a group's selected block to that group. Nothing happens if block is not a group. Required scope: "editor/select"
 
+### exportPreview
+
+```kotlin
+abstract suspend fun exportPreview(block: DesignBlock): ByteBuffer
+```
+
+Exports a small image of a block to show in your app. A preview does not count as an export. The image is always WebP at quality 0.8 and keeps the block's aspect ratio. A block larger than 262,144 pixels (512 × 512) in area is scaled down to fit. For a video, the preview is one still frame. Use export for a file that you deliver. Performs an internal update to resolve the final layout for the blocks. Will not complete as long as assets are in a pending state; asset loading progresses during engine updates.
+
 ### exportVideo
 
 ```kotlin
@@ -366,7 +374,7 @@ abstract suspend fun exportVideo(block: DesignBlock, timeOffset: Double, duratio
 abstract suspend fun exportVideo(blocks: List<DesignBlock>, timeOffset: Double, duration: Double, mimeType: MimeType, progressCallback: (ExportVideoProgress) -> Unit, options: ExportVideoOptions? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
 ```
 
-Exports a design block as a video file of the given mime type. Note: MP4 exports embed a PNG cover at the page playback position unless coverTimeOffset overrides it. Note: The export will run across multiple iterations of the update loop. In each iteration a frame is scheduled for encoding. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance and is alive until the suspending function resumes. Use this lambda to configure the background engine for export. If uriResolver is provided it will be set on the background engine before the exported scene is loaded and once more after onPreExport is invoked (so it takes precedence i…
+Exports a design block as a video file of the given mime type. Note: MP4 exports embed a PNG cover at the page playback position unless coverTimeOffset overrides it. Note: The export will run across multiple iterations of the update loop. In each iteration a frame is scheduled for encoding. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with…
 
 ### exportWithColorMask
 
@@ -378,7 +386,7 @@ abstract suspend fun exportWithColorMask(block: DesignBlock, mimeType: MimeType,
 abstract suspend fun exportWithColorMask(blocks: List<DesignBlock>, mimeType: MimeType, maskColor: RGBAColor, options: ExportOptions? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<Pair<ByteBuffer, ByteBuffer>>
 ```
 
-Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance and is alive until the suspending function resumes. Use this lambda to configure the background engine for export. If uriResolver is provided it will be set on the background engine before the exported scene is loaded and once more after onPreExport is invoked (so it takes precedence if onPreExport also sets a resolver).
+Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPreExport runs on every export, and what it changes stays for the next export: settings, role, global scopes, asset sources a…
 
 ### export
 
@@ -398,7 +406,7 @@ abstract fun export(block: DesignBlock, options: ExportOptions? = null, progress
 abstract suspend fun export(blocks: List<DesignBlock>, mimeType: MimeType, options: ExportOptions? = null, progressCallback: ((ExportPdfProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
 ```
 
-Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance and is alive until the suspending function resumes. Use this lambda to configure the background engine for export. If uriResolver is provided it will be set on the background engine before the exported scene is loaded and once more after onPreExport is invoked (so it takes precedence if onPreExport also sets a resolver).
+Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPreExport runs on every export, and what it changes stays for the next export: settings, role, global scopes, asset sources a…
 
 ### fillParent
 
@@ -710,7 +718,7 @@ Get the crop rotation of the given design block.
 abstract fun getCropScaleRatio(block: DesignBlock): Float
 ```
 
-Get the crop scale ratio of the given design block.
+Get the crop scale ratio of the given design block. On a page with a bleed, a ratio of 1 means that the content covers the page and its bleed. This needs the setting page/imageFillCoversBleed, which is on by default.
 
 ### getCropScaleX
 
@@ -2599,7 +2607,7 @@ Set the crop rotation of the given design block. Required scope: "layer/crop"
 abstract fun setCropScaleRatio(block: DesignBlock, scaleRatio: Float)
 ```
 
-Set the crop scale ratio of the given design block. This will uniformly scale the content up or down. The center of the scale operation is the center of the crop frame. Required scope: "layer/crop"
+Set the crop scale ratio of the given design block. This will uniformly scale the content up or down. The center of the scale operation is the center of the crop frame. On a page with a bleed, the ratio and the center of the scale include the bleed. This needs the setting page/imageFillCoversBleed, which is on by default. Required scope: "layer/crop"
 
 ### setCropScaleX
 
@@ -3087,7 +3095,7 @@ Set the spot color assign to a cutout type. If no spot color is set, type Cutout
 abstract fun setState(block: DesignBlock, state: BlockState)
 ```
 
-Set the state of a block.
+Set the state of a block. While an image fill is pending, the engine adds no automatic source set entries to it.
 
 ### setString
 
@@ -3216,7 +3224,7 @@ Set the stroke style of the given design block. Required scope: "stroke/change"
 abstract fun setStrokeWidth(block: DesignBlock, width: Float)
 ```
 
-Set the stroke width of the given design block. Required scope: "stroke/change"
+Set the stroke width of the given design block. When the dash pattern is a preset's pattern at the old width, it is scaled to the new width. Any other dash pattern keeps its lengths. Required scope: "stroke/change"
 
 ### setTextBackgroundColor
 

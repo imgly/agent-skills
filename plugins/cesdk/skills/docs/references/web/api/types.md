@@ -16,7 +16,7 @@ Types: AbortOptions
 
 ## asset
 
-Types: Locale, Groups, SortingOrder, Source, AssetMetaData, AssetRGBColor, AssetCMYKColor, AssetSpotColor, AssetColor, AssetFixedAspectRatio, AssetFreeAspectRatio, AssetContentAspectRatio, AssetFixedSize, AssetTransformPreset, AssetStringProperty, AssetNumberProperty, AssetBooleanProperty, AssetEnumProperty, AssetColorProperty, AssetProperty, AssetStylePresetAnimationProperties, AssetStylePresetAnimation, AssetStylePresetPropertyValue, AssetStylePresetProperties, AssetStylePresetScalableProperty, AssetStylePreset, AssetPayload, Asset, AssetDefinition, AssetResult, CompleteAssetResult, AssetQueryData, AssetsQueryResult, AssetSource
+Types: Locale, Groups, SortingOrder, Source, AssetMetaData, AssetRGBColor, AssetCMYKColor, AssetSpotColor, AssetColor, AssetFixedAspectRatio, AssetFreeAspectRatio, AssetContentAspectRatio, AssetFixedSize, AssetTransformPreset, AssetStringProperty, AssetNumberProperty, AssetBooleanProperty, AssetEnumProperty, AssetColorProperty, AssetProperty, AssetStylePresetAnimationProperties, AssetStylePresetAnimation, AssetStylePresetPropertyValue, AssetStylePresetProperties, AssetStylePresetScalableProperty, AssetStylePresetKeptProperty, AssetStylePreset, AssetPayload, Asset, AssetDefinition, AssetResult, CompleteAssetResult, AssetQueryData, AssetsQueryResult, AssetSource
 
 ## audioTrackInfo
 
@@ -68,7 +68,7 @@ Types: Scope
 
 ## settingTypes
 
-Types: SettingStringPropertyName, SettingColorPropertyName, SettingFloatPropertyName, SettingBoolPropertyName, SettingEnumPropertyName, SettingIntPropertyName, TouchPinchAction, TouchRotateAction, CameraClampingOvershootMode, ControlGizmoMoveHandleVisibility, ControlGizmoResizeHandlesVisibility, ControlGizmoScaleHandlesVisibility, ControlGizmoRotateHandlesVisibility, DoubleClickSelectionMode, ColorPickerColorMode, TimelineTrackVisibility, SettingEnumValues, SettingEnumType
+Types: SettingStringPropertyName, SettingColorPropertyName, SettingFloatPropertyName, SettingBoolPropertyName, SettingDoublePropertyName, SettingEnumPropertyName, SettingIntPropertyName, ClipInitialDurationMode, TouchPinchAction, TouchRotateAction, CameraClampingOvershootMode, ControlGizmoMoveHandleVisibility, ControlGizmoResizeHandlesVisibility, ControlGizmoScaleHandlesVisibility, ControlGizmoRotateHandlesVisibility, DoubleClickSelectionMode, ColorPickerColorMode, TimelineTrackVisibility, SettingEnumValues, SettingEnumType
 
 ## settings
 
@@ -76,7 +76,7 @@ Types: Settings, SettingKey, SettingValueType
 
 ## variable
 
-Types: VariableType
+Types: VariableType, ValueSetId, VariableTarget, VariableOptions
 
 ---
 

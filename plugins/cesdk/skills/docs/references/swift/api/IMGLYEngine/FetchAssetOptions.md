@@ -31,4 +31,4 @@ override func isEqual(_ object: Any?) -> Bool
 let locale: Locale?
 ```
 
-The locale for the asset.
+The locale for the asset. Local asset sources and the built-in sources `ly.img.animations`, `ly.img.transitions` and `ly.img.scene.colors` resolve labels and tags with a fallback chain: requested locale → “en” → first available entry → empty default.

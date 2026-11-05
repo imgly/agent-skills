@@ -56,7 +56,7 @@ Throws an exception if the device does not support displaying and working in the
 abstract fun convertColorToColorSpace(color: Color, colorSpace: ColorSpace): Color
 ```
 
-Converts a color to the given color space. In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK uses the document or fallback CMYK profile. While the required profile loads from a URI, this conversion throws COLOR.PROFILE_NOT_LOADED. Await loadCMYKProfile first. RGB-to-CMYK conversion uses a simple formula if the profile only converts CMYK to RGB or cannot load.
+Converts a color to the given color space. In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK uses the document or fallback CMYK profile. While the required profile loads from a URI, this conversion throws COLOR.PROFILE_NOT_LOADED. Await loadColorProfiles first. RGB-to-CMYK conversion uses a simple formula if the profile only converts CMYK to RGB or cannot load.
 
 ### createBuffer
 
@@ -288,6 +288,14 @@ abstract fun getSettingColor(keypath: String): RGBAColor
 
 Get a color setting.
 
+### getSettingDouble
+
+```kotlin
+abstract fun getSettingDouble(keypath: String): Double
+```
+
+Get a double setting.
+
 ### getSettingEnumOptions
 
 ```kotlin
@@ -454,8 +462,17 @@ Checks whether the block can currently be selected.
 ```kotlin
 abstract suspend fun loadCMYKProfile()
 ```
+> **Deprecated:** Use loadColorProfiles instead. Replace with `loadColorProfiles()`.
 
 Loads the CMYK profile used for managed color conversion and preview. The profile is a resource, and a resource takes several update cycles to arrive, so a conversion that needs it can fail right after the engine starts. Await this once and every later convertColorToColorSpace answers without handling COLOR.PROFILE_NOT_LOADED.
+
+### loadColorProfiles
+
+```kotlin
+abstract suspend fun loadColorProfiles()
+```
+
+Loads the color profiles used for managed color conversion and preview. Waits for every profile the document names, and for the effective Default/CMYK profile, including the configured or bundled fallback. Only the Default/CMYK result decides the outcome: a profile of another slot that fails to load is logged and does not fail the call. Configuration changes during loading are resolved before completion. Call again after later changes. Returns immediately when every profile the document names is already loaded. Coroutine cancellation ends this wait; the profile keeps loading for color conversion.
 
 ### onCarouselPageChanged
 
@@ -514,13 +531,21 @@ abstract fun redo()
 
 Redo one step in the history if a redo step is available.
 
+### releaseMemory
+
+```kotlin
+abstract fun releaseMemory()
+```
+
+Free the memory that the engine can build again without a download. The engine frees the decoded images that the canvas did not draw last, and the video thumbnails. It also frees the files that no block uses, and the unused GPU textures. The files that blocks use stay, so no file downloads again. The next frames decode the freed images again when they need them. The engine calls it on its own when the system reports low memory or moves the app to the background. From Android 14 the system reports no low memory to an app in the foreground, so call it there yourself.
+
 ### relocateResource
 
 ```kotlin
 abstract fun relocateResource(currentUri: Uri, relocatedUri: Uri)
 ```
 
-Changes the uri associated with a resource. Note: This function can be used change the Uri of a resource that has been relocated (e.g., to a CDN).
+Changes the uri associated with a resource. Note: This function can be used change the Uri of a resource that has been relocated (e.g., to a CDN). Relocating the Uri of a document color profile also repoints the profile. A setDocumentColorProfile request for that Uri that is still loading commits the new Uri once it loads.
 
 ### removeMovementConstraint
 
@@ -568,7 +593,7 @@ Mark the given history as active, returns an error if the handle doesn't refer t
 abstract fun setAppIsPaused(paused: Boolean)
 ```
 
-Inform the engine that the app went to the background when paused. When the app is paused, the engine will try to release resources to save memory. The audio output device will be suspended on pause. It starts again automatically as soon as a block is playing or can be started manually with startAudioOutputDevice.
+Inform the engine that the app went to the background when paused. A pause frees the audio and video decoders, and the memory that releaseMemory frees. So after a resume, the first frames upload their textures again and make the video thumbnails again. The audio output device will be suspended on pause. It starts again automatically as soon as a block is playing or can be started manually with startAudioOutputDevice.
 
 ### setBufferData
 
@@ -665,6 +690,14 @@ abstract fun setSettingColor(keypath: String, value: RGBAColor)
 ```
 
 Set a color setting.
+
+### setSettingDouble
+
+```kotlin
+abstract fun setSettingDouble(keypath: String, value: Double)
+```
+
+Set a double setting.
 
 ### setSettingEnum
 

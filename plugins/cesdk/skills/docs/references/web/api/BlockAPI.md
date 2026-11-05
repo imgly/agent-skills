@@ -19,6 +19,24 @@ export(handle: DesignBlockId, options?: ExportOptions): Promise<Blob>
 
 **Returns:** A promise that resolves with the exported image or is rejected with an error.
 
+### exportPreview()
+
+Exports a small image of a block to show in your app. A preview does not count as an export.
+The image is always WebP at quality 0.8 and keeps the block's aspect ratio. A block larger than
+262,144 pixels (512 × 512) in area is scaled down to fit. For a video, the preview is one still
+frame. Use `export` for a file that you deliver.
+Performs an internal update to resolve the final layout for the blocks. Will not complete as long
+as assets are in a pending state; asset loading progresses during engine updates.
+
+```typescript
+exportPreview(handle: DesignBlockId): Promise<Blob>
+```
+
+**Parameters:**
+- `handle` - The design block element to preview.
+
+**Returns:** A promise that resolves with the WebP image or is rejected with an error.
+
 ### exportWithColorMask()
 
 Exports a design block and a color mask to two separate Blobs.
@@ -151,6 +169,10 @@ Performs an internal update to lay out pending changes before the save.
 While a font loads, its text is laid out with another font. When the text's size follows its
 content, blocks saved before the font arrives can differ from blocks saved after it. To compare
 two saves, first await `engine.block.forceLoadResources(blocks)`.
+The source set entries that the engine makes are `buffer://` resources that only this engine
+holds. `onDisallowedResourceScheme` gets each of them, whatever `allowedResourceSchemes` holds.
+The save leaves out each entry that the callback did not move to another address, and each
+fill keeps them.
 
 ```typescript
 saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisallowedResourceScheme?: (url: string, dataHash: string) => Promise<string>, options?: AbortOptions): Promise<string>
@@ -226,6 +248,7 @@ create(type: DesignBlockType): DesignBlockId
 ### duplicate()
 
 Duplicates a block and its children.
+Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization.
 
 ```typescript
 duplicate(id: DesignBlockId, attachToParent?: boolean): DesignBlockId
@@ -264,9 +287,10 @@ forceLoadResources(ids: DesignBlockId[], options?: AbortOptions): Promise<void>
 - `options` - An `abortSignal` that ends the wait, and stops each load that no block uses and no
   other call waits for.
 
-**Returns:** A Promise that resolves once every resource has finished loading. The state of a block
-then reports the result of its fetch. A file that arrives but that the engine cannot decode
-keeps it pending.
+**Returns:** A Promise that resolves once every resource has finished loading. It rejects when a
+resource fails to load, or when the file of an image fill cannot be decoded. Of a source set, the
+load checks the smallest raster entry or the largest SVG entry. It does not check a CMYK JPEG that
+has no color profile of its own. The state of each block then reports the result.
 
 ## Block Fills
 
@@ -1738,7 +1762,8 @@ Gets the current state of a block.
 A block's state is determined by its own state and that of its shape, fill, and effects.
 A block whose CMYK or spot color needs the document CMYK profile is pending while that
 profile loads.
-Runs an engine update when the block names a resource that nothing asked for yet.
+Runs an engine update for a resource that nothing asked for yet,
+while the scene has a change to lay out.
 A font set just before this call is then reported as pending.
 An 'Error' state carries the catalog error of the failed load in `engineError` when the
 engine knows it, such as a `.lottie` archive that cannot be read or a video that cannot be
@@ -1767,6 +1792,7 @@ engine.block.setState(video, {type: 'Pending', progress: 0.5});
 engine.block.setState(page, {type: 'Ready'});
 engine.block.setState(image, {type: 'Error', error: 'ImageDecoding'});
 ```
+While an image fill is pending, the engine adds no automatic source set entries to it.
 
 ```typescript
 setState(id: DesignBlockId, state: BlockState): void
@@ -4360,6 +4386,8 @@ setCropRotation(id: DesignBlockId, rotation: number): void
 
 Sets the uniform crop scale ratio of a block.
 This scales the content up or down from the center of the crop frame.
+On a page with a bleed, the ratio and the center of the scale include the bleed.
+This needs the setting `page/imageFillCoversBleed`, which is on by default.
 ```javascript
 engine.block.setCropScaleRatio(image, 3.0);
 ```
@@ -4468,6 +4496,8 @@ getCropRotation(id: DesignBlockId): number
 ### getCropScaleRatio()
 
 Gets the uniform crop scale ratio of a block.
+On a page with a bleed, a ratio of 1 means that the content covers the page and its bleed.
+This needs the setting `page/imageFillCoversBleed`, which is on by default.
 ```javascript
 const cropScaleRatio = engine.block.getCropScaleRatio(image);
 ```
@@ -4516,6 +4546,8 @@ getCropTranslationY(id: DesignBlockId): number
 ### adjustCropToFillFrame()
 
 Adjusts the crop position and scale of the given image block to fill its crop frame, while maintaining the position and size of the crop frame.
+On a page with a bleed, the content also covers the bleed, and the ratio includes the bleed.
+This needs the setting `page/imageFillCoversBleed`, which is on by default.
 ```javascript
 const adjustedScaleRatio = engine.block.adjustCropToFillFrame(image, 1.0);
 ```
@@ -5310,6 +5342,8 @@ getStrokeColor(id: DesignBlockId): Color
 ### setStrokeWidth()
 
 Sets the stroke width of a block.
+When the dash pattern is a preset's pattern at the old width, it is scaled to the new width. Any other
+dash pattern keeps its lengths.
 
 ```typescript
 setStrokeWidth(id: DesignBlockId, width: number): void

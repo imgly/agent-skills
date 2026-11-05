@@ -48,7 +48,7 @@ Draw crop marks outside the bleed on every exported PDF page. Crop marks are the
 val exportPdfWithHighCompatibility: Boolean = true
 ```
 
-Export the PDF document with a higher compatibility to different PDF viewers. Bitmap images and some effects like gradients will be rasterized with the DPI setting instead of embedding them directly. The default value is true.
+Export the PDF document with a higher compatibility to different PDF viewers. Bitmap images, stripe fills, conical gradients, gradients with transparency and fills with effects are rasterized with the DPI setting instead of embedding them directly. A linear or radial gradient without transparency stays a vector. The default value is true.
 
 ### exportPdfWithRegistrationMarks
 
@@ -120,7 +120,7 @@ Stroke width of any printer's mark, in points. Every mark type shares it, and a 
 val targetHeight: Float? = null
 ```
 
-An optional target height used in conjunction with target width. If used, the block will be rendered large enough, that it fills the target size entirely while maintaining its aspect ratio.
+An optional target height. If used, the block will be rendered large enough that it fills the target size entirely while maintaining its aspect ratio. Without a target width, the width follows from that aspect ratio.
 
 ### targetWidth
 
@@ -128,7 +128,7 @@ An optional target height used in conjunction with target width. If used, the bl
 val targetWidth: Float? = null
 ```
 
-An optional target width used in conjunction with target height. If used, the block will be rendered large enough, that it fills the target size entirely while maintaining its aspect ratio.
+An optional target width. If used, the block will be rendered large enough that it fills the target size entirely while maintaining its aspect ratio. Without a target height, the height follows from that aspect ratio.
 
 ### underlayerMaxError
 

@@ -55,7 +55,7 @@ If the engine does not support working in the P3 color space, this function thro
 @MainActor func convertColorToColorSpace(color: Color, colorSpace: ColorSpace) throws -> Color
 ```
 
-Converts a color to the given color space. In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK uses the document or fallback CMYK profile. While the required profile loads from a URI, this conversion throws `COLOR.PROFILE_NOT_LOADED`. Await [`loadCMYKProfile()`](loadcmykprofile().md) first. RGB-to-CMYK conversion uses a simple formula if the profile only converts CMYK to RGB or cannot load. `color`
+Converts a color to the given color space. In Managed scenes, converting sRGB colors or RGB-only spot approximations to CMYK uses the document or fallback CMYK profile. While the required profile loads from a URI, this conversion throws `COLOR.PROFILE_NOT_LOADED`. Await [`loadColorProfiles()`](loadcolorprofiles().md) first. RGB-to-CMYK conversion uses a simple formula if the profile only converts CMYK to RGB or cannot load. `color`
 
 ### createBuffer()
 
@@ -349,15 +349,21 @@ Get a color setting. `keypath`
 
 ### getSettingColor(_:)-9yw92
 
-> **Deprecated:** 
-    Use 'getSettingColor(id: DesignBlockID, property: String) -> Color' instead.
-    
+> **Deprecated:** Use 'getSettingColor(_:) -> Color' instead.
 
 ```swift
 @MainActor func getSettingColor(_ keypath: String) throws -> RGBA
 ```
 
 Get a color setting. `keypath`
+
+### getSettingDouble(_:)
+
+```swift
+@MainActor func getSettingDouble(_ keypath: String) throws -> Double
+```
+
+Get a double setting. `keypath`
 
 ### getSettingEnum(_:)
 
@@ -513,11 +519,21 @@ Checks whether the block can currently be selected. `id`
 
 ### loadCMYKProfile()
 
+> **Deprecated:** Use 'loadColorProfiles()' instead. Renamed to `loadColorProfiles()`.
+
 ```swift
 @MainActor func loadCMYKProfile() async throws
 ```
 
 Loads the CMYK profile used for managed color conversion and preview. The profile is a resource, and a resource takes several update cycles to arrive, so a conversion that needs it can fail right after the engine starts. Await this once and every later [`convertColorToColorSpace(color:colorSpace:)`](./convertcolortocolorspace(color:colorspace:).md) answers without handling `COLOR.PROFILE_NOT_LOADED`.
+
+### loadColorProfiles()
+
+```swift
+@MainActor func loadColorProfiles() async throws
+```
+
+Loads the color profiles used for managed color conversion and preview. Waits for every profile the document names, and for the effective Default/CMYK profile, including the configured or bundled fallback. Only the Default/CMYK result decides the outcome: a profile of another slot that fails to load is logged and does not fail the call. Configuration changes during loading are resolved before completion. Call again after later changes. Returns immediately when every profile the document names is already loaded. Task cancellation ends this wait; the profile keeps loading for color conversion.
 
 ### onHistoryUpdated
 
@@ -610,6 +626,14 @@ Subscribe to changes to the editor state.
 ```
 
 Redo one step in the history if a redo step is available.
+
+### releaseMemory()
+
+```swift
+@MainActor func releaseMemory()
+```
+
+Free the memory that the engine can build again without a download. The engine frees the decoded images that the canvas did not draw last, and the video thumbnails. It also frees the files that no block uses, and the unused GPU textures. The files that blocks use stay, so no file downloads again. The next frames decode the freed images again when they need them. On iOS the engine calls it on its own when the system sends a memory warning.
 
 ### relocateResource(currentURL:relocatedURL:)
 
@@ -805,15 +829,21 @@ Set a color setting. `keypath`
 
 ### setSettingColor(_:r:g:b:a:)
 
-> **Deprecated:** 
-    Use 'setSettingColor(id: DesignBlockID, property: String, color: Color)' instead.
-    
+> **Deprecated:** Use 'setSettingColor(_:color:)' instead.
 
 ```swift
 @MainActor func setSettingColor(_ keypath: String, r: Float, g: Float, b: Float, a: Float = 1) throws
 ```
 
 Set a color setting. `keypath`
+
+### setSettingDouble(_:value:)
+
+```swift
+@MainActor func setSettingDouble(_ keypath: String, value: Double) throws
+```
+
+Sets a double setting. The default clip duration is in seconds.
 
 ### setSettingEnum(_:value:)
 
