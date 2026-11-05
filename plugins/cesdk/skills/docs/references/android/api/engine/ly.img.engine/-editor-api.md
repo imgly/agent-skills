@@ -208,6 +208,14 @@ abstract fun getEditMode(): String
 
 Get the current edit mode of the editor. An edit mode defines what type of content can currently be edited by the user.
 
+### getFontInfo
+
+```kotlin
+abstract suspend fun getFontInfo(fontFileUri: String): FontInfo
+```
+
+Returns the names, weight, style and variation axes of a font file. The call loads the font when it is not loaded yet. The result describes the default instance of a variable font, and the call ignores a fragment that names axis values, such as #wght=700. Use the result to register an uploaded font on a typeface asset source. Cancelling the coroutine stops the download of the font.
+
 ### getFontMetrics
 
 ```kotlin
@@ -489,15 +497,6 @@ abstract fun onHistoryUpdatedWithKind(): Flow<HistoryUpdate>
 ```
 
 Subscribe to changes to the undo/redo history. Each emitted HistoryUpdate describes what kind of update happened so consumers can distinguish a real change to the active history's snapshots (e.g. an edit, undo, or redo) from a pure activation via setActiveHistory.
-
-### onHistoryUpdated
-
-```kotlin
-abstract fun onHistoryUpdated(): Flow<Unit>
-```
-> **Deprecated:** Use onHistoryUpdatedWithKind() to also receive the kind of update. Replace with `onHistoryUpdatedWithKind()`.
-
-Subscribe to changes to the undo/redo history.
 
 ### onRoleChanged
 

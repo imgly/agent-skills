@@ -30,14 +30,6 @@ abstract suspend fun applyTemplate(templateUri: Uri)
 
 Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks.
 
-### createForVideo
-
-```kotlin
-abstract fun createForVideo(): DesignBlock
-```
-
-Create a new scene in video mode, along with its own camera.
-
 ### createFromImage
 
 ```kotlin
@@ -215,15 +207,6 @@ abstract fun getMarkers(): List<SceneMarker>
 ```
 
 Get the markers of the current scene in the order they were added. Experimental: this API may change in a minor release.
-
-### getMode
-
-```kotlin
-abstract fun getMode(): SceneMode
-```
-> **Deprecated:** Method will be removed in future versions.
-
-Get the current scene mode.
 
 ### getPages
 
@@ -459,14 +442,6 @@ abstract fun setLayout(layout: SceneLayout)
 ```
 
 Set the scene layout. This will handle all necessary conversions including creating or destroying stack blocks and reparenting pages as needed. When transitioning from stack layouts (VerticalStack, HorizontalStack, DepthStack) to Free layout, the global positions of pages are preserved to maintain their visual appearance in the scene.
-
-### setMode
-
-```kotlin
-abstract fun setMode(mode: SceneMode)
-```
-
-Set the scene mode. Changing the scene mode affects how the engine processes and renders the scene: - Video mode enables timeline-based playback, animations, and audio processing. - Design mode disables playback-related features and uses different color space settings.
 
 ### setZoomLevel
 

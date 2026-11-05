@@ -328,6 +328,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Add Sound Effects](https://img.ly/docs/cesdk/dev/flutter/create-audio/audio/add-sound-effects-9e984e/)
 - [Add Music](https://img.ly/docs/cesdk/dev/flutter/create-audio/audio/add-music-5b182c/)
 - [Record Voiceover](https://img.ly/docs/cesdk/dev/flutter/create-audio/audio/record-voiceover-07e8e1/)
+- [Isolate Voice](https://img.ly/docs/cesdk/dev/flutter/create-audio/audio/voice-isolation-9267e7/)
 - [Adjust Volume](https://img.ly/docs/cesdk/dev/flutter/create-audio/audio/adjust-volume-7ecc4a/)
 - [Fade In and Out](https://img.ly/docs/cesdk/dev/flutter/create-audio/audio/fade-a4d7e2/)
 - [Adjust Speed](https://img.ly/docs/cesdk/dev/flutter/create-audio/audio/adjust-speed-908d57/)
@@ -501,6 +502,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [Background Removal](https://img.ly/docs/cesdk/dev/flutter/edit-image/remove-bg-9dfcf7/)
 
+#### [Voice Isolation](https://img.ly/docs/cesdk/dev/flutter/create-audio/audio/voice-isolation-9267e7/)
+
 #### [QR Code](https://img.ly/docs/cesdk/dev/flutter/stickers-and-shapes/insert-qr-code-b6cc53/)
 
 
@@ -528,6 +531,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [To v1.83](https://img.ly/docs/cesdk/dev/flutter/to-v1-83-6ee1d1/)
 
 #### [To v1.85](https://img.ly/docs/cesdk/dev/flutter/to-v1-85-e7d908/)
+
+#### [To v1.87](https://img.ly/docs/cesdk/dev/flutter/to-v1-87-0bbae1/)
 
 
 ---

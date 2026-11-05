@@ -63,6 +63,12 @@ case group
 case page
 ```
 
+### DesignBlockType.pageSlice
+
+```swift
+case pageSlice
+```
+
 ### DesignBlockType.scene
 
 ```swift

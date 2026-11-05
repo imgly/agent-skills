@@ -227,6 +227,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Text Effects](https://img.ly/docs/cesdk/dev/node/text/effects-2dc9fc/)
 - [Emojis](https://img.ly/docs/cesdk/dev/node/text/emojis-510651/)
 - [Adjust Spacing](https://img.ly/docs/cesdk/dev/node/text/adjust-spacing-c1a3b6/)
+- [Customize Fonts](https://img.ly/docs/cesdk/dev/node/text/custom-fonts-9565b3/)
 - [Language Support](https://img.ly/docs/cesdk/dev/node/text/language-support-a0f010/)
 
 #### [Create and Edit Shapes](https://img.ly/docs/cesdk/dev/node/shapes-9f1b2c/)
@@ -391,6 +392,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [To v1.82](https://img.ly/docs/cesdk/dev/node/to-v1-82-3fb2d1/)
 
 #### [To v1.85](https://img.ly/docs/cesdk/dev/node/to-v1-85-e7d908/)
+
+#### [To v1.87](https://img.ly/docs/cesdk/dev/node/to-v1-87-0bbae1/)
 
 
 ---

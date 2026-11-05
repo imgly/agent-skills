@@ -85,14 +85,6 @@ Loads the given video and creates a scene with a single page showing the video. 
 
 Create a new scene, along with its own camera. `sceneLayout`
 
-### createVideo()
-
-```swift
-@discardableResult @MainActor func createVideo() throws -> DesignBlockID
-```
-
-Create a new scene in video mode, along with its own camera. The scene’s handle.
-
 ### disableZoomAutoFit(_:)
 
 ```swift
@@ -226,14 +218,6 @@ Get the current scene layout. The current layout of the scene.
 ```
 
 Get the markers of the current scene in the order they were added. The markers of the scene.
-
-### getMode()
-
-```swift
-@MainActor func getMode() throws -> SceneMode
-```
-
-Get the current scene mode. The current mode of the scene.
 
 ### getPages()
 
@@ -508,14 +492,6 @@ Sets the unit in which font sizes for `setTextFontSize` and `getTextFontSizes` a
 ```
 
 Set the scene layout. This will handle all necessary conversions including creating or destroying stack blocks and reparenting pages as needed. When transitioning from stack layouts (VerticalStack, HorizontalStack, DepthStack) to Free layout, the global positions of pages are preserved to maintain their visual appearance in the scene. `layout`
-
-### setMode(_:)
-
-```swift
-@MainActor func setMode(_ mode: SceneMode) throws
-```
-
-Set the scene mode. Changing the scene mode affects how the engine processes and renders the scene: `mode`
 
 ### setZoom(_:)
 

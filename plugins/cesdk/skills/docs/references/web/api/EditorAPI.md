@@ -15,19 +15,6 @@ onStateChanged(callback: () => void): (() => void)
 
 **Returns:** A method to unsubscribe from the event.
 
-### onHistoryUpdated() *(deprecated)*
-
-Subscribe to undo/redo history changes.
-
-```typescript
-onHistoryUpdated(callback: () => void): (() => void)
-```
-
-**Parameters:**
-- `callback` - Function called when the undo/redo history changes.
-
-**Returns:** A method to unsubscribe from the event.
-
 ### onHistoryUpdatedWithKind()
 
 Subscribe to undo/redo history changes.
@@ -1192,6 +1179,30 @@ getFontMetrics(fontFileUri: string, options?: AbortOptions): Promise<FontMetrics
 - `options` - An `abortSignal` that stops the download of the font.
 
 **Returns:** A promise resolving to the font metrics.
+
+### getFontInfo()
+
+Gets the names, weight, style and variation axes of a font file.
+The call loads the font when it is not loaded yet. The result describes the default instance of a variable font,
+and the call ignores a fragment that names axis values, such as `#wght=700`. Use the result to register an
+uploaded font on a typeface asset source.
+```javascript
+const info = await engine.editor.getFontInfo('https://example.com/fonts/Inter-SemiBold.otf');
+console.log(info.family, info.subFamily); // "Inter", "Semi Bold"
+console.log(info.weight, info.fontWeight, info.style); // 600, "semiBold", "normal"
+console.log(info.isVariable, info.variationAxes);
+```
+
+```typescript
+getFontInfo(fontFileUri: string, options?: AbortOptions): Promise<FontInfo>
+```
+
+**Parameters:**
+- `fontFileUri` - The URI of a TTF, OTF, WOFF or WOFF2 file.
+- `options` - An `abortSignal` that stops the download of the font.
+
+**Returns:** A promise resolving to the font info. It rejects with `EDITOR.FONT_LOAD_FAILED` when the file does not
+load, and with `EDITOR.FONT_INFO_EXTRACT_FAILED` when the file is not a font.
 
 ### findAllTransientResources()
 

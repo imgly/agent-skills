@@ -217,6 +217,14 @@ Get the type of cursor that should be displayed by the application. The cursor t
 
 Get the current edit mode of the editor. An edit mode defines what type of content can currently be edited by the user. “Transform”, “Crop”, “Text”, “Playback”.
 
+### getFontInfo(fontFileURI:)
+
+```swift
+@MainActor func getFontInfo(fontFileURI: String) async throws -> FontInfo
+```
+
+Get the names, weight, style and variation axes of a font file. The call loads the font when it is not loaded yet. The result describes the default instance of a variable font, and the call ignores a fragment that names axis values, such as `#wght=700`. Use the result to register an uploaded font on a typeface asset source. `fontFileURI`
+
 ### getFontMetrics(fontFileURI:)
 
 ```swift
@@ -339,20 +347,10 @@ Get the bezier handle mirror mode of the currently selected vector node. The mir
 
 Get a boolean setting. `keypath`
 
-### getSettingColor(_:)-6p0rf
+### getSettingColor(_:)
 
 ```swift
 @MainActor func getSettingColor(_ keypath: String) throws -> Color
-```
-
-Get a color setting. `keypath`
-
-### getSettingColor(_:)-9yw92
-
-> **Deprecated:** Use 'getSettingColor(_:) -> Color' instead.
-
-```swift
-@MainActor func getSettingColor(_ keypath: String) throws -> RGBA
 ```
 
 Get a color setting. `keypath`
@@ -534,26 +532,6 @@ Loads the CMYK profile used for managed color conversion and preview. The profil
 ```
 
 Loads the color profiles used for managed color conversion and preview. Waits for every profile the document names, and for the effective Default/CMYK profile, including the configured or bundled fallback. Only the Default/CMYK result decides the outcome: a profile of another slot that fails to load is logged and does not fail the call. Configuration changes during loading are resolved before completion. Call again after later changes. Returns immediately when every profile the document names is already loaded. Task cancellation ends this wait; the profile keeps loading for color conversion.
-
-### onHistoryUpdated
-
-> **Deprecated:** Use 'onHistoryUpdatedWithKind' instead.
-
-```swift
-@MainActor var onHistoryUpdated: AsyncStream<Void> { get }
-```
-
-Subscribe to changes to the undo/redo history.
-
-### onHistoryUpdatedPublisher
-
-> **Deprecated:** Use 'onHistoryUpdatedWithKindPublisher' instead.
-
-```swift
-@MainActor var onHistoryUpdatedPublisher: AnyPublisher<Void, Never> { get }
-```
-
-Subscribe to changes to the undo/redo history.
 
 ### onHistoryUpdatedWithKind
 
@@ -823,16 +801,6 @@ Set a boolean setting. `keypath`
 
 ```swift
 @MainActor func setSettingColor(_ keypath: String, color: Color) throws
-```
-
-Set a color setting. `keypath`
-
-### setSettingColor(_:r:g:b:a:)
-
-> **Deprecated:** Use 'setSettingColor(_:color:)' instead.
-
-```swift
-@MainActor func setSettingColor(_ keypath: String, r: Float, g: Float, b: Float, a: Float = 1) throws
 ```
 
 Set a color setting. `keypath`

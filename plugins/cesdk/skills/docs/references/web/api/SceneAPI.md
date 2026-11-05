@@ -365,22 +365,6 @@ create(sceneLayout?: SceneLayout, options?: CreateSceneOptions): DesignBlockId
 
 **Returns:** The scene's handle.
 
-### createVideo() *(deprecated)*
-
-Create a new scene in video mode, along with its own camera.
-
-```typescript
-createVideo(options?: CreateSceneOptions): DesignBlockId
-```
-
-**Parameters:**
-- `options` - Optional parameters for the scene. Properties:
-  - `page` - Page options. Properties:
-    - `size` - The size of the page.
-    - `color` - Optional background color of the page.
-
-**Returns:** The scene's handle.
-
 ### createFromImage()
 
 Loads the given image and creates a scene with a single page showing the image.
@@ -436,27 +420,6 @@ get(): DesignBlockId | null
 ```
 
 **Returns:** The scene or null, if none was created yet.
-
-### getMode() *(deprecated)*
-
-Get the current scene mode.
-
-```typescript
-getMode(): SceneMode | null
-```
-
-**Returns:** The current mode of the scene, or null if no mode has been set.
-
-### setMode() *(deprecated)*
-
-Set the mode of the scene.
-
-```typescript
-setMode(mode: SceneMode): void
-```
-
-**Parameters:**
-- `mode` - The new mode for the scene.
 
 ### setDesignUnit()
 

@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 334 generated API digests.
+Complete catalog of 336 generated API digests.
 
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
@@ -118,6 +118,7 @@ Complete catalog of 334 generated API digests.
 - [DesignBlockType.Graphic](<../engine/ly.img.engine/-design-block-type/-graphic.md>) — `ly.img.engine`
 - [DesignBlockType.Group](<../engine/ly.img.engine/-design-block-type/-group.md>) — `ly.img.engine`
 - [DesignBlockType.Page](<../engine/ly.img.engine/-design-block-type/-page.md>) — `ly.img.engine`
+- [DesignBlockType.PageSlice](<../engine/ly.img.engine/-design-block-type/-page-slice.md>) — `ly.img.engine`
 - [DesignBlockType.Scene](<../engine/ly.img.engine/-design-block-type/-scene.md>) — `ly.img.engine`
 - [DesignBlockType.Stack](<../engine/ly.img.engine/-design-block-type/-stack.md>) — `ly.img.engine`
 - [DesignBlockType.Text](<../engine/ly.img.engine/-design-block-type/-text.md>) — `ly.img.engine`
@@ -195,6 +196,7 @@ Complete catalog of 334 generated API digests.
 - [FindAssetsQuery](<../engine/ly.img.engine/-find-assets-query.md>) — `ly.img.engine`
 - [FindAssetsResult](<../engine/ly.img.engine/-find-assets-result.md>) — `ly.img.engine`
 - [Font](<../engine/ly.img.engine/-font.md>) — `ly.img.engine`
+- [FontInfo](<../engine/ly.img.engine/-font-info.md>) — `ly.img.engine`
 - [FontMetrics](<../engine/ly.img.engine/-font-metrics.md>) — `ly.img.engine`
 - [FontStyle](<../engine/ly.img.engine/-font-style.md>) — `ly.img.engine`
 - [FontUnit](<../engine/ly.img.engine/-font-unit.md>) — `ly.img.engine`
@@ -255,7 +257,6 @@ Complete catalog of 334 generated API digests.
 - [SceneApi](<../engine/ly.img.engine/-scene-api.md>) — `ly.img.engine`
 - [SceneLayout](<../engine/ly.img.engine/-scene-layout.md>) — `ly.img.engine`
 - [SceneMarker](<../engine/ly.img.engine/-scene-marker.md>) — `ly.img.engine`
-- [SceneMode \[deprecated\]](<../engine/ly.img.engine/-scene-mode.md>) — `ly.img.engine`
 - [ScriptStyle](<../engine/ly.img.engine/-script-style.md>) — `ly.img.engine`
 - [Setting](<../engine/ly.img.engine/-setting.md>) — `ly.img.engine`
 - [Setting.Boolean](<../engine/ly.img.engine/-setting/-boolean.md>) — `ly.img.engine`
@@ -325,6 +326,7 @@ Complete catalog of 334 generated API digests.
 - [VariableTarget.Default](<../engine/ly.img.engine/-variable-target/-default.md>) — `ly.img.engine`
 - [VariableTarget.ValueSet](<../engine/ly.img.engine/-variable-target/-value-set.md>) — `ly.img.engine`
 - [VariableType](<../engine/ly.img.engine/-variable-type.md>) — `ly.img.engine`
+- [VariationAxis](<../engine/ly.img.engine/-variation-axis.md>) — `ly.img.engine`
 - [Vector2](<../engine/ly.img.engine/-vector2.md>) — `ly.img.engine`
 - [VerticalBlockAlignment](<../engine/ly.img.engine/-vertical-block-alignment.md>) — `ly.img.engine`
 - [VerticalContentFillAlignment](<../engine/ly.img.engine/-vertical-content-fill-alignment.md>) — `ly.img.engine`

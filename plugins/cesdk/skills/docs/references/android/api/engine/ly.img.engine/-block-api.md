@@ -65,7 +65,7 @@ Align multiple blocks vertically within their bounding box or a single block to 
 abstract fun appendChild(parent: DesignBlock, child: DesignBlock)
 ```
 
-Appends a new or existing child to a block's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. Required scope: "editor/add"
+Appends a new or existing child to a block's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. Required scope: "editor/add"
 
 ### appendEffect
 
@@ -314,7 +314,7 @@ Create a new block. New text and graphic blocks use clip/defaultDurationValue (5
 abstract fun destroy(block: DesignBlock)
 ```
 
-Destroys a block. Required scope: "lifecycle/destroy"
+Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. The last page slice of a page keeps them. Destroying a page slice that is not the last one runs an internal update. Required scope: "lifecycle/destroy"
 
 ### distributeHorizontally
 
@@ -355,6 +355,14 @@ abstract fun exitGroup(block: DesignBlock)
 ```
 
 Changes selection from a group's selected block to that group. Nothing happens if block is not a group. Required scope: "editor/select"
+
+### exportPreview
+
+```kotlin
+abstract suspend fun exportPreview(block: DesignBlock): ByteBuffer
+```
+
+Exports a small image of a block to show in your app. A preview does not count as an export. The image is always WebP at quality 0.8 and keeps the block's aspect ratio. A block larger than 262,144 pixels (512 × 512) in area is scaled down to fit. For a video, the preview is one still frame. Use export for a file that you deliver. Performs an internal update to resolve the final layout for the blocks. Will not complete as long as assets are in a pending state; asset loading progresses during engine updates.
 
 ### exportVideo
 
@@ -645,25 +653,6 @@ abstract fun getChildren(block: DesignBlock): List<DesignBlock>
 ```
 
 Get all children of the given block. Children are sorted in their rendering order: Last child is rendered in front of other children.
-
-### getColorSpotName
-
-```kotlin
-abstract fun getColorSpotName(block: DesignBlock, property: String): String
-```
-> **Deprecated:** Use getColor instead and read from SpotColor object. Replace with `this.getColor(block, property)`.
-
-Get the spot color name of a color property of the given design block.
-
-### getColorSpotTint
-
-```kotlin
-@FloatRange(from = 0.0, to = 1.0)
-abstract fun getColorSpotTint(block: DesignBlock, property: String): Float
-```
-> **Deprecated:** Use getColor instead and read from SpotColor object. Replace with `this.getColor(block, property)`.
-
-Get the spot color tint factor of a color property of the given design block.
 
 ### getColor
 
@@ -1194,15 +1183,6 @@ abstract fun getString(block: DesignBlock, property: String): String
 
 Get the value of a string property of the given design block.
 
-### getStrokeCap
-
-```kotlin
-abstract fun getStrokeCap(block: DesignBlock): StrokeCap
-```
-> **Deprecated:** Use getStrokeStartCap and getStrokeEndCap instead. Replace with `getStrokeStartCap(block)`.
-
-Get the legacy single stroke cap of the given design block. Tracks the value last written via setStrokeCap or setStrokeStartCap; ignores changes made via setStrokeEndCap.
-
 ### getStrokeColor
 
 ```kotlin
@@ -1531,15 +1511,6 @@ abstract fun getTimeOffset(block: DesignBlock): Double
 
 Get the time offset of the given block relative to its parent.
 
-### getTotalSceneDuration
-
-```kotlin
-abstract fun getTotalSceneDuration(scene: DesignBlock): Double
-```
-> **Deprecated:** Use getDuration and pass a page block Replace with `this.getDuration(page)`.
-
-Returns the total duration (in seconds) of a scene in video mode. The duration is defined by all blocks in the scene.
-
 ### getTransformParent
 
 ```kotlin
@@ -1677,96 +1648,6 @@ abstract fun group(blocks: List<DesignBlock>): DesignBlock
 
 Group blocks together. The blocks keep their times on the timeline. The group spans from the earliest start to the latest end of the blocks, and their time offsets become relative to the group.
 
-### hasBackgroundColor
-
-```kotlin
-abstract fun hasBackgroundColor(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsBackgroundColor instead. Replace with `this.supportsBackgroundColor(block)`.
-
-Query if the given block has background color properties.
-
-### hasBlendMode
-
-```kotlin
-abstract fun hasBlendMode(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsBlendMode instead. Replace with `this.supportsBlendMode(block)`.
-
-Query if the given block has a blend mode.
-
-### hasBlur
-
-```kotlin
-abstract fun hasBlur(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsBlur instead. Replace with `this.supportsBlur(block)`.
-
-Checks whether the block supports blur.
-
-### hasContentFillMode
-
-```kotlin
-abstract fun hasContentFillMode(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsContentFillMode instead. Replace with `this.supportsContentFillMode(block)`.
-
-Query if the given block has a content fill mode.
-
-### hasCrop
-
-```kotlin
-abstract fun hasCrop(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsCrop instead. Replace with `this.supportsCrop(block)`.
-
-Query if the given block has crop properties.
-
-### hasDropShadow
-
-```kotlin
-abstract fun hasDropShadow(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsDropShadow instead. Replace with `this.supportsDropShadow(block)`.
-
-Query if the given block has a drop shadow property.
-
-### hasDuration
-
-```kotlin
-abstract fun hasDuration(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsDuration instead. Replace with `this.supportsDuration(block)`.
-
-Returns whether the block has a duration property.
-
-### hasEffectEnabled
-
-```kotlin
-abstract fun hasEffectEnabled(effectBlock: DesignBlock): Boolean
-```
-> **Deprecated:** Calls to this function can be removed. All effects can be enabled and disabled.
-
-Checks whether an effect block may be enabled and disabled.
-
-### hasEffects
-
-```kotlin
-abstract fun hasEffects(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsEffects instead. Replace with `this.supportsEffects(block)`.
-
-Queries whether the block supports effects.
-
-### hasFill
-
-```kotlin
-abstract fun hasFill(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsFill instead. Replace with `this.supportsFill(block)`.
-
-Query if the given block has fill color properties.
-
 ### hasMetadata
 
 ```kotlin
@@ -1774,78 +1655,6 @@ abstract fun hasMetadata(block: DesignBlock, key: String): Boolean
 ```
 
 Check if the block has metadata associated with the key.
-
-### hasOpacity
-
-```kotlin
-abstract fun hasOpacity(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsOpacity instead. Replace with `this.supportsOpacity(block)`.
-
-Query if the given block has an opacity.
-
-### hasPlaceholderBehavior
-
-```kotlin
-abstract fun hasPlaceholderBehavior(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsPlaceholderBehavior instead. Replace with `this.supportsPlaceholderBehavior(block)`.
-
-Query whether the block supports placeholder behavior.
-
-### hasPlaceholderControls
-
-```kotlin
-abstract fun hasPlaceholderControls(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsPlaceholderControls instead. Replace with `this.supportsPlaceholderControls(block)`.
-
-Checks whether the block supports placeholder controls.
-
-### hasPlaybackControl
-
-```kotlin
-abstract fun hasPlaybackControl(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsPlaybackControl instead. Replace with `this.supportsPlaybackControl(block)`.
-
-Returns whether the block supports a playback control.
-
-### hasPlaybackTime
-
-```kotlin
-abstract fun hasPlaybackTime(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsPlaybackTime instead. Replace with `this.supportsPlaybackTime(block)`.
-
-Returns whether the block has a playback time property.
-
-### hasShape
-
-```kotlin
-abstract fun hasShape(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsShape instead. Replace with `this.supportsShape(block)`.
-
-Query if the given block has a shape property.
-
-### hasStroke
-
-```kotlin
-abstract fun hasStroke(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsStroke instead. Replace with `this.supportsStroke(block)`.
-
-Query if the given block has a stroke property.
-
-### hasTimeOffset
-
-```kotlin
-abstract fun hasTimeOffset(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsTimeOffset instead. Replace with `this.supportsTimeOffset(block)`.
-
-Returns whether the block has a time offset property.
 
 ### hasTransformAnchor
 
@@ -1855,22 +1664,13 @@ abstract fun hasTransformAnchor(block: DesignBlock): Boolean
 
 Returns whether a block has its own anchor. Setting transform/anchor/x or transform/anchor/y, even to 0, or giving one of them keyframes, gives a block an anchor. A rotation keyframe track turns a block with an anchor around the anchor, and a block without one around its frame center, as setRotation does. Experimental: this API may change in a minor release.
 
-### hasTrim
-
-```kotlin
-abstract fun hasTrim(block: DesignBlock): Boolean
-```
-> **Deprecated:** Use supportsTrim instead. Replace with `this.supportsTrim(block)`.
-
-Returns whether the block has trim properties.
-
 ### insertChild
 
 ```kotlin
 abstract fun insertChild(parent: DesignBlock, child: DesignBlock, index: Int)
 ```
 
-Insert a new or existing child at a certain position in the parent's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. Required scope: "editor/add"
+Insert a new or existing child at a certain position in the parent's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. Required scope: "editor/add"
 
 ### insertEffect
 
@@ -2538,15 +2338,6 @@ abstract fun setClipped(block: DesignBlock, clipped: Boolean)
 
 Update a block's clipped state. Required scope: "layer/clipping"
 
-### setColorSpot
-
-```kotlin
-abstract fun setColorSpot(block: DesignBlock, property: String, name: String, @FloatRange(from = 0.0, to = 1.0)tint: Float = 1.0f)
-```
-> **Deprecated:** Use setColor instead. Replace with `this.setColor(block, property)`.
-
-Set a color property of the given design block to the given value.
-
 ### setColor
 
 ```kotlin
@@ -2729,7 +2520,7 @@ Set the block that an effect block reads, such as the map of a displacement map 
 abstract fun setEnum(block: DesignBlock, property: String, value: String)
 ```
 
-Set an enum property of the given design block to the given value.
+Set an enum property of the given design block to the given value. Setting scene/mode to Video fails with BLOCK.PAGE_SLICE_IN_VIDEO_SCENE when the scene holds a page slice.
 
 ### setFillEnabled
 
@@ -2817,7 +2608,7 @@ Set a block's mode for its height. A switch between Absolute and Percent keeps t
 abstract fun setHeight(block: DesignBlock, value: Float, maintainCrop: Boolean = false)
 ```
 
-Update a block's height and optionally maintain the crop. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: "layer/resize"
+Update a block's height and optionally maintain the crop. A page with page slices takes the size of their bounding box, so the next update replaces a height set here. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: "layer/resize"
 
 ### setInAnimation
 
@@ -3009,7 +2800,7 @@ Set a block's mode for its x position. The position refers to the block's local 
 abstract fun setPositionX(block: DesignBlock, value: Float)
 ```
 
-Update a block's x position. The position refers to the block's local space, relative to its parent with the origin at the top left. Required scope: "layer/move"
+Update a block's x position. The position refers to the block's local space, relative to its parent with the origin at the top left. The page places its page slices, so the next update replaces a position set here on a page slice. Required scope: "layer/move"
 
 ### setPositionYMode
 
@@ -3025,7 +2816,7 @@ Set a block's mode for its y position. The position refers to the block's local 
 abstract fun setPositionY(block: DesignBlock, value: Float)
 ```
 
-Update a block's y position. The position refers to the block's local space, relative to its parent with the origin at the top left. Required scope: "layer/move"
+Update a block's y position. The position refers to the block's local space, relative to its parent with the origin at the top left. The page places its page slices, so the next update replaces a position set here on a page slice. Required scope: "layer/move"
 
 ### setRotation
 
@@ -3057,7 +2848,7 @@ Update the selection state of a block. Fails for invalid blocks. Note: Previousl
 abstract fun setShape(block: DesignBlock, shape: DesignBlock)
 ```
 
-Sets the block containing the shape properties of the given block. Note: The previous shape block is not destroyed automatically. Required scope: "shape/change"
+Sets the block containing the shape properties of the given block. Note: The previous shape block is not destroyed automatically. A page with page slices takes only a rect shape. Required scope: "shape/change"
 
 ### setSoloPlaybackEnabled
 
@@ -3098,15 +2889,6 @@ abstract fun setString(block: DesignBlock, property: String, value: String)
 ```
 
 Set a string property of the given design block to the given value.
-
-### setStrokeCap
-
-```kotlin
-abstract fun setStrokeCap(block: DesignBlock, cap: StrokeCap)
-```
-> **Deprecated:** Use setStrokeStartCap and setStrokeEndCap to set each end independently. Replace with `setStrokeStartCap(block, cap)`.
-
-Set the stroke cap of the given design block. Writes both the start and end caps to the same value. Required scope: "stroke/change"
 
 ### setStrokeColor
 
@@ -3202,7 +2984,7 @@ Set the stroke position of the given design block. Required scope: "stroke/chang
 abstract fun setStrokeStartCap(block: DesignBlock, cap: StrokeCap)
 ```
 
-Set the cap geometry at the start of an open stroked path. Pair with setStrokeEndCap to set each end independently; setStrokeCap remains as a both-ends shortcut.
+Set the cap geometry at the start of an open stroked path. Pair with both-ends shortcut.
 
 ### setStrokeStyle
 
@@ -3474,7 +3256,7 @@ Set a block's mode for its width. A switch between Absolute and Percent keeps th
 abstract fun setWidth(block: DesignBlock, value: Float, maintainCrop: Boolean = false)
 ```
 
-Update a block's width and optionally maintain the crop. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: "layer/resize"
+Update a block's width and optionally maintain the crop. A page with page slices takes the size of their bounding box, so the next update replaces a width set here. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: "layer/resize"
 
 ### split
 

@@ -1859,6 +1859,24 @@ case blockOperationPreconditionFailed
 case blockOpNeedsTwoBlocks
 ```
 
+### EngineErrorCode.blockPageSliceInVideoScene
+
+```swift
+case blockPageSliceInVideoScene
+```
+
+### EngineErrorCode.blockPageSliceParentInvalid
+
+```swift
+case blockPageSliceParentInvalid
+```
+
+### EngineErrorCode.blockPageSliceSizeModeInvalid
+
+```swift
+case blockPageSliceSizeModeInvalid
+```
+
 ### EngineErrorCode.blockParentNotLaidOut
 
 ```swift
@@ -3659,6 +3677,12 @@ case editorCurrentPagesInvalidCount
 case editorFontDataLoadFailed
 ```
 
+### EngineErrorCode.editorFontInfoExtractFailed
+
+```swift
+case editorFontInfoExtractFailed
+```
+
 ### EngineErrorCode.editorFontLoadFailed
 
 ```swift
@@ -4293,6 +4317,30 @@ case encodeExportOptionsNotObject
 
 ```swift
 case encodeExportOptionsParseFailed
+```
+
+### EngineErrorCode.encodeExportTransactionBlockInvalid
+
+```swift
+case encodeExportTransactionBlockInvalid
+```
+
+### EngineErrorCode.encodeExportTransactionSizeInvalid
+
+```swift
+case encodeExportTransactionSizeInvalid
+```
+
+### EngineErrorCode.encodeExportTransactionTypeInvalid
+
+```swift
+case encodeExportTransactionTypeInvalid
+```
+
+### EngineErrorCode.encodeExportTransactionUnknown
+
+```swift
+case encodeExportTransactionUnknown
 ```
 
 ### EngineErrorCode.encodeGpuLostGeneric

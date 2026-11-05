@@ -19,6 +19,24 @@ export(handle: DesignBlockId, options?: ExportOptions): Promise<Blob>
 
 **Returns:** A promise that resolves with the exported image or is rejected with an error.
 
+### exportPreview()
+
+Exports a small image of a block to show in your app. A preview does not count as an export.
+The image is always WebP at quality 0.8 and keeps the block's aspect ratio. A block larger than
+262,144 pixels (512 × 512) in area is scaled down to fit. For a video, the preview is one still
+frame. Use `export` for a file that you deliver.
+Performs an internal update to resolve the final layout for the blocks. Will not complete as long
+as assets are in a pending state; asset loading progresses during engine updates.
+
+```typescript
+exportPreview(handle: DesignBlockId): Promise<Blob>
+```
+
+**Parameters:**
+- `handle` - The design block element to preview.
+
+**Returns:** A promise that resolves with the WebP image or is rejected with an error.
+
 ### exportWithColorMask()
 
 Exports a design block and a color mask to two separate Blobs.
@@ -245,6 +263,9 @@ duplicate(id: DesignBlockId, attachToParent?: boolean): DesignBlockId
 ### destroy()
 
 Destroys a block and its children.
+A page slice destroys the blocks that it owns on its page, without a check of their scopes,
+as a page destroys its children. The last page slice of a page keeps them.
+Destroying a page slice that is not the last one runs an internal update.
 
 ```typescript
 destroy(id: DesignBlockId): void
@@ -295,19 +316,6 @@ createFill(type: FillType): DesignBlockId
 - `type` - The type of the fill object that shall be created.
 
 **Returns:** The created fill's handle.
-
-### hasContentFillMode() *(deprecated)*
-
-Checks if a block supports content fill modes.
-
-```typescript
-hasContentFillMode(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has a content fill mode.
 
 ### supportsContentFillMode()
 
@@ -534,85 +542,6 @@ addVideoFileURIToSourceSet(id: DesignBlockId, property: SourceSetPropertyName, u
 unchanged then.
 
 **Returns:** A promise that resolves when the operation is complete.
-
-### hasFillColor() *(deprecated)*
-
-Checks if a block has fill color properties.
-
-```typescript
-hasFillColor(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has fill color properties.
-
-### setFillColorRGBA() *(deprecated)*
-
-Sets the fill color of a block using RGBA values.
-
-```typescript
-setFillColorRGBA(id: DesignBlockId, r: number, g: number, b: number, a?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose fill color should be set.
-- `r` - The red color component in the range of 0 to 1.
-- `g` - The green color component in the range of 0 to 1.
-- `b` - The blue color component in the range of 0 to 1.
-- `a` - The alpha color component in the range of 0 to 1.
-
-### getFillColorRGBA() *(deprecated)*
-
-Gets the fill color of a block as RGBA values.
-
-```typescript
-getFillColorRGBA(id: DesignBlockId): RGBA
-```
-
-**Parameters:**
-- `id` - The block whose fill color should be queried.
-
-**Returns:** The fill color.
-
-### setFillColorEnabled() *(deprecated)*
-
-Enables or disables the fill of a block.
-
-```typescript
-setFillColorEnabled(id: DesignBlockId, enabled: boolean): void
-```
-
-**Parameters:**
-- `id` - The block whose fill should be enabled or disabled.
-- `enabled` - If true, the fill will be enabled.
-
-### isFillColorEnabled() *(deprecated)*
-
-Checks if the fill of a block is enabled.
-
-```typescript
-isFillColorEnabled(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block whose fill state should be queried.
-
-**Returns:** True, if fill is enabled.
-
-### hasFill() *(deprecated)*
-
-Checks if a block has fill properties.
-
-```typescript
-hasFill(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has fill properties.
 
 ### supportsFill()
 
@@ -902,19 +831,6 @@ created then.
 
 **Returns:** A promise that resolves with a list of the created caption blocks.
 
-### hasDuration() *(deprecated)*
-
-Checks if a block has a duration property.
-
-```typescript
-hasDuration(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true if the block has a duration property.
-
 ### supportsDuration()
 
 Checks if a block supports a duration property.
@@ -1006,19 +922,6 @@ removePageDurationSource(id: DesignBlockId): void
 **Parameters:**
 - `id` - The block whose duration source property should be removed.
 
-### hasTimeOffset() *(deprecated)*
-
-Checks if a block has a time offset property.
-
-```typescript
-hasTimeOffset(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has a time offset property.
-
 ### supportsTimeOffset()
 
 Checks if a block supports a time offset.
@@ -1057,19 +960,6 @@ getTimeOffset(id: DesignBlockId): number
 - `id` - The block whose time offset should be queried.
 
 **Returns:** The time offset of the block in seconds.
-
-### hasTrim() *(deprecated)*
-
-Checks if a block has trim properties.
-
-```typescript
-hasTrim(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has trim properties.
 
 ### supportsTrim()
 
@@ -1136,19 +1026,6 @@ getTrimLength(id: DesignBlockId): number
 
 **Returns:** The trim length of the object in seconds.
 
-### getTotalSceneDuration() *(deprecated)*
-
-Gets the total duration of a scene in video mode.
-
-```typescript
-getTotalSceneDuration(scene: DesignBlockId): number
-```
-
-**Parameters:**
-- `scene` - The scene whose duration is being queried.
-
-**Returns:** the total scene duration.
-
 ### setPlaying()
 
 Sets whether a block should play its content during active playback.
@@ -1174,19 +1051,6 @@ isPlaying(id: DesignBlockId): boolean
 - `id` - The block to query.
 
 **Returns:** whether the block is playing during playback.
-
-### hasPlaybackTime() *(deprecated)*
-
-Checks if a block has a playback time property.
-
-```typescript
-hasPlaybackTime(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** whether the block has a playback time property.
 
 ### supportsPlaybackTime()
 
@@ -1258,19 +1122,6 @@ isSoloPlaybackEnabled(id: DesignBlockId): boolean
 - `id` - The block or fill to query.
 
 **Returns:** Whether solo playback is enabled for this block.
-
-### hasPlaybackControl() *(deprecated)*
-
-Checks if a block has playback controls.
-
-```typescript
-hasPlaybackControl(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** Whether the block has playback control.
 
 ### supportsPlaybackControl()
 
@@ -1560,52 +1411,6 @@ generateAudioThumbnailSequence(id: DesignBlockId, samplesPerChunk: number, timeB
 - `onChunk` - A callback that receives the chunk index and sample data.
 
 **Returns:** A function to cancel the thumbnail generation request.
-
-### getVideoFillThumbnail() *(deprecated)*
-
-Generates a thumbnail for a video fill.
-
-```typescript
-getVideoFillThumbnail(id: DesignBlockId, thumbnailHeight: number): Promise<Blob>
-```
-
-**Parameters:**
-- `id` - The video fill.
-- `thumbnailHeight` - The height of a thumbnail. The width will be calculated from the video aspect ratio.
-
-**Returns:** A promise that resolves with a thumbnail encoded as a JPEG blob.
-
-### getVideoFillThumbnailAtlas() *(deprecated)*
-
-Generates a thumbnail atlas for a video fill.
-
-```typescript
-getVideoFillThumbnailAtlas(id: DesignBlockId, numberOfColumns: number, numberOfRows: number, thumbnailHeight: number): Promise<Blob>
-```
-
-**Parameters:**
-- `id` - The video fill.
-- `numberOfColumns` - The number of columns in the atlas.
-- `numberOfRows` - The number of rows in the atlas.
-- `thumbnailHeight` - The height of a single thumbnail.
-
-**Returns:** A promise that resolves with a thumbnail atlas encoded as a JPEG blob.
-
-### getPageThumbnailAtlas() *(deprecated)*
-
-Generates a thumbnail atlas for a page.
-
-```typescript
-getPageThumbnailAtlas(id: DesignBlockId, numberOfColumns: number, numberOfRows: number, thumbnailHeight: number): Promise<Blob>
-```
-
-**Parameters:**
-- `id` - The page.
-- `numberOfColumns` - The number of columns in the atlas.
-- `numberOfRows` - The number of rows in the atlas.
-- `thumbnailHeight` - The height of a single thumbnail.
-
-**Returns:** A promise that resolves with a thumbnail atlas encoded as a JPEG blob.
 
 ### setNativePixelBuffer()
 
@@ -1953,7 +1758,7 @@ Create and manage groups of blocks.
 ### isGroupable()
 
 Checks if a set of blocks can be grouped.
-A scene block or a page cannot be grouped, and neither can a block together
+A scene block, a page or a page slice cannot be grouped, and neither can a block together
 with a group it sits inside, which would make that group a child of itself.
 Blocks that already belong to a group can be grouped again, which is how a
 group inside a group is made.
@@ -2191,19 +1996,6 @@ createShape(type: ShapeType): DesignBlockId
 
 **Returns:** The created shape's handle.
 
-### hasShape() *(deprecated)*
-
-Checks if a block has a shape property.
-
-```typescript
-hasShape(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has a shape property, an error otherwise.
-
 ### supportsShape()
 
 Checks if a block supports having a shape.
@@ -2236,6 +2028,7 @@ Check the result with `isValid`.
 Sets the shape block for a given block.
 Note that the previous shape block is not destroyed automatically.
 The new shape is disconnected from its previously attached block.
+A page with page slices takes only a rect shape.
 
 ```typescript
 setShape(id: DesignBlockId, shape: DesignBlockId): void
@@ -2431,19 +2224,6 @@ setFlipVertical(id: DesignBlockId, flip: boolean): void
 - `id` - The block to update.
 - `flip` - If the flip should be enabled.
 
-### hasOpacity() *(deprecated)*
-
-Checks if a block has an opacity property.
-
-```typescript
-hasOpacity(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has an opacity.
-
 ### supportsOpacity()
 
 Checks if a block supports opacity.
@@ -2481,19 +2261,6 @@ getOpacity(id: DesignBlockId): number
 - `id` - The block whose opacity should be queried.
 
 **Returns:** The opacity value.
-
-### hasBlendMode() *(deprecated)*
-
-Checks if a block has a blend mode property.
-
-```typescript
-hasBlendMode(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has a blend mode.
 
 ### supportsBlendMode()
 
@@ -2533,19 +2300,6 @@ getBlendMode(id: DesignBlockId): BlendMode
 
 **Returns:** The blend mode.
 
-### hasBackgroundColor() *(deprecated)*
-
-Checks if a block has background color properties.
-
-```typescript
-hasBackgroundColor(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has background color properties.
-
 ### supportsBackgroundColor()
 
 Checks if a block supports a background color.
@@ -2558,34 +2312,6 @@ supportsBackgroundColor(id: DesignBlockId): boolean
 - `id` - The block to query.
 
 **Returns:** true, if the block supports a background color.
-
-### setBackgroundColorRGBA() *(deprecated)*
-
-Sets the background color of a block using RGBA values.
-
-```typescript
-setBackgroundColorRGBA(id: DesignBlockId, r: number, g: number, b: number, a?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose background color should be set.
-- `r` - The red color component in the range of 0 to 1.
-- `g` - The green color component in the range of 0 to 1.
-- `b` - The blue color component in the range of 0 to 1.
-- `a` - The alpha color component in the range of 0 to 1.
-
-### getBackgroundColorRGBA() *(deprecated)*
-
-Gets the background color of a block as RGBA values.
-
-```typescript
-getBackgroundColorRGBA(id: DesignBlockId): RGBA
-```
-
-**Parameters:**
-- `id` - The block whose background color should be queried.
-
-**Returns:** The background color.
 
 ### setBackgroundColorEnabled()
 
@@ -2946,6 +2672,7 @@ getPositionYMode(id: DesignBlockId): PositionYMode
 
 Sets the X position of a block.
 The position refers to the block's local space, relative to its parent with the origin at the top left.
+The page places its page slices, so the next update replaces a position set here on a page slice.
 ```javascript
 engine.block.setPositionX(block, 0.25);
 ```
@@ -2977,6 +2704,7 @@ setPositionXMode(id: DesignBlockId, mode: PositionXMode): void
 
 Sets the Y position of a block.
 The position refers to the block's local space, relative to its parent with the origin at the top left.
+The page places its page slices, so the next update replaces a position set here on a page slice.
 ```javascript
 engine.block.setPositionY(block, 0.25);
 ```
@@ -3204,6 +2932,8 @@ getHeightMode(id: DesignBlockId): HeightMode
 
 Sets the width of a block in the current width mode.
 If the crop is maintained, the crop values will be automatically adjusted.
+A page with page slices takes the size of their bounding box, so the next update replaces a width set
+here.
 ```javascript
 engine.block.setWidth(block, 2.5, true);
 ```
@@ -3240,6 +2970,8 @@ setWidthMode(id: DesignBlockId, mode: WidthMode): void
 
 Sets the height of a block in the current height mode.
 If the crop is maintained, the crop values will be automatically adjusted.
+A page with page slices takes the size of their bounding box, so the next update replaces a height set
+here.
 ```javascript
 engine.block.setHeight(block, 0.5);
 engine.block.setHeight(block, 2.5, true);
@@ -3769,8 +3501,9 @@ getChildren(id: DesignBlockId): DesignBlockId[]
 ### insertChild()
 
 Inserts a child block at a specific index.
-A move fails when it would put a block with a matte inside its matte source, or on another page than its
-source.
+A move fails when it would put a block with a matte inside its matte source, or on another page than its source.
+A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no
+page slice.
 
 ```typescript
 insertChild(parent: DesignBlockId, child: DesignBlockId, index: number): void
@@ -3784,8 +3517,9 @@ insertChild(parent: DesignBlockId, child: DesignBlockId, index: number): void
 ### appendChild()
 
 Appends a child block to a parent.
-A move fails when it would put a block with a matte inside its matte source, or on another page than its
-source.
+A move fails when it would put a block with a matte inside its matte source, or on another page than its source.
+A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no
+page slice.
 
 ```typescript
 appendChild(parent: DesignBlockId, child: DesignBlockId): void
@@ -4171,81 +3905,10 @@ getColor(id: DesignBlockId, property: ColorPropertyName): Color
 
 **Returns:** The value of the property.
 
-### setColorRGBA() *(deprecated)*
-
-Sets a color property on a block using RGBA values.
-
-```typescript
-setColorRGBA(id: DesignBlockId, property: string, r: number, g: number, b: number, a?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose property should be set.
-- `property` - The name of the property to set.
-- `r` - The red color component in the range of 0 to 1.
-- `g` - The green color component in the range of 0 to 1.
-- `b` - The blue color component in the range of 0 to 1.
-- `a` - The alpha color component in the range of 0 to 1. Defaults to 1.
-
-### getColorRGBA() *(deprecated)*
-
-Gets a color property from a block as RGBA values.
-
-```typescript
-getColorRGBA(id: DesignBlockId, property: string): RGBA
-```
-
-**Parameters:**
-- `id` - The block whose property should be queried.
-- `property` - The name of the property to query.
-
-**Returns:** A tuple of channels red, green, blue and alpha in the range of 0 to 1.
-
-### setColorSpot() *(deprecated)*
-
-Sets a spot color property on a block.
-
-```typescript
-setColorSpot(id: DesignBlockId, property: string, name: string, tint?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose property should be set.
-- `property` - The name of the property to set.
-- `name` - The name of the spot color.
-- `tint` - The tint factor in the range of 0 to 1. Defaults to 1.
-
-### getColorSpotName() *(deprecated)*
-
-Gets the spot color name from a color property.
-
-```typescript
-getColorSpotName(id: DesignBlockId, property: string): string
-```
-
-**Parameters:**
-- `id` - The block whose property should be queried.
-- `property` - The name of the property to query.
-
-**Returns:** The name of the spot color.
-
-### getColorSpotTint() *(deprecated)*
-
-Gets the spot color tint from a color property.
-
-```typescript
-getColorSpotTint(id: DesignBlockId, property: string): number
-```
-
-**Parameters:**
-- `id` - The block whose property should be queried.
-- `property` - The name of the property to query.
-
-**Returns:** The tint factor of the spot color.
-
 ### setEnum<T extends keyof BlockEnumType>()
 
 Sets an enum property on a block.
+Setting `scene/mode` to `Video` fails with `BLOCK.PAGE_SLICE_IN_VIDEO_SCENE` when the scene holds a page slice.
 ```javascript
 engine.block.setEnum(text, 'text/horizontalAlignment', 'Center');
 engine.block.setEnum(text, 'text/verticalAlignment', 'Center');
@@ -4311,19 +3974,6 @@ isDistributable(ids: DesignBlockId[]): boolean
 ## Block Crop
 
 Crop, scale, translate, and transform block content.
-
-### hasCrop() *(deprecated)*
-
-Checks if a block has crop properties.
-
-```typescript
-hasCrop(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has crop properties.
 
 ### supportsCrop()
 
@@ -4667,19 +4317,6 @@ createEffect(type: EffectType): DesignBlockId
 
 **Returns:** The created effect's handle.
 
-### hasEffects() *(deprecated)*
-
-Checks if a block supports effects.
-
-```typescript
-hasEffects(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True, if the block can render effects, false otherwise.
-
 ### supportsEffects()
 
 Checks if a block supports effects.
@@ -4742,19 +4379,6 @@ removeEffect(id: DesignBlockId, index: number): void
 **Parameters:**
 - `id` - The block to remove the effect from.
 - `index` - The index where the effect is stored.
-
-### hasEffectEnabled() *(deprecated)*
-
-Checks if an effect block can be enabled or disabled.
-
-```typescript
-hasEffectEnabled(effectId: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `effectId` - The 'effect' block to query.
-
-**Returns:** True, if the block supports enabling and disabling, false otherwise.
 
 ### setEffectEnabled()
 
@@ -5112,19 +4736,6 @@ createBlur(type: BlurType): DesignBlockId
 
 **Returns:** The handle of the newly created blur.
 
-### hasBlur() *(deprecated)*
-
-Checks if a block supports blur.
-
-```typescript
-hasBlur(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True, if the block supports blur.
-
 ### supportsBlur()
 
 Checks if a block supports blur.
@@ -5198,19 +4809,6 @@ isBlurEnabled(id: DesignBlockId): boolean
 ## Block Strokes
 
 Control stroke appearance, including color, width, style, and position.
-
-### hasStroke() *(deprecated)*
-
-Checks if a block has a stroke property.
-
-```typescript
-hasStroke(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True if the block has a stroke property.
 
 ### supportsStroke()
 
@@ -5290,21 +4888,6 @@ getStrokeOverprint(id: DesignBlockId): boolean
 
 **Returns:** The stroke overprint flag.
 
-### setStrokeColorRGBA() *(deprecated)*
-
-Sets the stroke color of a block using RGBA values.
-
-```typescript
-setStrokeColorRGBA(id: DesignBlockId, r: number, g: number, b: number, a?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose stroke color should be set.
-- `r` - The red color component in the range of 0 to 1.
-- `g` - The green color component in the range of 0 to 1.
-- `b` - The blue color component in the range of 0 to 1.
-- `a` - The alpha color component in the range of 0 to 1.
-
 ### setStrokeColor()
 
 Sets the stroke color of a block.
@@ -5316,19 +4899,6 @@ setStrokeColor(id: DesignBlockId, color: Color): void
 **Parameters:**
 - `id` - The block whose stroke color should be set.
 - `color` - The color to set.
-
-### getStrokeColorRGBA() *(deprecated)*
-
-Gets the stroke color of a block as RGBA values.
-
-```typescript
-getStrokeColorRGBA(id: DesignBlockId): RGBA
-```
-
-**Parameters:**
-- `id` - The block whose stroke color should be queried.
-
-**Returns:** The stroke color.
 
 ### getStrokeColor()
 
@@ -5445,39 +5015,10 @@ getStrokeCornerGeometry(id: DesignBlockId): StrokeCornerGeometry
 
 **Returns:** The stroke corner geometry.
 
-### setStrokeCap() *(deprecated)*
-
-Sets the stroke cap of a block. Writes both the start and end caps to the
-same value.
-
-```typescript
-setStrokeCap(id: DesignBlockId, cap: StrokeCap): void
-```
-
-**Parameters:**
-- `id` - The block whose stroke cap should be set.
-- `cap` - The stroke cap to be set.
-
-### getStrokeCap() *(deprecated)*
-
-Gets the legacy single stroke cap of a block. Tracks the value last written
-via `setStrokeCap` or `setStrokeStartCap`; ignores changes made via
-`setStrokeEndCap`.
-
-```typescript
-getStrokeCap(id: DesignBlockId): StrokeCap
-```
-
-**Parameters:**
-- `id` - The block whose stroke cap should be queried.
-
-**Returns:** The stroke cap.
-
 ### setStrokeStartCap()
 
 Sets the cap geometry at the start of an open stroked path. Use this with
 `setStrokeEndCap` to set distinct caps for each end of a stroke (for
-example a flat start with an arrowhead end). `setStrokeCap` continues to
 set both ends at once and is preserved for backwards compatibility.
 
 ```typescript
@@ -5671,19 +5212,6 @@ setStrokeFill(id: DesignBlockId, fill: DesignBlockId | null): void
 
 Configure drop shadow effects, including blur, color, and offset.
 
-### hasDropShadow() *(deprecated)*
-
-Checks if a block has a drop shadow property.
-
-```typescript
-hasDropShadow(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True if the block has a drop shadow property.
-
 ### supportsDropShadow()
 
 Checks if a block supports a drop shadow.
@@ -5728,21 +5256,6 @@ isDropShadowEnabled(id: DesignBlockId): boolean
 
 **Returns:** True if the block's drop shadow is enabled.
 
-### setDropShadowColorRGBA() *(deprecated)*
-
-Sets the drop shadow color of a block using RGBA values.
-
-```typescript
-setDropShadowColorRGBA(id: DesignBlockId, r: number, g: number, b: number, a?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose drop shadow color should be set.
-- `r` - The red color component in the range of 0 to 1.
-- `g` - The green color component in the range of 0 to 1.
-- `b` - The blue color component in the range of 0 to 1.
-- `a` - The alpha color component in the range of 0 to 1.
-
 ### setDropShadowColor()
 
 Sets the drop shadow color of a block.
@@ -5754,19 +5267,6 @@ setDropShadowColor(id: DesignBlockId, color: Color): void
 **Parameters:**
 - `id` - The block whose drop shadow color should be set.
 - `color` - The color to set.
-
-### getDropShadowColorRGBA() *(deprecated)*
-
-Gets the drop shadow color of a block as RGBA values.
-
-```typescript
-getDropShadowColorRGBA(id: DesignBlockId): RGBA
-```
-
-**Parameters:**
-- `id` - The block whose drop shadow color should be queried.
-
-**Returns:** The drop shadow color.
 
 ### getDropShadowColor()
 
@@ -7000,19 +6500,6 @@ isPlaceholderEnabled(id: DesignBlockId): boolean
 
 **Returns:** The enabled state of the placeholder function.
 
-### hasPlaceholderBehavior() *(deprecated)*
-
-Checks if a block supports placeholder behavior.
-
-```typescript
-hasPlaceholderBehavior(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True, if the block supports placeholder behavior.
-
 ### supportsPlaceholderBehavior()
 
 Checks if a block supports placeholder behavior.
@@ -7060,19 +6547,6 @@ isPlaceholderBehaviorEnabled(id: DesignBlockId): boolean
 - `id` - The block whose placeholder behavior state should be queried.
 
 **Returns:** The enabled state of the placeholder behavior.
-
-### hasPlaceholderControls() *(deprecated)*
-
-Checks if a block supports placeholder controls.
-
-```typescript
-hasPlaceholderControls(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True, if the block supports placeholder controls.
 
 ### supportsPlaceholderControls()
 
