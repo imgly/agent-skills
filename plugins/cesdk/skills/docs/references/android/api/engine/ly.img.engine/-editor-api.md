@@ -42,6 +42,14 @@ abstract fun canUndo(): Boolean
 
 If an undo step is available.
 
+### checkFileSupport
+
+```kotlin
+abstract suspend fun checkFileSupport(uri: Uri): FileSupport
+```
+
+Inspects a resource header/container and reports image, audio, and video support separately. Downloads the resource if needed. This does not guarantee a complete decode or profile support. Container results cover retained tracks; the demuxer can drop unsupported source tracks. This call starts no codec probes. Unmeasured families remain unchecked. Cancelling the coroutine stops the download and the inspection. Engine updates drive pending work, so a call that waits when the engine stops ends only when its coroutine is cancelled.
+
 ### checkP3Support
 
 ```kotlin
@@ -208,6 +216,14 @@ abstract fun getEditMode(): String
 
 Get the current edit mode of the editor. An edit mode defines what type of content can currently be edited by the user.
 
+### getFileFormats
+
+```kotlin
+abstract fun getFileFormats(): List<FileSupport>
+```
+
+Returns the engine media catalog for this runtime. Support describes known decoder families, not a complete decode or external design importer. Results reflect current feature settings and codec measurements. This call starts no probes. Unmeasured codec families remain unchecked.
+
 ### getFontInfo
 
 ```kotlin
@@ -238,7 +254,7 @@ Query the state of a global scope.
 abstract fun getMaxExportSize(): Int
 ```
 
-Get the export size limit in pixels on the current device. An export is only possible when both the width and height of the output are below or equal this limit. However, this is only an upper limit as the export might also not be possible due to other reasons, e.g., memory constraints. A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI, not against the page.
+Get the export size limit in pixels on the current device. An export is only possible when both the width and height of the output are below or equal this limit. However, this is only an upper limit as the export might also not be possible due to other reasons, e.g., memory constraints. A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI, not against the page. The limit is at most 23170 px, the side of the largest square export whose pixels fit in 2 GiB. A wider export with fewer pixels, such as 262144 x 2047, still works on a device without a GPU.
 
 ### getMimeType
 
@@ -741,6 +757,14 @@ abstract fun setSpotColor(name: String, color: CMYKColor)
 ```
 
 Sets the RGB representation of a spot color. Use this function to both create a new spot color or update an existing spot color. Note: The alpha value is ignored.
+
+### setTypefaceResolver
+
+```kotlin
+abstract fun setTypefaceResolver(resolver: (suspend (FontRequest) -> FontResolverResult?)?)
+```
+
+Sets the resolver for opt-in runtime font requests. Pass null to restore asset-source resolution. Returning null or throwing makes the engine use the default font, and the request reports substituted. The engine retains the original request through scene load/save and waits for resolution in resource readiness. Without a resolver, the engine searches registered local asset sources. Identical requests share pending lookups. Each source is limited to 100 pages. Set assetSourceId to query an external source explicitly. Call setTypefaceResolver again to retry unresolved requests after registering a source.
 
 ### setUriResolverAsync
 

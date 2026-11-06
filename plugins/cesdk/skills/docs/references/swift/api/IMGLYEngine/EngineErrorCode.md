@@ -3893,6 +3893,12 @@ case editorSettingTypeMismatch
 case editorSettingTypeUnsupported
 ```
 
+### EngineErrorCode.editorSettingValueBelowMinimum
+
+```swift
+case editorSettingValueBelowMinimum
+```
+
 ### EngineErrorCode.editorSplitBlockFailed
 
 ```swift
@@ -4481,6 +4487,12 @@ case encodeNotAllResourcesLoaded
 case encodeOffscreenCanvasCreateFailed
 ```
 
+### EngineErrorCode.encodeOutputSizeExceedsFormatMax
+
+```swift
+case encodeOutputSizeExceedsFormatMax
+```
+
 ### EngineErrorCode.encodeOutputSizeExceedsMax
 
 ```swift
@@ -4515,6 +4527,12 @@ case encodePdfCreateFailed
 
 ```swift
 case encodePdfCreateFailedResources
+```
+
+### EngineErrorCode.encodePdfRenderInsufficientResources
+
+```swift
+case encodePdfRenderInsufficientResources
 ```
 
 ### EngineErrorCode.encodePdfRenderSizeExceedsMax

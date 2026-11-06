@@ -6,7 +6,7 @@
 A flat list of floats, for example gradient stops or a dash array.
 
 ```kotlin
-data class List(val values: List<Float>) : KeyframeValue
+data class List(val value: List<Float>) : KeyframeValue
 ```
 
 
@@ -15,7 +15,13 @@ data class List(val values: List<Float>) : KeyframeValue
 ### List
 
 ```kotlin
-constructor(values: List<Float>)
+constructor(value: List<Float>)
+```
+
+### value
+
+```kotlin
+val value: List<Float>
 ```
 
 ### values
@@ -23,3 +29,4 @@ constructor(values: List<Float>)
 ```kotlin
 val values: List<Float>
 ```
+> **Deprecated:** Use value. Replace with `value`.

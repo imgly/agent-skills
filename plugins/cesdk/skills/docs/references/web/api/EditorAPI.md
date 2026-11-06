@@ -686,6 +686,21 @@ getSettingType(keypath: string): SettingType
 
 **Returns:** The setting type.
 
+### setTypefaceResolver()
+
+Sets a font provider. A later provider replaces the previous one; null or undefined
+restores registered-source lookup. When the provider returns undefined or a result that
+the engine cannot read, throws or rejects, the engine uses the default font, and the
+request reports `substituted`.
+The engine ignores stale completions after replacement, edits or disposal.
+Without a resolver, the engine searches registered local asset sources. Identical requests share pending
+lookups. Each source is limited to 100 pages. Set `assetSourceId` to query an external source explicitly.
+Call `setTypefaceResolver` again to retry unresolved requests after registering a source.
+
+```typescript
+setTypefaceResolver(resolver?: TypefaceResolver | null): void
+```
+
 ### setURIResolver()
 
 Sets a custom URI resolver.
@@ -870,12 +885,14 @@ Exports are only possible when both width and height are below this limit.
 Note that exports may still fail due to other constraints like memory.
 A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI,
 not against the page.
+The limit is at most 23170 px, the side of the largest square export whose pixels fit in 2 GiB. A wider export
+with fewer pixels, such as 262144 x 2047, still works on a device without a GPU.
 
 ```typescript
 getMaxExportSize(): number
 ```
 
-**Returns:** The upper export size limit in pixels, or maximum 32-bit integer if unlimited.
+**Returns:** The upper export size limit in pixels.
 
 ## Color Management
 
@@ -1140,6 +1157,40 @@ getBufferLength(uri: string): number
 - `uri` - The URI of the buffer to query.
 
 **Returns:** The length of the buffer in bytes.
+
+### getFileFormats()
+
+Lists native image, audio and video formats available in this runtime.
+Reflects current features, license and measured codec families. Starts no
+downloads or codec probes. Use `checkFileSupport` to inspect a concrete file.
+Host-provided editable document importers and fonts are outside this catalog.
+
+```typescript
+getFileFormats(): FileSupport[]
+```
+
+**Returns:** Native format support at the `format` inspection level.
+
+### checkFileSupport()
+
+Inspects a resource's header/container and reports its native media uses.
+Downloads through the resource registry when needed; buffer URIs accept
+caller-provided bytes. Does not create blocks or fully decode media. A
+supported result confirms known format/codec-family support, not every
+profile or a later import. Starts no codec probes; unmeasured families
+remain unchecked. Host-provided editable document importers are separate.
+Engine updates drive pending work. A call that still waits when the engine
+is disposed settles only when its `abortSignal` aborts.
+
+```typescript
+checkFileSupport(uri: string, options?: AbortOptions): Promise<FileSupport>
+```
+
+**Parameters:**
+- `uri` - Resource URI, including an existing engine buffer URI.
+- `options` - An `abortSignal` that stops the download and the inspection of the resource.
+
+**Returns:** Support at the `metadata` inspection level, including unsupported formats.
 
 ### getMimeType()
 

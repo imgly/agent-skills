@@ -81,7 +81,7 @@ Inserts an effect at the end of the list of effects. The same effect can appear 
 abstract fun appendMask(block: DesignBlock, maskBlock: DesignBlock)
 ```
 
-Inserts a mask at the end of the masks of the block. A mask can be used by more than one block. Required scope: "layer/clipping" Experimental: this API may change in a minor release.
+Inserts a mask at the end of the masks of the block. A mask can be used by more than one block. Required scope: "layer/clipping"
 
 ### appendModifier
 
@@ -89,7 +89,7 @@ Inserts a mask at the end of the masks of the block. A mask can be used by more 
 abstract fun appendModifier(block: DesignBlock, modifierBlock: DesignBlock)
 ```
 
-Appends a modifier to the modifiers of a shape. The same modifier can appear multiple times in the list. Required scope: "shape/change" on every block that uses the shape. Experimental: this API may change in a minor release.
+Appends a modifier to the modifiers of a shape. The same modifier can appear multiple times in the list. Required scope: "shape/change" on every block that uses the shape.
 
 ### appendSubshape
 
@@ -97,7 +97,7 @@ Appends a modifier to the modifiers of a shape. The same modifier can appear mul
 abstract fun appendSubshape(block: DesignBlock, subshapeBlock: DesignBlock)
 ```
 
-Appends a subshape to a compound shape. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: "shape/change" Experimental: this API may change in a minor release.
+Appends a subshape to a compound shape. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: "shape/change"
 
 ### appendTextAnimator
 
@@ -105,7 +105,7 @@ Appends a subshape to a compound shape. A shape has one owner, so the subshape i
 abstract fun appendTextAnimator(block: DesignBlock, animatorBlock: DesignBlock)
 ```
 
-Appends a text animator to the text animators of a block. A text animator belongs to one block at a time. Required scope: "appearance/animation" Experimental: this API may change in a minor release.
+Appends a text animator to the text animators of a block. A text animator belongs to one block at a time. Required scope: "appearance/animation"
 
 ### bringForward
 
@@ -256,7 +256,7 @@ Create a new fill, fails if type is unknown.
 abstract fun createMask(): DesignBlock
 ```
 
-Create a new mask block. A mask cuts its block down to the area of the mask's shape. Give the mask a shape with setShape; a mask without a shape has no effect. The shape is evaluated in the frame of the block that the mask is attached to. The mask properties are mask/mode, mask/opacity, mask/feather, mask/expansion and mask/inverted. Experimental: this API may change in a minor release.
+Create a new mask block. A mask cuts its block down to the area of the mask's shape. Give the mask a shape with setShape; a mask without a shape has no effect. The shape is evaluated in the frame of the block that the mask is attached to. The mask properties are mask/mode, mask/opacity, mask/feather, mask/expansion and mask/inverted.
 
 ### createModifier
 
@@ -264,7 +264,7 @@ Create a new mask block. A mask cuts its block down to the area of the mask's sh
 abstract fun createModifier(type: ModifierType): DesignBlock
 ```
 
-Create a new shape modifier block, fails if type is unknown or not a valid modifier block type. A modifier changes the path of a shape, or draws the shape several times. Experimental: this API may change in a minor release.
+Create a new shape modifier block, fails if type is unknown or not a valid modifier block type. A modifier changes the path of a shape, or draws the shape several times.
 
 ### createShape
 
@@ -285,7 +285,7 @@ Create a new shape, fails if type is unknown.
 abstract fun createTextAnimator(): DesignBlock
 ```
 
-Create a new text animator block. A text animator changes the glyphs of a text block that its range selector covers: their position, scale, rotation, skew, opacity, colors, stroke width, tracking and blur. Every property of a text animator can have keyframes. Experimental: this API may change in a minor release.
+Create a new text animator block. A text animator changes the glyphs of a text block that its range selector covers: their position, scale, rotation, skew, opacity, colors, stroke width, tracking and blur. Every property of a text animator can have keyframes.
 
 ### createTransition
 
@@ -356,6 +356,18 @@ abstract fun exitGroup(block: DesignBlock)
 
 Changes selection from a group's selected block to that group. Nothing happens if block is not a group. Required scope: "editor/select"
 
+### exportAudio
+
+```kotlin
+abstract suspend fun exportAudio(block: DesignBlock, mimeType: MimeType = MimeType.AUDIO_WAV, options: ExportAudioOptions? = null, progressCallback: ((ExportAudioProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): ByteBuffer
+```
+
+```kotlin
+abstract suspend fun exportAudio(blocks: List<DesignBlock>, mimeType: MimeType = MimeType.AUDIO_WAV, options: ExportAudioOptions? = null, progressCallback: ((ExportAudioProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
+```
+
+Exports the audio of a design block as an audio file of the given mime type. A page mixes the audio of all its blocks, a track mixes its children, and an audio block or a block with a video fill exports its own audio. A scene exports its first page. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPreExport ru…
+
 ### exportPreview
 
 ```kotlin
@@ -372,6 +384,14 @@ abstract suspend fun exportVideo(block: DesignBlock, timeOffset: Double, duratio
 
 ```kotlin
 abstract suspend fun exportVideo(blocks: List<DesignBlock>, timeOffset: Double, duration: Double, mimeType: MimeType, progressCallback: (ExportVideoProgress) -> Unit, options: ExportVideoOptions? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
+```
+
+```kotlin
+abstract suspend fun exportVideo(block: DesignBlock, mimeType: MimeType = MimeType.MP4, options: ExportVideoOptions? = null, progressCallback: ((ExportVideoProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): ByteBuffer
+```
+
+```kotlin
+abstract suspend fun exportVideo(blocks: List<DesignBlock>, mimeType: MimeType = MimeType.MP4, options: ExportVideoOptions? = null, progressCallback: ((ExportVideoProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
 ```
 
 Exports a design block as a video file of the given mime type. Note: MP4 exports embed a PNG cover at the page playback position unless coverTimeOffset overrides it. Note: The export will run across multiple iterations of the update loop. In each iteration a frame is scheduled for encoding. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with…
@@ -470,7 +490,7 @@ Return all blocks that are not attached to any scene. A block is considered unus
 abstract fun findAllVariableBindings(block: DesignBlock): List<String>
 ```
 
-Get the properties of a block that are bound to a variable. Experimental: this API may change in a minor release.
+Get the properties of a block that are bound to a variable.
 
 ### findAll
 
@@ -595,7 +615,15 @@ Get the duration in seconds of the video or audio resource that is attached to t
 abstract fun getAnimatedProperties(block: DesignBlock): List<String>
 ```
 
-Get the properties of a block that have keyframes. Experimental: this API may change in a minor release.
+Get the properties of a block that have keyframes.
+
+### getAnimatedValue
+
+```kotlin
+abstract fun getAnimatedValue(block: DesignBlock, property: String, time: Float): KeyframeValue
+```
+
+Get the value that the keyframes give a block property at a time. A relative track adds the static value. A property without keyframes gives its static value. A position/x or position/y track overrides that axis of a position track. Without its own track, position/x gives the x of the position track. An angle is in the angle unit of the scene. Animation presets and the turn along a motion path are not included. A rotation track also moves a block without an anchor, so that it turns around its frame centre. That move is not included either. Throws BLOCK.KEYFRAMES_TIME_OUT_OF_RANGE for a time outside 0, 1, or BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when the property has no keyframes and isPro…
 
 ### getAudioInfoFromVideo
 
@@ -812,7 +840,7 @@ Get the playback duration of the given block in seconds. The duration defines fo
 abstract fun getEffectSource(effectBlock: DesignBlock): DesignBlock?
 ```
 
-Get the block that an effect block reads. Experimental: this API may change in a minor release.
+Get the block that an effect block reads.
 
 ### getEffects
 
@@ -869,6 +897,14 @@ abstract fun getFloat(block: DesignBlock, property: String): Float
 ```
 
 Get the value of a float property of the given design block.
+
+### getFontRequests
+
+```kotlin
+abstract fun getFontRequests(block: DesignBlock, from: Int = -1, to: Int = -1): List<FontRequest>
+```
+
+Returns unique stored requests intersecting the text range. Legacy URI fonts have no request.
 
 ### getFrameHeight
 
@@ -980,7 +1016,7 @@ Get the value of an int property of the given design block.
 abstract fun getKeyframeMode(block: DesignBlock, property: String): TrackMode
 ```
 
-Get the mode of the keyframe track of a block property. Throws BLOCK.KEYFRAMES_NO_TRACK when the property has no keyframes, or BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when isPropertyAnimatable also returns false. Experimental: this API may change in a minor release.
+Get the mode of the keyframe track of a block property. Throws BLOCK.KEYFRAMES_NO_TRACK when the property has no keyframes, or BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when isPropertyAnimatable also returns false.
 
 ### getKeyframes
 
@@ -988,7 +1024,7 @@ Get the mode of the keyframe track of a block property. Throws BLOCK.KEYFRAMES_N
 abstract fun getKeyframes(block: DesignBlock, property: String): List<Keyframe>
 ```
 
-Get the keyframes of a block property, sorted by time. Throws BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when the property has no keyframes and isPropertyAnimatable returns false. Experimental: this API may change in a minor release.
+Get the keyframes of a block property, sorted by time. Throws BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when the property has no keyframes and isPropertyAnimatable returns false.
 
 ### getKind
 
@@ -1012,7 +1048,7 @@ Get the "loop" animation of the given block.
 abstract fun getMasks(block: DesignBlock): List<DesignBlock>
 ```
 
-Get the masks of a block, in the order in which they combine. Experimental: this API may change in a minor release.
+Get the masks of a block, in the order in which they combine.
 
 ### getMatte
 
@@ -1020,7 +1056,7 @@ Get the masks of a block, in the order in which they combine. Experimental: this
 abstract fun getMatte(block: DesignBlock): BlockMatte?
 ```
 
-Get the matte of a block. Experimental: this API may change in a minor release.
+Get the matte of a block.
 
 ### getMetadata
 
@@ -1036,7 +1072,7 @@ Get a metadata value of a block identified by a key. If the key does not exist, 
 abstract fun getModifiers(block: DesignBlock): List<DesignBlock>
 ```
 
-Get the modifiers of a shape, in the order they apply to its path. Experimental: this API may change in a minor release.
+Get the modifiers of a shape, in the order they apply to its path.
 
 ### getName
 
@@ -1245,7 +1281,7 @@ Query the cap geometry at the end of an open stroked path.
 abstract fun getStrokeFill(block: DesignBlock): DesignBlock?
 ```
 
-Returns the fill block that paints the stroke of the given block. Experimental: this API may change in a minor release.
+Returns the fill block that paints the stroke of the given block.
 
 ### getStrokeOverprint
 
@@ -1293,7 +1329,7 @@ Get the stroke width of the given design block.
 abstract fun getSubshapes(block: DesignBlock): List<DesignBlock>
 ```
 
-Get the subshapes of a compound shape, in the order in which they combine. Experimental: this API may change in a minor release.
+Get the subshapes of a compound shape, in the order in which they combine.
 
 ### getTextAnimators
 
@@ -1301,7 +1337,7 @@ Get the subshapes of a compound shape, in the order in which they combine. Exper
 abstract fun getTextAnimators(block: DesignBlock): List<DesignBlock>
 ```
 
-Get the text animators of a block, in the order they apply. Experimental: this API may change in a minor release.
+Get the text animators of a block, in the order they apply.
 
 ### getTextBackgroundColors
 
@@ -1317,7 +1353,7 @@ Returns the ordered unique list of background colors of the text in the selected
 abstract fun getTextBaselineShifts(block: DesignBlock, from: Int = -1, to: Int = -1): List<Float>
 ```
 
-Returns the unique baseline shift values across the grapheme range, in design units. Experimental: this API may change in a minor release.
+Returns the unique baseline shift values across the grapheme range, in design units.
 
 ### getTextCases
 
@@ -1471,6 +1507,14 @@ abstract fun getTextParagraphIndices(block: DesignBlock, from: Int = -1, to: Int
 
 Returns the 0-based paragraph indices that overlap the given range.
 
+### getTextRenderDiagnostics
+
+```kotlin
+abstract fun getTextRenderDiagnostics(block: DesignBlock): TextRenderDiagnostics
+```
+
+Returns current font provenance, missing glyph ranges, and optional planar layout. Processes pending layout synchronously, including when implicit updates are disabled, without waiting for font resources. Indices are half-open UTF-16 offsets into the returned rendered text after case transformations and template substitutions. Layout excludes strokes, effects, animations, and block transforms. Pending and curved text can have no planar layout.
+
 ### getTextRuns
 
 ```kotlin
@@ -1517,7 +1561,7 @@ Get the time offset of the given block relative to its parent.
 abstract fun getTransformParent(block: DesignBlock): DesignBlock?
 ```
 
-Returns the block whose transform the given block follows. Experimental: this API may change in a minor release.
+Returns the block whose transform the given block follows.
 
 ### getTransition
 
@@ -1589,7 +1633,7 @@ Get the value of a uri property of the given design block.
 abstract fun getVariableBinding(block: DesignBlock, property: String): String?
 ```
 
-Get the variable that a block property is bound to. Experimental: this API may change in a minor release.
+Get the variable that a block property is bound to.
 
 ### getVec2
 
@@ -1597,7 +1641,7 @@ Get the variable that a block property is bound to. Experimental: this API may c
 abstract fun getVec2(block: DesignBlock, property: String): Vector2
 ```
 
-Get the value of a vec2 property of the given design block. Experimental: this API may change in a minor release.
+Get the value of a vec2 property of the given design block.
 
 ### getVideoHeight
 
@@ -1662,7 +1706,7 @@ Check if the block has metadata associated with the key.
 abstract fun hasTransformAnchor(block: DesignBlock): Boolean
 ```
 
-Returns whether a block has its own anchor. Setting transform/anchor/x or transform/anchor/y, even to 0, or giving one of them keyframes, gives a block an anchor. A rotation keyframe track turns a block with an anchor around the anchor, and a block without one around its frame center, as setRotation does. Experimental: this API may change in a minor release.
+Returns whether a block has its own anchor. Setting transform/anchor/x or transform/anchor/y, even to 0, or giving one of them keyframes, gives a block an anchor. A rotation keyframe track turns a block with an anchor around the anchor, and a block without one around its frame center, as setRotation does.
 
 ### insertChild
 
@@ -1686,7 +1730,7 @@ Inserts an effect at the given index into the list of effects of the given block
 abstract fun insertMask(block: DesignBlock, maskBlock: DesignBlock, index: Int)
 ```
 
-Inserts a mask at the given index into the masks of the block. A mask can be used by more than one block. Required scope: "layer/clipping" Experimental: this API may change in a minor release.
+Inserts a mask at the given index into the masks of the block. A mask can be used by more than one block. Required scope: "layer/clipping"
 
 ### insertModifier
 
@@ -1694,7 +1738,7 @@ Inserts a mask at the given index into the masks of the block. A mask can be use
 abstract fun insertModifier(block: DesignBlock, modifierBlock: DesignBlock, index: Int)
 ```
 
-Inserts a modifier at the given index into the modifiers of a shape. The same modifier can appear multiple times in the list. Required scope: "shape/change" on every block that uses the shape. Experimental: this API may change in a minor release.
+Inserts a modifier at the given index into the modifiers of a shape. The same modifier can appear multiple times in the list. Required scope: "shape/change" on every block that uses the shape.
 
 ### insertSubshape
 
@@ -1702,7 +1746,7 @@ Inserts a modifier at the given index into the modifiers of a shape. The same mo
 abstract fun insertSubshape(block: DesignBlock, subshapeBlock: DesignBlock, index: Int)
 ```
 
-Inserts a subshape at the given index of a compound shape. The subshape at index 0 is the base, and each later subshape combines with the result so far by shape/compound/mode. The placement properties of the subshape (shape/position/x, shape/width, shape/rotation, ...) place it in the compound's coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: "shape/change" Experimental: this API may change in a minor release.
+Inserts a subshape at the given index of a compound shape. The subshape at index 0 is the base, and each later subshape combines with the result so far by shape/compound/mode. The placement properties of the subshape (shape/position/x, shape/width, shape/rotation, ...) place it in the compound's coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: "shape/change"
 
 ### insertTextAnimator
 
@@ -1710,7 +1754,7 @@ Inserts a subshape at the given index of a compound shape. The subshape at index
 abstract fun insertTextAnimator(block: DesignBlock, animatorBlock: DesignBlock, index: Int)
 ```
 
-Inserts a text animator at the given index into the text animators of a block. A text animator belongs to one block at a time. Required scope: "appearance/animation" Experimental: this API may change in a minor release.
+Inserts a text animator at the given index into the text animators of a block. A text animator belongs to one block at a time. Required scope: "appearance/animation"
 
 ### isAVResourceLoaded
 
@@ -1942,7 +1986,7 @@ Returns whether the block is currently during active playback.
 abstract fun isPropertyAnimatable(block: DesignBlock, property: String): Boolean
 ```
 
-Check whether a property of a block can have keyframes. Experimental: this API may change in a minor release.
+Check whether a property of a block can have keyframes.
 
 ### isPropertyReadable
 
@@ -2103,7 +2147,7 @@ Removes the effect at the given index. Required scope: "appearance/effect"
 abstract fun removeKeyframes(block: DesignBlock, property: String)
 ```
 
-Remove the keyframe track of a block property, so the static value applies again. Does nothing for an animatable property without keyframes. Throws BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when the property has no keyframes and isPropertyAnimatable returns false. Required scope: the scopes that setKeyframes needs for the removed track. Experimental: this API may change in a minor release.
+Remove the keyframe track of a block property, so the static value applies again. Does nothing for an animatable property without keyframes. Throws BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when the property has no keyframes and isPropertyAnimatable returns false. Required scope: the scopes that setKeyframes needs for the removed track.
 
 ### removeMask
 
@@ -2111,7 +2155,7 @@ Remove the keyframe track of a block property, so the static value applies again
 abstract fun removeMask(block: DesignBlock, index: Int)
 ```
 
-Removes the mask at the given index. The mask block is not destroyed. Required scope: "layer/clipping" Experimental: this API may change in a minor release.
+Removes the mask at the given index. The mask block is not destroyed. Required scope: "layer/clipping"
 
 ### removeMetadata
 
@@ -2127,7 +2171,7 @@ Remove metadata associated with the key from the given block.
 abstract fun removeModifier(block: DesignBlock, index: Int)
 ```
 
-Removes the modifier at the given index from the modifiers of a shape. The modifier is not destroyed. Required scope: "shape/change" on every block that uses the shape. Experimental: this API may change in a minor release.
+Removes the modifier at the given index from the modifiers of a shape. The modifier is not destroyed. Required scope: "shape/change" on every block that uses the shape.
 
 ### removePageDurationSource
 
@@ -2143,7 +2187,7 @@ Remove the block as duration source block for the page. If a scene or page given
 abstract fun removeSubshape(block: DesignBlock, index: Int)
 ```
 
-Removes the subshape at the given index of a compound shape. The subshape is not destroyed. Required scope: "shape/change" Experimental: this API may change in a minor release.
+Removes the subshape at the given index of a compound shape. The subshape is not destroyed. Required scope: "shape/change"
 
 ### removeTextAnimator
 
@@ -2151,7 +2195,7 @@ Removes the subshape at the given index of a compound shape. The subshape is not
 abstract fun removeTextAnimator(block: DesignBlock, index: Int)
 ```
 
-Removes the text animator at the given index from a block. The text animator is not destroyed. Required scope: "appearance/animation" Experimental: this API may change in a minor release.
+Removes the text animator at the given index from a block. The text animator is not destroyed. Required scope: "appearance/animation"
 
 ### removeText
 
@@ -2175,7 +2219,7 @@ Removes the outgoing transition of a clip. The removed transition block is detac
 abstract fun removeVariableBinding(block: DesignBlock, property: String)
 ```
 
-Remove the variable binding of a block property. The property keeps its current value. Does nothing if the property is not bound. Experimental: this API may change in a minor release.
+Remove the variable binding of a block property. The property keeps its current value. Does nothing if the property is not bound.
 
 ### replaceText
 
@@ -2512,7 +2556,7 @@ Sets the enabled state of an effect block.
 abstract fun setEffectSource(effectBlock: DesignBlock, source: DesignBlock?)
 ```
 
-Set the block that an effect block reads, such as the map of a displacement map effect. The source still draws on its own. It is read without its position and rotation, and also when it is hidden. Required scope: "appearance/effect" on every block the effect is attached to. Experimental: this API may change in a minor release.
+Set the block that an effect block reads, such as the map of a displacement map effect. The source still draws on its own. It is read without its position and rotation, and also when it is hidden. Required scope: "appearance/effect" on every block the effect is attached to.
 
 ### setEnum
 
@@ -2578,13 +2622,21 @@ abstract fun setFloat(block: DesignBlock, property: String, value: Float)
 
 Set a float property of the given design block to the given value.
 
+### setFontRequest
+
+```kotlin
+abstract fun setFontRequest(block: DesignBlock, request: FontRequest, from: Int = -1, to: Int = -1)
+```
+
+Stores a runtime font request for this block or text range and starts resolution. The request is preserved through load/save even when unavailable. Existing URI font APIs retain their behavior. Resolution is asynchronous. Await forceLoadResources before measuring or exporting. Substitution can change layout; metric-compatible substitution is not provided. Required scope: "text/character".
+
 ### setFont
 
 ```kotlin
 abstract fun setFont(block: DesignBlock, fontFileUri: Uri, typeface: Typeface)
 ```
 
-Sets the given font and typeface for the text block. Existing formatting is reset. Required scope: "text/character"
+Sets the given font and typeface for the text block. Existing formatting is reset. Required scope: "text/character" Saved scenes, archives, and blocks use content-based typeface IDs. Upgrade all readers to support these IDs before saving content with this engine.
 
 ### setGradientColorStops
 
@@ -2672,7 +2724,7 @@ Set whether the block should start from the beginning again or stop.
 abstract fun setMatte(block: DesignBlock, source: DesignBlock?, mode: MatteMode = MatteMode.ALPHA)
 ```
 
-Mask a block with the rendered alpha or luminance of another block, like a track matte. A block used as a matte source is not drawn on its own. If the source draws nothing, for example because it is hidden or outside its time range, an alpha or luma matte hides the block and an inverted matte shows it whole. SVG export does not apply mattes, so a matted block exports whole. Required scope: "layer/clipping" on the block, and "layer/visibility" on the source, which stops drawing on its own. Experimental: this API may change in a minor release.
+Mask a block with the rendered alpha or luminance of another block, like a track matte. A block used as a matte source is not drawn on its own. If the source draws nothing, for example because it is hidden or outside its time range, an alpha or luma matte hides the block and an inverted matte shows it whole. SVG export does not apply mattes, so a matted block exports whole. Required scope: "layer/clipping" on the block, and "layer/visibility" on the source, which stops drawing on its own.
 
 ### setMetadata
 
@@ -2960,7 +3012,7 @@ Set the cap geometry at the end of an open stroked path.
 abstract fun setStrokeFill(block: DesignBlock, fill: DesignBlock?)
 ```
 
-Paints the stroke of the given block with a fill block, for example a gradient, instead of the stroke color. Color, gradient and stripe fills are supported; image, video and pixel stream fills are rejected. Note: The previous stroke fill block is not destroyed automatically. The fill block may not be the block's own fill. A stroke color with alpha 0 still hides the stroke; the fill's own colors set the opacity otherwise. Required scope: "stroke/change" Experimental: this API may change in a minor release.
+Paints the stroke of the given block with a fill block, for example a gradient, instead of the stroke color. Color, gradient and stripe fills are supported; image, video and pixel stream fills are rejected. Note: The previous stroke fill block is not destroyed automatically. The fill block may not be the block's own fill. A stroke color with alpha 0 still hides the stroke; the fill's own colors set the opacity otherwise. Required scope: "stroke/change"
 
 ### setStrokeOverprint
 
@@ -3016,7 +3068,7 @@ Changes the background color of the text in the selected range to the given colo
 abstract fun setTextBaselineShift(block: DesignBlock, baselineShift: Float, from: Int = -1, to: Int = -1)
 ```
 
-Sets the baseline shift for a grapheme range. Moves the glyphs of the range up from the baseline, or down for a negative value. The line height does not change. Required scope: "text/character" Experimental: this API may change in a minor release.
+Sets the baseline shift for a grapheme range. Moves the glyphs of the range up from the baseline, or down for a negative value. The line height does not change. Required scope: "text/character"
 
 ### setTextCase
 
@@ -3168,7 +3220,7 @@ Update a block's transform locked state.
 abstract fun setTransformParent(block: DesignBlock, parent: DesignBlock?)
 ```
 
-Makes a block follow the transform of another block, or stops it from following one. The block's position, rotation and scale are then read in the local space of the transform parent, so the block moves with it. The block does not keep its place on screen when the link changes. Only the transform is inherited: opacity, visibility and the stacking order still come from the block's own parent. A hidden block can be a transform parent. When the transform parent is destroyed, the block stops following it. A block whose transform is locked can neither get nor lose a link. Required scope: "layer/move" Experimental: this API may change in a minor release.
+Makes a block follow the transform of another block, or stops it from following one. The block's position, rotation and scale are then read in the local space of the transform parent, so the block moves with it. The block does not keep its place on screen when the link changes. Only the transform is inherited: opacity, visibility and the stacking order still come from the block's own parent. A hidden block can be a transform parent. When the transform parent is destroyed, the block stops following it. A block whose transform is locked can neither get nor lose a link. Required scope: "layer/move"
 
 ### setTransition
 
@@ -3200,7 +3252,7 @@ Set the trim offset of the given block or fill. Sets the time in seconds within 
 abstract fun setTypeface(block: DesignBlock, typeface: Typeface, from: Int = -1, to: Int = -1)
 ```
 
-Sets the given typeface for the text block. The current formatting, e.g., bold or italic, is retained as far as possible. Some formatting might change if the new typeface does not support it, e.g. thin might change to light, bold to normal, and/or italic to non-italic. If the typeface is applied to the entire text block, its typeface property will be updated. If a run does not support the new typeface, it will fall back to the default typeface from the typeface property. Required scope: "text/character"
+Sets the given typeface for the text block. The current formatting, e.g., bold or italic, is retained as far as possible. Some formatting might change if the new typeface does not support it, e.g. thin might change to light, bold to normal, and/or italic to non-italic. If the typeface is applied to the entire text block, its typeface property will be updated. If a run does not support the new typeface, it will fall back to the default typeface from the typeface property. Required scope: "text/character" Saved scenes, archives, and blocks use content-based typeface IDs. Upgrade all readers to support these IDs before saving content with this engine.
 
 ### setUri
 
@@ -3224,7 +3276,7 @@ Bind a block property to a color, number, image or typeface variable, and apply 
 abstract fun setVec2(block: DesignBlock, property: String, value: Vector2)
 ```
 
-Set a vec2 property of the given design block to the given value. position sets position/x and position/y, and shape/position sets shape/position/x and shape/position/y, with the checks of those properties. Either both components change or neither does. Experimental: this API may change in a minor release.
+Set a vec2 property of the given design block to the given value. position sets position/x and position/y, and shape/position sets shape/position/x and shape/position/y, with the checks of those properties. Either both components change or neither does.
 
 ### setVisible
 
@@ -3352,7 +3404,7 @@ Query if the given block has fill color properties.
 abstract fun supportsMasks(block: DesignBlock): Boolean
 ```
 
-Checks whether the block supports masks. Graphic, text and group blocks do. Experimental: this API may change in a minor release.
+Checks whether the block supports masks. Graphic, text and group blocks do.
 
 ### supportsModifiers
 
@@ -3360,7 +3412,7 @@ Checks whether the block supports masks. Graphic, text and group blocks do. Expe
 abstract fun supportsModifiers(block: DesignBlock): Boolean
 ```
 
-Queries whether the block supports modifiers. Every shape block does. Experimental: this API may change in a minor release.
+Queries whether the block supports modifiers. Every shape block does.
 
 ### supportsOpacity
 
@@ -3432,7 +3484,7 @@ Query if the given block has a stroke property.
 abstract fun supportsTextAnimators(block: DesignBlock): Boolean
 ```
 
-Queries whether the block supports text animators. Text and caption blocks do. Experimental: this API may change in a minor release.
+Queries whether the block supports text animators. Text and caption blocks do.
 
 ### supportsTimeOffset
 

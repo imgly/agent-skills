@@ -259,6 +259,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Text Effects](https://img.ly/docs/cesdk/dev/macos/text/effects-2dc9fc/)
 - [Emojis](https://img.ly/docs/cesdk/dev/macos/text/emojis-510651/)
 - [Adjust Spacing](https://img.ly/docs/cesdk/dev/macos/text/adjust-spacing-c1a3b6/)
+- [Customize Fonts](https://img.ly/docs/cesdk/dev/macos/text/custom-fonts-9565b3/)
 - [Language Support](https://img.ly/docs/cesdk/dev/macos/text/language-support-a0f010/)
 
 #### [Create and Edit Shapes](https://img.ly/docs/cesdk/dev/macos/shapes-9f1b2c/)

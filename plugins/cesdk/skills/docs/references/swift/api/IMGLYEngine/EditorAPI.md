@@ -41,6 +41,14 @@ If a redo step is available. `true` if a redo step is available.
 
 If an undo step is available. `true` if an undo step is available.
 
+### checkFileSupport(url:)
+
+```swift
+@MainActor func checkFileSupport(url: URL) async throws -> FileSupport
+```
+
+Inspects a resource header/container and reports image, audio, and video support separately. Downloads the resource if needed. This does not guarantee a complete decode or profile support. Container results cover retained tracks; the demuxer can drop unsupported source tracks. This call starts no codec probes. Unmeasured families remain unchecked. `url`
+
 ### checkP3Support()
 
 ```swift
@@ -217,6 +225,14 @@ Get the type of cursor that should be displayed by the application. The cursor t
 
 Get the current edit mode of the editor. An edit mode defines what type of content can currently be edited by the user. “Transform”, “Crop”, “Text”, “Playback”.
 
+### getFileFormats()
+
+```swift
+@MainActor func getFileFormats() -> [FileSupport]
+```
+
+Returns the engine media catalog for this runtime. Support describes known decoder families, not a complete decode or external design importer. Results reflect current feature settings and codec measurements. This call starts no probes. Unmeasured codec families remain unchecked.
+
 ### getFontInfo(fontFileURI:)
 
 ```swift
@@ -247,7 +263,7 @@ Query the state of a global scope. `key`
 @MainActor func getMaxExportSize() throws -> Int
 ```
 
-Get the export size limit in pixels on the current device. An export is only possible when both the width and height of the output are below or equal this limit. However, this is only an upper limit as the export might also not be possible due to other reasons, e.g., memory constraints. A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI, not against the page. The upper export size limit in pixels or an unlimited size, i.e, the maximum signed 32-bit integer value, if the limit is unknown.
+Get the export size limit in pixels on the current device. An export is only possible when both the width and height of the output are below or equal this limit. However, this is only an upper limit as the export might also not be possible due to other reasons, e.g., memory constraints. A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI, not against the page. The limit is at most 23170 px, the side of the largest square export whose pixels fit in 2 GiB. A wider export with fewer pixels, such as 262144 x 2047, still works on a device without a GPU. The upper export size limit in pixels.
 
 ### getMimeType(uri:)
 
@@ -868,6 +884,14 @@ Sets the RGB representation of a spot color. Use this function to both create a 
 ```
 
 Set the spot color assign to a cutout type. If no spot color is set, type `.solid` is assigned “CutContour” and type `.dashed` is assigned “PerfCutContour”. All cutout blocks of the given type will be immediately assigned that spot color. `cutoutType`
+
+### setTypefaceResolver(_:)
+
+```swift
+@MainActor func setTypefaceResolver(_ resolver: (@Sendable (FontRequest) async throws -> FontResolverResult?)?) throws
+```
+
+Sets the resolver for opt-in runtime font requests. Pass `nil` to restore asset-source resolution. Returning `nil` or throwing makes the engine use the default font, and the request reports `substituted`. The engine retains the original request through scene load/save and waits for resolution in resource readiness. `resolver`
 
 ### setURIResolver(_:)
 

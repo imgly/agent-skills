@@ -371,8 +371,18 @@ Removes one profile and supersedes its pending assignment. Other slots stay unch
 
 ### removeMarker(at:)
 
+> **Deprecated:** Use 'removeMarker(index:)' instead. Renamed to `removeMarker(index:)`.
+
 ```swift
 @MainActor func removeMarker(at index: Int) throws
+```
+
+Remove a marker from the current scene. `index`
+
+### removeMarker(index:)
+
+```swift
+@MainActor func removeMarker(index: Int) throws
 ```
 
 Remove a marker from the current scene. `index`

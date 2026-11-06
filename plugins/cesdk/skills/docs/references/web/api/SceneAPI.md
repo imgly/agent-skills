@@ -515,7 +515,6 @@ getAngleUnit(): AngleUnit
 ### addMarker()
 
 Adds a marker to the end of the current scene's marker list.
-Experimental: this API may change in a minor release.
 Markers name points or spans on the scene timeline. Several markers may share a name.
 ```javascript
 engine.scene.addMarker('intro', 0, 2.5);
@@ -534,7 +533,6 @@ addMarker(name: string, time: number, duration?: number): void
 ### getMarkers()
 
 Returns the markers of the current scene in the order they were added.
-Experimental: this API may change in a minor release.
 ```javascript
 const markers = engine.scene.getMarkers();
 ```
@@ -548,7 +546,6 @@ getMarkers(): SceneMarker[]
 ### removeMarker()
 
 Removes a marker from the current scene.
-Experimental: this API may change in a minor release.
 ```javascript
 engine.scene.removeMarker(0);
 ```

@@ -44,7 +44,7 @@ Types: CutoutOperation
 
 ## engine
 
-Types: Vector, KeyframePathVertex, KeyframeValue, KeyframeEasing, Keyframe, HistoryId, HistoryUpdate, NumberRange, Vec2, Vec3, Size2, Range, ClampArgs, ClampCameraCommandResult, EmscriptenClassHandle, UBQError, UBQResult, MouseButtonEvent, MouseMoveEvent, DragInputEvent, MouseWheelEvent, KeyboardKeyEvent, ZoomAutoFitAxis, MatteMode, BlockMatte, EngineTouchEvent, TouchRotateEvent, TouchPanEvent, TouchPinchEvent, TrackingMetadata, EditMode
+Types: Vector, PathVertex, KeyframePathVertex, KeyframeValue, KeyframeEasing, Keyframe, HistoryId, HistoryUpdate, NumberRange, Vec2, Vec3, Size2, Range, ClampArgs, ClampCameraCommandResult, EmscriptenClassHandle, UBQError, UBQResult, MouseButtonEvent, MouseMoveEvent, DragInputEvent, MouseWheelEvent, KeyboardKeyEvent, ZoomAutoFitAxis, MatteMode, BlockMatte, EngineTouchEvent, TouchRotateEvent, TouchPanEvent, TouchPinchEvent, TrackingMetadata, EditMode
 
 ## fontMetrics
 

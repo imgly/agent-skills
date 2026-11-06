@@ -70,8 +70,6 @@ enum entry STRUCT
 enum entry VEC2
 ```
 
-Experimental: this API may change in a minor release.
-
 ### entries
 
 ```kotlin

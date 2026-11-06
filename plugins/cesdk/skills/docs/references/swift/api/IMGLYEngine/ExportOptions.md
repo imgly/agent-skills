@@ -45,10 +45,10 @@ let exportPdfWithRegistrationMarks: Bool
 let exportPdfWithUnderlayer: Bool
 ```
 
-### init(pngCompressionLevel:jpegQuality:webpQuality:targetWidth:targetHeight:exportPdfWithHighCompatibility:exportPdfWithUnderlayer:underlayerSpotColorName:underlayerOffset:underlayerRenderRatio:underlayerMaxError:allowTextOverhang:exportPdfWithCropMarks:exportPdfWithRegistrationMarks:printMarkOffset:cropMarkLength:printMarkWidth:pdfImageQuality:pdfChunkSize:)
+### init(pngCompressionLevel:jpegQuality:webpQuality:targetWidth:targetHeight:exportPdfWithHighCompatibility:exportPdfWithUnderlayer:underlayerSpotColorName:underlayerOffset:underlayerRenderRatio:underlayerMaxError:underlayerMinFeatureWidth:allowTextOverhang:exportPdfWithCropMarks:exportPdfWithRegistrationMarks:printMarkOffset:cropMarkLength:printMarkWidth:pdfImageQuality:pdfChunkSize:)
 
 ```swift
-init(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9, webpQuality: Float = 1.0, targetWidth: Float = 0, targetHeight: Float = 0, exportPdfWithHighCompatibility: Bool = true, exportPdfWithUnderlayer: Bool = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0, underlayerRenderRatio: Float = 1.0, underlayerMaxError: Float = 2.0, allowTextOverhang: Bool = false, exportPdfWithCropMarks: Bool = false, exportPdfWithRegistrationMarks: Bool = false, printMarkOffset: Float = -1.0, cropMarkLength: Float = 0.0, printMarkWidth: Float = 0.25, pdfImageQuality: Float = 1.0, pdfChunkSize: UInt32 = 0)
+init(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9, webpQuality: Float = 1.0, targetWidth: Float = 0, targetHeight: Float = 0, exportPdfWithHighCompatibility: Bool = true, exportPdfWithUnderlayer: Bool = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0, underlayerRenderRatio: Float = 1.0, underlayerMaxError: Float = 2.0, underlayerMinFeatureWidth: Float = 0.0, allowTextOverhang: Bool = false, exportPdfWithCropMarks: Bool = false, exportPdfWithRegistrationMarks: Bool = false, printMarkOffset: Float = -1.0, cropMarkLength: Float = 0.0, printMarkWidth: Float = 0.25, pdfImageQuality: Float = 1.0, pdfChunkSize: UInt32 = 0)
 ```
 
 The export options. `pngCompressionLevel`
@@ -105,6 +105,12 @@ let targetWidth: Float
 
 ```swift
 let underlayerMaxError: Float
+```
+
+### underlayerMinFeatureWidth
+
+```swift
+let underlayerMinFeatureWidth: Float
 ```
 
 ### underlayerOffset

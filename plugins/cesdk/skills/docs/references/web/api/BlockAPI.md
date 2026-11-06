@@ -2041,7 +2041,6 @@ setShape(id: DesignBlockId, shape: DesignBlockId): void
 ### getSubshapes()
 
 Gets the subshapes of a compound shape, in the order in which they combine.
-Experimental: this API may change in a minor release.
 ```javascript
 const compound = engine.block.createShape('compound');
 engine.block.appendSubshape(compound, engine.block.createShape('rect'));
@@ -2059,7 +2058,7 @@ getSubshapes(id: DesignBlockId): DesignBlockId[]
 
 ### insertSubshape()
 
-Inserts a subshape into a compound shape at a given index. Experimental: this API may change in a minor release.
+Inserts a subshape into a compound shape at a given index.
 The subshape at index 0 is the base, and each later subshape combines with the result so far by
 `shape/compound/mode`. The placement properties of the subshape (`shape/position/x`, `shape/width`,
 `shape/rotation`, ...) place it in the compound's coordinate space.
@@ -2077,7 +2076,7 @@ insertSubshape(id: DesignBlockId, subshapeId: DesignBlockId, index: number): voi
 
 ### appendSubshape()
 
-Appends a subshape to a compound shape. Experimental: this API may change in a minor release.
+Appends a subshape to a compound shape.
 A shape has one owner, so the subshape is detached from its previous block or compound shape.
 Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes.
 
@@ -2092,7 +2091,6 @@ appendSubshape(id: DesignBlockId, subshapeId: DesignBlockId): void
 ### removeSubshape()
 
 Removes the subshape at a given index from a compound shape. The subshape is not destroyed.
-Experimental: this API may change in a minor release.
 
 ```typescript
 removeSubshape(id: DesignBlockId, index: number): void
@@ -2134,7 +2132,7 @@ setClipped(id: DesignBlockId, clipped: boolean): void
 
 ### getMatte()
 
-Gets the matte of a block. Experimental: this API may change in a minor release.
+Gets the matte of a block.
 
 ```typescript
 getMatte(id: DesignBlockId): BlockMatte | null
@@ -2148,7 +2146,6 @@ getMatte(id: DesignBlockId): BlockMatte | null
 ### setMatte()
 
 Masks a block with the rendered alpha or luminance of another block, like a track matte.
-Experimental: this API may change in a minor release.
 A block used as a matte source is not drawn on its own. If the source draws nothing, for example because it is
 hidden or outside its time range, an `'Alpha'` or `'Luma'` matte hides the block and an inverted matte shows it
 whole. SVG export does not apply mattes, so a matted block exports whole.
@@ -2350,7 +2347,7 @@ Create and manage animations and timeline-based effects.
 
 ### setKeyframes()
 
-Replaces the keyframes of a block property. Experimental: this API may change in a minor release.
+Replaces the keyframes of a block property.
 Keyframe times are normalized over the block's duration, from 0 to 1, and the keyframes are sorted by time. A
 fill, shape or effect uses the duration of the block it is attached to. Setting the static value of the
 property does not change its keyframes.
@@ -2391,7 +2388,7 @@ property. Defaults to `'Absolute'`.
 
 ### getKeyframes()
 
-Gets the keyframes of a block property, sorted by time. Experimental: this API may change in a minor release.
+Gets the keyframes of a block property, sorted by time.
 
 ```typescript
 getKeyframes(id: DesignBlockId, property: string): Keyframe[]
@@ -2405,7 +2402,7 @@ getKeyframes(id: DesignBlockId, property: string): Keyframe[]
 
 ### getKeyframeMode()
 
-Gets the mode of the keyframes of a block property. Experimental: this API may change in a minor release.
+Gets the mode of the keyframes of a block property.
 
 ```typescript
 getKeyframeMode(id: DesignBlockId, property: string): TrackMode
@@ -2417,10 +2414,31 @@ getKeyframeMode(id: DesignBlockId, property: string): TrackMode
 
 **Returns:** The mode.
 
+### getAnimatedValue()
+
+Gets the value that the keyframes give a block property at a time.
+A Relative track adds the static value. A property without keyframes gives its static value.
+A `position/x` or `position/y` track overrides that axis of a `position` track. Without its
+own track, `position/x` gives the x of the `position` track. An angle is in the angle unit of
+the scene. Animation presets and the turn along a motion path are not included. A `rotation`
+track also moves a block without an anchor, so that it turns around its frame centre. That
+move is not included either.
+
+```typescript
+getAnimatedValue(id: DesignBlockId, property: string, time: number): KeyframeValue
+```
+
+**Parameters:**
+- `id` - The block that owns the property.
+- `property` - The animatable property path, e.g. `opacity`.
+- `time` - The normalized time over the block's `playback/duration`, from 0 to 1, as
+keyframe times are.
+
+**Returns:** The value, of the property's kind.
+
 ### removeKeyframes()
 
 Removes the keyframes of a block property, so its static value applies again.
-Experimental: this API may change in a minor release.
 Removing from an animatable property without keyframes does nothing. Throws
 `BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE` when the property has no keyframes and
 `isPropertyAnimatable` returns false.
@@ -2436,7 +2454,7 @@ removeKeyframes(id: DesignBlockId, property: string): void
 
 ### getAnimatedProperties()
 
-Lists the properties of a block that have keyframes. Experimental: this API may change in a minor release.
+Lists the properties of a block that have keyframes.
 
 ```typescript
 getAnimatedProperties(id: DesignBlockId): string[]
@@ -2449,7 +2467,7 @@ getAnimatedProperties(id: DesignBlockId): string[]
 
 ### isPropertyAnimatable()
 
-Checks whether a property of a block can have keyframes. Experimental: this API may change in a minor release.
+Checks whether a property of a block can have keyframes.
 
 ```typescript
 isPropertyAnimatable(id: DesignBlockId, property: string): boolean
@@ -3075,7 +3093,7 @@ getFrameHeight(id: DesignBlockId): number
 
 ### hasTransformAnchor()
 
-Checks whether a block has its own anchor. Experimental: this API may change in a minor release.
+Checks whether a block has its own anchor.
 Setting `transform/anchor/x` or `transform/anchor/y`, even to 0, or giving one of them keyframes, gives a block
 an anchor. A `rotation` keyframe track turns a block with an anchor around the anchor, and a block without one
 around its frame center, as `setRotation` does.
@@ -3455,7 +3473,6 @@ getParent(id: DesignBlockId): DesignBlockId | null
 ### setTransformParent()
 
 Makes a block follow the transform of another block, or stops it from following one.
-Experimental: this API may change in a minor release.
 The block's position, rotation and scale are then read in the local space of the transform parent, so the block
 moves with it. The block does not keep its place on screen when the link changes. Only the transform is
 inherited: opacity, visibility and the stacking order still come from the block's own parent. A hidden block can
@@ -3473,7 +3490,7 @@ setTransformParent(id: DesignBlockId, parent: DesignBlockId | null): void
 
 ### getTransformParent()
 
-Gets the block whose transform a block follows. Experimental: this API may change in a minor release.
+Gets the block whose transform a block follows.
 
 ```typescript
 getTransformParent(id: DesignBlockId): DesignBlockId | null
@@ -3536,7 +3553,6 @@ Get and set any block property by name using low-level, generic accessors.
 ### setVariableBinding()
 
 Binds a block property to a color, number, image or typeface variable.
-Experimental: this API may change in a minor release.
 The property takes the variable's current value at once, and follows every later
 change of the variable. Color variables bind to color properties and number variables to
 float properties. Image variables bind only to `fill/image/imageFileURI`,
@@ -3565,7 +3581,7 @@ setVariableBinding(id: DesignBlockId, property: string, key: string): void
 
 ### getVariableBinding()
 
-Gets the variable that a block property is bound to. Experimental: this API may change in a minor release.
+Gets the variable that a block property is bound to.
 
 ```typescript
 getVariableBinding(id: DesignBlockId, property: string): string | null
@@ -3580,7 +3596,6 @@ getVariableBinding(id: DesignBlockId, property: string): string | null
 ### removeVariableBinding()
 
 Removes the variable binding of a block property. The property keeps its current value.
-Experimental: this API may change in a minor release.
 
 ```typescript
 removeVariableBinding(id: DesignBlockId, property: string): void
@@ -3592,7 +3607,7 @@ removeVariableBinding(id: DesignBlockId, property: string): void
 
 ### findAllVariableBindings()
 
-Gets the properties of a block that are bound to a variable. Experimental: this API may change in a minor release.
+Gets the properties of a block that are bound to a variable.
 
 ```typescript
 findAllVariableBindings(id: DesignBlockId): string[]
@@ -3805,7 +3820,7 @@ getDouble(id: DesignBlockId, property: DoublePropertyName): number
 
 Sets a vec2 property on a block. `position` sets `position/x` and `position/y`, and `shape/position` sets
 `shape/position/x` and `shape/position/y`, with the checks of those properties. Either both components change
-or neither does. Experimental: this API may change in a minor release.
+or neither does.
 ```javascript
 engine.block.setVec2(block, 'position', { x: 100, y: 50 });
 ```
@@ -3821,7 +3836,7 @@ setVec2(id: DesignBlockId, property: Vec2PropertyName, value: Vec2): void
 
 ### getVec2()
 
-Gets a vec2 property from a block. Experimental: this API may change in a minor release.
+Gets a vec2 property from a block.
 ```javascript
 const { x, y } = engine.block.getVec2(block, 'position');
 ```
@@ -4414,7 +4429,6 @@ isEffectEnabled(effectId: DesignBlockId): boolean
 ### setEffectSource()
 
 Sets the block that an effect reads, such as the map of a displacement map effect.
-Experimental: this API may change in a minor release.
 The source still draws on its own. It is read without its position and rotation, and also when it is hidden.
 Required scope: 'appearance/effect' on every block the effect is attached to.
 ```javascript
@@ -4432,7 +4446,7 @@ setEffectSource(effectId: DesignBlockId, source: DesignBlockId | null): void
 
 ### getEffectSource()
 
-Gets the block that an effect reads. Experimental: this API may change in a minor release.
+Gets the block that an effect reads.
 ```javascript
 const mapBlock = engine.block.getEffectSource(effect);
 ```
@@ -4450,7 +4464,7 @@ getEffectSource(effectId: DesignBlockId): DesignBlockId | null
 
 ### createTextAnimator()
 
-Creates a new text animator block. Experimental: this API may change in a minor release.
+Creates a new text animator block.
 A text animator changes the glyphs of a text block that its range selector covers: their position, scale,
 rotation, skew, opacity, colors, stroke width, tracking and blur. Attach it to a text block with
 `appendTextAnimator` or `insertTextAnimator`. Every property of a text animator can have keyframes.
@@ -4470,7 +4484,6 @@ createTextAnimator(): DesignBlockId
 ### supportsTextAnimators()
 
 Checks if a block supports text animators. Text and caption blocks do.
-Experimental: this API may change in a minor release.
 
 ```typescript
 supportsTextAnimators(id: DesignBlockId): boolean
@@ -4483,7 +4496,7 @@ supportsTextAnimators(id: DesignBlockId): boolean
 
 ### getTextAnimators()
 
-Gets the text animators of a block, in the order they apply. Experimental: this API may change in a minor release.
+Gets the text animators of a block, in the order they apply.
 
 ```typescript
 getTextAnimators(id: DesignBlockId): DesignBlockId[]
@@ -4497,7 +4510,7 @@ getTextAnimators(id: DesignBlockId): DesignBlockId[]
 ### insertTextAnimator()
 
 Inserts a text animator into a block's text animators at a given index. A text animator belongs to one block
-at a time. Experimental: this API may change in a minor release.
+at a time.
 Required scope: 'appearance/animation'
 
 ```typescript
@@ -4512,7 +4525,6 @@ insertTextAnimator(id: DesignBlockId, animatorId: DesignBlockId, index: number):
 ### appendTextAnimator()
 
 Appends a text animator to a block's text animators. A text animator belongs to one block at a time.
-Experimental: this API may change in a minor release.
 Required scope: 'appearance/animation'
 
 ```typescript
@@ -4526,7 +4538,6 @@ appendTextAnimator(id: DesignBlockId, animatorId: DesignBlockId): void
 ### removeTextAnimator()
 
 Removes the text animator at a given index from a block. The text animator is not destroyed.
-Experimental: this API may change in a minor release.
 Required scope: 'appearance/animation'
 
 ```typescript
@@ -4541,7 +4552,7 @@ removeTextAnimator(id: DesignBlockId, index: number): void
 
 ### createModifier()
 
-Creates a new shape modifier block. Experimental: this API may change in a minor release.
+Creates a new shape modifier block.
 A modifier changes the path of a shape, or draws the shape several times. Attach it to a shape with
 `appendModifier` or `insertModifier`.
 ```javascript
@@ -4561,7 +4572,7 @@ createModifier(type: ModifierType): DesignBlockId
 
 ### supportsModifiers()
 
-Checks if a block supports modifiers. Every shape block does. Experimental: this API may change in a minor release.
+Checks if a block supports modifiers. Every shape block does.
 
 ```typescript
 supportsModifiers(id: DesignBlockId): boolean
@@ -4575,7 +4586,6 @@ supportsModifiers(id: DesignBlockId): boolean
 ### getModifiers()
 
 Gets the modifiers of a shape, in the order they apply to its path.
-Experimental: this API may change in a minor release.
 
 ```typescript
 getModifiers(id: DesignBlockId): DesignBlockId[]
@@ -4589,7 +4599,6 @@ getModifiers(id: DesignBlockId): DesignBlockId[]
 ### insertModifier()
 
 Inserts a modifier into a shape's modifier list at a given index.
-Experimental: this API may change in a minor release.
 Required scope: 'shape/change' on every block that uses the shape.
 
 ```typescript
@@ -4603,7 +4612,7 @@ insertModifier(id: DesignBlockId, modifierId: DesignBlockId, index: number): voi
 
 ### appendModifier()
 
-Appends a modifier to a shape's modifier list. Experimental: this API may change in a minor release.
+Appends a modifier to a shape's modifier list.
 Required scope: 'shape/change' on every block that uses the shape.
 
 ```typescript
@@ -4617,7 +4626,6 @@ appendModifier(id: DesignBlockId, modifierId: DesignBlockId): void
 ### removeModifier()
 
 Removes a modifier from a shape's modifier list at a given index. The modifier is not destroyed.
-Experimental: this API may change in a minor release.
 Required scope: 'shape/change' on every block that uses the shape.
 
 ```typescript
@@ -4634,7 +4642,7 @@ Cut blocks down to the shapes of their masks.
 
 ### createMask()
 
-Creates a new mask block. Experimental: this API may change in a minor release.
+Creates a new mask block.
 A mask cuts its block down to the area of the mask's shape. Give the mask a shape with `setShape`; a mask
 without a shape has no effect. The shape is evaluated in the frame of the block that the mask is attached to.
 The mask properties are `mask/mode`, `mask/opacity`, `mask/feather`, `mask/expansion` and `mask/inverted`.
@@ -4653,7 +4661,6 @@ createMask(): DesignBlockId
 ### supportsMasks()
 
 Checks if a block supports masks. Graphic, text and group blocks do.
-Experimental: this API may change in a minor release.
 
 ```typescript
 supportsMasks(id: DesignBlockId): boolean
@@ -4667,7 +4674,6 @@ supportsMasks(id: DesignBlockId): boolean
 ### getMasks()
 
 Gets the masks of a block, in the order in which they combine.
-Experimental: this API may change in a minor release.
 
 ```typescript
 getMasks(id: DesignBlockId): DesignBlockId[]
@@ -4680,7 +4686,7 @@ getMasks(id: DesignBlockId): DesignBlockId[]
 
 ### insertMask()
 
-Inserts a mask into a block's masks at a given index. Experimental: this API may change in a minor release.
+Inserts a mask into a block's masks at a given index.
 Required scope: 'layer/clipping'
 
 ```typescript
@@ -4694,7 +4700,7 @@ insertMask(id: DesignBlockId, maskId: DesignBlockId, index: number): void
 
 ### appendMask()
 
-Appends a mask to a block's masks. Experimental: this API may change in a minor release.
+Appends a mask to a block's masks.
 Required scope: 'layer/clipping'
 
 ```typescript
@@ -4708,7 +4714,6 @@ appendMask(id: DesignBlockId, maskId: DesignBlockId): void
 ### removeMask()
 
 Removes the mask at the given index from a block's masks. The mask block is not destroyed.
-Experimental: this API may change in a minor release.
 Required scope: 'layer/clipping'
 
 ```typescript
@@ -5180,7 +5185,7 @@ getStrokeDashOffset(id: DesignBlockId): number
 
 ### getStrokeFill()
 
-Gets the fill block that paints the stroke of a block. Experimental: this API may change in a minor release.
+Gets the fill block that paints the stroke of a block.
 
 ```typescript
 getStrokeFill(id: DesignBlockId): DesignBlockId | null
@@ -5194,7 +5199,6 @@ getStrokeFill(id: DesignBlockId): DesignBlockId | null
 ### setStrokeFill()
 
 Paints the stroke of a block with a fill block, for example a gradient, instead of the stroke color.
-Experimental: this API may change in a minor release.
 Color, gradient and stripe fills are supported; image, video and pixel stream fills are rejected.
 The previous stroke fill block is not destroyed automatically. The fill block may not be the block's own fill.
 A stroke color with alpha 0 still hides the stroke; the fill's own colors set the opacity otherwise.
@@ -5841,7 +5845,7 @@ getTextKernings(id: DesignBlockId, from?: number, to?: number): number[]
 
 ### setTextBaselineShift()
 
-Sets the baseline shift for a grapheme range. Experimental: this API may change in a minor release.
+Sets the baseline shift for a grapheme range.
 Moves the glyphs of the range up from the baseline, or down for a negative value.
 The value is in design units. The line height does not change.
 ```javascript
@@ -5863,7 +5867,6 @@ setTextBaselineShift(id: DesignBlockId, baselineShift: number, from?: number, to
 ### getTextBaselineShifts()
 
 Returns the unique baseline shift values across the grapheme range, in design units.
-Experimental: this API may change in a minor release.
 ```javascript
 const shifts = engine.block.getTextBaselineShifts(text); // e.g. [0] or [4, 0]
 ```
@@ -6205,6 +6208,26 @@ setFont(id: DesignBlockId, fontFileUri: string, typeface: Typeface): void
 - `fontFileUri` - The URI of the new font file.
 - `typeface` - The typeface of the new font.
 
+### setFontRequest()
+
+Sets an authored font request for a UTF-16 source-text range.
+Omitting both bounds sets the whole block, including while text is selected.
+Resolution is asynchronous; forceLoadResources waits for pending providers and fonts.
+Concrete font setters replace the request on their range.
+
+```typescript
+setFontRequest(id: DesignBlockId, request: FontRequest, from?: number, to?: number): void
+```
+
+### getFontRequests()
+
+Returns unique authored font requests in a UTF-16 source-text range.
+Omitted bounds use the current selection, or the whole text without a selection.
+
+```typescript
+getFontRequests(id: DesignBlockId, from?: number, to?: number): FontRequest[]
+```
+
 ### setTypeface()
 
 Sets the typeface for a range of text.
@@ -6304,6 +6327,28 @@ setTextCursorRange(range: Range): void
 
 **Parameters:**
 - `range` - The UTF-16 range to set as the selection. If `from` equals `to`, the cursor is positioned at that index. If `from` and `to` are set to -1, the whole text is selected.
+
+### getTextRenderDiagnostics()
+
+Gets the current fonts, missing glyphs and planar layout of a text block.
+Run and missing-glyph ranges are half-open UTF-16 offsets in `fontUsage.text`,
+after case transformations and template resolution. Effective font sizes use
+the scene's font-size unit. Layout includes hidden lines; its overshoot and
+required height use local design units before strokes, effects and animations.
+Layout is absent while resources are pending, without a current shape, or for
+text on a path. `resolved` font usage does not guarantee glyph coverage.
+This updates pending layout synchronously without changing serialized block
+properties. It does not wait for downloads; use `forceLoadResources` first
+when the snapshot must include loaded fonts.
+
+```typescript
+getTextRenderDiagnostics(id: DesignBlockId): TextRenderDiagnostics
+```
+
+**Parameters:**
+- `id` - The text block to query.
+
+**Returns:** The current rendering diagnostics.
 
 ### getTextVisibleLineCount()
 

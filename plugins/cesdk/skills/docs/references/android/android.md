@@ -241,6 +241,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [To PDF](https://img.ly/docs/cesdk/dev/android/export-save-publish/export/to-pdf-95e04b/)
 - [To JPEG](https://img.ly/docs/cesdk/dev/android/export-save-publish/export/to-jpeg-6f88e9/)
 - [To PNG](https://img.ly/docs/cesdk/dev/android/export-save-publish/export/to-png-f87eaf/)
+- [To WebP](https://img.ly/docs/cesdk/dev/android/export-save-publish/export/to-webp-aef6f4/)
 - [To Raw Data](https://img.ly/docs/cesdk/dev/android/export-save-publish/export/to-raw-data-abd7da/)
 - [Compress](https://img.ly/docs/cesdk/dev/android/export-save-publish/export/compress-29105e/)
 - [With a Color Mask](https://img.ly/docs/cesdk/dev/android/export-save-publish/export/with-color-mask-4f868f/)

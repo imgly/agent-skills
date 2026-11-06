@@ -65,7 +65,7 @@ its value in every value set. A value set target removes only the value of that 
 
 ### createValueSet()
 
-Create an empty value set in the scene. Experimental: this API may change in a minor release.
+Create an empty value set in the scene.
 A value set holds alternative values for some scene variables; write them with the target
 `{ valueSet: id }`. The scene saves its sets, and undo reverts their changes.
 
@@ -81,7 +81,7 @@ start or end with whitespace.
 
 ### destroyValueSet()
 
-Destroy a value set and its values. Experimental: this API may change in a minor release.
+Destroy a value set and its values.
 When the set is active, no set is active afterwards, and text and bound properties show the
 default values again.
 
@@ -94,7 +94,7 @@ destroyValueSet(set: ValueSetId): void
 
 ### setValueSetName()
 
-Rename a value set. Experimental: this API may change in a minor release.
+Rename a value set.
 The id stays, and an active set stays active.
 
 ```typescript
@@ -107,7 +107,7 @@ setValueSetName(set: ValueSetId, name: string): void
 
 ### getValueSetName()
 
-Get the name of a value set. Experimental: this API may change in a minor release.
+Get the name of a value set.
 
 ```typescript
 getValueSetName(set: ValueSetId): string
@@ -120,7 +120,7 @@ getValueSetName(set: ValueSetId): string
 
 ### findAllValueSets()
 
-Get the value sets of the scene. Experimental: this API may change in a minor release.
+Get the value sets of the scene.
 
 ```typescript
 findAllValueSets(): ValueSetId[]
@@ -130,7 +130,7 @@ findAllValueSets(): ValueSetId[]
 
 ### findValueSetByName()
 
-Find a value set by its name. Experimental: this API may change in a minor release.
+Find a value set by its name.
 ```javascript
 const german = engine.variable.findValueSetByName('Deutsch');
 ```
@@ -146,7 +146,7 @@ findValueSetByName(name: string): ValueSetId | null
 
 ### setActiveValueSet()
 
-Activate a value set, or no set. Experimental: this API may change in a minor release.
+Activate a value set, or no set.
 The values of the active set win over the default values in text, bound properties and
 getters. Exports show the active set, as the canvas does. A scene has one active set and saves
 it. Undo reverts the change.
@@ -160,7 +160,7 @@ setActiveValueSet(set: ValueSetId | null): void
 
 ### getActiveValueSet()
 
-Get the active value set. Experimental: this API may change in a minor release.
+Get the active value set.
 
 ```typescript
 getActiveValueSet(): ValueSetId | null
@@ -170,7 +170,7 @@ getActiveValueSet(): ValueSetId | null
 
 ### rename()
 
-Rename a variable of any type. Experimental: this API may change in a minor release.
+Rename a variable of any type.
 The value, the type and the values in every value set move to the new key. Every block
 property bound to the variable follows the new key and keeps its value. For a text variable,
 every `{{key}}` token in text blocks and page titles is rewritten too. A key inside a longer
@@ -190,7 +190,7 @@ another variable, or be reserved: `scene_root` and keys that start with `ubq.`.
 
 ### setColor()
 
-Set a color variable's value. Experimental: this API may change in a minor release.
+Set a color variable's value.
 Creates a new variable if the key doesn't exist. Every block property bound to the
 variable takes the color that the scene shows. If a bound property rejects the value, the call throws
 its error, but the variable and the other bound properties change anyway.
@@ -208,7 +208,7 @@ setColor(key: string, value: Color, options?: VariableOptions | null): void
 
 ### getColor()
 
-Get a color variable's value. Experimental: this API may change in a minor release.
+Get a color variable's value.
 
 ```typescript
 getColor(key: string, options?: VariableOptions | null): Color
@@ -222,7 +222,7 @@ getColor(key: string, options?: VariableOptions | null): Color
 
 ### setNumber()
 
-Set a number variable's value. Experimental: this API may change in a minor release.
+Set a number variable's value.
 Creates a new variable if the key doesn't exist. Every block property bound to the
 variable takes the number that the scene shows. If a bound property rejects the value, the call throws
 its error, but the variable and the other bound properties change anyway.
@@ -240,7 +240,7 @@ setNumber(key: string, value: number, options?: VariableOptions | null): void
 
 ### getNumber()
 
-Get a number variable's value. Experimental: this API may change in a minor release.
+Get a number variable's value.
 
 ```typescript
 getNumber(key: string, options?: VariableOptions | null): number
@@ -254,7 +254,7 @@ getNumber(key: string, options?: VariableOptions | null): number
 
 ### setImage()
 
-Set an image variable's URI. Experimental: this API may change in a minor release.
+Set an image variable's URI.
 Creates a new variable if the key doesn't exist. Every block property bound to the
 variable takes the URI that the scene shows. If a bound property rejects the value, the call throws
 its error, but the variable and the other bound properties change anyway.
@@ -272,7 +272,7 @@ setImage(key: string, uri: string, options?: VariableOptions | null): void
 
 ### getImage()
 
-Get an image variable's URI. Experimental: this API may change in a minor release.
+Get an image variable's URI.
 
 ```typescript
 getImage(key: string, options?: VariableOptions | null): string
@@ -286,7 +286,7 @@ getImage(key: string, options?: VariableOptions | null): string
 
 ### setTypeface()
 
-Set a typeface variable's value. Experimental: this API may change in a minor release.
+Set a typeface variable's value.
 Creates a new variable if the key doesn't exist. Every text block whose typeface is bound
 to the variable takes the typeface that the scene shows, over its whole text. Bold and italic text keeps its
 formatting where the typeface supports it. If a bound property rejects the value, the call
@@ -309,7 +309,7 @@ setTypeface(key: string, typeface: Typeface, options?: VariableOptions | null): 
 
 ### getTypeface()
 
-Get a typeface variable's value. Experimental: this API may change in a minor release.
+Get a typeface variable's value.
 
 ```typescript
 getTypeface(key: string, options?: VariableOptions | null): Typeface
@@ -323,7 +323,7 @@ getTypeface(key: string, options?: VariableOptions | null): Typeface
 
 ### getType()
 
-Get the type of a variable. Experimental: this API may change in a minor release.
+Get the type of a variable.
 
 ```typescript
 getType(key: string, options?: VariableOptions | null): VariableType
@@ -338,7 +338,6 @@ getType(key: string, options?: VariableOptions | null): VariableType
 ### findAllOfType()
 
 Get the keys of all variables of one type, of the scene or of the variables that wait for a scene.
-Experimental: this API may change in a minor release.
 `findAll` returns only text variables.
 
 ```typescript

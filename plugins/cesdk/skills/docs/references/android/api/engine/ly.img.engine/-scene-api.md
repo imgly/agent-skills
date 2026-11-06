@@ -16,7 +16,7 @@ interface SceneApi
 abstract fun addMarker(name: String, time: Double, duration: Double = 0.0)
 ```
 
-Add a marker to the end of the current scene's marker list. Markers name points or spans on the scene timeline. Several markers may share a name. Experimental: this API may change in a minor release.
+Add a marker to the end of the current scene's marker list. Markers name points or spans on the scene timeline. Several markers may share a name.
 
 ### applyTemplate
 
@@ -206,7 +206,7 @@ Get the current scene layout.
 abstract fun getMarkers(): List<SceneMarker>
 ```
 
-Get the markers of the current scene in the order they were added. Experimental: this API may change in a minor release.
+Get the markers of the current scene in the order they were added.
 
 ### getPages
 
@@ -331,7 +331,7 @@ Removes one profile and supersedes its pending assignment. Other slots stay unch
 abstract fun removeMarker(index: Int)
 ```
 
-Remove a marker from the current scene. Experimental: this API may change in a minor release.
+Remove a marker from the current scene.
 
 ### saveToArchive
 

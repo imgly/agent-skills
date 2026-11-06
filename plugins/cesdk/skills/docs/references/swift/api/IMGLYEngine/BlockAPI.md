@@ -747,6 +747,14 @@ Generate a thumbnail sequence for the given video fill or design block. `id`
 
 Get the properties of a block that have keyframes. `id`
 
+### getAnimatedValue(_:property:time:)
+
+```swift
+@MainActor func getAnimatedValue(_ id: DesignBlockID, property: String, time: Float) throws -> KeyframeValue
+```
+
+Get the value that the keyframes give a block property at a time. A relative track adds the static value. A property without keyframes gives its static value. A `position/x` or `position/y` track overrides that axis of a `position` track. Without its own track, `position/x` gives the x of the `position` track. An angle is in the angle unit of the scene. Animation presets and the turn along a motion path are not included. A `rotation` track also moves a block without an anchor, so that it turns around its frame centre. That move is not included either. `id`
+
 ### getAudioInfoFromVideo(_:)
 
 ```swift
@@ -1044,6 +1052,14 @@ Query a block’s vertical flip state. `id`
 ```
 
 Get the value of a float property of the given design block. `id`
+
+### getFontRequests(_:in:)
+
+```swift
+@MainActor func getFontRequests(_ id: DesignBlockID, in subrange: Range<String.Index>? = nil) throws -> [FontRequest]
+```
+
+Returns unique stored requests intersecting the text range. Legacy URI fonts have no request. `id`
 
 ### getFrameHeight(_:)
 
@@ -1628,6 +1644,14 @@ Returns the start offset along the baseline path as a proportion of the path len
 ```
 
 Returns the 0-based paragraph indices that overlap the given string subrange. `id`
+
+### getTextRenderDiagnostics(_:)
+
+```swift
+@MainActor func getTextRenderDiagnostics(_ id: DesignBlockID) throws -> TextRenderDiagnostics
+```
+
+Returns current font provenance, missing glyph ranges, and optional planar layout. `id`
 
 ### getTextRuns(_:in:)
 
@@ -2742,6 +2766,14 @@ Set a float property of the given design block to the given value. `id`
 ```
 
 Sets the given font and typeface for the text block. Existing formatting is reset. Required scope: “text/character” `id`
+
+### setFontRequest(_:request:in:)
+
+```swift
+@MainActor func setFontRequest(_ id: DesignBlockID, request: FontRequest, in subrange: Range<String.Index>? = nil) throws
+```
+
+Stores a runtime font request for this block or text range and starts resolution. The request is preserved through load/save even when unavailable. Existing URI font APIs retain their behavior. Resolution is asynchronous. Await `forceLoadResources` before measuring or exporting. Substitution can change layout; metric-compatible substitution is not provided. Required scope: “text/character”. `id`
 
 ### setGradientColorStops(_:property:colors:)
 

@@ -3,7 +3,7 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-The channel of a matte source that masks a block. The order matches the engine values. Experimental: this API may change in a minor release.
+The channel of a matte source that masks a block. The order matches the engine values.
 
 ```kotlin
 enum MatteMode : Enum<MatteMode>

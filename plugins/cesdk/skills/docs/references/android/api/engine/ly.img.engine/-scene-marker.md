@@ -3,7 +3,7 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-A named point or span on the scene timeline. Experimental: this API may change in a minor release.
+A named point or span on the scene timeline.
 
 ```kotlin
 data class SceneMarker(val name: String, val time: Double, val duration: Double)

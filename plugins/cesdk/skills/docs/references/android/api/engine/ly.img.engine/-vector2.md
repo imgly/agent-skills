@@ -3,7 +3,7 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-A two-dimensional vector. Experimental: this API may change in a minor release.
+A two-dimensional vector.
 
 ```kotlin
 data class Vector2(val x: Float, val y: Float)

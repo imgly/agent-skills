@@ -3,7 +3,7 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-One keyframe of a property track. Experimental: this API may change in a minor release.
+One keyframe of a property track.
 
 ```kotlin
 data class Keyframe(val time: Float, val value: KeyframeValue, val easing: KeyframeEasing = KeyframeEasing.Preset(), val spatialOut: Vector2? = null, val spatialIn: Vector2? = null)

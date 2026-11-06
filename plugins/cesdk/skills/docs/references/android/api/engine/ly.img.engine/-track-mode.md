@@ -3,7 +3,7 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-How a keyframe track combines with the static value of its property. Experimental: this API may change in a minor release.
+How a keyframe track combines with the static value of its property.
 
 ```kotlin
 enum TrackMode : Enum<TrackMode>

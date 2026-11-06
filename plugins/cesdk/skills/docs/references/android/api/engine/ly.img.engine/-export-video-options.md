@@ -4,7 +4,7 @@
 - **Package:** `ly.img.engine`
 
 ```kotlin
-data class ExportVideoOptions(val h264Profile: Int = 77, val h264Level: Int = 52, val videoBitrate: Int = BITRATE_SYSTEM, val audioBitrate: Int = 0, val frameRate: Float? = null, val targetWidth: Float? = null, val targetHeight: Float? = null, val allowTextOverhang: Boolean = false, val videoCodec: VideoCodec = VideoCodec.AUTO, val audioCodec: AudioCodec = AudioCodec.AUTO, val exportAlpha: Boolean = false, val coverTimeOffset: Double? = null)
+data class ExportVideoOptions(val h264Profile: Int = 77, val h264Level: Int = 52, val videoBitrate: Int = BITRATE_SYSTEM, val audioBitrate: Int = 0, val frameRate: Float? = null, val targetWidth: Float? = null, val targetHeight: Float? = null, val allowTextOverhang: Boolean = false, val videoCodec: VideoCodec = VideoCodec.AUTO, val audioCodec: AudioCodec = AudioCodec.AUTO, val exportAlpha: Boolean = false, val coverTimeOffset: Double? = null, val timeOffset: Double = 0.0, val duration: Double? = null)
 ```
 
 
@@ -17,10 +17,14 @@ constructor(h264Profile: Int = 77, h264Level: Int = 52, videoBitrate: VideoBitra
 ```
 
 ```kotlin
-constructor(h264Profile: Int = 77, h264Level: Int = 52, videoBitrate: Int = BITRATE_SYSTEM, audioBitrate: Int = 0, frameRate: Float? = null, targetWidth: Float? = null, targetHeight: Float? = null, allowTextOverhang: Boolean = false, videoCodec: VideoCodec = VideoCodec.AUTO, audioCodec: AudioCodec = AudioCodec.AUTO, exportAlpha: Boolean = false, coverTimeOffset: Double? = null)
+constructor(h264Profile: Int, h264Level: Int, videoBitrate: Int, audioBitrate: Int, frameRate: Float?, targetWidth: Float?, targetHeight: Float?, allowTextOverhang: Boolean, videoCodec: VideoCodec, audioCodec: AudioCodec, exportAlpha: Boolean, coverTimeOffset: Double?)
 ```
 
-The video export options with a strongly typed video bitrate. All parameters match the primary constructor, except that videoBitrate selects the bitrate as a VideoBitrate: VideoBitrate.System (the platform encoder uses the shared resolution/framerate default), VideoBitrate.Auto (the same bounded default across platforms) or VideoBitrate.Custom (an explicit bitrate in bits per second).
+```kotlin
+constructor(h264Profile: Int = 77, h264Level: Int = 52, videoBitrate: Int = BITRATE_SYSTEM, audioBitrate: Int = 0, frameRate: Float? = null, targetWidth: Float? = null, targetHeight: Float? = null, allowTextOverhang: Boolean = false, videoCodec: VideoCodec = VideoCodec.AUTO, audioCodec: AudioCodec = AudioCodec.AUTO, exportAlpha: Boolean = false, coverTimeOffset: Double? = null, timeOffset: Double = 0.0, duration: Double? = null)
+```
+
+The video export options with a strongly typed video bitrate. All parameters match the primary constructor, except that videoBitrate selects the bitrate as a VideoBitrate: VideoBitrate.System (the platform encoder uses the shared resolution/framerate default), VideoBitrate.Auto (the same bounded default across platforms) or VideoBitrate.Custom (an explicit bitrate in bits per second). The constructor without timeOffset and duration, so that a call that passes all these arguments, from Java for example, keeps working. It sets timeOffset to 0 and duration to null.
 
 ### allowTextOverhang
 
@@ -53,6 +57,14 @@ val coverTimeOffset: Double? = null
 ```
 
 Cover time in seconds from the beginning of the exported video. Null uses the page playback position at export start, clamped to the exported frames. An explicit value must be finite and within [0, export duration). The frame containing that time is embedded as a PNG, preserving the export aspect ratio with both dimensions at most 512 pixels.
+
+### duration
+
+```kotlin
+val duration: Double? = null
+```
+
+The duration in seconds of the final video. Null exports the duration of the page, starting at timeOffset, like the other platforms. Read by the BlockApi.exportVideo overloads that take no duration parameter.
 
 ### exportAlpha
 
@@ -101,6 +113,14 @@ val targetWidth: Float? = null
 ```
 
 An optional target width. If used, the block will be rendered large enough that it fills the target size entirely while maintaining its aspect ratio. Without a target height, the height follows from that aspect ratio.
+
+### timeOffset
+
+```kotlin
+val timeOffset: Double = 0.0
+```
+
+The time offset in seconds of the page's timeline from which the video starts. Read by the BlockApi.exportVideo overloads that take no timeOffset parameter. The default value is 0.
 
 ### videoBitrate
 
