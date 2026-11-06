@@ -305,6 +305,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Add Sound Effects](https://img.ly/docs/cesdk/next/android/create-audio/audio/add-sound-effects-9e984e/)
 - [Add Music](https://img.ly/docs/cesdk/next/android/create-audio/audio/add-music-5b182c/)
 - [Record Voiceover](https://img.ly/docs/cesdk/next/android/create-audio/audio/record-voiceover-07e8e1/)
+- [Isolate Voice](https://img.ly/docs/cesdk/next/android/create-audio/audio/voice-isolation-9267e7/)
 - [Adjust Volume](https://img.ly/docs/cesdk/next/android/create-audio/audio/adjust-volume-7ecc4a/)
 - [Fade In and Out](https://img.ly/docs/cesdk/next/android/create-audio/audio/fade-a4d7e2/)
 - [Adjust Speed](https://img.ly/docs/cesdk/next/android/create-audio/audio/adjust-speed-908d57/)
@@ -475,6 +476,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [Custom Feature Plugin](https://img.ly/docs/cesdk/next/android/plugins/custom-plugin-ju8y5t/)
 
 #### [Background Removal](https://img.ly/docs/cesdk/next/android/edit-image/remove-bg-9dfcf7/)
+
+#### [Voice Isolation](https://img.ly/docs/cesdk/next/android/create-audio/audio/voice-isolation-9267e7/)
 
 #### [Cutout Library](https://img.ly/docs/cesdk/next/android/stickers-and-shapes/create-cutout-384be3/)
 
