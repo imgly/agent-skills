@@ -307,6 +307,14 @@ Create a new fill. `type`
 
 Create a new fill, fails if type is unknown. `type`
 
+### createFromSVG(_:)
+
+```swift
+@MainActor func createFromSVG(_ svg: String) throws -> DesignBlockID
+```
+
+Create editable graphic blocks from SVG markup, such as the SVG code that Adobe Illustrator copies. Each shape of the SVG becomes a graphic block with a vector path shape, its fill color or gradient, and its stroke. More than one block goes into a group. Embedded images, text, filters, masks and patterns have no shape. Each such part becomes a graphic block with an image fill of only that part. The blocks are not attached to a parent. An SVG user unit is a pixel in a scene measured in pixels. In a scene measured in millimeters or inches it is a point, as Adobe Illustrator writes it. `svg`
+
 ### createMask()
 
 ```swift
@@ -803,7 +811,7 @@ Get the blend mode of the given design block. `id`
 @MainActor func getBlur(_ id: DesignBlockID) throws -> DesignBlockID
 ```
 
-Get the ‘blur’ block of the given design block. `id`
+Get the ‘blur’ block of the given design block. For example, a graphic has no blur right after `create(.graphic)`, although `isBlurEnabled(_:)` returns true. `id`
 
 ### getBool(_:property:)
 
@@ -1011,7 +1019,7 @@ Get all the possible values of an enum given an enum property. `enumProperty`
 @MainActor func getFill(_ id: DesignBlockID) throws -> DesignBlockID
 ```
 
-Returns the block containing the fill properties of the given block. `id`
+Returns the block containing the fill properties of the given block. For example, a graphic has no fill right after `create(.graphic)`, although `isFillEnabled(_:)` returns true. `id`
 
 ### getFillOverprint(_:)
 
@@ -1283,7 +1291,7 @@ Get the playback time of the given block. During an export, this returns the tim
 @MainActor func getPositionX(_ id: DesignBlockID) throws -> Float
 ```
 
-Query a block’s x position. `id`
+Query a block’s x position. The position is the block’s local origin: the top-left corner of its untransformed frame, in the coordinate space of its parent. Rotation turns the block, and a flip mirrors it, around the center of its frame. So for a rotated or flipped block, the position is not the visual left edge. Use `getGlobalBoundingBoxX(_:)` for the axis-aligned visual bounds. `id`
 
 ### getPositionXMode(_:)
 
@@ -1299,7 +1307,7 @@ Query a block’s mode for its x position. `id`
 @MainActor func getPositionY(_ id: DesignBlockID) throws -> Float
 ```
 
-Query a block’s y position. `id`
+Query a block’s y position. The position is the block’s local origin: the top-left corner of its untransformed frame, in the coordinate space of its parent. Rotation turns the block, and a flip mirrors it, around the center of its frame. So for a rotated or flipped block, the position is not the visual top edge. Use `getGlobalBoundingBoxY(_:)` for the axis-aligned visual bounds. `id`
 
 ### getPositionYMode(_:)
 
@@ -1331,7 +1339,7 @@ Get the position and size of the axis-aligned bounding box for the given blocks 
 @MainActor func getShape(_ id: DesignBlockID) throws -> DesignBlockID
 ```
 
-Returns the block containing the shape properties of the given block. `id`
+Returns the block containing the shape properties of the given block. For example, a graphic has no shape right after `create(.graphic)`. `id`
 
 ### getSourceSet(_:property:)
 
@@ -1476,6 +1484,14 @@ Get the subshapes of a compound shape, in the order in which they combine. `id`
 ```
 
 Get the text animators of a block, in the order they apply. `id`
+
+### getTextAsHTML(_:in:)
+
+```swift
+@MainActor func getTextAsHTML(_ id: DesignBlockID, in subrange: Range<String.Index>? = nil) throws -> String
+```
+
+Returns a range of a text block as HTML with its formatting, for the clipboard. The HTML states the color, background color, weight, italic, decorations, script style, case, font size and typeface of each run as inline CSS. It states the list style, list level and alignment of each paragraph. Other apps read it on paste, and `replaceTextWithHTML` reads every property back. The typeface applies only when a typeface of the scene holds its font file. The font size and the line height are CSS values, so other apps show them as the block does. `id`
 
 ### getTextBackgroundColors(_:in:)
 
@@ -1653,10 +1669,10 @@ Returns the 0-based paragraph indices that overlap the given string subrange. `i
 
 Returns current font provenance, missing glyph ranges, and optional planar layout. `id`
 
-### getTextRuns(_:in:)
+### getTextRuns(_:in:unit:)
 
 ```swift
-@MainActor func getTextRuns(_ id: DesignBlockID, in subrange: Range<String.Index>? = nil) throws -> [TextRunInfo]
+@MainActor func getTextRuns(_ id: DesignBlockID, in subrange: Range<String.Index>? = nil, unit: FontUnit = .pt) throws -> [TextRunInfo]
 ```
 
 Returns all text runs within the given range of text. `id`
@@ -1947,7 +1963,7 @@ Query if the background of the given design block is enabled. `id`
 @MainActor func isBlurEnabled(_ id: DesignBlockID) throws -> Bool
 ```
 
-Query if blur is enabled for the given block. `id`
+Query if blur is enabled for the given block. The flag does not depend on an attached blur block. It defaults to true, so a fresh graphic reports its blur as enabled while `getBlur(_:)` returns an invalid block. `id`
 
 ### isClipped(_:)
 
@@ -2003,7 +2019,7 @@ Queries whether an ‘effect’ block is enabled and therefore applies its effec
 @MainActor func isFillEnabled(_ id: DesignBlockID) throws -> Bool
 ```
 
-Query if the fill of the given design block is enabled. `id`
+Query if the fill of the given design block is enabled. The flag does not depend on an attached fill block. It defaults to true, so a fresh graphic reports its fill as enabled while `getFill(_:)` returns an invalid block. `id`
 
 ### isForceMuted(_:)
 
@@ -2364,6 +2380,14 @@ Remove the variable binding of a block property. The property keeps its current 
 ```
 
 Replaces the given text in the selected range of the text block. Required scope: “text/edit” `id`
+
+### replaceTextWithHTML(_:html:in:)
+
+```swift
+@MainActor func replaceTextWithHTML(_ id: DesignBlockID, html: String, in subrange: Range<String.Index>? = nil) throws
+```
+
+Replaces a range of a text block with the text and the formatting of HTML, such as the HTML of a paste. HTML from `getTextAsHTML` sets every property it carries. Its typeface applies only when a typeface of the scene holds its font file. Otherwise the text keeps the typeface at the cursor, with the weight and style of the source. HTML of another app, such as Google Docs, Word, a web page or an Apple app, sets weight, italic and decorations. It also sets the script style, case, colors, font size, letter spacing, line height, lists and alignment. A CSS px is one pixel of a scene whose font size unit is the pixel. The text takes the first font family of the HTML that a typeface of the asset so…
 
 ### resetCrop(_:)
 
@@ -2741,7 +2765,7 @@ Set the fill color of the given design block. Required scope: “fill/change” 
 @MainActor func setFlipHorizontal(_ id: DesignBlockID, flip: Bool) throws
 ```
 
-Update a block’s horizontal flip. With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. Required scope: “layer/flip” `id`
+Update a block’s horizontal flip. With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. The block is mirrored around the center of its frame, so its rendered bounds do not move. For a block without rotation, anchor or skew, turning the flip on moves `getPositionX(_:)` and `getFrameX(_:)` to the visual right edge (x + width). Turning it off moves them back. `getGlobalBoundingBoxX(_:)` stays the same. Required scope: “layer/flip” `id`
 
 ### setFlipVertical(_:flip:)
 
@@ -2749,7 +2773,7 @@ Update a block’s horizontal flip. With the setting `features/implicitUpdatesEn
 @MainActor func setFlipVertical(_ id: DesignBlockID, flip: Bool) throws
 ```
 
-Update a block’s vertical flip. With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. Required scope: “layer/flip” `id`
+Update a block’s vertical flip. With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. The block is mirrored around the center of its frame, so its rendered bounds do not move. For a block without rotation, anchor or skew, turning the flip on moves `getPositionY(_:)` and `getFrameY(_:)` to the visual bottom edge (y + height). Turning it off moves them back. `getGlobalBoundingBoxY(_:)` stays the same. Required scope: “layer/flip” `id`
 
 ### setFloat(_:property:value:)
 
@@ -3141,7 +3165,7 @@ Set the cap geometry at the end of an open stroked path. Required scope: “stro
 @MainActor func setStrokeFill(_ id: DesignBlockID, fill: DesignBlockID?) throws
 ```
 
-Paints the stroke of the given block with a fill block, for example a gradient, instead of the stroke color. Color, gradient and stripe fills are supported; image, video and pixel stream fills are rejected. `id`
+Paints the stroke of the given block with a fill block, for example a gradient, instead of the stroke color. Color, gradient, stripe and image fills are supported; video and pixel stream fills are rejected. An image covers the frame of the block and the part of the stroke outside it. The crop, the effects and the blur of the block apply only to its fill. `id`
 
 ### setStrokeOverprint(_:overprint:)
 
@@ -3254,6 +3278,14 @@ Sets the given text style for the selected range of text. Required scope: “tex
 ```
 
 Sets the given text weight for the selected range of text. Required scope: “text/character” `id`
+
+### setTextFontWeightAndStyle(_:fontWeight:fontStyle:in:)
+
+```swift
+@MainActor func setTextFontWeightAndStyle(_ id: DesignBlockID, fontWeight: FontWeight, fontStyle: FontStyle, in subrange: Range<String.Index>? = nil) throws
+```
+
+Sets the given weight and style for the selected range of text in one step. Each run gets the font of its typeface with exactly this weight and style. Separate calls to `setTextFontWeight` and `setTextFontStyle` pass through a face in between, so they fail when the typeface lacks that face. Required scope: “text/character” `id`
 
 ### setTextHorizontalAlignment(_:alignment:paragraphIndex:)
 

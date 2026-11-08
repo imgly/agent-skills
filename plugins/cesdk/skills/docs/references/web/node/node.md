@@ -14,7 +14,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 ## Quick Links
 
-- **NPM**: [@imgly/node](https://www.npmjs.com/package/@imgly/node)
+- **NPM**: [@cesdk/node](https://www.npmjs.com/package/@cesdk/node)
 - **API Reference (Node)**: [https://img.ly/docs/cesdk/dev/node/api/node/](https://img.ly/docs/cesdk/dev/node/api/node/)
 - **GitHub Examples**: [imgly/cesdk-web-examples](https://github.com/imgly/cesdk-web-examples)
 - **Get a License**: [Contact sales](https://img.ly/forms/contact-sales/)
@@ -128,6 +128,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Import a Design](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design-73b9c5/)
   - [From InDesign](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design/from-indesign-ba3988/)
   - [From Photoshop](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design/from-photoshop-cca6bb/)
+  - [From Figma](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design/from-figma-9f10ef/)
   - [From Archive](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design/from-archive-dde9fa/)
 - [URI Resolver](https://img.ly/docs/cesdk/dev/node/open-the-editor/uri-resolver-36b624/)
 
@@ -168,6 +169,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [To PNG](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/to-png-f87eaf/)
 - [To WebP](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/to-webp-aef6f4/)
 - [To PSD](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/to-psd-bc27e9/)
+- [To Figma](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/to-figma-005734/)
 - [To Raw Data](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/to-raw-data-abd7da/)
 - [Compress](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/compress-29105e/)
 - [With a Color Mask](https://img.ly/docs/cesdk/dev/node/export-save-publish/export/with-color-mask-4f868f/)
@@ -221,6 +223,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Overview](https://img.ly/docs/cesdk/dev/node/text/overview-0bd620/)
 - [Add Text](https://img.ly/docs/cesdk/dev/node/text/add-4f5011/)
 - [Edit Text](https://img.ly/docs/cesdk/dev/node/text/edit-c5106b/)
+- [Copy and Paste Formatted Text](https://img.ly/docs/cesdk/dev/node/text/copy-paste-862b90/)
 - [Text Styling](https://img.ly/docs/cesdk/dev/node/text/styling-269c48/)
 - [Text Designs](https://img.ly/docs/cesdk/dev/node/text/text-designs-a1b2c3/)
 - [Auto-Size](https://img.ly/docs/cesdk/dev/node/text/auto-size-5331b3/)
@@ -234,6 +237,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Create Shapes](https://img.ly/docs/cesdk/dev/node/stickers-and-shapes/create-edit/create-shapes-64acc0/)
 - [Edit Shapes](https://img.ly/docs/cesdk/dev/node/stickers-and-shapes/create-edit/edit-shapes-d67cfb/)
+- [Import SVG as Editable Shapes](https://img.ly/docs/cesdk/dev/node/-e7c41d/)
 - [Combine Shapes](https://img.ly/docs/cesdk/dev/node/stickers-and-shapes/combine-2a9e26/)
 - [Compound Shapes](https://img.ly/docs/cesdk/dev/node/stickers-and-shapes/compound-shapes-f7fc4f/)
 - [Shape Modifiers](https://img.ly/docs/cesdk/dev/node/stickers-and-shapes/shape-modifiers-670d04/)
@@ -438,3 +442,4 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Node.js - AWS Lambda](https://img.ly/docs/cesdk/dev/node/get-started/vanilla-aws-lambda-fee18b/)
 - [Node.js - Clone GitHub Project](https://img.ly/docs/cesdk/dev/node/get-started/vanilla-clone-github-project-n1fe4a/)
 - [Refresh Assets](https://img.ly/docs/cesdk/dev/node/import-media/asset-library/refresh-assets-382060/)
+- [To v1.87](https://img.ly/docs/cesdk/dev/node/to-v1-87-zh9fi3/)

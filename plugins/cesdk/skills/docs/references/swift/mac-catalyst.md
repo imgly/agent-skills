@@ -249,6 +249,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Overview](https://img.ly/docs/cesdk/dev/mac-catalyst/text/overview-0bd620/)
 - [Add Text](https://img.ly/docs/cesdk/dev/mac-catalyst/text/add-4f5011/)
 - [Edit Text](https://img.ly/docs/cesdk/dev/mac-catalyst/text/edit-c5106b/)
+- [Copy and Paste Formatted Text](https://img.ly/docs/cesdk/dev/mac-catalyst/text/copy-paste-862b90/)
 - [Text Styling](https://img.ly/docs/cesdk/dev/mac-catalyst/text/styling-269c48/)
 - [Text Decorations](https://img.ly/docs/cesdk/dev/mac-catalyst/text/decorations-d3c0a1/)
 - [Subscript and Superscript](https://img.ly/docs/cesdk/dev/mac-catalyst/text/subscript-superscript-8f21ab/)
@@ -266,6 +267,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Create Shapes](https://img.ly/docs/cesdk/dev/mac-catalyst/stickers-and-shapes/create-edit/create-shapes-64acc0/)
 - [Edit Shapes](https://img.ly/docs/cesdk/dev/mac-catalyst/stickers-and-shapes/create-edit/edit-shapes-d67cfb/)
+- [Import SVG as Editable Shapes](https://img.ly/docs/cesdk/dev/mac-catalyst/-e7c41d/)
 - [Combine Shapes](https://img.ly/docs/cesdk/dev/mac-catalyst/stickers-and-shapes/combine-2a9e26/)
 - [Compound Shapes](https://img.ly/docs/cesdk/dev/mac-catalyst/stickers-and-shapes/compound-shapes-f7fc4f/)
 - [Shape Modifiers](https://img.ly/docs/cesdk/dev/mac-catalyst/stickers-and-shapes/shape-modifiers-670d04/)

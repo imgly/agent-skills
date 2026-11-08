@@ -282,6 +282,12 @@ The source set entries that the engine makes are `buffer://` resources that only
 holds. `onDisallowedResourceScheme` gets each of them, whatever `allowedResourceSchemes` holds.
 The save leaves out each entry that the callback did not move to another address, and each
 fill keeps them.
+The string is a container, not JSON: a four-character format prefix followed by a base64
+payload. With the default Zstd compression the prefix is `UBQ2` and the payload is a Zstd
+frame. With `compression: { format: 'None' }` the prefix is `UBQ1` and the payload is the
+scene JSON. `loadFromString` accepts both. Tooling that inspects or rewrites the decoded
+payload, for example resource URLs, must decompress the Zstd frame or save with
+compression `None`.
 
 ```typescript
 saveToString(options?: {

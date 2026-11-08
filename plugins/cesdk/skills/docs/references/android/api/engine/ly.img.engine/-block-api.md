@@ -250,6 +250,14 @@ abstract fun createFill(fillType: String): DesignBlock
 
 Create a new fill, fails if type is unknown.
 
+### createFromSVG
+
+```kotlin
+abstract fun createFromSVG(svg: String): DesignBlock
+```
+
+Create editable graphic blocks from SVG markup, such as the SVG code that Adobe Illustrator copies. Each shape of the SVG becomes a graphic block with a vector path shape, its fill color or gradient, and its stroke. More than one block goes into a group. Embedded images, text, filters, masks and patterns have no shape. Each such part becomes a graphic block with an image fill of only that part. The blocks are not attached to a parent. An SVG user unit is a pixel in a scene measured in pixels. In a scene measured in millimeters or inches it is a point, as Adobe Illustrator writes it.
+
 ### createMask
 
 ```kotlin
@@ -664,7 +672,7 @@ Get the blend mode of the given design block.
 abstract fun getBlur(block: DesignBlock): DesignBlock
 ```
 
-Get the blur block of the given design block.
+Get the blur block of the given design block. For example, a graphic has no blur right after create(DesignBlockType.Graphic), although isBlurEnabled returns true.
 
 ### getBoolean
 
@@ -888,7 +896,7 @@ Get the fill color of the given design block.
 abstract fun getFill(block: DesignBlock): DesignBlock
 ```
 
-Returns the block containing the fill properties of the given block.
+Returns the block containing the fill properties of the given block. For example, a graphic has no fill right after create(DesignBlockType.Graphic), although isFillEnabled returns true.
 
 ### getFloat
 
@@ -1137,7 +1145,7 @@ Query a block's mode for its x position.
 abstract fun getPositionX(block: DesignBlock): Float
 ```
 
-Query a block's x position.
+Query a block's x position. The position is the block's local origin: the top-left corner of its untransformed frame, in the coordinate space of its parent. Rotation turns the block, and a flip mirrors it, around the center of its frame. So for a rotated or flipped block, the position is not the visual left edge. Use getGlobalBoundingBoxX for the axis-aligned visual bounds.
 
 ### getPositionYMode
 
@@ -1153,7 +1161,7 @@ Query a block's mode for its y position.
 abstract fun getPositionY(block: DesignBlock): Float
 ```
 
-Query a block's y position.
+Query a block's y position. The position is the block's local origin: the top-left corner of its untransformed frame, in the coordinate space of its parent. Rotation turns the block, and a flip mirrors it, around the center of its frame. So for a rotated or flipped block, the position is not the visual top edge. Use getGlobalBoundingBoxY for the axis-aligned visual bounds.
 
 ### getPropertyType
 
@@ -1185,7 +1193,7 @@ Get the position and size of the axis-aligned bounding box for the given blocks 
 abstract fun getShape(block: DesignBlock): DesignBlock
 ```
 
-Returns the block containing the shape properties of the given block.
+Returns the block containing the shape properties of the given block. For example, a graphic has no shape right after create(DesignBlockType.Graphic).
 
 ### getSourceSet
 
@@ -1338,6 +1346,14 @@ abstract fun getTextAnimators(block: DesignBlock): List<DesignBlock>
 ```
 
 Get the text animators of a block, in the order they apply.
+
+### getTextAsHTML
+
+```kotlin
+abstract fun getTextAsHTML(block: DesignBlock, from: Int = -1, to: Int = -1): String
+```
+
+Returns a range of a text block as HTML with its formatting, for the clipboard. The HTML states the color, background color, weight, italic, decorations, script style, case, font size and typeface of each run as inline CSS. It states the list style, list level and alignment of each paragraph. Other apps read it on paste, and replaceTextWithHTML reads every property back. The typeface applies only when a typeface of the scene holds its font file. The font size and the line height are CSS values, so other apps show them as the block does.
 
 ### getTextBackgroundColors
 
@@ -1518,7 +1534,7 @@ Returns current font provenance, missing glyph ranges, and optional planar layou
 ### getTextRuns
 
 ```kotlin
-abstract fun getTextRuns(block: DesignBlock, from: Int = -1, to: Int = -1): List<TextRunInfo>
+abstract fun getTextRuns(block: DesignBlock, from: Int = -1, to: Int = -1, unit: FontUnit = FontUnit.POINT): List<TextRunInfo>
 ```
 
 Returns all text runs within the given range of text. Each run represents a contiguous span of text with uniform formatting. Runs are ordered and together cover the full requested range.
@@ -1690,7 +1706,7 @@ Query a block's width.
 abstract fun group(blocks: List<DesignBlock>): DesignBlock
 ```
 
-Group blocks together. The blocks keep their times on the timeline. The group spans from the earliest start to the latest end of the blocks, and their time offsets become relative to the group.
+Group blocks together. The group becomes the blocks' new parent and takes the first block's parent as its own. Grouping does not change the children's positions: they stay relative to the group's parent, not to the group. In nested groups, they stay relative to the first ancestor that is not a group. The engine computes the group's position and size from the children's combined bounds. Moving the group moves all of its children by the same offset. The blocks keep their times on the timeline. The group spans from the earliest start to the latest end of the blocks, and their time offsets become relative to the group.
 
 ### hasMetadata
 
@@ -1810,7 +1826,7 @@ Query if the background of the given design block is enabled.
 abstract fun isBlurEnabled(block: DesignBlock): Boolean
 ```
 
-Query if blur is enabled for the given block.
+Query if blur is enabled for the given block. The flag does not depend on an attached blur block. It defaults to true, so a fresh graphic reports its blur as enabled while getBlur returns an invalid block.
 
 ### isClipped
 
@@ -1866,7 +1882,7 @@ Queries whether an effect block is enabled and therefore applies its effect.
 abstract fun isFillEnabled(block: DesignBlock): Boolean
 ```
 
-Query if the fill of the given design block is enabled.
+Query if the fill of the given design block is enabled. The flag does not depend on an attached fill block. It defaults to true, so a fresh graphic reports its fill as enabled while getFill returns an invalid block.
 
 ### isFlipHorizontal
 
@@ -2221,6 +2237,14 @@ abstract fun removeVariableBinding(block: DesignBlock, property: String)
 
 Remove the variable binding of a block property. The property keeps its current value. Does nothing if the property is not bound.
 
+### replaceTextWithHTML
+
+```kotlin
+abstract fun replaceTextWithHTML(block: DesignBlock, html: String, from: Int = -1, to: Int = -1)
+```
+
+Replaces a range of a text block with the text and the formatting of HTML, such as the HTML of a paste. HTML from getTextAsHTML sets every property it carries. Its typeface applies only when a typeface of the scene holds its font file. Otherwise the text keeps the typeface at the cursor, with the weight and style of the source. HTML of another app, such as Google Docs, Word, a web page or an Apple app, sets weight, italic and decorations. It also sets the script style, case, colors, font size, letter spacing, line height, lists and alignment. A CSS px is one pixel of a scene whose font size unit is the pixel. The text takes the first font family of the HTML that a typeface of the asset sour…
+
 ### replaceText
 
 ```kotlin
@@ -2257,6 +2281,10 @@ Saves the given blocks to an archive. Note: All given block handles must be vali
 
 ```kotlin
 abstract suspend fun saveToString(blocks: List<DesignBlock>, allowedResourceSchemes: List<String> = listOf("bundle", "file", "http", "https")): String
+```
+
+```kotlin
+abstract suspend fun saveToString(blocks: List<DesignBlock>, allowedResourceSchemes: List<String> = listOf("bundle", "file", "http", "https"), onDisallowedResourceScheme: suspend (uri: Uri, dataHash: String) -> Uri): String
 ```
 
 Saves the given blocks to a proprietary string. If given the root of a block hierarchy, e.g. a page with multiple children, the entire hierarchy is saved. If a resource uri of any block in that hierarchy has a scheme that is not in allowedResourceSchemes, an exception will be thrown. Note: All given block handles must be valid, otherwise an exception will be thrown. Performs an internal update to lay out pending changes before the save.
@@ -2604,7 +2632,7 @@ Sets the block containing the fill properties of the given block. Note: The prev
 abstract fun setFlipHorizontal(block: DesignBlock, flip: Boolean)
 ```
 
-Update a block's horizontal flip. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. Required scope: "layer/flip"
+Update a block's horizontal flip. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. The block is mirrored around the center of its frame, so its rendered bounds do not move. For a block without rotation, anchor or skew, turning the flip on moves getPositionX and getFrameX to the visual right edge (x + width). Turning it off moves them back. getGlobalBoundingBoxX stays the same. Required scope: "layer/flip"
 
 ### setFlipVertical
 
@@ -2612,7 +2640,7 @@ Update a block's horizontal flip. With the setting features/implicitUpdatesEnabl
 abstract fun setFlipVertical(block: DesignBlock, flip: Boolean)
 ```
 
-Update a block's vertical flip. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. Required scope: "layer/flip"
+Update a block's vertical flip. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, the members of a group and each transform parent. That update also lays out every other pending change. The block is mirrored around the center of its frame, so its rendered bounds do not move. For a block without rotation, anchor or skew, turning the flip on moves getPositionY and getFrameY to the visual bottom edge (y + height). Turning it off moves them back. getGlobalBoundingBoxY stays the same. Required scope: "layer/flip"
 
 ### setFloat
 
@@ -2836,7 +2864,7 @@ Set the playback time of the given block.
 abstract fun setPlaying(block: DesignBlock, enabled: Boolean)
 ```
 
-Set whether the block should be during active playback. Note that playing a page switches the editor to the Playback edit mode. From 0.2 s after the start, a change to the position, size, rotation, fill or text of a content block ends that mode. So does a change to the opacity, adjustments, shape or volume of any block, the page included. The editor returns to the Transform edit mode, which stops the playback.
+Set whether the block should be during active playback. Note that playing a page switches the editor to the Playback edit mode. From 0.2 s after the start, a change to the position, size, rotation, fill or text of a content block ends that mode. So does a change to the opacity, adjustments, shape or volume of any block, the page included. The editor returns to the Transform edit mode, which stops the playback. While a page plays, only a change on that page counts. A change to a block on another page, or to a block that is not in the scene, keeps the playback running.
 
 ### setPositionXMode
 
@@ -3012,7 +3040,7 @@ Set the cap geometry at the end of an open stroked path.
 abstract fun setStrokeFill(block: DesignBlock, fill: DesignBlock?)
 ```
 
-Paints the stroke of the given block with a fill block, for example a gradient, instead of the stroke color. Color, gradient and stripe fills are supported; image, video and pixel stream fills are rejected. Note: The previous stroke fill block is not destroyed automatically. The fill block may not be the block's own fill. A stroke color with alpha 0 still hides the stroke; the fill's own colors set the opacity otherwise. Required scope: "stroke/change"
+Paints the stroke of the given block with a fill block, for example a gradient, instead of the stroke color. Color, gradient, stripe and image fills are supported; video and pixel stream fills are rejected. An image covers the frame of the block and the part of the stroke outside it. The crop, the effects and the blur of the block apply only to its fill. Note: The previous stroke fill block is not destroyed automatically. The fill block may not be the block's own fill. A stroke color with alpha 0 still hides the stroke; the fill's own colors set the opacity otherwise. Required scope: "stroke/change"
 
 ### setStrokeOverprint
 
@@ -3117,6 +3145,14 @@ abstract fun setTextFontStyle(block: DesignBlock, fontStyle: FontStyle, from: In
 ```
 
 Changes the style of the text in the selected range to the given style. Required scope: "text/character"
+
+### setTextFontWeightAndStyle
+
+```kotlin
+abstract fun setTextFontWeightAndStyle(block: DesignBlock, fontWeight: FontWeight, fontStyle: FontStyle, from: Int = -1, to: Int = -1)
+```
+
+Changes the weight and the style of the text in the selected range in one step. Each run gets the font of its typeface with exactly this weight and style. Separate calls to setTextFontWeight and setTextFontStyle pass through a face in between, so they fail when the typeface lacks that face. Required scope: "text/character"
 
 ### setTextFontWeight
 

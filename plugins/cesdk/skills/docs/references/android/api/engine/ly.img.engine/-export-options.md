@@ -6,7 +6,7 @@
 The export options.
 
 ```kotlin
-data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val underlayerMinFeatureWidth: Float = 0.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null)
+data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val underlayerMinFeatureWidth: Float = 0.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null, val exportArea: RectF? = null)
 ```
 
 
@@ -15,7 +15,7 @@ data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Floa
 ### ExportOptions
 
 ```kotlin
-constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, underlayerMinFeatureWidth: Float = 0.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null)
+constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, underlayerMinFeatureWidth: Float = 0.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null, exportArea: RectF? = null)
 ```
 
 ### allowTextOverhang
@@ -33,6 +33,14 @@ val cropMarkLength: Float = 0.0f
 ```
 
 Length of one crop mark line, in design units. It shares the unit of printMarkOffset, because the exported sheet grows by the sum of the two. Values <= 0 fall back to the equivalent of 15 pt. Only used when exportPdfWithCropMarks is true.
+
+### exportArea
+
+```kotlin
+val exportArea: RectF? = null
+```
+
+The rectangle of the block to export instead of the whole block, in design units. Not supported for PDF. The rectangle is in the block's own space, before rotation. (0, 0) is the block's top-left corner. For a scene, the rectangle is in scene coordinates. Its width and height must be greater than 0. The export composes the rectangle like a full export of the block. The rectangle may reach outside the block. The block's margin, stroke and allowTextOverhang do not enlarge it. The output has the aspect ratio of the rectangle, at the export resolution of the scene. targetWidth and targetHeight scale the rectangle. An output smaller than 1 px is an error. The export skips most blocks on a page w…
 
 ### exportPdfWithCropMarks
 
@@ -80,7 +88,7 @@ The JPEG quality to use when encoding to JPEG. Valid values are (0-1], higher me
 val pdfChunkSize: Int? = null
 ```
 
-Upper bound, in bytes, for a single chunk of PDF output. Affects a PDF export only. It matters most for the streamed BlockApi.export overloads, where this is the memory the caller has to hold for one chunk. A larger value lowers the per-chunk overhead and raises the memory each chunk costs. A smaller value does the opposite. null, the default, uses an engine-chosen size, and so does a value below 1. Any other value is clamped to 4096, 67108864, so an unusable request lowers the quality of the trade rather than failing the export. Note this is a bound and not a chunk size: the encoder also flushes after each page, so the last chunk of a page is normally smaller.
+Upper bound, in bytes, for a single chunk of a streamed export. It matters most for the streamed BlockApi.export overloads, where this is the memory the caller has to hold for one chunk. A larger value lowers the per-chunk overhead and raises the memory each chunk costs. A smaller value does the opposite. null, the default, uses an engine-chosen size, and so does a value below 1. Any other value is clamped to 4096, 67108864, so an unusable request lowers the quality of the trade rather than failing the export. Note this is a bound and not a chunk size: the encoder also flushes after each page, so the last chunk of a page is normally smaller.
 
 ### pdfImageQuality
 

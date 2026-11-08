@@ -249,6 +249,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Overview](https://img.ly/docs/cesdk/dev/macos/text/overview-0bd620/)
 - [Add Text](https://img.ly/docs/cesdk/dev/macos/text/add-4f5011/)
 - [Edit Text](https://img.ly/docs/cesdk/dev/macos/text/edit-c5106b/)
+- [Copy and Paste Formatted Text](https://img.ly/docs/cesdk/dev/macos/text/copy-paste-862b90/)
 - [Text Styling](https://img.ly/docs/cesdk/dev/macos/text/styling-269c48/)
 - [Text Decorations](https://img.ly/docs/cesdk/dev/macos/text/decorations-d3c0a1/)
 - [Subscript and Superscript](https://img.ly/docs/cesdk/dev/macos/text/subscript-superscript-8f21ab/)
@@ -266,6 +267,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Create Shapes](https://img.ly/docs/cesdk/dev/macos/stickers-and-shapes/create-edit/create-shapes-64acc0/)
 - [Edit Shapes](https://img.ly/docs/cesdk/dev/macos/stickers-and-shapes/create-edit/edit-shapes-d67cfb/)
+- [Import SVG as Editable Shapes](https://img.ly/docs/cesdk/dev/macos/-e7c41d/)
 - [Combine Shapes](https://img.ly/docs/cesdk/dev/macos/stickers-and-shapes/combine-2a9e26/)
 - [Compound Shapes](https://img.ly/docs/cesdk/dev/macos/stickers-and-shapes/compound-shapes-f7fc4f/)
 - [Shape Modifiers](https://img.ly/docs/cesdk/dev/macos/stickers-and-shapes/shape-modifiers-670d04/)

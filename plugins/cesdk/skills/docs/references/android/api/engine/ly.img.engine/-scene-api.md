@@ -348,6 +348,10 @@ abstract suspend fun saveToString(scene: DesignBlock, allowedResourceSchemes: Li
 ```
 
 ```kotlin
+abstract suspend fun saveToString(scene: DesignBlock, allowedResourceSchemes: List<String> = listOf("blob", "bundle", "file", "http", "https"), onDisallowedResourceScheme: suspend (uri: Uri, dataHash: String) -> Uri): String
+```
+
+```kotlin
 abstract suspend fun saveToString(scene: DesignBlock, options: SaveToStringOptions): String
 ```
 

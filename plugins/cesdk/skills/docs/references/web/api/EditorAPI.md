@@ -880,13 +880,12 @@ releaseMemory(): void
 
 ### getMaxExportSize()
 
-Get the maximum export size limit for the current device.
-Exports are only possible when both width and height are below this limit.
-Note that exports may still fail due to other constraints like memory.
-A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI,
-not against the page.
-The limit is at most 23170 px, the side of the largest square export whose pixels fit in 2 GiB. A wider export
-with fewer pixels, such as 262144 x 2047, still works on a device without a GPU.
+Get the export size limit in pixels on the current device. It bounds a color mask export. It also bounds
+each image, gradient and effect that a PDF export draws as pixels at the scene DPI, not the page. Both sides must be below or equal to it.
+An export might still fail for other reasons, such as memory. The limit is at most 23170 px, the side of the largest
+square export whose pixels fit in 2 GiB. A PNG, JPEG, WebP, TGA or raw export renders in strips, so this limit does
+not bound it. Only the side limit of its format does: JPEG 65500, WebP 16383 and TGA 65535 px. A buffered export must
+also give a file under 4 GiB.
 
 ```typescript
 getMaxExportSize(): number

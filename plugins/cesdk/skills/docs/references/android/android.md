@@ -306,6 +306,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Add Sound Effects](https://img.ly/docs/cesdk/dev/android/create-audio/audio/add-sound-effects-9e984e/)
 - [Add Music](https://img.ly/docs/cesdk/dev/android/create-audio/audio/add-music-5b182c/)
 - [Record Voiceover](https://img.ly/docs/cesdk/dev/android/create-audio/audio/record-voiceover-07e8e1/)
+- [Isolate Voice](https://img.ly/docs/cesdk/dev/android/create-audio/audio/voice-isolation-9267e7/)
 - [Adjust Volume](https://img.ly/docs/cesdk/dev/android/create-audio/audio/adjust-volume-7ecc4a/)
 - [Fade In and Out](https://img.ly/docs/cesdk/dev/android/create-audio/audio/fade-a4d7e2/)
 - [Adjust Speed](https://img.ly/docs/cesdk/dev/android/create-audio/audio/adjust-speed-908d57/)
@@ -316,6 +317,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Overview](https://img.ly/docs/cesdk/dev/android/text/overview-0bd620/)
 - [Add Text](https://img.ly/docs/cesdk/dev/android/text/add-4f5011/)
 - [Edit Text](https://img.ly/docs/cesdk/dev/android/text/edit-c5106b/)
+- [Copy and Paste Formatted Text](https://img.ly/docs/cesdk/dev/android/text/copy-paste-862b90/)
 - [Text Styling](https://img.ly/docs/cesdk/dev/android/text/styling-269c48/)
 - [Text Decorations](https://img.ly/docs/cesdk/dev/android/text/decorations-d3c0a1/)
 - [Subscript and Superscript](https://img.ly/docs/cesdk/dev/android/text/subscript-superscript-8f21ab/)
@@ -334,6 +336,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Create Shapes](https://img.ly/docs/cesdk/dev/android/stickers-and-shapes/create-edit/create-shapes-64acc0/)
 - [Edit Shapes](https://img.ly/docs/cesdk/dev/android/stickers-and-shapes/create-edit/edit-shapes-d67cfb/)
+- [Import SVG as Editable Shapes](https://img.ly/docs/cesdk/dev/android/-e7c41d/)
 - [Combine Shapes](https://img.ly/docs/cesdk/dev/android/stickers-and-shapes/combine-2a9e26/)
 - [Compound Shapes](https://img.ly/docs/cesdk/dev/android/stickers-and-shapes/compound-shapes-f7fc4f/)
 - [Shape Modifiers](https://img.ly/docs/cesdk/dev/android/stickers-and-shapes/shape-modifiers-670d04/)
@@ -476,6 +479,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [Custom Feature Plugin](https://img.ly/docs/cesdk/dev/android/plugins/custom-plugin-ju8y5t/)
 
 #### [Background Removal](https://img.ly/docs/cesdk/dev/android/edit-image/remove-bg-9dfcf7/)
+
+#### [Voice Isolation](https://img.ly/docs/cesdk/dev/android/create-audio/audio/voice-isolation-9267e7/)
 
 #### [Cutout Library](https://img.ly/docs/cesdk/dev/android/stickers-and-shapes/create-cutout-384be3/)
 

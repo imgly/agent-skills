@@ -7,7 +7,10 @@ Export blocks to various formats like images, videos, and audio.
 ### export()
 
 Exports a design block to a Blob.
-Performs an internal update to resolve the final layout for the blocks.
+Performs an internal update to resolve the final layout for the blocks. A PNG, JPEG, WebP, TGA or raw
+export renders all its strips in one engine call on the main thread, so the tab does not respond and does
+not repaint until the export ends. For a large export, use `exportToStream`, or turn on
+`featureFlags.exportWorker` so the export renders in a Web Worker.
 
 ```typescript
 export(handle: DesignBlockId, options?: ExportOptions): Promise<Blob>
@@ -18,6 +21,34 @@ export(handle: DesignBlockId, options?: ExportOptions): Promise<Blob>
 - `options` - The options for exporting the block type, including mime type and export settings.
 
 **Returns:** A promise that resolves with the exported image or is rejected with an error.
+
+### exportToStream()
+
+Exports a design block into a stream, chunk by chunk, so the file is never held in memory as a whole.
+Performs an internal update to resolve the final layout for the blocks. A PNG, JPEG, WebP, TGA or raw
+export renders in strips, one strip in each engine update, and its size is bound only by the limit of
+its format. The next strip waits until `writable` is ready for more. PNG and raw pixels are written as
+the strips render, and so is a JPEG above 358 megapixels. A smaller JPEG is written at the end, because
+its Huffman tables need the whole image. WebP and TGA are written at the end. A PDF is written page by page. A color mask
+export is not supported here. Do not change the scene while the export runs. A later strip of another
+size fails with `ENCODE.STRIP_EXPORT_SCENE_CHANGED`, but an edit that keeps the size, such as a color
+change, a move or video playback, is not detected: the file then shows the scene before the edit in its
+first strips and after it in the rest. The engine renders a strip only in an update of a visible tab, so
+the export pauses while the tab is hidden.
+
+```typescript
+exportToStream(handle: DesignBlockId, writable: WritableStream<Uint8Array>, options?: ExportOptions): Promise<void>
+```
+
+**Parameters:**
+- `handle` - The design block element to export.
+- `writable` - Receives the file, for example a file in the origin private file system
+(`FileSystemWritableFileStream`), or a Node.js file through `Writable.toWeb(fs.createWriteStream(path))`.
+The stream is closed when the export succeeds and aborted when it fails.
+- `options` - The options for exporting the block type, including mime type and export settings.
+`onProgress` reports pages for a PDF and strips for a raster export of more than one strip.
+
+**Returns:** A promise that resolves once the whole file is written, or is rejected with an error.
 
 ### exportPreview()
 
@@ -244,6 +275,28 @@ create(type: DesignBlockType): DesignBlockId
 - `type` - The type of the block that shall be created.
 
 **Returns:** The created block's handle.
+
+### createFromSVG()
+
+Creates editable graphic blocks from SVG markup, such as the SVG code that Adobe Illustrator copies.
+Each shape of the SVG becomes a graphic block with a vector path shape, its fill color or gradient, and its
+stroke. More than one block goes into a group. Embedded images, text, filters, masks and patterns have no shape.
+Each such part becomes a graphic block with an image fill of only that part.
+The blocks are not attached to a parent. An SVG user unit is a pixel in a scene measured in pixels. In a scene
+measured in millimeters or inches it is a point, as Adobe Illustrator writes it.
+```javascript
+const group = engine.block.createFromSVG('<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="40" fill="red"/></svg>');
+engine.block.appendChild(page, group);
+```
+
+```typescript
+createFromSVG(svg: string): DesignBlockId
+```
+
+**Parameters:**
+- `svg` - The SVG markup.
+
+**Returns:** The group, or the only block.
 
 ### duplicate()
 
@@ -559,6 +612,9 @@ supportsFill(id: DesignBlockId): boolean
 ### isFillEnabled()
 
 Checks if the fill of a block is enabled.
+The flag does not depend on an attached fill block. It defaults to true, so a fresh graphic
+reports its fill as enabled while `getFill` returns an invalid block. Check that result with
+`isValid`.
 ```javascript
 engine.block.isFillEnabled(block);
 ```
@@ -624,6 +680,14 @@ setFillOverprint(id: DesignBlockId, overprint: boolean): void
 ### getFill()
 
 Gets the fill block attached to a given block.
+For example, a graphic has no fill right after `create('graphic')`, although `isFillEnabled`
+returns true.
+```javascript
+const fill = engine.block.getFill(block);
+if (engine.block.isValid(fill)) {
+  const fillType = engine.block.getType(fill);
+}
+```
 
 ```typescript
 getFill(id: DesignBlockId): DesignBlockId
@@ -1029,7 +1093,7 @@ getTrimLength(id: DesignBlockId): number
 ### setPlaying()
 
 Sets whether a block should play its content during active playback.
-Note that playing a page switches the editor to the Playback edit mode. From 0.2 s after the start, a change to the position, size, rotation, fill or text of a content block ends that mode. So does a change to the opacity, adjustments, shape or volume of any block, the page included. The editor returns to the Transform edit mode, which stops the playback.
+Note that playing a page switches the editor to the Playback edit mode. From 0.2 s after the start, a change to the position, size, rotation, fill or text of a content block ends that mode. So does a change to the opacity, adjustments, shape or volume of any block, the page included. The editor returns to the Transform edit mode, which stops the playback. While a page plays, only a change on that page counts. A change to a block on another page, or to a block that is not in the scene, keeps the playback running.
 
 ```typescript
 setPlaying(id: DesignBlockId, enabled: boolean): void
@@ -1781,6 +1845,10 @@ Groups multiple blocks into a new group block.
 The blocks keep their times on the timeline.
 The group spans from the earliest start to the latest end of the blocks, and their time offsets
 become relative to the group.
+Grouping does not change the children's positions: they stay relative to the group's parent,
+not to the group. In nested groups, they stay relative to the first ancestor that is not a
+group. The engine computes the group's position and size from the children's combined bounds.
+Moving the group moves all of its children by the same offset.
 ```javascript
 if (engine.block.isGroupable([block1, block2])) {
   const group = engine.block.group([block1, block2]);
@@ -2012,6 +2080,7 @@ supportsShape(id: DesignBlockId): boolean
 ### getShape()
 
 Gets the shape block attached to a given block.
+For example, a graphic has no shape right after `create('graphic')`.
 
 ```typescript
 getShape(id: DesignBlockId): DesignBlockId
@@ -2196,6 +2265,11 @@ With the setting `features/implicitUpdatesEnabled` off, the call updates only wh
 it reads has no layout yet, as right after an undo.
 It reads the block, the members of a group and each transform parent. That update also lays out
 every other pending change.
+The block is mirrored around the center of its frame, so its rendered bounds do not move. For a
+block without rotation, anchor or skew, turning the flip on moves `getPositionX` and
+`getFrameX` to the visual right edge (x + width). Turning it off moves them back.
+`getGlobalBoundingBoxX` stays the
+same.
 
 ```typescript
 setFlipHorizontal(id: DesignBlockId, flip: boolean): void
@@ -2212,6 +2286,11 @@ With the setting `features/implicitUpdatesEnabled` off, the call updates only wh
 it reads has no layout yet, as right after an undo.
 It reads the block, the members of a group and each transform parent. That update also lays out
 every other pending change.
+The block is mirrored around the center of its frame, so its rendered bounds do not move. For a
+block without rotation, anchor or skew, turning the flip on moves `getPositionY` and
+`getFrameY` to the visual bottom edge (y + height). Turning it off moves them back.
+`getGlobalBoundingBoxY` stays the
+same.
 
 ```typescript
 setFlipVertical(id: DesignBlockId, flip: boolean): void
@@ -2637,6 +2716,10 @@ setTransformLocked(id: DesignBlockId, locked: boolean): void
 ### getPositionX()
 
 Gets the X position of a block.
+The position is the block's local origin: the top-left corner of its untransformed frame, in
+the coordinate space of its parent. Rotation turns the block, and a flip mirrors it, around the
+center of its frame. So for a rotated or flipped block, the position is not the visual left
+edge. Use `getGlobalBoundingBoxX` for the axis-aligned visual bounds.
 
 ```typescript
 getPositionX(id: DesignBlockId): number
@@ -2663,6 +2746,10 @@ getPositionXMode(id: DesignBlockId): PositionXMode
 ### getPositionY()
 
 Gets the Y position of a block.
+The position is the block's local origin: the top-left corner of its untransformed frame, in
+the coordinate space of its parent. Rotation turns the block, and a flip mirrors it, around the
+center of its frame. So for a rotated or flipped block, the position is not the visual top
+edge. Use `getGlobalBoundingBoxY` for the axis-aligned visual bounds.
 
 ```typescript
 getPositionY(id: DesignBlockId): number
@@ -4769,6 +4856,14 @@ setBlur(id: DesignBlockId, blurId: DesignBlockId): void
 ### getBlur()
 
 Gets the blur block of a given design block.
+For example, a graphic has no blur right after `create('graphic')`, although `isBlurEnabled`
+returns true.
+```javascript
+const blur = engine.block.getBlur(block);
+if (engine.block.isValid(blur)) {
+  const blurType = engine.block.getType(blur);
+}
+```
 
 ```typescript
 getBlur(id: DesignBlockId): DesignBlockId
@@ -4798,6 +4893,9 @@ setBlurEnabled(id: DesignBlockId, enabled: boolean): void
 ### isBlurEnabled()
 
 Checks if blur is enabled for a block.
+The flag does not depend on an attached blur block. It defaults to true, so a fresh graphic
+reports its blur as enabled while `getBlur` returns an invalid block. Check that result with
+`isValid`.
 ```javascript
 const isBlurEnabled = engine.block.isBlurEnabled(block);
 ```
@@ -5199,7 +5297,8 @@ getStrokeFill(id: DesignBlockId): DesignBlockId | null
 ### setStrokeFill()
 
 Paints the stroke of a block with a fill block, for example a gradient, instead of the stroke color.
-Color, gradient and stripe fills are supported; image, video and pixel stream fills are rejected.
+Color, gradient, stripe and image fills are supported; video and pixel stream fills are rejected.
+An image covers the frame of the block and the part of the stroke outside it. The crop, the effects and the blur of the block apply only to its fill.
 The previous stroke fill block is not destroyed automatically. The fill block may not be the block's own fill.
 A stroke color with alpha 0 still hides the stroke; the fill's own colors set the opacity otherwise.
 Required scope: 'stroke/change'
@@ -5484,6 +5583,69 @@ replaceText(id: DesignBlockId, text: string, from?: number, to?: number): void
 - `from` - The start index of the UTF-16 range to replace. Defaults to the start of the current selection or text.
 - `to` - The end index of the UTF-16 range to replace. Defaults to the end of the current selection or text.
 
+### getTextAsHTML()
+
+Gets a range of a text block as HTML with its formatting, for the clipboard.
+The HTML states the color, background color, weight, italic, decorations, script style, case, font size and
+typeface of each run as inline CSS. It states the list style, list level and alignment of each paragraph. Other
+apps read it on paste, and `replaceTextWithHTML` reads every property back. The typeface applies only when a
+typeface of the scene holds its font file. The font size and the line height are CSS values, so other apps show them as the block does.
+```javascript
+document.addEventListener('copy', (event) => {
+  event.clipboardData?.setData('text/html', engine.block.getTextAsHTML(text));
+  event.preventDefault();
+});
+```
+
+```typescript
+getTextAsHTML(id: DesignBlockId, from?: number, to?: number): string
+```
+
+**Parameters:**
+- `id` - The text block to read.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+**Returns:** The HTML, or an empty string for an empty range.
+
+### replaceTextWithHTML()
+
+Replaces a range of a text block with the text and the formatting of HTML, such as the HTML of a paste.
+HTML from `getTextAsHTML` sets every property it carries. Its typeface applies only when a typeface of the scene
+holds its font file. Otherwise the text keeps the typeface at the cursor, with the weight and style of the source.
+HTML of another app, such as Google Docs, Word, a web page or an Apple app, sets weight, italic and decorations.
+It also sets the script style, case, colors, font size, letter spacing, line height, lists and alignment. A CSS
+px is one pixel of a scene whose font size unit is `'Pixel'`. The text takes the first font family of the HTML
+that a typeface of the asset sources has. Without such a typeface, it keeps the typeface at the cursor.
+A gray, black or white that covers the largest part of the text is the default color of that app. It is not
+applied, and the same rule applies to the background color. A pasted paragraph without a list keeps the list of
+the target paragraph. Without the `text/character` scope, only the text is inserted, with the style at the cursor.
+Without the `fill/change` scope, or when the text color is bound to a variable, no color is pasted. When the font
+size or the typeface of the block is bound to a variable, it is not pasted.
+While the block is being edited and no range is given, the selection is replaced and the cursor moves behind the
+inserted text.
+```javascript
+engine.block.replaceTextWithHTML(text, '<p><b>Hello</b> <i>world</i></p>');
+document.addEventListener('paste', (event) => {
+  const html = event.clipboardData?.getData('text/html');
+  if (html) {
+    engine.block.replaceTextWithHTML(text, html);
+    event.preventDefault();
+  }
+});
+```
+
+```typescript
+replaceTextWithHTML(id: DesignBlockId, html: string, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block into which to insert the HTML.
+- `html` - The HTML. Markup that is not supported keeps only its text.
+- `from` - The start index of the UTF-16 range to replace. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range to replace. If `from` is not negative and `to` is negative, the HTML
+is inserted at `from`. Otherwise it defaults to the end of the current selection or text.
+
 ### removeText()
 
 Removes a range of text from a text block.
@@ -5667,6 +5829,27 @@ setTextFontStyle(id: DesignBlockId, fontStyle: FontStyle, from?: number, to?: nu
 
 **Parameters:**
 - `id` - The text block whose style should be changed.
+- `fontStyle` - The new style of the selected text range.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### setTextFontWeightAndStyle()
+
+Sets the font weight and the font style for a range of text in one step.
+Each run gets the font of its typeface with exactly this weight and style. Separate calls to
+`setTextFontWeight` and `setTextFontStyle` pass through a face in between, so they fail when the typeface
+lacks that face.
+```javascript
+engine.block.setTextFontWeightAndStyle(text, 'bold', 'italic', 0, 5);
+```
+
+```typescript
+setTextFontWeightAndStyle(id: DesignBlockId, fontWeight: FontWeight, fontStyle: FontStyle, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block whose weight and style should be changed.
+- `fontWeight` - The new weight of the selected text range.
 - `fontStyle` - The new style of the selected text range.
 - `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
 - `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
@@ -6284,10 +6467,6 @@ getTypefaces(id: DesignBlockId, from?: number, to?: number): Typeface[]
 ### getTextRuns()
 
 Gets all text runs within a range of text.
-Each run represents a contiguous span of text with uniform formatting.
-```javascript
-const runs = engine.block.getTextRuns(text);
-```
 
 ```typescript
 getTextRuns(id: DesignBlockId, from?: number, to?: number): TextRunInfo[]

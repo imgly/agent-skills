@@ -1187,6 +1187,12 @@ case blockBlurUnknownType
 case blockBlurUnsupported
 ```
 
+### EngineErrorCode.blockBufferAllocFailed
+
+```swift
+case blockBufferAllocFailed
+```
+
 ### EngineErrorCode.blockBufferLengthOutOfRange
 
 ```swift
@@ -2159,10 +2165,34 @@ case blockSubshapeTooDeep
 case blockSubshapeTypeUnsupported
 ```
 
+### EngineErrorCode.blockSvgEmpty
+
+```swift
+case blockSvgEmpty
+```
+
+### EngineErrorCode.blockSvgNotReadable
+
+```swift
+case blockSvgNotReadable
+```
+
+### EngineErrorCode.blockSvgPartNotRendered
+
+```swift
+case blockSvgPartNotRendered
+```
+
 ### EngineErrorCode.blockSvgPathParseFailed
 
 ```swift
 case blockSvgPathParseFailed
+```
+
+### EngineErrorCode.blockSvgTooManyParts
+
+```swift
+case blockSvgTooManyParts
 ```
 
 ### EngineErrorCode.blockTargetNotAnAnimation
@@ -2211,6 +2241,12 @@ case blockTextCannotToggleBold
 
 ```swift
 case blockTextCannotToggleItalic
+```
+
+### EngineErrorCode.blockTextHtmlHasNoText
+
+```swift
+case blockTextHtmlHasNoText
 ```
 
 ### EngineErrorCode.blockTextInvalidBaselineShift
@@ -2349,6 +2385,12 @@ case blockTextTypefaceUpdateFailed
 
 ```swift
 case blockTextUnknownTypeface
+```
+
+### EngineErrorCode.blockTextUnsupportedFontFace
+
+```swift
+case blockTextUnsupportedFontFace
 ```
 
 ### EngineErrorCode.blockTextUnsupportedFontStyle
@@ -2733,6 +2775,12 @@ case blockVideoResourceNotLoadedForOperation
 
 ```swift
 case blockWidthInvalidForScaling
+```
+
+### EngineErrorCode.codecAacDecoderUnavailable
+
+```swift
+case codecAacDecoderUnavailable
 ```
 
 ### EngineErrorCode.codecAndroidAudioEncoderCreateFailed
@@ -4301,6 +4349,18 @@ case encodeEntityInvalid
 case encodeEntityNotPartOfPage
 ```
 
+### EngineErrorCode.encodeExportAreaInvalid
+
+```swift
+case encodeExportAreaInvalid
+```
+
+### EngineErrorCode.encodeExportAreaPdfUnsupported
+
+```swift
+case encodeExportAreaPdfUnsupported
+```
+
 ### EngineErrorCode.encodeExportCancelled
 
 ```swift
@@ -4487,6 +4547,12 @@ case encodeNotAllResourcesLoaded
 case encodeOffscreenCanvasCreateFailed
 ```
 
+### EngineErrorCode.encodeOutputFileExceedsBufferMax
+
+```swift
+case encodeOutputFileExceedsBufferMax
+```
+
 ### EngineErrorCode.encodeOutputSizeExceedsFormatMax
 
 ```swift
@@ -4593,6 +4659,12 @@ case encodeStreamExportMimeTypeInvalid
 
 ```swift
 case encodeStreamExportMissingReceiver
+```
+
+### EngineErrorCode.encodeStripExportSceneChanged
+
+```swift
+case encodeStripExportSceneChanged
 ```
 
 ### EngineErrorCode.encodeSvgCanvasCreateFailed
