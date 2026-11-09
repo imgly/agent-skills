@@ -297,7 +297,7 @@ Get when the standalone move handle is shown for the selected block.
 @MainActor func getMovementConstraint(_ id: DesignBlockID) throws -> ResolvedMovementConstraint?
 ```
 
-Get the effective movement constraint for a block, picking the most specific matching rule: block > parent page > blockType > scene-wide. `id`
+Get the effective movement constraint for a block, picking the most specific matching rule: block > page slice > parent page > blockType > scene-wide. `id`
 
 ### getResizeHandlesVisibility()
 

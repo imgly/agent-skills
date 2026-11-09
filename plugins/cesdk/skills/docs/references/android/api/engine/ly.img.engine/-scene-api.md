@@ -290,7 +290,7 @@ abstract suspend fun load(scene: String, overrideEditorConfig: Boolean = false, 
 abstract suspend fun load(sceneUri: Uri, overrideEditorConfig: Boolean = false, waitForResources: Boolean = false, onProgress: ((Int) -> Unit)? = null): DesignBlock
 ```
 
-Load the contents of a scene file.
+Load the contents of a scene file. A damaged scene, such as one with a missing key or a value of the wrong type, throws. A damaged block throws after the open scene is cleared, so load another scene after that error.
 
 ### onActiveChanged
 

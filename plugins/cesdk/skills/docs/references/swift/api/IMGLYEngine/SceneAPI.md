@@ -265,7 +265,7 @@ Queries whether zoom auto-fit is enabled. `id`
 @discardableResult @MainActor func load(from string: String, overrideEditorConfig: Bool = false, waitForResources: Bool = false) async throws -> DesignBlockID
 ```
 
-Load the contents of a scene file. `string`
+Load the contents of a scene file. A damaged scene, such as one with a missing key or a value of the wrong type, throws. A damaged block throws after the open scene is cleared, so load another scene after that error. `string`
 
 ### load(from:overrideEditorConfig:waitForResources:onProgress:)
 
@@ -283,7 +283,7 @@ Load a scene from the URL of a scene or archive file. The file will be fetched a
 @discardableResult @MainActor func load(fromString string: String, overrideEditorConfig: Bool = false) async throws -> DesignBlockID
 ```
 
-Load the contents of a scene file. `string`
+Load the contents of a scene file. A damaged scene, such as one with a missing key or a value of the wrong type, throws. A damaged block throws after the open scene is cleared, so load another scene after that error. `string`
 
 ### load(fromURL:overrideEditorConfig:)
 

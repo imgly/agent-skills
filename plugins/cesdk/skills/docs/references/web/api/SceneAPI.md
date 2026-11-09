@@ -226,6 +226,7 @@ load(source: string | URL, overrideEditorConfig?: boolean, waitForResources?: bo
 ### loadFromString()
 
 Load the contents of a scene file.
+A damaged scene, such as one with a missing key or a value of the wrong type, fails the load. A damaged block fails it after the open scene is cleared, so load another scene after that error.
 
 ```typescript
 loadFromString(sceneContent: string, overrideEditorConfig?: boolean, waitForResources?: boolean): Promise<DesignBlockId>

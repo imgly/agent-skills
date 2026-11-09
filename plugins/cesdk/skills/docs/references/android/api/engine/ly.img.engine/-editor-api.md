@@ -270,7 +270,7 @@ Returns the mimetype of the resources at the given Uri. If the resource is not a
 abstract fun getMovementConstraint(block: DesignBlock): ResolvedMovementConstraint?
 ```
 
-Get the effective movement constraint for a block, picking the most specific matching rule: block parent page blockType scene-wide. The returned ResolvedMovementConstraint.overshoot is a fraction of the block's own size.
+Get the effective movement constraint for a block, picking the most specific matching rule: block page slice parent page blockType scene-wide. The returned ResolvedMovementConstraint.overshoot is a fraction of the block's own size.
 
 ### getResourceData
 

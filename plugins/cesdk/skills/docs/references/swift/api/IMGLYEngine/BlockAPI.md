@@ -55,7 +55,7 @@ Align multiple blocks vertically within their bounding box or a single block to 
 @MainActor func appendChild(to parent: DesignBlockID, child: DesignBlockID) throws
 ```
 
-Appends a new or existing child to a block’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. Required scope: “editor/add” `parent`
+Appends a new or existing child to a block’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or `duplicate(_:attachToParent:)` returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: “editor/add” `parent`
 
 ### appendEffect(_:effectID:)
 
@@ -397,7 +397,7 @@ Distribute multiple blocks vertically within their bounding box so that the spac
 @MainActor func duplicate(_ id: DesignBlockID, attachToParent: Bool = true) throws -> DesignBlockID
 ```
 
-Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. Required scope: “lifecycle/duplicate” If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. `id`
+Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. Required scope: “lifecycle/duplicate” If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. The duplicate of a page slice takes a copy of the blocks that the page slice owns on its page. The call runs an internal update for a page slice on a page, also while `features/implicitUpdatesEnabled` is off. A block that a page slice owns gets its Percent position and size in design units in the…
 
 ### enterGroup(_:)
 
@@ -729,7 +729,7 @@ Begins loading the required audio and video resource for the given video fill or
 @MainActor func forceLoadResources(_ ids: [DesignBlockID]) async throws
 ```
 
-Begins loading the resources of the given blocks and their children. If the resource had been loaded earlier and resulted in an error, it will be reloaded. This function is useful for preloading resources before they are needed. Warning: For elements with a source set, all elements in the source set will be loaded. `ids`
+Begins loading the resources of the given blocks and their children. If the resource had been loaded earlier and resulted in an error, it will be reloaded. This function is useful for preloading resources before they are needed. A page slice also loads the resources of the blocks that it owns on its page. The call runs no update, so a block that no update has placed on the page slice yet is left out. Warning: For elements with a source set, all elements in the source set will be loaded. `ids`
 
 ### generateAudioThumbnailSequence(_:samplesPerChunk:timeRange:numberOfSamples:numberOfChannels:)
 
@@ -1260,6 +1260,14 @@ Get the opacity of the given design block. `id`
 ```
 
 Get the “out” animation of the given block. `id`
+
+### getPageSlice(_:)
+
+```swift
+@MainActor func getPageSlice(_ id: DesignBlockID) throws -> DesignBlockID?
+```
+
+Returns the page slice that holds a block on its page. A page slice has no children, so the block is a child of the page, or of a group on the page. The block belongs to the page slice that the layout gives it. A block in a group belongs where its group does. `id`
 
 ### getParent(_:)
 
@@ -1875,7 +1883,7 @@ Returns whether a block has its own anchor. Setting `transform/anchor/x` or `tra
 @MainActor func insertChild(into parent: DesignBlockID, child: DesignBlockID, at index: Int) throws
 ```
 
-Insert a new or existing child at a certain position in the parent’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. Required scope: “editor/add” `parent`
+Insert a new or existing child at a certain position in the parent’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or `duplicate(_:attachToParent:)` returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: “editor/add” `parent`
 
 ### insertEffect(_:effectID:index:)
 
@@ -2219,7 +2227,7 @@ Loads existing blocks from a URL. The URL should point to a blocks file within a
 @MainActor func load(from string: String) async throws -> [DesignBlockID]
 ```
 
-Loads existing blocks from the given string. The blocks are not attached by default and won’t be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one. `string`
+Loads existing blocks from the given string. The blocks are not attached by default and won’t be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one. A damaged string, such as one with a missing key or a value of the wrong type, throws and adds no block. `string`
 
 ### loadArchive(from:)
 

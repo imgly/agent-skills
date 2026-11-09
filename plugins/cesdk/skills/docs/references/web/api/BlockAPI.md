@@ -145,7 +145,7 @@ Manage the complete lifecycle: create, find, duplicate, destroy, and serialize b
 
 Loads blocks from a serialized string.
 The blocks are not attached by default and won't be visible until attached to a page or the scene.
-The UUID of the loaded blocks is replaced with a new one.
+The UUID of the loaded blocks is replaced with a new one. A damaged string, such as one with a missing key or a value of the wrong type, fails the load and adds no block.
 
 ```typescript
 loadFromString(content: string): Promise<DesignBlockId[]>
@@ -204,6 +204,12 @@ The source set entries that the engine makes are `buffer://` resources that only
 holds. `onDisallowedResourceScheme` gets each of them, whatever `allowedResourceSchemes` holds.
 The save leaves out each entry that the callback did not move to another address, and each
 fill keeps them.
+A page slice has no children, so the blocks that it owns on its page are saved as its
+children. A page slice on a page among `blocks` makes the update run also while
+`features/implicitUpdatesEnabled` is off.
+A block among `blocks` is saved once, as a block of its own.
+A block that a page slice owns is saved with its Percent position and size in design units.
+The copy does not follow the size of its page.
 
 ```typescript
 saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisallowedResourceScheme?: (url: string, dataHash: string) => Promise<string>, options?: AbortOptions): Promise<string>
@@ -232,6 +238,12 @@ While a font loads, its text is laid out with another font. When the text's size
 content, blocks archived before the font arrives can differ from blocks archived after it. To
 compare two archives, first await `engine.block.forceLoadResources(blocks)`, then compare the
 `blocks.blocks` files inside them. Each archive entry stores the time of the save.
+A page slice has no children, so the blocks that it owns on its page are archived as its
+children. A page slice on a page among `blocks` makes the update run also while
+`features/implicitUpdatesEnabled` is off.
+A block among `blocks` is archived once, as a block of its own.
+A block that a page slice owns is saved with its Percent position and size in design units.
+The copy does not follow the size of its page.
 
 ```typescript
 saveToArchive(blocks: DesignBlockId[], options?: AbortOptions): Promise<Blob>
@@ -302,6 +314,11 @@ createFromSVG(svg: string): DesignBlockId
 
 Duplicates a block and its children.
 Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization.
+The duplicate of a page slice takes a copy of the blocks that the page slice owns on its
+page. The call runs an internal update for a page slice on a page, also while
+`features/implicitUpdatesEnabled` is off.
+A block that a page slice owns gets its Percent position and size in design units in the copy.
+The copy does not follow the size of its page.
 
 ```typescript
 duplicate(id: DesignBlockId, attachToParent?: boolean): DesignBlockId
@@ -331,6 +348,7 @@ destroy(id: DesignBlockId): void
 
 Forces the loading of resources for a set of blocks and their children.
 This is useful for preloading resources. If a resource failed to load previously, it will be reloaded.
+A page slice also loads the resources of the blocks that it owns on its page. The call runs no update, so a block that no update has placed on the page slice yet is left out.
 Pass an empty array to load resources for every block currently known to the engine.
 
 ```typescript
@@ -1049,7 +1067,7 @@ setTrimOffset(id: DesignBlockId, offset: number): void
 
 **Parameters:**
 - `id` - The block whose trim should be updated.
-- `offset` - The new trim offset, measured in timeline seconds (scaled by playback rate).
+- `offset` - The new trim offset, in timeline seconds. At speed 2, an offset of 1 skips 2 seconds of the source.
 
 ### getTrimOffset()
 
@@ -3588,6 +3606,23 @@ getTransformParent(id: DesignBlockId): DesignBlockId | null
 
 **Returns:** The transform parent, or `null` if the block follows none.
 
+### getPageSlice()
+
+Gets the page slice that holds a block on its page.
+A page slice has no children, so the block is a child of the page, or of a group on the page. The block
+belongs to the page slice that the layout gives it. A block in a group belongs where its group does.
+The call runs an internal update when the block has no frame. It does the same when the page has page slices that no update laid out yet.
+
+```typescript
+getPageSlice(id: DesignBlockId): DesignBlockId | null
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** The page slice, or `null` for a block that is not on a page with page slices. A page and a page slice
+also give `null`.
+
 ### getChildren()
 
 Gets all direct children of a block.
@@ -3605,9 +3640,12 @@ getChildren(id: DesignBlockId): DesignBlockId[]
 ### insertChild()
 
 Inserts a child block at a specific index.
+An audio, text or caption block takes no children, so a call with such a parent fails.
 A move fails when it would put a block with a matte inside its matte source, or on another page than its source.
 A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no
 page slice.
+A page slice that a block load or `duplicate` returns holds the blocks that it was saved
+with. The next update moves them onto the page, into the new place of the page slice.
 
 ```typescript
 insertChild(parent: DesignBlockId, child: DesignBlockId, index: number): void
@@ -3621,9 +3659,12 @@ insertChild(parent: DesignBlockId, child: DesignBlockId, index: number): void
 ### appendChild()
 
 Appends a child block to a parent.
+An audio, text or caption block takes no children, so a call with such a parent fails.
 A move fails when it would put a block with a matte inside its matte source, or on another page than its source.
 A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no
 page slice.
+A page slice that a block load or `duplicate` returns holds the blocks that it was saved
+with. The next update moves them onto the page, into the new place of the page slice.
 
 ```typescript
 appendChild(parent: DesignBlockId, child: DesignBlockId): void

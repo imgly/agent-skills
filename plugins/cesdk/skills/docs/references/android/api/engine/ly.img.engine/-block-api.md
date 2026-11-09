@@ -65,7 +65,7 @@ Align multiple blocks vertically within their bounding box or a single block to 
 abstract fun appendChild(parent: DesignBlock, child: DesignBlock)
 ```
 
-Appends a new or existing child to a block's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. Required scope: "editor/add"
+Appends a new or existing child to a block's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or duplicate returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: "editor/add"
 
 ### appendEffect
 
@@ -346,7 +346,7 @@ Distribute multiple blocks vertically within their bounding box so that the spac
 abstract fun duplicate(block: DesignBlock, attachToParent: Boolean = true): DesignBlock
 ```
 
-Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. Required scope: "lifecycle/duplicate" If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy.
+Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. Required scope: "lifecycle/duplicate" If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. The duplicate of a page slice takes a copy of the blocks that the page slice owns on its page. The call runs an internal update for a page slice on a page, also while features/implicitUpdatesEnabled is off. A block that a page slice owns gets its Percent position and size in design units in the co…
 
 ### enterGroup
 
@@ -591,7 +591,7 @@ Begins loading the required audio and video resource for the given video fill or
 abstract suspend fun forceLoadResources(blocks: List<DesignBlock>)
 ```
 
-Begins loading the resources of the given blocks and their children. If the resource had been loaded earlier and resulted in an error, it will be reloaded. Note: This function is useful for preloading resources before they are needed. Warning: For elements with a source set, all elements in the source set will be loaded. Cancelling the coroutine ends the wait, and stops each load that no block uses and no other call waits for.
+Begins loading the resources of the given blocks and their children. If the resource had been loaded earlier and resulted in an error, it will be reloaded. Note: This function is useful for preloading resources before they are needed. A page slice also loads the resources of the blocks that it owns on its page. The call runs no update, so a block that no update has placed on the page slice yet is left out. Warning: For elements with a source set, all elements in the source set will be loaded. Cancelling the coroutine ends the wait, and stops each load that no block uses and no other call waits for.
 
 ### generateAudioThumbnailSequence
 
@@ -1106,6 +1106,14 @@ abstract fun getOutAnimation(block: DesignBlock): DesignBlock
 ```
 
 Gets the "out" animation of the given block.
+
+### getPageSlice
+
+```kotlin
+abstract fun getPageSlice(block: DesignBlock): DesignBlock?
+```
+
+Returns the page slice that holds a block on its page. A page slice has no children, so the block is a child of the page, or of a group on the page. The block belongs to the page slice that the layout gives it. A block in a group belongs where its group does. Note that the call runs an internal update when the block has no frame. It does the same when the page has page slices that no update laid out yet.
 
 ### getParent
 
@@ -1730,7 +1738,7 @@ Returns whether a block has its own anchor. Setting transform/anchor/x or transf
 abstract fun insertChild(parent: DesignBlock, child: DesignBlock, index: Int)
 ```
 
-Insert a new or existing child at a certain position in the parent's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. Required scope: "editor/add"
+Insert a new or existing child at a certain position in the parent's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or duplicate returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: "editor/add"
 
 ### insertEffect
 
@@ -2107,7 +2115,7 @@ Loads existing blocks from an archive. The archiveUri should be that of a file p
 abstract suspend fun loadFromString(block: String): List<DesignBlock>
 ```
 
-Loads existing blocks from the given string. The blocks are not attached by default and won't be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one.
+Loads existing blocks from the given string. The blocks are not attached by default and won't be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one. A damaged string, such as one with a missing key or a value of the wrong type, throws and adds no block.
 
 ### loadFromURL
 
