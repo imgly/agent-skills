@@ -48,17 +48,18 @@ SDK and call out the version difference.
 | starter-kit-photo | `imgly/starterkit-photo-editor-ios` | Photo editing and image adjustments |
 | starter-kit-postcard | `imgly/starterkit-postcard-editor-ios` | Postcard and greeting-card editor |
 | starter-kit-video | `imgly/starterkit-video-editor-ios` | Video editing and export |
+| starter-kit-video-moderation | `imgly/starterkit-video-moderation-ios` | Video editor that checks clips, images and text against a moderation service |
 
 Clone the kit into the user's project folder, then remove the copied `.git` folder:
 
 ```bash
-git clone --depth 1 --branch v1.87.0-nightly.20261109 https://github.com/imgly/starterkit-apparel-editor-ios.git <target>
+git clone --depth 1 --branch v1.87.0-nightly.20261110 https://github.com/imgly/starterkit-apparel-editor-ios.git <target>
 rm -rf <target>/.git
 ```
 
-The `v1.87.0-nightly.20261109` branch of each repository matches this bundle. If the branch
+The `v1.87.0-nightly.20261110` branch of each repository matches this bundle. If the branch
 does not exist (a nightly build, or a kit added after this release), clone the
-default branch without `--branch` and set the CE.SDK dependency to version `1.87.0-nightly.20261109`.
+default branch without `--branch` and set the CE.SDK dependency to version `1.87.0-nightly.20261110`.
 
 The starter kits do not support macOS or Mac Catalyst. For those targets,
 create an engine-backed custom UI without importing iOS-only UI modules.

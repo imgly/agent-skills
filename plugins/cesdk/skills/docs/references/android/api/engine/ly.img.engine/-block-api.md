@@ -2576,7 +2576,7 @@ Set the drop shadow's y offset of the given design block. Required scope: "appea
 abstract fun setDuration(block: DesignBlock, duration: Double)
 ```
 
-Set the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. If a duration is set on the page block, it becomes the duration source block. Note: The duration is ignored when the scene is not in "Video" mode. Note: This also adjusts the trim for non looping blocks.
+Set the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. If a duration is set on the page block, it becomes the duration source block. Note: The duration is ignored when the scene is not in "Video" mode. Note: This also adjusts the trim for non looping blocks. Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves, with the clips that transitions join after it, until the overlap equals the transition duration again. The overlap is at most half of either clip.
 
 ### setEffectEnabled
 
@@ -2696,7 +2696,7 @@ Set a block's mode for its height. A switch between Absolute and Percent keeps t
 abstract fun setHeight(block: DesignBlock, value: Float, maintainCrop: Boolean = false)
 ```
 
-Update a block's height and optionally maintain the crop. A page with page slices takes the size of their bounding box, so the next update replaces a height set here. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: "layer/resize"
+Update a block's height and optionally maintain the crop. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: "layer/resize"
 
 ### setInAnimation
 
@@ -2856,7 +2856,7 @@ Enable or disable the placeholder function for a block.
 abstract fun setPlaybackSpeed(block: DesignBlock, speed: Float)
 ```
 
-Sets the playback speed multiplier of a block that supports playback control. Note: This also adjusts the trim and duration of the block. Video fills running faster than 3.0x are force muted until reduced to 3.0x or below. An audio block that createAudioFromVideo extracts from a video faster than 3.0x keeps that speed and is force muted too. This function still rejects a speed above 3.0x for it. On a group, the speed changes no duration and acts only when group/composition is true: the children then run that many times faster.
+Sets the playback speed multiplier of a block that supports playback control. Note: This also adjusts the trim and duration of the block. Video fills running faster than 3.0x are force muted until reduced to 3.0x or below. An audio block that createAudioFromVideo extracts from a video faster than 3.0x keeps that speed and is force muted too. This function still rejects a speed above 3.0x for it. On a group, the speed changes no duration and acts only when group/composition is true: the children then run that many times faster. A clip whose duration this changes keeps its transitions, as with setDuration.
 
 ### setPlaybackTime
 
@@ -3280,7 +3280,7 @@ Assigns the outgoing transition of a clip. A previously assigned transition bloc
 abstract fun setTrimLength(block: DesignBlock, length: Double)
 ```
 
-Set the trim length of the given block or fill. The trim length is the duration of the audio or video clip that should be used for playback. Note: After reaching this value during playback, the trim region will loop. Note: This requires the video or audio clip to be loaded.
+Set the trim length of the given block or fill. The trim length is the duration of the audio or video clip that should be used for playback. Note: After reaching this value during playback, the trim region will loop. Note: This requires the video or audio clip to be loaded. Note: A clip whose duration this changes keeps its transitions, as with setDuration.
 
 ### setTrimOffset
 
@@ -3352,7 +3352,7 @@ Set a block's mode for its width. A switch between Absolute and Percent keeps th
 abstract fun setWidth(block: DesignBlock, value: Float, maintainCrop: Boolean = false)
 ```
 
-Update a block's width and optionally maintain the crop. A page with page slices takes the size of their bounding box, so the next update replaces a width set here. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: "layer/resize"
+Update a block's width and optionally maintain the crop. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: "layer/resize"
 
 ### split
 

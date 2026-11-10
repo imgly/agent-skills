@@ -677,6 +677,10 @@ stay in the document and in the saved file.
 Takes visible effect while the setting `features/singlePageModeEnabled` is enabled.
 Exporting a page holds that page, even while it is out of view. Exporting a scene holds
 every page, except pages hidden with `block.setVisible`.
+A page slice shows its page, but only inside the clip rectangle of the page slice.
+The camera does not move to a shown block. Call `scene.zoomToBlock` to bring it into view.
+A block that a move puts on a page slice out of view is not drawn and loses its selection.
+Set a movement constraint on the shown page slice to keep its blocks inside it.
 ```javascript
 engine.scene.setCurrentPages([page]);
 ```
@@ -699,7 +703,7 @@ const currentPages = engine.scene.getCurrentPages();
 getCurrentPages(): DesignBlockId[]
 ```
 
-**Returns:** The shown pages, or an empty list when the setting
+**Returns:** The shown pages and page slices, or an empty list when the setting
 `features/singlePageModeEnabled` is disabled.
 
 ### findNearestToViewPortCenterByType()

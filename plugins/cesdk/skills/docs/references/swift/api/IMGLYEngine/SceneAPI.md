@@ -177,7 +177,7 @@ Get the current page, i.e., the page of the first selected element if this page 
 @MainActor func getCurrentPages() throws -> [DesignBlockID]
 ```
 
-Get the pages that single page mode shows. The shown pages, or an empty list when the setting `features/singlePageModeEnabled` is disabled.
+Get the pages that single page mode shows. The shown pages and page slices, or an empty list when the setting `features/singlePageModeEnabled` is disabled.
 
 ### getDesignUnit()
 

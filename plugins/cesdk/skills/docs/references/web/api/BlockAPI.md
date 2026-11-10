@@ -930,6 +930,9 @@ supportsDuration(id: DesignBlockId): boolean
 
 Sets the playback duration of a block.
 The duration defines how long the block is active in the scene during playback.
+Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves,
+with the clips that transitions join after it, until the overlap equals the transition duration again. The
+overlap is at most half of either clip.
 
 ```typescript
 setDuration(id: DesignBlockId, duration: number): void
@@ -1086,6 +1089,7 @@ getTrimOffset(id: DesignBlockId): number
 
 Sets the trim length of a block's media content.
 This is the duration of the media clip that should be used for playback.
+Note: A clip whose duration this changes keeps its transitions, as with `setDuration`.
 
 ```typescript
 setTrimLength(id: DesignBlockId, length: number): void
@@ -1343,6 +1347,7 @@ An audio block that `createAudioFromVideo` extracts from a video faster than 3.0
 muted too. This method still rejects a speed above 3.0x for it.
 On a group, the speed changes no duration and acts only when `group/composition` is true:
 the children then run that many times faster.
+A clip whose duration this changes keeps its transitions, as with `setDuration`.
 
 ```typescript
 setPlaybackSpeed(id: DesignBlockId, speed: number): void
@@ -3055,8 +3060,8 @@ getHeightMode(id: DesignBlockId): HeightMode
 
 Sets the width of a block in the current width mode.
 If the crop is maintained, the crop values will be automatically adjusted.
-A page with page slices takes the size of their bounding box, so the next update replaces a width set
-here.
+A new width of a page with page slices goes to its last page slice on a horizontal axis.
+On a vertical axis, it goes to every page slice.
 ```javascript
 engine.block.setWidth(block, 2.5, true);
 ```
@@ -3093,8 +3098,8 @@ setWidthMode(id: DesignBlockId, mode: WidthMode): void
 
 Sets the height of a block in the current height mode.
 If the crop is maintained, the crop values will be automatically adjusted.
-A page with page slices takes the size of their bounding box, so the next update replaces a height set
-here.
+A new height of a page with page slices goes to every page slice on a horizontal axis.
+On a vertical axis, it goes to the last page slice.
 ```javascript
 engine.block.setHeight(block, 0.5);
 engine.block.setHeight(block, 2.5, true);
@@ -3376,6 +3381,11 @@ fillParent(id: DesignBlockId): void
 Resizes blocks while adjusting content to fit.
 The content of the blocks is automatically adjusted to fit the new dimensions.
 Full-page blocks are resized to remain as full-page afterwards, while the blocks that are not full-page get resized as a group to the same scale factor and centered.
+A page with page slices scales every page slice by one factor.
+Full-page blocks still fill the spread. Other content uses one scale factor.
+It stays relative to the center of its page slice.
+A page slice returns an error, because its page sets its size.
+A spread with a zero width or height returns an error.
 ```javascript
 const pages = engine.scene.getPages();
 engine.block.resizeContentAware(pages, width: 100.0, 100.0);

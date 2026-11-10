@@ -2411,7 +2411,7 @@ Resets the manually set crop of the given design block. The block’s content fi
 @MainActor func resizeContentAware(_ ids: [DesignBlockID], width: Float, height: Float) throws
 ```
 
-Resize all blocks to the given size. The content of the blocks is automatically adjusted to fit the new dimensions. Required scope: “layer/resize” `ids`
+Resize all blocks to the given size. The content of the blocks is automatically adjusted to fit the new dimensions. A page with page slices scales every page slice by one factor. Full-page blocks still fill the spread. Other content uses one scale factor. It stays relative to the center of its page slice. A page slice returns an error, because its page sets its size. A spread with a zero width or height returns an error. Required scope: “layer/resize” `ids`
 
 ### saveToArchive(blocks:)
 
@@ -2821,7 +2821,7 @@ Set a gradient color stops property of the given design block. `id`
 @MainActor func setHeight(_ id: DesignBlockID, value: Float, maintainCrop: Bool = false) throws
 ```
 
-Update a block’s height and optionally maintain the crop. A page with page slices takes the size of their bounding box, so the next update replaces a height set here. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it will change to `Crop`. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: “layer/resize” `id`
+Update a block’s height and optionally maintain the crop. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it will change to `Crop`. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: “layer/resize” `id`
 
 ### setHeightMode(_:mode:)
 
@@ -3469,7 +3469,7 @@ Set the audio volume of the given block. `id`
 @MainActor func setWidth(_ id: DesignBlockID, value: Float, maintainCrop: Bool = false) throws
 ```
 
-Update a block’s width and optionally maintain the crop. A page with page slices takes the size of their bounding box, so the next update replaces a width set here. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it will change to `Crop`. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: “layer/resize” `id`
+Update a block’s width and optionally maintain the crop. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it will change to `Crop`. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: “layer/resize” `id`
 
 ### setWidthMode(_:mode:)
 

@@ -112,6 +112,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [Extensibility](https://img.ly/docs/cesdk/dev/react-native/starterkits/extensibility-329f7e/)
 
 - [Content Moderation](https://img.ly/docs/cesdk/dev/react-native/starterkits/content-moderation-abc123/)
+- [Video Moderation](https://img.ly/docs/cesdk/dev/react-native/starterkits/video-moderation-vmod01/)
 
 
 ### [Solutions](https://img.ly/docs/cesdk/dev/react-native/prebuilt-solutions-d0ed07/)

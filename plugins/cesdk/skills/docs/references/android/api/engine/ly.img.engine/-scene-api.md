@@ -405,7 +405,7 @@ Sets how a color that the destination cannot reproduce is mapped into it. The in
 abstract fun setCurrentPages(pages: List<DesignBlock>)
 ```
 
-Set the pages that single page mode shows. All other pages leave the view but stay in the document and in the saved file. Takes visible effect while the setting features/singlePageModeEnabled is enabled. Exporting a page holds that page, even while it is out of view. Exporting a scene holds every page, except pages hidden with setVisible.
+Set the pages that single page mode shows. All other pages leave the view but stay in the document and in the saved file. Takes visible effect while the setting features/singlePageModeEnabled is enabled. Exporting a page holds that page, even while it is out of view. Exporting a scene holds every page, except pages hidden with setVisible. A page slice shows its page, but only inside the clip rectangle of the page slice. The camera does not move to a shown block. Call zoomToBlock to bring it into view. A block that a move puts on a page slice out of view is not drawn and loses its selection. Set a movement constraint on the shown page slice to keep its blocks inside it.
 
 ### setDesignUnit
 

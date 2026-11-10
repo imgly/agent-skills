@@ -1877,6 +1877,12 @@ case blockPageSliceInVideoScene
 case blockPageSliceParentInvalid
 ```
 
+### EngineErrorCode.blockPageSliceResizeContentAware
+
+```swift
+case blockPageSliceResizeContentAware
+```
+
 ### EngineErrorCode.blockPageSliceSizeModeInvalid
 
 ```swift

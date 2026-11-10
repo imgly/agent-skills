@@ -129,6 +129,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [From InDesign](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design/from-indesign-ba3988/)
   - [From Photoshop](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design/from-photoshop-cca6bb/)
   - [From Figma](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design/from-figma-9f10ef/)
+  - [From PowerPoint](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design/from-powerpoint-b129e3/)
+  - [From PDF](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design/from-pdf-e2edab/)
   - [From Archive](https://img.ly/docs/cesdk/dev/node/open-the-editor/import-design/from-archive-dde9fa/)
 - [URI Resolver](https://img.ly/docs/cesdk/dev/node/open-the-editor/uri-resolver-36b624/)
 
