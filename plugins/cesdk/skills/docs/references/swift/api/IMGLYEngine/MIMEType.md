@@ -63,6 +63,18 @@ case tga
 case wav
 ```
 
+### MIMEType.webm
+
+```swift
+case webm
+```
+
+### MIMEType.webmAudio
+
+```swift
+case webmAudio
+```
+
 ### MIMEType.webp
 
 ```swift

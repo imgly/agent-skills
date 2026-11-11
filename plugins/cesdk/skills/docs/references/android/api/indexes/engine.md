@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 322 generated API digests.
+Complete catalog of 334 generated API digests.
 
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
@@ -68,6 +68,7 @@ Complete catalog of 322 generated API digests.
 - [AssetTransformPreset.FreeAspectRatio](<../engine/ly.img.engine/-asset-transform-preset/-free-aspect-ratio.md>) — `ly.img.engine`
 - [AssetTransformPreset.Representation](<../engine/ly.img.engine/-asset-transform-preset/-representation.md>) — `ly.img.engine`
 - [AssetUTM](<../engine/ly.img.engine/-asset-u-t-m.md>) — `ly.img.engine`
+- [AudioCodec](<../engine/ly.img.engine/-audio-codec.md>) — `ly.img.engine`
 - [AudioContext](<../engine/ly.img.engine/-audio-context.md>) — `ly.img.engine`
 - [AudioFromVideoOptions](<../engine/ly.img.engine/-audio-from-video-options.md>) — `ly.img.engine`
 - [AudioThumbnailResult](<../engine/ly.img.engine/-audio-thumbnail-result.md>) — `ly.img.engine`
@@ -90,6 +91,7 @@ Complete catalog of 322 generated API digests.
 - [CMYKColor](<../engine/ly.img.engine/-c-m-y-k-color.md>) — `ly.img.engine`
 - [CMYKProfileInfo](<../engine/ly.img.engine/-c-m-y-k-profile-info.md>) — `ly.img.engine`
 - [CharacterInkBox](<../engine/ly.img.engine/-character-ink-box.md>) — `ly.img.engine`
+- [ClipInitialDurationMode](<../engine/ly.img.engine/-clip-initial-duration-mode.md>) — `ly.img.engine`
 - [Color](<../engine/ly.img.engine/-color.md>) — `ly.img.engine`
 - [Color.Companion](<../engine/ly.img.engine/-color/-companion.md>) — `ly.img.engine`
 - [ColorRenderingIntent](<../engine/ly.img.engine/-color-rendering-intent.md>) — `ly.img.engine`
@@ -125,6 +127,7 @@ Complete catalog of 322 generated API digests.
 - [DiscreteValue.Bool](<../engine/ly.img.engine/-discrete-value/-bool.md>) — `ly.img.engine`
 - [DiscreteValue.Int](<../engine/ly.img.engine/-discrete-value/-int.md>) — `ly.img.engine`
 - [DiscreteValue.Text](<../engine/ly.img.engine/-discrete-value/-text.md>) — `ly.img.engine`
+- [DocumentColorProfileInfo](<../engine/ly.img.engine/-document-color-profile-info.md>) — `ly.img.engine`
 - [DominantColor](<../engine/ly.img.engine/-dominant-color.md>) — `ly.img.engine`
 - [DominantColorsOptions](<../engine/ly.img.engine/-dominant-colors-options.md>) — `ly.img.engine`
 - [EditorApi](<../engine/ly.img.engine/-editor-api.md>) — `ly.img.engine`
@@ -241,6 +244,9 @@ Complete catalog of 322 generated API digests.
 - [ObjectType](<../engine/ly.img.engine/-object-type.md>) — `ly.img.engine`
 - [PathVertex](<../engine/ly.img.engine/-path-vertex.md>) — `ly.img.engine`
 - [PositionMode](<../engine/ly.img.engine/-position-mode.md>) — `ly.img.engine`
+- [ProfileColorSpace](<../engine/ly.img.engine/-profile-color-space.md>) — `ly.img.engine`
+- [ProfileRole](<../engine/ly.img.engine/-profile-role.md>) — `ly.img.engine`
+- [ProfileSlot](<../engine/ly.img.engine/-profile-slot.md>) — `ly.img.engine`
 - [PropertyType](<../engine/ly.img.engine/-property-type.md>) — `ly.img.engine`
 - [RGBAColor](<../engine/ly.img.engine/-r-g-b-a-color.md>) — `ly.img.engine`
 - [ResolvedMovementConstraint](<../engine/ly.img.engine/-resolved-movement-constraint.md>) — `ly.img.engine`
@@ -254,6 +260,7 @@ Complete catalog of 322 generated API digests.
 - [Setting](<../engine/ly.img.engine/-setting.md>) — `ly.img.engine`
 - [Setting.Boolean](<../engine/ly.img.engine/-setting/-boolean.md>) — `ly.img.engine`
 - [Setting.Color](<../engine/ly.img.engine/-setting/-color.md>) — `ly.img.engine`
+- [Setting.Double](<../engine/ly.img.engine/-setting/-double.md>) — `ly.img.engine`
 - [Setting.Enum](<../engine/ly.img.engine/-setting/-enum.md>) — `ly.img.engine`
 - [Setting.Float](<../engine/ly.img.engine/-setting/-float.md>) — `ly.img.engine`
 - [Setting.Int](<../engine/ly.img.engine/-setting/-int.md>) — `ly.img.engine`
@@ -312,7 +319,11 @@ Complete catalog of 322 generated API digests.
 - [UnstableEngineApi](<../engine/ly.img.engine/-unstable-engine-api.md>) — `ly.img.engine`
 - [UriResolverAsync](<../engine/ly.img.engine/-uri-resolver-async.md>) — `ly.img.engine`
 - [UriResolverAsync.Companion](<../engine/ly.img.engine/-uri-resolver-async/-companion.md>) — `ly.img.engine`
+- [ValueSetId](<../engine/ly.img.engine/-value-set-id.md>) — `ly.img.engine`
 - [VariableApi](<../engine/ly.img.engine/-variable-api.md>) — `ly.img.engine`
+- [VariableTarget](<../engine/ly.img.engine/-variable-target.md>) — `ly.img.engine`
+- [VariableTarget.Default](<../engine/ly.img.engine/-variable-target/-default.md>) — `ly.img.engine`
+- [VariableTarget.ValueSet](<../engine/ly.img.engine/-variable-target/-value-set.md>) — `ly.img.engine`
 - [VariableType](<../engine/ly.img.engine/-variable-type.md>) — `ly.img.engine`
 - [Vector2](<../engine/ly.img.engine/-vector2.md>) — `ly.img.engine`
 - [VerticalBlockAlignment](<../engine/ly.img.engine/-vertical-block-alignment.md>) — `ly.img.engine`
@@ -321,6 +332,7 @@ Complete catalog of 322 generated API digests.
 - [VideoBitrate.Auto](<../engine/ly.img.engine/-video-bitrate/-auto.md>) — `ly.img.engine`
 - [VideoBitrate.Custom](<../engine/ly.img.engine/-video-bitrate/-custom.md>) — `ly.img.engine`
 - [VideoBitrate.System](<../engine/ly.img.engine/-video-bitrate/-system.md>) — `ly.img.engine`
+- [VideoCodec](<../engine/ly.img.engine/-video-codec.md>) — `ly.img.engine`
 - [VideoThumbnailResult](<../engine/ly.img.engine/-video-thumbnail-result.md>) — `ly.img.engine`
 - [ZoomAutoFitAxis](<../engine/ly.img.engine/-zoom-auto-fit-axis.md>) — `ly.img.engine`
 - [ly.img.engine.*](<../engine/ly.img.engine/index.md>) — `ly.img.engine`

@@ -31,7 +31,7 @@ Add a source to the `sourceSet` property of the given block. If there already ex
 @MainActor func adjustCropToFillFrame(_ id: DesignBlockID, minScaleRatio: Float) throws
 ```
 
-Adjust the crop position/scale to at least fill the crop frame. Required scope: “layer/crop” `id`
+Adjust the crop position/scale to at least fill the crop frame. On a page with a bleed, the content also covers the bleed, and the ratio includes the bleed. This needs the setting `page/imageFillCoversBleed`, which is on by default. Required scope: “layer/crop” `id`
 
 ### alignHorizontally(_:alignment:)
 
@@ -389,7 +389,7 @@ Distribute multiple blocks vertically within their bounding box so that the spac
 @MainActor func duplicate(_ id: DesignBlockID, attachToParent: Bool = true) throws -> DesignBlockID
 ```
 
-Duplicates a block including its children. Required scope: “lifecycle/duplicate” If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. `id`
+Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. Required scope: “lifecycle/duplicate” If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. `id`
 
 ### enterGroup(_:)
 
@@ -470,6 +470,14 @@ Exports multiple design blocks as audio files and returns a Combine publisher. A
 ```
 
 Exports a design block as an audio file and returns a Combine publisher. `id`
+
+### exportPreview(_:)
+
+```swift
+@MainActor func exportPreview(_ id: DesignBlockID) async throws -> Blob
+```
+
+Exports a small image of a block to show in your app. A preview does not count as an export. `id`
 
 ### exportVideo(_:mimeType:options:onPreExport:uriResolver:)-8tel0
 
@@ -765,6 +773,8 @@ Get the duration in seconds of the video or audio resource that is attached to t
 
 ### getBackgroundColor(_:)
 
+> **Deprecated:** Use 'getColor(_:property:) -> Color' with the property 'backgroundColor/color' instead.
+
 ```swift
 @MainActor func getBackgroundColor(_ id: DesignBlockID) throws -> RGBA
 ```
@@ -813,9 +823,7 @@ Get the value of a color property of the given design block. `id`
 
 ### getColor(_:property:)-98eai
 
-> **Deprecated:** 
-    Use 'getColor(id: DesignBlockID, property: String) -> Color' instead.
-    
+> **Deprecated:** Use 'getColor(_:property:) -> Color' instead.
 
 ```swift
 @MainActor func getColor(_ id: DesignBlockID, property: String) throws -> RGBA
@@ -825,9 +833,7 @@ Get the value of a string property of the given design block. `id`
 
 ### getColorSpotName(_:property:)
 
-> **Deprecated:** 
-    Use 'getColor(id: DesignBlockID, property: String) -> Color' instead.
-    
+> **Deprecated:** Use 'getColor(_:property:) -> Color' and read its '.spot' case instead.
 
 ```swift
 @MainActor func getColorSpotName(_ id: DesignBlockID, property: String) throws -> String
@@ -837,9 +843,7 @@ Get the spot color name of a color property of the given design block. `id`
 
 ### getColorSpotTint(_:property:)
 
-> **Deprecated:** 
-    Use 'getColor(id: DesignBlockID, property: String) -> Color' instead.
-    
+> **Deprecated:** Use 'getColor(_:property:) -> Color' and read its '.spot' case instead.
 
 ```swift
 @MainActor func getColorSpotTint(_ id: DesignBlockID, property: String) throws -> Float
@@ -885,7 +889,7 @@ Get the crop rotation of the given design block. `id`
 @MainActor func getCropScaleRatio(_ id: DesignBlockID) throws -> Float
 ```
 
-Get the crop scale ratio of the given design block. `id`
+Get the crop scale ratio of the given design block. On a page with a bleed, a ratio of 1 means that the content covers the page and its bleed. This needs the setting `page/imageFillCoversBleed`, which is on by default. `id`
 
 ### getCropScaleX(_:)
 
@@ -961,9 +965,7 @@ Get the drop shadow’s clipping of the given design block. `id`
 
 ### getDropShadowColor(_:)-73z92
 
-> **Deprecated:** 
-    Use 'getDropShadowColor(id: DesignBlockID) -> Color' instead.
-    
+> **Deprecated:** Use 'getDropShadowColor(_:) -> Color' instead.
 
 ```swift
 @MainActor func getDropShadowColor(_ id: DesignBlockID) throws -> RGBA
@@ -1399,9 +1401,7 @@ Get the stroke color of the given design block. `id`
 
 ### getStrokeColor(_:)-8rv52
 
-> **Deprecated:** 
-    Use 'getStrokeColor(id: DesignBlockID) -> Color' instead.
-    
+> **Deprecated:** Use 'getStrokeColor(_:) -> Color' instead.
 
 ```swift
 @MainActor func getStrokeColor(_ id: DesignBlockID) throws -> RGBA
@@ -2703,6 +2703,8 @@ Set an audio fade-out for the given block. The audio ramps down from the block�
 
 ### setBackgroundColor(_:r:g:b:a:)
 
+> **Deprecated:** Use 'setColor(_:property:color:)' with the property 'backgroundColor/color' instead.
+
 ```swift
 @MainActor func setBackgroundColor(_ id: DesignBlockID, r: Float, g: Float, b: Float, a: Float = 1) throws
 ```
@@ -2767,9 +2769,7 @@ Set a color property of the given design block to the given value. `id`
 
 ### setColor(_:property:r:g:b:a:)
 
-> **Deprecated:** 
-    Use 'setColor(id: DesignBlockID, property: String, color: Color)' instead.
-    
+> **Deprecated:** Use 'setColor(_:property:color:)' instead.
 
 ```swift
 @MainActor func setColor(_ id: DesignBlockID, property: String, r: Float, g: Float, b: Float, a: Float = 1) throws
@@ -2779,9 +2779,7 @@ Set a color property of the given design block to the given value. `id`
 
 ### setColorSpot(_:property:name:tint:)
 
-> **Deprecated:** 
-    Use 'setColor(id: DesignBlockID, property: String, color: Color)' instead.
-    
+> **Deprecated:** Use 'setColor(_:property:color:)' with a '.spot' color instead.
 
 ```swift
 @MainActor func setColorSpot(_ id: DesignBlockID, property: String, name: String, tint: Float = 1) throws
@@ -2835,7 +2833,7 @@ Set the crop rotation of the given design block. Required scope: “layer/crop�
 @MainActor func setCropScaleRatio(_ id: DesignBlockID, scaleRatio: Float) throws
 ```
 
-Set the crop scale ratio of the given design block. This will uniformly scale the content up or down. The center of the scale operation is the center of the crop frame. Required scope: “layer/crop” `id`
+Set the crop scale ratio of the given design block. This will uniformly scale the content up or down. The center of the scale operation is the center of the crop frame. On a page with a bleed, the ratio and the center of the scale include the bleed. This needs the setting `page/imageFillCoversBleed`, which is on by default. Required scope: “layer/crop” `id`
 
 ### setCropScaleX(_:scaleX:)
 
@@ -2911,9 +2909,7 @@ Set the drop shadow color of the given design block. Required scope: “appearan
 
 ### setDropShadowColor(_:r:g:b:a:)
 
-> **Deprecated:** 
-    Use 'setDropShadowColor(id: DesignBlockID, color: Color)' instead.
-    
+> **Deprecated:** Use 'setDropShadowColor(_:color:)' instead.
 
 ```swift
 @MainActor func setDropShadowColor(_ id: DesignBlockID, r: Float, g: Float, b: Float, a: Float = 1) throws
@@ -3357,9 +3353,7 @@ Set the stroke color of the given design block. Required scope: “stroke/change
 
 ### setStrokeColor(_:r:g:b:a:)
 
-> **Deprecated:** 
-    Use 'setStrokeColor(id: DesignBlockID, color: Color)' instead.
-    
+> **Deprecated:** Use 'setStrokeColor(_:color:)' instead.
 
 ```swift
 @MainActor func setStrokeColor(_ id: DesignBlockID, r: Float, g: Float, b: Float, a: Float = 1) throws
@@ -3469,7 +3463,7 @@ Set the stroke style of the given design block. Required scope: “stroke/change
 @MainActor func setStrokeWidth(_ id: DesignBlockID, width: Float) throws
 ```
 
-Set the stroke width of the given design block. Required scope: “stroke/change” `id`
+Set the stroke width of the given design block. When the dash pattern is a preset’s pattern at the old width, it is scaled to the new width. Any other dash pattern keeps its lengths. Required scope: “stroke/change” `id`
 
 ### setTextBackgroundColor(_:color:in:)
 

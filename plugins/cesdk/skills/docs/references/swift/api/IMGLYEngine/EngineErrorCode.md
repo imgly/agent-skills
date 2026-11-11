@@ -179,6 +179,12 @@ case assetFontMissingName
 case assetFontMissingUrl
 ```
 
+### EngineErrorCode.assetFontWeightUnknown
+
+```swift
+case assetFontWeightUnknown
+```
+
 ### EngineErrorCode.assetIdAlreadyExists
 
 ```swift
@@ -1589,6 +1595,12 @@ case blockKeyframesPropertyNotAnimatable
 case blockKeyframesRelativeUnsupported
 ```
 
+### EngineErrorCode.blockKeyframesScaleAxesDiffer
+
+```swift
+case blockKeyframesScaleAxesDiffer
+```
+
 ### EngineErrorCode.blockKeyframesSpatialTangentUnsupported
 
 ```swift
@@ -2603,6 +2615,24 @@ case blockValueNotFiniteInUnitRange
 case blockValueNotNumber
 ```
 
+### EngineErrorCode.blockValueSetNameInvalid
+
+```swift
+case blockValueSetNameInvalid
+```
+
+### EngineErrorCode.blockValueSetNameTaken
+
+```swift
+case blockValueSetNameTaken
+```
+
+### EngineErrorCode.blockValueSetNotFound
+
+```swift
+case blockValueSetNotFound
+```
+
 ### EngineErrorCode.blockValuesNotFiniteThree
 
 ```swift
@@ -3155,6 +3185,12 @@ case colorProfileMissing
 case colorProfileNotLoaded
 ```
 
+### EngineErrorCode.colorProfileSlotInvalid
+
+```swift
+case colorProfileSlotInvalid
+```
+
 ### EngineErrorCode.colorProfileSpaceMismatch
 
 ```swift
@@ -3549,6 +3585,12 @@ case editorCameraZoomClampNotEnabled
 
 ```swift
 case editorCameraZoomLimitsNotFinite
+```
+
+### EngineErrorCode.editorClipDefaultDurationInvalid
+
+```swift
+case editorClipDefaultDurationInvalid
 ```
 
 ### EngineErrorCode.editorCommandArgTypeMismatch
@@ -3971,6 +4013,12 @@ case encodeAudioChannelCountInvalid
 case encodeAudioChunkReadFailed
 ```
 
+### EngineErrorCode.encodeAudioCodecContainerMismatch
+
+```swift
+case encodeAudioCodecContainerMismatch
+```
+
 ### EngineErrorCode.encodeAudioCodecInvalid
 
 ```swift
@@ -4239,6 +4287,30 @@ case encodeExportOptionsNotObject
 
 ```swift
 case encodeExportOptionsParseFailed
+```
+
+### EngineErrorCode.encodeExportTransactionBlockInvalid
+
+```swift
+case encodeExportTransactionBlockInvalid
+```
+
+### EngineErrorCode.encodeExportTransactionSizeInvalid
+
+```swift
+case encodeExportTransactionSizeInvalid
+```
+
+### EngineErrorCode.encodeExportTransactionTypeInvalid
+
+```swift
+case encodeExportTransactionTypeInvalid
+```
+
+### EngineErrorCode.encodeExportTransactionUnknown
+
+```swift
+case encodeExportTransactionUnknown
 ```
 
 ### EngineErrorCode.encodeGpuLostGeneric
@@ -4529,10 +4601,28 @@ case encodeTrackNotInPageHierarchy
 case encodeTrackNotPartOfPage
 ```
 
+### EngineErrorCode.encodeVideoAlphaUnsupported
+
+```swift
+case encodeVideoAlphaUnsupported
+```
+
 ### EngineErrorCode.encodeVideoBlockHasError
 
 ```swift
 case encodeVideoBlockHasError
+```
+
+### EngineErrorCode.encodeVideoCodecContainerMismatch
+
+```swift
+case encodeVideoCodecContainerMismatch
+```
+
+### EngineErrorCode.encodeVideoCodecInvalid
+
+```swift
+case encodeVideoCodecInvalid
 ```
 
 ### EngineErrorCode.encodeVideoConcurrentEncoding
@@ -5801,6 +5891,12 @@ case utilsPixelBufferNotStreamFill
 case utilsPixelBufferUnsupportedFormat
 ```
 
+### EngineErrorCode.utilsPixelBufferUnsupportedPlatform
+
+```swift
+case utilsPixelBufferUnsupportedPlatform
+```
+
 ### EngineErrorCode.utilsReflectionBlockNotValid
 
 ```swift
@@ -6033,6 +6129,12 @@ case utilsWavZeroSampleRate
 
 ```swift
 case utilsWavZeroSizeChunk
+```
+
+### EngineErrorCode.utilsWebmMuxFailed
+
+```swift
+case utilsWebmMuxFailed
 ```
 
 ### EngineErrorCode.utilsZstdCompressFailed
