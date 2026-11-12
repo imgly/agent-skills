@@ -24,10 +24,13 @@ export(handle: DesignBlockId, options?: ExportOptions): Promise<Blob>
 
 ### exportToStream()
 
-Exports a design block into a stream, chunk by chunk, so the file is never held in memory as a whole.
+Exports a design block into a stream, chunk by chunk. A PNG, JPEG or WebP export with
+`outputProfileMode` or `embedProfiles` renders in one surface. It holds the whole encoded file in
+memory before it writes the first chunk.
 Performs an internal update to resolve the final layout for the blocks. A PNG, JPEG, WebP, TGA or raw
 export renders in strips, one strip in each engine update, and its size is bound only by the limit of
-its format. The next strip waits until `writable` is ready for more. PNG and raw pixels are written as
+its format. With `outputProfileMode` or `embedProfiles`, a PNG, JPEG or WebP export renders in one
+surface, which `getMaxExportSize` bounds. The next strip waits until `writable` is ready for more. PNG and raw pixels are written as
 the strips render, and so is a JPEG above 358 megapixels. A smaller JPEG is written at the end, because
 its Huffman tables need the whole image. WebP and TGA are written at the end. A PDF is written page by page. A color mask
 export is not supported here. Do not change the scene while the export runs. A later strip of another
@@ -96,7 +99,9 @@ exportVideo(handle: DesignBlockId, options?: VideoExportOptions): Promise<Blob>
 ```
 
 **Parameters:**
-- `handle` - The design block element to export. Currently, only page blocks are supported.
+- `handle` - The page or the scene to export. A scene plays its pages one after the other, in the order of
+`scene.getPages`, each for its own duration. A page with a duration of zero does not appear.
+A hidden page does not appear either. The pages must have the same size, otherwise the export fails.
 - `options` - The options for exporting the video, including mime type, h264 profile, level, bitrate, time offset, duration, framerate, target width and height.
 
 **Returns:** A promise that resolves with a video blob or is rejected with an error.
@@ -944,7 +949,8 @@ setDuration(id: DesignBlockId, duration: number): void
 
 ### getDuration()
 
-Gets the playback duration of a block.
+Gets the playback duration of a block. For a scene, the sum of the durations of its pages, without the pages
+hidden with `setVisible(false)`.
 
 ```typescript
 getDuration(id: DesignBlockId): number
@@ -1956,6 +1962,7 @@ isCombinable(ids: DesignBlockId[]): boolean
 Performs a boolean operation on a set of blocks.
 All blocks must be combinable. See `isCombinable`.
 The parent, fill and sort order of the new block is that of the prioritized block.
+When the prioritized block has no fill, the new block has none.
 
 ```typescript
 combine(ids: DesignBlockId[], op: BooleanOperation): DesignBlockId

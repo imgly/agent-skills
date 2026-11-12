@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 350 generated API digests.
+Complete catalog of 351 generated API digests.
 
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
@@ -250,6 +250,7 @@ Complete catalog of 350 generated API digests.
 - [MovementConstraintScope.BlockType](<../engine/ly.img.engine/-movement-constraint-scope/-block-type.md>) — `ly.img.engine`
 - [MovementConstraintScope.Scene](<../engine/ly.img.engine/-movement-constraint-scope/-scene.md>) — `ly.img.engine`
 - [ObjectType](<../engine/ly.img.engine/-object-type.md>) — `ly.img.engine`
+- [OutputProfileMode](<../engine/ly.img.engine/-output-profile-mode.md>) — `ly.img.engine`
 - [PathVertex](<../engine/ly.img.engine/-path-vertex.md>) — `ly.img.engine`
 - [PositionMode](<../engine/ly.img.engine/-position-mode.md>) — `ly.img.engine`
 - [ProfileColorSpace](<../engine/ly.img.engine/-profile-color-space.md>) — `ly.img.engine`

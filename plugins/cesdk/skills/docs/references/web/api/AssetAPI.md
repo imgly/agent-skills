@@ -6,8 +6,14 @@
 
 Register middleware that intercepts asset application to scenes.
 The middleware function receives the source ID, asset result, the original apply function,
-and a context object containing options about how the asset should be applied.
+and a context object that holds every option passed to `apply`, custom keys included.
 It can perform custom logic before, after, or instead of the default asset application.
+A context object passed to `apply` is merged over the received one into a new object: its
+top-level keys reach the next middleware and the default apply, and the keys it leaves out keep
+their values. A passed `placement` replaces the whole placement. Set a key to `undefined` to
+clear its value. Without a new context object, the next middleware gets the same object that
+the middleware received, so writes to it reach the outer middlewares. Only the `abortSignal` of
+the call to `engine.asset.apply` stops the apply.
 
 ```typescript
 registerApplyMiddleware(middleware: (sourceId: string, assetResult: AssetResult, apply: AssetAPI['apply'], context: ApplyAssetOptions) => Promise<DesignBlockId | undefined>): VoidFunction

@@ -5,8 +5,10 @@
 ### setDocumentColorProfile()
 
 Assigns an ICC profile to one document role and component space.
-Profiles save with the scene and are bundled into archives. Only Default/CMYK currently
-affects managed conversion; other slots store profiles without changing rendering or export.
+Profiles save with the scene and are bundled into archives. Default/CMYK drives managed
+conversion. Output/RGB and Output/CMYK are the profiles that a PDF export converts to and
+embeds with `outputProfileMode` and `embedProfiles`. A PNG, JPEG or WebP export
+uses Output/RGB. Other slots store profiles only.
 Failure keeps the previous profile. Another assignment or removal in this slot, or scene
 replacement, supersedes pending loading. Other slots are independent. Undo and redo do not
 change profiles.

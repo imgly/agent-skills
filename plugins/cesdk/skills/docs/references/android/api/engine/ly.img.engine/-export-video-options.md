@@ -64,7 +64,7 @@ Cover time in seconds from the beginning of the exported video. Null uses the pa
 val duration: Double? = null
 ```
 
-The duration in seconds of the final video. Null exports the duration of the page, starting at timeOffset, like the other platforms. Read by the BlockApi.exportVideo overloads that take no duration parameter.
+The duration in seconds of the final video. Null exports the duration of the page or the scene, starting at timeOffset, like the other platforms. Read by the BlockApi.exportVideo overloads that take no duration parameter.
 
 ### exportAlpha
 
@@ -120,7 +120,7 @@ An optional target width. If used, the block will be rendered large enough that 
 val timeOffset: Double = 0.0
 ```
 
-The time offset in seconds of the page's timeline from which the video starts. Read by the BlockApi.exportVideo overloads that take no timeOffset parameter. The default value is 0.
+The time offset in seconds of the page's timeline from which the video starts. For a scene, the timeline of all its pages. Read by the BlockApi.exportVideo overloads that take no timeOffset parameter. The default value is 0.
 
 ### videoBitrate
 

@@ -3167,6 +3167,12 @@ case colorDocumentProfileNotSet
 case colorImageDecodeFailed
 ```
 
+### EngineErrorCode.colorImageNotConvertible
+
+```swift
+case colorImageNotConvertible
+```
+
 ### EngineErrorCode.colorImageTransformFailed
 
 ```swift
@@ -3225,6 +3231,18 @@ case colorImportedImageProfileMismatch
 
 ```swift
 case colorImportedImageRecordInvalid
+```
+
+### EngineErrorCode.colorOutputProfileNotConvertible
+
+```swift
+case colorOutputProfileNotConvertible
+```
+
+### EngineErrorCode.colorOutputProfileNotSet
+
+```swift
+case colorOutputProfileNotSet
 ```
 
 ### EngineErrorCode.colorProfileAssignmentSuperseded
@@ -4325,6 +4343,12 @@ case encodeColorMaskDataFailed
 case encodeColorMaskDisabled
 ```
 
+### EngineErrorCode.encodeColorMaskOutputProfileUnsupported
+
+```swift
+case encodeColorMaskOutputProfileUnsupported
+```
+
 ### EngineErrorCode.encodeContextAudioCreateFailed
 
 ```swift
@@ -4553,10 +4577,28 @@ case encodeNotAllResourcesLoaded
 case encodeOffscreenCanvasCreateFailed
 ```
 
+### EngineErrorCode.encodeOutputColorSpaceUnsupported
+
+```swift
+case encodeOutputColorSpaceUnsupported
+```
+
 ### EngineErrorCode.encodeOutputFileExceedsBufferMax
 
 ```swift
 case encodeOutputFileExceedsBufferMax
+```
+
+### EngineErrorCode.encodeOutputProfileModeInvalid
+
+```swift
+case encodeOutputProfileModeInvalid
+```
+
+### EngineErrorCode.encodeOutputProfileUnsupportedFormat
+
+```swift
+case encodeOutputProfileUnsupportedFormat
 ```
 
 ### EngineErrorCode.encodeOutputSizeExceedsFormatMax
@@ -4841,6 +4883,12 @@ case encodeVideoNoAudioDuration
 case encodeVideoPageRemoved
 ```
 
+### EngineErrorCode.encodeVideoPageSizesDiffer
+
+```swift
+case encodeVideoPageSizesDiffer
+```
+
 ### EngineErrorCode.encodeVideoPcmReadFailed
 
 ```swift
@@ -4851,6 +4899,12 @@ case encodeVideoPcmReadFailed
 
 ```swift
 case encodeVideoResourceLoadFailed
+```
+
+### EngineErrorCode.encodeVideoSceneHasNoPages
+
+```swift
+case encodeVideoSceneHasNoPages
 ```
 
 ### EngineErrorCode.encodeVideoStagingWriteFailed

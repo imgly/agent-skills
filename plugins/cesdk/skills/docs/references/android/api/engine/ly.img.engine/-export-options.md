@@ -6,7 +6,7 @@
 The export options.
 
 ```kotlin
-data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val underlayerMinFeatureWidth: Float = 0.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null, val exportArea: RectF? = null)
+data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val underlayerMinFeatureWidth: Float = 0.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null, val outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, val outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, val embedProfiles: Boolean = false, val preserveBlack: Boolean = false, val exportArea: RectF? = null)
 ```
 
 
@@ -15,7 +15,7 @@ data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Floa
 ### ExportOptions
 
 ```kotlin
-constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, underlayerMinFeatureWidth: Float = 0.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null, exportArea: RectF? = null)
+constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, underlayerMinFeatureWidth: Float = 0.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null, outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, embedProfiles: Boolean = false, preserveBlack: Boolean = false, exportArea: RectF? = null)
 ```
 
 ### allowTextOverhang
@@ -33,6 +33,14 @@ val cropMarkLength: Float = 0.0f
 ```
 
 Length of one crop mark line, in design units. It shares the unit of printMarkOffset, because the exported sheet grows by the sum of the two. Values <= 0 fall back to the equivalent of 15 pt. Only used when exportPdfWithCropMarks is true.
+
+### embedProfiles
+
+```kotlin
+val embedProfiles: Boolean = false
+```
+
+Write the color profiles into the PDF: the Output profile of outputColorSpace as the OutputIntent with the condition Custom. /DefaultCMYK names the document CMYK profile that the DeviceCMYK values are written in. The file has none when that profile is the Output profile, or when outputProfileMode is not OutputProfileMode.OFF in a CMYK output. Then the OutputIntent describes the DeviceCMYK values. An RGB output without print marks has none either. sRGB becomes /DefaultRGB, except in an RGB export whose outputProfileMode is not OutputProfileMode.OFF. The file makes no PDF/X conformance claim. With outputProfileMode, each image keeps its samples. A tagged image keeps its profile as its tag, un…
 
 ### exportArea
 
@@ -56,7 +64,7 @@ Draw crop marks outside the bleed on every exported PDF page. Crop marks are the
 val exportPdfWithHighCompatibility: Boolean = true
 ```
 
-Export the PDF document with a higher compatibility to different PDF viewers. Bitmap images, stripe fills, conical gradients, gradients with transparency and fills with effects are rasterized with the DPI setting instead of embedding them directly. A linear or radial gradient without transparency stays a vector. The default value is true.
+Export the PDF document with a higher compatibility to different PDF viewers. Bitmap images, stripe fills, conical gradients, gradients with transparency and fills with effects are rasterized with the DPI setting instead of embedding them directly. A linear or radial gradient without transparency stays a vector. When outputProfileMode is not OutputProfileMode.OFF, or with embedProfiles, a rasterized image converts or is tagged from its rendered RGB. The profile of each image and the original bytes of a CMYK JPEG reach the file only with this option off. The default value is true.
 
 ### exportPdfWithRegistrationMarks
 
@@ -82,6 +90,22 @@ val jpegQuality: Float = 0.9f
 
 The JPEG quality to use when encoding to JPEG. Valid values are (0-1], higher means better quality. Ignored for other encodings. The default value is 0.9.
 
+### outputColorSpace
+
+```kotlin
+val outputColorSpace: ProfileColorSpace
+```
+
+The component space that a PDF export writes its colors in, and the Output profile slot it reads with SceneApi.setDocumentColorProfile. With ProfileColorSpace.RGB, the default, colors are written as DeviceRGB. With ProfileColorSpace.CMYK, every CMYK color is written as DeviceCMYK, and every spot color with CMYK values as a named Separation with a DeviceCMYK alternate. RGB colors stay DeviceRGB until outputProfileMode converts them. Any export that is not a PDF fails with EngineErrorCode.ENCODE_OUTPUT_COLOR_SPACE_UNSUPPORTED for CMYK. ProfileColorSpace.GRAY is not supported.
+
+### outputProfileMode
+
+```kotlin
+val outputProfileMode: OutputProfileMode
+```
+
+What a PDF export does with the document's Output profile of outputColorSpace. OutputProfileMode.OFF writes the colors as they are. OutputProfileMode.CONVERT converts every solid color into the Output profile: fills, strokes, text and the alternate of each spot color. OutputProfileMode.ASSIGN keeps the values of every solid color in the space of the Output profile. Those are CMYK colors in a CMYK output and RGB colors in an RGB output. It converts the other colors as OutputProfileMode.CONVERT does. With embedProfiles, the Output profile in the file labels the kept values. Without it, they stay device values, as the converted values of OutputProfileMode.CONVERT do. A spot color's alternate i…
+
 ### pdfChunkSize
 
 ```kotlin
@@ -105,6 +129,14 @@ val pngCompressionLevel: Int = 5
 ```
 
 The PNG compression level to use, when exporting to PNG. Valid values are 0 to 9, higher means smaller, but slower. Quality is not affected. Ignored for other encodings. The default value is 5.
+
+### preserveBlack
+
+```kotlin
+val preserveBlack: Boolean = false
+```
+
+Keep black as black ink where outputProfileMode converts a color. With CMYK output, an exact RGB black becomes 0/0/0/100 K instead of a rich black. With RGB output, a K-only CMYK black becomes exact RGB black, and an exact RGB black stays exact. Images and PNG and JPEG exports ignore this option. Ignored when outputProfileMode is OutputProfileMode.OFF. The default value is false.
 
 ### printMarkOffset
 

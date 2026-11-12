@@ -149,7 +149,7 @@ Returns whether the font style of the given block can be toggled between italic 
 @MainActor func combine(_ ids: [DesignBlockID], booleanOperation: BooleanOperation) throws -> DesignBlockID
 ```
 
-Perform a boolean operation on the given blocks. All blocks must be combinable. See `isCombinable`. The parent, fill and sort order of the new block is that of the prioritized block. When performing a `Union`, `Intersection` or `XOR`, the operation is performed pair-wise starting with the element with the highest sort order. When performing a `Difference`, the operation is performed pair-wise starting with the element with the lowest sort order. Required scope: “editor/select” `ids`
+Perform a boolean operation on the given blocks. All blocks must be combinable. See `isCombinable`. The parent, fill and sort order of the new block is that of the prioritized block. When the prioritized block has no fill, the new block has none. When performing a `Union`, `Intersection` or `XOR`, the operation is performed pair-wise starting with the element with the highest sort order. When performing a `Difference`, the operation is performed pair-wise starting with the element with the lowest sort order. Required scope: “editor/select” `ids`
 
 ### create(_:)-3op61
 
@@ -979,7 +979,7 @@ Get the drop shadow’s Y offset of the given design block. `id`
 @MainActor func getDuration(_ id: DesignBlockID) throws -> Double
 ```
 
-Get the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. `id`
+Get the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. For a scene, the sum of the durations of its pages, without the pages hidden with [`setVisible(_:visible:)`](./setvisible(_:visible:).md). `id`
 
 ### getEffects(_:)
 

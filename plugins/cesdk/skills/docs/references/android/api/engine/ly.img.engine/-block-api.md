@@ -153,7 +153,7 @@ Returns whether the font style of the given block can be toggled between italic 
 abstract fun combine(blocks: List<DesignBlock>, op: BooleanOperation): DesignBlock
 ```
 
-Perform a boolean operation on the given blocks. All blocks must be combinable. See isCombinable. The parent, fill and sort order of the new block is that of the prioritized block. When performing a Union, Intersection or XOR, the operation is performed pair-wise starting with the element with the highest sort order. When performing a Difference, the operation is performed pair-wise starting with the element with the lowest sort order. Required scopes: "lifecycle/duplicate", "lifecycle/destroy"
+Perform a boolean operation on the given blocks. All blocks must be combinable. See isCombinable. The parent, fill and sort order of the new block is that of the prioritized block. When the prioritized block has no fill, the new block has none. When performing a Union, Intersection or XOR, the operation is performed pair-wise starting with the element with the highest sort order. When performing a Difference, the operation is performed pair-wise starting with the element with the lowest sort order. Required scopes: "lifecycle/duplicate", "lifecycle/destroy"
 
 ### createAnimation
 
@@ -840,7 +840,7 @@ Get the drop shadow's y offset of the given design block.
 abstract fun getDuration(block: DesignBlock): Double
 ```
 
-Get the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. Note: The duration is ignored when the scene is not in Video mode.
+Get the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. For a scene, the sum of the durations of its pages, without the pages hidden with setVisible. Note: The duration is ignored when the scene is not in Video mode.
 
 ### getEffectSource
 
