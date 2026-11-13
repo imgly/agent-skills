@@ -1,0 +1,32 @@
+{
+  "interface": {
+    "displayName": "IMG.LY SDK"
+  },
+  "name": "imgly-legacy",
+  "plugins": [
+    {
+      "category": "Developer Tools",
+      "name": "imgly-sdk",
+      "policy": {
+        "authentication": "ON_INSTALL",
+        "installation": "AVAILABLE"
+      },
+      "source": {
+        "path": "./plugins/cesdk",
+        "source": "local"
+      }
+    },
+    {
+      "category": "Developer Tools",
+      "name": "cesdk",
+      "policy": {
+        "authentication": "ON_INSTALL",
+        "installation": "AVAILABLE"
+      },
+      "source": {
+        "path": "./plugins/cesdk",
+        "source": "local"
+      }
+    }
+  ]
+}

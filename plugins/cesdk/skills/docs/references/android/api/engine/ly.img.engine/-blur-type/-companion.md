@@ -1,0 +1,17 @@
+# Companion
+
+- **Module:** `ly.img:engine`
+- **Package:** `ly.img.engine`
+
+```kotlin
+object Companion : ObjectType.GenericBlockType<BlurType>
+```
+
+
+## Members
+
+### values
+
+```kotlin
+open override fun values(): Set<BlurType>
+```
