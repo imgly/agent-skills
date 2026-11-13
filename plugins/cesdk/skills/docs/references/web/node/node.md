@@ -128,6 +128,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Import a Design](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design-73b9c5/)
   - [From InDesign](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design/from-indesign-ba3988/)
   - [From Photoshop](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design/from-photoshop-cca6bb/)
+  - [From Figma](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design/from-figma-9f10ef/)
   - [From Archive](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design/from-archive-dde9fa/)
 - [URI Resolver](https://img.ly/docs/cesdk/next/node/open-the-editor/uri-resolver-36b624/)
 
@@ -168,6 +169,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [To PNG](https://img.ly/docs/cesdk/next/node/export-save-publish/export/to-png-f87eaf/)
 - [To WebP](https://img.ly/docs/cesdk/next/node/export-save-publish/export/to-webp-aef6f4/)
 - [To PSD](https://img.ly/docs/cesdk/next/node/export-save-publish/export/to-psd-bc27e9/)
+- [To Figma](https://img.ly/docs/cesdk/next/node/export-save-publish/export/to-figma-005734/)
 - [To Raw Data](https://img.ly/docs/cesdk/next/node/export-save-publish/export/to-raw-data-abd7da/)
 - [Compress](https://img.ly/docs/cesdk/next/node/export-save-publish/export/compress-29105e/)
 - [With a Color Mask](https://img.ly/docs/cesdk/next/node/export-save-publish/export/with-color-mask-4f868f/)
