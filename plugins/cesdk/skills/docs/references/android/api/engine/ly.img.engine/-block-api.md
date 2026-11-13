@@ -301,7 +301,7 @@ Create a new text animator block. A text animator changes the glyphs of a text b
 abstract fun createTransition(type: TransitionType): DesignBlock
 ```
 
-Creates a new transition, fails if type is unknown. The created block is standalone until assigned to a clip with setTransition. Once assigned, it is owned by that clip: it is destroyed together with the clip, and the engine also destroys it automatically when the two clips stop being timeline-adjacent on the track (e.g. after a manual gap is introduced).
+Creates a new transition, fails if type is unknown. Its transition/overlap value is initialized from the current clip/defaultTransitionOverlapEnabled editor setting. The created block is standalone until assigned to a clip with setTransition. Once assigned, it is owned by that clip: it is destroyed together with the clip, and the engine also destroys it automatically when the two clips stop being timeline-adjacent on the track (e.g. after a manual gap is introduced).
 
 ### create
 
@@ -414,7 +414,7 @@ abstract suspend fun exportWithColorMask(block: DesignBlock, mimeType: MimeType,
 abstract suspend fun exportWithColorMask(blocks: List<DesignBlock>, mimeType: MimeType, maskColor: RGBAColor, options: ExportOptions? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<Pair<ByteBuffer, ByteBuffer>>
 ```
 
-Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPreExport runs on every export, and what it changes stays for the next export: settings, role, global scopes, asset sources a…
+Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPr…
 
 ### export
 
@@ -434,7 +434,7 @@ abstract fun export(block: DesignBlock, options: ExportOptions? = null, progress
 abstract suspend fun export(blocks: List<DesignBlock>, mimeType: MimeType, options: ExportOptions? = null, progressCallback: ((ExportPdfProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
 ```
 
-Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPreExport runs on every export, and what it changes stays for the next export: settings, role, global scopes, asset sources a…
+Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPr…
 
 ### fillParent
 
@@ -442,7 +442,7 @@ Exports a design block element as a file of the given mime type. Performs an int
 abstract fun fillParent(block: DesignBlock)
 ```
 
-Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block's fill is unknown, the content fill mode is changed from Crop to Cover to prevent invalid crop values. A block that follows a transform parent stops following it. Required scope: "layer/move" - "layer/resize"
+Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block's fill is unknown, the content fill mode is changed from Crop to Cover to prevent invalid crop values. A block that follows a transform parent stops following it. A page slice takes its position from its page, so the call fails with BLOCK.POSITION_PARENT_CONTROLLED on one. Required scope: "layer/move" - "layer/resize"
 
 ### findAllInExclusionAreas
 
@@ -1145,7 +1145,7 @@ Get the playback time of the given block. During an export, this returns the tim
 abstract fun getPositionXMode(block: DesignBlock): PositionMode
 ```
 
-Query a block's mode for its x position.
+Query a block's mode for its x position. x * On a page slice the mode is PositionMode.AUTO, because the page sets its position. x * @param block the block to query.
 
 ### getPositionX
 
@@ -1161,7 +1161,7 @@ Query a block's x position. The position is the block's local origin: the top-le
 abstract fun getPositionYMode(block: DesignBlock): PositionMode
 ```
 
-Query a block's mode for its y position.
+Query a block's mode for its y position. y * On a page slice the mode is PositionMode.AUTO, because the page sets its position. y * @param block the block to query.
 
 ### getPositionY
 
@@ -1523,6 +1523,14 @@ abstract fun getTextOnPath(block: DesignBlock): String?
 
 Returns the SVG path currently used as the text block's baseline, or null if normal layout is active.
 
+### getTextOpenTypeFeatures
+
+```kotlin
+abstract fun getTextOpenTypeFeatures(block: DesignBlock, from: Int = -1, to: Int = -1): List<List<OpenTypeFeature>>
+```
+
+Returns the unique OpenType feature lists across the grapheme range. Each list holds one entry per tag, sorted by tag. A range without features returns one empty list.
+
 ### getTextParagraphIndices
 
 ```kotlin
@@ -1554,6 +1562,14 @@ abstract fun getTextScriptStyles(block: DesignBlock, from: Int = -1, to: Int = -
 ```
 
 Returns the ordered list of unique script styles of the text in the selected range.
+
+### getTextVariationAxes
+
+```kotlin
+abstract fun getTextVariationAxes(block: DesignBlock, from: Int = -1, to: Int = -1): List<List<VariationAxisValue>>
+```
+
+Returns the unique variation axis value lists across the grapheme range. Each list holds one entry per tag, sorted by tag. A range without axis values returns one empty list.
 
 ### getTextVisibleLineContent
 
@@ -1794,7 +1810,7 @@ Returns whether the audio and video resource for the given video fill or audio b
 abstract fun isAlignable(blocks: List<DesignBlock>): Boolean
 ```
 
-Confirms that a given set of blocks can be aligned.
+Confirms that a given set of blocks can be aligned. A page slice cannot be aligned, so the result is false when blocks holds one.
 
 ### isAllowedByScope
 
@@ -1866,7 +1882,7 @@ Check if the crop aspect ratio is locked for the given block. When locked, crop 
 abstract fun isDistributable(blocks: List<DesignBlock>): Boolean
 ```
 
-Confirms that a given set of blocks can be distributed.
+Confirms that a given set of blocks can be distributed. A page slice cannot be distributed, so the result is false when blocks holds one.
 
 ### isDropShadowEnabled
 
@@ -2125,6 +2141,22 @@ abstract suspend fun loadFromURL(url: Uri): List<DesignBlock>
 
 Loads existing blocks from a URL. The URL should point to a blocks file within an unzipped archive directory previously saved with saveToArchive. The blocks are not attached by default and won't be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one.
 
+### movePageIntoSpread
+
+```kotlin
+abstract fun movePageIntoSpread(pageOrSlice: DesignBlock, spread: DesignBlock, index: Int, dissolveSourceSpread: Boolean = false): DesignBlock
+```
+
+Moves a standalone page or a slice from another spread into spread. index counts destination slices, including hidden slices, before the move. Insertion at the end is valid. Use insertChild to reorder within one spread. Content IDs survive; a standalone page becomes a new slice. Incoming content appears above existing content, retaining its order. The slice takes the destination's shared height or width without scaling content. Insertion fails if a content block would change its slice owner. Conversion preserves supported appearance keyframes. Slice tracks use the containing spread's playback clock. Conversion rejects preset animations and unsupported tracks, including geometry and crop tra…
+
+### movePageSliceOutOfSpread
+
+```kotlin
+abstract fun movePageSliceOutOfSpread(slice: DesignBlock, index: Int, dissolveSourceSpread: Boolean = false): DesignBlock
+```
+
+Moves slice into a new standalone page. index counts pages in the source page container before the move. Insertion at the end is valid. The source stays in that sequence. Content IDs survive; the old slice ID becomes invalid. An enabled slice fill survives. Otherwise dissolution inherits the spread fill; a source that remains gives white. An empty source does not count as dissolution. Conversion preserves supported appearance keyframes. Slice tracks use the containing spread's playback clock. Conversion rejects preset animations and unsupported tracks, including geometry and crop tracks. Dissolution rejects a remaining slice with preset animations or keyframes. Wait for the engine to finish…
+
 ### onClicked
 
 ```kotlin
@@ -2303,7 +2335,7 @@ Saves the given blocks to a proprietary string. If given the root of a block hie
 abstract fun scale(block: DesignBlock, scale: Float, @FloatRange(from = 0.0, to = 1.0)anchorX: Float, @FloatRange(from = 0.0, to = 1.0)anchorY: Float)
 ```
 
-Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, every child of it and each transform parent. That update also lays out every other pending change. Required scope: "layer/resize"
+Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, every child of it and each transform parent. That update also lays out every other pending change. Required scope: "layer/resize" Scaling a page slice changes its size, and the page places its page slices again.
 
 ### select
 
@@ -2576,7 +2608,7 @@ Set the drop shadow's y offset of the given design block. Required scope: "appea
 abstract fun setDuration(block: DesignBlock, duration: Double)
 ```
 
-Set the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. If a duration is set on the page block, it becomes the duration source block. Note: The duration is ignored when the scene is not in "Video" mode. Note: This also adjusts the trim for non looping blocks. Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves, with the clips that transitions join after it, until the overlap equals the transition duration again. The overlap is at most half of either clip.
+Set the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. If a duration is set on the page block, it becomes the duration source block. Note: The duration is ignored when the scene is not in "Video" mode. Note: This also adjusts the trim for non looping blocks. Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves, with the clips that transitions join after it, until the overlap equals the transition duration again. The overlap is at most half of either clip. With transition/overlap disabled, the clips meet at the cut.
 
 ### setEffectEnabled
 
@@ -2688,7 +2720,7 @@ Set a gradient color stops property of the given design block.
 abstract fun setHeightMode(block: DesignBlock, mode: SizeMode)
 ```
 
-Set a block's mode for its height. A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height after the mode, without maintainCrop: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: "layer/resize"
+Set a block's mode for its height. A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height after the mode, without maintainCrop: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: "layer/resize" A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with BLOCK.PAGE_SLICE_SIZE_MODE_INVALID.
 
 ### setHeight
 
@@ -2880,7 +2912,7 @@ Set whether the block should be during active playback. Note that playing a page
 abstract fun setPositionXMode(block: DesignBlock, mode: PositionMode)
 ```
 
-Set a block's mode for its x position. The position refers to the block's local space, relative to its parent with the origin at the top left. Required scope: "layer/move"
+Set a block's mode for its x position. The position refers to the block's local space, relative to its parent with the origin at the top left. Required scope: "layer/move" A page slice takes its position from its page, so the call fails with BLOCK.POSITION_PARENT_CONTROLLED on one.
 
 ### setPositionX
 
@@ -2888,7 +2920,7 @@ Set a block's mode for its x position. The position refers to the block's local 
 abstract fun setPositionX(block: DesignBlock, value: Float)
 ```
 
-Update a block's x position. The position refers to the block's local space, relative to its parent with the origin at the top left. The page places its page slices, so the next update replaces a position set here on a page slice. Required scope: "layer/move"
+Update a block's x position. The position refers to the block's local space, relative to its parent with the origin at the top left. A page slice takes its position from its page, so the call fails with BLOCK.POSITION_PARENT_CONTROLLED on one. Required scope: "layer/move"
 
 ### setPositionYMode
 
@@ -2896,7 +2928,7 @@ Update a block's x position. The position refers to the block's local space, rel
 abstract fun setPositionYMode(block: DesignBlock, mode: PositionMode)
 ```
 
-Set a block's mode for its y position. The position refers to the block's local space, relative to its parent with the origin at the top left. Required scope: "layer/move"
+Set a block's mode for its y position. The position refers to the block's local space, relative to its parent with the origin at the top left. Required scope: "layer/move" A page slice takes its position from its page, so the call fails with BLOCK.POSITION_PARENT_CONTROLLED on one.
 
 ### setPositionY
 
@@ -2904,7 +2936,7 @@ Set a block's mode for its y position. The position refers to the block's local 
 abstract fun setPositionY(block: DesignBlock, value: Float)
 ```
 
-Update a block's y position. The position refers to the block's local space, relative to its parent with the origin at the top left. The page places its page slices, so the next update replaces a position set here on a page slice. Required scope: "layer/move"
+Update a block's y position. The position refers to the block's local space, relative to its parent with the origin at the top left. A page slice takes its position from its page, so the call fails with BLOCK.POSITION_PARENT_CONTROLLED on one. Required scope: "layer/move"
 
 ### setRotation
 
@@ -3234,6 +3266,14 @@ abstract fun setTextOnPath(block: DesignBlock, svgPath: String?)
 
 Sets or clears the SVG path that defines a text block's baseline. When a path is set, text is laid out as a single line along the path. Pass null to restore normal text layout. The path must be a valid single-subpath SVG path in the block's local coordinate space.
 
+### setTextOpenTypeFeatures
+
+```kotlin
+abstract fun setTextOpenTypeFeatures(block: DesignBlock, features: List<OpenTypeFeature>, from: Int = -1, to: Int = -1)
+```
+
+Sets the OpenType features of a grapheme range, such as tnum for digits of equal width. The list replaces the features that the range had, and an empty list removes them. When a tag repeats, the last entry wins. The features apply after the ligature and kerning settings of the block, so an entry for liga or kern overrides them in the range. A tag that the font does not have changes nothing. EditorApi.getFontInfo lists the features of a font. Required scope: "text/character"
+
 ### setTextScriptStyle
 
 ```kotlin
@@ -3241,6 +3281,14 @@ abstract fun setTextScriptStyle(block: DesignBlock, scriptStyle: ScriptStyle, fr
 ```
 
 Sets the given script style for the selected range of text. Superscript and subscript text is scaled down and shifted off the regular baseline. The block properties "text/superscriptFontScale", "text/superscriptVerticalShift", "text/subscriptFontScale" and "text/subscriptVerticalShift" adjust the scale and shift. Required scope: "text/character"
+
+### setTextVariationAxes
+
+```kotlin
+abstract fun setTextVariationAxes(block: DesignBlock, axes: List<VariationAxisValue>, from: Int = -1, to: Int = -1)
+```
+
+Sets the variation axis values of a grapheme range, such as wdth for the width of a variable font. The list replaces the axis values that the range had, and an empty list removes them. When a tag repeats, the last entry wins. An axis without a value keeps the value that the font file and the font weight and style select. A wght entry overrides the font weight with any value, such as 450, and setTextFontWeight does not remove it. An ital or slnt entry overrides the font style in the same way, and setTextFontStyle does not remove it either. The font clamps a value to the range of its axis, and an axis that the font does not have changes nothing. Values keep three decimals. EditorApi.getFontIn…
 
 ### setTimeOffset
 
@@ -3272,7 +3320,7 @@ Makes a block follow the transform of another block, or stops it from following 
 abstract fun setTransition(block: DesignBlock, transition: DesignBlock)
 ```
 
-Assigns the outgoing transition of a clip. A previously assigned transition block is detached but not destroyed automatically. Fails if the given transition block is invalid or already assigned to another clip. Both the clip and its following clip on the track must support transitions, see supportsTransition. To clear a clip's transition, use removeTransition instead.
+Assigns the outgoing transition of a clip. A previously assigned transition block is detached but not destroyed automatically. Fails if the given transition block is invalid or already assigned to another clip. Both the clip and its following clip on the track must support transitions, see supportsTransition. To clear a clip's transition, use removeTransition instead. With transition/overlap=false, transitions preserve clip timing and hold endpoint frames across the cut. The setting defaults to true and is not saved in scenes; switching modes leaves saved data intact.
 
 ### setTrimLength
 
@@ -3344,7 +3392,7 @@ Set the audio volume of the given block.
 abstract fun setWidthMode(block: DesignBlock, mode: SizeMode)
 ```
 
-Set a block's mode for its width. A switch between Absolute and Percent keeps the stored width and reads it in the new mode. Set the width after the mode, without maintainCrop: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: "layer/resize"
+Set a block's mode for its width. A switch between Absolute and Percent keeps the stored width and reads it in the new mode. Set the width after the mode, without maintainCrop: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: "layer/resize" A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with BLOCK.PAGE_SLICE_SIZE_MODE_INVALID.
 
 ### setWidth
 

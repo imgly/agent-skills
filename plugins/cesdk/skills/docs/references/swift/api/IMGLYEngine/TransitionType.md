@@ -75,6 +75,8 @@ case diagonalSplice
 case fade
 ```
 
+Passes through a color halfway: `transition/fade/color`, `#471AFF` by default. Use [`TransitionType.crossFade`](crossfade.md) to blend the clips directly.
+
 ### TransitionType.fadeToBlack
 
 ```swift

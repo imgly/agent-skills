@@ -3,10 +3,10 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-The identity of a font file: its names, weight, style and variation axes. A variable font is described by its default instance.
+The identity of a font file: its names, weight, style, variation axes and OpenType features. A variable font is described by its default instance.
 
 ```kotlin
-data class FontInfo(val family: String, val legacyFamily: String, val subFamily: String, val postScriptName: String, val weight: Int, val fontWeight: FontWeight, val style: FontStyle, val isVariable: Boolean, val variationAxes: List<VariationAxis>)
+data class FontInfo(val family: String, val legacyFamily: String, val subFamily: String, val postScriptName: String, val weight: Int, val fontWeight: FontWeight, val style: FontStyle, val isVariable: Boolean, val variationAxes: List<VariationAxis>, val openTypeFeatures: List<String>)
 ```
 
 
@@ -15,7 +15,7 @@ data class FontInfo(val family: String, val legacyFamily: String, val subFamily:
 ### FontInfo
 
 ```kotlin
-constructor(family: String, legacyFamily: String, subFamily: String, postScriptName: String, weight: Int, fontWeight: FontWeight, style: FontStyle, isVariable: Boolean, variationAxes: List<VariationAxis>)
+constructor(family: String, legacyFamily: String, subFamily: String, postScriptName: String, weight: Int, fontWeight: FontWeight, style: FontStyle, isVariable: Boolean, variationAxes: List<VariationAxis>, openTypeFeatures: List<String>)
 ```
 
 ### family
@@ -49,6 +49,14 @@ val legacyFamily: String
 ```
 
 The legacy family name (name ID 1). It can name the weight too, such as "Inter Semi Bold".
+
+### openTypeFeatures
+
+```kotlin
+val openTypeFeatures: List<String>
+```
+
+The OpenType feature tags of the font's GSUB and GPOS tables, such as tnum or ss01, sorted and without duplicates. BlockApi.setTextOpenTypeFeatures takes these tags.
 
 ### postScriptName
 

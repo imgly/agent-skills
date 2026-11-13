@@ -1871,6 +1871,30 @@ case blockOpNeedsTwoBlocks
 case blockPageSliceInVideoScene
 ```
 
+### EngineErrorCode.blockPageSliceMoveIndexInvalid
+
+```swift
+case blockPageSliceMoveIndexInvalid
+```
+
+### EngineErrorCode.blockPageSliceMoveInvalid
+
+```swift
+case blockPageSliceMoveInvalid
+```
+
+### EngineErrorCode.blockPageSliceMoveMatteInvalid
+
+```swift
+case blockPageSliceMoveMatteInvalid
+```
+
+### EngineErrorCode.blockPageSliceMoveUnsupportedProperties
+
+```swift
+case blockPageSliceMoveUnsupportedProperties
+```
+
 ### EngineErrorCode.blockPageSliceParentInvalid
 
 ```swift
@@ -2279,10 +2303,22 @@ case blockTextInvalidKerning
 case blockTextInvalidLineIndex
 ```
 
+### EngineErrorCode.blockTextInvalidOpentypeTag
+
+```swift
+case blockTextInvalidOpentypeTag
+```
+
 ### EngineErrorCode.blockTextInvalidRangeForLine
 
 ```swift
 case blockTextInvalidRangeForLine
+```
+
+### EngineErrorCode.blockTextInvalidVariationAxisValue
+
+```swift
+case blockTextInvalidVariationAxisValue
 ```
 
 ### EngineErrorCode.blockTextLineBoundsFailed
@@ -2379,6 +2415,12 @@ case blockTextRangeNegative
 
 ```swift
 case blockTextRangeToOutOfRange
+```
+
+### EngineErrorCode.blockTextTooManyOpentypeSettings
+
+```swift
+case blockTextTooManyOpentypeSettings
 ```
 
 ### EngineErrorCode.blockTextTypefaceUpdateFailed

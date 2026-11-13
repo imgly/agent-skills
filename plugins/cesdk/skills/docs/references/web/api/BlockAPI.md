@@ -7,6 +7,8 @@ Export blocks to various formats like images, videos, and audio.
 ### export()
 
 Exports a design block to a Blob.
+The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on
+all four sides.
 Performs an internal update to resolve the final layout for the blocks. A PNG, JPEG, WebP, TGA or raw
 export renders all its strips in one engine call on the main thread, so the tab does not respond and does
 not repaint until the export ends. For a large export, use `exportToStream`, or turn on
@@ -937,7 +939,7 @@ Sets the playback duration of a block.
 The duration defines how long the block is active in the scene during playback.
 Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves,
 with the clips that transitions join after it, until the overlap equals the transition duration again. The
-overlap is at most half of either clip.
+overlap is at most half of either clip. With `transition/overlap` disabled, the clips meet at the cut.
 
 ```typescript
 setDuration(id: DesignBlockId, duration: number): void
@@ -2763,6 +2765,7 @@ getPositionX(id: DesignBlockId): number
 ### getPositionXMode()
 
 Gets the mode for the block's X position.
+On a page slice the mode is 'Auto', because the page sets its position.
 
 ```typescript
 getPositionXMode(id: DesignBlockId): PositionXMode
@@ -2793,6 +2796,7 @@ getPositionY(id: DesignBlockId): number
 ### getPositionYMode()
 
 Gets the mode for the block's Y position.
+On a page slice the mode is 'Auto', because the page sets its position.
 
 ```typescript
 getPositionYMode(id: DesignBlockId): PositionYMode
@@ -2807,7 +2811,7 @@ getPositionYMode(id: DesignBlockId): PositionYMode
 
 Sets the X position of a block.
 The position refers to the block's local space, relative to its parent with the origin at the top left.
-The page places its page slices, so the next update replaces a position set here on a page slice.
+A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one.
 ```javascript
 engine.block.setPositionX(block, 0.25);
 ```
@@ -2826,6 +2830,7 @@ Sets the mode for the block's X position.
 ```javascript
 engine.block.setPositionXMode(block, 'Percent');
 ```
+A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one.
 
 ```typescript
 setPositionXMode(id: DesignBlockId, mode: PositionXMode): void
@@ -2839,7 +2844,7 @@ setPositionXMode(id: DesignBlockId, mode: PositionXMode): void
 
 Sets the Y position of a block.
 The position refers to the block's local space, relative to its parent with the origin at the top left.
-The page places its page slices, so the next update replaces a position set here on a page slice.
+A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one.
 ```javascript
 engine.block.setPositionY(block, 0.25);
 ```
@@ -2858,6 +2863,7 @@ Sets the mode for the block's Y position.
 ```javascript
 engine.block.setPositionYMode(block, 'Absolute');
 ```
+A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one.
 
 ```typescript
 setPositionYMode(id: DesignBlockId, mode: PositionYMode): void
@@ -3092,6 +3098,7 @@ in the new mode. `setSize` changes the mode and the size in one call.
 ```javascript
 engine.block.setWidthMode(block, 'Percent');
 ```
+A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`.
 
 ```typescript
 setWidthMode(id: DesignBlockId, mode: WidthMode): void
@@ -3131,6 +3138,7 @@ in the new mode. `setSize` changes the mode and the size in one call.
 ```javascript
 engine.block.setHeightMode(block, 'Percent');
 ```
+A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`.
 
 ```typescript
 setHeightMode(id: DesignBlockId, mode: HeightMode): void
@@ -3375,6 +3383,7 @@ distributeVertically(ids: DesignBlockId[]): void
 Resizes and positions a block to fill its parent.
 The crop values of the block are reset if it can be cropped. A block that follows a transform parent stops
 following it.
+A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one.
 
 ```typescript
 fillParent(id: DesignBlockId): void
@@ -3422,6 +3431,7 @@ every other pending change.
 // Scale a block to double its size, anchored at the center.
 engine.block.scale(block, 2.0, 0.5, 0.5);
 ```
+Scaling a page slice changes its size, and the page places its page slices again.
 
 ```typescript
 scale(id: DesignBlockId, scale: number, anchorX?: number, anchorY?: number): void
@@ -4108,6 +4118,7 @@ Check block capabilities like alignability or distributability.
 ### isAlignable()
 
 Checks if a set of blocks can be aligned.
+A page slice cannot be aligned, so the result is false when `ids` holds one.
 
 ```typescript
 isAlignable(ids: DesignBlockId[]): boolean
@@ -4121,6 +4132,7 @@ isAlignable(ids: DesignBlockId[]): boolean
 ### isDistributable()
 
 Checks if a set of blocks can be distributed.
+A page slice cannot be distributed, so the result is false when `ids` holds one.
 
 ```typescript
 isDistributable(ids: DesignBlockId[]): boolean
@@ -6084,6 +6096,95 @@ getTextKernings(id: DesignBlockId, from?: number, to?: number): number[]
 - `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
 - `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
 
+### setTextOpenTypeFeatures()
+
+Sets the OpenType features of a text range, such as `tnum` for digits of equal width.
+The list replaces the features that the range had, and an empty list removes them. When a tag repeats, the
+last entry wins. The features apply after the ligature and kerning settings of the block, so an entry for
+`liga` or `kern` overrides them in the range. A tag that the font does not have changes nothing.
+`editor.getFontInfo` lists the features of a font.
+Required scope: "text/character"
+```javascript
+engine.block.setTextOpenTypeFeatures(text, [{ tag: 'tnum', value: 1 }]); // digits of equal width
+engine.block.setTextOpenTypeFeatures(text, [{ tag: 'liga', value: 0 }], 0, 5); // no ligatures in the first 5
+engine.block.setTextOpenTypeFeatures(text, []); // remove all features
+```
+
+```typescript
+setTextOpenTypeFeatures(id: DesignBlockId, features: OpenTypeFeature[], from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `features` - The features. Each tag has four ASCII characters. A value of 0 turns the feature off, 1 turns
+it on, and a larger value selects an alternate by its index.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### getTextOpenTypeFeatures()
+
+Returns the unique OpenType feature lists across a text range.
+Each list holds one entry per tag, sorted by tag. A range without features returns one empty list.
+```javascript
+const features = engine.block.getTextOpenTypeFeatures(text); // e.g. [[]] or [[{ tag: 'tnum', value: 1 }], []]
+```
+
+```typescript
+getTextOpenTypeFeatures(id: DesignBlockId, from?: number, to?: number): OpenTypeFeature[][]
+```
+
+**Parameters:**
+- `id` - The text block to query.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+**Returns:** The unique feature lists in the range.
+
+### setTextVariationAxes()
+
+Sets the variation axis values of a text range, such as `wdth` for the width of a variable font.
+The list replaces the axis values that the range had, and an empty list removes them. When a tag repeats, the
+last entry wins. An axis without a value keeps the value that the font file and the font weight and style
+select. A `wght` entry overrides the font weight with any value, such as 450, and `setTextFontWeight` does not
+remove it. An `ital` or `slnt` entry overrides the font style in the same way, and `setTextFontStyle` does not
+remove it either. The font clamps a value to the range of its axis, and an axis that the font does not have changes
+nothing. Values keep three decimals. `editor.getFontInfo` lists the axes of a font.
+Required scope: "text/character"
+```javascript
+engine.block.setTextVariationAxes(text, [{ tag: 'wdth', value: 75 }]); // a narrower width
+engine.block.setTextVariationAxes(text, [{ tag: 'wght', value: 450 }], 0, 5); // a weight between two named ones
+engine.block.setTextVariationAxes(text, []); // remove all axis values
+```
+
+```typescript
+setTextVariationAxes(id: DesignBlockId, axes: VariationAxisValue[], from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `axes` - The axis values. Each tag has four ASCII characters.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### getTextVariationAxes()
+
+Returns the unique variation axis value lists across a text range.
+Each list holds one entry per tag, sorted by tag. A range without axis values returns one empty list.
+```javascript
+const axes = engine.block.getTextVariationAxes(text); // e.g. [[]] or [[{ tag: 'wdth', value: 75 }]]
+```
+
+```typescript
+getTextVariationAxes(id: DesignBlockId, from?: number, to?: number): VariationAxisValue[][]
+```
+
+**Parameters:**
+- `id` - The text block to query.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+**Returns:** The unique axis value lists in the range.
+
 ### setTextBaselineShift()
 
 Sets the baseline shift for a grapheme range.
@@ -7057,6 +7158,8 @@ split(id: DesignBlockId, atTime: number, options?: SplitOptions): DesignBlockId
 ### createTransition()
 
 Creates a new transition block.
+Its saved `transition/overlap` boolean starts at the current value of
+`clip/defaultTransitionOverlapEnabled` (engine default: true).
 The created block is standalone until assigned to a clip with `setTransition`.
 Once assigned, it is owned by that clip: it is destroyed together with the
 clip, and the engine also destroys it automatically when the two clips stop
@@ -7094,6 +7197,10 @@ automatically. Throws an error if the given transition block is invalid or
 already assigned to another clip. Both the clip and its following clip on
 the track must support transitions, see `supportsTransition`. To clear a
 clip's transition, use `removeTransition` instead.
+With `transition/overlap=false` on the transition block, transitions preserve
+clip timing and hold endpoint frames across the cut. This property is saved
+in scenes; older scenes without it use true. New transitions initialize it
+from `clip/defaultTransitionOverlapEnabled`.
 
 ```typescript
 setTransition(id: DesignBlockId, transition: DesignBlockId): void

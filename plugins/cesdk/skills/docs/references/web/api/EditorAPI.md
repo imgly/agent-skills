@@ -1233,7 +1233,7 @@ getFontMetrics(fontFileUri: string, options?: AbortOptions): Promise<FontMetrics
 
 ### getFontInfo()
 
-Gets the names, weight, style and variation axes of a font file.
+Gets the names, weight, style, variation axes and OpenType features of a font file.
 The call loads the font when it is not loaded yet. The result describes the default instance of a variable font,
 and the call ignores a fragment that names axis values, such as `#wght=700`. Use the result to register an
 uploaded font on a typeface asset source.
@@ -1242,6 +1242,7 @@ const info = await engine.editor.getFontInfo('https://example.com/fonts/Inter-Se
 console.log(info.family, info.subFamily); // "Inter", "Semi Bold"
 console.log(info.weight, info.fontWeight, info.style); // 600, "semiBold", "normal"
 console.log(info.isVariable, info.variationAxes);
+console.log(info.openTypeFeatures); // e.g. ['kern', 'ss01', 'tnum']
 ```
 
 ```typescript

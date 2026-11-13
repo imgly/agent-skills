@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 351 generated API digests.
+Complete catalog of 353 generated API digests.
 
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
@@ -250,6 +250,7 @@ Complete catalog of 351 generated API digests.
 - [MovementConstraintScope.BlockType](<../engine/ly.img.engine/-movement-constraint-scope/-block-type.md>) — `ly.img.engine`
 - [MovementConstraintScope.Scene](<../engine/ly.img.engine/-movement-constraint-scope/-scene.md>) — `ly.img.engine`
 - [ObjectType](<../engine/ly.img.engine/-object-type.md>) — `ly.img.engine`
+- [OpenTypeFeature](<../engine/ly.img.engine/-open-type-feature.md>) — `ly.img.engine`
 - [OutputProfileMode](<../engine/ly.img.engine/-output-profile-mode.md>) — `ly.img.engine`
 - [PathVertex](<../engine/ly.img.engine/-path-vertex.md>) — `ly.img.engine`
 - [PositionMode](<../engine/ly.img.engine/-position-mode.md>) — `ly.img.engine`
@@ -342,6 +343,7 @@ Complete catalog of 351 generated API digests.
 - [VariableTarget.ValueSet](<../engine/ly.img.engine/-variable-target/-value-set.md>) — `ly.img.engine`
 - [VariableType](<../engine/ly.img.engine/-variable-type.md>) — `ly.img.engine`
 - [VariationAxis](<../engine/ly.img.engine/-variation-axis.md>) — `ly.img.engine`
+- [VariationAxisValue](<../engine/ly.img.engine/-variation-axis-value.md>) — `ly.img.engine`
 - [Vector2](<../engine/ly.img.engine/-vector2.md>) — `ly.img.engine`
 - [VerticalBlockAlignment](<../engine/ly.img.engine/-vertical-block-alignment.md>) — `ly.img.engine`
 - [VerticalContentFillAlignment](<../engine/ly.img.engine/-vertical-content-fill-alignment.md>) — `ly.img.engine`

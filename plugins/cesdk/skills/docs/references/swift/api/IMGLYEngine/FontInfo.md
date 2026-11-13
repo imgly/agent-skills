@@ -3,7 +3,7 @@
 - **Module:** `IMGLYEngine`
 - **DocC identifier:** `/documentation/IMGLYEngine/FontInfo`
 
-The identity of a font file: its names, weight, style and variation axes. A variable font is described by its default instance.
+The identity of a font file: its names, weight, style, variation axes and OpenType features. A variable font is described by its default instance.
 
 ```swift
 struct FontInfo
@@ -27,10 +27,10 @@ let fontWeight: FontWeight
 
 The named weight that is closest to `weight`.
 
-### init(family:legacyFamily:subFamily:postScriptName:weight:fontWeight:style:isVariable:variationAxes:)
+### init(family:legacyFamily:subFamily:postScriptName:weight:fontWeight:style:isVariable:variationAxes:openTypeFeatures:)
 
 ```swift
-init(family: String, legacyFamily: String, subFamily: String, postScriptName: String, weight: Int, fontWeight: FontWeight, style: FontStyle, isVariable: Bool, variationAxes: [VariationAxis])
+init(family: String, legacyFamily: String, subFamily: String, postScriptName: String, weight: Int, fontWeight: FontWeight, style: FontStyle, isVariable: Bool, variationAxes: [VariationAxis], openTypeFeatures: [String])
 ```
 
 ### isVariable
@@ -48,6 +48,14 @@ let legacyFamily: String
 ```
 
 The legacy family name (name ID 1). It can name the weight too, such as “Inter Semi Bold”.
+
+### openTypeFeatures
+
+```swift
+let openTypeFeatures: [String]
+```
+
+The OpenType feature tags of the font’s `GSUB` and `GPOS` tables, such as `tnum` or `ss01`, sorted and without duplicates. [`setTextOpenTypeFeatures(_:features:in:)`](../blockapi/settextopentypefeatures(_:features:in:).md) takes these tags.
 
 ### postScriptName
 

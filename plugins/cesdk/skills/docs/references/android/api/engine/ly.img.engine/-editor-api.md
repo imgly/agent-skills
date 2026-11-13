@@ -230,7 +230,7 @@ Returns the engine media catalog for this runtime. Support describes known decod
 abstract suspend fun getFontInfo(fontFileUri: String): FontInfo
 ```
 
-Returns the names, weight, style and variation axes of a font file. The call loads the font when it is not loaded yet. The result describes the default instance of a variable font, and the call ignores a fragment that names axis values, such as #wght=700. Use the result to register an uploaded font on a typeface asset source. Cancelling the coroutine stops the download of the font.
+Returns the names, weight, style, variation axes and OpenType features of a font file. The call loads the font when it is not loaded yet. The result describes the default instance of a variable font, and the call ignores a fragment that names axis values, such as #wght=700. Use the result to register an uploaded font on a typeface asset source. Cancelling the coroutine stops the download of the font.
 
 ### getFontMetrics
 

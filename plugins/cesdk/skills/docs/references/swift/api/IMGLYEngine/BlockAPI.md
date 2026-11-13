@@ -365,7 +365,7 @@ Create a new text animator. A text animator changes the glyphs of a text block t
 @MainActor func createTransition(_ type: TransitionType) throws -> DesignBlockID
 ```
 
-Creates a new transition, fails if type is unknown. `type`
+Creates a new transition, fails if type is unknown. Its `transition/overlap` value is initialized from the current `clip/defaultTransitionOverlapEnabled` editor setting. `type`
 
 ### destroy(_:)
 
@@ -421,7 +421,7 @@ Changes selection from a group’s selected block to that group. Nothing happens
 @MainActor func export(_ id: DesignBlockID, mimeType: MIMEType, options: ExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil, onProgress: (@MainActor @Sendable (Int, Int) -> Void)? = nil) async throws -> Blob
 ```
 
-Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. `id`
+Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. Performs an internal update to resolve the final layout for the blocks. `id`
 
 ### export(_:mimeType:options:onPreExport:uriResolver:onProgress:)-7r7re
 
@@ -533,7 +533,7 @@ Exports multiple design block elements as files of the given mime type with colo
 @MainActor func exportWithColorMask(_ id: DesignBlockID, mimeType: MIMEType, maskColorR: Float, maskColorG: Float, maskColorB: Float, options: ExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil) async throws -> [Blob]
 ```
 
-Exports a design block element as a file of the given mime type. Performs an internal update to resolve the final layout for the blocks. `id`
+Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. Performs an internal update to resolve the final layout for the blocks. `id`
 
 ### fillParent(_:)
 
@@ -541,7 +541,7 @@ Exports a design block element as a file of the given mime type. Performs an int
 @MainActor func fillParent(_ id: DesignBlockID) throws
 ```
 
-Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block’s fill is unknown, the content fill mode is changed from `Crop` to `Cover` to prevent invalid crop values. A block that follows a transform parent stops following it. Required scope: “layer/move” `id`
+Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block’s fill is unknown, the content fill mode is changed from `Crop` to `Cover` to prevent invalid crop values. A block that follows a transform parent stops following it. A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one. Required scope: “layer/move” `id`
 
 ### find(byKind:)
 
@@ -1307,7 +1307,7 @@ Query a block’s x position. The position is the block’s local origin: the to
 @MainActor func getPositionXMode(_ id: DesignBlockID) throws -> PositionMode
 ```
 
-Query a block’s mode for its x position. `id`
+Query a block’s mode for its x position. On a page slice the mode is undefined, because the page sets its position. `id`
 
 ### getPositionY(_:)
 
@@ -1323,7 +1323,7 @@ Query a block’s y position. The position is the block’s local origin: the to
 @MainActor func getPositionYMode(_ id: DesignBlockID) throws -> PositionMode
 ```
 
-Query a block’s mode for its y position. `id`
+Query a block’s mode for its y position. On a page slice the mode is undefined, because the page sets its position. `id`
 
 ### getRotation(_:)
 
@@ -1661,6 +1661,14 @@ Returns whether text is placed on the opposite side of the baseline path. `id`
 
 Returns the start offset along the baseline path as a proportion of the path length. `id`
 
+### getTextOpenTypeFeatures(_:in:)
+
+```swift
+@MainActor func getTextOpenTypeFeatures(_ id: DesignBlockID, in subrange: Range<String.Index>? = nil) throws -> [[OpenTypeFeature]]
+```
+
+Returns the unique OpenType feature lists across the grapheme range. Each list holds one entry per tag, sorted by tag. A range without features returns one empty list. `id`
+
 ### getTextParagraphIndices(_:in:)
 
 ```swift
@@ -1692,6 +1700,14 @@ Returns all text runs within the given range of text. `id`
 ```
 
 Returns the ordered list of unique script styles of the text in the selected range. `id`
+
+### getTextVariationAxes(_:in:)
+
+```swift
+@MainActor func getTextVariationAxes(_ id: DesignBlockID, in subrange: Range<String.Index>? = nil) throws -> [[VariationAxisValue]]
+```
+
+Returns the unique variation axis value lists across the grapheme range. Each list holds one entry per tag, sorted by tag. A range without axis values returns one empty list. `id`
 
 ### getTextVisibleLineContent(_:lineIndex:)
 
@@ -1931,7 +1947,7 @@ Inserts a text animator at the given index into the text animators of a block. A
 @MainActor func isAlignable(_ ids: [DesignBlockID]) throws -> Bool
 ```
 
-Confirms that a given set of blocks can be aligned. `ids`
+Confirms that a given set of blocks can be aligned. A page slice cannot be aligned, so the result is false when `ids` holds one. `ids`
 
 ### isAllowedByScope(_:key:)
 
@@ -2003,7 +2019,7 @@ Check if the crop aspect ratio is locked for the given block. When locked, crop 
 @MainActor func isDistributable(_ ids: [DesignBlockID]) throws -> Bool
 ```
 
-Confirms that a given set of blocks can be distributed. `ids`
+Confirms that a given set of blocks can be distributed. A page slice cannot be distributed, so the result is false when `ids` holds one. `ids`
 
 ### isDropShadowEnabled(_:)
 
@@ -2237,6 +2253,22 @@ Loads existing blocks from the given string. The blocks are not attached by defa
 
 Loads existing blocks from an archive. The URL should be that of a file previously saved with `block.saveToArchive`. The blocks are not attached by default and won’t be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one. `url`
 
+### movePageIntoSpread(_:spread:index:dissolveSourceSpread:)
+
+```swift
+@MainActor func movePageIntoSpread(_ pageOrSlice: DesignBlockID, spread: DesignBlockID, index: Int, dissolveSourceSpread: Bool = false) throws -> DesignBlockID
+```
+
+Moves a standalone page or a slice from another spread into a spread. The index counts destination slices, including hidden slices, before the move. Insertion at the end is valid. Use `insertChild(into:child:at:)` to reorder within one spread. Preserves content IDs. A page becomes a new slice; a transferred slice keeps its ID. Incoming content appears above existing content, retaining its order. The slice takes the destination’s shared height or width without scaling content. Insertion fails if a content block would change its slice owner. Conversion preserves supported appearance keyframes. Slice tracks use the containing spread’s playback clock. Conversion rejects preset animations and un…
+
+### movePageSliceOutOfSpread(_:index:dissolveSourceSpread:)
+
+```swift
+@MainActor func movePageSliceOutOfSpread(_ slice: DesignBlockID, index: Int, dissolveSourceSpread: Bool = false) throws -> DesignBlockID
+```
+
+Moves a slice out of its spread into a new standalone page. The index counts pages in the source page container before the move. Insertion at the end is valid. The source stays in that sequence. Content IDs survive; the old slice ID becomes invalid. An enabled slice fill survives. Otherwise dissolution inherits the spread fill; a source that remains gives white. An empty source does not count as dissolution. Conversion preserves supported appearance keyframes. Slice tracks use the containing spread’s playback clock. Conversion rejects preset animations and unsupported tracks, including geometry and crop tracks. Dissolution rejects a remaining slice with preset animations or keyframes. Wait…
+
 ### onClicked
 
 ```swift
@@ -2435,7 +2467,7 @@ Saves the given blocks into a string. If given the root of a block hierarchy, e.
 @MainActor func scale(_ id: DesignBlockID, to scale: Float, anchorX: Float = 0, anchorY: Float = 0) throws
 ```
 
-Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, every child of it and each transform parent. That update also lays out every other pending change. Required scope: “layer/resize” `id`
+Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, every child of it and each transform parent. That update also lays out every other pending change. Scaling a page slice changes its size, and the page places its page slices again. Required scope: “layer/resize” `id`
 
 ### select(_:)
 
@@ -2829,7 +2861,7 @@ Update a block’s height and optionally maintain the crop. A new height of a pa
 @MainActor func setHeightMode(_ id: DesignBlockID, mode: SizeMode) throws
 ```
 
-Set a block’s mode for its height. A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: “layer/resize” `id`
+Set a block’s mode for its height. A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`. Required scope: “layer/resize” `id`
 
 ### setInAnimation(_:animation:)
 
@@ -3013,7 +3045,7 @@ Set whether the block should be during active playback. `id`
 @MainActor func setPositionX(_ id: DesignBlockID, value: Float) throws
 ```
 
-Update a block’s x position. The position refers to the block’s local space, relative to its parent with the origin at the top left. The page places its page slices, so the next update replaces a position set here on a page slice. Required scope: “layer/move” `id`
+Update a block’s x position. The position refers to the block’s local space, relative to its parent with the origin at the top left. A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one. Required scope: “layer/move” `id`
 
 ### setPositionXMode(_:mode:)
 
@@ -3021,7 +3053,7 @@ Update a block’s x position. The position refers to the block’s local space,
 @MainActor func setPositionXMode(_ id: DesignBlockID, mode: PositionMode) throws
 ```
 
-Set a block’s mode for its x position. Required scope: “layer/move” `id`
+Set a block’s mode for its x position. A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one. Required scope: “layer/move” `id`
 
 ### setPositionY(_:value:)
 
@@ -3029,7 +3061,7 @@ Set a block’s mode for its x position. Required scope: “layer/move” `id`
 @MainActor func setPositionY(_ id: DesignBlockID, value: Float) throws
 ```
 
-Update a block’s y position. The position refers to the block’s local space, relative to its parent with the origin at the top left. The page places its page slices, so the next update replaces a position set here on a page slice. Required scope: “layer/move” `id`
+Update a block’s y position. The position refers to the block’s local space, relative to its parent with the origin at the top left. A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one. Required scope: “layer/move” `id`
 
 ### setPositionYMode(_:mode:)
 
@@ -3037,7 +3069,7 @@ Update a block’s y position. The position refers to the block’s local space,
 @MainActor func setPositionYMode(_ id: DesignBlockID, mode: PositionMode) throws
 ```
 
-Set a block’s mode for its y position. Required scope: “layer/move” `id`
+Set a block’s mode for its y position. A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one. Required scope: “layer/move” `id`
 
 ### setRotation(_:radians:)
 
@@ -3359,6 +3391,14 @@ Sets whether text is placed on the opposite side of the baseline path. `id`
 
 Sets the start offset along the baseline path as a proportion of the path length. `id`
 
+### setTextOpenTypeFeatures(_:features:in:)
+
+```swift
+@MainActor func setTextOpenTypeFeatures(_ id: DesignBlockID, features: [OpenTypeFeature], in subrange: Range<String.Index>? = nil) throws
+```
+
+Sets the OpenType features of a grapheme range, such as `tnum` for digits of equal width. The list replaces the features that the range had, and an empty list removes them. When a tag repeats, the last entry wins. The features apply after the ligature and kerning settings of the block, so an entry for `liga` or `kern` overrides them in the range. A tag that the font does not have changes nothing. [`getFontInfo(fontFileURI:)`](../editorapi/getfontinfo(fontfileuri:).md) lists the features of a font. Required scope: “text/character” `id`
+
 ### setTextScriptStyle(_:scriptStyle:in:)
 
 ```swift
@@ -3366,6 +3406,14 @@ Sets the start offset along the baseline path as a proportion of the path length
 ```
 
 Sets the given script style for the selected range of text. Superscript and subscript text is scaled down and shifted off the regular baseline. The block properties “text/superscriptFontScale”, “text/superscriptVerticalShift”, “text/subscriptFontScale” and “text/subscriptVerticalShift” adjust the scale and shift. Required scope: “text/character” `id`
+
+### setTextVariationAxes(_:axes:in:)
+
+```swift
+@MainActor func setTextVariationAxes(_ id: DesignBlockID, axes: [VariationAxisValue], in subrange: Range<String.Index>? = nil) throws
+```
+
+Sets the variation axis values of a grapheme range, such as `wdth` for the width of a variable font. The list replaces the axis values that the range had, and an empty list removes them. When a tag repeats, the last entry wins. An axis without a value keeps the value that the font file and the font weight and style select. A `wght` entry overrides the font weight with any value, such as 450, and `setTextFontWeight` does not remove it. An `ital` or `slnt` entry overrides the font style in the same way, and `setTextFontStyle` does not remove it either. The font clamps a value to the range of its axis, and an axis that the font does not have changes nothing. Values keep three decimals. [`getFo…
 
 ### setTimeOffset(_:offset:)
 
@@ -3477,7 +3525,7 @@ Update a block’s width and optionally maintain the crop. A new width of a page
 @MainActor func setWidthMode(_ id: DesignBlockID, mode: SizeMode) throws
 ```
 
-Set a block’s mode for its width. A switch between Absolute and Percent keeps the stored width and reads it in the new mode. Set the width after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. Required scope: “layer/resize” `id`
+Set a block’s mode for its width. A switch between Absolute and Percent keeps the stored width and reads it in the new mode. Set the width after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`. Required scope: “layer/resize” `id`
 
 ### split(_:atTime:options:)
 

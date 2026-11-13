@@ -6,7 +6,7 @@
 The export options.
 
 ```kotlin
-data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val underlayerMinFeatureWidth: Float = 0.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null, val outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, val outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, val embedProfiles: Boolean = false, val preserveBlack: Boolean = false, val exportArea: RectF? = null)
+data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val underlayerMinFeatureWidth: Float = 0.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null, val outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, val outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, val embedProfiles: Boolean = false, val preserveBlack: Boolean = false, val exportArea: RectF? = null, val exportPdfPageSlices: Boolean = false)
 ```
 
 
@@ -15,8 +15,14 @@ data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Floa
 ### ExportOptions
 
 ```kotlin
-constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, underlayerMinFeatureWidth: Float = 0.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null, outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, embedProfiles: Boolean = false, preserveBlack: Boolean = false, exportArea: RectF? = null)
+constructor(pngCompressionLevel: Int, jpegQuality: Float, webpQuality: Float, targetWidth: Float?, targetHeight: Float?, exportPdfWithHighCompatibility: Boolean, exportPdfWithUnderlayer: Boolean, underlayerSpotColorName: String, underlayerOffset: Float, underlayerRenderRatio: Float, underlayerMaxError: Float, underlayerMinFeatureWidth: Float, allowTextOverhang: Boolean, exportPdfWithCropMarks: Boolean, exportPdfWithRegistrationMarks: Boolean, printMarkOffset: Float, cropMarkLength: Float, printMarkWidth: Float, pdfImageQuality: Float, pdfChunkSize: Int?, outputColorSpace: ProfileColorSpace, outputProfileMode: OutputProfileMode, embedProfiles: Boolean, preserveBlack: Boolean, exportArea: RectF?)
 ```
+
+```kotlin
+constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, underlayerMinFeatureWidth: Float = 0.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null, outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, embedProfiles: Boolean = false, preserveBlack: Boolean = false, exportArea: RectF? = null, exportPdfPageSlices: Boolean = false)
+```
+
+The constructor without exportPdfPageSlices, so that a call that passes all these arguments, from Java for example, keeps working. It sets exportPdfPageSlices to false.
 
 ### allowTextOverhang
 
@@ -50,13 +56,21 @@ val exportArea: RectF? = null
 
 The rectangle of the block to export instead of the whole block, in design units. Not supported for PDF. The rectangle is in the block's own space, before rotation. (0, 0) is the block's top-left corner. For a scene, the rectangle is in scene coordinates. Its width and height must be greater than 0. The export composes the rectangle like a full export of the block. The rectangle may reach outside the block. The block's margin, stroke and allowTextOverhang do not enlarge it. The output has the aspect ratio of the rectangle, at the export resolution of the scene. targetWidth and targetHeight scale the rectangle. An output smaller than 1 px is an error. The export skips most blocks on a page w…
 
+### exportPdfPageSlices
+
+```kotlin
+val exportPdfPageSlices: Boolean = false
+```
+
+Export each page slice of a page as its own PDF page, in reading order. Applies to the PDF export of a scene or of one page. Each PDF page holds the part of the page inside the page slice. It has the bleed of the page on all four sides. With a bleed or printer's marks, it has a TrimBox and a BleedBox, as a page has. At a fold, the bleed strip shows the content across the fold. A hidden page slice gets no PDF page. It keeps its room in the layout. The content in that room shows only in the bleed of the PDF pages beside it. A page that is not included in the export keeps its PDF pages, without content. A page that is exported itself always gives a PDF page, and an export never gives a PDF wit…
+
 ### exportPdfWithCropMarks
 
 ```kotlin
 val exportPdfWithCropMarks: Boolean = false
 ```
 
-Draw crop marks outside the bleed on every exported PDF page. Crop marks are the four pairs of corner lines that show a print shop where to cut. They are painted in the PDF registration colorant All, so they appear on every separation. This grows the PDF MediaBox to the trim plus printMarkOffset + cropMarkLength on each side, because the marks live outside the bleed. The page content, the TrimBox and the BleedBox keep describing the same physical rectangles. A page whose trim is not a rectangle, so a page with page/marginScale above 1, gets no marks and no larger page. The default value is false.
+Draw crop marks outside the bleed on every exported PDF page. Crop marks are the four pairs of corner lines that show a print shop where to cut. They are painted in the PDF registration colorant All, so they appear on every separation. On a page with page slices, each fold also gets a fold mark pair. A fold is at the start of each visible page slice that follows another visible page slice. A fold mark is a line on the extension of the fold, one on each side of the page. It is drawn as a crop mark line, with the same offset, weight and length. A fold never moves or removes a registration mark. At a fold in the middle of a page edge, the fold mark lies over the registration mark. This grows t…
 
 ### exportPdfWithHighCompatibility
 
