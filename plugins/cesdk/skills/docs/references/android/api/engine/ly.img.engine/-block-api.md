@@ -10,6 +10,14 @@ interface BlockApi
 
 ## Members
 
+### addComponentProperty
+
+```kotlin
+abstract fun addComponentProperty(component: DesignBlock, name: String, target: DesignBlock, property: String)
+```
+
+Publishes a property of a block inside a main component under a name that instances can set.
+
 ### addImageFileURIToSourceSet
 
 ```kotlin
@@ -147,6 +155,14 @@ abstract fun canToggleItalicFont(block: DesignBlock, from: Int = -1, to: Int = -
 
 Returns whether the font style of the given block can be toggled between italic and normal.
 
+### combineAsVariants
+
+```kotlin
+abstract fun combineAsVariants(components: List<DesignBlock>): DesignBlock
+```
+
+Moves main components into a new container as variants of one component.
+
 ### combine
 
 ```kotlin
@@ -154,6 +170,14 @@ abstract fun combine(blocks: List<DesignBlock>, op: BooleanOperation): DesignBlo
 ```
 
 Perform a boolean operation on the given blocks. All blocks must be combinable. See isCombinable. The parent, fill and sort order of the new block is that of the prioritized block. When the prioritized block has no fill, the new block has none. When performing a Union, Intersection or XOR, the operation is performed pair-wise starting with the element with the highest sort order. When performing a Difference, the operation is performed pair-wise starting with the element with the lowest sort order. Required scopes: "lifecycle/duplicate", "lifecycle/destroy"
+
+### convertToComponent
+
+```kotlin
+abstract fun convertToComponent(block: DesignBlock)
+```
+
+Makes a block a main component, so that instances can follow it.
 
 ### createAnimation
 
@@ -258,6 +282,14 @@ abstract fun createFromSVG(svg: String): DesignBlock
 
 Create editable graphic blocks from SVG markup, such as the SVG code that Adobe Illustrator copies. Each shape of the SVG becomes a graphic block with a vector path shape, its fill color or gradient, and its stroke. More than one block goes into a group. Embedded images, text, filters, masks and patterns have no shape. Each such part becomes a graphic block with an image fill of only that part. The blocks are not attached to a parent. An SVG user unit is a pixel in a scene measured in pixels. In a scene measured in millimeters or inches it is a point, as Adobe Illustrator writes it.
 
+### createInstance
+
+```kotlin
+abstract fun createInstance(component: DesignBlock): DesignBlock
+```
+
+Creates an instance of a main component. Attach it with appendChild. An instance follows every property that it does not override. Its children cannot be added, reordered or destroyed. Hide a child with setVisible.
+
 ### createMask
 
 ```kotlin
@@ -324,6 +356,14 @@ abstract fun destroy(block: DesignBlock)
 
 Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. The last page slice of a page keeps them. Destroying a page slice that is not the last one runs an internal update. Required scope: "lifecycle/destroy"
 
+### detachInstance
+
+```kotlin
+abstract fun detachInstance(instance: DesignBlock)
+```
+
+Turns an instance into plain blocks that no longer follow the main component.
+
 ### distributeHorizontally
 
 ```kotlin
@@ -346,7 +386,7 @@ Distribute multiple blocks vertically within their bounding box so that the spac
 abstract fun duplicate(block: DesignBlock, attachToParent: Boolean = true): DesignBlock
 ```
 
-Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. Required scope: "lifecycle/duplicate" If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. The duplicate of a page slice takes a copy of the blocks that the page slice owns on its page. The call runs an internal update for a page slice on a page, also while features/implicitUpdatesEnabled is off. A block that a page slice owns gets its Percent position and size in design units in the co…
+Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. A scene cannot be duplicated, and the call throws for it. Required scope: "lifecycle/duplicate" If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. The duplicate of a page slice takes a copy of the blocks that the page slice owns on its page. The call runs an internal update for a page slice on a page, also while features/implicitUpdatesEnabled is off. A block that a page slice owns ge…
 
 ### enterGroup
 
@@ -402,7 +442,7 @@ abstract suspend fun exportVideo(block: DesignBlock, mimeType: MimeType = MimeTy
 abstract suspend fun exportVideo(blocks: List<DesignBlock>, mimeType: MimeType = MimeType.MP4, options: ExportVideoOptions? = null, progressCallback: ((ExportVideoProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
 ```
 
-Exports a design block as a video file of the given mime type. Note: MP4 exports embed a PNG cover at the page playback position unless coverTimeOffset overrides it. Note: The export will run across multiple iterations of the update loop. In each iteration a frame is scheduled for encoding. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with…
+Exports a design block as a video file of the given mime type. Note: MP4 exports embed a PNG cover at the page cover time when playback/coverTimeEnabled is true, else at the page playback position. coverTimeOffset overrides both. An MP4 export of a scene uses its first frame as the cover. Note: The export will run across multiple iterations of the update loop. In each iteration a frame is scheduled for encoding. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported sce…
 
 ### exportWithColorMask
 
@@ -443,6 +483,14 @@ abstract fun fillParent(block: DesignBlock)
 ```
 
 Resize and position a block to entirely fill its parent block. The crop values of the block, except for the flip and crop rotation, are reset if it can be cropped. If the size of the block's fill is unknown, the content fill mode is changed from Crop to Cover to prevent invalid crop values. A block that follows a transform parent stops following it. A page slice takes its position from its page, so the call fails with BLOCK.POSITION_PARENT_CONTROLLED on one. Required scope: "layer/move" - "layer/resize"
+
+### findAllComponentProperties
+
+```kotlin
+abstract fun findAllComponentProperties(component: DesignBlock): List<String>
+```
+
+Gets the sorted names of the published properties of a main component.
 
 ### findAllInExclusionAreas
 
@@ -499,6 +547,14 @@ abstract fun findAllVariableBindings(block: DesignBlock): List<String>
 ```
 
 Get the properties of a block that are bound to a variable.
+
+### findAllVariantProperties
+
+```kotlin
+abstract fun findAllVariantProperties(component: DesignBlock): List<String>
+```
+
+Gets the sorted names of the variant properties of a main component.
 
 ### findAll
 
@@ -669,7 +725,7 @@ Get the blend mode of the given design block.
 ### getBlur
 
 ```kotlin
-abstract fun getBlur(block: DesignBlock): DesignBlock
+abstract fun getBlur(block: DesignBlock): DesignBlock?
 ```
 
 Get the blur block of the given design block. For example, a graphic has no blur right after create(DesignBlockType.Graphic), although isBlurEnabled returns true.
@@ -688,7 +744,7 @@ Get the value of a boolean property of the given design block.
 abstract fun getChildren(block: DesignBlock): List<DesignBlock>
 ```
 
-Get all children of the given block. Children are sorted in their rendering order: Last child is rendered in front of other children.
+Get all children of the given block. Children are sorted in their rendering order: Last child is rendered in front of other children. For a scene that arranges its pages, the list leaves out the camera.
 
 ### getColor
 
@@ -697,6 +753,14 @@ abstract fun getColor(block: DesignBlock, property: String): Color
 ```
 
 Get the value of a color property of the given design block.
+
+### getComponentProperty
+
+```kotlin
+abstract fun getComponentProperty(instance: DesignBlock, name: String): String
+```
+
+Gets a published property of an instance as text.
 
 ### getContentFillHorizontalAlignment
 
@@ -893,7 +957,7 @@ Get the fill color of the given design block.
 ### getFill
 
 ```kotlin
-abstract fun getFill(block: DesignBlock): DesignBlock
+abstract fun getFill(block: DesignBlock): DesignBlock?
 ```
 
 Returns the block containing the fill properties of the given block. For example, a graphic has no fill right after create(DesignBlockType.Graphic), although isFillEnabled returns true.
@@ -1005,7 +1069,7 @@ Query a block's height.
 ### getInAnimation
 
 ```kotlin
-abstract fun getInAnimation(block: DesignBlock): DesignBlock
+abstract fun getInAnimation(block: DesignBlock): DesignBlock?
 ```
 
 Get the "in" animation of the given block.
@@ -1045,10 +1109,18 @@ Get the kind of the given block, fails if the block is invalid.
 ### getLoopAnimation
 
 ```kotlin
-abstract fun getLoopAnimation(block: DesignBlock): DesignBlock
+abstract fun getLoopAnimation(block: DesignBlock): DesignBlock?
 ```
 
 Get the "loop" animation of the given block.
+
+### getMainComponent
+
+```kotlin
+abstract fun getMainComponent(instance: DesignBlock): DesignBlock
+```
+
+Gets the main component of an instance.
 
 ### getMasks
 
@@ -1102,7 +1174,7 @@ Get the opacity of the given design block.
 ### getOutAnimation
 
 ```kotlin
-abstract fun getOutAnimation(block: DesignBlock): DesignBlock
+abstract fun getOutAnimation(block: DesignBlock): DesignBlock?
 ```
 
 Gets the "out" animation of the given block.
@@ -1198,7 +1270,7 @@ Get the position and size of the axis-aligned bounding box for the given blocks 
 ### getShape
 
 ```kotlin
-abstract fun getShape(block: DesignBlock): DesignBlock
+abstract fun getShape(block: DesignBlock): DesignBlock?
 ```
 
 Returns the block containing the shape properties of the given block. For example, a graphic has no shape right after create(DesignBlockType.Graphic).
@@ -1675,6 +1747,14 @@ abstract fun getVariableBinding(block: DesignBlock, property: String): String?
 
 Get the variable that a block property is bound to.
 
+### getVariantProperty
+
+```kotlin
+abstract fun getVariantProperty(component: DesignBlock, name: String): String
+```
+
+Gets the value of a variant property of a main component.
+
 ### getVec2
 
 ```kotlin
@@ -1754,7 +1834,7 @@ Returns whether a block has its own anchor. Setting transform/anchor/x or transf
 abstract fun insertChild(parent: DesignBlock, child: DesignBlock, index: Int)
 ```
 
-Insert a new or existing child at a certain position in the parent's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or duplicate returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: "editor/add"
+Insert a new or existing child at a certain position in the parent's children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or duplicate returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: "editor/add" For a scene that arranges its pages, the index counts the children without the camera.
 
 ### insertEffect
 
@@ -1850,7 +1930,7 @@ Query if the background of the given design block is enabled.
 abstract fun isBlurEnabled(block: DesignBlock): Boolean
 ```
 
-Query if blur is enabled for the given block. The flag does not depend on an attached blur block. It defaults to true, so a fresh graphic reports its blur as enabled while getBlur returns an invalid block.
+Query if blur is enabled for the given block. The flag does not depend on an attached blur block. It defaults to true, so a fresh graphic reports its blur as enabled while getBlur returns null.
 
 ### isClipped
 
@@ -1867,6 +1947,14 @@ abstract fun isCombinable(blocks: List<DesignBlock>): Boolean
 ```
 
 Checks whether blocks could be combined. Only graphics blocks and text blocks can be combined. All blocks must have the "lifecycle/duplicate" scope enabled.
+
+### isComponent
+
+```kotlin
+abstract fun isComponent(block: DesignBlock): Boolean
+```
+
+Checks whether a block is a main component.
 
 ### isCropAspectRatioLocked
 
@@ -1906,7 +1994,7 @@ Queries whether an effect block is enabled and therefore applies its effect.
 abstract fun isFillEnabled(block: DesignBlock): Boolean
 ```
 
-Query if the fill of the given design block is enabled. The flag does not depend on an attached fill block. It defaults to true, so a fresh graphic reports its fill as enabled while getFill returns an invalid block.
+Query if the fill of the given design block is enabled. The flag does not depend on an attached fill block. It defaults to true, so a fresh graphic reports its fill as enabled while getFill returns null.
 
 ### isFlipHorizontal
 
@@ -1938,7 +2026,7 @@ Query whether the block is muted due to engine constraints.
 abstract fun isGroupable(blocks: List<DesignBlock>): Boolean
 ```
 
-Confirms that a given set of blocks can be grouped together.
+Confirms that a given set of blocks can be grouped together. A caption or a caption track cannot be grouped, because a caption plays from the caption track of its page.
 
 ### isIncludedInExport
 
@@ -1947,6 +2035,14 @@ abstract fun isIncludedInExport(block: DesignBlock): Boolean
 ```
 
 Query if the given block is included on the exported result.
+
+### isInstance
+
+```kotlin
+abstract fun isInstance(block: DesignBlock): Boolean
+```
+
+Checks whether a block is the top block of an instance.
 
 ### isLineOrigin
 
@@ -2096,7 +2192,7 @@ Query a block's transform locked state. If true, the block's transform can't be 
 ### isValid
 
 ```kotlin
-abstract fun isValid(block: DesignBlock): Boolean
+abstract fun isValid(block: DesignBlock?): Boolean
 ```
 
 Check if a block is valid. A block becomes invalid once it has been destroyed.
@@ -2301,6 +2397,14 @@ abstract fun resetCrop(block: DesignBlock)
 
 Resets the manually set crop of the given design block. The block's content fill mode is set to ContentFillMode.COVER. If the block has a fill, the crop values are updated so that it covers the block. Required scope: "layer/crop"
 
+### resetInstance
+
+```kotlin
+abstract fun resetInstance(instance: DesignBlock)
+```
+
+Removes all overrides of an instance.
+
 ### resizeContentAware
 
 ```kotlin
@@ -2458,6 +2562,14 @@ abstract fun setColor(block: DesignBlock, property: String, value: Color)
 
 Set a color property of the given design block to the given value.
 
+### setComponentProperty
+
+```kotlin
+abstract fun setComponentProperty(instance: DesignBlock, name: String, value: String)
+```
+
+Sets a published property on an instance as text. This is an override.
+
 ### setContentFillHorizontalAlignment
 
 ```kotlin
@@ -2608,7 +2720,7 @@ Set the drop shadow's y offset of the given design block. Required scope: "appea
 abstract fun setDuration(block: DesignBlock, duration: Double)
 ```
 
-Set the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. If a duration is set on the page block, it becomes the duration source block. Note: The duration is ignored when the scene is not in "Video" mode. Note: This also adjusts the trim for non looping blocks. Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves, with the clips that transitions join after it, until the overlap equals the transition duration again. The overlap is at most half of either clip. With transition/overlap disabled, the clips meet at the cut.
+Set the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. If a duration is set on the page block, it becomes the duration source block. Note: The duration is ignored when the scene is not in "Video" mode. Note: This also adjusts the trim for non looping blocks. Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves, with the clips that transitions join after it, until the overlap equals the transition duration again. The overlap is at most half of either clip. With transition/overlap disabled, or with a group clip on either side, the clips meet at the c…
 
 ### setEffectEnabled
 
@@ -2745,6 +2857,14 @@ abstract fun setIncludedInExport(block: DesignBlock, enabled: Boolean)
 ```
 
 Set if you want the given design block to be included in exported result.
+
+### setInstanceVariant
+
+```kotlin
+abstract fun setInstanceVariant(instance: DesignBlock, name: String, value: String)
+```
+
+Switches an instance to the variant with this property value. Overrides stay, and layers match by name.
 
 ### setInt
 
@@ -3320,7 +3440,7 @@ Makes a block follow the transform of another block, or stops it from following 
 abstract fun setTransition(block: DesignBlock, transition: DesignBlock)
 ```
 
-Assigns the outgoing transition of a clip. A previously assigned transition block is detached but not destroyed automatically. Fails if the given transition block is invalid or already assigned to another clip. Both the clip and its following clip on the track must support transitions, see supportsTransition. To clear a clip's transition, use removeTransition instead. With transition/overlap=false, transitions preserve clip timing and hold endpoint frames across the cut. The setting defaults to true and is not saved in scenes; switching modes leaves saved data intact.
+Assigns the outgoing transition of a clip. A previously assigned transition block is detached but not destroyed automatically. Fails if the given transition block is invalid or already assigned to another clip. Both the clip and its following clip on the track must support transitions, see supportsTransition. To clear a clip's transition, use removeTransition instead. With transition/overlap=false, transitions preserve clip timing and hold endpoint frames across the cut. The property is saved in scenes, and older scenes without it use true. A group clip on either side ignores transition/overlap: the clips meet at the cut, and the saved value stays.
 
 ### setTrimLength
 
@@ -3361,6 +3481,14 @@ abstract fun setVariableBinding(block: DesignBlock, property: String, key: Strin
 ```
 
 Bind a block property to a color, number, image or typeface variable, and apply the variable's current value. Color variables bind to color properties and number variables to float properties. Image variables bind only to "fill/image/imageFileURI", "fill/image/previewFileURI" and "fill/video/fileURI". Typeface variables bind only to "text/typeface" and "caption/typeface". A direct write to a bound property fails with BLOCK.PROPERTY_BOUND until the binding is removed. A bound typeface also locks setTypeface and setFont. On a text block, a variable bound to "fill/solid/color" or the font size sets every run of the text, and setTextColor or setTextFontSize fails for any range. Keyframes, undo…
+
+### setVariantProperty
+
+```kotlin
+abstract fun setVariantProperty(component: DesignBlock, name: String, value: String)
+```
+
+Sets the value of a variant property on a main component.
 
 ### setVec2
 
@@ -3592,7 +3720,7 @@ Returns whether the block has a time offset property.
 abstract fun supportsTransition(block: DesignBlock): Boolean
 ```
 
-Checks whether a clip can own an outgoing clip-to-clip transition. Only leaf clips inside a video track qualify. Audio, group, caption, and cutout blocks - as well as blocks outside a video track - report false.
+Checks whether a clip can own an outgoing clip-to-clip transition. Clips inside a video track qualify, group clips included. Audio, caption and cutout blocks report false, and so do blocks outside a video track. A group that holds only audio blocks reports false too.
 
 ### supportsTrim
 
@@ -3648,4 +3776,4 @@ Toggles the text decoration underline of the given block. Required scope: "text/
 abstract fun ungroup(block: DesignBlock)
 ```
 
-Ungroups a group. The children keep their times on the timeline, so their time offsets become relative to their new parent.
+Ungroups a group. The children keep their times on the timeline, so their time offsets become relative to their new parent. A caption goes onto the first caption track of the page instead, at its time, and takes the track's animations. Ungrouping creates the caption track when the page has none.

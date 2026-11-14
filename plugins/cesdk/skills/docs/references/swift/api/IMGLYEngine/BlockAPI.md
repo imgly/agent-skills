@@ -9,6 +9,14 @@
 
 ## Members
 
+### addComponentProperty(_:name:target:property:)
+
+```swift
+@MainActor func addComponentProperty(_ component: DesignBlockID, name: String, target: DesignBlockID, property: String) throws
+```
+
+Publishes a property of a block inside a main component under a name that instances can set. `component`
+
 ### addImageFileURIToSourceSet(_:property:uri:)
 
 ```swift
@@ -150,6 +158,22 @@ Returns whether the font style of the given block can be toggled between italic 
 ```
 
 Perform a boolean operation on the given blocks. All blocks must be combinable. See `isCombinable`. The parent, fill and sort order of the new block is that of the prioritized block. When the prioritized block has no fill, the new block has none. When performing a `Union`, `Intersection` or `XOR`, the operation is performed pair-wise starting with the element with the highest sort order. When performing a `Difference`, the operation is performed pair-wise starting with the element with the lowest sort order. Required scope: “editor/select” `ids`
+
+### combineAsVariants(_:)
+
+```swift
+@MainActor func combineAsVariants(_ components: [DesignBlockID]) throws -> DesignBlockID
+```
+
+Moves main components into a new container as variants of one component. `components`
+
+### convertToComponent(_:)
+
+```swift
+@MainActor func convertToComponent(_ block: DesignBlockID) throws
+```
+
+Makes a block a main component, so that instances can follow it. `block`
 
 ### create(_:)-3op61
 
@@ -315,6 +339,14 @@ Create a new fill, fails if type is unknown. `type`
 
 Create editable graphic blocks from SVG markup, such as the SVG code that Adobe Illustrator copies. Each shape of the SVG becomes a graphic block with a vector path shape, its fill color or gradient, and its stroke. More than one block goes into a group. Embedded images, text, filters, masks and patterns have no shape. Each such part becomes a graphic block with an image fill of only that part. The blocks are not attached to a parent. An SVG user unit is a pixel in a scene measured in pixels. In a scene measured in millimeters or inches it is a point, as Adobe Illustrator writes it. `svg`
 
+### createInstance(_:)
+
+```swift
+@MainActor func createInstance(_ component: DesignBlockID) throws -> DesignBlockID
+```
+
+Creates an instance of a main component. Attach it with `appendChild`. An instance follows every property that it does not override. Its children cannot be added, reordered or destroyed. Hide a child with `setVisible`. `component`
+
 ### createMask()
 
 ```swift
@@ -375,6 +407,14 @@ Creates a new transition, fails if type is unknown. Its `transition/overlap` val
 
 Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. The last page slice of a page keeps them. Destroying a page slice that is not the last one runs an internal update. Required scope: “lifecycle/destroy” `id`
 
+### detachInstance(_:)
+
+```swift
+@MainActor func detachInstance(_ instance: DesignBlockID) throws
+```
+
+Turns an instance into plain blocks that no longer follow the main component. `instance`
+
 ### distributeHorizontally(_:)
 
 ```swift
@@ -397,7 +437,7 @@ Distribute multiple blocks vertically within their bounding box so that the spac
 @MainActor func duplicate(_ id: DesignBlockID, attachToParent: Bool = true) throws -> DesignBlockID
 ```
 
-Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. Required scope: “lifecycle/duplicate” If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. The duplicate of a page slice takes a copy of the blocks that the page slice owns on its page. The call runs an internal update for a page slice on a page, also while `features/implicitUpdatesEnabled` is off. A block that a page slice owns gets its Percent position and size in design units in the…
+Duplicates a block including its children. Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization. A scene cannot be duplicated, and the call throws for it. Required scope: “lifecycle/duplicate” If the block is parented to a track that is set always-on-bottom, the duplicate is inserted in the same track immediately after the block. Otherwise, the duplicate is moved up in the hierarchy. The duplicate of a page slice takes a copy of the blocks that the page slice owns on its page. The call runs an internal update for a page slice on a page, also while `features/implicitUpdatesEnabled` is off. A block that a page slice owns…
 
 ### enterGroup(_:)
 
@@ -573,7 +613,7 @@ Finds all blocks with the given type. `type`
 @MainActor func find(byType type: DesignBlockType) throws -> [DesignBlockID]
 ```
 
-Finds all blocks with the given type. `type`
+Finds all blocks with the given type. For the stack type, the result holds the scene when the scene arranges its pages. Do not destroy that block: it is the scene. `type`
 
 ### find(byType:)-2wuaf
 
@@ -643,6 +683,14 @@ Finds all blocks with the given type. `type`
 
 Return all blocks currently known to the engine. A list of block ids.
 
+### findAllComponentProperties(_:)
+
+```swift
+@MainActor func findAllComponentProperties(_ component: DesignBlockID) throws -> [String]
+```
+
+Gets the sorted names of the published properties of a main component. `component`
+
 ### findAllInExclusionAreas()
 
 ```swift
@@ -698,6 +746,14 @@ Returns all blocks that are not attached to any scene. A list of block ids that 
 ```
 
 Get the properties of a block that are bound to a variable. `id`
+
+### findAllVariantProperties(_:)
+
+```swift
+@MainActor func findAllVariantProperties(_ component: DesignBlockID) throws -> [String]
+```
+
+Gets the sorted names of the variant properties of a main component. `component`
 
 ### flipCropHorizontal(_:)
 
@@ -808,7 +864,7 @@ Get the blend mode of the given design block. `id`
 ### getBlur(_:)
 
 ```swift
-@MainActor func getBlur(_ id: DesignBlockID) throws -> DesignBlockID
+@MainActor func getBlur(_ id: DesignBlockID) throws -> DesignBlockID?
 ```
 
 Get the ‘blur’ block of the given design block. For example, a graphic has no blur right after `create(.graphic)`, although `isBlurEnabled(_:)` returns true. `id`
@@ -827,7 +883,7 @@ Get the value of a bool property of the given design block. `id`
 @MainActor func getChildren(_ id: DesignBlockID) throws -> [DesignBlockID]
 ```
 
-Get all children of the given block. Children are sorted in their rendering order: Last child is rendered in front of other children. `id`
+Get all children of the given block. Children are sorted in their rendering order: Last child is rendered in front of other children. For a scene that arranges its pages, the list leaves out the camera. `id`
 
 ### getColor(_:property:)
 
@@ -836,6 +892,14 @@ Get all children of the given block. Children are sorted in their rendering orde
 ```
 
 Get the value of a color property of the given design block. `id`
+
+### getComponentProperty(_:name:)
+
+```swift
+@MainActor func getComponentProperty(_ instance: DesignBlockID, name: String) throws -> String
+```
+
+Gets a published property of an instance as text. `instance`
 
 ### getContentFillHorizontalAlignment(_:)
 
@@ -1016,7 +1080,7 @@ Get all the possible values of an enum given an enum property. `enumProperty`
 ### getFill(_:)
 
 ```swift
-@MainActor func getFill(_ id: DesignBlockID) throws -> DesignBlockID
+@MainActor func getFill(_ id: DesignBlockID) throws -> DesignBlockID?
 ```
 
 Returns the block containing the fill properties of the given block. For example, a graphic has no fill right after `create(.graphic)`, although `isFillEnabled(_:)` returns true. `id`
@@ -1160,7 +1224,7 @@ Query a block’s mode for its height. `id`
 ### getInAnimation(_:)
 
 ```swift
-@MainActor func getInAnimation(_ id: DesignBlockID) throws -> DesignBlockID
+@MainActor func getInAnimation(_ id: DesignBlockID) throws -> DesignBlockID?
 ```
 
 Get the “in” animation of the given block. `id`
@@ -1200,10 +1264,18 @@ Get the kind of the given block, fails if the block is invalid. `id`
 ### getLoopAnimation(_:)
 
 ```swift
-@MainActor func getLoopAnimation(_ id: DesignBlockID) throws -> DesignBlockID
+@MainActor func getLoopAnimation(_ id: DesignBlockID) throws -> DesignBlockID?
 ```
 
 Get the “loop” animation of the given block. `id`
+
+### getMainComponent(_:)
+
+```swift
+@MainActor func getMainComponent(_ instance: DesignBlockID) throws -> DesignBlockID
+```
+
+Gets the main component of an instance. `instance`
 
 ### getMasks(_:)
 
@@ -1256,7 +1328,7 @@ Get the opacity of the given design block. `id`
 ### getOutAnimation(_:)
 
 ```swift
-@MainActor func getOutAnimation(_ id: DesignBlockID) throws -> DesignBlockID
+@MainActor func getOutAnimation(_ id: DesignBlockID) throws -> DesignBlockID?
 ```
 
 Get the “out” animation of the given block. `id`
@@ -1344,7 +1416,7 @@ Get the position and size of the axis-aligned bounding box for the given blocks 
 ### getShape(_:)
 
 ```swift
-@MainActor func getShape(_ id: DesignBlockID) throws -> DesignBlockID
+@MainActor func getShape(_ id: DesignBlockID) throws -> DesignBlockID?
 ```
 
 Returns the block containing the shape properties of the given block. For example, a graphic has no shape right after `create(.graphic)`. `id`
@@ -1821,6 +1893,14 @@ Get a block’s unique identifier. `id`
 
 Get the variable that a block property is bound to. `id`
 
+### getVariantProperty(_:name:)
+
+```swift
+@MainActor func getVariantProperty(_ component: DesignBlockID, name: String) throws -> String
+```
+
+Gets the value of a variant property of a main component. `component`
+
 ### getVec2(_:property:)
 
 ```swift
@@ -1899,7 +1979,7 @@ Returns whether a block has its own anchor. Setting `transform/anchor/x` or `tra
 @MainActor func insertChild(into parent: DesignBlockID, child: DesignBlockID, at index: Int) throws
 ```
 
-Insert a new or existing child at a certain position in the parent’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or `duplicate(_:attachToParent:)` returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: “editor/add” `parent`
+Insert a new or existing child at a certain position in the parent’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or `duplicate(_:attachToParent:)` returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: “editor/add” For a scene that arranges its pages, the index counts the children without the camera. `parent`
 
 ### insertEffect(_:effectID:index:)
 
@@ -1987,7 +2067,7 @@ Query if the background of the given design block is enabled. `id`
 @MainActor func isBlurEnabled(_ id: DesignBlockID) throws -> Bool
 ```
 
-Query if blur is enabled for the given block. The flag does not depend on an attached blur block. It defaults to true, so a fresh graphic reports its blur as enabled while `getBlur(_:)` returns an invalid block. `id`
+Query if blur is enabled for the given block. The flag does not depend on an attached blur block. It defaults to true, so a fresh graphic reports its blur as enabled while `getBlur(_:)` returns `nil`. `id`
 
 ### isClipped(_:)
 
@@ -2004,6 +2084,14 @@ Query a block’s clipped state. If `true`, the block should clip `id`
 ```
 
 Checks whether blocks could be combined. Only graphics blocks and text blocks can be combined. All blocks must have the “lifecycle/duplicate” scope enabled. `ids`
+
+### isComponent(_:)
+
+```swift
+@MainActor func isComponent(_ block: DesignBlockID) throws -> Bool
+```
+
+Checks whether a block is a main component. `block`
 
 ### isCropAspectRatioLocked(_:)
 
@@ -2043,7 +2131,7 @@ Queries whether an ‘effect’ block is enabled and therefore applies its effec
 @MainActor func isFillEnabled(_ id: DesignBlockID) throws -> Bool
 ```
 
-Query if the fill of the given design block is enabled. The flag does not depend on an attached fill block. It defaults to true, so a fresh graphic reports its fill as enabled while `getFill(_:)` returns an invalid block. `id`
+Query if the fill of the given design block is enabled. The flag does not depend on an attached fill block. It defaults to true, so a fresh graphic reports its fill as enabled while `getFill(_:)` returns `nil`. `id`
 
 ### isForceMuted(_:)
 
@@ -2059,7 +2147,7 @@ Query whether the block is muted due to engine constraints. `id`
 @MainActor func isGroupable(_ ids: [DesignBlockID]) throws -> Bool
 ```
 
-Confirms that a given set of blocks can be grouped together. `ids`
+Confirms that a given set of blocks can be grouped together. A caption or a caption track cannot be grouped, because a caption plays from the caption track of its page. `ids`
 
 ### isIncludedInExport(_:)
 
@@ -2068,6 +2156,14 @@ Confirms that a given set of blocks can be grouped together. `ids`
 ```
 
 Check if the given block is included on the exported result. `id`
+
+### isInstance(_:)
+
+```swift
+@MainActor func isInstance(_ block: DesignBlockID) throws -> Bool
+```
+
+Checks whether a block is the top block of an instance. `block`
 
 ### isLineOrigin(_:)
 
@@ -2208,7 +2304,7 @@ Query a block’s transform locked state. If `true`, the block’s transform can
 ### isValid(_:)
 
 ```swift
-@MainActor func isValid(_ id: DesignBlockID) -> Bool
+@MainActor func isValid(_ id: DesignBlockID?) -> Bool
 ```
 
 Check if a block is valid. A block becomes invalid once it has been destroyed. `id`
@@ -2437,6 +2533,14 @@ Replaces a range of a text block with the text and the formatting of HTML, such 
 
 Resets the manually set crop of the given design block. The block’s content fill mode is set to `.cover`. If the block has a fill, the crop values are updated so that it covers the block. Required scope: “layer/crop” `id`
 
+### resetInstance(_:)
+
+```swift
+@MainActor func resetInstance(_ instance: DesignBlockID) throws
+```
+
+Removes all overrides of an instance. `instance`
+
 ### resizeContentAware(_:width:height:)
 
 ```swift
@@ -2590,6 +2694,14 @@ Update a block’s clipped state. Required scope: “layer/clipping” `id`
 ```
 
 Set a color property of the given design block to the given value. `id`
+
+### setComponentProperty(_:name:value:)
+
+```swift
+@MainActor func setComponentProperty(_ instance: DesignBlockID, name: String, value: String) throws
+```
+
+Sets a published property on an instance as text. This is an override. `instance`
 
 ### setContentFillHorizontalAlignment(_:alignment:)
 
@@ -2878,6 +2990,14 @@ Set the “in” animation of the given block. `id`
 ```
 
 Set whether you want the given design block to be included in exported result. `id`
+
+### setInstanceVariant(_:name:value:)
+
+```swift
+@MainActor func setInstanceVariant(_ instance: DesignBlockID, name: String, value: String) throws
+```
+
+Switches an instance to the variant with this property value. Overrides stay, and layers match by name. `instance`
 
 ### setInt(_:property:value:)
 
@@ -3486,6 +3606,14 @@ Set a URL property of the given design block to the given value. `id`
 ```
 
 Bind a block property to a color, number, image or typeface variable, and apply the variable’s current value. Color variables bind to color properties and number variables to float properties. Image variables bind only to `"fill/image/imageFileURI"`, `"fill/image/previewFileURI"` and `"fill/video/fileURI"`. Typeface variables bind only to `"text/typeface"` and `"caption/typeface"`. A direct write to a bound property fails with `BLOCK.PROPERTY_BOUND` until the binding is removed. A bound typeface also locks `setTypeface` and `setFont`. On a text block, a variable bound to `"fill/solid/color"` or the font size sets every run of the text, and `setTextColor` or `setTextFontSize` fails for any r…
+
+### setVariantProperty(_:name:value:)
+
+```swift
+@MainActor func setVariantProperty(_ component: DesignBlockID, name: String, value: String) throws
+```
+
+Sets the value of a variant property on a main component. `component`
 
 ### setVec2(_:property:value:)
 

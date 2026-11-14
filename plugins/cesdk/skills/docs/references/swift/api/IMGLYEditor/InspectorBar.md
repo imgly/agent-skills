@@ -164,8 +164,8 @@ The id of the [`clipSpeed(action:title:icon:isEnabled:isVisible:)`](../clipspeed
       if try context.engine.block.supportsPlaybackControl(context.selection.block) {
         playbackBlock = context.selection.block
       } else if try context.engine.block.supportsFill(context.selection.block) {
-        let fill = try context.engine.block.getFill(context.selection.block)
-        guard try context.engine.block.supportsPlaybackControl(fill) else { return false }
+        guard let fill = try context.engine.block.getFill(context.selection.block),
+              try context.engine.block.supportsPlaybackControl(fill) else { return false }
         playbackBlock = fill
       } else {
         return false
@@ -864,7 +864,7 @@ The id of the [`separateAudio(action:title:icon:isEnabled:isVisible:)`](../separ
             try context.engine.block.isAllowedByScope(context.selection.block, key: "fill/change") else {
         return false
       }
-      let fill = try context.engine.block.getFill(context.selection.block)
+      guard let fill = try context.engine.block.getFill(context.selection.block) else { return false }
        
       guard try !context.engine.block.isForceMuted(fill) else { return false }
       guard try context.engine.block.unstable_isAVResourceLoaded(fill) else { return true }
@@ -887,13 +887,14 @@ The id of the [`shape(action:title:icon:isEnabled:isVisible:)`](../shape(action:
 ```swift
 @MainActor static func shape(action: @escaping InspectorBar.Context.To<Void> = { $0.eventHandler.send(.openSheet(type: .shape())) }, @ViewBuilder title: @escaping InspectorBar.Context.To<some View> = { _ in
       Text(.imgly.localized("ly_img_editor_inspector_bar_button_shape"))
-    }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.shape }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = {
-      try ($0.selection.fillType != .image || $0.selection.kind != "sticker") &&
-        $0.selection.kind != "animatedSticker" &&
-        $0.engine.block.isAllowedByScope($0.selection.block, key: "shape/change") &&
-        $0.engine.block.supportsShape($0.selection.block) &&
+    }, @ViewBuilder icon: @escaping InspectorBar.Context.To<some View> = { _ in Image.imgly.shape }, isEnabled: @escaping InspectorBar.Context.To<Bool> = { _ in true }, isVisible: @escaping InspectorBar.Context.To<Bool> = { context in
+      try (context.selection.fillType != .image || context.selection.kind != "sticker") &&
+        context.selection.kind != "animatedSticker" &&
+        context.engine.block.isAllowedByScope(context.selection.block, key: "shape/change") &&
+        context.engine.block.supportsShape(context.selection.block) &&
         [.star, .polygon, .rect].contains(
-          ShapeType(rawValue: $0.engine.block.getType($0.engine.block.getShape($0.selection.block))),
+          context.engine.block.getShape(context.selection.block)
+            .flatMap { try ShapeType(rawValue: context.engine.block.getType($0)) },
         )
     }) -> some InspectorBar.Item
 ```
@@ -1068,8 +1069,8 @@ The id of the [`volume(action:title:icon:isEnabled:isVisible:)`](../volume(actio
       if try context.engine.block.supportsPlaybackControl(context.selection.block) {
         playbackBlock = context.selection.block
       } else if try context.engine.block.supportsFill(context.selection.block) {
-        let fill = try context.engine.block.getFill(context.selection.block)
-        guard try context.engine.block.supportsPlaybackControl(fill) else { return true }
+        guard let fill = try context.engine.block.getFill(context.selection.block),
+              try context.engine.block.supportsPlaybackControl(fill) else { return true }
         playbackBlock = fill
       } else {
         return true

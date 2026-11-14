@@ -1005,6 +1005,64 @@ getSpotColorForCutoutType(type: CutoutType): string
 
 **Returns:** The color spot name.
 
+### setSoftProofEnabled()
+
+Turn soft proofing of the live canvas on or off.
+With proofing on, the artwork inside the visible page trims shows the colors of the output
+profile of {@link getSoftProofColorSpace}. Exports, thumbnails, bleed and editor decorations
+stay unproofed. The state is not saved with the scene, and undo does not change it. Creating
+or loading a scene, or applying a template, turns proofing off and sets the color space to CMYK.
+A {@link setActiveHistory} call that switches to another scene does the same
+by the next update.
+A change notifies the {@link onStateChanged} subscribers.
+```javascript
+engine.editor.setSoftProofColorSpace('CMYK');
+engine.editor.setSoftProofEnabled(true);
+```
+
+```typescript
+setSoftProofEnabled(enabled: boolean): void
+```
+
+**Parameters:**
+- `enabled` - Whether to proof the live canvas. Defaults to false.
+
+### isSoftProofEnabled()
+
+Check whether soft proofing of the live canvas is on.
+
+```typescript
+isSoftProofEnabled(): boolean
+```
+
+**Returns:** True when the live canvas is proofed.
+
+### setSoftProofColorSpace()
+
+Set the color space that soft proofing simulates.
+The proof uses the Output profile of that space, then its Default profile, then the fallback
+profile. Creating or loading a scene, or applying a template, sets the color space to CMYK.
+A {@link setActiveHistory} call that switches to another scene does the same
+by the next update.
+A change notifies the {@link onStateChanged} subscribers.
+
+```typescript
+setSoftProofColorSpace(colorSpace: SoftProofColorSpace): void
+```
+
+**Parameters:**
+- `colorSpace` - `'RGB'` or `'CMYK'`. Defaults to `'CMYK'`.
+
+### getSoftProofColorSpace()
+
+Get the color space that soft proofing simulates.
+
+```typescript
+getSoftProofColorSpace(): SoftProofColorSpace
+```
+
+**Returns:** `'RGB'` or `'CMYK'`.
+
 ### convertColorToColorSpace()
 
 Converts a color to the given color space.

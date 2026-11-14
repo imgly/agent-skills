@@ -9,7 +9,7 @@ this folder list them:
 
 - `svelte.md` lists every page of https://img.ly/docs/cesdk/dev/svelte/ with its title and link.
 
-The links point to the docs of CE.SDK `1.87.0-nightly.20261113`, the version of this bundle,
+The links point to the docs of CE.SDK `1.88.0-nightly.20261114`, the version of this bundle,
 under `https://img.ly/docs/cesdk/dev/`. The docs site keeps one copy per version, with the same
 page paths:
 
@@ -21,7 +21,7 @@ page paths:
 | Latest nightly | `https://img.ly/docs/cesdk/dev/` |
 
 1. **Check the version.** Read the CE.SDK version the project uses. If it is not
-   `1.87.0-nightly.20261113`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
+   `1.88.0-nightly.20261114`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
    version.
 2. **Read the index** in this folder and pick the pages that match the query.
 3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
@@ -76,10 +76,10 @@ and type shapes may differ from pre-trained knowledge.
 [CE.SDK Web API Index]|root: ../api
 
 CreativeEngine:{asset,block,editor,event,scene,variable,actions,shortcuts,clipboard,reactor,version,addPlugin,unstable_setVideoExportInactivityTimeout,unstable_setExportInactivityTimeout,addPostUpdateCallback},... (+8)
-BlockAPI:{export,exportToStream,getDominantColors,exportPreview,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo},... (+432)
+BlockAPI:{export,exportToStream,getDominantColors,exportPreview,exportWithColorMask,exportVideo,exportAudio,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill,getAudioTrackCountFromVideo},... (+448)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+14)
 SceneAPI:{setDocumentColorProfile,setDocumentColorProfileFromData,getDocumentColorProfileInfo,removeDocumentColorProfile,setCMYKProfile,setCMYKProfileFromData,getCMYKProfileInfo,removeCMYKProfile,getColorRenderingIntent,setColorRenderingIntent,isBlackPointCompensationEnabled,setBlackPointCompensationEnabled,load,loadFromString,loadFromURL},... (+41)
-EditorAPI:{unlockWithLicense,getCapabilityState,checkCapabilities,startTracking,setTrackingMetadata,getTrackingMetadata,trackEvent,overrideTrackingEndpoint,beginExportTransaction,endExportTransaction,cancelExportTransaction,resolveExportTransaction,leaveExportTransaction,trackExportFailure,ingestTrackingEvents},... (+113)
+EditorAPI:{unlockWithLicense,getCapabilityState,checkCapabilities,startTracking,setTrackingMetadata,getTrackingMetadata,trackEvent,overrideTrackingEndpoint,beginExportTransaction,endExportTransaction,cancelExportTransaction,resolveExportTransaction,leaveExportTransaction,trackExportFailure,ingestTrackingEvents},... (+120)
 EventAPI:{subscribe}
 VariableAPI:{findAll,setString,getString,remove,createValueSet,destroyValueSet,setValueSetName,getValueSetName,findAllValueSets,findValueSetByName,setActiveValueSet,getActiveValueSet,rename,setColor,getColor},... (+8)
 Types:{AnimationType,AssetResult,BlendMode,Color,ExportOptions,PropertyType,Scope,TextCase,VideoExportOptions}

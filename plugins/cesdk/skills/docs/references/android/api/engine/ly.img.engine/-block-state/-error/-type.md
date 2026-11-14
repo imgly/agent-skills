@@ -34,6 +34,14 @@ enum entry IMAGE_DECODING
 
 Failed to decode the block's image stream.
 
+### SOFT_PROOF
+
+```kotlin
+enum entry SOFT_PROOF
+```
+
+The engine could not prepare the soft proof of the canvas. The block itself is intact. An export ignores this state when the engine sets it, and fails on it when setState sets it.
+
 ### UNKNOWN
 
 ```kotlin

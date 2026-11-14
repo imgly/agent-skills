@@ -114,6 +114,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Customization](https://img.ly/docs/cesdk/dev/macos/user-interface/customization-72b2f8/)
   - [Movement Constraints](https://img.ly/docs/cesdk/dev/macos/user-interface/customization/movement-constraints-8f3a2c/)
+  - [Upscale Constraints](https://img.ly/docs/cesdk/dev/macos/user-interface/customization/upscale-constraints-5d7365/)
   - [Drag & Drop](https://img.ly/docs/cesdk/dev/macos/user-interface/customization/drag-and-drop-d4a97b/)
 - [Build Your Own UI](https://img.ly/docs/cesdk/dev/macos/user-interface/build-your-own-ui-fe7527/)
 
@@ -421,6 +422,10 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [To v1.85](https://img.ly/docs/cesdk/dev/macos/to-v1-85-e7d908/)
 
 #### [To v1.87](https://img.ly/docs/cesdk/dev/macos/to-v1-87-0bbae1/)
+
+#### [To v1.88](https://img.ly/docs/cesdk/dev/macos/to-v1-88-1c21c3/)
+
+#### [CocoaPods Spec Repository](https://img.ly/docs/cesdk/dev/macos/cocoapods-spec-repository-ade324/)
 
 
 ---

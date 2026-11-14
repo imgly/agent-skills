@@ -250,6 +250,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Crop Presets](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/crop-presets-f94f26/)
   - [Force Crop](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/force-crop-c2854e/)
   - [Movement Constraints](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/movement-constraints-8f3a2c/)
+  - [Upscale Constraints](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/upscale-constraints-5d7365/)
   - [Drag & Drop](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/drag-and-drop-d4a97b/)
   - [Color Palette](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/color-palette-429fd9/)
   - [Disable or Enable Features](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/disable-or-enable-f058e2/)
@@ -643,6 +644,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [To v1.87](https://img.ly/docs/cesdk/dev/nuxtjs/to-v1-87-0bbae1/)
 
+#### [To v1.88](https://img.ly/docs/cesdk/dev/nuxtjs/to-v1-88-1c21c3/)
+
 
 ---
 
@@ -677,4 +680,5 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 ## Pages Outside the Navigation
 
+- [Auto Layout](https://img.ly/docs/cesdk/dev/nuxtjs/create-composition/auto-layout-c7e41a/)
 - [Equal-Distance Snapping](https://img.ly/docs/cesdk/dev/nuxtjs/equal-distance-snapping-e9d15a/)

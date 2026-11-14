@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 353 generated API digests.
+Complete catalog of 358 generated API digests.
 
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
@@ -260,6 +260,7 @@ Complete catalog of 353 generated API digests.
 - [PropertyType](<../engine/ly.img.engine/-property-type.md>) — `ly.img.engine`
 - [RGBAColor](<../engine/ly.img.engine/-r-g-b-a-color.md>) — `ly.img.engine`
 - [ResolvedMovementConstraint](<../engine/ly.img.engine/-resolved-movement-constraint.md>) — `ly.img.engine`
+- [ResolvedUpscaleConstraint](<../engine/ly.img.engine/-resolved-upscale-constraint.md>) — `ly.img.engine`
 - [SaveToArchiveOptions](<../engine/ly.img.engine/-save-to-archive-options.md>) — `ly.img.engine`
 - [SaveToStringOptions](<../engine/ly.img.engine/-save-to-string-options.md>) — `ly.img.engine`
 - [SceneApi](<../engine/ly.img.engine/-scene-api.md>) — `ly.img.engine`
@@ -334,6 +335,10 @@ Complete catalog of 353 generated API digests.
 - [TypefaceResolver](<../engine/ly.img.engine/-typeface-resolver.md>) — `ly.img.engine`
 - [TypefaceResolver.Companion](<../engine/ly.img.engine/-typeface-resolver/-companion.md>) — `ly.img.engine`
 - [UnstableEngineApi](<../engine/ly.img.engine/-unstable-engine-api.md>) — `ly.img.engine`
+- [UpscaleConstraintRule](<../engine/ly.img.engine/-upscale-constraint-rule.md>) — `ly.img.engine`
+- [UpscaleConstraintScope](<../engine/ly.img.engine/-upscale-constraint-scope.md>) — `ly.img.engine`
+- [UpscaleConstraintScope.Block](<../engine/ly.img.engine/-upscale-constraint-scope/-block.md>) — `ly.img.engine`
+- [UpscaleConstraintScope.Scene](<../engine/ly.img.engine/-upscale-constraint-scope/-scene.md>) — `ly.img.engine`
 - [UriResolverAsync](<../engine/ly.img.engine/-uri-resolver-async.md>) — `ly.img.engine`
 - [UriResolverAsync.Companion](<../engine/ly.img.engine/-uri-resolver-async/-companion.md>) — `ly.img.engine`
 - [ValueSetId](<../engine/ly.img.engine/-value-set-id.md>) — `ly.img.engine`

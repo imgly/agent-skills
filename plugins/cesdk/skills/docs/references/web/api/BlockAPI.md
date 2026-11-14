@@ -13,6 +13,8 @@ Performs an internal update to resolve the final layout for the blocks. A PNG, J
 export renders all its strips in one engine call on the main thread, so the tab does not respond and does
 not repaint until the export ends. For a large export, use `exportToStream`, or turn on
 `featureFlags.exportWorker` so the export renders in a Web Worker.
+A page with `playback/coverTimeEnabled` set exports at its `playback/coverTime`, and its playback time
+does not change. An export of a scene shows each page at its own time.
 
 ```typescript
 export(handle: DesignBlockId, options?: ExportOptions): Promise<Blob>
@@ -40,6 +42,8 @@ size fails with `ENCODE.STRIP_EXPORT_SCENE_CHANGED`, but an edit that keeps the 
 change, a move or video playback, is not detected: the file then shows the scene before the edit in its
 first strips and after it in the rest. The engine renders a strip only in an update of a visible tab, so
 the export pauses while the tab is hidden.
+A page with `playback/coverTimeEnabled` set exports at its `playback/coverTime`, and its playback time
+does not change. An export of a scene shows each page at its own time.
 
 ```typescript
 exportToStream(handle: DesignBlockId, writable: WritableStream<Uint8Array>, options?: ExportOptions): Promise<void>
@@ -63,6 +67,9 @@ The image is always WebP at quality 0.8 and keeps the block's aspect ratio. A bl
 frame. Use `export` for a file that you deliver.
 Performs an internal update to resolve the final layout for the blocks. Will not complete as long
 as assets are in a pending state; asset loading progresses during engine updates.
+A page with `playback/coverTimeEnabled` set shows its `playback/coverTime`, and its playback time
+does not change.
+A preview of a scene shows each page at its own time.
 
 ```typescript
 exportPreview(handle: DesignBlockId): Promise<Blob>
@@ -77,6 +84,9 @@ exportPreview(handle: DesignBlockId): Promise<Blob>
 
 Exports a design block and a color mask to two separate Blobs.
 Performs an internal update to resolve the final layout for the blocks.
+A page with `playback/coverTimeEnabled` set exports at its `playback/coverTime`, and its playback time
+does not change.
+An export of a scene shows each page at its own time.
 
 ```typescript
 exportWithColorMask(handle: DesignBlockId, maskColorR: number, maskColorG: number, maskColorB: number, options?: ExportOptions): Promise<Blob[]>
@@ -321,6 +331,7 @@ createFromSVG(svg: string): DesignBlockId
 
 Duplicates a block and its children.
 Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization.
+A scene cannot be duplicated, and the call throws for it.
 The duplicate of a page slice takes a copy of the blocks that the page slice owns on its
 page. The call runs an internal update for a page slice on a page, also while
 `features/implicitUpdatesEnabled` is off.
@@ -638,8 +649,7 @@ supportsFill(id: DesignBlockId): boolean
 
 Checks if the fill of a block is enabled.
 The flag does not depend on an attached fill block. It defaults to true, so a fresh graphic
-reports its fill as enabled while `getFill` returns an invalid block. Check that result with
-`isValid`.
+reports its fill as enabled while `getFill` returns `null`.
 ```javascript
 engine.block.isFillEnabled(block);
 ```
@@ -709,20 +719,19 @@ For example, a graphic has no fill right after `create('graphic')`, although `is
 returns true.
 ```javascript
 const fill = engine.block.getFill(block);
-if (engine.block.isValid(fill)) {
+if (fill !== null) {
   const fillType = engine.block.getType(fill);
 }
 ```
 
 ```typescript
-getFill(id: DesignBlockId): DesignBlockId
+getFill(id: DesignBlockId): DesignBlockId | null
 ```
 
 **Parameters:**
 - `id` - The block whose fill block should be returned.
 
-**Returns:** The block that currently defines the given block's fill, or an invalid block if unset.
-Check the result with `isValid`.
+**Returns:** The block that currently defines the given block's fill, or `null` if unset.
 
 ### setFill()
 
@@ -939,7 +948,8 @@ Sets the playback duration of a block.
 The duration defines how long the block is active in the scene during playback.
 Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves,
 with the clips that transitions join after it, until the overlap equals the transition duration again. The
-overlap is at most half of either clip. With `transition/overlap` disabled, the clips meet at the cut.
+overlap is at most half of either clip. With `transition/overlap` disabled, or with a group clip on either
+side, the clips meet at the cut.
 
 ```typescript
 setDuration(id: DesignBlockId, duration: number): void
@@ -1580,13 +1590,13 @@ Checks if a block handle is valid.
 A block becomes invalid once it has been destroyed.
 
 ```typescript
-isValid(id: DesignBlockId): boolean
+isValid(id: DesignBlockId | null): boolean
 ```
 
 **Parameters:**
-- `id` - The block to query.
+- `id` - The block to query, or `null`, such as an empty slot of `getFill`.
 
-**Returns:** True, if the block is valid.
+**Returns:** True, if the block is valid. False for `null`.
 
 ### referencesAnyVariables()
 
@@ -1646,6 +1656,8 @@ Gets the current state of a block.
 A block's state is determined by its own state and that of its shape, fill, and effects.
 A block whose CMYK or spot color needs the document CMYK profile is pending while that
 profile loads.
+With soft proofing on, a block that draws inside a page is pending while the proof profile
+loads. It reports a `SoftProof` error only when it has no other error or pending state.
 Runs an engine update for a resource that nothing asked for yet,
 while the scene has a change to lay out.
 A font set just before this call is then reported as pending.
@@ -1855,6 +1867,8 @@ Create and manage groups of blocks.
 Checks if a set of blocks can be grouped.
 A scene block, a page or a page slice cannot be grouped, and neither can a block together
 with a group it sits inside, which would make that group a child of itself.
+A caption or a caption track cannot be grouped either, because a caption plays from the
+caption track of its page.
 Blocks that already belong to a group can be grouped again, which is how a
 group inside a group is made.
 ```javascript
@@ -1899,6 +1913,8 @@ group(ids: DesignBlockId[]): DesignBlockId
 
 Ungroups a group block, releasing its children.
 The children keep their times on the timeline, so their time offsets become relative to their new parent.
+A caption goes onto the first caption track of the page instead, at its time, and takes the
+track's animations. Ungrouping creates the caption track when the page has none.
 ```javascript
 engine.block.ungroup(group);
 ```
@@ -1996,6 +2012,8 @@ findByName(name: string): DesignBlockId[]
 ### findByType()
 
 Finds all blocks with a given type.
+For the stack type, the result holds the scene when the scene arranges its pages. Do not destroy that
+block: it is the scene.
 
 ```typescript
 findByType(type: ObjectType): DesignBlockId[]
@@ -2115,14 +2133,13 @@ Gets the shape block attached to a given block.
 For example, a graphic has no shape right after `create('graphic')`.
 
 ```typescript
-getShape(id: DesignBlockId): DesignBlockId
+getShape(id: DesignBlockId): DesignBlockId | null
 ```
 
 **Parameters:**
 - `id` - The block whose shape block should be returned.
 
-**Returns:** The block that currently defines the given block's shape, or an invalid block if unset.
-Check the result with `isValid`.
+**Returns:** The block that currently defines the given block's shape, or `null` if unset.
 
 ### setShape()
 
@@ -2200,6 +2217,213 @@ removeSubshape(id: DesignBlockId, index: number): void
 **Parameters:**
 - `id` - The compound shape block.
 - `index` - The index of the subshape to remove.
+
+## Block Components
+
+### convertToComponent()
+
+Makes a block a main component, so that instances can follow it.
+
+```typescript
+convertToComponent(block: DesignBlockId): void
+```
+
+**Parameters:**
+- `block` - The block.
+
+### isComponent()
+
+Checks whether a block is a main component.
+
+```typescript
+isComponent(block: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `block` - The block.
+
+**Returns:** The result.
+
+### createInstance()
+
+Creates an instance of a main component. Attach it with `appendChild`. An instance follows every property that it does not override. Its children cannot be added, reordered or destroyed. Hide a child with `setVisible`.
+
+```typescript
+createInstance(component: DesignBlockId): DesignBlockId
+```
+
+**Parameters:**
+- `component` - The component.
+
+**Returns:** The result.
+
+### isInstance()
+
+Checks whether a block is the top block of an instance.
+
+```typescript
+isInstance(block: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `block` - The block.
+
+**Returns:** The result.
+
+### getMainComponent()
+
+Gets the main component of an instance.
+
+```typescript
+getMainComponent(instance: DesignBlockId): DesignBlockId
+```
+
+**Parameters:**
+- `instance` - The instance.
+
+**Returns:** The result.
+
+### detachInstance()
+
+Turns an instance into plain blocks that no longer follow the main component.
+
+```typescript
+detachInstance(instance: DesignBlockId): void
+```
+
+**Parameters:**
+- `instance` - The instance.
+
+### resetInstance()
+
+Removes all overrides of an instance.
+
+```typescript
+resetInstance(instance: DesignBlockId): void
+```
+
+**Parameters:**
+- `instance` - The instance.
+
+### combineAsVariants()
+
+Moves main components into a new container as variants of one component.
+
+```typescript
+combineAsVariants(components: DesignBlockId[]): DesignBlockId
+```
+
+**Parameters:**
+- `components` - The components.
+
+**Returns:** The result.
+
+### setVariantProperty()
+
+Sets the value of a variant property on a main component.
+
+```typescript
+setVariantProperty(component: DesignBlockId, name: string, value: string): void
+```
+
+**Parameters:**
+- `component` - The component.
+- `name` - The name.
+- `value` - The value.
+
+### getVariantProperty()
+
+Gets the value of a variant property of a main component.
+
+```typescript
+getVariantProperty(component: DesignBlockId, name: string): string
+```
+
+**Parameters:**
+- `component` - The component.
+- `name` - The name.
+
+**Returns:** The result.
+
+### findAllVariantProperties()
+
+Gets the sorted names of the variant properties of a main component.
+
+```typescript
+findAllVariantProperties(component: DesignBlockId): string[]
+```
+
+**Parameters:**
+- `component` - The component.
+
+**Returns:** The result.
+
+### setInstanceVariant()
+
+Switches an instance to the variant with this property value. Overrides stay, and layers match by name.
+
+```typescript
+setInstanceVariant(instance: DesignBlockId, name: string, value: string): void
+```
+
+**Parameters:**
+- `instance` - The instance.
+- `name` - The name.
+- `value` - The value.
+
+### addComponentProperty()
+
+Publishes a property of a block inside a main component under a name that instances can set.
+
+```typescript
+addComponentProperty(component: DesignBlockId, name: string, target: DesignBlockId, property: string): void
+```
+
+**Parameters:**
+- `component` - The component.
+- `name` - The name.
+- `target` - The target.
+- `property` - The property.
+
+### findAllComponentProperties()
+
+Gets the sorted names of the published properties of a main component.
+
+```typescript
+findAllComponentProperties(component: DesignBlockId): string[]
+```
+
+**Parameters:**
+- `component` - The component.
+
+**Returns:** The result.
+
+### setComponentProperty()
+
+Sets a published property on an instance as text. This is an override.
+
+```typescript
+setComponentProperty(instance: DesignBlockId, name: string, value: string): void
+```
+
+**Parameters:**
+- `instance` - The instance.
+- `name` - The name.
+- `value` - The value.
+
+### getComponentProperty()
+
+Gets a published property of an instance as text.
+
+```typescript
+getComponentProperty(instance: DesignBlockId, name: string): string
+```
+
+**Parameters:**
+- `instance` - The instance.
+- `name` - The name.
+
+**Returns:** The result.
 
 ## Block Appearance
 
@@ -2661,42 +2885,39 @@ setOutAnimation(id: DesignBlockId, animation: DesignBlockId): void
 Gets the "in" animation of a block.
 
 ```typescript
-getInAnimation(id: DesignBlockId): DesignBlockId
+getInAnimation(id: DesignBlockId): DesignBlockId | null
 ```
 
 **Parameters:**
 - `id` - The block whose "in" animation should be queried.
 
-**Returns:** The "in" animation of the block, or an invalid block if unset.
-Check the result with `isValid`.
+**Returns:** The "in" animation of the block, or `null` if unset.
 
 ### getLoopAnimation()
 
 Gets the "loop" animation of a block.
 
 ```typescript
-getLoopAnimation(id: DesignBlockId): DesignBlockId
+getLoopAnimation(id: DesignBlockId): DesignBlockId | null
 ```
 
 **Parameters:**
 - `id` - The block whose "loop" animation should be queried.
 
-**Returns:** The "loop" animation of the block, or an invalid block if unset.
-Check the result with `isValid`.
+**Returns:** The "loop" animation of the block, or `null` if unset.
 
 ### getOutAnimation()
 
 Gets the "out" animation of a block.
 
 ```typescript
-getOutAnimation(id: DesignBlockId): DesignBlockId
+getOutAnimation(id: DesignBlockId): DesignBlockId | null
 ```
 
 **Parameters:**
 - `id` - The block whose "out" animation should be queried.
 
-**Returns:** The "out" animation of the block, or an invalid block if unset.
-Check the result with `isValid`.
+**Returns:** The "out" animation of the block, or `null` if unset.
 
 ## Block Layout
 
@@ -3654,6 +3875,7 @@ also give `null`.
 
 Gets all direct children of a block.
 Children are sorted in their rendering order: Last child is rendered in front of other children.
+For a scene that arranges its pages, the list leaves out the camera.
 
 ```typescript
 getChildren(id: DesignBlockId): DesignBlockId[]
@@ -3673,6 +3895,7 @@ A page slice takes no children, and it can only be a child of a page with a rect
 page slice.
 A page slice that a block load or `duplicate` returns holds the blocks that it was saved
 with. The next update moves them onto the page, into the new place of the page slice.
+For a scene that arranges its pages, the index counts the children without the camera.
 
 ```typescript
 insertChild(parent: DesignBlockId, child: DesignBlockId, index: number): void
@@ -4930,20 +5153,19 @@ For example, a graphic has no blur right after `create('graphic')`, although `is
 returns true.
 ```javascript
 const blur = engine.block.getBlur(block);
-if (engine.block.isValid(blur)) {
+if (blur !== null) {
   const blurType = engine.block.getType(blur);
 }
 ```
 
 ```typescript
-getBlur(id: DesignBlockId): DesignBlockId
+getBlur(id: DesignBlockId): DesignBlockId | null
 ```
 
 **Parameters:**
 - `id` - The block to query.
 
-**Returns:** The 'blur' block, or an invalid block if unset.
-Check the result with `isValid`.
+**Returns:** The 'blur' block, or `null` if unset.
 
 ### setBlurEnabled()
 
@@ -4964,8 +5186,7 @@ setBlurEnabled(id: DesignBlockId, enabled: boolean): void
 
 Checks if blur is enabled for a block.
 The flag does not depend on an attached blur block. It defaults to true, so a fresh graphic
-reports its blur as enabled while `getBlur` returns an invalid block. Check that result with
-`isValid`.
+reports its blur as enabled while `getBlur` returns `null`.
 ```javascript
 const isBlurEnabled = engine.block.isBlurEnabled(block);
 ```
@@ -7177,8 +7398,9 @@ createTransition(type: TransitionType): DesignBlockId
 ### supportsTransition()
 
 Checks whether a clip can own an outgoing clip-to-clip transition.
-Only leaf clips inside a video track qualify. Audio, group, caption, and
-cutout blocks — as well as blocks outside a video track — report `false`.
+Clips inside a video track qualify, group clips included. Audio, caption
+and cutout blocks report `false`, and so do blocks outside a video track.
+A group that holds only audio blocks reports `false` too.
 
 ```typescript
 supportsTransition(id: DesignBlockId): boolean
@@ -7200,7 +7422,9 @@ clip's transition, use `removeTransition` instead.
 With `transition/overlap=false` on the transition block, transitions preserve
 clip timing and hold endpoint frames across the cut. This property is saved
 in scenes; older scenes without it use true. New transitions initialize it
-from `clip/defaultTransitionOverlapEnabled`.
+from `clip/defaultTransitionOverlapEnabled`. A group clip on either side
+ignores `transition/overlap`: the clips meet at the cut, and the saved value
+stays.
 
 ```typescript
 setTransition(id: DesignBlockId, transition: DesignBlockId): void

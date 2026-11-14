@@ -33,6 +33,14 @@ case imageDecoding
 
 Failed to decode the block’s image stream.
 
+### BlockStateError.softProof
+
+```swift
+case softProof
+```
+
+The engine could not prepare the soft proof of the canvas. The block itself is intact. An export ignores this state when the engine sets it, and fails on it when `setState(_:state:)` sets it.
+
 ### BlockStateError.unknown
 
 ```swift

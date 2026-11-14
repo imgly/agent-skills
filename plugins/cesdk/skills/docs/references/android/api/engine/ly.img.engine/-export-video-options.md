@@ -56,7 +56,7 @@ The codec to encode the audio with. AudioCodec.AUTO picks AAC for MimeType.MP4 a
 val coverTimeOffset: Double? = null
 ```
 
-Cover time in seconds from the beginning of the exported video. Null uses the page playback position at export start, clamped to the exported frames. An explicit value must be finite and within [0, export duration). The frame containing that time is embedded as a PNG, preserving the export aspect ratio with both dimensions at most 512 pixels.
+Cover time in seconds from the beginning of the exported video. Null uses the page cover time when playback/coverTimeEnabled is true, else the page playback position at export start. Either is clamped to the exported frames. A scene uses its first frame. An explicit value must be finite and within [0, export duration). The frame containing that time is embedded as a PNG, preserving the export aspect ratio with both dimensions at most 512 pixels.
 
 ### duration
 

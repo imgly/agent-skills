@@ -427,6 +427,14 @@ Get a string setting. `keypath`
 
 Get the type of a setting. `keypath`
 
+### getSoftProofColorSpace()
+
+```swift
+@MainActor func getSoftProofColorSpace() -> ProfileColorSpace
+```
+
+Get the color space that soft proofing simulates. [`ProfileColorSpace.rgb`](../profilecolorspace/rgb.md) or [`ProfileColorSpace.cmyk`](../profilecolorspace/cmyk.md).
+
 ### getSpotColor(name:)-7h32o
 
 ```swift
@@ -466,6 +474,14 @@ Get the current text cursor’s x position in screen space. The text cursor’s 
 ```
 
 Get the current text cursor’s y position in screen space. The text cursor’s y position in screen space.
+
+### getUpscaleConstraint(_:)
+
+```swift
+@MainActor func getUpscaleConstraint(_ id: DesignBlockID) throws -> ResolvedUpscaleConstraint?
+```
+
+Get the upscale constraint that holds for a block: its own rule, else the scene-wide default. `id`
 
 ### getUsedMemory()
 
@@ -530,6 +546,14 @@ Checks wether the block has selection and hover highlighting enabled or disabled
 ```
 
 Checks whether the block can currently be selected. `id`
+
+### isSoftProofEnabled()
+
+```swift
+@MainActor func isSoftProofEnabled() -> Bool
+```
+
+Check whether soft proofing of the live canvas is on. `true` when the live canvas is proofed.
 
 ### loadCMYKProfile()
 
@@ -676,6 +700,30 @@ Removes a spot color from the list of set spot colors. `name`
 ```
 
 Removes the last history state from the stack, if available.
+
+### removeUpscaleConstraint(_:)-4pznu
+
+```swift
+@MainActor func removeUpscaleConstraint(_ scope: UpscaleConstraintScope) throws
+```
+
+Remove the upscale constraint of a scope. A block then falls back to the scene-wide default. `scope`
+
+### removeUpscaleConstraint(_:)-583v4
+
+```swift
+@MainActor func removeUpscaleConstraint(_ scopes: [UpscaleConstraintScope]) throws
+```
+
+Remove multiple upscale constraint scopes at once. `scopes`
+
+### removeUpscaleConstraint()
+
+```swift
+@MainActor func removeUpscaleConstraint() throws
+```
+
+Remove the scene-wide default upscale constraint.
 
 ### setActiveHistory(_:)
 
@@ -861,6 +909,22 @@ Set an integer setting. `keypath`
 
 Set a string setting. `keypath`
 
+### setSoftProofColorSpace(_:)
+
+```swift
+@MainActor func setSoftProofColorSpace(_ colorSpace: ProfileColorSpace) throws
+```
+
+Set the color space that soft proofing simulates. `colorSpace`
+
+### setSoftProofEnabled(_:)
+
+```swift
+@MainActor func setSoftProofEnabled(_ enabled: Bool)
+```
+
+Turn soft proofing of the live canvas on or off. `enabled`
+
 ### setSpotColor(name:c:m:y:k:)
 
 ```swift
@@ -892,6 +956,22 @@ Set the spot color assign to a cutout type. If no spot color is set, type `.soli
 ```
 
 Sets the resolver for opt-in runtime font requests. Pass `nil` to restore asset-source resolution. Returning `nil` or throwing makes the engine use the default font, and the request reports `substituted`. The engine retains the original request through scene load/save and waits for resolution in resource readiness. `resolver`
+
+### setUpscaleConstraint(_:)-1d92y
+
+```swift
+@MainActor func setUpscaleConstraint(_ rules: [UpscaleConstraintRule]) throws
+```
+
+Set multiple upscale constraint rules at once. See [`setUpscaleConstraint(_:)`](./setupscaleconstraint(_:)-h3g.md) for details. `rules`
+
+### setUpscaleConstraint(_:)-h3g
+
+```swift
+@MainActor func setUpscaleConstraint(_ rule: UpscaleConstraintRule) throws
+```
+
+Set a rule that limits how far user interactions can enlarge a raster image fill beyond its source resolution. Resizing, scaling, pinching and the crop handles stop at the limit. Programmatic API calls are not affected. `rule`
 
 ### setURIResolver(_:)
 

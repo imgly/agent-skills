@@ -33,7 +33,7 @@ let audioCodec: AudioCodec
 @nonobjc let coverTimeOffset: Double?
 ```
 
-Cover time in seconds from the beginning of the exported video. Nil uses the page playback position at export start, clamped to the exported frames. An explicit value must be finite and within [0, duration). The frame containing that time becomes a PNG cover. The image preserves the export aspect ratio, with both dimensions at most 512 pixels.
+Cover time in seconds from the beginning of the exported video. Nil uses the page cover time when `playback/coverTimeEnabled` is true, else the page playback position at export start. Either is clamped to the exported frames. A scene uses its first frame. An explicit value must be finite and within [0, duration). The frame containing that time becomes a PNG cover. The image preserves the export aspect ratio, with both dimensions at most 512 pixels.
 
 ### coverTimeOffsetNumber
 

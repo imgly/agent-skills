@@ -368,6 +368,14 @@ abstract fun getSettingType(keypath: String): PropertyType
 
 Get the type of a setting.
 
+### getSoftProofColorSpace
+
+```kotlin
+abstract fun getSoftProofColorSpace(): ProfileColorSpace
+```
+
+Get the color space that soft proofing simulates.
+
 ### getSpotColorCMYK
 
 ```kotlin
@@ -408,6 +416,14 @@ abstract fun getTextCursorPositionInScreenSpaceY(): Float
 ```
 
 Get the current text cursor's y position in screen space.
+
+### getUpscaleConstraint
+
+```kotlin
+abstract fun getUpscaleConstraint(block: DesignBlock): ResolvedUpscaleConstraint?
+```
+
+Get the upscale constraint that holds for a block: its own rule, else the scene-wide default.
 
 ### getUsedMemory
 
@@ -480,6 +496,14 @@ abstract fun isSelectionEnabled(block: DesignBlock): Boolean
 ```
 
 Checks whether the block can currently be selected.
+
+### isSoftProofEnabled
+
+```kotlin
+abstract fun isSoftProofEnabled(): Boolean
+```
+
+Check whether soft proofing of the live canvas is on.
 
 ### loadCMYKProfile
 
@@ -593,6 +617,22 @@ abstract fun removeUndoStep()
 ```
 
 Removes the last history state from the stack, if available.
+
+### removeUpscaleConstraint
+
+```kotlin
+abstract fun removeUpscaleConstraint()
+```
+
+```kotlin
+abstract fun removeUpscaleConstraint(scope: UpscaleConstraintScope)
+```
+
+```kotlin
+abstract fun removeUpscaleConstraint(scopes: List<UpscaleConstraintScope>)
+```
+
+Remove the scene-wide default upscale constraint. Remove the upscale constraint of a scope. A block then falls back to the scene-wide default.
 
 ### setActiveHistory
 
@@ -746,6 +786,22 @@ abstract fun setSettingString(keypath: String, value: String)
 
 Set a string setting.
 
+### setSoftProofColorSpace
+
+```kotlin
+abstract fun setSoftProofColorSpace(colorSpace: ProfileColorSpace)
+```
+
+Set the color space that soft proofing simulates. The proof uses the Output profile of that space, then its Default profile, then the fallback profile. Creating or loading a scene, or applying a template, sets the color space to ProfileColorSpace.CMYK. A setActiveHistory call that switches to another scene does the same by the next update. A change emits on onStateChanged.
+
+### setSoftProofEnabled
+
+```kotlin
+abstract fun setSoftProofEnabled(enabled: Boolean)
+```
+
+Turn soft proofing of the live canvas on or off. With proofing on, the artwork inside the visible page trims shows the colors of the output profile of getSoftProofColorSpace. Exports, thumbnails, bleed and editor decorations stay unproofed. The state is not saved with the scene, and undo does not change it. Creating or loading a scene, or applying a template, turns proofing off and sets the color space to ProfileColorSpace.CMYK. A setActiveHistory call that switches to another scene does the same by the next update. A change emits on onStateChanged.
+
 ### setSpotColor
 
 ```kotlin
@@ -765,6 +821,18 @@ abstract fun setTypefaceResolver(resolver: (suspend (FontRequest) -> FontResolve
 ```
 
 Sets the resolver for opt-in runtime font requests. Pass null to restore asset-source resolution. Returning null or throwing makes the engine use the default font, and the request reports substituted. The engine retains the original request through scene load/save and waits for resolution in resource readiness. Without a resolver, the engine searches registered local asset sources. Identical requests share pending lookups. Each source is limited to 100 pages. Set assetSourceId to query an external source explicitly. Call setTypefaceResolver again to retry unresolved requests after registering a source.
+
+### setUpscaleConstraint
+
+```kotlin
+abstract fun setUpscaleConstraint(rule: UpscaleConstraintRule)
+```
+
+```kotlin
+abstract fun setUpscaleConstraint(rules: List<UpscaleConstraintRule>)
+```
+
+Set a rule that limits how far user interactions can enlarge a raster image fill beyond its source resolution. Resizing, scaling, pinching and the crop handles stop at the limit. Programmatic API calls are not affected. UpscaleConstraintRule.maxUpscale is the largest ratio of the output pixels that the image covers to the pixels of its largest source. Output pixels count at the scene DPI in a millimeter or inch scene, and one per design unit in a pixel scene. 1f stops an image at its source resolution. The frame size and the zoom of the image inside its crop both count. An image above its constraint can shrink, but not grow. SVG images and other fill types have no limit.
 
 ### setUriResolverAsync
 

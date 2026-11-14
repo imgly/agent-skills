@@ -401,6 +401,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [To v1.87](https://img.ly/docs/cesdk/dev/node/to-v1-87-0bbae1/)
 
+#### [To v1.88](https://img.ly/docs/cesdk/dev/node/to-v1-88-1c21c3/)
+
 
 ---
 
@@ -441,6 +443,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Adjust Audio Volume](https://img.ly/docs/cesdk/dev/node/create-audio/audio/adjust-volume-7ecc4a/)
 - [Fade Audio In and Out](https://img.ly/docs/cesdk/dev/node/create-audio/audio/fade-a4d7e2/)
 - [Loop Audio](https://img.ly/docs/cesdk/dev/node/create-audio/audio/loop-937be7/)
+- [Auto Layout](https://img.ly/docs/cesdk/dev/node/create-composition/auto-layout-c7e41a/)
 - [Node.js - AWS Lambda](https://img.ly/docs/cesdk/dev/node/get-started/vanilla-aws-lambda-fee18b/)
 - [Node.js - Clone GitHub Project](https://img.ly/docs/cesdk/dev/node/get-started/vanilla-clone-github-project-n1fe4a/)
 - [Refresh Assets](https://img.ly/docs/cesdk/dev/node/import-media/asset-library/refresh-assets-382060/)

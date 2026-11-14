@@ -1283,6 +1283,12 @@ case blockColorTintOutOfRange
 case blockCombineTextFontLoading
 ```
 
+### EngineErrorCode.blockComponentContainsItself
+
+```swift
+case blockComponentContainsItself
+```
+
 ### EngineErrorCode.blockComponentNoProperty
 
 ```swift
@@ -1293,6 +1299,24 @@ case blockComponentNoProperty
 
 ```swift
 case blockComponentNotRegistered
+```
+
+### EngineErrorCode.blockComponentPropertyUnknown
+
+```swift
+case blockComponentPropertyUnknown
+```
+
+### EngineErrorCode.blockComponentPropertyValueInvalid
+
+```swift
+case blockComponentPropertyValueInvalid
+```
+
+### EngineErrorCode.blockConstraintNeedsParentSize
+
+```swift
+case blockConstraintNeedsParentSize
 ```
 
 ### EngineErrorCode.blockContentAspectImageNoDimensions
@@ -1511,10 +1535,28 @@ case blockGradientColorStopsOutOfRange
 case blockGradientColorUnsupported
 ```
 
+### EngineErrorCode.blockGridLineOutOfRange
+
+```swift
+case blockGridLineOutOfRange
+```
+
+### EngineErrorCode.blockGridTracksInvalid
+
+```swift
+case blockGridTracksInvalid
+```
+
 ### EngineErrorCode.blockGroupAbsoluteOnly
 
 ```swift
 case blockGroupAbsoluteOnly
+```
+
+### EngineErrorCode.blockHasNoParent
+
+```swift
+case blockHasNoParent
 ```
 
 ### EngineErrorCode.blockHeightInvalidForScaling
@@ -1545,6 +1587,12 @@ case blockImageFillUnsupported
 
 ```swift
 case blockImageLoadFailed
+```
+
+### EngineErrorCode.blockInstanceStructureLocked
+
+```swift
+case blockInstanceStructureLocked
 ```
 
 ### EngineErrorCode.blockKeyframesDuplicateTime
@@ -1629,6 +1677,12 @@ case blockKeyframesValueKindMismatch
 
 ```swift
 case blockKeyNotFound
+```
+
+### EngineErrorCode.blockMainComponentMissing
+
+```swift
+case blockMainComponentMissing
 ```
 
 ### EngineErrorCode.blockMaskIndexOutOfBounds
@@ -1727,6 +1781,12 @@ case blockNoBlockSelected
 case blockNoKind
 ```
 
+### EngineErrorCode.blockNoLayoutSupport
+
+```swift
+case blockNoLayoutSupport
+```
+
 ### EngineErrorCode.blockNoParent
 
 ```swift
@@ -1751,6 +1811,12 @@ case blockNoShapeProperty
 case blockNoSize
 ```
 
+### EngineErrorCode.blockNotAComponent
+
+```swift
+case blockNotAComponent
+```
+
 ### EngineErrorCode.blockNotACutoutBlock
 
 ```swift
@@ -1761,6 +1827,12 @@ case blockNotACutoutBlock
 
 ```swift
 case blockNotADesignBlock
+```
+
+### EngineErrorCode.blockNotAnInstance
+
+```swift
+case blockNotAnInstance
 ```
 
 ### EngineErrorCode.blockNotATextBlock
@@ -1785,6 +1857,12 @@ case blockNotAttachedToScene
 
 ```swift
 case blockNotAVideoFillBlock
+```
+
+### EngineErrorCode.blockNotComponentCapable
+
+```swift
+case blockNotComponentCapable
 ```
 
 ### EngineErrorCode.blockNotKnownBlockType
@@ -1931,6 +2009,12 @@ case blockPathOperationFailed
 case blockPendingProgressInvalid
 ```
 
+### EngineErrorCode.blockPositionedByLayout
+
+```swift
+case blockPositionedByLayout
+```
+
 ### EngineErrorCode.blockPositionLocked
 
 ```swift
@@ -2037,6 +2121,12 @@ case blockResultEmptyShape
 
 ```swift
 case blockSceneCreateDifferent
+```
+
+### EngineErrorCode.blockSceneDuplicationNotAllowed
+
+```swift
+case blockSceneDuplicationNotAllowed
 ```
 
 ### EngineErrorCode.blockScopeInvalid
@@ -2795,6 +2885,12 @@ case blockVariableTypefaceInvalid
 case blockVariableTypeMismatch
 ```
 
+### EngineErrorCode.blockVariantUnknown
+
+```swift
+case blockVariantUnknown
+```
+
 ### EngineErrorCode.blockVideoFillNoUri
 
 ```swift
@@ -3017,6 +3113,36 @@ case codecGstreamerUnexpectedMessage
 case codecMetalTextureFromIosurfaceFailed
 ```
 
+### EngineErrorCode.codecModuleCrashed
+
+```swift
+case codecModuleCrashed
+```
+
+### EngineErrorCode.codecModuleManifestInvalid
+
+```swift
+case codecModuleManifestInvalid
+```
+
+### EngineErrorCode.codecModuleProtocolMismatch
+
+```swift
+case codecModuleProtocolMismatch
+```
+
+### EngineErrorCode.codecModuleSessionFailed
+
+```swift
+case codecModuleSessionFailed
+```
+
+### EngineErrorCode.codecModuleStartFailed
+
+```swift
+case codecModuleStartFailed
+```
+
 ### EngineErrorCode.codecNoContext
 
 ```swift
@@ -3123,6 +3249,12 @@ case codecVideoDecoderCreateFailed
 
 ```swift
 case codecVideoDecoderFatal
+```
+
+### EngineErrorCode.codecVideoDecoderRefused
+
+```swift
+case codecVideoDecoderRefused
 ```
 
 ### EngineErrorCode.codecVideoDecoderUnresponsive
@@ -3341,6 +3473,18 @@ case colorProfileUnsupportedSpace
 case colorRenderingIntentInvalid
 ```
 
+### EngineErrorCode.colorSoftProofSpaceUnsupported
+
+```swift
+case colorSoftProofSpaceUnsupported
+```
+
+### EngineErrorCode.colorSoftProofTransformFailed
+
+```swift
+case colorSoftProofTransformFailed
+```
+
 ### EngineErrorCode.computeColorSpaceBitDepthUnsupported
 
 ```swift
@@ -3489,6 +3633,12 @@ case computeOpfsReadFailed
 
 ```swift
 case computeSkiaGlInterfaceInvalid
+```
+
+### EngineErrorCode.computeSoftProofFailed
+
+```swift
+case computeSoftProofFailed
 ```
 
 ### EngineErrorCode.computeVideoUnsupportedAudioTracks
@@ -4047,6 +4197,12 @@ case editorUnitConversionFailed
 
 ```swift
 case editorUnsupportedSerializationFormat
+```
+
+### EngineErrorCode.editorUpscaleConstraintInvalid
+
+```swift
+case editorUpscaleConstraintInvalid
 ```
 
 ### EngineErrorCode.editorValueNotFinite

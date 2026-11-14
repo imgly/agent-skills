@@ -6,12 +6,10 @@
         {
           "android": {
             "extraMavenRepos": ["https://maven.img.ly/maven"],
-            "minSdkVersion": 24,
-            "kotlinVersion": "1.9.10"
+            "minSdkVersion": 24
           },
           "ios": {
-            "deploymentTarget": "16.0",
-            "useFrameworks": "dynamic"
+            "useFrameworks": "static"
           }
         }
       ]

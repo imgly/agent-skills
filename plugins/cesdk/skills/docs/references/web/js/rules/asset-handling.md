@@ -71,9 +71,11 @@ Provides image dimensions alongside the URI, enabling better layout and cropping
 
 ```typescript
 const fill = engine.block.getFill(block);
-engine.block.setSourceSet(fill, 'fill/image/sourceSet', [
-  { uri: 'https://example.com/mockup.png', width: 800, height: 940 }
-]);
+if (fill != null) {
+  engine.block.setSourceSet(fill, 'fill/image/sourceSet', [
+    { uri: 'https://example.com/mockup.png', width: 800, height: 940 }
+  ]);
+}
 ```
 
 The `Source` type from `@cesdk/engine`:
@@ -121,13 +123,15 @@ engine.block.setFill(block, imageFill);
 engine.block.setSourceSet(imageFill, 'fill/image/sourceSet', sources);
 
 // Color fill (e.g. transparent page background)
-const colorFill = engine.block.getFill(page); // pages have a default fill
-engine.block.setColor(colorFill, 'fill/color/value', {
-  r: 0,
-  g: 0,
-  b: 0,
-  a: 0
-});
+const colorFill = engine.block.getFill(page);
+if (colorFill != null) {
+  engine.block.setColor(colorFill, 'fill/color/value', {
+    r: 0,
+    g: 0,
+    b: 0,
+    a: 0
+  });
+}
 ```
 
 ---
