@@ -8,7 +8,8 @@ Export blocks to various formats like images, videos, and audio.
 
 Exports a design block to a Blob.
 The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on
-all four sides.
+all four sides. At a fold, that bleed shows the content of the page slice beside it. The export of a hidden
+page slice shows it and its content.
 Performs an internal update to resolve the final layout for the blocks. A PNG, JPEG, WebP, TGA or raw
 export renders all its strips in one engine call on the main thread, so the tab does not respond and does
 not repaint until the export ends. For a large export, use `exportToStream`, or turn on
@@ -114,6 +115,7 @@ exportVideo(handle: DesignBlockId, options?: VideoExportOptions): Promise<Blob>
 - `handle` - The page or the scene to export. A scene plays its pages one after the other, in the order of
 `scene.getPages`, each for its own duration. A page with a duration of zero does not appear.
 A hidden page does not appear either. The pages must have the same size, otherwise the export fails.
+A page transition from `setTransition` blends a page into the next one, which starts that many seconds earlier.
 - `options` - The options for exporting the video, including mime type, h264 profile, level, bitrate, time offset, duration, framerate, target width and height.
 
 **Returns:** A promise that resolves with a video blob or is rejected with an error.
@@ -352,8 +354,9 @@ duplicate(id: DesignBlockId, attachToParent?: boolean): DesignBlockId
 
 Destroys a block and its children.
 A page slice destroys the blocks that it owns on its page, without a check of their scopes,
-as a page destroys its children. The last page slice of a page keeps them.
-Destroying a page slice that is not the last one runs an internal update.
+as a page destroys its children. This holds for the last page slice too: its page becomes an empty page without
+page slices, at the same size. To keep the content, move the page slice out with `movePageSliceOutOfPage` first.
+Destroying a page slice runs an internal update.
 
 ```typescript
 destroy(id: DesignBlockId): void
@@ -737,6 +740,7 @@ getFill(id: DesignBlockId): DesignBlockId | null
 
 Sets the fill block for a given block.
 The previous fill block is not destroyed automatically.
+On a page slice, the call also enables the fill, because a new page slice has its fill disabled.
 
 ```typescript
 setFill(id: DesignBlockId, fill: DesignBlockId): void
@@ -932,6 +936,7 @@ created then.
 ### supportsDuration()
 
 Checks if a block supports a duration property.
+False for a page slice, which always lasts as long as its page.
 
 ```typescript
 supportsDuration(id: DesignBlockId): boolean
@@ -961,8 +966,8 @@ setDuration(id: DesignBlockId, duration: number): void
 
 ### getDuration()
 
-Gets the playback duration of a block. For a scene, the sum of the durations of its pages, without the pages
-hidden with `setVisible(false)`.
+Gets the playback duration of a block. For a scene, the length of its video: the durations of its pages
+without the pages hidden with `setVisible(false)`, less the overlap of each page transition.
 
 ```typescript
 getDuration(id: DesignBlockId): number
@@ -1749,6 +1754,7 @@ select(id: DesignBlockId): void
 ### setSelected()
 
 Sets the selection state of a block.
+A page slice and its page are never selected together: selecting one deselects the other.
 
 ```typescript
 setSelected(id: DesignBlockId, selected: boolean): void
@@ -1799,6 +1805,8 @@ isVisible(id: DesignBlockId): boolean
 ### setVisible()
 
 Sets the visibility state of a block.
+A hidden page slice hides the blocks that it owns, as a hidden parent hides its children. They show in no
+canvas and no export, and take no hit. It keeps its room in the page. The blocks keep their own visibility.
 
 ```typescript
 setVisible(id: DesignBlockId, visible: boolean): void
@@ -2597,6 +2605,7 @@ getOpacity(id: DesignBlockId): number
 ### supportsBlendMode()
 
 Checks if a block supports blend modes.
+False for a page slice, which draws no blend mode.
 
 ```typescript
 supportsBlendMode(id: DesignBlockId): boolean
@@ -3098,6 +3107,7 @@ setPositionYMode(id: DesignBlockId, mode: PositionYMode): void
 
 Sets a block to always be rendered on top of its siblings.
 If true, this block's sorting order is automatically adjusted to be higher than all other siblings without this property.
+A page slice fails with `BLOCK.TYPE_CANNOT_BE_ARRANGED`, because its place in the page is its reading order.
 
 ```typescript
 setAlwaysOnTop(id: DesignBlockId, enabled: boolean): void
@@ -3111,6 +3121,7 @@ setAlwaysOnTop(id: DesignBlockId, enabled: boolean): void
 
 Sets a block to always be rendered below its siblings.
 If true, this block's sorting order is automatically adjusted to be lower than all other siblings without this property.
+A page slice fails with `BLOCK.TYPE_CANNOT_BE_ARRANGED`, because its place in the page is its reading order.
 
 ```typescript
 setAlwaysOnBottom(id: DesignBlockId, enabled: boolean): void
@@ -3295,7 +3306,9 @@ getHeightMode(id: DesignBlockId): HeightMode
 Sets the width of a block in the current width mode.
 If the crop is maintained, the crop values will be automatically adjusted.
 A new width of a page with page slices goes to its last page slice on a horizontal axis.
-On a vertical axis, it goes to every page slice.
+On a vertical axis, it goes to every page slice. A page slice that this shrinks stops at 25 pixels at the DPI of
+the scene. So the page can end up wider than asked. A width of 0 or less on a page slice fails with
+`BLOCK.PAGE_SLICE_SIZE_INVALID`.
 ```javascript
 engine.block.setWidth(block, 2.5, true);
 ```
@@ -3334,7 +3347,9 @@ setWidthMode(id: DesignBlockId, mode: WidthMode): void
 Sets the height of a block in the current height mode.
 If the crop is maintained, the crop values will be automatically adjusted.
 A new height of a page with page slices goes to every page slice on a horizontal axis.
-On a vertical axis, it goes to the last page slice.
+On a vertical axis, it goes to the last page slice. A page slice that this shrinks stops at 25 pixels at the
+DPI of the scene. So the page can end up higher than asked. A height of 0 or less on a page slice fails
+with `BLOCK.PAGE_SLICE_SIZE_INVALID`.
 ```javascript
 engine.block.setHeight(block, 0.5);
 engine.block.setHeight(block, 2.5, true);
@@ -3653,6 +3668,7 @@ every other pending change.
 engine.block.scale(block, 2.0, 0.5, 0.5);
 ```
 Scaling a page slice changes its size, and the page places its page slices again.
+A scale of 0 or less on a page slice fails with `BLOCK.PAGE_SLICE_SIZE_INVALID`.
 
 ```typescript
 scale(id: DesignBlockId, scale: number, anchorX?: number, anchorY?: number): void
@@ -3673,6 +3689,7 @@ Convenient high-level functions that combine multiple operations into single, ea
 Update a block's size.
 The size of a group is always Absolute: a group takes `width` and `height` in design units and no `sizeMode`.
 A group keeps its aspect ratio, so `height` decides its size.
+A width or a height of 0 or less on a page slice fails with `BLOCK.PAGE_SLICE_SIZE_INVALID`.
 
 ```typescript
 setSize(id: DesignBlockId, width: number, height: number, options?: {
@@ -3854,15 +3871,17 @@ getTransformParent(id: DesignBlockId): DesignBlockId | null
 
 **Returns:** The transform parent, or `null` if the block follows none.
 
-### getPageSlice()
+### getOwningPageSlice()
 
-Gets the page slice that holds a block on its page.
-A page slice has no children, so the block is a child of the page, or of a group on the page. The block
-belongs to the page slice that the layout gives it. A block in a group belongs where its group does.
-The call runs an internal update when the block has no frame. It does the same when the page has page slices that no update laid out yet.
+Gets the page slice that owns a block on its page.
+A page slice has no children, so the block is a child of the page, or of a group on the page. The page slice
+under the center of the block owns it. On a fold, the earlier page slice owns it. A block outside the page
+belongs to the nearest page slice. A block in a group belongs where its group does.
+The call runs an internal update when the block has no frame. It does the same when the page has page slices
+that no update laid out yet.
 
 ```typescript
-getPageSlice(id: DesignBlockId): DesignBlockId | null
+getOwningPageSlice(id: DesignBlockId): DesignBlockId | null
 ```
 
 **Parameters:**
@@ -3870,6 +3889,20 @@ getPageSlice(id: DesignBlockId): DesignBlockId | null
 
 **Returns:** The page slice, or `null` for a block that is not on a page with page slices. A page and a page slice
 also give `null`.
+
+### getPageSlices()
+
+Gets the page slices of a page, in reading order.
+The list holds hidden page slices too. It is the order of the page slices among the children of the page.
+
+```typescript
+getPageSlices(id: DesignBlockId): DesignBlockId[]
+```
+
+**Parameters:**
+- `id` - The page to query.
+
+**Returns:** The page slices. An empty list for a block without page slices.
 
 ### getChildren()
 
@@ -7381,10 +7414,11 @@ split(id: DesignBlockId, atTime: number, options?: SplitOptions): DesignBlockId
 Creates a new transition block.
 Its saved `transition/overlap` boolean starts at the current value of
 `clip/defaultTransitionOverlapEnabled` (engine default: true).
-The created block is standalone until assigned to a clip with `setTransition`.
-Once assigned, it is owned by that clip: it is destroyed together with the
-clip, and the engine also destroys it automatically when the two clips stop
-being timeline-adjacent on the track (e.g. after a manual gap is introduced).
+The created block is standalone until assigned to a clip or a page with
+`setTransition`. Once assigned, it is owned by that block and destroyed
+together with it. The engine also destroys it when the two clips stop being
+timeline-adjacent on the track, such as after a manual gap. A page keeps its
+transition.
 
 ```typescript
 createTransition(type: TransitionType): DesignBlockId
@@ -7397,66 +7431,81 @@ createTransition(type: TransitionType): DesignBlockId
 
 ### supportsTransition()
 
-Checks whether a clip can own an outgoing clip-to-clip transition.
-Clips inside a video track qualify, group clips included. Audio, caption
-and cutout blocks report `false`, and so do blocks outside a video track.
-A group that holds only audio blocks reports `false` too.
+Checks whether a clip can own an outgoing clip-to-clip transition, or a
+page an outgoing page transition.
+Clips inside a video track qualify, group clips included, and so does
+every page of a scene, in every scene mode. Audio, caption and cutout
+blocks report `false`, and so do other blocks outside a video track. A
+group that holds only audio blocks reports `false` too.
 
 ```typescript
 supportsTransition(id: DesignBlockId): boolean
 ```
 
 **Parameters:**
-- `id` - The clip block to check.
+- `id` - The clip or page to check.
 
 **Returns:** Whether the block can own an outgoing transition.
 
 ### setTransition()
 
-Assigns the outgoing transition of a clip.
+Assigns the outgoing transition of a clip or a page.
 A previously assigned transition block is detached but not destroyed
 automatically. Throws an error if the given transition block is invalid or
-already assigned to another clip. Both the clip and its following clip on
+already assigned to another block. Both the clip and its following clip on
 the track must support transitions, see `supportsTransition`. To clear a
-clip's transition, use `removeTransition` instead.
+transition, use `removeTransition` instead.
 With `transition/overlap=false` on the transition block, transitions preserve
 clip timing and hold endpoint frames across the cut. This property is saved
 in scenes; older scenes without it use true. New transitions initialize it
 from `clip/defaultTransitionOverlapEnabled`. A group clip on either side
 ignores `transition/overlap`: the clips meet at the cut, and the saved value
 stays.
+A page transition plays only in the video export of the scene, see
+`exportVideo`. It blends the page into the next page that the video shows.
+With `transition/overlap`, the next page starts that many seconds before the
+page ends, at most half of either page. Without it, the scene keeps its
+length: the blend is centred on the cut and holds the last frame of the page
+and the first frame of the next. On the last page it plays nothing.
+```javascript
+const [first] = engine.scene.getPages();
+const fade = engine.block.createTransition('cross-fade');
+engine.block.setDuration(fade, 0.5);
+engine.block.setTransition(first, fade);
+const video = await engine.block.exportVideo(engine.scene.get(), { mimeType: 'video/mp4' });
+```
 
 ```typescript
 setTransition(id: DesignBlockId, transition: DesignBlockId): void
 ```
 
 **Parameters:**
-- `id` - The outgoing clip that owns the transition relation.
+- `id` - The outgoing clip or page that owns the transition relation.
 - `transition` - The transition block to assign.
 
 ### removeTransition()
 
-Removes the outgoing transition of a clip.
+Removes the outgoing transition of a clip or a page.
 The removed transition block is detached but not destroyed automatically.
-Removing from a clip without an assigned transition is a no-op.
+Removing from a block without an assigned transition is a no-op.
 
 ```typescript
 removeTransition(id: DesignBlockId): void
 ```
 
 **Parameters:**
-- `id` - The outgoing clip whose transition relation should be cleared.
+- `id` - The outgoing clip or page whose transition relation should be cleared.
 
 ### getTransition()
 
-Gets the outgoing transition assigned to a clip.
+Gets the outgoing transition assigned to a clip or a page.
 
 ```typescript
 getTransition(id: DesignBlockId): DesignBlockId
 ```
 
 **Parameters:**
-- `id` - The outgoing clip whose transition relation should be queried.
+- `id` - The outgoing clip or page whose transition relation should be queried.
 
 **Returns:** The assigned transition block, or an invalid block if unset.
 Check the result with `isValid`.

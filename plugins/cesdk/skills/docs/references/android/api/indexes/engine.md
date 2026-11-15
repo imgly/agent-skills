@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 358 generated API digests.
+Complete catalog of 359 generated API digests.
 
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
@@ -244,6 +244,7 @@ Complete catalog of 358 generated API digests.
 - [ModifierType.Trim](<../engine/ly.img.engine/-modifier-type/-trim.md>) — `ly.img.engine`
 - [ModifierType.Twist](<../engine/ly.img.engine/-modifier-type/-twist.md>) — `ly.img.engine`
 - [ModifierType.Zigzag](<../engine/ly.img.engine/-modifier-type/-zigzag.md>) — `ly.img.engine`
+- [MovePageSliceOptions](<../engine/ly.img.engine/-move-page-slice-options.md>) — `ly.img.engine`
 - [MovementConstraintRule](<../engine/ly.img.engine/-movement-constraint-rule.md>) — `ly.img.engine`
 - [MovementConstraintScope](<../engine/ly.img.engine/-movement-constraint-scope.md>) — `ly.img.engine`
 - [MovementConstraintScope.Block](<../engine/ly.img.engine/-movement-constraint-scope/-block.md>) — `ly.img.engine`

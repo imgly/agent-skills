@@ -1985,6 +1985,12 @@ case blockPageSliceParentInvalid
 case blockPageSliceResizeContentAware
 ```
 
+### EngineErrorCode.blockPageSliceSizeInvalid
+
+```swift
+case blockPageSliceSizeInvalid
+```
+
 ### EngineErrorCode.blockPageSliceSizeModeInvalid
 
 ```swift

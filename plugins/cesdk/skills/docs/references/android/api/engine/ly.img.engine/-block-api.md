@@ -333,7 +333,7 @@ Create a new text animator block. A text animator changes the glyphs of a text b
 abstract fun createTransition(type: TransitionType): DesignBlock
 ```
 
-Creates a new transition, fails if type is unknown. Its transition/overlap value is initialized from the current clip/defaultTransitionOverlapEnabled editor setting. The created block is standalone until assigned to a clip with setTransition. Once assigned, it is owned by that clip: it is destroyed together with the clip, and the engine also destroys it automatically when the two clips stop being timeline-adjacent on the track (e.g. after a manual gap is introduced).
+Creates a new transition, fails if type is unknown. Its transition/overlap value is initialized from the current clip/defaultTransitionOverlapEnabled editor setting. The created block is standalone until assigned to a clip or a page with setTransition. Once assigned, it is owned by that block and destroyed together with it. The engine also destroys it when the two clips stop being timeline-adjacent on the track, such as after a manual gap. A page keeps its transition.
 
 ### create
 
@@ -354,7 +354,7 @@ Create a new block. New text and graphic blocks use clip/defaultDurationValue (5
 abstract fun destroy(block: DesignBlock)
 ```
 
-Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. The last page slice of a page keeps them. Destroying a page slice that is not the last one runs an internal update. Required scope: "lifecycle/destroy"
+Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. This holds for the last page slice too: its page becomes an empty page without page slices, at the same size. To keep the content, move the page slice out with movePageSliceOutOfPage first. Destroying a page slice runs an internal update. Required scope: "lifecycle/destroy"
 
 ### detachInstance
 
@@ -454,7 +454,7 @@ abstract suspend fun exportWithColorMask(block: DesignBlock, mimeType: MimeType,
 abstract suspend fun exportWithColorMask(blocks: List<DesignBlock>, mimeType: MimeType, maskColor: RGBAColor, options: ExportOptions? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<Pair<ByteBuffer, ByteBuffer>>
 ```
 
-Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPr…
+Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. At a fold, that bleed shows the content of the page slice beside it. The export of a hidden page slice shows it and its content. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any othe…
 
 ### export
 
@@ -474,7 +474,7 @@ abstract fun export(block: DesignBlock, options: ExportOptions? = null, progress
 abstract suspend fun export(blocks: List<DesignBlock>, mimeType: MimeType, options: ExportOptions? = null, progressCallback: ((ExportPdfProgress) -> Unit)? = null, onPreExport: suspend Engine.() -> Unit = {}, uriResolver: (suspend (Uri) -> Uri)? = null): List<ByteBuffer>
 ```
 
-Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any other buffer on it here. A later export of a scene without video or audio can reuse that engine with the resources it loaded, so onPr…
+Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. At a fold, that bleed shows the content of the page slice beside it. The export of a hidden page slice shows it and its content. Performs an internal update to resolve the final layout for the blocks. Note: The export happens in a background thread and the Engine instance in the onPreExport lambda is a separate instance. Use it only until the suspending function resumes. Use this lambda to configure the background engine for export. It holds only the buffers that the exported scene uses, so create any othe…
 
 ### fillParent
 
@@ -904,7 +904,7 @@ Get the drop shadow's y offset of the given design block.
 abstract fun getDuration(block: DesignBlock): Double
 ```
 
-Get the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. For a scene, the sum of the durations of its pages, without the pages hidden with setVisible. Note: The duration is ignored when the scene is not in Video mode.
+Get the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. For a scene, the length of its video: the durations of its pages without the pages hidden with setVisible, less the overlap of each page transition. Note: The duration is ignored when the scene is not in Video mode.
 
 ### getEffectSource
 
@@ -1179,13 +1179,21 @@ abstract fun getOutAnimation(block: DesignBlock): DesignBlock?
 
 Gets the "out" animation of the given block.
 
-### getPageSlice
+### getOwningPageSlice
 
 ```kotlin
-abstract fun getPageSlice(block: DesignBlock): DesignBlock?
+abstract fun getOwningPageSlice(block: DesignBlock): DesignBlock?
 ```
 
-Returns the page slice that holds a block on its page. A page slice has no children, so the block is a child of the page, or of a group on the page. The block belongs to the page slice that the layout gives it. A block in a group belongs where its group does. Note that the call runs an internal update when the block has no frame. It does the same when the page has page slices that no update laid out yet.
+Returns the page slice that owns a block on its page. A page slice has no children, so the block is a child of the page, or of a group on the page. The page slice under the center of the block owns it. On a fold, the earlier page slice owns it. A block outside the page belongs to the nearest page slice. A block in a group belongs where its group does. Note that the call runs an internal update when the block has no frame. It does the same when the page has page slices that no update laid out yet.
+
+### getPageSlices
+
+```kotlin
+abstract fun getPageSlices(page: DesignBlock): List<DesignBlock>
+```
+
+Returns the page slices of a page, in reading order. The list holds hidden page slices too. It is the order of the page slices among the children of the page.
 
 ### getParent
 
@@ -1681,7 +1689,7 @@ Returns the block whose transform the given block follows.
 abstract fun getTransition(block: DesignBlock): DesignBlock
 ```
 
-Gets the outgoing transition assigned to a clip.
+Gets the outgoing transition assigned to a clip or a page.
 
 ### getTrimLength
 
@@ -2237,21 +2245,21 @@ abstract suspend fun loadFromURL(url: Uri): List<DesignBlock>
 
 Loads existing blocks from a URL. The URL should point to a blocks file within an unzipped archive directory previously saved with saveToArchive. The blocks are not attached by default and won't be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one.
 
-### movePageIntoSpread
+### movePageSliceIntoPage
 
 ```kotlin
-abstract fun movePageIntoSpread(pageOrSlice: DesignBlock, spread: DesignBlock, index: Int, dissolveSourceSpread: Boolean = false): DesignBlock
+abstract fun movePageSliceIntoPage(pageOrPageSlice: DesignBlock, page: DesignBlock, index: Int, options: MovePageSliceOptions = MovePageSliceOptions()): DesignBlock
 ```
 
-Moves a standalone page or a slice from another spread into spread. index counts destination slices, including hidden slices, before the move. Insertion at the end is valid. Use insertChild to reorder within one spread. Content IDs survive; a standalone page becomes a new slice. Incoming content appears above existing content, retaining its order. The slice takes the destination's shared height or width without scaling content. Insertion fails if a content block would change its slice owner. Conversion preserves supported appearance keyframes. Slice tracks use the containing spread's playback clock. Conversion rejects preset animations and unsupported tracks, including geometry and crop tra…
+Moves a page without page slices, or a page slice of another page, into a page with page slices. The content of the moved page or page slice moves along and keeps its ids. A moved page slice keeps its id. A page becomes a new page slice, and its id becomes invalid. The page slice keeps its size along the axis of page and takes the shared size across it. The moved content is placed above the content of page, in its own order. When the move takes the last page slice of its page, that page stays as an empty page without page slices. The move fails when a content block would change the page slice that owns it. Conversion keeps the supported appearance keyframes. Tracks of a page slice use the p…
 
-### movePageSliceOutOfSpread
+### movePageSliceOutOfPage
 
 ```kotlin
-abstract fun movePageSliceOutOfSpread(slice: DesignBlock, index: Int, dissolveSourceSpread: Boolean = false): DesignBlock
+abstract fun movePageSliceOutOfPage(pageSlice: DesignBlock, index: Int, options: MovePageSliceOptions = MovePageSliceOptions()): DesignBlock
 ```
 
-Moves slice into a new standalone page. index counts pages in the source page container before the move. Insertion at the end is valid. The source stays in that sequence. Content IDs survive; the old slice ID becomes invalid. An enabled slice fill survives. Otherwise dissolution inherits the spread fill; a source that remains gives white. An empty source does not count as dissolution. Conversion preserves supported appearance keyframes. Slice tracks use the containing spread's playback clock. Conversion rejects preset animations and unsupported tracks, including geometry and crop tracks. Dissolution rejects a remaining slice with preset animations or keyframes. Wait for the engine to finish…
+Moves a page slice and its content to a new page without page slices. The new page joins the parent of the source page. The id of the page slice becomes invalid. The content keeps its ids. The page slices after it close the gap. An enabled fill of the page slice stays. Otherwise the new page takes the fill of the source page when MovePageSliceOptions.convertSourceToPage acts, and a white fill when it does not. When the move takes the last page slice, the source stays as an empty page without page slices. Conversion keeps the supported appearance keyframes. Tracks of a page slice use the playback clock of its page. Conversion refuses preset animations and other tracks, such as geometry and c…
 
 ### onClicked
 
@@ -2363,7 +2371,7 @@ Removes selected range of text of the given text block. Required scope: "text/ed
 abstract fun removeTransition(block: DesignBlock)
 ```
 
-Removes the outgoing transition of a clip. The removed transition block is detached but not destroyed automatically. Removing from a clip without an assigned transition is a no-op.
+Removes the outgoing transition of a clip or a page. The removed transition block is detached but not destroyed automatically. Removing from a block without an assigned transition is a no-op.
 
 ### removeVariableBinding
 
@@ -2439,7 +2447,7 @@ Saves the given blocks to a proprietary string. If given the root of a block hie
 abstract fun scale(block: DesignBlock, scale: Float, @FloatRange(from = 0.0, to = 1.0)anchorX: Float, @FloatRange(from = 0.0, to = 1.0)anchorY: Float)
 ```
 
-Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, every child of it and each transform parent. That update also lays out every other pending change. Required scope: "layer/resize" Scaling a page slice changes its size, and the page places its page slices again.
+Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, every child of it and each transform parent. That update also lays out every other pending change. Required scope: "layer/resize" Scaling a page slice changes its size, and the page places its page slices again. A scale of 0 or less on a page slice fails with BLOCK.PAGE_SLICE_SIZE_INVALID.
 
 ### select
 
@@ -2471,7 +2479,7 @@ Updates the sorting order of this block and all of its manually created siblings
 abstract fun setAlwaysOnBottom(block: DesignBlock, enabled: Boolean)
 ```
 
-Update the block's always-on-bottom property. If true, this blocks's global sorting order is automatically adjusted to be lower than all other siblings without this property. If more than one block is set to be always-on-bottom, the child order decides which is on the bottom.
+Update the block's always-on-bottom property. If true, this blocks's global sorting order is automatically adjusted to be lower than all other siblings without this property. If more than one block is set to be always-on-bottom, the child order decides which is on the bottom. A page slice fails with BLOCK.TYPE_CANNOT_BE_ARRANGED, because its place in the page is its reading order.
 
 ### setAlwaysOnTop
 
@@ -2479,7 +2487,7 @@ Update the block's always-on-bottom property. If true, this blocks's global sort
 abstract fun setAlwaysOnTop(block: DesignBlock, enabled: Boolean)
 ```
 
-Update the block's always-on-top property. If true, this blocks's global sorting order is automatically adjusted to be higher than all other siblings without this property. If more than one block is set to be always-on-top, the child order decides which is on top.
+Update the block's always-on-top property. If true, this blocks's global sorting order is automatically adjusted to be higher than all other siblings without this property. If more than one block is set to be always-on-top, the child order decides which is on top. A page slice fails with BLOCK.TYPE_CANNOT_BE_ARRANGED, because its place in the page is its reading order.
 
 ### setAudioFadeIn
 
@@ -2776,7 +2784,7 @@ Set the fill color of the given design block. Required scope: "fill/change"
 abstract fun setFill(block: DesignBlock, fill: DesignBlock)
 ```
 
-Sets the block containing the fill properties of the given block. Note: The previous fill block is not destroyed automatically. Required scopes: "fill/change", "fill/changeType"
+Sets the block containing the fill properties of the given block. On a page slice, the call also enables the fill, because a new page slice has its fill disabled. Note: The previous fill block is not destroyed automatically. Required scopes: "fill/change", "fill/changeType"
 
 ### setFlipHorizontal
 
@@ -2840,7 +2848,7 @@ Set a block's mode for its height. A switch between Absolute and Percent keeps t
 abstract fun setHeight(block: DesignBlock, value: Float, maintainCrop: Boolean = false)
 ```
 
-Update a block's height and optionally maintain the crop. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: "layer/resize"
+Update a block's height and optionally maintain the crop. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up higher than asked. A height of 0 or less on a page slice fails with BLOCK.PAGE_SLICE_SIZE_INVALID. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of t…
 
 ### setInAnimation
 
@@ -3080,7 +3088,7 @@ Enable or disable a scope for a given block.
 abstract fun setSelected(block: DesignBlock, selected: Boolean)
 ```
 
-Update the selection state of a block. Fails for invalid blocks. Note: Previously selected blocks remain selected. Required scope: "editor/select"
+Update the selection state of a block. Fails for invalid blocks. Note: Previously selected blocks remain selected. A page slice and its page are never selected together: selecting one deselects the other. Required scope: "editor/select"
 
 ### setShape
 
@@ -3440,7 +3448,7 @@ Makes a block follow the transform of another block, or stops it from following 
 abstract fun setTransition(block: DesignBlock, transition: DesignBlock)
 ```
 
-Assigns the outgoing transition of a clip. A previously assigned transition block is detached but not destroyed automatically. Fails if the given transition block is invalid or already assigned to another clip. Both the clip and its following clip on the track must support transitions, see supportsTransition. To clear a clip's transition, use removeTransition instead. With transition/overlap=false, transitions preserve clip timing and hold endpoint frames across the cut. The property is saved in scenes, and older scenes without it use true. A group clip on either side ignores transition/overlap: the clips meet at the cut, and the saved value stays.
+Assigns the outgoing transition of a clip or a page. A previously assigned transition block is detached but not destroyed automatically. Fails if the given transition block is invalid or already assigned to another block. Both the clip and its following clip on the track must support transitions, see supportsTransition. To clear a transition, use removeTransition instead. With transition/overlap=false, transitions preserve clip timing and hold endpoint frames across the cut. The property is saved in scenes, and older scenes without it use true. A group clip on either side ignores transition/overlap: the clips meet at the cut, and the saved value stays.
 
 ### setTrimLength
 
@@ -3504,7 +3512,7 @@ Set a vec2 property of the given design block to the given value. position sets 
 abstract fun setVisible(block: DesignBlock, visible: Boolean)
 ```
 
-Update a block's visibility. Required scope: "layer/visibility"
+Update a block's visibility. A hidden page slice hides the blocks that it owns, as a hidden parent hides its children. They show in no canvas and no export, and take no hit. It keeps its room in the page. The blocks keep their own visibility. Required scope: "layer/visibility"
 
 ### setVolume
 
@@ -3528,7 +3536,7 @@ Set a block's mode for its width. A switch between Absolute and Percent keeps th
 abstract fun setWidth(block: DesignBlock, value: Float, maintainCrop: Boolean = false)
 ```
 
-Update a block's width and optionally maintain the crop. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: "layer/resize"
+Update a block's width and optionally maintain the crop. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up wider than asked. A width of 0 or less on a page slice fails with BLOCK.PAGE_SLICE_SIZE_INVALID. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the g…
 
 ### split
 
@@ -3720,7 +3728,7 @@ Returns whether the block has a time offset property.
 abstract fun supportsTransition(block: DesignBlock): Boolean
 ```
 
-Checks whether a clip can own an outgoing clip-to-clip transition. Clips inside a video track qualify, group clips included. Audio, caption and cutout blocks report false, and so do blocks outside a video track. A group that holds only audio blocks reports false too.
+Checks whether a clip can own an outgoing clip-to-clip transition, or a page an outgoing page transition. Clips inside a video track qualify, group clips included, and so does every page of a scene, in every scene mode. Audio, caption and cutout blocks report false, and so do other blocks outside a video track. A group that holds only audio blocks reports false too.
 
 ### supportsTrim
 

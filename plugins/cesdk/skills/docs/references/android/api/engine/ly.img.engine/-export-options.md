@@ -6,7 +6,7 @@
 The export options.
 
 ```kotlin
-data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val underlayerMinFeatureWidth: Float = 0.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null, val outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, val outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, val embedProfiles: Boolean = false, val preserveBlack: Boolean = false, val exportArea: RectF? = null, val exportPdfPageSlices: Boolean = false)
+data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val underlayerMinFeatureWidth: Float = 0.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null, val outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, val outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, val embedProfiles: Boolean = false, val preserveBlack: Boolean = false, val exportArea: RectF? = null, val exportPdfPageSlices: Boolean = false, val exportPdfWithFoldMarks: Boolean = false)
 ```
 
 
@@ -19,7 +19,7 @@ constructor(pngCompressionLevel: Int, jpegQuality: Float, webpQuality: Float, ta
 ```
 
 ```kotlin
-constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, underlayerMinFeatureWidth: Float = 0.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null, outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, embedProfiles: Boolean = false, preserveBlack: Boolean = false, exportArea: RectF? = null, exportPdfPageSlices: Boolean = false)
+constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, underlayerMinFeatureWidth: Float = 0.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null, outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, embedProfiles: Boolean = false, preserveBlack: Boolean = false, exportArea: RectF? = null, exportPdfPageSlices: Boolean = false, exportPdfWithFoldMarks: Boolean = false)
 ```
 
 The constructor without exportPdfPageSlices, so that a call that passes all these arguments, from Java for example, keeps working. It sets exportPdfPageSlices to false.
@@ -38,7 +38,7 @@ If true, the export will include text bounding boxes that account for glyph over
 val cropMarkLength: Float = 0.0f
 ```
 
-Length of one crop mark line, in design units. It shares the unit of printMarkOffset, because the exported sheet grows by the sum of the two. Values <= 0 fall back to the equivalent of 15 pt. Only used when exportPdfWithCropMarks is true.
+Length of one crop mark line and of one fold mark line, in design units. It shares the unit of printMarkOffset, because the exported sheet grows by the sum of the two. Values <= 0 fall back to the equivalent of 15 pt. Only used when exportPdfWithCropMarks or exportPdfWithFoldMarks is true.
 
 ### embedProfiles
 
@@ -62,7 +62,7 @@ The rectangle of the block to export instead of the whole block, in design units
 val exportPdfPageSlices: Boolean = false
 ```
 
-Export each page slice of a page as its own PDF page, in reading order. Applies to the PDF export of a scene or of one page. Each PDF page holds the part of the page inside the page slice. It has the bleed of the page on all four sides. With a bleed or printer's marks, it has a TrimBox and a BleedBox, as a page has. At a fold, the bleed strip shows the content across the fold. A hidden page slice gets no PDF page. It keeps its room in the layout. The content in that room shows only in the bleed of the PDF pages beside it. A page that is not included in the export keeps its PDF pages, without content. A page that is exported itself always gives a PDF page, and an export never gives a PDF wit…
+Export each page slice of a page as its own PDF page, in reading order. Applies to the PDF export of a scene or of one page. Each PDF page holds the part of the page inside the page slice. It has the bleed of the page on all four sides. With a bleed or printer's marks, it has a TrimBox and a BleedBox, as a page has. At a fold, the bleed strip shows the content across the fold. A hidden page slice gets no PDF page. It keeps its room in the layout, and the content it owns shows in no PDF page. A page that is not included in the export keeps its PDF pages, without content. A page that is exported itself always gives a PDF page, and an export never gives a PDF with no page because of this optio…
 
 ### exportPdfWithCropMarks
 
@@ -70,7 +70,15 @@ Export each page slice of a page as its own PDF page, in reading order. Applies 
 val exportPdfWithCropMarks: Boolean = false
 ```
 
-Draw crop marks outside the bleed on every exported PDF page. Crop marks are the four pairs of corner lines that show a print shop where to cut. They are painted in the PDF registration colorant All, so they appear on every separation. On a page with page slices, each fold also gets a fold mark pair. A fold is at the start of each visible page slice that follows another visible page slice. A fold mark is a line on the extension of the fold, one on each side of the page. It is drawn as a crop mark line, with the same offset, weight and length. A fold never moves or removes a registration mark. At a fold in the middle of a page edge, the fold mark lies over the registration mark. This grows t…
+Draw crop marks outside the bleed on every exported PDF page. Crop marks are the four pairs of corner lines that show a print shop where to cut. They are painted in the PDF registration colorant All, so they appear on every separation. Crop marks draw no fold marks: exportPdfWithFoldMarks asks for those. This grows the PDF MediaBox to the trim plus printMarkOffset + cropMarkLength on each side, because the marks live outside the bleed. The page content, the TrimBox and the BleedBox keep describing the same physical rectangles. A page whose trim is not a rectangle, so a page with page/marginScale above 1, gets no marks and no larger page. The default value is false.
+
+### exportPdfWithFoldMarks
+
+```kotlin
+val exportPdfWithFoldMarks: Boolean = false
+```
+
+Draw fold marks outside the bleed on each exported PDF page of a page with page slices. A fold is at the start of each visible page slice that follows another visible page slice. A fold mark is a line on the extension of the fold, one on each side of the page. It is drawn as a crop mark line, with the offset, weight and length of the crop marks, in the PDF registration colorant All. A fold never moves or removes a registration mark. At a fold in the middle of a page edge, the fold mark lies over the registration mark. This grows the PDF MediaBox of a page with folds on the same terms as exportPdfWithCropMarks. A page without folds, and a PDF page of one page slice, gets no fold marks and no…
 
 ### exportPdfWithHighCompatibility
 
@@ -158,7 +166,7 @@ Keep black as black ink where outputProfileMode converts a color. With CMYK outp
 val printMarkOffset: Float
 ```
 
-Distance from the trim to the nearest edge of any printer's mark, in design units. Every mark type shares it, so it is comparable with the page bleed without converting. A negative value falls back to the equivalent of 6 pt. Zero is a real offset that places a mark on the trim edge. A mark may reach into the bleed, which the knife removes anyway, and every mark carries a white knockout underneath so it stays legible over artwork. Only used when exportPdfWithCropMarks or exportPdfWithRegistrationMarks is true.
+Distance from the trim to the nearest edge of any printer's mark, in design units. Every mark type shares it, so it is comparable with the page bleed without converting. A negative value falls back to the equivalent of 6 pt. Zero is a real offset that places a mark on the trim edge. A mark may reach into the bleed, which the knife removes anyway, and every mark carries a white knockout underneath so it stays legible over artwork. Only used when a PDF export draws printer's marks.
 
 ### printMarkWidth
 
@@ -166,7 +174,7 @@ Distance from the trim to the nearest edge of any printer's mark, in design unit
 val printMarkWidth: Float = 0.25f
 ```
 
-Stroke width of any printer's mark, in points. Every mark type shares it, and a print shop calls it the weight. Points, not design units, because a weight is a print measure that never meets the page geometry. Must be 0. Values <= 0 fall back to 0.25, a hairline. Only used when exportPdfWithCropMarks or exportPdfWithRegistrationMarks is true.
+Stroke width of any printer's mark, in points. Every mark type shares it, and a print shop calls it the weight. Points, not design units, because a weight is a print measure that never meets the page geometry. Must be 0. Values <= 0 fall back to 0.25, a hairline. Only used when a PDF export draws printer's marks.
 
 ### targetHeight
 

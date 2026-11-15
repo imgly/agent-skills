@@ -461,7 +461,7 @@ Changes selection from a group’s selected block to that group. Nothing happens
 @MainActor func export(_ id: DesignBlockID, mimeType: MIMEType, options: ExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil, onProgress: (@MainActor @Sendable (Int, Int) -> Void)? = nil) async throws -> Blob
 ```
 
-Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. Performs an internal update to resolve the final layout for the blocks. `id`
+Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. At a fold, that bleed shows the content of the page slice beside it. The export of a hidden page slice shows it and its content. Performs an internal update to resolve the final layout for the blocks. `id`
 
 ### export(_:mimeType:options:onPreExport:uriResolver:onProgress:)-7r7re
 
@@ -573,7 +573,7 @@ Exports multiple design block elements as files of the given mime type with colo
 @MainActor func exportWithColorMask(_ id: DesignBlockID, mimeType: MIMEType, maskColorR: Float, maskColorG: Float, maskColorB: Float, options: ExportOptions = .init(), onPreExport: @MainActor @Sendable (BlockAPI.Worker) async throws -> Void = { _ in }, uriResolver: (@Sendable (String) async throws -> URL)? = nil) async throws -> [Blob]
 ```
 
-Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. Performs an internal update to resolve the final layout for the blocks. `id`
+Exports a design block element as a file of the given mime type. The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on all four sides. At a fold, that bleed shows the content of the page slice beside it. The export of a hidden page slice shows it and its content. Performs an internal update to resolve the final layout for the blocks. `id`
 
 ### fillParent(_:)
 
@@ -1043,7 +1043,7 @@ Get the drop shadow’s Y offset of the given design block. `id`
 @MainActor func getDuration(_ id: DesignBlockID) throws -> Double
 ```
 
-Get the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. For a scene, the sum of the durations of its pages, without the pages hidden with [`setVisible(_:visible:)`](./setvisible(_:visible:).md). `id`
+Get the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. For a scene, the length of its video: the durations of its pages without the pages hidden with [`setVisible(_:visible:)`](./setvisible(_:visible:).md), less the overlap of each page transition. `id`
 
 ### getEffects(_:)
 
@@ -1333,13 +1333,21 @@ Get the opacity of the given design block. `id`
 
 Get the “out” animation of the given block. `id`
 
-### getPageSlice(_:)
+### getOwningPageSlice(_:)
 
 ```swift
-@MainActor func getPageSlice(_ id: DesignBlockID) throws -> DesignBlockID?
+@MainActor func getOwningPageSlice(_ id: DesignBlockID) throws -> DesignBlockID?
 ```
 
-Returns the page slice that holds a block on its page. A page slice has no children, so the block is a child of the page, or of a group on the page. The block belongs to the page slice that the layout gives it. A block in a group belongs where its group does. `id`
+Returns the page slice that owns a block on its page. A page slice has no children, so the block is a child of the page, or of a group on the page. The page slice under the center of the block owns it. On a fold, the earlier page slice owns it. A block outside the page belongs to the nearest page slice. A block in a group belongs where its group does. `id`
+
+### getPageSlices(_:)
+
+```swift
+@MainActor func getPageSlices(_ page: DesignBlockID) throws -> [DesignBlockID]
+```
+
+Returns the page slices of a page, in reading order. The list holds hidden page slices too. It is the order of the page slices among the children of the page. `page`
 
 ### getParent(_:)
 
@@ -1819,7 +1827,7 @@ Returns the block whose transform the given block follows. `id`
 @MainActor func getTransition(_ id: DesignBlockID) throws -> DesignBlockID
 ```
 
-Gets the outgoing transition assigned to a clip. `id`
+Gets the outgoing transition assigned to a clip or a page. `id`
 
 ### getTrimLength(_:)
 
@@ -2349,21 +2357,21 @@ Loads existing blocks from the given string. The blocks are not attached by defa
 
 Loads existing blocks from an archive. The URL should be that of a file previously saved with `block.saveToArchive`. The blocks are not attached by default and won’t be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one. `url`
 
-### movePageIntoSpread(_:spread:index:dissolveSourceSpread:)
+### movePageSliceIntoPage(_:page:index:options:)
 
 ```swift
-@MainActor func movePageIntoSpread(_ pageOrSlice: DesignBlockID, spread: DesignBlockID, index: Int, dissolveSourceSpread: Bool = false) throws -> DesignBlockID
+@MainActor func movePageSliceIntoPage(_ pageOrPageSlice: DesignBlockID, page: DesignBlockID, index: Int, options: MovePageSliceOptions = .init()) throws -> DesignBlockID
 ```
 
-Moves a standalone page or a slice from another spread into a spread. The index counts destination slices, including hidden slices, before the move. Insertion at the end is valid. Use `insertChild(into:child:at:)` to reorder within one spread. Preserves content IDs. A page becomes a new slice; a transferred slice keeps its ID. Incoming content appears above existing content, retaining its order. The slice takes the destination’s shared height or width without scaling content. Insertion fails if a content block would change its slice owner. Conversion preserves supported appearance keyframes. Slice tracks use the containing spread’s playback clock. Conversion rejects preset animations and un…
+Moves a page without page slices, or a page slice of another page, into a page with page slices. The content of the moved page or page slice moves along and keeps its ids. A moved page slice keeps its id. A page becomes a new page slice, and its id becomes invalid. The page slice keeps its size along the axis of `page` and takes the shared size across it. The moved content is placed above the content of `page`, in its own order. When the move takes the last page slice of its page, that page stays as an empty page without page slices. The move fails when a content block would change the page slice that owns it. Conversion keeps the supported appearance keyframes. Tracks of a page slice use t…
 
-### movePageSliceOutOfSpread(_:index:dissolveSourceSpread:)
+### movePageSliceOutOfPage(_:index:options:)
 
 ```swift
-@MainActor func movePageSliceOutOfSpread(_ slice: DesignBlockID, index: Int, dissolveSourceSpread: Bool = false) throws -> DesignBlockID
+@MainActor func movePageSliceOutOfPage(_ pageSlice: DesignBlockID, index: Int, options: MovePageSliceOptions = .init()) throws -> DesignBlockID
 ```
 
-Moves a slice out of its spread into a new standalone page. The index counts pages in the source page container before the move. Insertion at the end is valid. The source stays in that sequence. Content IDs survive; the old slice ID becomes invalid. An enabled slice fill survives. Otherwise dissolution inherits the spread fill; a source that remains gives white. An empty source does not count as dissolution. Conversion preserves supported appearance keyframes. Slice tracks use the containing spread’s playback clock. Conversion rejects preset animations and unsupported tracks, including geometry and crop tracks. Dissolution rejects a remaining slice with preset animations or keyframes. Wait…
+Moves a page slice and its content to a new page without page slices. The new page joins the parent of the source page. The id of the page slice becomes invalid. The content keeps its ids. The page slices after it close the gap. An enabled fill of the page slice stays. Otherwise the new page takes the fill of the source page when `convertSourceToPage` acts, and a white fill when it does not. When the move takes the last page slice, the source stays as an empty page without page slices. Conversion keeps the supported appearance keyframes. Tracks of a page slice use the playback clock of its page. Conversion refuses preset animations and other tracks, such as geometry and crop tracks. `conver…
 
 ### onClicked
 
@@ -2499,7 +2507,7 @@ Removes the text animator at the given index from a block. The text animator is 
 @MainActor func removeTransition(_ id: DesignBlockID) throws
 ```
 
-Removes the outgoing transition of a clip. `id`
+Removes the outgoing transition of a clip or a page. `id`
 
 ### removeVariableBinding(_:property:)
 
@@ -2965,7 +2973,7 @@ Set a gradient color stops property of the given design block. `id`
 @MainActor func setHeight(_ id: DesignBlockID, value: Float, maintainCrop: Bool = false) throws
 ```
 
-Update a block’s height and optionally maintain the crop. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it will change to `Crop`. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: “layer/resize” `id`
+Update a block’s height and optionally maintain the crop. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up higher than asked. A height of 0 or less on a page slice fails with `BLOCK.PAGE_SLICE_SIZE_INVALID`. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it will change to `Crop`. If the size of a group is changed, both dimensions are modified and the aspect ra…
 
 ### setHeightMode(_:mode:)
 
@@ -3565,7 +3573,7 @@ Makes a block follow the transform of another block, or stops it from following 
 @MainActor func setTransition(_ id: DesignBlockID, transition: DesignBlockID) throws
 ```
 
-Assigns the outgoing transition of a clip. `id`
+Assigns the outgoing transition of a clip or a page. `id`
 
 ### setTrimLength(_:length:)
 
@@ -3645,7 +3653,7 @@ Set the audio volume of the given block. `id`
 @MainActor func setWidth(_ id: DesignBlockID, value: Float, maintainCrop: Bool = false) throws
 ```
 
-Update a block’s width and optionally maintain the crop. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it will change to `Crop`. If the size of a group is changed, both dimensions are modified and the aspect ratio of the group is kept. Required scope: “layer/resize” `id`
+Update a block’s width and optionally maintain the crop. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up wider than asked. A width of 0 or less on a page slice fails with `BLOCK.PAGE_SLICE_SIZE_INVALID`. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it will change to `Crop`. If the size of a group is changed, both dimensions are modified and the aspect ratio…
 
 ### setWidthMode(_:mode:)
 
@@ -3845,7 +3853,7 @@ Returns whether the block has a time offset property. `id`
 @MainActor func supportsTransition(_ id: DesignBlockID) throws -> Bool
 ```
 
-Checks whether a clip can own an outgoing clip-to-clip transition. `id`
+Checks whether a clip can own an outgoing clip-to-clip transition, or a page an outgoing page transition. `id`
 
 ### supportsTrim(_:)
 
