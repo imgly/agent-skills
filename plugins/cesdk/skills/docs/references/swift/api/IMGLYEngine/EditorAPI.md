@@ -41,6 +41,14 @@ If a redo step is available. `true` if a redo step is available.
 
 If an undo step is available. `true` if an undo step is available.
 
+### checkFileSupport(url:)
+
+```swift
+@MainActor func checkFileSupport(url: URL) async throws -> FileSupport
+```
+
+Inspects a resource header/container and reports image, audio, and video support separately. Downloads the resource if needed. This does not guarantee a complete decode or profile support. Container results cover retained tracks; the demuxer can drop unsupported source tracks. This call starts no codec probes. Unmeasured families remain unchecked. `url`
+
 ### checkP3Support()
 
 ```swift
@@ -217,6 +225,22 @@ Get the type of cursor that should be displayed by the application. The cursor t
 
 Get the current edit mode of the editor. An edit mode defines what type of content can currently be edited by the user. “Transform”, “Crop”, “Text”, “Playback”.
 
+### getFileFormats()
+
+```swift
+@MainActor func getFileFormats() -> [FileSupport]
+```
+
+Returns the engine media catalog for this runtime. Support describes known decoder families, not a complete decode or external design importer. Results reflect current feature settings and codec measurements. This call starts no probes. Unmeasured codec families remain unchecked.
+
+### getFontInfo(fontFileURI:)
+
+```swift
+@MainActor func getFontInfo(fontFileURI: String) async throws -> FontInfo
+```
+
+Get the names, weight, style, variation axes and OpenType features of a font file. The call loads the font when it is not loaded yet. The result describes the default instance of a variable font, and the call ignores a fragment that names axis values, such as `#wght=700`. Use the result to register an uploaded font on a typeface asset source. `fontFileURI`
+
 ### getFontMetrics(fontFileURI:)
 
 ```swift
@@ -239,7 +263,7 @@ Query the state of a global scope. `key`
 @MainActor func getMaxExportSize() throws -> Int
 ```
 
-Get the export size limit in pixels on the current device. An export is only possible when both the width and height of the output are below or equal this limit. However, this is only an upper limit as the export might also not be possible due to other reasons, e.g., memory constraints. A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI, not against the page. The upper export size limit in pixels or an unlimited size, i.e, the maximum signed 32-bit integer value, if the limit is unknown.
+Get the export size limit in pixels on the current device. It bounds a color mask export. It also bounds each image, gradient and effect that a PDF export draws as pixels at the scene DPI, not the page. Both sides must be below or equal to it. An export might still fail for other reasons, such as memory. The limit is at most 23170 px, the side of the largest square export whose pixels fit in 2 GiB. A PNG, JPEG, WebP, TGA or raw export renders in strips, so this limit does not bound it. Only the side limit of its format does: JPEG 65500, WebP 16383 and TGA 65535 px. A buffered export must also give a file under 4 GiB. A PNG, JPEG or WebP export with `outputProfileMode` or `embedProfiles` ren…
 
 ### getMimeType(uri:)
 
@@ -273,7 +297,7 @@ Get when the standalone move handle is shown for the selected block.
 @MainActor func getMovementConstraint(_ id: DesignBlockID) throws -> ResolvedMovementConstraint?
 ```
 
-Get the effective movement constraint for a block, picking the most specific matching rule: block > parent page > blockType > scene-wide. `id`
+Get the effective movement constraint for a block, picking the most specific matching rule: block > page slice > parent page > blockType > scene-wide. `id`
 
 ### getResizeHandlesVisibility()
 
@@ -339,20 +363,10 @@ Get the bezier handle mirror mode of the currently selected vector node. The mir
 
 Get a boolean setting. `keypath`
 
-### getSettingColor(_:)-6p0rf
+### getSettingColor(_:)
 
 ```swift
 @MainActor func getSettingColor(_ keypath: String) throws -> Color
-```
-
-Get a color setting. `keypath`
-
-### getSettingColor(_:)-9yw92
-
-> **Deprecated:** Use 'getSettingColor(_:) -> Color' instead.
-
-```swift
-@MainActor func getSettingColor(_ keypath: String) throws -> RGBA
 ```
 
 Get a color setting. `keypath`
@@ -412,6 +426,14 @@ Get a string setting. `keypath`
 ```
 
 Get the type of a setting. `keypath`
+
+### getSoftProofColorSpace()
+
+```swift
+@MainActor func getSoftProofColorSpace() -> ProfileColorSpace
+```
+
+Get the color space that soft proofing simulates. [`ProfileColorSpace.rgb`](../profilecolorspace/rgb.md) or [`ProfileColorSpace.cmyk`](../profilecolorspace/cmyk.md).
 
 ### getSpotColor(name:)-7h32o
 
@@ -517,6 +539,14 @@ Checks wether the block has selection and hover highlighting enabled or disabled
 
 Checks whether the block can currently be selected. `id`
 
+### isSoftProofEnabled()
+
+```swift
+@MainActor func isSoftProofEnabled() -> Bool
+```
+
+Check whether soft proofing of the live canvas is on. `true` when the live canvas is proofed.
+
 ### loadCMYKProfile()
 
 > **Deprecated:** Use 'loadColorProfiles()' instead. Renamed to `loadColorProfiles()`.
@@ -534,26 +564,6 @@ Loads the CMYK profile used for managed color conversion and preview. The profil
 ```
 
 Loads the color profiles used for managed color conversion and preview. Waits for every profile the document names, and for the effective Default/CMYK profile, including the configured or bundled fallback. Only the Default/CMYK result decides the outcome: a profile of another slot that fails to load is logged and does not fail the call. Configuration changes during loading are resolved before completion. Call again after later changes. Returns immediately when every profile the document names is already loaded. Task cancellation ends this wait; the profile keeps loading for color conversion.
-
-### onHistoryUpdated
-
-> **Deprecated:** Use 'onHistoryUpdatedWithKind' instead.
-
-```swift
-@MainActor var onHistoryUpdated: AsyncStream<Void> { get }
-```
-
-Subscribe to changes to the undo/redo history.
-
-### onHistoryUpdatedPublisher
-
-> **Deprecated:** Use 'onHistoryUpdatedWithKindPublisher' instead.
-
-```swift
-@MainActor var onHistoryUpdatedPublisher: AnyPublisher<Void, Never> { get }
-```
-
-Subscribe to changes to the undo/redo history.
 
 ### onHistoryUpdatedWithKind
 
@@ -625,7 +635,7 @@ Subscribe to changes to the editor state.
 @MainActor func redo() throws
 ```
 
-Redo one step in the history if a redo step is available.
+Redo one step in the history if a redo step is available. Scene edits made since the last undo step are discarded. Call addUndoStep first to keep them, which clears the redo steps.
 
 ### releaseMemory()
 
@@ -689,7 +699,7 @@ Removes the last history state from the stack, if available.
 @MainActor func setActiveHistory(_ history: History)
 ```
 
-Mark the given history as active, returns an error if the handle doesn’t refer to a history. All other histories get cleared from the active state. Undo/redo operations only apply to the active history. A new history starts from the current scene, including edits without an undo step and the selection; returning to a history restores its last undo step. `history`
+Mark the given history as active, returns an error if the handle doesn’t refer to a history. All other histories get cleared from the active state. Undo/redo operations only apply to the active history. A new history starts from the current scene, including edits without an undo step and the selection; returning to a history restores its last undo step. Setting a history that is not new as active, also the active one, discards edits without an undo step. Edits with an undo step stay in the history they were made in. `history`
 
 ### setBufferData(url:offset:data:)
 
@@ -827,16 +837,6 @@ Set a boolean setting. `keypath`
 
 Set a color setting. `keypath`
 
-### setSettingColor(_:r:g:b:a:)
-
-> **Deprecated:** Use 'setSettingColor(_:color:)' instead.
-
-```swift
-@MainActor func setSettingColor(_ keypath: String, r: Float, g: Float, b: Float, a: Float = 1) throws
-```
-
-Set a color setting. `keypath`
-
 ### setSettingDouble(_:value:)
 
 ```swift
@@ -877,6 +877,22 @@ Set an integer setting. `keypath`
 
 Set a string setting. `keypath`
 
+### setSoftProofColorSpace(_:)
+
+```swift
+@MainActor func setSoftProofColorSpace(_ colorSpace: ProfileColorSpace) throws
+```
+
+Set the color space that soft proofing simulates. `colorSpace`
+
+### setSoftProofEnabled(_:)
+
+```swift
+@MainActor func setSoftProofEnabled(_ enabled: Bool)
+```
+
+Turn soft proofing of the live canvas on or off. `enabled`
+
 ### setSpotColor(name:c:m:y:k:)
 
 ```swift
@@ -900,6 +916,14 @@ Sets the RGB representation of a spot color. Use this function to both create a 
 ```
 
 Set the spot color assign to a cutout type. If no spot color is set, type `.solid` is assigned “CutContour” and type `.dashed` is assigned “PerfCutContour”. All cutout blocks of the given type will be immediately assigned that spot color. `cutoutType`
+
+### setTypefaceResolver(_:)
+
+```swift
+@MainActor func setTypefaceResolver(_ resolver: (@Sendable (FontRequest) async throws -> FontResolverResult?)?) throws
+```
+
+Sets the resolver for opt-in runtime font requests. Pass `nil` to restore asset-source resolution. Returning `nil` or throwing makes the engine use the default font, and the request reports `substituted`. The engine retains the original request through scene load/save and waits for resolution in resource readiness. `resolver`
 
 ### setURIResolver(_:)
 
@@ -971,7 +995,7 @@ Toggle the currently selected vector node between smooth (bezier handles) and co
 @MainActor func undo() throws
 ```
 
-Undo one step in the history if an undo step is available.
+Undo one step in the history if an undo step is available. Scene edits made since the last undo step are discarded. Call addUndoStep first, so that redo can restore them.
 
 ### unstable_isInteractionHappening()
 

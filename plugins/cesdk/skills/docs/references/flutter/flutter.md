@@ -63,6 +63,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [Pages](https://img.ly/docs/cesdk/next/flutter/concepts/pages-7b6bae/)
 
+#### [Folded Products and Spreads](https://img.ly/docs/cesdk/next/flutter/concepts/page-slices-a69ff7/)
+
 #### [Exclusion Areas](https://img.ly/docs/cesdk/next/flutter/concepts/exclusion-areas-c2b87b/)
 
 #### [Assets](https://img.ly/docs/cesdk/next/flutter/concepts/assets-a84fdd/)
@@ -110,6 +112,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [Extensibility](https://img.ly/docs/cesdk/next/flutter/starterkits/extensibility-329f7e/)
 
 - [Content Moderation](https://img.ly/docs/cesdk/next/flutter/starterkits/content-moderation-abc123/)
+- [Video Moderation](https://img.ly/docs/cesdk/next/flutter/starterkits/video-moderation-vmod01/)
 
 
 ### [Solutions](https://img.ly/docs/cesdk/next/flutter/prebuilt-solutions-d0ed07/)
@@ -339,6 +342,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Overview](https://img.ly/docs/cesdk/next/flutter/text/overview-0bd620/)
 - [Add Text](https://img.ly/docs/cesdk/next/flutter/text/add-4f5011/)
 - [Edit Text](https://img.ly/docs/cesdk/next/flutter/text/edit-c5106b/)
+- [Copy and Paste Formatted Text](https://img.ly/docs/cesdk/next/flutter/text/copy-paste-862b90/)
 - [Text Styling](https://img.ly/docs/cesdk/next/flutter/text/styling-269c48/)
 - [Text Decorations](https://img.ly/docs/cesdk/next/flutter/text/decorations-d3c0a1/)
 - [Subscript and Superscript](https://img.ly/docs/cesdk/next/flutter/text/subscript-superscript-8f21ab/)
@@ -531,6 +535,10 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [To v1.83](https://img.ly/docs/cesdk/next/flutter/to-v1-83-6ee1d1/)
 
 #### [To v1.85](https://img.ly/docs/cesdk/next/flutter/to-v1-85-e7d908/)
+
+#### [To v1.87](https://img.ly/docs/cesdk/next/flutter/to-v1-87-0bbae1/)
+
+#### [CocoaPods Spec Repository](https://img.ly/docs/cesdk/next/flutter/cocoapods-spec-repository-ade324/)
 
 
 ---

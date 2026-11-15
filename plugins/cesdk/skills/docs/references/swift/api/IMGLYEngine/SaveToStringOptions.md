@@ -25,7 +25,7 @@ The resource schemes to allow in the saved string. Defaults to [“blob”, “b
 var compression: CompressionOptions?
 ```
 
-Optional compression settings.
+Optional compression settings. Without them, the scene is compressed with Zstd at the default level.
 
 ### init(allowedResourceSchemes:onDisallowedResourceScheme:compression:)
 

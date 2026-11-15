@@ -63,6 +63,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [Pages](https://img.ly/docs/cesdk/next/ios/concepts/pages-7b6bae/)
 
+#### [Folded Products and Spreads](https://img.ly/docs/cesdk/next/ios/concepts/page-slices-a69ff7/)
+
 #### [Exclusion Areas](https://img.ly/docs/cesdk/next/ios/concepts/exclusion-areas-c2b87b/)
 
 #### [Assets](https://img.ly/docs/cesdk/next/ios/concepts/assets-a84fdd/)
@@ -104,11 +106,13 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [Custom Built UIs](https://img.ly/docs/cesdk/next/ios/starterkits/custom-built-uis-5a5cc4/)
 
+- [Memories UI](https://img.ly/docs/cesdk/next/ios/starterkits/memories-mmrs01/)
 - [Postcard UI](https://img.ly/docs/cesdk/next/ios/starterkits/postcard-editor-03mijr/)
 
 #### [Extensibility](https://img.ly/docs/cesdk/next/ios/starterkits/extensibility-329f7e/)
 
 - [Content Moderation](https://img.ly/docs/cesdk/next/ios/starterkits/content-moderation-abc123/)
+- [Video Moderation](https://img.ly/docs/cesdk/next/ios/starterkits/video-moderation-vmod01/)
 
 
 ### [Solutions](https://img.ly/docs/cesdk/next/ios/prebuilt-solutions-d0ed07/)
@@ -326,6 +330,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Overview](https://img.ly/docs/cesdk/next/ios/text/overview-0bd620/)
 - [Add Text](https://img.ly/docs/cesdk/next/ios/text/add-4f5011/)
 - [Edit Text](https://img.ly/docs/cesdk/next/ios/text/edit-c5106b/)
+- [Copy and Paste Formatted Text](https://img.ly/docs/cesdk/next/ios/text/copy-paste-862b90/)
 - [Text Styling](https://img.ly/docs/cesdk/next/ios/text/styling-269c48/)
 - [Text Decorations](https://img.ly/docs/cesdk/next/ios/text/decorations-d3c0a1/)
 - [Subscript and Superscript](https://img.ly/docs/cesdk/next/ios/text/subscript-superscript-8f21ab/)
@@ -344,6 +349,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Create Shapes](https://img.ly/docs/cesdk/next/ios/stickers-and-shapes/create-edit/create-shapes-64acc0/)
 - [Edit Shapes](https://img.ly/docs/cesdk/next/ios/stickers-and-shapes/create-edit/edit-shapes-d67cfb/)
+- [Import SVG as Editable Shapes](https://img.ly/docs/cesdk/next/ios/-e7c41d/)
 - [Combine Shapes](https://img.ly/docs/cesdk/next/ios/stickers-and-shapes/combine-2a9e26/)
 - [Compound Shapes](https://img.ly/docs/cesdk/next/ios/stickers-and-shapes/compound-shapes-f7fc4f/)
 - [Shape Modifiers](https://img.ly/docs/cesdk/next/ios/stickers-and-shapes/shape-modifiers-670d04/)
@@ -525,6 +531,10 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [To v1.83](https://img.ly/docs/cesdk/next/ios/to-v1-83-6ee1d1/)
 
 #### [To v1.85](https://img.ly/docs/cesdk/next/ios/to-v1-85-e7d908/)
+
+#### [To v1.87](https://img.ly/docs/cesdk/next/ios/to-v1-87-0bbae1/)
+
+#### [CocoaPods Spec Repository](https://img.ly/docs/cesdk/next/ios/cocoapods-spec-repository-ade324/)
 
 
 ---

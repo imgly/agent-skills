@@ -33,6 +33,12 @@ case jpeg
 case mp4
 ```
 
+### MIMEType.mp4Audio
+
+```swift
+case mp4Audio
+```
+
 ### MIMEType.pdf
 
 ```swift

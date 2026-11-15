@@ -3,7 +3,7 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-The value type of a variable. One variable name holds one type. Experimental: this API may change in a minor release.
+The value type of a variable. One variable name holds one type.
 
 ```kotlin
 enum VariableType : Enum<VariableType>

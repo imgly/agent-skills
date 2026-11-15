@@ -5,8 +5,10 @@
 ### setDocumentColorProfile()
 
 Assigns an ICC profile to one document role and component space.
-Profiles save with the scene and are bundled into archives. Only Default/CMYK currently
-affects managed conversion; other slots store profiles without changing rendering or export.
+Profiles save with the scene and are bundled into archives. Default/CMYK drives managed
+conversion. Output/RGB and Output/CMYK are the profiles that a PDF export converts to and
+embeds with `outputProfileMode` and `embedProfiles`. A PNG, JPEG or WebP export
+uses Output/RGB. Other slots store profiles only.
 Failure keeps the previous profile. Another assignment or removal in this slot, or scene
 replacement, supersedes pending loading. Other slots are independent. Undo and redo do not
 change profiles.
@@ -226,6 +228,7 @@ load(source: string | URL, overrideEditorConfig?: boolean, waitForResources?: bo
 ### loadFromString()
 
 Load the contents of a scene file.
+A damaged scene, such as one with a missing key or a value of the wrong type, fails the load. A damaged block fails it after the open scene is cleared, so load another scene after that error.
 
 ```typescript
 loadFromString(sceneContent: string, overrideEditorConfig?: boolean, waitForResources?: boolean): Promise<DesignBlockId>
@@ -282,6 +285,12 @@ The source set entries that the engine makes are `buffer://` resources that only
 holds. `onDisallowedResourceScheme` gets each of them, whatever `allowedResourceSchemes` holds.
 The save leaves out each entry that the callback did not move to another address, and each
 fill keeps them.
+The string is a container, not JSON: a four-character format prefix followed by a base64
+payload. With the default Zstd compression the prefix is `UBQ2` and the payload is a Zstd
+frame. With `compression: { format: 'None' }` the prefix is `UBQ1` and the payload is the
+scene JSON. `loadFromString` accepts both. Tooling that inspects or rewrites the decoded
+payload, for example resource URLs, must decompress the Zstd frame or save with
+compression `None`.
 
 ```typescript
 saveToString(options?: {
@@ -365,22 +374,6 @@ create(sceneLayout?: SceneLayout, options?: CreateSceneOptions): DesignBlockId
 
 **Returns:** The scene's handle.
 
-### createVideo() *(deprecated)*
-
-Create a new scene in video mode, along with its own camera.
-
-```typescript
-createVideo(options?: CreateSceneOptions): DesignBlockId
-```
-
-**Parameters:**
-- `options` - Optional parameters for the scene. Properties:
-  - `page` - Page options. Properties:
-    - `size` - The size of the page.
-    - `color` - Optional background color of the page.
-
-**Returns:** The scene's handle.
-
 ### createFromImage()
 
 Loads the given image and creates a scene with a single page showing the image.
@@ -436,27 +429,6 @@ get(): DesignBlockId | null
 ```
 
 **Returns:** The scene or null, if none was created yet.
-
-### getMode() *(deprecated)*
-
-Get the current scene mode.
-
-```typescript
-getMode(): SceneMode | null
-```
-
-**Returns:** The current mode of the scene, or null if no mode has been set.
-
-### setMode() *(deprecated)*
-
-Set the mode of the scene.
-
-```typescript
-setMode(mode: SceneMode): void
-```
-
-**Parameters:**
-- `mode` - The new mode for the scene.
 
 ### setDesignUnit()
 
@@ -552,7 +524,6 @@ getAngleUnit(): AngleUnit
 ### addMarker()
 
 Adds a marker to the end of the current scene's marker list.
-Experimental: this API may change in a minor release.
 Markers name points or spans on the scene timeline. Several markers may share a name.
 ```javascript
 engine.scene.addMarker('intro', 0, 2.5);
@@ -571,7 +542,6 @@ addMarker(name: string, time: number, duration?: number): void
 ### getMarkers()
 
 Returns the markers of the current scene in the order they were added.
-Experimental: this API may change in a minor release.
 ```javascript
 const markers = engine.scene.getMarkers();
 ```
@@ -585,7 +555,6 @@ getMarkers(): SceneMarker[]
 ### removeMarker()
 
 Removes a marker from the current scene.
-Experimental: this API may change in a minor release.
 ```javascript
 engine.scene.removeMarker(0);
 ```
@@ -710,6 +679,10 @@ stay in the document and in the saved file.
 Takes visible effect while the setting `features/singlePageModeEnabled` is enabled.
 Exporting a page holds that page, even while it is out of view. Exporting a scene holds
 every page, except pages hidden with `block.setVisible`.
+A page slice shows its page, but only inside the clip rectangle of the page slice.
+The camera does not move to a shown block. Call `scene.zoomToBlock` to bring it into view.
+A block that a move puts on a page slice out of view is not drawn and loses its selection.
+Set a movement constraint on the shown page slice to keep its blocks inside it.
 ```javascript
 engine.scene.setCurrentPages([page]);
 ```
@@ -732,7 +705,7 @@ const currentPages = engine.scene.getCurrentPages();
 getCurrentPages(): DesignBlockId[]
 ```
 
-**Returns:** The shown pages, or an empty list when the setting
+**Returns:** The shown pages and page slices, or an empty list when the setting
 `features/singlePageModeEnabled` is disabled.
 
 ### findNearestToViewPortCenterByType()

@@ -3,7 +3,7 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-The audio codec of a video export. An MP4 file holds AAC and OPUS, and a WebM file holds OPUS and VORBIS.
+The audio codec of a video export, or of an MP4 or WebM audio export. An MP4 file holds AAC and OPUS, and a WebM file holds OPUS and VORBIS.
 
 ```kotlin
 enum AudioCodec : Enum<AudioCodec>

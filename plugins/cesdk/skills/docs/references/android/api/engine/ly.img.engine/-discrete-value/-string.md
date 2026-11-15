@@ -1,4 +1,4 @@
-# Text
+# String
 
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
@@ -6,13 +6,13 @@
 A text value.
 
 ```kotlin
-data class Text(val value: String) : DiscreteValue
+data class String(val value: String) : DiscreteValue
 ```
 
 
 ## Members
 
-### Text
+### String
 
 ```kotlin
 constructor(value: String)

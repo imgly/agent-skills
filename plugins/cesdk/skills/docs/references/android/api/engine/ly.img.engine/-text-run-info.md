@@ -32,7 +32,7 @@ The text color.
 val fontSize: Float
 ```
 
-The font size in points.
+The font size in the unit that BlockApi.getTextRuns takes, points by default, whatever the scene's scene/fontSizeUnit is. BlockApi.getTextFontSizes and the text/fontSize property report the scene's unit.
 
 ### fontStyle
 

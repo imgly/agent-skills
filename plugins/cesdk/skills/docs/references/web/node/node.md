@@ -14,7 +14,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 ## Quick Links
 
-- **NPM**: [@imgly/node](https://www.npmjs.com/package/@imgly/node)
+- **NPM**: [@cesdk/node](https://www.npmjs.com/package/@cesdk/node)
 - **API Reference (Node)**: [https://img.ly/docs/cesdk/next/node/api/node/](https://img.ly/docs/cesdk/next/node/api/node/)
 - **GitHub Examples**: [imgly/cesdk-web-examples](https://github.com/imgly/cesdk-web-examples)
 - **Get a License**: [Contact sales](https://img.ly/forms/contact-sales/)
@@ -69,6 +69,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [Scenes](https://img.ly/docs/cesdk/next/node/concepts/scenes-e8596d/)
 
 #### [Pages](https://img.ly/docs/cesdk/next/node/concepts/pages-7b6bae/)
+
+#### [Folded Products and Spreads](https://img.ly/docs/cesdk/next/node/concepts/page-slices-a69ff7/)
 
 #### [Exclusion Areas](https://img.ly/docs/cesdk/next/node/concepts/exclusion-areas-c2b87b/)
 
@@ -129,6 +131,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [From InDesign](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design/from-indesign-ba3988/)
   - [From Photoshop](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design/from-photoshop-cca6bb/)
   - [From Figma](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design/from-figma-9f10ef/)
+  - [From PowerPoint](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design/from-powerpoint-b129e3/)
+  - [From PDF](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design/from-pdf-e2edab/)
   - [From Archive](https://img.ly/docs/cesdk/next/node/open-the-editor/import-design/from-archive-dde9fa/)
 - [URI Resolver](https://img.ly/docs/cesdk/next/node/open-the-editor/uri-resolver-36b624/)
 
@@ -223,18 +227,21 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Overview](https://img.ly/docs/cesdk/next/node/text/overview-0bd620/)
 - [Add Text](https://img.ly/docs/cesdk/next/node/text/add-4f5011/)
 - [Edit Text](https://img.ly/docs/cesdk/next/node/text/edit-c5106b/)
+- [Copy and Paste Formatted Text](https://img.ly/docs/cesdk/next/node/text/copy-paste-862b90/)
 - [Text Styling](https://img.ly/docs/cesdk/next/node/text/styling-269c48/)
 - [Text Designs](https://img.ly/docs/cesdk/next/node/text/text-designs-a1b2c3/)
 - [Auto-Size](https://img.ly/docs/cesdk/next/node/text/auto-size-5331b3/)
 - [Text Effects](https://img.ly/docs/cesdk/next/node/text/effects-2dc9fc/)
 - [Emojis](https://img.ly/docs/cesdk/next/node/text/emojis-510651/)
 - [Adjust Spacing](https://img.ly/docs/cesdk/next/node/text/adjust-spacing-c1a3b6/)
+- [Customize Fonts](https://img.ly/docs/cesdk/next/node/text/custom-fonts-9565b3/)
 - [Language Support](https://img.ly/docs/cesdk/next/node/text/language-support-a0f010/)
 
 #### [Create and Edit Shapes](https://img.ly/docs/cesdk/next/node/shapes-9f1b2c/)
 
 - [Create Shapes](https://img.ly/docs/cesdk/next/node/stickers-and-shapes/create-edit/create-shapes-64acc0/)
 - [Edit Shapes](https://img.ly/docs/cesdk/next/node/stickers-and-shapes/create-edit/edit-shapes-d67cfb/)
+- [Import SVG as Editable Shapes](https://img.ly/docs/cesdk/next/node/-e7c41d/)
 - [Combine Shapes](https://img.ly/docs/cesdk/next/node/stickers-and-shapes/combine-2a9e26/)
 - [Compound Shapes](https://img.ly/docs/cesdk/next/node/stickers-and-shapes/compound-shapes-f7fc4f/)
 - [Shape Modifiers](https://img.ly/docs/cesdk/next/node/stickers-and-shapes/shape-modifiers-670d04/)
@@ -394,6 +401,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [To v1.85](https://img.ly/docs/cesdk/next/node/to-v1-85-e7d908/)
 
+#### [To v1.87](https://img.ly/docs/cesdk/next/node/to-v1-87-0bbae1/)
+
 
 ---
 
@@ -434,6 +443,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Adjust Audio Volume](https://img.ly/docs/cesdk/next/node/create-audio/audio/adjust-volume-7ecc4a/)
 - [Fade Audio In and Out](https://img.ly/docs/cesdk/next/node/create-audio/audio/fade-a4d7e2/)
 - [Loop Audio](https://img.ly/docs/cesdk/next/node/create-audio/audio/loop-937be7/)
+- [Auto Layout](https://img.ly/docs/cesdk/next/node/create-composition/auto-layout-c7e41a/)
 - [Node.js - AWS Lambda](https://img.ly/docs/cesdk/next/node/get-started/vanilla-aws-lambda-fee18b/)
 - [Node.js - Clone GitHub Project](https://img.ly/docs/cesdk/next/node/get-started/vanilla-clone-github-project-n1fe4a/)
 - [Refresh Assets](https://img.ly/docs/cesdk/next/node/import-media/asset-library/refresh-assets-382060/)
+- [To v1.87](https://img.ly/docs/cesdk/next/node/to-v1-87-zh9fi3/)

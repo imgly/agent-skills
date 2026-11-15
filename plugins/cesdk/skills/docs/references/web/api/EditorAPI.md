@@ -15,19 +15,6 @@ onStateChanged(callback: () => void): (() => void)
 
 **Returns:** A method to unsubscribe from the event.
 
-### onHistoryUpdated() *(deprecated)*
-
-Subscribe to undo/redo history changes.
-
-```typescript
-onHistoryUpdated(callback: () => void): (() => void)
-```
-
-**Parameters:**
-- `callback` - Function called when the undo/redo history changes.
-
-**Returns:** A method to unsubscribe from the event.
-
 ### onHistoryUpdatedWithKind()
 
 Subscribe to undo/redo history changes.
@@ -353,6 +340,9 @@ Set a history as the active undo/redo stack.
 All other histories lose their active state. Undo/redo operations only apply to the active history.
 A new history starts from the current scene, including edits without an undo step and the selection;
 returning to a history restores its last undo step.
+Setting a history that is not new as active, also the active one, discards edits
+without an undo step.
+Edits with an undo step stay in the history they were made in.
 ```javascript
 engine.editor.setActiveHistory(newHistory);
 ```
@@ -405,6 +395,8 @@ removeUndoStep(): void
 ### undo()
 
 Undo one step in the active history if an undo step is available.
+Scene edits made since the last undo step are discarded. Call addUndoStep first, so that
+redo can restore them.
 ```javascript
 engine.editor.undo();
 ```
@@ -416,6 +408,8 @@ undo(): void
 ### redo()
 
 Redo one step in the active history if a redo step is available.
+Scene edits made since the last undo step are discarded. Call addUndoStep first
+to keep them, which clears the redo steps.
 ```javascript
 engine.editor.redo();
 ```
@@ -692,6 +686,21 @@ getSettingType(keypath: string): SettingType
 
 **Returns:** The setting type.
 
+### setTypefaceResolver()
+
+Sets a font provider. A later provider replaces the previous one; null or undefined
+restores registered-source lookup. When the provider returns undefined or a result that
+the engine cannot read, throws or rejects, the engine uses the default font, and the
+request reports `substituted`.
+The engine ignores stale completions after replacement, edits or disposal.
+Without a resolver, the engine searches registered local asset sources. Identical requests share pending
+lookups. Each source is limited to 100 pages. Set `assetSourceId` to query an external source explicitly.
+Call `setTypefaceResolver` again to retry unresolved requests after registering a source.
+
+```typescript
+setTypefaceResolver(resolver?: TypefaceResolver | null): void
+```
+
 ### setURIResolver()
 
 Sets a custom URI resolver.
@@ -871,17 +880,19 @@ releaseMemory(): void
 
 ### getMaxExportSize()
 
-Get the maximum export size limit for the current device.
-Exports are only possible when both width and height are below this limit.
-Note that exports may still fail due to other constraints like memory.
-A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI,
-not against the page.
+Get the export size limit in pixels on the current device. It bounds a color mask export. It also bounds
+each image, gradient and effect that a PDF export draws as pixels at the scene DPI, not the page. Both sides must be below or equal to it.
+An export might still fail for other reasons, such as memory. The limit is at most 23170 px, the side of the largest
+square export whose pixels fit in 2 GiB. A PNG, JPEG, WebP, TGA or raw export renders in strips, so this limit does
+not bound it. Only the side limit of its format does: JPEG 65500, WebP 16383 and TGA 65535 px. A buffered export must
+also give a file under 4 GiB. A PNG, JPEG or WebP export with `outputProfileMode` or `embedProfiles` renders in one
+surface, so this limit bounds it.
 
 ```typescript
 getMaxExportSize(): number
 ```
 
-**Returns:** The upper export size limit in pixels, or maximum 32-bit integer if unlimited.
+**Returns:** The upper export size limit in pixels.
 
 ## Color Management
 
@@ -993,6 +1004,64 @@ getSpotColorForCutoutType(type: CutoutType): string
 - `type` - The cutout type.
 
 **Returns:** The color spot name.
+
+### setSoftProofEnabled()
+
+Turn soft proofing of the live canvas on or off.
+With proofing on, the artwork inside the visible page trims shows the colors of the output
+profile of {@link getSoftProofColorSpace}. Exports, thumbnails, bleed and editor decorations
+stay unproofed. The state is not saved with the scene, and undo does not change it. Creating
+or loading a scene, or applying a template, turns proofing off and sets the color space to CMYK.
+A {@link setActiveHistory} call that switches to another scene does the same
+by the next update.
+A change notifies the {@link onStateChanged} subscribers.
+```javascript
+engine.editor.setSoftProofColorSpace('CMYK');
+engine.editor.setSoftProofEnabled(true);
+```
+
+```typescript
+setSoftProofEnabled(enabled: boolean): void
+```
+
+**Parameters:**
+- `enabled` - Whether to proof the live canvas. Defaults to false.
+
+### isSoftProofEnabled()
+
+Check whether soft proofing of the live canvas is on.
+
+```typescript
+isSoftProofEnabled(): boolean
+```
+
+**Returns:** True when the live canvas is proofed.
+
+### setSoftProofColorSpace()
+
+Set the color space that soft proofing simulates.
+The proof uses the Output profile of that space, then its Default profile, then the fallback
+profile. Creating or loading a scene, or applying a template, sets the color space to CMYK.
+A {@link setActiveHistory} call that switches to another scene does the same
+by the next update.
+A change notifies the {@link onStateChanged} subscribers.
+
+```typescript
+setSoftProofColorSpace(colorSpace: SoftProofColorSpace): void
+```
+
+**Parameters:**
+- `colorSpace` - `'RGB'` or `'CMYK'`. Defaults to `'CMYK'`.
+
+### getSoftProofColorSpace()
+
+Get the color space that soft proofing simulates.
+
+```typescript
+getSoftProofColorSpace(): SoftProofColorSpace
+```
+
+**Returns:** `'RGB'` or `'CMYK'`.
 
 ### convertColorToColorSpace()
 
@@ -1147,6 +1216,40 @@ getBufferLength(uri: string): number
 
 **Returns:** The length of the buffer in bytes.
 
+### getFileFormats()
+
+Lists native image, audio and video formats available in this runtime.
+Reflects current features, license and measured codec families. Starts no
+downloads or codec probes. Use `checkFileSupport` to inspect a concrete file.
+Host-provided editable document importers and fonts are outside this catalog.
+
+```typescript
+getFileFormats(): FileSupport[]
+```
+
+**Returns:** Native format support at the `format` inspection level.
+
+### checkFileSupport()
+
+Inspects a resource's header/container and reports its native media uses.
+Downloads through the resource registry when needed; buffer URIs accept
+caller-provided bytes. Does not create blocks or fully decode media. A
+supported result confirms known format/codec-family support, not every
+profile or a later import. Starts no codec probes; unmeasured families
+remain unchecked. Host-provided editable document importers are separate.
+Engine updates drive pending work. A call that still waits when the engine
+is disposed settles only when its `abortSignal` aborts.
+
+```typescript
+checkFileSupport(uri: string, options?: AbortOptions): Promise<FileSupport>
+```
+
+**Parameters:**
+- `uri` - Resource URI, including an existing engine buffer URI.
+- `options` - An `abortSignal` that stops the download and the inspection of the resource.
+
+**Returns:** Support at the `metadata` inspection level, including unsupported formats.
+
 ### getMimeType()
 
 Get the MIME type of a resource.
@@ -1167,6 +1270,7 @@ getMimeType(uri: string, options?: AbortOptions): Promise<string>
 Gets the font metrics for a given font file URI.
 If the font is not yet loaded, it will be fetched asynchronously.
 The returned metrics are in the font's design units coordinate space.
+Missing or zero underline metrics use the defaults documented in {@link FontMetrics}.
 ```javascript
 const metrics = await engine.editor.getFontMetrics('/extensions/ly.img.cesdk.fonts/fonts/Roboto/Roboto-Regular.ttf');
 console.log(metrics.ascender, metrics.descender, metrics.unitsPerEm);
@@ -1184,6 +1288,31 @@ getFontMetrics(fontFileUri: string, options?: AbortOptions): Promise<FontMetrics
 - `options` - An `abortSignal` that stops the download of the font.
 
 **Returns:** A promise resolving to the font metrics.
+
+### getFontInfo()
+
+Gets the names, weight, style, variation axes and OpenType features of a font file.
+The call loads the font when it is not loaded yet. The result describes the default instance of a variable font,
+and the call ignores a fragment that names axis values, such as `#wght=700`. Use the result to register an
+uploaded font on a typeface asset source.
+```javascript
+const info = await engine.editor.getFontInfo('https://example.com/fonts/Inter-SemiBold.otf');
+console.log(info.family, info.subFamily); // "Inter", "Semi Bold"
+console.log(info.weight, info.fontWeight, info.style); // 600, "semiBold", "normal"
+console.log(info.isVariable, info.variationAxes);
+console.log(info.openTypeFeatures); // e.g. ['kern', 'ss01', 'tnum']
+```
+
+```typescript
+getFontInfo(fontFileUri: string, options?: AbortOptions): Promise<FontInfo>
+```
+
+**Parameters:**
+- `fontFileUri` - The URI of a TTF, OTF, WOFF or WOFF2 file.
+- `options` - An `abortSignal` that stops the download of the font.
+
+**Returns:** A promise resolving to the font info. It rejects with `EDITOR.FONT_LOAD_FAILED` when the file does not
+load, and with `EDITOR.FONT_INFO_EXTRACT_FAILED` when the file is not a font.
 
 ### findAllTransientResources()
 

@@ -10,6 +10,30 @@ enum MimeType : Enum<MimeType>
 
 ## Members
 
+### AUDIO_MP4
+
+```kotlin
+enum entry AUDIO_MP4
+```
+
+An MP4 audio file, AAC by default, from BlockApi.exportAudio.
+
+### AUDIO_WAV
+
+```kotlin
+enum entry AUDIO_WAV
+```
+
+An uncompressed WAV file from BlockApi.exportAudio.
+
+### AUDIO_WEBM
+
+```kotlin
+enum entry AUDIO_WEBM
+```
+
+A WebM audio file, Opus by default, from BlockApi.exportAudio.
+
 ### BINARY
 
 ```kotlin
@@ -57,6 +81,14 @@ enum entry TGA
 ```kotlin
 enum entry WEBM
 ```
+
+### WEBP
+
+```kotlin
+enum entry WEBP
+```
+
+A WebP image from BlockApi.export. ExportOptions.webpQuality sets the quality.
 
 ### entries
 

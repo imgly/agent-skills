@@ -67,6 +67,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [Pages](https://img.ly/docs/cesdk/next/nextjs/concepts/pages-7b6bae/)
 
+#### [Folded Products and Spreads](https://img.ly/docs/cesdk/next/nextjs/concepts/page-slices-a69ff7/)
+
 #### [Exclusion Areas](https://img.ly/docs/cesdk/next/nextjs/concepts/exclusion-areas-c2b87b/)
 
 #### [Assets](https://img.ly/docs/cesdk/next/nextjs/concepts/assets-a84fdd/)
@@ -193,6 +195,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [PDF Template Import](https://img.ly/docs/cesdk/next/nextjs/starterkits/pdf-template-import-pdf001/)
 - [EPS Artwork Gallery](https://img.ly/docs/cesdk/next/nextjs/starterkits/eps-artwork-gallery-epsgal/)
 - [Content Moderation](https://img.ly/docs/cesdk/next/nextjs/starterkits/content-moderation-abc123/)
+- [Video Moderation](https://img.ly/docs/cesdk/next/nextjs/starterkits/video-moderation-vmod01/)
 - [Design Validation](https://img.ly/docs/cesdk/next/nextjs/starterkits/design-validation-def456/)
 - [Version History](https://img.ly/docs/cesdk/next/nextjs/starterkits/version-history-vh1st0/)
 - [HTML5 Ads Exporter](https://img.ly/docs/cesdk/next/nextjs/starterkits/html5-ads-exporter-h5adx1/)
@@ -291,6 +294,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Import a Design](https://img.ly/docs/cesdk/next/nextjs/open-the-editor/import-design-73b9c5/)
   - [From InDesign](https://img.ly/docs/cesdk/next/nextjs/open-the-editor/import-design/from-indesign-ba3988/)
   - [From Photoshop](https://img.ly/docs/cesdk/next/nextjs/open-the-editor/import-design/from-photoshop-cca6bb/)
+  - [From PowerPoint](https://img.ly/docs/cesdk/next/nextjs/open-the-editor/import-design/from-powerpoint-b129e3/)
+  - [From PDF](https://img.ly/docs/cesdk/next/nextjs/open-the-editor/import-design/from-pdf-e2edab/)
   - [From Archive](https://img.ly/docs/cesdk/next/nextjs/open-the-editor/import-design/from-archive-dde9fa/)
 - [Set Zoom Level](https://img.ly/docs/cesdk/next/nextjs/open-the-editor/set-zoom-level-d31896/)
 - [URI Resolver](https://img.ly/docs/cesdk/next/nextjs/open-the-editor/uri-resolver-36b624/)
@@ -416,6 +421,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Overview](https://img.ly/docs/cesdk/next/nextjs/text/overview-0bd620/)
 - [Add Text](https://img.ly/docs/cesdk/next/nextjs/text/add-4f5011/)
 - [Edit Text](https://img.ly/docs/cesdk/next/nextjs/text/edit-c5106b/)
+- [Copy and Paste Formatted Text](https://img.ly/docs/cesdk/next/nextjs/text/copy-paste-862b90/)
 - [Text Styling](https://img.ly/docs/cesdk/next/nextjs/text/styling-269c48/)
 - [Text Decorations](https://img.ly/docs/cesdk/next/nextjs/text/decorations-d3c0a1/)
 - [Subscript and Superscript](https://img.ly/docs/cesdk/next/nextjs/text/subscript-superscript-8f21ab/)
@@ -436,6 +442,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Create Shapes](https://img.ly/docs/cesdk/next/nextjs/stickers-and-shapes/create-edit/create-shapes-64acc0/)
 - [Edit Shapes](https://img.ly/docs/cesdk/next/nextjs/stickers-and-shapes/create-edit/edit-shapes-d67cfb/)
 - [Vector Edit](https://img.ly/docs/cesdk/next/nextjs/stickers-and-shapes/create-edit/vector-edit-f3a7b2/)
+- [Import SVG as Editable Shapes](https://img.ly/docs/cesdk/next/nextjs/-e7c41d/)
 - [Combine Shapes](https://img.ly/docs/cesdk/next/nextjs/stickers-and-shapes/combine-2a9e26/)
 - [Compound Shapes](https://img.ly/docs/cesdk/next/nextjs/stickers-and-shapes/compound-shapes-f7fc4f/)
 - [Shape Modifiers](https://img.ly/docs/cesdk/next/nextjs/stickers-and-shapes/shape-modifiers-670d04/)
@@ -636,6 +643,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [To v1.85](https://img.ly/docs/cesdk/next/nextjs/to-v1-85-e7d908/)
 
+#### [To v1.87](https://img.ly/docs/cesdk/next/nextjs/to-v1-87-0bbae1/)
+
 
 ---
 
@@ -670,4 +679,5 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 ## Pages Outside the Navigation
 
+- [Auto Layout](https://img.ly/docs/cesdk/next/nextjs/create-composition/auto-layout-c7e41a/)
 - [Equal-Distance Snapping](https://img.ly/docs/cesdk/next/nextjs/equal-distance-snapping-e9d15a/)

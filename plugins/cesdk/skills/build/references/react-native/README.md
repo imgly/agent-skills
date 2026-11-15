@@ -45,10 +45,9 @@ how the two connect.
 2. Install `@imgly/editor-react-native` and, when the app captures media,
    `@imgly/camera-react-native` at the CE.SDK version of this bundle.
 3. Apply the platform setup from the get-started guides on the docs site: on Expo the
-   `expo-build-properties` plugin in `app.json` (Android `minSdkVersion`,
-   the IMG.LY Maven repository, Kotlin version; iOS deployment target and
-   dynamic frameworks); on a bare project the same values in `android/` and
-   `ios/`, then `pod install`.
+   `expo-build-properties` plugin in `app.json` (Android `minSdkVersion` and
+   the IMG.LY Maven repository; iOS static frameworks); on a bare project the
+   same values in `android/` and `ios/` with iOS 16.0, then `pod install`.
 4. Consult the sibling `docs` skill for the exact TypeScript API, then copy
    the closest bundled example below and adapt it. Leave the license
    undefined for evaluation mode with a watermark and never commit a license

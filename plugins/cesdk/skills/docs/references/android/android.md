@@ -63,6 +63,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [Pages](https://img.ly/docs/cesdk/next/android/concepts/pages-7b6bae/)
 
+#### [Folded Products and Spreads](https://img.ly/docs/cesdk/next/android/concepts/page-slices-a69ff7/)
+
 #### [Exclusion Areas](https://img.ly/docs/cesdk/next/android/concepts/exclusion-areas-c2b87b/)
 
 #### [Assets](https://img.ly/docs/cesdk/next/android/concepts/assets-a84fdd/)
@@ -112,6 +114,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [Extensibility](https://img.ly/docs/cesdk/next/android/starterkits/extensibility-329f7e/)
 
 - [Content Moderation](https://img.ly/docs/cesdk/next/android/starterkits/content-moderation-abc123/)
+- [Video Moderation](https://img.ly/docs/cesdk/next/android/starterkits/video-moderation-vmod01/)
 
 
 ### [Guides](https://img.ly/docs/cesdk/next/android/guides-8d8b00/)
@@ -241,6 +244,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [To PDF](https://img.ly/docs/cesdk/next/android/export-save-publish/export/to-pdf-95e04b/)
 - [To JPEG](https://img.ly/docs/cesdk/next/android/export-save-publish/export/to-jpeg-6f88e9/)
 - [To PNG](https://img.ly/docs/cesdk/next/android/export-save-publish/export/to-png-f87eaf/)
+- [To WebP](https://img.ly/docs/cesdk/next/android/export-save-publish/export/to-webp-aef6f4/)
 - [To Raw Data](https://img.ly/docs/cesdk/next/android/export-save-publish/export/to-raw-data-abd7da/)
 - [Compress](https://img.ly/docs/cesdk/next/android/export-save-publish/export/compress-29105e/)
 - [With a Color Mask](https://img.ly/docs/cesdk/next/android/export-save-publish/export/with-color-mask-4f868f/)
@@ -316,6 +320,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Overview](https://img.ly/docs/cesdk/next/android/text/overview-0bd620/)
 - [Add Text](https://img.ly/docs/cesdk/next/android/text/add-4f5011/)
 - [Edit Text](https://img.ly/docs/cesdk/next/android/text/edit-c5106b/)
+- [Copy and Paste Formatted Text](https://img.ly/docs/cesdk/next/android/text/copy-paste-862b90/)
 - [Text Styling](https://img.ly/docs/cesdk/next/android/text/styling-269c48/)
 - [Text Decorations](https://img.ly/docs/cesdk/next/android/text/decorations-d3c0a1/)
 - [Subscript and Superscript](https://img.ly/docs/cesdk/next/android/text/subscript-superscript-8f21ab/)
@@ -334,6 +339,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Create Shapes](https://img.ly/docs/cesdk/next/android/stickers-and-shapes/create-edit/create-shapes-64acc0/)
 - [Edit Shapes](https://img.ly/docs/cesdk/next/android/stickers-and-shapes/create-edit/edit-shapes-d67cfb/)
+- [Import SVG as Editable Shapes](https://img.ly/docs/cesdk/next/android/-e7c41d/)
 - [Combine Shapes](https://img.ly/docs/cesdk/next/android/stickers-and-shapes/combine-2a9e26/)
 - [Compound Shapes](https://img.ly/docs/cesdk/next/android/stickers-and-shapes/compound-shapes-f7fc4f/)
 - [Shape Modifiers](https://img.ly/docs/cesdk/next/android/stickers-and-shapes/shape-modifiers-670d04/)
@@ -529,6 +535,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 #### [To v1.83](https://img.ly/docs/cesdk/next/android/to-v1-83-6ee1d1/)
 
 #### [To v1.85](https://img.ly/docs/cesdk/next/android/to-v1-85-e7d908/)
+
+#### [To v1.87](https://img.ly/docs/cesdk/next/android/to-v1-87-0bbae1/)
 
 
 ---
