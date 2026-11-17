@@ -52,12 +52,6 @@ enum entry SVG
 enum entry TGA
 ```
 
-### WEBM
-
-```kotlin
-enum entry WEBM
-```
-
 ### entries
 
 ```kotlin

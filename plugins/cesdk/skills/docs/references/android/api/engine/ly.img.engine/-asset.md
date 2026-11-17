@@ -80,7 +80,7 @@ License for the asset. Overrides the asset source license if present.
 val locale: String? = null
 ```
 
-The locale that the query requested. The label and tags can come from a fallback locale, such as English.
+The locale of the label and tags.
 
 ### meta
 
