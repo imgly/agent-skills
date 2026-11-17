@@ -93,13 +93,21 @@ Create a new scene, along with its own camera. `sceneLayout`
 
 Disables any previously set zoom auto-fit. `id`
 
-### enableZoomAutoFit(_:axis:paddingLeft:paddingTop:paddingRight:paddingBottom:)
+### enableZoomAutoFit(_:axis:paddingLeft:paddingTop:paddingRight:paddingBottom:)-1txld
 
 ```swift
 @MainActor func enableZoomAutoFit(_ id: DesignBlockID, axis: ZoomAutoFitAxis, paddingLeft: Float = 0, paddingTop: Float = 0, paddingRight: Float = 0, paddingBottom: Float = 0) throws
 ```
 
-Continually adjusts the zoom level to fit the width or height of a block’s axis-aligned bounding box. This only shows an effect if the zoom level is not handled/overwritten by the UI. Without padding, this results in a tight view on the block. `id`
+Continually adjusts the zoom level to fit the width or height of a block’s axis-aligned bounding box. The camera stays centred on the block on the fitted axis. This only shows an effect if the zoom level is not handled/overwritten by the UI. Without padding, this results in a tight view on the block. A scene stands for its visible content. A scene has one zoom auto-fit, so this call replaces the previous one. `id`
+
+### enableZoomAutoFit(_:axis:paddingLeft:paddingTop:paddingRight:paddingBottom:)-4ulws
+
+```swift
+@MainActor func enableZoomAutoFit(_ ids: [DesignBlockID], axis: ZoomAutoFitAxis, paddingLeft: Float = 0, paddingTop: Float = 0, paddingRight: Float = 0, paddingBottom: Float = 0) throws
+```
+
+Continually adjusts the zoom level to fit the width or height of the bounding box around several blocks. An example is all pages of a scene in free layout. The camera stays centred on the blocks on the fitted axis. The fit follows the blocks as they move or change size. A destroyed block leaves the fit, and the fit ends with the last block. A scene in the list stands for its visible content. A scene has one zoom auto-fit, so this call replaces the previous one. `ids`
 
 ### findNearestToViewPortCenter(byKind:)
 

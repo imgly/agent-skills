@@ -4169,6 +4169,12 @@ case editorSettingTypeUnsupported
 case editorSettingValueBelowMinimum
 ```
 
+### EngineErrorCode.editorSizeConstraintInvalid
+
+```swift
+case editorSizeConstraintInvalid
+```
+
 ### EngineErrorCode.editorSplitBlockFailed
 
 ```swift
@@ -4269,6 +4275,12 @@ case editorVideoFetchFailed
 
 ```swift
 case editorVideoNotLoaded
+```
+
+### EngineErrorCode.editorZoomAutoFitEmptyBlocks
+
+```swift
+case editorZoomAutoFitEmptyBlocks
 ```
 
 ### EngineErrorCode.editorZoomAutoFitNotEnabled

@@ -2856,7 +2856,7 @@ Update a block's height and optionally maintain the crop. A new height of a page
 abstract fun setInAnimation(block: DesignBlock, animation: DesignBlock)
 ```
 
-Sets the "in" animation for the given block. The animation is removed from every other block that uses it.
+Sets the "in" animation for the given block. The animation is removed from every other block that uses it. When the "in" and "out" animations together are longer than the block, both shrink in proportion to fit.
 
 ### setIncludedInExport
 
@@ -2968,7 +2968,7 @@ Set the opacity of the given design block. Required scope: "layer/opacity"
 abstract fun setOutAnimation(block: DesignBlock, animation: DesignBlock)
 ```
 
-Sets the "out" animation for the given block. The animation is removed from every other block that uses it.
+Sets the "out" animation for the given block. The animation is removed from every other block that uses it. When the "in" and "out" animations together are longer than the block, both shrink in proportion to fit.
 
 ### setPageDurationSource
 

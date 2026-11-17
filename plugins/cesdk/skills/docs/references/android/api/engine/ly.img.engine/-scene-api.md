@@ -104,7 +104,11 @@ Continually ensures the zoom level of the camera in the active scene to be in th
 abstract fun enableZoomAutoFit(block: DesignBlock, axis: ZoomAutoFitAxis, paddingLeft: Float = 0.0f, paddingTop: Float = 0.0f, paddingRight: Float = 0.0f, paddingBottom: Float = 0.0f)
 ```
 
-Continually adjusts the zoom level to fit the width or height of a block's axis-aligned bounding box. This only shows an effect if the zoom level is not handled/overwritten by the UI. Without padding, this results in a tight view on the block. No more than one block per scene can have zoom auto-fit enabled. Calling setZoomLevel or zoomToBlock disables the continuous adjustment.
+```kotlin
+abstract fun enableZoomAutoFit(blocks: List<DesignBlock>, axis: ZoomAutoFitAxis, paddingLeft: Float = 0.0f, paddingTop: Float = 0.0f, paddingRight: Float = 0.0f, paddingBottom: Float = 0.0f)
+```
+
+Continually adjusts the zoom level to fit the width or height of a block's axis-aligned bounding box. The camera stays centred on the block on the fitted axis. This only shows an effect if the zoom level is not handled/overwritten by the UI. Without padding, this results in a tight view on the block. A scene stands for its visible content. A scene has one zoom auto-fit, so this call replaces the previous one. Calling setZoomLevel or zoomToBlock disables the continuous adjustment. The camera moves to the centre when the fit starts, and again when the block or the viewport changes. A pan in between stays.
 
 ### findNearestToViewPortCenterByKind
 

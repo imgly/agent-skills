@@ -803,26 +803,34 @@ zoomToBlock(id: DesignBlockId, paddingLeft?: number, paddingTop?: number, paddin
 
 ### enableZoomAutoFit()
 
-Continually adjusts the zoom level to fit the width or height of a block's axis-aligned bounding box.
+Continually adjusts the zoom level to fit the width and height of the axis-aligned bounding box of one block or
+of several blocks, and keeps the camera centred on them.
 This only shows an effect if the zoom level is not handled/overwritten by the UI.
-Without padding, this results in a tight view on the block.
+Without padding, this results in a tight view on the blocks. A scene stands for its visible content, so passing
+the scene fits all its pages, also in free layout. The fit follows the blocks as they move or change size. A
+destroyed block leaves the fit, and the fit ends with the last block.
+A scene has one zoom auto-fit, so this call replaces the previous one.
 Calling `setZoomLevel` or `zoomToBlock` disables the continuous adjustment.
+The camera moves to the centre when the fit starts, and again when a block or the viewport changes. A pan in
+between stays.
 ```javascript
 // Follow page with padding of 20px in both directions
 engine.scene.enableZoomAutoFit(page, 'Both', 20.0, 20.0, 20.0, 20.0);
+// Fit all pages of the scene
+engine.scene.enableZoomAutoFit(scene, 'Both', 20.0, 20.0, 20.0, 20.0);
 ```
 
 ```typescript
-enableZoomAutoFit(id: DesignBlockId, axis: 'Both', paddingLeft?: number, paddingTop?: number, paddingRight?: number, paddingBottom?: number): void
+enableZoomAutoFit(id: DesignBlockId | DesignBlockId[], axis: 'Both', paddingLeft?: number, paddingTop?: number, paddingRight?: number, paddingBottom?: number): void
 ```
 
 **Parameters:**
-- `id` - The block for which the zoom is adjusted.
-- `axis` - The block axis for which the zoom is adjusted.
-- `paddingLeft` - Optional padding in screen pixels to the left of the block.
-- `paddingTop` - Optional padding in screen pixels to the top of the block.
-- `paddingRight` - Optional padding in screen pixels to the right of the block.
-- `paddingBottom` - Optional padding in screen pixels to the bottom of the block.
+- `id` - The block, the scene, or a non-empty list of blocks for which the zoom is adjusted.
+- `axis` - The axes of the bounding box for which the zoom is adjusted.
+- `paddingLeft` - Optional padding in screen pixels to the left of the blocks.
+- `paddingTop` - Optional padding in screen pixels to the top of the blocks.
+- `paddingRight` - Optional padding in screen pixels to the right of the blocks.
+- `paddingBottom` - Optional padding in screen pixels to the bottom of the blocks.
 
 ### disableZoomAutoFit()
 
@@ -836,7 +844,7 @@ disableZoomAutoFit(blockOrScene: DesignBlockId): void
 ```
 
 **Parameters:**
-- `blockOrScene` - The scene or a block in the scene for which to disable zoom auto-fit.
+- `blockOrScene` - The scene or a block of the zoom auto-fit. Either one disables the whole fit.
 
 ### isZoomAutoFitEnabled()
 

@@ -117,6 +117,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Customization](https://img.ly/docs/cesdk/dev/mac-catalyst/user-interface/customization-72b2f8/)
   - [Movement Constraints](https://img.ly/docs/cesdk/dev/mac-catalyst/user-interface/customization/movement-constraints-8f3a2c/)
   - [Upscale Constraints](https://img.ly/docs/cesdk/dev/mac-catalyst/user-interface/customization/upscale-constraints-5d7365/)
+  - [Size Constraints](https://img.ly/docs/cesdk/dev/mac-catalyst/user-interface/customization/size-constraints-de35f3/)
   - [Drag & Drop](https://img.ly/docs/cesdk/dev/mac-catalyst/user-interface/customization/drag-and-drop-d4a97b/)
 - [Build Your Own UI](https://img.ly/docs/cesdk/dev/mac-catalyst/user-interface/build-your-own-ui-fe7527/)
 

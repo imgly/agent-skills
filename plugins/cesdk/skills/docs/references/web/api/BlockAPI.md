@@ -2854,6 +2854,7 @@ supportsAnimation(id: DesignBlockId): boolean
 
 Sets the "in" animation of a block.
 The animation is removed from every other block that uses it.
+When the "in" and "out" animations together are longer than the block, both shrink in proportion to fit.
 
 ```typescript
 setInAnimation(id: DesignBlockId, animation: DesignBlockId): void
@@ -2880,6 +2881,7 @@ setLoopAnimation(id: DesignBlockId, animation: DesignBlockId): void
 
 Sets the "out" animation of a block.
 The animation is removed from every other block that uses it.
+When the "in" and "out" animations together are longer than the block, both shrink in proportion to fit.
 
 ```typescript
 setOutAnimation(id: DesignBlockId, animation: DesignBlockId): void

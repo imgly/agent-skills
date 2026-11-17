@@ -253,6 +253,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Force Crop](https://img.ly/docs/cesdk/dev/svelte/user-interface/customization/force-crop-c2854e/)
   - [Movement Constraints](https://img.ly/docs/cesdk/dev/svelte/user-interface/customization/movement-constraints-8f3a2c/)
   - [Upscale Constraints](https://img.ly/docs/cesdk/dev/svelte/user-interface/customization/upscale-constraints-5d7365/)
+  - [Size Constraints](https://img.ly/docs/cesdk/dev/svelte/user-interface/customization/size-constraints-de35f3/)
   - [Drag & Drop](https://img.ly/docs/cesdk/dev/svelte/user-interface/customization/drag-and-drop-d4a97b/)
   - [Color Palette](https://img.ly/docs/cesdk/dev/svelte/user-interface/customization/color-palette-429fd9/)
   - [Disable or Enable Features](https://img.ly/docs/cesdk/dev/svelte/user-interface/customization/disable-or-enable-f058e2/)

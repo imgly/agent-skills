@@ -427,6 +427,14 @@ Get a string setting. `keypath`
 
 Get the type of a setting. `keypath`
 
+### getSizeConstraint(_:)
+
+```swift
+@MainActor func getSizeConstraint(_ id: DesignBlockID) throws -> SizeConstraint?
+```
+
+Get the size constraint of a block. `id`
+
 ### getSoftProofColorSpace()
 
 ```swift
@@ -685,6 +693,14 @@ Remove multiple movement constraint scopes at once. `scopes`
 
 Remove the scene-wide default movement constraint. Removing a scope falls through to the next tier on subsequent resolution.
 
+### removeSizeConstraint(_:)
+
+```swift
+@MainActor func removeSizeConstraint(_ id: DesignBlockID) throws
+```
+
+Remove the size constraint of a block. `id`
+
 ### removeSpotColor(name:)
 
 ```swift
@@ -908,6 +924,14 @@ Set an integer setting. `keypath`
 ```
 
 Set a string setting. `keypath`
+
+### setSizeConstraint(_:constraint:)
+
+```swift
+@MainActor func setSizeConstraint(_ id: DesignBlockID, constraint: SizeConstraint) throws
+```
+
+Set the smallest and the largest frame size that user interactions can give a block, in design units. Resizing, scaling, pinching and the crop handles stop at it. The edge opposite the dragged handle stays in place, and a proportional resize stops both axes. Programmatic API calls are not affected. `id`
 
 ### setSoftProofColorSpace(_:)
 

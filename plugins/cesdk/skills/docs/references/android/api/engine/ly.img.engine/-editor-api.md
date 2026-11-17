@@ -368,6 +368,14 @@ abstract fun getSettingType(keypath: String): PropertyType
 
 Get the type of a setting.
 
+### getSizeConstraint
+
+```kotlin
+abstract fun getSizeConstraint(block: DesignBlock): SizeConstraint?
+```
+
+Get the size constraint of a block.
+
 ### getSoftProofColorSpace
 
 ```kotlin
@@ -602,6 +610,14 @@ abstract fun removeMovementConstraint(scopes: List<MovementConstraintScope>)
 
 Remove the scene-wide default movement constraint. Removing a scope falls through to the next tier on subsequent resolution. Remove the movement constraint for a specific scope. Removing a scope falls through to the next tier on subsequent resolution.
 
+### removeSizeConstraint
+
+```kotlin
+abstract fun removeSizeConstraint(block: DesignBlock)
+```
+
+Remove the size constraint of a block.
+
 ### removeSpotColor
 
 ```kotlin
@@ -785,6 +801,14 @@ abstract fun setSettingString(keypath: String, value: String)
 ```
 
 Set a string setting.
+
+### setSizeConstraint
+
+```kotlin
+abstract fun setSizeConstraint(block: DesignBlock, constraint: SizeConstraint)
+```
+
+Set the smallest and the largest frame size that user interactions can give a block, in design units. Resizing, scaling, pinching and the crop handles stop at it. The edge opposite the dragged handle stays in place, and a proportional resize stops both axes. Programmatic API calls are not affected. A block that is outside its range can move toward it, but not further out. A group, a track or a multi-selection scales by one factor, so the range of each scaled block holds it. The ranges of the children of a group do not. The constraint is saved with the scene. Use removeSizeConstraint to clear it.
 
 ### setSoftProofColorSpace
 

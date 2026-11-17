@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 359 generated API digests.
+Complete catalog of 360 generated API digests.
 
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
@@ -285,6 +285,7 @@ Complete catalog of 359 generated API digests.
 - [ShapeType.Rect](<../engine/ly.img.engine/-shape-type/-rect.md>) — `ly.img.engine`
 - [ShapeType.Star](<../engine/ly.img.engine/-shape-type/-star.md>) — `ly.img.engine`
 - [ShapeType.VectorPath](<../engine/ly.img.engine/-shape-type/-vector-path.md>) — `ly.img.engine`
+- [SizeConstraint](<../engine/ly.img.engine/-size-constraint.md>) — `ly.img.engine`
 - [SizeMode](<../engine/ly.img.engine/-size-mode.md>) — `ly.img.engine`
 - [SortingOrder](<../engine/ly.img.engine/-sorting-order.md>) — `ly.img.engine`
 - [Source](<../engine/ly.img.engine/-source.md>) — `ly.img.engine`
