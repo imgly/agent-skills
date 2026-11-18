@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 360 generated API digests.
+Complete catalog of 363 generated API digests.
 
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
@@ -90,6 +90,7 @@ Complete catalog of 360 generated API digests.
 - [BooleanOperation](<../engine/ly.img.engine/-boolean-operation.md>) — `ly.img.engine`
 - [CMYKColor](<../engine/ly.img.engine/-c-m-y-k-color.md>) — `ly.img.engine`
 - [CMYKProfileInfo](<../engine/ly.img.engine/-c-m-y-k-profile-info.md>) — `ly.img.engine`
+- [CaptionMerge](<../engine/ly.img.engine/-caption-merge.md>) — `ly.img.engine`
 - [CharacterInkBox](<../engine/ly.img.engine/-character-ink-box.md>) — `ly.img.engine`
 - [ClipInitialDurationMode](<../engine/ly.img.engine/-clip-initial-duration-mode.md>) — `ly.img.engine`
 - [Color](<../engine/ly.img.engine/-color.md>) — `ly.img.engine`
@@ -310,6 +311,8 @@ Complete catalog of 360 generated API digests.
 - [TextRange](<../engine/ly.img.engine/-text-range.md>) — `ly.img.engine`
 - [TextRenderDiagnostics](<../engine/ly.img.engine/-text-render-diagnostics.md>) — `ly.img.engine`
 - [TextRunInfo](<../engine/ly.img.engine/-text-run-info.md>) — `ly.img.engine`
+- [TextTiming](<../engine/ly.img.engine/-text-timing.md>) — `ly.img.engine`
+- [TimeBase](<../engine/ly.img.engine/-time-base.md>) — `ly.img.engine`
 - [TrackMode](<../engine/ly.img.engine/-track-mode.md>) — `ly.img.engine`
 - [TransitionType](<../engine/ly.img.engine/-transition-type.md>) — `ly.img.engine`
 - [TransitionType.Chop](<../engine/ly.img.engine/-transition-type/-chop.md>) — `ly.img.engine`

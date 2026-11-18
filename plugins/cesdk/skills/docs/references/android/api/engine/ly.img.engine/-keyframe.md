@@ -48,7 +48,7 @@ The motion path tangent that leaves this keyframe's value, relative to it. Only 
 val time: Float
 ```
 
-The normalized time in the range 0 to 1 over the duration of the block.
+The normalized time over the clock of the block: 0 at its start, 1 at its end. After a split, a keyframe can lie before 0 or after 1, so the segment across the cut keeps its curve.
 
 ### value
 

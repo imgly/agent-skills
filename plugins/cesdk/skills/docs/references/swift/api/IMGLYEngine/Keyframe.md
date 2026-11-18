@@ -49,7 +49,7 @@ The motion path tangent that leaves this keyframe’s value, relative to it. Onl
 var time: Float
 ```
 
-The time of the keyframe, normalized from 0 to 1 over the duration of the block.
+The time of the keyframe, normalized over the clock of the block: 0 at its start, 1 at its end. After a split, a keyframe can lie before 0 or after 1, so the segment across the cut keeps its curve.
 
 ### value
 

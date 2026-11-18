@@ -217,6 +217,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Scale](https://img.ly/docs/cesdk/dev/node/edit-video/transform/scale-f75c8a/)
   - [Flip](https://img.ly/docs/cesdk/dev/node/edit-video/transform/flip-a603b0/)
 - [Add Captions](https://img.ly/docs/cesdk/dev/node/edit-video/add-captions-f67565/)
+- [Highlight Spoken Words in Captions](https://img.ly/docs/cesdk/dev/node/create-video/highlight-caption-words-f37ced/)
 - [Add Watermark](https://img.ly/docs/cesdk/dev/node/edit-video/add-watermark-762ce6/)
 - [Redaction](https://img.ly/docs/cesdk/dev/node/edit-video/redaction-cf6d03/)
 - [Editing Overview](https://img.ly/docs/cesdk/dev/node/overview-7d12d5/)

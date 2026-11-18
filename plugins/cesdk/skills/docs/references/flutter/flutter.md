@@ -319,6 +319,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Apply Transitions](https://img.ly/docs/cesdk/dev/flutter/create-video/apply-transitions-146026/)
 - [Edit Captions](https://img.ly/docs/cesdk/dev/flutter/edit-video/edit-captions-ed9c17/)
 - [Update Caption Presets](https://img.ly/docs/cesdk/dev/flutter/create-video/update-caption-presets-e9c385/)
+- [Highlight Spoken Words in Captions](https://img.ly/docs/cesdk/dev/flutter/create-video/highlight-caption-words-f37ced/)
 - [Add Watermark](https://img.ly/docs/cesdk/dev/flutter/edit-video/add-watermark-762ce6/)
 - [Annotation](https://img.ly/docs/cesdk/dev/flutter/edit-video/annotation-e9cbad/)
 - [Redaction](https://img.ly/docs/cesdk/dev/flutter/edit-video/redaction-cf6d03/)
@@ -473,6 +474,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Text Animators](https://img.ly/docs/cesdk/dev/flutter/animation/text-animators-97387e/)
 - [Motion Paths](https://img.ly/docs/cesdk/dev/flutter/animation/motion-paths-7c619f/)
 - [Motion Blur](https://img.ly/docs/cesdk/dev/flutter/animation/motion-blur-122f43/)
+- [Page Camera](https://img.ly/docs/cesdk/dev/flutter/animation/page-camera-3c0e7b/)
+- [Depth and Perspective](https://img.ly/docs/cesdk/dev/flutter/animation/depth-and-perspective-d3e9a7/)
 - [Anchor, Skew and Auto-Orient](https://img.ly/docs/cesdk/dev/flutter/animation/anchor-skew-auto-orient-ede5e9/)
 - [Programmatic](https://img.ly/docs/cesdk/dev/flutter/animation/programmatic-eb359c/)
 

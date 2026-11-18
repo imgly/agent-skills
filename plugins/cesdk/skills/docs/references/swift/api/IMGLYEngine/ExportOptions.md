@@ -69,10 +69,10 @@ let exportPdfWithRegistrationMarks: Bool
 let exportPdfWithUnderlayer: Bool
 ```
 
-### init(pngCompressionLevel:jpegQuality:webpQuality:targetWidth:targetHeight:exportPdfWithHighCompatibility:exportPdfWithUnderlayer:underlayerSpotColorName:underlayerOffset:underlayerRenderRatio:underlayerMaxError:underlayerMinFeatureWidth:allowTextOverhang:exportPdfWithCropMarks:exportPdfWithFoldMarks:exportPdfWithRegistrationMarks:exportPdfPageSlices:printMarkOffset:cropMarkLength:printMarkWidth:pdfImageQuality:pdfChunkSize:outputColorSpace:outputProfileMode:embedProfiles:preserveBlack:exportArea:)
+### init(pngCompressionLevel:jpegQuality:webpQuality:targetWidth:targetHeight:exportPdfWithHighCompatibility:exportPdfWithUnderlayer:underlayerSpotColorName:underlayerOffset:underlayerRenderRatio:underlayerMaxError:underlayerMinFeatureWidth:allowTextOverhang:exportPdfWithCropMarks:exportPdfWithFoldMarks:exportPdfWithRegistrationMarks:exportPdfPageSlices:printMarkOffset:cropMarkLength:printMarkWidth:pdfImageQuality:pdfTitle:pdfCreator:pdfAuthor:pdfSubject:pdfKeywords:pdfChunkSize:outputColorSpace:outputProfileMode:embedProfiles:preserveBlack:exportArea:)
 
 ```swift
-init(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9, webpQuality: Float = 1.0, targetWidth: Float = 0, targetHeight: Float = 0, exportPdfWithHighCompatibility: Bool = true, exportPdfWithUnderlayer: Bool = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0, underlayerRenderRatio: Float = 1.0, underlayerMaxError: Float = 2.0, underlayerMinFeatureWidth: Float = 0.0, allowTextOverhang: Bool = false, exportPdfWithCropMarks: Bool = false, exportPdfWithFoldMarks: Bool = false, exportPdfWithRegistrationMarks: Bool = false, exportPdfPageSlices: Bool = false, printMarkOffset: Float = -1.0, cropMarkLength: Float = 0.0, printMarkWidth: Float = 0.25, pdfImageQuality: Float = 1.0, pdfChunkSize: UInt32 = 0, outputColorSpace: ProfileColorSpace = .rgb, outputProfileMode: OutputProfileMode = .off, embedProfiles: Bool = false, preserveBlack: Bool = false, exportArea: CGRect? = nil)
+init(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9, webpQuality: Float = 1.0, targetWidth: Float = 0, targetHeight: Float = 0, exportPdfWithHighCompatibility: Bool = true, exportPdfWithUnderlayer: Bool = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0, underlayerRenderRatio: Float = 1.0, underlayerMaxError: Float = 2.0, underlayerMinFeatureWidth: Float = 0.0, allowTextOverhang: Bool = false, exportPdfWithCropMarks: Bool = false, exportPdfWithFoldMarks: Bool = false, exportPdfWithRegistrationMarks: Bool = false, exportPdfPageSlices: Bool = false, printMarkOffset: Float = -1.0, cropMarkLength: Float = 0.0, printMarkWidth: Float = 0.25, pdfImageQuality: Float = 1.0, pdfTitle: String = "", pdfCreator: String = "", pdfAuthor: String = "", pdfSubject: String = "", pdfKeywords: String = "", pdfChunkSize: UInt32 = 0, outputColorSpace: ProfileColorSpace = .rgb, outputProfileMode: OutputProfileMode = .off, embedProfiles: Bool = false, preserveBlack: Bool = false, exportArea: CGRect? = nil)
 ```
 
 The export options. `pngCompressionLevel`
@@ -95,16 +95,46 @@ let outputColorSpace: ProfileColorSpace
 let outputProfileMode: OutputProfileMode
 ```
 
+### pdfAuthor
+
+```swift
+let pdfAuthor: String
+```
+
 ### pdfChunkSize
 
 ```swift
 let pdfChunkSize: UInt32
 ```
 
+### pdfCreator
+
+```swift
+let pdfCreator: String
+```
+
 ### pdfImageQuality
 
 ```swift
 let pdfImageQuality: Float
+```
+
+### pdfKeywords
+
+```swift
+let pdfKeywords: String
+```
+
+### pdfSubject
+
+```swift
+let pdfSubject: String
+```
+
+### pdfTitle
+
+```swift
+let pdfTitle: String
 ```
 
 ### pngCompressionLevel

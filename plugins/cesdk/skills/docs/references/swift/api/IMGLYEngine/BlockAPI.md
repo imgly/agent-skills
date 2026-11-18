@@ -1251,7 +1251,23 @@ Get the mode of the keyframes of a block property. `id`
 @MainActor func getKeyframes(_ id: DesignBlockID, property: String) throws -> [Keyframe]
 ```
 
-Get the keyframes of a block property, sorted by time. `id`
+Get the keyframes of a block property, sorted by time. The times are on the clock of the block, as [`getKeyframeTimeBase(_:)`](./getkeyframetimebase(_:).md) returns it. [`getTimeOfKeyframe(_:keyframeTime:)`](./gettimeofkeyframe(_:keyframetime:).md) converts one to a playback time of the block. `id`
+
+### getKeyframeTimeAt(_:time:)
+
+```swift
+@MainActor func getKeyframeTimeAt(_ id: DesignBlockID, time: Float) throws -> Float
+```
+
+Get the keyframe time that a block shows at a time of its playback. On [`TimeBase.block`](../timebase/block.md) this is the time itself. On [`TimeBase.media`](../timebase/media.md) it is the time of the video that the block shows then, so it follows the trim, the speed and the looping of the video. `id`
+
+### getKeyframeTimeBase(_:)
+
+```swift
+@MainActor func getKeyframeTimeBase(_ id: DesignBlockID) throws -> TimeBase
+```
+
+Get the clock that the keyframes of a block run over. `id`
 
 ### getKind(_:)
 
@@ -1781,6 +1797,14 @@ Returns all text runs within the given range of text. `id`
 
 Returns the ordered list of unique script styles of the text in the selected range. `id`
 
+### getTextTimings(_:)
+
+```swift
+@MainActor func getTextTimings(_ id: DesignBlockID) throws -> [TextTiming]
+```
+
+Gets the timed ranges of a text, as they apply to its current text. `id`
+
 ### getTextVariationAxes(_:in:)
 
 ```swift
@@ -1812,6 +1836,14 @@ Returns the number of visible lines in the given text block. `id`
 ```
 
 Get the time offset of the given block relative to its parent. `id`
+
+### getTimeOfKeyframe(_:keyframeTime:)
+
+```swift
+@MainActor func getTimeOfKeyframe(_ id: DesignBlockID, keyframeTime: Float) throws -> Float
+```
+
+Get the first time of its playback at which a block shows a keyframe time, the inverse of [`getKeyframeTimeAt(_:time:)`](./getkeyframetimeat(_:time:).md). A looping video shows the keyframe time again later. `id`
 
 ### getTransformParent(_:)
 
@@ -2357,6 +2389,14 @@ Loads existing blocks from the given string. The blocks are not attached by defa
 
 Loads existing blocks from an archive. The URL should be that of a file previously saved with `block.saveToArchive`. The blocks are not attached by default and won’t be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one. `url`
 
+### mergeCaptionWithPrevious(_:keepCurrent:)
+
+```swift
+@MainActor func mergeCaptionWithPrevious(_ id: DesignBlockID, keepCurrent: Bool = false) throws -> CaptionMerge
+```
+
+Merges a caption with the caption before it in its parent. The merged text is the previous text, one space when both texts are not empty, and the text of the caption. The merged caption starts where the previous one starts and lasts until the later of the two ends. Each word keeps its time on the timeline. The other caption is destroyed. The call adds one undo step. `id`
+
 ### movePageSliceIntoPage(_:page:index:options:)
 
 ```swift
@@ -2686,6 +2726,14 @@ Enable or disable the blur of the given design block. `id`
 ```
 
 Set a bool property of the given design block to the given value. `id`
+
+### setCaptionStart(_:timeOffset:)
+
+```swift
+@MainActor func setCaptionStart(_ id: DesignBlockID, timeOffset: Double) throws
+```
+
+Moves the start of a caption and keeps its end, as a trim of the start does. Each word keeps its time on the timeline, so a later start gives the words earlier times. A word before the new start keeps a negative time. The call adds one undo step. Unlike `setTimeOffset`, which moves the whole caption with its end and its words, this call keeps the end. `id`
 
 ### setClipped(_:clipped:)
 
@@ -3021,7 +3069,15 @@ Set an int property of the given design block to the given value.
 @MainActor func setKeyframes(_ id: DesignBlockID, property: String, keyframes: [Keyframe], mode: TrackMode = .absolute) throws
 ```
 
-Replace the keyframes of a block property. Keyframe times are normalized from 0 to 1 over the duration of the block. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit also converts the keyframes of length and position properties, such as corner radii and `position`. Rotating or flipping the block turns or mirrors the keyframes of its position, rotation and skew with it. A group’s keyframes turn with the group. A turn other than a half turn joins `position/x`…
+Replace the keyframes of a block property. Keyframe times are normalized over the clock of the block, 0 at its start and 1 at its end. The clock is the duration of the block, or its video after [`setKeyframeTimeBase(_:timeBase:)`](./setkeyframetimebase(_:timebase:).md). A time before 0 or after 1 lies outside the block. A split leaves such keyframes on each half, so the segment across the cut keeps its curve. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit…
+
+### setKeyframeTimeBase(_:timeBase:)
+
+```swift
+@MainActor func setKeyframeTimeBase(_ id: DesignBlockID, timeBase: TimeBase) throws
+```
+
+Set the clock that the keyframes of a block run over. On [`TimeBase.block`](../timebase/block.md), keyframe times are normalized over the block’s playback duration. On [`TimeBase.media`](../timebase/media.md), they are normalized over the total duration of the video that the block shows, so each keyframe stays on its video frame when the video is trimmed, split, sped up or loops. The clock covers every keyframe track of the block. Its fill, shape and effects keep their own clock. Removing the last track of the block sets its clock back to [`TimeBase.block`](../timebase/block.md). A switch moves the keyframe times, so each keyframe stays at its moment in the first pass of the clip through it…
 
 ### setKind(_:kind:)
 
@@ -3535,6 +3591,14 @@ Sets the OpenType features of a grapheme range, such as `tnum` for digits of equ
 
 Sets the given script style for the selected range of text. Superscript and subscript text is scaled down and shifted off the regular baseline. The block properties “text/superscriptFontScale”, “text/superscriptVerticalShift”, “text/subscriptFontScale” and “text/subscriptVerticalShift” adjust the scale and shift. Required scope: “text/character” `id`
 
+### setTextTimings(_:timings:)
+
+```swift
+@MainActor func setTextTimings(_ id: DesignBlockID, timings: [TextTiming]) throws
+```
+
+Sets when the ranges of a text are spoken, such as one range per word of a caption. A text animator whose `text_animator/selectorTiming` is `Past`, `Current` or `Future` selects the ranges by these times. `id`
+
 ### setTextVariationAxes(_:axes:in:)
 
 ```swift
@@ -3671,6 +3735,22 @@ Set a block’s mode for its width. A switch between Absolute and Percent keeps 
 
 Split a block at the specified time. The original block will be trimmed to end at the split time, and the returned duplicate will start at the split time and continue to the original end time. `id`
 
+### splitCaption(_:textIndex:minimumDuration:)
+
+```swift
+@MainActor func splitCaption(_ id: DesignBlockID, textIndex: Int, minimumDuration: Double = 0.1) throws -> DesignBlockID
+```
+
+Splits the text of a caption at a text index into two captions. The caption keeps the text before the index. A duplicate after it in its parent gets the text from the index on, and the rest of the time. Each word keeps its time on the timeline. The call adds one undo step. Unlike `split`, which cuts the time and gives both halves the whole text, this call cuts the text. `id`
+
+### splitCaptionAtTime(_:atTime:minimumDuration:)
+
+```swift
+@MainActor func splitCaptionAtTime(_ id: DesignBlockID, atTime: Double, minimumDuration: Double = 0.1) throws -> DesignBlockID
+```
+
+Splits a caption at a time into two captions, and cuts its text before a word. The caption ends at `atTime`. A duplicate after it in its parent starts there and gets the text from the cut on. Each word keeps its time on the timeline. The call adds one undo step. Unlike `split`, which gives both halves the whole text, this call also cuts the text. `id`
+
 ### supportsAnimation(_:)
 
 ```swift
@@ -3702,6 +3782,14 @@ Query if the given block has a blend mode. `id`
 ```
 
 Checks whether the block supports blur. `id`
+
+### supportsBlurType(_:type:)
+
+```swift
+@MainActor func supportsBlurType(_ id: DesignBlockID, type: BlurType) throws -> Bool
+```
+
+Checks whether the block accepts a blur of the given type. Every block that supports blur accepts every blur type. A group, a text and a caption blur their whole rendering. `id`
 
 ### supportsContentFillMode(_:)
 

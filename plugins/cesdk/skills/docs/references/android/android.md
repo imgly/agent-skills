@@ -297,6 +297,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Add Captions](https://img.ly/docs/cesdk/dev/android/edit-video/add-captions-f67565/)
 - [Edit Captions](https://img.ly/docs/cesdk/dev/android/edit-video/edit-captions-ed9c17/)
 - [Update Caption Presets](https://img.ly/docs/cesdk/dev/android/create-video/update-caption-presets-e9c385/)
+- [Highlight Spoken Words in Captions](https://img.ly/docs/cesdk/dev/android/create-video/highlight-caption-words-f37ced/)
 - [Add Watermark](https://img.ly/docs/cesdk/dev/android/edit-video/add-watermark-762ce6/)
 - [Annotation](https://img.ly/docs/cesdk/dev/android/edit-video/annotation-e9cbad/)
 - [Redaction](https://img.ly/docs/cesdk/dev/android/edit-video/redaction-cf6d03/)
@@ -452,6 +453,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Text Animators](https://img.ly/docs/cesdk/dev/android/animation/text-animators-97387e/)
 - [Motion Paths](https://img.ly/docs/cesdk/dev/android/animation/motion-paths-7c619f/)
 - [Motion Blur](https://img.ly/docs/cesdk/dev/android/animation/motion-blur-122f43/)
+- [Page Camera](https://img.ly/docs/cesdk/dev/android/animation/page-camera-3c0e7b/)
+- [Depth and Perspective](https://img.ly/docs/cesdk/dev/android/animation/depth-and-perspective-d3e9a7/)
 - [Anchor, Skew and Auto-Orient](https://img.ly/docs/cesdk/dev/android/animation/anchor-skew-auto-orient-ede5e9/)
 - [Programmatic](https://img.ly/docs/cesdk/dev/android/animation/programmatic-eb359c/)
 

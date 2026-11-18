@@ -1090,13 +1090,29 @@ abstract fun getKeyframeMode(block: DesignBlock, property: String): TrackMode
 
 Get the mode of the keyframe track of a block property. Throws BLOCK.KEYFRAMES_NO_TRACK when the property has no keyframes, or BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when isPropertyAnimatable also returns false.
 
+### getKeyframeTimeAt
+
+```kotlin
+abstract fun getKeyframeTimeAt(block: DesignBlock, time: Float): Float
+```
+
+Get the keyframe time that a block shows at a time of its playback. On TimeBase.BLOCK this is the time itself. On TimeBase.MEDIA it is the time of the video that the block shows then, so it follows the trim, the speed and the looping of the video. Throws BLOCK.KEYFRAMES_TIME_OUT_OF_RANGE for a time outside 0, 1. On TimeBase.MEDIA it throws BLOCK.KEYFRAMES_TIME_BASE_NEEDS_VIDEO for a block that shows no video, and EDITOR.VIDEO_NOT_LOADED before its video loads.
+
+### getKeyframeTimeBase
+
+```kotlin
+abstract fun getKeyframeTimeBase(block: DesignBlock): TimeBase
+```
+
+Get the clock that the keyframes of a block run over.
+
 ### getKeyframes
 
 ```kotlin
 abstract fun getKeyframes(block: DesignBlock, property: String): List<Keyframe>
 ```
 
-Get the keyframes of a block property, sorted by time. Throws BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when the property has no keyframes and isPropertyAnimatable returns false.
+Get the keyframes of a block property, sorted by time. The times are on the clock of the block, as getKeyframeTimeBase returns it. getTimeOfKeyframe converts one to a playback time of the block. Throws BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE when the property has no keyframes and isPropertyAnimatable returns false.
 
 ### getKind
 
@@ -1643,6 +1659,14 @@ abstract fun getTextScriptStyles(block: DesignBlock, from: Int = -1, to: Int = -
 
 Returns the ordered list of unique script styles of the text in the selected range.
 
+### getTextTimings
+
+```kotlin
+abstract fun getTextTimings(block: DesignBlock): List<TextTiming>
+```
+
+Gets the timed ranges of a text, as they apply to its current text.
+
 ### getTextVariationAxes
 
 ```kotlin
@@ -1666,6 +1690,14 @@ abstract fun getTextVisibleLineCount(block: DesignBlock): Int
 ```
 
 Returns the number of visible lines in the given text block.
+
+### getTimeOfKeyframe
+
+```kotlin
+abstract fun getTimeOfKeyframe(block: DesignBlock, keyframeTime: Float): Float
+```
+
+Get the first time of its playback at which a block shows a keyframe time, the inverse of getKeyframeTimeAt. A looping video shows the keyframe time again later. Throws BLOCK.KEYFRAMES_TIME_NOT_SHOWN for a keyframe time that the block never shows: before its start, after its end, or trimmed away. Throws BLOCK.KEYFRAMES_TIME_OUT_OF_RANGE for a time that is not finite. On TimeBase.MEDIA the errors of getKeyframeTimeAt apply too.
 
 ### getTimeOffset
 
@@ -2245,6 +2277,14 @@ abstract suspend fun loadFromURL(url: Uri): List<DesignBlock>
 
 Loads existing blocks from a URL. The URL should point to a blocks file within an unzipped archive directory previously saved with saveToArchive. The blocks are not attached by default and won't be visible until attached to a page or the scene. The UUID of the loaded blocks is replaced with a new one.
 
+### mergeCaptionWithPrevious
+
+```kotlin
+abstract fun mergeCaptionWithPrevious(block: DesignBlock, keepCurrent: Boolean = false): CaptionMerge
+```
+
+Merges a caption with the caption before it in its parent. The merged text is the previous text, one space when both texts are not empty, and the text of the caption. The merged caption starts where the previous one starts and lasts until the later of the two ends. Each word keeps its time on the timeline. The other caption is destroyed. The call adds one undo step.
+
 ### movePageSliceIntoPage
 
 ```kotlin
@@ -2553,6 +2593,14 @@ abstract fun setBoolean(block: DesignBlock, property: String, value: Boolean)
 ```
 
 Set a boolean property of the given design block to the given value.
+
+### setCaptionStart
+
+```kotlin
+abstract fun setCaptionStart(block: DesignBlock, timeOffset: Double)
+```
+
+Moves the start of a caption and keeps its end, as a trim of the start does. Each word keeps its time on the timeline, so a later start gives the words earlier times. A word before the new start keeps a negative time. The call adds one undo step. Unlike setTimeOffset, which moves the whole caption with its end and its words, this call keeps the end.
 
 ### setClipped
 
@@ -2882,13 +2930,21 @@ abstract fun setInt(block: DesignBlock, property: String, value: Int)
 
 Set an int property of the given design block to the given value.
 
+### setKeyframeTimeBase
+
+```kotlin
+abstract fun setKeyframeTimeBase(block: DesignBlock, timeBase: TimeBase)
+```
+
+Set the clock that the keyframes of a block run over. On TimeBase.BLOCK, keyframe times are normalized over the block's playback duration. On TimeBase.MEDIA, they are normalized over the total duration of the video that the block shows, so each keyframe stays on its video frame when the video is trimmed, split, sped up or loops. The clock covers every keyframe track of the block. Its fill, shape and effects keep their own clock. Removing the last track of the block sets its clock back to TimeBase.BLOCK. A switch moves the keyframe times, so each keyframe stays at its moment in the first pass of the clip through its video. A switch before the video loads throws EDITOR.VIDEO_NOT_LOADED. A swi…
+
 ### setKeyframes
 
 ```kotlin
 abstract fun setKeyframes(block: DesignBlock, property: String, keyframes: List<Keyframe>, mode: TrackMode = TrackMode.ABSOLUTE)
 ```
 
-Replace the keyframe track of a block property. Keyframe times are normalized over the duration of the block, from 0 to 1. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit also converts the keyframes of length and position properties, such as corner radii and position. Rotating or flipping the block turns or mirrors the keyframes of its position, rotation and skew with it. A group's keyframes turn with the group. A turn other than a half turn joins position…
+Replace the keyframe track of a block property. Keyframe times are normalized over the clock of the block, 0 at its start and 1 at its end. The clock is the duration of the block, or its video after setKeyframeTimeBase. A time before 0 or after 1 lies outside the block. A split leaves such keyframes on each half, so the segment across the cut keeps its curve. The engine sorts the keyframes by time. Setting the static value of the property does not change its keyframes. The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them to the new block. Scaling the block or changing the design unit also converts the keyframes of length and position…
 
 ### setKind
 
@@ -3410,6 +3466,14 @@ abstract fun setTextScriptStyle(block: DesignBlock, scriptStyle: ScriptStyle, fr
 
 Sets the given script style for the selected range of text. Superscript and subscript text is scaled down and shifted off the regular baseline. The block properties "text/superscriptFontScale", "text/superscriptVerticalShift", "text/subscriptFontScale" and "text/subscriptVerticalShift" adjust the scale and shift. Required scope: "text/character"
 
+### setTextTimings
+
+```kotlin
+abstract fun setTextTimings(block: DesignBlock, timings: List<TextTiming>)
+```
+
+Sets when the ranges of a text are spoken, such as one range per word of a caption. A text animator whose text_animator/selectorTiming is Past, Current or Future selects the ranges by these times. The times stay with their words when the text changes. A word replaced by one other word keeps the time of the word it replaced. An inserted word has no time, and a deleted word loses its time. split keeps each word's time on the timeline. Moving the block moves its times with it. The times count from the start of the block. After a trim of the start by d seconds, set the times again with d subtracted.
+
 ### setTextVariationAxes
 
 ```kotlin
@@ -3538,13 +3602,29 @@ abstract fun setWidth(block: DesignBlock, value: Float, maintainCrop: Boolean = 
 
 Update a block's width and optionally maintain the crop. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up wider than asked. A width of 0 or less on a page slice fails with BLOCK.PAGE_SLICE_SIZE_INVALID. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the g…
 
+### splitCaptionAtTime
+
+```kotlin
+abstract fun splitCaptionAtTime(block: DesignBlock, atTime: Double, minimumDuration: Double = 0.1): DesignBlock
+```
+
+Splits a caption at a time into two captions, and cuts its text before a word. The caption ends at atTime. A duplicate after it in its parent starts there and gets the text from the cut on. Each word keeps its time on the timeline. The call adds one undo step. Unlike split, which gives both halves the whole text, this call also cuts the text. Note: With word times, the text is cut before the first word that starts at atTime or later, else before the last word. The first word always stays in the first part. Without word times, the text is cut at the word gap nearest to the place that is in proportion to atTime.
+
+### splitCaption
+
+```kotlin
+abstract fun splitCaption(block: DesignBlock, textIndex: Int, minimumDuration: Double = 0.1): DesignBlock
+```
+
+Splits the text of a caption at a text index into two captions. The caption keeps the text before the index. A duplicate after it in its parent gets the text from the index on, and the rest of the time. Each word keeps its time on the timeline. The call adds one undo step. Unlike split, which cuts the time and gives both halves the whole text, this call cuts the text. Note: The first part ends where the first timed word at or after the index starts, at least minimumDuration away from both ends. Without such a word, the duration divides in proportion to the characters of each part.
+
 ### split
 
 ```kotlin
 abstract fun split(block: DesignBlock, atTime: Double, options: SplitOptions = SplitOptions()): DesignBlock
 ```
 
-Split a block at the specified time. The original block will be trimmed to end at the split time, and the returned duplicate will start at the split time and continue to the original end time.
+Split a block at the specified time. The original block will be trimmed to end at the split time, and the returned duplicate will start at the split time and continue to the original end time. The split cuts the keyframe tracks of the block and of its fill, shape and effects, so each half plays its part of them. Their keyframe times can then lie before 0 or after 1. Tracks on the TimeBase.MEDIA clock keep their times, because they follow the trim of each half. A group's children are copied with their tracks unchanged.
 
 ### supportsAnimation
 
@@ -3569,6 +3649,14 @@ abstract fun supportsBlendMode(block: DesignBlock): Boolean
 ```
 
 Query if the given block has a blend mode.
+
+### supportsBlurType
+
+```kotlin
+abstract fun supportsBlurType(block: DesignBlock, type: BlurType): Boolean
+```
+
+Checks whether the block accepts a blur of the given type. Every block that supports blur accepts every blur type. A group, a text and a caption blur their whole rendering.
 
 ### supportsBlur
 

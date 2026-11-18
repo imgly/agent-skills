@@ -6,7 +6,7 @@
 The export options.
 
 ```kotlin
-data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val underlayerMinFeatureWidth: Float = 0.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null, val outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, val outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, val embedProfiles: Boolean = false, val preserveBlack: Boolean = false, val exportArea: RectF? = null, val exportPdfPageSlices: Boolean = false, val exportPdfWithFoldMarks: Boolean = false)
+data class ExportOptions(val pngCompressionLevel: Int = 5, val jpegQuality: Float = 0.9f, val webpQuality: Float = 1.0f, val targetWidth: Float? = null, val targetHeight: Float? = null, val exportPdfWithHighCompatibility: Boolean = true, val exportPdfWithUnderlayer: Boolean = false, val underlayerSpotColorName: String = "", val underlayerOffset: Float = 0.0f, val underlayerRenderRatio: Float = 1.0f, val underlayerMaxError: Float = 2.0f, val underlayerMinFeatureWidth: Float = 0.0f, val allowTextOverhang: Boolean = false, val exportPdfWithCropMarks: Boolean = false, val exportPdfWithRegistrationMarks: Boolean = false, val printMarkOffset: Float = -1.0F, val cropMarkLength: Float = 0.0f, val printMarkWidth: Float = 0.25f, val pdfImageQuality: Float = 1.0f, val pdfChunkSize: Int? = null, val outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, val outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, val embedProfiles: Boolean = false, val preserveBlack: Boolean = false, val exportArea: RectF? = null, val exportPdfPageSlices: Boolean = false, val exportPdfWithFoldMarks: Boolean = false, val pdfTitle: String = "", val pdfCreator: String = "", val pdfAuthor: String = "", val pdfSubject: String = "", val pdfKeywords: String = "")
 ```
 
 
@@ -19,7 +19,7 @@ constructor(pngCompressionLevel: Int, jpegQuality: Float, webpQuality: Float, ta
 ```
 
 ```kotlin
-constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, underlayerMinFeatureWidth: Float = 0.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null, outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, embedProfiles: Boolean = false, preserveBlack: Boolean = false, exportArea: RectF? = null, exportPdfPageSlices: Boolean = false, exportPdfWithFoldMarks: Boolean = false)
+constructor(pngCompressionLevel: Int = 5, jpegQuality: Float = 0.9f, webpQuality: Float = 1.0f, targetWidth: Float? = null, targetHeight: Float? = null, exportPdfWithHighCompatibility: Boolean = true, exportPdfWithUnderlayer: Boolean = false, underlayerSpotColorName: String = "", underlayerOffset: Float = 0.0f, underlayerRenderRatio: Float = 1.0f, underlayerMaxError: Float = 2.0f, underlayerMinFeatureWidth: Float = 0.0f, allowTextOverhang: Boolean = false, exportPdfWithCropMarks: Boolean = false, exportPdfWithRegistrationMarks: Boolean = false, printMarkOffset: Float = -1.0F, cropMarkLength: Float = 0.0f, printMarkWidth: Float = 0.25f, pdfImageQuality: Float = 1.0f, pdfChunkSize: Int? = null, outputColorSpace: ProfileColorSpace = ProfileColorSpace.RGB, outputProfileMode: OutputProfileMode = OutputProfileMode.OFF, embedProfiles: Boolean = false, preserveBlack: Boolean = false, exportArea: RectF? = null, exportPdfPageSlices: Boolean = false, exportPdfWithFoldMarks: Boolean = false, pdfTitle: String = "", pdfCreator: String = "", pdfAuthor: String = "", pdfSubject: String = "", pdfKeywords: String = "")
 ```
 
 The constructor without exportPdfPageSlices, so that a call that passes all these arguments, from Java for example, keeps working. It sets exportPdfPageSlices to false.
@@ -128,6 +128,14 @@ val outputProfileMode: OutputProfileMode
 
 What a PDF export does with the document's Output profile of outputColorSpace. OutputProfileMode.OFF writes the colors as they are. OutputProfileMode.CONVERT converts every solid color into the Output profile: fills, strokes, text and the alternate of each spot color. OutputProfileMode.ASSIGN keeps the values of every solid color in the space of the Output profile. Those are CMYK colors in a CMYK output and RGB colors in an RGB output. It converts the other colors as OutputProfileMode.CONVERT does. With embedProfiles, the Output profile in the file labels the kept values. Without it, they stay device values, as the converted values of OutputProfileMode.CONVERT do. A spot color's alternate i…
 
+### pdfAuthor
+
+```kotlin
+val pdfAuthor: String
+```
+
+The Author in the document information of an exported PDF. Empty, the default, writes no Author.
+
 ### pdfChunkSize
 
 ```kotlin
@@ -136,6 +144,14 @@ val pdfChunkSize: Int? = null
 
 Upper bound, in bytes, for a single chunk of a streamed export. It matters most for the streamed BlockApi.export overloads, where this is the memory the caller has to hold for one chunk. A larger value lowers the per-chunk overhead and raises the memory each chunk costs. A smaller value does the opposite. null, the default, uses an engine-chosen size, and so does a value below 1. Any other value is clamped to 4096, 67108864, so an unusable request lowers the quality of the trade rather than failing the export. Note this is a bound and not a chunk size: the encoder also flushes after each page, so the last chunk of a page is normally smaller.
 
+### pdfCreator
+
+```kotlin
+val pdfCreator: String
+```
+
+The Creator in the document information of an exported PDF: the application that made the content. Empty, the default, writes IMG.LY.
+
 ### pdfImageQuality
 
 ```kotlin
@@ -143,6 +159,30 @@ val pdfImageQuality: Float = 1.0f
 ```
 
 The encoding quality to use for images that have to be rasterized during PDF export, e.g. images with effects or blurs applied, or any bitmap image when exportPdfWithHighCompatibility is enabled. Valid values are (0-1]. Exactly 1.0 (the default) keeps the lossless encoding, like webpQuality. Any value below 1.0 re-encodes rasterized images as lossy JPEG at the given quality, which produces much smaller files. Only rasterized content that is fully opaque can be re-encoded, because JPEG has no alpha channel. Content that keeps transparency, for example when exporting a block or a page without a background fill, stays losslessly encoded whatever this option is set to. Images whose original JPE…
+
+### pdfKeywords
+
+```kotlin
+val pdfKeywords: String
+```
+
+The Keywords in the document information of an exported PDF. Empty, the default, writes no Keywords.
+
+### pdfSubject
+
+```kotlin
+val pdfSubject: String
+```
+
+The Subject in the document information of an exported PDF. Empty, the default, writes no Subject.
+
+### pdfTitle
+
+```kotlin
+val pdfTitle: String
+```
+
+The Title in the document information of an exported PDF. Empty, the default, uses the name of the exported block.
 
 ### pngCompressionLevel
 

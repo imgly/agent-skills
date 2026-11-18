@@ -382,6 +382,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Text Animators](https://img.ly/docs/cesdk/dev/macos/animation/text-animators-97387e/)
 - [Motion Paths](https://img.ly/docs/cesdk/dev/macos/animation/motion-paths-7c619f/)
 - [Motion Blur](https://img.ly/docs/cesdk/dev/macos/animation/motion-blur-122f43/)
+- [Page Camera](https://img.ly/docs/cesdk/dev/macos/animation/page-camera-3c0e7b/)
+- [Depth and Perspective](https://img.ly/docs/cesdk/dev/macos/animation/depth-and-perspective-d3e9a7/)
 - [Anchor, Skew and Auto-Orient](https://img.ly/docs/cesdk/dev/macos/animation/anchor-skew-auto-orient-ede5e9/)
 
 #### [Rules](https://img.ly/docs/cesdk/dev/macos/rules-1427c0/)

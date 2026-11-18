@@ -880,10 +880,10 @@ releaseMemory(): void
 
 ### getMaxExportSize()
 
-Get the export size limit in pixels on the current device. It bounds a color mask export. It also bounds
+Get the export size limit in pixels on the current device. It bounds
 each image, gradient and effect that a PDF export draws as pixels at the scene DPI, not the page. Both sides must be below or equal to it.
 An export might still fail for other reasons, such as memory. The limit is at most 23170 px, the side of the largest
-square export whose pixels fit in 2 GiB. A PNG, JPEG, WebP, TGA or raw export renders in strips, so this limit does
+square export whose pixels fit in 2 GiB. A PNG, JPEG, WebP, TGA or raw export, with or without a color mask, renders in strips, so this limit does
 not bound it. Only the side limit of its format does: JPEG 65500, WebP 16383 and TGA 65535 px. A buffered export must
 also give a file under 4 GiB. A PNG, JPEG or WebP export with `outputProfileMode` or `embedProfiles` renders in one
 surface, so this limit bounds it.

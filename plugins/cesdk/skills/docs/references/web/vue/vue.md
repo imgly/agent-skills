@@ -404,6 +404,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Apply Transitions](https://img.ly/docs/cesdk/dev/vue/create-video/apply-transitions-146026/)
 - [Add Captions](https://img.ly/docs/cesdk/dev/vue/edit-video/add-captions-f67565/)
 - [Update Caption Presets](https://img.ly/docs/cesdk/dev/vue/create-video/update-caption-presets-e9c385/)
+- [Highlight Spoken Words in Captions](https://img.ly/docs/cesdk/dev/vue/create-video/highlight-caption-words-f37ced/)
 - [Add Watermark](https://img.ly/docs/cesdk/dev/vue/edit-video/add-watermark-762ce6/)
 - [Redaction](https://img.ly/docs/cesdk/dev/vue/edit-video/redaction-cf6d03/)
 - [Editing Overview](https://img.ly/docs/cesdk/dev/vue/overview-7d12d5/)
@@ -555,6 +556,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Text Animators](https://img.ly/docs/cesdk/dev/vue/animation/text-animators-97387e/)
 - [Motion Paths](https://img.ly/docs/cesdk/dev/vue/animation/motion-paths-7c619f/)
 - [Motion Blur](https://img.ly/docs/cesdk/dev/vue/animation/motion-blur-122f43/)
+- [Page Camera](https://img.ly/docs/cesdk/dev/vue/animation/page-camera-3c0e7b/)
+- [Depth and Perspective](https://img.ly/docs/cesdk/dev/vue/animation/depth-and-perspective-d3e9a7/)
 - [Anchor, Skew and Auto-Orient](https://img.ly/docs/cesdk/dev/vue/animation/anchor-skew-auto-orient-ede5e9/)
 
 #### [Rules](https://img.ly/docs/cesdk/dev/vue/rules-1427c0/)

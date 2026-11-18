@@ -1135,6 +1135,91 @@ getTrimLength(id: DesignBlockId): number
 
 **Returns:** The trim length of the object in seconds.
 
+### splitCaption()
+
+Splits the text of a caption at a text index into two captions.
+The caption keeps the text before the index. A duplicate after it in its parent gets the text from the index on,
+and the rest of the time. Each word keeps its time on the timeline. The call adds one undo step. Unlike `split`,
+which cuts the time and gives both halves the whole text, this call cuts the text.
+The first part ends where the first timed word at or after the index starts, at least `minimumDuration` away from
+both ends. Without such a word, the duration divides in proportion to the characters of each part.
+```javascript
+const second = engine.block.splitCaption(caption, 12);
+```
+
+```typescript
+splitCaption(id: DesignBlockId, textIndex: number, options?: SplitCaptionOptions): DesignBlockId
+```
+
+**Parameters:**
+- `id` - The caption to split.
+- `textIndex` - The UTF-16 index of the first character of the second part, like the other text range calls.
+- `options` - The shortest part the split may give.
+
+**Returns:** The second part.
+
+### splitCaptionAtTime()
+
+Splits a caption at a time into two captions, and cuts its text before a word.
+The caption ends at `atTime`. A duplicate after it in its parent starts there and gets the text from the cut on.
+Each word keeps its time on the timeline. The call adds one undo step. Unlike `split`, which gives both halves the
+whole text, this call also cuts the text.
+With word times, the text is cut before the first word that starts at `atTime` or later, else before the last
+word. The first word always stays in the first part. Without word times, the text is cut at the word gap nearest
+to the place that is in proportion to `atTime`.
+```javascript
+const second = engine.block.splitCaptionAtTime(caption, 1.5);
+```
+
+```typescript
+splitCaptionAtTime(id: DesignBlockId, atTime: number, options?: SplitCaptionOptions): DesignBlockId
+```
+
+**Parameters:**
+- `id` - The caption to split.
+- `atTime` - The time in seconds from the start of the caption, like `split`.
+- `options` - The shortest part the split may give.
+
+**Returns:** The second part.
+
+### mergeCaptionWithPrevious()
+
+Merges a caption with the caption before it in its parent.
+The merged text is the previous text, one space when both texts are not empty, and the text of the caption. The
+merged caption starts where the previous one starts and lasts until the later of the two ends. Each word keeps its
+time on the timeline. The other caption is destroyed. The call adds one undo step.
+```javascript
+const { caption: merged, textIndex } = engine.block.mergeCaptionWithPrevious(caption);
+```
+
+```typescript
+mergeCaptionWithPrevious(id: DesignBlockId, options?: MergeCaptionOptions): CaptionMerge
+```
+
+**Parameters:**
+- `id` - The caption to merge into the one before it.
+- `options` - Which of the two captions stays.
+
+**Returns:** The caption that stays, and the UTF-16 index where the text of the merged caption starts in it.
+
+### setCaptionStart()
+
+Moves the start of a caption and keeps its end, as a trim of the start does.
+Each word keeps its time on the timeline, so a later start gives the words earlier times. A word before the new
+start keeps a negative time. The call adds one undo step. Unlike `setTimeOffset`, which moves the whole caption
+with its end and its words, this call keeps the end.
+```javascript
+engine.block.setCaptionStart(caption, 2.5);
+```
+
+```typescript
+setCaptionStart(id: DesignBlockId, timeOffset: number): void
+```
+
+**Parameters:**
+- `id` - The caption to trim.
+- `timeOffset` - The new start in seconds on the timeline, before the end of the caption.
+
 ### setPlaying()
 
 Sets whether a block should play its content during active playback.
@@ -2692,8 +2777,10 @@ Create and manage animations and timeline-based effects.
 ### setKeyframes()
 
 Replaces the keyframes of a block property.
-Keyframe times are normalized over the block's duration, from 0 to 1, and the keyframes are sorted by time. A
-fill, shape or effect uses the duration of the block it is attached to. Setting the static value of the
+Keyframe times are normalized over the clock of the block, 0 at its start and 1 at its end. The clock is the
+block's duration, or its video after `setKeyframeTimeBase`. A fill, shape or effect uses the duration of the block
+it is attached to. A time before 0 or after 1 lies outside the block. A split leaves such keyframes on each half,
+so the segment across the cut keeps its curve. The keyframes are sorted by time. Setting the static value of the
 property does not change its keyframes.
 The keyframes belong to the block that owns the property. Replacing a fill, shape or effect does not move them
 to the new block. Scaling the block or changing the design unit also converts the keyframes of length
@@ -2715,6 +2802,8 @@ engine.block.setKeyframes(fill, 'fill/color/value', [
   { time: 1, value: { type: 'Color', value: { r: 0, g: 0, b: 1, a: 1 } }, easing: { type: 'Hold' } }
 ]);
 ```
+On the `'Media'` clock a keyframe time is a fraction of the video, not of the block. `getKeyframeTimeAt` converts
+a playback time of the block to it.
 Required scope: 'appearance/animation' and the scope that the setter of the property needs, such as 'layer/move'
 for `position` or 'layer/rotate' for `rotation`. A `transform/scale/x` or `transform/scale/y` keyframe that shows a
 scale with another sign than the static scale also needs 'layer/flip'.
@@ -2726,13 +2815,15 @@ setKeyframes(id: DesignBlockId, property: string, keyframes: Keyframe[], mode?: 
 **Parameters:**
 - `id` - The block that owns the property, for example a graphic, fill, shape or effect block.
 - `property` - The property path. `isPropertyAnimatable` must return true for it.
-- `keyframes` - At least one keyframe, with unique times from 0 to 1 and values of the property's kind.
+- `keyframes` - At least one keyframe, with unique finite times and values of the property's kind.
 - `mode` - `'Absolute'` replaces the static value, `'Relative'` adds to it. Relative needs a float or vec2
 property. Defaults to `'Absolute'`.
 
 ### getKeyframes()
 
 Gets the keyframes of a block property, sorted by time.
+The times are on the clock of the block, as `getKeyframeTimeBase` returns it. `getTimeOfKeyframe` converts one to
+a playback time of the block.
 
 ```typescript
 getKeyframes(id: DesignBlockId, property: string): Keyframe[]
@@ -2775,8 +2866,8 @@ getAnimatedValue(id: DesignBlockId, property: string, time: number): KeyframeVal
 **Parameters:**
 - `id` - The block that owns the property.
 - `property` - The animatable property path, e.g. `opacity`.
-- `time` - The normalized time over the block's `playback/duration`, from 0 to 1, as
-keyframe times are.
+- `time` - The normalized time over the block's `playback/duration`, from 0 to 1. On the
+`'Media'` clock the engine finds the time of the video that the block shows then, as playback does.
 
 **Returns:** The value, of the property's kind.
 
@@ -2823,6 +2914,79 @@ isPropertyAnimatable(id: DesignBlockId, property: string): boolean
 
 **Returns:** True when the block has the property and it is animatable. False for a property the block does not
 have.
+
+### setKeyframeTimeBase()
+
+Sets the clock that the keyframes of a block run over.
+On `'Block'`, keyframe times are normalized over the block's playback duration. On `'Media'`, they are normalized
+over the total duration of the video that the block shows, so each keyframe stays on its video frame when the
+video is trimmed, split, sped up or loops. The clock covers every keyframe track of the block. Its fill, shape and
+effects keep their own clock. Removing the last track of the block sets its clock back to `'Block'`. A switch
+moves the keyframe times, so each keyframe stays at its moment in the first pass of the clip through its video. A
+switch before the video loads throws `EDITOR.VIDEO_NOT_LOADED`. A switch to `'Block'` on a block that no longer
+shows a video keeps the keyframe times as they are.
+Keyframe times in video terms, such as from tracking data, go in after the switch to `'Media'`. Set before it,
+they are taken as block times and move with the trim and the speed.
+```javascript
+engine.block.setKeyframes(videoGraphic, 'opacity', [
+  { time: 0, value: { type: 'Float', value: 0 } },
+  { time: 0.5, value: { type: 'Float', value: 1 } }
+]);
+engine.block.setKeyframeTimeBase(videoGraphic, 'Media');
+```
+Required scope: 'appearance/animation'.
+
+```typescript
+setKeyframeTimeBase(id: DesignBlockId, timeBase: TimeBase): void
+```
+
+**Parameters:**
+- `id` - The block whose keyframes the clock drives.
+- `timeBase` - The clock.
+
+### getKeyframeTimeBase()
+
+Gets the clock that the keyframes of a block run over.
+
+```typescript
+getKeyframeTimeBase(id: DesignBlockId): TimeBase
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** The clock. A block without keyframes runs on `'Block'`.
+
+### getKeyframeTimeAt()
+
+Gets the keyframe time that a block shows at a time of its playback.
+On the `'Block'` clock this is the time itself. On the `'Media'` clock it is the time of the video that the block
+shows then, so it follows the trim, the speed and the looping of the video.
+
+```typescript
+getKeyframeTimeAt(id: DesignBlockId, time: number): number
+```
+
+**Parameters:**
+- `id` - The block whose keyframes run on the clock.
+- `time` - The normalized time over the block's `playback/duration`, from 0 to 1.
+
+**Returns:** The keyframe time.
+
+### getTimeOfKeyframe()
+
+Gets the first time of its playback at which a block shows a keyframe time, the inverse of `getKeyframeTimeAt`.
+A looping video shows the keyframe time again later.
+
+```typescript
+getTimeOfKeyframe(id: DesignBlockId, keyframeTime: number): number
+```
+
+**Parameters:**
+- `id` - The block whose keyframes run on the clock.
+- `keyframeTime` - A keyframe time, as `getKeyframes` gives it.
+
+**Returns:** The normalized time over the block's `playback/duration`, from 0 to 1.
 
 ### createAnimation()
 
@@ -4963,6 +5127,56 @@ removeTextAnimator(id: DesignBlockId, index: number): void
 - `id` - The text block to update.
 - `index` - The index of the text animator to remove.
 
+### setTextTimings()
+
+Sets when the ranges of a text are spoken, such as one range per word of a caption. A text animator whose
+`text_animator/selectorTiming` is `Past`, `Current` or `Future` selects the ranges by these times.
+The times stay with their words when the text changes. A word replaced by one other word keeps the time of the
+word it replaced. An inserted word has no time, and a deleted word loses its time. `split` keeps each word's time
+on the timeline. Moving the block moves its times with it. The times count from the start of the block. After a trim
+of the start by `d` seconds, set the times again with `d` subtracted.
+A word is a part of the text between white space. A text in a script without spaces keeps its times only
+while it does not change. A text with template variables selects no range by time.
+An In animation of the Word or Character writing style follows these times. Each word animates from its start
+to the next later start, and the word that starts last animates until the block ends. Each character animates
+inside the time of its word. Set `textAnimationFollowTextTimings` of the animation to false to spread them
+evenly.
+Engines before 1.87 ignore `text_animator/selectorTiming` and select by the range. A range outside the text, such
+as Percentage start and end 2, keeps a timing animator off in them.
+```javascript
+engine.block.replaceText(caption, 'Hello world');
+engine.block.setTextTimings(caption, [
+  { from: 0, to: 5, start: 0 },
+  { from: 6, to: 11, start: 0.4 }
+]);
+```
+Required scope: 'appearance/animation'
+
+```typescript
+setTextTimings(id: DesignBlockId, timings: TextTiming[]): void
+```
+
+**Parameters:**
+- `id` - The text or caption block.
+- `timings` - The ranges, not overlapping, in UTF-16 indices of the text, like the other text range calls.
+Each `start` is in seconds from the start of the block. An empty array removes the timings.
+
+### getTextTimings()
+
+Gets the timed ranges of a text, as they apply to its current text.
+```javascript
+const timings = engine.block.getTextTimings(caption);
+```
+
+```typescript
+getTextTimings(id: DesignBlockId): TextTiming[]
+```
+
+**Parameters:**
+- `id` - The text or caption block.
+
+**Returns:** The ranges sorted by `from`, or an empty array for a text without timings.
+
 ## Block Modifiers
 
 ### createModifier()
@@ -5168,6 +5382,26 @@ supportsBlur(id: DesignBlockId): boolean
 - `id` - The block to query.
 
 **Returns:** True, if the block supports blur.
+
+### supportsBlurType()
+
+Checks whether a block accepts a blur of the given type.
+Every block that supports blur accepts every blur type. A group, a text and a caption blur their whole rendering.
+```javascript
+if (engine.block.supportsBlurType(text, 'linear')) {
+  engine.block.setBlur(text, engine.block.createBlur('linear'));
+}
+```
+
+```typescript
+supportsBlurType(id: DesignBlockId, type: BlurType): boolean
+```
+
+**Parameters:**
+- `id` - The block to query.
+- `type` - The blur type, such as `uniform`, or a full type id.
+
+**Returns:** True, if `setBlur` accepts a blur of `type` on the block. False, if the block supports no blur.
 
 ### setBlur()
 
@@ -6103,8 +6337,8 @@ getTextFontWeights(id: DesignBlockId, from?: number, to?: number): FontWeight[]
 
 Sets the font size for a range of text.
 ```javascript
-// With numeric fontSize (in points)
-engine.block.setTextFontSize(text, 12, 0, 5);
+// With font size only, in the scene's font size unit (points by default)
+engine.block.setTextFontSize(text, 12);
 // With font size and options object
 engine.block.setTextFontSize(text, 16, { unit: 'Pixel' });
 engine.block.setTextFontSize(text, 24, { unit: 'Point', from: 0, to: 10 });
@@ -7394,6 +7628,9 @@ isAllowedByScope(id: DesignBlockId, key: Scope): boolean
 Splits a block at the specified time.
 The original block will be trimmed to end at the split time, and the returned duplicate
 will start at the split time and continue to the original end time.
+The split cuts the keyframe tracks of the block and of its fill, shape and effects, so each half plays its part of
+them. Their keyframe times can then lie before 0 or after 1. Tracks on the `'Media'` clock keep their times,
+because they follow the trim of each half. A group's children are copied with their tracks unchanged.
 ```javascript
 const duplicate = engine.block.split(video, 10.0);
 ```

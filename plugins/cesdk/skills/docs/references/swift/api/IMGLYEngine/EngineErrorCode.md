@@ -1031,6 +1031,12 @@ case blockAnimationNoEasingProperty
 case blockAnimationNoEasingPropertyOnBlock
 ```
 
+### EngineErrorCode.blockAnimationNoFollowTextTimingsProperty
+
+```swift
+case blockAnimationNoFollowTextTimingsProperty
+```
+
 ### EngineErrorCode.blockAnimationNoOverlapProperty
 
 ```swift
@@ -1235,10 +1241,40 @@ case blockCameraDestructionNotAllowed
 case blockCameraTransformLock
 ```
 
+### EngineErrorCode.blockCaptionIndexInvalid
+
+```swift
+case blockCaptionIndexInvalid
+```
+
+### EngineErrorCode.blockCaptionNoPrevious
+
+```swift
+case blockCaptionNoPrevious
+```
+
+### EngineErrorCode.blockCaptionPartTooShort
+
+```swift
+case blockCaptionPartTooShort
+```
+
 ### EngineErrorCode.blockCaptionsDisabled
 
 ```swift
 case blockCaptionsDisabled
+```
+
+### EngineErrorCode.blockCaptionTextNotDivisible
+
+```swift
+case blockCaptionTextNotDivisible
+```
+
+### EngineErrorCode.blockCaptionTimeOutside
+
+```swift
+case blockCaptionTimeOutside
 ```
 
 ### EngineErrorCode.blockCaptionTracksDisabled
@@ -1661,6 +1697,30 @@ case blockKeyframesScaleAxesDiffer
 case blockKeyframesSpatialTangentUnsupported
 ```
 
+### EngineErrorCode.blockKeyframesTimeAfterVideoPass
+
+```swift
+case blockKeyframesTimeAfterVideoPass
+```
+
+### EngineErrorCode.blockKeyframesTimeBaseNeedsKeyframes
+
+```swift
+case blockKeyframesTimeBaseNeedsKeyframes
+```
+
+### EngineErrorCode.blockKeyframesTimeBaseNeedsVideo
+
+```swift
+case blockKeyframesTimeBaseNeedsVideo
+```
+
+### EngineErrorCode.blockKeyframesTimeNotShown
+
+```swift
+case blockKeyframesTimeNotShown
+```
+
 ### EngineErrorCode.blockKeyframesTimeOutOfRange
 
 ```swift
@@ -1811,6 +1871,12 @@ case blockNoShapeProperty
 case blockNoSize
 ```
 
+### EngineErrorCode.blockNotACaption
+
+```swift
+case blockNotACaption
+```
+
 ### EngineErrorCode.blockNotAComponent
 
 ```swift
@@ -1941,6 +2007,12 @@ case blockOperationPreconditionFailed
 
 ```swift
 case blockOpNeedsTwoBlocks
+```
+
+### EngineErrorCode.blockPageCameraValueInvalid
+
+```swift
+case blockPageCameraValueInvalid
 ```
 
 ### EngineErrorCode.blockPageSliceInVideoScene
@@ -2513,6 +2585,24 @@ case blockTextRangeNegative
 case blockTextRangeToOutOfRange
 ```
 
+### EngineErrorCode.blockTextTimingRangeInvalid
+
+```swift
+case blockTextTimingRangeInvalid
+```
+
+### EngineErrorCode.blockTextTimingsOverlap
+
+```swift
+case blockTextTimingsOverlap
+```
+
+### EngineErrorCode.blockTextTimingStartNotFinite
+
+```swift
+case blockTextTimingStartNotFinite
+```
+
 ### EngineErrorCode.blockTextTooManyOpentypeSettings
 
 ```swift
@@ -2559,6 +2649,12 @@ case blockThresholdNotFinite
 
 ```swift
 case blockTransformLockedAnchorOrSkew
+```
+
+### EngineErrorCode.blockTransformLockedDepth
+
+```swift
+case blockTransformLockedDepth
 ```
 
 ### EngineErrorCode.blockTransformLockedFillParent
@@ -2667,6 +2763,12 @@ case blockTypeCannotBeSelected
 
 ```swift
 case blockTypeCannotHaveAnchorOrSkew
+```
+
+### EngineErrorCode.blockTypeCannotHaveDepth
+
+```swift
+case blockTypeCannotHaveDepth
 ```
 
 ### EngineErrorCode.blockTypeCannotHaveRotation
