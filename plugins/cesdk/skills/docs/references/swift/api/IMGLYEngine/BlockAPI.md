@@ -2395,7 +2395,7 @@ Loads existing blocks from an archive. The URL should be that of a file previous
 @MainActor func mergeCaptionWithPrevious(_ id: DesignBlockID, keepCurrent: Bool = false) throws -> CaptionMerge
 ```
 
-Merges a caption with the caption before it in its parent. The merged text is the previous text, one space when both texts are not empty, and the text of the caption. The merged caption starts where the previous one starts and lasts until the later of the two ends. Each word keeps its time on the timeline. The other caption is destroyed. The call adds one undo step. `id`
+Merges a caption with the caption before it in its parent. The merged text is the previous text, one space when both texts are not empty, and the text of the caption. The merged caption starts where the previous one starts and lasts until the later of the two ends. Each word keeps its time on the timeline. The other caption is destroyed. The call adds one undo step. Styles set on a range of the text, such as a color, stay on their words. `id`
 
 ### movePageSliceIntoPage(_:page:index:options:)
 
@@ -2741,7 +2741,7 @@ Moves the start of a caption and keeps its end, as a trim of the start does. Eac
 @MainActor func setClipped(_ id: DesignBlockID, clipped: Bool) throws
 ```
 
-Update a block’s clipped state. Required scope: “layer/clipping” `id`
+Update a block’s clipped state. A clipped page slice cuts the blocks that it owns at its folds and at the page edges with their bleed. A click beside the page still selects them. Required scope: “layer/clipping” `id`
 
 ### setColor(_:property:color:)
 
@@ -3741,7 +3741,7 @@ Split a block at the specified time. The original block will be trimmed to end a
 @MainActor func splitCaption(_ id: DesignBlockID, textIndex: Int, minimumDuration: Double = 0.1) throws -> DesignBlockID
 ```
 
-Splits the text of a caption at a text index into two captions. The caption keeps the text before the index. A duplicate after it in its parent gets the text from the index on, and the rest of the time. Each word keeps its time on the timeline. The call adds one undo step. Unlike `split`, which cuts the time and gives both halves the whole text, this call cuts the text. `id`
+Splits the text of a caption at a text index into two captions. The caption keeps the text before the index. A duplicate after it in its parent gets the text from the index on, and the rest of the time. Each word keeps its time on the timeline. The call adds one undo step. Unlike `split`, which cuts the time and gives both halves the whole text, this call cuts the text. Styles set on a range of the text, such as a color, stay on their words. `id`
 
 ### splitCaptionAtTime(_:atTime:minimumDuration:)
 
@@ -3749,7 +3749,7 @@ Splits the text of a caption at a text index into two captions. The caption keep
 @MainActor func splitCaptionAtTime(_ id: DesignBlockID, atTime: Double, minimumDuration: Double = 0.1) throws -> DesignBlockID
 ```
 
-Splits a caption at a time into two captions, and cuts its text before a word. The caption ends at `atTime`. A duplicate after it in its parent starts there and gets the text from the cut on. Each word keeps its time on the timeline. The call adds one undo step. Unlike `split`, which gives both halves the whole text, this call also cuts the text. `id`
+Splits a caption at a time into two captions, and cuts its text before a word. The caption ends at `atTime`. A duplicate after it in its parent starts there and gets the text from the cut on. Each word keeps its time on the timeline. The call adds one undo step. Unlike `split`, which gives both halves the whole text, this call also cuts the text. Styles set on a range of the text, such as a color, stay on their words. `id`
 
 ### supportsAnimation(_:)
 

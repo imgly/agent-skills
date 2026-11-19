@@ -1141,6 +1141,7 @@ Splits the text of a caption at a text index into two captions.
 The caption keeps the text before the index. A duplicate after it in its parent gets the text from the index on,
 and the rest of the time. Each word keeps its time on the timeline. The call adds one undo step. Unlike `split`,
 which cuts the time and gives both halves the whole text, this call cuts the text.
+Styles set on a range of the text, such as a color, stay on their words.
 The first part ends where the first timed word at or after the index starts, at least `minimumDuration` away from
 both ends. Without such a word, the duration divides in proportion to the characters of each part.
 ```javascript
@@ -1164,6 +1165,7 @@ Splits a caption at a time into two captions, and cuts its text before a word.
 The caption ends at `atTime`. A duplicate after it in its parent starts there and gets the text from the cut on.
 Each word keeps its time on the timeline. The call adds one undo step. Unlike `split`, which gives both halves the
 whole text, this call also cuts the text.
+Styles set on a range of the text, such as a color, stay on their words.
 With word times, the text is cut before the first word that starts at `atTime` or later, else before the last
 word. The first word always stays in the first part. Without word times, the text is cut at the word gap nearest
 to the place that is in proportion to `atTime`.
@@ -1188,6 +1190,7 @@ Merges a caption with the caption before it in its parent.
 The merged text is the previous text, one space when both texts are not empty, and the text of the caption. The
 merged caption starts where the previous one starts and lasts until the later of the two ends. Each word keeps its
 time on the timeline. The other caption is destroyed. The call adds one undo step.
+Styles set on a range of the text, such as a color, stay on their words.
 ```javascript
 const { caption: merged, textIndex } = engine.block.mergeCaptionWithPrevious(caption);
 ```
@@ -2539,6 +2542,7 @@ isClipped(id: DesignBlockId): boolean
 ### setClipped()
 
 Sets the clipped state of a block.
+A clipped page slice cuts the blocks that it owns at its folds and at the page edges with their bleed. A click beside the page still selects them.
 
 ```typescript
 setClipped(id: DesignBlockId, clipped: boolean): void
@@ -5135,6 +5139,8 @@ The times stay with their words when the text changes. A word replaced by one ot
 word it replaced. An inserted word has no time, and a deleted word loses its time. `split` keeps each word's time
 on the timeline. Moving the block moves its times with it. The times count from the start of the block. After a trim
 of the start by `d` seconds, set the times again with `d` subtracted.
+The engine does not time new words. After a rewrite of the text, such as a corrected transcript,
+set the times of the new words again.
 A word is a part of the text between white space. A text in a script without spaces keeps its times only
 while it does not change. A text with template variables selects no range by time.
 An In animation of the Word or Character writing style follows these times. Each word animates from its start

@@ -2283,7 +2283,7 @@ Loads existing blocks from a URL. The URL should point to a blocks file within a
 abstract fun mergeCaptionWithPrevious(block: DesignBlock, keepCurrent: Boolean = false): CaptionMerge
 ```
 
-Merges a caption with the caption before it in its parent. The merged text is the previous text, one space when both texts are not empty, and the text of the caption. The merged caption starts where the previous one starts and lasts until the later of the two ends. Each word keeps its time on the timeline. The other caption is destroyed. The call adds one undo step.
+Merges a caption with the caption before it in its parent. The merged text is the previous text, one space when both texts are not empty, and the text of the caption. The merged caption starts where the previous one starts and lasts until the later of the two ends. Each word keeps its time on the timeline. The other caption is destroyed. The call adds one undo step. Styles set on a range of the text, such as a color, stay on their words.
 
 ### movePageSliceIntoPage
 
@@ -2608,7 +2608,7 @@ Moves the start of a caption and keeps its end, as a trim of the start does. Eac
 abstract fun setClipped(block: DesignBlock, clipped: Boolean)
 ```
 
-Update a block's clipped state. Required scope: "layer/clipping"
+Update a block's clipped state. A clipped page slice cuts the blocks that it owns at its folds and at the page edges with their bleed. A click beside the page still selects them. Required scope: "layer/clipping"
 
 ### setColor
 
@@ -3472,7 +3472,7 @@ Sets the given script style for the selected range of text. Superscript and subs
 abstract fun setTextTimings(block: DesignBlock, timings: List<TextTiming>)
 ```
 
-Sets when the ranges of a text are spoken, such as one range per word of a caption. A text animator whose text_animator/selectorTiming is Past, Current or Future selects the ranges by these times. The times stay with their words when the text changes. A word replaced by one other word keeps the time of the word it replaced. An inserted word has no time, and a deleted word loses its time. split keeps each word's time on the timeline. Moving the block moves its times with it. The times count from the start of the block. After a trim of the start by d seconds, set the times again with d subtracted.
+Sets when the ranges of a text are spoken, such as one range per word of a caption. A text animator whose text_animator/selectorTiming is Past, Current or Future selects the ranges by these times. The times stay with their words when the text changes. A word replaced by one other word keeps the time of the word it replaced. An inserted word has no time, and a deleted word loses its time. split keeps each word's time on the timeline. Moving the block moves its times with it. The times count from the start of the block. After a trim of the start by d seconds, set the times again with d subtracted. The engine does not time new words. After a rewrite of the text, such as a corrected transcript,…
 
 ### setTextVariationAxes
 
@@ -3608,7 +3608,7 @@ Update a block's width and optionally maintain the crop. A new width of a page w
 abstract fun splitCaptionAtTime(block: DesignBlock, atTime: Double, minimumDuration: Double = 0.1): DesignBlock
 ```
 
-Splits a caption at a time into two captions, and cuts its text before a word. The caption ends at atTime. A duplicate after it in its parent starts there and gets the text from the cut on. Each word keeps its time on the timeline. The call adds one undo step. Unlike split, which gives both halves the whole text, this call also cuts the text. Note: With word times, the text is cut before the first word that starts at atTime or later, else before the last word. The first word always stays in the first part. Without word times, the text is cut at the word gap nearest to the place that is in proportion to atTime.
+Splits a caption at a time into two captions, and cuts its text before a word. The caption ends at atTime. A duplicate after it in its parent starts there and gets the text from the cut on. Each word keeps its time on the timeline. The call adds one undo step. Unlike split, which gives both halves the whole text, this call also cuts the text. Styles set on a range of the text, such as a color, stay on their words. Note: With word times, the text is cut before the first word that starts at atTime or later, else before the last word. The first word always stays in the first part. Without word times, the text is cut at the word gap nearest to the place that is in proportion to atTime.
 
 ### splitCaption
 
@@ -3616,7 +3616,7 @@ Splits a caption at a time into two captions, and cuts its text before a word. T
 abstract fun splitCaption(block: DesignBlock, textIndex: Int, minimumDuration: Double = 0.1): DesignBlock
 ```
 
-Splits the text of a caption at a text index into two captions. The caption keeps the text before the index. A duplicate after it in its parent gets the text from the index on, and the rest of the time. Each word keeps its time on the timeline. The call adds one undo step. Unlike split, which cuts the time and gives both halves the whole text, this call cuts the text. Note: The first part ends where the first timed word at or after the index starts, at least minimumDuration away from both ends. Without such a word, the duration divides in proportion to the characters of each part.
+Splits the text of a caption at a text index into two captions. The caption keeps the text before the index. A duplicate after it in its parent gets the text from the index on, and the rest of the time. Each word keeps its time on the timeline. The call adds one undo step. Unlike split, which cuts the time and gives both halves the whole text, this call cuts the text. Styles set on a range of the text, such as a color, stay on their words. Note: The first part ends where the first timed word at or after the index starts, at least minimumDuration away from both ends. Without such a word, the duration divides in proportion to the characters of each part.
 
 ### split
 
