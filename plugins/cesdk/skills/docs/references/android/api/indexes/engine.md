@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 363 generated API digests.
+Complete catalog of 371 generated API digests.
 
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
@@ -263,6 +263,14 @@ Complete catalog of 363 generated API digests.
 - [RGBAColor](<../engine/ly.img.engine/-r-g-b-a-color.md>) — `ly.img.engine`
 - [ResolvedMovementConstraint](<../engine/ly.img.engine/-resolved-movement-constraint.md>) — `ly.img.engine`
 - [ResolvedUpscaleConstraint](<../engine/ly.img.engine/-resolved-upscale-constraint.md>) — `ly.img.engine`
+- [RunningSandbox](<../engine/ly.img.engine/-running-sandbox.md>) — `ly.img.engine`
+- [SandboxApi](<../engine/ly.img.engine/-sandbox-api.md>) — `ly.img.engine`
+- [SandboxLimits](<../engine/ly.img.engine/-sandbox-limits.md>) — `ly.img.engine`
+- [SandboxModule](<../engine/ly.img.engine/-sandbox-module.md>) — `ly.img.engine`
+- [SandboxOptions](<../engine/ly.img.engine/-sandbox-options.md>) — `ly.img.engine`
+- [SandboxPolicy](<../engine/ly.img.engine/-sandbox-policy.md>) — `ly.img.engine`
+- [SandboxRegistration](<../engine/ly.img.engine/-sandbox-registration.md>) — `ly.img.engine`
+- [SandboxState](<../engine/ly.img.engine/-sandbox-state.md>) — `ly.img.engine`
 - [SaveToArchiveOptions](<../engine/ly.img.engine/-save-to-archive-options.md>) — `ly.img.engine`
 - [SaveToStringOptions](<../engine/ly.img.engine/-save-to-string-options.md>) — `ly.img.engine`
 - [SceneApi](<../engine/ly.img.engine/-scene-api.md>) — `ly.img.engine`

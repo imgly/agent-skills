@@ -156,6 +156,12 @@ const val ASSET_FILTER_PROPERTY_UNKNOWN: String
 const val ASSET_FILTER_ROOT_NOT_ARRAY: String
 ```
 
+### ASSET_FILTER_TOO_DEEP
+
+```kotlin
+const val ASSET_FILTER_TOO_DEEP: String
+```
+
 ### ASSET_FILTER_UNRECOGNIZED_DISCRIMINATOR
 
 ```kotlin
@@ -1290,6 +1296,12 @@ const val BLOCK_CAPTION_TRACKS_DISABLED: String
 const val BLOCK_CHILDREN_INDEX_OUT_OF_BOUNDS: String
 ```
 
+### BLOCK_CHILD_CONTAINS_PARENT
+
+```kotlin
+const val BLOCK_CHILD_CONTAINS_PARENT: String
+```
+
 ### BLOCK_COLOR_COMPONENT_OUT_OF_RANGE
 
 ```kotlin
@@ -1818,6 +1830,12 @@ const val BLOCK_MOTION_BLUR_VALUE_OUT_OF_RANGE: String
 const val BLOCK_NAME_UNSUPPORTED: String
 ```
 
+### BLOCK_NOT_AN_EFFECT_BLOCK
+
+```kotlin
+const val BLOCK_NOT_AN_EFFECT_BLOCK: String
+```
+
 ### BLOCK_NOT_AN_INSTANCE
 
 ```kotlin
@@ -1828,6 +1846,12 @@ const val BLOCK_NOT_AN_INSTANCE: String
 
 ```kotlin
 const val BLOCK_NOT_ATTACHED_TO_SCENE: String
+```
+
+### BLOCK_NOT_A_BLUR_BLOCK
+
+```kotlin
+const val BLOCK_NOT_A_BLUR_BLOCK: String
 ```
 
 ### BLOCK_NOT_A_CAPTION
@@ -5584,6 +5608,90 @@ const val MEDIA_UPSCALE_SURFACE_CREATE_FAILED: String
 
 ```kotlin
 const val MEDIA_VIDEO_FETCH_FAILED: String
+```
+
+### SANDBOX_ABORTED
+
+```kotlin
+const val SANDBOX_ABORTED: String
+```
+
+### SANDBOX_CALLBACK_FAILED
+
+```kotlin
+const val SANDBOX_CALLBACK_FAILED: String
+```
+
+### SANDBOX_CALL_FAILED
+
+```kotlin
+const val SANDBOX_CALL_FAILED: String
+```
+
+### SANDBOX_COMPILE_FAILED
+
+```kotlin
+const val SANDBOX_COMPILE_FAILED: String
+```
+
+### SANDBOX_DISPOSED
+
+```kotlin
+const val SANDBOX_DISPOSED: String
+```
+
+### SANDBOX_EVALUATION_FAILED
+
+```kotlin
+const val SANDBOX_EVALUATION_FAILED: String
+```
+
+### SANDBOX_EXPORT_NOT_CALLABLE
+
+```kotlin
+const val SANDBOX_EXPORT_NOT_CALLABLE: String
+```
+
+### SANDBOX_EXPORT_NOT_FOUND
+
+```kotlin
+const val SANDBOX_EXPORT_NOT_FOUND: String
+```
+
+### SANDBOX_EXPORT_NOT_READABLE
+
+```kotlin
+const val SANDBOX_EXPORT_NOT_READABLE: String
+```
+
+### SANDBOX_INTERRUPTED
+
+```kotlin
+const val SANDBOX_INTERRUPTED: String
+```
+
+### SANDBOX_INVALID_LIMITS
+
+```kotlin
+const val SANDBOX_INVALID_LIMITS: String
+```
+
+### SANDBOX_INVALID_POLICY_RULE
+
+```kotlin
+const val SANDBOX_INVALID_POLICY_RULE: String
+```
+
+### SANDBOX_OUT_OF_MEMORY
+
+```kotlin
+const val SANDBOX_OUT_OF_MEMORY: String
+```
+
+### SANDBOX_STACK_OVERFLOW
+
+```kotlin
+const val SANDBOX_STACK_OVERFLOW: String
 ```
 
 ### SCENE_ARCHIVAL_REQUEST_FAILED

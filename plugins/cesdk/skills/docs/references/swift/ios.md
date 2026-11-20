@@ -368,6 +368,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Overview](https://img.ly/docs/cesdk/dev/ios/create-composition/overview-5b19c5/)
 - [Multi-Page Layouts](https://img.ly/docs/cesdk/dev/ios/create-composition/multi-page-4d2b50/)
+- [Folded Cards](https://img.ly/docs/cesdk/dev/ios/create-composition/folded-cards-452148/)
+- [Photobook Spreads](https://img.ly/docs/cesdk/dev/ios/create-composition/photobook-spreads-c1fe9f/)
 - [Create a Collage](https://img.ly/docs/cesdk/dev/ios/create-composition/collage-f7d28d/)
 - [Design a Layout](https://img.ly/docs/cesdk/dev/ios/create-composition/layout-b66311/)
 - [Add a Background](https://img.ly/docs/cesdk/dev/ios/create-composition/add-background-375a47/)

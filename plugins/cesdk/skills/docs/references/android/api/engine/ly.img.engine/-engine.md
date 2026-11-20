@@ -179,6 +179,14 @@ fun removeSurfaceCreatedListener(listener: () -> Unit)
 
 Unregisters listener that was previously registered via addSurfaceCreatedListener.
 
+### sandbox
+
+```kotlin
+val sandbox: SandboxApi
+```
+
+This object is used to run scripts in isolated sandboxes against this Engine. It should be accessed after calling start and before calling stop otherwise it will throw an exception.
+
 ### saveState
 
 ```kotlin

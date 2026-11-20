@@ -155,6 +155,12 @@ case assetFilterPropertyUnknown
 case assetFilterRootNotArray
 ```
 
+### EngineErrorCode.assetFilterTooDeep
+
+```swift
+case assetFilterTooDeep
+```
+
 ### EngineErrorCode.assetFilterUnrecognizedDiscriminator
 
 ```swift
@@ -1283,6 +1289,12 @@ case blockCaptionTimeOutside
 case blockCaptionTracksDisabled
 ```
 
+### EngineErrorCode.blockChildContainsParent
+
+```swift
+case blockChildContainsParent
+```
+
 ### EngineErrorCode.blockChildrenIndexOutOfBounds
 
 ```swift
@@ -1871,6 +1883,12 @@ case blockNoShapeProperty
 case blockNoSize
 ```
 
+### EngineErrorCode.blockNotABlurBlock
+
+```swift
+case blockNotABlurBlock
+```
+
 ### EngineErrorCode.blockNotACaption
 
 ```swift
@@ -1893,6 +1911,12 @@ case blockNotACutoutBlock
 
 ```swift
 case blockNotADesignBlock
+```
+
+### EngineErrorCode.blockNotAnEffectBlock
+
+```swift
+case blockNotAnEffectBlock
 ```
 
 ### EngineErrorCode.blockNotAnInstance
@@ -5583,6 +5607,90 @@ case mediaUpscaleSurfaceCreateFailed
 
 ```swift
 case mediaVideoFetchFailed
+```
+
+### EngineErrorCode.sandboxAborted
+
+```swift
+case sandboxAborted
+```
+
+### EngineErrorCode.sandboxCallbackFailed
+
+```swift
+case sandboxCallbackFailed
+```
+
+### EngineErrorCode.sandboxCallFailed
+
+```swift
+case sandboxCallFailed
+```
+
+### EngineErrorCode.sandboxCompileFailed
+
+```swift
+case sandboxCompileFailed
+```
+
+### EngineErrorCode.sandboxDisposed
+
+```swift
+case sandboxDisposed
+```
+
+### EngineErrorCode.sandboxEvaluationFailed
+
+```swift
+case sandboxEvaluationFailed
+```
+
+### EngineErrorCode.sandboxExportNotCallable
+
+```swift
+case sandboxExportNotCallable
+```
+
+### EngineErrorCode.sandboxExportNotFound
+
+```swift
+case sandboxExportNotFound
+```
+
+### EngineErrorCode.sandboxExportNotReadable
+
+```swift
+case sandboxExportNotReadable
+```
+
+### EngineErrorCode.sandboxInterrupted
+
+```swift
+case sandboxInterrupted
+```
+
+### EngineErrorCode.sandboxInvalidLimits
+
+```swift
+case sandboxInvalidLimits
+```
+
+### EngineErrorCode.sandboxInvalidPolicyRule
+
+```swift
+case sandboxInvalidPolicyRule
+```
+
+### EngineErrorCode.sandboxOutOfMemory
+
+```swift
+case sandboxOutOfMemory
+```
+
+### EngineErrorCode.sandboxStackOverflow
+
+```swift
+case sandboxStackOverflow
 ```
 
 ### EngineErrorCode.sceneArchivalRequestFailed

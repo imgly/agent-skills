@@ -118,6 +118,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Data Merge](https://img.ly/docs/cesdk/dev/node/automation/data-merge-ae087c/)
 - [Design Generation](https://img.ly/docs/cesdk/dev/node/automation/design-generation-98a99e/)
 - [Multiple Image Generation](https://img.ly/docs/cesdk/dev/node/automation/multi-image-generation-2a0de4/)
+- [Run Scripts in a Sandbox](https://img.ly/docs/cesdk/dev/node/automation/sandbox-dyji5b/)
 
 #### [Open the Editor](https://img.ly/docs/cesdk/dev/node/open-the-editor-23a1db/)
 
@@ -257,6 +258,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Overview](https://img.ly/docs/cesdk/dev/node/create-composition/overview-5b19c5/)
 - [Multi-Page Layouts](https://img.ly/docs/cesdk/dev/node/create-composition/multi-page-4d2b50/)
+- [Folded Cards](https://img.ly/docs/cesdk/dev/node/create-composition/folded-cards-452148/)
+- [Photobook Spreads](https://img.ly/docs/cesdk/dev/node/create-composition/photobook-spreads-c1fe9f/)
 - [Create a Collage](https://img.ly/docs/cesdk/dev/node/create-composition/collage-f7d28d/)
 - [Design a Layout](https://img.ly/docs/cesdk/dev/node/create-composition/layout-b66311/)
 - [Add a Background](https://img.ly/docs/cesdk/dev/node/create-composition/add-background-375a47/)

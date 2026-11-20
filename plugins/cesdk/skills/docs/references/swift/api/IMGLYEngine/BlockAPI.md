@@ -63,7 +63,7 @@ Align multiple blocks vertically within their bounding box or a single block to 
 @MainActor func appendChild(to parent: DesignBlockID, child: DesignBlockID) throws
 ```
 
-Appends a new or existing child to a block’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or `duplicate(_:attachToParent:)` returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: “editor/add” `parent`
+Appends a new or existing child to a block’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A camera can only be a child of its own scene, and it takes no children. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or `duplicate(_:attachToParent:)` returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: “editor/add” `parent`
 
 ### appendEffect(_:effectID:)
 
@@ -337,7 +337,7 @@ Create a new fill, fails if type is unknown. `type`
 @MainActor func createFromSVG(_ svg: String) throws -> DesignBlockID
 ```
 
-Create editable graphic blocks from SVG markup, such as the SVG code that Adobe Illustrator copies. Each shape of the SVG becomes a graphic block with a vector path shape, its fill color or gradient, and its stroke. More than one block goes into a group. Embedded images, text, filters, masks and patterns have no shape. Each such part becomes a graphic block with an image fill of only that part. The blocks are not attached to a parent. An SVG user unit is a pixel in a scene measured in pixels. In a scene measured in millimeters or inches it is a point, as Adobe Illustrator writes it. `svg`
+Create editable graphic blocks from SVG markup, such as the SVG code that Adobe Illustrator copies. Each shape of the SVG becomes a graphic block with a vector path shape, its fill color or gradient, and its stroke. Each text in one color on a straight line becomes a text block in its font family. More than one block goes into a group. Embedded images, filters, masks, patterns and other text have no block of their own. Each such part becomes a graphic block with an image fill of only that part. `svg`
 
 ### createInstance(_:)
 
@@ -2019,7 +2019,7 @@ Returns whether a block has its own anchor. Setting `transform/anchor/x` or `tra
 @MainActor func insertChild(into parent: DesignBlockID, child: DesignBlockID, at index: Int) throws
 ```
 
-Insert a new or existing child at a certain position in the parent’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or `duplicate(_:attachToParent:)` returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: “editor/add” For a scene that arranges its pages, the index counts the children without the camera. `parent`
+Insert a new or existing child at a certain position in the parent’s children. A move fails when it would put a block with a matte inside its matte source, or on another page than its source. A camera can only be a child of its own scene, and it takes no children. A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no page slice. A page slice that a block load or `duplicate(_:attachToParent:)` returns holds the blocks that it was saved with. The next update moves them onto the page, into the new place of the page slice. Required scope: “editor/add” For a scene that arranges its pages, the index counts the children without the camera. `…
 
 ### insertEffect(_:effectID:index:)
 

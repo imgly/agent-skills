@@ -510,6 +510,12 @@ Convenience function that populates a single asset source from its JSON manifest
 
 Convenience function that populates a single asset source from its JSON manifest file. `id`
 
+### sandbox
+
+```swift
+@MainActor lazy var sandbox: SandboxAPI { get set }
+```
+
 ### scene
 
 ```swift

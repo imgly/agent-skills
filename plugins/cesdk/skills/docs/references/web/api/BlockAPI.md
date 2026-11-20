@@ -311,8 +311,11 @@ create(type: DesignBlockType): DesignBlockId
 
 Creates editable graphic blocks from SVG markup, such as the SVG code that Adobe Illustrator copies.
 Each shape of the SVG becomes a graphic block with a vector path shape, its fill color or gradient, and its
-stroke. More than one block goes into a group. Embedded images, text, filters, masks and patterns have no shape.
+stroke. Each text in one color on a straight line becomes a text block in its font family. More than one block
+goes into a group. Embedded images, filters, masks, patterns and other text have no block of their own.
 Each such part becomes a graphic block with an image fill of only that part.
+A text whose font has not loaded yet is placed with the metrics of the default font, so it can move slightly
+when its font arrives.
 The blocks are not attached to a parent. An SVG user unit is a pixel in a scene measured in pixels. In a scene
 measured in millimeters or inches it is a point, as Adobe Illustrator writes it.
 ```javascript
@@ -4094,8 +4097,8 @@ getChildren(id: DesignBlockId): DesignBlockId[]
 Inserts a child block at a specific index.
 An audio, text or caption block takes no children, so a call with such a parent fails.
 A move fails when it would put a block with a matte inside its matte source, or on another page than its source.
-A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no
-page slice.
+A camera can only be a child of its own scene, and it takes no children. A page slice takes no children, and it can
+only be a child of a page with a rect shape. A video scene takes no page slice.
 A page slice that a block load or `duplicate` returns holds the blocks that it was saved
 with. The next update moves them onto the page, into the new place of the page slice.
 For a scene that arranges its pages, the index counts the children without the camera.
@@ -4114,8 +4117,8 @@ insertChild(parent: DesignBlockId, child: DesignBlockId, index: number): void
 Appends a child block to a parent.
 An audio, text or caption block takes no children, so a call with such a parent fails.
 A move fails when it would put a block with a matte inside its matte source, or on another page than its source.
-A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no
-page slice.
+A camera can only be a child of its own scene, and it takes no children. A page slice takes no children, and it can
+only be a child of a page with a rect shape. A video scene takes no page slice.
 A page slice that a block load or `duplicate` returns holds the blocks that it was saved
 with. The next update moves them onto the page, into the new place of the page slice.
 

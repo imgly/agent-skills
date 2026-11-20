@@ -233,6 +233,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Auto-Resize](https://img.ly/docs/cesdk/dev/nuxtjs/automation/auto-resize-4c2d58/)
 - [Data Merge](https://img.ly/docs/cesdk/dev/nuxtjs/automation/data-merge-ae087c/)
 - [Design Generation](https://img.ly/docs/cesdk/dev/nuxtjs/automation/design-generation-98a99e/)
+- [Run Scripts in a Sandbox](https://img.ly/docs/cesdk/dev/nuxtjs/automation/sandbox-dyji5b/)
 
 #### [User Interface](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface-5a089a/)
 
@@ -462,6 +463,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Overview](https://img.ly/docs/cesdk/dev/nuxtjs/create-composition/overview-5b19c5/)
 - [Multi-Page Layouts](https://img.ly/docs/cesdk/dev/nuxtjs/create-composition/multi-page-4d2b50/)
+- [Folded Cards](https://img.ly/docs/cesdk/dev/nuxtjs/create-composition/folded-cards-452148/)
+- [Photobook Spreads](https://img.ly/docs/cesdk/dev/nuxtjs/create-composition/photobook-spreads-c1fe9f/)
 - [Design a Layout](https://img.ly/docs/cesdk/dev/nuxtjs/create-composition/layout-b66311/)
 - [Add a Background](https://img.ly/docs/cesdk/dev/nuxtjs/create-composition/add-background-375a47/)
 - [Position and Align](https://img.ly/docs/cesdk/dev/nuxtjs/create-composition/position-and-align-cc6b6a/)
