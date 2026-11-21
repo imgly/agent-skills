@@ -3641,6 +3641,42 @@ case computeColorSpaceUnsupportedByEngine
 case computeContextCreateFnNotFound
 ```
 
+### EngineErrorCode.computeCustomShaderCompileFailed
+
+```swift
+case computeCustomShaderCompileFailed
+```
+
+### EngineErrorCode.computeCustomShaderInvalidDefinition
+
+```swift
+case computeCustomShaderInvalidDefinition
+```
+
+### EngineErrorCode.computeCustomShaderInvalidSource
+
+```swift
+case computeCustomShaderInvalidSource
+```
+
+### EngineErrorCode.computeCustomShaderProgramExists
+
+```swift
+case computeCustomShaderProgramExists
+```
+
+### EngineErrorCode.computeCustomShaderProgramInUse
+
+```swift
+case computeCustomShaderProgramInUse
+```
+
+### EngineErrorCode.computeCustomShaderProgramNotFound
+
+```swift
+case computeCustomShaderProgramNotFound
+```
+
 ### EngineErrorCode.computeD3D12ContextCreateFailed
 
 ```swift
@@ -3759,6 +3795,30 @@ case computeMp4TimescaleZero
 
 ```swift
 case computeOpfsReadFailed
+```
+
+### EngineErrorCode.computeShaderPassCompileFailed
+
+```swift
+case computeShaderPassCompileFailed
+```
+
+### EngineErrorCode.computeShaderPassInvalid
+
+```swift
+case computeShaderPassInvalid
+```
+
+### EngineErrorCode.computeShaderPassRenderFailed
+
+```swift
+case computeShaderPassRenderFailed
+```
+
+### EngineErrorCode.computeShaderPassUnsupported
+
+```swift
+case computeShaderPassUnsupported
 ```
 
 ### EngineErrorCode.computeSkiaGlInterfaceInvalid
@@ -4641,6 +4701,12 @@ case encodeAudioUnsupportedExportFormat
 
 ```swift
 case encodeAudioWavTooLong
+```
+
+### EngineErrorCode.encodeAv1EncodingModeInvalid
+
+```swift
+case encodeAv1EncodingModeInvalid
 ```
 
 ### EngineErrorCode.encodeBlockMustBePage

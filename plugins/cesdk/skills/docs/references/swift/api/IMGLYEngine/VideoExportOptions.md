@@ -27,6 +27,14 @@ let audioBitrate: Int32
 let audioCodec: AudioCodec
 ```
 
+### av1EncodingMode
+
+```swift
+let av1EncodingMode: AV1EncodingMode
+```
+
+How an AV1 export trades speed for quality. Other codecs ignore it.
+
 ### coverTimeOffset
 
 ```swift
@@ -81,18 +89,18 @@ convenience init(h264Profile: H264Profile, h264Level: Int32, videoBitrate: Int32
 
 Objective-C-compatible initializer retaining the existing construction selector.
 
-### init(h264Profile:h264Level:videoBitrate:audioBitrate:timeOffset:duration:framerate:targetWidth:targetHeight:allowTextOverhang:videoCodec:audioCodec:exportAlpha:coverTimeOffset:)-6gz76
+### init(h264Profile:h264Level:videoBitrate:audioBitrate:timeOffset:duration:framerate:targetWidth:targetHeight:allowTextOverhang:videoCodec:audioCodec:exportAlpha:coverTimeOffset:av1EncodingMode:)-6uz6e
 
 ```swift
-@nonobjc init(h264Profile: H264Profile = .main, h264Level: Int32 = 52, videoBitrate: Int32 = 0, audioBitrate: Int32 = 0, timeOffset: Double = 0, duration: Double = 0, framerate: Float? = nil, targetWidth: Float = 0, targetHeight: Float = 0, allowTextOverhang: Bool = false, videoCodec: VideoCodec = .auto, audioCodec: AudioCodec = .auto, exportAlpha: Bool = false, coverTimeOffset: Double? = nil)
+@nonobjc init(h264Profile: H264Profile = .main, h264Level: Int32 = 52, videoBitrate: Int32 = 0, audioBitrate: Int32 = 0, timeOffset: Double = 0, duration: Double = 0, framerate: Float? = nil, targetWidth: Float = 0, targetHeight: Float = 0, allowTextOverhang: Bool = false, videoCodec: VideoCodec = .auto, audioCodec: AudioCodec = .auto, exportAlpha: Bool = false, coverTimeOffset: Double? = nil, av1EncodingMode: AV1EncodingMode = .realtime)
 ```
 
 The video export options. `h264Profile`
 
-### init(h264Profile:h264Level:videoBitrate:audioBitrate:timeOffset:duration:framerate:targetWidth:targetHeight:allowTextOverhang:videoCodec:audioCodec:exportAlpha:coverTimeOffset:)-fafn
+### init(h264Profile:h264Level:videoBitrate:audioBitrate:timeOffset:duration:framerate:targetWidth:targetHeight:allowTextOverhang:videoCodec:audioCodec:exportAlpha:coverTimeOffset:av1EncodingMode:)-6wphf
 
 ```swift
-@nonobjc convenience init(h264Profile: H264Profile = .main, h264Level: Int32 = 52, videoBitrate: VideoBitrate, audioBitrate: Int32 = 0, timeOffset: Double = 0, duration: Double = 0, framerate: Float? = nil, targetWidth: Float = 0, targetHeight: Float = 0, allowTextOverhang: Bool = false, videoCodec: VideoCodec = .auto, audioCodec: AudioCodec = .auto, exportAlpha: Bool = false, coverTimeOffset: Double? = nil)
+@nonobjc convenience init(h264Profile: H264Profile = .main, h264Level: Int32 = 52, videoBitrate: VideoBitrate, audioBitrate: Int32 = 0, timeOffset: Double = 0, duration: Double = 0, framerate: Float? = nil, targetWidth: Float = 0, targetHeight: Float = 0, allowTextOverhang: Bool = false, videoCodec: VideoCodec = .auto, audioCodec: AudioCodec = .auto, exportAlpha: Bool = false, coverTimeOffset: Double? = nil, av1EncodingMode: AV1EncodingMode = .realtime)
 ```
 
 The video export options. `h264Profile`

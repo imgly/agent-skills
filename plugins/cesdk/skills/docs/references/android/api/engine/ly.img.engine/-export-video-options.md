@@ -4,7 +4,7 @@
 - **Package:** `ly.img.engine`
 
 ```kotlin
-data class ExportVideoOptions(val h264Profile: Int = 77, val h264Level: Int = 52, val videoBitrate: Int = BITRATE_SYSTEM, val audioBitrate: Int = 0, val frameRate: Float? = null, val targetWidth: Float? = null, val targetHeight: Float? = null, val allowTextOverhang: Boolean = false, val videoCodec: VideoCodec = VideoCodec.AUTO, val audioCodec: AudioCodec = AudioCodec.AUTO, val exportAlpha: Boolean = false, val coverTimeOffset: Double? = null, val timeOffset: Double = 0.0, val duration: Double? = null)
+data class ExportVideoOptions(val h264Profile: Int = 77, val h264Level: Int = 52, val videoBitrate: Int = BITRATE_SYSTEM, val audioBitrate: Int = 0, val frameRate: Float? = null, val targetWidth: Float? = null, val targetHeight: Float? = null, val allowTextOverhang: Boolean = false, val videoCodec: VideoCodec = VideoCodec.AUTO, val audioCodec: AudioCodec = AudioCodec.AUTO, val exportAlpha: Boolean = false, val coverTimeOffset: Double? = null, val timeOffset: Double = 0.0, val duration: Double? = null, val av1EncodingMode: AV1EncodingMode = AV1EncodingMode.REALTIME)
 ```
 
 
@@ -13,7 +13,11 @@ data class ExportVideoOptions(val h264Profile: Int = 77, val h264Level: Int = 52
 ### ExportVideoOptions
 
 ```kotlin
-constructor(h264Profile: Int = 77, h264Level: Int = 52, videoBitrate: VideoBitrate, audioBitrate: Int = 0, frameRate: Float? = null, targetWidth: Float? = null, targetHeight: Float? = null, allowTextOverhang: Boolean = false, videoCodec: VideoCodec = VideoCodec.AUTO, audioCodec: AudioCodec = AudioCodec.AUTO, exportAlpha: Boolean = false, coverTimeOffset: Double? = null)
+constructor(h264Profile: Int = 77, h264Level: Int = 52, videoBitrate: VideoBitrate, audioBitrate: Int = 0, frameRate: Float? = null, targetWidth: Float? = null, targetHeight: Float? = null, allowTextOverhang: Boolean = false, videoCodec: VideoCodec = VideoCodec.AUTO, audioCodec: AudioCodec = AudioCodec.AUTO, exportAlpha: Boolean = false, coverTimeOffset: Double? = null, av1EncodingMode: AV1EncodingMode = AV1EncodingMode.REALTIME)
+```
+
+```kotlin
+constructor(h264Profile: Int, h264Level: Int, videoBitrate: Int, audioBitrate: Int, frameRate: Float?, targetWidth: Float?, targetHeight: Float?, allowTextOverhang: Boolean, videoCodec: VideoCodec, audioCodec: AudioCodec, exportAlpha: Boolean, coverTimeOffset: Double?, timeOffset: Double, duration: Double?)
 ```
 
 ```kotlin
@@ -21,10 +25,10 @@ constructor(h264Profile: Int, h264Level: Int, videoBitrate: Int, audioBitrate: I
 ```
 
 ```kotlin
-constructor(h264Profile: Int = 77, h264Level: Int = 52, videoBitrate: Int = BITRATE_SYSTEM, audioBitrate: Int = 0, frameRate: Float? = null, targetWidth: Float? = null, targetHeight: Float? = null, allowTextOverhang: Boolean = false, videoCodec: VideoCodec = VideoCodec.AUTO, audioCodec: AudioCodec = AudioCodec.AUTO, exportAlpha: Boolean = false, coverTimeOffset: Double? = null, timeOffset: Double = 0.0, duration: Double? = null)
+constructor(h264Profile: Int = 77, h264Level: Int = 52, videoBitrate: Int = BITRATE_SYSTEM, audioBitrate: Int = 0, frameRate: Float? = null, targetWidth: Float? = null, targetHeight: Float? = null, allowTextOverhang: Boolean = false, videoCodec: VideoCodec = VideoCodec.AUTO, audioCodec: AudioCodec = AudioCodec.AUTO, exportAlpha: Boolean = false, coverTimeOffset: Double? = null, timeOffset: Double = 0.0, duration: Double? = null, av1EncodingMode: AV1EncodingMode = AV1EncodingMode.REALTIME)
 ```
 
-The video export options with a strongly typed video bitrate. All parameters match the primary constructor, except that videoBitrate selects the bitrate as a VideoBitrate: VideoBitrate.System (the platform encoder uses the shared resolution/framerate default), VideoBitrate.Auto (the same bounded default across platforms) or VideoBitrate.Custom (an explicit bitrate in bits per second). The constructor without timeOffset and duration, so that a call that passes all these arguments, from Java for example, keeps working. It sets timeOffset to 0 and duration to null.
+The video export options with a strongly typed video bitrate. All parameters match the primary constructor, except that videoBitrate selects the bitrate as a VideoBitrate: VideoBitrate.System (the platform encoder uses the shared resolution/framerate default), VideoBitrate.Auto (the same bounded default across platforms) or VideoBitrate.Custom (an explicit bitrate in bits per second). The constructor without av1EncodingMode, so that code compiled against the previous release keeps linking. It sets av1EncodingMode to AV1EncodingMode.REALTIME.
 
 ### allowTextOverhang
 
@@ -49,6 +53,14 @@ val audioCodec: AudioCodec
 ```
 
 The codec to encode the audio with. AudioCodec.AUTO picks AAC for MimeType.MP4 and Opus for MimeType.WEBM. A codec that the file type cannot hold fails the export.
+
+### av1EncodingMode
+
+```kotlin
+val av1EncodingMode: AV1EncodingMode
+```
+
+How an AV1 export trades speed for quality. Other codecs ignore it. AV1EncodingMode.QUALITY gives a sharper video at the same bitrate, but the export takes about ten times as long and about three times the memory. The default value is AV1EncodingMode.REALTIME.
 
 ### coverTimeOffset
 

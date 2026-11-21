@@ -360,6 +360,7 @@ A page slice destroys the blocks that it owns on its page, without a check of th
 as a page destroys its children. This holds for the last page slice too: its page becomes an empty page without
 page slices, at the same size. To keep the content, move the page slice out with `movePageSliceOutOfPage` first.
 Destroying a page slice runs an internal update.
+Destroying the scene removes each custom shader program that no remaining block uses.
 
 ```typescript
 destroy(id: DesignBlockId): void
@@ -703,9 +704,10 @@ getFillOverprint(id: DesignBlockId): boolean
 ### setFillOverprint()
 
 Marks the fill of a block as overprint for PDF export.
-The flag is only honored by the PDF writer when the fill uses a spot color
-(Separation/DeviceN). For process-color fills it is a silent no-op. On-screen
-rendering ignores the flag.
+The PDF writer honors the flag for a spot color fill and for an opaque image fill.
+The image must draw without opacity, blend mode, effects, blur or a drop shadow.
+Any other fill ignores it.
+On-screen rendering ignores the flag.
 ```javascript
 engine.block.setFillOverprint(block, true);
 ```
@@ -7715,6 +7717,7 @@ With `transition/overlap`, the next page starts that many seconds before the
 page ends, at most half of either page. Without it, the scene keeps its
 length: the blend is centred on the cut and holds the last frame of the page
 and the first frame of the next. On the last page it plays nothing.
+A page refuses a custom-shader transition, which joins two clips on a track.
 ```javascript
 const [first] = engine.scene.getPages();
 const fade = engine.block.createTransition('cross-fade');

@@ -1,7 +1,8 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 371 generated API digests.
+Complete catalog of 382 generated API digests.
 
+- [AV1EncodingMode](<../engine/ly.img.engine/-a-v1-encoding-mode.md>) — `ly.img.engine`
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
 - [AnimationEasingType](<../engine/ly.img.engine/-animation-easing-type.md>) — `ly.img.engine`
 - [AnimationType](<../engine/ly.img.engine/-animation-type.md>) — `ly.img.engine`
@@ -101,6 +102,14 @@ Complete catalog of 371 generated API digests.
 - [CompressionLevel](<../engine/ly.img.engine/-compression-level.md>) — `ly.img.engine`
 - [CompressionOptions](<../engine/ly.img.engine/-compression-options.md>) — `ly.img.engine`
 - [ContentFillMode](<../engine/ly.img.engine/-content-fill-mode.md>) — `ly.img.engine`
+- [CustomShaderChannelDefinition](<../engine/ly.img.engine/-custom-shader-channel-definition.md>) — `ly.img.engine`
+- [CustomShaderChannelSource](<../engine/ly.img.engine/-custom-shader-channel-source.md>) — `ly.img.engine`
+- [CustomShaderFilter](<../engine/ly.img.engine/-custom-shader-filter.md>) — `ly.img.engine`
+- [CustomShaderFormat](<../engine/ly.img.engine/-custom-shader-format.md>) — `ly.img.engine`
+- [CustomShaderInputBinding](<../engine/ly.img.engine/-custom-shader-input-binding.md>) — `ly.img.engine`
+- [CustomShaderPassDefinition](<../engine/ly.img.engine/-custom-shader-pass-definition.md>) — `ly.img.engine`
+- [CustomShaderProgramDefinition](<../engine/ly.img.engine/-custom-shader-program-definition.md>) — `ly.img.engine`
+- [CustomShaderWrap](<../engine/ly.img.engine/-custom-shader-wrap.md>) — `ly.img.engine`
 - [CutoutOperation](<../engine/ly.img.engine/-cutout-operation.md>) — `ly.img.engine`
 - [CutoutType](<../engine/ly.img.engine/-cutout-type.md>) — `ly.img.engine`
 - [DefaultAssetSource \[deprecated\]](<../engine/ly.img.engine/-default-asset-source.md>) — `ly.img.engine`
@@ -139,6 +148,7 @@ Complete catalog of 371 generated API digests.
 - [EffectType.Companion](<../engine/ly.img.engine/-effect-type/-companion.md>) — `ly.img.engine`
 - [EffectType.CornerPin](<../engine/ly.img.engine/-effect-type/-corner-pin.md>) — `ly.img.engine`
 - [EffectType.CrossCut](<../engine/ly.img.engine/-effect-type/-cross-cut.md>) — `ly.img.engine`
+- [EffectType.CustomShader](<../engine/ly.img.engine/-effect-type/-custom-shader.md>) — `ly.img.engine`
 - [EffectType.DisplacementMap](<../engine/ly.img.engine/-effect-type/-displacement-map.md>) — `ly.img.engine`
 - [EffectType.DotPattern](<../engine/ly.img.engine/-effect-type/-dot-pattern.md>) — `ly.img.engine`
 - [EffectType.DuoToneFilter](<../engine/ly.img.engine/-effect-type/-duo-tone-filter.md>) — `ly.img.engine`
@@ -332,6 +342,7 @@ Complete catalog of 371 generated API digests.
 - [TransitionType.CrossSpin](<../engine/ly.img.engine/-transition-type/-cross-spin.md>) — `ly.img.engine`
 - [TransitionType.CrossWarp](<../engine/ly.img.engine/-transition-type/-cross-warp.md>) — `ly.img.engine`
 - [TransitionType.CrossZoom](<../engine/ly.img.engine/-transition-type/-cross-zoom.md>) — `ly.img.engine`
+- [TransitionType.CustomShader](<../engine/ly.img.engine/-transition-type/-custom-shader.md>) — `ly.img.engine`
 - [TransitionType.DiagonalSplice](<../engine/ly.img.engine/-transition-type/-diagonal-splice.md>) — `ly.img.engine`
 - [TransitionType.Fade](<../engine/ly.img.engine/-transition-type/-fade.md>) — `ly.img.engine`
 - [TransitionType.FadeToBlack](<../engine/ly.img.engine/-transition-type/-fade-to-black.md>) — `ly.img.engine`

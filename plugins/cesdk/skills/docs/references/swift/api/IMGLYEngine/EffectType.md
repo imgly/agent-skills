@@ -37,6 +37,12 @@ A corner pin effect.
 case crossCut
 ```
 
+### EffectType.customShader
+
+```swift
+case customShader
+```
+
 ### EffectType.displacementMap
 
 ```swift

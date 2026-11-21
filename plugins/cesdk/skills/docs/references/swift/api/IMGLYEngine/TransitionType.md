@@ -63,6 +63,12 @@ case crossWarp
 case crossZoom
 ```
 
+### TransitionType.customShader
+
+```swift
+case customShader
+```
+
 ### TransitionType.diagonalSplice
 
 ```swift

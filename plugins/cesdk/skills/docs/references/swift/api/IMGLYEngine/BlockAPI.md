@@ -405,7 +405,7 @@ Creates a new transition, fails if type is unknown. Its `transition/overlap` val
 @MainActor func destroy(_ id: DesignBlockID) throws
 ```
 
-Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. The last page slice of a page keeps them. Destroying a page slice that is not the last one runs an internal update. Required scope: “lifecycle/destroy” `id`
+Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. The last page slice of a page keeps them. Destroying a page slice that is not the last one runs an internal update. Destroying the scene removes each custom shader program that no remaining block uses. Required scope: “lifecycle/destroy” `id`
 
 ### detachInstance(_:)
 
@@ -691,6 +691,14 @@ Return all blocks currently known to the engine. A list of block ids.
 
 Gets the sorted names of the published properties of a main component. `component`
 
+### findAllCustomShaderPrograms()
+
+```swift
+@MainActor func findAllCustomShaderPrograms() throws -> [String]
+```
+
+Return registered program IDs in sorted order. The document-local program IDs.
+
 ### findAllInExclusionAreas()
 
 ```swift
@@ -972,6 +980,30 @@ Get the crop translation on the x axis of the given design block. `id`
 ```
 
 Get the crop translation on the y axis of the given design block. `id`
+
+### getCustomShaderInputs(_:)
+
+```swift
+@MainActor func getCustomShaderInputs(_ effect: DesignBlockID) throws -> [CustomShaderInputBinding]
+```
+
+Return the named inputs of a custom_shader effect. `effect`
+
+### getCustomShaderProgram(_:)
+
+```swift
+@MainActor func getCustomShaderProgram(_ id: String) throws -> CustomShaderProgramDefinition
+```
+
+Return a copy of a registered program definition. An unknown ID causes an error. `id`
+
+### getCustomShaderProgramId(_:)
+
+```swift
+@MainActor func getCustomShaderProgramId(_ block: DesignBlockID) throws -> String
+```
+
+Return the program ID of a custom_shader effect or a custom-shader transition, or an empty string when it has no assignment. `block`
 
 ### getDominantColors(_:options:)
 
@@ -2469,6 +2501,22 @@ Subscribe to changes to the state of a block. `ids`
 
 Checks whether the given block references any text variables. Doesn’t check the block’s children or its variable bindings. `id`
 
+### registerCustomShaderProgram(_:definition:)
+
+```swift
+@MainActor func registerCustomShaderProgram(_ id: String, definition: CustomShaderProgramDefinition) throws
+```
+
+Register a GLSL ES program at runtime. An existing ID causes an error. Definitions contain ordered buffers and a final Image pass, with four channels per pass. Registration validates the source and GPU programs before publishing the definition. A CPU context runs it on the raster pipeline, which has no integer shift or integer modulo. A program that the context cannot run returns a capability error. Loops stop after 65536 iterations per pixel and pass, counted across all loops. The program belongs to the scene. Creating a scene in place of the current one removes the programs, and loading a scene replaces them with its own. Destroying the scene removes each program that no remaining block u…
+
+### removeCustomShaderProgram(_:)
+
+```swift
+@MainActor func removeCustomShaderProgram(_ id: String) throws
+```
+
+Remove a program. Unknown IDs and programs referenced by any effect or transition cause an error. Detached and disabled effects and detached transitions also retain their program references. `id`
+
 ### removeEffect(_:index:)
 
 ```swift
@@ -2556,6 +2604,14 @@ Removes the outgoing transition of a clip or a page. `id`
 ```
 
 Remove the variable binding of a block property. The property keeps its current value. Does nothing if the property is not bound. `id`
+
+### replaceCustomShaderProgram(_:definition:)
+
+```swift
+@MainActor func replaceCustomShaderProgram(_ id: String, definition: CustomShaderProgramDefinition) throws
+```
+
+Replace a registered program at runtime. An unknown ID causes an error. A failed replacement preserves the existing definition and every live instance. Successful replacement invalidates the feedback state of its instances. `id`
 
 ### replaceText(_:text:in:)
 
@@ -2838,6 +2894,22 @@ Set the crop translation in x direction of the given design block. Required scop
 ```
 
 Set the crop translation in y direction of the given design block. Required scope: “layer/crop” `id`
+
+### setCustomShaderInputs(_:inputs:)
+
+```swift
+@MainActor func setCustomShaderInputs(_ effect: DesignBlockID, inputs: [CustomShaderInputBinding]) throws
+```
+
+Replace the named inputs of a custom_shader effect. Each source must identify an existing image fill, video fill or audio block. Duplicate input names cause an error. A failed update preserves all previous bindings; a successful change resets feedback state. An effect takes at most one audio block. The shader reads its sound in `iAudioLevel`, `iAudioSpectrum[32]` and `iAudioWaveform[64]`, before its volume, mute and fades. Without an audio block, these uniforms read the page as it plays. A texture channel that names the audio block causes an error when a pass reads it. `effect`
+
+### setCustomShaderProgram(_:id:)
+
+```swift
+@MainActor func setCustomShaderProgram(_ block: DesignBlockID, id: String) throws
+```
+
+Assign a registered program to a custom_shader effect or a custom-shader transition. An empty ID clears the assignment. A successful change resets the instance’s feedback state. `block`
 
 ### setDouble(_:property:value:)
 

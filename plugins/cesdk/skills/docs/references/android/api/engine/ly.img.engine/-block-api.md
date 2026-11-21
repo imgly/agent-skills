@@ -354,7 +354,7 @@ Create a new block. New text and graphic blocks use clip/defaultDurationValue (5
 abstract fun destroy(block: DesignBlock)
 ```
 
-Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. This holds for the last page slice too: its page becomes an empty page without page slices, at the same size. To keep the content, move the page slice out with movePageSliceOutOfPage first. Destroying a page slice runs an internal update. Required scope: "lifecycle/destroy"
+Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. This holds for the last page slice too: its page becomes an empty page without page slices, at the same size. To keep the content, move the page slice out with movePageSliceOutOfPage first. Destroying a page slice runs an internal update. Destroying the scene removes each custom shader program that no remaining block uses. Required scope: "lifecycle/destroy"
 
 ### detachInstance
 
@@ -491,6 +491,14 @@ abstract fun findAllComponentProperties(component: DesignBlock): List<String>
 ```
 
 Gets the sorted names of the published properties of a main component.
+
+### findAllCustomShaderPrograms
+
+```kotlin
+open fun findAllCustomShaderPrograms(): List<String>
+```
+
+Return registered program IDs in sorted order.
 
 ### findAllInExclusionAreas
 
@@ -833,6 +841,30 @@ abstract fun getCropTranslationY(block: DesignBlock): Float
 ```
 
 Get the crop translation in y direction of the given design block.
+
+### getCustomShaderInputs
+
+```kotlin
+open fun getCustomShaderInputs(effect: DesignBlock): List<CustomShaderInputBinding>
+```
+
+Return the named inputs of a custom_shader effect.
+
+### getCustomShaderProgramId
+
+```kotlin
+open fun getCustomShaderProgramId(effect: DesignBlock): String
+```
+
+Return the program ID of a custom_shader effect or a custom-shader transition, or an empty string when it has no assignment.
+
+### getCustomShaderProgram
+
+```kotlin
+open fun getCustomShaderProgram(id: String): CustomShaderProgramDefinition
+```
+
+Return a copy of a registered program definition. An unknown ID causes an error.
 
 ### getDominantColors
 
@@ -2333,6 +2365,22 @@ abstract fun referencesAnyVariables(block: DesignBlock): Boolean
 
 Checks whether the given block references any text variables. Doesn't check the block's children or its variable bindings.
 
+### registerCustomShaderProgram
+
+```kotlin
+open fun registerCustomShaderProgram(id: String, definition: CustomShaderProgramDefinition)
+```
+
+Register a GLSL ES program at runtime. An existing ID causes an error. Definitions contain ordered buffers and a final Image pass, with four channels per pass. Registration validates the source and GPU programs before publishing the definition. A CPU context runs it on the raster pipeline, which has no integer shift or integer modulo. A program that the context cannot run returns a capability error. Loops stop after 65536 iterations per pixel and pass, counted across all loops. The program belongs to the scene. Creating a scene in place of the current one removes the programs, and loading a scene replaces them with its own. Destroying the scene removes each program that no remaining block u…
+
+### removeCustomShaderProgram
+
+```kotlin
+open fun removeCustomShaderProgram(id: String)
+```
+
+Remove a program. Unknown IDs and programs referenced by any effect or transition cause an error. Detached and disabled effects and detached transitions also retain their program references.
+
 ### removeEffect
 
 ```kotlin
@@ -2420,6 +2468,14 @@ abstract fun removeVariableBinding(block: DesignBlock, property: String)
 ```
 
 Remove the variable binding of a block property. The property keeps its current value. Does nothing if the property is not bound.
+
+### replaceCustomShaderProgram
+
+```kotlin
+open fun replaceCustomShaderProgram(id: String, definition: CustomShaderProgramDefinition)
+```
+
+Replace a registered program at runtime. An unknown ID causes an error. A failed replacement preserves the existing definition and every live instance. Successful replacement invalidates the feedback state of its instances. Note that a definition that an assigned effect or transition cannot run causes an error, see setCustomShaderProgram.
 
 ### replaceTextWithHTML
 
@@ -2706,6 +2762,22 @@ abstract fun setCropTranslationY(block: DesignBlock, translationY: Float)
 
 Set the crop translation in y direction of the given design block. Required scope: "layer/crop"
 
+### setCustomShaderInputs
+
+```kotlin
+open fun setCustomShaderInputs(effect: DesignBlock, inputs: List<CustomShaderInputBinding>)
+```
+
+Replace the named inputs of a custom_shader effect. Each source must identify an existing image fill, video fill or audio block. Duplicate input names cause an error. A failed update preserves all previous bindings; a successful change resets feedback state. An effect takes at most one audio block. The shader reads its sound in iAudioLevel, iAudioSpectrum[32] and iAudioWaveform[64], before its volume, mute and fades. Without an audio block, these uniforms read the page as it plays. A texture channel that names the audio block causes an error when a pass reads it.
+
+### setCustomShaderProgram
+
+```kotlin
+open fun setCustomShaderProgram(effect: DesignBlock, id: String)
+```
+
+Assign a registered program to a custom_shader effect or a custom-shader transition. An empty ID clears the assignment. A successful change resets the instance's feedback state. Note that a transition runs each frame without state. Its passes read the CustomShaderChannelSource.TRANSITION_OUTGOING and CustomShaderChannelSource.TRANSITION_INCOMING clips, earlier passes of the same frame and the eased progress in iProgress. A program with other channel sources causes an error for a transition. A program that reads a transition clip causes an error for an effect. The audio uniforms of a transition read 0. Note that a transition without a program, or with a program that cannot run, draws the out…
+
 ### setDouble
 
 ```kotlin
@@ -2816,7 +2888,7 @@ Enable or disable the fill of the given design block. Required scope: "fill/chan
 abstract fun setFillOverprint(block: DesignBlock, overprint: Boolean)
 ```
 
-Mark the fill of the given design block as overprint for PDF export. The flag is only honored by the PDF writer when the fill uses a spot color (Separation/DeviceN). For process-color fills it is a silent no-op. On-screen rendering ignores the flag.
+Mark the fill of the given design block as overprint for PDF export. The PDF writer honors the flag for a spot color fill and for an opaque image fill. The image must draw without opacity, blend mode, effects, blur or a drop shadow. Any other fill ignores it. On-screen rendering ignores the flag.
 
 ### setFillSolidColor
 
