@@ -589,10 +589,10 @@ Free the memory that the engine can build again without a download. The engine f
 ### relocateResource
 
 ```kotlin
-abstract fun relocateResource(currentUri: Uri, relocatedUri: Uri)
+abstract fun relocateResource(currentUri: Uri, relocatedUri: Uri, rewriteHistory: Boolean = false)
 ```
 
-Changes the uri associated with a resource. Note: This function can be used change the Uri of a resource that has been relocated (e.g., to a CDN). Relocating the Uri of a document color profile also repoints the profile. A setDocumentColorProfile request for that Uri that is still loading commits the new Uri once it loads.
+Changes the uri associated with a resource. Note: This function can be used change the Uri of a resource that has been relocated (e.g., to a CDN). Relocating the Uri of a document color profile also repoints the profile. A setDocumentColorProfile request for that Uri that is still loading commits the new Uri once it loads. With rewriteHistory, the undo and redo steps of every history also name the new Uri, so an undo no longer brings back the old one. The relocation adds no undo step, and uncommitted edits stay uncommitted. Without it, each undo and redo step keeps the Uri it recorded.
 
 ### removeMovementConstraint
 

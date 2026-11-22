@@ -1361,14 +1361,20 @@ This function can be used change the URL of a resource that has been relocated (
 Relocating the URL of a document color profile also repoints the profile. A
 `setDocumentColorProfile` request for that URL that is still loading commits the new URL once
 it loads.
+With `rewriteHistory`, the undo and redo steps of every history also name the new URL, so an undo
+no longer brings back the old one. The relocation adds no undo step, and uncommitted edits stay
+uncommitted. Without it, each undo and redo step keeps the URL it recorded.
 
 ```typescript
-relocateResource(currentUrl: string, relocatedUrl: string): void
+relocateResource(currentUrl: string, relocatedUrl: string, options?: {
+        rewriteHistory?: boolean;
+    } | null): void
 ```
 
 **Parameters:**
 - `currentUrl` - The current URL of the resource.
 - `relocatedUrl` - The new URL of the resource.
+- `options` - `rewriteHistory` moves the recorded undo history to the new URL too. Defaults to `false`.
 
 ## Viewport
 

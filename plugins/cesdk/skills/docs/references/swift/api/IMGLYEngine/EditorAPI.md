@@ -661,10 +661,10 @@ Redo one step in the history if a redo step is available. Scene edits made since
 
 Free the memory that the engine can build again without a download. The engine frees the decoded images that the canvas did not draw last, and the video thumbnails. It also frees the files that no block uses, and the unused GPU textures. The files that blocks use stay, so no file downloads again. The next frames decode the freed images again when they need them. On iOS the engine calls it on its own when the system sends a memory warning.
 
-### relocateResource(currentURL:relocatedURL:)
+### relocateResource(currentURL:relocatedURL:rewriteHistory:)
 
 ```swift
-@MainActor func relocateResource(currentURL: URL, relocatedURL: URL) throws
+@MainActor func relocateResource(currentURL: URL, relocatedURL: URL, rewriteHistory: Bool = false) throws
 ```
 
 Changes the URL associated with a resource. `currentURL`
