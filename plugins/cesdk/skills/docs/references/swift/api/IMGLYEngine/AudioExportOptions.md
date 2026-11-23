@@ -9,6 +9,12 @@
 
 ## Members
 
+### audioBitrate
+
+```swift
+let audioBitrate: Int32
+```
+
 ### audioCodec
 
 ```swift
@@ -29,10 +35,10 @@ convenience init(sampleRate: Int32, numberOfChannels: Int32, timeOffset: Double,
 
 Objective-C-compatible initializer retaining the existing construction selector.
 
-### init(sampleRate:numberOfChannels:timeOffset:duration:skipEncoding:audioCodec:)
+### init(sampleRate:numberOfChannels:timeOffset:duration:skipEncoding:audioCodec:audioBitrate:)
 
 ```swift
-@nonobjc init(sampleRate: Int32 = 48000, numberOfChannels: Int32 = 2, timeOffset: Double = 0, duration: Double = 0, skipEncoding: Bool = false, audioCodec: AudioCodec = .auto)
+@nonobjc init(sampleRate: Int32 = 48000, numberOfChannels: Int32 = 2, timeOffset: Double = 0, duration: Double = 0, skipEncoding: Bool = false, audioCodec: AudioCodec = .auto, audioBitrate: Int32 = 0)
 ```
 
 The audio export options. `sampleRate`

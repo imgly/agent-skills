@@ -27,6 +27,12 @@ case binary
 case jpeg
 ```
 
+### MIMEType.mp3
+
+```swift
+case mp3
+```
+
 ### MIMEType.mp4
 
 ```swift

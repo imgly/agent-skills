@@ -26,7 +26,15 @@ AAC-LC.
 enum entry AUTO
 ```
 
-AAC for an MP4 file, Opus for a WebM file.
+AAC for an MP4 file, Opus for a WebM file, MP3 for an MP3 file.
+
+### MP3
+
+```kotlin
+enum entry MP3
+```
+
+MPEG-1 Audio Layer III, which the engine encodes on every platform.
 
 ### OPUS
 

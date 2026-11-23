@@ -894,6 +894,19 @@ getMaxExportSize(): number
 
 **Returns:** The upper export size limit in pixels.
 
+## Text
+
+### getHyphenationLanguages()
+
+Get the languages that text hyphenation has a dictionary for. A text block whose `text/hyphens` is `Auto`
+hyphenates by the dictionary of its `text/languageTag`.
+
+```typescript
+getHyphenationLanguages(): string[]
+```
+
+**Returns:** The BCP 47 language tags, lowercase and sorted, such as `de` and `en-us`.
+
 ## Color Management
 
 ### findAllSpotColors()

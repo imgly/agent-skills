@@ -5237,12 +5237,6 @@ case encodeVideoExportOptionsNotObject
 case encodeVideoExportOptionsParseFailed
 ```
 
-### EngineErrorCode.encodeVideoFillAudioRequiresMp4
-
-```swift
-case encodeVideoFillAudioRequiresMp4
-```
-
 ### EngineErrorCode.encodeVideoFillInvalid
 
 ```swift
@@ -6495,6 +6489,12 @@ case utilsMkvSegmentCreateFailed
 
 ```swift
 case utilsMkvSegmentLoadFailed
+```
+
+### EngineErrorCode.utilsMp3MuxFailed
+
+```swift
+case utilsMp3MuxFailed
 ```
 
 ### EngineErrorCode.utilsMp4AudioCodecUnsupported

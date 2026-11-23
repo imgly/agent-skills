@@ -495,7 +495,7 @@ Gets the sorted names of the published properties of a main component.
 ### findAllCustomShaderPrograms
 
 ```kotlin
-open fun findAllCustomShaderPrograms(): List<String>
+abstract fun findAllCustomShaderPrograms(): List<String>
 ```
 
 Return registered program IDs in sorted order.
@@ -845,7 +845,7 @@ Get the crop translation in y direction of the given design block.
 ### getCustomShaderInputs
 
 ```kotlin
-open fun getCustomShaderInputs(effect: DesignBlock): List<CustomShaderInputBinding>
+abstract fun getCustomShaderInputs(effect: DesignBlock): List<CustomShaderInputBinding>
 ```
 
 Return the named inputs of a custom_shader effect.
@@ -853,7 +853,7 @@ Return the named inputs of a custom_shader effect.
 ### getCustomShaderProgramId
 
 ```kotlin
-open fun getCustomShaderProgramId(effect: DesignBlock): String
+abstract fun getCustomShaderProgramId(effect: DesignBlock): String
 ```
 
 Return the program ID of a custom_shader effect or a custom-shader transition, or an empty string when it has no assignment.
@@ -861,7 +861,7 @@ Return the program ID of a custom_shader effect or a custom-shader transition, o
 ### getCustomShaderProgram
 
 ```kotlin
-open fun getCustomShaderProgram(id: String): CustomShaderProgramDefinition
+abstract fun getCustomShaderProgram(id: String): CustomShaderProgramDefinition
 ```
 
 Return a copy of a registered program definition. An unknown ID causes an error.
@@ -2368,7 +2368,7 @@ Checks whether the given block references any text variables. Doesn't check the 
 ### registerCustomShaderProgram
 
 ```kotlin
-open fun registerCustomShaderProgram(id: String, definition: CustomShaderProgramDefinition)
+abstract fun registerCustomShaderProgram(id: String, definition: CustomShaderProgramDefinition)
 ```
 
 Register a GLSL ES program at runtime. An existing ID causes an error. Definitions contain ordered buffers and a final Image pass, with four channels per pass. Registration validates the source and GPU programs before publishing the definition. A CPU context runs it on the raster pipeline, which has no integer shift or integer modulo. A program that the context cannot run returns a capability error. Loops stop after 65536 iterations per pixel and pass, counted across all loops. The program belongs to the scene. Creating a scene in place of the current one removes the programs, and loading a scene replaces them with its own. Destroying the scene removes each program that no remaining block u…
@@ -2376,7 +2376,7 @@ Register a GLSL ES program at runtime. An existing ID causes an error. Definitio
 ### removeCustomShaderProgram
 
 ```kotlin
-open fun removeCustomShaderProgram(id: String)
+abstract fun removeCustomShaderProgram(id: String)
 ```
 
 Remove a program. Unknown IDs and programs referenced by any effect or transition cause an error. Detached and disabled effects and detached transitions also retain their program references.
@@ -2472,7 +2472,7 @@ Remove the variable binding of a block property. The property keeps its current 
 ### replaceCustomShaderProgram
 
 ```kotlin
-open fun replaceCustomShaderProgram(id: String, definition: CustomShaderProgramDefinition)
+abstract fun replaceCustomShaderProgram(id: String, definition: CustomShaderProgramDefinition)
 ```
 
 Replace a registered program at runtime. An unknown ID causes an error. A failed replacement preserves the existing definition and every live instance. Successful replacement invalidates the feedback state of its instances. Note that a definition that an assigned effect or transition cannot run causes an error, see setCustomShaderProgram.
@@ -2765,7 +2765,7 @@ Set the crop translation in y direction of the given design block. Required scop
 ### setCustomShaderInputs
 
 ```kotlin
-open fun setCustomShaderInputs(effect: DesignBlock, inputs: List<CustomShaderInputBinding>)
+abstract fun setCustomShaderInputs(effect: DesignBlock, inputs: List<CustomShaderInputBinding>)
 ```
 
 Replace the named inputs of a custom_shader effect. Each source must identify an existing image fill, video fill or audio block. Duplicate input names cause an error. A failed update preserves all previous bindings; a successful change resets feedback state. An effect takes at most one audio block. The shader reads its sound in iAudioLevel, iAudioSpectrum[32] and iAudioWaveform[64], before its volume, mute and fades. Without an audio block, these uniforms read the page as it plays. A texture channel that names the audio block causes an error when a pass reads it.
@@ -2773,7 +2773,7 @@ Replace the named inputs of a custom_shader effect. Each source must identify an
 ### setCustomShaderProgram
 
 ```kotlin
-open fun setCustomShaderProgram(effect: DesignBlock, id: String)
+abstract fun setCustomShaderProgram(effect: DesignBlock, id: String)
 ```
 
 Assign a registered program to a custom_shader effect or a custom-shader transition. An empty ID clears the assignment. A successful change resets the instance's feedback state. Note that a transition runs each frame without state. Its passes read the CustomShaderChannelSource.TRANSITION_OUTGOING and CustomShaderChannelSource.TRANSITION_INCOMING clips, earlier passes of the same frame and the eased progress in iProgress. A program with other channel sources causes an error for a transition. A program that reads a transition clip causes an error for an effect. The audio uniforms of a transition read 0. Note that a transition without a program, or with a program that cannot run, draws the out…

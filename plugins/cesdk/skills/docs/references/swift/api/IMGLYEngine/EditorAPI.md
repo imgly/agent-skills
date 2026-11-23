@@ -257,6 +257,14 @@ Get font metrics for a given font file URI. If the font is not yet loaded, it wi
 
 Query the state of a global scope. `key`
 
+### getHyphenationLanguages()
+
+```swift
+@MainActor func getHyphenationLanguages() -> [String]
+```
+
+Queries the languages that text hyphenation has a dictionary for. A text block whose `text/hyphens` is `Auto` hyphenates by the dictionary of its `text/languageTag`. The BCP 47 language tags, lowercase and sorted, such as `de` and `en-us`.
+
 ### getMaxExportSize()
 
 ```swift

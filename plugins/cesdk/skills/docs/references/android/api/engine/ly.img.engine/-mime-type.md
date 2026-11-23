@@ -10,6 +10,14 @@ enum MimeType : Enum<MimeType>
 
 ## Members
 
+### AUDIO_MPEG
+
+```kotlin
+enum entry AUDIO_MPEG
+```
+
+An MP3 file from BlockApi.exportAudio.
+
 ### AUDIO_MP4
 
 ```kotlin

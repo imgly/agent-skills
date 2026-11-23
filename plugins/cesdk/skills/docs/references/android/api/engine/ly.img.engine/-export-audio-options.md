@@ -6,7 +6,7 @@
 The options of BlockApi.exportAudio.
 
 ```kotlin
-data class ExportAudioOptions(val timeOffset: Double = 0.0, val duration: Double? = null, val sampleRate: Int = 48000, val numberOfChannels: Int = 2, val skipEncoding: Boolean = false, val audioCodec: AudioCodec = AudioCodec.AUTO)
+data class ExportAudioOptions(val timeOffset: Double = 0.0, val duration: Double? = null, val sampleRate: Int = 48000, val numberOfChannels: Int = 2, val skipEncoding: Boolean = false, val audioCodec: AudioCodec = AudioCodec.AUTO, val audioBitrate: Int = 0)
 ```
 
 
@@ -15,8 +15,16 @@ data class ExportAudioOptions(val timeOffset: Double = 0.0, val duration: Double
 ### ExportAudioOptions
 
 ```kotlin
-constructor(timeOffset: Double = 0.0, duration: Double? = null, sampleRate: Int = 48000, numberOfChannels: Int = 2, skipEncoding: Boolean = false, audioCodec: AudioCodec = AudioCodec.AUTO)
+constructor(timeOffset: Double = 0.0, duration: Double? = null, sampleRate: Int = 48000, numberOfChannels: Int = 2, skipEncoding: Boolean = false, audioCodec: AudioCodec = AudioCodec.AUTO, audioBitrate: Int = 0)
 ```
+
+### audioBitrate
+
+```kotlin
+val audioBitrate: Int = 0
+```
+
+The audio bitrate in bits per second. If the value is 0, the engine picks the default: 320 kbps for MimeType.AUDIO_MPEG, 128 kbps for the other encoded types. An MP3 export takes the nearest MP3 bitrate from 32 to 320 kbps. A WAV export ignores it.
 
 ### audioCodec
 
@@ -24,7 +32,7 @@ constructor(timeOffset: Double = 0.0, duration: Double? = null, sampleRate: Int 
 val audioCodec: AudioCodec
 ```
 
-The codec of a MimeType.AUDIO_MP4 or MimeType.AUDIO_WEBM export. AudioCodec.AUTO picks AAC for MP4, and Opus, then Vorbis, for WebM. A codec that the file type cannot hold fails the export. A WAV export ignores it.
+The codec of a MimeType.AUDIO_MP4, MimeType.AUDIO_WEBM or MimeType.AUDIO_MPEG export. AudioCodec.AUTO picks AAC for MP4, Opus, then Vorbis, for WebM, and MP3 for MP3. A codec that the file type cannot hold fails the export. A WAV export ignores it.
 
 ### duration
 

@@ -248,6 +248,14 @@ abstract fun getGlobalScope(key: String): GlobalScope
 
 Query the state of a global scope.
 
+### getHyphenationLanguages
+
+```kotlin
+abstract fun getHyphenationLanguages(): List<String>
+```
+
+Queries the languages that text hyphenation has a dictionary for. A text block whose text/hyphens is Auto hyphenates by the dictionary of its text/languageTag.
+
 ### getMaxExportSize
 
 ```kotlin
