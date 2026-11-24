@@ -397,7 +397,7 @@ Create a new text animator. A text animator changes the glyphs of a text block t
 @MainActor func createTransition(_ type: TransitionType) throws -> DesignBlockID
 ```
 
-Creates a new transition, fails if type is unknown. Its `transition/overlap` value is initialized from the current `clip/defaultTransitionOverlapEnabled` editor setting. `type`
+Creates a new transition, fails if type is unknown. Its `transition/overlap` value is initialized from the current `clip/defaultTransitionOverlapEnabled` editor setting, and its `transition/maxDurationRatio` from `clip/defaultTransitionMaxDurationRatio`. `type`
 
 ### destroy(_:)
 
@@ -613,7 +613,7 @@ Finds all blocks with the given type. `type`
 @MainActor func find(byType type: DesignBlockType) throws -> [DesignBlockID]
 ```
 
-Finds all blocks with the given type. For the stack type, the result holds the scene when the scene arranges its pages. Do not destroy that block: it is the scene. `type`
+Finds all blocks with the given type. For the stack type, the result holds the scene when the scene arranges its pages. Do not destroy that block: it is the scene. The stack type is deprecated: use the scene from `engine.scene.get()` instead. The `stack/axis`, `stack/spacing` and `stack/spacingInScreenspace` properties are deprecated: use `scene/autoLayout`, `scene/pageSpacing` and `scene/pageSpacingInScreenspace` on the scene instead. `type`
 
 ### find(byType:)-2wuaf
 

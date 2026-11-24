@@ -362,7 +362,8 @@ create(sceneLayout?: SceneLayout, options?: CreateSceneOptions): DesignBlockId
 ```
 
 **Parameters:**
-- `sceneLayout` - The layout of the scene.
+- `sceneLayout` - The layout of the scene. The stack values are deprecated: create the scene
+with `'Free'` and call `setAutoLayout` on it instead.
 - `options` - Optional parameters for the scene. Properties:
   - `page` - Page options. Properties:
     - `size` - The size of the page.
@@ -390,6 +391,10 @@ createFromImage(url: string, dpi?: number, pixelScaleFactor?: number, sceneLayou
 - `url` - The image URL.
 - `dpi` - The scene's DPI.
 - `pixelScaleFactor` - The display's pixel scale factor.
+- `sceneLayout` - The layout of the scene. The stack values are deprecated: create the scene
+with `'Free'` and call `setAutoLayout` on it instead.
+- `spacing` - The spacing between the pages of a stack layout.
+- `spacingInScreenSpace` - Whether the spacing is in screen space.
 - `options` - An `abortSignal` that stops the download of the image. The current scene stays
 then.
 
@@ -566,7 +571,7 @@ removeMarker(index: number): void
 **Parameters:**
 - `index` - The index of the marker in the list that `getMarkers` returns.
 
-### getLayout()
+### getLayout() *(deprecated)*
 
 Get the layout of the current scene.
 ```javascript
@@ -579,7 +584,7 @@ getLayout(): SceneLayout
 
 **Returns:** The current layout of the scene.
 
-### setLayout()
+### setLayout() *(deprecated)*
 
 Set the layout of the current scene.
 This will handle all necessary conversions including creating or destroying stack blocks
@@ -596,6 +601,39 @@ setLayout(layout: SceneLayout): void
 
 **Parameters:**
 - `layout` - The new layout for the scene.
+
+### getAutoLayout()
+
+Get the direction in which a scene arranges its pages.
+```javascript
+const direction = engine.scene.getAutoLayout(); // 'Vertical', 'Horizontal', 'Depth' or null
+```
+
+```typescript
+getAutoLayout(id?: DesignBlockId): SceneAutoLayoutDirection | null
+```
+
+**Parameters:**
+- `id` - The scene. Defaults to the current scene.
+
+**Returns:** The direction, or `null` when the pages stay at free positions.
+
+### setAutoLayout()
+
+Arranges the pages of the scene one after another along the direction, or leaves them at free
+positions when `null`. Switching to free placement keeps each page at its position on the canvas.
+```javascript
+engine.scene.setAutoLayout('Vertical');
+engine.scene.setAutoLayout(null); // free placement
+```
+
+```typescript
+setAutoLayout(direction: SceneAutoLayoutDirection | null, id?: DesignBlockId): void
+```
+
+**Parameters:**
+- `direction` - The direction, or `null` for free placement.
+- `id` - The scene. Defaults to the current scene.
 
 ## Template Operations
 
@@ -642,6 +680,109 @@ applyTemplateFromURL(url: string, options?: AbortOptions): Promise<void>
 stays then.
 
 **Returns:** A Promise that resolves once the template was applied or rejects if there was an error.
+
+### insertPageTemplateFromString()
+
+Inserts the page of a page template into the current scene.
+A page template is a blocks string or a scene file. A blocks string holds one page as its only
+root block, as `engine.block.saveToString` writes it. Of a scene file, the first page is used.
+The new page takes the page dimensions of the scene, and its content adjusts to them. A scene
+without page dimensions keeps the size of the template. The design unit and the text sizes of
+the template convert to those of the scene. Its typefaces join the scene. In a free layout, the
+new page is placed next to the page before it.
+A scene file also brings its variables. The scene gains only those that a block of the new page
+binds or a text of it names. The scene keeps its own variables, value sets and active set. When
+the scene holds a variable of the same name with another type, the new page loses its bindings
+to it. The other pages, the settings, the spot colors and the color profiles of a scene file are
+not used.
+Adds one undo step. Always performs an internal update that lays out pending changes.
+```javascript
+const page = await engine.scene.insertPageTemplateFromString(
+  await engine.block.saveToString([templatePage])
+);
+```
+
+```typescript
+insertPageTemplateFromString(content: string, options?: PageTemplatePlacement | null): Promise<DesignBlockId>
+```
+
+**Parameters:**
+- `content` - The blocks string or the scene file of the page template.
+- `options` - `index` is the position of the new page among the pages of the scene, as
+`getPages` lists them, from 0 to the number of pages. Blocks that are no page, such as the
+camera, do not count. Without it, the new page follows the last page.
+
+**Returns:** A Promise that resolves with the new page, or rejects with an error. On an error the
+scene keeps no block of the template.
+
+### insertPageTemplateFromURL()
+
+Inserts the page of the page template at `url` into the current scene, as
+`insertPageTemplateFromString` does.
+Adds one undo step. Always performs an internal update that lays out pending changes.
+```javascript
+const page = await engine.scene.insertPageTemplateFromURL(
+  'https://example.com/page.blocks',
+  { index: 0 }
+);
+```
+
+```typescript
+insertPageTemplateFromURL(url: string, options?: (PageTemplatePlacement & AbortOptions) | null): Promise<DesignBlockId>
+```
+
+**Parameters:**
+- `url` - The URL of the blocks file or the scene file of the page template.
+- `options` - `index` as for `insertPageTemplateFromString`. The index is
+checked again when the fetch ends. An `abortSignal` stops the fetch, and the scene stays
+unchanged then.
+
+**Returns:** A Promise that resolves with the new page, or rejects with an error.
+
+### applyPageTemplateFromString()
+
+Replaces the content of a page with the page of a page template.
+The page keeps its id, its parent, its position among its siblings and its size. It also keeps
+its name, its stroke, margins, bleed, title, duration and other properties. Its children are
+destroyed. The children of the template replace them, adjusted to the size of the page. Its
+fill becomes a copy of the template's fill, with the template's fill enabled state. No other
+property of the template page is used. Sources, units, text sizes, typefaces and variables
+follow `insertPageTemplateFromString`.
+Adds one undo step. Always performs an internal update that lays out pending changes.
+```javascript
+await engine.scene.applyPageTemplateFromString(page, template);
+```
+
+```typescript
+applyPageTemplateFromString(page: DesignBlockId, content: string): Promise<void>
+```
+
+**Parameters:**
+- `page` - The page to replace the content of.
+- `content` - The blocks string or the scene file of the page template.
+
+**Returns:** A Promise that resolves once the template was applied, or rejects with an error. On an
+error the page is unchanged.
+
+### applyPageTemplateFromURL()
+
+Replaces the content of a page with the page of the page template at `url`, as
+`applyPageTemplateFromString` does.
+Adds one undo step. Always performs an internal update that lays out pending changes.
+```javascript
+await engine.scene.applyPageTemplateFromURL(page, 'https://example.com/page.blocks');
+```
+
+```typescript
+applyPageTemplateFromURL(page: DesignBlockId, url: string, options?: AbortOptions): Promise<void>
+```
+
+**Parameters:**
+- `page` - The page to replace the content of. It is checked again when the fetch ends.
+- `url` - The URL of the blocks file or the scene file of the page template.
+- `options` - An `abortSignal` that stops the fetch. The page stays unchanged then.
+
+**Returns:** A Promise that resolves once the template was applied, or rejects with an error.
 
 ## Page Management
 

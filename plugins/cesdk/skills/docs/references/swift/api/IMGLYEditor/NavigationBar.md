@@ -359,7 +359,7 @@ The id of the [`togglePagesMode(action:label:isEnabled:isVisible:)`](../togglepa
       .labelStyle(.imgly.adaptiveIconOnly)
       .accessibilityLabel(Text(.imgly.localized("ly_img_editor_navigation_bar_button_toggle_pages_mode")))
     }, isEnabled: @escaping NavigationBar.Context.To<Bool> = { !$0.state.isCreating }, isVisible: @escaping NavigationBar.Context.To<Bool> = {
-      try $0.state.isCreating || $0.engine?.block.find(byType: .stack).first != nil
+      $0.state.isCreating || (try? $0.engine?.scene.getAutoLayout()) != nil
     }) -> some NavigationBar.Item
 ```
 

@@ -54,7 +54,7 @@ Creates a [`SheetType`](../sheettype.md) that is used to apply a caption style p
 ### clipSpeed(style:)
 
 ```swift
-static func clipSpeed(style: SheetStyle = .only(detent: .imgly.tiny)) -> Self
+static func clipSpeed(style: SheetStyle = .only(detent: .imgly.small)) -> Self
 ```
 
 Creates a [`SheetType`](../sheettype.md) that is used to control the playback speed of clips. `style`

@@ -81,6 +81,8 @@ case scene
 case stack
 ```
 
+Deprecated. Use the scene instead, which arranges its pages.
+
 ### DesignBlockType.text
 
 ```swift

@@ -1667,6 +1667,12 @@ case blockKeyframesEmpty
 case blockKeyframesEnumOutOfRange
 ```
 
+### EngineErrorCode.blockKeyframesHoldInReversedVideo
+
+```swift
+case blockKeyframesHoldInReversedVideo
+```
+
 ### EngineErrorCode.blockKeyframesMixedColorSpaces
 
 ```swift
@@ -2733,6 +2739,12 @@ case blockTransitionBlockInvalid
 
 ```swift
 case blockTransitionBlockNotATransition
+```
+
+### EngineErrorCode.blockTransitionMaxDurationRatioInvalid
+
+```swift
+case blockTransitionMaxDurationRatioInvalid
 ```
 
 ### EngineErrorCode.blockTransitionTypeNotRegistered
@@ -4379,6 +4391,12 @@ case editorThumbnailSamplesInvalid
 case editorTouchRotateTooManyPoints
 ```
 
+### EngineErrorCode.editorTransitionMaxDurationRatioInvalid
+
+```swift
+case editorTransitionMaxDurationRatioInvalid
+```
+
 ### EngineErrorCode.editorTrimOffsetUndefined
 
 ```swift
@@ -5103,6 +5121,12 @@ case encodeResourceLoadFailedWithReason
 
 ```swift
 case encodeResultBufferFailed
+```
+
+### EngineErrorCode.encodeStagedResultTooLarge
+
+```swift
+case encodeStagedResultTooLarge
 ```
 
 ### EngineErrorCode.encodeStreamExportMimeTypeInvalid
@@ -6063,6 +6087,24 @@ case sceneNotSceneType
 
 ```swift
 case sceneNotValid
+```
+
+### EngineErrorCode.scenePageTemplateIndexOutOfBounds
+
+```swift
+case scenePageTemplateIndexOutOfBounds
+```
+
+### EngineErrorCode.scenePageTemplateNotOnePage
+
+```swift
+case scenePageTemplateNotOnePage
+```
+
+### EngineErrorCode.scenePageTemplateTargetNotPage
+
+```swift
+case scenePageTemplateTargetNotPage
 ```
 
 ### EngineErrorCode.scenePersistenceNoUrl

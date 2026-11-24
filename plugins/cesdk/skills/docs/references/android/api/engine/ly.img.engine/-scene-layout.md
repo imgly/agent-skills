@@ -3,6 +3,8 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
+The layout of a scene.
+
 ```kotlin
 enum SceneLayout : Enum<SceneLayout>
 ```
@@ -15,6 +17,7 @@ enum SceneLayout : Enum<SceneLayout>
 ```kotlin
 enum entry DEPTH_STACK
 ```
+> **Deprecated:** Use SceneApi.setAutoLayout with SceneAutoLayoutDirection.DEPTH instead. Replace with `import ly.img.engine.SceneAutoLayoutDirection; SceneAutoLayoutDirection.DEPTH`.
 
 ### FREE
 
@@ -22,17 +25,21 @@ enum entry DEPTH_STACK
 enum entry FREE
 ```
 
+The pages stay at free positions on the canvas.
+
 ### HORIZONTAL_STACK
 
 ```kotlin
 enum entry HORIZONTAL_STACK
 ```
+> **Deprecated:** Use SceneApi.setAutoLayout with SceneAutoLayoutDirection.HORIZONTAL instead. Replace with `import ly.img.engine.SceneAutoLayoutDirection; SceneAutoLayoutDirection.HORIZONTAL`.
 
 ### VERTICAL_STACK
 
 ```kotlin
 enum entry VERTICAL_STACK
 ```
+> **Deprecated:** Use SceneApi.setAutoLayout with SceneAutoLayoutDirection.VERTICAL instead. Replace with `import ly.img.engine.SceneAutoLayoutDirection; SceneAutoLayoutDirection.VERTICAL`.
 
 ### entries
 

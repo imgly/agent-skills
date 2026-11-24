@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 382 generated API digests.
+Complete catalog of 383 generated API digests.
 
 - [AV1EncodingMode](<../engine/ly.img.engine/-a-v1-encoding-mode.md>) — `ly.img.engine`
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
@@ -130,7 +130,7 @@ Complete catalog of 382 generated API digests.
 - [DesignBlockType.Page](<../engine/ly.img.engine/-design-block-type/-page.md>) — `ly.img.engine`
 - [DesignBlockType.PageSlice](<../engine/ly.img.engine/-design-block-type/-page-slice.md>) — `ly.img.engine`
 - [DesignBlockType.Scene](<../engine/ly.img.engine/-design-block-type/-scene.md>) — `ly.img.engine`
-- [DesignBlockType.Stack](<../engine/ly.img.engine/-design-block-type/-stack.md>) — `ly.img.engine`
+- [DesignBlockType.Stack \[deprecated\]](<../engine/ly.img.engine/-design-block-type/-stack.md>) — `ly.img.engine`
 - [DesignBlockType.Text](<../engine/ly.img.engine/-design-block-type/-text.md>) — `ly.img.engine`
 - [DesignBlockType.Track](<../engine/ly.img.engine/-design-block-type/-track.md>) — `ly.img.engine`
 - [DesignUnit](<../engine/ly.img.engine/-design-unit.md>) — `ly.img.engine`
@@ -284,6 +284,7 @@ Complete catalog of 382 generated API digests.
 - [SaveToArchiveOptions](<../engine/ly.img.engine/-save-to-archive-options.md>) — `ly.img.engine`
 - [SaveToStringOptions](<../engine/ly.img.engine/-save-to-string-options.md>) — `ly.img.engine`
 - [SceneApi](<../engine/ly.img.engine/-scene-api.md>) — `ly.img.engine`
+- [SceneAutoLayoutDirection](<../engine/ly.img.engine/-scene-auto-layout-direction.md>) — `ly.img.engine`
 - [SceneLayout](<../engine/ly.img.engine/-scene-layout.md>) — `ly.img.engine`
 - [SceneMarker](<../engine/ly.img.engine/-scene-marker.md>) — `ly.img.engine`
 - [ScriptStyle](<../engine/ly.img.engine/-script-style.md>) — `ly.img.engine`

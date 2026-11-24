@@ -131,6 +131,14 @@ val Text: AssetSourceType
 
 The legacy source type for plain text, served by TextAssetSource. The default text library now uses the split text preset sources (TextPlain, TextStyles, TextCurves) and no longer references this source type.
 
+### TypefaceUploads
+
+```kotlin
+val TypefaceUploads: UploadAssetSourceType
+```
+
+The default source type for font uploads. The fonts of one family share one typeface asset with the id typeface-upload/<family>. Note that the font list registers a local source with this id when the host has not registered one.
+
 ### Typeface
 
 ```kotlin

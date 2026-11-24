@@ -958,8 +958,8 @@ Sets the playback duration of a block.
 The duration defines how long the block is active in the scene during playback.
 Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves,
 with the clips that transitions join after it, until the overlap equals the transition duration again. The
-overlap is at most half of either clip. With `transition/overlap` disabled, or with a group clip on either
-side, the clips meet at the cut.
+overlap is at most `transition/maxDurationRatio` of either clip, half by default. With `transition/overlap`
+disabled, or with a group clip on either side, the clips meet at the cut.
 
 ```typescript
 setDuration(id: DesignBlockId, duration: number): void
@@ -2114,7 +2114,9 @@ findByName(name: string): DesignBlockId[]
 
 Finds all blocks with a given type.
 For the stack type, the result holds the scene when the scene arranges its pages. Do not destroy that
-block: it is the scene.
+block: it is the scene. The `'stack'` type is deprecated: use the scene from `engine.scene.get()`
+instead. The `stack/axis`, `stack/spacing` and `stack/spacingInScreenspace` properties are deprecated:
+use `scene/autoLayout`, `scene/pageSpacing` and `scene/pageSpacingInScreenspace` on the scene instead.
 
 ```typescript
 findByType(type: ObjectType): DesignBlockId[]
@@ -7663,7 +7665,9 @@ split(id: DesignBlockId, atTime: number, options?: SplitOptions): DesignBlockId
 
 Creates a new transition block.
 Its saved `transition/overlap` boolean starts at the current value of
-`clip/defaultTransitionOverlapEnabled` (engine default: true).
+`clip/defaultTransitionOverlapEnabled` (engine default: true). Its saved
+`transition/maxDurationRatio` starts at `clip/defaultTransitionMaxDurationRatio`
+(engine default: 0.5).
 The created block is standalone until assigned to a clip or a page with
 `setTransition`. Once assigned, it is owned by that block and destroyed
 together with it. The engine also destroys it when the two clips stop being
@@ -7714,8 +7718,8 @@ stays.
 A page transition plays only in the video export of the scene, see
 `exportVideo`. It blends the page into the next page that the video shows.
 With `transition/overlap`, the next page starts that many seconds before the
-page ends, at most half of either page. Without it, the scene keeps its
-length: the blend is centred on the cut and holds the last frame of the page
+page ends, at most `transition/maxDurationRatio` of either page, half by default. Without it, the scene
+keeps its length: the blend is centred on the cut and holds the last frame of the page
 and the first frame of the next. On the last page it plays nothing.
 A page refuses a custom-shader transition, which joins two clips on a track.
 ```javascript

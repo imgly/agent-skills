@@ -17,6 +17,22 @@
 
 Add a marker to the end of the current scene’s marker list. Markers name points or spans on the scene timeline. Several markers may share a name. `name`
 
+### applyPageTemplate(to:from:)-5ogfj
+
+```swift
+@MainActor func applyPageTemplate(to page: DesignBlockID, from string: String) async throws
+```
+
+Replaces the content of a page with the page of a page template. The page keeps its id, its parent, its position among its siblings and its size. It also keeps its name, its stroke, margins, bleed, title, duration and other properties. Its children are destroyed. The children of the template replace them, adjusted to the size of the page. Its fill becomes a copy of the template’s fill, with the template’s fill enabled state. No other property of the template page is used. Sources, units, text sizes, typefaces and variables follow `insertPageTemplate(from:index:)`. Children whose “lifecycle/destroy” scope is off are destroyed too, as when a template replaces the whole scene. `page`
+
+### applyPageTemplate(to:from:)-6juoq
+
+```swift
+@MainActor func applyPageTemplate(to page: DesignBlockID, from url: URL) async throws
+```
+
+Replaces the content of a page with the page of the page template at `url`, as `applyPageTemplate(to:from:)` with a string does. `page`
+
 ### applyTemplate(from:)-24f7b
 
 ```swift
@@ -153,6 +169,14 @@ Return the currently active scene. The scene or nil, if none was created yet.
 
 Returns the angle unit of the current scene. The current angle unit.
 
+### getAutoLayout()
+
+```swift
+@MainActor func getAutoLayout() throws -> SceneAutoLayoutDirection?
+```
+
+Get the direction along which the current scene arranges its pages. The direction, or `nil` when the pages stay at free positions.
+
 ### getCMYKProfileInfo()
 
 > **Deprecated:** Use 'getDocumentColorProfileInfo' with ProfileSlot(role: .default, space: .cmyk) instead.
@@ -213,6 +237,8 @@ Returns the font-size unit of the current scene. The current font-size unit.
 
 ### getLayout()
 
+> **Deprecated:** Use 'getAutoLayout()' instead. Renamed to `getAutoLayout()`.
+
 ```swift
 @MainActor func getLayout() throws -> SceneLayout
 ```
@@ -250,6 +276,22 @@ Query a camera zoom level of the active scene. Returns the current zoom level of
 ```
 
 Sets the zoom and focus to show a block. Without padding, this results in a tight view on the block. Assums layout has been done. You can force the layout with explicit update call that will update the layout. `id`
+
+### insertPageTemplate(from:index:)-6y39o
+
+```swift
+@discardableResult @MainActor func insertPageTemplate(from string: String, index: Int? = nil) async throws -> DesignBlockID
+```
+
+Inserts the page of a page template into the current scene. A page template is a blocks string or a scene file. A blocks string holds one page as its only root block, as `BlockAPI.saveToString(blocks:)` writes it. Of a scene file, the first page is used. The new page takes the page dimensions of the scene, and its content adjusts to them. A scene without page dimensions keeps the size of the template. The design unit and the text sizes of the template convert to those of the scene. Its typefaces join the scene. In a free layout, the new page is placed next to the page before it. A scene file also brings its variables. The scene gains only those that a block of the new page binds or a text o…
+
+### insertPageTemplate(from:index:)-9c7jg
+
+```swift
+@discardableResult @MainActor func insertPageTemplate(from url: URL, index: Int? = nil) async throws -> DesignBlockID
+```
+
+Inserts the page of the page template at `url` into the current scene, as `insertPageTemplate(from:index:)` with a string does. `url`
 
 ### isBlackPointCompensationEnabled()
 
@@ -427,6 +469,14 @@ Serializes the current scene into a string with optional compression. Selection 
 
 Sets the unit in which angles are interpreted on the current scene: the values of every angle property for `setFloat` and `getFloat` (`rotation`, `transform/skew`, `effect/linear_wipe/angle`, …), their keyframe values, and `setRotation` and `getRotation`. The engine stores angles in radians and scene files keep their format; this only affects how values are interpreted at the API boundary. `.rad` is the default. `angleUnit`
 
+### setAutoLayout(_:)
+
+```swift
+@MainActor func setAutoLayout(_ direction: SceneAutoLayoutDirection?) throws
+```
+
+Arranges the pages of the current scene one after another along the direction, or leaves them at free positions when `nil`. Switching to free placement keeps each page at its position on the canvas. `direction`
+
 ### setBlackPointCompensationEnabled(_:)
 
 ```swift
@@ -504,6 +554,8 @@ Assigns an ICC profile to one document role and component space. Profiles save w
 Sets the unit in which font sizes for `setTextFontSize` and `getTextFontSizes` are interpreted. The engine continues to store font sizes in points internally; this only affects API-boundary interpretation. `fontSizeUnit`
 
 ### setLayout(_:)
+
+> **Deprecated:** Use 'setAutoLayout(_:)' instead. Renamed to `setAutoLayout(_:)`.
 
 ```swift
 @MainActor func setLayout(_ layout: SceneLayout) throws

@@ -18,6 +18,18 @@ abstract fun addMarker(name: String, time: Double, duration: Double = 0.0)
 
 Add a marker to the end of the current scene's marker list. Markers name points or spans on the scene timeline. Several markers may share a name.
 
+### applyPageTemplate
+
+```kotlin
+abstract suspend fun applyPageTemplate(page: DesignBlock, template: String)
+```
+
+```kotlin
+abstract suspend fun applyPageTemplate(page: DesignBlock, templateUri: Uri)
+```
+
+Replaces the content of a page with the page of a page template. The page keeps its id, its parent, its position among its siblings and its size. It also keeps its name, its stroke, margins, bleed, title, duration and other properties. Its children are destroyed. The children of the template replace them, adjusted to the size of the page. Its fill becomes a copy of the template's fill, with the template's fill enabled state. No other property of the template page is used. Sources, units, text sizes, typefaces and variables follow insertPageTemplate. Children whose "lifecycle/destroy" scope is off are destroyed too, as when a template replaces the whole scene. Adds one undo step. Always perf…
+
 ### applyTemplate
 
 ```kotlin
@@ -139,6 +151,14 @@ abstract fun getAngleUnit(): AngleUnit
 
 Returns the angle unit of the current scene.
 
+### getAutoLayout
+
+```kotlin
+abstract fun getAutoLayout(scene: DesignBlock): SceneAutoLayoutDirection?
+```
+
+Get the direction along which the scene arranges its pages one after another. Throws for an invalid block or a block that is not a scene.
+
 ### getCMYKProfileInfo
 
 ```kotlin
@@ -201,6 +221,7 @@ Returns the font-size unit of the current scene.
 ```kotlin
 abstract fun getLayout(): SceneLayout
 ```
+> **Deprecated:** Use getAutoLayout instead. Replace with `getAutoLayout(requireNotNull(get()))`.
 
 Get the current scene layout.
 
@@ -243,6 +264,18 @@ abstract fun immediateZoomToBlock(block: DesignBlock, paddingLeft: Float = 0.0f,
 ```
 
 Sets the zoom and focus to show a block. This only shows an effect if the zoom level is not handled/overwritten by the UI. Without padding, this results in a tight view on the block. It is set immediately and assumes that the block dimensions are known. The block should not be in pending state and it's layout should be up to date.
+
+### insertPageTemplate
+
+```kotlin
+abstract suspend fun insertPageTemplate(template: String, index: Int? = null): DesignBlock
+```
+
+```kotlin
+abstract suspend fun insertPageTemplate(templateUri: Uri, index: Int? = null): DesignBlock
+```
+
+Inserts the page of a page template into the current scene. A page template is a blocks string or a scene file. A blocks string holds one page as its only root block, as BlockApi.saveToString writes it. Of a scene file, the first page is used. The new page takes the page dimensions of the scene, and its content adjusts to them. A scene without page dimensions keeps the size of the template. The design unit and the text sizes of the template convert to those of the scene. Its typefaces join the scene. In a free layout, the new page is placed next to the page before it. A scene file also brings its variables. The scene gains only those that a block of the new page binds or a text of it names.…
 
 ### isBlackPointCompensationEnabled
 
@@ -369,6 +402,14 @@ abstract fun setAngleUnit(angleUnit: AngleUnit)
 
 Sets the unit in which angles are interpreted on the current scene: the values of every angle property for BlockApi.setFloat / BlockApi.getFloat (rotation, transform/skew, effect/linear_wipe/angle, ...), their keyframe values, and BlockApi.setRotation / BlockApi.getRotation. The engine stores angles in radians and scene files keep their format; this only affects how values are interpreted at the API boundary. AngleUnit.RADIAN is the default. CE.SDK uses radians for every angle property in memory and in the API. The AngleUnit.DEGREE unit is a compatibility option for older integrations, and the CE.SDK editor UI expects radians. motionBlur/shutterAngle, motionBlur/shutterPhase and the rotate…
 
+### setAutoLayout
+
+```kotlin
+abstract fun setAutoLayout(scene: DesignBlock, direction: SceneAutoLayoutDirection?)
+```
+
+Arranges the pages of the scene one after another along the direction, or leaves them at free positions when direction is null. Switching to free placement keeps each page at its position on the canvas. Throws for an invalid block or a block that is not a scene.
+
 ### setBlackPointCompensationEnabled
 
 ```kotlin
@@ -448,6 +489,7 @@ Sets the unit in which font sizes for BlockApi.setTextFontSize / BlockApi.getTex
 ```kotlin
 abstract fun setLayout(layout: SceneLayout)
 ```
+> **Deprecated:** Use setAutoLayout instead. Replace with `setAutoLayout(requireNotNull(get()), direction)`.
 
 Set the scene layout. This will handle all necessary conversions including creating or destroying stack blocks and reparenting pages as needed. When transitioning from stack layouts (VerticalStack, HorizontalStack, DepthStack) to Free layout, the global positions of pages are preserved to maintain their visual appearance in the scene.
 

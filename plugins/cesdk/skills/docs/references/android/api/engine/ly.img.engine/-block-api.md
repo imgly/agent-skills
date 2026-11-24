@@ -333,7 +333,7 @@ Create a new text animator block. A text animator changes the glyphs of a text b
 abstract fun createTransition(type: TransitionType): DesignBlock
 ```
 
-Creates a new transition, fails if type is unknown. Its transition/overlap value is initialized from the current clip/defaultTransitionOverlapEnabled editor setting. The created block is standalone until assigned to a clip or a page with setTransition. Once assigned, it is owned by that block and destroyed together with it. The engine also destroys it when the two clips stop being timeline-adjacent on the track, such as after a manual gap. A page keeps its transition.
+Creates a new transition, fails if type is unknown. Its transition/overlap value is initialized from the current clip/defaultTransitionOverlapEnabled editor setting, and its transition/maxDurationRatio from clip/defaultTransitionMaxDurationRatio. The created block is standalone until assigned to a clip or a page with setTransition. Once assigned, it is owned by that block and destroyed together with it. The engine also destroys it when the two clips stop being timeline-adjacent on the track, such as after a manual gap. A page keeps its transition.
 
 ### create
 
@@ -2848,7 +2848,7 @@ Set the drop shadow's y offset of the given design block. Required scope: "appea
 abstract fun setDuration(block: DesignBlock, duration: Double)
 ```
 
-Set the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. If a duration is set on the page block, it becomes the duration source block. Note: The duration is ignored when the scene is not in "Video" mode. Note: This also adjusts the trim for non looping blocks. Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves, with the clips that transitions join after it, until the overlap equals the transition duration again. The overlap is at most half of either clip. With transition/overlap disabled, or with a group clip on either side, the clips meet at the c…
+Set the playback duration of the given block in seconds. The duration defines for how long the block is active in the scene during playback. If a duration is set on the page block, it becomes the duration source block. Note: The duration is ignored when the scene is not in "Video" mode. Note: This also adjusts the trim for non looping blocks. Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves, with the clips that transitions join after it, until the overlap equals the transition duration again. The overlap is at most transition/maxDurationRatio of either clip, half by default. With transition/overlap disabled, or with a group clip…
 
 ### setEffectEnabled
 
