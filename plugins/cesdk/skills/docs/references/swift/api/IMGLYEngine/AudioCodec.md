@@ -3,7 +3,7 @@
 - **Module:** `IMGLYEngine`
 - **DocC identifier:** `/documentation/IMGLYEngine/AudioCodec`
 
-The audio codec of a video export. An MP4 file holds `.aac` and `.opus`, and a WebM file holds `.opus` and `.vorbis`.
+The audio codec of a video export, or of an MP4 or WebM audio export. An MP4 file holds `.aac` and `.opus`, and a WebM file holds `.opus` and `.vorbis`.
 
 ```swift
 @objc enum AudioCodec

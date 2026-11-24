@@ -46,6 +46,12 @@ fun valueOf(value: String): ProfileColorSpace
 
 Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)
 
+### value
+
+```kotlin
+val value: Int
+```
+
 ### values
 
 ```kotlin

@@ -7,7 +7,15 @@ Export blocks to various formats like images, videos, and audio.
 ### export()
 
 Exports a design block to a Blob.
-Performs an internal update to resolve the final layout for the blocks.
+The export of a page slice gives the part of its page inside the page slice, with the bleed of the page on
+all four sides. At a fold, that bleed shows the content of the page slice beside it. The export of a hidden
+page slice shows it and its content.
+Performs an internal update to resolve the final layout for the blocks. A PNG, JPEG, WebP, TGA or raw
+export renders all its strips in one engine call on the main thread, so the tab does not respond and does
+not repaint until the export ends. For a large export, use `exportToStream`, or turn on
+`featureFlags.exportWorker` so the export renders in a Web Worker.
+A page with `playback/coverTimeEnabled` set exports at its `playback/coverTime`, and its playback time
+does not change. An export of a scene shows each page at its own time.
 
 ```typescript
 export(handle: DesignBlockId, options?: ExportOptions): Promise<Blob>
@@ -19,6 +27,39 @@ export(handle: DesignBlockId, options?: ExportOptions): Promise<Blob>
 
 **Returns:** A promise that resolves with the exported image or is rejected with an error.
 
+### exportToStream()
+
+Exports a design block into a stream, chunk by chunk. A PNG, JPEG or WebP export with
+`outputProfileMode` or `embedProfiles` renders in one surface. It holds the whole encoded file in
+memory before it writes the first chunk.
+Performs an internal update to resolve the final layout for the blocks. A PNG, JPEG, WebP, TGA or raw
+export renders in strips, one strip in each engine update, and its size is bound only by the limit of
+its format. With `outputProfileMode` or `embedProfiles`, a PNG, JPEG or WebP export renders in one
+surface, which `getMaxExportSize` bounds. The next strip waits until `writable` is ready for more. PNG and raw pixels are written as
+the strips render, and so is a JPEG above 358 megapixels. A smaller JPEG is written at the end, because
+its Huffman tables need the whole image. WebP and TGA are written at the end. A PDF is written page by page. A color mask
+export is not supported here. Do not change the scene while the export runs. A later strip of another
+size fails with `ENCODE.STRIP_EXPORT_SCENE_CHANGED`, but an edit that keeps the size, such as a color
+change, a move or video playback, is not detected: the file then shows the scene before the edit in its
+first strips and after it in the rest. The engine renders a strip only in an update of a visible tab, so
+the export pauses while the tab is hidden.
+A page with `playback/coverTimeEnabled` set exports at its `playback/coverTime`, and its playback time
+does not change. An export of a scene shows each page at its own time.
+
+```typescript
+exportToStream(handle: DesignBlockId, writable: WritableStream<Uint8Array>, options?: ExportOptions): Promise<void>
+```
+
+**Parameters:**
+- `handle` - The design block element to export.
+- `writable` - Receives the file, for example a file in the origin private file system
+(`FileSystemWritableFileStream`), or a Node.js file through `Writable.toWeb(fs.createWriteStream(path))`.
+The stream is closed when the export succeeds and aborted when it fails.
+- `options` - The options for exporting the block type, including mime type and export settings.
+`onProgress` reports pages for a PDF and strips for a raster export of more than one strip.
+
+**Returns:** A promise that resolves once the whole file is written, or is rejected with an error.
+
 ### exportPreview()
 
 Exports a small image of a block to show in your app. A preview does not count as an export.
@@ -27,6 +68,9 @@ The image is always WebP at quality 0.8 and keeps the block's aspect ratio. A bl
 frame. Use `export` for a file that you deliver.
 Performs an internal update to resolve the final layout for the blocks. Will not complete as long
 as assets are in a pending state; asset loading progresses during engine updates.
+A page with `playback/coverTimeEnabled` set shows its `playback/coverTime`, and its playback time
+does not change.
+A preview of a scene shows each page at its own time.
 
 ```typescript
 exportPreview(handle: DesignBlockId): Promise<Blob>
@@ -41,6 +85,9 @@ exportPreview(handle: DesignBlockId): Promise<Blob>
 
 Exports a design block and a color mask to two separate Blobs.
 Performs an internal update to resolve the final layout for the blocks.
+A page with `playback/coverTimeEnabled` set exports at its `playback/coverTime`, and its playback time
+does not change.
+An export of a scene shows each page at its own time.
 
 ```typescript
 exportWithColorMask(handle: DesignBlockId, maskColorR: number, maskColorG: number, maskColorB: number, options?: ExportOptions): Promise<Blob[]>
@@ -65,7 +112,9 @@ exportVideo(handle: DesignBlockId, options?: VideoExportOptions): Promise<Blob>
 ```
 
 **Parameters:**
-- `handle` - The design block element to export. Currently, only page blocks are supported.
+- `handle` - The page or the scene to export. A scene plays its pages one after the other, in the order of
+`scene.getPages`, each for its own duration. A page with a duration of zero does not appear.
+A hidden page does not appear either. The pages must have the same size, otherwise the export fails.
 - `options` - The options for exporting the video, including mime type, h264 profile, level, bitrate, time offset, duration, framerate, target width and height.
 
 **Returns:** A promise that resolves with a video blob or is rejected with an error.
@@ -114,7 +163,7 @@ Manage the complete lifecycle: create, find, duplicate, destroy, and serialize b
 
 Loads blocks from a serialized string.
 The blocks are not attached by default and won't be visible until attached to a page or the scene.
-The UUID of the loaded blocks is replaced with a new one.
+The UUID of the loaded blocks is replaced with a new one. A damaged string, such as one with a missing key or a value of the wrong type, fails the load and adds no block.
 
 ```typescript
 loadFromString(content: string): Promise<DesignBlockId[]>
@@ -173,6 +222,12 @@ The source set entries that the engine makes are `buffer://` resources that only
 holds. `onDisallowedResourceScheme` gets each of them, whatever `allowedResourceSchemes` holds.
 The save leaves out each entry that the callback did not move to another address, and each
 fill keeps them.
+A page slice has no children, so the blocks that it owns on its page are saved as its
+children. A page slice on a page among `blocks` makes the update run also while
+`features/implicitUpdatesEnabled` is off.
+A block among `blocks` is saved once, as a block of its own.
+A block that a page slice owns is saved with its Percent position and size in design units.
+The copy does not follow the size of its page.
 
 ```typescript
 saveToString(blocks: DesignBlockId[], allowedResourceSchemes?: string[], onDisallowedResourceScheme?: (url: string, dataHash: string) => Promise<string>, options?: AbortOptions): Promise<string>
@@ -201,6 +256,12 @@ While a font loads, its text is laid out with another font. When the text's size
 content, blocks archived before the font arrives can differ from blocks archived after it. To
 compare two archives, first await `engine.block.forceLoadResources(blocks)`, then compare the
 `blocks.blocks` files inside them. Each archive entry stores the time of the save.
+A page slice has no children, so the blocks that it owns on its page are archived as its
+children. A page slice on a page among `blocks` makes the update run also while
+`features/implicitUpdatesEnabled` is off.
+A block among `blocks` is archived once, as a block of its own.
+A block that a page slice owns is saved with its Percent position and size in design units.
+The copy does not follow the size of its page.
 
 ```typescript
 saveToArchive(blocks: DesignBlockId[], options?: AbortOptions): Promise<Blob>
@@ -245,10 +306,38 @@ create(type: DesignBlockType): DesignBlockId
 
 **Returns:** The created block's handle.
 
+### createFromSVG()
+
+Creates editable graphic blocks from SVG markup, such as the SVG code that Adobe Illustrator copies.
+Each shape of the SVG becomes a graphic block with a vector path shape, its fill color or gradient, and its
+stroke. More than one block goes into a group. Embedded images, text, filters, masks and patterns have no shape.
+Each such part becomes a graphic block with an image fill of only that part.
+The blocks are not attached to a parent. An SVG user unit is a pixel in a scene measured in pixels. In a scene
+measured in millimeters or inches it is a point, as Adobe Illustrator writes it.
+```javascript
+const group = engine.block.createFromSVG('<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="40" fill="red"/></svg>');
+engine.block.appendChild(page, group);
+```
+
+```typescript
+createFromSVG(svg: string): DesignBlockId
+```
+
+**Parameters:**
+- `svg` - The SVG markup.
+
+**Returns:** The group, or the only block.
+
 ### duplicate()
 
 Duplicates a block and its children.
 Copies the current duration, even if initialization is pending on the original. The duplicate does not resume initialization.
+A scene cannot be duplicated, and the call throws for it.
+The duplicate of a page slice takes a copy of the blocks that the page slice owns on its
+page. The call runs an internal update for a page slice on a page, also while
+`features/implicitUpdatesEnabled` is off.
+A block that a page slice owns gets its Percent position and size in design units in the copy.
+The copy does not follow the size of its page.
 
 ```typescript
 duplicate(id: DesignBlockId, attachToParent?: boolean): DesignBlockId
@@ -263,6 +352,10 @@ duplicate(id: DesignBlockId, attachToParent?: boolean): DesignBlockId
 ### destroy()
 
 Destroys a block and its children.
+A page slice destroys the blocks that it owns on its page, without a check of their scopes,
+as a page destroys its children. This holds for the last page slice too: its page becomes an empty page without
+page slices, at the same size. To keep the content, move the page slice out with `movePageSliceOutOfPage` first.
+Destroying a page slice runs an internal update.
 
 ```typescript
 destroy(id: DesignBlockId): void
@@ -275,6 +368,7 @@ destroy(id: DesignBlockId): void
 
 Forces the loading of resources for a set of blocks and their children.
 This is useful for preloading resources. If a resource failed to load previously, it will be reloaded.
+A page slice also loads the resources of the blocks that it owns on its page. The call runs no update, so a block that no update has placed on the page slice yet is left out.
 Pass an empty array to load resources for every block currently known to the engine.
 
 ```typescript
@@ -313,19 +407,6 @@ createFill(type: FillType): DesignBlockId
 - `type` - The type of the fill object that shall be created.
 
 **Returns:** The created fill's handle.
-
-### hasContentFillMode() *(deprecated)*
-
-Checks if a block supports content fill modes.
-
-```typescript
-hasContentFillMode(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has a content fill mode.
 
 ### supportsContentFillMode()
 
@@ -553,85 +634,6 @@ unchanged then.
 
 **Returns:** A promise that resolves when the operation is complete.
 
-### hasFillColor() *(deprecated)*
-
-Checks if a block has fill color properties.
-
-```typescript
-hasFillColor(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has fill color properties.
-
-### setFillColorRGBA() *(deprecated)*
-
-Sets the fill color of a block using RGBA values.
-
-```typescript
-setFillColorRGBA(id: DesignBlockId, r: number, g: number, b: number, a?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose fill color should be set.
-- `r` - The red color component in the range of 0 to 1.
-- `g` - The green color component in the range of 0 to 1.
-- `b` - The blue color component in the range of 0 to 1.
-- `a` - The alpha color component in the range of 0 to 1.
-
-### getFillColorRGBA() *(deprecated)*
-
-Gets the fill color of a block as RGBA values.
-
-```typescript
-getFillColorRGBA(id: DesignBlockId): RGBA
-```
-
-**Parameters:**
-- `id` - The block whose fill color should be queried.
-
-**Returns:** The fill color.
-
-### setFillColorEnabled() *(deprecated)*
-
-Enables or disables the fill of a block.
-
-```typescript
-setFillColorEnabled(id: DesignBlockId, enabled: boolean): void
-```
-
-**Parameters:**
-- `id` - The block whose fill should be enabled or disabled.
-- `enabled` - If true, the fill will be enabled.
-
-### isFillColorEnabled() *(deprecated)*
-
-Checks if the fill of a block is enabled.
-
-```typescript
-isFillColorEnabled(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block whose fill state should be queried.
-
-**Returns:** True, if fill is enabled.
-
-### hasFill() *(deprecated)*
-
-Checks if a block has fill properties.
-
-```typescript
-hasFill(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has fill properties.
-
 ### supportsFill()
 
 Checks if a block supports a fill.
@@ -648,6 +650,9 @@ supportsFill(id: DesignBlockId): boolean
 ### isFillEnabled()
 
 Checks if the fill of a block is enabled.
+The flag does not depend on an attached fill block. It defaults to true, so a fresh graphic
+reports its fill as enabled while `getFill` returns an invalid block. Check that result with
+`isValid`.
 ```javascript
 engine.block.isFillEnabled(block);
 ```
@@ -713,6 +718,14 @@ setFillOverprint(id: DesignBlockId, overprint: boolean): void
 ### getFill()
 
 Gets the fill block attached to a given block.
+For example, a graphic has no fill right after `create('graphic')`, although `isFillEnabled`
+returns true.
+```javascript
+const fill = engine.block.getFill(block);
+if (engine.block.isValid(fill)) {
+  const fillType = engine.block.getType(fill);
+}
+```
 
 ```typescript
 getFill(id: DesignBlockId): DesignBlockId
@@ -728,6 +741,7 @@ Check the result with `isValid`.
 
 Sets the fill block for a given block.
 The previous fill block is not destroyed automatically.
+On a page slice, the call also enables the fill, because a new page slice has its fill disabled.
 
 ```typescript
 setFill(id: DesignBlockId, fill: DesignBlockId): void
@@ -920,22 +934,10 @@ created then.
 
 **Returns:** A promise that resolves with a list of the created caption blocks.
 
-### hasDuration() *(deprecated)*
-
-Checks if a block has a duration property.
-
-```typescript
-hasDuration(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true if the block has a duration property.
-
 ### supportsDuration()
 
 Checks if a block supports a duration property.
+False for a page slice, which always lasts as long as its page.
 
 ```typescript
 supportsDuration(id: DesignBlockId): boolean
@@ -950,6 +952,10 @@ supportsDuration(id: DesignBlockId): boolean
 
 Sets the playback duration of a block.
 The duration defines how long the block is active in the scene during playback.
+Note: A clip on a track without automatic offsets keeps its transitions. The next clip of each transition moves,
+with the clips that transitions join after it, until the overlap equals the transition duration again. The
+overlap is at most half of either clip. With `transition/overlap` disabled, or with a group clip on either
+side, the clips meet at the cut.
 
 ```typescript
 setDuration(id: DesignBlockId, duration: number): void
@@ -961,7 +967,8 @@ setDuration(id: DesignBlockId, duration: number): void
 
 ### getDuration()
 
-Gets the playback duration of a block.
+Gets the playback duration of a block. For a scene, the sum of the durations of its pages, without the pages
+hidden with `setVisible(false)`.
 
 ```typescript
 getDuration(id: DesignBlockId): number
@@ -1024,19 +1031,6 @@ removePageDurationSource(id: DesignBlockId): void
 **Parameters:**
 - `id` - The block whose duration source property should be removed.
 
-### hasTimeOffset() *(deprecated)*
-
-Checks if a block has a time offset property.
-
-```typescript
-hasTimeOffset(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has a time offset property.
-
 ### supportsTimeOffset()
 
 Checks if a block supports a time offset.
@@ -1076,19 +1070,6 @@ getTimeOffset(id: DesignBlockId): number
 
 **Returns:** The time offset of the block in seconds.
 
-### hasTrim() *(deprecated)*
-
-Checks if a block has trim properties.
-
-```typescript
-hasTrim(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has trim properties.
-
 ### supportsTrim()
 
 Checks if a block supports trim properties.
@@ -1113,7 +1094,7 @@ setTrimOffset(id: DesignBlockId, offset: number): void
 
 **Parameters:**
 - `id` - The block whose trim should be updated.
-- `offset` - The new trim offset, measured in timeline seconds (scaled by playback rate).
+- `offset` - The new trim offset, in timeline seconds. At speed 2, an offset of 1 skips 2 seconds of the source.
 
 ### getTrimOffset()
 
@@ -1132,6 +1113,7 @@ getTrimOffset(id: DesignBlockId): number
 
 Sets the trim length of a block's media content.
 This is the duration of the media clip that should be used for playback.
+Note: A clip whose duration this changes keeps its transitions, as with `setDuration`.
 
 ```typescript
 setTrimLength(id: DesignBlockId, length: number): void
@@ -1154,22 +1136,10 @@ getTrimLength(id: DesignBlockId): number
 
 **Returns:** The trim length of the object in seconds.
 
-### getTotalSceneDuration() *(deprecated)*
-
-Gets the total duration of a scene in video mode.
-
-```typescript
-getTotalSceneDuration(scene: DesignBlockId): number
-```
-
-**Parameters:**
-- `scene` - The scene whose duration is being queried.
-
-**Returns:** the total scene duration.
-
 ### setPlaying()
 
 Sets whether a block should play its content during active playback.
+Note that playing a page switches the editor to the Playback edit mode. From 0.2 s after the start, a change to the position, size, rotation, fill or text of a content block ends that mode. So does a change to the opacity, adjustments, shape or volume of any block, the page included. The editor returns to the Transform edit mode, which stops the playback. While a page plays, only a change on that page counts. A change to a block on another page, or to a block that is not in the scene, keeps the playback running.
 
 ```typescript
 setPlaying(id: DesignBlockId, enabled: boolean): void
@@ -1191,19 +1161,6 @@ isPlaying(id: DesignBlockId): boolean
 - `id` - The block to query.
 
 **Returns:** whether the block is playing during playback.
-
-### hasPlaybackTime() *(deprecated)*
-
-Checks if a block has a playback time property.
-
-```typescript
-hasPlaybackTime(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** whether the block has a playback time property.
 
 ### supportsPlaybackTime()
 
@@ -1233,6 +1190,7 @@ setPlaybackTime(id: DesignBlockId, time: number): void
 ### getPlaybackTime()
 
 Gets the current playback time of a block's content.
+During an export, this returns the time of the playhead and not the time of the exported frame.
 
 ```typescript
 getPlaybackTime(id: DesignBlockId): number
@@ -1274,19 +1232,6 @@ isSoloPlaybackEnabled(id: DesignBlockId): boolean
 - `id` - The block or fill to query.
 
 **Returns:** Whether solo playback is enabled for this block.
-
-### hasPlaybackControl() *(deprecated)*
-
-Checks if a block has playback controls.
-
-```typescript
-hasPlaybackControl(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** Whether the block has playback control.
 
 ### supportsPlaybackControl()
 
@@ -1426,6 +1371,7 @@ An audio block that `createAudioFromVideo` extracts from a video faster than 3.0
 muted too. This method still rejects a speed above 3.0x for it.
 On a group, the speed changes no duration and acts only when `group/composition` is true:
 the children then run that many times faster.
+A clip whose duration this changes keeps its transitions, as with `setDuration`.
 
 ```typescript
 setPlaybackSpeed(id: DesignBlockId, speed: number): void
@@ -1577,52 +1523,6 @@ generateAudioThumbnailSequence(id: DesignBlockId, samplesPerChunk: number, timeB
 
 **Returns:** A function to cancel the thumbnail generation request.
 
-### getVideoFillThumbnail() *(deprecated)*
-
-Generates a thumbnail for a video fill.
-
-```typescript
-getVideoFillThumbnail(id: DesignBlockId, thumbnailHeight: number): Promise<Blob>
-```
-
-**Parameters:**
-- `id` - The video fill.
-- `thumbnailHeight` - The height of a thumbnail. The width will be calculated from the video aspect ratio.
-
-**Returns:** A promise that resolves with a thumbnail encoded as a JPEG blob.
-
-### getVideoFillThumbnailAtlas() *(deprecated)*
-
-Generates a thumbnail atlas for a video fill.
-
-```typescript
-getVideoFillThumbnailAtlas(id: DesignBlockId, numberOfColumns: number, numberOfRows: number, thumbnailHeight: number): Promise<Blob>
-```
-
-**Parameters:**
-- `id` - The video fill.
-- `numberOfColumns` - The number of columns in the atlas.
-- `numberOfRows` - The number of rows in the atlas.
-- `thumbnailHeight` - The height of a single thumbnail.
-
-**Returns:** A promise that resolves with a thumbnail atlas encoded as a JPEG blob.
-
-### getPageThumbnailAtlas() *(deprecated)*
-
-Generates a thumbnail atlas for a page.
-
-```typescript
-getPageThumbnailAtlas(id: DesignBlockId, numberOfColumns: number, numberOfRows: number, thumbnailHeight: number): Promise<Blob>
-```
-
-**Parameters:**
-- `id` - The page.
-- `numberOfColumns` - The number of columns in the atlas.
-- `numberOfRows` - The number of rows in the atlas.
-- `thumbnailHeight` - The height of a single thumbnail.
-
-**Returns:** A promise that resolves with a thumbnail atlas encoded as a JPEG blob.
-
 ### setNativePixelBuffer()
 
 Updates a pixel stream fill block with a new pixel buffer.
@@ -1762,6 +1662,8 @@ Gets the current state of a block.
 A block's state is determined by its own state and that of its shape, fill, and effects.
 A block whose CMYK or spot color needs the document CMYK profile is pending while that
 profile loads.
+With soft proofing on, a block that draws inside a page is pending while the proof profile
+loads. It reports a `SoftProof` error only when it has no other error or pending state.
 Runs an engine update for a resource that nothing asked for yet,
 while the scene has a change to lay out.
 A font set just before this call is then reported as pending.
@@ -1853,6 +1755,7 @@ select(id: DesignBlockId): void
 ### setSelected()
 
 Sets the selection state of a block.
+A page slice and its page are never selected together: selecting one deselects the other.
 
 ```typescript
 setSelected(id: DesignBlockId, selected: boolean): void
@@ -1903,6 +1806,8 @@ isVisible(id: DesignBlockId): boolean
 ### setVisible()
 
 Sets the visibility state of a block.
+A hidden page slice hides the blocks that it owns, as a hidden parent hides its children. They show in no
+canvas and no export, and take no hit. It keeps its room in the page. The blocks keep their own visibility.
 
 ```typescript
 setVisible(id: DesignBlockId, visible: boolean): void
@@ -1969,8 +1874,10 @@ Create and manage groups of blocks.
 ### isGroupable()
 
 Checks if a set of blocks can be grouped.
-A scene block or a page cannot be grouped, and neither can a block together
+A scene block, a page or a page slice cannot be grouped, and neither can a block together
 with a group it sits inside, which would make that group a child of itself.
+A caption or a caption track cannot be grouped either, because a caption plays from the
+caption track of its page.
 Blocks that already belong to a group can be grouped again, which is how a
 group inside a group is made.
 ```javascript
@@ -1992,6 +1899,10 @@ Groups multiple blocks into a new group block.
 The blocks keep their times on the timeline.
 The group spans from the earliest start to the latest end of the blocks, and their time offsets
 become relative to the group.
+Grouping does not change the children's positions: they stay relative to the group's parent,
+not to the group. In nested groups, they stay relative to the first ancestor that is not a
+group. The engine computes the group's position and size from the children's combined bounds.
+Moving the group moves all of its children by the same offset.
 ```javascript
 if (engine.block.isGroupable([block1, block2])) {
   const group = engine.block.group([block1, block2]);
@@ -2011,6 +1922,8 @@ group(ids: DesignBlockId[]): DesignBlockId
 
 Ungroups a group block, releasing its children.
 The children keep their times on the timeline, so their time offsets become relative to their new parent.
+A caption goes onto the first caption track of the page instead, at its time, and takes the
+track's animations. Ungrouping creates the caption track when the page has none.
 ```javascript
 engine.block.ungroup(group);
 ```
@@ -2076,6 +1989,7 @@ isCombinable(ids: DesignBlockId[]): boolean
 Performs a boolean operation on a set of blocks.
 All blocks must be combinable. See `isCombinable`.
 The parent, fill and sort order of the new block is that of the prioritized block.
+When the prioritized block has no fill, the new block has none.
 
 ```typescript
 combine(ids: DesignBlockId[], op: BooleanOperation): DesignBlockId
@@ -2107,6 +2021,8 @@ findByName(name: string): DesignBlockId[]
 ### findByType()
 
 Finds all blocks with a given type.
+For the stack type, the result holds the scene when the scene arranges its pages. Do not destroy that
+block: it is the scene.
 
 ```typescript
 findByType(type: ObjectType): DesignBlockId[]
@@ -2207,19 +2123,6 @@ createShape(type: ShapeType): DesignBlockId
 
 **Returns:** The created shape's handle.
 
-### hasShape() *(deprecated)*
-
-Checks if a block has a shape property.
-
-```typescript
-hasShape(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has a shape property, an error otherwise.
-
 ### supportsShape()
 
 Checks if a block supports having a shape.
@@ -2236,6 +2139,7 @@ supportsShape(id: DesignBlockId): boolean
 ### getShape()
 
 Gets the shape block attached to a given block.
+For example, a graphic has no shape right after `create('graphic')`.
 
 ```typescript
 getShape(id: DesignBlockId): DesignBlockId
@@ -2252,6 +2156,7 @@ Check the result with `isValid`.
 Sets the shape block for a given block.
 Note that the previous shape block is not destroyed automatically.
 The new shape is disconnected from its previously attached block.
+A page with page slices takes only a rect shape.
 
 ```typescript
 setShape(id: DesignBlockId, shape: DesignBlockId): void
@@ -2264,7 +2169,6 @@ setShape(id: DesignBlockId, shape: DesignBlockId): void
 ### getSubshapes()
 
 Gets the subshapes of a compound shape, in the order in which they combine.
-Experimental: this API may change in a minor release.
 ```javascript
 const compound = engine.block.createShape('compound');
 engine.block.appendSubshape(compound, engine.block.createShape('rect'));
@@ -2282,7 +2186,7 @@ getSubshapes(id: DesignBlockId): DesignBlockId[]
 
 ### insertSubshape()
 
-Inserts a subshape into a compound shape at a given index. Experimental: this API may change in a minor release.
+Inserts a subshape into a compound shape at a given index.
 The subshape at index 0 is the base, and each later subshape combines with the result so far by
 `shape/compound/mode`. The placement properties of the subshape (`shape/position/x`, `shape/width`,
 `shape/rotation`, ...) place it in the compound's coordinate space.
@@ -2300,7 +2204,7 @@ insertSubshape(id: DesignBlockId, subshapeId: DesignBlockId, index: number): voi
 
 ### appendSubshape()
 
-Appends a subshape to a compound shape. Experimental: this API may change in a minor release.
+Appends a subshape to a compound shape.
 A shape has one owner, so the subshape is detached from its previous block or compound shape.
 Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes.
 
@@ -2315,7 +2219,6 @@ appendSubshape(id: DesignBlockId, subshapeId: DesignBlockId): void
 ### removeSubshape()
 
 Removes the subshape at a given index from a compound shape. The subshape is not destroyed.
-Experimental: this API may change in a minor release.
 
 ```typescript
 removeSubshape(id: DesignBlockId, index: number): void
@@ -2324,6 +2227,213 @@ removeSubshape(id: DesignBlockId, index: number): void
 **Parameters:**
 - `id` - The compound shape block.
 - `index` - The index of the subshape to remove.
+
+## Block Components
+
+### convertToComponent()
+
+Makes a block a main component, so that instances can follow it.
+
+```typescript
+convertToComponent(block: DesignBlockId): void
+```
+
+**Parameters:**
+- `block` - The block.
+
+### isComponent()
+
+Checks whether a block is a main component.
+
+```typescript
+isComponent(block: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `block` - The block.
+
+**Returns:** The result.
+
+### createInstance()
+
+Creates an instance of a main component. Attach it with `appendChild`. An instance follows every property that it does not override. Its children cannot be added, reordered or destroyed. Hide a child with `setVisible`.
+
+```typescript
+createInstance(component: DesignBlockId): DesignBlockId
+```
+
+**Parameters:**
+- `component` - The component.
+
+**Returns:** The result.
+
+### isInstance()
+
+Checks whether a block is the top block of an instance.
+
+```typescript
+isInstance(block: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `block` - The block.
+
+**Returns:** The result.
+
+### getMainComponent()
+
+Gets the main component of an instance.
+
+```typescript
+getMainComponent(instance: DesignBlockId): DesignBlockId
+```
+
+**Parameters:**
+- `instance` - The instance.
+
+**Returns:** The result.
+
+### detachInstance()
+
+Turns an instance into plain blocks that no longer follow the main component.
+
+```typescript
+detachInstance(instance: DesignBlockId): void
+```
+
+**Parameters:**
+- `instance` - The instance.
+
+### resetInstance()
+
+Removes all overrides of an instance.
+
+```typescript
+resetInstance(instance: DesignBlockId): void
+```
+
+**Parameters:**
+- `instance` - The instance.
+
+### combineAsVariants()
+
+Moves main components into a new container as variants of one component.
+
+```typescript
+combineAsVariants(components: DesignBlockId[]): DesignBlockId
+```
+
+**Parameters:**
+- `components` - The components.
+
+**Returns:** The result.
+
+### setVariantProperty()
+
+Sets the value of a variant property on a main component.
+
+```typescript
+setVariantProperty(component: DesignBlockId, name: string, value: string): void
+```
+
+**Parameters:**
+- `component` - The component.
+- `name` - The name.
+- `value` - The value.
+
+### getVariantProperty()
+
+Gets the value of a variant property of a main component.
+
+```typescript
+getVariantProperty(component: DesignBlockId, name: string): string
+```
+
+**Parameters:**
+- `component` - The component.
+- `name` - The name.
+
+**Returns:** The result.
+
+### findAllVariantProperties()
+
+Gets the sorted names of the variant properties of a main component.
+
+```typescript
+findAllVariantProperties(component: DesignBlockId): string[]
+```
+
+**Parameters:**
+- `component` - The component.
+
+**Returns:** The result.
+
+### setInstanceVariant()
+
+Switches an instance to the variant with this property value. Overrides stay, and layers match by name.
+
+```typescript
+setInstanceVariant(instance: DesignBlockId, name: string, value: string): void
+```
+
+**Parameters:**
+- `instance` - The instance.
+- `name` - The name.
+- `value` - The value.
+
+### addComponentProperty()
+
+Publishes a property of a block inside a main component under a name that instances can set.
+
+```typescript
+addComponentProperty(component: DesignBlockId, name: string, target: DesignBlockId, property: string): void
+```
+
+**Parameters:**
+- `component` - The component.
+- `name` - The name.
+- `target` - The target.
+- `property` - The property.
+
+### findAllComponentProperties()
+
+Gets the sorted names of the published properties of a main component.
+
+```typescript
+findAllComponentProperties(component: DesignBlockId): string[]
+```
+
+**Parameters:**
+- `component` - The component.
+
+**Returns:** The result.
+
+### setComponentProperty()
+
+Sets a published property on an instance as text. This is an override.
+
+```typescript
+setComponentProperty(instance: DesignBlockId, name: string, value: string): void
+```
+
+**Parameters:**
+- `instance` - The instance.
+- `name` - The name.
+- `value` - The value.
+
+### getComponentProperty()
+
+Gets a published property of an instance as text.
+
+```typescript
+getComponentProperty(instance: DesignBlockId, name: string): string
+```
+
+**Parameters:**
+- `instance` - The instance.
+- `name` - The name.
+
+**Returns:** The result.
 
 ## Block Appearance
 
@@ -2346,6 +2456,7 @@ isClipped(id: DesignBlockId): boolean
 ### setClipped()
 
 Sets the clipped state of a block.
+A clipped page slice cuts the blocks that it owns at its folds and at the page edges with their bleed. A click beside the page still selects them.
 
 ```typescript
 setClipped(id: DesignBlockId, clipped: boolean): void
@@ -2357,7 +2468,7 @@ setClipped(id: DesignBlockId, clipped: boolean): void
 
 ### getMatte()
 
-Gets the matte of a block. Experimental: this API may change in a minor release.
+Gets the matte of a block.
 
 ```typescript
 getMatte(id: DesignBlockId): BlockMatte | null
@@ -2371,7 +2482,6 @@ getMatte(id: DesignBlockId): BlockMatte | null
 ### setMatte()
 
 Masks a block with the rendered alpha or luminance of another block, like a track matte.
-Experimental: this API may change in a minor release.
 A block used as a matte source is not drawn on its own. If the source draws nothing, for example because it is
 hidden or outside its time range, an `'Alpha'` or `'Luma'` matte hides the block and an inverted matte shows it
 whole. SVG export does not apply mattes, so a matted block exports whole.
@@ -2418,6 +2528,15 @@ getFlipVertical(id: DesignBlockId): boolean
 ### setFlipHorizontal()
 
 Sets the horizontal flip state of a block.
+With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that
+it reads has no layout yet, as right after an undo.
+It reads the block, the members of a group and each transform parent. That update also lays out
+every other pending change.
+The block is mirrored around the center of its frame, so its rendered bounds do not move. For a
+block without rotation, anchor or skew, turning the flip on moves `getPositionX` and
+`getFrameX` to the visual right edge (x + width). Turning it off moves them back.
+`getGlobalBoundingBoxX` stays the
+same.
 
 ```typescript
 setFlipHorizontal(id: DesignBlockId, flip: boolean): void
@@ -2430,6 +2549,15 @@ setFlipHorizontal(id: DesignBlockId, flip: boolean): void
 ### setFlipVertical()
 
 Sets the vertical flip state of a block.
+With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that
+it reads has no layout yet, as right after an undo.
+It reads the block, the members of a group and each transform parent. That update also lays out
+every other pending change.
+The block is mirrored around the center of its frame, so its rendered bounds do not move. For a
+block without rotation, anchor or skew, turning the flip on moves `getPositionY` and
+`getFrameY` to the visual bottom edge (y + height). Turning it off moves them back.
+`getGlobalBoundingBoxY` stays the
+same.
 
 ```typescript
 setFlipVertical(id: DesignBlockId, flip: boolean): void
@@ -2438,19 +2566,6 @@ setFlipVertical(id: DesignBlockId, flip: boolean): void
 **Parameters:**
 - `id` - The block to update.
 - `flip` - If the flip should be enabled.
-
-### hasOpacity() *(deprecated)*
-
-Checks if a block has an opacity property.
-
-```typescript
-hasOpacity(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has an opacity.
 
 ### supportsOpacity()
 
@@ -2490,22 +2605,10 @@ getOpacity(id: DesignBlockId): number
 
 **Returns:** The opacity value.
 
-### hasBlendMode() *(deprecated)*
-
-Checks if a block has a blend mode property.
-
-```typescript
-hasBlendMode(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has a blend mode.
-
 ### supportsBlendMode()
 
 Checks if a block supports blend modes.
+False for a page slice, which draws no blend mode.
 
 ```typescript
 supportsBlendMode(id: DesignBlockId): boolean
@@ -2541,19 +2644,6 @@ getBlendMode(id: DesignBlockId): BlendMode
 
 **Returns:** The blend mode.
 
-### hasBackgroundColor() *(deprecated)*
-
-Checks if a block has background color properties.
-
-```typescript
-hasBackgroundColor(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has background color properties.
-
 ### supportsBackgroundColor()
 
 Checks if a block supports a background color.
@@ -2566,34 +2656,6 @@ supportsBackgroundColor(id: DesignBlockId): boolean
 - `id` - The block to query.
 
 **Returns:** true, if the block supports a background color.
-
-### setBackgroundColorRGBA() *(deprecated)*
-
-Sets the background color of a block using RGBA values.
-
-```typescript
-setBackgroundColorRGBA(id: DesignBlockId, r: number, g: number, b: number, a?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose background color should be set.
-- `r` - The red color component in the range of 0 to 1.
-- `g` - The green color component in the range of 0 to 1.
-- `b` - The blue color component in the range of 0 to 1.
-- `a` - The alpha color component in the range of 0 to 1.
-
-### getBackgroundColorRGBA() *(deprecated)*
-
-Gets the background color of a block as RGBA values.
-
-```typescript
-getBackgroundColorRGBA(id: DesignBlockId): RGBA
-```
-
-**Parameters:**
-- `id` - The block whose background color should be queried.
-
-**Returns:** The background color.
 
 ### setBackgroundColorEnabled()
 
@@ -2632,7 +2694,7 @@ Create and manage animations and timeline-based effects.
 
 ### setKeyframes()
 
-Replaces the keyframes of a block property. Experimental: this API may change in a minor release.
+Replaces the keyframes of a block property.
 Keyframe times are normalized over the block's duration, from 0 to 1, and the keyframes are sorted by time. A
 fill, shape or effect uses the duration of the block it is attached to. Setting the static value of the
 property does not change its keyframes.
@@ -2673,7 +2735,7 @@ property. Defaults to `'Absolute'`.
 
 ### getKeyframes()
 
-Gets the keyframes of a block property, sorted by time. Experimental: this API may change in a minor release.
+Gets the keyframes of a block property, sorted by time.
 
 ```typescript
 getKeyframes(id: DesignBlockId, property: string): Keyframe[]
@@ -2683,11 +2745,11 @@ getKeyframes(id: DesignBlockId, property: string): Keyframe[]
 - `id` - The block that owns the property.
 - `property` - The animatable property path.
 
-**Returns:** The keyframes, or an empty array when the property has none.
+**Returns:** The keyframes, or an empty array for an animatable property without keyframes.
 
 ### getKeyframeMode()
 
-Gets the mode of the keyframes of a block property. Experimental: this API may change in a minor release.
+Gets the mode of the keyframes of a block property.
 
 ```typescript
 getKeyframeMode(id: DesignBlockId, property: string): TrackMode
@@ -2697,13 +2759,36 @@ getKeyframeMode(id: DesignBlockId, property: string): TrackMode
 - `id` - The block that owns the property.
 - `property` - The animatable property path.
 
-**Returns:** The mode. Throws when the property has no keyframes.
+**Returns:** The mode.
+
+### getAnimatedValue()
+
+Gets the value that the keyframes give a block property at a time.
+A Relative track adds the static value. A property without keyframes gives its static value.
+A `position/x` or `position/y` track overrides that axis of a `position` track. Without its
+own track, `position/x` gives the x of the `position` track. An angle is in the angle unit of
+the scene. Animation presets and the turn along a motion path are not included. A `rotation`
+track also moves a block without an anchor, so that it turns around its frame centre. That
+move is not included either.
+
+```typescript
+getAnimatedValue(id: DesignBlockId, property: string, time: number): KeyframeValue
+```
+
+**Parameters:**
+- `id` - The block that owns the property.
+- `property` - The animatable property path, e.g. `opacity`.
+- `time` - The normalized time over the block's `playback/duration`, from 0 to 1, as
+keyframe times are.
+
+**Returns:** The value, of the property's kind.
 
 ### removeKeyframes()
 
 Removes the keyframes of a block property, so its static value applies again.
-Experimental: this API may change in a minor release.
-Removing from a property without keyframes does nothing.
+Removing from an animatable property without keyframes does nothing. Throws
+`BLOCK.KEYFRAMES_PROPERTY_NOT_ANIMATABLE` when the property has no keyframes and
+`isPropertyAnimatable` returns false.
 Required scope: the scopes that `setKeyframes` needs for the removed track.
 
 ```typescript
@@ -2716,7 +2801,7 @@ removeKeyframes(id: DesignBlockId, property: string): void
 
 ### getAnimatedProperties()
 
-Lists the properties of a block that have keyframes. Experimental: this API may change in a minor release.
+Lists the properties of a block that have keyframes.
 
 ```typescript
 getAnimatedProperties(id: DesignBlockId): string[]
@@ -2729,7 +2814,7 @@ getAnimatedProperties(id: DesignBlockId): string[]
 
 ### isPropertyAnimatable()
 
-Checks whether a property of a block can have keyframes. Experimental: this API may change in a minor release.
+Checks whether a property of a block can have keyframes.
 
 ```typescript
 isPropertyAnimatable(id: DesignBlockId, property: string): boolean
@@ -2899,6 +2984,10 @@ setTransformLocked(id: DesignBlockId, locked: boolean): void
 ### getPositionX()
 
 Gets the X position of a block.
+The position is the block's local origin: the top-left corner of its untransformed frame, in
+the coordinate space of its parent. Rotation turns the block, and a flip mirrors it, around the
+center of its frame. So for a rotated or flipped block, the position is not the visual left
+edge. Use `getGlobalBoundingBoxX` for the axis-aligned visual bounds.
 
 ```typescript
 getPositionX(id: DesignBlockId): number
@@ -2912,6 +3001,7 @@ getPositionX(id: DesignBlockId): number
 ### getPositionXMode()
 
 Gets the mode for the block's X position.
+On a page slice the mode is 'Auto', because the page sets its position.
 
 ```typescript
 getPositionXMode(id: DesignBlockId): PositionXMode
@@ -2925,6 +3015,10 @@ getPositionXMode(id: DesignBlockId): PositionXMode
 ### getPositionY()
 
 Gets the Y position of a block.
+The position is the block's local origin: the top-left corner of its untransformed frame, in
+the coordinate space of its parent. Rotation turns the block, and a flip mirrors it, around the
+center of its frame. So for a rotated or flipped block, the position is not the visual top
+edge. Use `getGlobalBoundingBoxY` for the axis-aligned visual bounds.
 
 ```typescript
 getPositionY(id: DesignBlockId): number
@@ -2938,6 +3032,7 @@ getPositionY(id: DesignBlockId): number
 ### getPositionYMode()
 
 Gets the mode for the block's Y position.
+On a page slice the mode is 'Auto', because the page sets its position.
 
 ```typescript
 getPositionYMode(id: DesignBlockId): PositionYMode
@@ -2952,6 +3047,7 @@ getPositionYMode(id: DesignBlockId): PositionYMode
 
 Sets the X position of a block.
 The position refers to the block's local space, relative to its parent with the origin at the top left.
+A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one.
 ```javascript
 engine.block.setPositionX(block, 0.25);
 ```
@@ -2970,6 +3066,7 @@ Sets the mode for the block's X position.
 ```javascript
 engine.block.setPositionXMode(block, 'Percent');
 ```
+A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one.
 
 ```typescript
 setPositionXMode(id: DesignBlockId, mode: PositionXMode): void
@@ -2983,6 +3080,7 @@ setPositionXMode(id: DesignBlockId, mode: PositionXMode): void
 
 Sets the Y position of a block.
 The position refers to the block's local space, relative to its parent with the origin at the top left.
+A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one.
 ```javascript
 engine.block.setPositionY(block, 0.25);
 ```
@@ -3001,6 +3099,7 @@ Sets the mode for the block's Y position.
 ```javascript
 engine.block.setPositionYMode(block, 'Absolute');
 ```
+A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one.
 
 ```typescript
 setPositionYMode(id: DesignBlockId, mode: PositionYMode): void
@@ -3014,6 +3113,7 @@ setPositionYMode(id: DesignBlockId, mode: PositionYMode): void
 
 Sets a block to always be rendered on top of its siblings.
 If true, this block's sorting order is automatically adjusted to be higher than all other siblings without this property.
+A page slice fails with `BLOCK.TYPE_CANNOT_BE_ARRANGED`, because its place in the page is its reading order.
 
 ```typescript
 setAlwaysOnTop(id: DesignBlockId, enabled: boolean): void
@@ -3027,6 +3127,7 @@ setAlwaysOnTop(id: DesignBlockId, enabled: boolean): void
 
 Sets a block to always be rendered below its siblings.
 If true, this block's sorting order is automatically adjusted to be lower than all other siblings without this property.
+A page slice fails with `BLOCK.TYPE_CANNOT_BE_ARRANGED`, because its place in the page is its reading order.
 
 ```typescript
 setAlwaysOnBottom(id: DesignBlockId, enabled: boolean): void
@@ -3129,6 +3230,10 @@ getRotation(id: DesignBlockId): number
 Sets the rotation of a block in the scene's angle unit (radians by default).
 Rotation is applied around the block's center. The angle unit is configured via
 `engine.scene.setAngleUnit()`.
+With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that
+it reads has no layout yet, as right after an undo.
+It reads the block, the members of a group and each transform parent. That update also lays out
+every other pending change.
 
 ```typescript
 setRotation(id: DesignBlockId, radians: number): void
@@ -3206,6 +3311,10 @@ getHeightMode(id: DesignBlockId): HeightMode
 
 Sets the width of a block in the current width mode.
 If the crop is maintained, the crop values will be automatically adjusted.
+A new width of a page with page slices goes to its last page slice on a horizontal axis.
+On a vertical axis, it goes to every page slice. A page slice that this shrinks stops at 25 pixels at the DPI of
+the scene. So the page can end up wider than asked. A width of 0 or less on a page slice fails with
+`BLOCK.PAGE_SLICE_SIZE_INVALID`.
 ```javascript
 engine.block.setWidth(block, 2.5, true);
 ```
@@ -3229,6 +3338,7 @@ in the new mode. `setSize` changes the mode and the size in one call.
 ```javascript
 engine.block.setWidthMode(block, 'Percent');
 ```
+A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`.
 
 ```typescript
 setWidthMode(id: DesignBlockId, mode: WidthMode): void
@@ -3242,6 +3352,10 @@ setWidthMode(id: DesignBlockId, mode: WidthMode): void
 
 Sets the height of a block in the current height mode.
 If the crop is maintained, the crop values will be automatically adjusted.
+A new height of a page with page slices goes to every page slice on a horizontal axis.
+On a vertical axis, it goes to the last page slice. A page slice that this shrinks stops at 25 pixels at the
+DPI of the scene. So the page can end up higher than asked. A height of 0 or less on a page slice fails
+with `BLOCK.PAGE_SLICE_SIZE_INVALID`.
 ```javascript
 engine.block.setHeight(block, 0.5);
 engine.block.setHeight(block, 2.5, true);
@@ -3266,6 +3380,7 @@ in the new mode. `setSize` changes the mode and the size in one call.
 ```javascript
 engine.block.setHeightMode(block, 'Percent');
 ```
+A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`.
 
 ```typescript
 setHeightMode(id: DesignBlockId, mode: HeightMode): void
@@ -3345,7 +3460,7 @@ getFrameHeight(id: DesignBlockId): number
 
 ### hasTransformAnchor()
 
-Checks whether a block has its own anchor. Experimental: this API may change in a minor release.
+Checks whether a block has its own anchor.
 Setting `transform/anchor/x` or `transform/anchor/y`, even to 0, or giving one of them keyframes, gives a block
 an anchor. A `rotation` keyframe track turns a block with an anchor around the anchor, and a block without one
 around its frame center, as `setRotation` does.
@@ -3510,6 +3625,7 @@ distributeVertically(ids: DesignBlockId[]): void
 Resizes and positions a block to fill its parent.
 The crop values of the block are reset if it can be cropped. A block that follows a transform parent stops
 following it.
+A page slice takes its position from its page, so the call fails with `BLOCK.POSITION_PARENT_CONTROLLED` on one.
 
 ```typescript
 fillParent(id: DesignBlockId): void
@@ -3523,10 +3639,17 @@ fillParent(id: DesignBlockId): void
 Resizes blocks while adjusting content to fit.
 The content of the blocks is automatically adjusted to fit the new dimensions.
 Full-page blocks are resized to remain as full-page afterwards, while the blocks that are not full-page get resized as a group to the same scale factor and centered.
+A page with page slices scales every page slice by one factor.
+Full-page blocks still fill the spread. Other content uses one scale factor.
+It stays relative to the center of its page slice.
+A page slice returns an error, because its page sets its size.
+A spread with a zero width or height returns an error.
 ```javascript
 const pages = engine.scene.getPages();
 engine.block.resizeContentAware(pages, width: 100.0, 100.0);
 ```
+Performs an internal update to lay out pending changes, also with the setting `features/implicitUpdatesEnabled`
+off. A block with no layout on a page that single page mode hides returns an error.
 
 ```typescript
 resizeContentAware(ids: DesignBlockId[], width: number, height: number): void
@@ -3542,10 +3665,16 @@ resizeContentAware(ids: DesignBlockId[], width: number, height: number): void
 Scales a block and its children proportionally.
 This updates the position, size and style properties (e.g. stroke width) of
 the block and its children around the specified anchor point.
+With the setting `features/implicitUpdatesEnabled` off, the call updates only when a block that
+it reads has no layout yet, as right after an undo.
+It reads the block, every child of it and each transform parent. That update also lays out
+every other pending change.
 ```javascript
 // Scale a block to double its size, anchored at the center.
 engine.block.scale(block, 2.0, 0.5, 0.5);
 ```
+Scaling a page slice changes its size, and the page places its page slices again.
+A scale of 0 or less on a page slice fails with `BLOCK.PAGE_SLICE_SIZE_INVALID`.
 
 ```typescript
 scale(id: DesignBlockId, scale: number, anchorX?: number, anchorY?: number): void
@@ -3566,6 +3695,7 @@ Convenient high-level functions that combine multiple operations into single, ea
 Update a block's size.
 The size of a group is always Absolute: a group takes `width` and `height` in design units and no `sizeMode`.
 A group keeps its aspect ratio, so `height` decides its size.
+A width or a height of 0 or less on a page slice fails with `BLOCK.PAGE_SLICE_SIZE_INVALID`.
 
 ```typescript
 setSize(id: DesignBlockId, width: number, height: number, options?: {
@@ -3719,7 +3849,6 @@ getParent(id: DesignBlockId): DesignBlockId | null
 ### setTransformParent()
 
 Makes a block follow the transform of another block, or stops it from following one.
-Experimental: this API may change in a minor release.
 The block's position, rotation and scale are then read in the local space of the transform parent, so the block
 moves with it. The block does not keep its place on screen when the link changes. Only the transform is
 inherited: opacity, visibility and the stacking order still come from the block's own parent. A hidden block can
@@ -3737,7 +3866,7 @@ setTransformParent(id: DesignBlockId, parent: DesignBlockId | null): void
 
 ### getTransformParent()
 
-Gets the block whose transform a block follows. Experimental: this API may change in a minor release.
+Gets the block whose transform a block follows.
 
 ```typescript
 getTransformParent(id: DesignBlockId): DesignBlockId | null
@@ -3748,10 +3877,44 @@ getTransformParent(id: DesignBlockId): DesignBlockId | null
 
 **Returns:** The transform parent, or `null` if the block follows none.
 
+### getOwningPageSlice()
+
+Gets the page slice that owns a block on its page.
+A page slice has no children, so the block is a child of the page, or of a group on the page. The page slice
+under the center of the block owns it. On a fold, the earlier page slice owns it. A block outside the page
+belongs to the nearest page slice. A block in a group belongs where its group does.
+The call runs an internal update when the block has no frame. It does the same when the page has page slices
+that no update laid out yet.
+
+```typescript
+getOwningPageSlice(id: DesignBlockId): DesignBlockId | null
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** The page slice, or `null` for a block that is not on a page with page slices. A page and a page slice
+also give `null`.
+
+### getPageSlices()
+
+Gets the page slices of a page, in reading order.
+The list holds hidden page slices too. It is the order of the page slices among the children of the page.
+
+```typescript
+getPageSlices(id: DesignBlockId): DesignBlockId[]
+```
+
+**Parameters:**
+- `id` - The page to query.
+
+**Returns:** The page slices. An empty list for a block without page slices.
+
 ### getChildren()
 
 Gets all direct children of a block.
 Children are sorted in their rendering order: Last child is rendered in front of other children.
+For a scene that arranges its pages, the list leaves out the camera.
 
 ```typescript
 getChildren(id: DesignBlockId): DesignBlockId[]
@@ -3765,8 +3928,13 @@ getChildren(id: DesignBlockId): DesignBlockId[]
 ### insertChild()
 
 Inserts a child block at a specific index.
-A move fails when it would put a block with a matte inside its matte source, or on another page than its
-source.
+An audio, text or caption block takes no children, so a call with such a parent fails.
+A move fails when it would put a block with a matte inside its matte source, or on another page than its source.
+A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no
+page slice.
+A page slice that a block load or `duplicate` returns holds the blocks that it was saved
+with. The next update moves them onto the page, into the new place of the page slice.
+For a scene that arranges its pages, the index counts the children without the camera.
 
 ```typescript
 insertChild(parent: DesignBlockId, child: DesignBlockId, index: number): void
@@ -3780,8 +3948,12 @@ insertChild(parent: DesignBlockId, child: DesignBlockId, index: number): void
 ### appendChild()
 
 Appends a child block to a parent.
-A move fails when it would put a block with a matte inside its matte source, or on another page than its
-source.
+An audio, text or caption block takes no children, so a call with such a parent fails.
+A move fails when it would put a block with a matte inside its matte source, or on another page than its source.
+A page slice takes no children, and it can only be a child of a page with a rect shape. A video scene takes no
+page slice.
+A page slice that a block load or `duplicate` returns holds the blocks that it was saved
+with. The next update moves them onto the page, into the new place of the page slice.
 
 ```typescript
 appendChild(parent: DesignBlockId, child: DesignBlockId): void
@@ -3798,7 +3970,6 @@ Get and set any block property by name using low-level, generic accessors.
 ### setVariableBinding()
 
 Binds a block property to a color, number, image or typeface variable.
-Experimental: this API may change in a minor release.
 The property takes the variable's current value at once, and follows every later
 change of the variable. Color variables bind to color properties and number variables to
 float properties. Image variables bind only to `fill/image/imageFileURI`,
@@ -3827,7 +3998,7 @@ setVariableBinding(id: DesignBlockId, property: string, key: string): void
 
 ### getVariableBinding()
 
-Gets the variable that a block property is bound to. Experimental: this API may change in a minor release.
+Gets the variable that a block property is bound to.
 
 ```typescript
 getVariableBinding(id: DesignBlockId, property: string): string | null
@@ -3842,7 +4013,6 @@ getVariableBinding(id: DesignBlockId, property: string): string | null
 ### removeVariableBinding()
 
 Removes the variable binding of a block property. The property keeps its current value.
-Experimental: this API may change in a minor release.
 
 ```typescript
 removeVariableBinding(id: DesignBlockId, property: string): void
@@ -3854,7 +4024,7 @@ removeVariableBinding(id: DesignBlockId, property: string): void
 
 ### findAllVariableBindings()
 
-Gets the properties of a block that are bound to a variable. Experimental: this API may change in a minor release.
+Gets the properties of a block that are bound to a variable.
 
 ```typescript
 findAllVariableBindings(id: DesignBlockId): string[]
@@ -4067,7 +4237,7 @@ getDouble(id: DesignBlockId, property: DoublePropertyName): number
 
 Sets a vec2 property on a block. `position` sets `position/x` and `position/y`, and `shape/position` sets
 `shape/position/x` and `shape/position/y`, with the checks of those properties. Either both components change
-or neither does. Experimental: this API may change in a minor release.
+or neither does.
 ```javascript
 engine.block.setVec2(block, 'position', { x: 100, y: 50 });
 ```
@@ -4083,7 +4253,7 @@ setVec2(id: DesignBlockId, property: Vec2PropertyName, value: Vec2): void
 
 ### getVec2()
 
-Gets a vec2 property from a block. Experimental: this API may change in a minor release.
+Gets a vec2 property from a block.
 ```javascript
 const { x, y } = engine.block.getVec2(block, 'position');
 ```
@@ -4167,81 +4337,10 @@ getColor(id: DesignBlockId, property: ColorPropertyName): Color
 
 **Returns:** The value of the property.
 
-### setColorRGBA() *(deprecated)*
-
-Sets a color property on a block using RGBA values.
-
-```typescript
-setColorRGBA(id: DesignBlockId, property: string, r: number, g: number, b: number, a?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose property should be set.
-- `property` - The name of the property to set.
-- `r` - The red color component in the range of 0 to 1.
-- `g` - The green color component in the range of 0 to 1.
-- `b` - The blue color component in the range of 0 to 1.
-- `a` - The alpha color component in the range of 0 to 1. Defaults to 1.
-
-### getColorRGBA() *(deprecated)*
-
-Gets a color property from a block as RGBA values.
-
-```typescript
-getColorRGBA(id: DesignBlockId, property: string): RGBA
-```
-
-**Parameters:**
-- `id` - The block whose property should be queried.
-- `property` - The name of the property to query.
-
-**Returns:** A tuple of channels red, green, blue and alpha in the range of 0 to 1.
-
-### setColorSpot() *(deprecated)*
-
-Sets a spot color property on a block.
-
-```typescript
-setColorSpot(id: DesignBlockId, property: string, name: string, tint?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose property should be set.
-- `property` - The name of the property to set.
-- `name` - The name of the spot color.
-- `tint` - The tint factor in the range of 0 to 1. Defaults to 1.
-
-### getColorSpotName() *(deprecated)*
-
-Gets the spot color name from a color property.
-
-```typescript
-getColorSpotName(id: DesignBlockId, property: string): string
-```
-
-**Parameters:**
-- `id` - The block whose property should be queried.
-- `property` - The name of the property to query.
-
-**Returns:** The name of the spot color.
-
-### getColorSpotTint() *(deprecated)*
-
-Gets the spot color tint from a color property.
-
-```typescript
-getColorSpotTint(id: DesignBlockId, property: string): number
-```
-
-**Parameters:**
-- `id` - The block whose property should be queried.
-- `property` - The name of the property to query.
-
-**Returns:** The tint factor of the spot color.
-
 ### setEnum<T extends keyof BlockEnumType>()
 
 Sets an enum property on a block.
+Setting `scene/mode` to `Video` fails with `BLOCK.PAGE_SLICE_IN_VIDEO_SCENE` when the scene holds a page slice.
 ```javascript
 engine.block.setEnum(text, 'text/horizontalAlignment', 'Center');
 engine.block.setEnum(text, 'text/verticalAlignment', 'Center');
@@ -4281,6 +4380,7 @@ Check block capabilities like alignability or distributability.
 ### isAlignable()
 
 Checks if a set of blocks can be aligned.
+A page slice cannot be aligned, so the result is false when `ids` holds one.
 
 ```typescript
 isAlignable(ids: DesignBlockId[]): boolean
@@ -4294,6 +4394,7 @@ isAlignable(ids: DesignBlockId[]): boolean
 ### isDistributable()
 
 Checks if a set of blocks can be distributed.
+A page slice cannot be distributed, so the result is false when `ids` holds one.
 
 ```typescript
 isDistributable(ids: DesignBlockId[]): boolean
@@ -4307,19 +4408,6 @@ isDistributable(ids: DesignBlockId[]): boolean
 ## Block Crop
 
 Crop, scale, translate, and transform block content.
-
-### hasCrop() *(deprecated)*
-
-Checks if a block has crop properties.
-
-```typescript
-hasCrop(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** true, if the block has crop properties.
 
 ### supportsCrop()
 
@@ -4663,19 +4751,6 @@ createEffect(type: EffectType): DesignBlockId
 
 **Returns:** The created effect's handle.
 
-### hasEffects() *(deprecated)*
-
-Checks if a block supports effects.
-
-```typescript
-hasEffects(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True, if the block can render effects, false otherwise.
-
 ### supportsEffects()
 
 Checks if a block supports effects.
@@ -4739,19 +4814,6 @@ removeEffect(id: DesignBlockId, index: number): void
 - `id` - The block to remove the effect from.
 - `index` - The index where the effect is stored.
 
-### hasEffectEnabled() *(deprecated)*
-
-Checks if an effect block can be enabled or disabled.
-
-```typescript
-hasEffectEnabled(effectId: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `effectId` - The 'effect' block to query.
-
-**Returns:** True, if the block supports enabling and disabling, false otherwise.
-
 ### setEffectEnabled()
 
 Sets the enabled state of an effect block.
@@ -4786,7 +4848,6 @@ isEffectEnabled(effectId: DesignBlockId): boolean
 ### setEffectSource()
 
 Sets the block that an effect reads, such as the map of a displacement map effect.
-Experimental: this API may change in a minor release.
 The source still draws on its own. It is read without its position and rotation, and also when it is hidden.
 Required scope: 'appearance/effect' on every block the effect is attached to.
 ```javascript
@@ -4804,7 +4865,7 @@ setEffectSource(effectId: DesignBlockId, source: DesignBlockId | null): void
 
 ### getEffectSource()
 
-Gets the block that an effect reads. Experimental: this API may change in a minor release.
+Gets the block that an effect reads.
 ```javascript
 const mapBlock = engine.block.getEffectSource(effect);
 ```
@@ -4822,7 +4883,7 @@ getEffectSource(effectId: DesignBlockId): DesignBlockId | null
 
 ### createTextAnimator()
 
-Creates a new text animator block. Experimental: this API may change in a minor release.
+Creates a new text animator block.
 A text animator changes the glyphs of a text block that its range selector covers: their position, scale,
 rotation, skew, opacity, colors, stroke width, tracking and blur. Attach it to a text block with
 `appendTextAnimator` or `insertTextAnimator`. Every property of a text animator can have keyframes.
@@ -4842,7 +4903,6 @@ createTextAnimator(): DesignBlockId
 ### supportsTextAnimators()
 
 Checks if a block supports text animators. Text and caption blocks do.
-Experimental: this API may change in a minor release.
 
 ```typescript
 supportsTextAnimators(id: DesignBlockId): boolean
@@ -4855,7 +4915,7 @@ supportsTextAnimators(id: DesignBlockId): boolean
 
 ### getTextAnimators()
 
-Gets the text animators of a block, in the order they apply. Experimental: this API may change in a minor release.
+Gets the text animators of a block, in the order they apply.
 
 ```typescript
 getTextAnimators(id: DesignBlockId): DesignBlockId[]
@@ -4869,7 +4929,7 @@ getTextAnimators(id: DesignBlockId): DesignBlockId[]
 ### insertTextAnimator()
 
 Inserts a text animator into a block's text animators at a given index. A text animator belongs to one block
-at a time. Experimental: this API may change in a minor release.
+at a time.
 Required scope: 'appearance/animation'
 
 ```typescript
@@ -4884,7 +4944,6 @@ insertTextAnimator(id: DesignBlockId, animatorId: DesignBlockId, index: number):
 ### appendTextAnimator()
 
 Appends a text animator to a block's text animators. A text animator belongs to one block at a time.
-Experimental: this API may change in a minor release.
 Required scope: 'appearance/animation'
 
 ```typescript
@@ -4898,7 +4957,6 @@ appendTextAnimator(id: DesignBlockId, animatorId: DesignBlockId): void
 ### removeTextAnimator()
 
 Removes the text animator at a given index from a block. The text animator is not destroyed.
-Experimental: this API may change in a minor release.
 Required scope: 'appearance/animation'
 
 ```typescript
@@ -4913,7 +4971,7 @@ removeTextAnimator(id: DesignBlockId, index: number): void
 
 ### createModifier()
 
-Creates a new shape modifier block. Experimental: this API may change in a minor release.
+Creates a new shape modifier block.
 A modifier changes the path of a shape, or draws the shape several times. Attach it to a shape with
 `appendModifier` or `insertModifier`.
 ```javascript
@@ -4933,7 +4991,7 @@ createModifier(type: ModifierType): DesignBlockId
 
 ### supportsModifiers()
 
-Checks if a block supports modifiers. Every shape block does. Experimental: this API may change in a minor release.
+Checks if a block supports modifiers. Every shape block does.
 
 ```typescript
 supportsModifiers(id: DesignBlockId): boolean
@@ -4947,7 +5005,6 @@ supportsModifiers(id: DesignBlockId): boolean
 ### getModifiers()
 
 Gets the modifiers of a shape, in the order they apply to its path.
-Experimental: this API may change in a minor release.
 
 ```typescript
 getModifiers(id: DesignBlockId): DesignBlockId[]
@@ -4961,7 +5018,6 @@ getModifiers(id: DesignBlockId): DesignBlockId[]
 ### insertModifier()
 
 Inserts a modifier into a shape's modifier list at a given index.
-Experimental: this API may change in a minor release.
 Required scope: 'shape/change' on every block that uses the shape.
 
 ```typescript
@@ -4975,7 +5031,7 @@ insertModifier(id: DesignBlockId, modifierId: DesignBlockId, index: number): voi
 
 ### appendModifier()
 
-Appends a modifier to a shape's modifier list. Experimental: this API may change in a minor release.
+Appends a modifier to a shape's modifier list.
 Required scope: 'shape/change' on every block that uses the shape.
 
 ```typescript
@@ -4989,7 +5045,6 @@ appendModifier(id: DesignBlockId, modifierId: DesignBlockId): void
 ### removeModifier()
 
 Removes a modifier from a shape's modifier list at a given index. The modifier is not destroyed.
-Experimental: this API may change in a minor release.
 Required scope: 'shape/change' on every block that uses the shape.
 
 ```typescript
@@ -5006,7 +5061,7 @@ Cut blocks down to the shapes of their masks.
 
 ### createMask()
 
-Creates a new mask block. Experimental: this API may change in a minor release.
+Creates a new mask block.
 A mask cuts its block down to the area of the mask's shape. Give the mask a shape with `setShape`; a mask
 without a shape has no effect. The shape is evaluated in the frame of the block that the mask is attached to.
 The mask properties are `mask/mode`, `mask/opacity`, `mask/feather`, `mask/expansion` and `mask/inverted`.
@@ -5025,7 +5080,6 @@ createMask(): DesignBlockId
 ### supportsMasks()
 
 Checks if a block supports masks. Graphic, text and group blocks do.
-Experimental: this API may change in a minor release.
 
 ```typescript
 supportsMasks(id: DesignBlockId): boolean
@@ -5039,7 +5093,6 @@ supportsMasks(id: DesignBlockId): boolean
 ### getMasks()
 
 Gets the masks of a block, in the order in which they combine.
-Experimental: this API may change in a minor release.
 
 ```typescript
 getMasks(id: DesignBlockId): DesignBlockId[]
@@ -5052,7 +5105,7 @@ getMasks(id: DesignBlockId): DesignBlockId[]
 
 ### insertMask()
 
-Inserts a mask into a block's masks at a given index. Experimental: this API may change in a minor release.
+Inserts a mask into a block's masks at a given index.
 Required scope: 'layer/clipping'
 
 ```typescript
@@ -5066,7 +5119,7 @@ insertMask(id: DesignBlockId, maskId: DesignBlockId, index: number): void
 
 ### appendMask()
 
-Appends a mask to a block's masks. Experimental: this API may change in a minor release.
+Appends a mask to a block's masks.
 Required scope: 'layer/clipping'
 
 ```typescript
@@ -5080,7 +5133,6 @@ appendMask(id: DesignBlockId, maskId: DesignBlockId): void
 ### removeMask()
 
 Removes the mask at the given index from a block's masks. The mask block is not destroyed.
-Experimental: this API may change in a minor release.
 Required scope: 'layer/clipping'
 
 ```typescript
@@ -5107,19 +5159,6 @@ createBlur(type: BlurType): DesignBlockId
 - `type` - The type of blur.
 
 **Returns:** The handle of the newly created blur.
-
-### hasBlur() *(deprecated)*
-
-Checks if a block supports blur.
-
-```typescript
-hasBlur(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True, if the block supports blur.
 
 ### supportsBlur()
 
@@ -5149,6 +5188,14 @@ setBlur(id: DesignBlockId, blurId: DesignBlockId): void
 ### getBlur()
 
 Gets the blur block of a given design block.
+For example, a graphic has no blur right after `create('graphic')`, although `isBlurEnabled`
+returns true.
+```javascript
+const blur = engine.block.getBlur(block);
+if (engine.block.isValid(blur)) {
+  const blurType = engine.block.getType(blur);
+}
+```
 
 ```typescript
 getBlur(id: DesignBlockId): DesignBlockId
@@ -5178,6 +5225,9 @@ setBlurEnabled(id: DesignBlockId, enabled: boolean): void
 ### isBlurEnabled()
 
 Checks if blur is enabled for a block.
+The flag does not depend on an attached blur block. It defaults to true, so a fresh graphic
+reports its blur as enabled while `getBlur` returns an invalid block. Check that result with
+`isValid`.
 ```javascript
 const isBlurEnabled = engine.block.isBlurEnabled(block);
 ```
@@ -5194,19 +5244,6 @@ isBlurEnabled(id: DesignBlockId): boolean
 ## Block Strokes
 
 Control stroke appearance, including color, width, style, and position.
-
-### hasStroke() *(deprecated)*
-
-Checks if a block has a stroke property.
-
-```typescript
-hasStroke(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True if the block has a stroke property.
 
 ### supportsStroke()
 
@@ -5286,21 +5323,6 @@ getStrokeOverprint(id: DesignBlockId): boolean
 
 **Returns:** The stroke overprint flag.
 
-### setStrokeColorRGBA() *(deprecated)*
-
-Sets the stroke color of a block using RGBA values.
-
-```typescript
-setStrokeColorRGBA(id: DesignBlockId, r: number, g: number, b: number, a?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose stroke color should be set.
-- `r` - The red color component in the range of 0 to 1.
-- `g` - The green color component in the range of 0 to 1.
-- `b` - The blue color component in the range of 0 to 1.
-- `a` - The alpha color component in the range of 0 to 1.
-
 ### setStrokeColor()
 
 Sets the stroke color of a block.
@@ -5312,19 +5334,6 @@ setStrokeColor(id: DesignBlockId, color: Color): void
 **Parameters:**
 - `id` - The block whose stroke color should be set.
 - `color` - The color to set.
-
-### getStrokeColorRGBA() *(deprecated)*
-
-Gets the stroke color of a block as RGBA values.
-
-```typescript
-getStrokeColorRGBA(id: DesignBlockId): RGBA
-```
-
-**Parameters:**
-- `id` - The block whose stroke color should be queried.
-
-**Returns:** The stroke color.
 
 ### getStrokeColor()
 
@@ -5441,39 +5450,10 @@ getStrokeCornerGeometry(id: DesignBlockId): StrokeCornerGeometry
 
 **Returns:** The stroke corner geometry.
 
-### setStrokeCap() *(deprecated)*
-
-Sets the stroke cap of a block. Writes both the start and end caps to the
-same value.
-
-```typescript
-setStrokeCap(id: DesignBlockId, cap: StrokeCap): void
-```
-
-**Parameters:**
-- `id` - The block whose stroke cap should be set.
-- `cap` - The stroke cap to be set.
-
-### getStrokeCap() *(deprecated)*
-
-Gets the legacy single stroke cap of a block. Tracks the value last written
-via `setStrokeCap` or `setStrokeStartCap`; ignores changes made via
-`setStrokeEndCap`.
-
-```typescript
-getStrokeCap(id: DesignBlockId): StrokeCap
-```
-
-**Parameters:**
-- `id` - The block whose stroke cap should be queried.
-
-**Returns:** The stroke cap.
-
 ### setStrokeStartCap()
 
 Sets the cap geometry at the start of an open stroked path. Use this with
 `setStrokeEndCap` to set distinct caps for each end of a stroke (for
-example a flat start with an arrowhead end). `setStrokeCap` continues to
 set both ends at once and is preserved for backwards compatibility.
 
 ```typescript
@@ -5635,7 +5615,7 @@ getStrokeDashOffset(id: DesignBlockId): number
 
 ### getStrokeFill()
 
-Gets the fill block that paints the stroke of a block. Experimental: this API may change in a minor release.
+Gets the fill block that paints the stroke of a block.
 
 ```typescript
 getStrokeFill(id: DesignBlockId): DesignBlockId | null
@@ -5649,8 +5629,8 @@ getStrokeFill(id: DesignBlockId): DesignBlockId | null
 ### setStrokeFill()
 
 Paints the stroke of a block with a fill block, for example a gradient, instead of the stroke color.
-Experimental: this API may change in a minor release.
-Color, gradient and stripe fills are supported; image, video and pixel stream fills are rejected.
+Color, gradient, stripe and image fills are supported; video and pixel stream fills are rejected.
+An image covers the frame of the block and the part of the stroke outside it. The crop, the effects and the blur of the block apply only to its fill.
 The previous stroke fill block is not destroyed automatically. The fill block may not be the block's own fill.
 A stroke color with alpha 0 still hides the stroke; the fill's own colors set the opacity otherwise.
 Required scope: 'stroke/change'
@@ -5666,19 +5646,6 @@ setStrokeFill(id: DesignBlockId, fill: DesignBlockId | null): void
 ## Block Drop Shadow
 
 Configure drop shadow effects, including blur, color, and offset.
-
-### hasDropShadow() *(deprecated)*
-
-Checks if a block has a drop shadow property.
-
-```typescript
-hasDropShadow(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True if the block has a drop shadow property.
 
 ### supportsDropShadow()
 
@@ -5724,21 +5691,6 @@ isDropShadowEnabled(id: DesignBlockId): boolean
 
 **Returns:** True if the block's drop shadow is enabled.
 
-### setDropShadowColorRGBA() *(deprecated)*
-
-Sets the drop shadow color of a block using RGBA values.
-
-```typescript
-setDropShadowColorRGBA(id: DesignBlockId, r: number, g: number, b: number, a?: number): void
-```
-
-**Parameters:**
-- `id` - The block whose drop shadow color should be set.
-- `r` - The red color component in the range of 0 to 1.
-- `g` - The green color component in the range of 0 to 1.
-- `b` - The blue color component in the range of 0 to 1.
-- `a` - The alpha color component in the range of 0 to 1.
-
 ### setDropShadowColor()
 
 Sets the drop shadow color of a block.
@@ -5750,19 +5702,6 @@ setDropShadowColor(id: DesignBlockId, color: Color): void
 **Parameters:**
 - `id` - The block whose drop shadow color should be set.
 - `color` - The color to set.
-
-### getDropShadowColorRGBA() *(deprecated)*
-
-Gets the drop shadow color of a block as RGBA values.
-
-```typescript
-getDropShadowColorRGBA(id: DesignBlockId): RGBA
-```
-
-**Parameters:**
-- `id` - The block whose drop shadow color should be queried.
-
-**Returns:** The drop shadow color.
 
 ### getDropShadowColor()
 
@@ -5911,6 +5850,9 @@ Create cutout operations and path-based modifications.
 
 Creates a cutout block from the contours of other blocks.
 The path is derived from either existing vector paths or by vectorizing the block's appearance.
+Performs an internal update to lay out pending changes, because the cutout reads the blocks' layout. With the
+setting `features/implicitUpdatesEnabled` off, the update runs only when a passed block has no layout, and it then
+lays out all pending changes. A block with no layout on a page that single page mode hides returns an error.
 
 ```typescript
 createCutoutFromBlocks(ids: DesignBlockId[], vectorizeDistanceThreshold?: number, simplifyDistanceThreshold?: number, useExistingShapeInformation?: boolean): DesignBlockId
@@ -5972,6 +5914,69 @@ replaceText(id: DesignBlockId, text: string, from?: number, to?: number): void
 - `text` - The text which should replace the selected range in the block.
 - `from` - The start index of the UTF-16 range to replace. Defaults to the start of the current selection or text.
 - `to` - The end index of the UTF-16 range to replace. Defaults to the end of the current selection or text.
+
+### getTextAsHTML()
+
+Gets a range of a text block as HTML with its formatting, for the clipboard.
+The HTML states the color, background color, weight, italic, decorations, script style, case, font size and
+typeface of each run as inline CSS. It states the list style, list level and alignment of each paragraph. Other
+apps read it on paste, and `replaceTextWithHTML` reads every property back. The typeface applies only when a
+typeface of the scene holds its font file. The font size and the line height are CSS values, so other apps show them as the block does.
+```javascript
+document.addEventListener('copy', (event) => {
+  event.clipboardData?.setData('text/html', engine.block.getTextAsHTML(text));
+  event.preventDefault();
+});
+```
+
+```typescript
+getTextAsHTML(id: DesignBlockId, from?: number, to?: number): string
+```
+
+**Parameters:**
+- `id` - The text block to read.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+**Returns:** The HTML, or an empty string for an empty range.
+
+### replaceTextWithHTML()
+
+Replaces a range of a text block with the text and the formatting of HTML, such as the HTML of a paste.
+HTML from `getTextAsHTML` sets every property it carries. Its typeface applies only when a typeface of the scene
+holds its font file. Otherwise the text keeps the typeface at the cursor, with the weight and style of the source.
+HTML of another app, such as Google Docs, Word, a web page or an Apple app, sets weight, italic and decorations.
+It also sets the script style, case, colors, font size, letter spacing, line height, lists and alignment. A CSS
+px is one pixel of a scene whose font size unit is `'Pixel'`. The text takes the first font family of the HTML
+that a typeface of the asset sources has. Without such a typeface, it keeps the typeface at the cursor.
+A gray, black or white that covers the largest part of the text is the default color of that app. It is not
+applied, and the same rule applies to the background color. A pasted paragraph without a list keeps the list of
+the target paragraph. Without the `text/character` scope, only the text is inserted, with the style at the cursor.
+Without the `fill/change` scope, or when the text color is bound to a variable, no color is pasted. When the font
+size or the typeface of the block is bound to a variable, it is not pasted.
+While the block is being edited and no range is given, the selection is replaced and the cursor moves behind the
+inserted text.
+```javascript
+engine.block.replaceTextWithHTML(text, '<p><b>Hello</b> <i>world</i></p>');
+document.addEventListener('paste', (event) => {
+  const html = event.clipboardData?.getData('text/html');
+  if (html) {
+    engine.block.replaceTextWithHTML(text, html);
+    event.preventDefault();
+  }
+});
+```
+
+```typescript
+replaceTextWithHTML(id: DesignBlockId, html: string, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block into which to insert the HTML.
+- `html` - The HTML. Markup that is not supported keeps only its text.
+- `from` - The start index of the UTF-16 range to replace. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range to replace. If `from` is not negative and `to` is negative, the HTML
+is inserted at `from`. Otherwise it defaults to the end of the current selection or text.
 
 ### removeText()
 
@@ -6160,6 +6165,27 @@ setTextFontStyle(id: DesignBlockId, fontStyle: FontStyle, from?: number, to?: nu
 - `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
 - `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
 
+### setTextFontWeightAndStyle()
+
+Sets the font weight and the font style for a range of text in one step.
+Each run gets the font of its typeface with exactly this weight and style. Separate calls to
+`setTextFontWeight` and `setTextFontStyle` pass through a face in between, so they fail when the typeface
+lacks that face.
+```javascript
+engine.block.setTextFontWeightAndStyle(text, 'bold', 'italic', 0, 5);
+```
+
+```typescript
+setTextFontWeightAndStyle(id: DesignBlockId, fontWeight: FontWeight, fontStyle: FontStyle, from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block whose weight and style should be changed.
+- `fontWeight` - The new weight of the selected text range.
+- `fontStyle` - The new style of the selected text range.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
 ### getTextFontStyles()
 
 Gets the unique font styles within a range of text.
@@ -6332,9 +6358,98 @@ getTextKernings(id: DesignBlockId, from?: number, to?: number): number[]
 - `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
 - `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
 
+### setTextOpenTypeFeatures()
+
+Sets the OpenType features of a text range, such as `tnum` for digits of equal width.
+The list replaces the features that the range had, and an empty list removes them. When a tag repeats, the
+last entry wins. The features apply after the ligature and kerning settings of the block, so an entry for
+`liga` or `kern` overrides them in the range. A tag that the font does not have changes nothing.
+`editor.getFontInfo` lists the features of a font.
+Required scope: "text/character"
+```javascript
+engine.block.setTextOpenTypeFeatures(text, [{ tag: 'tnum', value: 1 }]); // digits of equal width
+engine.block.setTextOpenTypeFeatures(text, [{ tag: 'liga', value: 0 }], 0, 5); // no ligatures in the first 5
+engine.block.setTextOpenTypeFeatures(text, []); // remove all features
+```
+
+```typescript
+setTextOpenTypeFeatures(id: DesignBlockId, features: OpenTypeFeature[], from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `features` - The features. Each tag has four ASCII characters. A value of 0 turns the feature off, 1 turns
+it on, and a larger value selects an alternate by its index.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### getTextOpenTypeFeatures()
+
+Returns the unique OpenType feature lists across a text range.
+Each list holds one entry per tag, sorted by tag. A range without features returns one empty list.
+```javascript
+const features = engine.block.getTextOpenTypeFeatures(text); // e.g. [[]] or [[{ tag: 'tnum', value: 1 }], []]
+```
+
+```typescript
+getTextOpenTypeFeatures(id: DesignBlockId, from?: number, to?: number): OpenTypeFeature[][]
+```
+
+**Parameters:**
+- `id` - The text block to query.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+**Returns:** The unique feature lists in the range.
+
+### setTextVariationAxes()
+
+Sets the variation axis values of a text range, such as `wdth` for the width of a variable font.
+The list replaces the axis values that the range had, and an empty list removes them. When a tag repeats, the
+last entry wins. An axis without a value keeps the value that the font file and the font weight and style
+select. A `wght` entry overrides the font weight with any value, such as 450, and `setTextFontWeight` does not
+remove it. An `ital` or `slnt` entry overrides the font style in the same way, and `setTextFontStyle` does not
+remove it either. The font clamps a value to the range of its axis, and an axis that the font does not have changes
+nothing. Values keep three decimals. `editor.getFontInfo` lists the axes of a font.
+Required scope: "text/character"
+```javascript
+engine.block.setTextVariationAxes(text, [{ tag: 'wdth', value: 75 }]); // a narrower width
+engine.block.setTextVariationAxes(text, [{ tag: 'wght', value: 450 }], 0, 5); // a weight between two named ones
+engine.block.setTextVariationAxes(text, []); // remove all axis values
+```
+
+```typescript
+setTextVariationAxes(id: DesignBlockId, axes: VariationAxisValue[], from?: number, to?: number): void
+```
+
+**Parameters:**
+- `id` - The text block to modify.
+- `axes` - The axis values. Each tag has four ASCII characters.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+### getTextVariationAxes()
+
+Returns the unique variation axis value lists across a text range.
+Each list holds one entry per tag, sorted by tag. A range without axis values returns one empty list.
+```javascript
+const axes = engine.block.getTextVariationAxes(text); // e.g. [[]] or [[{ tag: 'wdth', value: 75 }]]
+```
+
+```typescript
+getTextVariationAxes(id: DesignBlockId, from?: number, to?: number): VariationAxisValue[][]
+```
+
+**Parameters:**
+- `id` - The text block to query.
+- `from` - The start index of the UTF-16 range. Defaults to the start of the current selection or text.
+- `to` - The end index of the UTF-16 range. Defaults to the end of the current selection or text.
+
+**Returns:** The unique axis value lists in the range.
+
 ### setTextBaselineShift()
 
-Sets the baseline shift for a grapheme range. Experimental: this API may change in a minor release.
+Sets the baseline shift for a grapheme range.
 Moves the glyphs of the range up from the baseline, or down for a negative value.
 The value is in design units. The line height does not change.
 ```javascript
@@ -6356,7 +6471,6 @@ setTextBaselineShift(id: DesignBlockId, baselineShift: number, from?: number, to
 ### getTextBaselineShifts()
 
 Returns the unique baseline shift values across the grapheme range, in design units.
-Experimental: this API may change in a minor release.
 ```javascript
 const shifts = engine.block.getTextBaselineShifts(text); // e.g. [0] or [4, 0]
 ```
@@ -6698,6 +6812,26 @@ setFont(id: DesignBlockId, fontFileUri: string, typeface: Typeface): void
 - `fontFileUri` - The URI of the new font file.
 - `typeface` - The typeface of the new font.
 
+### setFontRequest()
+
+Sets an authored font request for a UTF-16 source-text range.
+Omitting both bounds sets the whole block, including while text is selected.
+Resolution is asynchronous; forceLoadResources waits for pending providers and fonts.
+Concrete font setters replace the request on their range.
+
+```typescript
+setFontRequest(id: DesignBlockId, request: FontRequest, from?: number, to?: number): void
+```
+
+### getFontRequests()
+
+Returns unique authored font requests in a UTF-16 source-text range.
+Omitted bounds use the current selection, or the whole text without a selection.
+
+```typescript
+getFontRequests(id: DesignBlockId, from?: number, to?: number): FontRequest[]
+```
+
 ### setTypeface()
 
 Sets the typeface for a range of text.
@@ -6754,10 +6888,6 @@ getTypefaces(id: DesignBlockId, from?: number, to?: number): Typeface[]
 ### getTextRuns()
 
 Gets all text runs within a range of text.
-Each run represents a contiguous span of text with uniform formatting.
-```javascript
-const runs = engine.block.getTextRuns(text);
-```
 
 ```typescript
 getTextRuns(id: DesignBlockId, from?: number, to?: number): TextRunInfo[]
@@ -6797,6 +6927,28 @@ setTextCursorRange(range: Range): void
 
 **Parameters:**
 - `range` - The UTF-16 range to set as the selection. If `from` equals `to`, the cursor is positioned at that index. If `from` and `to` are set to -1, the whole text is selected.
+
+### getTextRenderDiagnostics()
+
+Gets the current fonts, missing glyphs and planar layout of a text block.
+Run and missing-glyph ranges are half-open UTF-16 offsets in `fontUsage.text`,
+after case transformations and template resolution. Effective font sizes use
+the scene's font-size unit. Layout includes hidden lines; its overshoot and
+required height use local design units before strokes, effects and animations.
+Layout is absent while resources are pending, without a current shape, or for
+text on a path. `resolved` font usage does not guarantee glyph coverage.
+This updates pending layout synchronously without changing serialized block
+properties. It does not wait for downloads; use `forceLoadResources` first
+when the snapshot must include loaded fonts.
+
+```typescript
+getTextRenderDiagnostics(id: DesignBlockId): TextRenderDiagnostics
+```
+
+**Parameters:**
+- `id` - The text block to query.
+
+**Returns:** The current rendering diagnostics.
 
 ### getTextVisibleLineCount()
 
@@ -6993,19 +7145,6 @@ isPlaceholderEnabled(id: DesignBlockId): boolean
 
 **Returns:** The enabled state of the placeholder function.
 
-### hasPlaceholderBehavior() *(deprecated)*
-
-Checks if a block supports placeholder behavior.
-
-```typescript
-hasPlaceholderBehavior(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True, if the block supports placeholder behavior.
-
 ### supportsPlaceholderBehavior()
 
 Checks if a block supports placeholder behavior.
@@ -7053,19 +7192,6 @@ isPlaceholderBehaviorEnabled(id: DesignBlockId): boolean
 - `id` - The block whose placeholder behavior state should be queried.
 
 **Returns:** The enabled state of the placeholder behavior.
-
-### hasPlaceholderControls() *(deprecated)*
-
-Checks if a block supports placeholder controls.
-
-```typescript
-hasPlaceholderControls(id: DesignBlockId): boolean
-```
-
-**Parameters:**
-- `id` - The block to query.
-
-**Returns:** True, if the block supports placeholder controls.
 
 ### supportsPlaceholderControls()
 
@@ -7294,6 +7420,8 @@ split(id: DesignBlockId, atTime: number, options?: SplitOptions): DesignBlockId
 ### createTransition()
 
 Creates a new transition block.
+Its saved `transition/overlap` boolean starts at the current value of
+`clip/defaultTransitionOverlapEnabled` (engine default: true).
 The created block is standalone until assigned to a clip with `setTransition`.
 Once assigned, it is owned by that clip: it is destroyed together with the
 clip, and the engine also destroys it automatically when the two clips stop
@@ -7311,8 +7439,9 @@ createTransition(type: TransitionType): DesignBlockId
 ### supportsTransition()
 
 Checks whether a clip can own an outgoing clip-to-clip transition.
-Only leaf clips inside a video track qualify. Audio, group, caption, and
-cutout blocks — as well as blocks outside a video track — report `false`.
+Clips inside a video track qualify, group clips included. Audio, caption
+and cutout blocks report `false`, and so do blocks outside a video track.
+A group that holds only audio blocks reports `false` too.
 
 ```typescript
 supportsTransition(id: DesignBlockId): boolean
@@ -7331,6 +7460,12 @@ automatically. Throws an error if the given transition block is invalid or
 already assigned to another clip. Both the clip and its following clip on
 the track must support transitions, see `supportsTransition`. To clear a
 clip's transition, use `removeTransition` instead.
+With `transition/overlap=false` on the transition block, transitions preserve
+clip timing and hold endpoint frames across the cut. This property is saved
+in scenes; older scenes without it use true. New transitions initialize it
+from `clip/defaultTransitionOverlapEnabled`. A group clip on either side
+ignores `transition/overlap`: the clips meet at the cut, and the saved value
+stays.
 
 ```typescript
 setTransition(id: DesignBlockId, transition: DesignBlockId): void

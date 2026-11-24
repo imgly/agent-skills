@@ -9,6 +9,24 @@ class UBQ
 
 ## Members
 
+### create(canvas:audioContext:)
+
+```swift
+class func create(canvas: MTKView, audioContext: UInt8) throws -> Self
+```
+
+### create(size:audioContext:)
+
+```swift
+class func create(size: CGSize, audioContext: UInt8) throws -> Self
+```
+
+### hasPendingWork()
+
+```swift
+func hasPendingWork() -> Bool
+```
+
 ### init(canvas:audioContext:)
 
 ```swift

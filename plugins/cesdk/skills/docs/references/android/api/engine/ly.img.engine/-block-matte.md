@@ -3,7 +3,7 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-A block that masks another block, and the channel it masks with. Experimental: this API may change in a minor release.
+A block that masks another block, and the channel it masks with.
 
 ```kotlin
 data class BlockMatte(val source: DesignBlock, val mode: MatteMode)

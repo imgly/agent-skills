@@ -7,7 +7,7 @@ A type of an icon that renders a fill and/or a stroke. Check the documentation o
 
 ```kotlin
 @Stable
-data class FillStroke(val showFill: Boolean, val showStroke: Boolean, val fill: Fill?, val stroke: Color?) : EditorIcon
+data class FillStroke(val showFill: Boolean, val showStroke: Boolean, val fill: Fill?, val stroke: Color?, val strokeFill: GradientFill? = null) : EditorIcon
 ```
 
 
@@ -16,7 +16,7 @@ data class FillStroke(val showFill: Boolean, val showStroke: Boolean, val fill: 
 ### FillStroke
 
 ```kotlin
-constructor(showFill: Boolean, showStroke: Boolean, fill: Fill?, stroke: Color?)
+constructor(showFill: Boolean, showStroke: Boolean, fill: Fill?, stroke: Color?, strokeFill: GradientFill? = null)
 ```
 
 ### fill
@@ -35,6 +35,12 @@ val showFill: Boolean
 
 ```kotlin
 val showStroke: Boolean
+```
+
+### strokeFill
+
+```kotlin
+val strokeFill: GradientFill? = null
 ```
 
 ### stroke

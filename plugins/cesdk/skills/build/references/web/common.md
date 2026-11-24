@@ -148,6 +148,7 @@ All kits share this structure — only the config and entry point differ:
 | multi-image-generation | `imgly/starterkit-multi-image-generation-react-web` | Generate multiple branded images from a single record |
 | design-validation | `imgly/starterkit-design-validation-react-web` | Editor that runs design-validation rules and surfaces feedback |
 | content-moderation | `imgly/starterkit-content-moderation-react-web` | Editor with a content-moderation pipeline |
+| video-moderation | `imgly/starterkit-video-moderation-react-web` | Video editor that checks clips, images and text before export |
 | version-history | `imgly/starterkit-version-history-react-web` | Editor with snapshot-based version history |
 | theming | `imgly/starterkit-theming-react-web` | Editor with custom theme tokens and color palette |
 | translation-internationalization | `imgly/starterkit-translation-internationalization-react-web` | Editor with dynamic locale switching |
@@ -157,20 +158,20 @@ All kits share this structure — only the config and entry point differ:
 Clone the kit into the user's project folder, then remove the copied `.git` folder:
 
 ```bash
-git clone --depth 1 --branch v1.86.2 https://github.com/imgly/starterkit-design-editor-ts-web.git <target>
+git clone --depth 1 --branch v1.87.0 https://github.com/imgly/starterkit-design-editor-ts-web.git <target>
 rm -rf <target>/.git
 ```
 
-The `v1.86.2` branch of each repository matches this bundle. If the branch
+The `v1.87.0` branch of each repository matches this bundle. If the branch
 does not exist (a nightly build, or a kit added after this release), clone the
 default branch without `--branch` and pin the CE.SDK version as described below.
 
 1. **Clone** the matching kit into the user's project directory as shown above
 2. If the user wants **JavaScript** (not TypeScript), run the transpile script on the **cloned kit** (see below)
 3. Update `package.json` name and adjust dependencies as needed
-4. **Pin CE.SDK packages to v1.86.2** (required — ensures runtime matches this skill's docs and API digests). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.86.2`. Remove the `^` so npm installs exactly that version, for example:
+4. **Pin CE.SDK packages to v1.87.0** (required — ensures runtime matches this skill's docs and API digests). The kit's `package.json` lists every `@cesdk/*` and `@imgly/plugin-*` dependency as `^1.87.0`. Remove the `^` so npm installs exactly that version, for example:
    ```bash
-   npm install @cesdk/cesdk-js@1.86.2 --save-exact
+   npm install @cesdk/cesdk-js@1.87.0 --save-exact
    ```
    Leave other dependencies untouched. Importers and exporters such as `@imgly/pptx-importer` have their own versions.
 5. Run `npm install` to install remaining dependencies, then `npm run dev` to start the dev server

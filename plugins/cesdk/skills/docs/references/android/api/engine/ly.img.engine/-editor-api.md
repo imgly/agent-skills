@@ -42,6 +42,14 @@ abstract fun canUndo(): Boolean
 
 If an undo step is available.
 
+### checkFileSupport
+
+```kotlin
+abstract suspend fun checkFileSupport(uri: Uri): FileSupport
+```
+
+Inspects a resource header/container and reports image, audio, and video support separately. Downloads the resource if needed. This does not guarantee a complete decode or profile support. Container results cover retained tracks; the demuxer can drop unsupported source tracks. This call starts no codec probes. Unmeasured families remain unchecked. Cancelling the coroutine stops the download and the inspection. Engine updates drive pending work, so a call that waits when the engine stops ends only when its coroutine is cancelled.
+
 ### checkP3Support
 
 ```kotlin
@@ -208,13 +216,29 @@ abstract fun getEditMode(): String
 
 Get the current edit mode of the editor. An edit mode defines what type of content can currently be edited by the user.
 
+### getFileFormats
+
+```kotlin
+abstract fun getFileFormats(): List<FileSupport>
+```
+
+Returns the engine media catalog for this runtime. Support describes known decoder families, not a complete decode or external design importer. Results reflect current feature settings and codec measurements. This call starts no probes. Unmeasured codec families remain unchecked.
+
+### getFontInfo
+
+```kotlin
+abstract suspend fun getFontInfo(fontFileUri: String): FontInfo
+```
+
+Returns the names, weight, style, variation axes and OpenType features of a font file. The call loads the font when it is not loaded yet. The result describes the default instance of a variable font, and the call ignores a fragment that names axis values, such as #wght=700. Use the result to register an uploaded font on a typeface asset source. Cancelling the coroutine stops the download of the font.
+
 ### getFontMetrics
 
 ```kotlin
 abstract suspend fun getFontMetrics(fontFileUri: String): FontMetrics
 ```
 
-Returns the font metrics for a given font file URI. If the font is not yet loaded, it will be fetched asynchronously. The returned metrics are in the font's design units coordinate space. Cancelling the coroutine stops the download of the font.
+Returns the font metrics for a given font file URI. If the font is not yet loaded, it will be fetched asynchronously. The returned metrics are in the font's design units coordinate space. Missing or zero underline metrics use the defaults documented in FontMetrics. Cancelling the coroutine stops the download of the font.
 
 ### getGlobalScope
 
@@ -230,7 +254,7 @@ Query the state of a global scope.
 abstract fun getMaxExportSize(): Int
 ```
 
-Get the export size limit in pixels on the current device. An export is only possible when both the width and height of the output are below or equal this limit. However, this is only an upper limit as the export might also not be possible due to other reasons, e.g., memory constraints. A PDF export checks the limit against each image, gradient and effect that it draws as pixels at the scene DPI, not against the page.
+Get the export size limit in pixels on the current device. It bounds a color mask export. It also bounds each image, gradient and effect that a PDF export draws as pixels at the scene DPI, not the page. Both sides must be below or equal to it. An export might still fail for other reasons, such as memory. The limit is at most 23170 px, the side of the largest square export whose pixels fit in 2 GiB. A PNG, JPEG, WebP, TGA or raw export renders in strips, so this limit does not bound it. Only the side limit of its format does: JPEG 65500, WebP 16383 and TGA 65535 px. A buffered export must also give a file under 4 GiB. A PNG or JPEG export with outputProfileMode or embedProfiles renders in on…
 
 ### getMimeType
 
@@ -246,7 +270,7 @@ Returns the mimetype of the resources at the given Uri. If the resource is not a
 abstract fun getMovementConstraint(block: DesignBlock): ResolvedMovementConstraint?
 ```
 
-Get the effective movement constraint for a block, picking the most specific matching rule: block parent page blockType scene-wide. The returned ResolvedMovementConstraint.overshoot is a fraction of the block's own size.
+Get the effective movement constraint for a block, picking the most specific matching rule: block page slice parent page blockType scene-wide. The returned ResolvedMovementConstraint.overshoot is a fraction of the block's own size.
 
 ### getResourceData
 
@@ -343,6 +367,14 @@ abstract fun getSettingType(keypath: String): PropertyType
 ```
 
 Get the type of a setting.
+
+### getSoftProofColorSpace
+
+```kotlin
+abstract fun getSoftProofColorSpace(): ProfileColorSpace
+```
+
+Get the color space that soft proofing simulates.
 
 ### getSpotColorCMYK
 
@@ -457,6 +489,14 @@ abstract fun isSelectionEnabled(block: DesignBlock): Boolean
 
 Checks whether the block can currently be selected.
 
+### isSoftProofEnabled
+
+```kotlin
+abstract fun isSoftProofEnabled(): Boolean
+```
+
+Check whether soft proofing of the live canvas is on.
+
 ### loadCMYKProfile
 
 ```kotlin
@@ -490,15 +530,6 @@ abstract fun onHistoryUpdatedWithKind(): Flow<HistoryUpdate>
 
 Subscribe to changes to the undo/redo history. Each emitted HistoryUpdate describes what kind of update happened so consumers can distinguish a real change to the active history's snapshots (e.g. an edit, undo, or redo) from a pure activation via setActiveHistory.
 
-### onHistoryUpdated
-
-```kotlin
-abstract fun onHistoryUpdated(): Flow<Unit>
-```
-> **Deprecated:** Use onHistoryUpdatedWithKind() to also receive the kind of update. Replace with `onHistoryUpdatedWithKind()`.
-
-Subscribe to changes to the undo/redo history.
-
 ### onRoleChanged
 
 ```kotlin
@@ -529,7 +560,7 @@ Subscribe to changes to the editor state.
 abstract fun redo()
 ```
 
-Redo one step in the history if a redo step is available.
+Redo one step in the history if a redo step is available. Scene edits made since the last undo step are discarded. Call addUndoStep first to keep them, which clears the redo steps.
 
 ### releaseMemory
 
@@ -585,7 +616,7 @@ Removes the last history state from the stack, if available.
 abstract fun setActiveHistory(history: History)
 ```
 
-Mark the given history as active, returns an error if the handle doesn't refer to a history. All other histories get cleared from the active state. Undo/redo operations only apply to the active history. A new history starts from the current scene, including edits without an undo step and the selection; returning to a history restores its last undo step.
+Mark the given history as active, returns an error if the handle doesn't refer to a history. All other histories get cleared from the active state. Undo/redo operations only apply to the active history. A new history starts from the current scene, including edits without an undo step and the selection; returning to a history restores its last undo step. Setting a history that is not new as active, also the active one, discards edits without an undo step. Edits with an undo step stay in the history they were made in.
 
 ### setAppIsPaused
 
@@ -731,6 +762,22 @@ abstract fun setSettingString(keypath: String, value: String)
 
 Set a string setting.
 
+### setSoftProofColorSpace
+
+```kotlin
+abstract fun setSoftProofColorSpace(colorSpace: ProfileColorSpace)
+```
+
+Set the color space that soft proofing simulates. The proof uses the Output profile of that space, then its Default profile, then the fallback profile. Creating or loading a scene, or applying a template, sets the color space to ProfileColorSpace.CMYK. A setActiveHistory call that switches to another scene does the same by the next update. A change emits on onStateChanged.
+
+### setSoftProofEnabled
+
+```kotlin
+abstract fun setSoftProofEnabled(enabled: Boolean)
+```
+
+Turn soft proofing of the live canvas on or off. With proofing on, the artwork inside the visible page trims shows the colors of the output profile of getSoftProofColorSpace. Exports, thumbnails, bleed and editor decorations stay unproofed. The state is not saved with the scene, and undo does not change it. Creating or loading a scene, or applying a template, turns proofing off and sets the color space to ProfileColorSpace.CMYK. A setActiveHistory call that switches to another scene does the same by the next update. A change emits on onStateChanged.
+
 ### setSpotColor
 
 ```kotlin
@@ -742,6 +789,14 @@ abstract fun setSpotColor(name: String, color: CMYKColor)
 ```
 
 Sets the RGB representation of a spot color. Use this function to both create a new spot color or update an existing spot color. Note: The alpha value is ignored.
+
+### setTypefaceResolver
+
+```kotlin
+abstract fun setTypefaceResolver(resolver: (suspend (FontRequest) -> FontResolverResult?)?)
+```
+
+Sets the resolver for opt-in runtime font requests. Pass null to restore asset-source resolution. Returning null or throwing makes the engine use the default font, and the request reports substituted. The engine retains the original request through scene load/save and waits for resolution in resource readiness. Without a resolver, the engine searches registered local asset sources. Identical requests share pending lookups. Each source is limited to 100 pages. Set assetSourceId to query an external source explicitly. Call setTypefaceResolver again to retry unresolved requests after registering a source.
 
 ### setUriResolverAsync
 
@@ -813,4 +868,4 @@ Toggle the currently selected vector node between smooth (bezier handles) and co
 abstract fun undo()
 ```
 
-Undo one step in the history if an undo step is available.
+Undo one step in the history if an undo step is available. Scene edits made since the last undo step are discarded. Call addUndoStep first, so that redo can restore them.

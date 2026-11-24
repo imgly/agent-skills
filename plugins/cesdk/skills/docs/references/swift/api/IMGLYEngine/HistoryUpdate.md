@@ -3,7 +3,7 @@
 - **Module:** `IMGLYEngine`
 - **DocC identifier:** `/documentation/IMGLYEngine/HistoryUpdate`
 
-The kind of update that triggered an `onHistoryUpdated` callback.
+The kind of update that triggered an `onHistoryUpdatedWithKind` callback.
 
 ```swift
 @objc enum HistoryUpdate

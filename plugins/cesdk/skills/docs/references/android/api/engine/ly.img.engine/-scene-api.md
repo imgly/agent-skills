@@ -16,7 +16,7 @@ interface SceneApi
 abstract fun addMarker(name: String, time: Double, duration: Double = 0.0)
 ```
 
-Add a marker to the end of the current scene's marker list. Markers name points or spans on the scene timeline. Several markers may share a name. Experimental: this API may change in a minor release.
+Add a marker to the end of the current scene's marker list. Markers name points or spans on the scene timeline. Several markers may share a name.
 
 ### applyTemplate
 
@@ -29,14 +29,6 @@ abstract suspend fun applyTemplate(templateUri: Uri)
 ```
 
 Applies the contents of the given template scene to the currently loaded scene. This loads the template scene while keeping the design unit and page dimensions of the current scene. The content of the pages is automatically adjusted to fit the new dimensions. The current scene keeps its variables and value sets, and gains those of the template that it lacks.
-
-### createForVideo
-
-```kotlin
-abstract fun createForVideo(): DesignBlock
-```
-
-Create a new scene in video mode, along with its own camera.
 
 ### createFromImage
 
@@ -214,16 +206,7 @@ Get the current scene layout.
 abstract fun getMarkers(): List<SceneMarker>
 ```
 
-Get the markers of the current scene in the order they were added. Experimental: this API may change in a minor release.
-
-### getMode
-
-```kotlin
-abstract fun getMode(): SceneMode
-```
-> **Deprecated:** Method will be removed in future versions.
-
-Get the current scene mode.
+Get the markers of the current scene in the order they were added.
 
 ### getPages
 
@@ -307,7 +290,7 @@ abstract suspend fun load(scene: String, overrideEditorConfig: Boolean = false, 
 abstract suspend fun load(sceneUri: Uri, overrideEditorConfig: Boolean = false, waitForResources: Boolean = false, onProgress: ((Int) -> Unit)? = null): DesignBlock
 ```
 
-Load the contents of a scene file.
+Load the contents of a scene file. A damaged scene, such as one with a missing key or a value of the wrong type, throws. A damaged block throws after the open scene is cleared, so load another scene after that error.
 
 ### onActiveChanged
 
@@ -348,7 +331,7 @@ Removes one profile and supersedes its pending assignment. Other slots stay unch
 abstract fun removeMarker(index: Int)
 ```
 
-Remove a marker from the current scene. Experimental: this API may change in a minor release.
+Remove a marker from the current scene.
 
 ### saveToArchive
 
@@ -362,6 +345,10 @@ Saves the current scene and all of its referenced assets into an archive. The ar
 
 ```kotlin
 abstract suspend fun saveToString(scene: DesignBlock, allowedResourceSchemes: List<String> = listOf("blob", "bundle", "file", "http", "https")): String
+```
+
+```kotlin
+abstract suspend fun saveToString(scene: DesignBlock, allowedResourceSchemes: List<String> = listOf("blob", "bundle", "file", "http", "https"), onDisallowedResourceScheme: suspend (uri: Uri, dataHash: String) -> Uri): String
 ```
 
 ```kotlin
@@ -418,7 +405,7 @@ Sets how a color that the destination cannot reproduce is mapped into it. The in
 abstract fun setCurrentPages(pages: List<DesignBlock>)
 ```
 
-Set the pages that single page mode shows. All other pages leave the view but stay in the document and in the saved file. Takes visible effect while the setting features/singlePageModeEnabled is enabled. Exporting a page holds that page, even while it is out of view. Exporting a scene holds every page, except pages hidden with setVisible.
+Set the pages that single page mode shows. All other pages leave the view but stay in the document and in the saved file. Takes visible effect while the setting features/singlePageModeEnabled is enabled. Exporting a page holds that page, even while it is out of view. Exporting a scene holds every page, except pages hidden with setVisible. A page slice shows its page, but only inside the clip rectangle of the page slice. The camera does not move to a shown block. Call zoomToBlock to bring it into view. A block that a move puts on a page slice out of view is not drawn and loses its selection. Set a movement constraint on the shown page slice to keep its blocks inside it.
 
 ### setDesignUnit
 
@@ -442,7 +429,7 @@ Assigns ICC bytes synchronously, with the same slots and persistence as setDocum
 abstract suspend fun setDocumentColorProfile(slot: ProfileSlot, uri: Uri)
 ```
 
-Assigns an ICC profile to one document role and component space. Profiles save with the scene and are bundled into archives. Only Default/CMYK currently affects managed conversion; other slots store profiles without changing rendering or export. Failure or coroutine cancellation keeps the previous profile. Another assignment or removal in this slot, or scene replacement, supersedes pending loading. Other slots are independent. Undo and redo do not change profiles.
+Assigns an ICC profile to one document role and component space. Profiles save with the scene and are bundled into archives. Default/CMYK drives managed conversion. Output/RGB and Output/CMYK are the profiles that a PDF export converts to and embeds with outputProfileMode and embedProfiles. A PNG or JPEG export uses Output/RGB. Other slots store profiles only. Failure or coroutine cancellation keeps the previous profile. Another assignment or removal in this slot, or scene replacement, supersedes pending loading. Other slots are independent. Undo and redo do not change profiles.
 
 ### setFontSizeUnit
 
@@ -459,14 +446,6 @@ abstract fun setLayout(layout: SceneLayout)
 ```
 
 Set the scene layout. This will handle all necessary conversions including creating or destroying stack blocks and reparenting pages as needed. When transitioning from stack layouts (VerticalStack, HorizontalStack, DepthStack) to Free layout, the global positions of pages are preserved to maintain their visual appearance in the scene.
-
-### setMode
-
-```kotlin
-abstract fun setMode(mode: SceneMode)
-```
-
-Set the scene mode. Changing the scene mode affects how the engine processes and renders the scene: - Video mode enables timeline-based playback, animations, and audio processing. - Design mode disables playback-related features and uses different color space settings.
 
 ### setZoomLevel
 

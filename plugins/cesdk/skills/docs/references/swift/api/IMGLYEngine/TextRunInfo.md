@@ -25,7 +25,7 @@ The text color.
 var fontSize: Float
 ```
 
-The font size in points.
+The font size in the unit that `getTextRuns(_:in:unit:)` takes, points by default, whatever the scene’s `scene/fontSizeUnit` is. `getTextFontSizes(_:in:)` and the `text/fontSize` property report the scene’s unit.
 
 ### fontStyle
 

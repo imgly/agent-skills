@@ -85,14 +85,6 @@ Loads the given video and creates a scene with a single page showing the video. 
 
 Create a new scene, along with its own camera. `sceneLayout`
 
-### createVideo()
-
-```swift
-@discardableResult @MainActor func createVideo() throws -> DesignBlockID
-```
-
-Create a new scene in video mode, along with its own camera. The scene’s handle.
-
 ### disableZoomAutoFit(_:)
 
 ```swift
@@ -185,7 +177,7 @@ Get the current page, i.e., the page of the first selected element if this page 
 @MainActor func getCurrentPages() throws -> [DesignBlockID]
 ```
 
-Get the pages that single page mode shows. The shown pages, or an empty list when the setting `features/singlePageModeEnabled` is disabled.
+Get the pages that single page mode shows. The shown pages and page slices, or an empty list when the setting `features/singlePageModeEnabled` is disabled.
 
 ### getDesignUnit()
 
@@ -226,14 +218,6 @@ Get the current scene layout. The current layout of the scene.
 ```
 
 Get the markers of the current scene in the order they were added. The markers of the scene.
-
-### getMode()
-
-```swift
-@MainActor func getMode() throws -> SceneMode
-```
-
-Get the current scene mode. The current mode of the scene.
 
 ### getPages()
 
@@ -281,7 +265,7 @@ Queries whether zoom auto-fit is enabled. `id`
 @discardableResult @MainActor func load(from string: String, overrideEditorConfig: Bool = false, waitForResources: Bool = false) async throws -> DesignBlockID
 ```
 
-Load the contents of a scene file. `string`
+Load the contents of a scene file. A damaged scene, such as one with a missing key or a value of the wrong type, throws. A damaged block throws after the open scene is cleared, so load another scene after that error. `string`
 
 ### load(from:overrideEditorConfig:waitForResources:onProgress:)
 
@@ -299,7 +283,7 @@ Load a scene from the URL of a scene or archive file. The file will be fetched a
 @discardableResult @MainActor func load(fromString string: String, overrideEditorConfig: Bool = false) async throws -> DesignBlockID
 ```
 
-Load the contents of a scene file. `string`
+Load the contents of a scene file. A damaged scene, such as one with a missing key or a value of the wrong type, throws. A damaged block throws after the open scene is cleared, so load another scene after that error. `string`
 
 ### load(fromURL:overrideEditorConfig:)
 
@@ -387,8 +371,18 @@ Removes one profile and supersedes its pending assignment. Other slots stay unch
 
 ### removeMarker(at:)
 
+> **Deprecated:** Use 'removeMarker(index:)' instead. Renamed to `removeMarker(index:)`.
+
 ```swift
 @MainActor func removeMarker(at index: Int) throws
+```
+
+Remove a marker from the current scene. `index`
+
+### removeMarker(index:)
+
+```swift
+@MainActor func removeMarker(index: Int) throws
 ```
 
 Remove a marker from the current scene. `index`
@@ -491,7 +485,7 @@ Assigns ICC bytes synchronously, with the same slots and persistence as the URL 
 @MainActor func setDocumentColorProfile(_ slot: ProfileSlot, from url: URL) async throws
 ```
 
-Assigns an ICC profile to one document role and component space. Profiles save with the scene and are bundled into archives. Only Default/CMYK currently affects managed conversion; other slots store profiles without changing rendering or export. Failure or task cancellation keeps the previous profile. Another assignment or removal in this slot, or scene replacement, supersedes pending loading. Other slots are independent. Undo and redo do not change profiles. `slot`
+Assigns an ICC profile to one document role and component space. Profiles save with the scene and are bundled into archives. Default/CMYK drives managed conversion. Output/RGB and Output/CMYK are the profiles that a PDF export converts to and embeds with `outputProfileMode` and `embedProfiles`. A PNG, JPEG or WebP export uses Output/RGB. Other slots store profiles only. Failure or task cancellation keeps the previous profile. Another assignment or removal in this slot, or scene replacement, supersedes pending loading. Other slots are independent. Undo and redo do not change profiles. `slot`
 
 ### setFontSizeUnit(_:)
 
@@ -508,14 +502,6 @@ Sets the unit in which font sizes for `setTextFontSize` and `getTextFontSizes` a
 ```
 
 Set the scene layout. This will handle all necessary conversions including creating or destroying stack blocks and reparenting pages as needed. When transitioning from stack layouts (VerticalStack, HorizontalStack, DepthStack) to Free layout, the global positions of pages are preserved to maintain their visual appearance in the scene. `layout`
-
-### setMode(_:)
-
-```swift
-@MainActor func setMode(_ mode: SceneMode) throws
-```
-
-Set the scene mode. Changing the scene mode affects how the engine processes and renders the scene: `mode`
 
 ### setZoom(_:)
 

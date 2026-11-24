@@ -3,7 +3,7 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-One vertex of a bezier path. Experimental: this API may change in a minor release.
+One vertex of a bezier path.
 
 ```kotlin
 data class PathVertex(val point: Vector2, val inTangent: Vector2 = Vector2(0F, 0F), val outTangent: Vector2 = Vector2(0F, 0F))
