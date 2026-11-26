@@ -359,6 +359,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [To WebP](https://img.ly/docs/cesdk/dev/vue/export-save-publish/export/to-webp-aef6f4/)
 - [To HTML5](https://img.ly/docs/cesdk/dev/vue/export-save-publish/export/to-html5-76d2ab/)
 - [To IDML](https://img.ly/docs/cesdk/dev/vue/export-save-publish/export/to-idml-5c1a8f/)
+- [To PSD](https://img.ly/docs/cesdk/dev/vue/export-save-publish/export/to-psd-bc27e9/)
 - [To Figma](https://img.ly/docs/cesdk/dev/vue/export-save-publish/export/to-figma-005734/)
 - [To Raw Data](https://img.ly/docs/cesdk/dev/vue/export-save-publish/export/to-raw-data-abd7da/)
 - [Compress](https://img.ly/docs/cesdk/dev/vue/export-save-publish/export/compress-29105e/)
@@ -696,3 +697,4 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 - [Auto Layout](https://img.ly/docs/cesdk/dev/vue/create-composition/auto-layout-c7e41a/)
 - [Equal-Distance Snapping](https://img.ly/docs/cesdk/dev/vue/equal-distance-snapping-e9d15a/)
+- [Custom GLSL Shaders](https://img.ly/docs/cesdk/dev/vue/filters-and-effects/custom-shaders-3853ab/)

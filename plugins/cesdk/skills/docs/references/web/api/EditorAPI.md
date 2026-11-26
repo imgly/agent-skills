@@ -155,6 +155,68 @@ unstable_isInteractionHappening(): boolean
 
 **Returns:** True if an interaction is happening.
 
+## Interaction
+
+### beginInteraction()
+
+Start an interaction on the selected blocks, as a press on one of their handles would.
+Snapping, constraints, reparenting and the undo history behave as for a pointer drag. Points are in
+the screen space of `findBlocksAtScreenPoint`: CSS pixels from the top left of the canvas. It commits
+pending edits as an undo step first, so that `cancelInteraction` reverts only this interaction.
+
+```typescript
+beginInteraction(kind: InteractionKind, handleX: number, handleY: number, x: number, y: number): void
+```
+
+**Parameters:**
+- `kind` - The edit to perform.
+- `handleX` - For `Resize`, `CropResize` and `CropScale`, the relative x position of the dragged
+handle: 0, 0.5 or 1. Ignored otherwise.
+- `handleY` - For `Resize`, `CropResize` and `CropScale`, the relative y position of the dragged
+handle: 0, 0.5 or 1. Ignored otherwise.
+- `x` - The x coordinate of the press.
+- `y` - The y coordinate of the press.
+
+### updateInteraction()
+
+Move the pointer of the running interaction, as a pointer drag would, and apply the edit.
+A selection change, a deleted block or an edit mode change cancels the interaction.
+
+```typescript
+updateInteraction(x: number, y: number, modifiers?: InteractionModifiers | null): void
+```
+
+**Parameters:**
+- `x` - The x coordinate of the pointer.
+- `y` - The y coordinate of the pointer.
+- `modifiers` - The modifier keys held during this update. None by default.
+
+### commitInteraction()
+
+End the running interaction, as a pointer release would, and add its edit as one undo step.
+
+```typescript
+commitInteraction(): void
+```
+
+### cancelInteraction()
+
+End the running interaction and revert its edit, with no undo step.
+
+```typescript
+cancelInteraction(): void
+```
+
+### isInteractionActive()
+
+Query whether an interaction started by `beginInteraction` runs.
+
+```typescript
+isInteractionActive(): boolean
+```
+
+**Returns:** True if an interaction runs.
+
 ## Vector Edit
 
 ### hasSelectedVectorNode()
@@ -370,8 +432,13 @@ getActiveHistory(): HistoryId
 
 ### addUndoStep()
 
-Add a new history state to the undo stack.
-Only adds a state if undoable changes were made since the last undo step.
+Add a new undo step to the undo stack.
+A call adds a step also when nothing changed since the last step. Undoing such an empty step
+changes nothing, so call it only after an undoable change. On a history with no steps yet, such
+as a new one, the first call records the starting point, not a step. The step is taken at the
+engine's next update (its next frame). Edits made after the call until then join it, and calls
+before that update share one step. To give two edits their own steps, let a frame pass between
+them. `undo`, `redo` and `setActiveHistory` take a pending step at once.
 ```javascript
   engine.editor.addUndoStep();
 ```

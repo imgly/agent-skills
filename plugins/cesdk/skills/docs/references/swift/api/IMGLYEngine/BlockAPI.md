@@ -763,6 +763,14 @@ Get the properties of a block that are bound to a variable. `id`
 
 Gets the sorted names of the variant properties of a main component. `component`
 
+### findBlocksAtScreenPoint(_:)
+
+```swift
+@MainActor func findBlocksAtScreenPoint(_ point: CGPoint) throws -> [DesignBlockID]
+```
+
+Find the blocks under a point on the screen, as a click there would hit them. The screen space is the one of [`getScreenSpaceBoundingBox(containing:)`](./getscreenspaceboundingbox(containing:).md). Hidden and generated blocks are not hit. A transparent pixel or a bounding box hit sorts behind a conclusive hit. Fails if no scene exists. `point`
+
 ### flipCropHorizontal(_:)
 
 ```swift
@@ -2093,6 +2101,14 @@ Inserts a subshape at the given index of a compound shape. The subshape at index
 
 Inserts a text animator at the given index into the text animators of a block. A text animator belongs to one block at a time. Required scope: “appearance/animation” `id`
 
+### insertTextAtCursor(_:)
+
+```swift
+@MainActor func insertTextAtCursor(_ text: String) throws
+```
+
+Insert text at the cursor of the edited text block, as typing does, and replace the selection. The edits form one undo step with the typing of the same edit session, when the Text edit mode ends. Unlike a typed space, the text starts no numbered list. `text`
+
 ### isAlignable(_:)
 
 ```swift
@@ -2220,6 +2236,14 @@ Query whether the block is muted due to engine constraints. `id`
 ```
 
 Confirms that a given set of blocks can be grouped together. A caption or a caption track cannot be grouped, because a caption plays from the caption track of its page. `ids`
+
+### isHovered(_:)
+
+```swift
+@MainActor func isHovered(_ id: DesignBlockID) throws -> Bool
+```
+
+Get the hover state of a block. `id`
 
 ### isIncludedInExport(_:)
 
@@ -2396,6 +2420,14 @@ Query a block’s visibility. `id`
 ```
 
 Returns whether the block is visible on the canvas at the current playback time. `id`
+
+### joinVideos(partURLs:audioURL:mimeType:progress:)
+
+```swift
+@MainActor func joinVideos(partURLs: [URL], audioURL: URL? = nil, mimeType: MIMEType = .mp4, progress: (@Sendable (Int, Int) -> Void)? = nil) async throws -> Blob
+```
+
+Joins the MP4 files of adjacent time ranges of one video export into one MP4 file, without a new encode. Export the ranges with [`exportVideo(_:mimeType:options:onPreExport:uriResolver:)`](./exportvideo(_:mimetype:options:onpreexport:uriresolver:)-8tel0.md), for example in parallel engines, and the audio of the whole range once with [`exportAudio(_:mimeType:options:)`](./exportaudio(_:mimetype:options:)-7znli.md) as [`MIMEType.mp4Audio`](../mimetype/mp4audio.md). A part that a crash or a cancel stopped is exported again, and the finished parts are kept. A cancelled task cancels the join. `partURLs`
 
 ### load(from:)-87kwi
 
@@ -2684,6 +2716,30 @@ Scales the block and all of its children proportionally around the specified rel
 ```
 
 Selects the given block and deselects all other blocks. `id`
+
+### selectBlocksInScreenRect(_:addToSelection:)
+
+```swift
+@discardableResult @MainActor func selectBlocksInScreenRect(_ rect: CGRect, addToSelection: Bool = false) throws -> [DesignBlockID]
+```
+
+Select the blocks in a rectangle on the screen, as a marquee drag over it would. Scopes, pages, groups and the selectable flags apply as for a marquee. The screen space is the one of [`findBlocksAtScreenPoint(_:)`](./findblocksatscreenpoint(_:).md). `rect`
+
+### selectTextLineAtScreenPoint(_:)
+
+```swift
+@MainActor func selectTextLineAtScreenPoint(_ point: CGPoint) throws
+```
+
+Select the visual line at a point on the screen, as a triple click there does in the Text edit mode. The screen space is the one of [`findBlocksAtScreenPoint(_:)`](./findblocksatscreenpoint(_:).md). A line break at the end of the line stays out of the selection. `point`
+
+### selectTextWordAtScreenPoint(_:)
+
+```swift
+@MainActor func selectTextWordAtScreenPoint(_ point: CGPoint) throws
+```
+
+Select the word at a point on the screen, as a double click there does in the Text edit mode. The screen space is the one of [`findBlocksAtScreenPoint(_:)`](./findblocksatscreenpoint(_:).md). `point`
 
 ### sendBackward(_:)
 
@@ -3102,6 +3158,14 @@ Update a block’s height and optionally maintain the crop. A new height of a pa
 ```
 
 Set a block’s mode for its height. A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`. Required scope: “layer/resize” `id`
+
+### setHovered(_:hovered:)
+
+```swift
+@MainActor func setHovered(_ id: DesignBlockID, hovered: Bool) throws
+```
+
+Show or remove the hover highlight on a block, as a pointer over it would. Setting it to `true` removes the hover from every other block. Fails for invalid blocks and for blocks that cannot be selected. `id`
 
 ### setInAnimation(_:animation:)
 
@@ -3534,6 +3598,14 @@ Sets the given text case for the selected range of text. Required scope: “text
 ```
 
 Changes the color of the text in the selected range to the given color. Required scope: “fill/change” `id`
+
+### setTextCursorAtScreenPoint(_:)
+
+```swift
+@MainActor func setTextCursorAtScreenPoint(_ point: CGPoint) throws
+```
+
+Place the text cursor at a point on the screen, as a press there does in the Text edit mode. The screen space is the one of [`findBlocksAtScreenPoint(_:)`](./findblocksatscreenpoint(_:).md). `point`
 
 ### setTextCursorRange(_:)
 

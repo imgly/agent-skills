@@ -134,6 +134,27 @@ exportAudio(handle: DesignBlockId, options?: AudioExportOptions): Promise<Blob>
 
 **Returns:** A promise that resolves with an audio blob or is rejected with an error.
 
+### joinVideos()
+
+Joins the MP4 files of adjacent time ranges of one video export into one MP4 file, without a new encode.
+Export the ranges with `exportVideo`, for example in parallel engines, and the audio of the whole range once
+with `exportAudio` as `'audio/mp4'`. A part that a crash or a cancel stopped is exported again, and the finished
+parts are kept.
+
+```typescript
+joinVideos(partURIs: string[], options?: JoinVideosOptions): Promise<Blob>
+```
+
+**Parameters:**
+- `partURIs` - The URIs of the video files, in the order of their ranges. Each starts at a key frame, and all
+come from exports with the same size, frame rate and encoder settings. Pass bytes as a buffer URI, see
+`editor.createBuffer`. The audio track of a part is not copied.
+- `options` - The audio, the MIME type, a progress callback and an abort signal.
+
+**Returns:** A promise that resolves with the joined video. A part that cannot follow the first one rejects with
+`ENCODE.VIDEO_JOIN_PART_INVALID`, and an audio file without an audio track with
+`ENCODE.VIDEO_JOIN_AUDIO_INVALID`.
+
 ## Block Analysis
 
 ### getDominantColors()
@@ -1869,6 +1890,33 @@ isSelected(id: DesignBlockId): boolean
 - `id` - The block to query.
 
 **Returns:** True if the block is selected, false otherwise.
+
+### setHovered()
+
+Shows or removes the hover highlight on a block, as a pointer over it would.
+Setting it to true removes the hover from every other block. The next pointer move over the canvas replaces
+this hover with the block under the pointer.
+
+```typescript
+setHovered(id: DesignBlockId, hovered: boolean): void
+```
+
+**Parameters:**
+- `id` - The block to hover.
+- `hovered` - Whether the block is hovered.
+
+### isHovered()
+
+Gets the hover state of a block.
+
+```typescript
+isHovered(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** True if the block is hovered, false otherwise.
 
 ### findAllSelected()
 
@@ -3741,6 +3789,26 @@ getScreenSpaceBoundingBoxXYWH(ids: DesignBlockId[]): XYWH
 
 **Returns:** The position and size of the bounding box.
 
+### findBlocksAtScreenPoint()
+
+Finds the blocks under a point on the screen, as a click there would hit them.
+The screen space is the one of `getScreenSpaceBoundingBoxXYWH`. Hidden and generated blocks are not hit. A
+transparent pixel or a bounding box hit sorts behind a conclusive hit.
+```javascript
+const [x, y] = engine.block.getScreenSpaceBoundingBoxXYWH([block]);
+const hits = engine.block.findBlocksAtScreenPoint(x + 1, y + 1);
+```
+
+```typescript
+findBlocksAtScreenPoint(x: number, y: number): DesignBlockId[]
+```
+
+**Parameters:**
+- `x` - The x coordinate of the point in screen space.
+- `y` - The y coordinate of the point in screen space.
+
+**Returns:** The hit blocks, front-most first, pages included.
+
 ### alignHorizontally()
 
 Aligns blocks horizontally.
@@ -4543,6 +4611,27 @@ getEnum<T extends keyof BlockEnumType>(id: DesignBlockId, property: T): BlockEnu
 - `property` - The name of the property to query.
 
 **Returns:** The value as a string.
+
+## Block Selection
+
+### selectBlocksInScreenRect()
+
+Selects the blocks in a rectangle on the screen, as a marquee drag over it would.
+Scopes, pages, groups and the selectable flags apply as for a marquee. The screen space is the one of
+`findBlocksAtScreenPoint`.
+
+```typescript
+selectBlocksInScreenRect(x: number, y: number, width: number, height: number, addToSelection?: boolean): DesignBlockId[]
+```
+
+**Parameters:**
+- `x` - The x coordinate of the rectangle's top-left corner in screen space.
+- `y` - The y coordinate of the rectangle's top-left corner in screen space.
+- `width` - The width of the rectangle in screen space.
+- `height` - The height of the rectangle in screen space.
+- `addToSelection` - Whether to add the blocks to the selection, as Shift does, instead of replacing it.
+
+**Returns:** The selected blocks afterwards.
 
 ## Block Utils
 
@@ -7168,6 +7257,59 @@ setTextCursorRange(range: Range): void
 
 **Parameters:**
 - `range` - The UTF-16 range to set as the selection. If `from` equals `to`, the cursor is positioned at that index. If `from` and `to` are set to -1, the whole text is selected.
+
+### setTextCursorAtScreenPoint()
+
+Places the text cursor at a point on the screen, as a press there does in the Text edit mode.
+The screen space is the one of `findBlocksAtScreenPoint`.
+
+```typescript
+setTextCursorAtScreenPoint(x: number, y: number): void
+```
+
+**Parameters:**
+- `x` - The x coordinate in screen space.
+- `y` - The y coordinate in screen space.
+
+### selectTextWordAtScreenPoint()
+
+Selects the word at a point on the screen, as a double click there does in the Text edit mode.
+The screen space is the one of `findBlocksAtScreenPoint`.
+
+```typescript
+selectTextWordAtScreenPoint(x: number, y: number): void
+```
+
+**Parameters:**
+- `x` - The x coordinate in screen space.
+- `y` - The y coordinate in screen space.
+
+### selectTextLineAtScreenPoint()
+
+Selects the visual line at a point on the screen, as a triple click there does in the Text edit mode.
+The screen space is the one of `findBlocksAtScreenPoint`. A line break at the end of the line stays
+out of the selection.
+
+```typescript
+selectTextLineAtScreenPoint(x: number, y: number): void
+```
+
+**Parameters:**
+- `x` - The x coordinate in screen space.
+- `y` - The y coordinate in screen space.
+
+### insertTextAtCursor()
+
+Inserts text at the cursor of the edited text block, as typing does, and replaces the selection.
+The edits form one undo step with the typing of the same edit session, when the Text edit mode ends. Unlike a
+typed space, the text starts no numbered list.
+
+```typescript
+insertTextAtCursor(text: string): void
+```
+
+**Parameters:**
+- `text` - The text to insert.
 
 ### getTextRenderDiagnostics()
 

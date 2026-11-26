@@ -572,6 +572,14 @@ abstract fun findAll(): List<DesignBlock>
 
 Return all blocks currently known to the engine.
 
+### findBlocksAtScreenPoint
+
+```kotlin
+abstract fun findBlocksAtScreenPoint(x: Float, y: Float): List<DesignBlock>
+```
+
+Find the blocks under a point on the screen, as a click there would hit them. The screen space is the one of getScreenSpaceBoundingBoxRect. Hidden and generated blocks are not hit. A transparent pixel or a bounding box hit sorts behind a conclusive hit. Fails if no scene exists.
+
 ### findByKind
 
 ```kotlin
@@ -1948,6 +1956,14 @@ abstract fun insertTextAnimator(block: DesignBlock, animatorBlock: DesignBlock, 
 
 Inserts a text animator at the given index into the text animators of a block. A text animator belongs to one block at a time. Required scope: "appearance/animation"
 
+### insertTextAtCursor
+
+```kotlin
+abstract fun insertTextAtCursor(text: String)
+```
+
+Insert text at the cursor of the edited text block, as typing does, and replace the selection. The edits form one undo step with the typing of the same edit session, when the Text edit mode ends. Unlike a typed space, the text starts no numbered list.
+
 ### isAVResourceLoaded
 
 ```kotlin
@@ -2099,6 +2115,14 @@ abstract fun isGroupable(blocks: List<DesignBlock>): Boolean
 ```
 
 Confirms that a given set of blocks can be grouped together. A caption or a caption track cannot be grouped, because a caption plays from the caption track of its page.
+
+### isHovered
+
+```kotlin
+abstract fun isHovered(block: DesignBlock): Boolean
+```
+
+Get the hover state of a block. Fails for invalid blocks.
 
 ### isIncludedInExport
 
@@ -2284,6 +2308,14 @@ abstract fun isVisible(block: DesignBlock): Boolean
 ```
 
 Query a block's visibility. Reports the visibility you set, not the current view. A page that single page mode takes out of view stays visible; use getCurrentPages to read the view.
+
+### joinVideos
+
+```kotlin
+abstract suspend fun joinVideos(partUris: List<Uri>, audioUri: Uri? = null, mimeType: MimeType = MimeType.MP4, progressCallback: ((JoinVideosProgress) -> Unit)? = null): ByteBuffer
+```
+
+Joins the MP4 files of adjacent time ranges of one video export into one MP4 file, without a new encode. Export the ranges with exportVideo, for example in parallel engines, and the audio of the whole range once with exportAudio as MimeType.AUDIO_MP4. A part that a crash or a cancel stopped is exported again, and the finished parts are kept. Cancelling the coroutine stops the join.
 
 ### loadFromArchive
 
@@ -2544,6 +2576,30 @@ abstract fun scale(block: DesignBlock, scale: Float, @FloatRange(from = 0.0, to 
 ```
 
 Scales the block and all of its children proportionally around the specified relative anchor point. This updates the position, size and style properties (e.g. stroke width) of the block and its children. With the setting features/implicitUpdatesEnabled off, the call updates only when a block that it reads has no layout yet, as right after an undo. It reads the block, every child of it and each transform parent. That update also lays out every other pending change. Required scope: "layer/resize" Scaling a page slice changes its size, and the page places its page slices again. A scale of 0 or less on a page slice fails with BLOCK.PAGE_SLICE_SIZE_INVALID.
+
+### selectBlocksInScreenRect
+
+```kotlin
+abstract fun selectBlocksInScreenRect(x: Float, y: Float, width: Float, height: Float, addToSelection: Boolean = false): List<DesignBlock>
+```
+
+Select the blocks in a rectangle on the screen, as a marquee drag over it would. Scopes, pages, groups and the selectable flags apply as for a marquee. The screen space is the one of findBlocksAtScreenPoint.
+
+### selectTextLineAtScreenPoint
+
+```kotlin
+abstract fun selectTextLineAtScreenPoint(x: Float, y: Float)
+```
+
+Select the visual line at a point on the screen, as a triple click there does in the Text edit mode. The screen space is the one of findBlocksAtScreenPoint. A line break at the end of the line stays out of the selection.
+
+### selectTextWordAtScreenPoint
+
+```kotlin
+abstract fun selectTextWordAtScreenPoint(x: Float, y: Float)
+```
+
+Select the word at a point on the screen, as a double click there does in the Text edit mode. The screen space is the one of findBlocksAtScreenPoint.
 
 ### select
 
@@ -2969,6 +3025,14 @@ abstract fun setHeight(block: DesignBlock, value: Float, maintainCrop: Boolean =
 ```
 
 Update a block's height and optionally maintain the crop. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up higher than asked. A height of 0 or less on a page slice fails with BLOCK.PAGE_SLICE_SIZE_INVALID. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of t…
+
+### setHovered
+
+```kotlin
+abstract fun setHovered(block: DesignBlock, hovered: Boolean)
+```
+
+Show or remove the hover highlight on a block, as a pointer over it would. Setting it to true removes the hover from every other block. Fails for invalid blocks and for blocks that cannot be selected. Note: The next pointer move over the canvas replaces this hover with the block under the pointer.
 
 ### setInAnimation
 
@@ -3409,6 +3473,14 @@ abstract fun setTextColor(block: DesignBlock, color: Color, from: Int = -1, to: 
 ```
 
 Changes the color of the text in the selected range to the given color. Required scope: "fill/change"
+
+### setTextCursorAtScreenPoint
+
+```kotlin
+abstract fun setTextCursorAtScreenPoint(x: Float, y: Float)
+```
+
+Place the text cursor at a point on the screen, as a press there does in the Text edit mode. The screen space is the one of findBlocksAtScreenPoint.
 
 ### setTextCursorRange
 

@@ -585,3 +585,5 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 ## Pages Outside the Navigation
 
 - [Equal-Distance Snapping](https://img.ly/docs/cesdk/dev/android/equal-distance-snapping-e9d15a/)
+- [Resume a Video Export](https://img.ly/docs/cesdk/dev/android/export-save-publish/export/resume-video-export-03a8e8/)
+- [Custom GLSL Shaders](https://img.ly/docs/cesdk/dev/android/filters-and-effects/custom-shaders-3853ab/)

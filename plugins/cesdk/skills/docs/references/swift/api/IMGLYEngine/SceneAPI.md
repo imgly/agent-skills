@@ -227,6 +227,14 @@ Returns the design unit of the current scene. The current design unit.
 
 Returns a slot’s reference without loading it. Fallback profiles are not reported. `slot`
 
+### getEmbeddedFonts()
+
+```swift
+@MainActor func getEmbeddedFonts() async throws -> [EmbeddedFont]
+```
+
+Lists the font files that [`saveToArchive(options:)`](./savetoarchive(options:).md) bundles for the current scene, with the names and license data of each font. The fonts of the scene.
+
 ### getFontSizeUnit()
 
 ```swift

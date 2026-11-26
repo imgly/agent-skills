@@ -32,6 +32,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [Quickstart Node.js](https://img.ly/docs/cesdk/dev/node/get-started/vanilla-n1234a/)
 
+#### [Cloud (Node.js)](https://img.ly/docs/cesdk/dev/node/get-started/cloud-container-cldctr/)
+
 #### [Quickstart Deno](https://img.ly/docs/cesdk/dev/node/get-started/deno-m2345b/)
 
 #### [Quickstart Bun](https://img.ly/docs/cesdk/dev/node/get-started/bun-l3456c/)
@@ -452,6 +454,11 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 - [Fade Audio In and Out](https://img.ly/docs/cesdk/dev/node/create-audio/audio/fade-a4d7e2/)
 - [Loop Audio](https://img.ly/docs/cesdk/dev/node/create-audio/audio/loop-937be7/)
 - [Auto Layout](https://img.ly/docs/cesdk/dev/node/create-composition/auto-layout-c7e41a/)
+- [Custom GLSL Shaders](https://img.ly/docs/cesdk/dev/node/filters-and-effects/custom-shaders-3853ab/)
+- [Node.js - AWS ECS on Fargate](https://img.ly/docs/cesdk/dev/node/get-started/cloud-aws-ecs-fargate-cldecs/)
+- [Node.js - Azure Container Apps](https://img.ly/docs/cesdk/dev/node/get-started/cloud-azure-container-apps-cldazr/)
+- [Node.js - Google Cloud Run](https://img.ly/docs/cesdk/dev/node/get-started/cloud-google-cloud-run-cldgcr/)
+- [Node.js - Kubernetes](https://img.ly/docs/cesdk/dev/node/get-started/cloud-kubernetes-cldk8s/)
 - [Node.js - AWS Lambda](https://img.ly/docs/cesdk/dev/node/get-started/vanilla-aws-lambda-fee18b/)
 - [Node.js - Clone GitHub Project](https://img.ly/docs/cesdk/dev/node/get-started/vanilla-clone-github-project-n1fe4a/)
 - [Refresh Assets](https://img.ly/docs/cesdk/dev/node/import-media/asset-library/refresh-assets-382060/)

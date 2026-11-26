@@ -6,7 +6,7 @@
 The identity of a font file: its names, weight, style, variation axes and OpenType features. A variable font is described by its default instance.
 
 ```kotlin
-data class FontInfo(val family: String, val legacyFamily: String, val subFamily: String, val postScriptName: String, val weight: Int, val fontWeight: FontWeight, val style: FontStyle, val isVariable: Boolean, val variationAxes: List<VariationAxis>, val openTypeFeatures: List<String>)
+data class FontInfo(val family: String, val legacyFamily: String, val subFamily: String, val postScriptName: String, val weight: Int, val fontWeight: FontWeight, val style: FontStyle, val isVariable: Boolean, val variationAxes: List<VariationAxis>, val openTypeFeatures: List<String>, val copyright: String = "", val license: String = "", val licenseUrl: String = "")
 ```
 
 
@@ -15,8 +15,16 @@ data class FontInfo(val family: String, val legacyFamily: String, val subFamily:
 ### FontInfo
 
 ```kotlin
-constructor(family: String, legacyFamily: String, subFamily: String, postScriptName: String, weight: Int, fontWeight: FontWeight, style: FontStyle, isVariable: Boolean, variationAxes: List<VariationAxis>, openTypeFeatures: List<String>)
+constructor(family: String, legacyFamily: String, subFamily: String, postScriptName: String, weight: Int, fontWeight: FontWeight, style: FontStyle, isVariable: Boolean, variationAxes: List<VariationAxis>, openTypeFeatures: List<String>, copyright: String = "", license: String = "", licenseUrl: String = "")
 ```
+
+### copyright
+
+```kotlin
+val copyright: String
+```
+
+The copyright notice (name ID 0), or an empty string when the font has none.
 
 ### family
 
@@ -49,6 +57,22 @@ val legacyFamily: String
 ```
 
 The legacy family name (name ID 1). It can name the weight too, such as "Inter Semi Bold".
+
+### licenseUrl
+
+```kotlin
+val licenseUrl: String
+```
+
+The URL of the license (name ID 14), or an empty string when the font has none.
+
+### license
+
+```kotlin
+val license: String
+```
+
+The license description (name ID 13), or an empty string when the font has none. It is often the full license text, or a sentence that names the license.
 
 ### openTypeFeatures
 

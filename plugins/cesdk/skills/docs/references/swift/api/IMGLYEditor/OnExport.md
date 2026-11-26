@@ -66,3 +66,11 @@ static func video(mimeType: MIMEType? = nil) -> OnExport.Callback
 ```
 
 Creates a callback that exports the scene as a video file (e.g., MP4), displays a progress indicator, writes it to a temporary file, and opens a system dialog for sharing the exported file. `mimeType`
+
+### videoExportDuration(_:_:)
+
+```swift
+@MainActor static func videoExportDuration(_ engine: Engine, _ eventHandler: any EditorEventHandler) throws -> TimeInterval?
+```
+
+A utility that applies the video duration constraints to the export of the current page. `engine`

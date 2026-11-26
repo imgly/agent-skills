@@ -4181,6 +4181,24 @@ case editorGlobalScopeInvalidValue
 case editorHistoryHandleInvalid
 ```
 
+### EngineErrorCode.editorInteractionAlreadyActive
+
+```swift
+case editorInteractionAlreadyActive
+```
+
+### EngineErrorCode.editorInteractionHandleNotAvailable
+
+```swift
+case editorInteractionHandleNotAvailable
+```
+
+### EngineErrorCode.editorInteractionNotActive
+
+```swift
+case editorInteractionNotActive
+```
+
 ### EngineErrorCode.editorMemoryQueryUnavailable
 
 ```swift
@@ -4331,6 +4349,12 @@ case editorSceneSizeUnavailable
 case editorSceneUnknownBlockType
 ```
 
+### EngineErrorCode.editorSelectionRectEmpty
+
+```swift
+case editorSelectionRectEmpty
+```
+
 ### EngineErrorCode.editorSettingEnumValueNotFound
 
 ```swift
@@ -4377,6 +4401,18 @@ case editorSizeConstraintInvalid
 
 ```swift
 case editorSplitBlockFailed
+```
+
+### EngineErrorCode.editorTextCompositionActive
+
+```swift
+case editorTextCompositionActive
+```
+
+### EngineErrorCode.editorTextPointOutsideText
+
+```swift
+case editorTextPointOutsideText
 ```
 
 ### EngineErrorCode.editorThumbnailSamplesInvalid
@@ -5289,6 +5325,24 @@ case encodeVideoFrameRateInvalid
 
 ```swift
 case encodeVideoHasNoAudioTracks
+```
+
+### EngineErrorCode.encodeVideoJoinAudioInvalid
+
+```swift
+case encodeVideoJoinAudioInvalid
+```
+
+### EngineErrorCode.encodeVideoJoinMimeTypeInvalid
+
+```swift
+case encodeVideoJoinMimeTypeInvalid
+```
+
+### EngineErrorCode.encodeVideoJoinPartInvalid
+
+```swift
+case encodeVideoJoinPartInvalid
 ```
 
 ### EngineErrorCode.encodeVideoMimeNotMp4

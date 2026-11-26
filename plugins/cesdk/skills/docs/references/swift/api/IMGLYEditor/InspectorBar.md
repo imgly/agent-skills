@@ -668,7 +668,8 @@ The id of the [`moveAsClip(action:title:icon:isEnabled:isVisible:)`](../moveascl
        
       return try context.selection.type != .audio &&
         context.selection.type != .caption &&
-        !isBackgroundTrack(context.selection.parentBlock)
+        !isBackgroundTrack(context.selection.parentBlock) &&
+        context.engine.block.isAllowedByScope(context.selection.block, key: "layer/move")
     }) -> some InspectorBar.Item
 ```
 
@@ -697,7 +698,8 @@ The id of the [`moveAsOverlay(action:title:icon:isEnabled:isVisible:)`](../movea
         }
       }
       return try context.selection.type != .audio &&
-        isBackgroundTrack(context.selection.parentBlock)
+        isBackgroundTrack(context.selection.parentBlock) &&
+        context.engine.block.isAllowedByScope(context.selection.block, key: "layer/move")
     }) -> some InspectorBar.Item
 ```
 

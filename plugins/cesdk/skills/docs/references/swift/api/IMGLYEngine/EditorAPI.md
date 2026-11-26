@@ -15,7 +15,7 @@
 @MainActor func addUndoStep() throws
 ```
 
-Adds a new history state to the stack, if undoable changes were made.
+Adds a new undo step to the stack. A call adds a step also when nothing changed since the last step. Undoing such an empty step changes nothing, so call it only after an undoable change. On a history with no steps yet, such as a new one, the first call records the starting point, not a step. The step is taken at the engine’s next update (its next frame). Edits made after the call until then join it, and calls before that update share one step. To give two edits their own steps, let a frame pass between them. `undo`, `redo` and `setActiveHistory` take a pending step at once.
 
 ### addVectorNode()
 
@@ -24,6 +24,22 @@ Adds a new history state to the stack, if undoable changes were made.
 ```
 
 Add a new vertex by splitting the segment after the currently selected vector node.
+
+### beginInteraction(_:handle:at:)
+
+```swift
+@MainActor func beginInteraction(_ kind: InteractionKind, handle: CGPoint = .zero, at point: CGPoint) throws
+```
+
+Start an interaction on the selected blocks, as a press on one of their handles would. Snapping, constraints, reparenting and the undo history behave as for a pointer drag. Points are in the screen space of [`findBlocksAtScreenPoint(_:)`](../blockapi/findblocksatscreenpoint(_:).md). Commits pending edits as an undo step first, so that [`cancelInteraction()`](cancelinteraction().md) reverts only this interaction. `kind`
+
+### cancelInteraction()
+
+```swift
+@MainActor func cancelInteraction() throws
+```
+
+End the running interaction and revert its edit, with no undo step.
 
 ### canRedo()
 
@@ -56,6 +72,14 @@ Inspects a resource header/container and reports image, audio, and video support
 ```
 
 If the engine does not support working in the P3 color space, this function throws an error.
+
+### commitInteraction()
+
+```swift
+@MainActor func commitInteraction() throws
+```
+
+End the running interaction, as a pointer release would, and add its edit as one undo step.
 
 ### convertColorToColorSpace(color:colorSpace:)
 
@@ -554,6 +578,14 @@ Check whether a vector anchor node is currently selected in vector edit mode. `t
 ```
 
 Checks wether the block has selection and hover highlighting enabled or disabled. `id`
+
+### isInteractionActive()
+
+```swift
+@MainActor func isInteractionActive() throws -> Bool
+```
+
+Query whether an interaction started by [`beginInteraction(_:handle:at:)`](./begininteraction(_:handle:at:).md) runs. True if an interaction runs.
 
 ### isSelectionEnabled(_:)
 
@@ -1084,3 +1116,11 @@ Undo one step in the history if an undo step is available. Scene edits made sinc
 ```
 
 If an user interaction is happening, e.g., a resize edit with a drag handle or a touch gesture. true if an interaction is happening.
+
+### updateInteraction(to:modifiers:)
+
+```swift
+@MainActor func updateInteraction(to point: CGPoint, modifiers: InteractionModifiers = .init()) throws
+```
+
+Move the pointer of the running interaction, as a pointer drag would, and apply the edit. A selection change, a deleted block or an edit mode change cancels the interaction. `point`

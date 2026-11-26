@@ -12,6 +12,11 @@ Fetch them as Markdown (WebFetch, or `curl -sL --compressed <url>`):
 - `https://img.ly/docs/cesdk/dev/node/get-started/build-with-ai-k7m9p2.md`
 - `https://img.ly/docs/cesdk/dev/node/get-started/bun-l3456c.md`
 - `https://img.ly/docs/cesdk/dev/node/get-started/cesdk-plugin-coding-agents-c0d3ag.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/cloud-aws-ecs-fargate-cldecs.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/cloud-azure-container-apps-cldazr.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/cloud-container-cldctr.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/cloud-google-cloud-run-cldgcr.md`
+- `https://img.ly/docs/cesdk/dev/node/get-started/cloud-kubernetes-cldk8s.md`
 - `https://img.ly/docs/cesdk/dev/node/get-started/deno-m2345b.md`
 - `https://img.ly/docs/cesdk/dev/node/get-started/mcp-server-fde71c.md`
 - `https://img.ly/docs/cesdk/dev/node/get-started/overview-e18f40.md`

@@ -16,7 +16,7 @@ interface EditorApi
 abstract fun addUndoStep()
 ```
 
-Adds a new history state to the stack, if undoable changes were made.
+Adds a new undo step to the stack. A call adds a step also when nothing changed since the last step. Undoing such an empty step changes nothing, so call it only after an undoable change. On a history with no steps yet, such as a new one, the first call records the starting point, not a step. The step is taken at the engine's next update (its next frame). Edits made after the call until then join it, and calls before that update share one step. To give two edits their own steps, let a frame pass between them. undo, redo and setActiveHistory take a pending step at once.
 
 ### addVectorNode
 
@@ -25,6 +25,14 @@ abstract fun addVectorNode()
 ```
 
 Add a new vertex by splitting the segment after the currently selected vector node.
+
+### beginInteraction
+
+```kotlin
+abstract fun beginInteraction(kind: InteractionKind, handleX: Float, handleY: Float, x: Float, y: Float)
+```
+
+Start an interaction on the selected blocks, as a press on one of their handles would. Snapping, constraints, reparenting and the undo history behave as for a pointer drag. Points are in the screen space of BlockApi.findBlocksAtScreenPoint. Commits pending edits as an undo step first, so that cancelInteraction reverts only this interaction.
 
 ### canRedo
 
@@ -42,6 +50,14 @@ abstract fun canUndo(): Boolean
 
 If an undo step is available.
 
+### cancelInteraction
+
+```kotlin
+abstract fun cancelInteraction()
+```
+
+End the running interaction and revert its edit, with no undo step.
+
 ### checkFileSupport
 
 ```kotlin
@@ -57,6 +73,14 @@ abstract fun checkP3Support()
 ```
 
 Throws an exception if the device does not support displaying and working in the P3 color space on the current device. If no exception is thrown, the engine can be switched to a P3 color space using the "features/p3WorkingColorSpace" setting.
+
+### commitInteraction
+
+```kotlin
+abstract fun commitInteraction()
+```
+
+End the running interaction, as a pointer release would, and add its edit as one undo step.
 
 ### convertColorToColorSpace
 
@@ -496,6 +520,14 @@ abstract fun isHighlightingEnabled(block: DesignBlock): Boolean
 ```
 
 Checks wether the block has selection and hover highlighting enabled or disabled.
+
+### isInteractionActive
+
+```kotlin
+abstract fun isInteractionActive(): Boolean
+```
+
+Query whether an interaction started by beginInteraction runs.
 
 ### isInteractionHappening
 
@@ -937,3 +969,11 @@ abstract fun undo()
 ```
 
 Undo one step in the history if an undo step is available. Scene edits made since the last undo step are discarded. Call addUndoStep first, so that redo can restore them.
+
+### updateInteraction
+
+```kotlin
+abstract fun updateInteraction(x: Float, y: Float, modifiers: InteractionModifiers = InteractionModifiers())
+```
+
+Move the pointer of the running interaction, as a pointer drag would, and apply the edit. A selection change, a deleted block or an edit mode change cancels the interaction.

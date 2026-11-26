@@ -346,6 +346,31 @@ saveToArchive(options?: SaveToArchiveOptions): Promise<Blob>
 
 **Returns:** A promise that resolves with a Blob on success or an error on failure.
 
+### getEmbeddedFonts()
+
+Lists the font files that `saveToArchive` bundles for the current scene, with the names and license data of each
+font.
+The names come from the name table of each font: `copyright` (name ID 0), `license` (ID 13) and `licenseUrl`
+(ID 14). The list follows the setting `archival/bundleOnlyUsedFontVariants` as `saveToArchive` does, and is
+sorted by URI. It holds the fonts of the text blocks and of the settings that the archive bundles. The call loads
+each font file that has not loaded yet. A file that does not load is left out, as the archive leaves it out. A
+file that loads but is not a font is listed with empty names. The call rejects when there is no current scene.
+```javascript
+const fonts = await engine.scene.getEmbeddedFonts();
+for (const { uri, info } of fonts) {
+  console.log(uri, info.family, info.license, info.licenseUrl);
+}
+```
+
+```typescript
+getEmbeddedFonts(options?: AbortOptions): Promise<EmbeddedFont[]>
+```
+
+**Parameters:**
+- `options` - An `abortSignal` that stops the load of the fonts.
+
+**Returns:** A promise resolving to the fonts of the scene.
+
 ## Scene Creation
 
 ### create()

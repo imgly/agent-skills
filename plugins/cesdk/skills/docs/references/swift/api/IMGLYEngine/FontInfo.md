@@ -11,6 +11,14 @@ struct FontInfo
 
 ## Members
 
+### copyright
+
+```swift
+let copyright: String
+```
+
+The copyright notice (name ID 0), or an empty string when the font has none.
+
 ### family
 
 ```swift
@@ -27,10 +35,10 @@ let fontWeight: FontWeight
 
 The named weight that is closest to `weight`.
 
-### init(family:legacyFamily:subFamily:postScriptName:weight:fontWeight:style:isVariable:variationAxes:openTypeFeatures:)
+### init(family:legacyFamily:subFamily:postScriptName:weight:fontWeight:style:isVariable:variationAxes:openTypeFeatures:copyright:license:licenseUrl:)
 
 ```swift
-init(family: String, legacyFamily: String, subFamily: String, postScriptName: String, weight: Int, fontWeight: FontWeight, style: FontStyle, isVariable: Bool, variationAxes: [VariationAxis], openTypeFeatures: [String])
+init(family: String, legacyFamily: String, subFamily: String, postScriptName: String, weight: Int, fontWeight: FontWeight, style: FontStyle, isVariable: Bool, variationAxes: [VariationAxis], openTypeFeatures: [String], copyright: String = "", license: String = "", licenseUrl: String = "")
 ```
 
 ### isVariable
@@ -48,6 +56,22 @@ let legacyFamily: String
 ```
 
 The legacy family name (name ID 1). It can name the weight too, such as “Inter Semi Bold”.
+
+### license
+
+```swift
+let license: String
+```
+
+The license description (name ID 13), or an empty string when the font has none. It is often the full license text, or a sentence that names the license.
+
+### licenseUrl
+
+```swift
+let licenseUrl: String
+```
+
+The URL of the license (name ID 14), or an empty string when the font has none.
 
 ### openTypeFeatures
 

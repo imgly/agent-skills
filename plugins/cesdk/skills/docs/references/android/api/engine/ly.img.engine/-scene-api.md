@@ -208,6 +208,14 @@ abstract fun getDocumentColorProfileInfo(slot: ProfileSlot): DocumentColorProfil
 
 Returns a slot's reference without loading it. Fallback profiles are not reported.
 
+### getEmbeddedFonts
+
+```kotlin
+abstract suspend fun getEmbeddedFonts(scene: DesignBlock): List<EmbeddedFont>
+```
+
+Lists the font files that saveToArchive bundles for the scene, with the names and license data of each font. The names come from the name table of each font: FontInfo.copyright (name ID 0), FontInfo.license (ID 13) and FontInfo.licenseUrl (ID 14). The list follows the setting archival/bundleOnlyUsedFontVariants as saveToArchive does, and is sorted by URI. It holds the fonts of the text blocks and of the settings that the archive bundles. The call loads each font file that has not loaded yet. A file that does not load is left out, as the archive leaves it out. A file that loads but is not a font is listed with empty names. The call throws when scene is not a valid scene.
+
 ### getFontSizeUnit
 
 ```kotlin

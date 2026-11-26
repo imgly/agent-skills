@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 383 generated API digests.
+Complete catalog of 387 generated API digests.
 
 - [AV1EncodingMode](<../engine/ly.img.engine/-a-v1-encoding-mode.md>) — `ly.img.engine`
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
@@ -182,6 +182,7 @@ Complete catalog of 383 generated API digests.
 - [EffectType.VenetianBlinds](<../engine/ly.img.engine/-effect-type/-venetian-blinds.md>) — `ly.img.engine`
 - [EffectType.Vignette](<../engine/ly.img.engine/-effect-type/-vignette.md>) — `ly.img.engine`
 - [EffectType.WaveWarp](<../engine/ly.img.engine/-effect-type/-wave-warp.md>) — `ly.img.engine`
+- [EmbeddedFont](<../engine/ly.img.engine/-embedded-font.md>) — `ly.img.engine`
 - [Engine](<../engine/ly.img.engine/-engine.md>) — `ly.img.engine`
 - [Engine.Companion](<../engine/ly.img.engine/-engine/-companion.md>) — `ly.img.engine`
 - [EngineErrorCode](<../engine/ly.img.engine/-engine-error-code.md>) — `ly.img.engine`
@@ -227,6 +228,9 @@ Complete catalog of 383 generated API digests.
 - [HorizontalBlockAlignment](<../engine/ly.img.engine/-horizontal-block-alignment.md>) — `ly.img.engine`
 - [HorizontalContentFillAlignment](<../engine/ly.img.engine/-horizontal-content-fill-alignment.md>) — `ly.img.engine`
 - [HorizontalTextAlignment \[deprecated\]](<../engine/ly.img.engine/-horizontal-text-alignment.md>) — `ly.img.engine`
+- [InteractionKind](<../engine/ly.img.engine/-interaction-kind.md>) — `ly.img.engine`
+- [InteractionModifiers](<../engine/ly.img.engine/-interaction-modifiers.md>) — `ly.img.engine`
+- [JoinVideosProgress](<../engine/ly.img.engine/-join-videos-progress.md>) — `ly.img.engine`
 - [Keyframe](<../engine/ly.img.engine/-keyframe.md>) — `ly.img.engine`
 - [KeyframeEasing](<../engine/ly.img.engine/-keyframe-easing.md>) — `ly.img.engine`
 - [KeyframeEasing.Bezier](<../engine/ly.img.engine/-keyframe-easing/-bezier.md>) — `ly.img.engine`
