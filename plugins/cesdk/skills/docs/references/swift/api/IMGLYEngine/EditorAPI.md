@@ -247,7 +247,7 @@ Get the type of cursor that should be displayed by the application. The cursor t
 @MainActor func getEditMode() -> EditMode
 ```
 
-Get the current edit mode of the editor. An edit mode defines what type of content can currently be edited by the user. “Transform”, “Crop”, “Text”, “Playback”.
+Get the current edit mode of the editor. An edit mode defines what type of content can currently be edited by the user. The current edit mode.
 
 ### getFileFormats()
 

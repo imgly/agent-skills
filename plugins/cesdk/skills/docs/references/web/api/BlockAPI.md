@@ -120,6 +120,27 @@ A page transition from `setTransition` blends a page into the next one, which st
 
 **Returns:** A promise that resolves with a video blob or is rejected with an error.
 
+### exportVideoToStream()
+
+Exports a design block as a video file into a stream, chunk by chunk, while the video encodes. A server can
+then upload the file before the export ends, and the page holds no copy of the whole video.
+The export writes each byte once. An MP4 keeps its index at the end and plays as the file of `exportVideo`
+does. A WebM is a live WebM: it has no duration and no cues, so a player seeks in it slowly or not at all. No
+frame renders while `writable` has no room, so a slow writer slows the export instead of filling the memory.
+
+```typescript
+exportVideoToStream(handle: DesignBlockId, writable: WritableStream<Uint8Array>, options?: VideoExportOptions): Promise<void>
+```
+
+**Parameters:**
+- `handle` - The page or the scene to export, as for `exportVideo`.
+- `writable` - Receives the file, for example a file in the origin private file system
+(`FileSystemWritableFileStream`), or the writable side of a `TransformStream` whose readable side an upload reads.
+The stream is closed when the export succeeds and aborted when it fails. Drop what it received on a failure.
+- `options` - The options of `exportVideo`, including `mimeType`, which defaults to `'video/mp4'`.
+
+**Returns:** A promise that resolves once the whole file is written, or is rejected with an error.
+
 ### exportAudio()
 
 Exports a design block as an audio file.
@@ -381,6 +402,8 @@ A page slice destroys the blocks that it owns on its page, without a check of th
 as a page destroys its children. This holds for the last page slice too: its page becomes an empty page without
 page slices, at the same size. To keep the content, move the page slice out with `movePageSliceOutOfPage` first.
 Destroying a page slice runs an internal update.
+A child of a component instance, its shape, or a part of its compound shape, cannot be destroyed
+(`BLOCK.INSTANCE_STRUCTURE_LOCKED`).
 Destroying the scene removes each custom shader program that no remaining block uses.
 
 ```typescript
@@ -1094,6 +1117,42 @@ getTimeOffset(id: DesignBlockId): number
 - `id` - The block whose time offset should be queried.
 
 **Returns:** The time offset of the block in seconds.
+
+### getPlayedTimeOffset()
+
+Gets the time on the page at which a block starts to play.
+A time offset is relative to the parent. This adds the offsets of the tracks and groups around the block, and takes
+away the content start of each group. It counts a negative offset as 0, as playback does. A block that its groups
+cut off entirely plays nothing. Its time then lies at the start or the end of the time its groups play.
+Runs an internal update that lays out pending changes.
+```javascript
+const start = engine.block.getPlayedTimeOffset(clip);
+const end = start + engine.block.getPlayedDuration(clip);
+```
+
+```typescript
+getPlayedTimeOffset(id: DesignBlockId): number
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** The page time in seconds.
+
+### getPlayedDuration()
+
+Gets how long a block plays on its page.
+The duration of the block, cut to the time in which each track and group around it plays, as playback does. It
+is 0 for a block that its groups cut off entirely. Runs an internal update that lays out pending changes.
+
+```typescript
+getPlayedDuration(id: DesignBlockId): number
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** The duration in seconds.
 
 ### supportsTrim()
 
@@ -1963,7 +2022,8 @@ Subscribe to user actions and state changes related to blocks.
 
 ### onSelectionChanged()
 
-Subscribes to changes in the selection.
+Subscribes to changes in the selection. A pick, a change or the end of the active subshape of the selected block
+counts as a change. See `getActiveSubshape`.
 
 ```typescript
 onSelectionChanged(callback: () => void): (() => void)
@@ -2039,6 +2099,8 @@ Groups multiple blocks into a new group block.
 The blocks keep their times on the timeline.
 The group spans from the earliest start to the latest end of the blocks, and their time offsets
 become relative to the group.
+A block in a group with a `playback/contentStart` first drops the part before that time, which the group
+does not play.
 Grouping does not change the children's positions: they stay relative to the group's parent,
 not to the group. In nested groups, they stay relative to the first ancestor that is not a
 group. The engine computes the group's position and size from the children's combined bounds.
@@ -2062,8 +2124,14 @@ group(ids: DesignBlockId[]): DesignBlockId
 
 Ungroups a group block, releasing its children.
 The children keep their times on the timeline, so their time offsets become relative to their new parent.
+A group with a `playback/contentStart` cuts off the part before that time from each child that crosses it.
+A child whose video or audio has not loaded keeps that part.
 A caption goes onto the first caption track of the page instead, at its time, and takes the
 track's animations. Ungrouping creates the caption track when the page has none.
+Note that ungrouping destroys each child that the group played nothing of, when its `lifecycle/destroy` scope
+allows a destroy. Such a child ends before the content start, or starts where the group stops playing.
+A child that another block follows or uses as a matte or an effect source stays, and so does every
+child while `playback/showAllBlocks` is on.
 ```javascript
 engine.block.ungroup(group);
 ```
@@ -2112,8 +2180,10 @@ Combine multiple blocks into a single new block using boolean path operations.
 ### isCombinable()
 
 Checks if a set of blocks can be combined using a boolean operation.
-Only graphics blocks and text blocks can be combined.
+Only graphics blocks, text blocks and exclusion areas can be combined. An exclusion area combines only with
+another exclusion area.
 All blocks must have the "lifecycle/duplicate" scope enabled.
+A block with children cannot be combined, because its children would go with it.
 
 ```typescript
 isCombinable(ids: DesignBlockId[]): boolean
@@ -2130,16 +2200,179 @@ Performs a boolean operation on a set of blocks.
 All blocks must be combinable. See `isCombinable`.
 The parent, fill and sort order of the new block is that of the prioritized block.
 When the prioritized block has no fill, the new block has none.
+When performing a `Union` or `XOR`, the operation is performed pair-wise starting with the frontmost block.
+When performing a `Difference` or an `Intersection`, the operation is performed pair-wise starting with the
+bottommost block. The prioritized block is the block where the operation starts, and for `Merge` the frontmost
+block.
+`Merge` performs no boolean operation. The outline of each block stays a contour of its own, bottom first, and
+the new vector path has the fill rule `NonZero`. So it draws as a compound shape in `Merge` mode.
+With the `editable` option, the new block is a combination. Its shape is a compound shape with a part for each
+block, bottom first, and `shape/compound/mode` holds the operation. A graphic gives its shape without its stroke.
+A text gives the vector path of its letters, and a line the vector path of its centre line. A part keeps no copy
+of its block, so `releaseCombination` gives each part back with the look of the combination.
+The new block draws the fill and the stroke of the prioritized block around the result. A line, or another
+block that draws its body with its stroke, gives its stroke and no fill. So the lines of a `Merge` draw as
+strokes. The frame of the new block fits the outline of the result, without its stroke. So an area that is cut
+out does not count. `convertToShape` makes a stroke a shape before.
+The new block is selected when one of the blocks was, as a new group is.
+Required scopes: "lifecycle/duplicate", "lifecycle/destroy".
+Note that this triggers an internal update to lay the blocks out.
+```javascript
+const combination = engine.block.combine([rect, ellipse], 'Union', { editable: true });
+```
 
 ```typescript
-combine(ids: DesignBlockId[], op: BooleanOperation): DesignBlockId
+combine(ids: DesignBlockId[], op: BooleanOperation, options?: CombineOptions): DesignBlockId
 ```
 
 **Parameters:**
 - `ids` - The blocks to combine. They will be destroyed if "lifecycle/destroy" scope is enabled.
 - `op` - The boolean operation to perform.
+- `options` - The options of the combination.
 
-**Returns:** The newly created block or an error.
+**Returns:** The newly created block.
+
+### isCombination()
+
+Checks whether a block is a combination: a design block whose shape is a compound shape.
+The result of `combine` with the `editable` option is one, and so is every other block with a compound shape.
+Pass the design block, not its compound shape.
+
+```typescript
+isCombination(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - The block to check.
+
+**Returns:** Whether the block is a combination.
+
+### addToCombination()
+
+Adds blocks and parts to a combination as its topmost parts, in their order on the page.
+Each block becomes a part as with `combine` with the `editable` option, and keeps its place on the canvas. A
+combination among the blocks becomes a nested part. The combination keeps its look and its size modes,
+and a frame that fits its outline fits the new one. The blocks are destroyed.
+A block with children cannot join, because its children would go with it.
+A part of any combination moves here, also from or to another level of the same one. It keeps its id and its
+place on the canvas, and its placement keyframes move with it. A combination that loses its last part goes.
+For the fill rule of a combination with a single part, see `releaseCombination`.
+The combination can be a nested part that is a compound shape. Pass its shape id.
+A combination in a component instance keeps its parts (`BLOCK.INSTANCE_STRUCTURE_LOCKED`).
+Required scopes: "shape/change" on the combination and on the combination that each part leaves;
+"lifecycle/duplicate" and "lifecycle/destroy" on each block; "lifecycle/destroy" on a combination that loses its
+last part.
+Note that this triggers an internal update to lay the blocks out.
+```javascript
+const [part] = engine.block.addToCombination(combination, [star]);
+```
+
+```typescript
+addToCombination(id: DesignBlockId, ids: DesignBlockId[]): DesignBlockId[]
+```
+
+**Parameters:**
+- `id` - The combination, see `isCombination`, or a nested part that is a compound shape.
+- `ids` - The blocks and parts to add. Each block must be combinable with the combination, see `isCombinable`.
+
+**Returns:** The part of each block and each part, in the order of the list.
+
+### releaseCombination()
+
+Takes parts out of a combination and makes each a block again, where the part is on the canvas.
+Each part becomes the shape of a new block with the look of the combination. That block is a graphic, or an
+exclusion area for a combination of exclusion areas. The frame of the block takes the size that the part is drawn
+at. A part that moves with keyframes takes its place at the current time, and its shape loses the keyframes of that
+place. The part of a text stays the vector path of its letters, and the part of a line the vector path of its
+centre line. An open part, such as a line, draws with a centre stroke. When the combination has no stroke, the
+block gets one in the first color of the fill. A nested combination becomes a combination with the size mode Auto
+on both axes. A nested combination whose last part leaves goes too.
+When no part stays, the combination is destroyed and the blocks take its place. So a combination without parts is
+destroyed, and the call returns no block. Otherwise the blocks go directly above it, and the combination keeps the
+parts that stay, also a single one. Its frame fits them on each axis whose size mode is Auto.
+Outside Merge, the combination takes the fill rule of a single part into `shape/compound/fillRule`, so the part
+draws as it did. The fill rule is `NonZero` again when `addToCombination` adds a part to it.
+A combination in a component instance keeps its parts (`BLOCK.INSTANCE_STRUCTURE_LOCKED`).
+Required scopes: "shape/change" on the combination, and "lifecycle/destroy" when it is destroyed.
+Note that this triggers an internal update to lay the combination out.
+```javascript
+const blocks = engine.block.releaseCombination(combination);
+```
+
+```typescript
+releaseCombination(id: DesignBlockId, parts?: DesignBlockId[] | null): DesignBlockId[]
+```
+
+**Parameters:**
+- `id` - The combination. See `isCombination`.
+- `parts` - The parts to release, from `getSubshapes` of its compound shape or of a nested one, at any depth. A
+part inside another listed part goes with that part. `undefined` or `null` releases every part of the compound
+shape.
+
+**Returns:** The new blocks of the released parts, in part order.
+
+### flattenCombination()
+
+Replaces the compound shape of a combination with one vector path of its outline.
+The block keeps its id, name, look, frame, rotation and animations. The parts are destroyed. A part that moves
+with keyframes keeps the place it has at the current time.
+An axis in the Auto mode keeps its laid-out length in the Absolute mode.
+A block that is not attached to a scene, such as a copy from `duplicate` that is not attached, flattens too. Its
+outline is then drawn in the coordinate space of its compound shape.
+A combination in a component instance keeps its parts (`BLOCK.INSTANCE_STRUCTURE_LOCKED`).
+Required scope: "shape/change".
+Note that this triggers an internal update to lay the combination out, when it is attached to a scene.
+
+```typescript
+flattenCombination(id: DesignBlockId): void
+```
+
+**Parameters:**
+- `id` - The combination. See `isCombination`.
+
+### isConvertibleToShape()
+
+Checks whether a block can be converted to a shape with `convertToShape`.
+A text block can, unless it shows a background, and so can a graphic with a shape and a visible stroke. The block
+must have the "lifecycle/duplicate" and "lifecycle/destroy" scopes enabled. A combination cannot be converted;
+flatten it first with `flattenCombination`.
+
+```typescript
+isConvertibleToShape(id: DesignBlockId): boolean
+```
+
+**Parameters:**
+- `id` - The block to check.
+
+**Returns:** Whether the block can be converted to a shape.
+
+### convertToShape()
+
+Replaces a text block, or a graphic with a stroke, with vector path shapes.
+The letters of a text become their outlines, and a stroke becomes a shape of its own. A hidden fill gives no shape.
+Each shape keeps the position, the rotation, the flips and the frame of the block. Its frame grows only to cover a
+stroke beyond the frame. When both the fill and the stroke show, and they differ, the result is a group: the fill
+shape below the stroke shape. The group takes the opacity, the blend mode and a uniform blur in the `Block` mode,
+so they apply to both shapes at once. The fill shape takes the drop shadow, because a group has none, and any other
+blur, which blurs only the fill. So the part of the stroke beyond the fill casts no shadow. Each shape takes the
+effects, the placeholder behavior and the time range. Otherwise the result is one shape that takes all of them. A
+stroke shape is filled with the stroke's fill, or with its color. A text shape is filled with the color of its
+first letter. The fill shape keeps the crop and the fill mode of an image. The result takes the name, the
+visibility, the scopes and the in, loop and out animations of the block. It takes the parent and the sort order of
+the block, and the block is destroyed. The keyframes of the block and of its shape are not kept, and neither is a
+text animation. A combination cannot be converted. Flatten it first.
+Required scopes: "lifecycle/duplicate", "lifecycle/destroy".
+Note that this triggers an internal update to lay the block out. When that update removes the block, such as an
+emptied text whose editing ends, the call throws.
+
+```typescript
+convertToShape(id: DesignBlockId): DesignBlockId
+```
+
+**Parameters:**
+- `id` - The block to convert. See `isConvertibleToShape`.
+
+**Returns:** The new shape or group.
 
 ## Block Exploration
 
@@ -2297,7 +2530,12 @@ getShape(id: DesignBlockId): DesignBlockId | null
 Sets the shape block for a given block.
 Note that the previous shape block is not destroyed automatically.
 The new shape is disconnected from its previously attached block.
+The shape of a block in a component instance, and each part of it, cannot become the shape of another block
+(`BLOCK.INSTANCE_STRUCTURE_LOCKED`). Edit the component instead.
 A page with page slices takes only a rect shape.
+A page slice takes no line shape.
+A new shape can replace the compound shape of a block whose width or height mode is Auto. That axis then keeps
+its laid-out length in the Absolute mode. Note that this triggers an internal update.
 
 ```typescript
 setShape(id: DesignBlockId, shape: DesignBlockId): void
@@ -2328,6 +2566,7 @@ getSubshapes(id: DesignBlockId): DesignBlockId[]
 ### insertSubshape()
 
 Inserts a subshape into a compound shape at a given index.
+A compound shape in a component instance keeps its subshapes: edit the component instead.
 The subshape at index 0 is the base, and each later subshape combines with the result so far by
 `shape/compound/mode`. The placement properties of the subshape (`shape/position/x`, `shape/width`,
 `shape/rotation`, ...) place it in the compound's coordinate space.
@@ -2360,6 +2599,7 @@ appendSubshape(id: DesignBlockId, subshapeId: DesignBlockId): void
 ### removeSubshape()
 
 Removes the subshape at a given index from a compound shape. The subshape is not destroyed.
+A compound shape in a component instance keeps its subshapes: edit the component instead.
 
 ```typescript
 removeSubshape(id: DesignBlockId, index: number): void
@@ -2368,6 +2608,67 @@ removeSubshape(id: DesignBlockId, index: number): void
 **Parameters:**
 - `id` - The compound shape block.
 - `index` - The index of the subshape to remove.
+
+### replaceSubshape()
+
+Replaces a subshape of a compound shape, at any depth of nested compound shapes.
+The new subshape takes the index, the box and the placement with its keyframes. It also takes the name and the
+active state. The properties of the old outline, such as its corner radius, and its modifiers do not move. The old
+subshape is not destroyed. A shape has one owner, so the new subshape is detached from its previous block or
+compound shape.
+For the fill rule of a compound shape with a single part, see `releaseCombination`.
+A combination in a component instance keeps its parts (`BLOCK.INSTANCE_STRUCTURE_LOCKED`).
+Required scope: "shape/change".
+```javascript
+const star = engine.block.createShape('star');
+engine.block.replaceSubshape(part, star);
+engine.block.destroy(part);
+```
+
+```typescript
+replaceSubshape(id: DesignBlockId, newSubshapeId: DesignBlockId): void
+```
+
+**Parameters:**
+- `id` - The subshape to replace, as `getSubshapes` returns it.
+- `newSubshapeId` - The shape block that takes its place.
+Line shapes are not supported. The call fails when the shape tree would nest more than 128 shapes.
+
+### setActiveSubshape()
+
+Edits one subshape of a block's compound shape with the transform handles, in place of the block.
+The call selects the block and deselects every other block. The selection frame and the handles then move, resize
+and rotate the subshape, and the block stays in place. The engine does not save the active subshape. A change of it
+makes no undo step. When none stays active, an undo restores the one of its step with the selection. A deselection of
+the block ends it, and so does an edit mode other than Transform and Vector, such as Crop.
+The call checks no scope, as `select` does. The gestures and the calls that change a subshape
+need "shape/change".
+```javascript
+const [first] = engine.block.getSubshapes(engine.block.getShape(graphic));
+engine.block.setActiveSubshape(graphic, first);
+```
+
+```typescript
+setActiveSubshape(id: DesignBlockId, subshapeId: DesignBlockId | null): void
+```
+
+**Parameters:**
+- `id` - The block whose shape is a compound shape.
+- `subshapeId` - A subshape that `getSubshapes` returns for that compound shape or for a compound shape
+nested in it. `null` edits the block again.
+
+### getActiveSubshape()
+
+Gets the subshape of a block's compound shape that the transform handles edit.
+
+```typescript
+getActiveSubshape(id: DesignBlockId): DesignBlockId | null
+```
+
+**Parameters:**
+- `id` - The block to query.
+
+**Returns:** The active subshape, or `null` if the handles edit the block itself.
 
 ## Block Components
 
@@ -2397,7 +2698,7 @@ isComponent(block: DesignBlockId): boolean
 
 ### createInstance()
 
-Creates an instance of a main component. Attach it with `appendChild`. An instance follows every property that it does not override. Its children cannot be added, reordered or destroyed. Hide a child with `setVisible`.
+Creates an instance of a main component. Attach it with `appendChild`. An instance follows every property that it does not override. It does not follow the parts of a combination, nor the size of an axis that fits them. Its children cannot be added, reordered or destroyed. Hide a child with `setVisible`.
 
 ```typescript
 createInstance(component: DesignBlockId): DesignBlockId
@@ -3530,6 +3831,7 @@ getHeightMode(id: DesignBlockId): HeightMode
 
 Sets the width of a block in the current width mode.
 If the crop is maintained, the crop values will be automatically adjusted.
+A width in the mode `Auto` of a block with a compound shape stretches the shape. The mode stays `Auto`.
 A new width of a page with page slices goes to its last page slice on a horizontal axis.
 On a vertical axis, it goes to every page slice. A page slice that this shrinks stops at 25 pixels at the DPI of
 the scene. So the page can end up wider than asked. A width of 0 or less on a page slice fails with
@@ -3558,6 +3860,8 @@ in the new mode. `setSize` changes the mode and the size in one call.
 engine.block.setWidthMode(block, 'Percent');
 ```
 A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`.
+A block whose shape is a compound shape keeps its laid-out width when its width leaves the Auto mode. Note that
+this triggers an internal update.
 
 ```typescript
 setWidthMode(id: DesignBlockId, mode: WidthMode): void
@@ -3571,6 +3875,7 @@ setWidthMode(id: DesignBlockId, mode: WidthMode): void
 
 Sets the height of a block in the current height mode.
 If the crop is maintained, the crop values will be automatically adjusted.
+A height in the mode `Auto` of a block with a compound shape stretches the shape. The mode stays `Auto`.
 A new height of a page with page slices goes to every page slice on a horizontal axis.
 On a vertical axis, it goes to the last page slice. A page slice that this shrinks stops at 25 pixels at the
 DPI of the scene. So the page can end up higher than asked. A height of 0 or less on a page slice fails
@@ -3600,6 +3905,8 @@ in the new mode. `setSize` changes the mode and the size in one call.
 engine.block.setHeightMode(block, 'Percent');
 ```
 A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`.
+A block whose shape is a compound shape keeps its laid-out height when its height leaves the Auto mode. Note that
+this triggers an internal update.
 
 ```typescript
 setHeightMode(id: DesignBlockId, mode: HeightMode): void
@@ -3776,6 +4083,8 @@ getGlobalBoundingBoxHeight(id: DesignBlockId): number
 ### getScreenSpaceBoundingBoxXYWH()
 
 Gets the screen-space bounding box for a set of blocks.
+A subshape of a block in the scene, at any depth of nested compound shapes, counts with the box in which the block
+draws it.
 ```javascript
 const boundingBox = engine.block.getScreenSpaceBoundingBoxXYWH([block]);
 ```
@@ -3953,7 +4262,8 @@ setSize(id: DesignBlockId, width: number, height: number, options?: {
     A Percent size, left or top stays Percent. With a `sizeMode`, the crop is adjusted from the frame that the
     block has before the call. The call can run an internal update before it changes the block.
   - `sizeMode` - The size mode: Absolute, Percent or Auto. `width` and `height` are in this mode. Auto holds
-    no size, so `width` and `height` make both axes Absolute again.
+    no size, so `width` and `height` make both axes Absolute again. The axes of a block with a
+    compound shape stay Auto.
 
 ### setPosition()
 
@@ -7492,6 +7802,71 @@ getTextOnPathFlipped(id: DesignBlockId): boolean
 
 **Returns:** `true` when text is on the underside of the curve.
 
+## Block Colors
+
+### getUsedColors()
+
+Gets the distinct colors that a block and all its descendants use.
+The colors come from the text runs and their background colors, the solid fill, each gradient fill color stop,
+the stroke or each color of its stroke fill, the drop shadow and the background color. These are the colors that
+the Document Colors asset source lists, except that it leaves out the text run background colors.
+A disabled fill, stroke, drop shadow or background color contributes no color, and a disabled fill also hides the
+text runs. The fill of a text block whose runs all have their own color paints nothing, so it contributes no
+color. The block comes before its children, and the children keep their order.
+Note that two colors are equal only in the same color space with equal values. An sRGB color never matches a
+CMYK color, and a spot color matches by name, tint and external reference.
+```javascript
+const colors = engine.block.getUsedColors(page);
+```
+
+```typescript
+getUsedColors(id: DesignBlockId): Array<Color>
+```
+
+**Parameters:**
+- `id` - The block whose subtree is searched.
+
+**Returns:** The colors in the order of their first use.
+
+### replaceColor()
+
+Replaces a color everywhere `getUsedColors` finds it in a block and all its descendants.
+A property whose scope the block does not allow keeps its color, and the call throws no error. The scopes are
+"fill/change" for the fill, the text runs and the background color, "text/character" for the text run background
+colors, "stroke/change" for the stroke and its stroke fill, and "appearance/shadow". A property that a variable
+binds also keeps its color.
+Note that all writes form one undo step. A color that no block uses changes nothing and adds no undo step.
+```javascript
+engine.block.replaceColor(page, { r: 1, g: 0, b: 0, a: 1 }, { r: 0, g: 0, b: 1, a: 1 });
+```
+
+```typescript
+replaceColor(id: DesignBlockId, from: Color, to: Color): void
+```
+
+**Parameters:**
+- `id` - The block whose subtree is changed.
+- `from` - The color to replace, compared as `getUsedColors` compares colors.
+- `to` - The new color.
+
+### findBlocksByColor()
+
+Finds the blocks in the subtree of a block that use a color.
+The search reads the same properties as `getUsedColors` and compares colors the same way.
+```javascript
+const redBlocks = engine.block.findBlocksByColor(page, { r: 1, g: 0, b: 0, a: 1 });
+```
+
+```typescript
+findBlocksByColor(id: DesignBlockId, color: Color): DesignBlockId[]
+```
+
+**Parameters:**
+- `id` - The block whose subtree is searched. The result can contain this block.
+- `color` - The color to find.
+
+**Returns:** The blocks in subtree order, parent before children.
+
 ## Block Placeholder
 
 Manage placeholder functionality, controls, and behavior.
@@ -7783,6 +8158,10 @@ isAllowedByScope(id: DesignBlockId, key: Scope): boolean
 Splits a block at the specified time.
 The original block will be trimmed to end at the split time, and the returned duplicate
 will start at the split time and continue to the original end time.
+The second half of a group holds every child and continues where the first half ends. It plays the children from
+the time of the cut. The split sets its `playback/contentStart` and changes no child. On a group with
+`group/composition` set, the time of the cut is on the group's clock. A block with a negative time offset starts at
+0 after the split, where it plays.
 The split cuts the keyframe tracks of the block and of its fill, shape and effects, so each half plays its part of
 them. Their keyframe times can then lie before 0 or after 1. Tracks on the `'Media'` clock keep their times,
 because they follow the trim of each half. A group's children are copied with their tracks unchanged.

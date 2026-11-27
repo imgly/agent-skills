@@ -65,3 +65,11 @@ val silent: Boolean = false
 ```
 
 Catalog silent flag — expected platform limitation that should not be logged.
+
+### toString
+
+```kotlin
+open override fun toString(): String
+```
+
+ly.img.engine.EngineException [SCENE.NOT_VALID]: <message>, so a logged stack trace names the code. Without a code, the default Throwable form. message stays plain either way.

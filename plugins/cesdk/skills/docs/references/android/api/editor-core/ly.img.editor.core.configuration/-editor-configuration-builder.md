@@ -33,7 +33,7 @@ The configuration of the AssetLibrary. Check the documentation of AssetLibrary f
 open var bottomPanel: ScopedProperty<EditorScope, EditorComponent<*>?>?
 ```
 
-The configuration of the component that is displayed as a fixed bottom panel at the bottom of the editor, just above the dock. For example, it can be used if you want to render a timeline in a video editor via ly.img.editor.core.component.Timeline.
+The configuration of the component that is displayed as a fixed bottom panel at the bottom of the editor, just above the dock. For example, it can be used if you want to render a timeline in a video editor via ly.img.editor.core.component.Timeline. Where EditorLayout.SIDE_BY_SIDE applies, the panel and the dock form the trailing column. Without a visible bottom panel, the editor stays stacked.
 
 ### canvasMenu
 
@@ -74,6 +74,14 @@ open var inspectorBar: ScopedProperty<EditorScope, EditorComponent<*>?>?
 ```
 
 The configuration of the component that is displayed as horizontal list of items at the bottom of the editor when a design block is selected. Check ly.img.editor.core.component.InspectorBar for our implementation or consider using EditorComponent.Companion.remember to fully customize it.
+
+### layout
+
+```kotlin
+open var layout: ScopedProperty<EditorScope, EditorLayout>?
+```
+
+How the editor arranges the canvas and the editing controls. Check EditorLayout for the options, and EditorLayout.SIDE_BY_SIDE for the editors that it applies to. When no configuration in the chain sets it, the editor uses EditorLayout.STACKED. The editor follows a new value at once, so a compose state read here switches the layout live.
 
 ### navigationBar
 

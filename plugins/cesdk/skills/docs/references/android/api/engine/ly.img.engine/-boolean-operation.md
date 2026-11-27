@@ -3,6 +3,8 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
+The operation of BlockApi.combine. The engine reads the ordinal, so a new operation goes last.
+
 ```kotlin
 enum BooleanOperation : Enum<BooleanOperation>
 ```
@@ -21,6 +23,14 @@ enum entry DIFFERENCE
 ```kotlin
 enum entry INTERSECTION
 ```
+
+### MERGE
+
+```kotlin
+enum entry MERGE
+```
+
+Every shape as a contour of its own, with no boolean operation.
 
 ### UNION
 

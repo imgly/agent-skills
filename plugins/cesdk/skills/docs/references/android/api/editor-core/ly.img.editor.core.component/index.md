@@ -1022,7 +1022,7 @@ A composable helper function that creates and remembers the Timeline header time
 fun Timeline.Button.rememberToggleExpanded(builder: Timeline.ItemBuilder.() -> Unit = {}): EditorComponent<Timeline.ItemScope>
 ```
 
-A composable helper function that creates and remembers a Timeline header button that expands and collapses the timeline. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions.
+A composable helper function that creates and remembers a Timeline header button that expands and collapses the timeline. The button is never visible while the editor shows ly.img.editor.core.configuration.EditorLayout.SIDE_BY_SIDE, where the timeline is always expanded, even when builder sets visible or id. The expanded state keeps its value for the stacked layout. Note that builder lambda runs only once, therefore you should not have builder property reassignments based on conditions.
 
 ### rememberTogglePagesMode
 

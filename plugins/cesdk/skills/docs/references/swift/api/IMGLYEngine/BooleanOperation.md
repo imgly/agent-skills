@@ -3,6 +3,8 @@
 - **Module:** `IMGLYEngine`
 - **DocC identifier:** `/documentation/IMGLYEngine/BooleanOperation`
 
+The operation of `combine`. The engine reads the raw value, so a new operation goes last.
+
 ```swift
 @objc enum BooleanOperation
 ```
@@ -20,6 +22,14 @@ case difference
 ```swift
 case intersection
 ```
+
+### BooleanOperation.merge
+
+```swift
+case merge
+```
+
+Every shape as a contour of its own, with no boolean operation.
 
 ### BooleanOperation.union
 

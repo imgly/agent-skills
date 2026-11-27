@@ -81,6 +81,10 @@ engine.editor.setEditMode('Crop');
 // With a base mode
 engine.editor.setEditMode('CustomMode', 'Crop');
 ```
+Note that on a block with a compound shape, "Vector" edits the path of the active subshape. Without one, it makes
+the first subshape that it can edit active. A subshape that is not a vector path becomes one in its place. A nested
+compound shape and a vector path with keyframes of its path are not edited. Neither is another subshape with keyframes
+or modifiers, or a block without the "shape/change" scope.
 
 ```typescript
 setEditMode(mode: EditMode, baseMode?: string): void

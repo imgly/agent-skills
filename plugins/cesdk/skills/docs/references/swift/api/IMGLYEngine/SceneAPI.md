@@ -393,6 +393,22 @@ Subscribe to current page change.
 
 Subscribe to current page change.
 
+### onNewerFormat
+
+```swift
+@MainActor var onNewerFormat: AsyncStream<NewerFormat> { get }
+```
+
+Subscribe to loads of a scene or blocks string that a newer engine saved in a format this engine cannot fully read. The event fires at the end of the engine update after such a load. The load still succeeds, but this engine drops the properties it does not know, and a later save keeps none of them. Undo and redo never fire the event.
+
+### onNewerFormatPublisher
+
+```swift
+@MainActor var onNewerFormatPublisher: AnyPublisher<NewerFormat, Never> { get }
+```
+
+Subscribe to loads of a scene or blocks string that a newer engine saved in a format this engine cannot fully read. The event fires at the end of the engine update after such a load. The load still succeeds, but this engine drops the properties it does not know, and a later save keeps none of them. Undo and redo never fire the event.
+
 ### onZoomLevelChanged
 
 ```swift

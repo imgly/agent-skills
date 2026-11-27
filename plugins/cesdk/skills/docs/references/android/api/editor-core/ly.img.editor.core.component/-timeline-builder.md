@@ -64,7 +64,7 @@ The list of items displayed in the timeline header, grouped by alignment. By def
 open var height: ScopedProperty<Timeline.Scope, TimelineHeight>
 ```
 
-The height of the timeline, in track rows. Defaults to TimelineHeight.Dynamic.
+The height of the timeline, in track rows. Defaults to TimelineHeight.Dynamic. The editor ignores it while it shows ly.img.editor.core.configuration.EditorLayout.SIDE_BY_SIDE, where the timeline fills the column.
 
 ### id
 

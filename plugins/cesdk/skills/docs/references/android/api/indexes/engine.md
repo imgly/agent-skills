@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 387 generated API digests.
+Complete catalog of 389 generated API digests.
 
 - [AV1EncodingMode](<../engine/ly.img.engine/-a-v1-encoding-mode.md>) — `ly.img.engine`
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
@@ -98,6 +98,7 @@ Complete catalog of 387 generated API digests.
 - [Color.Companion](<../engine/ly.img.engine/-color/-companion.md>) — `ly.img.engine`
 - [ColorRenderingIntent](<../engine/ly.img.engine/-color-rendering-intent.md>) — `ly.img.engine`
 - [ColorSpace](<../engine/ly.img.engine/-color-space.md>) — `ly.img.engine`
+- [CombineOptions](<../engine/ly.img.engine/-combine-options.md>) — `ly.img.engine`
 - [CompressionFormat](<../engine/ly.img.engine/-compression-format.md>) — `ly.img.engine`
 - [CompressionLevel](<../engine/ly.img.engine/-compression-level.md>) — `ly.img.engine`
 - [CompressionOptions](<../engine/ly.img.engine/-compression-options.md>) — `ly.img.engine`
@@ -265,6 +266,7 @@ Complete catalog of 387 generated API digests.
 - [MovementConstraintScope.Block](<../engine/ly.img.engine/-movement-constraint-scope/-block.md>) — `ly.img.engine`
 - [MovementConstraintScope.BlockType](<../engine/ly.img.engine/-movement-constraint-scope/-block-type.md>) — `ly.img.engine`
 - [MovementConstraintScope.Scene](<../engine/ly.img.engine/-movement-constraint-scope/-scene.md>) — `ly.img.engine`
+- [NewerFormat](<../engine/ly.img.engine/-newer-format.md>) — `ly.img.engine`
 - [ObjectType](<../engine/ly.img.engine/-object-type.md>) — `ly.img.engine`
 - [OpenTypeFeature](<../engine/ly.img.engine/-open-type-feature.md>) — `ly.img.engine`
 - [OutputProfileMode](<../engine/ly.img.engine/-output-profile-mode.md>) — `ly.img.engine`

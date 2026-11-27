@@ -25,6 +25,14 @@ Publishes a property of a block inside a main component under a name that instan
 
 Add a source to the `sourceSet` property of the given block. If there already exists in source set an image with the same width, that existing image will be replaced. If the source set is or gets empty, the crop and content fill mode of the associated block will be set to the default values. Note: This fetches the resource from the given URI to obtain the image dimensions. It is recommended to use setSourceSet if the dimension is known. `id`
 
+### addToCombination(_:blocks:)
+
+```swift
+@MainActor func addToCombination(_ id: DesignBlockID, blocks: [DesignBlockID]) throws -> [DesignBlockID]
+```
+
+Adds blocks and parts to a combination as its topmost parts, in their order on the page. Each block becomes a part as with `combine` with [`editable`](../combineoptions/editable.md), and keeps its place on the canvas. A combination among the blocks becomes a nested part. The combination keeps its look and its size modes, and a frame that fits its outline fits the new one. The blocks are destroyed. A block with children cannot join, because its children would go with it. A part of any combination moves here, also from or to another level of the same one. It keeps its id and its place on the canvas, and its placement keyframes move with it. A combination that loses its last part goes. For the…
+
 ### addVideoFileURIToSourceSet(_:property:uri:)
 
 ```swift
@@ -151,13 +159,13 @@ Returns whether the font weight of the given block can be toggled between bold a
 
 Returns whether the font style of the given block can be toggled between italic and normal. `id`
 
-### combine(_:booleanOperation:)
+### combine(_:booleanOperation:options:)
 
 ```swift
-@MainActor func combine(_ ids: [DesignBlockID], booleanOperation: BooleanOperation) throws -> DesignBlockID
+@MainActor func combine(_ ids: [DesignBlockID], booleanOperation: BooleanOperation, options: CombineOptions = .init()) throws -> DesignBlockID
 ```
 
-Perform a boolean operation on the given blocks. All blocks must be combinable. See `isCombinable`. The parent, fill and sort order of the new block is that of the prioritized block. When the prioritized block has no fill, the new block has none. When performing a `Union`, `Intersection` or `XOR`, the operation is performed pair-wise starting with the element with the highest sort order. When performing a `Difference`, the operation is performed pair-wise starting with the element with the lowest sort order. Required scope: “editor/select” `ids`
+Perform a boolean operation on the given blocks. All blocks must be combinable. See `isCombinable`. The parent, fill and sort order of the new block is that of the prioritized block. When the prioritized block has no fill, the new block has none. When performing a `Union` or `XOR`, the operation is performed pair-wise starting with the frontmost block. When performing a `Difference` or an `Intersection`, the operation is performed pair-wise starting with the bottommost block. The prioritized block is the block where the operation starts, and for `Merge` the frontmost block. `Merge` performs no boolean operation. The outline of each block stays a contour of its own, bottom first, and the new…
 
 ### combineAsVariants(_:)
 
@@ -174,6 +182,14 @@ Moves main components into a new container as variants of one component. `compon
 ```
 
 Makes a block a main component, so that instances can follow it. `block`
+
+### convertToShape(_:)
+
+```swift
+@MainActor func convertToShape(_ id: DesignBlockID) throws -> DesignBlockID
+```
+
+Replaces a text block, or a graphic with a stroke, with vector path shapes. The letters of a text become their outlines, and a stroke becomes a shape of its own. A hidden fill gives no shape. Each shape keeps the position, the rotation, the flips and the frame of the block. Its frame grows only to cover a stroke beyond the frame. When both the fill and the stroke show, and they differ, the result is a group: the fill shape below the stroke shape. The group takes the opacity, the blend mode and a uniform blur in the `Block` mode, so they apply to both shapes at once. The fill shape takes the drop shadow, because a group has none, and any other blur, which blurs only the fill. So the part of…
 
 ### create(_:)-3op61
 
@@ -345,7 +361,7 @@ Create editable graphic blocks from SVG markup, such as the SVG code that Adobe 
 @MainActor func createInstance(_ component: DesignBlockID) throws -> DesignBlockID
 ```
 
-Creates an instance of a main component. Attach it with `appendChild`. An instance follows every property that it does not override. Its children cannot be added, reordered or destroyed. Hide a child with `setVisible`. `component`
+Creates an instance of a main component. Attach it with `appendChild`. An instance follows every property that it does not override. It does not follow the parts of a combination, nor the size of an axis that fits them. Its children cannot be added, reordered or destroyed. Hide a child with `setVisible`. `component`
 
 ### createMask()
 
@@ -405,7 +421,7 @@ Creates a new transition, fails if type is unknown. Its `transition/overlap` val
 @MainActor func destroy(_ id: DesignBlockID) throws
 ```
 
-Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. The last page slice of a page keeps them. Destroying a page slice that is not the last one runs an internal update. Destroying the scene removes each custom shader program that no remaining block uses. Required scope: “lifecycle/destroy” `id`
+Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. The last page slice of a page keeps them. Destroying a page slice that is not the last one runs an internal update. A child of a component instance, its shape, or a part of its compound shape, cannot be destroyed (`BLOCK.INSTANCE_STRUCTURE_LOCKED`). Destroying the scene removes each custom shader program that no remaining block uses. Required scope: “lifecycle/destroy” `id`
 
 ### detachInstance(_:)
 
@@ -771,6 +787,22 @@ Gets the sorted names of the variant properties of a main component. `component`
 
 Find the blocks under a point on the screen, as a click there would hit them. The screen space is the one of [`getScreenSpaceBoundingBox(containing:)`](./getscreenspaceboundingbox(containing:).md). Hidden and generated blocks are not hit. A transparent pixel or a bounding box hit sorts behind a conclusive hit. Fails if no scene exists. `point`
 
+### findBlocksByColor(_:color:)
+
+```swift
+@MainActor func findBlocksByColor(_ id: DesignBlockID, color: Color) throws -> [DesignBlockID]
+```
+
+Find the blocks in the subtree of a block that use a color. The search reads the same properties as [`getUsedColors(_:)`](./getusedcolors(_:).md) and compares colors the same way. `id`
+
+### flattenCombination(_:)
+
+```swift
+@MainActor func flattenCombination(_ id: DesignBlockID) throws
+```
+
+Replaces the compound shape of a combination with one vector path of its outline. The block keeps its id, name, look, frame, rotation and animations. The parts are destroyed. A part that moves with keyframes keeps the place it has at the current time. An axis in the Auto mode keeps its laid-out length in the Absolute mode. A block that is not attached to a scene, such as a copy from `duplicate` that is not attached, flattens too. Its outline is then drawn in the coordinate space of its compound shape. The call throws when the block is not a combination or its outline is empty. Nothing changes then. A combination in a component instance keeps its parts (`BLOCK.INSTANCE_STRUCTURE_LOCKED`). Re…
+
 ### flipCropHorizontal(_:)
 
 ```swift
@@ -818,6 +850,14 @@ Generate a thumbnail sequence for the given audio block or video fill. A thumbna
 ```
 
 Generate a thumbnail sequence for the given video fill or design block. `id`
+
+### getActiveSubshape(_:)
+
+```swift
+@MainActor func getActiveSubshape(_ id: DesignBlockID) throws -> DesignBlockID?
+```
+
+Gets the subshape of a block’s compound shape that the transform handles edit. `id`
 
 ### getAnimatedProperties(_:)
 
@@ -1429,6 +1469,22 @@ Get the playback speed multiplier for the given block. `id`
 
 Get the playback time of the given block. During an export, this returns the time of the playhead and not the time of the exported frame. `id`
 
+### getPlayedDuration(_:)
+
+```swift
+@MainActor func getPlayedDuration(_ id: DesignBlockID) throws -> Double
+```
+
+Get how long the given block plays on its page. `id`
+
+### getPlayedTimeOffset(_:)
+
+```swift
+@MainActor func getPlayedTimeOffset(_ id: DesignBlockID) throws -> Double
+```
+
+Get the time on the page at which the given block starts to play. `id`
+
 ### getPositionX(_:)
 
 ```swift
@@ -1957,6 +2013,14 @@ Returns the typefaces of the text block. `id`
 
 Get the value of a URL property of the given design block. `id`
 
+### getUsedColors(_:)
+
+```swift
+@MainActor func getUsedColors(_ id: DesignBlockID) throws -> [Color]
+```
+
+Get the distinct colors that a block and all its descendants use. The colors come from the text runs and their background colors, the solid fill, each gradient fill color stop, the stroke or each color of its stroke fill, the drop shadow and the background color. These are the colors that the Document Colors asset source lists, except that it leaves out the text run background colors. A disabled fill, stroke, drop shadow or background color contributes no color, and a disabled fill also hides the text runs. The fill of a text block whose runs all have their own color paints nothing, so it contributes no color. The block comes before its children, and the children keep their order. `id`
+
 ### getUUID(_:)
 
 ```swift
@@ -2091,7 +2155,7 @@ Inserts a modifier at the given index into the modifiers of a shape. The same mo
 @MainActor func insertSubshape(_ id: DesignBlockID, subshapeID: DesignBlockID, index: Int) throws
 ```
 
-Inserts a subshape at the given index of a compound shape. The subshape at index 0 is the base, and each later subshape combines with the result so far by `shape/compound/mode`. The placement properties of the subshape (`shape/position/x`, `shape/width`, `shape/rotation`, …) place it in the compound’s coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: “shape/change” `id`
+Inserts a subshape at the given index of a compound shape. A compound shape in a component instance keeps its subshapes: edit the component instead. The subshape at index 0 is the base, and each later subshape combines with the result so far by `shape/compound/mode`. The placement properties of the subshape (`shape/position/x`, `shape/width`, `shape/rotation`, …) place it in the compound’s coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: “shape/change” `id`
 
 ### insertTextAnimator(_:animatorID:index:)
 
@@ -2171,7 +2235,15 @@ Query a block’s clipped state. If `true`, the block should clip `id`
 @MainActor func isCombinable(_ ids: [DesignBlockID]) throws -> Bool
 ```
 
-Checks whether blocks could be combined. Only graphics blocks and text blocks can be combined. All blocks must have the “lifecycle/duplicate” scope enabled. `ids`
+Checks whether blocks could be combined. Only graphics blocks, text blocks and exclusion areas can be combined. An exclusion area combines only with another exclusion area. All blocks must have the “lifecycle/duplicate” scope enabled. A block with children cannot be combined, because its children would go with it. `ids`
+
+### isCombination(_:)
+
+```swift
+@MainActor func isCombination(_ id: DesignBlockID) throws -> Bool
+```
+
+Checks whether a block is a combination: a design block whose shape is a compound shape. The result of `combine` with [`editable`](../combineoptions/editable.md) is one, and so is every other block with a compound shape. Pass the design block, not its compound shape. `id`
 
 ### isComponent(_:)
 
@@ -2180,6 +2252,14 @@ Checks whether blocks could be combined. Only graphics blocks and text blocks ca
 ```
 
 Checks whether a block is a main component. `block`
+
+### isConvertibleToShape(_:)
+
+```swift
+@MainActor func isConvertibleToShape(_ id: DesignBlockID) throws -> Bool
+```
+
+Checks whether a block can be converted to a shape with `convertToShape`. A text block can, unless it shows a background, and so can a graphic with a shape and a visible stroke. The block must have the “lifecycle/duplicate” and “lifecycle/destroy” scopes enabled. A combination cannot be converted; flatten it first with `flattenCombination`. `id`
 
 ### isCropAspectRatioLocked(_:)
 
@@ -2467,7 +2547,7 @@ Merges a caption with the caption before it in its parent. The merged text is th
 @MainActor func movePageSliceIntoPage(_ pageOrPageSlice: DesignBlockID, page: DesignBlockID, index: Int, options: MovePageSliceOptions = .init()) throws -> DesignBlockID
 ```
 
-Moves a page without page slices, or a page slice of another page, into a page with page slices. The content of the moved page or page slice moves along and keeps its ids. A moved page slice keeps its id. A page becomes a new page slice, and its id becomes invalid. The page slice keeps its size along the axis of `page` and takes the shared size across it. The moved content is placed above the content of `page`, in its own order. When the move takes the last page slice of its page, that page stays as an empty page without page slices. The move fails when a content block would change the page slice that owns it. Conversion keeps the supported appearance keyframes. Tracks of a page slice use t…
+Moves a page without page slices, or a page slice of another page, into a page with page slices. The content of the moved page or page slice moves along and keeps its ids. A moved page slice keeps its id. A page becomes a new page slice, and its id becomes invalid. The page slice keeps its size along the axis of `page` and takes the shared size across it. The moved content is placed above the content of `page`, in its own order. When the move takes the last page slice of its page, that page stays as an empty page without page slices. The move fails when a content block would change the page slice that owns it. The moved page or page slice keeps its shape, its effects, its blur and its drop…
 
 ### movePageSliceOutOfPage(_:index:options:)
 
@@ -2475,7 +2555,7 @@ Moves a page without page slices, or a page slice of another page, into a page w
 @MainActor func movePageSliceOutOfPage(_ pageSlice: DesignBlockID, index: Int, options: MovePageSliceOptions = .init()) throws -> DesignBlockID
 ```
 
-Moves a page slice and its content to a new page without page slices. The new page joins the parent of the source page. The id of the page slice becomes invalid. The content keeps its ids. The page slices after it close the gap. An enabled fill of the page slice stays. Otherwise the new page takes the fill of the source page when `convertSourceToPage` acts, and a white fill when it does not. When the move takes the last page slice, the source stays as an empty page without page slices. Conversion keeps the supported appearance keyframes. Tracks of a page slice use the playback clock of its page. Conversion refuses preset animations and other tracks, such as geometry and crop tracks. `conver…
+Moves a page slice and its content to a new page without page slices. The new page joins the parent of the source page. The id of the page slice becomes invalid. The content keeps its ids. The page slices after it close the gap. An enabled fill of the page slice stays. Otherwise the new page takes the fill of the source page when `convertSourceToPage` acts, and a white fill when it does not. The new page keeps the shape, the effects, the blur and the drop shadow of the page slice. A page applies its shape and a blur in the `Block` mode to its content too. So such a blur blurs the content of the new page, and a new page that clips its content cuts it at its shape. When the move takes the las…
 
 ### onClicked
 
@@ -2499,7 +2579,7 @@ Subscribe to block click events.
 @MainActor var onSelectionChanged: AsyncStream<Void> { get }
 ```
 
-Subscribe to changes in the current set of selected blocks.
+Subscribe to changes in the current set of selected blocks. A pick, a change or the end of the active subshape of the selected block counts as a change. See `getActiveSubshape(_:)`.
 
 ### onSelectionChangedPublisher
 
@@ -2540,6 +2620,14 @@ Checks whether the given block references any text variables. Doesn’t check th
 ```
 
 Register a GLSL ES program at runtime. An existing ID causes an error. Definitions contain ordered buffers and a final Image pass, with four channels per pass. Registration validates the source and GPU programs before publishing the definition. A CPU context runs it on the raster pipeline, which has no integer shift or integer modulo. A program that the context cannot run returns a capability error. Loops stop after 65536 iterations per pixel and pass, counted across all loops. The program belongs to the scene. Creating a scene in place of the current one removes the programs, and loading a scene replaces them with its own. Destroying the scene removes each program that no remaining block u…
+
+### releaseCombination(_:parts:)
+
+```swift
+@MainActor func releaseCombination(_ id: DesignBlockID, parts: [DesignBlockID]? = nil) throws -> [DesignBlockID]
+```
+
+Takes parts out of a combination and makes each a block again, where the part is on the canvas. Each part becomes the shape of a new block with the look of the combination. That block is a graphic, or an exclusion area for a combination of exclusion areas. The frame of the block takes the size that the part is drawn at. A part that moves with keyframes takes its place at the current time, and its shape loses the keyframes of that place. The part of a text stays the vector path of its letters, and the part of a line the vector path of its centre line. An open part, such as a line, draws with a centre stroke. When the combination has no stroke, the block gets one in the first color of the fil…
 
 ### removeCustomShaderProgram(_:)
 
@@ -2603,7 +2691,7 @@ Remove the block as duration source block for the page. If a scene or page is gi
 @MainActor func removeSubshape(_ id: DesignBlockID, index: Int) throws
 ```
 
-Removes the subshape at the given index of a compound shape. The subshape is not destroyed. Required scope: “shape/change” `id`
+Removes the subshape at the given index of a compound shape. The subshape is not destroyed. A compound shape in a component instance keeps its subshapes: edit the component instead. Required scope: “shape/change” `id`
 
 ### removeText(_:from:)
 
@@ -2637,6 +2725,14 @@ Removes the outgoing transition of a clip or a page. `id`
 
 Remove the variable binding of a block property. The property keeps its current value. Does nothing if the property is not bound. `id`
 
+### replaceColor(_:from:to:)
+
+```swift
+@MainActor func replaceColor(_ id: DesignBlockID, from: Color, to: Color) throws
+```
+
+Replace a color everywhere [`getUsedColors(_:)`](./getusedcolors(_:).md) finds it in a block and all its descendants. A property whose scope the block does not allow keeps its color, and the call throws no error. The scopes are “fill/change” for the fill, the text runs and the background color, “text/character” for the text run background colors, “stroke/change” for the stroke and its stroke fill, and “appearance/shadow”. A property that a variable binds also keeps its color. `id`
+
 ### replaceCustomShaderProgram(_:definition:)
 
 ```swift
@@ -2644,6 +2740,14 @@ Remove the variable binding of a block property. The property keeps its current 
 ```
 
 Replace a registered program at runtime. An unknown ID causes an error. A failed replacement preserves the existing definition and every live instance. Successful replacement invalidates the feedback state of its instances. `id`
+
+### replaceSubshape(_:newSubshapeID:)
+
+```swift
+@MainActor func replaceSubshape(_ id: DesignBlockID, newSubshapeID: DesignBlockID) throws
+```
+
+Replaces a subshape of a compound shape, at any depth of nested compound shapes. `id`
 
 ### replaceText(_:text:in:)
 
@@ -2756,6 +2860,14 @@ Updates the sorting order of this block and all of its manually created and subj
 ```
 
 Updates the sorting order of this block and all of its manually created siblings so that the given block has the lowest sorting order. If the block is parented to a track, it is first moved up in the hierarchy. `id`
+
+### setActiveSubshape(_:subshapeID:)
+
+```swift
+@MainActor func setActiveSubshape(_ id: DesignBlockID, subshapeID: DesignBlockID?) throws
+```
+
+Edits one subshape of a block’s compound shape with the transform handles, in place of the block. `id`
 
 ### setAlwaysOnBottom(_:enabled:)
 
@@ -3149,7 +3261,7 @@ Set a gradient color stops property of the given design block. `id`
 @MainActor func setHeight(_ id: DesignBlockID, value: Float, maintainCrop: Bool = false) throws
 ```
 
-Update a block’s height and optionally maintain the crop. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up higher than asked. A height of 0 or less on a page slice fails with `BLOCK.PAGE_SLICE_SIZE_INVALID`. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it will change to `Crop`. If the size of a group is changed, both dimensions are modified and the aspect ra…
+Update a block’s height and optionally maintain the crop. A height in the mode `.auto` of a block with a compound shape stretches the shape. The mode stays `.auto`. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up higher than asked. A height of 0 or less on a page slice fails with `BLOCK.PAGE_SLICE_SIZE_INVALID`. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise…
 
 ### setHeightMode(_:mode:)
 
@@ -3157,7 +3269,7 @@ Update a block’s height and optionally maintain the crop. A new height of a pa
 @MainActor func setHeightMode(_ id: DesignBlockID, mode: SizeMode) throws
 ```
 
-Set a block’s mode for its height. A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`. Required scope: “layer/resize” `id`
+Set a block’s mode for its height. A switch between Absolute and Percent keeps the stored height and reads it in the new mode. Set the height after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`. A block whose shape is a compound shape keeps its laid-out height when its height leaves the Auto mode. Note that this triggers an internal update. Required scope: “layer/resize” `id`
 
 ### setHovered(_:hovered:)
 
@@ -3421,7 +3533,7 @@ Update the selection state of a block. `id`
 @MainActor func setShape(_ id: DesignBlockID, shape: DesignBlockID) throws
 ```
 
-Sets the block containing the shape properties of the given block. Note that the previous shape block is not destroyed automatically. A page with page slices takes only a rect shape. Required scope: “shape/change” `id`
+Sets the block containing the shape properties of the given block. Note that the previous shape block is not destroyed automatically. A page with page slices takes only a rect shape. A page slice takes no line shape. The shape of a block in a component instance, and each part of it, cannot become the shape of another block (`BLOCK.INSTANCE_STRUCTURE_LOCKED`). Edit the component instead. A new shape can replace the compound shape of a block whose width or height mode is Auto. That axis then keeps its laid-out length in the Absolute mode. Note that this triggers an internal update. Required scope: “shape/change” `id`
 
 ### setSoloPlaybackEnabled(_:enabled:)
 
@@ -3861,7 +3973,7 @@ Set the audio volume of the given block. `id`
 @MainActor func setWidth(_ id: DesignBlockID, value: Float, maintainCrop: Bool = false) throws
 ```
 
-Update a block’s width and optionally maintain the crop. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up wider than asked. A width of 0 or less on a page slice fails with `BLOCK.PAGE_SLICE_SIZE_INVALID`. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it will change to `Crop`. If the size of a group is changed, both dimensions are modified and the aspect ratio…
+Update a block’s width and optionally maintain the crop. A width in the mode `.auto` of a block with a compound shape stretches the shape. The mode stays `.auto`. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up wider than asked. A width of 0 or less on a page slice fails with `BLOCK.PAGE_SLICE_SIZE_INVALID`. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode `Cover` is only kept if the `features/transformEditsRetainCoverMode` setting is enabled, otherwise it wi…
 
 ### setWidthMode(_:mode:)
 
@@ -3869,7 +3981,7 @@ Update a block’s width and optionally maintain the crop. A new width of a page
 @MainActor func setWidthMode(_ id: DesignBlockID, mode: SizeMode) throws
 ```
 
-Set a block’s mode for its width. A switch between Absolute and Percent keeps the stored width and reads it in the new mode. Set the width after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`. Required scope: “layer/resize” `id`
+Set a block’s mode for its width. A switch between Absolute and Percent keeps the stored width and reads it in the new mode. Set the width after the mode, without `maintainCrop`: otherwise the crop is adjusted from the size that the old number has in the new mode. A page slice, and a page that holds page slices, take only the Absolute mode. Another mode fails with `BLOCK.PAGE_SLICE_SIZE_MODE_INVALID`. A block whose shape is a compound shape keeps its laid-out width when its width leaves the Auto mode. Note that this triggers an internal update. Required scope: “layer/resize” `id`
 
 ### split(_:atTime:options:)
 
@@ -3877,7 +3989,7 @@ Set a block’s mode for its width. A switch between Absolute and Percent keeps 
 @MainActor func split(_ id: DesignBlockID, atTime: Double, options: SplitOptions = .init()) throws -> DesignBlockID
 ```
 
-Split a block at the specified time. The original block will be trimmed to end at the split time, and the returned duplicate will start at the split time and continue to the original end time. `id`
+Split a block at the specified time. The original block will be trimmed to end at the split time, and the returned duplicate will start at the split time and continue to the original end time. The second half of a group holds every child and continues where the first half ends. It plays the children from the time of the cut. The split sets its `playback/contentStart` and changes no child. On a group with `group/composition` set, the time of the cut is on the group’s clock. A block with a negative time offset starts at 0 after the split, where it plays. `id`
 
 ### splitCaption(_:textIndex:minimumDuration:)
 

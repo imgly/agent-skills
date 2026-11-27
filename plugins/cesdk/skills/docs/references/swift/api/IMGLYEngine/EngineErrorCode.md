@@ -1403,6 +1403,18 @@ case blockContentFillAlignmentUnsupported
 case blockContentFillModeUnsupported
 ```
 
+### EngineErrorCode.blockConvertNothingVisible
+
+```swift
+case blockConvertNothingVisible
+```
+
+### EngineErrorCode.blockConvertTextFontLoading
+
+```swift
+case blockConvertTextFontLoading
+```
+
 ### EngineErrorCode.blockCreationNotAllowed
 
 ```swift
@@ -1901,6 +1913,12 @@ case blockNotABlurBlock
 case blockNotACaption
 ```
 
+### EngineErrorCode.blockNotACombination
+
+```swift
+case blockNotACombination
+```
+
 ### EngineErrorCode.blockNotAComponent
 
 ```swift
@@ -1931,6 +1949,12 @@ case blockNotAnEffectBlock
 case blockNotAnInstance
 ```
 
+### EngineErrorCode.blockNotASubshape
+
+```swift
+case blockNotASubshape
+```
+
 ### EngineErrorCode.blockNotATextBlock
 
 ```swift
@@ -1959,6 +1983,12 @@ case blockNotAVideoFillBlock
 
 ```swift
 case blockNotComponentCapable
+```
+
+### EngineErrorCode.blockNotConvertibleToShape
+
+```swift
+case blockNotConvertibleToShape
 ```
 
 ### EngineErrorCode.blockNotKnownBlockType
@@ -2267,6 +2297,18 @@ case blockScopesUnsupported
 case blockSelectionDisabled
 ```
 
+### EngineErrorCode.blockShadowNoiseInvalid
+
+```swift
+case blockShadowNoiseInvalid
+```
+
+### EngineErrorCode.blockShadowSpreadInvalid
+
+```swift
+case blockShadowSpreadInvalid
+```
+
 ### EngineErrorCode.blockShadowXBlurInvalid
 
 ```swift
@@ -2373,6 +2415,12 @@ case blockSubshapeIndexOutOfBounds
 
 ```swift
 case blockSubshapeNotAShape
+```
+
+### EngineErrorCode.blockSubshapeNotOfBlock
+
+```swift
+case blockSubshapeNotOfBlock
 ```
 
 ### EngineErrorCode.blockSubshapesUnsupported
@@ -3947,6 +3995,12 @@ case editorAvOperationBlockTypeUnsupported
 case editorAvOperationVideoOnly
 ```
 
+### EngineErrorCode.editorBlockNoContentStartSupport
+
+```swift
+case editorBlockNoContentStartSupport
+```
+
 ### EngineErrorCode.editorBlockNoDuration
 
 ```swift
@@ -4005,6 +4059,12 @@ case editorBlockNoTimeRemapSupport
 
 ```swift
 case editorBlockNoTrimSupport
+```
+
+### EngineErrorCode.editorBlockPlayedOnGroupClock
+
+```swift
+case editorBlockPlayedOnGroupClock
 ```
 
 ### EngineErrorCode.editorCameraClampAcrossScenes

@@ -7,7 +7,7 @@ Configuration class of the editor.
 
 ```kotlin
 @Immutable
-data class EditorConfiguration(val onCreate: suspend EditorScope.() -> Unit?, val onLoaded: suspend EditorScope.() -> Unit?, val onExport: suspend EditorScope.() -> Unit?, val onClose: suspend EditorScope.() -> Unit?, val onEvent: EditorScope.(EditorEvent) -> Unit?, val onUpload: suspend EditorScope.(AssetDefinition, UploadAssetSourceType) -> AssetDefinition?, val onError: suspend EditorScope.(Throwable) -> Unit?, val colorPalette: List<Color>?, val assetLibrary: AssetLibrary?, val dock: EditorComponent<*>?, val navigationBar: EditorComponent<*>?, val inspectorBar: EditorComponent<*>?, val canvasMenu: EditorComponent<*>?, val bottomPanel: EditorComponent<*>?, val overlay: EditorComponent<*>?)
+data class EditorConfiguration(val onCreate: suspend EditorScope.() -> Unit?, val onLoaded: suspend EditorScope.() -> Unit?, val onExport: suspend EditorScope.() -> Unit?, val onClose: suspend EditorScope.() -> Unit?, val onEvent: EditorScope.(EditorEvent) -> Unit?, val onUpload: suspend EditorScope.(AssetDefinition, UploadAssetSourceType) -> AssetDefinition?, val onError: suspend EditorScope.(Throwable) -> Unit?, val colorPalette: List<Color>?, val assetLibrary: AssetLibrary?, val dock: EditorComponent<*>?, val navigationBar: EditorComponent<*>?, val inspectorBar: EditorComponent<*>?, val canvasMenu: EditorComponent<*>?, val bottomPanel: EditorComponent<*>?, val overlay: EditorComponent<*>?, val layout: EditorLayout = EditorLayout.STACKED)
 ```
 
 
@@ -18,6 +18,12 @@ data class EditorConfiguration(val onCreate: suspend EditorScope.() -> Unit?, va
 ```kotlin
 constructor(onCreate: suspend EditorScope.() -> Unit?, onLoaded: suspend EditorScope.() -> Unit?, onExport: suspend EditorScope.() -> Unit?, onClose: suspend EditorScope.() -> Unit?, onEvent: EditorScope.(EditorEvent) -> Unit?, onUpload: suspend EditorScope.(AssetDefinition, UploadAssetSourceType) -> AssetDefinition?, onError: suspend EditorScope.(Throwable) -> Unit?, colorPalette: List<Color>?, assetLibrary: AssetLibrary?, dock: EditorComponent<*>?, navigationBar: EditorComponent<*>?, inspectorBar: EditorComponent<*>?, canvasMenu: EditorComponent<*>?, bottomPanel: EditorComponent<*>?, overlay: EditorComponent<*>?)
 ```
+
+```kotlin
+constructor(onCreate: suspend EditorScope.() -> Unit?, onLoaded: suspend EditorScope.() -> Unit?, onExport: suspend EditorScope.() -> Unit?, onClose: suspend EditorScope.() -> Unit?, onEvent: EditorScope.(EditorEvent) -> Unit?, onUpload: suspend EditorScope.(AssetDefinition, UploadAssetSourceType) -> AssetDefinition?, onError: suspend EditorScope.(Throwable) -> Unit?, colorPalette: List<Color>?, assetLibrary: AssetLibrary?, dock: EditorComponent<*>?, navigationBar: EditorComponent<*>?, inspectorBar: EditorComponent<*>?, canvasMenu: EditorComponent<*>?, bottomPanel: EditorComponent<*>?, overlay: EditorComponent<*>?, layout: EditorLayout = EditorLayout.STACKED)
+```
+
+Keeps the constructor of earlier releases, which have no layout, so the editor uses EditorLayout.STACKED.
 
 ### assetLibrary
 
@@ -53,6 +59,12 @@ val dock: EditorComponent<*>?
 
 ```kotlin
 val inspectorBar: EditorComponent<*>?
+```
+
+### layout
+
+```kotlin
+val layout: EditorLayout
 ```
 
 ### navigationBar

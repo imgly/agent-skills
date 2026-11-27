@@ -1404,6 +1404,18 @@ const val BLOCK_CONTENT_FILL_ALIGNMENT_UNSUPPORTED: String
 const val BLOCK_CONTENT_FILL_MODE_UNSUPPORTED: String
 ```
 
+### BLOCK_CONVERT_NOTHING_VISIBLE
+
+```kotlin
+const val BLOCK_CONVERT_NOTHING_VISIBLE: String
+```
+
+### BLOCK_CONVERT_TEXT_FONT_LOADING
+
+```kotlin
+const val BLOCK_CONVERT_TEXT_FONT_LOADING: String
+```
+
 ### BLOCK_CREATION_NOT_ALLOWED
 
 ```kotlin
@@ -1866,6 +1878,12 @@ const val BLOCK_NOT_A_BLUR_BLOCK: String
 const val BLOCK_NOT_A_CAPTION: String
 ```
 
+### BLOCK_NOT_A_COMBINATION
+
+```kotlin
+const val BLOCK_NOT_A_COMBINATION: String
+```
+
 ### BLOCK_NOT_A_COMPONENT
 
 ```kotlin
@@ -1882,6 +1900,12 @@ const val BLOCK_NOT_A_CUTOUT_BLOCK: String
 
 ```kotlin
 const val BLOCK_NOT_A_DESIGN_BLOCK: String
+```
+
+### BLOCK_NOT_A_SUBSHAPE
+
+```kotlin
+const val BLOCK_NOT_A_SUBSHAPE: String
 ```
 
 ### BLOCK_NOT_A_TEXT_BLOCK
@@ -1906,6 +1930,12 @@ const val BLOCK_NOT_A_VIDEO_FILL_BLOCK: String
 
 ```kotlin
 const val BLOCK_NOT_COMPONENT_CAPABLE: String
+```
+
+### BLOCK_NOT_CONVERTIBLE_TO_SHAPE
+
+```kotlin
+const val BLOCK_NOT_CONVERTIBLE_TO_SHAPE: String
 ```
 
 ### BLOCK_NOT_KNOWN_BLOCK_TYPE
@@ -2268,6 +2298,18 @@ const val BLOCK_SCOPE_PERMISSION_DENIED: String
 const val BLOCK_SELECTION_DISABLED: String
 ```
 
+### BLOCK_SHADOW_NOISE_INVALID
+
+```kotlin
+const val BLOCK_SHADOW_NOISE_INVALID: String
+```
+
+### BLOCK_SHADOW_SPREAD_INVALID
+
+```kotlin
+const val BLOCK_SHADOW_SPREAD_INVALID: String
+```
+
 ### BLOCK_SHADOW_X_BLUR_INVALID
 
 ```kotlin
@@ -2380,6 +2422,12 @@ const val BLOCK_SUBSHAPE_INDEX_OUT_OF_BOUNDS: String
 
 ```kotlin
 const val BLOCK_SUBSHAPE_NOT_A_SHAPE: String
+```
+
+### BLOCK_SUBSHAPE_NOT_OF_BLOCK
+
+```kotlin
+const val BLOCK_SUBSHAPE_NOT_OF_BLOCK: String
 ```
 
 ### BLOCK_SUBSHAPE_TOO_DEEP
@@ -3960,6 +4008,12 @@ const val EDITOR_BLOCK_NOT_ATTACHED_TO_PAGE: String
 const val EDITOR_BLOCK_NOT_A_PAGE: String
 ```
 
+### EDITOR_BLOCK_NO_CONTENT_START_SUPPORT
+
+```kotlin
+const val EDITOR_BLOCK_NO_CONTENT_START_SUPPORT: String
+```
+
 ### EDITOR_BLOCK_NO_DURATION
 
 ```kotlin
@@ -4006,6 +4060,12 @@ const val EDITOR_BLOCK_NO_TIME_REMAP_SUPPORT: String
 
 ```kotlin
 const val EDITOR_BLOCK_NO_TRIM_SUPPORT: String
+```
+
+### EDITOR_BLOCK_PLAYED_ON_GROUP_CLOCK
+
+```kotlin
+const val EDITOR_BLOCK_PLAYED_ON_GROUP_CLOCK: String
 ```
 
 ### EDITOR_CAMERA_CLAMP_ACROSS_SCENES

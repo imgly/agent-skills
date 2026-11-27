@@ -345,6 +345,14 @@ abstract fun onActiveChanged(): Flow<Unit>
 
 Subscribe to changes to be called whenever the active scene changes. This may happen upon scene load or creation of a new scene.
 
+### onNewerFormat
+
+```kotlin
+abstract fun onNewerFormat(): Flow<NewerFormat>
+```
+
+Subscribe to loads of a scene or block string that names a newer format than this engine reads without loss. The load still succeeds, but the engine drops each property it does not know, and a later save keeps none of them. An event arrives at the end of the engine update that follows the load. Undo and redo never send one.
+
 ### onZoomLevelChanged
 
 ```kotlin

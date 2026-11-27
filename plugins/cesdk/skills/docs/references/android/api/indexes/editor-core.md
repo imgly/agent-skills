@@ -1,6 +1,6 @@
 # ly.img:editor-core Android API Catalog
 
-Complete catalog of 274 generated API digests.
+Complete catalog of 275 generated API digests.
 
 - [AbstractButtonBuilder](<../editor-core/ly.img.editor.core.component/-abstract-button-builder.md>) — `ly.img.editor.core.component`
 - [AbstractCanvasMenuBuilder](<../editor-core/ly.img.editor.core.component/-abstract-canvas-menu-builder.md>) — `ly.img.editor.core.component`
@@ -106,6 +106,7 @@ Complete catalog of 274 generated API digests.
 - [EditorIcon.Colors](<../editor-core/ly.img.editor.core.component.data/-editor-icon/-colors.md>) — `ly.img.editor.core.component.data`
 - [EditorIcon.FillStroke](<../editor-core/ly.img.editor.core.component.data/-editor-icon/-fill-stroke.md>) — `ly.img.editor.core.component.data`
 - [EditorIcon.Vector](<../editor-core/ly.img.editor.core.component.data/-editor-icon/-vector.md>) — `ly.img.editor.core.component.data`
+- [EditorLayout](<../editor-core/ly.img.editor.core.configuration/-editor-layout.md>) — `ly.img.editor.core.configuration`
 - [EditorScope](<../editor-core/ly.img.editor.core/-editor-scope.md>) — `ly.img.editor.core`
 - [EditorState](<../editor-core/ly.img.editor.core.state/-editor-state.md>) — `ly.img.editor.core.state`
 - [EditorTrigger](<../editor-core/ly.img.editor.core.component/-editor-trigger.md>) — `ly.img.editor.core.component`

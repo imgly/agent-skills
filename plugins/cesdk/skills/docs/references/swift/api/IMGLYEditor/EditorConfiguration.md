@@ -33,7 +33,7 @@ Sets the asset library configuration. Merges with any existing configuration.
 @MainActor var bottomPanel: BottomPanel.Configuration? { get }
 ```
 
-The bottom panel configuration.
+The bottom panel configuration. Where [`EditorLayout.sideBySide`](../editorlayout/sidebyside.md) applies, the panel and the dock form the trailing column. Without a bottom panel the editor stays [`EditorLayout.stacked`](../editorlayout/stacked.md).
 
 ### Builder.bottomPanel(_:)
 
@@ -138,6 +138,22 @@ The inspector bar configuration.
 ```
 
 Sets the inspector bar configuration. Merges with any existing configuration.
+
+### layout
+
+```swift
+@MainActor var layout: EditorLayout? { get }
+```
+
+The arrangement of the canvas and the panels. [`EditorLayout.sideBySide`](../editorlayout/sidebyside.md) says where it applies. `nil` sets no layout, so the layout of an earlier configuration stays. When no configuration sets one, the editor uses [`EditorLayout.stacked`](../editorlayout/stacked.md). The editor reads the layout whenever the configuration runs again, which happens when the view around the editor redraws. So a layout read from SwiftUI state, such as `@State` or `@AppStorage`, switches the open editor. An override of [`layout`](layout.md) that reads plain stored properties does not update the open editor.
+
+### Builder.layout(_:)
+
+```swift
+@MainActor func layout(_ layout: EditorLayout)
+```
+
+Sets the arrangement of the canvas and the panels. The default is [`EditorLayout.stacked`](../../editorlayout/stacked.md). [`EditorLayout.sideBySide`](../../editorlayout/sidebyside.md) says where it applies. [`layout`](../layout.md) says when the editor reads the layout again.
 
 ### navigationBar
 

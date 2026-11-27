@@ -180,6 +180,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Inspector Bar](https://img.ly/docs/cesdk/dev/flutter/user-interface/customization/inspector-bar-8ca1cd/)
   - [Canvas Menu](https://img.ly/docs/cesdk/dev/flutter/user-interface/customization/canvas-menu-0d2b5b/)
   - [Video Timeline](https://img.ly/docs/cesdk/dev/flutter/user-interface/customization/video-timeline-7a0400/)
+  - [Editor Layout](https://img.ly/docs/cesdk/dev/flutter/user-interface/customization/editor-layout-b9aa97/)
   - [Hide Elements](https://img.ly/docs/cesdk/dev/flutter/user-interface/customization/hide-elements-fe945c/)
 - [UI Extensions](https://img.ly/docs/cesdk/dev/flutter/user-interface/ui-extensions-d194d1/)
   - [Add New Button](https://img.ly/docs/cesdk/dev/flutter/user-interface/ui-extensions/add-new-button-74884d/)

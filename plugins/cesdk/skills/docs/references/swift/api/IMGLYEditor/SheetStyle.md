@@ -3,7 +3,7 @@
 - **Module:** `IMGLYEditor`
 - **DocC identifier:** `/documentation/IMGLYEditor/SheetStyle`
 
-A style that represents the presentation behavior of a sheet.
+A style that represents the presentation behavior of a sheet. In the trailing column of [`EditorLayout.sideBySide`](editorlayout/sidebyside.md) the editor draws its built-in sheets itself and sizes their detents: the `PresentationDetent.imgly` detents, `.medium` and `.large`. A `.height(_:)`, `.fraction(_:)` or custom detent shows at the height of `PresentationDetent.imgly.medium` there. The asset library sheets and custom sheets stay system sheets in that layout, with the system’s detents.
 
 ```swift
 struct SheetStyle

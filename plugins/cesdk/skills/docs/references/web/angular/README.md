@@ -9,7 +9,7 @@ this folder list them:
 
 - `angular.md` lists every page of https://img.ly/docs/cesdk/dev/angular/ with its title and link.
 
-The links point to the docs of CE.SDK `1.88.0-nightly.20261126`, the version of this bundle,
+The links point to the docs of CE.SDK `1.88.0-nightly.20261127`, the version of this bundle,
 under `https://img.ly/docs/cesdk/dev/`. The docs site keeps one copy per version, with the same
 page paths:
 
@@ -21,7 +21,7 @@ page paths:
 | Latest nightly | `https://img.ly/docs/cesdk/dev/` |
 
 1. **Check the version.** Read the CE.SDK version the project uses. If it is not
-   `1.88.0-nightly.20261126`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
+   `1.88.0-nightly.20261127`, replace `https://img.ly/docs/cesdk/dev/` in each link with the root of that
    version.
 2. **Read the index** in this folder and pick the pages that match the query.
 3. **Fetch each page as Markdown**: remove the trailing `/` from the link and add
@@ -76,9 +76,9 @@ and type shapes may differ from pre-trained knowledge.
 [CE.SDK Web API Index]|root: ../api
 
 CreativeEngine:{asset,block,editor,event,scene,variable,sandbox,actions,shortcuts,clipboard,reactor,version,addPlugin,unstable_setVideoExportInactivityTimeout,unstable_setExportInactivityTimeout},... (+9)
-BlockAPI:{export,exportToStream,getDominantColors,exportPreview,exportWithColorMask,exportVideo,exportAudio,joinVideos,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create,createFill},... (+478)
+BlockAPI:{export,exportToStream,getDominantColors,exportPreview,exportWithColorMask,exportVideo,exportVideoToStream,exportAudio,joinVideos,loadFromString,loadFromArchiveURL,loadFromURL,saveToString,saveToArchive,create},... (+493)
 AssetAPI:{registerApplyMiddleware,registerApplyToBlockMiddleware,addSource,addLocalSource,addLocalAssetSourceFromJSONString,addLocalAssetSourceFromJSONURI,removeSource,findAllSources,findAssets,fetchAsset,getGroups,getSupportedMimeTypes,getCredits,name,url},... (+16)
-SceneAPI:{setDocumentColorProfile,setDocumentColorProfileFromData,getDocumentColorProfileInfo,removeDocumentColorProfile,setCMYKProfile,setCMYKProfileFromData,getCMYKProfileInfo,removeCMYKProfile,getColorRenderingIntent,setColorRenderingIntent,isBlackPointCompensationEnabled,setBlackPointCompensationEnabled,load,loadFromString,loadFromURL},... (+48)
+SceneAPI:{setDocumentColorProfile,setDocumentColorProfileFromData,getDocumentColorProfileInfo,removeDocumentColorProfile,setCMYKProfile,setCMYKProfileFromData,getCMYKProfileInfo,removeCMYKProfile,getColorRenderingIntent,setColorRenderingIntent,isBlackPointCompensationEnabled,setBlackPointCompensationEnabled,load,loadFromString,loadFromURL},... (+52)
 EditorAPI:{unlockWithLicense,getCapabilityState,checkCapabilities,startTracking,setTrackingMetadata,getTrackingMetadata,trackEvent,overrideTrackingEndpoint,beginExportTransaction,endExportTransaction,cancelExportTransaction,resolveExportTransaction,leaveExportTransaction,trackExportFailure,ingestTrackingEvents},... (+129)
 EventAPI:{subscribe}
 VariableAPI:{findAll,setString,getString,remove,createValueSet,destroyValueSet,setValueSetName,getValueSetName,findAllValueSets,findValueSetByName,setActiveValueSet,getActiveValueSet,rename,setColor,getColor},... (+8)

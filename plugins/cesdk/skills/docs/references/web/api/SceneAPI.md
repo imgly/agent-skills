@@ -1180,6 +1180,33 @@ onActiveChanged(callback: () => void): (() => void)
 
 **Returns:** A method to unsubscribe.
 
+### onNewerFormat()
+
+Subscribe to loads of content saved in a newer format.
+The engine still loads such content, but drops each property it does not know, and a later save keeps none of
+them. Undo and redo never fire this event.
+```javascript
+const unsubscribe = engine.scene.onNewerFormat(({ kind, minReaderVersion, engineVersion }) => {
+  console.warn(`This ${kind} needs format ${minReaderVersion}; this engine reads ${engineVersion}.`);
+});
+```
+
+```typescript
+onNewerFormat(callback: (event: {
+        kind: string;
+        minReaderVersion: string;
+        engineVersion: string;
+    }) => void): (() => void)
+```
+
+**Parameters:**
+- `callback` - This function is called at the end of the engine update, if a scene or block string that was
+loaded since the last update names a format newer than this engine reads without loss. `kind` is `"scene"` or
+`"blocks"`, `minReaderVersion` is the oldest format version that reads the content without loss, and
+`engineVersion` is the newest format version of the same kind that this engine reads.
+
+**Returns:** A method to unsubscribe.
+
 ---
 
 For complete type definitions, see the [CE.SDK TypeScript API Reference](https://img.ly/docs/cesdk/engine/api/).

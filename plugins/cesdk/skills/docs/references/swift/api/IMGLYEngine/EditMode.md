@@ -39,6 +39,14 @@ case transform
 case trim
 ```
 
+### EditMode.vector
+
+```swift
+case vector
+```
+
+Edits the points of a vector path.
+
 ### init(rawValue:)
 
 ```swift

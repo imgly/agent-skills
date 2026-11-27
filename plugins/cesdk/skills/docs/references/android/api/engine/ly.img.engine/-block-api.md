@@ -35,6 +35,14 @@ abstract suspend fun addImageFileUriToSourceSet(block: DesignBlock, property: St
 
 Add a source to the sourceSet property of the given block. If there already exists in source set an image with the same width, that existing image will be replaced. If the source set is or gets empty, the crop and content fill mode of the associated block will be set to the default values. Note: This fetches the resource from the given URI to obtain the image dimensions. It is recommended to use setSourceSet if the dimension is known.
 
+### addToCombination
+
+```kotlin
+abstract fun addToCombination(block: DesignBlock, blocks: List<DesignBlock>): List<DesignBlock>
+```
+
+Adds blocks and parts to a combination as its topmost parts, in their order on the page. Each block becomes a part as with combine with CombineOptions.editable, and keeps its place on the canvas. A combination among the blocks becomes a nested part. The combination keeps its look and its size modes, and a frame that fits its outline fits the new one. The blocks are destroyed. A block with children cannot join, because its children would go with it. A part of any combination moves here, also from or to another level of the same one. It keeps its id and its place on the canvas, and its placement keyframes move with it. A combination that loses its last part goes. For the fill rule of a combin…
+
 ### addVideoFileUriToSourceSet
 
 ```kotlin
@@ -166,10 +174,10 @@ Moves main components into a new container as variants of one component.
 ### combine
 
 ```kotlin
-abstract fun combine(blocks: List<DesignBlock>, op: BooleanOperation): DesignBlock
+abstract fun combine(blocks: List<DesignBlock>, op: BooleanOperation, options: CombineOptions = CombineOptions()): DesignBlock
 ```
 
-Perform a boolean operation on the given blocks. All blocks must be combinable. See isCombinable. The parent, fill and sort order of the new block is that of the prioritized block. When the prioritized block has no fill, the new block has none. When performing a Union, Intersection or XOR, the operation is performed pair-wise starting with the element with the highest sort order. When performing a Difference, the operation is performed pair-wise starting with the element with the lowest sort order. Required scopes: "lifecycle/duplicate", "lifecycle/destroy"
+Perform a boolean operation on the given blocks. All blocks must be combinable. See isCombinable. The parent, fill and sort order of the new block is that of the prioritized block. When the prioritized block has no fill, the new block has none. When performing a Union or XOR, the operation is performed pair-wise starting with the frontmost block. When performing a Difference or an Intersection, the operation is performed pair-wise starting with the bottommost block. The prioritized block is the block where the operation starts, and for Merge the frontmost block. Merge performs no boolean operation. The outline of each block stays a contour of its own, bottom first, and the new vector path h…
 
 ### convertToComponent
 
@@ -178,6 +186,14 @@ abstract fun convertToComponent(block: DesignBlock)
 ```
 
 Makes a block a main component, so that instances can follow it.
+
+### convertToShape
+
+```kotlin
+abstract fun convertToShape(block: DesignBlock): DesignBlock
+```
+
+Replaces a text block, or a graphic with a stroke, with vector path shapes. The letters of a text become their outlines, and a stroke becomes a shape of its own. A hidden fill gives no shape. Each shape keeps the position, the rotation, the flips and the frame of the block. Its frame grows only to cover a stroke beyond the frame. When both the fill and the stroke show, and they differ, the result is a group: the fill shape below the stroke shape. The group takes the opacity, the blend mode and a uniform blur in the Block mode, so they apply to both shapes at once. The fill shape takes the drop shadow, because a group has none, and any other blur, which blurs only the fill. So the part of th…
 
 ### createAnimation
 
@@ -288,7 +304,7 @@ Create editable graphic blocks from SVG markup, such as the SVG code that Adobe 
 abstract fun createInstance(component: DesignBlock): DesignBlock
 ```
 
-Creates an instance of a main component. Attach it with appendChild. An instance follows every property that it does not override. Its children cannot be added, reordered or destroyed. Hide a child with setVisible.
+Creates an instance of a main component. Attach it with appendChild. An instance follows every property that it does not override. It does not follow the parts of a combination, nor the size of an axis that fits them. Its children cannot be added, reordered or destroyed. Hide a child with setVisible.
 
 ### createMask
 
@@ -354,7 +370,7 @@ Create a new block. New text and graphic blocks use clip/defaultDurationValue (5
 abstract fun destroy(block: DesignBlock)
 ```
 
-Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. This holds for the last page slice too: its page becomes an empty page without page slices, at the same size. To keep the content, move the page slice out with movePageSliceOutOfPage first. Destroying a page slice runs an internal update. Destroying the scene removes each custom shader program that no remaining block uses. Required scope: "lifecycle/destroy"
+Destroys a block. A page slice destroys the blocks that it owns on its page, without a check of their scopes, as a page destroys its children. This holds for the last page slice too: its page becomes an empty page without page slices, at the same size. To keep the content, move the page slice out with movePageSliceOutOfPage first. Destroying a page slice runs an internal update. A child of a component instance, its shape, or a part of its compound shape, cannot be destroyed (BLOCK.INSTANCE_STRUCTURE_LOCKED). Destroying the scene removes each custom shader program that no remaining block uses. Required scope: "lifecycle/destroy"
 
 ### detachInstance
 
@@ -580,6 +596,14 @@ abstract fun findBlocksAtScreenPoint(x: Float, y: Float): List<DesignBlock>
 
 Find the blocks under a point on the screen, as a click there would hit them. The screen space is the one of getScreenSpaceBoundingBoxRect. Hidden and generated blocks are not hit. A transparent pixel or a bounding box hit sorts behind a conclusive hit. Fails if no scene exists.
 
+### findBlocksByColor
+
+```kotlin
+abstract fun findBlocksByColor(block: DesignBlock, color: Color): List<DesignBlock>
+```
+
+Find the blocks in the subtree of a block that use a color. The search reads the same properties as getUsedColors and compares colors the same way.
+
 ### findByKind
 
 ```kotlin
@@ -632,6 +656,14 @@ abstract fun findByType(type: String): List<DesignBlock>
 > **Deprecated:** Use type safe overloads instead. Replace with `this.findByType()`.
 
 Finds all design blocks with the given type.
+
+### flattenCombination
+
+```kotlin
+abstract fun flattenCombination(block: DesignBlock)
+```
+
+Replaces the compound shape of a combination with one vector path of its outline. The block keeps its id, name, look, frame, rotation and animations. The parts are destroyed. A part that moves with keyframes keeps the place it has at the current time. An axis in the Auto mode keeps its laid-out length in the Absolute mode. A block that is not attached to a scene, such as a copy from duplicate that is not attached, flattens too. Its outline is then drawn in the coordinate space of its compound shape. The call fails when the block is not a combination or its outline is empty. Nothing changes then. A combination in a component instance keeps its parts (BLOCK.INSTANCE_STRUCTURE_LOCKED). Require…
 
 ### flipCropHorizontal
 
@@ -688,6 +720,14 @@ abstract fun getAVResourceTotalDuration(block: DesignBlock): Double
 ```
 
 Get the duration in seconds of the video or audio resource that is attached to the given block.
+
+### getActiveSubshape
+
+```kotlin
+abstract fun getActiveSubshape(block: DesignBlock): DesignBlock?
+```
+
+Gets the subshape of a block's compound shape that the transform handles edit.
 
 ### getAnimatedProperties
 
@@ -1275,6 +1315,22 @@ abstract fun getPlaybackTime(block: DesignBlock): Double
 
 Get the playback time of the given block. During an export, this returns the time of the playhead and not the time of the exported frame.
 
+### getPlayedDuration
+
+```kotlin
+abstract fun getPlayedDuration(block: DesignBlock): Double
+```
+
+Get how long the given block plays on its page. The duration of the block, cut to the time in which each track and group around it plays, as playback does. It is 0 for a block that its groups cut off entirely. Runs an internal update that lays out pending changes.
+
+### getPlayedTimeOffset
+
+```kotlin
+abstract fun getPlayedTimeOffset(block: DesignBlock): Double
+```
+
+Get the time on the page at which the given block starts to play. A time offset is relative to the parent. This adds the offsets of the tracks and groups around the block, and takes away the content start of each group. It counts a negative offset as 0, as playback does. A block that its groups cut off entirely plays nothing. Its time then lies at the start or the end of the time its groups play. Runs an internal update that lays out pending changes.
+
 ### getPositionXMode
 
 ```kotlin
@@ -1329,7 +1385,7 @@ Query a block's rotation in the scene's angle unit (radians by default, see Scen
 abstract fun getScreenSpaceBoundingBoxRect(blocks: List<DesignBlock>): RectF
 ```
 
-Get the position and size of the axis-aligned bounding box for the given blocks in screen space.
+Get the position and size of the axis-aligned bounding box for the given blocks in screen space. A subshape of a block in the scene, at any depth of nested compound shapes, counts with the box in which the block draws it.
 
 ### getShape
 
@@ -1819,6 +1875,14 @@ abstract fun getUri(block: DesignBlock, property: String): Uri
 
 Get the value of a uri property of the given design block.
 
+### getUsedColors
+
+```kotlin
+abstract fun getUsedColors(block: DesignBlock): List<Color>
+```
+
+Get the distinct colors that a block and all its descendants use. The colors come from the text runs and their background colors, the solid fill, each gradient fill color stop, the stroke or each color of its stroke fill, the drop shadow and the background color. These are the colors that the Document Colors asset source lists, except that it leaves out the text run background colors. A disabled fill, stroke, drop shadow or background color contributes no color, and a disabled fill also hides the text runs. The fill of a text block whose runs all have their own color paints nothing, so it contributes no color. The block comes before its children, and the children keep their order. Note that…
+
 ### getVariableBinding
 
 ```kotlin
@@ -1890,7 +1954,7 @@ Query a block's width.
 abstract fun group(blocks: List<DesignBlock>): DesignBlock
 ```
 
-Group blocks together. The group becomes the blocks' new parent and takes the first block's parent as its own. Grouping does not change the children's positions: they stay relative to the group's parent, not to the group. In nested groups, they stay relative to the first ancestor that is not a group. The engine computes the group's position and size from the children's combined bounds. Moving the group moves all of its children by the same offset. The blocks keep their times on the timeline. The group spans from the earliest start to the latest end of the blocks, and their time offsets become relative to the group.
+Group blocks together. The group becomes the blocks' new parent and takes the first block's parent as its own. Grouping does not change the children's positions: they stay relative to the group's parent, not to the group. In nested groups, they stay relative to the first ancestor that is not a group. The engine computes the group's position and size from the children's combined bounds. Moving the group moves all of its children by the same offset. The blocks keep their times on the timeline. The group spans from the earliest start to the latest end of the blocks, and their time offsets become relative to the group. A block in a group with a playback/contentStart first drops the part before…
 
 ### hasMetadata
 
@@ -1946,7 +2010,7 @@ Inserts a modifier at the given index into the modifiers of a shape. The same mo
 abstract fun insertSubshape(block: DesignBlock, subshapeBlock: DesignBlock, index: Int)
 ```
 
-Inserts a subshape at the given index of a compound shape. The subshape at index 0 is the base, and each later subshape combines with the result so far by shape/compound/mode. The placement properties of the subshape (shape/position/x, shape/width, shape/rotation, ...) place it in the compound's coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: "shape/change"
+Inserts a subshape at the given index of a compound shape. A compound shape in a component instance keeps its subshapes: edit the component instead. The subshape at index 0 is the base, and each later subshape combines with the result so far by shape/compound/mode. The placement properties of the subshape (shape/position/x, shape/width, shape/rotation, ...) place it in the compound's coordinate space. A shape has one owner, so the subshape is detached from its previous block or compound shape. Line shapes cannot be subshapes. The call fails when the shape tree would nest more than 128 shapes. Required scope: "shape/change"
 
 ### insertTextAnimator
 
@@ -2034,7 +2098,15 @@ Query a block's clipped state. If true, the block should clip
 abstract fun isCombinable(blocks: List<DesignBlock>): Boolean
 ```
 
-Checks whether blocks could be combined. Only graphics blocks and text blocks can be combined. All blocks must have the "lifecycle/duplicate" scope enabled.
+Checks whether blocks could be combined. Only graphics blocks, text blocks and exclusion areas can be combined. An exclusion area combines only with another exclusion area. All blocks must have the "lifecycle/duplicate" scope enabled. A block with children cannot be combined, because its children would go with it.
+
+### isCombination
+
+```kotlin
+abstract fun isCombination(block: DesignBlock): Boolean
+```
+
+Checks whether a block is a combination: a design block whose shape is a compound shape. The result of combine with CombineOptions.editable is one, and so is every other block with a compound shape. Pass the design block, not its compound shape.
 
 ### isComponent
 
@@ -2043,6 +2115,14 @@ abstract fun isComponent(block: DesignBlock): Boolean
 ```
 
 Checks whether a block is a main component.
+
+### isConvertibleToShape
+
+```kotlin
+abstract fun isConvertibleToShape(block: DesignBlock): Boolean
+```
+
+Checks whether a block can be converted to a shape with convertToShape. A text block can, unless it shows a background, and so can a graphic with a shape and a visible stroke. The block must have the "lifecycle/duplicate" and "lifecycle/destroy" scopes enabled. A combination cannot be converted; flatten it first with flattenCombination.
 
 ### isCropAspectRatioLocked
 
@@ -2355,7 +2435,7 @@ Merges a caption with the caption before it in its parent. The merged text is th
 abstract fun movePageSliceIntoPage(pageOrPageSlice: DesignBlock, page: DesignBlock, index: Int, options: MovePageSliceOptions = MovePageSliceOptions()): DesignBlock
 ```
 
-Moves a page without page slices, or a page slice of another page, into a page with page slices. The content of the moved page or page slice moves along and keeps its ids. A moved page slice keeps its id. A page becomes a new page slice, and its id becomes invalid. The page slice keeps its size along the axis of page and takes the shared size across it. The moved content is placed above the content of page, in its own order. When the move takes the last page slice of its page, that page stays as an empty page without page slices. The move fails when a content block would change the page slice that owns it. Conversion keeps the supported appearance keyframes. Tracks of a page slice use the p…
+Moves a page without page slices, or a page slice of another page, into a page with page slices. The content of the moved page or page slice moves along and keeps its ids. A moved page slice keeps its id. A page becomes a new page slice, and its id becomes invalid. The page slice keeps its size along the axis of page and takes the shared size across it. The moved content is placed above the content of page, in its own order. When the move takes the last page slice of its page, that page stays as an empty page without page slices. The move fails when a content block would change the page slice that owns it. The moved page or page slice keeps its shape, its effects, its blur and its drop shad…
 
 ### movePageSliceOutOfPage
 
@@ -2363,7 +2443,7 @@ Moves a page without page slices, or a page slice of another page, into a page w
 abstract fun movePageSliceOutOfPage(pageSlice: DesignBlock, index: Int, options: MovePageSliceOptions = MovePageSliceOptions()): DesignBlock
 ```
 
-Moves a page slice and its content to a new page without page slices. The new page joins the parent of the source page. The id of the page slice becomes invalid. The content keeps its ids. The page slices after it close the gap. An enabled fill of the page slice stays. Otherwise the new page takes the fill of the source page when MovePageSliceOptions.convertSourceToPage acts, and a white fill when it does not. When the move takes the last page slice, the source stays as an empty page without page slices. Conversion keeps the supported appearance keyframes. Tracks of a page slice use the playback clock of its page. Conversion refuses preset animations and other tracks, such as geometry and c…
+Moves a page slice and its content to a new page without page slices. The new page joins the parent of the source page. The id of the page slice becomes invalid. The content keeps its ids. The page slices after it close the gap. An enabled fill of the page slice stays. Otherwise the new page takes the fill of the source page when MovePageSliceOptions.convertSourceToPage acts, and a white fill when it does not. The new page keeps the shape, the effects, the blur and the drop shadow of the page slice. A page applies its shape and a blur in the Block mode to its content too. So such a blur blurs the content of the new page, and a new page that clips its content cuts it at its shape. When the m…
 
 ### onClicked
 
@@ -2379,7 +2459,7 @@ Subscribe to block click events. Note: DesignBlock is emitted at the end of the 
 abstract fun onSelectionChanged(): Flow<Unit>
 ```
 
-Subscribe to changes in the current set of selected blocks.
+Subscribe to changes in the current set of selected blocks. A pick, a change or the end of the active subshape of the selected block counts as a change. See getActiveSubshape.
 
 ### onStateChanged
 
@@ -2404,6 +2484,14 @@ abstract fun registerCustomShaderProgram(id: String, definition: CustomShaderPro
 ```
 
 Register a GLSL ES program at runtime. An existing ID causes an error. Definitions contain ordered buffers and a final Image pass, with four channels per pass. Registration validates the source and GPU programs before publishing the definition. A CPU context runs it on the raster pipeline, which has no integer shift or integer modulo. A program that the context cannot run returns a capability error. Loops stop after 65536 iterations per pixel and pass, counted across all loops. The program belongs to the scene. Creating a scene in place of the current one removes the programs, and loading a scene replaces them with its own. Destroying the scene removes each program that no remaining block u…
+
+### releaseCombination
+
+```kotlin
+abstract fun releaseCombination(block: DesignBlock, parts: List<DesignBlock>? = null): List<DesignBlock>
+```
+
+Takes parts out of a combination and makes each a block again, where the part is on the canvas. Each part becomes the shape of a new block with the look of the combination. That block is a graphic, or an exclusion area for a combination of exclusion areas. The frame of the block takes the size that the part is drawn at. A part that moves with keyframes takes its place at the current time, and its shape loses the keyframes of that place. The part of a text stays the vector path of its letters, and the part of a line the vector path of its centre line. An open part, such as a line, draws with a centre stroke. When the combination has no stroke, the block gets one in the first color of the fil…
 
 ### removeCustomShaderProgram
 
@@ -2467,7 +2555,7 @@ Remove the block as duration source block for the page. If a scene or page given
 abstract fun removeSubshape(block: DesignBlock, index: Int)
 ```
 
-Removes the subshape at the given index of a compound shape. The subshape is not destroyed. Required scope: "shape/change"
+Removes the subshape at the given index of a compound shape. The subshape is not destroyed. A compound shape in a component instance keeps its subshapes: edit the component instead. Required scope: "shape/change"
 
 ### removeTextAnimator
 
@@ -2501,6 +2589,14 @@ abstract fun removeVariableBinding(block: DesignBlock, property: String)
 
 Remove the variable binding of a block property. The property keeps its current value. Does nothing if the property is not bound.
 
+### replaceColor
+
+```kotlin
+abstract fun replaceColor(block: DesignBlock, from: Color, to: Color)
+```
+
+Replace a color everywhere getUsedColors finds it in a block and all its descendants. A property whose scope the block does not allow keeps its color, and the call throws no error. The scopes are "fill/change" for the fill, the text runs and the background color, "text/character" for the text run background colors, "stroke/change" for the stroke and its stroke fill, and "appearance/shadow". A property that a variable binds also keeps its color. Note that all writes form one undo step. A color that no block uses changes nothing and adds no undo step.
+
 ### replaceCustomShaderProgram
 
 ```kotlin
@@ -2508,6 +2604,14 @@ abstract fun replaceCustomShaderProgram(id: String, definition: CustomShaderProg
 ```
 
 Replace a registered program at runtime. An unknown ID causes an error. A failed replacement preserves the existing definition and every live instance. Successful replacement invalidates the feedback state of its instances. Note that a definition that an assigned effect or transition cannot run causes an error, see setCustomShaderProgram.
+
+### replaceSubshape
+
+```kotlin
+abstract fun replaceSubshape(subshapeBlock: DesignBlock, newSubshapeBlock: DesignBlock)
+```
+
+Replaces a subshape of a compound shape, at any depth of nested compound shapes. The new subshape takes the index, the box and the placement with its keyframes. It also takes the name and the active state. The properties of the old outline, such as its corner radius, and its modifiers do not move. The old subshape is not destroyed. A shape has one owner, so the new subshape is detached from its previous block or compound shape. For the fill rule of a compound shape with a single part, see releaseCombination. Line shapes are not supported. The call fails when the shape tree would nest more than 128 shapes. A combination in a component instance keeps its parts (BLOCK.INSTANCE_STRUCTURE_LOCKED…
 
 ### replaceTextWithHTML
 
@@ -2624,6 +2728,14 @@ abstract fun sendToBack(block: DesignBlock)
 ```
 
 Updates the sorting order of this block and all of its manually created siblings so that the given block has the lowest sorting order. If the block is parented to a track, it is first moved up in the hierarchy.
+
+### setActiveSubshape
+
+```kotlin
+abstract fun setActiveSubshape(block: DesignBlock, subshapeBlock: DesignBlock?)
+```
+
+Edits one subshape of a block's compound shape with the transform handles, in place of the block. The call selects the block and deselects every other block. The selection frame and the handles then move, resize and rotate the subshape, and the block stays in place. The engine does not save the active subshape. A change of it makes no undo step. When none stays active, an undo restores the one of its step with the selection. A deselection of the block ends it, and so does an edit mode other than Transform and Vector, such as Crop. The call checks no scope, as select does. The gestures and the calls that change a subshape need "shape/change".
 
 ### setAlwaysOnBottom
 
@@ -3024,7 +3136,7 @@ Set a block's mode for its height. A switch between Absolute and Percent keeps t
 abstract fun setHeight(block: DesignBlock, value: Float, maintainCrop: Boolean = false)
 ```
 
-Update a block's height and optionally maintain the crop. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up higher than asked. A height of 0 or less on a page slice fails with BLOCK.PAGE_SLICE_SIZE_INVALID. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of t…
+Update a block's height and optionally maintain the crop. A height in the mode SizeMode.AUTO of a block with a compound shape stretches the shape. The mode stays SizeMode.AUTO. A new height of a page with page slices goes to every page slice on a horizontal axis. On a vertical axis, it goes to the last page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up higher than asked. A height of 0 or less on a page slice fails with BLOCK.PAGE_SLICE_SIZE_INVALID. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, othe…
 
 ### setHovered
 
@@ -3288,7 +3400,7 @@ Update the selection state of a block. Fails for invalid blocks. Note: Previousl
 abstract fun setShape(block: DesignBlock, shape: DesignBlock)
 ```
 
-Sets the block containing the shape properties of the given block. Note: The previous shape block is not destroyed automatically. A page with page slices takes only a rect shape. Required scope: "shape/change"
+Sets the block containing the shape properties of the given block. Note: The previous shape block is not destroyed automatically. A page with page slices takes only a rect shape. A page slice takes no line shape. The shape of a block in a component instance, and each part of it, cannot become the shape of another block (BLOCK.INSTANCE_STRUCTURE_LOCKED). Edit the component instead. A new shape can replace the compound shape of a block whose width or height mode is Auto. That axis then keeps its laid-out length in the Absolute mode. Note that this triggers an internal update. Required scope: "shape/change"
 
 ### setSoloPlaybackEnabled
 
@@ -3744,7 +3856,7 @@ Set a block's mode for its width. A switch between Absolute and Percent keeps th
 abstract fun setWidth(block: DesignBlock, value: Float, maintainCrop: Boolean = false)
 ```
 
-Update a block's width and optionally maintain the crop. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up wider than asked. A width of 0 or less on a page slice fails with BLOCK.PAGE_SLICE_SIZE_INVALID. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise it will change to Crop. If the size of a group is changed, both dimensions are modified and the aspect ratio of the g…
+Update a block's width and optionally maintain the crop. A width in the mode SizeMode.AUTO of a block with a compound shape stretches the shape. The mode stays SizeMode.AUTO. A new width of a page with page slices goes to its last page slice on a horizontal axis. On a vertical axis, it goes to every page slice. A page slice that this shrinks stops at 25 pixels at the DPI of the scene. So the page can end up wider than asked. A width of 0 or less on a page slice fails with BLOCK.PAGE_SLICE_SIZE_INVALID. If the crop is maintained, the crop values will be automatically adjusted. The content fill mode Cover is only kept if the features/transformEditsRetainCoverMode setting is enabled, otherwise…
 
 ### splitCaptionAtTime
 
@@ -3768,7 +3880,7 @@ Splits the text of a caption at a text index into two captions. The caption keep
 abstract fun split(block: DesignBlock, atTime: Double, options: SplitOptions = SplitOptions()): DesignBlock
 ```
 
-Split a block at the specified time. The original block will be trimmed to end at the split time, and the returned duplicate will start at the split time and continue to the original end time. The split cuts the keyframe tracks of the block and of its fill, shape and effects, so each half plays its part of them. Their keyframe times can then lie before 0 or after 1. Tracks on the TimeBase.MEDIA clock keep their times, because they follow the trim of each half. A group's children are copied with their tracks unchanged.
+Split a block at the specified time. The original block will be trimmed to end at the split time, and the returned duplicate will start at the split time and continue to the original end time. The second half of a group holds every child and continues where the first half ends. It plays the children from the time of the cut. The split sets its playback/contentStart and changes no child. On a group with group/composition set, the time of the cut is on the group's clock. A block with a negative time offset starts at 0 after the split, where it plays. The split cuts the keyframe tracks of the block and of its fill, shape and effects, so each half plays its part of them. Their keyframe times ca…
 
 ### supportsAnimation
 
@@ -4016,4 +4128,4 @@ Toggles the text decoration underline of the given block. Required scope: "text/
 abstract fun ungroup(block: DesignBlock)
 ```
 
-Ungroups a group. The children keep their times on the timeline, so their time offsets become relative to their new parent. A caption goes onto the first caption track of the page instead, at its time, and takes the track's animations. Ungrouping creates the caption track when the page has none.
+Ungroups a group. The children keep their times on the timeline, so their time offsets become relative to their new parent. A group with a playback/contentStart cuts off the part before that time from each child that crosses it. A child whose video or audio has not loaded keeps that part. A caption goes onto the first caption track of the page instead, at its time, and takes the track's animations. Ungrouping creates the caption track when the page has none.
