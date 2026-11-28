@@ -1,6 +1,6 @@
 # ly.img:engine Android API Catalog
 
-Complete catalog of 389 generated API digests.
+Complete catalog of 397 generated API digests.
 
 - [AV1EncodingMode](<../engine/ly.img.engine/-a-v1-encoding-mode.md>) — `ly.img.engine`
 - [AngleUnit](<../engine/ly.img.engine/-angle-unit.md>) — `ly.img.engine`
@@ -76,6 +76,8 @@ Complete catalog of 389 generated API digests.
 - [AudioTrackInfo](<../engine/ly.img.engine/-audio-track-info.md>) — `ly.img.engine`
 - [BlendMode](<../engine/ly.img.engine/-blend-mode.md>) — `ly.img.engine`
 - [BlockApi](<../engine/ly.img.engine/-block-api.md>) — `ly.img.engine`
+- [BlockClick](<../engine/ly.img.engine/-block-click.md>) — `ly.img.engine`
+- [BlockEdit](<../engine/ly.img.engine/-block-edit.md>) — `ly.img.engine`
 - [BlockMatte](<../engine/ly.img.engine/-block-matte.md>) — `ly.img.engine`
 - [BlockState](<../engine/ly.img.engine/-block-state.md>) — `ly.img.engine`
 - [BlockState.Error](<../engine/ly.img.engine/-block-state/-error.md>) — `ly.img.engine`
@@ -91,6 +93,10 @@ Complete catalog of 389 generated API digests.
 - [BooleanOperation](<../engine/ly.img.engine/-boolean-operation.md>) — `ly.img.engine`
 - [CMYKColor](<../engine/ly.img.engine/-c-m-y-k-color.md>) — `ly.img.engine`
 - [CMYKProfileInfo](<../engine/ly.img.engine/-c-m-y-k-profile-info.md>) — `ly.img.engine`
+- [CameraPadding](<../engine/ly.img.engine/-camera-padding.md>) — `ly.img.engine`
+- [CameraPositionClamp](<../engine/ly.img.engine/-camera-position-clamp.md>) — `ly.img.engine`
+- [CameraResizeAnchor](<../engine/ly.img.engine/-camera-resize-anchor.md>) — `ly.img.engine`
+- [CameraZoomClamp](<../engine/ly.img.engine/-camera-zoom-clamp.md>) — `ly.img.engine`
 - [CaptionMerge](<../engine/ly.img.engine/-caption-merge.md>) — `ly.img.engine`
 - [CharacterInkBox](<../engine/ly.img.engine/-character-ink-box.md>) — `ly.img.engine`
 - [ClipInitialDurationMode](<../engine/ly.img.engine/-clip-initial-duration-mode.md>) — `ly.img.engine`
@@ -338,6 +344,7 @@ Complete catalog of 389 generated API digests.
 - [TextRunInfo](<../engine/ly.img.engine/-text-run-info.md>) — `ly.img.engine`
 - [TextTiming](<../engine/ly.img.engine/-text-timing.md>) — `ly.img.engine`
 - [TimeBase](<../engine/ly.img.engine/-time-base.md>) — `ly.img.engine`
+- [TouchHandling](<../engine/ly.img.engine/-touch-handling.md>) — `ly.img.engine`
 - [TrackMode](<../engine/ly.img.engine/-track-mode.md>) — `ly.img.engine`
 - [TransitionType](<../engine/ly.img.engine/-transition-type.md>) — `ly.img.engine`
 - [TransitionType.Chop](<../engine/ly.img.engine/-transition-type/-chop.md>) — `ly.img.engine`
@@ -374,6 +381,7 @@ Complete catalog of 389 generated API digests.
 - [UriResolverAsync.Companion](<../engine/ly.img.engine/-uri-resolver-async/-companion.md>) — `ly.img.engine`
 - [ValueSetId](<../engine/ly.img.engine/-value-set-id.md>) — `ly.img.engine`
 - [VariableApi](<../engine/ly.img.engine/-variable-api.md>) — `ly.img.engine`
+- [VariableBinding](<../engine/ly.img.engine/-variable-binding.md>) — `ly.img.engine`
 - [VariableTarget](<../engine/ly.img.engine/-variable-target.md>) — `ly.img.engine`
 - [VariableTarget.Default](<../engine/ly.img.engine/-variable-target/-default.md>) — `ly.img.engine`
 - [VariableTarget.ValueSet](<../engine/ly.img.engine/-variable-target/-value-set.md>) — `ly.img.engine`

@@ -76,7 +76,7 @@ Create a new scene, along with its own camera.
 abstract fun disableCameraPositionClamping()
 ```
 
-Disables any previously set position clamping for the current scene.
+Disables any previously set position clamping for the current scene. Deprecated: use setCameraPositionClamp with null instead.
 
 ### disableCameraZoomClamping
 
@@ -84,7 +84,7 @@ Disables any previously set position clamping for the current scene.
 abstract fun disableCameraZoomClamping()
 ```
 
-Disables previously set zoom clamping for the current scene.
+Disables previously set zoom clamping for the current scene. Deprecated: use setCameraZoomClamp with null instead.
 
 ### disableZoomAutoFit
 
@@ -168,6 +168,38 @@ abstract fun getCMYKProfileInfo(): CMYKProfileInfo
 
 What the document stores about its CMYK profile. Reports the profile that the document names, whether it is loaded, still loading, or failed to load. The fallback profile is not reported. Await EditorApi.loadColorProfiles to learn whether the profile that renders is usable.
 
+### getCameraPositionClamp
+
+```kotlin
+abstract fun getCameraPositionClamp(scene: DesignBlock): CameraPositionClamp?
+```
+
+Gets the camera position clamp of a scene.
+
+### getCameraPosition
+
+```kotlin
+abstract fun getCameraPosition(scene: DesignBlock): PointF
+```
+
+Gets the camera position of a scene: the scene point at the centre of the safe area. Note that the call runs an update when the layout is pending.
+
+### getCameraResizeAnchor
+
+```kotlin
+abstract fun getCameraResizeAnchor(scene: DesignBlock): CameraResizeAnchor
+```
+
+Gets the resize anchor of the camera of a scene.
+
+### getCameraZoomClamp
+
+```kotlin
+abstract fun getCameraZoomClamp(scene: DesignBlock): CameraZoomClamp?
+```
+
+Gets the camera zoom clamp of a scene.
+
 ### getColorRenderingIntent
 
 ```kotlin
@@ -248,6 +280,14 @@ abstract fun getPages(): List<DesignBlock>
 ```
 
 Get the sorted list of pages in the scene.
+
+### getVisibleRect
+
+```kotlin
+abstract fun getVisibleRect(scene: DesignBlock): RectF
+```
+
+Gets the part of a scene that the safe area of the viewport shows. Note that the call runs an update when the layout is pending.
 
 ### getZoomLevel
 
@@ -410,6 +450,14 @@ abstract suspend fun saveToString(scene: DesignBlock, options: SaveToStringOptio
 
 Serializes the current scene into a string. Selection is discarded. If a resource uri has a scheme that is not in allowedResourceSchemes, an exception will be thrown. The source set entries that the engine makes are buffer:// resources that only this engine holds. The save leaves them out, even when the allowed resource schemes hold "buffer", and each fill keeps them.
 
+### sceneToViewport
+
+```kotlin
+abstract fun sceneToViewport(scene: DesignBlock, x: Float, y: Float): PointF
+```
+
+Converts a scene point to a viewport point. The inverse of viewportToScene. Note that the call runs an update when the layout is pending.
+
 ### setAngleUnit
 
 ```kotlin
@@ -451,6 +499,38 @@ abstract suspend fun setCMYKProfile(uri: Uri)
 > **Deprecated:** Use setDocumentColorProfile with Default/CMYK instead. Replace with `import ly.img.engine.ProfileSlot import ly.img.engine.ProfileRole import ly.img.engine.ProfileColorSpace; setDocumentColorProfile(ProfileSlot(ProfileRole.DEFAULT, ProfileColorSpace.CMYK), uri)`.
 
 Loads the ICC profile at uri and makes it the CMYK profile of the document. Assigns to the slot with role Default and color space CMYK. The profile is document state: it is saved with the scene and bundled into an archive. It converts CMYK colors, the CMYK approximations of spot colors, and CMYK images without an embedded profile, while scene/colorConversionMode is Managed. An image with its own profile keeps using that profile.
+
+### setCameraPositionClamp
+
+```kotlin
+abstract fun setCameraPositionClamp(scene: DesignBlock, clamp: CameraPositionClamp?)
+```
+
+Sets or removes the camera position clamp of a scene. The clamp replaces any earlier one in the scene and takes priority over clamp camera commands.
+
+### setCameraPosition
+
+```kotlin
+abstract fun setCameraPosition(scene: DesignBlock, x: Float, y: Float)
+```
+
+Moves the camera of a scene so that the centre of the safe area shows a scene point. The zoom stays. The camera position clamp of the scene applies at the next update, so the position can change again. The call disables the zoom auto-fit of the scene.
+
+### setCameraResizeAnchor
+
+```kotlin
+abstract fun setCameraResizeAnchor(scene: DesignBlock, anchor: CameraResizeAnchor)
+```
+
+Sets the point of the viewport that keeps showing the same scene point when the viewport resizes. The camera moves in the update of the resize, before the camera position clamp applies. The zoom stays. A zoom auto-fit moves the camera after the anchor. The anchor is not saved with the scene.
+
+### setCameraZoomClamp
+
+```kotlin
+abstract fun setCameraZoomClamp(scene: DesignBlock, clamp: CameraZoomClamp?)
+```
+
+Sets or removes the camera zoom clamp of a scene. The clamp replaces any earlier one in the scene.
 
 ### setColorRenderingIntent
 
@@ -517,6 +597,22 @@ abstract fun setZoomLevel(level: Float)
 
 Set the zoom level of the scene, e.g., for headless versions. This only shows an effect if the zoom level is not handled/overwritten by the UI. Setting a zoom level of 2F results in one dot in the design to be two pixels on the screen.
 
+### viewportToScene
+
+```kotlin
+abstract fun viewportToScene(scene: DesignBlock, x: Float, y: Float): PointF
+```
+
+Converts a viewport point to a scene point. The viewport space is the space of BlockApi.getScreenSpaceBoundingBoxRect. Note that the call runs an update when the layout is pending.
+
+### zoomAtViewportPoint
+
+```kotlin
+abstract fun zoomAtViewportPoint(scene: DesignBlock, zoomLevel: Float, x: Float, y: Float)
+```
+
+Sets the zoom level of a scene and keeps the scene point under a viewport point in place, as a pinch does. The camera position clamp of the scene applies at the next update. The call disables the zoom auto-fit.
+
 ### zoomToBlock
 
 ```kotlin
@@ -524,3 +620,11 @@ abstract suspend fun zoomToBlock(block: DesignBlock, paddingLeft: Float = 0.0f, 
 ```
 
 Sets the zoom and focus to show a block. Without padding, this results in a tight view on the block. It is set asynchronous to ensure that the block dimensions are known.
+
+### zoomToBlocks
+
+```kotlin
+abstract suspend fun zoomToBlocks(blocks: List<DesignBlock>, paddingLeft: Float = 0.0f, paddingTop: Float = 0.0f, paddingRight: Float = 0.0f, paddingBottom: Float = 0.0f)
+```
+
+Sets the zoom and position of the camera to show several blocks of one scene, as zoomToBlock does for one block. It is set asynchronously to ensure that the block dimensions are known.

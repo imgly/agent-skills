@@ -548,6 +548,14 @@ abstract fun findAllProperties(block: DesignBlock): List<String>
 
 Get all available properties of a block.
 
+### findAllReferencedVariables
+
+```kotlin
+abstract fun findAllReferencedVariables(block: DesignBlock): List<String>
+```
+
+Get the names of the text variables that a block reads. Doesn't check the block's children or its variable bindings. A text or caption block reads the name in each {{ }} token of its text and of the keyframes of its text: the content of the token without the whitespace around it. A page reads the names in its two title templates, which the engine evaluates. A title token or statement can hold an expression, such as {{ default(name, "none") }} or {% if name %}, and the title reads the names in it. A title token whose content is the name of a text variable reads that variable. The names that a for or set statement of a title provides are left out. So are "scene_root" and the names that start…
+
 ### findAllSelected
 
 ```kotlin
@@ -657,13 +665,21 @@ abstract fun findByType(type: String): List<DesignBlock>
 
 Finds all design blocks with the given type.
 
+### findLockingVariableBinding
+
+```kotlin
+abstract fun findLockingVariableBinding(block: DesignBlock, edit: BlockEdit): VariableBinding?
+```
+
+Find the variable binding that makes the engine refuse an edit of a block. A setter that makes the edit fails with BLOCK.PROPERTY_BOUND for the same property and variable. The result is the first locking binding: other bindings can lock the edit too. Scopes and the transform lock are not checked. "Below" means a block at any depth below the block. - BlockEdit.MOVE: "position/x" or "position/y" of the block is bound, or of a block below a group. setPositionX and setPositionY refuse the bound axis, and both axes of a group. - BlockEdit.MOVE_X: "position/x" of the block is bound, or what locks BlockEdit.MOVE of a group. setPositionX refuses. BlockEdit.MOVE_Y does the same for "position/y" and…
+
 ### flattenCombination
 
 ```kotlin
 abstract fun flattenCombination(block: DesignBlock)
 ```
 
-Replaces the compound shape of a combination with one vector path of its outline. The block keeps its id, name, look, frame, rotation and animations. The parts are destroyed. A part that moves with keyframes keeps the place it has at the current time. An axis in the Auto mode keeps its laid-out length in the Absolute mode. A block that is not attached to a scene, such as a copy from duplicate that is not attached, flattens too. Its outline is then drawn in the coordinate space of its compound shape. The call fails when the block is not a combination or its outline is empty. Nothing changes then. A combination in a component instance keeps its parts (BLOCK.INSTANCE_STRUCTURE_LOCKED). Require…
+Replaces the compound shape of a combination with one vector path of its outline. The block keeps its id, name, look, frame, rotation, own keyframes and animations. The parts are destroyed. The outline keeps the shape that it has at the current time. So the keyframes of the compound shape, of its parts at every level and of their modifiers go. An axis in the Auto mode keeps its laid-out length in the Absolute mode. A block that is not attached to a scene, such as a copy from duplicate that is not attached, flattens too. Its outline is then drawn in the coordinate space of its compound shape. The call fails when the block is not a combination or its outline is empty. Nothing changes then. A…
 
 ### flipCropHorizontal
 
@@ -769,6 +785,14 @@ abstract fun getBackgroundColor(block: DesignBlock): RGBAColor
 > **Deprecated:** Use getColor with the property 'backgroundColor/color' instead. It returns Color, an RGBAColor only for sRGB. Replace with `import ly.img.engine.RGBAColor; this.getColor(block, "backgroundColor/color") as RGBAColor`.
 
 Get the background color of the given design block.
+
+### getBindableVariableType
+
+```kotlin
+abstract fun getBindableVariableType(block: DesignBlock, property: String): VariableType?
+```
+
+Get the type of the variables that setVariableBinding binds to a property of a block. Color variables bind to color properties and number variables to float properties. Image variables bind only to "fill/image/imageFileURI", "fill/image/previewFileURI" and "fill/video/fileURI". Typeface variables bind only to "text/typeface" and "caption/typeface". String variables bind to no property.
 
 ### getBlendMode
 
@@ -2445,6 +2469,14 @@ abstract fun movePageSliceOutOfPage(pageSlice: DesignBlock, index: Int, options:
 
 Moves a page slice and its content to a new page without page slices. The new page joins the parent of the source page. The id of the page slice becomes invalid. The content keeps its ids. The page slices after it close the gap. An enabled fill of the page slice stays. Otherwise the new page takes the fill of the source page when MovePageSliceOptions.convertSourceToPage acts, and a white fill when it does not. The new page keeps the shape, the effects, the blur and the drop shadow of the page slice. A page applies its shape and a blur in the Block mode to its content too. So such a blur blurs the content of the new page, and a new page that clips its content cuts it at its shape. When the m…
 
+### onClickedWithCount
+
+```kotlin
+abstract fun onClickedWithCount(): Flow<BlockClick>
+```
+
+Subscribe to block click events with the number of cohesive clicks or taps. Note: BlockClick is emitted at the end of the engine update if a block has been clicked. Its BlockClick.clickCount is 1 for a single click or tap, 2 for the second click of a double click, and so on. Clicks count together when each follows the previous one within 500 ms and 30 px, or 60 px for taps. Note that the engine cannot know that a single tap stays single. To act only on a confirmed single tap, wait 500 ms after a count of 1 and drop the action when a count of 2 arrives for the block.
+
 ### onClicked
 
 ```kotlin
@@ -2475,7 +2507,7 @@ Subscribe to changes to the state of a block. Like getState, the state of a bloc
 abstract fun referencesAnyVariables(block: DesignBlock): Boolean
 ```
 
-Checks whether the given block references any text variables. Doesn't check the block's children or its variable bindings.
+Checks whether the given block references any text variables. Doesn't check the block's children or its variable bindings. Note that it reads only the static text of a text or caption block. findAllReferencedVariables lists every name that the text, the text keyframes and the page titles of a block read.
 
 ### registerCustomShaderProgram
 
@@ -3808,7 +3840,7 @@ Set a uri property of the given design block to the given value.
 abstract fun setVariableBinding(block: DesignBlock, property: String, key: String)
 ```
 
-Bind a block property to a color, number, image or typeface variable, and apply the variable's current value. Color variables bind to color properties and number variables to float properties. Image variables bind only to "fill/image/imageFileURI", "fill/image/previewFileURI" and "fill/video/fileURI". Typeface variables bind only to "text/typeface" and "caption/typeface". A direct write to a bound property fails with BLOCK.PROPERTY_BOUND until the binding is removed. A bound typeface also locks setTypeface and setFont. On a text block, a variable bound to "fill/solid/color" or the font size sets every run of the text, and setTextColor or setTextFontSize fails for any range. Keyframes, undo…
+Bind a block property to a color, number, image or typeface variable, and apply the variable's current value. Color variables bind to color properties and number variables to float properties. Image variables bind only to "fill/image/imageFileURI", "fill/image/previewFileURI" and "fill/video/fileURI". Typeface variables bind only to "text/typeface" and "caption/typeface". A direct write to a bound property fails with BLOCK.PROPERTY_BOUND until the binding is removed. A bound typeface also locks setTypeface and setFont. On a text block, a variable bound to "fill/solid/color" or the font size sets every run of the text, and setTextColor or setTextFontSize fails for any range. Keyframes, undo……
 
 ### setVariantProperty
 

@@ -53,6 +53,8 @@ Remove a variable of any type from the engine.
 Bound properties keep their last value and their binding, so direct writes
 to them still fail with `BLOCK.PROPERTY_BOUND`. Setting a variable with the
 same key and type again makes them follow it again.
+With a value set as the target, the call writes the bound properties of the variable. So it
+can run an internal update, as `setNumber` and `setImage` can.
 
 ```typescript
 remove(key: string, options?: VariableOptions | null): void
@@ -83,7 +85,8 @@ start or end with whitespace.
 
 Destroy a value set and its values.
 When the set is active, no set is active afterwards, and text and bound properties show the
-default values again.
+default values again. Destroying the active set writes every bound property. So it can run
+an internal update, as `setNumber` and `setImage` can.
 
 ```typescript
 destroyValueSet(set: ValueSetId): void
@@ -150,6 +153,8 @@ Activate a value set, or no set.
 The values of the active set win over the default values in text, bound properties and
 getters. Exports show the active set, as the canvas does. A scene has one active set and saves
 it. Undo reverts the change.
+The call writes every bound property. So it can run an internal update, as `setNumber` and
+`setImage` can.
 
 ```typescript
 setActiveValueSet(set: ValueSetId | null): void
@@ -226,6 +231,8 @@ Set a number variable's value.
 Creates a new variable if the key doesn't exist. Every block property bound to the
 variable takes the number that the scene shows. If a bound property rejects the value, the call throws
 its error, but the variable and the other bound properties change anyway.
+The call can run an internal update, because a bound property can need the laid-out frame. That is
+the rotation of a block, the position or the size of a group, or a crop property.
 A new key must not be empty, start or end with whitespace, contain `{{` or `}}`, or be reserved:
 `scene_root` and keys that start with `ubq.`.
 
@@ -258,6 +265,7 @@ Set an image variable's URI.
 Creates a new variable if the key doesn't exist. Every block property bound to the
 variable takes the URI that the scene shows. If a bound property rejects the value, the call throws
 its error, but the variable and the other bound properties change anyway.
+A new URI resets the crop of the blocks that show a bound fill, so the call can run an internal update.
 A new key must not be empty, start or end with whitespace, contain `{{` or `}}`, or be reserved:
 `scene_root` and keys that start with `ubq.`.
 

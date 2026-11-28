@@ -1029,11 +1029,250 @@ isZoomAutoFitEnabled(blockOrScene: DesignBlockId): boolean
 **Returns:** True if the given block has auto-fit set or the scene contains a block for which auto-fit is set, false
 otherwise.
 
+### setCameraPositionClamp()
+
+Sets or removes the camera position clamp of a scene. The clamp replaces
+any earlier one in the scene and takes priority over clamp camera
+commands.
+```javascript
+engine.scene.setCameraPositionClamp(scene, {
+  blocks: [page],
+  padding: { left: 10, top: 10, right: 10, bottom: 10 }
+});
+```
+Note that the call runs an update when a block is on a page that you
+created and that no update laid out yet.
+Note that in page carousel mode the engine owns the position clamp, so the
+call changes nothing.
+
+```typescript
+setCameraPositionClamp(scene: DesignBlockId, clamp: CameraPositionClamp | null): void
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+- `clamp` - The clamp, or null to remove the clamp.
+
+### getCameraPositionClamp()
+
+Gets the camera position clamp of a scene.
+
+```typescript
+getCameraPositionClamp(scene: DesignBlockId): CameraPositionClamp | null
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+
+**Returns:** The clamp, or null when the scene has no position clamp.
+
+### setCameraZoomClamp()
+
+Sets or removes the camera zoom clamp of a scene. The clamp replaces any
+earlier one in the scene.
+```javascript
+engine.scene.setCameraZoomClamp(scene, {
+  blocks: [page],
+  minZoomLimit: 0.125,
+  maxZoomLimit: 8
+});
+```
+
+```typescript
+setCameraZoomClamp(scene: DesignBlockId, clamp: CameraZoomClamp | null): void
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+- `clamp` - The clamp, or null to remove the clamp. At least one limit
+is not negative, and the minimum is not larger than the maximum.
+
+### getCameraZoomClamp()
+
+Gets the camera zoom clamp of a scene.
+
+```typescript
+getCameraZoomClamp(scene: DesignBlockId): CameraZoomClamp | null
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+
+**Returns:** The clamp, or null when the scene has no zoom clamp.
+
+### getCameraPosition()
+
+Gets the camera position of a scene: the scene point at the centre of the
+safe area.
+Note that the call runs an update when the layout is pending.
+```javascript
+const { x, y } = engine.scene.getCameraPosition(scene);
+```
+
+```typescript
+getCameraPosition(scene: DesignBlockId): Vec2
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+
+**Returns:** The x and y coordinates in design units.
+
+### setCameraPosition()
+
+Moves the camera of a scene so that the centre of the safe area shows a
+scene point. The zoom stays. The camera position clamp of the scene
+applies at the next update, so the position can change again. The call
+disables the zoom auto-fit of the scene.
+```javascript
+engine.scene.setCameraPosition(scene, 100, 200);
+```
+
+```typescript
+setCameraPosition(scene: DesignBlockId, x: number, y: number): void
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+- `x` - The x coordinate in design units.
+- `y` - The y coordinate in design units.
+
+### setCameraResizeAnchor()
+
+Sets the point of the viewport that keeps showing the same scene point
+when the viewport resizes. The camera moves in the update of the resize,
+before the camera position clamp applies. The zoom stays. A zoom auto-fit
+moves the camera after the anchor. The anchor is not saved with the scene.
+```javascript
+engine.scene.setCameraResizeAnchor(scene, 'TopLeft');
+```
+
+```typescript
+setCameraResizeAnchor(scene: DesignBlockId, anchor: CameraResizeAnchor): void
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+- `anchor` - The anchor. `Center` is the default.
+
+### getCameraResizeAnchor()
+
+Gets the resize anchor of the camera of a scene.
+```javascript
+const anchor = engine.scene.getCameraResizeAnchor(scene);
+```
+
+```typescript
+getCameraResizeAnchor(scene: DesignBlockId): CameraResizeAnchor
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+
+**Returns:** The anchor.
+
+### getVisibleRect()
+
+Gets the part of a scene that the safe area of the viewport shows.
+Note that the call runs an update when the layout is pending.
+```javascript
+const [x, y, width, height] = engine.scene.getVisibleRect(scene);
+```
+
+```typescript
+getVisibleRect(scene: DesignBlockId): XYWH
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+
+**Returns:** The x, y, width and height of the rectangle in design units.
+
+### viewportToScene()
+
+Converts a viewport point to a scene point. The viewport space is the
+space of `block.getScreenSpaceBoundingBoxXYWH`.
+Note that the call runs an update when the layout is pending.
+```javascript
+const scenePoint = engine.scene.viewportToScene(scene, 10, 20);
+```
+
+```typescript
+viewportToScene(scene: DesignBlockId, x: number, y: number): Vec2
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+- `x` - The x coordinate in viewport points.
+- `y` - The y coordinate in viewport points.
+
+**Returns:** The x and y coordinates in design units.
+
+### sceneToViewport()
+
+Converts a scene point to a viewport point. The inverse of
+`viewportToScene`.
+Note that the call runs an update when the layout is pending.
+```javascript
+const viewportPoint = engine.scene.sceneToViewport(scene, 100, 200);
+```
+
+```typescript
+sceneToViewport(scene: DesignBlockId, x: number, y: number): Vec2
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+- `x` - The x coordinate in design units.
+- `y` - The y coordinate in design units.
+
+**Returns:** The x and y coordinates in viewport points.
+
+### zoomAtViewportPoint()
+
+Sets the zoom level of a scene and keeps the scene point under a viewport
+point in place, as a pinch does. The camera position clamp of the scene
+applies at the next update. The call disables the zoom auto-fit of the
+scene.
+```javascript
+engine.scene.zoomAtViewportPoint(scene, 2, 100, 50);
+```
+
+```typescript
+zoomAtViewportPoint(scene: DesignBlockId, zoomLevel: number, x: number, y: number): void
+```
+
+**Parameters:**
+- `scene` - The scene, or a block in the scene.
+- `zoomLevel` - The zoom level, as `setZoomLevel` takes it.
+- `x` - The x coordinate in viewport points.
+- `y` - The y coordinate in viewport points.
+
+### zoomToBlocks()
+
+Sets the zoom and position of the camera to show several blocks of one
+scene, as `zoomToBlock` does for one block. It is set asynchronously to
+ensure that the block dimensions are known.
+```javascript
+await engine.scene.zoomToBlocks([block1, block2], { padding: 20 });
+```
+
+```typescript
+zoomToBlocks(ids: DesignBlockId[], options?: Pick<ZoomOptions, 'padding'>): Promise<void>
+```
+
+**Parameters:**
+- `ids` - The blocks to show. All are in the same scene.
+- `options` - The padding in screen pixels around the blocks.
+
+**Returns:** A promise that resolves once the zoom was set or rejects with an
+error otherwise.
+
 ## Experimental Features
 
 Experimental features that may change or be removed in future versions.
 
-### unstable_enableCameraPositionClamping()
+### unstable_enableCameraPositionClamping() *(deprecated)*
 
 Continually ensures the camera position to be within the width and height of the blocks axis-aligned bounding box.
 Disables any previously set camera position clamping in the scene and also takes priority over clamp camera commands.
@@ -1059,7 +1298,7 @@ unstable_enableCameraPositionClamping(ids: DesignBlockId[], paddingLeft?: number
 - `scaledPaddingRight` - Optional padding in screen pixels to the right of the block that scales with the zoom level until five times the initial value.
 - `scaledPaddingBottom` - Optional padding in screen pixels to the bottom of the block that scales with the zoom level until five times the initial value.
 
-### unstable_disableCameraPositionClamping()
+### unstable_disableCameraPositionClamping() *(deprecated)*
 
 Disables any previously set position clamping for the current scene.
 ```javascript
@@ -1073,7 +1312,7 @@ unstable_disableCameraPositionClamping(blockOrScene?: number | null): void
 **Parameters:**
 - `blockOrScene` - Optionally, the scene or a block in the scene for which to query the position clamping.
 
-### unstable_isCameraPositionClampingEnabled()
+### unstable_isCameraPositionClampingEnabled() *(deprecated)*
 
 Queries whether position clamping is enabled.
 ```javascript
@@ -1090,7 +1329,7 @@ unstable_isCameraPositionClampingEnabled(blockOrScene?: number | null): boolean
 **Returns:** True if the given block has position clamping set or the scene contains a block for which position clamping is set, false
 otherwise.
 
-### unstable_enableCameraZoomClamping()
+### unstable_enableCameraZoomClamping() *(deprecated)*
 
 Continually ensures the zoom level of the camera in the active scene to be in the given range.
 ```javascript
@@ -1111,7 +1350,7 @@ unstable_enableCameraZoomClamping(ids: DesignBlockId[], minZoomLimit?: number, m
 - `paddingRight` - Optional padding in screen pixels to the right of the block. Only applied when the block is not a camera.
 - `paddingBottom` - Optional padding in screen pixels to the bottom of the block. Only applied when the block is not a camera.
 
-### unstable_disableCameraZoomClamping()
+### unstable_disableCameraZoomClamping() *(deprecated)*
 
 Disables any previously set zoom clamping for the current scene.
 ```javascript
@@ -1125,7 +1364,7 @@ unstable_disableCameraZoomClamping(blockOrScene?: number | null): void
 **Parameters:**
 - `blockOrScene` - Optionally, the scene or a block for which to query the zoom clamping.
 
-### unstable_isCameraZoomClampingEnabled()
+### unstable_isCameraZoomClampingEnabled() *(deprecated)*
 
 Queries whether zoom clamping is enabled.
 ```javascript

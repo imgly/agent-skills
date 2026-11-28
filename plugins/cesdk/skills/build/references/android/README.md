@@ -46,6 +46,7 @@ dependency and call out the version difference.
 | starter-kit-design | `imgly/starterkit-design-editor-android` | General-purpose design editor |
 | starter-kit-memories | `imgly/starterkit-memories-editor-android` | Montages of photos and video clips |
 | starter-kit-photo | `imgly/starterkit-photo-editor-android` | Photo editing and image adjustments |
+| starter-kit-photobook | `imgly/starterkit-photobook-editor-android` | Photo books with layouts, auto-fill and a print PDF |
 | starter-kit-postcard | `imgly/starterkit-postcard-editor-android` | Postcard and greeting-card editor |
 | starter-kit-video | `imgly/starterkit-video-editor-android` | Video editing and export |
 | starter-kit-videomoderation | `imgly/starterkit-video-moderation-editor-android` | Video editor that checks clips, images and text against a moderation service |
@@ -53,13 +54,13 @@ dependency and call out the version difference.
 Clone the kit into the user's project folder, then remove the copied `.git` folder:
 
 ```bash
-git clone --depth 1 --branch v1.88.0-nightly.20261127 https://github.com/imgly/starterkit-apparel-editor-android.git <target>
+git clone --depth 1 --branch v1.89.0-nightly.20261128 https://github.com/imgly/starterkit-apparel-editor-android.git <target>
 rm -rf <target>/.git
 ```
 
-The `v1.88.0-nightly.20261127` branch of each repository matches this bundle. If the branch
+The `v1.89.0-nightly.20261128` branch of each repository matches this bundle. If the branch
 does not exist (a nightly build, or a kit added after this release), clone the
-default branch without `--branch` and set the CE.SDK dependency to version `1.88.0-nightly.20261127`.
+default branch without `--branch` and set the CE.SDK dependency to version `1.89.0-nightly.20261128`.
 
 Open the cloned folder in Android Studio, or run `./gradlew installDebug`
 from it. The kit's configuration starts in its `*ConfigurationBuilder.kt`.

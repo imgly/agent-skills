@@ -3,7 +3,7 @@
 - **Module:** `ly.img:engine`
 - **Package:** `ly.img.engine`
 
-The operation of BlockApi.combine. The engine reads the ordinal, so a new operation goes last.
+The operation of BlockApi.combine.
 
 ```kotlin
 enum BooleanOperation : Enum<BooleanOperation>

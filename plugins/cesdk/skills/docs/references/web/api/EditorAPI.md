@@ -85,6 +85,9 @@ Note that on a block with a compound shape, "Vector" edits the path of the activ
 the first subshape that it can edit active. A subshape that is not a vector path becomes one in its place. A nested
 compound shape and a vector path with keyframes of its path are not edited. Neither is another subshape with keyframes
 or modifiers, or a block without the "shape/change" scope.
+Note that with draw mode turned on in another edit mode right before, "Vector" on a combination edits no part. The
+pen then draws a new block right above the combination. A second call before the first click turns draw mode off
+and edits a part, see `setVectorEditDrawMode`.
 
 ```typescript
 setEditMode(mode: EditMode, baseMode?: string): void
@@ -108,9 +111,12 @@ getEditMode(): EditMode
 ### getCursorType()
 
 Get the cursor type that should be displayed.
+In vector editing, `Pen` places an anchor, `PenAdd` adds one to a segment, `PenRemove` removes one,
+`PenClose` closes the path, `PenContinue` continues or joins an open path, and `Convert` bends an anchor. The
+engine does not return `Cell`.
 
 ```typescript
-getCursorType(): 'Arrow' | 'Move' | 'MoveNotPermitted' | 'Resize' | 'Rotate' | 'Text' | 'Cell'
+getCursorType(): 'Arrow' | 'Move' | 'MoveNotPermitted' | 'Resize' | 'Rotate' | 'Text' | 'Cell' | 'Pen' | 'PenAdd' | 'PenRemove' | 'PenClose' | 'PenContinue' | 'Convert'
 ```
 
 **Returns:** The cursor type.
@@ -249,6 +255,17 @@ Delete the currently selected vector node from the path.
 deleteVectorNode(): void
 ```
 
+### selectAllVectorNodes()
+
+Select every anchor node of the path in vector edit mode, and deselect its control points.
+When the pen waits for its first click on a selection, the call starts the path edit, as turning bend mode on does.
+It edits the path of the one selected block, or the picked part of a combination. It then turns draw mode off, and
+the next update selects every anchor of that path. When a path is edited already, draw mode stays as it is.
+
+```typescript
+selectAllVectorNodes(): void
+```
+
 ### hasSelectedVectorControlPoint()
 
 Check whether a vector control point handle is currently selected.
@@ -265,6 +282,31 @@ If the node has two handles, only the selected one is removed.
 
 ```typescript
 deleteSelectedVectorControlPoints(): void
+```
+
+### hasSelectedVectorSegment()
+
+Check whether a path segment is currently selected in vector edit mode.
+A click on a segment selects it. Also true on a text baseline, whose segments `deleteSelectedVectorSegment` refuses.
+
+```typescript
+hasSelectedVectorSegment(): boolean
+```
+
+**Returns:** True if a path segment is selected.
+
+### deleteSelectedVectorSegment()
+
+Delete the currently selected path segment, as one undo step. Nothing is selected afterwards.
+A closed contour opens at the segment, and no point is removed.
+An open contour splits into two contours of the same block.
+At the end of an open contour, the end point that is left alone is removed too.
+A contour with fewer than two points left is removed.
+In the same undo step, the call removes the animation track `shape/vector_path/path` of the path, because it
+cannot keep the deleted segment. The other animation tracks of the block stay.
+
+```typescript
+deleteSelectedVectorSegment(): void
 ```
 
 ### toggleSelectedVectorNodeSmooth()
@@ -303,7 +345,7 @@ getVectorEditBendMode(): boolean
 
 Enable or disable add mode for vector editing.
 When add mode is active, clicking on a path segment inserts a new anchor
-point at the click position. Mutually exclusive with bend and delete modes.
+point at the click position. Mutually exclusive with bend, delete and draw modes.
 
 ```typescript
 setVectorEditAddMode(active: boolean): void
@@ -326,7 +368,7 @@ getVectorEditAddMode(): boolean
 
 Enable or disable delete mode for vector editing.
 When delete mode is active, clicking an anchor node instantly deletes it
-from the path. Mutually exclusive with bend and add modes.
+from the path. Mutually exclusive with bend, add and draw modes.
 
 ```typescript
 setVectorEditDeleteMode(active: boolean): void
@@ -344,6 +386,85 @@ getVectorEditDeleteMode(): boolean
 ```
 
 **Returns:** true if delete mode is active.
+
+### setVectorEditDrawMode()
+
+Enable or disable draw (pen tool) mode for vector editing.
+When draw mode is active, a click on the canvas places a corner anchor, and a click-drag pulls out symmetric bezier
+handles. A click on the other end of the drawn path closes it. A click on an end of an open path continues that
+path, or joins it to the drawn path.
+Unlike the other vector edit sub-modes, draw mode can be on without an edited element.
+With an empty selection in vector edit mode, the first click creates a new vector path block. A global `editor/add`
+scope of Deny refuses that block.
+A text baseline can grow at either end, but it never gets another path. Draw mode turns off bend, add and delete
+mode, and each of them turns off draw mode.
+Turning draw mode on looks at the selected points of the edited path, except on a text baseline. When the only
+selected point is an end of an open path, the drawing goes on from it. When the only selected point is another
+point, the next click draws a new path from that point.
+With blocks selected, turn draw mode on in another edit mode. Then set the "Vector" edit mode before the next
+update. The pen then edits no selected block. Its first click creates the path block right above the topmost
+selected block, in the parent of that block. With a part of a combination picked, the path goes right above the
+combination. Before the first click, turning draw mode off edits the path of the one selected block when it is a
+vector path. Turning bend, add or delete mode on does the same, as does `selectAllVectorNodes`. A combination
+edits its active part. Setting the "Vector" edit mode again then turns draw mode off and edits that path.
+Note that the pen does not wait on a selection with a page. The path block goes on top of the page under the click,
+as without a selection, in three cases. These are a block of an instance, a parent that is no page or group, and a
+first click on another page.
+Note that draw mode needs vector edit mode. Outside it, the call succeeds, and the next update turns draw mode off
+again.
+Note that turning draw mode off ends the drawing, which drops a path of one anchor. A block that the pen created is
+destroyed when it is left without a path. Another block is destroyed too, unless the `lifecycle/destroy` scope
+keeps it. When a block is destroyed, the next update leaves vector edit mode.
+
+```typescript
+setVectorEditDrawMode(active: boolean): void
+```
+
+**Parameters:**
+- `active` - true to enable draw mode, false to return to normal move mode.
+
+### getVectorEditDrawMode()
+
+Check whether vector edit draw mode is currently active.
+
+```typescript
+getVectorEditDrawMode(): boolean
+```
+
+**Returns:** true if draw mode is active.
+
+### hasVectorDrawPathInProgress()
+
+Check whether a vector path is currently being drawn in draw mode.
+
+```typescript
+hasVectorDrawPathInProgress(): boolean
+```
+
+**Returns:** true if an in-progress draw path exists.
+
+### finishVectorDrawPath()
+
+Finish the in-progress draw path, keeping it open.
+A path of two or more anchors stays, and only the drawing ends.
+Ending a drawing drops a path of one anchor. A block that the pen created is destroyed when it is left without
+a path. Another block is destroyed too, unless the `lifecycle/destroy` scope keeps it.
+
+```typescript
+finishVectorDrawPath(): void
+```
+
+### removeLastVectorDrawNode()
+
+Remove the most recently placed anchor of the in-progress draw path.
+Removing the only anchor of a new path ends the drawing. A path that the drawing continues keeps the anchors
+that it had before.
+Ending a drawing drops a path of one anchor. A block that the pen created is destroyed when it is left without
+a path. Another block is destroyed too, unless the `lifecycle/destroy` scope keeps it.
+
+```typescript
+removeLastVectorDrawNode(): void
+```
 
 ### setSelectedVectorNodeMirrorMode()
 

@@ -264,6 +264,7 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
   - [Dock](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/dock-cb916c/)
   - [Panel](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/panel-7ce1ee/)
   - [Layer & Page List](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/layer-list-3f7a21/)
+  - [Variables Panel](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/variables-panel-rld2lf/)
   - [Inspector Bar](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/inspector-bar-8ca1cd/)
   - [Canvas Menu](https://img.ly/docs/cesdk/dev/nuxtjs/user-interface/customization/canvas-menu-0d2b5b/)
   - [Clip Context Menu](https://img.ly/docs/cesdk/dev/nuxtjs/-f8e7d6/)

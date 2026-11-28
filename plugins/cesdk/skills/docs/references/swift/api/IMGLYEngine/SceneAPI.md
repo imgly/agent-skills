@@ -177,6 +177,38 @@ Returns the angle unit of the current scene. The current angle unit.
 
 Get the direction along which the current scene arranges its pages. The direction, or `nil` when the pages stay at free positions.
 
+### getCameraPosition(_:)
+
+```swift
+@MainActor func getCameraPosition(_ scene: DesignBlockID) throws -> CGPoint
+```
+
+Gets the camera position of a scene: the scene point at the centre of the safe area. `scene`
+
+### getCameraPositionClamp(_:)
+
+```swift
+@MainActor func getCameraPositionClamp(_ scene: DesignBlockID) throws -> CameraPositionClamp?
+```
+
+Gets the camera position clamp of a scene. `scene`
+
+### getCameraResizeAnchor(_:)
+
+```swift
+@MainActor func getCameraResizeAnchor(_ scene: DesignBlockID) throws -> CameraResizeAnchor
+```
+
+Gets the resize anchor of the camera of a scene. `scene`
+
+### getCameraZoomClamp(_:)
+
+```swift
+@MainActor func getCameraZoomClamp(_ scene: DesignBlockID) throws -> CameraZoomClamp?
+```
+
+Gets the camera zoom clamp of a scene. `scene`
+
 ### getCMYKProfileInfo()
 
 > **Deprecated:** Use 'getDocumentColorProfileInfo' with ProfileSlot(role: .default, space: .cmyk) instead.
@@ -268,6 +300,14 @@ Get the markers of the current scene in the order they were added. The markers o
 ```
 
 Get the sorted list of pages in the scene. The sorted list of pages in the scene.
+
+### getVisibleRect(_:)
+
+```swift
+@MainActor func getVisibleRect(_ scene: DesignBlockID) throws -> CGRect
+```
+
+Gets the part of a scene that the safe area of the viewport shows. `scene`
 
 ### getZoom()
 
@@ -485,6 +525,14 @@ Serializes the current scene into a string. Selection is discarded. `allowedReso
 
 Serializes the current scene into a string with optional compression. Selection is discarded. `options`
 
+### sceneToViewport(_:point:)
+
+```swift
+@MainActor func sceneToViewport(_ scene: DesignBlockID, point: CGPoint) throws -> CGPoint
+```
+
+Converts a scene point to a viewport point. The inverse of [`viewportToScene(_:point:)`](./viewporttoscene(_:point:).md). `scene`
+
 ### setAngleUnit(_:)
 
 ```swift
@@ -508,6 +556,38 @@ Arranges the pages of the current scene one after another along the direction, o
 ```
 
 Turns black point compensation of the document on or off. `enabled`
+
+### setCameraPosition(_:position:)
+
+```swift
+@MainActor func setCameraPosition(_ scene: DesignBlockID, position: CGPoint) throws
+```
+
+Moves the camera of a scene so that the centre of the safe area shows a scene point. The zoom stays. The camera position clamp of the scene applies at the next update, so the position can change again. The call disables the zoom auto-fit of the scene. `scene`
+
+### setCameraPositionClamp(_:clamp:)
+
+```swift
+@MainActor func setCameraPositionClamp(_ scene: DesignBlockID, clamp: CameraPositionClamp?) throws
+```
+
+Sets or removes the camera position clamp of a scene. The clamp replaces any earlier one in the scene and takes priority over clamp camera commands. `scene`
+
+### setCameraResizeAnchor(_:anchor:)
+
+```swift
+@MainActor func setCameraResizeAnchor(_ scene: DesignBlockID, anchor: CameraResizeAnchor) throws
+```
+
+Sets the point of the viewport that keeps showing the same scene point when the viewport resizes. The camera moves in the update of the resize, before the camera position clamp applies. The zoom stays. A zoom auto-fit moves the camera after the anchor. The anchor is not saved with the scene. `scene`
+
+### setCameraZoomClamp(_:clamp:)
+
+```swift
+@MainActor func setCameraZoomClamp(_ scene: DesignBlockID, clamp: CameraZoomClamp?) throws
+```
+
+Sets or removes the camera zoom clamp of a scene. The clamp replaces any earlier one in the scene. `scene`
 
 ### setCMYKProfile(from:)-3inol
 
@@ -643,7 +723,31 @@ Queries whether position clamping is enabled. `id`
 
 Queries whether zoom clamping is enabled. `id`
 
-### zoom(to:paddingLeft:paddingTop:paddingRight:paddingBottom:)
+### viewportToScene(_:point:)
+
+```swift
+@MainActor func viewportToScene(_ scene: DesignBlockID, point: CGPoint) throws -> CGPoint
+```
+
+Converts a viewport point to a scene point. The viewport space is the space of [`getScreenSpaceBoundingBox(containing:)`](../blockapi/getscreenspaceboundingbox(containing:).md). `scene`
+
+### zoom(_:level:at:)
+
+```swift
+@MainActor func zoom(_ scene: DesignBlockID, level zoomLevel: Float, at point: CGPoint) throws
+```
+
+Sets the zoom level of a scene and keeps the scene point under a viewport point in place, as a pinch does. The camera position clamp of the scene applies at the next update. The call disables the zoom auto-fit. `scene`
+
+### zoom(to:paddingLeft:paddingTop:paddingRight:paddingBottom:)-27q7z
+
+```swift
+@MainActor func zoom(to ids: [DesignBlockID], paddingLeft: Float = 0, paddingTop: Float = 0, paddingRight: Float = 0, paddingBottom: Float = 0) async throws
+```
+
+Sets the zoom and position of the camera to show several blocks of one scene, as `zoom(to:)` does for one block. It is set asynchronously to ensure that the block dimensions are known. `ids`
+
+### zoom(to:paddingLeft:paddingTop:paddingRight:paddingBottom:)-2c0u9
 
 ```swift
 @MainActor func zoom(to id: DesignBlockID, paddingLeft: Float = 0, paddingTop: Float = 0, paddingRight: Float = 0, paddingBottom: Float = 0) async throws

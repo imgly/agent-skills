@@ -3,7 +3,7 @@
 - **Module:** `IMGLYEngine`
 - **DocC identifier:** `/documentation/IMGLYEngine/BooleanOperation`
 
-The operation of `combine`. The engine reads the raw value, so a new operation goes last.
+The operation of [`combine(_:booleanOperation:options:)`](blockapi/combine(_:booleanoperation:options:).md).
 
 ```swift
 @objc enum BooleanOperation

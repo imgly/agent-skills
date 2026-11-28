@@ -1790,6 +1790,32 @@ referencesAnyVariables(id: DesignBlockId): boolean
 
 **Returns:** true if the block references variables and false otherwise.
 
+### findAllReferencedVariables()
+
+Gets the names of the text variables that a block reads.
+A text or caption block reads the name in each `{{ }}` token of its text and of the
+keyframes of its text: the content of the token without the whitespace around it. A page
+reads the names in its two title templates, which the engine evaluates. A title token or
+statement can hold an expression, such as `{{ default(name, "none") }}` or
+`{% if name %}`, and the title reads the names in it. A title token whose content is the
+name of a text variable reads that variable. The names that a `for` or `set` statement of a
+title provides are left out. So are `scene_root` and the names that start with `ubq.`,
+which the engine fills. A name is listed whether a variable of that name exists or not.
+This check does not recurse into children and ignores variable bindings.
+```javascript
+engine.block.setString(text, 'text/text', 'Dear {{ first }} {{ last }}');
+engine.block.findAllReferencedVariables(text); // ['first', 'last']
+```
+
+```typescript
+findAllReferencedVariables(id: DesignBlockId): string[]
+```
+
+**Parameters:**
+- `id` - The block to inspect.
+
+**Returns:** The names, each once, in the order of their first use.
+
 ### isIncludedInExport()
 
 Checks if a block is included in exports.
@@ -2047,6 +2073,30 @@ onClicked(callback: (id: DesignBlockId) => void): (() => void)
 
 **Returns:** A method to unsubscribe.
 
+### onClickedWithCount()
+
+Subscribes to block click events with the number of cohesive clicks or
+taps: 1 for a single click or tap, 2 for the second click of a double
+click, and so on. Clicks count together when each follows the previous one within 500 ms
+and 30 px, or 60 px for taps.
+Note that the engine cannot know that a single tap stays single. To act
+only on a confirmed single tap, wait 500 ms after a count of 1 and drop the
+action when a count of 2 arrives for the block.
+```javascript
+const unsubscribe = engine.block.onClickedWithCount((id, clickCount) => {
+  if (clickCount === 2) engine.block.select(id);
+});
+```
+
+```typescript
+onClickedWithCount(callback: (id: DesignBlockId, clickCount: number) => void): (() => void)
+```
+
+**Parameters:**
+- `callback` - This function is called at the end of the engine update with the clicked block and the click count.
+
+**Returns:** A method to unsubscribe.
+
 ### onStateChanged()
 
 Subscribes to state changes for a set of blocks.
@@ -2215,7 +2265,7 @@ block that draws its body with its stroke, gives its stroke and no fill. So the 
 strokes. The frame of the new block fits the outline of the result, without its stroke. So an area that is cut
 out does not count. `convertToShape` makes a stroke a shape before.
 The new block is selected when one of the blocks was, as a new group is.
-Required scopes: "lifecycle/duplicate", "lifecycle/destroy".
+Required scope: "lifecycle/duplicate".
 Note that this triggers an internal update to lay the blocks out.
 ```javascript
 const combination = engine.block.combine([rect, ellipse], 'Union', { editable: true });
@@ -2314,8 +2364,9 @@ shape.
 ### flattenCombination()
 
 Replaces the compound shape of a combination with one vector path of its outline.
-The block keeps its id, name, look, frame, rotation and animations. The parts are destroyed. A part that moves
-with keyframes keeps the place it has at the current time.
+The block keeps its id, name, look, frame, rotation, own keyframes and animations. The parts are destroyed. The
+outline keeps the shape that it has at the current time. So the keyframes of the compound shape, of its parts at
+every level and of their modifiers go.
 An axis in the Auto mode keeps its laid-out length in the Absolute mode.
 A block that is not attached to a scene, such as a copy from `duplicate` that is not attached, flattens too. Its
 outline is then drawn in the coordinate space of its compound shape.
@@ -4531,6 +4582,8 @@ for any range. Keyframes, undo and scene loads still change it. Changing the
 design unit converts a bound length. A number variable whose bound properties all
 hold its value converts with them. Otherwise the variable keeps its value, and the
 next variable write sets the lengths in the new unit.
+The call writes the property. So it can run an internal update, as
+`engine.variable.setNumber` and `engine.variable.setImage` can.
 ```javascript
 engine.variable.setColor('brand', { r: 1, g: 0, b: 0, a: 1 });
 engine.block.setVariableBinding(colorFill, 'fill/color/value', 'brand');
@@ -4583,6 +4636,84 @@ findAllVariableBindings(id: DesignBlockId): string[]
 - `id` - The block to inspect.
 
 **Returns:** The bound property paths.
+
+### getBindableVariableType()
+
+Gets the type of the variables that `setVariableBinding` binds to a property of a block.
+Color variables bind to color properties and number variables to float properties. Image
+variables bind only to `fill/image/imageFileURI`, `fill/image/previewFileURI` and
+`fill/video/fileURI`. Typeface variables bind only to `text/typeface` and
+`caption/typeface`. String variables bind to no property.
+```javascript
+engine.block.getBindableVariableType(colorFill, 'fill/color/value'); // 'Color'
+engine.block.getBindableVariableType(text, 'text/text'); // null
+```
+
+```typescript
+getBindableVariableType(id: DesignBlockId, property: string): VariableType | null
+```
+
+**Parameters:**
+- `id` - The block that has the property.
+- `property` - The property path.
+
+**Returns:** The variable type, or null when no variable binds to the property or the block
+does not have it.
+
+### unstable_findLockingVariableBinding()
+
+Finds the variable binding that makes the engine refuse an edit of a block.
+A setter that makes the edit fails with `BLOCK.PROPERTY_BOUND` for the same property and
+variable. The result is the first locking binding: other bindings can lock the edit too.
+Scopes and the transform lock are not checked. "Below" means a block at any depth below
+the block.
+- `'Move'`: `position/x` or `position/y` of the block is bound, or of a block below a
+  group. `setPositionX` and `setPositionY` refuse the bound axis, and both axes of a group.
+- `'MoveX'`: `position/x` of the block is bound, or what locks `'Move'` of a group.
+  `setPositionX` refuses. `'MoveY'` does the same for `position/y` and `setPositionY`.
+- `'Resize'`: `width` or `height` of the block is bound. The edit covers `setWidth`,
+  `setHeight` and `setSize` without `maintainCrop`. `setWidth` and `setHeight` refuse their
+  own bound axis, and `setSize` refuses the whole call when either axis is bound. They scale
+  a group, so `'Scale'` locks a group too. With `maintainCrop`, they need `'Crop'` as well.
+  An editor that resizes a block from its start edge moves the block, so it asks for
+  `'Move'` too.
+- `'ResizeWidth'`: `width` of the block is bound, or what locks `'Scale'` of a group.
+  `setWidth` refuses. `'ResizeHeight'` does the same for `height` and `setHeight`.
+- `'Rotate'`: `rotation`, `position/x` or `position/y` of the block is bound, or of a block
+  below a group. `setRotation` turns the block about its centre, which moves it.
+- `'Flip'`: `position/x`, `position/y`, `rotation`, `transform/rotation/x`,
+  `transform/rotation/y`, `transform/skew`, `transform/skewAxis`, `transform/scale/x` or
+  `transform/scale/y` of the block is bound, or of a block below a group.
+  `setFlipHorizontal` and `setFlipVertical` refuse.
+- `'Scale'`: one of these lengths is bound, on the block or on a block below it. That is
+  the size, the position, the transform anchor, the stroke width, the stroke dash offset and
+  the drop shadow offset. It is also the corner radius and the padding of a background
+  color. For a text or a caption, it is also the font size and the automatic font size
+  limits. For a page, it is also the margins, the safety insets and the grid spacing. A
+  length of a shape, effect, mask, modifier or text animator of such a block counts too, and
+  below a page `transform/z`. `scale`, `resizeContentAware` and a size or aspect ratio preset
+  refuse.
+- `'Crop'`: `crop/scaleX`, `crop/scaleY`, `crop/scaleRatio`, `crop/rotation`,
+  `crop/translationX` or `crop/translationY` of the block is bound. On a page with the
+  setting `page/moveChildrenWhenCroppingFill`, a crop moves the blocks of the page. So a
+  `'Scale'` lock or a bound `rotation` below the page locks its crop too. The crop setters,
+  `resetCrop`, `adjustCropToFillFrame` and `setContentFillMode` refuse.
+```javascript
+const lock = engine.block.unstable_findLockingVariableBinding(block, 'Rotate');
+if (lock != null) {
+  console.log(`${lock.property} of block ${lock.block} follows ${lock.variable}`);
+}
+```
+
+```typescript
+unstable_findLockingVariableBinding(id: DesignBlockId, edit: BlockEdit): VariableBinding | null
+```
+
+**Parameters:**
+- `id` - The block that the edit changes.
+- `edit` - The edit to check.
+
+**Returns:** The binding that locks the edit, or null if no binding locks it.
 
 ### findAllProperties()
 

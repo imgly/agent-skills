@@ -747,6 +747,14 @@ Return all placeholder blocks in the current scene. A list of block ids.
 
 Get all available properties of a block. `id`
 
+### findAllReferencedVariables(_:)
+
+```swift
+@MainActor func findAllReferencedVariables(_ id: DesignBlockID) throws -> [String]
+```
+
+Get the names of the text variables that a block reads. Doesn’t check the block’s children or its variable bindings. A text or caption block reads the name in each `{{ }}` token of its text and of the keyframes of its text: the content of the token without the whitespace around it. A page reads the names in its two title templates, which the engine evaluates. A title token or statement can hold an expression, such as `{{ default(name, "none") }}` or `{% if name %}`, and the title reads the names in it. A title token whose content is the name of a text variable reads that variable. The names that a `for` or `set` statement of a title provides are left out. So are `"scene_root"` and the names…
+
 ### findAllSelected()
 
 ```swift
@@ -801,7 +809,7 @@ Find the blocks in the subtree of a block that use a color. The search reads the
 @MainActor func flattenCombination(_ id: DesignBlockID) throws
 ```
 
-Replaces the compound shape of a combination with one vector path of its outline. The block keeps its id, name, look, frame, rotation and animations. The parts are destroyed. A part that moves with keyframes keeps the place it has at the current time. An axis in the Auto mode keeps its laid-out length in the Absolute mode. A block that is not attached to a scene, such as a copy from `duplicate` that is not attached, flattens too. Its outline is then drawn in the coordinate space of its compound shape. The call throws when the block is not a combination or its outline is empty. Nothing changes then. A combination in a component instance keeps its parts (`BLOCK.INSTANCE_STRUCTURE_LOCKED`). Re…
+Replaces the compound shape of a combination with one vector path of its outline. The block keeps its id, name, look, frame, rotation, own keyframes and animations. The parts are destroyed. The outline keeps the shape that it has at the current time. So the keyframes of the compound shape, of its parts at every level and of their modifiers go. An axis in the Auto mode keeps its laid-out length in the Absolute mode. A block that is not attached to a scene, such as a copy from `duplicate` that is not attached, flattens too. Its outline is then drawn in the coordinate space of its compound shape. The call throws when the block is not a combination or its outline is empty. Nothing changes then.…
 
 ### flipCropHorizontal(_:)
 
@@ -908,6 +916,14 @@ Get the duration in seconds of the video or audio resource that is attached to t
 ```
 
 Get the background color of the given design block. `id`
+
+### getBindableVariableType(_:property:)
+
+```swift
+@MainActor func getBindableVariableType(_ id: DesignBlockID, property: String) throws -> VariableType?
+```
+
+Get the type of the variables that [`setVariableBinding(_:property:key:)`](./setvariablebinding(_:property:key:).md) binds to a property of a block. Color variables bind to color properties and number variables to float properties. Image variables bind only to `"fill/image/imageFileURI"`, `"fill/image/previewFileURI"` and `"fill/video/fileURI"`. Typeface variables bind only to `"text/typeface"` and `"caption/typeface"`. String variables bind to no property. `id`
 
 ### getBlendMode(_:)
 
@@ -2572,6 +2588,22 @@ Subscribe to block click events.
 ```
 
 Subscribe to block click events.
+
+### onClickedWithCount
+
+```swift
+@MainActor var onClickedWithCount: AsyncStream<BlockClick> { get }
+```
+
+Subscribe to block click events with the number of cohesive clicks or taps. Each event carries the clicked block and the click count: 1 for a single click or tap, 2 for the second click of a double click, and so on. Clicks count together when each follows the previous one within 500 ms and 30 px, or 60 px for taps.
+
+### onClickedWithCountPublisher
+
+```swift
+@MainActor var onClickedWithCountPublisher: AnyPublisher<BlockClick, Never> { get }
+```
+
+Subscribe to block click events with the number of cohesive clicks or taps. Each event carries the clicked block and the click count: 1 for a single click or tap, 2 for the second click of a double click, and so on. Clicks count together when each follows the previous one within 500 ms and 30 px, or 60 px for taps.
 
 ### onSelectionChanged
 
@@ -4254,6 +4286,14 @@ Toggles the text decoration underline of the given block. Required scope: “tex
 ```
 
 Ungroups a group. `id`
+
+### unstable_findLockingVariableBinding(_:edit:)
+
+```swift
+@MainActor func unstable_findLockingVariableBinding(_ id: DesignBlockID, edit: BlockEdit) throws -> VariableBinding?
+```
+
+Find the variable binding that makes the engine refuse an edit of a block. A setter that makes the edit fails with `BLOCK.PROPERTY_BOUND` for the same property and variable. The result is the first locking binding: other bindings can lock the edit too. Scopes and the transform lock are not checked. “Below” means a block at any depth below the block. `id`
 
 ### unstable_isAVResourceLoaded(_:)
 

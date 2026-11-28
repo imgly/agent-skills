@@ -120,6 +120,14 @@ abstract fun deleteSelectedVectorControlPoints()
 
 Delete the selected vector control points.
 
+### deleteSelectedVectorSegment
+
+```kotlin
+abstract fun deleteSelectedVectorSegment()
+```
+
+Delete the currently selected path segment, as one undo step. Nothing is selected afterwards. A closed contour opens at the segment, and no point is removed. An open contour splits into two contours of the same block. At the end of an open contour, the end point that is left alone is removed too. A contour with fewer than two points left is removed. In the same undo step, the call removes the animation track shape/vector_path/path of the path, because it cannot keep the deleted segment. The other animation tracks of the block stay.
+
 ### deleteVectorNode
 
 ```kotlin
@@ -183,6 +191,14 @@ abstract fun findAllTransientResources(): List<Pair<Uri, Int>>
 ```
 
 Returns the Uris and sizes of all resources whose data would be lost if the scene was exported. Note: This function is useful for determining which resources need to be relocated (e.g., to a CDN) before exporting a scene since the resources are not included in the exported scene.
+
+### finishVectorDrawPath
+
+```kotlin
+abstract fun finishVectorDrawPath()
+```
+
+Finish the in-progress draw path, keeping it open. A path of two or more anchors stays, and only the drawing ends. Ending a drawing drops a path of one anchor. A block that the pen created is destroyed when it is left without a path. Another block is destroyed too, unless the lifecycle/destroy scope keeps it.
 
 ### getAbsoluteUri
 
@@ -497,6 +513,14 @@ abstract fun getVectorEditDeleteMode(): Boolean
 
 Check whether vector edit delete mode is currently active.
 
+### getVectorEditDrawMode
+
+```kotlin
+abstract fun getVectorEditDrawMode(): Boolean
+```
+
+Check whether vector edit draw mode is currently active.
+
 ### hasSelectedVectorControlPoint
 
 ```kotlin
@@ -512,6 +536,22 @@ abstract fun hasSelectedVectorNode(): Boolean
 ```
 
 Check whether a vector anchor node is currently selected in vector edit mode.
+
+### hasSelectedVectorSegment
+
+```kotlin
+abstract fun hasSelectedVectorSegment(): Boolean
+```
+
+Check whether a path segment is currently selected in vector edit mode. A click on a segment selects it. Also true on a text baseline, whose segments deleteSelectedVectorSegment refuses.
+
+### hasVectorDrawPathInProgress
+
+```kotlin
+abstract fun hasVectorDrawPathInProgress(): Boolean
+```
+
+Check whether a vector path is currently being drawn in draw mode.
 
 ### isHighlightingEnabled
 
@@ -634,6 +674,14 @@ abstract fun relocateResource(currentUri: Uri, relocatedUri: Uri, rewriteHistory
 
 Changes the uri associated with a resource. Note: This function can be used change the Uri of a resource that has been relocated (e.g., to a CDN). Relocating the Uri of a document color profile also repoints the profile. A setDocumentColorProfile request for that Uri that is still loading commits the new Uri once it loads. With rewriteHistory, the undo and redo steps of every history also name the new Uri, so an undo no longer brings back the old one. The relocation adds no undo step, and uncommitted edits stay uncommitted. Without it, each undo and redo step keeps the Uri it recorded.
 
+### removeLastVectorDrawNode
+
+```kotlin
+abstract fun removeLastVectorDrawNode()
+```
+
+Remove the most recently placed anchor of the in-progress draw path. Removing the only anchor of a new path ends the drawing. A path that the drawing continues keeps the anchors that it had before. Ending a drawing drops a path of one anchor. A block that the pen created is destroyed when it is left without a path. Another block is destroyed too, unless the lifecycle/destroy scope keeps it.
+
 ### removeMovementConstraint
 
 ```kotlin
@@ -690,6 +738,14 @@ abstract fun removeUpscaleConstraint(scopes: List<UpscaleConstraintScope>)
 
 Remove the scene-wide default upscale constraint. Remove the upscale constraint of a scope. A block then falls back to the scene-wide default.
 
+### selectAllVectorNodes
+
+```kotlin
+abstract fun selectAllVectorNodes()
+```
+
+Select every anchor node of the path in vector edit mode, and deselect its control points. When the pen waits for its first click on a selection, the call starts the path edit, as turning bend mode on does. It edits the path of the one selected block, or the picked part of a combination. It then turns draw mode off, and the next update selects every anchor of that path. When a path is edited already, draw mode stays as it is.
+
 ### setActiveHistory
 
 ```kotlin
@@ -732,7 +788,7 @@ abstract fun setEditMode(editMode: String)
 abstract fun setEditMode(editMode: String, baseMode: String)
 ```
 
-Set the edit mode of the editor. An edit mode defines what type of content can currently be edited by the user. Note: The initial edit mode is "Transform". Note: On a block with a compound shape, "Vector" edits the path of the active subshape. Without one, it makes the first subshape that it can edit active. A subshape that is not a vector path becomes one in its place. A nested compound shape and a vector path with keyframes of its path are not edited. Neither is another subshape with keyframes or modifiers, or a block without the "shape/change" scope.
+Set the edit mode of the editor. An edit mode defines what type of content can currently be edited by the user. Note: The initial edit mode is "Transform". Note: On a block with a compound shape, "Vector" edits the path of the active subshape. Without one, it makes the first subshape that it can edit active. A subshape that is not a vector path becomes one in its place. A nested compound shape and a vector path with keyframes of its path are not edited. Neither is another subshape with keyframes or modifiers, or a block without the "shape/change" scope. Note: With draw mode turned on in another edit mode right before, "Vector" on a combination edits no part. The pen then draws a new block r…
 
 ### setGlobalScope
 
@@ -920,7 +976,7 @@ Sets a custom Uri resolver. This method can be called more than once. Subsequent
 abstract fun setVectorEditAddMode(active: Boolean)
 ```
 
-Enable or disable add mode for vector editing. When add mode is active, clicking on a path segment inserts a new anchor point at the click position. Mutually exclusive with bend and delete modes.
+Enable or disable add mode for vector editing. When add mode is active, clicking on a path segment inserts a new anchor point at the click position. Mutually exclusive with bend, delete and draw modes.
 
 ### setVectorEditBendMode
 
@@ -936,7 +992,15 @@ Enable or disable bend mode for vector editing. When bend mode is active, clicki
 abstract fun setVectorEditDeleteMode(active: Boolean)
 ```
 
-Enable or disable delete mode for vector editing. When delete mode is active, clicking an anchor node instantly deletes it from the path. Mutually exclusive with bend and add modes.
+Enable or disable delete mode for vector editing. When delete mode is active, clicking an anchor node instantly deletes it from the path. Mutually exclusive with bend, add and draw modes.
+
+### setVectorEditDrawMode
+
+```kotlin
+abstract fun setVectorEditDrawMode(active: Boolean)
+```
+
+Enable or disable draw (pen tool) mode for vector editing. When draw mode is active, a click on the canvas places a corner anchor, and a click-drag pulls out symmetric bezier handles. A click on the other end of the drawn path closes it. A click on an end of an open path continues that path, or joins it to the drawn path. Unlike the other vector edit sub-modes, draw mode can be on without an edited element. With an empty selection in vector edit mode, the first click creates a new vector path block. A global editor/add scope of Deny refuses that block. A text baseline can grow at either end, but it never gets another path. Draw mode turns off bend, add and delete mode, and each of them turn…
 
 ### startAudioOutputDevice
 

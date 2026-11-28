@@ -48,3 +48,11 @@ let top: Float
 ```
 
 The top inset.
+
+### zero
+
+```swift
+static let zero: SafeAreaInsets
+```
+
+Insets of 0 on every side.

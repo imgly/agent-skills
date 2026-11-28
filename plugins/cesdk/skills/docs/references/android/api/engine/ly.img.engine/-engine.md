@@ -66,6 +66,11 @@ Binds surfaceHolder to the Engine. All rendered frames will be drawn into the su
 fun bindSurfaceView(surfaceView: SurfaceView)
 ```
 
+```kotlin
+@MainThread
+fun bindSurfaceView(surfaceView: SurfaceView, touchHandling: TouchHandling)
+```
+
 Binds surfaceView to the Engine. All rendered frames will be drawn into the surfaceView. Note that only one engine instance can be bound at a time. Calling bindSurfaceView unbinds other engine instances.
 
 ### bindTextureView
@@ -73,6 +78,11 @@ Binds surfaceView to the Engine. All rendered frames will be drawn into the surf
 ```kotlin
 @MainThread
 fun bindTextureView(textureView: TextureView)
+```
+
+```kotlin
+@MainThread
+fun bindTextureView(textureView: TextureView, touchHandling: TouchHandling)
 ```
 
 Binds textureView to the Engine. All rendered frames will be drawn into the textureView. Note that only one engine instance can be bound at a time. Calling bindTextureView unbinds other engine instances.
@@ -160,6 +170,15 @@ val looper: Looper
 ```
 
 Looper of the Engine thread. It is always main thread looper for public usage.
+
+### onTouchEvent
+
+```kotlin
+@MainThread
+fun onTouchEvent(event: MotionEvent): Boolean
+```
+
+Passes a touch event of the bound view to the engine, for a view bound with TouchHandling.MANUAL. The engine handles the event at its next update, so the return value does not say whether a block was hit. To take over a gesture, stop passing its events and pass one MotionEvent.ACTION_CANCEL.
 
 ### pause
 

@@ -104,6 +104,8 @@ Creative Editor SDK (CE.SDK) is a fully customizable design editor for web, mobi
 
 #### [T-Shirt Designer](https://img.ly/docs/cesdk/dev/ios/starterkits/t-shirt-designer-jwinqr/)
 
+#### [Photobook Editor](https://img.ly/docs/cesdk/dev/ios/starterkits/photobook-editor-pbedit/)
+
 #### [Custom Built UIs](https://img.ly/docs/cesdk/dev/ios/starterkits/custom-built-uis-5a5cc4/)
 
 - [Memories UI](https://img.ly/docs/cesdk/dev/ios/starterkits/memories-mmrs01/)

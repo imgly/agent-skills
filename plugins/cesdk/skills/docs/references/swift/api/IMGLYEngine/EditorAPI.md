@@ -121,6 +121,14 @@ This is the default implementation for the URI resolver. It resolves the given p
 
 Delete (reset) the currently selected vector control point handles. Removes the bezier handle from the node, converting that side to a straight line. If the node has two handles, only the selected one is removed.
 
+### deleteSelectedVectorSegment()
+
+```swift
+@MainActor func deleteSelectedVectorSegment() throws
+```
+
+Delete the currently selected path segment, as one undo step. Nothing is selected afterwards. A closed contour opens at the segment, and no point is removed. An open contour splits into two contours of the same block. At the end of an open contour, the end point that is left alone is removed too. A contour with fewer than two points left is removed. In the same undo step, the call removes the animation track `shape/vector_path/path` of the path, because it cannot keep the deleted segment. The other animation tracks of the block stay.
+
 ### deleteVectorNode()
 
 ```swift
@@ -184,6 +192,14 @@ Queries the names of currently set spot colors previously set with `setSpotColor
 ```
 
 Returns the URLs and sizes of all resources whose data would be lost if the scene was exported. A list containing the URLs and sizes of transient resources.
+
+### finishVectorDrawPath()
+
+```swift
+@MainActor func finishVectorDrawPath() throws
+```
+
+Finish the in-progress draw path, keeping it open. A path of two or more anchors stays, and only the drawing ends. Ending a drawing drops a path of one anchor. A block that the pen created is destroyed when it is left without a path. Another block is destroyed too, unless the `lifecycle/destroy` scope keeps it.
 
 ### getAbsoluteURI(relativePath:)
 
@@ -555,6 +571,14 @@ Check whether vector edit bend mode is currently active. `true` if bend mode is 
 
 Check whether vector edit delete mode is currently active. `true` if delete mode is active.
 
+### getVectorEditDrawMode()
+
+```swift
+@MainActor func getVectorEditDrawMode() -> Bool
+```
+
+Check whether vector edit draw mode is currently active. `true` if draw mode is active.
+
 ### hasSelectedVectorControlPoint()
 
 ```swift
@@ -570,6 +594,22 @@ Check whether a vector control point handle is currently selected in vector edit
 ```
 
 Check whether a vector anchor node is currently selected in vector edit mode. `true` if a vector anchor node is selected.
+
+### hasSelectedVectorSegment()
+
+```swift
+@MainActor func hasSelectedVectorSegment() -> Bool
+```
+
+Check whether a path segment is currently selected in vector edit mode. A click on a segment selects it. Also true on a text baseline, whose segments [`deleteSelectedVectorSegment()`](deleteselectedvectorsegment().md) refuses. `true` if a path segment is selected.
+
+### hasVectorDrawPathInProgress()
+
+```swift
+@MainActor func hasVectorDrawPathInProgress() -> Bool
+```
+
+Check whether a vector path is currently being drawn in draw mode. `true` if an in-progress draw path exists.
 
 ### isHighlightingEnabled(_:)
 
@@ -709,6 +749,14 @@ Free the memory that the engine can build again without a download. The engine f
 
 Changes the URL associated with a resource. `currentURL`
 
+### removeLastVectorDrawNode()
+
+```swift
+@MainActor func removeLastVectorDrawNode() throws
+```
+
+Remove the most recently placed anchor of the in-progress draw path. Removing the only anchor of a new path ends the drawing. A path that the drawing continues keeps the anchors that it had before. Ending a drawing drops a path of one anchor. A block that the pen created is destroyed when it is left without a path. Another block is destroyed too, unless the `lifecycle/destroy` scope keeps it.
+
 ### removeMovementConstraint(_:)-5h2ya
 
 ```swift
@@ -780,6 +828,14 @@ Remove multiple upscale constraint scopes at once. `scopes`
 ```
 
 Remove the scene-wide default upscale constraint.
+
+### selectAllVectorNodes()
+
+```swift
+@MainActor func selectAllVectorNodes() throws
+```
+
+Select every anchor node of the path in vector edit mode, and deselect its control points. When the pen waits for its first click on a selection, the call starts the path edit, as turning bend mode on does. It edits the path of the one selected block, or the picked part of a combination. It then turns draw mode off, and the next update selects every anchor of that path. When a path is edited already, draw mode stays as it is.
 
 ### setActiveHistory(_:)
 
@@ -1076,6 +1132,14 @@ Enable or disable bend mode for vector editing. `active`
 ```
 
 Enable or disable delete mode for vector editing. `active`
+
+### setVectorEditDrawMode(_:)
+
+```swift
+@MainActor func setVectorEditDrawMode(_ active: Bool) throws
+```
+
+Enable or disable draw (pen tool) mode for vector editing. `active`
 
 ### startAudioOutputDevice()
 

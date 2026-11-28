@@ -23,7 +23,7 @@ Create an empty value set in the scene. A value set holds alternative values for
 @MainActor func destroyValueSet(_ set: ValueSetID) throws
 ```
 
-Destroy a value set and its values. When the set is active, no set is active afterwards, and text and bound properties show the default values again. `set`
+Destroy a value set and its values. When the set is active, no set is active afterwards, and text and bound properties show the default values again. Destroying the active set writes every bound property. So it can run an internal update, as [`set(key:number:target:)`](./set(key:number:target:).md) and [`set(key:imageURL:target:)`](./set(key:imageurl:target:).md) can. `set`
 
 ### findAll()
 
@@ -127,7 +127,7 @@ Get the name of a value set. `set`
 @MainActor func remove(key: String, target: VariableTarget? = nil) throws
 ```
 
-Destroy a variable of any type. Bound properties keep their last value and their binding, so direct writes to them still fail with `BLOCK.PROPERTY_BOUND`. Setting a variable with the same key and type again makes them follow it again. `key`
+Destroy a variable of any type. Bound properties keep their last value and their binding, so direct writes to them still fail with `BLOCK.PROPERTY_BOUND`. Setting a variable with the same key and type again makes them follow it again. With a value set as the target, the call writes the bound properties of the variable. So it can run an internal update, as [`set(key:number:target:)`](./set(key:number:target:).md) and [`set(key:imageURL:target:)`](./set(key:imageurl:target:).md) can. `key`
 
 ### rename(key:to:)
 
@@ -151,7 +151,7 @@ Set a color variable. Creates it when no variable has this key. Every block prop
 @MainActor func set(key: String, imageURL: URL, target: VariableTarget? = nil) throws
 ```
 
-Set an image variable. Creates it when no variable has this key. Every block property bound to the variable takes the URL that the scene shows. If a bound property rejects the value, the call throws its error, but the variable and the other bound properties change anyway. `key`
+Set an image variable. Creates it when no variable has this key. Every block property bound to the variable takes the URL that the scene shows. If a bound property rejects the value, the call throws its error, but the variable and the other bound properties change anyway. A new URL resets the crop of the blocks that show a bound fill, so the call can run an internal update. `key`
 
 ### set(key:number:target:)
 
@@ -159,7 +159,7 @@ Set an image variable. Creates it when no variable has this key. Every block pro
 @MainActor func set(key: String, number: Float, target: VariableTarget? = nil) throws
 ```
 
-Set a number variable. Creates it when no variable has this key. Every block property bound to the variable takes the value that the scene shows. If a bound property rejects the value, the call throws its error, but the variable and the other bound properties change anyway. `key`
+Set a number variable. Creates it when no variable has this key. Every block property bound to the variable takes the value that the scene shows. If a bound property rejects the value, the call throws its error, but the variable and the other bound properties change anyway. The call can run an internal update, because a bound property can need the laid-out frame. That is the rotation of a block, the position or the size of a group, or a crop property. `key`
 
 ### set(key:typeface:target:)
 
@@ -183,7 +183,7 @@ Set a text variable. The key must not be `scene_root` or start with `ubq.`, beca
 @MainActor func setActiveValueSet(_ set: ValueSetID?) throws
 ```
 
-Activate a value set, or no set. The values of the active set win over the default values in text, bound properties and getters. Exports show the active set, as the canvas does. A scene has one active set, and saves it. Undo reverts the change. `set`
+Activate a value set, or no set. The values of the active set win over the default values in text, bound properties and getters. Exports show the active set, as the canvas does. A scene has one active set, and saves it. Undo reverts the change. The call writes every bound property. So it can run an internal update, as [`set(key:number:target:)`](./set(key:number:target:).md) and [`set(key:imageURL:target:)`](./set(key:imageurl:target:).md) can. `set`
 
 ### setValueSetName(_:name:)
 

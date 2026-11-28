@@ -16,7 +16,7 @@ argument-hint: "[feature or task]"
 
 ## Version Notice
 
-> CE.SDK `1.88.0-nightly.20261127` · generated `2026-11-27` · plugin `imgly-sdk`
+> CE.SDK `1.89.0-nightly.20261128` · generated `2026-11-28` · plugin `imgly-sdk`
 > · canonical update source `imgly/agent-skills`.
 >
 > If this bundle is over six weeks old, or the user asks about updates, follow

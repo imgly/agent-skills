@@ -24,7 +24,7 @@ Create an empty value set in the scene. A value set holds alternative values for
 abstract fun destroyValueSet(set: ValueSetId)
 ```
 
-Destroy a value set and its values. When the set is active, no set is active afterwards, and text and bound properties show the default values again.
+Destroy a value set and its values. When the set is active, no set is active afterwards, and text and bound properties show the default values again. Destroying the active set writes every bound property. So it can run an internal update, as setNumber and setImage can.
 
 ### findAllOfType
 
@@ -156,7 +156,7 @@ abstract fun remove(key: String, target: VariableTarget?)
 open fun remove(key: String)
 ```
 
-Destroy a variable of any type. Bound properties keep their last value and their binding, so direct writes to them still fail with BLOCK.PROPERTY_BOUND. Setting a variable with the same key and type again makes them follow it again.
+Destroy a variable of any type. Bound properties keep their last value and their binding, so direct writes to them still fail with BLOCK.PROPERTY_BOUND. Setting a variable with the same key and type again makes them follow it again. With a value set as the target, the call writes the bound properties of the variable. So it can run an internal update, as setNumber and setImage can.
 
 ### rename
 
@@ -172,7 +172,7 @@ Rename a variable of any type. The value, the type and the values in every value
 abstract fun setActiveValueSet(set: ValueSetId?)
 ```
 
-Activate a value set, or no set. The values of the active set win over the default values in text, bound properties and getters. Exports show the active set, as the canvas does. A scene has one active set, and saves it. Undo reverts the change.
+Activate a value set, or no set. The values of the active set win over the default values in text, bound properties and getters. Exports show the active set, as the canvas does. A scene has one active set, and saves it. Undo reverts the change. The call writes every bound property. So it can run an internal update, as setNumber and setImage can.
 
 ### setColor
 
@@ -196,7 +196,7 @@ abstract fun setImage(key: String, uri: Uri, target: VariableTarget?)
 open fun setImage(key: String, uri: Uri)
 ```
 
-Set an image variable. Creates the variable if no variable has this key. Every block property bound to the variable takes the URI that the scene shows. If a bound property rejects the value, the call throws its error, but the variable and the other bound properties change anyway.
+Set an image variable. Creates the variable if no variable has this key. Every block property bound to the variable takes the URI that the scene shows. If a bound property rejects the value, the call throws its error, but the variable and the other bound properties change anyway. A new URI resets the crop of the blocks that show a bound fill, so the call can run an internal update.
 
 ### setNumber
 
@@ -208,7 +208,7 @@ abstract fun setNumber(key: String, value: Float, target: VariableTarget?)
 open fun setNumber(key: String, value: Float)
 ```
 
-Set a number variable. Creates the variable if no variable has this key. Every block property bound to the variable takes the value that the scene shows. If a bound property rejects the value, the call throws its error, but the variable and the other bound properties change anyway.
+Set a number variable. Creates the variable if no variable has this key. Every block property bound to the variable takes the value that the scene shows. If a bound property rejects the value, the call throws its error, but the variable and the other bound properties change anyway. The call can run an internal update, because a bound property can need the laid-out frame. That is the rotation of a block, the position or the size of a group, or a crop property.
 
 ### setTypeface
 

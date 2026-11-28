@@ -3815,6 +3815,12 @@ case computeEmscriptenMakeContextCurrentFailed
 case computeGrDirectContextCreateFailed
 ```
 
+### EngineErrorCode.computeHeifImageUnsupported
+
+```swift
+case computeHeifImageUnsupported
+```
+
 ### EngineErrorCode.computeHttpDataNoBuffer
 
 ```swift
@@ -4541,6 +4547,12 @@ case editorVectorNoControlPointSelected
 case editorVectorNodeNotDeletable
 ```
 
+### EngineErrorCode.editorVectorNoDrawSession
+
+```swift
+case editorVectorNoDrawSession
+```
+
 ### EngineErrorCode.editorVectorNoNodeSelected
 
 ```swift
@@ -4551,6 +4563,18 @@ case editorVectorNoNodeSelected
 
 ```swift
 case editorVectorNoPathEditing
+```
+
+### EngineErrorCode.editorVectorNoSegmentSelected
+
+```swift
+case editorVectorNoSegmentSelected
+```
+
+### EngineErrorCode.editorVectorSegmentNotDeletable
+
+```swift
+case editorVectorSegmentNotDeletable
 ```
 
 ### EngineErrorCode.editorVideoDecodeFailed
@@ -4593,6 +4617,18 @@ case editorZoomAutoFitNotEnabled
 
 ```swift
 case editorZoomBlockNotLayouted
+```
+
+### EngineErrorCode.editorZoomBlocksAcrossScenes
+
+```swift
+case editorZoomBlocksAcrossScenes
+```
+
+### EngineErrorCode.editorZoomBlocksEmpty
+
+```swift
+case editorZoomBlocksEmpty
 ```
 
 ### EngineErrorCode.editorZoomNoCamera
